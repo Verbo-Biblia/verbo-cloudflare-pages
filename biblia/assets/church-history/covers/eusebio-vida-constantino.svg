@@ -1,0 +1,86 @@
+<svg width="440" height="640" viewBox="0 0 440 640" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="coverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141F35"/>
+      <stop offset="55%" stop-color="#10192B"/>
+      <stop offset="100%" stop-color="#0A1220"/>
+    </linearGradient>
+    <radialGradient id="vignette" cx="52%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#1C2A45" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="spineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#5E2222"/>
+      <stop offset="50%" stop-color="#7A2E2E"/>
+      <stop offset="100%" stop-color="#5A2424"/>
+    </linearGradient>
+    <linearGradient id="goldLine" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E4C355"/>
+      <stop offset="50%" stop-color="#C9A227"/>
+      <stop offset="100%" stop-color="#9C7C1C"/>
+    </linearGradient>
+    <filter id="softGrain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" result="noise"/>
+      <feColorMatrix in="noise" type="matrix"
+        values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.03 0"/>
+    </filter>
+  </defs>
+
+  <!-- spine -->
+  <rect x="0" y="0" width="26" height="640" fill="url(#spineGrad)"/>
+  <rect x="21" y="0" width="5" height="640" fill="#3A1414" opacity="0.5"/>
+  <rect x="0" y="96" width="26" height="4" fill="#C9A227" opacity="0.35"/>
+  <rect x="0" y="320" width="26" height="4" fill="#C9A227" opacity="0.35"/>
+  <rect x="0" y="544" width="26" height="4" fill="#C9A227" opacity="0.35"/>
+
+  <!-- front cover panel -->
+  <rect x="26" y="0" width="414" height="640" fill="url(#coverGrad)"/>
+  <rect x="26" y="0" width="414" height="640" fill="url(#vignette)"/>
+  <rect x="26" y="0" width="414" height="640" filter="url(#softGrain)"/>
+
+  <!-- outer gold frame -->
+  <rect x="52" y="36" width="362" height="568" fill="none" stroke="url(#goldLine)" stroke-width="2.2"/>
+  <rect x="60" y="44" width="346" height="552" fill="none" stroke="url(#goldLine)" stroke-width="1" opacity="0.7"/>
+
+  <!-- corner fleurons -->
+  <g stroke="url(#goldLine)" stroke-width="1.3" fill="none" opacity="0.9">
+    <circle cx="52" cy="36" r="3.5"/>
+    <circle cx="414" cy="36" r="3.5"/>
+    <circle cx="52" cy="604" r="3.5"/>
+    <circle cx="414" cy="604" r="3.5"/>
+  </g>
+
+  <!-- CENTRAL SIGNATURE: labarum — imperial standard bearing the Chi-Rho on a crossbar, evokes the vision before the Milvian Bridge -->
+  <g transform="translate(233,300)">
+    <circle r="130" fill="none" stroke="url(#goldLine)" stroke-width="1.4" opacity="0.5"/>
+
+    <!-- vertical staff -->
+    <line x1="0" y1="-140" x2="0" y2="150" stroke="url(#goldLine)" stroke-width="6" stroke-linecap="round"/>
+    <!-- crossbar with hanging vexillum (banner cloth) -->
+    <line x1="-58" y1="-30" x2="58" y2="-30" stroke="url(#goldLine)" stroke-width="5" stroke-linecap="round"/>
+    <!-- banner cloth hanging from crossbar -->
+    <path d="M -50 -30 L -50 55 L -30 40 L -10 55 L 10 40 L 30 55 L 50 40 L 50 -30 Z"
+          fill="none" stroke="url(#goldLine)" stroke-width="3" opacity="0.85"/>
+    <!-- three medallions on the banner (imperial portraits, abstracted as roundels) -->
+    <circle cx="-24" cy="0" r="7" fill="none" stroke="url(#goldLine)" stroke-width="2" opacity="0.7"/>
+    <circle cx="0" cy="0" r="7" fill="none" stroke="url(#goldLine)" stroke-width="2" opacity="0.7"/>
+    <circle cx="24" cy="0" r="7" fill="none" stroke="url(#goldLine)" stroke-width="2" opacity="0.7"/>
+
+    <!-- Chi-Rho wreath atop the staff -->
+    <g transform="translate(0,-165)">
+      <circle r="34" fill="none" stroke="url(#goldLine)" stroke-width="1.5" opacity="0.6"/>
+      <g stroke="url(#goldLine)" stroke-width="4.5" fill="none" stroke-linecap="round">
+        <path d="M -16 -20 L 16 20"/>
+        <path d="M 16 -20 L -16 20"/>
+        <path d="M 3 -27 L 3 22"/>
+        <path d="M 3 -27 Q 20 -27 20 -15 Q 20 -3 3 -3" stroke-width="4.5"/>
+      </g>
+    </g>
+
+    <!-- alpha / omega -->
+    <text x="-98" y="60" font-family="Georgia, serif" font-size="20" fill="#C9A227" opacity="0.75">α</text>
+    <text x="82" y="60" font-family="Georgia, serif" font-size="20" fill="#C9A227" opacity="0.75">ω</text>
+  </g>
+
+  <line x1="120" y1="500" x2="346" y2="500" stroke="url(#goldLine)" stroke-width="1" opacity="0.4"/>
+</svg>

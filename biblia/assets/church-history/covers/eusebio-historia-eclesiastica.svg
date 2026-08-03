@@ -1,0 +1,79 @@
+<svg width="440" height="640" viewBox="0 0 440 640" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="coverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141F35"/>
+      <stop offset="55%" stop-color="#10192B"/>
+      <stop offset="100%" stop-color="#0A1220"/>
+    </linearGradient>
+    <radialGradient id="vignette" cx="52%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#1C2A45" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="spineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#5E2222"/>
+      <stop offset="50%" stop-color="#7A2E2E"/>
+      <stop offset="100%" stop-color="#5A2424"/>
+    </linearGradient>
+    <linearGradient id="goldLine" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E4C355"/>
+      <stop offset="50%" stop-color="#C9A227"/>
+      <stop offset="100%" stop-color="#9C7C1C"/>
+    </linearGradient>
+    <filter id="softGrain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" result="noise"/>
+      <feColorMatrix in="noise" type="matrix"
+        values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.03 0"/>
+    </filter>
+  </defs>
+
+  <!-- spine (left edge, real bookbinding) -->
+  <rect x="0" y="0" width="26" height="640" fill="url(#spineGrad)"/>
+  <rect x="21" y="0" width="5" height="640" fill="#3A1414" opacity="0.5"/>
+  <rect x="0" y="96" width="26" height="4" fill="#C9A227" opacity="0.35"/>
+  <rect x="0" y="320" width="26" height="4" fill="#C9A227" opacity="0.35"/>
+  <rect x="0" y="544" width="26" height="4" fill="#C9A227" opacity="0.35"/>
+
+  <!-- front cover panel -->
+  <rect x="26" y="0" width="414" height="640" fill="url(#coverGrad)"/>
+  <rect x="26" y="0" width="414" height="640" fill="url(#vignette)"/>
+  <rect x="26" y="0" width="414" height="640" filter="url(#softGrain)"/>
+
+  <!-- outer gold frame, double rule like tooled leather -->
+  <rect x="52" y="36" width="362" height="568" fill="none" stroke="url(#goldLine)" stroke-width="2.2"/>
+  <rect x="60" y="44" width="346" height="552" fill="none" stroke="url(#goldLine)" stroke-width="1" opacity="0.7"/>
+
+  <!-- corner fleurons -->
+  <g stroke="url(#goldLine)" stroke-width="1.3" fill="none" opacity="0.9">
+    <circle cx="52" cy="36" r="3.5"/>
+    <circle cx="414" cy="36" r="3.5"/>
+    <circle cx="52" cy="604" r="3.5"/>
+    <circle cx="414" cy="604" r="3.5"/>
+  </g>
+
+  <!-- CENTRAL SIGNATURE: chi-rho within laurel medallion -->
+  <g transform="translate(233,300)">
+    <circle r="130" fill="none" stroke="url(#goldLine)" stroke-width="1.4" opacity="0.55"/>
+    <circle r="119" fill="none" stroke="url(#goldLine)" stroke-width="0.7" opacity="0.4"/>
+
+    <!-- laurel branches -->
+    <g stroke="url(#goldLine)" stroke-width="1.8" fill="none" opacity="0.85" stroke-linecap="round">
+      <path d="M -82 52 Q -112 18 -95 -34 Q -82 -78 -52 -104"/>
+      <path d="M 82 52 Q 112 18 95 -34 Q 82 -78 52 -104"/>
+      <path d="M -93 34 l -16 7 M -98 10 l -18 4 M -97 -14 l -18 -2 M -90 -38 l -16 -9 M -79 -61 l -12 -12 M -66 -83 l -9 -14"/>
+      <path d="M 93 34 l 16 7 M 98 10 l 18 4 M 97 -14 l 18 -2 M 90 -38 l 16 -9 M 79 -61 l 12 -12 M 66 -83 l 9 -14"/>
+    </g>
+
+    <!-- Chi-Rho monogram -->
+    <g stroke="url(#goldLine)" stroke-width="6" fill="none" stroke-linecap="round">
+      <path d="M -48 -60 L 48 60"/>
+      <path d="M 48 -60 L -48 60"/>
+      <path d="M 7 -82 L 7 65"/>
+      <path d="M 7 -82 Q 45 -82 45 -54 Q 45 -26 7 -26" stroke-width="6"/>
+    </g>
+    <text x="-84" y="7" font-family="Georgia, serif" font-size="22" fill="#C9A227" opacity="0.8">α</text>
+    <text x="68" y="7" font-family="Georgia, serif" font-size="22" fill="#C9A227" opacity="0.8">ω</text>
+  </g>
+
+  <!-- base rule, plinth left empty on purpose: text lives in the overlay -->
+  <line x1="120" y1="500" x2="346" y2="500" stroke="url(#goldLine)" stroke-width="1" opacity="0.4"/>
+</svg>
