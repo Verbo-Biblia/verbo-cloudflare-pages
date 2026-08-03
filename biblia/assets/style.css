@@ -4,6 +4,11 @@
    ============================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Lora:ital,wght@0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+/* Tipografía exclusiva del visor de lectura de Historia de la Iglesia (.history-reader),
+   independiente de --font-body/--font-display del resto del sitio. No sustituye la
+   tipografía general — ver CLAUDE.md sobre por qué no se reutiliza libreria/assets/reader.css
+   directamente (vive fuera del SPA de Biblia y depende de tokens --r-* que aquí no existen). */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
 
 :root {
   --paper: #F1E3C8;
@@ -823,6 +828,172 @@ body {
   border-color: var(--wine-soft);
   color: var(--wine);
   background: var(--chrome);
+}
+
+/* ── Estante de portadas de Historia de la Iglesia ──────────────────────── */
+.church-shelf {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+  gap: 16px;
+  padding: 4px 2px 10px;
+}
+.church-shelf__item {
+  position: relative;
+  aspect-ratio: 440 / 640;
+  border-radius: 7px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 16px 30px -18px rgba(20,10,10,.5), 0 2px 6px rgba(20,10,10,.25);
+  transition: transform .18s ease, box-shadow .18s ease;
+  outline: none;
+}
+.church-shelf__item:hover,
+.church-shelf__item:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 38px -16px rgba(20,10,10,.55), 0 4px 10px rgba(20,10,10,.3);
+}
+.church-shelf__cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.church-shelf__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 3px;
+  padding: 12px;
+  background: linear-gradient(180deg, rgba(10,14,20,0) 0%, rgba(10,14,20,.5) 42%, rgba(10,14,20,.94) 100%);
+  color: #F3ECDC;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .18s ease;
+}
+.church-shelf__item:hover .church-shelf__overlay,
+.church-shelf__item:focus-visible .church-shelf__overlay,
+.church-shelf__item:focus-within .church-shelf__overlay,
+.church-shelf__item--active .church-shelf__overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+.church-shelf__overlay-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13.5px;
+  line-height: 1.25;
+}
+.church-shelf__overlay-period {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: .02em;
+  opacity: .85;
+}
+.church-shelf__overlay-summary {
+  font-size: 11.5px;
+  line-height: 1.38;
+  opacity: .92;
+  margin: 2px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.church-shelf__read-btn {
+  align-self: flex-start;
+  border: 1px solid rgba(243,236,220,.55);
+  background: rgba(243,236,220,.1);
+  color: #F3ECDC;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font: inherit;
+  font-size: 11.5px;
+  cursor: pointer;
+  margin-top: 4px;
+}
+.church-shelf__read-btn:hover { background: rgba(243,236,220,.22); }
+.church-shelf__search-link {
+  display: block;
+  width: 100%;
+  margin: 6px auto 4px;
+  border: 0;
+  background: transparent;
+  color: var(--wine);
+  font: inherit;
+  font-size: 12.5px;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 6px 0;
+  text-align: center;
+}
+.history-back-to-shelf { display: block; margin-bottom: 10px; }
+
+/* ── Tabla de contenidos (TOC) de un volumen de Historia ────────────────── */
+.history-toc__header { margin-bottom: 14px; }
+.history-toc__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 19px;
+  color: var(--ink);
+}
+.history-toc__period {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--sepia);
+  margin-top: 2px;
+}
+.history-toc__group { margin-bottom: 18px; }
+.history-toc__group-title {
+  font-family: var(--font-display);
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--wine);
+  margin: 0 0 6px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--rule);
+}
+.history-toc__subgroup { margin: 8px 0 8px 4px; }
+.history-toc__subgroup-title {
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-weight: 650;
+  color: var(--ink-soft);
+  margin: 0 0 4px;
+}
+.history-toc__list { list-style: none; margin: 0; padding: 0; }
+.history-toc__row {
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ink);
+  padding: 7px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.history-toc__row:hover,
+.history-toc__row:focus-visible {
+  background: var(--chrome);
+  outline: none;
+}
+
+/* ── Visor de lectura "tipo libro" (solo entradas abiertas desde el estante) ──
+   Fraunces en encabezado + IBM Plex Sans en cuerpo, tipografía exclusiva de
+   este flujo — el resto del sitio conserva --font-display/--font-body. */
+.history-reader .dict-entry__term {
+  font-family: 'Fraunces', var(--font-display);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.28;
+}
+.history-reader .dict-entry__def {
+  font-family: 'IBM Plex Sans', var(--font-body);
+  font-size: 15px;
+  line-height: 1.74;
+}
+.history-reader .dict-entry__def p { margin: 0 0 14px; }
+@media (min-width: 761px) {
+  .history-reader.dict-entry { max-width: 680px; margin: 0 auto; }
 }
 
 /* Diccionario */

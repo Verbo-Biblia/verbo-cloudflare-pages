@@ -1893,6 +1893,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   let churchHistoryActiveFilter=null;
   let churchHistoryTranslatedQuery='', churchHistoryQueryToken=0, churchHistoryQueryDebounce=null;
   let churchHistorySemanticResults=[], churchHistorySemanticQuery='', churchHistorySemanticToken=0, churchHistorySemanticDebounce=null;
+  // ── Estante de portadas (landing de Historia): estante -> overlay -> TOC -> lectura.
+  // churchHistoryOpenVolume = id del volumen abierto (TOC); churchHistoryOpenFromShelf
+  // marca que la entrada actual se abrió desde el TOC (no desde la búsqueda), para que
+  // el botón "volver" de renderChurchHistoryEntry sepa a dónde regresar.
+  let churchHistoryShelf=null, churchHistoryOpenVolume=null, churchHistoryOpenFromShelf=false, churchHistorySearchActive=false;
 
   function normalizeSearchText(value){
     return String(value||'').toLocaleLowerCase('es').normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim();
@@ -2053,6 +2058,60 @@ document.addEventListener('DOMContentLoaded', async () => {
     const clean=String(value||'').replace(/^Eusebio,\s*/,'');
     return clean==='Cánones Apostólicos'?`⚖ ${clean}`:clean;
   }
+  // A diferencia de churchHistoryBookKey (que usa entry.concilio primero y por
+  // eso separa Concilios en 9 secciones), esta clave agrupa por el volumen del
+  // estante — para Concilios las 9 secciones son subdivisiones DENTRO de una
+  // sola portada, no 9 portadas distintas.
+  function churchHistoryVolumeKey(entry){ return entry.sourceId || ''; }
+  function churchHistoryVolumeEntries(volumeId){
+    return (churchHistoryEntries||[]).filter(entry=>churchHistoryVolumeKey(entry)===volumeId);
+  }
+  // Agrupa preservando el orden narrativo del array (no reordena ni ordena por
+  // clave): cada vez que la clave cambia respecto a la entrada anterior abre un
+  // grupo nuevo. Así "Los mártires de Palestina" queda intercalado donde
+  // Eusebio lo puso realmente, en vez de ir a parar al final de un "grupo
+  // apéndice" artificial.
+  function churchHistoryGroupByOrder(entries, keyFn){
+    const groups=[]; let current=null;
+    entries.forEach(entry=>{
+      const key=keyFn(entry);
+      if(!current || current.key!==key){ current={key, items:[]}; groups.push(current); }
+      current.items.push(entry);
+    });
+    return groups;
+  }
+  // Quita el prefijo redundante del título ("Church History, Book I, Chapter I — ",
+  // "Sócrates Escolástico, Libro 1, Capítulo 1 — ") ya cubierto por el grupo/subgrupo
+  // del TOC, y deja solo la parte descriptiva del capítulo.
+  function churchHistoryTocRowLabel(entry){
+    const parts=String(entry.title||'').split(' — ');
+    return parts.length>1 ? parts.slice(1).join(' — ') : entry.title;
+  }
+  function churchHistoryTocGroups(volumeId, entries){
+    if(volumeId==='eusebio-historia-eclesiastica'){
+      return churchHistoryGroupByOrder(entries, entry=>{
+        const m=/^eusebio-he-l(\d+)-c\d+$/.exec(entry.id);
+        return m ? `${t('historia.toc.libro')} ${romanNumeral(Number(m[1]))}` : t('historia.toc.martiresPalestina');
+      }).map(g=>({label:g.key, items:g.items}));
+    }
+    if(volumeId==='eusebio-vida-constantino'){
+      return churchHistoryGroupByOrder(entries, entry=>{
+        const m=/^eusebio-voc-l(\d+)-c\d+$/.exec(entry.id);
+        if(m) return `${t('historia.toc.libro')} ${romanNumeral(Number(m[1]))}`;
+        return entry.id.startsWith('constantino-oracion-') ? t('historia.toc.oracionConstantino') : t('historia.toc.oracionEusebio');
+      }).map(g=>({label:g.key, items:g.items}));
+    }
+    if(volumeId==='npnf214-concilios-ecumenicos'){
+      return churchHistoryGroupByOrder(entries, entry=>entry.concilio||entry.title).map(g=>({label:churchHistoryBookLabel(g.key), items:g.items}));
+    }
+    if(volumeId==='npnf2-continuadores'){
+      return churchHistoryGroupByOrder(entries, entry=>entry.autor).map(authorGroup=>({
+        label: authorGroup.key,
+        subgroups: churchHistoryGroupByOrder(authorGroup.items, entry=>`${t('historia.toc.libro')} ${entry.libro}`).map(g=>({label:g.key, items:g.items})),
+      }));
+    }
+    return [{label:'', items:entries}];
+  }
   function churchHistorySuggestionGroups(entries){
     const anios=CHURCH_HISTORY_FEATURED_YEARS.filter(year=>entries.some(entry=>{
       const lo=entry.anioInicio??entry.anioFin, hi=entry.anioFin??entry.anioInicio;
@@ -2129,11 +2188,50 @@ document.addEventListener('DOMContentLoaded', async () => {
     }));
   }
 
+  // Despacho de 4 estados del panel (ver churchHistoryOpenVolume/churchHistoryOpenId/
+  // churchHistorySearchActive arriba): A) estante de portadas (landing) — B) TOC de
+  // un volumen abierto — C) lectura de una entrada abierta desde el TOC — D) el
+  // flujo de búsqueda/chips ya existente, intacto, solo con un link nuevo para
+  // volver al estante. B y C también se re-renderizan aquí para que cambiar de tab
+  // y volver a "historia" conserve dónde estaba el usuario (no vuelve al estante).
   async function renderChurchHistoryPanel(){
     els.panelTitle.textContent=t('historia.title');
-    els.panelToolbar.innerHTML=`<form class="search-panel-form" id="churchHistorySearchForm">
+    if(!churchHistoryEntries || !churchHistoryShelf){
+      els.panelToolbar.innerHTML='';
+      els.panelBody.innerHTML=emptyState('⌛',t('historia.cargando'));
+      const [entries,shelf]=await Promise.all([
+        churchHistoryEntries ? Promise.resolve(churchHistoryEntries) : VerboModules.loadChurchHistory().catch(error=>{ console.error(error); return []; }),
+        churchHistoryShelf ? Promise.resolve(churchHistoryShelf) : VerboModules.loadChurchHistoryShelf().catch(error=>{ console.error(error); return []; }),
+      ]);
+      churchHistoryEntries=entries;
+      churchHistoryShelf=shelf;
+    }
+
+    if(!churchHistorySearchActive && !churchHistoryOpenVolume && !churchHistoryOpenId){
+      renderChurchHistoryShelfView();
+      return;
+    }
+    if(churchHistoryOpenVolume && !churchHistoryOpenId){
+      renderChurchHistoryTOCView(churchHistoryOpenVolume);
+      return;
+    }
+    if(churchHistoryOpenId && churchHistoryOpenFromShelf){
+      els.panelToolbar.innerHTML='';
+      renderChurchHistoryEntry(churchHistoryOpenId);
+      return;
+    }
+
+    churchHistorySuggestions=churchHistoryEntries.length?churchHistorySuggestionGroups(churchHistoryEntries):{anios:[],temas:[],nombres:[]};
+    buildChurchHistoryPredictiveCandidates(churchHistoryEntries);
+    els.panelToolbar.innerHTML=`<button type="button" class="note-card__copy history-back-to-shelf" id="backToChurchHistoryShelfFromSearch">← ${t('historia.volverEstante')}</button>
+    <form class="search-panel-form" id="churchHistorySearchForm">
       <div class="history-search-autocomplete"><input id="churchHistorySearchInput" class="search-panel-input" type="search" placeholder="${t('historia.buscarPlaceholder')}" autocomplete="off" value="${escapeHTML(churchHistoryQuery)}"><div id="churchHistoryPredictions" class="history-predictions"></div></div>
     </form>`;
+    document.getElementById('backToChurchHistoryShelfFromSearch')?.addEventListener('click',()=>{
+      churchHistorySearchActive=false;
+      churchHistoryOpenId=null;
+      renderChurchHistoryShelfView();
+    });
     const input=document.getElementById('churchHistorySearchInput');
     document.getElementById('churchHistorySearchForm')?.addEventListener('submit',e=>e.preventDefault());
     input?.addEventListener('input',()=>{
@@ -2149,17 +2247,114 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
     input?.addEventListener('focus',()=>renderChurchHistoryPredictions(input.value));
     input?.addEventListener('blur',()=>setTimeout(()=>document.getElementById('churchHistoryPredictions')?.classList.remove('history-predictions--visible'),120));
-
-    if(!churchHistoryEntries){
-      els.panelBody.innerHTML=emptyState('⌛',t('historia.cargando'));
-      try{ churchHistoryEntries=await VerboModules.loadChurchHistory(); }
-      catch(error){ console.error(error); churchHistoryEntries=[]; }
-    }
-    churchHistorySuggestions=churchHistoryEntries.length?churchHistorySuggestionGroups(churchHistoryEntries):{anios:[],temas:[],nombres:[]};
-    buildChurchHistoryPredictiveCandidates(churchHistoryEntries);
     renderChurchHistoryPredictions(churchHistoryQuery);
     renderChurchHistoryBody();
     if(!churchHistoryOpenId) setTimeout(()=>input?.focus(),0);
+  }
+
+  // ── Estante de portadas (landing de Historia) ───────────────────────────────
+  function churchHistoryShelfItemHTML(volume){
+    return `<div class="church-shelf__item" data-shelf-volume="${escapeHTML(volume.id)}" tabindex="0" role="group" aria-label="${escapeHTML(volume.titulo)}">
+      <img class="church-shelf__cover" src="${escapeHTML(volume.cover)}" alt="" loading="lazy">
+      <div class="church-shelf__overlay">
+        <div class="church-shelf__overlay-title">${escapeHTML(volume.titulo)}</div>
+        ${volume.periodo?`<div class="church-shelf__overlay-period">${escapeHTML(volume.periodo)}</div>`:''}
+        <p class="church-shelf__overlay-summary">${escapeHTML(volume.resumenBreve||'')}</p>
+        <button type="button" class="church-shelf__read-btn" data-shelf-read="${escapeHTML(volume.id)}">${t('historia.leer')} →</button>
+      </div>
+    </div>`;
+  }
+  function wireChurchHistoryShelf(){
+    els.panelBody.querySelectorAll('[data-shelf-volume]').forEach(item=>{
+      const toggle=()=>item.classList.toggle('church-shelf__item--active');
+      item.addEventListener('click',event=>{ if(event.target.closest('[data-shelf-read]')) return; toggle(); });
+      item.addEventListener('keydown',event=>{
+        if(event.target.closest('[data-shelf-read]')) return;
+        if(event.key==='Enter'||event.key===' '){ event.preventDefault(); toggle(); }
+      });
+    });
+    els.panelBody.querySelectorAll('[data-shelf-read]').forEach(btn=>btn.addEventListener('click',event=>{
+      event.stopPropagation();
+      openChurchHistoryVolume(btn.dataset.shelfRead);
+    }));
+  }
+  function renderChurchHistoryShelfView(){
+    els.side.classList.remove('side-panel--history-expanded');
+    els.panelToolbar.innerHTML='';
+    if(!churchHistoryShelf.length){ els.panelBody.innerHTML=emptyState('⛪',t('historia.sinContenido')); return; }
+    els.panelBody.innerHTML=`<div class="church-shelf">${churchHistoryShelf.map(churchHistoryShelfItemHTML).join('')}</div>
+      <button type="button" class="church-shelf__search-link" id="churchHistoryGoSearch">${t('historia.buscarEnTodo')}</button>`;
+    wireChurchHistoryShelf();
+    document.getElementById('churchHistoryGoSearch')?.addEventListener('click',()=>{
+      churchHistorySearchActive=true;
+      renderChurchHistoryPanel();
+    });
+  }
+  function openChurchHistoryVolume(volumeId){
+    churchHistoryOpenVolume=volumeId;
+    churchHistoryOpenId=null;
+    churchHistoryOpenFromShelf=false;
+    renderChurchHistoryTOCView(volumeId);
+  }
+  function churchHistoryBackToShelf(){
+    churchHistoryOpenVolume=null;
+    churchHistoryOpenId=null;
+    renderChurchHistoryShelfView();
+  }
+
+  // ── TOC (índice) de un volumen — agrupado por libro/capítulo o autor/concilio
+  // según el volumen (ver churchHistoryTocGroups), preservando el orden narrativo
+  // real del array de entries.json (incluye Mártires de Palestina intercalado). ──
+  function churchHistoryTocRowHTML(entry){
+    return `<li class="history-toc__row" data-history-toc-id="${escapeHTML(entry.id)}" tabindex="0">${escapeHTML(churchHistoryTocRowLabel(entry))}</li>`;
+  }
+  function churchHistoryTocGroupHTML(group){
+    if(group.subgroups){
+      return `<section class="history-toc__group">
+        <h3 class="history-toc__group-title">${escapeHTML(group.label)}</h3>
+        ${group.subgroups.map(sub=>`<div class="history-toc__subgroup">
+          <h4 class="history-toc__subgroup-title">${escapeHTML(sub.label)}</h4>
+          <ol class="history-toc__list">${sub.items.map(churchHistoryTocRowHTML).join('')}</ol>
+        </div>`).join('')}
+      </section>`;
+    }
+    return `<section class="history-toc__group">
+      <h3 class="history-toc__group-title">${escapeHTML(group.label)}</h3>
+      <ol class="history-toc__list">${group.items.map(churchHistoryTocRowHTML).join('')}</ol>
+    </section>`;
+  }
+  function openChurchHistoryEntryFromTOC(id){
+    churchHistoryOpenId=id;
+    churchHistoryOpenFromShelf=true;
+    els.side.classList.add('side-panel--history-expanded');
+    renderChurchHistoryEntry(id);
+    els.panelBody.scrollTop=0;
+  }
+  function renderChurchHistoryTOCView(volumeId){
+    els.side.classList.remove('side-panel--history-expanded');
+    els.panelToolbar.innerHTML='';
+    const shelfMeta=(churchHistoryShelf||[]).find(v=>v.id===volumeId);
+    const entries=churchHistoryVolumeEntries(volumeId);
+    const backBtn=`<button type="button" class="note-card__copy" id="backToChurchHistoryShelf">← ${t('historia.volverEstante')}</button>`;
+    if(!entries.length){
+      els.panelBody.innerHTML=`${backBtn}${emptyState('⛪',t('historia.sinContenido'))}`;
+      document.getElementById('backToChurchHistoryShelf')?.addEventListener('click',churchHistoryBackToShelf);
+      return;
+    }
+    const groups=churchHistoryTocGroups(volumeId, entries);
+    els.panelBody.innerHTML=`${backBtn}
+      <div class="history-toc__header">
+        <div class="history-toc__title">${escapeHTML(shelfMeta?.titulo || volumeId)}</div>
+        ${shelfMeta?.periodo?`<div class="history-toc__period">${escapeHTML(shelfMeta.periodo)}</div>`:''}
+      </div>
+      <div class="history-toc">${groups.map(churchHistoryTocGroupHTML).join('')}</div>`;
+    document.getElementById('backToChurchHistoryShelf')?.addEventListener('click',churchHistoryBackToShelf);
+    els.panelBody.querySelectorAll('[data-history-toc-id]').forEach(row=>{
+      row.addEventListener('click',()=>openChurchHistoryEntryFromTOC(row.dataset.historyTocId));
+      row.addEventListener('keydown',event=>{
+        if(event.key==='Enter'||event.key===' '){ event.preventDefault(); openChurchHistoryEntryFromTOC(row.dataset.historyTocId); }
+      });
+    });
   }
 
   function renderChurchHistorySuggestionChips(){
@@ -2227,6 +2422,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }).join('')}</div>`;
     els.panelBody.querySelectorAll('[data-history-id]').forEach(btn=>btn.addEventListener('click',()=>{
       churchHistoryOpenId=btn.dataset.historyId;
+      churchHistoryOpenFromShelf=false;
       renderChurchHistoryBody();
       els.panelBody.scrollTop=0;
     }));
@@ -2285,12 +2481,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       entry.anioInicio!=null?`${t('historia.anio')}: ${entry.anioInicio}${entry.anioFin && entry.anioFin!==entry.anioInicio?'–'+entry.anioFin:''}`:null,
       entry.tipo?`${t('historia.tipo')}: ${escapeHTML(entry.tipo.replaceAll('_',' '))}`:null,
     ].filter(Boolean).join(' · ');
-    els.panelBody.innerHTML=`<article class="dict-entry">
+    els.panelBody.innerHTML=`<article class="dict-entry${churchHistoryOpenFromShelf?' history-reader':''}">
       <div class="dict-entry__term" data-entry-id="${escapeHTML(entry.id)}">${escapeHTML(entry.title)}</div>
       <div class="dict-entry__source">${escapeHTML(churchHistoryBookLabel(sourceKey))}</div>
       ${metaParts?`<p class="note-card__translation-note">${metaParts}</p>`:''}
       <div class="history-entry-actions">
-        <button class="note-card__copy" id="backToChurchHistoryResults" type="button">← ${t('historia.volverResultados')}</button>
+        <button class="note-card__copy" id="backToChurchHistoryResults" type="button">← ${churchHistoryOpenFromShelf?t('historia.volverIndice'):t('historia.volverResultados')}</button>
         <button id="churchHistoryExpand" class="history-panel-expand" type="button" aria-pressed="${els.side.classList.contains('side-panel--history-expanded')?'true':'false'}">${els.side.classList.contains('side-panel--history-expanded')?t('historia.vistaCompacta'):t('historia.ampliarLectura')}</button>
       </div>
       <div class="dict-entry__def" data-entry-id="${escapeHTML(entry.id)}">${entry.content||entry.excerpt||''}</div>
@@ -2300,6 +2496,13 @@ document.addEventListener('DOMContentLoaded', async () => {
       </nav>
     </article>`;
     document.getElementById('backToChurchHistoryResults')?.addEventListener('click',()=>{
+      if(churchHistoryOpenFromShelf){
+        churchHistoryOpenId=null;
+        els.side.classList.remove('side-panel--history-expanded');
+        renderChurchHistoryTOCView(churchHistoryOpenVolume);
+        els.panelBody.scrollTop=0;
+        return;
+      }
       els.side.classList.remove('side-panel--history-expanded');
       churchHistoryOpenId=null;
       renderChurchHistoryBody();
