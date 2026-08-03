@@ -397,6 +397,7 @@ const VerboModules = (() => {
         const data = await getJSON(resolveFromManifest(path, manifest.entriesFile));
         return (data.entries || []).map(entry => ({
           ...entry,
+          sourceId: manifest.id,
           sourceLabel: manifest.abbreviation || manifest.name,
           sourceCollectionLabel: manifest.abbreviation || manifest.name,
           sourceName: manifest.name,
@@ -409,6 +410,20 @@ const VerboModules = (() => {
       }
     }));
     return results.flat();
+  }
+
+  // Metadata del estante de portadas de Historia de la Iglesia (título,
+  // período narrado, resumen breve para el overlay) — independiente de
+  // entries.json de cada módulo, no participa del índice semántico ni
+  // afecta churchHistoryEntries. Ver modules/church-history/shelf.json.
+  async function loadChurchHistoryShelf() {
+    try {
+      const data = await getJSON('modules/church-history/shelf.json');
+      return data.volumes || [];
+    } catch (error) {
+      console.warn('Estante de Historia de la Iglesia: metadata omitida', error);
+      return [];
+    }
   }
 
   // Quita tildes/diacríticos y normaliza espacios/puntuación, para que la
@@ -894,5 +909,5 @@ const VerboModules = (() => {
     return null;
   }
 
-  return { getCatalog,getBookInfo,resolveBibleBooks,buildChapterData,loadBible,loadRemoteBible,loadCommentary,loadCommentaryIndex,loadLinkedEntries,loadLinkedArticle,loadChurchHistory,getDictionaryEntry,loadDictionaryEntries,loadDictionaryIndex,loadGospel,loadPatristic,searchBible,searchRemoteBible,searchSemanticBible,searchSemanticChurchHistory };
+  return { getCatalog,getBookInfo,resolveBibleBooks,buildChapterData,loadBible,loadRemoteBible,loadCommentary,loadCommentaryIndex,loadLinkedEntries,loadLinkedArticle,loadChurchHistory,loadChurchHistoryShelf,getDictionaryEntry,loadDictionaryEntries,loadDictionaryIndex,loadGospel,loadPatristic,searchBible,searchRemoteBible,searchSemanticBible,searchSemanticChurchHistory };
 })();
