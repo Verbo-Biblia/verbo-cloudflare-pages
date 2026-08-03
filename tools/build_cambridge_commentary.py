@@ -1,0 +1,503 @@
+#!/usr/bin/env python3
+"""Build provisional Cambridge Bible commentary modules from OCR sources."""
+
+from __future__ import annotations
+
+import html
+import json
+import re
+import xml.etree.ElementTree as ET
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+SOURCE_DIR = ROOT / "Archivos Verbo" / "cambridge-bible"
+OUT_DIR = ROOT / "modules" / "commentaries" / "cambridge"
+
+
+ROMANS_SECTIONS = [
+    ("I", "Time, Place, and Occasion", 0, 0, 0, 0),
+    ("II", "The Writer and His Readers", 1, 1, 1, 7),
+    ("III", "Good Report of the Roman Church: Paul not Ashamed of the Gospel", 1, 8, 1, 17),
+    ("IV", "Need for the Gospel: God's Anger and Man's Sin", 1, 18, 1, 23),
+    ("V", "Man Given up to his own Way: the Heathen", 1, 24, 1, 32),
+    ("VI", "Human Guilt Universal: He Approaches the Conscience of the Jew", 2, 1, 2, 17),
+    ("VII", "Jewish Responsibility and Guilt", 2, 17, 2, 29),
+    ("VIII", "Jewish Claims: No Hope in Human Merit", 3, 1, 3, 20),
+    ("IX", "The One Way of Divine Acceptance", 3, 21, 3, 31),
+    ("X", "Abraham and David", 4, 1, 4, 12),
+    ("XI", "Abraham (2)", 4, 13, 4, 25),
+    ("XII", "Peace, Love, and Joy for the Justified", 5, 1, 5, 11),
+    ("XIII", "Christ and Adam", 5, 12, 5, 21),
+    ("XIV", "Justification and Holiness", 6, 1, 6, 13),
+    ("XV", "Justification and Holiness: Illustrations from Human Life", 6, 14, 7, 6),
+    ("XVI", "The Function of the Law in the Spiritual Life", 7, 7, 7, 25),
+    ("XVII", "The Justified: Their Life by the Holy Spirit", 8, 1, 8, 11),
+    ("XVIII", "Holiness by the Spirit, and the Glories that Shall Follow", 8, 12, 8, 25),
+    ("XIX", "The Spirit of Prayer in the Saints: Their Present and Eternal Welfare in the Love of God", 8, 26, 8, 39),
+    ("XX", "The Sorrowful Problem: Jewish Unbelief; Divine Sovereignty", 9, 1, 9, 33),
+    ("XXI", "Jewish Unbelief and Gentile Faith: Prophecy", 10, 1, 10, 21),
+    ("XXII", "Israel However Not Forsaken", 11, 1, 11, 10),
+    ("XXIII", "Israel's Fall Overruled, for the World's Blessing, and for Israel's Mercy", 11, 11, 11, 24),
+    ("XXIV", "The Restoration of Israel Directly Foretold: All is of and for God", 11, 25, 11, 36),
+    ("XXV", "Christian Conduct the Issue of Christian Truth", 12, 1, 12, 8),
+    ("XXVI", "Christian Duty: Details of Personal Conduct", 12, 8, 12, 21),
+    ("XXVII", "Christian Duty; in Civil Life and Otherwise: Love", 13, 1, 13, 10),
+    ("XXVIII", "Christian Duty in the Light of the Lord's Return and in the Power of His Presence", 13, 11, 13, 14),
+    ("XXIX", "Christian Duty: Mutual Tenderness and Tolerance: the Sacredness of Example", 14, 1, 14, 23),
+    ("XXX", "The Same Subject: The Lord's Example: His Relation to Us All", 15, 1, 15, 13),
+    ("XXXI", "Roman Christianity: St. Paul's Commission: His Intended Itinerary: He Asks for Prayer", 15, 14, 15, 33),
+    ("XXXII", "A Commendation: Greetings: A Warning: A Doxology", 16, 1, 16, 27),
+]
+
+PHILIPPIANS_SECTIONS = [
+    (r"Ch\. L\.? 1.*2\. Greeting", "Greeting", 1, 1, 1, 2),
+    (r"8--U\. Thanksgiving and Prayer", "Thanksgiving and Prayer for the Philippian Saints", 1, 3, 1, 11),
+    (r"12[\u2014-]20\. Acco", "Account of St Paul's Present Circumstances and Experience", 1, 12, 1, 20),
+    (r"21[\u2014-]26\. The same subject", "The Alternative of Life or Death", 1, 21, 1, 26),
+    (r"27\s*[\u2014-]\s*30\. Entreaties", "Entreaties to Cherish Consistency and Unity", 1, 27, 1, 30),
+    (r"Ch\.il 1[\u2014-]4", "Appeal for Self-forgetful Unity", 2, 1, 2, 4),
+    (r"6\s*[\u2014-]\s*11\. The appeal enforced", "The Example of Christ's Incarnation, Obedience, and Exaltation", 2, 5, 2, 11),
+    (r"12\s*[\u2014-].*18\. Inferences", "The Call to a Reverent, Fruitful, Joyful Life", 2, 12, 2, 18),
+    (r"19\s*[\u2014-]\s*30\. He pRorosEs", "Timotheus and Epaphroditus", 2, 19, 2, 30),
+    (r"Ch\. III\. 1[\u2014-]3", "Joy in the Lord and Warning against False Confidence", 3, 1, 3, 3),
+    (r"4[\u2014-]11\. His own experience", "Paul's Former Confidence and Present Gain in Christ", 3, 4, 3, 11),
+    (r"12[\u2014-]16\. On the other hand", "Pressing toward the Goal", 3, 12, 3, 16),
+    (r"17[\u2014-]21\. Application", "Warning and Heavenly Citizenship", 3, 17, 3, 21),
+    (r"Ch, IV\. 1[\u2014-]7", "Steadfastness, Unity, Joy, and Peace", 4, 1, 4, 7),
+    (r"8[\u2014-]9\. As A LAST", "A Last Spiritual Entreaty", 4, 8, 4, 9),
+    (r"10[\u2014-]20\. He renders", "Thanks for the Philippians' Gift", 4, 10, 4, 20),
+    (r"21[\u2014-]28\. Salutations", "Salutations and Farewell", 4, 21, 4, 23),
+]
+
+EPHESIANS_SECTIONS = [
+    (r"Ch\.\s+I\.\s+1\s*[\u2013\u2014-]\s*2\.\s+Greeting", "Greeting", 1, 1, 1, 2),
+    (r"3\s*[\u2013\u2014-]\s*14\.\s+Ascription\s+of\s+Praise", "Ascription of Praise", 1, 3, 1, 14),
+    (r"16\s*[\u2013\u2014-]\s*23\.\s+Prayer", "Prayer", 1, 15, 1, 23),
+    (r"1\s*[\u2013\u2014-]\s*10\.\s+Regeneration", "Regeneration", 2, 1, 2, 10),
+    (
+        r"11\s*[\u2013\u2014-]\s*22\.\s+Regeneration\s+of\s+the\s+Ephesians",
+        "Jew and Gentile Reconciled",
+        2,
+        11,
+        2,
+        22,
+    ),
+    (r"Ch\.\s+h?i+\.?\s+1\s*[\u2013\u2014-]\s*13\.\s+He\s+would", "Paul's Ministry of the Mystery", 3, 1, 3, 13),
+    (r"14\s*[\u2013\u2014-]\s*19\.\s+The\s+main\s+theme\s+resumed", "Prayer", 3, 14, 3, 19),
+    (r"20,\s*21\.\s+Ascription\s+of\s+praise", "Doxology", 3, 20, 3, 21),
+    (r"Ch\.\s+IV\.\s+1\s*[\u2013\u2014-]\s*16\.\s+Practical\s+results", "Unity and Gifts", 4, 1, 4, 16),
+    (r"17\s*[\u2013\u2014-]\s*24\.\s+Practical\s+Results", "Old Man and New Man", 4, 17, 4, 24),
+    (r"25\s*[\u2013\u2014-]\s*32\.\s+The\s+subject\s+pursued", "Practical Results", 4, 25, 4, 32),
+    (r"Ch\.\s+V\.\s+1\s*[\u2013\u2014-]\s*14\.\s+The\s+subject\s+pursued", "Walk in Love and Light", 5, 1, 5, 14),
+    (r"15\s*[\u2013\u2014-]\s*21\.\s+The\s+subject\s+pursued", "Walk Wisely", 5, 15, 5, 21),
+    (
+        r"22\s*[\u2013\u2014-]\s*32\.\s+Special\s+Exhortations",
+        "Christian Home: Wife and Husband",
+        5,
+        22,
+        5,
+        32,
+    ),
+    (r"Ch\.\s+VI\.\s+1\s*[\u2013\u2014-]\s*4\.\s+The\s+Christian\s+Home", "Children and Parents", 6, 1, 6, 4),
+    (r"5\s*[\u2013\u2014-]\s*9\.\s+The\s+Christian\s+Home", "Servants and Masters", 6, 5, 6, 9),
+    (r"21\s*[\u2013\u2014-]\s*22\.\s+The\s+mission\s+of\s+Tychicus", "Tychicus", 6, 21, 6, 22),
+    (r"23\s*[\u2013\u2014-]\s*24\.\s+Benediction", "Benediction", 6, 23, 6, 24),
+]
+
+COLOSSIANS_SECTIONS = [
+    (r"Ch\.\s+1\.\s+1\s*[\u2013\u2014-]\s*2\.\s+Greeting", "Greeting", 1, 1, 1, 2),
+    (
+        r"3\s*[\u2013\u2014-]\s*8\.\s+THANKSGIVING FOR THE COLOSSIAN SAINTS",
+        "Thanksgiving for the Colossian Saints",
+        1,
+        3,
+        1,
+        8,
+    ),
+    (
+        r"9\s*[\u2013\u2014-]\s*12\.\s+THANKSGIVING PASSES INTO PRAYER",
+        "Thanksgiving Passes into Prayer",
+        1,
+        9,
+        1,
+        12,
+    ),
+    (r"13\s*[\u2013\u2014-]\s*14\.\s+The thought pursued", "Redemption", 1, 13, 1, 14),
+    (
+        r"16\s*[\u2013\u2014-]\s*17\.\s+THE THOUGHT CONTINUED",
+        "Greatness of the Redeemer",
+        1,
+        15,
+        1,
+        17,
+    ),
+    (r"18\s*[\u2013\u2014-]\s*20\.\s+The thought continued", "The Head of the Church", 1, 18, 1, 20),
+    (
+        r"21\s*[\u2013\u2014-]\s*23\.\s+The Subject pursued",
+        "The Colossians Reconciled",
+        1,
+        21,
+        1,
+        23,
+    ),
+    (
+        r"24\s*[\u2013\u2014-]\s*29\.\s+The Apostle's joy",
+        "Paul's Ministry and Sufferings",
+        1,
+        24,
+        1,
+        29,
+    ),
+    (
+        r"Ch\.\s+ii\.\s+1\s*[\u2013\u2014-]\s*1\.\s+His LABOUR OP PRAYER",
+        "Paul's Prayer for the Colossians",
+        2,
+        1,
+        2,
+        7,
+    ),
+    (
+        r"8\s*[\u2013\u2014-]\s*16\.\s+Warning against alien teachings",
+        "Warning against Alien Teachings",
+        2,
+        8,
+        2,
+        15,
+    ),
+    (
+        r"16\s*[\u2013\u2014-]\s*\^?28\.\s+Christian Liberty",
+        "Christian Liberty and Hostile Theories",
+        2,
+        16,
+        2,
+        23,
+    ),
+    (
+        r"Ch\.\s+III\.\s+1\s*[\u2013\u2014-]\s*4\.\s+The subject continued",
+        "Life in Union with the Risen Christ",
+        3,
+        1,
+        3,
+        4,
+    ),
+    (
+        r"6\s*[\u2013\u2014-]\s*\^?12\.\s+Universal Holiness",
+        "Universal Holiness: the Negative Side",
+        3,
+        5,
+        3,
+        11,
+    ),
+    (
+        r"12\s*[\u2013\u2014-]\s*17\.\s+Universal Holiness",
+        "Universal Holiness: the Positive Side",
+        3,
+        12,
+        3,
+        17,
+    ),
+    (
+        r"18\s*[\u2013\u2014-]\s+IV\.\s+1\.\s+Universal Holiness",
+        "Relative Duties",
+        3,
+        18,
+        4,
+        1,
+    ),
+    (r"2\s*[\u2013\u2014-]\s*6\.\s+Prayer", "Prayer and Intercourse with Non-Christians", 4, 2, 4, 6),
+    (r"7\s*[\u2013\u2014-]\s*\^?9\.\s+Personal Information", "Personal Information", 4, 7, 4, 9),
+    (r"10\s*[\u2013\u2014-]\s*14\.\s+Salutations", "Salutations", 4, 10, 4, 14),
+    (r"15\s*[\u2013\u2014-]\s*17\.\s+Laodicea", "Laodicea and Archippus", 4, 15, 4, 17),
+    (r"18\.\s+Farewell", "Farewell", 4, 18, 4, 18),
+]
+
+PHILEMON_SECTIONS = [
+    (r"1\s*[\u2013\u2014-]\s*8\.\s+Greeting", "Greeting", 1, 1, 1, 3),
+    (r"4\s*[\u2013\u2014-]\s*7\.\s+Thanksgiving and Prayer", "Thanksgiving and Prayer", 1, 4, 1, 7),
+    (
+        r"8\s*[\u2013\u2014-]\s*\^?21\.\s+A PERSONAL Request",
+        "A Personal Request: Onesimus",
+        1,
+        8,
+        1,
+        21,
+    ),
+    (r"22\.\s+He hopes to visit", "Paul Hopes to Visit Colossae", 1, 22, 1, 22),
+    (r"23\s*[\u2013\u2014-]\s*\^?25\.\s+Salutations", "Salutations", 1, 23, 1, 25),
+]
+
+
+def compact_spaces(text: str) -> str:
+    text = text.replace("\u00a0", " ")
+    text = re.sub(r"[ \t]+", " ", text)
+    return text.strip()
+
+
+def source_lines(source: Path) -> list[str]:
+    if source.suffix.lower() != ".xml":
+        return source.read_text(encoding="utf-8", errors="replace").splitlines()
+
+    root = ET.parse(source).getroot()
+    lines: list[str] = []
+    for line in root.findall(".//LINE"):
+        words = [compact_spaces("".join(word.itertext())) for word in line.findall("WORD")]
+        words = [word for word in words if word]
+        if words:
+            lines.append(" ".join(words))
+    return lines
+
+
+def is_noise(line: str) -> bool:
+    clean = compact_spaces(line)
+    if not clean:
+        return False
+    if re.fullmatch(r"[ivxlcdmIVXLCDM0-9]+", clean):
+        return True
+    if re.fullmatch(r"[0-9]+ THE EPISTLE TO THE ROMANS", clean):
+        return True
+    if re.fullmatch(r"THE EPISTLE TO THE ROMANS [0-9]+", clean):
+        return True
+    if re.fullmatch(r"[ivxlcdm0-9. ]+\] .*", clean, flags=re.IGNORECASE):
+        return True
+    return False
+
+
+def lines_to_html(lines: list[str]) -> str:
+    paragraphs: list[str] = []
+    current: list[str] = []
+    for raw in lines:
+        line = compact_spaces(raw)
+        if is_noise(line):
+            continue
+        if not line:
+            if current:
+                paragraphs.append(" ".join(current))
+                current = []
+            continue
+        current.append(line)
+    if current:
+        paragraphs.append(" ".join(current))
+
+    cleaned = []
+    for paragraph in paragraphs:
+        paragraph = re.sub(r"\s+([,.;:?!])", r"\1", paragraph)
+        paragraph = re.sub(r"([A-Za-z])- ([A-Za-z])", r"\1\2", paragraph)
+        cleaned.append(f"<p>{html.escape(paragraph)}</p>")
+    return "".join(cleaned)
+
+
+def roman_heading_positions(lines: list[str]) -> dict[str, int]:
+    positions: dict[str, int] = {}
+    for index, line in enumerate(lines):
+        match = re.fullmatch(r"\s*CHAPTER\s+([IVXLCDM]+)\s*", line.strip())
+        if match:
+            positions[match.group(1)] = index
+    return positions
+
+
+def anchored_positions(
+    lines: list[str], sections: list[tuple[str, str, int, int, int, int]], min_line: int
+) -> list[int]:
+    positions: list[int] = []
+    cursor = min_line
+    for pattern, *_ in sections:
+        compiled = re.compile(pattern)
+        for index in range(cursor, len(lines)):
+            if compiled.search(lines[index]):
+                positions.append(index)
+                cursor = index + 1
+                break
+        else:
+            raise RuntimeError(f"Missing section anchor: {pattern}")
+    return positions
+
+
+def build_book_from_anchors(
+    source_name: str,
+    book_id: str,
+    book_name: str,
+    author: str,
+    sections: list[tuple[str, str, int, int, int, int]],
+    min_line: int,
+    end_pattern: str | None = None,
+    section_end_patterns: dict[str, str] | None = None,
+) -> None:
+    source = SOURCE_DIR / source_name
+    lines = source_lines(source)
+    positions = anchored_positions(lines, sections, min_line)
+    section_end_patterns = section_end_patterns or {}
+
+    entries = []
+    for idx, ((_, title, cs, vs, ce, ve), start) in enumerate(zip(sections, positions)):
+        if idx + 1 < len(positions):
+            end = positions[idx + 1]
+        elif end_pattern:
+            compiled_end = re.compile(end_pattern)
+            end = next(
+                (index for index in range(start + 1, len(lines)) if compiled_end.search(lines[index])),
+                len(lines),
+            )
+        else:
+            end = len(lines)
+        if title in section_end_patterns:
+            compiled_section_end = re.compile(section_end_patterns[title])
+            end = next(
+                (index for index in range(start + 1, end) if compiled_section_end.search(lines[index])),
+                end,
+            )
+        section_lines = lines[start:end]
+        content = lines_to_html(section_lines)
+        entries.append(
+            {
+                "id": f"cambridge-{book_id.lower()}-{cs}-{vs}-{ce}-{ve}",
+                "title": f"{book_name} {cs}:{vs}-{ce}:{ve} - {title}",
+                "author": author,
+                "reference": {
+                    "book": book_id,
+                    "chapterStart": cs,
+                    "verseStart": vs,
+                    "chapterEnd": ce,
+                    "verseEnd": ve,
+                },
+                "content": content,
+            }
+        )
+
+    (OUT_DIR / "books").mkdir(parents=True, exist_ok=True)
+    (OUT_DIR / "books" / f"{book_id}.json").write_text(
+        json.dumps({"entries": entries}, ensure_ascii=False, separators=(",", ":")),
+        encoding="utf-8",
+    )
+
+
+def build_romans() -> None:
+    source = SOURCE_DIR / "epistletoromans00moul_djvu.txt"
+    lines = source_lines(source)
+    positions = roman_heading_positions(lines)
+    missing = [roman for roman, *_ in ROMANS_SECTIONS if roman not in positions]
+    if missing:
+        raise RuntimeError(f"Missing Romans sections in OCR: {', '.join(missing)}")
+
+    entries = []
+    for idx, (roman, title, cs, vs, ce, ve) in enumerate(ROMANS_SECTIONS):
+        start = positions[roman]
+        next_roman = ROMANS_SECTIONS[idx + 1][0] if idx + 1 < len(ROMANS_SECTIONS) else None
+        end = positions[next_roman] if next_roman else len(lines)
+        section_lines = lines[start:end]
+        content = lines_to_html(section_lines)
+        entries.append(
+            {
+                "id": f"cambridge-rom-{cs}-{vs}-{ce}-{ve}",
+                "title": f"Romans {cs}:{vs}-{ce}:{ve} - {title}" if cs else f"Romans - {title}",
+                "author": "Handley C. G. Moule (1841-1920)",
+                "reference": {
+                    "book": "ROM",
+                    "chapterStart": cs,
+                    "verseStart": vs,
+                    "chapterEnd": ce,
+                    "verseEnd": ve,
+                },
+                "content": content,
+            }
+        )
+
+    (OUT_DIR / "books").mkdir(parents=True, exist_ok=True)
+    (OUT_DIR / "books" / "ROM.json").write_text(
+        json.dumps({"entries": entries}, ensure_ascii=False, separators=(",", ":")),
+        encoding="utf-8",
+    )
+
+
+def build_manifest() -> None:
+    manifest = {
+        "schemaVersion": 2,
+        "id": "cambridge",
+        "type": "commentary",
+        "name": "Cambridge Bible for Schools and Colleges",
+        "abbreviation": "Cambridge",
+        "language": "en",
+        "author": "Various Cambridge scholars",
+        "description": "Formal public-domain commentary series published by Cambridge University Press, 1878-1918. Provisional OCR-based integration; currently includes Romans, Ephesians, Philippians, Colossians, and Philemon. Ephesians 6:10-20 is omitted because the OCR source is missing those pages.",
+        "license": "Public Domain",
+        "books": [
+            {
+                "id": "ROM",
+                "name": "Romans",
+                "file": "books/ROM.json",
+            },
+            {
+                "id": "PHP",
+                "name": "Philippians",
+                "file": "books/PHP.json",
+            },
+            {
+                "id": "EPH",
+                "name": "Ephesians",
+                "file": "books/EPH.json",
+            },
+            {
+                "id": "COL",
+                "name": "Colossians",
+                "file": "books/COL.json",
+            },
+            {
+                "id": "PHM",
+                "name": "Philemon",
+                "file": "books/PHM.json",
+            },
+        ],
+    }
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    (OUT_DIR / "manifest.json").write_text(
+        json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+
+
+def main() -> None:
+    build_manifest()
+    build_romans()
+    build_book_from_anchors(
+        "epistletophilip00moulgoog_djvu.txt",
+        "PHP",
+        "Philippians",
+        "Handley C. G. Moule (1841-1920)",
+        PHILIPPIANS_SECTIONS,
+        min_line=1700,
+        end_pattern=r"^(The Subscription\.|APPENDICES\.)",
+    )
+    build_book_from_anchors(
+        "cambridgebiblefo65pero_djvu.txt",
+        "EPH",
+        "Ephesians",
+        "Handley C. G. Moule (1841-1920)",
+        EPHESIANS_SECTIONS,
+        min_line=1700,
+        end_pattern=r"^(The Subscription\.|APPENDICES\.)",
+        section_end_patterns={
+            "Servants and Masters": r"V\.\s+21\.\]\s+EPHESIANS",
+        },
+    )
+    build_book_from_anchors(
+        "epistlestocolos01moulgoog_djvu.xml",
+        "COL",
+        "Colossians",
+        "Handley C. G. Moule (1841-1920)",
+        COLOSSIANS_SECTIONS,
+        min_line=2100,
+        end_pattern=r"^The Subscription\.",
+    )
+    build_book_from_anchors(
+        "epistlestocolos01moulgoog_djvu.xml",
+        "PHM",
+        "Philemon",
+        "Handley C. G. Moule (1841-1920)",
+        PHILEMON_SECTIONS,
+        min_line=6900,
+        end_pattern=r"^The Subscription\.",
+    )
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta name="google-site-verification" content="71xY79FKGlgA3Z8wYUxv5ke-m0vX1NLaDicEGAFsF1Q" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location.hostname)) {
+  location.replace(`https://${location.host}${location.pathname}${location.search}${location.hash}`);
+}
+</script>
+<title>Verbo — Estudio bíblico en español</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png">
+<link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+<meta name="theme-color" content="#7f2d35">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Verbo">
+<link rel="stylesheet" href="assets/style.css?v=20260802-historia-predictiva">
+</head>
+<body>
+
+  <header class="app-header">
+    <a class="app-header__portal-back" href="../" data-i18n-attr="title:header.backToPortal,aria-label:header.backToPortal">←</a>
+    <div class="app-header__brand">
+      <span class="app-header__mark">Verbo</span>
+      <span class="app-header__sub" data-i18n="header.tagline">Estudio bíblico en español</span>
+
+    </div>
+    <div class="app-header__nav">
+      <div class="ui-lang-switcher" id="uiLangSwitcher" role="group" data-i18n-attr="aria-label:header.uiLangAria">
+        <button type="button" class="ui-lang-switcher__btn" data-lang="es">ES</button>
+        <button type="button" class="ui-lang-switcher__btn" data-lang="en">EN</button>
+      </div>
+      <div class="version-picker">
+        <div class="version-picker__combo" id="versionCombo">
+          <div class="version-picker__field">
+            <input type="text" id="mainVersionInput" class="version-picker__input" autocomplete="off" spellcheck="false" data-i18n-attr="aria-label:header.versionAria" readonly>
+            <ul class="version-picker__dropdown" id="versionDropdown" hidden></ul>
+          </div>
+        </div>
+        <select id="nativeVersionSelect" class="version-picker__native-select passage-picker__select" data-i18n-attr="aria-label:header.versionAria"></select>
+      </div>
+      <div class="passage-picker" data-i18n-attr="aria-label:header.passagePickerAria">
+        <select id="bookSelect" class="passage-picker__select passage-picker__select--book" data-i18n-attr="aria-label:header.bookAria"></select>
+        <select id="chapterSelect" class="passage-picker__select passage-picker__select--chapter" data-i18n-attr="aria-label:header.chapterAria"></select>
+        <button id="prevChapter" class="passage-picker__button" type="button" data-i18n-attr="aria-label:header.prevChapterAria">‹</button>
+        <button id="nextChapter" class="passage-picker__button" type="button" data-i18n-attr="aria-label:header.nextChapterAria">›</button>
+      </div>
+      <button class="search-trigger" id="searchTrigger" type="button" data-i18n-attr="aria-label:header.searchAria">
+        <span>⌕</span>
+        <span data-i18n="header.searchLabel">Buscar</span>
+      </button>
+      <button class="search-trigger sermon-mode-toggle" id="sermonModeToggle" type="button" aria-pressed="false" data-i18n-attr="aria-label:header.sermonAria">
+        <span>✎</span>
+        <span data-i18n="header.sermonLabel">Preparación de Bosquejo/Estudio</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="app-body">
+
+    <nav class="library-rail" data-i18n-attr="aria-label:rail.historia">
+      <button class="library-rail__btn" data-tab="historia" data-i18n-attr="title:rail.historia,aria-label:rail.historia">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <polygon points="12 2 20 7 4 7"/>
+          <line x1="6" y1="11" x2="6" y2="18"/>
+          <line x1="10" y1="11" x2="10" y2="18"/>
+          <line x1="14" y1="11" x2="14" y2="18"/>
+          <line x1="18" y1="11" x2="18" y2="18"/>
+          <line x1="3" y1="22" x2="21" y2="22"/>
+        </svg>
+      </button>
+      <button class="library-rail__btn" data-tab="padres" data-i18n-attr="title:rail.padres,aria-label:rail.padres">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M3 21h18"/>
+          <path d="M5 21V8l7-5 7 5v13"/>
+          <path d="M9 21v-6h6v6"/>
+        </svg>
+      </button>
+    </nav>
+
+    <main class="reading-pane" id="readingPane">
+      <div class="reading-pane__inner">
+        <div class="reading-pane__app-mark" aria-hidden="true">Verbo</div>
+        <div class="chapter-eyebrow"></div>
+        <div class="chapter-title-row">
+          <button class="chapter-nav-btn" id="innerPrev" type="button" data-i18n-attr="aria-label:header.prevChapterAria">‹</button>
+          <h1 class="chapter-title"></h1>
+          <button class="chapter-nav-btn chapter-nav-btn--next" id="innerNext" type="button" data-i18n-attr="aria-label:header.nextChapterAria">›</button>
+        </div>
+        <div id="verseList"></div>
+        <div class="bible-attribution" id="bibleAttribution" hidden></div>
+      </div>
+    </main>
+
+    <main class="editor-pane" id="editorPane" hidden>
+      <div class="editor-pane__toolbar" id="editorToolbar"></div>
+      <div class="editor-pane__actions">
+        <input type="text" class="editor-pane__title-input" id="predicaTituloInput" placeholder="Título de la prédica (opcional)">
+        <div class="editor-pane__actions-buttons">
+          <button type="button" class="editor-pane__save-btn" id="guardarSermonBtn">Guardar</button>
+          <button type="button" class="editor-pane__export-btn" id="exportWordBtn">Exportar a Word</button>
+          <button type="button" class="editor-pane__export-btn" id="exportPdfBtn">Exportar a PDF</button>
+        </div>
+      </div>
+      <div class="editor-pane__inner">
+        <div class="editor-pane__surface" id="editorSurface"></div>
+      </div>
+    </main>
+
+    <div class="sheet-backdrop" id="sheetBackdrop"></div>
+    <aside class="side-panel" id="sidePanel">
+      <div class="side-panel__inner">
+        <div class="sheet-handle" aria-hidden="true"></div>
+        <div class="side-panel__header">
+          <span class="side-panel__title" id="panelTitle" data-i18n="panel.defaultTitle">Panel</span>
+          <button class="side-panel__close" id="panelClose" data-i18n-attr="aria-label:panel.closeAria">✕</button>
+        </div>
+        <div class="side-panel__toolbar" id="panelToolbar"></div>
+        <div class="side-panel__body" id="panelBody"></div>
+      </div>
+    </aside>
+
+    <nav class="tab-rail">
+      <button class="tab-rail__btn" data-tab="comentario" data-i18n-attr="title:nav.comentario,aria-label:nav.comentario">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+        <span class="tab-rail__dot"></span>
+      </button>
+      <button class="tab-rail__btn" data-tab="comparar" data-i18n-attr="title:nav.compararVersiones,aria-label:nav.compararVersiones">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <rect x="3" y="4" width="7" height="16" rx="1"/>
+          <rect x="14" y="4" width="7" height="16" rx="1"/>
+        </svg>
+      </button>
+      <button class="tab-rail__btn" data-tab="diccionario" data-i18n-attr="title:nav.diccionario,aria-label:nav.diccionario">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+        </svg>
+      </button>
+      <button class="tab-rail__btn" data-tab="notas" data-i18n-attr="title:nav.notas,aria-label:nav.notas">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M12 20h9"/>
+          <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>
+        </svg>
+      </button>
+      <button class="tab-rail__btn" data-tab="mapas" data-i18n-attr="title:nav.mapasBiblicos,aria-label:nav.mapasBiblicos">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/>
+          <path d="M9 4v14"/>
+          <path d="M15 6v14"/>
+        </svg>
+      </button>
+      <button class="tab-rail__btn" data-tab="predicas" data-i18n-attr="title:nav.predicas,aria-label:nav.predicas">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+          <path d="M14 3v6h6"/>
+          <path d="M9 13h6"/>
+          <path d="M9 17h6"/>
+        </svg>
+      </button>
+    </nav>
+
+  </div>
+
+    <nav class="mobile-tool-dock" data-i18n-attr="aria-label:nav.toolsAria">
+      <button class="mobile-tool-btn tab-rail__btn" data-tab="comentario" type="button" data-i18n-attr="aria-label:nav.comentarios">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <span class="mobile-tool-label" data-i18n="nav.comentarios">Comentarios</span>
+      </button>
+      <button class="mobile-tool-btn tab-rail__btn" data-tab="comparar" type="button" data-i18n-attr="aria-label:nav.comparar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="7" height="16" rx="1"/><rect x="14" y="4" width="7" height="16" rx="1"/></svg>
+        <span class="mobile-tool-label" data-i18n="nav.comparar">Comparar</span>
+      </button>
+      <button class="mobile-tool-btn tab-rail__btn" data-tab="diccionario" type="button" data-i18n-attr="aria-label:nav.diccionario">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <span class="mobile-tool-label" data-i18n="nav.diccionario">Diccionario</span>
+      </button>
+      <button class="mobile-tool-btn tab-rail__btn" data-tab="notas" type="button" data-i18n-attr="aria-label:nav.notas">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+        <span class="mobile-tool-label" data-i18n="nav.notas">Mis notas</span>
+      </button>
+      <button class="mobile-tool-btn tab-rail__btn" data-tab="mapas" type="button" data-i18n-attr="aria-label:nav.mapasBiblicos">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14"/><path d="M15 6v14"/></svg>
+        <span class="mobile-tool-label" data-i18n="nav.mapasBiblicos">Mapas bíblicos</span>
+      </button>
+      <button class="mobile-tool-btn tab-rail__btn" data-tab="historia" type="button" data-i18n-attr="aria-label:nav.historia">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polygon points="12 2 20 7 4 7"/><line x1="6" y1="11" x2="6" y2="18"/><line x1="10" y1="11" x2="10" y2="18"/><line x1="14" y1="11" x2="14" y2="18"/><line x1="18" y1="11" x2="18" y2="18"/><line x1="3" y1="22" x2="21" y2="22"/></svg>
+        <span class="mobile-tool-label" data-i18n="nav.historia">Historia de la Iglesia</span>
+      </button>
+      <button class="mobile-tool-btn tab-rail__btn" data-tab="padres" type="button" data-i18n-attr="aria-label:nav.padres">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg>
+        <span class="mobile-tool-label" data-i18n="nav.padres">Padres Apostólicos</span>
+      </button>
+      <button class="mobile-tool-btn tab-rail__btn" data-tab="predicas" type="button" data-i18n-attr="aria-label:nav.predicas">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M9 13h6"/><path d="M9 17h6"/></svg>
+        <span class="mobile-tool-label" data-i18n="nav.predicas">Mis prédicas</span>
+      </button>
+    </nav>
+
+  <div class="verse-action-bar" id="verseActionBar" hidden>
+    <button class="verse-swatch" data-color="hl-yellow" data-i18n-attr="aria-label:verseAction.amarillo,title:verseAction.amarilloTitle"></button>
+    <button class="verse-swatch" data-color="hl-green"  data-i18n-attr="aria-label:verseAction.verde,title:verseAction.verdeTitle"></button>
+    <button class="verse-swatch" data-color="hl-blue"   data-i18n-attr="aria-label:verseAction.azul,title:verseAction.azulTitle"></button>
+    <button class="verse-swatch" data-color="hl-pink"   data-i18n-attr="aria-label:verseAction.rosa,title:verseAction.rosaTitle"></button>
+    <button class="verse-swatch" data-color="hl-coral"  data-i18n-attr="aria-label:verseAction.coral,title:verseAction.coralTitle"></button>
+    <button class="verse-swatch" data-color="hl-violet" data-i18n-attr="aria-label:verseAction.violeta,title:verseAction.violetaTitle"></button>
+    <button class="verse-swatch verse-swatch--erase" data-color="" data-i18n-attr="aria-label:verseAction.quitar,title:verseAction.quitar">✕</button>
+    <div class="verse-action-bar__sep"></div>
+    <button class="verse-action-btn" id="copyVerseText" type="button" data-i18n="verseAction.copiar">Copiar</button>
+    <button class="verse-action-btn verse-action-btn--secondary" id="copyVerseRef" type="button" data-i18n="verseAction.ref">Ref.</button>
+    <div class="verse-action-bar__sep"></div>
+    <button class="verse-action-bar__close" id="closeVerseAction" type="button" data-i18n-attr="aria-label:verseAction.cerrarAria">✕</button>
+  </div>
+
+  <script src="https://pkg.api.bible/fumsV3.min.js" defer></script>
+  <script>window.fumsData=window.fumsData||[];window.fums=window.fums||function(){window.fumsData.push(arguments);};</script>
+  <script src="assets/backup.js?v=20260801-sermon-predicas"></script>
+  <script src="assets/i18n.js?v=20260801-sw-network-first"></script>
+  <script src="assets/module-loader.js?v=20260802-historia-temas"></script>
+  <script src="assets/sync.js?v=20260801-sermon-predicas"></script>
+  <script src="assets/app.js?v=20260802-historia-sin-intro"></script>
+</body>
+</html>

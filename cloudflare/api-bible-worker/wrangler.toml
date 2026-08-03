@@ -1,0 +1,16 @@
+name = "verbo-api-bible"
+main = "worker.js"
+compatibility_date = "2026-07-04"
+workers_dev = true
+preview_urls = false
+
+[vars]
+ALLOWED_ORIGINS = "https://verbobiblia.com,https://www.verbobiblia.com,https://juvejona1978.github.io,http://localhost:8000,http://127.0.0.1:8000"
+APP_URL = "https://verbobiblia.com/biblia/"
+RESEND_FROM = "Verbo <no-reply@verbobiblia.com>"
+
+# Reemplaza "a1a2e2765ff34bc7b3abd1dbd17dfb71" con el id que entrega
+# `npx wrangler kv namespace create SYNC_KV`.
+[[kv_namespaces]]
+binding = "SYNC_KV"
+id = "a1a2e2765ff34bc7b3abd1dbd17dfb71"

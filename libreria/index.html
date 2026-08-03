@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Librería | Verbo</title>
+<meta name="description" content="Lectura completa de libros clásicos y patrísticos, con marcadores y resaltado de texto: el Evangelio armonizado y los escritos de los Padres Apostólicos.">
+<link rel="canonical" href="https://verbobiblia.com/libreria/">
+<link rel="manifest" href="../biblia/manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="../biblia/assets/icons/icon-192.png">
+<link rel="apple-touch-icon" href="../biblia/assets/icons/icon-192.png">
+<meta name="theme-color" content="#7f2d35">
+<link rel="stylesheet" href="../biblia/assets/style.css?v=20260730-rail-center">
+<link rel="stylesheet" href="../recursos/assets/recursos.css?v=20260728-taxonomia">
+<link rel="stylesheet" href="assets/reader.css?v=14">
+</head>
+<body class="static-page recursos-page recursos-index">
+
+  <header class="static-page__header">
+    <a class="static-page__brand" href="../">Verbo</a>
+    <div class="ui-lang-switcher" id="uiLangSwitcher" role="group" data-i18n-attr="aria-label:header.uiLangAria">
+      <button type="button" class="ui-lang-switcher__btn" data-lang="es">ES</button>
+      <button type="button" class="ui-lang-switcher__btn" data-lang="en">EN</button>
+    </div>
+
+    <a class="static-page__back" href="../" data-i18n="site.backToVerbo">← Volver a Verbo</a>
+  </header>
+
+  <nav class="quick-nav" data-i18n-attr="aria-label:site.otrasAreasAria">
+    <a href="../biblia/">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 5C10 3.5 6.5 3 4 3.5v15c2.5-.5 6 0 8 1.5m0-15c2-1.5 5.5-2 8-1.5v15c-2.5-.5-6 0-8 1.5m0-15v15"/></svg>
+      <span data-i18n="site.navBiblia">Biblia</span>
+    </a>
+    <a href="../seminario/">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 8.5L12 4l9 4.5-9 4.5-9-4.5Z"/><path d="M7 10.8V16c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5v-5.2"/></svg>
+      <span data-i18n="site.navSeminario">Seminario</span>
+    </a>
+    <a href="../libreria/" class="is-current">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 4h3v16H4zM9 4h3v16H9zM14 5l3-.5 2 15.5-3 .5z"/></svg>
+      <span data-i18n="site.navLibreria">Librería</span>
+    </a>
+    <a href="../recursos/">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 4h16v4H4zM4 10h16v10H4z"/><path d="M9 14h6"/></svg>
+      <span data-i18n="site.navRecursos">Recursos</span>
+    </a>
+  </nav>
+
+  <main class="static-page__main recursos-index">
+    <span class="r-eyebrow" data-i18n-live>Librería · Verbo</span>
+    <h1 data-i18n="site.navLibreria">Librería</h1>
+    <p class="r-lede" data-i18n-live>Lectura completa de libros clásicos y patrísticos, con marcadores y resaltado de texto que se guardan en tu dispositivo.</p>
+
+    <div class="r-section-label"><h2 data-i18n-live>55 en español · 28 en inglés</h2></div>
+
+    <!-- CONTENT-FILTERS:START -->
+    <div class="r-filterbar" data-filter-bar data-filter-target="#libreria-grid">
+      <div class="r-filter-group" data-filter-group="idioma">
+        <span class="r-filter-group-label" data-i18n="filtros.idioma">Idioma</span>
+        <button type="button" class="r-filter-pill is-active" data-value="todos" data-i18n="filtros.todos">Todos</button>
+        <button type="button" class="r-filter-pill" data-value="es">🇪🇸 Español</button>
+        <button type="button" class="r-filter-pill" data-value="en">🇺🇸 English</button>
+      </div>
+      <select class="r-filter-select" data-filter-group="tema" data-i18n-attr="aria-label:filtros.filtrarPorTema">
+        <option value="todos" data-i18n="filtros.todosLosTemas">Todos los temas</option>
+        <option value="apologetica" data-i18n="temas.apologetica">Apologética</option>
+        <option value="armonia-evangelica" data-i18n="temas.armoniaEvangelica">Armonía evangélica</option>
+        <option value="biblia">Biblia</option>
+        <option value="chapel-library" data-i18n="temas.chapelLibrary">Chapel Library</option>
+        <option value="comentario-biblico" data-i18n="temas.comentarioBiblico">Comentario bíblico</option>
+        <option value="devocional" data-i18n="temas.devocional">Devocional</option>
+        <option value="evangelios" data-i18n="temas.evangelios">Evangelios</option>
+        <option value="evangelismo" data-i18n="temas.evangelismo">Evangelismo</option>
+        <option value="familia" data-i18n="temas.familia">Familia</option>
+        <option value="gracia" data-i18n="temas.gracia">Gracia</option>
+        <option value="patristica" data-i18n="temas.patristica">Patrística</option>
+        <option value="salmos" data-i18n="temas.salmos">Salmos</option>
+        <option value="siglo-1" data-i18n="temas.sigloI">Siglo I</option>
+        <option value="siglo-17" data-i18n="temas.sigloXVII">Siglo XVII</option>
+        <option value="siglo-19" data-i18n="temas.sigloXIX">Siglo XIX</option>
+        <option value="siglo-2" data-i18n="temas.sigloII">Siglo II</option>
+        <option value="teologia" data-i18n="temas.teologia">Teología</option>
+        <option value="vida-cristiana" data-i18n="temas.vidaCristiana">Vida cristiana</option>
+      </select>
+    </div>
+    <p class="r-filter-empty" hidden data-i18n="filtros.sinResultados">No hay libros que coincidan con estos filtros.</p>
+    <!-- CONTENT-FILTERS:END -->
+
+    <div class="r-book-grid" id="libreria-grid">
+
+      <a class="r-book-row" href="reina-valera-gomez-2004/" data-item data-idioma="es" data-tema="biblia">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 4h7a3 3 0 0 1 3 3v13a4 4 0 0 0-4-4H4V4Zm16 0h-3a3 3 0 0 0-3 3v13a4 4 0 0 1 4-4h2V4Z"/></svg>
+          <span class="book-cover-era">Edición 2004</span>
+          <span class="book-cover-title">Reina-Valera Gómez</span>
+          <span class="book-cover-rule"></span>
+          <span class="book-cover-author">Revisión de Humberto Gómez Caballero</span>
+        </div>
+        <p class="r-book-title">Reina-Valera Gómez 2004</p>
+        <p class="r-book-meta">66 libros · CC BY-NC-ND</p>
+      </a>
+
+      <a class="r-book-row" href="evangelio-segun-jesucristo/" data-item data-idioma="es" data-tema="evangelios,armonia-evangelica">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3v18M6 9h12"/></svg>
+          <span class="book-cover-era" data-i18n-live>Armonía de los Evangelios</span>
+          <span class="book-cover-title" data-i18n-live>El Evangelio según Jesucristo</span>
+          <span class="book-cover-rule"></span>
+          <span class="book-cover-author">Versión Cronológica Fluida — Verbo</span>
+        </div>
+        <p class="r-book-title" data-i18n-live>El Evangelio según Jesucristo</p>
+        <p class="r-book-meta" data-i18n-live>100 capítulos</p>
+      </a>
+
+      <a class="r-book-row" href="la-didache/" data-item data-idioma="es" data-tema="patristica,siglo-1">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21V12M12 12 5 3M12 12l7-9"/></svg>
+          <span class="book-cover-era" data-i18n-live>Siglo I</span>
+          <span class="book-cover-title">La Didaché</span>
+          <span class="book-cover-rule"></span>
+          <span class="book-cover-author">Enseñanza de los Doce Apóstoles</span>
+        </div>
+        <p class="r-book-title">La Didaché</p>
+        <p class="r-book-meta" data-i18n-live>16 capítulos</p>
+      </a>
+
+      <a class="r-book-row" href="primera-clemente/" data-item data-idioma="es" data-tema="patristica,siglo-1">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 6h16v12H4V6Z"/><path d="M4 6l8 6 8-6"/></svg>
+          <span class="book-cover-era" data-i18n-live>Siglo I · c. 96 d.C.</span>
+          <span class="book-cover-title">1 Clemente</span>
+          <span class="book-cover-rule"></span>
+          <span class="book-cover-author">Clemente de Roma — A los Corintios</span>
+        </div>
+        <p class="r-book-title">1 Clemente</p>
+        <p class="r-book-meta" data-i18n-live>65 capítulos</p>
+      </a>
+
+      <a class="r-book-row" href="segunda-clemente/" data-item data-idioma="es" data-tema="patristica,siglo-2">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 6h16v12H4V6Z"/><path d="M4 6l8 6 8-6"/></svg>
+          <span class="book-cover-era" data-i18n-live>Siglo II</span>
+          <span class="book-cover-title">2 Clemente</span>
+          <span class="book-cover-rule"></span>
+          <span class="book-cover-author">Atribuida a Clemente de Roma</span>
+        </div>
+        <p class="r-book-title">2 Clemente</p>
+        <p class="r-book-meta" data-i18n-live>20 capítulos</p>
+      </a>
+
+      <a class="r-book-row" href="el-pastor-de-hermas/" data-item data-idioma="es" data-tema="patristica,siglo-2">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 21V7a4 4 0 1 1 8 0c0 2-2 3-4 3"/></svg>
+          <span class="book-cover-era" data-i18n-live>Siglo II</span>
+          <span class="book-cover-title">El Pastor de Hermas</span>
+          <span class="book-cover-rule"></span>
+          <span class="book-cover-author">Hermas</span>
+        </div>
+        <p class="r-book-title">El Pastor de Hermas</p>
+        <p class="r-book-meta" data-i18n-live>108 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="epistola-de-bernabe/" data-item data-idioma="es" data-tema="patristica,siglo-1,siglo-2">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 4a2 2 0 0 0 0 4h12M6 20a2 2 0 0 1 0-4h12M8 8v8"/></svg>
+          <span class="book-cover-era" data-i18n-live>Siglo I–II</span>
+          <span class="book-cover-title">La Epístola de Bernabé</span>
+          <span class="book-cover-rule"></span>
+          <span class="book-cover-author">Atribuida a Bernabé</span>
+        </div>
+        <p class="r-book-title">La Epístola de Bernabé</p>
+        <p class="r-book-meta" data-i18n-live>21 capítulos</p>
+      </a>
+
+      <a class="r-book-row" href="epistola-a-diogneto/" data-item data-idioma="es" data-tema="patristica,apologetica,siglo-2">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3a5 5 0 0 0-3 9v3h6v-3a5 5 0 0 0-3-9Z"/><path d="M10 19h4"/></svg>
+          <span class="book-cover-era" data-i18n-live>Siglo II</span>
+          <span class="book-cover-title">Epístola a Diogneto</span>
+          <span class="book-cover-rule"></span>
+          <span class="book-cover-author">Autor anónimo (Mathietes)</span>
+        </div>
+        <p class="r-book-title">Epístola a Diogneto</p>
+        <p class="r-book-meta" data-i18n-live>12 capítulos</p>
+      </a>
+
+      <a class="r-book-row" href="fragmentos-de-papias/" data-item data-idioma="es" data-tema="patristica,siglo-2">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 8c-2 1-3 3-3 5s1 3 3 3M17 8c-2 1-3 3-3 5s1 3 3 3"/></svg>
+          <span class="book-cover-era" data-i18n-live>Siglo II</span>
+          <span class="book-cover-title">Fragmentos de Papías</span>
+          <span class="book-cover-rule"></span>
+          <span class="book-cover-author">Papías de Hierápolis</span>
+        </div>
+        <p class="r-book-title">Fragmentos de Papías</p>
+        <p class="r-book-meta" data-i18n-live>10 fragmentos</p>
+      </a>
+
+      <a class="r-book-row" href="martirio-de-ignacio/" data-item data-idioma="es" data-tema="patristica,siglo-2">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3c3 3-1 5-1 8a3 3 0 1 0 6 0c0-2-1-3-2-4 0 2-1 2-1 2-1-2 0-4-2-6Z"/></svg>
+          <span class="book-cover-era" data-i18n-live>Siglo II</span>
+          <span class="book-cover-title">El Martirio de Ignacio</span>
+          <span class="book-cover-rule"></span>
+          <span class="book-cover-author">Ignacio de Antioquía</span>
+        </div>
+        <p class="r-book-title">El Martirio de Ignacio</p>
+        <p class="r-book-meta" data-i18n-live>7 capítulos</p>
+      </a>
+
+      <a class="r-book-row" href="martirio-de-policarpo/" data-item data-idioma="es" data-tema="patristica,siglo-2">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 18h16l-1-8-4 4-3-6-3 6-4-4-1 8Z"/></svg>
+          <span class="book-cover-era" data-i18n-live>Siglo II · c. 155 d.C.</span>
+          <span class="book-cover-title">El Martirio de Policarpo</span>
+          <span class="book-cover-rule"></span>
+          <span class="book-cover-author">Iglesia de Esmirna</span>
+        </div>
+        <p class="r-book-title">El Martirio de Policarpo</p>
+        <p class="r-book-meta" data-i18n-live>22 capítulos</p>
+      </a>
+
+      <a class="r-book-row" href="policarpo-a-los-filipenses/" data-item data-idioma="es" data-tema="patristica,siglo-2">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 6h16v12H4V6Z"/><path d="M4 6l8 6 8-6"/></svg>
+          <span class="book-cover-era" data-i18n-live>Siglo II</span>
+          <span class="book-cover-title">Policarpo a los Filipenses</span>
+          <span class="book-cover-rule"></span>
+          <span class="book-cover-author">Policarpo de Esmirna</span>
+        </div>
+        <p class="r-book-title">Policarpo a los Filipenses</p>
+        <p class="r-book-meta" data-i18n-live>14 capítulos</p>
+      </a>
+
+      <a class="r-book-row" href="contra-las-herejias/" data-item data-idioma="es" data-tema="patristica,apologetica,siglo-2">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3l7 3v6c0 5-3 8-7 9-4-1-7-4-7-9V6l7-3Z"/></svg>
+          <span class="book-cover-era" data-i18n-live>Siglo II</span>
+          <span class="book-cover-title">Contra las Herejías</span>
+          <span class="book-cover-rule"></span>
+          <span class="book-cover-author">Ireneo de Lyon</span>
+        </div>
+        <p class="r-book-title">Contra las Herejías</p>
+        <p class="r-book-meta" data-i18n-live>92 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="deberes-de-hijos-y-padres/" data-item data-idioma="es" data-tema="vida-cristiana,familia,chapel-library,siglo-17">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 11l8-7 8 7"/><path d="M6 10v10h12V10"/></svg>
+          <span class="book-cover-era" data-i18n-live>Siglo XVII</span>
+          <span class="book-cover-title" data-i18n-live>Los Deberes de Hijos y Padres</span>
+          <span class="book-cover-rule"></span>
+          <span class="book-cover-author">Richard Adams</span>
+        </div>
+        <p class="r-book-title" data-i18n-live>Los Deberes de Hijos y Padres</p>
+        <p class="r-book-meta" data-i18n-live>5 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="totalmente-por-gracia/" data-item data-idioma="es" data-tema="gracia,evangelismo,chapel-library,siglo-19">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="16" r="4"/><path d="M12 3v3M5.5 9.5l2 2M18.5 9.5l-2 2M3 16h3M18 16h3"/></svg>
+          <span class="book-cover-era" data-i18n-live>Siglo XIX</span>
+          <span class="book-cover-title" data-i18n-live>Totalmente por Gracia</span>
+          <span class="book-cover-rule"></span>
+          <span class="book-cover-author">Charles Spurgeon</span>
+        </div>
+        <p class="r-book-title" data-i18n-live>Totalmente por Gracia</p>
+        <p class="r-book-meta" data-i18n-live>20 capítulos</p>
+      </a>
+
+      <a class="r-book-row" href="el-tesoro-de-david-condensado/" data-item data-idioma="es" data-tema="salmos,devocional,chapel-library,siglo-19">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 3l7 12H5z"/><path d="M12 21L5 9h14z"/></svg>
+          <span class="book-cover-era" data-i18n-live>Siglo XIX · Selección de los Salmos</span>
+          <span class="book-cover-title" data-i18n-live>El Tesoro de David (condensado)</span>
+          <span class="book-cover-rule"></span>
+          <span class="book-cover-author">Charles Spurgeon</span>
+        </div>
+        <p class="r-book-title" data-i18n-live>El Tesoro de David (condensado)</p>
+        <p class="r-book-meta" data-i18n-live>10 salmos</p>
+      </a>
+
+      <a class="r-book-row" href="santidad-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">Santidad</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">J. C. Ryle</span>
+        </div>
+        <p class="r-book-title">Santidad</p><p class="r-book-meta">177 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="los-deberes-de-los-padres-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">Los deberes de los padres</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">J. C. Ryle</span>
+        </div>
+        <p class="r-book-title">Los deberes de los padres</p><p class="r-book-meta">20 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="pensamientos-para-hombres-jovenes-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">Pensamientos para hombres jóvenes</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">J. C. Ryle</span>
+        </div>
+        <p class="r-book-title">Pensamientos para hombres jóvenes</p><p class="r-book-meta">29 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="cristo-es-el-todo-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">Cristo es el todo</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">J. C. Ryle</span>
+        </div>
+        <p class="r-book-title">Cristo es el todo</p><p class="r-book-meta">11 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="santificacion-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">Santificación</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">J. C. Ryle</span>
+        </div>
+        <p class="r-book-title">Santificación</p><p class="r-book-meta">15 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="vivo-o-muerto-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">¿Vivo o muerto?</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">J. C. Ryle</span>
+        </div>
+        <p class="r-book-title">¿Vivo o muerto?</p><p class="r-book-meta">8 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="acordaos-de-la-mujer-de-lot-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">Acordaos de la mujer de Lot</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">J. C. Ryle</span>
+        </div>
+        <p class="r-book-title">Acordaos de la mujer de Lot</p><p class="r-book-meta">1 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="es-usted-nacido-de-nuevo-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">¿Es usted nacido de nuevo?</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">J. C. Ryle</span>
+        </div>
+        <p class="r-book-title">¿Es usted nacido de nuevo?</p><p class="r-book-meta">4 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="catecismo-de-spurgeon-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">Catecismo de Spurgeon</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Charles H. Spurgeon</span>
+        </div>
+        <p class="r-book-title">Catecismo de Spurgeon</p><p class="r-book-meta">3 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="fe-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">Fe</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Charles H. Spurgeon</span>
+        </div>
+        <p class="r-book-title">Fe</p><p class="r-book-meta">13 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="la-palabra-infalible-de-dios-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">La Palabra infalible de Dios</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Charles H. Spurgeon</span>
+        </div>
+        <p class="r-book-title">La Palabra infalible de Dios</p><p class="r-book-meta">16 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="aun-hay-lugar-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">Aún hay lugar</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Charles H. Spurgeon</span>
+        </div>
+        <p class="r-book-title">Aún hay lugar</p><p class="r-book-meta">7 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="el-bautismo-una-sepultura-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">El bautismo: una sepultura</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Charles H. Spurgeon</span>
+        </div>
+        <p class="r-book-title">El bautismo: una sepultura</p><p class="r-book-meta">10 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="la-eleccion-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">La elección</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Charles H. Spurgeon</span>
+        </div>
+        <p class="r-book-title">La elección</p><p class="r-book-meta">8 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="ganar-almas-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">Ganar almas</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Charles H. Spurgeon</span>
+        </div>
+        <p class="r-book-title">Ganar almas</p><p class="r-book-meta">4 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="la-incapacidad-humana-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">La incapacidad humana</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Charles H. Spurgeon</span>
+        </div>
+        <p class="r-book-title">La incapacidad humana</p><p class="r-book-meta">25 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="el-nacimiento-de-cristo-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">El nacimiento de Cristo</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Charles H. Spurgeon</span>
+        </div>
+        <p class="r-book-title">El nacimiento de Cristo</p><p class="r-book-meta">12 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="nuestro-manifiesto-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">Nuestro manifiesto</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Charles H. Spurgeon</span>
+        </div>
+        <p class="r-book-title">Nuestro manifiesto</p><p class="r-book-meta">5 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="la-oracion-de-jabes-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">La oración de Jabes</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Charles H. Spurgeon</span>
+        </div>
+        <p class="r-book-title">La oración de Jabes</p><p class="r-book-meta">8 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="la-regeneracion-bautismal-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">La regeneración bautismal</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Charles H. Spurgeon</span>
+        </div>
+        <p class="r-book-title">La regeneración bautismal</p><p class="r-book-meta">7 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="el-senor-y-el-leproso-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">El Señor y el leproso</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Charles H. Spurgeon</span>
+        </div>
+        <p class="r-book-title">El Señor y el leproso</p><p class="r-book-meta">9 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="un-gran-evangelio-para-grandes-pecadores-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">Un gran evangelio para grandes pecadores</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Charles H. Spurgeon</span>
+        </div>
+        <p class="r-book-title">Un gran evangelio para grandes pecadores</p><p class="r-book-meta">7 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="una-defensa-del-calvinismo-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">Una defensa del calvinismo</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Charles H. Spurgeon</span>
+        </div>
+        <p class="r-book-title">Una defensa del calvinismo</p><p class="r-book-meta">3 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="verdadera-oracion-verdadero-poder-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">¡Verdadera oración, verdadero poder!</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Charles H. Spurgeon</span>
+        </div>
+        <p class="r-book-title">¡Verdadera oración, verdadero poder!</p><p class="r-book-meta">7 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="como-debo-acercarme-a-dios-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">¿Cómo debo acercarme a Dios?</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Horatius Bonar</span>
+        </div>
+        <p class="r-book-title">¿Cómo debo acercarme a Dios?</p><p class="r-book-meta">10 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="palabras-para-el-ganador-de-almas-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">Palabras para el ganador de almas</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Horatius Bonar</span>
+        </div>
+        <p class="r-book-title">Palabras para el ganador de almas</p><p class="r-book-meta">43 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="adonde-adonde-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">¿Adónde? ¿Adónde?</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Horatius Bonar</span>
+        </div>
+        <p class="r-book-title">¿Adónde? ¿Adónde?</p><p class="r-book-meta">5 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="belen-y-las-buenas-nuevas-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">Belén y las buenas nuevas</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Horatius Bonar</span>
+        </div>
+        <p class="r-book-title">Belén y las buenas nuevas</p><p class="r-book-meta">3 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="como-ire-a-dios-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">¿Cómo iré a Dios?</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Horatius Bonar</span>
+        </div>
+        <p class="r-book-title">¿Cómo iré a Dios?</p><p class="r-book-meta">5 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="cristo-murio-por-los-impios-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">Cristo murió por los impíos</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Horatius Bonar</span>
+        </div>
+        <p class="r-book-title">Cristo murió por los impíos</p><p class="r-book-meta">2 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="cual-es-mi-esperanza-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">¿Cuál es mi esperanza?</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Horatius Bonar</span>
+        </div>
+        <p class="r-book-title">¿Cuál es mi esperanza?</p><p class="r-book-meta">5 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="en-mi-lugar-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">En mi lugar</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Horatius Bonar</span>
+        </div>
+        <p class="r-book-title">En mi lugar</p><p class="r-book-meta">4 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="la-larga-eternidad-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">La larga eternidad</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Horatius Bonar</span>
+        </div>
+        <p class="r-book-title">La larga eternidad</p><p class="r-book-meta">5 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="el-mundo-se-acaba-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">El mundo se acaba</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Horatius Bonar</span>
+        </div>
+        <p class="r-book-title">El mundo se acaba</p><p class="r-book-meta">6 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="el-progreso-del-peregrino-para-todos-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">El progreso del peregrino para todos</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">John Bunyan</span>
+        </div>
+        <p class="r-book-title">El progreso del peregrino para todos</p><p class="r-book-meta">41 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="deberes-familiares-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">Deberes familiares</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">John Bunyan</span>
+        </div>
+        <p class="r-book-title">Deberes familiares</p><p class="r-book-meta">6 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="pecadores-en-las-manos-de-un-dios-airado-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">Pecadores en las manos de un Dios airado</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Jonathan Edwards</span>
+        </div>
+        <p class="r-book-title">Pecadores en las manos de un Dios airado</p><p class="r-book-meta">4 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="el-metodo-de-la-gracia-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">El método de la gracia</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">George Whitefield</span>
+        </div>
+        <p class="r-book-title">El método de la gracia</p><p class="r-book-meta">10 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="la-vida-secreta-de-oracion-es/" data-item data-idioma="es" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">ES</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">La vida secreta de oración</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">David MacIntyre</span>
+        </div>
+        <p class="r-book-title">La vida secreta de oración</p><p class="r-book-meta">39 secciones</p>
+      </a>
+
+      <a class="r-book-row" href="holiness-en/" data-item data-idioma="en" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">EN</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">Holiness</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">J. C. Ryle</span>
+        </div>
+        <p class="r-book-title">Holiness</p><p class="r-book-meta">73 sections</p>
+      </a>
+
+      <a class="r-book-row" href="a-call-to-prayer-en/" data-item data-idioma="en" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">EN</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">A Call to Prayer</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">J. C. Ryle</span>
+        </div>
+        <p class="r-book-title">A Call to Prayer</p><p class="r-book-meta">44 sections</p>
+      </a>
+
+      <a class="r-book-row" href="the-world-en/" data-item data-idioma="en" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">EN</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">The World</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">J. C. Ryle</span>
+        </div>
+        <p class="r-book-title">The World</p><p class="r-book-meta">7 sections</p>
+      </a>
+
+      <a class="r-book-row" href="are-you-born-again-en/" data-item data-idioma="en" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">EN</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">Are You Born Again?</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">J. C. Ryle</span>
+        </div>
+        <p class="r-book-title">Are You Born Again?</p><p class="r-book-meta">3 sections</p>
+      </a>
+
+      <a class="r-book-row" href="night-of-weeping-morning-of-joy-en/" data-item data-idioma="en" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">EN</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">Night of Weeping; Morning of Joy</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Horatius Bonar</span>
+        </div>
+        <p class="r-book-title">Night of Weeping; Morning of Joy</p><p class="r-book-meta">118 sections</p>
+      </a>
+
+      <a class="r-book-row" href="god-s-way-of-peace-en/" data-item data-idioma="en" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">EN</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">God&#x27;s Way of Peace</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Horatius Bonar</span>
+        </div>
+        <p class="r-book-title">God&#x27;s Way of Peace</p><p class="r-book-meta">61 sections</p>
+      </a>
+
+      <a class="r-book-row" href="the-throne-of-grace-en/" data-item data-idioma="en" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">EN</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">The Throne of Grace</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Horatius Bonar</span>
+        </div>
+        <p class="r-book-title">The Throne of Grace</p><p class="r-book-meta">35 sections</p>
+      </a>
+
+      <a class="r-book-row" href="the-atoning-sacrifice-of-christ-en/" data-item data-idioma="en" data-tema="chapel-library,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">EN</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">The Atoning Sacrifice of Christ</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Arthur W. Pink</span>
+        </div>
+        <p class="r-book-title">The Atoning Sacrifice of Christ</p><p class="r-book-meta">12 sections</p>
+      </a>
+
+      <a class="r-book-row" href="first-clement-en/" data-item data-idioma="en" data-tema="patristica,siglo-1,siglo-2">
+        <div class="book-cover">
+          <span class="book-cover-lang">EN</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Apostolic Fathers</span>
+          <span class="book-cover-title">First Epistle of Clement</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Clement of Rome</span>
+        </div>
+        <p class="r-book-title">First Epistle of Clement</p><p class="r-book-meta">62 sections</p>
+      </a>
+
+      <a class="r-book-row" href="second-clement-en/" data-item data-idioma="en" data-tema="patristica,siglo-1,siglo-2">
+        <div class="book-cover">
+          <span class="book-cover-lang">EN</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Apostolic Fathers</span>
+          <span class="book-cover-title">Second Epistle of Clement</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Anónimo</span>
+        </div>
+        <p class="r-book-title">Second Epistle of Clement</p><p class="r-book-meta">4 sections</p>
+      </a>
+
+      <a class="r-book-row" href="didache-en/" data-item data-idioma="en" data-tema="patristica,siglo-1,siglo-2">
+        <div class="book-cover">
+          <span class="book-cover-lang">EN</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Apostolic Fathers</span>
+          <span class="book-cover-title">The Didache</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Anónimo</span>
+        </div>
+        <p class="r-book-title">The Didache</p><p class="r-book-meta">13 sections</p>
+      </a>
+
+      <a class="r-book-row" href="epistle-barnabas-en/" data-item data-idioma="en" data-tema="patristica,siglo-1,siglo-2">
+        <div class="book-cover">
+          <span class="book-cover-lang">EN</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Apostolic Fathers</span>
+          <span class="book-cover-title">Epistle of Barnabas</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Anónimo</span>
+        </div>
+        <p class="r-book-title">Epistle of Barnabas</p><p class="r-book-meta">24 sections</p>
+      </a>
+
+      <a class="r-book-row" href="shepherd-hermas-en/" data-item data-idioma="en" data-tema="patristica,siglo-1,siglo-2">
+        <div class="book-cover">
+          <span class="book-cover-lang">EN</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Apostolic Fathers</span>
+          <span class="book-cover-title">The Shepherd of Hermas</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Hermas</span>
+        </div>
+        <p class="r-book-title">The Shepherd of Hermas</p><p class="r-book-meta">116 sections</p>
+      </a>
+
+      <a class="r-book-row" href="epistle-diognetus-en/" data-item data-idioma="en" data-tema="patristica,siglo-1,siglo-2">
+        <div class="book-cover">
+          <span class="book-cover-lang">EN</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Apostolic Fathers</span>
+          <span class="book-cover-title">Epistle to Diognetus</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Anónimo (Mathetes)</span>
+        </div>
+        <p class="r-book-title">Epistle to Diognetus</p><p class="r-book-meta">15 sections</p>
+      </a>
+
+      <a class="r-book-row" href="polycarp-philippians-en/" data-item data-idioma="en" data-tema="patristica,siglo-1,siglo-2">
+        <div class="book-cover">
+          <span class="book-cover-lang">EN</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Apostolic Fathers</span>
+          <span class="book-cover-title">Polycarp to the Philippians</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Polycarp of Smyrna</span>
+        </div>
+        <p class="r-book-title">Polycarp to the Philippians</p><p class="r-book-meta">4 sections</p>
+      </a>
+
+      <a class="r-book-row" href="martyrdom-polycarp-en/" data-item data-idioma="en" data-tema="patristica,siglo-1,siglo-2">
+        <div class="book-cover">
+          <span class="book-cover-lang">EN</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Apostolic Fathers</span>
+          <span class="book-cover-title">Martyrdom of Polycarp</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Iglesia de Esmirna</span>
+        </div>
+        <p class="r-book-title">Martyrdom of Polycarp</p><p class="r-book-meta">26 sections</p>
+      </a>
+
+      <a class="r-book-row" href="ignatius-romans-en/" data-item data-idioma="en" data-tema="patristica,siglo-1,siglo-2">
+        <div class="book-cover">
+          <span class="book-cover-lang">EN</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Apostolic Fathers</span>
+          <span class="book-cover-title">Ignatius to the Romans</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Ignatius of Antioch</span>
+        </div>
+        <p class="r-book-title">Ignatius to the Romans</p><p class="r-book-meta">14 sections</p>
+      </a>
+
+      <a class="r-book-row" href="fragments-papias-en/" data-item data-idioma="en" data-tema="patristica,siglo-1,siglo-2">
+        <div class="book-cover">
+          <span class="book-cover-lang">EN</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Apostolic Fathers</span>
+          <span class="book-cover-title">Fragments of Papias</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Papias of Hierapolis</span>
+        </div>
+        <p class="r-book-title">Fragments of Papias</p><p class="r-book-meta">4 sections</p>
+      </a>
+
+      <a class="r-book-row" href="the-covenants-of-works-and-of-grace-en/" data-item data-idioma="en" data-tema="chapel-library,teologia,pactos">
+        <div class="book-cover">
+          <span class="book-cover-lang">EN</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">The Covenants of Works and of Grace</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Walter J. Chantry</span>
+        </div>
+        <p class="r-book-title">The Covenants of Works and of Grace</p><p class="r-book-meta">16 sections</p>
+      </a>
+
+      <a class="r-book-row" href="the-scriptures-and-good-works-en/" data-item data-idioma="en" data-tema="chapel-library,vida-cristiana,santificacion">
+        <div class="book-cover">
+          <span class="book-cover-lang">EN</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">The Scriptures and Good Works</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Arthur W. Pink</span>
+        </div>
+        <p class="r-book-title">The Scriptures and Good Works</p><p class="r-book-meta">13 sections</p>
+      </a>
+
+      <a class="r-book-row" href="encouragement-for-christian-mothers-en/" data-item data-idioma="en" data-tema="chapel-library,familia,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">EN</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">Encouragement for Christian Mothers</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">James Cameron</span>
+        </div>
+        <p class="r-book-title">Encouragement for Christian Mothers</p><p class="r-book-meta">4 sections</p>
+      </a>
+
+      <a class="r-book-row" href="the-scriptures-and-sin-en/" data-item data-idioma="en" data-tema="chapel-library,vida-cristiana,santificacion">
+        <div class="book-cover">
+          <span class="book-cover-lang">EN</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">The Scriptures and Sin</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Arthur W. Pink</span>
+        </div>
+        <p class="r-book-title">The Scriptures and Sin</p><p class="r-book-meta">11 sections</p>
+      </a>
+
+      <a class="r-book-row" href="christs-love-for-the-sick-en/" data-item data-idioma="en" data-tema="chapel-library,consuelo,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">EN</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">Christ’s Love for the Sick</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Charles H. Spurgeon</span>
+        </div>
+        <p class="r-book-title">Christ’s Love for the Sick</p><p class="r-book-meta">6 sections</p>
+      </a>
+
+      <a class="r-book-row" href="the-young-cottager-en/" data-item data-idioma="en" data-tema="chapel-library,narrativa,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">EN</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">The Young Cottager</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Legh Richmond</span>
+        </div>
+        <p class="r-book-title">The Young Cottager</p><p class="r-book-meta">9 sections</p>
+      </a>
+
+      <a class="r-book-row" href="sins-of-the-saints-en/" data-item data-idioma="en" data-tema="chapel-library,santificacion,teologia">
+        <div class="book-cover">
+          <span class="book-cover-lang">EN</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">Sins of the Saints</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Arthur W. Pink</span>
+        </div>
+        <p class="r-book-title">Sins of the Saints</p><p class="r-book-meta">26 sections</p>
+      </a>
+
+      <a class="r-book-row" href="am-i-really-a-christian-en/" data-item data-idioma="en" data-tema="chapel-library,seguridad,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">EN</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">Am I Really a Christian?</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Thomas Boston</span>
+        </div>
+        <p class="r-book-title">Am I Really a Christian?</p><p class="r-book-meta">14 sections</p>
+      </a>
+
+      <a class="r-book-row" href="humility-micahs-message-for-today-en/" data-item data-idioma="en" data-tema="chapel-library,humildad,vida-cristiana">
+        <div class="book-cover">
+          <span class="book-cover-lang">EN</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">Humility: Micah’s Message for Today</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Charles H. Spurgeon</span>
+        </div>
+        <p class="r-book-title">Humility: Micah’s Message for Today</p><p class="r-book-meta">11 sections</p>
+      </a>
+
+      <a class="r-book-row" href="mans-will-free-yet-bound-en/" data-item data-idioma="en" data-tema="chapel-library,teologia,gracia">
+        <div class="book-cover">
+          <span class="book-cover-lang">EN</span>
+          <svg class="book-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 5h6a2 2 0 0 1 2 2v13a3 3 0 0 0-3-3H4V5Zm16 0h-6a2 2 0 0 0-2 2v13a3 3 0 0 1 3-3h5V5Z"/></svg>
+          <span class="book-cover-era">Chapel Library</span>
+          <span class="book-cover-title">Man’s Will—Free Yet Bound</span>
+          <span class="book-cover-rule"></span><span class="book-cover-author">Walter J. Chantry</span>
+        </div>
+        <p class="r-book-title">Man’s Will—Free Yet Bound</p><p class="r-book-meta">6 sections</p>
+      </a>
+
+    </div>
+  </main>
+  <script src="../recursos/assets/filters.js?v=1"></script>
+  <script src="../biblia/assets/i18n.js?v=20260729-shared-dict2"></script>
+  <script src="../biblia/assets/site-translate.js?v=20260729-2"></script>
+  <script src="../biblia/assets/site-chrome.js?v=20260729-1"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 2,
+  "id": "cambridge",
+  "type": "commentary",
+  "name": "Cambridge Bible for Schools and Colleges",
+  "abbreviation": "Cambridge",
+  "language": "en",
+  "author": "Various Cambridge scholars",
+  "description": "Formal public-domain commentary series published by Cambridge University Press, 1878-1918. Provisional OCR-based integration; currently includes Romans, Ephesians, Philippians, Colossians, 1-2 Thessalonians, Philemon, and Hebrews. Ephesians 6:10-20 is omitted because the OCR source is missing those pages.",
+  "license": "Public Domain",
+  "books": [
+    {
+      "id": "ROM",
+      "name": "Romans",
+      "file": "books/ROM.json",
+      "indexFile": "books/ROM.index.json"
+    },
+    {
+      "id": "PHP",
+      "name": "Philippians",
+      "file": "books/PHP.json",
+      "indexFile": "books/PHP.index.json"
+    },
+    {
+      "id": "EPH",
+      "name": "Ephesians",
+      "file": "books/EPH.json",
+      "indexFile": "books/EPH.index.json"
+    },
+    {
+      "id": "COL",
+      "name": "Colossians",
+      "file": "books/COL.json",
+      "indexFile": "books/COL.index.json"
+    },
+    {
+      "id": "1TH",
+      "name": "1 Thessalonians",
+      "file": "books/1TH.json",
+      "indexFile": "books/1TH.index.json"
+    },
+    {
+      "id": "2TH",
+      "name": "2 Thessalonians",
+      "file": "books/2TH.json",
+      "indexFile": "books/2TH.index.json"
+    },
+    {
+      "id": "PHM",
+      "name": "Philemon",
+      "file": "books/PHM.json",
+      "indexFile": "books/PHM.index.json"
+    },
+    {
+      "id": "HEB",
+      "name": "Hebrews",
+      "file": "books/HEB.json",
+      "indexFile": "books/HEB.index.json"
+    }
+  ]
+}
