@@ -103,6 +103,25 @@ TIPO_OVERRIDE = {
     "dios-no-compite-con-el-ruido": "articulo",
 }
 
+# Taxonomía de "categoria" (2026-08-04), confirmada por Juan: agrupa las
+# piezas en dos secciones visuales -- "devocional" (Reflexiones y
+# Devocionales) y "estudio" (Estudios Temáticos) -- para reestructurar
+# recursos/articulos-y-reflexiones/index.html. Por defecto sigue "tipo"
+# (devocional-reflexion -> devocional, articulo -> estudio), salvo estas 2
+# excepciones: llevan tipo="articulo" en el dato editorial pero su propio
+# breadcrumb de página dice "Reflexión" y su contenido es exhortación
+# devocional en 1a persona, no un ensayo temático estructurado -- prevalece
+# el contenido real sobre el campo "tipo".
+CATEGORIA_OVERRIDE = {
+    "como-agradar-a-dios": "devocional",
+    "dios-no-compite-con-el-ruido": "devocional",
+}
+
+
+def categoria_para(slug, tipo):
+    default = "devocional" if tipo == "devocional-reflexion" else "estudio"
+    return CATEGORIA_OVERRIDE.get(slug, default)
+
 # Piezas con clasificación genuinamente ambigua, pendientes de confirmar con
 # Juan. Vacío desde 2026-07-28 (las 3 últimas se confirmaron ese día); se deja
 # el mecanismo por si aparecen nuevas piezas ambiguas más adelante.
@@ -231,6 +250,7 @@ def build_articulos(approx_flags):
             "titulo": titulo,
             "seccion": "recursos",
             "tipo": tipo,
+            "categoria": categoria_para(slug, tipo),
             "idioma": "es",
             "temas": temas,
             "fecha_agregado": fecha,
@@ -406,57 +426,74 @@ def esc(s):
 
 
 # ---------- bloque: lista filtrable de Artículos y Reflexiones ----------
+#
+# Dos secciones visuales separadas por "categoria" (2026-08-04, confirmado
+# por Juan): "devocional" -> Reflexiones y Devocionales, "estudio" ->
+# Estudios Temáticos. Cada sección tiene su propia barra de filtro por tema
+# (solo los temas presentes en esa sección) y su propia lista con id propio
+# -- filters.js ya es genérico por barra (data-filter-target), así que dos
+# barras independientes funcionan sin tocar ese archivo. El badge de "tipo"
+# por fila (Devocional y reflexión / Artículo) se conserva para no perder
+# esa información editorial, aunque ya no exista un filtro global por tipo.
+
+CATEGORIA_SECTIONS = (
+    ("devocional", "devocional-list", "articulosIndex.devocionalHeading", "Reflexiones y Devocionales"),
+    ("estudio", "estudio-list", "articulosIndex.estudioHeading", "Estudios Temáticos"),
+)
+
+
+def render_articulo_row(it):
+    temas_attr = ",".join(it["temas"])
+    # El listado es una sola página física (recursos/articulos-y-reflexiones/
+    # index.html) que sirve ambos idiomas: lang-aware-list.js reescribe
+    # título+href en tiempo de ejecución según VerboI18n.getUiLang(),
+    # leyendo data-titulo-es/en y data-ruta-es/en. href/texto impresos
+    # abajo son el español -> comportamiento correcto sin JS (progresivo)
+    # y fallback silencioso si algún día falta la traducción de un
+    # artículo nuevo (no se imprime data-ruta-en/data-titulo-en).
+    ruta_en_attr = ""
+    titulo_en_attr = ""
+    if it.get("ruta_en") and it.get("titulo_en"):
+        ruta_en_rel = f"../articles-and-reflections-en/{it['id']}/"
+        ruta_en_attr = f' data-ruta-en="{ruta_en_rel}"'
+        titulo_en_attr = f' data-titulo-en="{esc(it["titulo_en"])}"'
+    return (
+        f'    <a class="r-article-row" data-item data-tipo="{it["tipo"]}" '
+        f'data-tema="{temas_attr}" data-titulo-es="{esc(it["titulo_es"])}" '
+        f'data-ruta-es="{it["id"]}/"{titulo_en_attr}{ruta_en_attr} href="{it["id"]}/">'
+        f'<span class="r-article-row-main">'
+        f'<span class="r-article-row-title">{esc(it["titulo"])}</span>'
+        f'<span class="r-article-row-tags">'
+        f'<span class="r-tag r-tag-tipo" data-i18n="{TIPO_I18N_KEY[it["tipo"]]}">{TIPO_LABEL[it["tipo"]]}</span>'
+        f'</span></span>'
+        f'<span class="r-article-row-date">{fmt_fecha_corta(it["fecha_agregado"])}</span></a>'
+    )
+
 
 def render_articulos_block(items):
     items_sorted = sorted(items, key=lambda it: it["fecha_agregado"], reverse=True)
-    temas = sorted({t for it in items_sorted for t in it["temas"]})
-    out = []
-    out.append('<!-- CONTENT-FILTERS:START -->')
-    out.append('<div class="r-filterbar" data-filter-bar data-filter-target="#articulos-list">')
-    out.append('  <div class="r-filter-group" data-filter-group="tipo">')
-    out.append('    <span class="r-filter-group-label" data-i18n="filtros.tipo">Tipo</span>')
-    out.append('    <button type="button" class="r-filter-pill is-active" data-value="todos" data-i18n="filtros.todos">Todos</button>')
-    for val, label, i18n_key in (
-        ("devocional-reflexion", "Devocional y reflexión", "filtros.devocionalReflexion"),
-        ("articulo", "Artículo", "filtros.articulo"),
-    ):
-        out.append(f'    <button type="button" class="r-filter-pill" data-value="{val}" data-i18n="{i18n_key}">{label}</button>')
-    out.append('  </div>')
-    out.append('  <select class="r-filter-select" data-filter-group="tema" data-i18n-attr="aria-label:filtros.filtrarPorTema" aria-label="Filtrar por tema">')
-    out.append('    <option value="todos" data-i18n="filtros.todosLosTemas">Todos los temas</option>')
-    for t in temas:
-        out.append(f'    <option value="{t}" data-i18n="temas.{tema_i18n_key(t)}">{tema_label(t)}</option>')
-    out.append('  </select>')
-    out.append('</div>')
-    out.append('<div class="r-article-list" id="articulos-list">')
-    for it in items_sorted:
-        temas_attr = ",".join(it["temas"])
-        # El listado es una sola página física (recursos/articulos-y-reflexiones/
-        # index.html) que sirve ambos idiomas: lang-aware-list.js reescribe
-        # título+href en tiempo de ejecución según VerboI18n.getUiLang(),
-        # leyendo data-titulo-es/en y data-ruta-es/en. href/texto impresos
-        # abajo son el español -> comportamiento correcto sin JS (progresivo)
-        # y fallback silencioso si algún día falta la traducción de un
-        # artículo nuevo (no se imprime data-ruta-en/data-titulo-en).
-        ruta_en_attr = ""
-        titulo_en_attr = ""
-        if it.get("ruta_en") and it.get("titulo_en"):
-            ruta_en_rel = f"../articles-and-reflections-en/{it['id']}/"
-            ruta_en_attr = f' data-ruta-en="{ruta_en_rel}"'
-            titulo_en_attr = f' data-titulo-en="{esc(it["titulo_en"])}"'
-        out.append(
-            f'  <a class="r-article-row" data-item data-tipo="{it["tipo"]}" '
-            f'data-tema="{temas_attr}" data-titulo-es="{esc(it["titulo_es"])}" '
-            f'data-ruta-es="{it["id"]}/"{titulo_en_attr}{ruta_en_attr} href="{it["id"]}/">'
-            f'<span class="r-article-row-main">'
-            f'<span class="r-article-row-title">{esc(it["titulo"])}</span>'
-            f'<span class="r-article-row-tags">'
-            f'<span class="r-tag r-tag-tipo" data-i18n="{TIPO_I18N_KEY[it["tipo"]]}">{TIPO_LABEL[it["tipo"]]}</span>'
-            f'</span></span>'
-            f'<span class="r-article-row-date">{fmt_fecha_corta(it["fecha_agregado"])}</span></a>'
-        )
-    out.append('</div>')
-    out.append('<p class="r-filter-empty" hidden data-i18n="filtros.sinResultadosArticulos">No hay piezas que coincidan con estos filtros.</p>')
+    out = ['<!-- CONTENT-FILTERS:START -->']
+    for categoria, list_id, heading_key, heading_es in CATEGORIA_SECTIONS:
+        section_items = [it for it in items_sorted if it["categoria"] == categoria]
+        temas = sorted({t for it in section_items for t in it["temas"]})
+        out.append(f'<section class="r-content-group" data-categoria="{categoria}">')
+        out.append('  <div class="r-section-label">')
+        out.append(f'    <h2 data-i18n="{heading_key}">{heading_es}</h2>')
+        out.append(f'    <span class="r-section-count">{len(section_items)}</span>')
+        out.append('  </div>')
+        out.append(f'  <div class="r-filterbar" data-filter-bar data-filter-target="#{list_id}">')
+        out.append(f'    <select class="r-filter-select" data-filter-group="tema" data-i18n-attr="aria-label:filtros.filtrarPorTema" aria-label="Filtrar por tema">')
+        out.append('      <option value="todos" data-i18n="filtros.todosLosTemas">Todos los temas</option>')
+        for t in temas:
+            out.append(f'      <option value="{t}" data-i18n="temas.{tema_i18n_key(t)}">{tema_label(t)}</option>')
+        out.append('    </select>')
+        out.append('  </div>')
+        out.append(f'  <div class="r-article-list" id="{list_id}">')
+        for it in section_items:
+            out.append(render_articulo_row(it))
+        out.append('  </div>')
+        out.append('  <p class="r-filter-empty" hidden data-i18n="filtros.sinResultadosArticulos">No hay piezas que coincidan con estos filtros.</p>')
+        out.append('</section>')
     out.append('<!-- CONTENT-FILTERS:END -->')
     return "\n".join(out)
 
@@ -724,6 +761,8 @@ def main():
     print(f"Artículos y Reflexiones: {len(articulos)} ({sum(1 for i in articulos if i['tipo']=='devocional-reflexion')} devocional/reflexión, "
           f"{sum(1 for i in articulos if i['tipo']=='articulo')} artículo, "
           f"{sum(1 for i in articulos if i.get('pendiente_revision'))} pendientes)")
+    print(f"  categoria: {sum(1 for i in articulos if i['categoria']=='devocional')} devocional, "
+          f"{sum(1 for i in articulos if i['categoria']=='estudio')} estudio")
     print(f"Escuela Dominical: {len(escuela)} lecciones")
     print(f"Librería: {len(libreria)} entradas")
     print(f"Fechas aproximadas (solo mes/año en el badge original): {len(approx_flags)}")

@@ -3,14 +3,16 @@
    tools/build_content_taxonomy.py). Al idioma activo (VerboI18n) se le
    reescribe título+href de cada fila; si falta la contraparte en inglés
    (data-ruta-en/data-titulo-en ausentes), la fila se queda en español sin
-   error visible. */
+   error visible. Selector global (no un solo #articulos-list): la página
+   tiene dos listas separadas por categoría (Reflexiones y Devocionales /
+   Estudios Temáticos), cada una con su propio id de lista. */
 (function () {
   "use strict";
 
   function applyLang() {
     if (!window.VerboI18n) return;
     var lang = VerboI18n.getUiLang();
-    var rows = document.querySelectorAll("#articulos-list [data-item]");
+    var rows = document.querySelectorAll(".r-article-list [data-item]");
     rows.forEach(function (row) {
       var useEn = lang === "en" && row.hasAttribute("data-ruta-en") && row.hasAttribute("data-titulo-en");
       var href = useEn ? row.getAttribute("data-ruta-en") : row.getAttribute("data-ruta-es");

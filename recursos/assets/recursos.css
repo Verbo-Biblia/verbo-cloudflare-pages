@@ -233,6 +233,16 @@ body.recursos-page .r-section-label h2 {
   color: var(--r-ink-soft);
   margin: 0;
 }
+body.recursos-page .r-section-count {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: .85rem;
+  color: var(--r-ink-soft);
+  opacity: .7;
+}
+
+/* ---------- grupos de contenido por categoría (Artículos y Reflexiones) ---------- */
+body.recursos-page .r-content-group { margin-bottom: 48px; }
+body.recursos-page .r-content-group:last-child { margin-bottom: 0; }
 
 /* ---------- tarjetas ---------- */
 body.recursos-page .r-card-grid {
