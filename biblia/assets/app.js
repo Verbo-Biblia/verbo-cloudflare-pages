@@ -2327,6 +2327,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     churchHistoryOpenId=id;
     churchHistoryOpenFromShelf=true;
     els.side.classList.add('side-panel--history-expanded');
+    els.side.offsetHeight; // fuerza reflow — igual patrón que openPanel() para sheets; sin esto
+                            // el ancho nuevo quedaba diferido hasta la próxima interacción del usuario
     renderChurchHistoryEntry(id);
     els.panelBody.scrollTop=0;
   }
