@@ -19,7 +19,8 @@
     "padres": "Apostolic Fathers",
     "fundador": "About the founder",
     "mision": "Our mission",
-    "licencias": "Sources & licenses"
+    "licencias": "Sources & licenses",
+    "historiaNotas": "History notes"
   },
   "nav": {
     "toolsAria": "Study tools",
@@ -37,7 +38,8 @@
     "licencias": "Sources & licenses",
     "fundador": "About the founder",
     "mision": "Our mission",
-    "predicas": "My sermons"
+    "predicas": "My sermons",
+    "historiaNotas": "History notes"
   },
   "panel": {
     "defaultTitle": "Panel",
@@ -211,6 +213,23 @@
     "eliminarConfirm": "Delete this sermon? This can't be undone.",
     "vacio": "You haven't saved any sermons yet."
   },
+  "historiaNotas": {
+    "title": "History notes",
+    "buscarPlaceholder": "Search by title, work, or text…",
+    "vacio": "You haven't saved any notes or bookmarks in Church History or Apostolic Fathers yet.",
+    "sinResultados": "No results found for “{{query}}”.",
+    "seccionNotas": "Notes",
+    "seccionMarcadores": "Bookmarks",
+    "tituloPlaceholder": "Note title (optional)",
+    "notaPlaceholder": "Write your observation here…",
+    "escribiendo": "Writing…",
+    "guardado": "Saved",
+    "eliminarNota": "Delete note",
+    "eliminarNotaConfirm": "Delete this note? This can't be undone.",
+    "marcar": "☆ Bookmark",
+    "marcado": "★ Bookmarked",
+    "abrir": "Open →"
+  },
   "padres": {
     "title": "Apostolic Fathers",
     "modoDocumentos": "Browse documents",
@@ -231,7 +250,7 @@
     "volverIndice": "Document index",
     "copiarSeccion": "Copy section",
     "seccionNoEncontrada": "This section wasn't found.",
-    "traduccionAuto": "Automatic {{source}}→{{target}} translation, based on the active Bible."
+    "traduccionAuto": "Automatic {{source}}→{{target}} translation, based on the interface language."
   },
   "linked": {
     "sinEntradas": "This chapter doesn't have any entries loaded yet.",

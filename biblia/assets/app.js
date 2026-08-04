@@ -240,10 +240,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   const HL_COLORS = ['hl-yellow','hl-green','hl-blue','hl-pink','hl-coral','hl-violet'];
   const escapeHTML = value => String(value ?? '').replace(/[&<>'"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','\"':'&quot;'}[ch]));
   const bibleCatalog = () => catalog.bibles.map(item => ({ id:item.manifest.id, label:item.manifest.abbreviation || item.manifest.name, full:item.manifest.name, path:item.path, lang:item.manifest.language || 'es', remote:Boolean(item.remote || item.manifest.remote), manifest:item.manifest }));
-  // Idioma de Strong/comentarios sigue a la Biblia activa: sin selector propio.
-  // En modo sermón la Biblia "activa" es la de la pestaña Biblia (sermonBible), no la
-  // principal (que queda oculta/congelada mientras se escribe).
-  const contentLang = () => bibleCatalog().find(v => v.id === (sermonMode && sermonBible ? sermonBible.version : currentVersion))?.lang || 'es';
+  // Idioma de Strong/comentarios/Padres sigue al botón ES/EN de la interfaz
+  // (VerboI18n.getUiLang()), no a la Biblia seleccionada — decisión de Juan
+  // 2026-08-04: la Biblia activa puede quedarse en español mientras el usuario
+  // quiere leer el resto del contenido traducido, o viceversa.
+  const contentLang = () => window.VerboI18n?.getUiLang() || 'es';
   const commentaryCatalog = () => (catalog.commentaries || []).map(item => ({ id:item.manifest.id, label:item.manifest.abbreviation || item.manifest.name, full:item.manifest.name, path:item.path, manifest:item.manifest }));
   // Léxico Strong: módulos numéricos (G1234 / H1234) consultados al tocar una etiqueta Strong en el texto.
   const isStrongLexicon = item => Boolean(item.manifest.strong);
@@ -676,7 +677,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     activeTab=tab;
     if(tab!=='historia') els.side.classList.remove('side-panel--history-expanded');
     const isSheet=window.innerWidth<=760 && SHEET_TABS.includes(tab);
-    els.side.classList.toggle('side-panel--left', ['historia','padres','licencias'].includes(tab));
+    els.side.classList.toggle('side-panel--left', ['historia','padres','licencias','historia-notas'].includes(tab));
     if(isSheet){
       els.side.dataset.sheet='1';  // CSS aplica translateY(105%) inmediatamente
       els.side.offsetHeight;       // fuerza reflow para que el estado inicial esté fijo
@@ -803,6 +804,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(tab==='padres') renderPadresPanel(focus || activeVerse());
     if(tab==='notas') renderNotes();
     if(tab==='predicas') renderPredicasPanel();
+    if(tab==='historia-notas') renderHistoriaNotasPanel();
     if(tab==='exegesis') renderExegesis(focus || activeVerse());
     if(tab==='ajustes') renderAjustes();
     if(tab==='mapas') renderMapsPanel();
@@ -1401,6 +1403,118 @@ document.addEventListener('DOMContentLoaded', async () => {
     els.panelBody.querySelectorAll('[data-delete-predica]').forEach(btn=>btn.addEventListener('click', ()=>deletePredicaWithConfirm(btn.dataset.deletePredica)));
   }
 
+  // ── "Notas de Historia" (Tarea 3): notas + marcadores combinados de Historia
+  // de la Iglesia y Padres Apostólicos. El buscador filtra la lista en vivo en
+  // vez de un dropdown de predicción aparte — la lista de un usuario es chica
+  // (sus propias notas), así que filtrar la lista misma da el mismo resultado
+  // práctico con menos UI que mantener. ──
+  let historiaNotasQuery='';
+  function historiaNotasContextoLabel(item){
+    const c=item.contexto;
+    if(c?.obra && c?.capitulo) return `${c.obra} — ${c.capitulo}`;
+    return item.ubicacion?.tipo==='padres' ? t('padres.title') : t('historia.title');
+  }
+  function historiaNotasMatches(item, displayTitle, query){
+    if(!query) return true;
+    const haystack=normalizeSearchText(`${displayTitle} ${historiaNotasContextoLabel(item)} ${htmlToPlainText(item.texto||'')}`);
+    return normalizeSearchText(query).split(/\s+/).filter(Boolean).every(word=>haystack.includes(word));
+  }
+  function historiaNotasOpen(tipo, ref){
+    if(tipo==='padres'){
+      const lastDash=ref.lastIndexOf('-');
+      patristicMode='docs'; // la nota/marcador apunta a documento+sección, no al modo "por versículo"
+      patristicOpenDoc=ref.slice(0,lastDash);
+      patristicOpenSection=Number(ref.slice(lastDash+1));
+      patristicDocData=null;
+      openPanel('padres');
+    } else {
+      churchHistoryOpenId=ref;
+      churchHistoryOpenFromShelf=true;
+      openPanel('historia');
+    }
+  }
+  function historiaNotasRowHTML(item, kind){
+    const displayTitle=item.titulo || historiaNotasContextoLabel(item);
+    const snippet=kind==='nota' ? htmlToPlainText(item.texto||'').slice(0,140) : historiaNotasContextoLabel(item);
+    return `<div class="predicas-list__item" data-historia-nota-tipo="${escapeHTML(item.ubicacion.tipo)}" data-historia-nota-ref="${escapeHTML(item.ubicacion.ref)}">
+      <div class="predicas-list__info">
+        <p class="predicas-list__title">${kind==='nota'?'✎':'★'} ${escapeHTML(displayTitle)}</p>
+        <span class="predicas-list__date">${escapeHTML(snippet)}</span>
+      </div>
+      <div class="predicas-list__actions">
+        <button type="button" class="predicas-list__btn" data-historia-nota-open="1">${t('historiaNotas.abrir')}</button>
+        ${kind==='nota'?`<button type="button" class="predicas-list__btn predicas-list__btn--danger" data-historia-nota-delete="1">${t('historiaNotas.eliminarNota')}</button>`:''}
+      </div>
+    </div>`;
+  }
+  function renderHistoriaNotasBody(){
+    const notas=VerboBackup.getNotas(['historia','padres']);
+    const marcadores=VerboBackup.getMarcadores().filter(m=>['historia','padres'].includes(m.ubicacion?.tipo));
+    const query=historiaNotasQuery.trim();
+    const notasFiltradas=notas.filter(n=>historiaNotasMatches(n, n.titulo||historiaNotasContextoLabel(n), query));
+    const marcadoresFiltrados=marcadores.filter(m=>historiaNotasMatches(m, historiaNotasContextoLabel(m), query));
+    if(!notas.length && !marcadores.length){ els.panelBody.innerHTML=emptyState('📑',t('historiaNotas.vacio')); return; }
+    if(!notasFiltradas.length && !marcadoresFiltrados.length){ els.panelBody.innerHTML=emptyState('🔎',t('historiaNotas.sinResultados',{query:escapeHTML(query)})); return; }
+    els.panelBody.innerHTML=`
+      ${notasFiltradas.length?`<div class="dictionary-library__count">${escapeHTML(t('historiaNotas.seccionNotas'))} (${notasFiltradas.length})</div><div class="dictionary-library">${notasFiltradas.map(n=>historiaNotasRowHTML(n,'nota')).join('')}</div>`:''}
+      ${marcadoresFiltrados.length?`<div class="dictionary-library__count">${escapeHTML(t('historiaNotas.seccionMarcadores'))} (${marcadoresFiltrados.length})</div><div class="dictionary-library">${marcadoresFiltrados.map(m=>historiaNotasRowHTML(m,'marcador')).join('')}</div>`:''}
+    `;
+    els.panelBody.querySelectorAll('[data-historia-nota-open]').forEach(btn=>{
+      const row=btn.closest('[data-historia-nota-ref]');
+      btn.addEventListener('click',()=>historiaNotasOpen(row.dataset.historiaNotaTipo, row.dataset.historiaNotaRef));
+    });
+    els.panelBody.querySelectorAll('[data-historia-nota-delete]').forEach(btn=>{
+      const row=btn.closest('[data-historia-nota-ref]');
+      btn.addEventListener('click',()=>deleteHistoriaNotaWithConfirm(row.dataset.historiaNotaTipo, row.dataset.historiaNotaRef));
+    });
+  }
+  function deleteHistoriaNotaWithConfirm(tipo, ref){
+    if(!window.confirm(t('historiaNotas.eliminarNotaConfirm'))) return;
+    VerboBackup.deleteNota(ref, tipo);
+    renderHistoriaNotasBody();
+  }
+  function renderHistoriaNotasPanel(){
+    els.panelTitle.textContent=t('historiaNotas.title');
+    els.panelToolbar.innerHTML=`<input type="search" class="search-panel-input" id="historiaNotasSearch" placeholder="${t('historiaNotas.buscarPlaceholder')}" autocomplete="off" value="${escapeHTML(historiaNotasQuery)}">`;
+    document.getElementById('historiaNotasSearch')?.addEventListener('input',e=>{ historiaNotasQuery=e.target.value; renderHistoriaNotasBody(); });
+    renderHistoriaNotasBody();
+  }
+
+  // Control de nota+marcador embebido en la vista de lectura de Historia y de
+  // Padres Apostólicos (mismo componente en ambas, ver historiaNotasOpen/
+  // renderHistoriaNotasBody arriba, que abren directo a esta misma vista).
+  function historiaNotaControlHTML(tipo, ref){
+    const existing=VerboBackup.getNotaObj(ref, tipo);
+    const marcado=VerboBackup.isMarcado(tipo, ref);
+    return `<div class="history-note-control">
+      <button type="button" class="history-note-control__marcar" id="historiaMarcarBtn">${marcado?t('historiaNotas.marcado'):t('historiaNotas.marcar')}</button>
+      <details class="history-note-control__details"${existing?.texto?' open':''}>
+        <summary>${t('notas.title')}</summary>
+        <input type="text" class="editor-pane__title-input" id="historiaNotaTitulo" placeholder="${t('historiaNotas.tituloPlaceholder')}" value="${escapeHTML(existing?.titulo||'')}">
+        <textarea id="historiaNotaTexto" class="personal-note-form__area" placeholder="${t('historiaNotas.notaPlaceholder')}">${escapeHTML(existing?.texto||'')}</textarea>
+        <div class="personal-note-form__status" id="historiaNotaStatus">${existing?.texto?t('historiaNotas.guardado'):''}</div>
+      </details>
+    </div>`;
+  }
+  function wireHistoriaNotaControl(tipo, ref, contexto){
+    const marcarBtn=document.getElementById('historiaMarcarBtn');
+    marcarBtn?.addEventListener('click',()=>{
+      const marcado=VerboBackup.toggleMarcador(tipo, ref, contexto);
+      marcarBtn.textContent=marcado?t('historiaNotas.marcado'):t('historiaNotas.marcar');
+    });
+    const tituloInput=document.getElementById('historiaNotaTitulo');
+    const textoArea=document.getElementById('historiaNotaTexto');
+    const status=document.getElementById('historiaNotaStatus');
+    let timer;
+    const save=()=>{
+      VerboBackup.setNota(ref, textoArea.value, { tipo, titulo: tituloInput.value, contexto });
+      if(status) status.textContent=t('historiaNotas.guardado');
+    };
+    const scheduleSave=()=>{ if(status) status.textContent=t('historiaNotas.escribiendo'); clearTimeout(timer); timer=setTimeout(save,400); };
+    textoArea?.addEventListener('input',scheduleSave);
+    tituloInput?.addEventListener('input',scheduleSave);
+  }
+
   // ── Panel lateral "Biblia" del modo sermón (con historial de referencias) ──
 
   function initSermonBibleState(){
@@ -1833,8 +1947,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Apostólicos en modo fragmento, Biblioteca, Exégesis) — antes solo el
   // panel "Comentario" y "Padres Apostólicos" en modo documento traducían
   // automáticamente; esta vista compartida se había quedado siempre en el
-  // idioma original de la fuente (normalmente español) sin importar la
-  // Biblia activa. Mismo patrón que applyCommentaryTranslation/
+  // idioma original de la fuente (normalmente español) sin importar el
+  // idioma de interfaz. Mismo patrón que applyCommentaryTranslation/
   // applyPatristicTranslation: título/autor vía translateCommentaryHeader,
   // cuerpo vía translateEntry, con caché en localStorage.
   async function translateLinkedResourceEntries(resource, entries, focus=null){
@@ -2534,6 +2648,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         <button id="churchHistoryExpand" class="history-panel-expand" type="button" aria-pressed="${els.side.classList.contains('side-panel--history-expanded')?'true':'false'}">${els.side.classList.contains('side-panel--history-expanded')?t('historia.vistaCompacta'):t('historia.ampliarLectura')}</button>
       </div>
       <div class="dict-entry__def" data-entry-id="${escapeHTML(entry.id)}">${entry.content||entry.excerpt||''}</div>
+      ${historiaNotaControlHTML('historia', entry.id)}
       <nav class="history-entry-nav" aria-label="${t('historia.navegacionLectura')}">
         ${previous?`<button type="button" class="history-entry-nav__button" data-history-neighbor="${escapeHTML(previous.id)}">← ${t('historia.anterior')}</button>`:'<span></span>'}
         ${next?`<button type="button" class="history-entry-nav__button" data-history-neighbor="${escapeHTML(next.id)}">${t('historia.siguiente')} →</button>`:'<span></span>'}
@@ -2569,6 +2684,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       renderChurchHistoryEntry(churchHistoryOpenId);
       els.panelBody.scrollTop=0;
     }));
+    wireHistoriaNotaControl('historia', entry.id, {obra:churchHistoryBookLabel(sourceKey), capitulo:churchHistoryTocRowLabel(entry)});
     applyChurchHistoryTranslation(entry);
   }
 
@@ -2576,7 +2692,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // mismo motor de traducción de Comentario (translateEntry/translateCommentaryHeader),
   // así el resultado de traducción automática tiene la misma calidad/caché. Solo
   // corre si el idioma de la entrada (normalmente inglés, ver manifest.language)
-  // difiere del idioma de la Biblia activa.
+  // difiere del idioma de interfaz (botón ES/EN).
   async function applyChurchHistoryTranslation(entry){
     const source=entry.sourceLang||'en';
     const target=contentLang();
@@ -3059,8 +3175,17 @@ document.addEventListener('DOMContentLoaded', async () => {
       return;
     }
 
-    // Nivel 3: leyendo una sección específica
+    // Nivel 3: leyendo una sección específica. Normalmente patristicDocData ya
+    // quedó cargado por el Nivel 2 (el usuario vino navegando el índice), pero
+    // "Notas de Historia" (historiaNotasOpen) salta directo aquí sin pasar por
+    // ese paso — hay que poder cargarlo desde cero también.
     if(patristicOpenDoc && patristicOpenSection!=null){
+      if(!patristicDocData || patristicDocData.manifest.id!==patristicOpenDoc){
+        els.panelBody.innerHTML=emptyState('⌛',t('padres.cargandoDocumento'));
+        try{ patristicDocData=await VerboModules.loadPatristic(patristicOpenDoc); }
+        catch(error){ console.error(error); }
+      }
+      if(!patristicDocData){ els.panelBody.innerHTML=emptyState('⚠️',t('padres.errorDocumento')); return; }
       renderPatristicSection();
       return;
     }
@@ -3191,16 +3316,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     const translationNote=needsTranslation
       ? `<p class="note-card__translation-note">${t('padres.traduccionAuto',{source:source.toUpperCase(),target:target.toUpperCase()})}</p>`
       : '';
+    const patristicRef=`${patristicOpenDoc}-${section.n}`;
     els.panelBody.innerHTML=`<article class="dict-entry">
       <div class="dict-entry__term" data-patristic-title="1">${escapeHTML(section.title)}</div>
       <div class="dict-entry__source" data-patristic-docname="1">${escapeHTML(patristicDocData.manifest.name)}</div>
       ${translationNote}
       <div class="dict-entry__def" data-patristic-body="1">${bodyHtml}</div>
+      ${historiaNotaControlHTML('padres', patristicRef)}
     </article>`;
     document.getElementById('copyPatristicSection')?.addEventListener('click',()=>{
       const visible=els.panelBody.querySelector('[data-patristic-body]')?.innerText || section.content;
       copyToClipboard(`${section.title}\n${patristicDocData.manifest.name}\n\n${visible.trim()}`);
     });
+    wireHistoriaNotaControl('padres', patristicRef, {obra:patristicDocData.manifest.abbreviation||patristicDocData.manifest.name, capitulo:section.title});
     if(needsTranslation) setTimeout(()=>applyPatristicTranslation(section,source,target), 150);
   }
 

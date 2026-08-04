@@ -142,16 +142,68 @@ window.VerboBackup = (() => {
     persist();
   }
 
-  // ---- Notas (una por libro+capítulo, igual forma que ya usaba app.js) ----
-  function getNota(ref) {
-    return cached.notas.find(n => n.ubicacion?.tipo === 'biblia' && n.ubicacion.ref === ref)?.texto || '';
+  // ---- Notas (una por ubicación: libro+capítulo en Biblia, id de entrada en
+  // Historia/Padres). tipo por defecto 'biblia' para no romper las llamadas
+  // existentes (VerboBackup.getNota(ref)/setNota(ref,texto) siguen funcionando
+  // igual). titulo/contexto son aditivos: notas viejas simplemente no los
+  // tienen hasta que el usuario las edite o hasta que Notas de Historia/Padres
+  // los use para no tener que recargar todo el volumen solo para listar. ----
+  function getNota(ref, tipo = 'biblia') {
+    return cached.notas.find(n => n.ubicacion?.tipo === tipo && n.ubicacion.ref === ref)?.texto || '';
   }
-  function setNota(ref, texto) {
-    const existing = cached.notas.find(n => n.ubicacion?.tipo === 'biblia' && n.ubicacion.ref === ref);
-    if (existing) { existing.texto = texto; existing.fecha = new Date().toISOString(); }
-    else cached.notas.push({ id: ref, ubicacion: { tipo: 'biblia', ref }, texto, fecha: new Date().toISOString() });
+  // Objeto completo (incluye titulo/contexto) — getNota() solo devuelve el
+  // texto para no romper las llamadas existentes que esperan un string.
+  function getNotaObj(ref, tipo = 'biblia') {
+    return cached.notas.find(n => n.ubicacion?.tipo === tipo && n.ubicacion.ref === ref) || null;
+  }
+  function setNota(ref, texto, { tipo = 'biblia', titulo, contexto } = {}) {
+    const existing = cached.notas.find(n => n.ubicacion?.tipo === tipo && n.ubicacion.ref === ref);
+    if (existing) {
+      existing.texto = texto;
+      existing.fecha = new Date().toISOString();
+      if (titulo !== undefined) existing.titulo = titulo;
+      if (contexto !== undefined) existing.contexto = contexto;
+    } else {
+      cached.notas.push({
+        id: tipo === 'biblia' ? ref : `${tipo}:${ref}`,
+        ubicacion: { tipo, ref }, texto, fecha: new Date().toISOString(),
+        ...(titulo !== undefined ? { titulo } : {}),
+        ...(contexto !== undefined ? { contexto } : {}),
+      });
+    }
     cached.fecha_guardado = new Date().toISOString();
     persist();
+  }
+  // Lista de notas con texto real (para el índice de "Notas de Historia y
+  // Padres" — nunca se usa para Biblia, que sigue siendo un textarea único).
+  function getNotas(tipos = null) {
+    return cached.notas.filter(n => n.texto?.trim() && (!tipos || tipos.includes(n.ubicacion?.tipo)));
+  }
+  function deleteNota(ref, tipo = 'biblia') {
+    const idx = cached.notas.findIndex(n => n.ubicacion?.tipo === tipo && n.ubicacion.ref === ref);
+    if (idx < 0) return;
+    cached.notas.splice(idx, 1);
+    cached.fecha_guardado = new Date().toISOString();
+    persist();
+  }
+
+  // ---- Marcadores (capítulo/sección completo, sin texto — Historia/Padres).
+  // Reusa el array 'marcadores' ya reservado en emptyData/init/replaceData,
+  // sin usar todavía por ningún getter/setter antes de esto. ----
+  function getMarcadores(tipo = null) {
+    return tipo ? cached.marcadores.filter(m => m.ubicacion?.tipo === tipo) : [...cached.marcadores];
+  }
+  function isMarcado(tipo, ref) {
+    return cached.marcadores.some(m => m.ubicacion?.tipo === tipo && m.ubicacion.ref === ref);
+  }
+  // Devuelve true si quedó marcado, false si se desmarcó.
+  function toggleMarcador(tipo, ref, contexto) {
+    const idx = cached.marcadores.findIndex(m => m.ubicacion?.tipo === tipo && m.ubicacion.ref === ref);
+    if (idx >= 0) cached.marcadores.splice(idx, 1);
+    else cached.marcadores.push({ id: `${tipo}:${ref}`, ubicacion: { tipo, ref }, fecha: new Date().toISOString(), ...(contexto ? { contexto } : {}) });
+    cached.fecha_guardado = new Date().toISOString();
+    persist();
+    return idx < 0;
   }
 
   // ---- Prédicas (modo Preparación de Bosquejo/Estudio) ----
@@ -273,7 +325,8 @@ window.VerboBackup = (() => {
   return {
     init, getData, saveNow,
     getResaltadosMap, setAllResaltados,
-    getNota, setNota,
+    getNota, setNota, getNotas, getNotaObj, deleteNota,
+    getMarcadores, isMarcado, toggleMarcador,
     getPredicas, getPredica, savePredica, deletePredica,
     getPosicionBiblia, setPosicionBiblia,
     exportDownload, importFromFile,

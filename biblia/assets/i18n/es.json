@@ -19,7 +19,8 @@
     "padres": "Padres Apostólicos",
     "fundador": "Sobre el fundador",
     "mision": "Nuestra misión",
-    "licencias": "Fuentes y licencias"
+    "licencias": "Fuentes y licencias",
+    "historiaNotas": "Notas de Historia"
   },
   "nav": {
     "toolsAria": "Herramientas de estudio",
@@ -37,7 +38,8 @@
     "licencias": "Fuentes y licencias",
     "fundador": "Sobre el fundador",
     "mision": "Nuestra misión",
-    "predicas": "Mis prédicas"
+    "predicas": "Mis prédicas",
+    "historiaNotas": "Notas de Historia"
   },
   "panel": {
     "defaultTitle": "Panel",
@@ -211,6 +213,23 @@
     "eliminarConfirm": "¿Eliminar esta prédica? No se puede deshacer.",
     "vacio": "Todavía no has guardado ninguna prédica."
   },
+  "historiaNotas": {
+    "title": "Notas de Historia",
+    "buscarPlaceholder": "Buscar por título, obra o texto…",
+    "vacio": "Todavía no has guardado notas ni marcadores en Historia de la Iglesia o Padres Apostólicos.",
+    "sinResultados": "No se encontraron resultados para “{{query}}”.",
+    "seccionNotas": "Notas",
+    "seccionMarcadores": "Marcadores",
+    "tituloPlaceholder": "Título de la nota (opcional)",
+    "notaPlaceholder": "Escribe aquí tu observación…",
+    "escribiendo": "Escribiendo…",
+    "guardado": "Guardado",
+    "eliminarNota": "Eliminar nota",
+    "eliminarNotaConfirm": "¿Eliminar esta nota? No se puede deshacer.",
+    "marcar": "☆ Marcar",
+    "marcado": "★ Marcado",
+    "abrir": "Abrir →"
+  },
   "padres": {
     "title": "Padres Apostólicos",
     "modoDocumentos": "Explorar documentos",
@@ -231,7 +250,7 @@
     "volverIndice": "Índice del documento",
     "copiarSeccion": "Copiar sección",
     "seccionNoEncontrada": "No se encontró esta sección.",
-    "traduccionAuto": "Traducción automática {{source}}→{{target}} según la Biblia activa."
+    "traduccionAuto": "Traducción automática {{source}}→{{target}} según el idioma de interfaz."
   },
   "linked": {
     "sinEntradas": "Este capítulo todavía no tiene entradas cargadas.",
