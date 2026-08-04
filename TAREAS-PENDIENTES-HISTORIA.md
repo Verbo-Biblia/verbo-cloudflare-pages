@@ -57,3 +57,53 @@ antes era imposible) de `tab==='sermon-biblia'` (siempre
 visibles y funcionando de forma independiente dentro de modo Prédica; al
 salir, "Biblia" y "Mis prédicas" vuelven a ocultarse y solo queda
 "Comparar versiones".
+
+---
+
+## Tarea 5 — Comparar Biblia lado a lado con Biblia en modo Prédica — PENDIENTE (guardada 2026-08-04)
+
+Brief tal cual lo dio Juan, sin empezar todavía.
+
+**Tarea:** cambiar el comportamiento del panel "Comparar Biblia" en el modo
+predicación, para que se muestre simultáneamente junto al panel de Biblia en
+vez de reemplazarlo u ocultarlo.
+
+**Contexto:** en modo predicación, el usuario tiene un editor de texto
+(sermón) y puede abrir un panel de Biblia con su ícono correspondiente. Hoy,
+al tocar el ícono "Comparar Biblia", ese panel de comparación
+reemplaza/oculta el panel de Biblia (o requiere cerrar uno para ver el
+otro) — no es práctico para trabajar comparando versiones mientras se
+escribe.
+
+**Comportamiento deseado:**
+1. Con el panel de Biblia abierto, al tocar el ícono "Comparar Biblia": el
+   panel de Biblia se desplaza hacia la izquierda (no se cierra, sigue
+   visible) y el panel de Comparar Biblia aparece a su derecha,
+   empujándolo. Ambos paneles quedan visibles simultáneamente, lado a lado.
+2. El área del editor de texto se reduce de ancho proporcionalmente para
+   dar espacio a los dos paneles — sigue visible y editable, solo más
+   angosta.
+3. Al volver a tocar el ícono "Comparar Biblia" (toggle), el panel de
+   comparación se retrae/cierra, y el panel de Biblia vuelve a su ancho
+   normal, quedando solo él visible (como está hoy antes de abrir
+   comparación).
+4. Transición con animación suave (CSS transition en width/transform), no
+   un salto abrupto.
+
+**Alcance explícito:** este cambio aplica ÚNICAMENTE al modo predicación
+(editor de sermón). No tocar el comportamiento de paneles de la app de
+lectura bíblica normal (Comentario, Historia de la Iglesia, Notas, etc.) —
+ese sistema de panel único intercambiable está bien como está y no se toca.
+
+No es necesario resolver comportamiento responsive/móvil en esta tarea — el
+modo predicación es un contexto de escritorio, distinto de la app
+principal.
+
+**Antes de escribir código:** identificar los archivos/componentes exactos
+que controlan el layout del modo predicación (editor + panel Biblia + panel
+Comparar Biblia) y confirmar si ya existe algún sistema de layout flexible
+(flexbox/grid) que se pueda extender, o si hay que introducir uno.
+
+**Reglas de entrega (igual que siempre):** `git add` solo de los archivos
+tocados, uno por uno — no usar `git add -A`. Mostrar `git status` antes de
+cada commit. No hacer push — Juan espera el resumen y diff para revisar.
