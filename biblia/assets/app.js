@@ -970,6 +970,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     return fixKnownBookNameMistranslations(parts.join(' '), targetLang);
   }
 
+  // Traduce bloque por bloque con un pool de workers concurrentes (mismo patrón
+  // que applyChurchHistoryResultsTranslation/applyChurchHistoryTocTranslation)
+  // en vez de un for..await secuencial: capítulos largos de Historia (decenas
+  // de párrafos) tardaban demasiado traduciendo de a uno. Antes, además, si
+  // fallaban los 3 reintentos de UN solo bloque (ver comentario en
+  // googleTranslate sobre el endpoint público siendo intermitente), se
+  // descartaba TODA la traducción y se mostraba el capítulo completo en el
+  // idioma original — ahora ese bloque puntual cae a su propio texto sin
+  // traducir y el resto del capítulo sí se ve traducido.
   async function translateEntry(noteId, htmlContent, sourceLang='en', targetLang='es'){
     const cacheKey=translationCacheKey(noteId,htmlContent,targetLang);
     const cached=tcacheGet(cacheKey); if(cached) return cached;
@@ -977,12 +986,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     const text=blocks.join('\n\n');
     if(!text || text.length<10) return htmlContent;
     try{
-      const translatedBlocks=[];
-      for(const block of blocks){
-        const translated=await googleTranslate(block, sourceLang, targetLang);
-        if(!translated) return htmlContent;
-        translatedBlocks.push(translated);
+      const translatedBlocks=new Array(blocks.length);
+      let index=0;
+      async function worker(){
+        while(index<blocks.length){
+          const i=index++;
+          const translated=await googleTranslate(blocks[i], sourceLang, targetLang);
+          translatedBlocks[i]=translated!=null ? translated : blocks[i];
+        }
       }
+      await Promise.all(Array.from({length:Math.min(4,blocks.length)},worker));
       const result=translatedBlocksToHtml(translatedBlocks);
       tcacheSet(cacheKey, result);
       return result;
