@@ -4,7 +4,7 @@ Este archivo da contexto permanente sobre el proyecto Verbo (verbobiblia.com) pa
 
 ## Qué es Verbo
 
-Plataforma de estudio bíblico en español (verbobiblia.com), creada por Juan (pastor, teólogo y músico, con canal cristiano de 17,000+ suscriptores). Es un sitio estático en GitHub Pages, sin backend propio todavía.
+Plataforma de estudio bíblico en español (verbobiblia.com), creada por Juan (pastor, teólogo y músico, con canal cristiano de 17,000+ suscriptores). Es un sitio estático servido por Cloudflare Pages, sin backend propio todavía.
 
 **Posicionamiento:** Verbo no compite con Logos siendo "más completo". Está afilado para UN perfil: el pastor que sirve activamente (predica, enseña niños/adolescentes, forma maestros) — no el académico investigador.
 
@@ -28,7 +28,7 @@ Tono exigido en cualquier contenido generado: aclarar e ilustrar, nunca señalar
 
 ## Arquitectura del producto (decisión ya tomada, no rediscutir desde cero — actualizado 2026-06-23)
 
-**Se elimina toda generación de IA en tiempo real en producción.** El sitio es y seguirá siendo estático en su totalidad: GitHub Pages solo sirve contenido que ya existe como archivo en el repo. Si una combinación versículo+categoría no ha sido generada todavía, simplemente no está disponible — nunca se genera "al vuelo" para el usuario que la pide. No hay cache-on-first-use en producción.
+**Se elimina toda generación de IA en tiempo real en producción.** El sitio es y seguirá siendo estático en su totalidad: Cloudflare Pages solo sirve contenido que ya existe como archivo en el repo. Si una combinación versículo+categoría no ha sido generada todavía, simplemente no está disponible — nunca se genera "al vuelo" para el usuario que la pide. No hay cache-on-first-use en producción.
 
 Razón del cambio (reemplaza el plan anterior de IA respondiendo por clic): la generación de IA en el momento del clic produce variaciones de redacción entre una consulta y otra del mismo versículo/categoría. Esto genera desconfianza en el usuario (pastor/ministro), que percibe inconsistencia doctrinal donde solo hay variación de estilo — riesgo inaceptable para un producto que depende de la confianza del usuario en la fidelidad del contenido.
 
@@ -63,7 +63,7 @@ Objetivo: validar el contenido, no el producto completo. Login/cuentas NO forman
 
 ## Infraestructura técnica decidida
 
-- **Hosting:** GitHub Pages (estático) es suficiente para Biblia, Biblia+Strong, diccionario Strong y comentarios — todo JSON/archivos planos, mismo patrón que `modules/bibles/rva-1909/`. No se necesita backend para servir contenido mientras no haya IA en vivo en producción.
+- **Hosting:** Cloudflare Pages (plan Free, estático) — migrado desde GitHub Pages (ver "Migración a Cloudflare Pages" más abajo). El proyecto de Cloudflare Pages está conectado vía Git al repo de GitHub `Verbo-Biblia/verbo-cloudflare-pages`, con deploy automático en cada push a `main` — no hace falta ningún paso manual aparte de `git push`. Es suficiente para Biblia, Biblia+Strong, diccionario Strong y comentarios — todo JSON/archivos planos, mismo patrón que `modules/bibles/rva-1909/`. No se necesita backend para servir contenido mientras no haya IA en vivo en producción.
 - **Supabase (auth + DB), login de usuario, "Mis notas", Stripe:** pospuestos — no bloquean el lanzamiento de prueba. Se implementan en una fase posterior, cuando el contenido ya esté validado por los primeros testers. (Decisión de usar Supabase para esa fase posterior sigue en pie, no rediscutir Railway/VPS salvo que Juan lo pida explícitamente.)
 - **API de IA (uso offline, generación de contenido):** Claude Sonnet 4.6.
 - El sitio HOY no tiene backend, ni base de datos, ni autenticación, ni APIs externas conectadas — es 100% estático. Confirmado por exploración del repositorio.
@@ -88,6 +88,7 @@ En la raíz del repo (sin comitear — es material de trabajo, no contenido fina
 - ¿El panel de Exégesis se oculta del menú o queda visible como "próximamente"?
 - El meta-prompt de "revisión teológica brutal" no existe como archivo formal todavía, pero sus criterios ya están documentados en `Verbo_Resumen_Ejecutivo.docx`: fidelidad bíblica, precisión exegética, equilibrio doctrinal, centralidad de Cristo, valor pastoral, riesgo de mala interpretación, calidad comunicativa; salida esperada: veredicto + frases a corregir + calificación 1-10. Ya validado con éxito en una prueba real (Romanos 8:28-30, resultado 8.5-10). Flujo previsto: Claude genera y se autorevisa con este meta-prompt en el mismo paso; el ChatGPT Plus de Juan (calibrado en su teología) se usa solo para auditoría puntual de muestra, sin conexión técnica entre ambos (copiar/pegar manual). Falta convertir esto en un archivo formal del repo (ej. `docs/meta-prompt-revision-teologica.md`) con el texto exacto del prompt.
 - Respuesta del Dr. Humberto Gómez Caballero sobre licencia comercial de RVG (sigue sin respuesta). Si llega aprobación: recuperar del historial de git (`git show 055faf6:modules/bibles/rvg-2004/...` o ruta equivalente) antes de reintegrar a `registry.json` — no estaba aprobada para uso comercial, solo existía como contenido de prueba.
+- Búsqueda semántica bíblica rota en producción (404) — hallazgo colateral de la auditoría previa a la migración a Cloudflare Pages (ver sección de migración más abajo), no bloqueó la migración pero sigue sin diagnosticar/arreglar.
 
 ## Cómo trabajar con Juan
 
@@ -192,3 +193,18 @@ Los diccionarios de conjugación se aplicaron y verificaron en los commits `4158
 - `sitemap.xml` actualizado con `/biblia/`. Las páginas placeholder (`/seminario/`, `/libreria/`, `/recursos/`) **no** se agregaron al sitemap a propósito (contenido demasiado delgado para indexar todavía).
 - `studio/`, `data/`, `cloudflare/` y toda la documentación de trabajo (`CAMBIOS-*.md`, `PLAN.md`, etc.) se quedaron sin tocar en la raíz — no forman parte de "la app de Biblia" para efectos de este movimiento.
 - Verificado en vivo tras el movimiento: portal, `/biblia/` (carga de versículos, referencias cruzadas, panel lateral), `/mision/`, `/sobre-el-fundador/`, `/seminario/`, `/libreria/`, `/recursos/` — sin errores de consola, sin rutas rotas. GitHub Pages sigue sirviendo todo desde el mismo repo/branch, sin cambios en Settings.
+
+## Migración de GitHub Pages a Cloudflare Pages (2026-08-04)
+
+**Cambio de infraestructura importante — reemplaza cualquier mención anterior de "GitHub Pages" en este archivo como servicio de publicación.** El sitio ya no lo publica GitHub Pages; lo publica **Cloudflare Pages**. GitHub sigue siendo el repositorio de código (`git push`/`git pull` funcionan igual), pero ya no es quien sirve verbobiblia.com al público — eso pasó a ser Cloudflare.
+
+**Cómo queda el flujo de publicación (importante para cualquier sesión futura):** el proyecto de Cloudflare Pages está conectado **vía Git** al repo de GitHub `Verbo-Biblia/verbo-cloudflare-pages` (este mismo repositorio, en `~/Verbo/verbo-cloudflare-pages`), con **deploy automático en cada push a `main`**. Es decir: `git push` a GitHub sigue siendo el único paso necesario para publicar — Cloudflare detecta el push solo y despliega, sin ningún comando o paso manual aparte. No confundir "ya no usamos GitHub Pages" (cierto, para publicar) con "ya no usamos GitHub" (falso — sigue siendo el repositorio de código de siempre).
+
+**Qué se hizo en la migración:**
+- **Auditoría previa al repo viejo:** el `.git` viejo pesaba 852 MB, en su mayoría modelos TTS eliminados y versiones históricas de archivos JSON grandes — nada sospechoso, solo peso histórico. `tools/semantic-search/out` (34 MB) confirmado que no lo usa producción, seguro de excluir. Conteo final: 4,329 archivos, muy por debajo del límite de 20,000 del plan Free de Cloudflare Pages.
+- **Hallazgo colateral de la auditoría:** la búsqueda semántica bíblica está rota en producción (404) — quedó como pendiente aparte (ver "Pendientes abiertos"), no bloqueó la migración.
+- **Repo nuevo:** este mismo directorio (`~/Verbo/verbo-cloudflare-pages`, `Verbo-Biblia/verbo-cloudflare-pages` en GitHub) es un snapshot limpio de `origin/main` del repo viejo, con un solo commit inicial — sin el historial pesado del `.git` de 852 MB.
+- **Cloudflare Pages:** proyecto creado y conectado vía Git (ver flujo arriba), plan Free ($0/mes) — más que suficiente para el tamaño del sitio.
+- **Fix de `assetlinks.json`** (usado por el TWA de Android): Cloudflare ignora por defecto carpetas que empiezan con punto (`.well-known/`). Resuelto con `_redirects` apuntando a una copia del archivo (`wellknown-assetlinks.json`) en la raíz.
+- **DNS migrado a Cloudflare:** zona completa movida a Cloudflare vía "Connect a domain" (plan Free). Se verificaron y preservaron los 7 registros críticos de Google Search Console + Resend (SPF, DKIM, DMARC, MX) antes del corte. Nameservers cambiados en Namecheap (`becky.ns.cloudflare.com` / `elliott.ns.cloudflare.com`). `verbobiblia.com` y `www.verbobiblia.com` quedaron conectados al proyecto de Pages — Cloudflare reemplazó automáticamente los registros A/CNAME viejos.
+- **Verificación final:** sitio, `assetlinks.json` y el TWA de Android confirmados funcionando correctamente en el dominio real.
