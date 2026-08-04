@@ -1467,14 +1467,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     renderHistoriaNotasBody();
   }
 
-  // Control de nota+marcador embebido en la vista de lectura de Historia y de
-  // Padres Apostólicos (mismo componente en ambas, ver historiaNotasOpen/
-  // renderHistoriaNotasBody arriba, que abren directo a esta misma vista).
-  function historiaNotaControlHTML(tipo, ref){
-    const existing=VerboBackup.getNotaObj(ref, tipo);
+  // Control de nota+marcador embebido en la vista de lectura de Padres
+  // Apostólicos (ver historiaNotasOpen/renderHistoriaNotasBody arriba, que
+  // abre directo a esta misma vista). Historia de la Iglesia usaba el mismo
+  // componente completo hasta que su sección "Mis notas" quedó redundante con
+  // el modal de "Nota rápida" (ver historia-nota-rapida.js) disparado desde el
+  // ícono lateral "Notas de Historia" — por eso acepta soloMarcar, para que
+  // Historia siga mostrando el botón de marcador sin duplicar el editor de
+  // nota. Padres Apostólicos sigue llamando sin ese flag, sin cambios.
+  function historiaNotaControlHTML(tipo, ref, opts={}){
     const marcado=VerboBackup.isMarcado(tipo, ref);
+    const marcarBtn=`<button type="button" class="history-note-control__marcar" id="historiaMarcarBtn">${marcado?t('historiaNotas.marcado'):t('historiaNotas.marcar')}</button>`;
+    if(opts.soloMarcar) return `<div class="history-note-control">${marcarBtn}</div>`;
+    const existing=VerboBackup.getNotaObj(ref, tipo);
     return `<div class="history-note-control">
-      <button type="button" class="history-note-control__marcar" id="historiaMarcarBtn">${marcado?t('historiaNotas.marcado'):t('historiaNotas.marcar')}</button>
+      ${marcarBtn}
       <details class="history-note-control__details"${existing?.texto?' open':''}>
         <summary>${t('notas.title')}</summary>
         <input type="text" class="editor-pane__title-input" id="historiaNotaTitulo" placeholder="${t('historiaNotas.tituloPlaceholder')}" value="${escapeHTML(existing?.titulo||'')}">
@@ -1483,12 +1490,13 @@ document.addEventListener('DOMContentLoaded', async () => {
       </details>
     </div>`;
   }
-  function wireHistoriaNotaControl(tipo, ref, contexto){
+  function wireHistoriaNotaControl(tipo, ref, contexto, opts={}){
     const marcarBtn=document.getElementById('historiaMarcarBtn');
     marcarBtn?.addEventListener('click',()=>{
       const marcado=VerboBackup.toggleMarcador(tipo, ref, contexto);
       marcarBtn.textContent=marcado?t('historiaNotas.marcado'):t('historiaNotas.marcar');
     });
+    if(opts.soloMarcar) return;
     const tituloInput=document.getElementById('historiaNotaTitulo');
     const textoArea=document.getElementById('historiaNotaTexto');
     const status=document.getElementById('historiaNotaStatus');
@@ -2635,7 +2643,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         <button id="churchHistoryExpand" class="history-panel-expand" type="button" aria-pressed="${els.side.classList.contains('side-panel--history-expanded')?'true':'false'}">${els.side.classList.contains('side-panel--history-expanded')?t('historia.vistaCompacta'):t('historia.ampliarLectura')}</button>
       </div>
       <div class="dict-entry__def" data-entry-id="${escapeHTML(entry.id)}">${entry.content||entry.excerpt||''}</div>
-      ${historiaNotaControlHTML('historia', entry.id)}
+      ${historiaNotaControlHTML('historia', entry.id, {soloMarcar:true})}
       <nav class="history-entry-nav" aria-label="${t('historia.navegacionLectura')}">
         ${previous?`<button type="button" class="history-entry-nav__button" data-history-neighbor="${escapeHTML(previous.id)}">← ${t('historia.anterior')}</button>`:'<span></span>'}
         ${next?`<button type="button" class="history-entry-nav__button" data-history-neighbor="${escapeHTML(next.id)}">${t('historia.siguiente')} →</button>`:'<span></span>'}
@@ -2671,7 +2679,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       renderChurchHistoryEntry(churchHistoryOpenId);
       els.panelBody.scrollTop=0;
     }));
-    wireHistoriaNotaControl('historia', entry.id, {obra:churchHistoryBookLabel(sourceKey), capitulo:churchHistoryTocRowLabel(entry)});
+    wireHistoriaNotaControl('historia', entry.id, {obra:churchHistoryBookLabel(sourceKey), capitulo:churchHistoryTocRowLabel(entry)}, {soloMarcar:true});
     applyChurchHistoryTranslation(entry);
   }
 
@@ -3509,6 +3517,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
       }
       clearMobileToolArm();
+    }
+    // "Notas de Historia" es punto de entrada único: si hay un libro de Historia
+    // abierto en lectura (mismo panel 'historia', misma entrada), abre el modal
+    // de "Nota rápida" sobre esa entrada en vez de navegar al panel de notas
+    // guardadas — así no hace falta cerrar el libro para tomar una nota. Sin
+    // libro abierto, se comporta igual que cualquier otro botón del riel.
+    if(b.dataset.tab==='historia-notas' && activeTab==='historia' && churchHistoryOpenId && window.VerboHistoriaNotaRapida){
+      window.VerboHistoriaNotaRapida.openForCurrentEntry();
+      return;
     }
     resetXrefMode();
     activeTab===b.dataset.tab ? closePanel() : openPanel(b.dataset.tab);

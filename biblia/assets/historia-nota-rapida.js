@@ -1,10 +1,12 @@
 /* Modal de "nota rápida" para el panel de lectura de Historia de la Iglesia.
-   Componente aditivo y autocontenido: no toca app.js ni module-loader.js.
+   Componente aditivo y autocontenido: no toca module-loader.js. Se expone
+   como window.VerboHistoriaNotaRapida.openForCurrentEntry() para que el
+   ícono lateral "Notas de Historia" (listener en app.js) lo dispare cuando
+   hay un libro abierto en lectura, en vez de navegar al panel de notas
+   guardadas — ese es hoy el único punto de entrada a este modal.
    Reutiliza window.VerboBackup.setNota()/getNotaObj() — mismo array 'notas'
-   (tipo:'historia') que ya usa el control embebido al final de cada entrada
-   (ver app.js: historiaNotaControlHTML/wireHistoriaNotaControl) y el panel
-   "Notas de Historia" — así que una nota guardada acá aparece igual en ambos
-   lugares, sin estructura de datos nueva.
+   (tipo:'historia') que ya usa el panel "Notas de Historia" — así que una
+   nota guardada acá aparece igual ahí, sin estructura de datos nueva.
 
    ref/obra/capítulo de la entrada actual se leen del DOM ya renderizado
    (data-entry-id, .dict-entry__source, título) en vez de llamar a las
@@ -91,19 +93,6 @@
       tipo: TIPO, titulo: titleInput.value, contexto: currentContexto,
     });
     statusEl.textContent = tr('historiaNotas.guardado', 'Guardado');
-    syncEmbeddedControl();
-  }
-
-  // Si el control de nota embebido al final de la entrada sigue en pantalla
-  // (misma entrada, sin haber navegado a otra), lo refresca para que no
-  // muestre datos viejos si el usuario baja a verlo después de guardar acá.
-  function syncEmbeddedControl() {
-    const embeddedTitle = document.getElementById('historiaNotaTitulo');
-    const embeddedText = document.getElementById('historiaNotaTexto');
-    const embeddedStatus = document.getElementById('historiaNotaStatus');
-    if (embeddedTitle) embeddedTitle.value = titleInput.value;
-    if (embeddedText) embeddedText.value = textArea.value;
-    if (embeddedStatus) embeddedStatus.textContent = tr('historiaNotas.guardado', 'Guardado');
   }
 
   function open(info) {
@@ -127,38 +116,15 @@
     if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
   }
 
-  // Inserta el botón disparador en el toolbar de lectura de cada entrada de
-  // Historia (.history-entry-actions, ver app.js renderChurchHistoryEntry).
-  // Se agrupa junto al botón "Ampliar lectura" existente en un wrapper nuevo
-  // para no romper su layout (space-between de dos elementos).
-  function ensureTrigger() {
-    const actions = document.querySelector('#panelBody .history-entry-actions');
-    if (!actions || actions.querySelector('.hnr-trigger')) return;
-    const expandBtn = actions.querySelector('#churchHistoryExpand');
-    const trigger = document.createElement('button');
-    trigger.type = 'button';
-    trigger.className = 'hnr-trigger';
-    trigger.textContent = '✎ ' + tr('historiaNotas.notaRapida', 'Nota rápida');
-    trigger.addEventListener('click', () => {
-      const info = currentEntryInfo();
-      if (info) open(info);
-    });
-    if (expandBtn) {
-      const group = document.createElement('div');
-      group.className = 'hnr-actions-group';
-      expandBtn.parentNode.insertBefore(group, expandBtn);
-      group.appendChild(expandBtn);
-      group.appendChild(trigger);
-    } else {
-      actions.appendChild(trigger);
-    }
+  // Punto de entrada único: app.js llama a esto desde el listener del ícono
+  // lateral "Notas de Historia" cuando detecta un libro abierto en lectura.
+  function openForCurrentEntry() {
+    const info = currentEntryInfo();
+    if (info) open(info);
   }
+  window.VerboHistoriaNotaRapida = { openForCurrentEntry };
 
   function init() {
-    const panelBody = document.getElementById('panelBody');
-    if (!panelBody) return;
-    ensureTrigger();
-    new MutationObserver(ensureTrigger).observe(panelBody, { childList: true, subtree: true });
     document.addEventListener('verbo:uilang-changed', applyLabels);
   }
 

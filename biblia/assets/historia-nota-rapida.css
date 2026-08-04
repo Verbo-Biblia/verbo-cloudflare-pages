@@ -1,23 +1,9 @@
 /* Modal "nota rápida" para el panel de lectura de Historia de la Iglesia.
-   Ver historia-nota-rapida.js. Componente aditivo: no reutiliza ni modifica
-   clases del control de nota embebido (.history-note-control) para no
-   arrastrar efectos colaterales sobre él. */
-
-.hnr-actions-group {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.hnr-trigger {
-  border: 0;
-  background: transparent;
-  color: var(--wine);
-  cursor: pointer;
-  font-family: var(--font-body);
-  font-size: 12.5px;
-  padding: 2px 0;
-}
-.hnr-trigger:hover { text-decoration: underline; }
+   Ver historia-nota-rapida.js. Se abre desde el ícono lateral "Notas de
+   Historia" (listener en app.js) cuando hay un libro abierto en lectura.
+   Componente aditivo: no reutiliza ni modifica clases del control de nota
+   embebido (.history-note-control) para no arrastrar efectos colaterales
+   sobre él. */
 
 .hnr-overlay {
   position: fixed;
