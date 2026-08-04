@@ -15,6 +15,18 @@
 //   index.html (ver CLAUDE.md, "Cache-busting de assets"), y cache-first
 //   ahí es lo correcto para velocidad y para el soporte offline real.
 //
+// Gap conocido (encontrado 2026-08-03, estante de Historia de la Iglesia):
+// los JSON de modules/ (registry.json, entries.json de cada módulo,
+// shelf.json, etc.) NO llevan "?v=" — a diferencia de app.js/style.css, un
+// dispositivo que ya visitó esas rutas antes las cachea para siempre bajo
+// cache-first, sin importar cuántas veces se actualice el contenido en el
+// servidor. Un usuario recurrente puede quedar viendo datos de Historia (o
+// de cualquier módulo) desactualizados indefinidamente. La única forma hoy
+// de forzar la actualización es bumpear CACHE_VERSION (limpia TODO el
+// caché no-shell). Si esto se vuelve frecuente, vale la pena darle a esas
+// rutas su propio cache-busting o pasar modules/ a network-first — no se
+// hizo aquí para no rediseñar la estrategia sin discutirlo primero.
+//
 // Ciclo de vida: a propósito NO se llama self.skipWaiting() en install.
 // El nuevo SW se queda "esperando" hasta que app.js le mande el mensaje
 // SKIP_WAITING, cosa que solo pasa cuando el usuario hace clic en
@@ -23,7 +35,7 @@
 // guardar. CACHE_VERSION ya no es crítico para que la app se actualice
 // (el network-first del shell resuelve eso solo); subirlo de vez en
 // cuando sigue sirviendo para limpiar entradas de caché viejas.
-const CACHE_VERSION = 'verbo-biblia-v16-load-race-fix-test';
+const CACHE_VERSION = 'verbo-biblia-v17-historia-estante';
 const SHELL_NETWORK_TIMEOUT_MS = 4000;
 
 const APP_SHELL = [
@@ -87,7 +99,11 @@ function cacheFirst(request) {
         caches.open(CACHE_VERSION).then(cache => cache.put(request, copy));
       }
       return response;
-    }).catch(() => cached);
+    // Sin caché previa y sin red: cached es undefined aquí, y respondWith(undefined)
+    // es inválido (comportamiento indefinido según el navegador). Response.error()
+    // es el objeto que el spec de Fetch espera para "fallo de red", así la página
+    // recibe un fetch() rechazado normal en vez de un fallo silencioso/errático.
+    }).catch(() => cached || Response.error());
   });
 }
 
