@@ -32,7 +32,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     readingPane: document.getElementById('readingPane'),
     editorPane: document.getElementById('editorPane'),
     editorSurface: document.getElementById('editorSurface'),
-    editorToolbar: document.getElementById('editorToolbar')
+    editorToolbar: document.getElementById('editorToolbar'),
+    sermonComparePanel: document.getElementById('sermonComparePanel'),
+    sermonComparePanelToolbar: document.getElementById('sermonComparePanelToolbar'),
+    sermonComparePanelBody: document.getElementById('sermonComparePanelBody'),
+    sermonComparePanelClose: document.getElementById('sermonComparePanelClose')
   };
 
   const backupData = await VerboBackup.init();
@@ -1135,30 +1139,59 @@ document.addEventListener('DOMContentLoaded', async () => {
     els.panelBody.querySelector(`[data-verse-n="${verseStart}"]`)?.scrollIntoView({block:'center'});
   }
 
-  async function renderCompare(focus) {
+  // toolbarEl/bodyEl/selectId permiten reusar esta misma función para el
+  // panel "Comparar" lado a lado del modo sermón (ver renderSermonCompare),
+  // que necesita su propio contenedor y su propio <select> (ids únicos) en
+  // vez de escribir sobre els.panelToolbar/panelBody del panel único.
+  async function renderCompare(focus, toolbarEl=els.panelToolbar, bodyEl=els.panelBody, selectId='compareVersionSelect') {
     if(xrefTarget){ await renderCrossrefCompare(); return; }
     const installed=bibleCatalog();
-    if(!installed.length){ els.panelToolbar.innerHTML=''; els.panelBody.innerHTML=emptyState('📚','No hay otra Biblia instalada para comparar.'); return; }
+    if(!installed.length){ toolbarEl.innerHTML=''; bodyEl.innerHTML=emptyState('📚','No hay otra Biblia instalada para comparar.'); return; }
     if(!installed.some(v=>v.id===compareVersion)) compareVersion=installed[0].id;
     const options=installed.map(v=>`<option value="${v.id}" ${v.id===compareVersion?'selected':''}>${escapeHTML(v.label)}${v.id===currentVersion?' (actual)':''}</option>`).join('');
-    els.panelToolbar.innerHTML=`<div class="compare-toolbar"><span class="compare-toolbar__label">Biblia alterna</span><select class="compare-toolbar__select" id="compareVersionSelect">${options}</select></div>`;
+    toolbarEl.innerHTML=`<div class="compare-toolbar"><span class="compare-toolbar__label">Biblia alterna</span><select class="compare-toolbar__select" id="${selectId}">${options}</select></div>`;
     let verses=data.verses;
     if(!data.versions[compareVersion]){
-      els.panelBody.innerHTML=emptyState('⌛','Cargando versión para comparar…');
+      bodyEl.innerHTML=emptyState('⌛','Cargando versión para comparar…');
       const selected=installed.find(v=>v.id===compareVersion);
       if (selected?.remote) {
         try { await ensureVersionLoaded(compareVersion); verses=data.verses; }
-        catch (error) { console.error(error); els.panelBody.innerHTML=emptyState('⚠️',escapeHTML(error.message || 'No se pudo cargar la versión en línea.')); return; }
+        catch (error) { console.error(error); bodyEl.innerHTML=emptyState('⚠️',escapeHTML(error.message || 'No se pudo cargar la versión en línea.')); return; }
       } else {
         const loaded=selected ? await VerboModules.loadBible(selected.path,currentBook,currentChapter) : null;
-        if(!loaded){ els.panelBody.innerHTML=emptyState('⚠️','Esta versión no contiene el pasaje seleccionado.'); return; }
+        if(!loaded){ bodyEl.innerHTML=emptyState('⚠️','Esta versión no contiene el pasaje seleccionado.'); return; }
         verses=data.verses.map(v=>({ ...v, text:{...v.text,[compareVersion]:(typeof loaded.verses[String(v.n)]==='string'?loaded.verses[String(v.n)]:loaded.verses[String(v.n)]?.text)||''} }));
       }
     }
-    els.panelBody.innerHTML=verses.map(v=>`<div class="compare-verse${v.n===focus?' compare-verse--active':''}" data-verse-n="${v.n}"><span class="compare-verse__num">${v.n}</span><span class="compare-verse__text">${escapeHTML(v.text[compareVersion]||'')}</span></div>`).join('');
-    document.getElementById('compareVersionSelect')?.addEventListener('change',async e=>{compareVersion=e.target.value;await renderCompare(activeVerse());});
-    if(focus) els.panelBody.querySelector(`[data-verse-n="${focus}"]`)?.scrollIntoView({block:'center'});
+    bodyEl.innerHTML=verses.map(v=>`<div class="compare-verse${v.n===focus?' compare-verse--active':''}" data-verse-n="${v.n}"><span class="compare-verse__num">${v.n}</span><span class="compare-verse__text">${escapeHTML(v.text[compareVersion]||'')}</span></div>`).join('');
+    document.getElementById(selectId)?.addEventListener('change',async e=>{compareVersion=e.target.value;await renderCompare(activeVerse(),toolbarEl,bodyEl,selectId);});
+    if(focus) bodyEl.querySelector(`[data-verse-n="${focus}"]`)?.scrollIntoView({block:'center'});
   }
+
+  // ── Comparar versiones lado a lado con Biblia en modo sermón ───────────────
+  // Panel independiente de #sidePanel (ver .sermon-compare-panel en style.css)
+  // — abre/cierra con su propio toggle de ancho, no pasa por openPanel/
+  // closePanel ni por activeTab (ese sistema es del panel único del resto de
+  // la app y no se toca).
+  function renderSermonCompare(focus){
+    return renderCompare(focus, els.sermonComparePanelToolbar, els.sermonComparePanelBody, 'sermonCompareVersionSelect');
+  }
+  function isSermonComparePanelOpen(){
+    return !!els.sermonComparePanel?.classList.contains('sermon-compare-panel--open');
+  }
+  function openSermonComparePanel(){
+    els.sermonComparePanel?.classList.add('sermon-compare-panel--open');
+    els.tabs.forEach(btn=>{ if(btn.dataset.tab==='comparar') btn.classList.add('tab-rail__btn--active'); });
+    renderSermonCompare(activeVerse());
+  }
+  function closeSermonComparePanel(){
+    els.sermonComparePanel?.classList.remove('sermon-compare-panel--open');
+    els.tabs.forEach(btn=>{ if(btn.dataset.tab==='comparar') btn.classList.remove('tab-rail__btn--active'); });
+  }
+  function toggleSermonComparePanel(){
+    isSermonComparePanelOpen() ? closeSermonComparePanel() : openSermonComparePanel();
+  }
+  els.sermonComparePanelClose?.addEventListener('click', closeSermonComparePanel);
 
   function openCrossref(ref){
     xrefTarget=ref; xrefData=null;
@@ -1169,6 +1202,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   async function toggleSermonMode(){
     sermonMode = !sermonMode;
+    if(!sermonMode) closeSermonComparePanel(); // no arrastrar el panel abierto a la próxima vez que entre a modo sermón
     selectedVerses.clear();
     document.querySelectorAll('.verse--selected').forEach(x=>x.classList.remove('verse--selected'));
     updateActionBar();
@@ -3525,6 +3559,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     // libro abierto, se comporta igual que cualquier otro botón del riel.
     if(b.dataset.tab==='historia-notas' && activeTab==='historia' && churchHistoryOpenId && window.VerboHistoriaNotaRapida){
       window.VerboHistoriaNotaRapida.openForCurrentEntry();
+      return;
+    }
+    // En modo sermón, "Comparar versiones" no reemplaza el panel de Biblia:
+    // abre/cierra un segundo panel lado a lado (ver .sermon-compare-panel),
+    // fuera del sistema de panel único que usa el resto de la app.
+    if(sermonMode && b.dataset.tab==='comparar'){
+      resetXrefMode();
+      toggleSermonComparePanel();
       return;
     }
     resetXrefMode();

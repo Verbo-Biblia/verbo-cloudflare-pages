@@ -2573,6 +2573,35 @@ body.sermon-mode .tab-rail__btn[data-tab="predicas"] { display: flex; }
 .tab-rail__btn[data-tab="sermon-biblia"] { display: none; }
 body.sermon-mode .tab-rail__btn[data-tab="sermon-biblia"] { display: flex; }
 
+/* ---------- Comparar versiones lado a lado con Biblia en modo sermón ----------
+   Segundo panel deslizante, independiente de #sidePanel (que en modo sermón
+   muestra "Biblia"). Vive como hermano de #sidePanel dentro de .app-body
+   (flex row), entre el panel de Biblia y el tab-rail: al abrirse empuja el
+   panel de Biblia hacia la izquierda y reduce el editor (flex:1, min-width:0
+   ya en .editor-pane), sin tocar el sistema de panel único del resto de la
+   app. No reutiliza la clase .side-panel (evita heredar sus reglas de
+   sheet/mobile, pensadas para el panel único) — sí reutiliza las clases
+   internas .side-panel__inner/__header/__title/__close/__toolbar/__body,
+   que son independientes de esa clase base. */
+.sermon-compare-panel {
+  width: 0;
+  flex-shrink: 0;
+  border-left: 1px solid var(--rule);
+  background: var(--paper-raised);
+  overflow: hidden;
+  transition: width 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  display: none;
+  flex-direction: column;
+}
+body.sermon-mode .sermon-compare-panel { display: flex; }
+.sermon-compare-panel--open { width: var(--panel-width); }
+
+/* Fuera de escritorio no se resuelve el layout lado a lado (fuera de
+   alcance de esta tarea) — se desactiva para no dejar un estado roto. */
+@media (max-width: 900px) {
+  .sermon-compare-panel { display: none !important; }
+}
+
 .predicas-panel__new {
   width: 100%;
   margin-bottom: 14px;
