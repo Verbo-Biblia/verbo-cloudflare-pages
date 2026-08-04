@@ -2497,6 +2497,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         ${next?`<button type="button" class="history-entry-nav__button" data-history-neighbor="${escapeHTML(next.id)}">${t('historia.siguiente')} →</button>`:'<span></span>'}
       </nav>
     </article>`;
+    els.panelBody.offsetHeight; // fuerza reflow — mismo patrón que openChurchHistoryEntryFromTOC/openPanel
+                                 // (ver líneas ~682 y ~2330): el reflow de els.side antes de este innerHTML
+                                 // cubre el ancho del panel, pero no el pintado del contenido recién insertado
+                                 // (ej. el botón #churchHistoryExpand), que quedaba diferido hasta la próxima
+                                 // interacción del usuario con el panel.
     document.getElementById('backToChurchHistoryResults')?.addEventListener('click',()=>{
       if(churchHistoryOpenFromShelf){
         churchHistoryOpenId=null;
