@@ -1889,7 +1889,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
   // ── Historia de la Iglesia (buscador independiente, sin ancla a versículo) ──
-  let churchHistoryEntries=null, churchHistoryQuery='', churchHistoryOpenId=null, churchHistoryResultsToken=0;
+  let churchHistoryEntries=null, churchHistoryQuery='', churchHistoryOpenId=null, churchHistoryResultsToken=0, churchHistoryTocToken=0;
   let churchHistoryActiveFilter=null;
   let churchHistoryTranslatedQuery='', churchHistoryQueryToken=0, churchHistoryQueryDebounce=null;
   let churchHistorySemanticResults=[], churchHistorySemanticQuery='', churchHistorySemanticToken=0, churchHistorySemanticDebounce=null;
@@ -2306,7 +2306,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // según el volumen (ver churchHistoryTocGroups), preservando el orden narrativo
   // real del array de entries.json (incluye Mártires de Palestina intercalado). ──
   function churchHistoryTocRowHTML(entry){
-    return `<li class="history-toc__row" data-history-toc-id="${escapeHTML(entry.id)}" tabindex="0">${escapeHTML(churchHistoryTocRowLabel(entry))}</li>`;
+    return `<li class="history-toc__row" data-history-toc-id="${escapeHTML(entry.id)}" tabindex="0"><span data-history-toc-label="${escapeHTML(entry.id)}">${escapeHTML(churchHistoryTocRowLabel(entry))}</span></li>`;
   }
   function churchHistoryTocGroupHTML(group){
     if(group.subgroups){
@@ -2357,6 +2357,35 @@ document.addEventListener('DOMContentLoaded', async () => {
         if(event.key==='Enter'||event.key===' '){ event.preventDefault(); openChurchHistoryEntryFromTOC(row.dataset.historyTocId); }
       });
     });
+    applyChurchHistoryTocTranslation(entries);
+  }
+
+  // Traduce las filas del índice (antes solo se traducía la entrada ya abierta
+  // o los resultados de búsqueda — el índice quedó afuera, ver bug reportado
+  // por Juan 2026-08-04). Reusa el mismo noteId "historia:<id>" que el resto
+  // de las traducciones de Historia para compartir caché, bajo un field propio
+  // ("tocLabel") porque el texto es la etiqueta ya recortada del prefijo
+  // (churchHistoryTocRowLabel), no el título completo.
+  async function applyChurchHistoryTocTranslation(entries){
+    const target=contentLang();
+    const token=++churchHistoryTocToken;
+    let index=0;
+    async function worker(){
+      while(index<entries.length){
+        if(token!==churchHistoryTocToken) return;
+        const entry=entries[index++];
+        const source=entry.sourceLang||'en';
+        if(!source||source===target) continue;
+        const labelEl=els.panelBody.querySelector(`[data-history-toc-label="${CSS.escape(entry.id)}"]`);
+        if(!labelEl||labelEl.dataset.translated===target) continue;
+        const original=churchHistoryTocRowLabel(entry);
+        const translated=await translateCommentaryHeader(`historia:${entry.id}`,'tocLabel',original,source,target);
+        if(token!==churchHistoryTocToken) return;
+        labelEl.textContent=translated;
+        labelEl.dataset.translated=target;
+      }
+    }
+    await Promise.all(Array.from({length:Math.min(4,entries.length)},worker));
   }
 
   function renderChurchHistorySuggestionChips(){
