@@ -60,9 +60,22 @@ salir, "Biblia" y "Mis prédicas" vuelven a ocultarse y solo queda
 
 ---
 
-## Tarea 5 — Comparar Biblia lado a lado con Biblia en modo Prédica — PENDIENTE (guardada 2026-08-04)
+## Tarea 5 — Comparar Biblia lado a lado con Biblia en modo Prédica — COMPLETADA (2026-08-04)
 
-Brief tal cual lo dio Juan, sin empezar todavía.
+Implementado como segundo panel independiente (`#sermonComparePanel` /
+`.sermon-compare-panel`), hermano de `#sidePanel` dentro de `.app-body`
+(ya era flexbox) — no reemplaza el sistema de panel único, solo aplica
+dentro de modo sermón. `renderCompare()` ganó parámetros de contenedor
+destino (toolbarEl/bodyEl/selectId) para poder pintar en este segundo panel
+sin colisionar con el panel único. Se cierra solo al salir de modo sermón.
+Desactivado por completo en pantallas ≤900px (responsive quedó fuera de
+alcance, como pedía el brief). Probado en vivo: Biblia + Comparar
+simultáneos, toggle con el ícono y con el botón ✕, Comparar sin Biblia
+abierta, salida de modo sermón con el panel abierto, y comportamiento
+normal de "Comparar versiones" fuera de modo sermón sin cambios. Commit
+`2c4f5e9`.
+
+Brief original tal cual lo dio Juan, para referencia:
 
 **Tarea:** cambiar el comportamiento del panel "Comparar Biblia" en el modo
 predicación, para que se muestre simultáneamente junto al panel de Biblia en
