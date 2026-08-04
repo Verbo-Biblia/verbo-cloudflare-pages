@@ -795,10 +795,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       if(focus){ if(delayScroll) setTimeout(()=>scrollCommentToNote(focus),320); else scrollCommentToNote(focus); }
       if(needsCommentaryTranslation) setTimeout(()=>applyCommentaryTranslation(focus, commentarySourceLang), 150);
     }
-    if(tab==='comparar'){
-      if(sermonMode){ renderSermonBiblePanel(focus||activeVerse()); }
-      else { els.panelTitle.textContent='Comparar versiones'; renderCompare(focus||activeVerse()); }
-    }
+    if(tab==='comparar'){ els.panelTitle.textContent='Comparar versiones'; renderCompare(focus||activeVerse()); }
+    if(tab==='sermon-biblia') renderSermonBiblePanel(focus||activeVerse());
     if(tab==='diccionario') renderDictionaryPanel(focus || activeVerse());
     if(tab==='historia') renderChurchHistoryPanel();
     if(tab==='padres') renderPadresPanel(focus || activeVerse());
@@ -1169,16 +1167,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // ── Modo Preparación de Bosquejo/Estudio ───────────────────────────────────
 
-  function updateBibleTabForSermonMode(active){
-    document.querySelectorAll('[data-tab="comparar"]').forEach(btn=>{
-      const label = active ? 'Biblia' : 'Comparar versiones';
-      btn.title = label;
-      btn.setAttribute('aria-label', label);
-      const mobileLabel = btn.querySelector('.mobile-tool-label');
-      if(mobileLabel) mobileLabel.textContent = active ? 'Biblia' : 'Comparar';
-    });
-  }
-
   async function toggleSermonMode(){
     sermonMode = !sermonMode;
     selectedVerses.clear();
@@ -1189,7 +1177,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.body.classList.toggle('sermon-mode', sermonMode);
     if(els.readingPane) els.readingPane.hidden = sermonMode;
     if(els.editorPane) els.editorPane.hidden = !sermonMode;
-    updateBibleTabForSermonMode(sermonMode);
     if(sermonMode) await initSermonEditor();
     if(data) renderChapter(activeVerse());
     if(activeTab) renderPanel(activeTab);

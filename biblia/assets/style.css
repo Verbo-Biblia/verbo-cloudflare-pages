@@ -2568,6 +2568,11 @@ body.sermon-mode .verse-action-bar .verse-action-bar__sep:first-of-type {
 .tab-rail__btn[data-tab="predicas"] { display: none; }
 body.sermon-mode .tab-rail__btn[data-tab="predicas"] { display: flex; }
 
+/* ---------- Biblia de sermón (solo visible en modo sermón; "Comparar
+   versiones" queda siempre visible y siempre nativa — Tarea 4) ---------- */
+.tab-rail__btn[data-tab="sermon-biblia"] { display: none; }
+body.sermon-mode .tab-rail__btn[data-tab="sermon-biblia"] { display: flex; }
+
 .predicas-panel__new {
   width: 100%;
   margin-bottom: 14px;
