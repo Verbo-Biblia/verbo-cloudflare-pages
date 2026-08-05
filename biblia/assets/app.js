@@ -1439,6 +1439,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // (sus propias notas), así que filtrar la lista misma da el mismo resultado
   // práctico con menos UI que mantener. ──
   let historiaNotasQuery='';
+  let historiaNotasOpenNoteId=null; // id de la nota en vista de detalle (null = lista)
   function historiaNotasContextoLabel(item){
     const c=item.contexto;
     if(c?.obra && c?.capitulo) return `${c.obra} — ${c.capitulo}`;
@@ -1466,7 +1467,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   function historiaNotasRowHTML(item, kind){
     const displayTitle=item.titulo || historiaNotasContextoLabel(item);
     const snippet=kind==='nota' ? htmlToPlainText(item.texto||'').slice(0,140) : historiaNotasContextoLabel(item);
-    return `<div class="predicas-list__item" data-historia-nota-tipo="${escapeHTML(item.ubicacion.tipo)}" data-historia-nota-ref="${escapeHTML(item.ubicacion.ref)}">
+    return `<div class="predicas-list__item" data-historia-nota-id="${escapeHTML(item.id)}" data-historia-nota-kind="${kind}" data-historia-nota-tipo="${escapeHTML(item.ubicacion.tipo)}" data-historia-nota-ref="${escapeHTML(item.ubicacion.ref)}">
       <div class="predicas-list__info">
         <p class="predicas-list__title">${kind==='nota'?'✎':'★'} ${escapeHTML(displayTitle)}</p>
         <span class="predicas-list__date">${escapeHTML(snippet)}</span>
@@ -1477,7 +1478,39 @@ document.addEventListener('DOMContentLoaded', async () => {
       </div>
     </div>`;
   }
+  // Vista de detalle de una nota guardada (Bug 3: "Abrir" mostraba el
+  // libro/capítulo completo en vez del contenido de la nota). El link "Ver
+  // en contexto" es el único punto que sigue navegando al libro completo,
+  // ahora explícito y opcional en vez de ser el comportamiento por defecto.
+  function historiaNotaDetailHTML(item){
+    const displayTitle=item.titulo || historiaNotasContextoLabel(item);
+    const textoHTML=escapeHTML(item.texto||'').replace(/\n/g,'<br>');
+    return `<button type="button" class="note-card__copy" id="historiaNotaDetailBack">← ${t('historiaNotas.volver')}</button>
+      <article class="dict-entry">
+        <div class="dict-entry__term">${escapeHTML(displayTitle)}</div>
+        <div class="dict-entry__source">${escapeHTML(historiaNotasContextoLabel(item))}</div>
+        <div class="dict-entry__def">${textoHTML}</div>
+        <div class="history-entry-actions">
+          <button type="button" class="note-card__copy" id="historiaNotaDetailCopy">${t('historiaNotas.copiar')}</button>
+          <button type="button" class="note-card__copy" id="historiaNotaDetailContext">${t('historiaNotas.verContexto')}</button>
+        </div>
+      </article>`;
+  }
   function renderHistoriaNotasBody(){
+    if(historiaNotasOpenNoteId){
+      const item=VerboBackup.getNotaById(historiaNotasOpenNoteId);
+      if(item){
+        els.panelBody.innerHTML=historiaNotaDetailHTML(item);
+        document.getElementById('historiaNotaDetailBack')?.addEventListener('click',()=>{ historiaNotasOpenNoteId=null; renderHistoriaNotasBody(); });
+        document.getElementById('historiaNotaDetailCopy')?.addEventListener('click',()=>{
+          const titulo=item.titulo?`${item.titulo}\n\n`:'';
+          copyToClipboard(`${titulo}${item.texto||''}`);
+        });
+        document.getElementById('historiaNotaDetailContext')?.addEventListener('click',()=>historiaNotasOpen(item.ubicacion.tipo, item.ubicacion.ref));
+        return;
+      }
+      historiaNotasOpenNoteId=null; // la nota ya no existe (borrada en otra pestaña/sesión) — cae a la lista
+    }
     const notas=VerboBackup.getNotas(['historia','padres']);
     const marcadores=VerboBackup.getMarcadores().filter(m=>['historia','padres'].includes(m.ubicacion?.tipo));
     const query=historiaNotasQuery.trim();
@@ -1491,22 +1524,26 @@ document.addEventListener('DOMContentLoaded', async () => {
     `;
     els.panelBody.querySelectorAll('[data-historia-nota-open]').forEach(btn=>{
       const row=btn.closest('[data-historia-nota-ref]');
-      btn.addEventListener('click',()=>historiaNotasOpen(row.dataset.historiaNotaTipo, row.dataset.historiaNotaRef));
+      if(row.dataset.historiaNotaKind==='nota'){
+        btn.addEventListener('click',()=>{ historiaNotasOpenNoteId=row.dataset.historiaNotaId; renderHistoriaNotasBody(); });
+      } else {
+        btn.addEventListener('click',()=>historiaNotasOpen(row.dataset.historiaNotaTipo, row.dataset.historiaNotaRef));
+      }
     });
     els.panelBody.querySelectorAll('[data-historia-nota-delete]').forEach(btn=>{
       const row=btn.closest('[data-historia-nota-ref]');
-      btn.addEventListener('click',()=>deleteHistoriaNotaWithConfirm(row.dataset.historiaNotaTipo, row.dataset.historiaNotaRef));
+      btn.addEventListener('click',()=>deleteHistoriaNotaWithConfirm(row.dataset.historiaNotaId));
     });
   }
-  function deleteHistoriaNotaWithConfirm(tipo, ref){
+  function deleteHistoriaNotaWithConfirm(id){
     if(!window.confirm(t('historiaNotas.eliminarNotaConfirm'))) return;
-    VerboBackup.deleteNota(ref, tipo);
+    VerboBackup.deleteNotaById(id);
     renderHistoriaNotasBody();
   }
   function renderHistoriaNotasPanel(){
     els.panelTitle.textContent=t('historiaNotas.title');
     els.panelToolbar.innerHTML=`<input type="search" class="search-panel-input" id="historiaNotasSearch" placeholder="${t('historiaNotas.buscarPlaceholder')}" autocomplete="off" value="${escapeHTML(historiaNotasQuery)}">`;
-    document.getElementById('historiaNotasSearch')?.addEventListener('input',e=>{ historiaNotasQuery=e.target.value; renderHistoriaNotasBody(); });
+    document.getElementById('historiaNotasSearch')?.addEventListener('input',e=>{ historiaNotasQuery=e.target.value; historiaNotasOpenNoteId=null; renderHistoriaNotasBody(); });
     renderHistoriaNotasBody();
   }
 

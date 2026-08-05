@@ -11,7 +11,14 @@
    ref/obra/capítulo de la entrada actual se leen del DOM ya renderizado
    (data-entry-id, .dict-entry__source, título) en vez de llamar a las
    funciones internas de app.js (churchHistoryBookLabel/churchHistoryTocRowLabel),
-   que viven dentro de su propia IIFE y no están expuestas fuera de ella. */
+   que viven dentro de su propia IIFE y no están expuestas fuera de ella.
+
+   Usa VerboBackup.addNota() (no setNota()): "nota rápida" admite varias
+   notas por capítulo/entrada — cada Guardar agrega una nueva, nunca
+   sobreescribe la anterior. Por eso el modal siempre abre en blanco, no
+   precarga la "última nota" de esa ubicación (a diferencia de Mis notas de
+   Biblia y del editor embebido de Padres, que sí son una nota por ubicación
+   y siguen usando setNota()/getNotaObj()). */
 (() => {
   const TIPO = 'historia';
 
@@ -89,10 +96,17 @@
 
   function save() {
     if (!currentRef) return;
-    window.VerboBackup.setNota(currentRef, textArea.value, {
+    const texto = textArea.value.trim();
+    if (!texto) return;
+    window.VerboBackup.addNota(currentRef, textArea.value, {
       tipo: TIPO, titulo: titleInput.value, contexto: currentContexto,
     });
+    // Limpia el formulario: cada Guardar es una nota nueva, no una edición
+    // de la anterior — deja el modal listo para otra nota rápida sin cerrar.
+    titleInput.value = '';
+    textArea.value = '';
     statusEl.textContent = tr('historiaNotas.guardado', 'Guardado');
+    requestAnimationFrame(() => titleInput.focus());
   }
 
   function open(info) {
@@ -100,10 +114,9 @@
     applyLabels(); // por si cambió el idioma desde la última apertura
     currentRef = info.ref;
     currentContexto = { obra: info.obra, capitulo: info.capitulo };
-    const existing = window.VerboBackup.getNotaObj(info.ref, TIPO);
-    titleInput.value = (existing && existing.titulo) || '';
-    textArea.value = (existing && existing.texto) || '';
-    statusEl.textContent = (existing && existing.texto) ? tr('historiaNotas.guardado', 'Guardado') : '';
+    titleInput.value = '';
+    textArea.value = '';
+    statusEl.textContent = '';
     contextEl.textContent = [info.obra, info.capitulo].filter(Boolean).join(' · ');
     lastFocused = document.activeElement;
     overlay.hidden = false;

@@ -186,6 +186,33 @@ window.VerboBackup = (() => {
     cached.fecha_guardado = new Date().toISOString();
     persist();
   }
+  // ---- Notas rápidas (varias por ubicación — a diferencia de setNota/getNota
+  // de arriba, que son "una nota por ubicación" para Biblia y el editor
+  // embebido de Padres). Usado por el modal "Nota rápida" de Historia de la
+  // Iglesia: cada Guardar agrega un registro nuevo con id propio en vez de
+  // sobreescribir el que ya existiera para ese ref. ----
+  function addNota(ref, texto, { tipo = 'historia', titulo, contexto } = {}) {
+    const nota = {
+      id: `${tipo}:${ref}:${Date.now()}:${Math.random().toString(36).slice(2, 8)}`,
+      ubicacion: { tipo, ref }, texto, fecha: new Date().toISOString(),
+      ...(titulo !== undefined ? { titulo } : {}),
+      ...(contexto !== undefined ? { contexto } : {}),
+    };
+    cached.notas.push(nota);
+    cached.fecha_guardado = new Date().toISOString();
+    persist();
+    return nota;
+  }
+  function getNotaById(id) {
+    return cached.notas.find(n => n.id === id) || null;
+  }
+  function deleteNotaById(id) {
+    const idx = cached.notas.findIndex(n => n.id === id);
+    if (idx < 0) return;
+    cached.notas.splice(idx, 1);
+    cached.fecha_guardado = new Date().toISOString();
+    persist();
+  }
 
   // ---- Marcadores (capítulo/sección completo, sin texto — Historia/Padres).
   // Reusa el array 'marcadores' ya reservado en emptyData/init/replaceData,
@@ -326,6 +353,7 @@ window.VerboBackup = (() => {
     init, getData, saveNow,
     getResaltadosMap, setAllResaltados,
     getNota, setNota, getNotas, getNotaObj, deleteNota,
+    addNota, getNotaById, deleteNotaById,
     getMarcadores, isMarcado, toggleMarcador,
     getPredicas, getPredica, savePredica, deletePredica,
     getPosicionBiblia, setPosicionBiblia,
