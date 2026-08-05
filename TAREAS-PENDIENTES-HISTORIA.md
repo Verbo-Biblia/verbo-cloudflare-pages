@@ -123,14 +123,27 @@ cada commit. No hacer push — Juan espera el resumen y diff para revisar.
 
 ---
 
-## Tarea 6 — Bug: panel Historia de la Iglesia no vuelve al índice al reabrir
+## Tarea 6 — Bug: panel Historia de la Iglesia no vuelve al índice al reabrir — COMPLETADA (2026-08-04)
 
-Guardado el 2026-08-04. Sin empezar.
+Diagnóstico confirmó: el estado (`churchHistoryOpenId`, `churchHistoryOpenVolume`,
+`churchHistoryOpenFromShelf`, `churchHistorySearchActive`) vive en variables
+de módulo de `app.js` que nunca se reseteaban — por diseño intencional de
+una sesión previa (comentario explícito en el código: preservar posición
+al cambiar de tab y volver a Historia). Juan confirmó que solo quiere el
+reset al **cerrar el panel completo**, no al cambiar de tab y volver (eso
+último debe seguir preservando la posición, sin cambios).
 
-**Bug:** al cerrar el panel de Historia de la Iglesia (cambiando a otro
-panel lateral o cerrándolo) y volver a abrirlo, el panel conserva el estado
-del libro/capítulo que se estaba leyendo, en vez de volver al índice de
-libros. El usuario tiene que navegar manualmente "atrás" para volver al
+Implementado: `closePanel()` resetea las 4 variables cuando `activeTab==='historia'`
+al momento de cerrar. Probado en vivo con Playwright: (1) abrir Historia →
+libro → capítulo → cerrar panel (✕) → reabrir Historia → vuelve al estante,
+correcto; (2) abrir Historia → libro (TOC) → cambiar a Comentario → volver
+a Historia sin cerrar → conserva el TOC del libro, correcto. Commit
+`cdf8489`.
+
+**Bug original:** al cerrar el panel de Historia de la Iglesia (cambiando a
+otro panel lateral o cerrándolo) y volver a abrirlo, el panel conserva el
+estado del libro/capítulo que se estaba leyendo, en vez de volver al índice
+de libros. El usuario tiene que navegar manualmente "atrás" para volver al
 índice cada vez.
 
 **Comportamiento esperado:** cada vez que el panel de Historia de la
