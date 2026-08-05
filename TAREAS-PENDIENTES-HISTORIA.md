@@ -234,9 +234,30 @@ separada. Decir cuál es el caso antes de corregir.
 
 ---
 
-## Tarea 8 — Sincronizar referencia entre panel Biblia y Comparar Biblia (modo Prédica)
+## Tarea 8 — Sincronizar referencia entre panel Biblia y Comparar Biblia (modo Prédica) — COMPLETADA (2026-08-04)
 
-Guardado el 2026-08-04. Sin empezar.
+Diagnóstico confirmó: `renderCompare()` (usada tanto por el "Comparar
+versiones" normal como por el panel lado a lado del modo sermón) siempre
+leía el pasaje de la Biblia principal (`data`/`currentBook`/`currentChapter`),
+que en modo sermón queda congelada — nunca del `sermonBible` que muestra la
+pestaña Biblia. Antes de este fix, el panel Comparar Biblia ni siquiera
+coincidía con la pestaña Biblia salvo justo al entrar en modo sermón
+(ambos arrancan iguales, pero divergen apenas se navega en la pestaña
+Biblia). Ya existía `activeBibleContext()`, una función que resuelve a
+`sermonBible` en modo sermón (usada para "copiar") — reutilizada acá.
+
+Implementado: `renderCompare()` gana un parámetro `context` (mismo default
+de siempre, sin tocar el "Comparar versiones" normal). `renderSermonCompare()`
+pasa `activeBibleContext()`. Los puntos donde la pestaña Biblia cambia de
+libro/capítulo/versículo/versículo-activo (selects, clic en versículo,
+referencias cruzadas, atrás/adelante) ya convergen en
+`renderSermonBiblePanel()` y el handler de clic de versículo — ahí se
+agregó el refresco del panel Comparar Biblia cuando está abierto. Probado
+en vivo: cambiar de libro/capítulo en Biblia (Génesis 1 → Josué 3)
+actualiza Comparar Biblia a la misma referencia; clic en un versículo
+resalta y desplaza el mismo versículo en Comparar Biblia. Alcance según el
+brief original: solo dirección Biblia → Comparar: no se implementó el
+sentido inverso. Commit `33deb09`.
 
 El push/desplazamiento entre panel Biblia y panel Comparar Biblia en modo
 predicación ya quedó funcionando correctamente (confirmado por Juan, ver
