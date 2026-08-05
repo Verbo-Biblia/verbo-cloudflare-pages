@@ -120,3 +120,119 @@ Comparar Biblia) y confirmar si ya existe algún sistema de layout flexible
 **Reglas de entrega (igual que siempre):** `git add` solo de los archivos
 tocados, uno por uno — no usar `git add -A`. Mostrar `git status` antes de
 cada commit. No hacer push — Juan espera el resumen y diff para revisar.
+
+---
+
+## Tarea 6 — Bug: panel Historia de la Iglesia no vuelve al índice al reabrir
+
+Guardado el 2026-08-04. Sin empezar.
+
+**Bug:** al cerrar el panel de Historia de la Iglesia (cambiando a otro
+panel lateral o cerrándolo) y volver a abrirlo, el panel conserva el estado
+del libro/capítulo que se estaba leyendo, en vez de volver al índice de
+libros. El usuario tiene que navegar manualmente "atrás" para volver al
+índice cada vez.
+
+**Comportamiento esperado:** cada vez que el panel de Historia de la
+Iglesia se abre desde la barra de íconos (después de haber estado
+cerrado/oculto), debe mostrar el índice de libros por defecto, no el último
+libro/capítulo leído.
+
+**Antes de corregir:** identificar dónde se guarda el estado de
+"libro/capítulo actualmente abierto" en Historia de la Iglesia y confirmar
+si se resetea al cerrar el panel o si persiste en una variable/estado
+global. Mostrar el approach antes de aplicar el cambio.
+
+**Reglas de entrega:** `git add` solo de los archivos tocados. Mostrar
+`git status` antes de cada commit. No hacer push.
+
+---
+
+## Tarea 7 — Bugs en el sistema de notas de Historia de la Iglesia
+
+Guardado el 2026-08-04. Sin empezar.
+
+Reporte de bugs en el sistema de notas de Historia de la Iglesia (modal
+"Nota rápida" + lista de notas guardadas). Reproducir exactamente estos
+pasos antes de tocar código.
+
+**Bug 1 — el modal no se limpia entre notas:**
+1. Abrir un libro, seleccionar texto, abrir el modal de nota (ícono "Notas
+   de Historia"), escribir título+texto, Guardar, cerrar el modal.
+2. Volver a abrir el modal para una nueva nota: el título y texto de la
+   nota ANTERIOR siguen ahí, en vez de aparecer un formulario en blanco.
+
+**Bug 2 — solo se guarda la última nota, no se acumulan:**
+1. Guardar una primera nota (como en Bug 1).
+2. Abrir el modal de nuevo, borrar el contenido anterior, escribir una nota
+   distinta, Guardar.
+3. Cerrar el libro y la sección de Historia de la Iglesia, abrir el
+   listado de notas guardadas.
+4. Resultado actual: solo aparece la última nota guardada. La primera
+   desapareció — no se está agregando a un array, se está SOBREESCRIBIENDO
+   un solo registro cada vez.
+
+**Bug 3 — "Abrir" en una nota guardada no muestra la nota, abre el libro
+completo:**
+1. En el listado de notas guardadas, hacer clic en "Abrir" sobre una nota.
+2. Resultado actual: abre todo el libro/capítulo de origen, obligando al
+   usuario a buscar manualmente dónde estaba el fragmento citado.
+3. Esperado: debe mostrar el contenido de la nota (título + texto
+   guardado), no el libro de origen completo. Opcionalmente puede incluir
+   un enlace/botón separado tipo "ver en contexto" que sí lleve al libro,
+   pero eso no debe ser el comportamiento por defecto de "Abrir".
+
+**Bug 4 — no se puede copiar el texto de la nota:**
+- Agregar un botón "Copiar" en la vista de la nota guardada (usar
+  Clipboard API estándar del navegador).
+
+**Diagnóstico requerido antes de corregir:** revisar la función de
+guardado de notas de Historia de la Iglesia y confirmar si escribe en un
+array (push de nuevo objeto) o sobreescribe una key fija (esto último
+explicaría el Bug 2). Confirmar también si el estado del formulario del
+modal se resetea al cerrarlo (explicaría Bug 1). Mostrar el diagnóstico
+antes de aplicar la corrección.
+
+**Alcance:** estos bugs son específicos de las notas de Historia de la
+Iglesia — verificar si comparten código con el sistema general de notas
+(afectaría también notas de la Biblia normal) o si es una implementación
+separada. Decir cuál es el caso antes de corregir.
+
+**Reglas de entrega:** `git add` solo de los archivos tocados. Mostrar
+`git status` antes de cada commit. No hacer push.
+
+---
+
+## Tarea 8 — Sincronizar referencia entre panel Biblia y Comparar Biblia (modo Prédica)
+
+Guardado el 2026-08-04. Sin empezar.
+
+El push/desplazamiento entre panel Biblia y panel Comparar Biblia en modo
+predicación ya quedó funcionando correctamente (confirmado por Juan, ver
+[[Tarea 5]]). Falta un comportamiento adicional: sincronización de
+referencia (libro/capítulo/versículo) entre ambos paneles.
+
+**Problema:** el panel Comparar Biblia no tiene su propio buscador de
+cita — depende de que el usuario navegue manualmente ahí también, lo cual
+es redundante ya que el propósito es comparar el MISMO pasaje en otra
+versión.
+
+**Comportamiento esperado:** cuando el usuario cambia de referencia en el
+panel de Biblia principal (cambia de capítulo, de libro, o navega a un
+versículo específico — ej. de Génesis 1 a Josué 3), el panel Comparar
+Biblia debe actualizarse automáticamente a la misma referencia, sin acción
+adicional del usuario.
+
+**Antes de escribir código:** identificar cómo el panel de Biblia
+expone/emite su referencia actual (evento, estado compartido, callback) y
+si el panel Comparar Biblia ya escucha algo similar para otro propósito.
+Confirmar el mecanismo antes de implementar el listener.
+
+**Alcance:** solo modo predicación, solo dirección Biblia → Comparar (el
+panel principal es la fuente de verdad de la referencia). No es necesario
+sincronizar en sentido inverso salvo que sea trivial hacerlo con el mismo
+mecanismo — si es trivial, decirlo y evaluarlo con Juan; si no, no
+agregarlo.
+
+**Reglas de entrega:** `git add` solo de los archivos tocados. Mostrar
+`git status` antes de cada commit. No hacer push.
