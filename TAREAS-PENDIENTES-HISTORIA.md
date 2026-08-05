@@ -161,13 +161,31 @@ global. Mostrar el approach antes de aplicar el cambio.
 
 ---
 
-## Tarea 7 — Bugs en el sistema de notas de Historia de la Iglesia
+## Tarea 7 — Bugs en el sistema de notas de Historia de la Iglesia — COMPLETADA (2026-08-04)
 
-Guardado el 2026-08-04. Sin empezar.
+Diagnóstico confirmó: el modal "Nota rápida" reutilizaba `setNota()`/
+`getNotaObj()` de `backup.js`, que son "una nota por ubicación" (mismo
+modelo que usan Mis notas de Biblia y el editor embebido de nota de Padres
+Apostólicos — ambos siguen así, sin cambios). Eso explicaba Bug 1 (el modal
+precargaba la nota existente de esa ubicación) y Bug 2 (cada Guardar
+sobreescribía esa misma nota en vez de agregar una nueva) — comparten
+código con Biblia/Padres, pero el bug era específico de cómo el modal de
+Historia usaba ese código, no del código compartido en sí.
 
-Reporte de bugs en el sistema de notas de Historia de la Iglesia (modal
-"Nota rápida" + lista de notas guardadas). Reproducir exactamente estos
-pasos antes de tocar código.
+Implementado: `backup.js` gana `addNota()`/`getNotaById()`/`deleteNotaById()`
+— notas con id único, sin tocar las funciones existentes. El modal de
+Historia ahora siempre abre en blanco y usa `addNota()` (cada capítulo
+puede tener varias notas). La lista de "Notas de Historia" identifica cada
+nota por id (no por ref+tipo, que ahora puede repetirse); "Abrir" sobre una
+nota muestra su contenido con botón "Copiar" y link "Ver en contexto →" en
+vez de navegar directo al libro completo (Bug 3 y Bug 4). Probado en vivo:
+modal en blanco al reabrir sobre un capítulo con nota existente, dos notas
+del mismo capítulo conviven en el listado, "Abrir" muestra la nota con
+Copiar/Ver en contexto, eliminar una nota no afecta a otra del mismo
+capítulo. Commit `9f460d9`.
+
+Reporte de bugs original, para referencia — reproducido exactamente antes
+de corregir:
 
 **Bug 1 — el modal no se limpia entre notas:**
 1. Abrir un libro, seleccionar texto, abrir el modal de nota (ícono "Notas
