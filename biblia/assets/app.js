@@ -696,6 +696,15 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
   function closePanel(){
     const wasSheet=!!els.side.dataset.sheet;
+    // Al cerrar el panel completo (no al cambiar de tab y volver), Historia
+    // vuelve siempre al estante de libros — pedido explícito de Juan, revierte
+    // el "conserva posición" que sí se mantiene al solo cambiar de tab.
+    if(activeTab==='historia'){
+      churchHistoryOpenId=null;
+      churchHistoryOpenVolume=null;
+      churchHistoryOpenFromShelf=false;
+      churchHistorySearchActive=false;
+    }
     activeTab=null;
     // El visor de mapas usa position:fixed (pantalla completa) fuera del flujo
     // del panel: si se cierra el panel sin salir antes del fullscreen, hay que
