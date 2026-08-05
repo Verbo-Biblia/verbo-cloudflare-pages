@@ -1152,28 +1152,33 @@ document.addEventListener('DOMContentLoaded', async () => {
   // panel "Comparar" lado a lado del modo sermón (ver renderSermonCompare),
   // que necesita su propio contenedor y su propio <select> (ids únicos) en
   // vez de escribir sobre els.panelToolbar/panelBody del panel único.
-  async function renderCompare(focus, toolbarEl=els.panelToolbar, bodyEl=els.panelBody, selectId='compareVersionSelect') {
+  // `context` es de dónde sale el pasaje a comparar — por defecto la Biblia
+  // principal (data/currentBook/currentChapter). renderSermonCompare() pasa
+  // activeBibleContext() en su lugar, para comparar el capítulo que esté
+  // abierto en la pestaña Biblia del modo sermón en vez de la Biblia
+  // principal (que en modo sermón queda congelada, ver activeBibleContext()).
+  async function renderCompare(focus, toolbarEl=els.panelToolbar, bodyEl=els.panelBody, selectId='compareVersionSelect', context={data, book:currentBook, chapter:currentChapter}) {
     if(xrefTarget){ await renderCrossrefCompare(); return; }
     const installed=bibleCatalog();
     if(!installed.length){ toolbarEl.innerHTML=''; bodyEl.innerHTML=emptyState('📚','No hay otra Biblia instalada para comparar.'); return; }
     if(!installed.some(v=>v.id===compareVersion)) compareVersion=installed[0].id;
     const options=installed.map(v=>`<option value="${v.id}" ${v.id===compareVersion?'selected':''}>${escapeHTML(v.label)}${v.id===currentVersion?' (actual)':''}</option>`).join('');
     toolbarEl.innerHTML=`<div class="compare-toolbar"><span class="compare-toolbar__label">Biblia alterna</span><select class="compare-toolbar__select" id="${selectId}">${options}</select></div>`;
-    let verses=data.verses;
-    if(!data.versions[compareVersion]){
+    let verses=context.data.verses;
+    if(!context.data.versions[compareVersion]){
       bodyEl.innerHTML=emptyState('⌛','Cargando versión para comparar…');
       const selected=installed.find(v=>v.id===compareVersion);
       if (selected?.remote) {
-        try { await ensureVersionLoaded(compareVersion); verses=data.verses; }
+        try { await ensureVersionLoaded(compareVersion, {targetData: context.data, bookId: context.book, chapter: context.chapter}); verses=context.data.verses; }
         catch (error) { console.error(error); bodyEl.innerHTML=emptyState('⚠️',escapeHTML(error.message || 'No se pudo cargar la versión en línea.')); return; }
       } else {
-        const loaded=selected ? await VerboModules.loadBible(selected.path,currentBook,currentChapter) : null;
+        const loaded=selected ? await VerboModules.loadBible(selected.path,context.book,context.chapter) : null;
         if(!loaded){ bodyEl.innerHTML=emptyState('⚠️','Esta versión no contiene el pasaje seleccionado.'); return; }
-        verses=data.verses.map(v=>({ ...v, text:{...v.text,[compareVersion]:(typeof loaded.verses[String(v.n)]==='string'?loaded.verses[String(v.n)]:loaded.verses[String(v.n)]?.text)||''} }));
+        verses=context.data.verses.map(v=>({ ...v, text:{...v.text,[compareVersion]:(typeof loaded.verses[String(v.n)]==='string'?loaded.verses[String(v.n)]:loaded.verses[String(v.n)]?.text)||''} }));
       }
     }
     bodyEl.innerHTML=verses.map(v=>`<div class="compare-verse${v.n===focus?' compare-verse--active':''}" data-verse-n="${v.n}"><span class="compare-verse__num">${v.n}</span><span class="compare-verse__text">${escapeHTML(v.text[compareVersion]||'')}</span></div>`).join('');
-    document.getElementById(selectId)?.addEventListener('change',async e=>{compareVersion=e.target.value;await renderCompare(activeVerse(),toolbarEl,bodyEl,selectId);});
+    document.getElementById(selectId)?.addEventListener('change',async e=>{compareVersion=e.target.value;await renderCompare(activeVerse(),toolbarEl,bodyEl,selectId,context);});
     if(focus) bodyEl.querySelector(`[data-verse-n="${focus}"]`)?.scrollIntoView({block:'center'});
   }
 
@@ -1182,8 +1187,17 @@ document.addEventListener('DOMContentLoaded', async () => {
   // — abre/cierra con su propio toggle de ancho, no pasa por openPanel/
   // closePanel ni por activeTab (ese sistema es del panel único del resto de
   // la app y no se toca).
+  //
+  // Sincronización de referencia (libro/capítulo/versículo) con la pestaña
+  // Biblia del modo sermón: activeBibleContext() ya resuelve a sermonBible en
+  // modo sermón (ver esa función arriba), así que basta con pasarlo como
+  // context — sin eso, este panel comparaba contra la Biblia principal
+  // (congelada), no contra lo que el usuario esté leyendo en la pestaña
+  // Biblia. Los puntos donde sermonBible cambia de libro/capítulo/versículo
+  // llaman a esta función de nuevo cuando el panel está abierto (ver
+  // renderSermonBiblePanel y el click de versículo en renderSermonBibleVerses).
   function renderSermonCompare(focus){
-    return renderCompare(focus, els.sermonComparePanelToolbar, els.sermonComparePanelBody, 'sermonCompareVersionSelect');
+    return renderCompare(focus, els.sermonComparePanelToolbar, els.sermonComparePanelBody, 'sermonCompareVersionSelect', activeBibleContext());
   }
   function isSermonComparePanelOpen(){
     return !!els.sermonComparePanel?.classList.contains('sermon-compare-panel--open');
@@ -1673,6 +1687,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     els.panelToolbar.innerHTML=sermonBibleToolbarHtml();
     wireSermonBibleToolbar();
     renderSermonBibleVerses(focusVerse);
+    if(isSermonComparePanelOpen()) renderSermonCompare(sermonBible.activeVerse);
   }
 
   function renderSermonBibleVerses(focusVerse=null){
@@ -1715,6 +1730,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if(selectedVerses.has(v.n)) selectedVerses.delete(v.n); else selectedVerses.add(v.n);
         row.classList.toggle('verse--selected', selectedVerses.has(v.n));
         updateActionBar();
+        if(isSermonComparePanelOpen()) renderSermonCompare(v.n);
       });
     });
     els.panelBody.innerHTML='';
