@@ -712,7 +712,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     // forzar la limpieza aquí o el mapa queda "pegado" cubriendo la pantalla.
     document.getElementById('mapViewer')?.classList.remove('map-viewer--fullscreen');
     document.body.classList.remove('map-viewer-fullscreen-active');
-    els.side.classList.remove('side-panel--open','side-panel--left','side-panel--history-expanded'); // CSS: translateY(105%) para sheets
+    // CSS: translateY(105%) para sheets. side-panel--left se quita en un
+    // frame aparte a propósito: .side-panel--left tiene transition:none (el
+    // panel izquierdo desaparece al instante, sin animar), pero si se quita
+    // en el mismo classList.remove() que side-panel--open, el navegador ya
+    // no ve esa clase al calcular la transición y aplica en su lugar la
+    // regla base .side-panel{transition:width 0.28s} — se veía la animación
+    // de "colapso de ancho" del panel derecho al cerrar Historia/Padres en
+    // vez de desaparecer al instante (bug reportado por Juan, 2026-08-06).
+    els.side.classList.remove('side-panel--open','side-panel--history-expanded');
+    requestAnimationFrame(()=>{ els.side.classList.remove('side-panel--left'); });
     els.backdrop?.classList.remove('sheet-backdrop--visible');
     els.tabs.forEach(b=>b.classList.remove('tab-rail__btn--active'));
     if(wasSheet){

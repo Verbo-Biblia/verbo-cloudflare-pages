@@ -66,7 +66,9 @@
 .hnr-modal__textarea {
   width: 100%;
   font: inherit;
-  font-size: 14px;
+  /* 16px exactos: por debajo de esto Safari en iPhone hace zoom automático
+     del viewport al enfocar el campo. */
+  font-size: 16px;
   border: 1px solid var(--rule-strong);
   border-radius: 7px;
   padding: 8px 10px;

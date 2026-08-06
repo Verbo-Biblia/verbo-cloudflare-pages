@@ -31,7 +31,7 @@
   --rail-width: 56px;
 }
 
-* { box-sizing: border-box; }
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -218,6 +218,11 @@ body {
   outline: none;
   border-color: var(--wine-soft);
   cursor: text;
+  /* 16px exactos: por debajo de esto Safari en iPhone hace zoom automático
+     del viewport al enfocar el campo (deja de ser readonly justo antes de
+     este focus). Solo en :focus para no agrandar la píldora compacta en
+     reposo. */
+  font-size: 16px;
 }
 
 .version-picker__dropdown {
@@ -327,10 +332,15 @@ body {
   border: none;
   background: none;
   color: var(--wine, #7f2d35);
-  opacity: 0.3;
+  /* Opacidad de reposo más alta y padding generoso: en touch no existe
+     :hover, así que el botón más usado de la app (cambiar de capítulo) no
+     puede depender de un hover para verse ni para tener un área táctil
+     >=44px — antes tenía menos padding que la versión de escritorio (mouse,
+     preciso), justo al revés de lo que pide un dedo (impreciso). */
+  opacity: 0.55;
   font-size: 32px;
   line-height: 1;
-  padding: 0 6px;
+  padding: 12px 16px;
   cursor: pointer;
   font-family: var(--font-display);
   transition: opacity 0.15s;
@@ -2402,7 +2412,9 @@ body.map-viewer-fullscreen-active { overflow: hidden; }
   background: var(--chrome);
   color: var(--ink);
   font: inherit;
-  font-size: 13px;
+  /* 16px exactos: por debajo de esto Safari en iPhone hace zoom automático
+     del viewport al enfocar el campo. */
+  font-size: 16px;
   padding: 6px 10px;
   border-radius: 6px;
 }
