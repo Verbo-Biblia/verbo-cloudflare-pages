@@ -1225,7 +1225,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // renderPredicasPanel) a través del redirect panelTitleEl()/
   // panelToolbarEl()/panelBodyEl() (ver justo antes de renderPanel), en vez
   // de duplicar esa lógica.
-  const SERMON_SIDE_PANEL_TABS = ['comparar','comentario','notas','mapas','predicas'];
+  const SERMON_SIDE_PANEL_TABS = ['comparar','comentario','notas','mapas','predicas','diccionario'];
   let sermonPanelTab = null; // pestaña mostrada en este panel; null = cerrado
 
   // Sincronización de referencia (libro/capítulo/versículo) con la pestaña
@@ -1245,6 +1245,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(tab==='notas') return t('notas.title');
     if(tab==='mapas') return 'Mapas bíblicos';
     if(tab==='predicas') return t('predicas.title');
+    if(tab==='diccionario') return t('nav.diccionario');
     return '';
   }
   function renderSermonSidePanel(tab){
@@ -1261,6 +1262,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     else if(tab==='notas') renderNotes();
     else if(tab==='mapas') renderMapsPanel();
     else if(tab==='predicas') renderPredicasPanel();
+    else if(tab==='diccionario') renderPanel('diccionario');
   }
   function isSermonSidePanelOpen(){
     return !!els.sermonComparePanel?.classList.contains('sermon-compare-panel--open');
@@ -2928,13 +2930,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   async function renderDictionaryPanel(focus=null){
-    els.panelToolbar.innerHTML='';
+    panelToolbarEl().innerHTML='';
     const selected=getStrongDictionary();
-    els.panelTitle.textContent=selected?.full || 'Léxico Strong';
-    if(!selected){ els.panelBody.innerHTML=emptyState('📚','No hay diccionario Strong/Multiléxico instalado todavía.'); return; }
+    panelTitleEl().textContent=selected?.full || 'Léxico Strong';
+    if(!selected){ panelBodyEl().innerHTML=emptyState('📚','No hay diccionario Strong/Multiléxico instalado todavía.'); return; }
     currentDictionary=selected.id;
     localStorage.setItem('verbo:lastDictionary', currentDictionary);
-    els.panelBody.innerHTML=emptyState('🔤','Pulsa un código Strong en una Biblia compatible para consultar el Multiléxico.');
+    panelBodyEl().innerHTML=emptyState('🔤','Pulsa un código Strong en una Biblia compatible para consultar el Multiléxico.');
   }
 
 
@@ -3585,22 +3587,28 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   async function openDictionary(code){
-    openPanel('diccionario');
+    // Mismo criterio que el dock (ver click de .tab-rail__btn más abajo): en
+    // modo sermón + escritorio, Diccionario comparte el segundo panel con
+    // Comparar/Comentarios/Notas/Mapas/Prédicas en vez de reemplazar la
+    // Biblia del panel único. Por debajo de 901px o fuera de modo sermón,
+    // sigue usando el panel único de siempre.
+    if(sermonMode && window.matchMedia('(min-width: 901px)').matches) openSermonSidePanel('diccionario');
+    else openPanel('diccionario');
     const selected=getStrongDictionary(code);
     currentDictionary=selected?.id || null;
     if(currentDictionary) localStorage.setItem('verbo:lastDictionary', currentDictionary);
-    els.panelTitle.textContent=`${selected?.full || t('diccionario.lexicoStrong')} · ${code}`;
-    els.panelToolbar.innerHTML='';
-    els.panelBody.innerHTML=emptyState('⌛',t('diccionario.buscandoEntrada'));
+    panelTitleEl().textContent=`${selected?.full || t('diccionario.lexicoStrong')} · ${code}`;
+    panelToolbarEl().innerHTML='';
+    panelBodyEl().innerHTML=emptyState('⌛',t('diccionario.buscandoEntrada'));
     try{
       const result=await VerboModules.getDictionaryEntry(code, currentDictionary);
-      if(!result){ els.panelBody.innerHTML=emptyState('🔎',t('diccionario.sinEntrada',{code})); return; }
+      if(!result){ panelBodyEl().innerHTML=emptyState('🔎',t('diccionario.sinEntrada',{code})); return; }
       const rawHtml=result.entry.html||result.entry.definition||result.entry.content||'';
       const html=formatStrongEntryHtml(result.code,result.entry,rawHtml);
       const renderEntry=async()=>{
         const showEnglish=contentLang()==='en';
-        els.panelToolbar.innerHTML='';
-        els.panelBody.innerHTML=`<article class="dict-entry"><div class="dict-entry__term">${result.code}</div><div class="dict-entry__source">${escapeHTML(result.manifest.name)}</div><button class="note-card__copy" id="copyDictEntry" type="button">${t('diccionario.copiarDiccionario')}</button><div class="dict-entry__def" id="dictionaryEntryBody">${showEnglish?html:`<p class="note-card__translating">${t('diccionario.traduciendoEspanol')}</p>${html}`}</div></article>`;
+        panelToolbarEl().innerHTML='';
+        panelBodyEl().innerHTML=`<article class="dict-entry"><div class="dict-entry__term">${result.code}</div><div class="dict-entry__source">${escapeHTML(result.manifest.name)}</div><button class="note-card__copy" id="copyDictEntry" type="button">${t('diccionario.copiarDiccionario')}</button><div class="dict-entry__def" id="dictionaryEntryBody">${showEnglish?html:`<p class="note-card__translating">${t('diccionario.traduciendoEspanol')}</p>${html}`}</div></article>`;
         const body=document.getElementById('dictionaryEntryBody');
         if(!showEnglish && body){
           const translated=await translateDictionaryEntry(result.code,html);
@@ -3615,7 +3623,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
       };
       await renderEntry();
-    }catch(error){console.error(error);els.panelBody.innerHTML=emptyState('⚠️',t('diccionario.errorEntrada'));}
+    }catch(error){console.error(error);panelBodyEl().innerHTML=emptyState('⚠️',t('diccionario.errorEntrada'));}
   }
   function updateNavButtons(){ const idx=catalog.books.findIndex(b=>b.id===currentBook); const atStart=idx===0&&currentChapter===1; const atEnd=idx===catalog.books.length-1&&currentChapter===els.chapter.options.length; els.prev.disabled=atStart; els.next.disabled=atEnd; if(els.innerPrev) els.innerPrev.disabled=atStart; if(els.innerNext) els.innerNext.disabled=atEnd; }
   async function moveChapter(delta){
@@ -3744,14 +3752,15 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
       clearMobileToolArm();
     }
-    // En modo sermón, Comparar/Comentarios/Notas/Mapas/Mis prédicas no
-    // reemplazan el panel de Biblia: comparten un segundo panel lado a lado
-    // (ver .sermon-compare-panel), fuera del sistema de panel único que usa
-    // el resto de la app. Ese layout de 3 columnas no se resuelve debajo de
-    // 900px (.sermon-compare-panel queda display:none — ver style.css), así
-    // que por debajo de ese ancho estos cinco caen al sistema de panel único
-    // de siempre (reemplaza a Biblia), igual que cualquier otra pestaña en
-    // móvil — la alternativa era que el ícono no hiciera nada visible ahí.
+    // En modo sermón, Comparar/Comentarios/Notas/Mapas/Mis prédicas/
+    // Diccionario no reemplazan el panel de Biblia: comparten un segundo
+    // panel lado a lado (ver .sermon-compare-panel), fuera del sistema de
+    // panel único que usa el resto de la app. Ese layout de 3 columnas no se
+    // resuelve debajo de 900px (.sermon-compare-panel queda display:none —
+    // ver style.css), así que por debajo de ese ancho estos seis caen al
+    // sistema de panel único de siempre (reemplaza a Biblia), igual que
+    // cualquier otra pestaña en móvil — la alternativa era que el ícono no
+    // hiciera nada visible ahí.
     if(sermonMode && SERMON_SIDE_PANEL_TABS.includes(b.dataset.tab) && window.matchMedia('(min-width: 901px)').matches){
       resetXrefMode();
       toggleSermonSidePanel(b.dataset.tab);
