@@ -426,6 +426,18 @@ const VerboModules = (() => {
     }
   }
 
+  // Mismo propósito que loadChurchHistoryShelf, para el estante de portadas
+  // de "Explorar documentos" en Padres Apostólicos. Ver modules/patristic/shelf.json.
+  async function loadPatristicShelf() {
+    try {
+      const data = await getJSON('modules/patristic/shelf.json');
+      return data.volumes || [];
+    } catch (error) {
+      console.warn('Estante de Padres Apostólicos: metadata omitida', error);
+      return [];
+    }
+  }
+
   // Quita tildes/diacríticos y normaliza espacios/puntuación, para que la
   // búsqueda no falle por variantes de acentuación entre versiones (ej.
   // "así"/"asi") ni por puntuación pegada a la palabra.
@@ -909,5 +921,5 @@ const VerboModules = (() => {
     return null;
   }
 
-  return { getCatalog,getBookInfo,resolveBibleBooks,buildChapterData,loadBible,loadRemoteBible,loadCommentary,loadCommentaryIndex,loadLinkedEntries,loadLinkedArticle,loadChurchHistory,loadChurchHistoryShelf,getDictionaryEntry,loadDictionaryEntries,loadDictionaryIndex,loadGospel,loadPatristic,searchBible,searchRemoteBible,searchSemanticBible,searchSemanticChurchHistory };
+  return { getCatalog,getBookInfo,resolveBibleBooks,buildChapterData,loadBible,loadRemoteBible,loadCommentary,loadCommentaryIndex,loadLinkedEntries,loadLinkedArticle,loadChurchHistory,loadChurchHistoryShelf,getDictionaryEntry,loadDictionaryEntries,loadDictionaryIndex,loadGospel,loadPatristic,loadPatristicShelf,searchBible,searchRemoteBible,searchSemanticBible,searchSemanticChurchHistory };
 })();

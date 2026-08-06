@@ -213,6 +213,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   let gospelData=null;
   let gospelOpenChapter=null;
   let patristicCatalog=null;
+  let patristicShelf=null;
   let patristicOpenDoc=null;
   let patristicOpenSection=null;
   let patristicMode=localStorage.getItem('verbo:patristicMode') || 'docs';
@@ -3191,7 +3192,42 @@ document.addEventListener('DOMContentLoaded', async () => {
       if(mode===patristicMode) return;
       patristicMode=mode;
       localStorage.setItem('verbo:patristicMode',mode);
+      els.side.classList.remove('side-panel--history-expanded'); // salir de "ampliar lectura" al cambiar de modo (ver renderPatristicSection)
       renderPadresPanel(activeVerse());
+    }));
+  }
+
+  // ── Estante de portadas de "Explorar documentos" (Padres Apostólicos) ──────
+  // Mismo componente visual que el estante de Historia de la Iglesia (clases
+  // .church-shelf/.church-shelf__item, ver churchHistoryShelfItemHTML más
+  // arriba) — se duplica la plantilla en una función propia en vez de
+  // compartirla para no tocar el código ya probado de Historia al conectarlo
+  // a una fuente de datos distinta (patristicCatalog + modules/patristic/shelf.json).
+  function patristicShelfItemHTML(volume){
+    return `<div class="church-shelf__item" data-patristic-shelf-volume="${escapeHTML(volume.id)}" tabindex="0" role="group" aria-label="${escapeHTML(volume.titulo)}">
+      <img class="church-shelf__cover" src="${escapeHTML(volume.cover)}" alt="" loading="lazy">
+      <div class="church-shelf__overlay">
+        <div class="church-shelf__overlay-title" data-patristic-doc-name="${escapeHTML(volume.id)}">${escapeHTML(volume.titulo)}</div>
+        ${volume.periodo?`<div class="church-shelf__overlay-period">${escapeHTML(volume.periodo)}</div>`:''}
+        <p class="church-shelf__overlay-summary">${escapeHTML(volume.resumenBreve||'')}</p>
+        <button type="button" class="church-shelf__read-btn" data-patristic-shelf-read="${escapeHTML(volume.id)}">${t('historia.leer')} →</button>
+      </div>
+    </div>`;
+  }
+  function wirePatristicShelf(){
+    els.panelBody.querySelectorAll('[data-patristic-shelf-volume]').forEach(item=>{
+      const toggle=()=>item.classList.toggle('church-shelf__item--active');
+      item.addEventListener('click',event=>{ if(event.target.closest('[data-patristic-shelf-read]')) return; toggle(); });
+      item.addEventListener('keydown',event=>{
+        if(event.target.closest('[data-patristic-shelf-read]')) return;
+        if(event.key==='Enter'||event.key===' '){ event.preventDefault(); toggle(); }
+      });
+    });
+    els.panelBody.querySelectorAll('[data-patristic-shelf-read]').forEach(btn=>btn.addEventListener('click',event=>{
+      event.stopPropagation();
+      patristicOpenDoc=btn.dataset.patristicShelfRead;
+      renderPadresPanel();
+      els.panelBody.scrollTop=0;
     }));
   }
 
@@ -3287,17 +3323,19 @@ document.addEventListener('DOMContentLoaded', async () => {
       return;
     }
 
-    // Nivel 1: lista de documentos disponibles en la colección
+    // Nivel 1: estante de portadas de los documentos disponibles en la
+    // colección (mismo componente visual que el estante de Historia de la
+    // Iglesia, ver patristicShelfItemHTML/wirePatristicShelf más arriba).
+    els.side.classList.remove('side-panel--history-expanded');
     els.panelToolbar.innerHTML=`<div class="compare-toolbar">${patristicModeToggleHtml()}</div>`;
     wirePatristicModeToggle();
-    els.panelBody.innerHTML=`<div class="dictionary-library">${patristicCatalog.map(d=>`
-      <button type="button" class="dictionary-library__item" data-patristic-doc="${d.id}">
-        <span data-patristic-doc-name="${d.id}">${escapeHTML(d.full)}</span>
-        <small>${escapeHTML(d.manifest.year||'')}</small>
-      </button>`).join('')}</div>`;
-    document.querySelectorAll('[data-patristic-doc]').forEach(btn=>{
-      btn.addEventListener('click',()=>{ patristicOpenDoc=btn.dataset.patristicDoc; renderPadresPanel(); els.panelBody.scrollTop=0; });
-    });
+    if(!patristicShelf){
+      try{ patristicShelf=await VerboModules.loadPatristicShelf(); }
+      catch(error){ console.error(error); patristicShelf=[]; }
+    }
+    const shelfVolumes=(patristicShelf||[]).filter(v=>patristicCatalog.some(d=>d.id===v.id));
+    els.panelBody.innerHTML=`<div class="church-shelf">${shelfVolumes.map(patristicShelfItemHTML).join('')}</div>`;
+    wirePatristicShelf();
     translatePatristicDocNames();
   }
 
@@ -3348,6 +3386,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       els.panelBody.innerHTML=emptyState('⚠️',t('padres.errorDocumento'));
       return;
     }
+    els.side.classList.remove('side-panel--history-expanded');
     els.panelToolbar.innerHTML=`<button class="note-card__copy" id="backToPatristicDocs" type="button">← ${t('padres.volverColeccion')}</button>`;
     document.getElementById('backToPatristicDocs')?.addEventListener('click',()=>{ patristicOpenDoc=null; patristicDocData=null; renderPadresPanel(); els.panelBody.scrollTop=0; });
 
@@ -3395,8 +3434,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(!section){ els.panelBody.innerHTML=emptyState('⚠️',t('padres.seccionNoEncontrada')); return; }
     els.panelToolbar.innerHTML=`
       <button class="note-card__copy" id="backToPatristicIndex" type="button">← ${t('padres.volverIndice')}</button>
-      <button class="note-card__copy" id="copyPatristicSection" type="button">${t('padres.copiarSeccion')}</button>`;
-    document.getElementById('backToPatristicIndex')?.addEventListener('click',()=>{ patristicOpenSection=null; renderPadresPanel(); els.panelBody.scrollTop=0; });
+      <button class="note-card__copy" id="copyPatristicSection" type="button">${t('padres.copiarSeccion')}</button>
+      <button id="patristicExpand" class="history-panel-expand" type="button" aria-pressed="${els.side.classList.contains('side-panel--history-expanded')?'true':'false'}">${els.side.classList.contains('side-panel--history-expanded')?t('historia.vistaCompacta'):t('historia.ampliarLectura')}</button>`;
+    document.getElementById('backToPatristicIndex')?.addEventListener('click',()=>{ els.side.classList.remove('side-panel--history-expanded'); patristicOpenSection=null; renderPadresPanel(); els.panelBody.scrollTop=0; });
+    document.getElementById('patristicExpand')?.addEventListener('click',event=>{
+      const scrollTop=els.panelBody.scrollTop;
+      const expanded=els.side.classList.toggle('side-panel--history-expanded');
+      event.currentTarget.setAttribute('aria-pressed',String(expanded));
+      event.currentTarget.textContent=expanded?t('historia.vistaCompacta'):t('historia.ampliarLectura');
+      requestAnimationFrame(()=>{ els.panelBody.scrollTop=scrollTop; });
+    });
     const source=patristicDocData.manifest.language||'es';
     const target=contentLang();
     const needsTranslation=source!==target;
@@ -3408,7 +3455,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       ? `<p class="note-card__translation-note">${t('padres.traduccionAuto',{source:source.toUpperCase(),target:target.toUpperCase()})}</p>`
       : '';
     const patristicRef=`${patristicOpenDoc}-${section.n}`;
-    els.panelBody.innerHTML=`<article class="dict-entry">
+    els.panelBody.innerHTML=`<article class="dict-entry history-reader">
       <div class="dict-entry__term" data-patristic-title="1">${escapeHTML(section.title)}</div>
       <div class="dict-entry__source" data-patristic-docname="1">${escapeHTML(patristicDocData.manifest.name)}</div>
       ${translationNote}
