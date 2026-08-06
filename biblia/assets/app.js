@@ -1134,7 +1134,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       catch(error){ console.error(error); els.panelBody.innerHTML=emptyState('⚠️','No se pudo cargar la referencia cruzada.'); return; }
     }
     const options=installed.map(v=>`<option value="${v.id}" ${v.id===compareVersion?'selected':''}>${escapeHTML(v.label)}${v.id===currentVersion?' (actual)':''}</option>`).join('');
-    els.panelToolbar.innerHTML=`<div class="compare-toolbar"><span class="compare-toolbar__label">Referencia cruzada · ${escapeHTML(label)}</span><select class="compare-toolbar__select" id="compareVersionSelect">${options}</select></div>`;
+    els.panelToolbar.innerHTML=`<div class="compare-toolbar"><span class="compare-toolbar__label">Ref · ${escapeHTML(label)}</span><select class="compare-toolbar__select" id="compareVersionSelect">${options}</select></div>`;
     let verses=xrefData.verses;
     if(!xrefData.versions[compareVersion]){
       els.panelBody.innerHTML=emptyState('⌛','Cargando versión para comparar…');
