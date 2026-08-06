@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     editorSurface: document.getElementById('editorSurface'),
     editorToolbar: document.getElementById('editorToolbar'),
     sermonComparePanel: document.getElementById('sermonComparePanel'),
+    sermonPanelTitle: document.getElementById('sermonPanelTitle'),
     sermonComparePanelToolbar: document.getElementById('sermonComparePanelToolbar'),
     sermonComparePanelBody: document.getElementById('sermonComparePanelBody'),
     sermonComparePanelClose: document.getElementById('sermonComparePanelClose')
@@ -762,8 +763,21 @@ document.addEventListener('DOMContentLoaded', async () => {
   els.backdrop?.addEventListener('click',()=>closePanel());
   // ─────────────────────────────────────────────────────────────────────────────
 
+  // Redirección genérica de destino de renderizado: en modo sermón, el
+  // segundo panel (ver "Segundo panel del modo sermón" más abajo) comparte
+  // las mismas funciones de renderizado que usa #sidePanel (renderPanel para
+  // 'comentario', renderNotes, renderMapsPanel/renderMapViewer,
+  // renderPredicasPanel) en vez de duplicarlas. sermonPanelTarget apunta a
+  // sus nodos mientras ese panel esté abierto; si es null (todo el resto de
+  // la app, siempre) estas funciones devuelven los nodos de siempre de
+  // #sidePanel — cero cambio de comportamiento fuera de ese caso.
+  let sermonPanelTarget = null;
+  function panelTitleEl(){ return sermonPanelTarget ? sermonPanelTarget.title : els.panelTitle; }
+  function panelToolbarEl(){ return sermonPanelTarget ? sermonPanelTarget.toolbar : els.panelToolbar; }
+  function panelBodyEl(){ return sermonPanelTarget ? sermonPanelTarget.body : els.panelBody; }
+
   function renderPanel(tab, focus=null, verseCommentaries=null, delayScroll=false) {
-    els.panelToolbar.innerHTML='';
+    panelToolbarEl().innerHTML='';
     if(tab==='comentario'){
       // Si el usuario seleccionó un versículo con el panel cerrado, al abrir Comentario
       // usamos ese versículo activo para ubicar el comentario correspondiente.
@@ -776,14 +790,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         const moduleInfo=selectedVerse?.commentaries?.find(c=>c.commentaryId===currentCommentary);
         focus = moduleInfo?.noteIds?.[0] || null;
       }
-      els.panelTitle.textContent=t('comentario.title');
+      panelTitleEl().textContent=t('comentario.title');
       const installed=commentaryCatalog();
       const currentManifest=catalog?.commentaries?.find(c=>c.manifest.id===currentCommentary)?.manifest;
       const commentarySourceLang=currentManifest?.language||null;
       const needsCommentaryTranslation=Boolean(commentarySourceLang) && commentarySourceLang!==contentLang();
       if(installed.length){
         const options=installed.map(c=>`<option value="${c.id}" ${c.id===currentCommentary?'selected':''}>${escapeHTML(c.label)}</option>`).join('');
-        els.panelToolbar.innerHTML=`<div class="compare-toolbar"><select class="compare-toolbar__select" id="commentarySelect">${options}</select></div>`;
+        panelToolbarEl().innerHTML=`<div class="compare-toolbar"><select class="compare-toolbar__select" id="commentarySelect">${options}</select></div>`;
         document.getElementById('commentarySelect')?.addEventListener('change', async e=>{
           currentCommentary=e.target.value;
           localStorage.setItem('verbo:lastCommentary', currentCommentary);
@@ -805,7 +819,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         focus=curNote?.noteIds?.[0]||null;
       }
       const entries=Object.entries(commentCtx.data.notes).filter(([,note])=>note.commentaryId===currentCommentary);
-      els.panelBody.innerHTML=entries.length?entries.map(([id,n])=>{
+      panelBodyEl().innerHTML=entries.length?entries.map(([id,n])=>{
         const cachedTranslation=needsCommentaryTranslation ? tcacheGet(translationCacheKey(id,n.body,contentLang())) : null;
         const cachedTitle=needsCommentaryTranslation ? tcacheGet(translationCacheKey(`${id}:title`,n.title,contentLang())) : null;
         const cachedAuthor=needsCommentaryTranslation ? tcacheGet(translationCacheKey(`${id}:author`,n.author,contentLang())) : null;
@@ -814,7 +828,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           : n.body;
         return `<div class="note-card" data-note-id="${id}"><div class="note-card__ref">${commentCtx.data.meta.book} ${commentCtx.data.meta.chapter}</div><div class="note-card__title" data-commentary-header="title"${cachedTitle?` data-translated="${contentLang()}"`:''}>${escapeHTML(cachedTitle||n.title)}</div><div class="note-card__author" data-commentary-header="author"${cachedAuthor?` data-translated="${contentLang()}"`:''}>${escapeHTML(cachedAuthor||n.author)}</div><button class="note-card__copy" type="button" data-copy-note="${id}">${t('comentario.copiarComentario')}</button><div class="note-card__body">${bodyHtml}</div></div>`;
       }).join(''):emptyState('📖',t('comentario.sinComentarios'));
-      els.panelBody.querySelectorAll('[data-copy-note]').forEach(btn=>btn.addEventListener('click',()=>{ const note=commentCtx.data.notes[btn.dataset.copyNote]; if(note) copyToClipboard(`${note.title}\n${String(note.body).replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim()}`); }));
+      panelBodyEl().querySelectorAll('[data-copy-note]').forEach(btn=>btn.addEventListener('click',()=>{ const note=commentCtx.data.notes[btn.dataset.copyNote]; if(note) copyToClipboard(`${note.title}\n${String(note.body).replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim()}`); }));
       if(focus){ if(delayScroll) setTimeout(()=>scrollCommentToNote(focus),320); else scrollCommentToNote(focus); }
       if(needsCommentaryTranslation) setTimeout(()=>applyCommentaryTranslation(focus, commentarySourceLang), 150);
     }
@@ -1041,7 +1055,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const source=sourceLang||manifest?.language;
     const target=contentLang();
     if(!source || source===target) return;
-    const cards=[...els.panelBody.querySelectorAll('.note-card[data-note-id]')];
+    const cards=[...panelBodyEl().querySelectorAll('.note-card[data-note-id]')];
     // Translate focused card first for immediate feedback
     const sorted = focusNoteId
       ? [...cards.filter(c=>c.dataset.noteId===focusNoteId), ...cards.filter(c=>c.dataset.noteId!==focusNoteId)]
@@ -1071,7 +1085,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Re-anchor scroll to keep focused card in place
         if(prevTop!==null){
           const newTop=card.getBoundingClientRect().top;
-          els.panelBody.scrollTop += (newTop - prevTop);
+          panelBodyEl().scrollTop += (newTop - prevTop);
         }
       }
     }
@@ -1100,12 +1114,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   // ─────────────────────────────────────────────────────────────────────────
 
   function scrollCommentToNote(noteId){
-    const card = noteId ? els.panelBody.querySelector(`[data-note-id="${noteId}"]`) : null;
+    const card = noteId ? panelBodyEl().querySelector(`[data-note-id="${noteId}"]`) : null;
     if(!card) return;
     suppressCommentSync = true;
-    const panelRect = els.panelBody.getBoundingClientRect();
+    const panelRect = panelBodyEl().getBoundingClientRect();
     const cardRect  = card.getBoundingClientRect();
-    els.panelBody.scrollTop += (cardRect.top - panelRect.top) - 8;
+    panelBodyEl().scrollTop += (cardRect.top - panelRect.top) - 8;
     setTimeout(()=>{ suppressCommentSync=false; }, 400);
   }
 
@@ -1192,12 +1206,28 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(focus) bodyEl.querySelector(`[data-verse-n="${focus}"]`)?.scrollIntoView({block:'center'});
   }
 
-  // ── Comparar versiones lado a lado con Biblia en modo sermón ───────────────
-  // Panel independiente de #sidePanel (ver .sermon-compare-panel en style.css)
-  // — abre/cierra con su propio toggle de ancho, no pasa por openPanel/
-  // closePanel ni por activeTab (ese sistema es del panel único del resto de
-  // la app y no se toca).
+  // ── Segundo panel del modo sermón: Comparar / Comentarios / Notas / Mapas /
+  // Mis prédicas ───────────────────────────────────────────────────────────
+  // Panel independiente de #sidePanel (ver .sermon-compare-panel en
+  // style.css) — abre/cierra con su propio toggle de ancho, no pasa por
+  // openPanel/closePanel ni por activeTab (ese sistema es del panel único
+  // del resto de la app y no se toca). Empuja la Biblia (pestaña
+  // "sermon-biblia" de #sidePanel) hacia la izquierda sin reemplazarla, y
+  // deja el Editor siempre visible como tercera columna.
   //
+  // Nació (2026-08) como un panel dedicado únicamente a "Comparar
+  // versiones". A pedido de Juan, que quería el mismo comportamiento para
+  // Comentarios/Notas/Mapas/Mis prédicas (hasta entonces reemplazaban el
+  // contenido de #sidePanel, tapando la Biblia), se generalizó para que las
+  // cinco pestañas compartan este mismo panel — mutuamente excluyentes entre
+  // sí — reutilizando las funciones de renderizado que ya existían para
+  // #sidePanel (renderPanel('comentario',…), renderNotes, renderMapsPanel,
+  // renderPredicasPanel) a través del redirect panelTitleEl()/
+  // panelToolbarEl()/panelBodyEl() (ver justo antes de renderPanel), en vez
+  // de duplicar esa lógica.
+  const SERMON_SIDE_PANEL_TABS = ['comparar','comentario','notas','mapas','predicas'];
+  let sermonPanelTab = null; // pestaña mostrada en este panel; null = cerrado
+
   // Sincronización de referencia (libro/capítulo/versículo) con la pestaña
   // Biblia del modo sermón: activeBibleContext() ya resuelve a sermonBible en
   // modo sermón (ver esa función arriba), así que basta con pasarlo como
@@ -1209,22 +1239,49 @@ document.addEventListener('DOMContentLoaded', async () => {
   function renderSermonCompare(focus){
     return renderCompare(focus, els.sermonComparePanelToolbar, els.sermonComparePanelBody, 'sermonCompareVersionSelect', activeBibleContext());
   }
-  function isSermonComparePanelOpen(){
+  function sermonPanelTitleFor(tab){
+    if(tab==='comparar') return t('nav.compararVersiones');
+    if(tab==='comentario') return t('comentario.title');
+    if(tab==='notas') return t('notas.title');
+    if(tab==='mapas') return 'Mapas bíblicos';
+    if(tab==='predicas') return t('predicas.title');
+    return '';
+  }
+  function renderSermonSidePanel(tab){
+    if(els.sermonPanelTitle) els.sermonPanelTitle.textContent = sermonPanelTitleFor(tab);
+    // Notas y Mis prédicas no tienen toolbar propio y nunca lo limpian (en
+    // #sidePanel eso lo hacía siempre renderPanel antes de despachar) — sin
+    // esto, el toolbar de la pestaña anterior (ej. el <select> de
+    // comentarista) queda pegado arriba al cambiar de pestaña dentro de este
+    // panel. Los demás (comparar/comentario/mapas) igual fijan el suyo, así
+    // que este reset previo es redundante pero inofensivo para ellos.
+    panelToolbarEl().innerHTML='';
+    if(tab==='comparar') renderSermonCompare(activeVerse());
+    else if(tab==='comentario') renderPanel('comentario');
+    else if(tab==='notas') renderNotes();
+    else if(tab==='mapas') renderMapsPanel();
+    else if(tab==='predicas') renderPredicasPanel();
+  }
+  function isSermonSidePanelOpen(){
     return !!els.sermonComparePanel?.classList.contains('sermon-compare-panel--open');
   }
-  function openSermonComparePanel(){
+  function openSermonSidePanel(tab){
+    sermonPanelTab = tab;
+    sermonPanelTarget = { title: els.sermonPanelTitle, toolbar: els.sermonComparePanelToolbar, body: els.sermonComparePanelBody };
     els.sermonComparePanel?.classList.add('sermon-compare-panel--open');
-    els.tabs.forEach(btn=>{ if(btn.dataset.tab==='comparar') btn.classList.add('tab-rail__btn--active'); });
-    renderSermonCompare(activeVerse());
+    els.tabs.forEach(btn=>{ if(SERMON_SIDE_PANEL_TABS.includes(btn.dataset.tab)) btn.classList.toggle('tab-rail__btn--active', btn.dataset.tab===tab); });
+    renderSermonSidePanel(tab);
   }
-  function closeSermonComparePanel(){
+  function closeSermonSidePanel(){
     els.sermonComparePanel?.classList.remove('sermon-compare-panel--open');
-    els.tabs.forEach(btn=>{ if(btn.dataset.tab==='comparar') btn.classList.remove('tab-rail__btn--active'); });
+    els.tabs.forEach(btn=>{ if(SERMON_SIDE_PANEL_TABS.includes(btn.dataset.tab)) btn.classList.remove('tab-rail__btn--active'); });
+    sermonPanelTab = null;
+    sermonPanelTarget = null;
   }
-  function toggleSermonComparePanel(){
-    isSermonComparePanelOpen() ? closeSermonComparePanel() : openSermonComparePanel();
+  function toggleSermonSidePanel(tab){
+    sermonPanelTab===tab ? closeSermonSidePanel() : openSermonSidePanel(tab);
   }
-  els.sermonComparePanelClose?.addEventListener('click', closeSermonComparePanel);
+  els.sermonComparePanelClose?.addEventListener('click', closeSermonSidePanel);
 
   function openCrossref(ref){
     xrefTarget=ref; xrefData=null;
@@ -1235,7 +1292,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   async function toggleSermonMode(){
     sermonMode = !sermonMode;
-    if(!sermonMode) closeSermonComparePanel(); // no arrastrar el panel abierto a la próxima vez que entre a modo sermón
+    if(!sermonMode) closeSermonSidePanel(); // no arrastrar el panel abierto a la próxima vez que entre a modo sermón
     selectedVerses.clear();
     document.querySelectorAll('.verse--selected').forEach(x=>x.classList.remove('verse--selected'));
     updateActionBar();
@@ -1396,7 +1453,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     } finally {
       setSermonSaveBtnState('saved');
       setTimeout(()=>setSermonSaveBtnState('idle'), 1500);
-      if(activeTab==='predicas') renderPredicasPanel();
+      if(sermonPanelTab==='predicas') renderPredicasPanel();
     }
   }
   els.editorPane?.querySelector('#guardarSermonBtn')?.addEventListener('click', handleSaveSermon);
@@ -1410,7 +1467,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     sermonEditor.setContent('');
     const tituloInput = document.getElementById('predicaTituloInput');
     if(tituloInput) tituloInput.value = '';
-    closePanel();
+    closeSermonSidePanel();
   }
 
   function openPredica(id){
@@ -1421,7 +1478,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     sermonEditor.setContent(sermonEditorContent);
     const tituloInput = document.getElementById('predicaTituloInput');
     if(tituloInput) tituloInput.value = p.titulo || '';
-    closePanel();
+    closeSermonSidePanel();
   }
 
   function deletePredicaWithConfirm(id){
@@ -1434,11 +1491,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function renderPredicasPanel(){
-    els.panelTitle.textContent = t('predicas.title');
+    panelTitleEl().textContent = t('predicas.title');
     const list = VerboBackup.getPredicas();
     const locale = window.VerboI18n?.getUiLang() === 'en' ? 'en-US' : 'es-ES';
     const fmtDate = (iso) => { try{ return iso ? new Date(iso).toLocaleDateString(locale, {day:'numeric',month:'short',year:'numeric'}) : ''; } catch { return ''; } };
-    els.panelBody.innerHTML = `
+    panelBodyEl().innerHTML = `
       <button type="button" class="predicas-panel__new" id="predicasNewBtn">${t('predicas.nuevaBtn')}</button>
       ${list.length ? list.map(p=>`
         <div class="predicas-list__item" data-predica-id="${p.id}">
@@ -1453,8 +1510,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         </div>`).join('') : emptyState('📝', t('predicas.vacio'))}
     `;
     document.getElementById('predicasNewBtn')?.addEventListener('click', newPredica);
-    els.panelBody.querySelectorAll('[data-open-predica]').forEach(btn=>btn.addEventListener('click', ()=>openPredica(btn.dataset.openPredica)));
-    els.panelBody.querySelectorAll('[data-delete-predica]').forEach(btn=>btn.addEventListener('click', ()=>deletePredicaWithConfirm(btn.dataset.deletePredica)));
+    panelBodyEl().querySelectorAll('[data-open-predica]').forEach(btn=>btn.addEventListener('click', ()=>openPredica(btn.dataset.openPredica)));
+    panelBodyEl().querySelectorAll('[data-delete-predica]').forEach(btn=>btn.addEventListener('click', ()=>deletePredicaWithConfirm(btn.dataset.deletePredica)));
   }
 
   // ── "Notas de Historia" (Tarea 3): notas + marcadores combinados de Historia
@@ -1684,7 +1741,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     els.panelToolbar.innerHTML=sermonBibleToolbarHtml();
     wireSermonBibleToolbar();
     renderSermonBibleVerses(focusVerse);
-    if(isSermonComparePanelOpen()) renderSermonCompare(sermonBible.activeVerse);
+    if(sermonPanelTab==='comparar') renderSermonCompare(sermonBible.activeVerse);
+    else if(sermonPanelTab==='comentario') renderPanel('comentario');
   }
 
   function renderSermonBibleVerses(focusVerse=null){
@@ -1727,7 +1785,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         if(selectedVerses.has(v.n)) selectedVerses.delete(v.n); else selectedVerses.add(v.n);
         row.classList.toggle('verse--selected', selectedVerses.has(v.n));
         updateActionBar();
-        if(isSermonComparePanelOpen()) renderSermonCompare(v.n);
+        if(sermonPanelTab==='comparar') renderSermonCompare(v.n);
+        else if(sermonPanelTab==='comentario') renderPanel('comentario');
       });
     });
     els.panelBody.innerHTML='';
@@ -3012,9 +3071,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   function renderMapsPanel(){
     if(mapsOpenId){ renderMapViewer(mapsOpenId); return; }
-    els.panelTitle.textContent='Mapas bíblicos';
-    els.panelToolbar.innerHTML='';
-    els.panelBody.innerHTML=`
+    panelTitleEl().textContent='Mapas bíblicos';
+    panelToolbarEl().innerHTML='';
+    panelBodyEl().innerHTML=`
       <div class="maps-gallery">
         <div class="dictionary-library__count">${CHURCH_MAPS.length} mapas disponibles</div>
         <div class="maps-gallery__grid">
@@ -3025,7 +3084,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             </button>`).join('')}
         </div>
       </div>`;
-    els.panelBody.querySelectorAll('[data-map-id]').forEach(btn=>{
+    panelBodyEl().querySelectorAll('[data-map-id]').forEach(btn=>{
       btn.addEventListener('click',()=>{ mapsOpenId=btn.dataset.mapId; renderMapViewer(mapsOpenId); });
     });
   }
@@ -3033,10 +3092,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   function renderMapViewer(id){
     const map=CHURCH_MAPS.find(m=>m.id===id);
     if(!map){ mapsOpenId=null; renderMapsPanel(); return; }
-    els.panelTitle.textContent=map.title;
-    els.panelToolbar.innerHTML=`<button class="note-card__copy" id="backToMapsIndex" type="button">← Mapas bíblicos</button>`;
+    panelTitleEl().textContent=map.title;
+    panelToolbarEl().innerHTML=`<button class="note-card__copy" id="backToMapsIndex" type="button">← Mapas bíblicos</button>`;
     document.getElementById('backToMapsIndex')?.addEventListener('click',()=>{ mapsOpenId=null; renderMapsPanel(); });
-    els.panelBody.innerHTML=`
+    panelBodyEl().innerHTML=`
       <div class="map-viewer-page">
         <div class="map-viewer" id="mapViewer">
           <div class="map-viewer__frame" id="mapViewerFrame">
@@ -3518,9 +3577,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function renderNotes(){
-    els.panelTitle.textContent=t('notas.title');
+    panelTitleEl().textContent=t('notas.title');
     const key=`${data.meta.bookId}-${data.meta.chapter}`, saved=VerboBackup.getNota(key);
-    els.panelBody.innerHTML=`<label class="personal-note-form__label">${t('notas.label',{ref:`${data.meta.book} ${data.meta.chapter}`})}</label><textarea id="personalNoteArea" class="personal-note-form__area" placeholder="${t('notas.placeholder')}">${saved}</textarea><div class="personal-note-form__status" id="noteSaveStatus">${saved?t('notas.guardado'):''}</div>`;
+    panelBodyEl().innerHTML=`<label class="personal-note-form__label">${t('notas.label',{ref:`${data.meta.book} ${data.meta.chapter}`})}</label><textarea id="personalNoteArea" class="personal-note-form__area" placeholder="${t('notas.placeholder')}">${saved}</textarea><div class="personal-note-form__status" id="noteSaveStatus">${saved?t('notas.guardado'):''}</div>`;
     const area=document.getElementById('personalNoteArea'), status=document.getElementById('noteSaveStatus'); let timer;
     area.addEventListener('input',()=>{status.textContent=t('notas.escribiendo');clearTimeout(timer);timer=setTimeout(()=>{VerboBackup.setNota(key,area.value);status.textContent=t('notas.guardado');},400);});
   }
@@ -3685,12 +3744,17 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
       clearMobileToolArm();
     }
-    // En modo sermón, "Comparar versiones" no reemplaza el panel de Biblia:
-    // abre/cierra un segundo panel lado a lado (ver .sermon-compare-panel),
-    // fuera del sistema de panel único que usa el resto de la app.
-    if(sermonMode && b.dataset.tab==='comparar'){
+    // En modo sermón, Comparar/Comentarios/Notas/Mapas/Mis prédicas no
+    // reemplazan el panel de Biblia: comparten un segundo panel lado a lado
+    // (ver .sermon-compare-panel), fuera del sistema de panel único que usa
+    // el resto de la app. Ese layout de 3 columnas no se resuelve debajo de
+    // 900px (.sermon-compare-panel queda display:none — ver style.css), así
+    // que por debajo de ese ancho estos cinco caen al sistema de panel único
+    // de siempre (reemplaza a Biblia), igual que cualquier otra pestaña en
+    // móvil — la alternativa era que el ícono no hiciera nada visible ahí.
+    if(sermonMode && SERMON_SIDE_PANEL_TABS.includes(b.dataset.tab) && window.matchMedia('(min-width: 901px)').matches){
       resetXrefMode();
-      toggleSermonComparePanel();
+      toggleSermonSidePanel(b.dataset.tab);
       return;
     }
     resetXrefMode();
