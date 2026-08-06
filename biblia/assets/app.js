@@ -3456,7 +3456,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       : '';
     const patristicRef=`${patristicOpenDoc}-${section.n}`;
     els.panelBody.innerHTML=`<article class="dict-entry history-reader">
-      <div class="dict-entry__term" data-patristic-title="1">${escapeHTML(section.title)}</div>
+      <div class="dict-entry__term" data-patristic-title="1" data-entry-id="${escapeHTML(patristicRef)}">${escapeHTML(section.title)}</div>
       <div class="dict-entry__source" data-patristic-docname="1">${escapeHTML(patristicDocData.manifest.name)}</div>
       ${translationNote}
       <div class="dict-entry__def" data-patristic-body="1">${bodyHtml}</div>
@@ -3649,6 +3649,32 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   els.tabs.forEach(b=>b.addEventListener('click',()=>{
+    // "Notas de Historia" es punto de entrada único: si hay un libro de Historia
+    // o una obra de Padres Apostólicos abierta en lectura, abre el modal de
+    // "Nota rápida" sobre esa entrada en vez de navegar al panel de notas
+    // guardadas — así no hace falta cerrar el libro para tomar una nota. Sin
+    // nada abierto, se comporta igual que cualquier otro botón del riel.
+    // Padres en modo "Por versículo" queda fuera a propósito (no tiene una
+    // "entrada de lectura" equivalente y no se debe tocar ese modo).
+    // Se evalúa ANTES del gate de "armar" de íconos móviles (isMobileTool más
+    // abajo) a propósito: abrir el modal es un overlay, no una navegación que
+    // arriesgue perder el lugar de lectura, así que no debe requerir el doble
+    // toque de confirmación que sí tiene el resto del dock móvil. Antes de
+    // este fix, en el celular el primer toque solo armaba el ícono (sin abrir
+    // nada) y hacía falta un segundo toque — Juan lo reportó como que el
+    // ícono "no funcionaba" (2026-08-06).
+    if(b.dataset.tab==='historia-notas' && window.VerboHistoriaNotaRapida){
+      if(activeTab==='historia' && churchHistoryOpenId){
+        clearMobileToolArm();
+        window.VerboHistoriaNotaRapida.openForCurrentEntry('historia');
+        return;
+      }
+      if(activeTab==='padres' && patristicMode==='docs' && patristicOpenDoc && patristicOpenSection!=null){
+        clearMobileToolArm();
+        window.VerboHistoriaNotaRapida.openForCurrentEntry('padres');
+        return;
+      }
+    }
     const isMobileTool = b.classList.contains('mobile-tool-btn') && window.matchMedia('(max-width: 760px)').matches;
     if(isMobileTool){
       if(armedMobileTool !== b){
@@ -3660,15 +3686,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
       }
       clearMobileToolArm();
-    }
-    // "Notas de Historia" es punto de entrada único: si hay un libro de Historia
-    // abierto en lectura (mismo panel 'historia', misma entrada), abre el modal
-    // de "Nota rápida" sobre esa entrada en vez de navegar al panel de notas
-    // guardadas — así no hace falta cerrar el libro para tomar una nota. Sin
-    // libro abierto, se comporta igual que cualquier otro botón del riel.
-    if(b.dataset.tab==='historia-notas' && activeTab==='historia' && churchHistoryOpenId && window.VerboHistoriaNotaRapida){
-      window.VerboHistoriaNotaRapida.openForCurrentEntry();
-      return;
     }
     // En modo sermón, "Comparar versiones" no reemplaza el panel de Biblia:
     // abre/cierra un segundo panel lado a lado (ver .sermon-compare-panel),

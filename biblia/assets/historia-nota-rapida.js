@@ -1,12 +1,16 @@
-/* Modal de "nota rápida" para el panel de lectura de Historia de la Iglesia.
-   Componente aditivo y autocontenido: no toca module-loader.js. Se expone
-   como window.VerboHistoriaNotaRapida.openForCurrentEntry() para que el
+/* Modal de "nota rápida" para el panel de lectura de Historia de la Iglesia
+   y Padres Apostólicos. Componente aditivo y autocontenido: no toca
+   module-loader.js. Se expone como
+   window.VerboHistoriaNotaRapida.openForCurrentEntry(tipo) para que el
    ícono lateral "Notas de Historia" (listener en app.js) lo dispare cuando
-   hay un libro abierto en lectura, en vez de navegar al panel de notas
-   guardadas — ese es hoy el único punto de entrada a este modal.
-   Reutiliza window.VerboBackup.setNota()/getNotaObj() — mismo array 'notas'
-   (tipo:'historia') que ya usa el panel "Notas de Historia" — así que una
-   nota guardada acá aparece igual ahí, sin estructura de datos nueva.
+   hay un libro/obra abierto en lectura, en vez de navegar al panel de notas
+   guardadas — ese es hoy el único punto de entrada a este modal. tipo
+   ('historia' o 'padres') decide solo bajo qué etiqueta se guarda la nota
+   (ver currentTipo/TIPO_DEFAULT) — el resto del modal es igual para ambos.
+   Reutiliza window.VerboBackup.addNota() — mismo array 'notas' que ya usa el
+   panel "Notas de Historia" (que ya lista tipo:'historia' y tipo:'padres'
+   juntos) — así que una nota guardada acá aparece igual ahí, sin estructura
+   de datos nueva.
 
    ref/obra/capítulo de la entrada actual se leen del DOM ya renderizado
    (data-entry-id, .dict-entry__source, título) en vez de llamar a las
@@ -20,7 +24,7 @@
    Biblia y del editor embebido de Padres, que sí son una nota por ubicación
    y siguen usando setNota()/getNotaObj()). */
 (() => {
-  const TIPO = 'historia';
+  const TIPO_DEFAULT = 'historia';
 
   function tr(key, fallback) {
     return (window.VerboI18n && window.VerboI18n.t(key)) || fallback;
@@ -46,7 +50,7 @@
   }
 
   let overlay = null, titleInput, textArea, statusEl, contextEl, saveBtn, closeBtn, headingEl;
-  let lastFocused = null, currentRef = null, currentContexto = null;
+  let lastFocused = null, currentRef = null, currentContexto = null, currentTipo = TIPO_DEFAULT;
 
   function applyLabels() {
     if (!overlay) return;
@@ -99,7 +103,7 @@
     const texto = textArea.value.trim();
     if (!texto) return;
     window.VerboBackup.addNota(currentRef, textArea.value, {
-      tipo: TIPO, titulo: titleInput.value, contexto: currentContexto,
+      tipo: currentTipo, titulo: titleInput.value, contexto: currentContexto,
     });
     // Limpia el formulario: cada Guardar es una nota nueva, no una edición
     // de la anterior — deja el modal listo para otra nota rápida sin cerrar.
@@ -109,10 +113,11 @@
     requestAnimationFrame(() => titleInput.focus());
   }
 
-  function open(info) {
+  function open(info, tipo) {
     buildOverlay();
     applyLabels(); // por si cambió el idioma desde la última apertura
     currentRef = info.ref;
+    currentTipo = tipo || TIPO_DEFAULT;
     currentContexto = { obra: info.obra, capitulo: info.capitulo };
     titleInput.value = '';
     textArea.value = '';
@@ -130,10 +135,13 @@
   }
 
   // Punto de entrada único: app.js llama a esto desde el listener del ícono
-  // lateral "Notas de Historia" cuando detecta un libro abierto en lectura.
-  function openForCurrentEntry() {
+  // lateral "Notas de Historia" cuando detecta un libro/obra abierto en
+  // lectura (Historia de la Iglesia o Padres Apostólicos — ver tipo). ref/obra/
+  // capítulo siguen leyéndose del DOM genérico (currentEntryInfo); tipo decide
+  // solo bajo qué etiqueta se guarda la nota (VerboBackup.addNota).
+  function openForCurrentEntry(tipo) {
     const info = currentEntryInfo();
-    if (info) open(info);
+    if (info) open(info, tipo);
   }
   window.VerboHistoriaNotaRapida = { openForCurrentEntry };
 

@@ -13,7 +13,11 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
-  z-index: 1000;
+  /* Por encima del dock móvil (1200) y del panel abierto en móvil (1100,
+     ver .side-panel--open en style.css) — con z-index:1000 el modal quedaba
+     tapado por ambos en viewports ≤760px y era invisible en el celular,
+     aunque el overlay sí se creaba y el clic de Guardar sí funcionaba. */
+  z-index: 3000;
 }
 .hnr-overlay[hidden] { display: none; }
 
