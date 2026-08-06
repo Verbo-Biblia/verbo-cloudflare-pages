@@ -50,14 +50,6 @@
     <circle cx="414" cy="604" r="3.5"/>
   </g>
 
-  <!-- Título grabado en la portada -->
-  <text x="233" y="58" text-anchor="middle" fill="#F3ECDC"
-    font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="700"
-    letter-spacing="0.1">
-      <tspan x="233" dy="0">Continuadores de Eusebio</tspan>
-  </text>
-  <line x1="70" y1="76" x2="396" y2="76" stroke="url(#goldLine)" stroke-width="0.8" opacity="0.45"/>
-
   <!-- CENTRAL SIGNATURE: three quills fanned/interlaced — three authors (Sócrates, Sozomeno, Teodoreto) continuing one work -->
   <g transform="translate(233,300)">
     <circle r="130" fill="none" stroke="url(#goldLine)" stroke-width="1.4" opacity="0.5"/>

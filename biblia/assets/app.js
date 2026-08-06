@@ -2117,7 +2117,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
   // ── Historia de la Iglesia (buscador independiente, sin ancla a versículo) ──
-  let churchHistoryEntries=null, churchHistoryQuery='', churchHistoryOpenId=null, churchHistoryResultsToken=0, churchHistoryTocToken=0;
+  let churchHistoryEntries=null, churchHistoryQuery='', churchHistoryOpenId=null, churchHistoryResultsToken=0, churchHistoryTocToken=0, churchShelfToken=0;
   let churchHistoryActiveFilter=null;
   let churchHistoryTranslatedQuery='', churchHistoryQueryToken=0, churchHistoryQueryDebounce=null;
   let churchHistorySemanticResults=[], churchHistorySemanticQuery='', churchHistorySemanticToken=0, churchHistorySemanticDebounce=null;
@@ -2484,9 +2484,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   function churchHistoryShelfItemHTML(volume){
     return `<div class="church-shelf__item" data-shelf-volume="${escapeHTML(volume.id)}" tabindex="0" role="group" aria-label="${escapeHTML(volume.titulo)}">
       <img class="church-shelf__cover" src="${escapeHTML(volume.cover)}" alt="" loading="lazy">
+      <div class="church-shelf__title" data-shelf-title="${escapeHTML(volume.id)}">${escapeHTML(volume.titulo)}</div>
       <div class="church-shelf__overlay">
-        ${volume.periodo?`<div class="church-shelf__overlay-period">${escapeHTML(volume.periodo)}</div>`:''}
-        <p class="church-shelf__overlay-summary">${escapeHTML(volume.resumenBreve||'')}</p>
+        ${volume.periodo?`<div class="church-shelf__overlay-period" data-shelf-period="${escapeHTML(volume.id)}">${escapeHTML(volume.periodo)}</div>`:''}
+        <p class="church-shelf__overlay-summary" data-shelf-summary="${escapeHTML(volume.id)}">${escapeHTML(volume.resumenBreve||'')}</p>
         <button type="button" class="church-shelf__read-btn" data-shelf-read="${escapeHTML(volume.id)}">${t('historia.leer')} →</button>
       </div>
     </div>`;
@@ -2512,6 +2513,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     els.panelBody.innerHTML=`<div class="church-shelf">${churchHistoryShelf.map(churchHistoryShelfItemHTML).join('')}</div>
       <button type="button" class="church-shelf__search-link" id="churchHistoryGoSearch">${t('historia.buscarEnTodo')}</button>`;
     wireChurchHistoryShelf();
+    applyChurchShelfTranslation(churchHistoryShelf,'historia');
     document.getElementById('churchHistoryGoSearch')?.addEventListener('click',()=>{
       churchHistorySearchActive=true;
       renderChurchHistoryPanel();
@@ -2573,8 +2575,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const groups=churchHistoryTocGroups(volumeId, entries);
     els.panelBody.innerHTML=`${backBtn}
       <div class="history-toc__header">
-        <div class="history-toc__title">${escapeHTML(shelfMeta?.titulo || volumeId)}</div>
-        ${shelfMeta?.periodo?`<div class="history-toc__period">${escapeHTML(shelfMeta.periodo)}</div>`:''}
+        <div class="history-toc__title" data-shelf-title="${escapeHTML(volumeId)}">${escapeHTML(shelfMeta?.titulo || volumeId)}</div>
+        ${shelfMeta?.periodo?`<div class="history-toc__period" data-shelf-period="${escapeHTML(volumeId)}">${escapeHTML(shelfMeta.periodo)}</div>`:''}
       </div>
       <div class="history-toc">${groups.map(churchHistoryTocGroupHTML).join('')}</div>`;
     document.getElementById('backToChurchHistoryShelf')?.addEventListener('click',churchHistoryBackToShelf);
@@ -2585,6 +2587,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
     });
     applyChurchHistoryTocTranslation(entries);
+    if(shelfMeta) applyChurchShelfTranslation([shelfMeta],'historia');
   }
 
   // Traduce las filas del índice (antes solo se traducía la entrada ya abierta
@@ -2613,6 +2616,47 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     }
     await Promise.all(Array.from({length:Math.min(4,entries.length)},worker));
+  }
+
+  // Traduce el título (fijo en el DOM otra vez, ya no dibujado en el SVG de
+  // portada — ver decisión revertida el 2026-08-06) y el resumen/periodo de
+  // cada tarjeta del estante — se usa para Historia (prefix "historia") y
+  // Padres Apostólicos (prefix "padres"). Los tres campos vienen curados a
+  // mano por Juan en shelf.json, siempre en español (sourceLang fijo 'es').
+  async function applyChurchShelfTranslation(volumes, prefix){
+    const target=contentLang();
+    if(target==='es') return;
+    const token=++churchShelfToken;
+    let index=0;
+    async function worker(){
+      while(index<volumes.length){
+        if(token!==churchShelfToken) return;
+        const volume=volumes[index++];
+        const noteId=`${prefix}:shelf:${volume.id}`;
+        const titleEl=els.panelBody.querySelector(`[data-shelf-title="${CSS.escape(volume.id)}"]`);
+        if(titleEl && titleEl.dataset.translated!==target && volume.titulo){
+          const translated=await translateCommentaryHeader(noteId,'title',volume.titulo,'es',target);
+          if(token!==churchShelfToken) return;
+          titleEl.textContent=translated;
+          titleEl.dataset.translated=target;
+        }
+        const periodEl=els.panelBody.querySelector(`[data-shelf-period="${CSS.escape(volume.id)}"]`);
+        if(periodEl && periodEl.dataset.translated!==target && volume.periodo){
+          const translated=await translateCommentaryHeader(noteId,'period',volume.periodo,'es',target);
+          if(token!==churchShelfToken) return;
+          periodEl.textContent=translated;
+          periodEl.dataset.translated=target;
+        }
+        const summaryEl=els.panelBody.querySelector(`[data-shelf-summary="${CSS.escape(volume.id)}"]`);
+        if(summaryEl && summaryEl.dataset.translated!==target && volume.resumenBreve){
+          const translated=await translateCommentaryHeader(noteId,'summary',volume.resumenBreve,'es',target);
+          if(token!==churchShelfToken) return;
+          summaryEl.textContent=translated;
+          summaryEl.dataset.translated=target;
+        }
+      }
+    }
+    await Promise.all(Array.from({length:Math.min(4,volumes.length)},worker));
   }
 
   function renderChurchHistorySuggestionChips(){
@@ -3214,9 +3258,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   function patristicShelfItemHTML(volume){
     return `<div class="church-shelf__item" data-patristic-shelf-volume="${escapeHTML(volume.id)}" tabindex="0" role="group" aria-label="${escapeHTML(volume.titulo)}">
       <img class="church-shelf__cover" src="${escapeHTML(volume.cover)}" alt="" loading="lazy">
+      <div class="church-shelf__title" data-shelf-title="${escapeHTML(volume.id)}">${escapeHTML(volume.titulo)}</div>
       <div class="church-shelf__overlay">
-        ${volume.periodo?`<div class="church-shelf__overlay-period">${escapeHTML(volume.periodo)}</div>`:''}
-        <p class="church-shelf__overlay-summary">${escapeHTML(volume.resumenBreve||'')}</p>
+        ${volume.periodo?`<div class="church-shelf__overlay-period" data-shelf-period="${escapeHTML(volume.id)}">${escapeHTML(volume.periodo)}</div>`:''}
+        <p class="church-shelf__overlay-summary" data-shelf-summary="${escapeHTML(volume.id)}">${escapeHTML(volume.resumenBreve||'')}</p>
         <button type="button" class="church-shelf__read-btn" data-patristic-shelf-read="${escapeHTML(volume.id)}">${t('historia.leer')} →</button>
       </div>
     </div>`;
@@ -3343,6 +3388,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const shelfVolumes=(patristicShelf||[]).filter(v=>patristicCatalog.some(d=>d.id===v.id));
     els.panelBody.innerHTML=`<div class="church-shelf">${shelfVolumes.map(patristicShelfItemHTML).join('')}</div>`;
     wirePatristicShelf();
+    applyChurchShelfTranslation(shelfVolumes,'padres');
   }
 
   let patristicDocData=null;
