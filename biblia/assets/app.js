@@ -2476,7 +2476,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     return `<div class="church-shelf__item" data-shelf-volume="${escapeHTML(volume.id)}" tabindex="0" role="group" aria-label="${escapeHTML(volume.titulo)}">
       <img class="church-shelf__cover" src="${escapeHTML(volume.cover)}" alt="" loading="lazy">
       <div class="church-shelf__overlay">
-        <div class="church-shelf__overlay-title">${escapeHTML(volume.titulo)}</div>
         ${volume.periodo?`<div class="church-shelf__overlay-period">${escapeHTML(volume.periodo)}</div>`:''}
         <p class="church-shelf__overlay-summary">${escapeHTML(volume.resumenBreve||'')}</p>
         <button type="button" class="church-shelf__read-btn" data-shelf-read="${escapeHTML(volume.id)}">${t('historia.leer')} →</button>
@@ -3207,7 +3206,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     return `<div class="church-shelf__item" data-patristic-shelf-volume="${escapeHTML(volume.id)}" tabindex="0" role="group" aria-label="${escapeHTML(volume.titulo)}">
       <img class="church-shelf__cover" src="${escapeHTML(volume.cover)}" alt="" loading="lazy">
       <div class="church-shelf__overlay">
-        <div class="church-shelf__overlay-title" data-patristic-doc-name="${escapeHTML(volume.id)}">${escapeHTML(volume.titulo)}</div>
         ${volume.periodo?`<div class="church-shelf__overlay-period">${escapeHTML(volume.periodo)}</div>`:''}
         <p class="church-shelf__overlay-summary">${escapeHTML(volume.resumenBreve||'')}</p>
         <button type="button" class="church-shelf__read-btn" data-patristic-shelf-read="${escapeHTML(volume.id)}">${t('historia.leer')} →</button>
@@ -3336,41 +3334,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const shelfVolumes=(patristicShelf||[]).filter(v=>patristicCatalog.some(d=>d.id===v.id));
     els.panelBody.innerHTML=`<div class="church-shelf">${shelfVolumes.map(patristicShelfItemHTML).join('')}</div>`;
     wirePatristicShelf();
-    translatePatristicDocNames();
-  }
-
-  // Traduce los nombres de los documentos patrísticos de nivel 1 (ej. "Epístola
-  // de Bernabé") — antes solo el cuerpo de cada sección se traducía; el nombre
-  // del documento se quedaba siempre en su idioma original. Se agrupa por
-  // idioma fuente y se traduce en un solo request por grupo (documentos
-  // suficientemente pocos y cortos para no necesitar troceo).
-  async function translatePatristicDocNames(){
-    const target=contentLang();
-    const pending=patristicCatalog.filter(d=>(d.manifest.language||'es')!==target);
-    if(!pending.length) return;
-    const bySource=new Map();
-    pending.forEach(d=>{
-      const source=d.manifest.language||'es';
-      if(!bySource.has(source)) bySource.set(source,[]);
-      bySource.get(source).push(d);
-    });
-    const DELIM='\n@@@\n';
-    for(const [source,docs] of bySource){
-      const cacheKey=translationCacheKey(`patristic-doclist:${source}`, docs.map(d=>d.full).join(DELIM), target);
-      let translatedNames=tcacheGet(cacheKey);
-      if(!translatedNames){
-        const translated=await googleTranslate(docs.map(d=>d.full).join(DELIM), source, target);
-        if(!translated) continue;
-        const parts=translated.split(/\s*@@@\s*/).map(x=>x.trim());
-        if(parts.length!==docs.length) continue; // el delimitador se rompió en la traducción; no aplicar nada
-        translatedNames=parts;
-        tcacheSet(cacheKey, translatedNames);
-      }
-      docs.forEach((d,i)=>{
-        const el=els.panelBody.querySelector(`[data-patristic-doc-name="${d.id}"]`);
-        if(el){ el.textContent=translatedNames[i]; el.dataset.translated=target; }
-      });
-    }
   }
 
   let patristicDocData=null;

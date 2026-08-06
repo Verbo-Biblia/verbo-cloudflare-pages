@@ -911,12 +911,6 @@ body {
   opacity: 1;
   pointer-events: auto;
 }
-.church-shelf__overlay-title {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 13.5px;
-  line-height: 1.25;
-}
 .church-shelf__overlay-period {
   font-family: var(--font-mono);
   font-size: 10.5px;

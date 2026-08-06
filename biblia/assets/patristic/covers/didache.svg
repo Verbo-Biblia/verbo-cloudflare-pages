@@ -50,6 +50,15 @@
     <circle cx="414" cy="604" r="3.5"/>
   </g>
 
+  <!-- Título grabado en la portada -->
+  <text x="233" y="52" text-anchor="middle" fill="#F3ECDC"
+    font-family="Georgia, 'Times New Roman', serif" font-size="18" font-weight="700"
+    letter-spacing="0.2">
+      <tspan x="233" dy="0">La Didaché — Enseñanza de los Doce</tspan>
+      <tspan x="233" dy="22">Apóstoles</tspan>
+  </text>
+  <line x1="80" y1="90" x2="386" y2="90" stroke="url(#goldLine)" stroke-width="0.8" opacity="0.45"/>
+
   <!-- CENTRAL SIGNATURE: el camino que se bifurca — las Dos Vías, estructura central de la Didaché -->
   <g transform="translate(233,300)">
     <circle r="130" fill="none" stroke="url(#goldLine)" stroke-width="1.4" opacity="0.5"/>

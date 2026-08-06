@@ -50,6 +50,14 @@
     <circle cx="414" cy="604" r="3.5"/>
   </g>
 
+  <!-- Título grabado en la portada -->
+  <text x="233" y="52" text-anchor="middle" fill="#F3ECDC"
+    font-family="Georgia, 'Times New Roman', serif" font-size="18" font-weight="700"
+    letter-spacing="0.2">
+      <tspan x="233" dy="0">Fragmentos de Papías de Hierápolis</tspan>
+  </text>
+  <line x1="80" y1="68" x2="386" y2="68" stroke="url(#goldLine)" stroke-width="0.8" opacity="0.45"/>
+
   <!-- CENTRAL SIGNATURE: un rollo fragmentario — lo que queda de las tradiciones orales de los ancianos recogidas por Papías -->
   <g transform="translate(233,300)">
     <circle r="130" fill="none" stroke="url(#goldLine)" stroke-width="1.4" opacity="0.5"/>
