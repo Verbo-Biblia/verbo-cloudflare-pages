@@ -811,17 +811,6 @@ body {
   flex-direction: column;
   gap: 10px;
 }
-.history-note-control__marcar {
-  align-self: flex-start;
-  border: 0;
-  background: transparent;
-  color: var(--wine);
-  cursor: pointer;
-  font-family: var(--font-body);
-  font-size: 12.5px;
-  padding: 2px 0;
-}
-.history-note-control__marcar:hover { text-decoration: underline; }
 .history-note-control__details summary {
   cursor: pointer;
   color: var(--wine-soft);

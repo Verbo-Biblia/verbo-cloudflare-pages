@@ -1571,21 +1571,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     renderHistoriaNotasBody();
   }
 
-  // Control de nota+marcador embebido en la vista de lectura de Padres
-  // Apostólicos (ver historiaNotasOpen/renderHistoriaNotasBody arriba, que
-  // abre directo a esta misma vista). Historia de la Iglesia usaba el mismo
-  // componente completo hasta que su sección "Mis notas" quedó redundante con
-  // el modal de "Nota rápida" (ver historia-nota-rapida.js) disparado desde el
-  // ícono lateral "Notas de Historia" — por eso acepta soloMarcar, para que
-  // Historia siga mostrando el botón de marcador sin duplicar el editor de
-  // nota. Padres Apostólicos sigue llamando sin ese flag, sin cambios.
-  function historiaNotaControlHTML(tipo, ref, opts={}){
-    const marcado=VerboBackup.isMarcado(tipo, ref);
-    const marcarBtn=`<button type="button" class="history-note-control__marcar" id="historiaMarcarBtn">${marcado?t('historiaNotas.marcado'):t('historiaNotas.marcar')}</button>`;
-    if(opts.soloMarcar) return `<div class="history-note-control">${marcarBtn}</div>`;
+  // Control de nota embebido en la vista de lectura de Padres Apostólicos
+  // (ver historiaNotasOpen/renderHistoriaNotasBody arriba, que abre directo a
+  // esta misma vista). Historia de la Iglesia usaba este mismo componente en
+  // modo "solo marcador" hasta que se quitó el botón de marcador (sin uso
+  // real) — Historia ya no lo llama.
+  function historiaNotaControlHTML(tipo, ref){
     const existing=VerboBackup.getNotaObj(ref, tipo);
     return `<div class="history-note-control">
-      ${marcarBtn}
       <details class="history-note-control__details"${existing?.texto?' open':''}>
         <summary>${t('notas.title')}</summary>
         <input type="text" class="editor-pane__title-input" id="historiaNotaTitulo" placeholder="${t('historiaNotas.tituloPlaceholder')}" value="${escapeHTML(existing?.titulo||'')}">
@@ -1594,13 +1587,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       </details>
     </div>`;
   }
-  function wireHistoriaNotaControl(tipo, ref, contexto, opts={}){
-    const marcarBtn=document.getElementById('historiaMarcarBtn');
-    marcarBtn?.addEventListener('click',()=>{
-      const marcado=VerboBackup.toggleMarcador(tipo, ref, contexto);
-      marcarBtn.textContent=marcado?t('historiaNotas.marcado'):t('historiaNotas.marcar');
-    });
-    if(opts.soloMarcar) return;
+  function wireHistoriaNotaControl(tipo, ref, contexto){
     const tituloInput=document.getElementById('historiaNotaTitulo');
     const textoArea=document.getElementById('historiaNotaTexto');
     const status=document.getElementById('historiaNotaStatus');
@@ -2792,7 +2779,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         <button id="churchHistoryExpand" class="history-panel-expand" type="button" aria-pressed="${els.side.classList.contains('side-panel--history-expanded')?'true':'false'}">${els.side.classList.contains('side-panel--history-expanded')?t('historia.vistaCompacta'):t('historia.ampliarLectura')}</button>
       </div>
       <div class="dict-entry__def" data-entry-id="${escapeHTML(entry.id)}">${entry.content||entry.excerpt||''}</div>
-      ${historiaNotaControlHTML('historia', entry.id, {soloMarcar:true})}
       <nav class="history-entry-nav" aria-label="${t('historia.navegacionLectura')}">
         ${previous?`<button type="button" class="history-entry-nav__button" data-history-neighbor="${escapeHTML(previous.id)}">← ${t('historia.anterior')}</button>`:'<span></span>'}
         ${next?`<button type="button" class="history-entry-nav__button" data-history-neighbor="${escapeHTML(next.id)}">${t('historia.siguiente')} →</button>`:'<span></span>'}
@@ -2828,7 +2814,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       renderChurchHistoryEntry(churchHistoryOpenId);
       els.panelBody.scrollTop=0;
     }));
-    wireHistoriaNotaControl('historia', entry.id, {obra:churchHistoryBookLabel(sourceKey), capitulo:churchHistoryTocRowLabel(entry)}, {soloMarcar:true});
     applyChurchHistoryTranslation(entry);
   }
 
@@ -3452,7 +3437,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(!section){ els.panelBody.innerHTML=emptyState('⚠️',t('padres.seccionNoEncontrada')); return; }
     els.panelToolbar.innerHTML=`
       <button class="note-card__copy" id="backToPatristicIndex" type="button">← ${t('padres.volverIndice')}</button>
-      <button class="note-card__copy" id="copyPatristicSection" type="button">${t('padres.copiarSeccion')}</button>
       <button id="patristicExpand" class="history-panel-expand" type="button" aria-pressed="${els.side.classList.contains('side-panel--history-expanded')?'true':'false'}">${els.side.classList.contains('side-panel--history-expanded')?t('historia.vistaCompacta'):t('historia.ampliarLectura')}</button>`;
     document.getElementById('backToPatristicIndex')?.addEventListener('click',()=>{ els.side.classList.remove('side-panel--history-expanded'); patristicOpenSection=null; renderPadresPanel(); els.panelBody.scrollTop=0; });
     document.getElementById('patristicExpand')?.addEventListener('click',event=>{
@@ -3480,10 +3464,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       <div class="dict-entry__def" data-patristic-body="1">${bodyHtml}</div>
       ${historiaNotaControlHTML('padres', patristicRef)}
     </article>`;
-    document.getElementById('copyPatristicSection')?.addEventListener('click',()=>{
-      const visible=els.panelBody.querySelector('[data-patristic-body]')?.innerText || section.content;
-      copyToClipboard(`${section.title}\n${patristicDocData.manifest.name}\n\n${visible.trim()}`);
-    });
     wireHistoriaNotaControl('padres', patristicRef, {obra:patristicDocData.manifest.abbreviation||patristicDocData.manifest.name, capitulo:section.title});
     if(needsTranslation) setTimeout(()=>applyPatristicTranslation(section,source,target), 150);
   }
