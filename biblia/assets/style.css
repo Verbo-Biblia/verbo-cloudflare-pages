@@ -2589,6 +2589,27 @@ body.sermon-mode .tab-rail__btn[data-tab="predicas"] { display: flex; }
 .tab-rail__btn[data-tab="sermon-biblia"] { display: none; }
 body.sermon-mode .tab-rail__btn[data-tab="sermon-biblia"] { display: flex; }
 
+/* Es el ancla del dock en modo sermón: todo lo demás (Comparar/Comentarios/
+   Notas/Mapas/Mis prédicas) gira alrededor de lo que esté abierto aquí — ver
+   "Segundo panel del modo sermón" en app.js. Va primero en el HTML (arriba
+   en el riel vertical, primero en el dock móvil) y con tratamiento visual
+   propio (fondo vino permanente + anillo dorado, no solo al estar activo)
+   para que se sienta como el ícono principal del modo, no uno más de la
+   lista — pedido de Juan (2026-08-06). */
+.tab-rail__btn--primary {
+  background: var(--wine);
+  color: var(--paper-raised);
+  box-shadow: 0 0 0 2px var(--gold-glow);
+}
+.tab-rail__btn--primary:hover {
+  background: var(--wine-soft);
+  color: var(--paper-raised);
+}
+.tab-rail__btn--primary.tab-rail__btn--active {
+  background: var(--wine-soft);
+  box-shadow: 0 0 0 2px var(--gold-glow);
+}
+
 /* ---------- Comparar versiones lado a lado con Biblia en modo sermón ----------
    Segundo panel deslizante, independiente de #sidePanel (que en modo sermón
    muestra "Biblia"). Vive como hermano de #sidePanel dentro de .app-body
