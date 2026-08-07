@@ -95,16 +95,17 @@ Un libro solo puede marcarse como cerrado cuando:
 | Colosenses | 4 | candidato | Revisión integral completada: 4 capítulos y 95 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas); "caridad" modernizado a "amor" en 3:14; preserva "y del Padre, y de Cristo" en 2:2 (TR/RVA1909) y el colofón de 4:18 |
 | 1 Tesalonicenses | 5 | candidato | Revisión integral completada: 5 capítulos y 89 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas); corregido residuo enclítico "Conjúroos" (vosotros fundido) a "les encargo" en 5:27; "caridad" modernizado a "amor" (3:6, 5:8), "salud" a "salvación" (5:8-9), "cota"/"yelmo" a "coraza"/"casco" (5:8), "ósculo santo" a "beso santo" (5:26); preserva "vaso" literal en 4:4 (ambigüedad exegética del griego skeuos, sin tomar partido) y el colofón de 5:28 |
 | 2 Tesalonicenses | 3 | candidato | Revisión integral completada: 3 capítulos y 47 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas); "caridad" modernizado a "amor" (1:3), "salud" a "salvación" (2:13), "denunciamos/denunciábamos" a "mandamos/ordenábamos" (3:6, 3:10), "dechado" a "ejemplo" (3:9); corregido "Salud de mi mano" (saludo, no salvación) a "El saludo de mi propia mano" en 3:17 para evitar ambigüedad; preserva el colofón de 3:18 |
-| 1 Timoteo–Apocalipsis | 70 | pendiente | Restan 13 libros después de 2 Tesalonicenses |
+| 1 Timoteo | 6 | candidato | Revisión integral completada: 6 capítulos y 113 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas); "obispado/obispo" modernizado a "cargo de supervisor/supervisor" (3:1-2, consistente con Filipenses 1:1 y Hechos 20:28), "caridad" a "amor" (1:5, 2:15, 4:12, 6:11), "hacimiento(s) de gracias" a "acción/acciones de gracias" (2:1, 4:3-4); corregido "creó hijos" (crear) a "crió hijos" (criar) en 5:10 — error de conversión, no arcaísmo; corregida forma subjuntivo futuro residual "propusieres" a indicativo presente "expones" en 4:6 (regla "si"+subjuntivo futuro→indicativo presente); "Adam" a "Adán", "Gentiles" a "gentiles"; preserva "Dios ha sido manifestado en carne" en 3:16 (TR/RVA1909, frente a "quien"/"who" del texto crítico BSB/ASV) |
+| 2 Timoteo–Apocalipsis | 64 | pendiente | Restan 12 libros después de 1 Timoteo |
 
 ## Orden de trabajo
 
 Se seguirá el orden canónico, cerrando cada libro antes de declarar terminado el
 proyecto: Génesis, Éxodo, Levítico, Números, Deuteronomio y así sucesivamente
 hasta Apocalipsis. Los cuatro evangelios, Hechos, Romanos, 1 y 2 Corintios,
-Gálatas, Efesios, Filipenses, Colosenses, 1 Tesalonicenses y 2 Tesalonicenses
-quedaron completamente revisados y publicados; el próximo punto exacto es
-1 Timoteo 1.
+Gálatas, Efesios, Filipenses, Colosenses, 1 Tesalonicenses, 2 Tesalonicenses
+y 1 Timoteo quedaron completamente revisados y publicados; el próximo punto
+exacto es 2 Timoteo 1.
 
 ## Publicación
 
@@ -114,9 +115,9 @@ Lamentaciones y Ezequiel quedaron completamente revisados, validados y publicado
 Daniel, Oseas, Joel, Amós, Abdías, Jonás, Miqueas, Nahúm, Habacuc, Sofonías,
 Hageo, Zacarías, Malaquías, Mateo, Marcos, Lucas, Juan, Hechos, Romanos,
 1 Corintios, 2 Corintios, Gálatas, Efesios, Filipenses, Colosenses,
-1 Tesalonicenses y 2 Tesalonicenses quedaron completamente revisados,
-validados y publicados; la revisión continúa desde 1 Timoteo 1. No se
-declarará completa ni oficial la Biblia hasta cerrar los 66 libros.
+1 Tesalonicenses, 2 Tesalonicenses y 1 Timoteo quedaron completamente
+revisados, validados y publicados; la revisión continúa desde 2 Timoteo 1.
+No se declarará completa ni oficial la Biblia hasta cerrar los 66 libros.
 
 ## Cambio de repositorio (2026-08-07)
 
