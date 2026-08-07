@@ -88,14 +88,16 @@ Un libro solo puede marcarse como cerrado cuando:
 | Hechos | 28 | candidato | Revisión integral completada: 28 capítulos y 1.006 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas); preserva lecturas TR/RVA1909 frente al texto crítico en 8:37, 15:34, 18:21, 24:6-8 y 28:29 |
 | Romanos | 16 | candidato | Revisión integral completada: 16 capítulos y 433 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas); preserva la doxología final de 16:24 (TR/RVA1909, ausente en texto crítico) y el colofón de 16:27 |
 | 1 Corintios | 16 | candidato | Revisión integral completada: 16 capítulos y 437 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas); "caridad" (RVA1909) modernizado a "amor" en el capítulo 13; preserva "Maranata" (16:22) y el colofón de 16:24 |
-| 2 Corintios–Apocalipsis | 111 | pendiente | Restan 20 libros después de 1 Corintios |
+| 2 Corintios | 13 | candidato | Revisión integral completada: 13 capítulos y 256 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas); conserva el colofón de 13:13 |
+| Gálatas–Apocalipsis | 98 | pendiente | Restan 19 libros después de 2 Corintios |
 
 ## Orden de trabajo
 
 Se seguirá el orden canónico, cerrando cada libro antes de declarar terminado el
 proyecto: Génesis, Éxodo, Levítico, Números, Deuteronomio y así sucesivamente
-hasta Apocalipsis. Los cuatro evangelios, Hechos, Romanos y 1 Corintios quedaron
-completamente revisados y publicados; el próximo punto exacto es 2 Corintios 1.
+hasta Apocalipsis. Los cuatro evangelios, Hechos, Romanos, 1 Corintios y
+2 Corintios quedaron completamente revisados y publicados; el próximo punto
+exacto es Gálatas 1.
 
 ## Publicación
 
@@ -103,10 +105,10 @@ Juan autorizó expresamente subir cada libro cuando quede cerrado, y pidió
 intentar terminar la Biblia completa sin pausar (2026-08-07). Jeremías,
 Lamentaciones y Ezequiel quedaron completamente revisados, validados y publicados.
 Daniel, Oseas, Joel, Amós, Abdías, Jonás, Miqueas, Nahúm, Habacuc, Sofonías,
-Hageo, Zacarías, Malaquías, Mateo, Marcos, Lucas, Juan, Hechos, Romanos y
-1 Corintios quedaron completamente revisados, validados y publicados; la
-revisión continúa desde 2 Corintios 1. No se declarará completa ni oficial la
-Biblia hasta cerrar los 66 libros.
+Hageo, Zacarías, Malaquías, Mateo, Marcos, Lucas, Juan, Hechos, Romanos,
+1 Corintios y 2 Corintios quedaron completamente revisados, validados y
+publicados; la revisión continúa desde Gálatas 1. No se declarará completa ni
+oficial la Biblia hasta cerrar los 66 libros.
 
 ## Cambio de repositorio (2026-08-07)
 
