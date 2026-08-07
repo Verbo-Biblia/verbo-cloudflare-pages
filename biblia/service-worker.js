@@ -112,9 +112,10 @@ self.addEventListener('fetch', event => {
   if (request.method !== 'GET') return;
 
   const url = new URL(request.url);
-  // Solo cachear lo propio de /biblia/ — no interceptar las llamadas a
-  // traducción (translate.googleapis.com), API.Bible remoto, MyMemory, etc.
-  // Esos siguen su camino normal de red, sin pasar por este Service Worker.
+  // Solo cachear lo propio de /biblia/ — no interceptar llamadas a otros
+  // orígenes (el Worker verbo-api-bible: traducción vía POST /translate,
+  // proxy de API.Bible, sincronización). Esos siguen su camino normal de
+  // red, sin pasar por este Service Worker.
   if (url.origin !== self.location.origin || !url.pathname.startsWith('/biblia/')) return;
 
   event.respondWith(isShellRequest(request, url) ? networkFirst(request) : cacheFirst(request));
