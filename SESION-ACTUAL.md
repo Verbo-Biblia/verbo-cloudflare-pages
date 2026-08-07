@@ -11,33 +11,35 @@ aquí. Desde esta sesión, todo el trabajo del Nuevo Testamento continúa en
 
 ## Próximo punto exacto
 
-- Mateo, Marcos, Lucas, Juan, Hechos, Romanos, 1 Corintios y 2 Corintios
-  quedaron completamente cerrados (2026-08-07): Mateo, 28 capítulos y
-  1.071 versículos; Marcos, 16 capítulos y 678 versículos; Lucas, 24
-  capítulos y 1.151 versículos; Juan, 21 capítulos y 879 versículos;
-  Hechos, 28 capítulos y 1.006 versículos; Romanos, 16 capítulos y 433
-  versículos; 1 Corintios, 16 capítulos y 437 versículos; 2 Corintios, 13
-  capítulos y 256 versículos; todos con validación de calidad sobre el
-  libro completo, 0 problemas (sin desajuste de conteo vs. RVA1909, sin
-  campos vacíos, sin arcaísmos "vosotros" residuales, sin comillas
-  indebidas).
+- Mateo, Marcos, Lucas, Juan, Hechos, Romanos, 1 Corintios, 2 Corintios y
+  Gálatas quedaron completamente cerrados (2026-08-07): Mateo, 28
+  capítulos y 1.071 versículos; Marcos, 16 capítulos y 678 versículos;
+  Lucas, 24 capítulos y 1.151 versículos; Juan, 21 capítulos y 879
+  versículos; Hechos, 28 capítulos y 1.006 versículos; Romanos, 16
+  capítulos y 433 versículos; 1 Corintios, 16 capítulos y 437 versículos;
+  2 Corintios, 13 capítulos y 256 versículos; Gálatas, 6 capítulos y 149
+  versículos; todos con validación de calidad sobre el libro completo, 0
+  problemas (sin desajuste de conteo vs. RVA1909, sin campos vacíos, sin
+  arcaísmos "vosotros" residuales, sin comillas indebidas).
 - **Instrucción vigente (2026-08-07):** Juan pidió intentar terminar la
   Biblia completa sin detenerse ("intenta terminar la biblia, no se si los
   tokens me alcanzan"). El trabajo continúa de forma continua por el resto
   de las epístolas hasta Apocalipsis, publicando cada libro al cerrarlo,
   hasta que se acaben los tokens de la sesión o Juan pida detenerse.
-- Siguiente archivo: `biblia/modules/bibles/rv-verbo/books/GAL.json`.
-- Nota de método (aplica a Hechos, Romanos, 1 y 2 Corintios, y
+- Siguiente archivo: `biblia/modules/bibles/rv-verbo/books/EPH.json`.
+- Nota de método (aplica a Hechos, Romanos, 1-2 Corintios y Gálatas, y
   previsiblemente al resto de epístolas): varios versículos con lectura
   Textus Receptus/RVA1909 sin paralelo en el texto crítico moderno
   (BSB/ASV) se preservaron íntegros, conforme al método ya establecido
   (RVA1909 controla estructura y variantes textuales): Hechos 8:37, 15:34,
   18:21, 24:6-8, 28:29; Romanos 16:24 (doxología final); 1 Corintios 10:28
-  (cláusula repetida), 11:24 ("Tomen, coman"), 15:47 ("que es el Señor").
-  También: "caridad" (RVA1909) se modernizó a "amor" en 1 Corintios 13,
-  consistente con el resto del NT ya publicado. Los colofones finales de
-  cada epístola (quién la escribió, desde dónde se envió) se conservan
-  como parte del último versículo, igual que en Romanos y 1-2 Corintios.
+  (cláusula repetida), 11:24 ("Tomen, coman"), 15:47 ("que es el Señor");
+  Gálatas 5:19 ("adulterio" en la lista de obras de la carne). También:
+  "caridad" (RVA1909) se modernizó a "amor" en 1 Corintios 13 y Gálatas
+  5:6, 5:22, consistente con el resto del NT ya publicado. Los colofones
+  finales de cada epístola (quién la escribió, desde dónde se envió) se
+  conservan como parte del último versículo, igual que en Romanos,
+  1-2 Corintios y Gálatas.
 - Nota de estilo confirmada en Juan 1–17 (ya presente antes de esta sesión,
   también usada en Marcos y Lucas): las comillas curvas “” SÍ se usan, pero
   solo para citas o discurso anidado dentro de otro discurso (p. ej. una cita
