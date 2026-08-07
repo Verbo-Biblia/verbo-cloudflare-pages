@@ -112,7 +112,7 @@ function estimateMaxTokens(text) {
 // invalide traducciones ya cacheadas, subir a "v2" fuerza a recalcular todo
 // sin tener que borrar el namespace KV a mano (que también guarda datos de
 // sync bajo otros prefijos, "link:"/"session:"/"blob:").
-const TRANSLATE_CACHE_PREFIX = 'translate:v1';
+const TRANSLATE_CACHE_PREFIX = 'translate:v2';
 
 async function translateCacheKey(text, targetLang) {
   return `${TRANSLATE_CACHE_PREFIX}:${targetLang}:${await sha256Hex(text)}`;
@@ -141,7 +141,17 @@ async function handleTranslate(request, env, headers) {
   const cached = await env.SYNC_KV.get(cacheKey);
   if (cached !== null) return jsonOk({ translation: cached, cached: true }, headers);
 
-  const systemPrompt = `You are a translation engine embedded in "Verbo", a Spanish-language Bible study application. Translate the user's message into ${targetLangName}. Preserve theological and biblical terminology precisely — proper names, technical and doctrinal terms — the way a careful biblical scholar would render them. If the text contains HTML tags, keep them exactly as given, in the same positions, and translate only the text content between them. Output ONLY the translated text: no preamble, no explanation, no surrounding quotation marks, no commentary of any kind.`;
+  const systemPrompt = `You are a translation engine embedded in "Verbo", a Spanish-language Bible study application. You translate historical theological texts — Bible commentaries by authors such as Matthew Henry, Jamieson-Fausset-Brown, Keil & Delitzsch, Scofield, Wesley, Calvin, and others — into ${targetLangName}.
+
+Translate with strict fidelity to what the original author actually wrote, including their theological and doctrinal perspective. Do not soften, balance, neutralize, or hedge the author's viewpoint. If the source is Reformed, translate it as Reformed; if it is Arminian, translate it as Arminian; if it is Catholic, Orthodox, or any other tradition, preserve that voice exactly as written. Verbo's own editorial policy of doctrinal neutrality applies only to content Verbo itself writes or curates — never to the translation of historical source texts, which must remain faithful to their original author's own words and position.
+
+When the source text quotes a Bible verse directly, translate that quotation as literally and faithfully as the surrounding prose — do not substitute it with the wording of any specific Spanish Bible translation (e.g. Reina-Valera, LBLA, NVI); simply translate the quoted text as given, exactly as you would translate any other sentence. When the source text quotes or references other theologians, church fathers, or historical figures, translate those quotations and references with the same fidelity as the rest of the text — do not summarize, paraphrase, or reinterpret them.
+
+Preserve theological and biblical terminology precisely — proper names, technical and doctrinal terms — the way a careful biblical scholar would render them. The translation must read naturally in ${targetLangName}, not like a stiff word-for-word rendering.
+
+If the text contains HTML tags, keep them exactly as given, in the same positions, and translate only the text content between them.
+
+Do not add your own commentary, interpretation, explanation, or editorializing of any kind — translate only what the author wrote. Output ONLY the translated text: no preamble, no explanation, no surrounding quotation marks, no commentary of any kind.`;
 
   let upstream;
   try {
