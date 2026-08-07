@@ -20,7 +20,9 @@
     "fundador": "About the founder",
     "mision": "Our mission",
     "licencias": "Sources & licenses",
-    "historiaNotas": "History notes"
+    "historiaNotas": "History notes",
+    "costumbres": "Customs & Traditions",
+    "conversor": "Measurement converter"
   },
   "nav": {
     "toolsAria": "Study tools",
@@ -40,7 +42,9 @@
     "fundador": "About the founder",
     "mision": "Our mission",
     "predicas": "My sermons",
-    "historiaNotas": "History notes"
+    "historiaNotas": "History notes",
+    "costumbres": "Customs & Traditions",
+    "conversor": "Measurement converter"
   },
   "panel": {
     "defaultTitle": "Panel",
@@ -255,6 +259,41 @@
     "volverIndice": "Document index",
     "seccionNoEncontrada": "This section wasn't found.",
     "traduccionAuto": "Automatic {{source}}→{{target}} translation, based on the interface language."
+  },
+  "costumbres": {
+    "title": "Customs & Traditions",
+    "categoriaIsraelAntiguo": "Ancient Israel and 1st-century Judaism",
+    "categoriaRomaS1": "1st-century Rome (Paul's world)",
+    "cargandoColeccion": "Loading collection…",
+    "coleccionPreparacion": "Customs & Traditions is in progress. Soon you'll find the customs of ancient Israel and the 1st-century Roman world here.",
+    "volverEstante": "Back to shelf",
+    "cargandoObra": "Loading work…",
+    "errorObra": "Couldn't load this work.",
+    "sinContenido": "This work doesn't have any indexed content yet. Soon you'll find entries from this source here.",
+    "volverIndice": "Back to index",
+    "entradaNoEncontrada": "This entry wasn't found.",
+    "anterior": "Previous",
+    "siguiente": "Next",
+    "leer": "Read"
+  },
+  "conversor": {
+    "title": "Measurement converter",
+    "categoria": "Category",
+    "categoriaPeso": "Weight",
+    "categoriaLongitud": "Length",
+    "categoriaVolumenSeco": "Dry volume",
+    "categoriaVolumenLiquido": "Liquid volume",
+    "categoriaMonedas": "Coins",
+    "unidadOrigen": "Unit",
+    "cantidad": "Amount",
+    "resultado": "Result",
+    "pesoMetal": "Metal weight",
+    "jornalEquivalente": "Equivalent day's wages",
+    "jornalNota": "1 denarius = 1 laborer's day's wage (Matthew 20:2)",
+    "valorUsd": "Approximate value in USD",
+    "avisoReferencial": "For reference only, not exact — metal price updated on {{fecha}}.",
+    "diasAbrev": "days",
+    "diaAbrev": "day"
   },
   "linked": {
     "sinEntradas": "This chapter doesn't have any entries loaded yet.",

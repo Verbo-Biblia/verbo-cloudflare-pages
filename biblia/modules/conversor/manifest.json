@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 2,
+  "id": "conversor-unidades",
+  "type": "conversor",
+  "name": "Conversor de medidas bíblicas",
+  "abbreviation": "Conversor de medidas",
+  "language": "es",
+  "description": "Tabla fija de equivalencias de peso, longitud, volumen y monedas bíblicas a unidades modernas, con desglose de peso de metal, jornal de un obrero (Mateo 20:2) y valor aproximado en USD para las monedas. Datos de referencia, no exactos — no requiere conexión a ninguna API externa.",
+  "license": "Elaboración propia de Verbo a partir de cifras de consenso estándar de diccionarios bíblicos (dato fáctico/histórico, no sujeto a derechos de autor).",
+  "dataFile": "unidades.json"
+}

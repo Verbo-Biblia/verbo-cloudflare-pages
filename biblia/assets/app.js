@@ -225,6 +225,18 @@ document.addEventListener('DOMContentLoaded', async () => {
   // abrir el panel, para saltar directo al documento correcto en vez de dejar
   // al usuario adivinar en el selector "Fuente".
   let pendingPatristicSources=null;
+  // Costumbres y Tradiciones: mismo patrón de 3 niveles que Padres Apostólicos
+  // (estante → índice de la obra → entrada), pero el estante se agrupa por
+  // categoría (ver renderCostumbresPanel).
+  let costumbresShelf=null;
+  let costumbresOpenWork=null;
+  let costumbresDocData=null;
+  let costumbresOpenId=null;
+  // Conversor de medidas: datos fijos cargados una sola vez (no hay estados
+  // de navegación tipo estante/índice, es una calculadora de una sola vista).
+  let conversorData=null;
+  let conversorCategoria=null;
+  let conversorUnidadOrigen=null;
   const posicionBiblia = VerboBackup.getPosicionBiblia();
   let currentBook = posicionBiblia?.libro || 'ROM';
   let currentChapter = Number(posicionBiblia?.capitulo) || 7;
@@ -683,7 +695,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     activeTab=tab;
     if(tab!=='historia') els.side.classList.remove('side-panel--history-expanded');
     const isSheet=window.innerWidth<=760 && SHEET_TABS.includes(tab);
-    els.side.classList.toggle('side-panel--left', ['historia','padres','licencias','historia-notas'].includes(tab));
+    els.side.classList.toggle('side-panel--left', ['historia','padres','licencias','historia-notas','costumbres','conversor'].includes(tab));
     if(isSheet){
       els.side.dataset.sheet='1';  // CSS aplica translateY(105%) inmediatamente
       els.side.offsetHeight;       // fuerza reflow para que el estado inicial esté fijo
@@ -840,6 +852,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(tab==='notas') renderNotes();
     if(tab==='predicas') renderPredicasPanel();
     if(tab==='historia-notas') renderHistoriaNotasPanel();
+    if(tab==='costumbres') renderCostumbresPanel();
+    if(tab==='conversor') renderConversorPanel();
     if(tab==='exegesis') renderExegesis(focus || activeVerse());
     if(tab==='ajustes') renderAjustes();
     if(tab==='mapas') renderMapsPanel();
@@ -3553,6 +3567,342 @@ document.addEventListener('DOMContentLoaded', async () => {
       bodyEl.dataset.translated=targetLang;
     }
   }
+
+  // ── Costumbres y Tradiciones ────────────────────────────────────────────
+  // Mismos 3 niveles que Padres Apostólicos (estante → índice de la obra →
+  // entrada), reutilizando CSS (.church-shelf, .history-toc, .dictionary-library,
+  // .dict-entry) y el motor de traducción de Comentario/Historia. Diferencia:
+  // el estante se agrupa por categoría (Israel antiguo / Roma s. I, ver
+  // modules/costumbres/shelf.json → volume.categoria).
+  function costumbresShelfItemHTML(volume){
+    return `<div class="church-shelf__item" data-costumbres-shelf-volume="${escapeHTML(volume.id)}" tabindex="0" role="group" aria-label="${escapeHTML(volume.titulo)}">
+      <img class="church-shelf__cover" src="${escapeHTML(volume.cover)}" alt="" loading="lazy">
+      <div class="church-shelf__title" data-shelf-title="${escapeHTML(volume.id)}">${escapeHTML(volume.titulo)}</div>
+      <div class="church-shelf__overlay">
+        ${volume.periodo?`<div class="church-shelf__overlay-period" data-shelf-period="${escapeHTML(volume.id)}">${escapeHTML(volume.periodo)}</div>`:''}
+        <p class="church-shelf__overlay-summary" data-shelf-summary="${escapeHTML(volume.id)}">${escapeHTML(volume.resumenBreve||'')}</p>
+        <button type="button" class="church-shelf__read-btn" data-costumbres-shelf-read="${escapeHTML(volume.id)}">${t('costumbres.leer')} →</button>
+      </div>
+    </div>`;
+  }
+  function wireCostumbresShelf(){
+    els.panelBody.querySelectorAll('[data-costumbres-shelf-volume]').forEach(item=>{
+      const toggle=()=>item.classList.toggle('church-shelf__item--active');
+      item.addEventListener('click',event=>{ if(event.target.closest('[data-costumbres-shelf-read]')) return; toggle(); });
+      item.addEventListener('keydown',event=>{
+        if(event.target.closest('[data-costumbres-shelf-read]')) return;
+        if(event.key==='Enter'||event.key===' '){ event.preventDefault(); toggle(); }
+      });
+    });
+    els.panelBody.querySelectorAll('[data-costumbres-shelf-read]').forEach(btn=>btn.addEventListener('click',event=>{
+      event.stopPropagation();
+      costumbresOpenWork=btn.dataset.costumbresShelfRead;
+      costumbresOpenId=null;
+      costumbresDocData=null;
+      renderCostumbresPanel();
+      els.panelBody.scrollTop=0;
+    }));
+  }
+
+  async function renderCostumbresPanel(){
+    els.panelTitle.textContent=t('costumbres.title');
+    els.panelToolbar.innerHTML='';
+
+    // Nivel 3: entrada abierta dentro de una obra
+    if(costumbresOpenWork && costumbresOpenId){
+      if(!costumbresDocData || costumbresDocData.manifest.id!==costumbresOpenWork){
+        els.panelBody.innerHTML=emptyState('⌛',t('costumbres.cargandoObra'));
+        try{ costumbresDocData=await VerboModules.loadCostumbres(costumbresOpenWork); }
+        catch(error){ console.error(error); }
+      }
+      if(!costumbresDocData){ els.panelBody.innerHTML=emptyState('⚠️',t('costumbres.errorObra')); return; }
+      renderCostumbresEntry();
+      return;
+    }
+
+    // Nivel 2: índice de la obra elegida
+    if(costumbresOpenWork){
+      await renderCostumbresIndex();
+      return;
+    }
+
+    // Nivel 1: estante de portadas, agrupado por categoría
+    els.side.classList.remove('side-panel--history-expanded');
+    if(!costumbresShelf){
+      try{ costumbresShelf=await VerboModules.loadCostumbresShelf(); }
+      catch(error){ console.error(error); costumbresShelf=[]; }
+    }
+    if(!costumbresShelf.length){ els.panelBody.innerHTML=emptyState('🏺',t('costumbres.coleccionPreparacion')); return; }
+    const categorias=[
+      {id:'israel_antiguo', label:t('costumbres.categoriaIsraelAntiguo')},
+      {id:'roma_s1', label:t('costumbres.categoriaRomaS1')},
+    ];
+    const sections=categorias.map(cat=>{
+      const volumes=costumbresShelf.filter(v=>v.categoria===cat.id);
+      if(!volumes.length) return '';
+      return `<div class="costumbres-shelf__category">${escapeHTML(cat.label)}</div><div class="church-shelf">${volumes.map(costumbresShelfItemHTML).join('')}</div>`;
+    }).join('');
+    els.panelBody.innerHTML=sections || emptyState('🏺',t('costumbres.coleccionPreparacion'));
+    wireCostumbresShelf();
+    applyChurchShelfTranslation(costumbresShelf,'costumbres');
+  }
+
+  function costumbresBackToShelf(){
+    costumbresOpenWork=null;
+    costumbresOpenId=null;
+    costumbresDocData=null;
+    els.side.classList.remove('side-panel--history-expanded');
+    renderCostumbresPanel();
+    els.panelBody.scrollTop=0;
+  }
+
+  function costumbresTocRowHTML(entry){
+    const label=entry.titulo || (entry.versiculoInicio!=null
+      ? `${entry.capitulo}:${entry.versiculoInicio}${entry.versiculoFin && entry.versiculoFin!==entry.versiculoInicio ? '-'+entry.versiculoFin : ''}`
+      : `${t('historia.toc.libro')} ${entry.capitulo||''}`);
+    return `<li class="history-toc__row" data-costumbres-toc-id="${escapeHTML(entry.id)}" tabindex="0"><span data-costumbres-toc-label="${escapeHTML(entry.id)}">${escapeHTML(label)}</span></li>`;
+  }
+  function costumbresTocGroupHTML(group){
+    return `<section class="history-toc__group">
+      <h3 class="history-toc__group-title">${escapeHTML(group.label)}</h3>
+      <ol class="history-toc__list">${group.items.map(costumbresTocRowHTML).join('')}</ol>
+    </section>`;
+  }
+  function wireCostumbresIndex(){
+    const openEntry=(id)=>{
+      costumbresOpenId=id;
+      els.side.classList.add('side-panel--history-expanded');
+      els.side.offsetHeight; // fuerza reflow, mismo patrón que openChurchHistoryEntryFromTOC
+      renderCostumbresEntry();
+      els.panelBody.scrollTop=0;
+    };
+    els.panelBody.querySelectorAll('[data-costumbres-toc-id]').forEach(row=>{
+      row.addEventListener('click',()=>openEntry(row.dataset.costumbresTocId));
+      row.addEventListener('keydown',event=>{ if(event.key==='Enter'||event.key===' '){ event.preventDefault(); openEntry(row.dataset.costumbresTocId); } });
+    });
+    els.panelBody.querySelectorAll('[data-costumbres-entry]').forEach(btn=>btn.addEventListener('click',()=>openEntry(btn.dataset.costumbresEntry)));
+  }
+  async function renderCostumbresIndex(){
+    if(!costumbresDocData || costumbresDocData.manifest.id!==costumbresOpenWork){
+      els.panelBody.innerHTML=emptyState('⌛',t('costumbres.cargandoObra'));
+      try{ costumbresDocData=await VerboModules.loadCostumbres(costumbresOpenWork); }
+      catch(error){ console.error(error); }
+    }
+    if(!costumbresDocData){ els.panelBody.innerHTML=emptyState('⚠️',t('costumbres.errorObra')); return; }
+    els.side.classList.remove('side-panel--history-expanded');
+    els.panelToolbar.innerHTML=`<button class="note-card__copy" id="backToCostumbresShelf" type="button">← ${t('costumbres.volverEstante')}</button>`;
+    document.getElementById('backToCostumbresShelf')?.addEventListener('click',costumbresBackToShelf);
+
+    const entries=costumbresDocData.entries||[];
+    if(!entries.length){
+      els.panelBody.innerHTML=emptyState('📜',t('costumbres.sinContenido'));
+      return;
+    }
+    if(costumbresDocData.manifest.navegacion==='biblico'){
+      const groups=churchHistoryGroupByOrder(entries, entry=>entry.libro)
+        .map(g=>({label: catalog.books.find(b=>b.id===g.key)?.name || g.key, items:g.items}));
+      els.panelBody.innerHTML=`<div class="history-toc">${groups.map(costumbresTocGroupHTML).join('')}</div>`;
+    } else {
+      const sorted=[...entries].sort((a,b)=>(a.capituloNumero||0)-(b.capituloNumero||0));
+      const list=sorted.map(e=>`
+        <button type="button" class="dictionary-library__item" data-costumbres-entry="${escapeHTML(e.id)}">
+          <span data-costumbres-index-title="${escapeHTML(e.id)}">${escapeHTML(e.capituloTitulo||e.titulo)}</span>
+        </button>`).join('');
+      els.panelBody.innerHTML=`<div class="dictionary-library"><div class="dictionary-library__count">${t('padres.seccionesCount',{count:sorted.length})}</div><div>${list}</div></div>`;
+    }
+    wireCostumbresIndex();
+    translateCostumbresIndexTitles(costumbresDocData);
+  }
+
+  // Traduce en un solo request todos los títulos del índice visible (fila del
+  // TOC bíblico o del listado temático), igual que translatePatristicSectionTitles.
+  async function translateCostumbresIndexTitles(docData){
+    const source=docData.manifest.language||'en';
+    const target=contentLang();
+    if(source===target) return;
+    const labelEls=[...els.panelBody.querySelectorAll('[data-costumbres-toc-label],[data-costumbres-index-title]')];
+    if(!labelEls.length) return;
+    const DELIM='\n@@@\n';
+    const originals=labelEls.map(el=>el.textContent);
+    const cacheKey=translationCacheKey(`costumbres-index:${costumbresOpenWork}`, originals.join(DELIM), target);
+    let translated=tcacheGet(cacheKey);
+    if(!translated){
+      const result=await googleTranslate(originals.join(DELIM), source, target);
+      if(!result) return;
+      const parts=result.split(/\s*@@@\s*/).map(x=>x.trim());
+      if(parts.length!==labelEls.length) return; // el delimitador se rompió en la traducción; no aplicar nada
+      translated=parts;
+      tcacheSet(cacheKey, translated);
+    }
+    labelEls.forEach((el,i)=>{ el.textContent=translated[i]; el.dataset.translated=target; });
+  }
+
+  function renderCostumbresEntry(){
+    const entry=(costumbresDocData.entries||[]).find(e=>e.id===costumbresOpenId);
+    if(!entry){ costumbresOpenId=null; els.panelBody.innerHTML=emptyState('⚠️',t('costumbres.entradaNoEncontrada')); return; }
+    const entries=costumbresDocData.entries||[];
+    const idx=entries.findIndex(e=>e.id===entry.id);
+    const previous=idx>0?entries[idx-1]:null;
+    const next=idx>=0 && idx<entries.length-1?entries[idx+1]:null;
+    els.panelToolbar.innerHTML=`
+      <button class="note-card__copy" id="backToCostumbresIndex" type="button">← ${t('costumbres.volverIndice')}</button>
+      <button id="costumbresExpand" class="history-panel-expand" type="button" aria-pressed="${els.side.classList.contains('side-panel--history-expanded')?'true':'false'}">${els.side.classList.contains('side-panel--history-expanded')?t('historia.vistaCompacta'):t('historia.ampliarLectura')}</button>`;
+    document.getElementById('backToCostumbresIndex')?.addEventListener('click',()=>{
+      els.side.classList.remove('side-panel--history-expanded');
+      costumbresOpenId=null;
+      renderCostumbresPanel();
+      els.panelBody.scrollTop=0;
+    });
+    document.getElementById('costumbresExpand')?.addEventListener('click',event=>{
+      const scrollTop=els.panelBody.scrollTop;
+      const expanded=els.side.classList.toggle('side-panel--history-expanded');
+      event.currentTarget.setAttribute('aria-pressed',String(expanded));
+      event.currentTarget.textContent=expanded?t('historia.vistaCompacta'):t('historia.ampliarLectura');
+      requestAnimationFrame(()=>{ els.panelBody.scrollTop=scrollTop; });
+    });
+    els.panelBody.innerHTML=`<article class="dict-entry history-reader">
+      <div class="dict-entry__term" data-costumbres-entry-id="${escapeHTML(entry.id)}">${escapeHTML(entry.titulo)}</div>
+      <div class="dict-entry__source">${escapeHTML(costumbresDocData.manifest.abbreviation||costumbresDocData.manifest.name)}</div>
+      <div class="dict-entry__def" data-costumbres-entry-id="${escapeHTML(entry.id)}">${entry.content||entry.excerpt||''}</div>
+      <nav class="history-entry-nav" aria-label="${t('historia.navegacionLectura')}">
+        ${previous?`<button type="button" class="history-entry-nav__button" data-costumbres-neighbor="${escapeHTML(previous.id)}">← ${t('costumbres.anterior')}</button>`:'<span></span>'}
+        ${next?`<button type="button" class="history-entry-nav__button" data-costumbres-neighbor="${escapeHTML(next.id)}">${t('costumbres.siguiente')} →</button>`:'<span></span>'}
+      </nav>
+    </article>`;
+    els.panelBody.querySelectorAll('[data-costumbres-neighbor]').forEach(button=>button.addEventListener('click',()=>{
+      costumbresOpenId=button.dataset.costumbresNeighbor;
+      renderCostumbresEntry();
+      els.panelBody.scrollTop=0;
+    }));
+    applyCostumbresTranslation(entry);
+  }
+
+  async function applyCostumbresTranslation(entry){
+    const source=costumbresDocData.manifest.language||'en';
+    const target=contentLang();
+    if(!source || source===target) return;
+    const termEl=els.panelBody.querySelector(`.dict-entry__term[data-costumbres-entry-id="${CSS.escape(entry.id)}"]`);
+    const defEl=els.panelBody.querySelector(`.dict-entry__def[data-costumbres-entry-id="${CSS.escape(entry.id)}"]`);
+    if(!termEl||!defEl) return;
+    if(termEl.dataset.translated!==target){
+      termEl.dataset.translated='pending';
+      const translatedTitle=await translateCommentaryHeader(`costumbres:${entry.id}`,'title',entry.titulo,source,target);
+      if(termEl.dataset.translated==='pending'){ termEl.textContent=translatedTitle; termEl.dataset.translated=target; }
+    }
+    if(defEl.dataset.translated!==target){
+      defEl.dataset.translated='pending';
+      const translated=await translateEntry(`costumbres:${entry.id}`, entry.content||entry.excerpt||'', source, target);
+      if(defEl.dataset.translated==='pending'){ defEl.innerHTML=translated; defEl.dataset.translated=target; }
+    }
+  }
+  // ── Fin Costumbres y Tradiciones ────────────────────────────────────────
+
+  // ── Conversor de medidas ────────────────────────────────────────────────
+  // Calculadora de una sola vista (sin estante/índice): categoría → unidad de
+  // origen → cantidad, siempre convertida a las unidades modernas fijas de esa
+  // categoría (kg+lb, m+pies, L, o el desglose de 3 valores en monedas). Todo
+  // el cálculo ocurre en cliente a partir de modules/conversor/unidades.json,
+  // cargado una sola vez (ver conversorData).
+  function conversorFormatNumber(value, maxDecimals=2){
+    if(!Number.isFinite(value)) return '—';
+    const rounded=Number(value.toFixed(maxDecimals));
+    return rounded.toLocaleString('es', {maximumFractionDigits:maxDecimals});
+  }
+  function conversorCategoriaLabel(cat){
+    const map={peso:'categoriaPeso', longitud:'categoriaLongitud', volumen_seco:'categoriaVolumenSeco', volumen_liquido:'categoriaVolumenLiquido', monedas:'categoriaMonedas'};
+    return t(`conversor.${map[cat.id]||'categoria'}`) || cat.nombre;
+  }
+  function conversorResultHTML(categoria, unidad, cantidad){
+    if(!Number.isFinite(cantidad)) return '';
+    if(categoria.tipo==='moneda'){
+      const gramos=cantidad*unidad.gramosMetal;
+      const dias=cantidad*unidad.jornalDias;
+      const precioGramo=conversorData.metales?.[unidad.metal]?.usdPorGramo || 0;
+      const usd=gramos*precioGramo;
+      const diasLabel=Math.abs(dias-1)<0.0001 ? t('conversor.diaAbrev') : t('conversor.diasAbrev');
+      return `<div class="conversor-result">
+        <div class="conversor-result__row"><span>${t('conversor.pesoMetal')}</span><strong>${conversorFormatNumber(gramos,2)} g (${escapeHTML(unidad.metal)})</strong></div>
+        <div class="conversor-result__row"><span>${t('conversor.jornalEquivalente')}</span><strong>${conversorFormatNumber(dias,3)} ${diasLabel}</strong></div>
+        <div class="conversor-result__row"><span>${t('conversor.valorUsd')}</span><strong>≈ $${conversorFormatNumber(usd,2)} USD</strong></div>
+        <p class="conversor-result__note">${t('conversor.jornalNota')}. ${t('conversor.avisoReferencial',{fecha:conversorData.actualizado})}</p>
+      </div>`;
+    }
+    if(categoria.id==='peso'){
+      const kg=cantidad*unidad.factorKg;
+      const lb=kg*(categoria.factorKgALb||2.20462);
+      return `<div class="conversor-result">
+        <div class="conversor-result__row"><span>${categoria.unidadBaseNombre}</span><strong>${conversorFormatNumber(kg,3)} kg</strong></div>
+        <div class="conversor-result__row"><span>${categoria.unidadBaseImperialNombre}</span><strong>${conversorFormatNumber(lb,3)} lb</strong></div>
+      </div>`;
+    }
+    if(categoria.id==='longitud'){
+      const m=cantidad*unidad.factorM;
+      const ft=m*(categoria.factorMAFt||3.28084);
+      return `<div class="conversor-result">
+        <div class="conversor-result__row"><span>${categoria.unidadBaseNombre}</span><strong>${conversorFormatNumber(m,3)} m</strong></div>
+        <div class="conversor-result__row"><span>${categoria.unidadBaseImperialNombre}</span><strong>${conversorFormatNumber(ft,3)} ft</strong></div>
+      </div>`;
+    }
+    // volumen_seco / volumen_liquido: solo litros
+    const litros=cantidad*unidad.factorL;
+    return `<div class="conversor-result">
+      <div class="conversor-result__row"><span>${categoria.unidadBaseNombre}</span><strong>${conversorFormatNumber(litros,3)} L</strong></div>
+    </div>`;
+  }
+  function renderConversorBody(){
+    const categoria=conversorData.categorias.find(c=>c.id===conversorCategoria) || conversorData.categorias[0];
+    conversorCategoria=categoria.id;
+    if(!categoria.unidades.some(u=>u.id===conversorUnidadOrigen)) conversorUnidadOrigen=categoria.unidades[0]?.id || null;
+    const catOptions=conversorData.categorias.map(c=>`<option value="${escapeHTML(c.id)}" ${c.id===categoria.id?'selected':''}>${escapeHTML(conversorCategoriaLabel(c))}</option>`).join('');
+    const unitOptions=categoria.unidades.map(u=>`<option value="${escapeHTML(u.id)}" ${u.id===conversorUnidadOrigen?'selected':''}>${escapeHTML(u.nombre)}</option>`).join('');
+    els.panelBody.innerHTML=`<form class="conversor-form" id="conversorForm">
+      <label class="conversor-form__field">
+        <span>${t('conversor.categoria')}</span>
+        <select id="conversorCategoriaSelect">${catOptions}</select>
+      </label>
+      <label class="conversor-form__field">
+        <span>${t('conversor.unidadOrigen')}</span>
+        <select id="conversorUnidadSelect">${unitOptions}</select>
+      </label>
+      <label class="conversor-form__field">
+        <span>${t('conversor.cantidad')}</span>
+        <input type="number" id="conversorCantidadInput" min="0" step="any" inputmode="decimal" value="1">
+      </label>
+    </form>
+    <div id="conversorResultado"></div>`;
+    const recalc=()=>{
+      const unidad=categoria.unidades.find(u=>u.id===conversorUnidadOrigen);
+      const cantidad=Number(document.getElementById('conversorCantidadInput')?.value);
+      document.getElementById('conversorResultado').innerHTML=unidad?conversorResultHTML(categoria,unidad,cantidad):'';
+    };
+    document.getElementById('conversorCategoriaSelect')?.addEventListener('change',event=>{
+      conversorCategoria=event.target.value;
+      conversorUnidadOrigen=null;
+      renderConversorBody();
+    });
+    document.getElementById('conversorUnidadSelect')?.addEventListener('change',event=>{
+      conversorUnidadOrigen=event.target.value;
+      recalc();
+    });
+    document.getElementById('conversorCantidadInput')?.addEventListener('input',recalc);
+    recalc();
+  }
+  async function renderConversorPanel(){
+    els.panelTitle.textContent=t('conversor.title');
+    els.panelToolbar.innerHTML='';
+    els.side.classList.remove('side-panel--history-expanded');
+    if(!conversorData){
+      els.panelBody.innerHTML=emptyState('⌛','…');
+      try{ conversorData=await VerboModules.loadConversorUnidades(); }
+      catch(error){ console.error(error); }
+    }
+    if(!conversorData || !conversorData.categorias?.length){
+      els.panelBody.innerHTML=emptyState('⚖️',t('costumbres.coleccionPreparacion'));
+      return;
+    }
+    renderConversorBody();
+  }
+  // ── Fin Conversor de medidas ─────────────────────────────────────────────
 
   async function renderExegesis(focus=null){
     els.panelTitle.textContent='Exégesis';

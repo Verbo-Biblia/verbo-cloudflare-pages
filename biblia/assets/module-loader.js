@@ -438,6 +438,55 @@ const VerboModules = (() => {
     }
   }
 
+  // Costumbres y Tradiciones: mismo patrón de carga bajo demanda que
+  // loadPatristic (un documento a la vez, no todo el corpus junto como
+  // church-history). Ver registry.costumbres / modules/costumbres/shelf.json.
+  async function loadCostumbres(workId = null) {
+    const registry = await getJSON('modules/registry.json');
+    const paths = workId
+      ? (registry.costumbres || []).filter(p => p.includes('/' + workId + '/') || p.endsWith('/' + workId + '/manifest.json'))
+      : (registry.costumbres || []);
+    for (const path of paths) {
+      const manifestPath = `modules/${path}`;
+      try {
+        const manifest = await getJSON(manifestPath);
+        const data = await getJSON(resolveFromManifest(manifestPath, manifest.entriesFile));
+        return { manifest, entries: data.entries || [] };
+      } catch (error) {
+        console.warn(`Costumbres: obra omitida ${manifestPath}`, error);
+      }
+    }
+    return null;
+  }
+
+  async function loadCostumbresShelf() {
+    try {
+      const data = await getJSON('modules/costumbres/shelf.json');
+      return data.volumes || [];
+    } catch (error) {
+      console.warn('Estante de Costumbres y Tradiciones: metadata omitida', error);
+      return [];
+    }
+  }
+
+  // Conversor de medidas: un solo archivo de datos fijos (sin manifest por
+  // "obra" ni entradas — no es un corpus de texto), pero se registra en
+  // registry.json con el mismo mecanismo de manifest.json que el resto de
+  // módulos para mantener un único patrón de registro en todo el sitio.
+  async function loadConversorUnidades() {
+    const registry = await getJSON('modules/registry.json');
+    const path = (registry.conversor || [])[0];
+    if (!path) return null;
+    const manifestPath = `modules/${path}`;
+    try {
+      const manifest = await getJSON(manifestPath);
+      return await getJSON(resolveFromManifest(manifestPath, manifest.dataFile));
+    } catch (error) {
+      console.warn(`Conversor de medidas: datos omitidos ${manifestPath}`, error);
+      return null;
+    }
+  }
+
   // Quita tildes/diacríticos y normaliza espacios/puntuación, para que la
   // búsqueda no falle por variantes de acentuación entre versiones (ej.
   // "así"/"asi") ni por puntuación pegada a la palabra.
@@ -921,5 +970,5 @@ const VerboModules = (() => {
     return null;
   }
 
-  return { getCatalog,getBookInfo,resolveBibleBooks,buildChapterData,loadBible,loadRemoteBible,loadCommentary,loadCommentaryIndex,loadLinkedEntries,loadLinkedArticle,loadChurchHistory,loadChurchHistoryShelf,getDictionaryEntry,loadDictionaryEntries,loadDictionaryIndex,loadGospel,loadPatristic,loadPatristicShelf,searchBible,searchRemoteBible,searchSemanticBible,searchSemanticChurchHistory };
+  return { getCatalog,getBookInfo,resolveBibleBooks,buildChapterData,loadBible,loadRemoteBible,loadCommentary,loadCommentaryIndex,loadLinkedEntries,loadLinkedArticle,loadChurchHistory,loadChurchHistoryShelf,getDictionaryEntry,loadDictionaryEntries,loadDictionaryIndex,loadGospel,loadPatristic,loadPatristicShelf,loadCostumbres,loadCostumbresShelf,loadConversorUnidades,searchBible,searchRemoteBible,searchSemanticBible,searchSemanticChurchHistory };
 })();

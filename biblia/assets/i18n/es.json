@@ -20,7 +20,9 @@
     "fundador": "Sobre el fundador",
     "mision": "Nuestra misión",
     "licencias": "Fuentes y licencias",
-    "historiaNotas": "Notas de Historia"
+    "historiaNotas": "Notas de Historia",
+    "costumbres": "Costumbres y Tradiciones",
+    "conversor": "Conversor de medidas"
   },
   "nav": {
     "toolsAria": "Herramientas de estudio",
@@ -40,7 +42,9 @@
     "fundador": "Sobre el fundador",
     "mision": "Nuestra misión",
     "predicas": "Mis prédicas",
-    "historiaNotas": "Notas de Historia"
+    "historiaNotas": "Notas de Historia",
+    "costumbres": "Costumbres y Tradiciones",
+    "conversor": "Conversor de medidas"
   },
   "panel": {
     "defaultTitle": "Panel",
@@ -255,6 +259,41 @@
     "volverIndice": "Índice del documento",
     "seccionNoEncontrada": "No se encontró esta sección.",
     "traduccionAuto": "Traducción automática {{source}}→{{target}} según el idioma de interfaz."
+  },
+  "costumbres": {
+    "title": "Costumbres y Tradiciones",
+    "categoriaIsraelAntiguo": "Israel antiguo y judaísmo del s. I",
+    "categoriaRomaS1": "Roma del s. I (mundo de Pablo)",
+    "cargandoColeccion": "Cargando colección…",
+    "coleccionPreparacion": "Costumbres y Tradiciones está en preparación. Pronto encontrarás aquí las costumbres del Israel antiguo y del mundo romano del siglo I.",
+    "volverEstante": "Volver al estante",
+    "cargandoObra": "Cargando obra…",
+    "errorObra": "No se pudo cargar esta obra.",
+    "sinContenido": "Esta obra todavía no tiene contenido indexado. Pronto encontrarás aquí las entradas de esta fuente.",
+    "volverIndice": "Volver al índice",
+    "entradaNoEncontrada": "No se encontró esta entrada.",
+    "anterior": "Anterior",
+    "siguiente": "Siguiente",
+    "leer": "Leer"
+  },
+  "conversor": {
+    "title": "Conversor de medidas",
+    "categoria": "Categoría",
+    "categoriaPeso": "Peso",
+    "categoriaLongitud": "Longitud",
+    "categoriaVolumenSeco": "Volumen seco",
+    "categoriaVolumenLiquido": "Volumen líquido",
+    "categoriaMonedas": "Monedas",
+    "unidadOrigen": "Unidad",
+    "cantidad": "Cantidad",
+    "resultado": "Resultado",
+    "pesoMetal": "Peso de metal",
+    "jornalEquivalente": "Jornal equivalente",
+    "jornalNota": "1 denario = 1 jornal de un obrero (Mateo 20:2)",
+    "valorUsd": "Valor aproximado en USD",
+    "avisoReferencial": "Referencial, no exacto — precio de metal actualizado el {{fecha}}.",
+    "diasAbrev": "días",
+    "diaAbrev": "día"
   },
   "linked": {
     "sinEntradas": "Este capítulo todavía no tiene entradas cargadas.",

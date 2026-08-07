@@ -1,0 +1,61 @@
+<svg width="440" height="640" viewBox="0 0 440 640" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="coverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2B2013"/>
+      <stop offset="55%" stop-color="#20180E"/>
+      <stop offset="100%" stop-color="#140F08"/>
+    </linearGradient>
+    <radialGradient id="vignette" cx="52%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#3A2C17" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="spineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#5E3B22"/>
+      <stop offset="50%" stop-color="#7A4E2E"/>
+      <stop offset="100%" stop-color="#5A3A24"/>
+    </linearGradient>
+    <linearGradient id="goldLine" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E4C355"/>
+      <stop offset="50%" stop-color="#C9A227"/>
+      <stop offset="100%" stop-color="#9C7C1C"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="26" height="640" fill="url(#spineGrad)"/>
+  <rect x="21" y="0" width="5" height="640" fill="#2A1A0E" opacity="0.5"/>
+  <rect x="0" y="96" width="26" height="4" fill="#C9A227" opacity="0.35"/>
+  <rect x="0" y="320" width="26" height="4" fill="#C9A227" opacity="0.35"/>
+  <rect x="0" y="544" width="26" height="4" fill="#C9A227" opacity="0.35"/>
+
+  <rect x="26" y="0" width="414" height="640" fill="url(#coverGrad)"/>
+  <rect x="26" y="0" width="414" height="640" fill="url(#vignette)"/>
+
+  <rect x="52" y="36" width="362" height="568" fill="none" stroke="url(#goldLine)" stroke-width="2.2"/>
+  <rect x="60" y="44" width="346" height="552" fill="none" stroke="url(#goldLine)" stroke-width="1" opacity="0.7"/>
+
+  <g stroke="url(#goldLine)" stroke-width="1.3" fill="none" opacity="0.9">
+    <circle cx="52" cy="36" r="3.5"/>
+    <circle cx="414" cy="36" r="3.5"/>
+    <circle cx="52" cy="604" r="3.5"/>
+    <circle cx="414" cy="604" r="3.5"/>
+  </g>
+
+  <!-- CENTRAL SIGNATURE: ánfora / vasija de barro, símbolo neutral de vida cotidiana -->
+  <g transform="translate(233,300)" stroke="url(#goldLine)" stroke-width="2.2" fill="none" stroke-linejoin="round" stroke-linecap="round" opacity="0.92">
+    <circle r="130" stroke-width="1.4" opacity="0.55"/>
+    <circle r="119" stroke-width="0.7" opacity="0.4"/>
+    <!-- asas -->
+    <path d="M -46 -60 C -78 -50 -80 -6 -50 8"/>
+    <path d="M 46 -60 C 78 -50 80 -6 50 8"/>
+    <!-- cuerpo de la vasija -->
+    <path d="M -18 -96 L 18 -96 L 22 -78 L 34 -62 C 58 -26 58 40 30 78 C 16 98 -16 98 -30 78 C -58 40 -58 -26 -34 -62 L -22 -78 Z"/>
+    <!-- cuello y boca -->
+    <path d="M -14 -96 L -14 -112 L 14 -112 L 14 -96"/>
+    <line x1="-20" y1="-112" x2="20" y2="-112"/>
+    <!-- líneas decorativas -->
+    <line x1="-40" y1="-4" x2="40" y2="-4" opacity="0.6"/>
+    <line x1="-46" y1="30" x2="46" y2="30" opacity="0.6"/>
+  </g>
+
+  <line x1="120" y1="500" x2="346" y2="500" stroke="url(#goldLine)" stroke-width="1" opacity="0.4"/>
+</svg>
