@@ -11,13 +11,18 @@ aquí. Desde esta sesión, todo el trabajo del Nuevo Testamento continúa en
 
 ## Próximo punto exacto
 
-- Continuar con `Mateo 3–28`.
+- Pausado a pedido de Juan (2026-08-07) con Mateo 1–23 ya revisados. Continuar
+  con `Mateo 24–28` (5 capítulos, 97 versículos) al retomar.
 - El avance desde Génesis hasta Malaquías ya fue revisado, validado y publicado.
-- Mateo 1–2 ya está revisado (rescatado, ver arriba) — falta comitear junto con
-  el resto del libro cuando cierre.
+- Mateo 1–20 comiteado y publicado (push hecho). Mateo 21–23 comiteado y
+  publicado en este mismo guardado de estado.
 - Archivo siguiente: `biblia/modules/bibles/rv-verbo/books/MAT.json`.
 - Trabajar desde el texto BV2026 actual, preservando mejoras válidas.
 - Revisar cada versículo en contexto y validar cada capítulo antes de avanzar.
+- Validación de calidad corrida sobre Mateo 1–18 (2026-08-07): 618 versículos,
+  0 problemas (sin desajuste de conteo vs. RVA1909, sin campos vacíos, sin
+  arcaísmos "vosotros" residuales, sin comillas). Repetir el chequeo cuando se
+  cierre el libro completo.
 
 ## Decisión de estilo ya resuelta (2026-08-07)
 

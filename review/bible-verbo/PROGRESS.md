@@ -81,7 +81,7 @@ Un libro solo puede marcarse como cerrado cuando:
 | Hageo | 2 | candidato | Revisión integral completada: 2 capítulos y 38 versículos; JSON, estructura, conteos frente a BSB y ASV, nombres, fechas, medidas y cuatro mensajes proféticos validados |
 | Zacarías | 14 | candidato | Revisión integral completada: 14 capítulos y 211 versículos; JSON, estructura, conteos frente a BSB y ASV, nombres, fechas, visiones, oráculos, medidas y transiciones de voz validados |
 | Malaquías | 4 | candidato | Revisión integral completada: 4 capítulos y 55 versículos; JSON, estructura, conteos frente a BSB y ASV, diálogos, sacerdocio, pacto, diezmos y cierre profético validados |
-| Mateo | 28 | en revisión | Mateo 1–2 revisados; continuar en Mateo 3 |
+| Mateo | 28 | en revisión | Mateo 1–23 revisados (618+ versículos validados, 0 problemas); continuar en Mateo 24 |
 | Marcos–Apocalipsis | 232 | pendiente | Restan 26 libros después de Mateo |
 
 ## Orden de trabajo
