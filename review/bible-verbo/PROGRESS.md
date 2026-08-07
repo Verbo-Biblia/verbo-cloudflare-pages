@@ -105,7 +105,8 @@ Un libro solo puede marcarse como cerrado cuando:
 | 2 Pedro | 3 | candidato | Revisión integral completada: 3 capítulos y 61 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas); corregido error de concordancia de género "la poder"→"el poder" (1:16) y "su divina poder"→"su divino poder" (1:3); "caridad" modernizado a "amor" en 1:7 (con "amor fraternal" renombrado a "afecto fraternal" para no duplicar la palabra "amor" en la cadena de virtudes); "cebando/ceban" a "seduciendo/seducen", "disoluciones" a "libertinaje", "píos" a "piadosos", "falsos doctores" a "falsos maestros", "Carísimos" a "Amados", "postrimeros días" a "últimos días", "advenimiento" a "venida", "mácula" a "mancha", "salud" (que es salvación) a "salvación" en 3:15 |
 | 1 Juan | 5 | candidato | Revisión integral completada: 5 capítulos y 105 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas); "caridad" modernizado a "amor" en 2:5 (con corrección de concordancia de género "perfecta"→"perfecto"), "mancebos" a "jóvenes" (2:13-14), "Carísimos" a "Amados" (3:21, 4:7), "le cierre sus entrañas" a "le cierre su corazón" (3:17), "demandar" (registro legal moderno confuso) a "pedir" en 5:14-16; corregido orden de palabras en 1:1 ("palparon nuestras manos"→"nuestras manos palparon"); preserva íntegro el Comma Johanneum de 5:7 (TR/RVA1909, ausente en el texto crítico BSB/ASV) |
 | 2 Juan | 1 | candidato | Revisión integral completada: 1 capítulo y 13 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas); "hablar boca a boca" modernizado a "hablar cara a cara" (12), pulido el orden de palabras en 7 |
-| 3 Juan–Apocalipsis | 24 | pendiente | Restan 3 libros después de 2 Juan |
+| 3 Juan | 1 | candidato | Revisión integral completada: 1 capítulo y 14 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas); corregida forma subjuntivo futuro residual "si ayudares" a "si les ayudas" en 6; "parlando" a "hablando", "prohibe" a "prohíbe" (7), "Gentiles" a "gentiles" (7), "boca a boca" a "cara a cara" (14); preserva "salud" en 2 (sentido literal de salud física, no salvación) |
+| Judas–Apocalipsis | 23 | pendiente | Restan 2 libros después de 3 Juan |
 
 ## Orden de trabajo
 
@@ -114,8 +115,8 @@ proyecto: Génesis, Éxodo, Levítico, Números, Deuteronomio y así sucesivamen
 hasta Apocalipsis. Los cuatro evangelios, Hechos, Romanos, 1 y 2 Corintios,
 Gálatas, Efesios, Filipenses, Colosenses, 1 Tesalonicenses, 2 Tesalonicenses,
 1 Timoteo, 2 Timoteo, Tito, Filemón, Hebreos, Santiago, 1 Pedro, 2 Pedro,
-1 Juan y 2 Juan quedaron completamente revisados y publicados; el próximo
-punto exacto es 3 Juan 1.
+1 Juan, 2 Juan y 3 Juan quedaron completamente revisados y publicados; el
+próximo punto exacto es Judas 1.
 
 ## Publicación
 
@@ -126,9 +127,10 @@ Daniel, Oseas, Joel, Amós, Abdías, Jonás, Miqueas, Nahúm, Habacuc, Sofonías
 Hageo, Zacarías, Malaquías, Mateo, Marcos, Lucas, Juan, Hechos, Romanos,
 1 Corintios, 2 Corintios, Gálatas, Efesios, Filipenses, Colosenses,
 1 Tesalonicenses, 2 Tesalonicenses, 1 Timoteo, 2 Timoteo, Tito, Filemón,
-Hebreos, Santiago, 1 Pedro, 2 Pedro, 1 Juan y 2 Juan quedaron completamente
-revisados, validados y publicados; la revisión continúa desde 3 Juan 1. No
-se declarará completa ni oficial la Biblia hasta cerrar los 66 libros.
+Hebreos, Santiago, 1 Pedro, 2 Pedro, 1 Juan, 2 Juan y 3 Juan quedaron
+completamente revisados, validados y publicados; la revisión continúa
+desde Judas 1. No se declarará completa ni oficial la Biblia hasta cerrar
+los 66 libros.
 
 ## Cambio de repositorio (2026-08-07)
 
