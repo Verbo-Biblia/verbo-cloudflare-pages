@@ -94,6 +94,89 @@ async function handleApiBible(request, url, env, headers) {
   });
 }
 
+const TRANSLATE_TARGET_NAMES = { es: 'Spanish', en: 'English' };
+const MAX_TRANSLATE_CHARS = 20000; // cubre una entrada larga de comentario/costumbres; evita abuso de la cuota de Anthropic
+const ANTHROPIC_MODEL = 'claude-haiku-4-5-20251001';
+
+// El texto traducido ronda un tamaño similar al de entrada (a veces algo más
+// largo, p. ej. inglés -> español), así que el presupuesto de salida se ajusta
+// al tamaño de entrada en vez de usar un max_tokens fijo — ni corta traducciones
+// largas ni desperdicia cuota en textos cortos (un renglón de diccionario Strong).
+function estimateMaxTokens(text) {
+  const approxInputTokens = Math.ceil(text.length / 3);
+  const withExpansionBuffer = Math.ceil(approxInputTokens * 1.4) + 64;
+  return Math.min(8192, Math.max(128, withExpansionBuffer));
+}
+
+// Prefijo versionado: si el modelo o el system prompt cambian de forma que
+// invalide traducciones ya cacheadas, subir a "v2" fuerza a recalcular todo
+// sin tener que borrar el namespace KV a mano (que también guarda datos de
+// sync bajo otros prefijos, "link:"/"session:"/"blob:").
+const TRANSLATE_CACHE_PREFIX = 'translate:v1';
+
+async function translateCacheKey(text, targetLang) {
+  return `${TRANSLATE_CACHE_PREFIX}:${targetLang}:${await sha256Hex(text)}`;
+}
+
+async function handleTranslate(request, env, headers) {
+  if (request.method !== 'POST') return jsonError('Método no permitido', 405, headers);
+  if (!env.ANTHROPIC_API_KEY) return jsonError('ANTHROPIC_API_KEY no está configurada', 500, headers);
+  if (!env.SYNC_KV) return jsonError('SYNC_KV no está configurada', 500, headers);
+
+  const body = await readJson(request);
+  const text = typeof body?.text === 'string' ? body.text : '';
+  const targetLang = body?.targetLang;
+  const targetLangName = TRANSLATE_TARGET_NAMES[targetLang];
+
+  if (!text.trim()) return jsonError('Falta el texto a traducir', 400, headers);
+  if (text.length > MAX_TRANSLATE_CHARS) return jsonError(`El texto supera el límite de ${MAX_TRANSLATE_CHARS} caracteres`, 400, headers);
+  if (!targetLangName) return jsonError('targetLang debe ser "es" o "en"', 400, headers);
+
+  // El mismo texto de origen (un versículo de comentario, una entrada de
+  // diccionario) se traduce igual sin importar qué usuario lo pida — cachear
+  // en KV, compartido entre todos los visitantes, evita pagar la llamada a
+  // Claude una vez por navegador. El caché de localStorage en el cliente
+  // sigue existiendo encima de este (evita incluso el viaje de red).
+  const cacheKey = await translateCacheKey(text, targetLang);
+  const cached = await env.SYNC_KV.get(cacheKey);
+  if (cached !== null) return jsonOk({ translation: cached, cached: true }, headers);
+
+  const systemPrompt = `You are a translation engine embedded in "Verbo", a Spanish-language Bible study application. Translate the user's message into ${targetLangName}. Preserve theological and biblical terminology precisely — proper names, technical and doctrinal terms — the way a careful biblical scholar would render them. If the text contains HTML tags, keep them exactly as given, in the same positions, and translate only the text content between them. Output ONLY the translated text: no preamble, no explanation, no surrounding quotation marks, no commentary of any kind.`;
+
+  let upstream;
+  try {
+    upstream = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'x-api-key': env.ANTHROPIC_API_KEY,
+        'anthropic-version': '2023-06-01',
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        model: ANTHROPIC_MODEL,
+        max_tokens: estimateMaxTokens(text),
+        system: systemPrompt,
+        messages: [{ role: 'user', content: text }]
+      })
+    });
+  } catch {
+    return jsonError('No se pudo contactar a la API de Anthropic', 502, headers);
+  }
+
+  if (!upstream.ok) {
+    const errText = await upstream.text().catch(() => '');
+    console.error('Anthropic /translate error', upstream.status, errText.slice(0, 500));
+    return jsonError('Error del proveedor de traducción', 502, headers);
+  }
+
+  const data = await upstream.json();
+  const translation = Array.isArray(data?.content) ? data.content.map(block => block?.text || '').join('') : '';
+  if (!translation) return jsonError('Respuesta vacía del proveedor de traducción', 502, headers);
+
+  await env.SYNC_KV.put(cacheKey, translation);
+  return jsonOk({ translation, cached: false }, headers);
+}
+
 function isValidEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value || '').trim());
 }
@@ -261,6 +344,7 @@ export default {
     if (!headers['Access-Control-Allow-Origin']) return jsonError('Origen no autorizado', 403, headers);
 
     if (url.pathname.startsWith('/v1/sync/')) return handleSync(request, url, env, headers);
+    if (url.pathname === '/translate') return handleTranslate(request, env, headers);
     return handleApiBible(request, url, env, headers);
   }
 };

@@ -1,12 +1,34 @@
-# Proxy API.Bible + sincronización de dispositivos para Verbo
+# Proxy API.Bible + sincronización de dispositivos + traducción para Verbo
 
-Este Worker cumple dos funciones:
+Este Worker cumple tres funciones:
 
 1. Mantiene `API_BIBLE_KEY` fuera del sitio estático. Solo permite leer
    capítulos y buscar en LBLA, NTV y NASB 2020.
 2. Sincroniza `verbo-datos` (notas, marcadores, subrayados) entre dispositivos
    vía email + magic link, sin cuentas ni contraseñas. Ver
    `biblia/assets/sync.js` para el cliente.
+3. Traduce texto EN↔ES vía `POST /translate`, como reemplazo del endpoint no
+   oficial de Google Translate (`translate.googleapis.com`). Ver detalle abajo.
+
+## Endpoint de traducción: `POST /translate`
+
+Body: `{ "text": "...", "targetLang": "es" | "en" }`. Responde
+`{ "translation": "...", "cached": true|false }`.
+
+- Usa `ANTHROPIC_API_KEY` (secret de Wrangler, ya configurado) para llamar a
+  `api.anthropic.com/v1/messages` con el modelo `claude-haiku-4-5-20251001`.
+  `max_tokens` se calcula a partir del tamaño del texto de entrada, no es fijo.
+- **Cachea en `SYNC_KV`** (el mismo namespace de la sincronización, bajo el
+  prefijo `translate:v1:<targetLang>:<sha256(text)>`) para que el mismo texto
+  de origen no se vuelva a traducir — y a pagar — para cada usuario distinto.
+  Sin expiración: el contenido teológico traducido no cambia. Si el modelo o
+  el system prompt cambian de forma que invalide el caché existente, subir el
+  prefijo a `translate:v2` en `worker.js` fuerza a recalcular todo sin tocar
+  a mano las demás claves del namespace (`link:`/`session:`/`blob:`).
+- Límite de entrada: 20 000 caracteres por solicitud (protege la cuota de
+  Anthropic de un texto anormalmente largo).
+- Mismo modelo de seguridad que el resto del Worker: solo responde si el
+  header `Origin` está en `ALLOWED_ORIGINS`.
 
 ## Despliegue del proxy API.Bible (ya existente)
 
