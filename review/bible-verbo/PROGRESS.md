@@ -93,15 +93,17 @@ Un libro solo puede marcarse como cerrado cuando:
 | Efesios | 6 | candidato | Revisión integral completada: 6 capítulos y 155 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas); preserva "de su carne y de sus huesos" en 5:30 (TR/RVA1909) y el colofón de 6:24 |
 | Filipenses | 4 | candidato | Revisión integral completada: 4 capítulos y 104 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas); "obispos" modernizado a "supervisores" en 1:1 (consistente con Hechos 20:28); preserva el colofón de 4:23 |
 | Colosenses | 4 | candidato | Revisión integral completada: 4 capítulos y 95 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas); "caridad" modernizado a "amor" en 3:14; preserva "y del Padre, y de Cristo" en 2:2 (TR/RVA1909) y el colofón de 4:18 |
-| 1 Tesalonicenses–Apocalipsis | 78 | pendiente | Restan 15 libros después de Colosenses |
+| 1 Tesalonicenses | 5 | candidato | Revisión integral completada: 5 capítulos y 89 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas); corregido residuo enclítico "Conjúroos" (vosotros fundido) a "les encargo" en 5:27; "caridad" modernizado a "amor" (3:6, 5:8), "salud" a "salvación" (5:8-9), "cota"/"yelmo" a "coraza"/"casco" (5:8), "ósculo santo" a "beso santo" (5:26); preserva "vaso" literal en 4:4 (ambigüedad exegética del griego skeuos, sin tomar partido) y el colofón de 5:28 |
+| 2 Tesalonicenses–Apocalipsis | 73 | pendiente | Restan 14 libros después de 1 Tesalonicenses |
 
 ## Orden de trabajo
 
 Se seguirá el orden canónico, cerrando cada libro antes de declarar terminado el
 proyecto: Génesis, Éxodo, Levítico, Números, Deuteronomio y así sucesivamente
 hasta Apocalipsis. Los cuatro evangelios, Hechos, Romanos, 1 y 2 Corintios,
-Gálatas, Efesios, Filipenses y Colosenses quedaron completamente revisados y
-publicados; el próximo punto exacto es 1 Tesalonicenses 1.
+Gálatas, Efesios, Filipenses, Colosenses y 1 Tesalonicenses quedaron
+completamente revisados y publicados; el próximo punto exacto es
+2 Tesalonicenses 1.
 
 ## Publicación
 
@@ -110,10 +112,10 @@ intentar terminar la Biblia completa sin pausar (2026-08-07). Jeremías,
 Lamentaciones y Ezequiel quedaron completamente revisados, validados y publicados.
 Daniel, Oseas, Joel, Amós, Abdías, Jonás, Miqueas, Nahúm, Habacuc, Sofonías,
 Hageo, Zacarías, Malaquías, Mateo, Marcos, Lucas, Juan, Hechos, Romanos,
-1 Corintios, 2 Corintios, Gálatas, Efesios, Filipenses y Colosenses quedaron
-completamente revisados, validados y publicados; la revisión continúa desde
-1 Tesalonicenses 1. No se declarará completa ni oficial la Biblia hasta cerrar
-los 66 libros.
+1 Corintios, 2 Corintios, Gálatas, Efesios, Filipenses, Colosenses y
+1 Tesalonicenses quedaron completamente revisados, validados y publicados; la
+revisión continúa desde 2 Tesalonicenses 1. No se declarará completa ni
+oficial la Biblia hasta cerrar los 66 libros.
 
 ## Cambio de repositorio (2026-08-07)
 

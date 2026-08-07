@@ -12,28 +12,28 @@ aquí. Desde esta sesión, todo el trabajo del Nuevo Testamento continúa en
 ## Próximo punto exacto
 
 - Mateo, Marcos, Lucas, Juan, Hechos, Romanos, 1 Corintios, 2 Corintios,
-  Gálatas, Efesios, Filipenses y Colosenses quedaron completamente
-  cerrados (2026-08-07): Mateo, 28 capítulos y 1.071 versículos; Marcos,
-  16 capítulos y 678 versículos; Lucas, 24 capítulos y 1.151 versículos;
-  Juan, 21 capítulos y 879 versículos; Hechos, 28 capítulos y 1.006
-  versículos; Romanos, 16 capítulos y 433 versículos; 1 Corintios, 16
+  Gálatas, Efesios, Filipenses, Colosenses y 1 Tesalonicenses quedaron
+  completamente cerrados (2026-08-07): Mateo, 28 capítulos y 1.071 versículos;
+  Marcos, 16 capítulos y 678 versículos; Lucas, 24 capítulos y 1.151
+  versículos; Juan, 21 capítulos y 879 versículos; Hechos, 28 capítulos y
+  1.006 versículos; Romanos, 16 capítulos y 433 versículos; 1 Corintios, 16
   capítulos y 437 versículos; 2 Corintios, 13 capítulos y 256 versículos;
   Gálatas, 6 capítulos y 149 versículos; Efesios, 6 capítulos y 155
   versículos; Filipenses, 4 capítulos y 104 versículos; Colosenses, 4
-  capítulos y 95 versículos; todos con validación de calidad sobre el
-  libro completo, 0 problemas (sin desajuste de conteo vs. RVA1909, sin
-  campos vacíos, sin arcaísmos "vosotros" residuales, sin comillas
-  indebidas).
+  capítulos y 95 versículos; 1 Tesalonicenses, 5 capítulos y 89 versículos;
+  todos con validación de calidad sobre el libro completo, 0 problemas (sin
+  desajuste de conteo vs. RVA1909, sin campos vacíos, sin arcaísmos
+  "vosotros" residuales, sin comillas indebidas).
 - **Instrucción vigente (2026-08-07):** Juan pidió intentar terminar la
   Biblia completa sin detenerse ("intenta terminar la biblia, no se si los
   tokens me alcanzan"). El trabajo continúa de forma continua por el resto
   de las epístolas hasta Apocalipsis, publicando cada libro al cerrarlo,
   hasta que se acaben los tokens de la sesión o Juan pida detenerse.
-- Siguiente archivo: `biblia/modules/bibles/rv-verbo/books/1TH.json`.
+- Siguiente archivo: `biblia/modules/bibles/rv-verbo/books/2TH.json`.
 - Nota de método (aplica a Hechos, Romanos, 1-2 Corintios, Gálatas,
-  Efesios, Filipenses y Colosenses, y previsiblemente al resto de
-  epístolas): varios versículos con lectura Textus Receptus/RVA1909 sin
-  paralelo en el texto crítico moderno (BSB/ASV) se preservaron íntegros,
+  Efesios, Filipenses, Colosenses y 1 Tesalonicenses, y previsiblemente al
+  resto de epístolas): varios versículos con lectura Textus Receptus/RVA1909
+  sin paralelo en el texto crítico moderno (BSB/ASV) se preservaron íntegros,
   conforme al método ya establecido (RVA1909 controla estructura y
   variantes textuales): Hechos 8:37, 15:34, 18:21, 24:6-8, 28:29; Romanos
   16:24 (doxología final); 1 Corintios 10:28 (cláusula repetida), 11:24
@@ -41,11 +41,20 @@ aquí. Desde esta sesión, todo el trabajo del Nuevo Testamento continúa en
   en la lista de obras de la carne); Efesios 5:30 ("de su carne y de sus
   huesos"); Colosenses 2:2 ("y del Padre, y de Cristo"). También:
   "caridad" (RVA1909) se modernizó a "amor" en 1 Corintios 13, Gálatas
-  5:6/5:22 y Colosenses 3:14; "obispos" se modernizó a "supervisores" en
-  Filipenses 1:1 (consistente con Hechos 20:28). Los colofones finales de
-  cada epístola (quién la escribió, desde dónde se envió) se conservan
-  como parte del último versículo, igual que en Romanos, 1-2 Corintios,
-  Gálatas, Efesios, Filipenses y Colosenses.
+  5:6/5:22, Colosenses 3:14 y 1 Tesalonicenses 3:6/5:8; "obispos" se
+  modernizó a "supervisores" en Filipenses 1:1 (consistente con Hechos
+  20:28). En 1 Tesalonicenses 4:4 se preservó "vaso" de forma literal
+  (RVA1909/ASV "vessel") en vez de interpretarlo como "cuerpo" (BSB) o
+  "esposa" — el griego skeuos es ambiguo y es tema de debate exegético, así
+  que no se tomó partido (regla de neutralidad doctrinal). En 1
+  Tesalonicenses 5:27 se corrigió "Conjúroos" — un residuo del "vosotros"
+  fundido en un solo verbo (conjuro+os) que el script de modernización
+  original no detectó por no ser un sufijo separado — a "les encargo
+  solemnemente"; vigilar que no aparezcan más casos de este patrón
+  (verbo+os fusionado) en el resto del NT. Los colofones finales de cada
+  epístola (quién la escribió, desde dónde se envió) se conservan como
+  parte del último versículo, igual que en Romanos, 1-2 Corintios, Gálatas,
+  Efesios, Filipenses, Colosenses y 1 Tesalonicenses.
 - Nota de estilo confirmada en Juan 1–17 (ya presente antes de esta sesión,
   también usada en Marcos y Lucas): las comillas curvas “” SÍ se usan, pero
   solo para citas o discurso anidado dentro de otro discurso (p. ej. una cita
@@ -73,9 +82,8 @@ aquí. Desde esta sesión, todo el trabajo del Nuevo Testamento continúa en
 
 ## Trabajo restante
 
-- Restan 24 libros completos: Juan–Apocalipsis.
-- Restan 192 capítulos desde Juan 1 hasta Apocalipsis (Mateo, Marcos y Lucas
-  ya cerrados).
+- Restan 14 libros completos: 2 Tesalonicenses–Apocalipsis.
+- Restan 73 capítulos desde 2 Tesalonicenses 1 hasta Apocalipsis 22.
 
 ## Cierres ya descontados
 
