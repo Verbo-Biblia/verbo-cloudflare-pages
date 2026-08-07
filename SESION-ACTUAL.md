@@ -13,8 +13,8 @@ aquí. Desde esta sesión, todo el trabajo del Nuevo Testamento continúa en
 
 - Mateo, Marcos, Lucas, Juan, Hechos, Romanos, 1 Corintios, 2 Corintios,
   Gálatas, Efesios, Filipenses, Colosenses, 1 Tesalonicenses,
-  2 Tesalonicenses, 1 Timoteo, 2 Timoteo, Tito, Filemón y Hebreos quedaron
-  completamente cerrados (2026-08-07): Mateo, 28 capítulos y 1.071
+  2 Tesalonicenses, 1 Timoteo, 2 Timoteo, Tito, Filemón, Hebreos y Santiago
+  quedaron completamente cerrados (2026-08-07): Mateo, 28 capítulos y 1.071
   versículos; Marcos, 16 capítulos y 678 versículos; Lucas, 24 capítulos y
   1.151 versículos; Juan, 21 capítulos y 879 versículos; Hechos, 28
   capítulos y 1.006 versículos; Romanos, 16 capítulos y 433 versículos;
@@ -25,16 +25,16 @@ aquí. Desde esta sesión, todo el trabajo del Nuevo Testamento continúa en
   89 versículos; 2 Tesalonicenses, 3 capítulos y 47 versículos; 1 Timoteo,
   6 capítulos y 113 versículos; 2 Timoteo, 4 capítulos y 83 versículos;
   Tito, 3 capítulos y 46 versículos; Filemón, 1 capítulo y 25 versículos;
-  Hebreos, 13 capítulos y 303 versículos; todos con validación de calidad
-  sobre el libro completo, 0 problemas (sin desajuste de conteo vs.
-  RVA1909, sin campos vacíos, sin arcaísmos "vosotros" residuales, sin
-  comillas indebidas).
+  Hebreos, 13 capítulos y 303 versículos; Santiago, 5 capítulos y 108
+  versículos; todos con validación de calidad sobre el libro completo, 0
+  problemas (sin desajuste de conteo vs. RVA1909, sin campos vacíos, sin
+  arcaísmos "vosotros" residuales, sin comillas indebidas).
 - **Instrucción vigente (2026-08-07):** Juan pidió intentar terminar la
   Biblia completa sin detenerse ("intenta terminar la biblia, no se si los
   tokens me alcanzan"). El trabajo continúa de forma continua por el resto
   de las epístolas hasta Apocalipsis, publicando cada libro al cerrarlo,
   hasta que se acaben los tokens de la sesión o Juan pida detenerse.
-- Siguiente archivo: `biblia/modules/bibles/rv-verbo/books/JAS.json`.
+- Siguiente archivo: `biblia/modules/bibles/rv-verbo/books/1PE.json`.
 - Nota de método (aplica a Hechos, Romanos, 1-2 Corintios, Gálatas,
   Efesios, Filipenses, Colosenses y 1 Tesalonicenses, y previsiblemente al
   resto de epístolas): varios versículos con lectura Textus Receptus/RVA1909
@@ -87,8 +87,8 @@ aquí. Desde esta sesión, todo el trabajo del Nuevo Testamento continúa en
 
 ## Trabajo restante
 
-- Restan 8 libros completos: Santiago–Apocalipsis.
-- Restan 43 capítulos desde Santiago 1 hasta Apocalipsis 22.
+- Restan 7 libros completos: 1 Pedro–Apocalipsis.
+- Restan 38 capítulos desde 1 Pedro 1 hasta Apocalipsis 22.
 
 ## Cierres ya descontados
 
