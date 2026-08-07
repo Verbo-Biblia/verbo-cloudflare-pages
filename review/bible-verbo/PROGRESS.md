@@ -101,7 +101,8 @@ Un libro solo puede marcarse como cerrado cuando:
 | Filemón | 1 | candidato | Revisión integral completada: 1 capítulo y 25 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas); "caridad" modernizado a "amor" (5, 7), "coadjutor"/"cooperadores" a "colaborador(es)", "Apphia"/"Archîpo" a "Apia"/"Arquipo" (grafía moderna); preserva el envío final de 25 |
 | Hebreos | 13 | candidato | Revisión integral completada: 13 capítulos y 303 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas indebidas (0 problemas); "Pontífice" modernizado a "Sumo Sacerdote" en las ~20 apariciones del libro (2:17, 3:1, 4:14-15, 5:1/5/10, 6:20, 7:26-27, 8:1/3, 9:7/11/25, 13:11), "salud" a "salvación" (1:14, 2:3/10, 5:9, 6:9, 9:28), "Melchîsedec" a "Melquisedec", "Jephté" a "Jefté", "Jerusalem" a "Jerusalén", "mar Bermejo" a "mar Rojo", "flaco(s)/flaqueza" a "débil(es)/debilidad", "vianda(s)" a "alimento(s)"; corregido "ha denunciado" (sentido moderno ambiguo) a "ha declarado" en 12:26; "profesión" (de fe) modernizado a "confesión" (3:1, 4:14, 10:23) |
 | Santiago | 5 | candidato | Revisión integral completada: 5 capítulos y 108 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas); "Jacobo" modernizado a "Santiago" en 1:1 (convención estándar en español para el autor de esta epístola, coherente con el título del libro), "salud" (fórmula de saludo epistolar, no salvación) a "Saludos" en 1:1, "zahiere" a "reproche", "cebado" a "seducido", "palabra ingerida" a "palabra sembrada", "mácula" a "mancha", "Ea (ya) ahora" a "Vengan ahora" (4:13, 5:1) |
-| 1 Pedro–Apocalipsis | 38 | pendiente | Restan 7 libros después de Santiago |
+| 1 Pedro | 5 | candidato | Revisión integral completada: 5 capítulos y 105 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas); "salud" modernizado a "salvación" (1:5/9/10, 2:2), "conversación" (conducta) a "conducta" (1:15/17/18, 2:12, 3:1/2/16), "caridad" a "amor" (1:22, 4:8, 5:14 "ósculo de caridad"→"beso de amor"), "Bithinia" a "Bitinia", "Obispo" a "Supervisor" en 2:25 (consistente con 1 Timoteo 3:1-2), "dechados" a "ejemplos" (5:3), "mancebos" a "jóvenes" (5:5), "Carísimos" a "Amados" (4:12), "Gentiles" a "gentiles" |
+| 2 Pedro–Apocalipsis | 33 | pendiente | Restan 6 libros después de 1 Pedro |
 
 ## Orden de trabajo
 
@@ -109,9 +110,9 @@ Se seguirá el orden canónico, cerrando cada libro antes de declarar terminado 
 proyecto: Génesis, Éxodo, Levítico, Números, Deuteronomio y así sucesivamente
 hasta Apocalipsis. Los cuatro evangelios, Hechos, Romanos, 1 y 2 Corintios,
 Gálatas, Efesios, Filipenses, Colosenses, 1 Tesalonicenses, 2 Tesalonicenses,
-1 Timoteo, 2 Timoteo, Tito, Filemón, Hebreos y Santiago quedaron
+1 Timoteo, 2 Timoteo, Tito, Filemón, Hebreos, Santiago y 1 Pedro quedaron
 completamente revisados y publicados; el próximo punto exacto es
-1 Pedro 1.
+2 Pedro 1.
 
 ## Publicación
 
@@ -122,8 +123,8 @@ Daniel, Oseas, Joel, Amós, Abdías, Jonás, Miqueas, Nahúm, Habacuc, Sofonías
 Hageo, Zacarías, Malaquías, Mateo, Marcos, Lucas, Juan, Hechos, Romanos,
 1 Corintios, 2 Corintios, Gálatas, Efesios, Filipenses, Colosenses,
 1 Tesalonicenses, 2 Tesalonicenses, 1 Timoteo, 2 Timoteo, Tito, Filemón,
-Hebreos y Santiago quedaron completamente revisados, validados y
-publicados; la revisión continúa desde 1 Pedro 1. No se declarará completa
+Hebreos, Santiago y 1 Pedro quedaron completamente revisados, validados y
+publicados; la revisión continúa desde 2 Pedro 1. No se declarará completa
 ni oficial la Biblia hasta cerrar los 66 libros.
 
 ## Cambio de repositorio (2026-08-07)
