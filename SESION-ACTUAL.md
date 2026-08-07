@@ -11,14 +11,14 @@ aquí. Desde esta sesión, todo el trabajo del Nuevo Testamento continúa en
 
 ## Próximo punto exacto
 
-- Mateo y Marcos quedaron completamente cerrados (2026-08-07): Mateo, 28
-  capítulos y 1.071 versículos; Marcos, 16 capítulos y 678 versículos; ambos
-  con validación de calidad sobre el libro completo, 0 problemas (sin
-  desajuste de conteo vs. RVA1909, sin campos vacíos, sin arcaísmos
-  "vosotros" residuales, sin comillas).
-- Continuar con `Lucas 1–24` (24 capítulos) al retomar.
-- El avance desde Génesis hasta Marcos ya fue revisado, validado y publicado.
-- Archivo siguiente: `biblia/modules/bibles/rv-verbo/books/LUK.json`.
+- Mateo, Marcos y Lucas quedaron completamente cerrados (2026-08-07): Mateo,
+  28 capítulos y 1.071 versículos; Marcos, 16 capítulos y 678 versículos;
+  Lucas, 24 capítulos y 1.151 versículos; los tres con validación de calidad
+  sobre el libro completo, 0 problemas (sin desajuste de conteo vs. RVA1909,
+  sin campos vacíos, sin arcaísmos "vosotros" residuales, sin comillas).
+- Continuar con `Juan 1–21` (21 capítulos) al retomar.
+- El avance desde Génesis hasta Lucas ya fue revisado, validado y publicado.
+- Archivo siguiente: `biblia/modules/bibles/rv-verbo/books/JHN.json`.
 - Trabajar desde el texto BV2026 actual, preservando mejoras válidas.
 - Revisar cada versículo en contexto y validar cada capítulo antes de avanzar.
 
@@ -32,9 +32,9 @@ aquí. Desde esta sesión, todo el trabajo del Nuevo Testamento continúa en
 
 ## Trabajo restante
 
-- Restan 25 libros completos: Lucas–Apocalipsis.
-- Restan 216 capítulos desde Lucas 1 hasta Apocalipsis (Mateo y Marcos ya
-  cerrados).
+- Restan 24 libros completos: Juan–Apocalipsis.
+- Restan 192 capítulos desde Juan 1 hasta Apocalipsis (Mateo, Marcos y Lucas
+  ya cerrados).
 
 ## Cierres ya descontados
 
@@ -73,7 +73,8 @@ aquí. Desde esta sesión, todo el trabajo del Nuevo Testamento continúa en
 - Malaquías: 4 capítulos y 55 versículos; candidato editorial publicado.
 - Mateo: 28 capítulos y 1.071 versículos; candidato editorial publicado.
 - Marcos: 16 capítulos y 678 versículos; candidato editorial publicado.
-- Total AT+Mateo+Marcos terminado: 41 libros y 973 capítulos.
+- Lucas: 24 capítulos y 1.151 versículos; candidato editorial publicado.
+- Total AT+Mateo+Marcos+Lucas terminado: 42 libros y 997 capítulos.
 
 ## Método obligatorio restante
 

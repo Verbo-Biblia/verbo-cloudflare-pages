@@ -83,22 +83,23 @@ Un libro solo puede marcarse como cerrado cuando:
 | Malaquías | 4 | candidato | Revisión integral completada: 4 capítulos y 55 versículos; JSON, estructura, conteos frente a BSB y ASV, diálogos, sacerdocio, pacto, diezmos y cierre profético validados |
 | Mateo | 28 | candidato | Revisión integral completada: 28 capítulos y 1.071 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas), estilo sin comillas consistente con el AT validado |
 | Marcos | 16 | candidato | Revisión integral completada: 16 capítulos y 678 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas) |
-| Lucas–Apocalipsis | 216 | pendiente | Restan 25 libros después de Marcos |
+| Lucas | 24 | candidato | Revisión integral completada: 24 capítulos y 1.151 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas) |
+| Juan–Apocalipsis | 192 | pendiente | Restan 24 libros después de Lucas |
 
 ## Orden de trabajo
 
 Se seguirá el orden canónico, cerrando cada libro antes de declarar terminado el
 proyecto: Génesis, Éxodo, Levítico, Números, Deuteronomio y así sucesivamente
-hasta Apocalipsis. Marcos quedó completamente revisado y publicado; el próximo
-punto exacto es Lucas 1.
+hasta Apocalipsis. Lucas quedó completamente revisado y publicado; el próximo
+punto exacto es Juan 1.
 
 ## Publicación
 
 Juan autorizó expresamente subir cada libro cuando quede cerrado. Jeremías,
 Lamentaciones y Ezequiel quedaron completamente revisados, validados y publicados.
 Daniel, Oseas, Joel, Amós, Abdías, Jonás, Miqueas, Nahúm, Habacuc, Sofonías,
-Hageo, Zacarías, Malaquías, Mateo y Marcos quedaron completamente revisados,
-validados y publicados; la revisión continúa desde Lucas 1.
+Hageo, Zacarías, Malaquías, Mateo, Marcos y Lucas quedaron completamente
+revisados, validados y publicados; la revisión continúa desde Juan 1.
 No se declarará completa ni oficial la Biblia hasta cerrar los 66
 libros.
 
