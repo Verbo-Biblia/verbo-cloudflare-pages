@@ -1,19 +1,36 @@
-# Estado restante — Biblia Verbo — 2026-08-02
+# Estado restante — Biblia Verbo — 2026-08-07
+
+## Cambio de repositorio
+
+Este proyecto arrancó en `verbo-github-pages-v1` (Génesis–Malaquías comiteado y
+publicado ahí). Ese repo ya no despliega a producción — lo hace
+`verbo-cloudflare-pages` desde 2026-08-04. Mateo 1–2 se había revisado en el
+repo viejo pero quedó **sin comitear**; se rescató del working tree y se aplicó
+aquí. Desde esta sesión, todo el trabajo del Nuevo Testamento continúa en
+`verbo-cloudflare-pages`.
 
 ## Próximo punto exacto
 
-- Continuar con `Mateo 1–28`.
-- El avance desde Génesis hasta Malaquías ya fue revisado y validado.
+- Continuar con `Mateo 3–28`.
+- El avance desde Génesis hasta Malaquías ya fue revisado, validado y publicado.
+- Mateo 1–2 ya está revisado (rescatado, ver arriba) — falta comitear junto con
+  el resto del libro cuando cierre.
 - Archivo siguiente: `biblia/modules/bibles/rv-verbo/books/MAT.json`.
-- Malaquías quedó completamente revisado; el próximo punto exacto es Mateo 1.
 - Trabajar desde el texto BV2026 actual, preservando mejoras válidas.
 - Revisar cada versículo en contexto y validar cada capítulo antes de avanzar.
 
+## Decisión de estilo ya resuelta (2026-08-07)
+
+- Mateo 1–2 había introducido comillas angulares/curvas para todo el discurso
+  directo, distinto del estilo del AT ya publicado ("y dijo Dios: Sea la
+  luz", dos puntos + mayúscula, sin comillas). Juan decidió mantener
+  consistencia total con el AT: se quitaron las comillas de Mateo 1–2 y el
+  resto del NT sigue el mismo patrón sin comillas.
+
 ## Trabajo restante
 
-- Restan 27 libros: Mateo–Apocalipsis.
-- Restan 260 capítulos desde Mateo 1 hasta Apocalipsis.
-- Las fusiones históricas que aún queden se corregirán al revisar cada libro.
+- Restan 26 libros completos (Marcos–Apocalipsis) + Mateo 3–28.
+- Restan 258 capítulos desde Mateo 3 hasta Apocalipsis (Mateo 1–2 ya cerrado).
 
 ## Cierres ya descontados
 
@@ -33,6 +50,7 @@
 - Proverbios: 31 capítulos y 915 versículos; candidato editorial publicado.
 - Eclesiastés: 12 capítulos y 222 versículos; candidato editorial publicado.
 - Cantares: 8 capítulos y 117 versículos; candidato editorial publicado.
+- Isaías: 66 capítulos y 1.292 versículos; candidato editorial publicado.
 - Jeremías: 52 capítulos y 1.364 versículos; candidato editorial publicado.
 - Lamentaciones: 5 capítulos y 154 versículos; candidato editorial publicado.
 - Ezequiel: 48 capítulos y 1.273 versículos; candidato editorial publicado.
@@ -49,21 +67,37 @@
 - Hageo: 2 capítulos y 38 versículos; candidato editorial publicado.
 - Zacarías: 14 capítulos y 211 versículos; candidato editorial publicado.
 - Malaquías: 4 capítulos y 55 versículos; candidato editorial publicado.
-- Total terminado: 38 libros y 881 capítulos.
+- Mateo 1–2: revisados (2 de 28 capítulos), pendiente cerrar el resto del libro.
+- Total AT terminado: 39 libros y 929 capítulos.
 
 ## Método obligatorio restante
 
 1. Usar BV2026 como texto base; RVA1909 solo para controlar estructura,
    numeración e historia textual, nunca como modelo de redacción.
-2. Usar BSB y ASV como guías textuales principales disponibles; contrastar
-   también LBLA cuando sea accesible y RVG u otras versiones conocidas para
-   alternativas léxicas, sin copiar la redacción de ninguna como base.
+2. Usar BSB y ASV como guías textuales principales disponibles (ambas ya están
+   en `biblia/modules/bibles/` de este repo); contrastar también LBLA cuando
+   sea accesible y RVG u otras versiones conocidas para alternativas léxicas,
+   sin copiar la redacción de ninguna como base.
 3. Corregir errores, conversiones defectuosas, arcaísmos y nombres anticuados
    mediante revisión contextual, nunca con sustituciones globales ciegas.
 4. Verificar estructura, numeración, textos no vacíos, cifras, negaciones,
    sujetos, términos teológicos, referencias y JSON.
-5. Mantener este archivo centrado solamente en lo que falta y actualizarlo al
+5. Cuidado especial en genealogías y listas: no introducir distinciones que el
+   texto original no marca (ver nota de calidad más abajo sobre Mateo 1:8).
+6. Mantener este archivo centrado solamente en lo que falta y actualizarlo al
    cerrar cada nuevo avance.
+
+## Nota de calidad — revisión de Mateo 1–2 (Claude, 2026-08-07)
+
+Ver informe completo en `review/bible-verbo/OPINION-MATEO-1-2.md`. Resumen: la
+traducción es de buena calidad, natural y fiel al griego; corrige bien nombres
+propios arcaicos y reestructura la genealogía de forma legible. Dos ajustes
+ya aplicados en esta sesión: (1) Mateo 1:8 corregido de "antepasado de Uzías"
+a "padre de Uzías", parejo con el resto de la genealogía — el griego usa el
+mismo verbo en todos los eslabones, aunque históricamente se sepa que ahí
+Mateo omite tres reyes; vigilar que no se repita el patrón en otras
+genealogías (p. ej. Lucas 3). (2) Comillas quitadas de Mateo 1–2 para igualar
+el estilo sin comillas del AT ya publicado.
 
 ## Publicación
 

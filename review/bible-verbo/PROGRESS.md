@@ -81,14 +81,15 @@ Un libro solo puede marcarse como cerrado cuando:
 | Hageo | 2 | candidato | Revisión integral completada: 2 capítulos y 38 versículos; JSON, estructura, conteos frente a BSB y ASV, nombres, fechas, medidas y cuatro mensajes proféticos validados |
 | Zacarías | 14 | candidato | Revisión integral completada: 14 capítulos y 211 versículos; JSON, estructura, conteos frente a BSB y ASV, nombres, fechas, visiones, oráculos, medidas y transiciones de voz validados |
 | Malaquías | 4 | candidato | Revisión integral completada: 4 capítulos y 55 versículos; JSON, estructura, conteos frente a BSB y ASV, diálogos, sacerdocio, pacto, diezmos y cierre profético validados |
-| Mateo–Apocalipsis | 260 | pendiente | Restan los 27 libros del Nuevo Testamento |
+| Mateo | 28 | en revisión | Mateo 1–2 revisados; continuar en Mateo 3 |
+| Marcos–Apocalipsis | 232 | pendiente | Restan 26 libros después de Mateo |
 
 ## Orden de trabajo
 
 Se seguirá el orden canónico, cerrando cada libro antes de declarar terminado el
 proyecto: Génesis, Éxodo, Levítico, Números, Deuteronomio y así sucesivamente
-hasta Apocalipsis. Malaquías quedó completamente revisado; el próximo punto exacto
-es Mateo 1.
+hasta Apocalipsis. Malaquías quedó completamente revisado y publicado; el próximo
+punto exacto es Mateo 3.
 
 ## Publicación
 
@@ -96,6 +97,18 @@ Juan autorizó expresamente subir cada libro cuando quede cerrado. Jeremías,
 Lamentaciones y Ezequiel quedaron completamente revisados, validados y publicados.
 Daniel, Oseas, Joel, Amós, Abdías, Jonás, Miqueas, Nahúm, Habacuc, Sofonías y
 Hageo, Zacarías y Malaquías quedaron completamente revisados, validados y
-publicados; la revisión continúa desde Mateo 1.
+publicados; Mateo 1–2 ya fueron revisados y la revisión continúa desde Mateo 3.
 No se declarará completa ni oficial la Biblia hasta cerrar los 66
 libros.
+
+## Cambio de repositorio (2026-08-07)
+
+Este proyecto se inició en `verbo-github-pages-v1` (repo ya desconectado del
+hosting). Génesis–Malaquías (todo el AT) ya estaban comiteados y publicados ahí,
+y ese historial se trasladó intacto a `verbo-cloudflare-pages` en la migración
+del 2026-08-04. Mateo 1–2 quedó revisado en `verbo-github-pages-v1` pero **sin
+comitear** — se rescató desde el working tree de ese repo y se aplicó directo
+aquí. A partir de esta sesión, todo el trabajo del Nuevo Testamento continúa
+en `verbo-cloudflare-pages` (el repo que sí despliega a producción). Juan
+confirmó autonomía para comitear y publicar cada libro al cerrarlo, igual que
+antes.
