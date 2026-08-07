@@ -11,18 +11,15 @@ aquí. Desde esta sesión, todo el trabajo del Nuevo Testamento continúa en
 
 ## Próximo punto exacto
 
-- Pausado a pedido de Juan (2026-08-07) con Mateo 1–23 ya revisados. Continuar
-  con `Mateo 24–28` (5 capítulos, 97 versículos) al retomar.
-- El avance desde Génesis hasta Malaquías ya fue revisado, validado y publicado.
-- Mateo 1–20 comiteado y publicado (push hecho). Mateo 21–23 comiteado y
-  publicado en este mismo guardado de estado.
-- Archivo siguiente: `biblia/modules/bibles/rv-verbo/books/MAT.json`.
+- Mateo quedó completamente cerrado (2026-08-07): 28 capítulos, 1.071
+  versículos, validación de calidad sobre el libro completo con 0 problemas
+  (sin desajuste de conteo vs. RVA1909, sin campos vacíos, sin arcaísmos
+  "vosotros" residuales, sin comillas).
+- Continuar con `Marcos 1–16` (16 capítulos) al retomar.
+- El avance desde Génesis hasta Mateo ya fue revisado, validado y publicado.
+- Archivo siguiente: `biblia/modules/bibles/rv-verbo/books/MRK.json`.
 - Trabajar desde el texto BV2026 actual, preservando mejoras válidas.
 - Revisar cada versículo en contexto y validar cada capítulo antes de avanzar.
-- Validación de calidad corrida sobre Mateo 1–18 (2026-08-07): 618 versículos,
-  0 problemas (sin desajuste de conteo vs. RVA1909, sin campos vacíos, sin
-  arcaísmos "vosotros" residuales, sin comillas). Repetir el chequeo cuando se
-  cierre el libro completo.
 
 ## Decisión de estilo ya resuelta (2026-08-07)
 
@@ -34,8 +31,8 @@ aquí. Desde esta sesión, todo el trabajo del Nuevo Testamento continúa en
 
 ## Trabajo restante
 
-- Restan 26 libros completos (Marcos–Apocalipsis) + Mateo 3–28.
-- Restan 258 capítulos desde Mateo 3 hasta Apocalipsis (Mateo 1–2 ya cerrado).
+- Restan 26 libros completos: Marcos–Apocalipsis.
+- Restan 232 capítulos desde Marcos 1 hasta Apocalipsis (Mateo ya cerrado).
 
 ## Cierres ya descontados
 
@@ -72,8 +69,8 @@ aquí. Desde esta sesión, todo el trabajo del Nuevo Testamento continúa en
 - Hageo: 2 capítulos y 38 versículos; candidato editorial publicado.
 - Zacarías: 14 capítulos y 211 versículos; candidato editorial publicado.
 - Malaquías: 4 capítulos y 55 versículos; candidato editorial publicado.
-- Mateo 1–2: revisados (2 de 28 capítulos), pendiente cerrar el resto del libro.
-- Total AT terminado: 39 libros y 929 capítulos.
+- Mateo: 28 capítulos y 1.071 versículos; candidato editorial publicado.
+- Total AT+Mateo terminado: 40 libros y 957 capítulos.
 
 ## Método obligatorio restante
 

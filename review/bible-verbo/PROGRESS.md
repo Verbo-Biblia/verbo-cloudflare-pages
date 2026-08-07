@@ -81,23 +81,23 @@ Un libro solo puede marcarse como cerrado cuando:
 | Hageo | 2 | candidato | Revisión integral completada: 2 capítulos y 38 versículos; JSON, estructura, conteos frente a BSB y ASV, nombres, fechas, medidas y cuatro mensajes proféticos validados |
 | Zacarías | 14 | candidato | Revisión integral completada: 14 capítulos y 211 versículos; JSON, estructura, conteos frente a BSB y ASV, nombres, fechas, visiones, oráculos, medidas y transiciones de voz validados |
 | Malaquías | 4 | candidato | Revisión integral completada: 4 capítulos y 55 versículos; JSON, estructura, conteos frente a BSB y ASV, diálogos, sacerdocio, pacto, diezmos y cierre profético validados |
-| Mateo | 28 | en revisión | Mateo 1–23 revisados (618+ versículos validados, 0 problemas); continuar en Mateo 24 |
+| Mateo | 28 | candidato | Revisión integral completada: 28 capítulos y 1.071 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas), estilo sin comillas consistente con el AT validado |
 | Marcos–Apocalipsis | 232 | pendiente | Restan 26 libros después de Mateo |
 
 ## Orden de trabajo
 
 Se seguirá el orden canónico, cerrando cada libro antes de declarar terminado el
 proyecto: Génesis, Éxodo, Levítico, Números, Deuteronomio y así sucesivamente
-hasta Apocalipsis. Malaquías quedó completamente revisado y publicado; el próximo
-punto exacto es Mateo 3.
+hasta Apocalipsis. Mateo quedó completamente revisado y publicado; el próximo
+punto exacto es Marcos 1.
 
 ## Publicación
 
 Juan autorizó expresamente subir cada libro cuando quede cerrado. Jeremías,
 Lamentaciones y Ezequiel quedaron completamente revisados, validados y publicados.
-Daniel, Oseas, Joel, Amós, Abdías, Jonás, Miqueas, Nahúm, Habacuc, Sofonías y
-Hageo, Zacarías y Malaquías quedaron completamente revisados, validados y
-publicados; Mateo 1–2 ya fueron revisados y la revisión continúa desde Mateo 3.
+Daniel, Oseas, Joel, Amós, Abdías, Jonás, Miqueas, Nahúm, Habacuc, Sofonías,
+Hageo, Zacarías, Malaquías y Mateo quedaron completamente revisados, validados y
+publicados; la revisión continúa desde Marcos 1.
 No se declarará completa ni oficial la Biblia hasta cerrar los 66
 libros.
 
