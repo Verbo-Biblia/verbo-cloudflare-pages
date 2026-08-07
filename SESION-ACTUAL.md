@@ -11,14 +11,31 @@ aquí. Desde esta sesión, todo el trabajo del Nuevo Testamento continúa en
 
 ## Próximo punto exacto
 
-- Mateo, Marcos y Lucas quedaron completamente cerrados (2026-08-07): Mateo,
-  28 capítulos y 1.071 versículos; Marcos, 16 capítulos y 678 versículos;
-  Lucas, 24 capítulos y 1.151 versículos; los tres con validación de calidad
-  sobre el libro completo, 0 problemas (sin desajuste de conteo vs. RVA1909,
-  sin campos vacíos, sin arcaísmos "vosotros" residuales, sin comillas).
-- Continuar con `Juan 1–21` (21 capítulos) al retomar.
-- El avance desde Génesis hasta Lucas ya fue revisado, validado y publicado.
-- Archivo siguiente: `biblia/modules/bibles/rv-verbo/books/JHN.json`.
+- Mateo, Marcos, Lucas y Juan quedaron completamente cerrados (2026-08-07):
+  Mateo, 28 capítulos y 1.071 versículos; Marcos, 16 capítulos y 678
+  versículos; Lucas, 24 capítulos y 1.151 versículos; Juan, 21 capítulos y
+  879 versículos; los cuatro con validación de calidad sobre el libro
+  completo, 0 problemas (sin desajuste de conteo vs. RVA1909, sin campos
+  vacíos, sin arcaísmos "vosotros" residuales, sin comillas indebidas).
+- **Los cuatro evangelios están terminados.** Por instrucción explícita de
+  Juan ("termina los evangelios pausas y guardas estado"), el trabajo se
+  PAUSA aquí. El siguiente libro pendiente es Hechos de los Apóstoles
+  (`biblia/modules/bibles/rv-verbo/books/ACT.json`), pero no se debe
+  continuar sin nueva indicación de Juan.
+- Nota de estilo confirmada en Juan 1–17 (ya presente antes de esta sesión,
+  también usada en Marcos y Lucas): las comillas curvas “” SÍ se usan, pero
+  solo para citas o discurso anidado dentro de otro discurso (p. ej. una cita
+  de Escritura dentro de las palabras de Jesús, o alguien repitiendo lo que
+  otro dijo). El discurso directo de primer nivel sigue sin comillas (dos
+  puntos + mayúscula). No es un error — el script de validación de calidad
+  debe filtrar comillas curvas “” y solo marcar guillemets «» como problema.
+- Nota textual: Juan 21:15-17 preserva "hijo de Jonás" (lectura del Textus
+  Receptus / RVA1909), aunque BSB y ASV (texto crítico moderno) dicen "hijo
+  de Juan" — decisión conforme al método (RVA1909 controla estructura y
+  variantes textuales, no las guías modernas). Juan 21:25 conserva el
+  "Amén." final de RVA1909, igual que se hizo en Mateo 28:20, Marcos 16:20 y
+  Lucas 24:53.
+- El avance desde Génesis hasta Juan ya fue revisado, validado y publicado.
 - Trabajar desde el texto BV2026 actual, preservando mejoras válidas.
 - Revisar cada versículo en contexto y validar cada capítulo antes de avanzar.
 
