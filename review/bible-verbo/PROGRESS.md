@@ -98,7 +98,8 @@ Un libro solo puede marcarse como cerrado cuando:
 | 1 Timoteo | 6 | candidato | Revisión integral completada: 6 capítulos y 113 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas); "obispado/obispo" modernizado a "cargo de supervisor/supervisor" (3:1-2, consistente con Filipenses 1:1 y Hechos 20:28), "caridad" a "amor" (1:5, 2:15, 4:12, 6:11), "hacimiento(s) de gracias" a "acción/acciones de gracias" (2:1, 4:3-4); corregido "creó hijos" (crear) a "crió hijos" (criar) en 5:10 — error de conversión, no arcaísmo; corregida forma subjuntivo futuro residual "propusieres" a indicativo presente "expones" en 4:6 (regla "si"+subjuntivo futuro→indicativo presente); "Adam" a "Adán", "Gentiles" a "gentiles"; preserva "Dios ha sido manifestado en carne" en 3:16 (TR/RVA1909, frente a "quien"/"who" del texto crítico BSB/ASV) |
 | 2 Timoteo | 4 | candidato | Revisión integral completada: 4 capítulos y 83 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas); "salud" modernizado a "salvación" (2:10, 3:15), "caridad" a "amor" (2:22, 3:10), "píamente" a "piadosamente" (3:12), "Tychîco"/"Efeso" a "Tíquico"/"Éfeso" (1:18, 4:12), "capote" a "capa" y "vinieres" (subjuntivo futuro) a "vengas" (4:13); corregidos varios "antes" adversativos arcaicos a "sino (que)" (1:8, 1:17, 2:14, 4:3, 4:16); "Requiero yo pues" a "Te encargo solemnemente" en 4:1 (consistente con 1 Timoteo 5:21); preserva "de los gentiles" en 1:11 (TR/RVA1909, ausente en texto crítico BSB/ASV) y "obispo" en el colofón de 4:22 (describe el oficio episcopal posterior de la iglesia primitiva, distinto del "supervisor" de 1 Timoteo 3) |
 | Tito | 3 | candidato | Revisión integral completada: 3 capítulos y 46 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas); "obispo" modernizado a "supervisor" en 1:7 (consistente con 1 Timoteo 3:1-2), "caridad" a "amor" (2:2), "píamente" a "piadosamente" (2:12), "Tichîco" a "Tíquico" (3:12), "Cretenses" a "cretenses" (1:12); preserva "obispo" en el colofón de 3:15 (mismo criterio que 2 Timoteo 4:22) |
-| Filemón–Apocalipsis | 57 | pendiente | Restan 10 libros después de Tito |
+| Filemón | 1 | candidato | Revisión integral completada: 1 capítulo y 25 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas); "caridad" modernizado a "amor" (5, 7), "coadjutor"/"cooperadores" a "colaborador(es)", "Apphia"/"Archîpo" a "Apia"/"Arquipo" (grafía moderna); preserva el envío final de 25 |
+| Hebreos–Apocalipsis | 56 | pendiente | Restan 9 libros después de Filemón |
 
 ## Orden de trabajo
 
@@ -106,8 +107,8 @@ Se seguirá el orden canónico, cerrando cada libro antes de declarar terminado 
 proyecto: Génesis, Éxodo, Levítico, Números, Deuteronomio y así sucesivamente
 hasta Apocalipsis. Los cuatro evangelios, Hechos, Romanos, 1 y 2 Corintios,
 Gálatas, Efesios, Filipenses, Colosenses, 1 Tesalonicenses, 2 Tesalonicenses,
-1 Timoteo, 2 Timoteo y Tito quedaron completamente revisados y publicados;
-el próximo punto exacto es Filemón 1.
+1 Timoteo, 2 Timoteo, Tito y Filemón quedaron completamente revisados y
+publicados; el próximo punto exacto es Hebreos 1.
 
 ## Publicación
 
@@ -117,10 +118,10 @@ Lamentaciones y Ezequiel quedaron completamente revisados, validados y publicado
 Daniel, Oseas, Joel, Amós, Abdías, Jonás, Miqueas, Nahúm, Habacuc, Sofonías,
 Hageo, Zacarías, Malaquías, Mateo, Marcos, Lucas, Juan, Hechos, Romanos,
 1 Corintios, 2 Corintios, Gálatas, Efesios, Filipenses, Colosenses,
-1 Tesalonicenses, 2 Tesalonicenses, 1 Timoteo, 2 Timoteo y Tito quedaron
-completamente revisados, validados y publicados; la revisión continúa desde
-Filemón 1. No se declarará completa ni oficial la Biblia hasta cerrar los 66
-libros.
+1 Tesalonicenses, 2 Tesalonicenses, 1 Timoteo, 2 Timoteo, Tito y Filemón
+quedaron completamente revisados, validados y publicados; la revisión
+continúa desde Hebreos 1. No se declarará completa ni oficial la Biblia
+hasta cerrar los 66 libros.
 
 ## Cambio de repositorio (2026-08-07)
 
