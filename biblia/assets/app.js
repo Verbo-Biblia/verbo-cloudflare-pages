@@ -241,14 +241,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   let currentBook = posicionBiblia?.libro || 'ROM';
   let currentChapter = Number(posicionBiblia?.capitulo) || 7;
   const themes = [
-    { id:'paper', label:'Papel cálido', sample:'#F1E3C8' },
-    { id:'cream', label:'Crema dorada', sample:'#F5E7C8' },
-    { id:'sage', label:'Verde oliva', sample:'#DDE8D1' },
-    { id:'mist', label:'Azul noche suave', sample:'#DDEAF1' },
-    { id:'pearl', label:'Gris perla', sample:'#ECE9E2' },
-    { id:'sand', label:'Rosa arena', sample:'#F1DCD6' },
-    { id:'mint', label:'Menta', sample:'#D8F3EA' },
-    { id:'rosewood', label:'Palo rosa', sample:'#F2D7DF' }
+    { id:'paper', sample:'#F1E3C8' },
+    { id:'cream', sample:'#F5E7C8' },
+    { id:'sage', sample:'#DDE8D1' },
+    { id:'mist', sample:'#DDEAF1' },
+    { id:'pearl', sample:'#ECE9E2' },
+    { id:'sand', sample:'#F1DCD6' },
+    { id:'mint', sample:'#D8F3EA' },
+    { id:'rosewood', sample:'#F2D7DF' }
   ];
 
   const emptyState = (icon, text) => `<div class="panel-empty"><div class="panel-empty__icon">${icon}</div><div class="panel-empty__text">${text}</div></div>`;
@@ -2008,21 +2008,21 @@ document.addEventListener('DOMContentLoaded', async () => {
       <section class="ajustes-panel">
         ${renderSyncSection()}
         <div class="ajustes-section">
-          <h3>Tema</h3>
-          <p>Elige un tono claro para descansar mejor la vista. Se guardará solo en este dispositivo.</p>
+          <h3>${t('ajustes.temaTitle')}</h3>
+          <p>${t('ajustes.temaDescripcion')}</p>
           <div class="theme-options">
             ${themes.map(th=>`<button class="theme-option${th.id===currentTheme?' theme-option--active':''}" type="button" data-theme="${th.id}">
               <span class="theme-option__sample" style="background:${th.sample}"></span>
-              <span class="theme-option__label">${escapeHTML(th.label)}</span>
+              <span class="theme-option__label">${escapeHTML(t('ajustes.temas.' + th.id))}</span>
             </button>`).join('')}
           </div>
         </div>
         <div class="ajustes-section">
-          <h3>Exportar / Importar datos</h3>
-          <p>Descarga un archivo con tus notas, resaltados y marcadores, o restáuralos en otro dispositivo.</p>
+          <h3>${t('ajustes.exportTitle')}</h3>
+          <p>${t('ajustes.exportDescripcion')}</p>
           <div class="ajustes-backup-actions">
-            <button class="ajustes-backup-btn" type="button" id="ajustesExportBtn">Exportar mis datos</button>
-            <button class="ajustes-backup-btn" type="button" id="ajustesImportBtn">Importar mis datos</button>
+            <button class="ajustes-backup-btn" type="button" id="ajustesExportBtn">${t('ajustes.exportarBtn')}</button>
+            <button class="ajustes-backup-btn" type="button" id="ajustesImportBtn">${t('ajustes.importarBtn')}</button>
             <input type="file" id="ajustesImportInput" accept="application/json" hidden>
           </div>
         </div>

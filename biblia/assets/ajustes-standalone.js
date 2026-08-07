@@ -16,14 +16,14 @@
     if (!panel) return;
 
     const themes = [
-      { id: 'paper', label: 'Papel cálido', sample: '#F1E3C8' },
-      { id: 'cream', label: 'Crema dorada', sample: '#F5E7C8' },
-      { id: 'sage', label: 'Verde oliva', sample: '#DDE8D1' },
-      { id: 'mist', label: 'Azul noche suave', sample: '#DDEAF1' },
-      { id: 'pearl', label: 'Gris perla', sample: '#ECE9E2' },
-      { id: 'sand', label: 'Rosa arena', sample: '#F1DCD6' },
-      { id: 'mint', label: 'Menta', sample: '#D8F3EA' },
-      { id: 'rosewood', label: 'Palo rosa', sample: '#F2D7DF' }
+      { id: 'paper', sample: '#F1E3C8' },
+      { id: 'cream', sample: '#F5E7C8' },
+      { id: 'sage', sample: '#DDE8D1' },
+      { id: 'mist', sample: '#DDEAF1' },
+      { id: 'pearl', sample: '#ECE9E2' },
+      { id: 'sand', sample: '#F1DCD6' },
+      { id: 'mint', sample: '#D8F3EA' },
+      { id: 'rosewood', sample: '#F2D7DF' }
     ];
 
     const escapeHTML = value => String(value ?? '').replace(/[&<>'"]/g, ch => ({
@@ -93,7 +93,7 @@
           <div class="theme-options">
             ${themes.map(th => `<button class="theme-option${th.id === currentTheme ? ' theme-option--active' : ''}" type="button" data-theme="${th.id}">
               <span class="theme-option__sample" style="background:${th.sample}"></span>
-              <span class="theme-option__label">${escapeHTML(th.label)}</span>
+              <span class="theme-option__label">${escapeHTML(t('ajustes.temas.' + th.id))}</span>
             </button>`).join('')}
           </div>
         </div>
