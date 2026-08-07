@@ -11,26 +11,26 @@ aquí. Desde esta sesión, todo el trabajo del Nuevo Testamento continúa en
 
 ## Próximo punto exacto
 
-- Mateo, Marcos, Lucas, Juan y Hechos quedaron completamente cerrados
-  (2026-08-07): Mateo, 28 capítulos y 1.071 versículos; Marcos, 16 capítulos
-  y 678 versículos; Lucas, 24 capítulos y 1.151 versículos; Juan, 21
-  capítulos y 879 versículos; Hechos, 28 capítulos y 1.006 versículos;
-  todos con validación de calidad sobre el libro completo, 0 problemas (sin
-  desajuste de conteo vs. RVA1909, sin campos vacíos, sin arcaísmos
-  "vosotros" residuales, sin comillas indebidas).
-- **Instrucción vigente (2026-08-07, reemplaza la pausa anterior):** Juan
-  pidió intentar terminar la Biblia completa sin detenerse ("intenta
-  terminar la biblia, no se si los tokens me alcanzan"). El AT ya estaba
-  completo; con los evangelios y Hechos cerrados en esta sesión, el trabajo
-  continúa de forma continua por Romanos y el resto de las epístolas hasta
-  Apocalipsis, publicando cada libro al cerrarlo, hasta que se acaben los
-  tokens de la sesión o Juan pida detenerse.
-- Siguiente archivo: `biblia/modules/bibles/rv-verbo/books/ROM.json`.
-- Nota de método para Hechos (aplica también a las epístolas): varios
-  versículos con lectura Textus Receptus/RVA1909 sin paralelo en el texto
-  crítico moderno (BSB/ASV) se preservaron íntegros, conforme al método ya
-  establecido (RVA1909 controla estructura y variantes textuales): Hechos
-  8:37, 15:34, 18:21, 24:6-8 y 28:29.
+- Mateo, Marcos, Lucas, Juan, Hechos y Romanos quedaron completamente
+  cerrados (2026-08-07): Mateo, 28 capítulos y 1.071 versículos; Marcos, 16
+  capítulos y 678 versículos; Lucas, 24 capítulos y 1.151 versículos; Juan,
+  21 capítulos y 879 versículos; Hechos, 28 capítulos y 1.006 versículos;
+  Romanos, 16 capítulos y 433 versículos; todos con validación de calidad
+  sobre el libro completo, 0 problemas (sin desajuste de conteo vs.
+  RVA1909, sin campos vacíos, sin arcaísmos "vosotros" residuales, sin
+  comillas indebidas).
+- **Instrucción vigente (2026-08-07):** Juan pidió intentar terminar la
+  Biblia completa sin detenerse ("intenta terminar la biblia, no se si los
+  tokens me alcanzan"). El trabajo continúa de forma continua por el resto
+  de las epístolas hasta Apocalipsis, publicando cada libro al cerrarlo,
+  hasta que se acaben los tokens de la sesión o Juan pida detenerse.
+- Siguiente archivo: `biblia/modules/bibles/rv-verbo/books/1CO.json`.
+- Nota de método (aplica a Hechos y Romanos, y previsiblemente al resto de
+  epístolas): varios versículos con lectura Textus Receptus/RVA1909 sin
+  paralelo en el texto crítico moderno (BSB/ASV) se preservaron íntegros,
+  conforme al método ya establecido (RVA1909 controla estructura y
+  variantes textuales): Hechos 8:37, 15:34, 18:21, 24:6-8, 28:29; Romanos
+  16:24 (doxología final).
 - Nota de estilo confirmada en Juan 1–17 (ya presente antes de esta sesión,
   también usada en Marcos y Lucas): las comillas curvas “” SÍ se usan, pero
   solo para citas o discurso anidado dentro de otro discurso (p. ej. una cita
