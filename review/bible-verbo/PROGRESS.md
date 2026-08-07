@@ -85,14 +85,15 @@ Un libro solo puede marcarse como cerrado cuando:
 | Marcos | 16 | candidato | Revisión integral completada: 16 capítulos y 678 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas) |
 | Lucas | 24 | candidato | Revisión integral completada: 24 capítulos y 1.151 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas) |
 | Juan | 21 | candidato | Revisión integral completada: 21 capítulos y 879 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas indebidas (0 problemas); Juan 21:15-17 preserva "hijo de Jonás" (TR/RVA1909) frente a "hijo de Juan" (texto crítico BSB/ASV) |
-| Hechos–Apocalipsis | 171 | pendiente | Restan 23 libros después de Juan |
+| Hechos | 28 | candidato | Revisión integral completada: 28 capítulos y 1.006 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas); preserva lecturas TR/RVA1909 frente al texto crítico en 8:37, 15:34, 18:21, 24:6-8 y 28:29 |
+| Romanos–Apocalipsis | 143 | pendiente | Restan 22 libros después de Hechos |
 
 ## Orden de trabajo
 
 Se seguirá el orden canónico, cerrando cada libro antes de declarar terminado el
 proyecto: Génesis, Éxodo, Levítico, Números, Deuteronomio y así sucesivamente
-hasta Apocalipsis. Los cuatro evangelios (Mateo, Marcos, Lucas, Juan) quedaron
-completamente revisados y publicados; el próximo punto exacto es Hechos 1.
+hasta Apocalipsis. Los cuatro evangelios y Hechos quedaron completamente
+revisados y publicados; el próximo punto exacto es Romanos 1.
 
 ## Publicación
 
@@ -100,9 +101,9 @@ Juan autorizó expresamente subir cada libro cuando quede cerrado, y pidió
 intentar terminar la Biblia completa sin pausar (2026-08-07). Jeremías,
 Lamentaciones y Ezequiel quedaron completamente revisados, validados y publicados.
 Daniel, Oseas, Joel, Amós, Abdías, Jonás, Miqueas, Nahúm, Habacuc, Sofonías,
-Hageo, Zacarías, Malaquías, Mateo, Marcos, Lucas y Juan quedaron completamente
-revisados, validados y publicados; la revisión continúa desde Hechos 1.
-No se declarará completa ni oficial la Biblia hasta cerrar los 66
+Hageo, Zacarías, Malaquías, Mateo, Marcos, Lucas, Juan y Hechos quedaron
+completamente revisados, validados y publicados; la revisión continúa desde
+Romanos 1. No se declarará completa ni oficial la Biblia hasta cerrar los 66
 libros.
 
 ## Cambio de repositorio (2026-08-07)
