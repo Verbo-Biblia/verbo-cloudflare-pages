@@ -104,7 +104,8 @@ Un libro solo puede marcarse como cerrado cuando:
 | 1 Pedro | 5 | candidato | Revisión integral completada: 5 capítulos y 105 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas); "salud" modernizado a "salvación" (1:5/9/10, 2:2), "conversación" (conducta) a "conducta" (1:15/17/18, 2:12, 3:1/2/16), "caridad" a "amor" (1:22, 4:8, 5:14 "ósculo de caridad"→"beso de amor"), "Bithinia" a "Bitinia", "Obispo" a "Supervisor" en 2:25 (consistente con 1 Timoteo 3:1-2), "dechados" a "ejemplos" (5:3), "mancebos" a "jóvenes" (5:5), "Carísimos" a "Amados" (4:12), "Gentiles" a "gentiles" |
 | 2 Pedro | 3 | candidato | Revisión integral completada: 3 capítulos y 61 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas); corregido error de concordancia de género "la poder"→"el poder" (1:16) y "su divina poder"→"su divino poder" (1:3); "caridad" modernizado a "amor" en 1:7 (con "amor fraternal" renombrado a "afecto fraternal" para no duplicar la palabra "amor" en la cadena de virtudes); "cebando/ceban" a "seduciendo/seducen", "disoluciones" a "libertinaje", "píos" a "piadosos", "falsos doctores" a "falsos maestros", "Carísimos" a "Amados", "postrimeros días" a "últimos días", "advenimiento" a "venida", "mácula" a "mancha", "salud" (que es salvación) a "salvación" en 3:15 |
 | 1 Juan | 5 | candidato | Revisión integral completada: 5 capítulos y 105 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas); "caridad" modernizado a "amor" en 2:5 (con corrección de concordancia de género "perfecta"→"perfecto"), "mancebos" a "jóvenes" (2:13-14), "Carísimos" a "Amados" (3:21, 4:7), "le cierre sus entrañas" a "le cierre su corazón" (3:17), "demandar" (registro legal moderno confuso) a "pedir" en 5:14-16; corregido orden de palabras en 1:1 ("palparon nuestras manos"→"nuestras manos palparon"); preserva íntegro el Comma Johanneum de 5:7 (TR/RVA1909, ausente en el texto crítico BSB/ASV) |
-| 2 Juan–Apocalipsis | 25 | pendiente | Restan 4 libros después de 1 Juan |
+| 2 Juan | 1 | candidato | Revisión integral completada: 1 capítulo y 13 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas); "hablar boca a boca" modernizado a "hablar cara a cara" (12), pulido el orden de palabras en 7 |
+| 3 Juan–Apocalipsis | 24 | pendiente | Restan 3 libros después de 2 Juan |
 
 ## Orden de trabajo
 
@@ -112,9 +113,9 @@ Se seguirá el orden canónico, cerrando cada libro antes de declarar terminado 
 proyecto: Génesis, Éxodo, Levítico, Números, Deuteronomio y así sucesivamente
 hasta Apocalipsis. Los cuatro evangelios, Hechos, Romanos, 1 y 2 Corintios,
 Gálatas, Efesios, Filipenses, Colosenses, 1 Tesalonicenses, 2 Tesalonicenses,
-1 Timoteo, 2 Timoteo, Tito, Filemón, Hebreos, Santiago, 1 Pedro, 2 Pedro y
-1 Juan quedaron completamente revisados y publicados; el próximo punto
-exacto es 2 Juan 1.
+1 Timoteo, 2 Timoteo, Tito, Filemón, Hebreos, Santiago, 1 Pedro, 2 Pedro,
+1 Juan y 2 Juan quedaron completamente revisados y publicados; el próximo
+punto exacto es 3 Juan 1.
 
 ## Publicación
 
@@ -125,8 +126,8 @@ Daniel, Oseas, Joel, Amós, Abdías, Jonás, Miqueas, Nahúm, Habacuc, Sofonías
 Hageo, Zacarías, Malaquías, Mateo, Marcos, Lucas, Juan, Hechos, Romanos,
 1 Corintios, 2 Corintios, Gálatas, Efesios, Filipenses, Colosenses,
 1 Tesalonicenses, 2 Tesalonicenses, 1 Timoteo, 2 Timoteo, Tito, Filemón,
-Hebreos, Santiago, 1 Pedro, 2 Pedro y 1 Juan quedaron completamente
-revisados, validados y publicados; la revisión continúa desde 2 Juan 1. No
+Hebreos, Santiago, 1 Pedro, 2 Pedro, 1 Juan y 2 Juan quedaron completamente
+revisados, validados y publicados; la revisión continúa desde 3 Juan 1. No
 se declarará completa ni oficial la Biblia hasta cerrar los 66 libros.
 
 ## Cambio de repositorio (2026-08-07)
