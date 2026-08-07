@@ -88,8 +88,8 @@
       panel.innerHTML = `
         ${renderSyncSection()}
         <div class="ajustes-section">
-          <h3>Tema</h3>
-          <p>Elige un tono claro para descansar mejor la vista. Se guardará solo en este dispositivo.</p>
+          <h3>${t('ajustes.temaTitle')}</h3>
+          <p>${t('ajustes.temaDescripcion')}</p>
           <div class="theme-options">
             ${themes.map(th => `<button class="theme-option${th.id === currentTheme ? ' theme-option--active' : ''}" type="button" data-theme="${th.id}">
               <span class="theme-option__sample" style="background:${th.sample}"></span>
@@ -98,11 +98,11 @@
           </div>
         </div>
         <div class="ajustes-section">
-          <h3>Exportar / Importar datos</h3>
-          <p>Descarga un archivo con tus notas, resaltados y marcadores, o restáuralos en otro dispositivo.</p>
+          <h3>${t('ajustes.exportTitle')}</h3>
+          <p>${t('ajustes.exportDescripcion')}</p>
           <div class="ajustes-backup-actions">
-            <button class="ajustes-backup-btn" type="button" id="ajustesExportBtn">Exportar mis datos</button>
-            <button class="ajustes-backup-btn" type="button" id="ajustesImportBtn">Importar mis datos</button>
+            <button class="ajustes-backup-btn" type="button" id="ajustesExportBtn">${t('ajustes.exportarBtn')}</button>
+            <button class="ajustes-backup-btn" type="button" id="ajustesImportBtn">${t('ajustes.importarBtn')}</button>
             <input type="file" id="ajustesImportInput" accept="application/json" hidden>
           </div>
         </div>`;
