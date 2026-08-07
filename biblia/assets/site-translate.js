@@ -1,10 +1,12 @@
 /* Traducción en vivo para contenido largo fuera del diccionario estático de
    interfaz (VerboI18n): ensayos de Misión/Fundador, catálogo de Librería y
    Recursos. Mismo mecanismo que ya usa /biblia/ para Comentario/Strong —
-   API no oficial de Google Translate + caché en localStorage compartida
-   (mismo prefijo 'verbo:t:') — pero reutilizable desde cualquier página del
-   sitio. Marca cada bloque a traducir con data-i18n-live (opcionalmente
-   data-i18n-live="id-estable" para una clave de caché legible). */
+   POST /translate en el Worker verbo-api-bible (Claude Haiku 4.5 + caché
+   compartido en Cloudflare KV, ver cloudflare/api-bible-worker/README.md)
+   + caché en localStorage compartida (mismo prefijo 'verbo:t:') — pero
+   reutilizable desde cualquier página del sitio. Marca cada bloque a
+   traducir con data-i18n-live (opcionalmente data-i18n-live="id-estable"
+   para una clave de caché legible). */
 (function(){
   'use strict';
   const T_PREFIX = 'verbo:t:';
@@ -32,16 +34,55 @@
     return chunks;
   }
 
-  async function googleTranslate(text, sourceLang, targetLang){
-    async function fetchTranslate(chunk){
+  // Resuelto relativo a la ubicación de este script (no a la página que lo
+  // incluye) — mismo motivo y mismo patrón que REGISTRY_URL en assets/sync.js:
+  // este archivo se carga desde fuera de /biblia/ (Misión, Fundador, Librería,
+  // Recursos), así que 'modules/registry.json' relativo a la página rompería.
+  const REGISTRY_URL = (() => {
+    const src = (document.currentScript && document.currentScript.src) || '';
+    const scriptDir = src ? src.split('?')[0].replace(/[^/]+$/, '') : './';
+    return scriptDir + '../modules/registry.json';
+  })();
+  let workerBasePromise = null;
+  function translateWorkerBase(){
+    if(!workerBasePromise){
+      workerBasePromise = fetch(REGISTRY_URL).then(r=>r.json())
+        .then(registry => String(registry.apiBible?.proxyUrl || '').trim().replace(/\/+$/, ''))
+        .catch(() => '');
+    }
+    return workerBasePromise;
+  }
+
+  async function verboTranslate(text, sourceLang, targetLang){
+    // Fase 2 (2026-08-07): reemplaza el endpoint no oficial de Google
+    // Translate por POST /translate en el Worker verbo-api-bible — mismo
+    // cambio y mismos reintentos que assets/app.js.
+    async function fetchTranslateOnce(chunk){
+      const base=await translateWorkerBase();
+      if(!base) return null;
+      const controller=new AbortController();
+      const timeoutId=setTimeout(()=>controller.abort(), 12000);
       try{
-        const url=`https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sourceLang}&tl=${targetLang}&dt=t&q=${encodeURIComponent(chunk)}`;
-        const resp=await fetch(url);
+        const resp=await fetch(`${base}/translate`, {
+          method:'POST',
+          headers:{ 'Content-Type':'application/json' },
+          body:JSON.stringify({ text:chunk, targetLang }),
+          signal:controller.signal
+        });
         if(!resp.ok) return null;
         const json=await resp.json();
-        if(!Array.isArray(json?.[0])) return null;
-        return json[0].map(p=>p?.[0]||'').join('');
+        return typeof json?.translation==='string' ? json.translation : null;
       }catch{ return null; }
+      finally{ clearTimeout(timeoutId); }
+    }
+    async function fetchTranslate(chunk, attempts=3){
+      for(let i=0;i<attempts;i++){
+        const result=await fetchTranslateOnce(chunk);
+        if(result!==null) return result;
+        if(i<attempts-1) await new Promise(resolve=>setTimeout(resolve,300*(i+1)));
+      }
+      console.error(`[traducción] /translate no respondió tras ${attempts} intentos — se muestra el texto original sin traducir.`);
+      return null;
     }
     if(text.length<=4500) return fetchTranslate(text);
     const chunks=splitTextIntoChunks(text);
@@ -61,7 +102,7 @@
     const key = cacheKey(id, original, targetLang);
     let translated = tcacheGet(key);
     if(!translated){
-      translated = await googleTranslate(original, sourceLang, targetLang);
+      translated = await verboTranslate(original, sourceLang, targetLang);
       if(!translated) return;
       tcacheSet(key, translated);
     }
@@ -82,7 +123,7 @@
     const key = cacheKey(id, text, targetLang);
     let translated = tcacheGet(key);
     if(!translated){
-      translated = await googleTranslate(text, sourceLang, targetLang);
+      translated = await verboTranslate(text, sourceLang, targetLang);
       if(!translated) return text;
       tcacheSet(key, translated);
     }

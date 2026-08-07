@@ -973,30 +973,51 @@ document.addEventListener('DOMContentLoaded', async () => {
     return chunks;
   }
 
-  // Google traduce "Apocalipsis" (ES) literalmente como "Apocalypse" en vez
-  // del nombre canónico del libro bíblico en inglés, "Revelation" — corrección
-  // puntual aplicada a toda traducción ES→EN (comentarios, diccionario,
-  // Padres Apostólicos comparten este mismo punto de entrada).
+  // Quirk observado con el motor de traducción anterior (Google Translate):
+  // traducía "Apocalipsis" (ES) literalmente como "Apocalypse" en vez del
+  // nombre canónico del libro bíblico en inglés, "Revelation". Se mantiene
+  // como red de seguridad tras la Fase 2 (Claude Haiku vía /translate) por si
+  // el mismo error apareciera con otro motor — corrección puntual aplicada a
+  // toda traducción ES→EN (comentarios, diccionario, Padres Apostólicos
+  // comparten este mismo punto de entrada).
   const ES_EN_BOOK_NAME_FIXES=[[/\bApocalypse\b/g,'Revelation']];
   function fixKnownBookNameMistranslations(text, targetLang){
     if(targetLang!=='en' || !text) return text;
     return ES_EN_BOOK_NAME_FIXES.reduce((acc,[pattern,replacement])=>acc.replace(pattern,replacement), text);
   }
 
-  async function googleTranslate(text, sourceLang='en', targetLang='es'){
-    // El endpoint publico de Google Translate a veces falla o tarda de forma
-    // transitoria (visto en Historia de la Iglesia: la misma entrada traduce
-    // bien en un intento y falla en el siguiente) — reintenta un par de veces
-    // con espera breve antes de rendirse y mostrar el original sin traducir.
+  // URL base del Worker verbo-api-bible, reutilizada aquí tal como ya hacen
+  // apiBibleProxy() (module-loader.js) y VerboSync (assets/sync.js) — mismo
+  // registry.json -> apiBible.proxyUrl, sin duplicar la URL a mano.
+  function translateWorkerBase(){
+    return String(catalog?.registry?.apiBible?.proxyUrl || '').trim().replace(/\/+$/, '');
+  }
+
+  async function verboTranslate(text, sourceLang='en', targetLang='es'){
+    // Fase 2 (2026-08-07): reemplaza el endpoint no oficial de Google
+    // Translate por POST /translate en el Worker verbo-api-bible (Claude
+    // Haiku 4.5 + caché compartido en Cloudflare KV — ver
+    // cloudflare/api-bible-worker/README.md). A veces falla o tarda de forma
+    // transitoria (mismo comportamiento que ya se observaba con Google en
+    // Historia de la Iglesia) — reintenta un par de veces con espera breve
+    // antes de rendirse y mostrar el original sin traducir.
     async function fetchTranslateOnce(chunk){
+      const base=translateWorkerBase();
+      if(!base) return null;
+      const controller=new AbortController();
+      const timeoutId=setTimeout(()=>controller.abort(), 12000);
       try{
-        const url=`https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sourceLang}&tl=${targetLang}&dt=t&q=${encodeURIComponent(chunk)}`;
-        const resp=await fetch(url);
+        const resp=await fetch(`${base}/translate`, {
+          method:'POST',
+          headers:{ 'Content-Type':'application/json' },
+          body:JSON.stringify({ text:chunk, targetLang }),
+          signal:controller.signal
+        });
         if(!resp.ok) return null;
         const json=await resp.json();
-        if(!Array.isArray(json?.[0])) return null;
-        return json[0].map(p=>p?.[0]||'').join('');
+        return typeof json?.translation==='string' ? json.translation : null;
       }catch{ return null; }
+      finally{ clearTimeout(timeoutId); }
     }
     async function fetchTranslate(chunk, attempts=3){
       for(let i=0;i<attempts;i++){
@@ -1004,13 +1025,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         if(result!==null) return result;
         if(i<attempts-1) await new Promise(resolve=>setTimeout(resolve,300*(i+1)));
       }
+      console.error(`[traducción] /translate no respondió tras ${attempts} intentos — se muestra el texto original sin traducir.`);
       return null;
     }
     if(text.length<=4500){
       const result=await fetchTranslate(text);
       return fixKnownBookNameMistranslations(result, targetLang);
     }
-    // Long text: translate in chunks sequentially to avoid URL limits
+    // Long text: translate in chunks sequentially — ya no hace falta por el
+    // límite de una URL (esto ahora es un POST con body JSON), pero se
+    // conserva: trocear en paralelo por bloque sigue siendo más rápido y más
+    // resiliente a que un solo fragmento falle que mandar todo el texto de
+    // una entrada larga como una sola llamada.
     const chunks=splitTextIntoChunks(text);
     const parts=[];
     for(const chunk of chunks){
@@ -1026,7 +1052,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // en vez de un for..await secuencial: capítulos largos de Historia (decenas
   // de párrafos) tardaban demasiado traduciendo de a uno. Antes, además, si
   // fallaban los 3 reintentos de UN solo bloque (ver comentario en
-  // googleTranslate sobre el endpoint público siendo intermitente), se
+  // verboTranslate sobre el endpoint público siendo intermitente), se
   // descartaba TODA la traducción y se mostraba el capítulo completo en el
   // idioma original — ahora ese bloque puntual cae a su propio texto sin
   // traducir y el resto del capítulo sí se ve traducido.
@@ -1042,7 +1068,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       async function worker(){
         while(index<blocks.length){
           const i=index++;
-          const translated=await googleTranslate(blocks[i], sourceLang, targetLang);
+          const translated=await verboTranslate(blocks[i], sourceLang, targetLang);
           translatedBlocks[i]=translated!=null ? translated : blocks[i];
         }
       }
@@ -1058,7 +1084,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const cacheKey=translationCacheKey(`${noteId}:${field}`,text,targetLang);
     const cached=tcacheGet(cacheKey);
     if(cached) return cached;
-    const translated=await googleTranslate(text,sourceLang,targetLang);
+    const translated=await verboTranslate(text,sourceLang,targetLang);
     if(!translated) return text;
     tcacheSet(cacheKey,translated);
     return translated;
@@ -1117,7 +1143,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const walker=document.createTreeWalker(paragraph,NodeFilter.SHOW_TEXT);
       while(walker.nextNode()) if(walker.currentNode.textContent.trim()) textNodes.push(walker.currentNode);
       for(const node of textNodes){
-        const translated=await googleTranslate(node.textContent);
+        const translated=await verboTranslate(node.textContent);
         if(translated) node.textContent=translated;
       }
     }
@@ -2289,11 +2315,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     const seen=new Set(primary.map(e=>e.id));
     return [...primary, ...extra.filter(e=>!seen.has(e.id))];
   }
-  // Traduce la búsqueda ES→EN (con debounce, para no llamar a Google Translate
-  // en cada tecla) y vuelve a renderizar cuando resuelve — así una búsqueda en
-  // español encuentra coincidencias en el texto fuente en inglés. Se salta
-  // números/rangos de año (no tiene sentido traducirlos) y consultas muy
-  // cortas. Un token descarta traducciones de búsquedas ya obsoletas.
+  // Traduce la búsqueda ES→EN (con debounce, para no llamar al endpoint de
+  // traducción en cada tecla) y vuelve a renderizar cuando resuelve — así una
+  // búsqueda en español encuentra coincidencias en el texto fuente en inglés.
+  // Se salta números/rangos de año (no tiene sentido traducirlos) y consultas
+  // muy cortas. Un token descarta traducciones de búsquedas ya obsoletas.
   function scheduleChurchHistoryQueryTranslation(query){
     clearTimeout(churchHistoryQueryDebounce);
     const token=++churchHistoryQueryToken;
@@ -3494,7 +3520,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const cacheKey=translationCacheKey(`patristic-index:${docData.manifest.id}`, docData.sections.map(s=>s.title).join(DELIM), target);
     let translatedTitles=tcacheGet(cacheKey);
     if(!translatedTitles){
-      const translated=await googleTranslate(docData.sections.map(s=>s.title).join(DELIM), source, target);
+      const translated=await verboTranslate(docData.sections.map(s=>s.title).join(DELIM), source, target);
       if(!translated) return;
       const parts=translated.split(/\s*@@@\s*/).map(x=>x.trim());
       if(parts.length!==docData.sections.length) return; // el delimitador se rompió en la traducción; no aplicar nada
@@ -3727,7 +3753,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const cacheKey=translationCacheKey(`costumbres-index:${costumbresOpenWork}`, originals.join(DELIM), target);
     let translated=tcacheGet(cacheKey);
     if(!translated){
-      const result=await googleTranslate(originals.join(DELIM), source, target);
+      const result=await verboTranslate(originals.join(DELIM), source, target);
       if(!result) return;
       const parts=result.split(/\s*@@@\s*/).map(x=>x.trim());
       if(parts.length!==labelEls.length) return; // el delimitador se rompió en la traducción; no aplicar nada
