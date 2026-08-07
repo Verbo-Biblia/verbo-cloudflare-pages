@@ -109,13 +109,79 @@ function estimateMaxTokens(text) {
 }
 
 // Prefijo versionado: si el modelo o el system prompt cambian de forma que
-// invalide traducciones ya cacheadas, subir a "v2" fuerza a recalcular todo
+// invalide traducciones ya cacheadas, subir a "v3" fuerza a recalcular todo
 // sin tener que borrar el namespace KV a mano (que también guarda datos de
 // sync bajo otros prefijos, "link:"/"session:"/"blob:").
-const TRANSLATE_CACHE_PREFIX = 'translate:v2';
+const TRANSLATE_CACHE_PREFIX = 'translate:v3';
 
 async function translateCacheKey(text, targetLang) {
   return `${TRANSLATE_CACHE_PREFIX}:${targetLang}:${await sha256Hex(text)}`;
+}
+
+// Red de seguridad: pese a que el prompt exige "no preamble", el modelo a
+// veces rompe el personaje y responde con una negativa conversacional en vez
+// de traducir — sobre todo con fragmentos cortos y sin contexto (una sola
+// palabra, un término griego/hebreo, un encabezado) como los que manda el
+// diccionario Strong. Confirmado en vivo el 2026-08-07: "soldier", "agapao"
+// y "strateuomai" solos disparaban "I'm ready to translate... please
+// provide the actual text" en vez de traducir. Se detecta por patrones
+// conocidos de negativa/aclaración y se reintenta una vez; si persiste, se
+// falla la petición (502) en vez de cachear o devolver el preámbulo.
+const PREAMBLE_PATTERNS = [
+  /^i'?m (?:ready|a translation engine|prepared)\b/i,
+  /^i am (?:ready|a translation engine|prepared)\b/i,
+  /^please provide\b/i,
+  /^i don'?t see\b/i,
+  /^i notice\b/i,
+  /^you'?ve (?:provided|sent|given)\b/i,
+  /^this (?:appears to be|is not|doesn't appear|does not appear)\b/i,
+  /^it (?:appears|looks like) (?:you|this)\b/i,
+  /^i appreciate\b/i,
+  /^i must (?:note|point out|clarify)\b/i,
+  /^i'?m designed to\b/i,
+  /^according to my (?:role|instructions)\b/i,
+  /^what you'?ve (?:provided|given|sent)\b/i,
+  /doesn'?t appear to be (?:content|text|part) from\b/i,
+  /^estoy list[oa]\b/i,
+  /^por favor (?:proporcion|env[ií]a)/i,
+  /^no veo\b/i,
+  /^aqu[ií] (?:est[aá]|tienes) la traducci[oó]n/i,
+];
+
+function looksLikeConversationalPreamble(text) {
+  return PREAMBLE_PATTERNS.some(re => re.test(text.trim()));
+}
+
+async function callAnthropicTranslate(text, systemPrompt, env) {
+  let upstream;
+  try {
+    upstream = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'x-api-key': env.ANTHROPIC_API_KEY,
+        'anthropic-version': '2023-06-01',
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        model: ANTHROPIC_MODEL,
+        max_tokens: estimateMaxTokens(text),
+        system: systemPrompt,
+        messages: [{ role: 'user', content: text }]
+      })
+    });
+  } catch {
+    return { error: 'No se pudo contactar a la API de Anthropic' };
+  }
+
+  if (!upstream.ok) {
+    const errText = await upstream.text().catch(() => '');
+    console.error('Anthropic /translate error', upstream.status, errText.slice(0, 500));
+    return { error: 'Error del proveedor de traducción' };
+  }
+
+  const data = await upstream.json();
+  const translation = Array.isArray(data?.content) ? data.content.map(block => block?.text || '').join('') : '';
+  return { translation };
 }
 
 async function handleTranslate(request, env, headers) {
@@ -151,37 +217,25 @@ Preserve theological and biblical terminology precisely — proper names, techni
 
 If the text contains HTML tags, keep them exactly as given, in the same positions, and translate only the text content between them.
 
+The text you receive is often a short fragment pulled out of a larger work — a single word, a proper name, a Greek or Hebrew term, a heading, a verse or chapter reference, a date range. Always treat it as real content that must be translated, never as a test, a mistake, or something missing context. Translate it directly and literally, exactly as you would a full sentence. Never ask for more context, never comment on the nature, length, or apparent purpose of the input, never refuse.
+
 Do not add your own commentary, interpretation, explanation, or editorializing of any kind — translate only what the author wrote. Output ONLY the translated text: no preamble, no explanation, no surrounding quotation marks, no commentary of any kind.`;
 
-  let upstream;
-  try {
-    upstream = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'x-api-key': env.ANTHROPIC_API_KEY,
-        'anthropic-version': '2023-06-01',
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify({
-        model: ANTHROPIC_MODEL,
-        max_tokens: estimateMaxTokens(text),
-        system: systemPrompt,
-        messages: [{ role: 'user', content: text }]
-      })
-    });
-  } catch {
-    return jsonError('No se pudo contactar a la API de Anthropic', 502, headers);
+  let result = await callAnthropicTranslate(text, systemPrompt, env);
+  if (result.error) return jsonError(result.error, 502, headers);
+  let translation = result.translation;
+
+  if (!translation || looksLikeConversationalPreamble(translation)) {
+    console.error('Anthropic /translate preámbulo o respuesta vacía, reintentando', text.slice(0, 200));
+    result = await callAnthropicTranslate(text, systemPrompt, env);
+    if (result.error) return jsonError(result.error, 502, headers);
+    translation = result.translation;
   }
 
-  if (!upstream.ok) {
-    const errText = await upstream.text().catch(() => '');
-    console.error('Anthropic /translate error', upstream.status, errText.slice(0, 500));
-    return jsonError('Error del proveedor de traducción', 502, headers);
+  if (!translation || looksLikeConversationalPreamble(translation)) {
+    console.error('Anthropic /translate sigue devolviendo preámbulo tras reintento', text.slice(0, 200));
+    return jsonError('El proveedor de traducción no devolvió una traducción válida', 502, headers);
   }
-
-  const data = await upstream.json();
-  const translation = Array.isArray(data?.content) ? data.content.map(block => block?.text || '').join('') : '';
-  if (!translation) return jsonError('Respuesta vacía del proveedor de traducción', 502, headers);
 
   await env.SYNC_KV.put(cacheKey, translation);
   return jsonOk({ translation, cached: false }, headers);
