@@ -4168,6 +4168,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
       });
       saveHighlights();
+      // Soltar la selección tras aplicar el color: si no se limpia acá, el
+      // versículo recién coloreado sigue en `selectedVerses` y el próximo
+      // color elegido (para OTRO versículo) se le vuelve a aplicar también,
+      // sobrescribiéndolo — bug reportado por Juan en tablet (2026-08-07).
+      selectedVerses.clear();
+      document.querySelectorAll('.verse--selected').forEach(x=>x.classList.remove('verse--selected'));
+      updateActionBar();
     });
   });
   window.addEventListener('scroll',()=>{ clearTimeout(commentSyncTimer); commentSyncTimer=setTimeout(syncCommentToReading,120); }, {passive:true});
