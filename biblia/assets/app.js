@@ -20,6 +20,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     panelTitle: document.getElementById('panelTitle'),
     panelToolbar: document.getElementById('panelToolbar'),
     panelBody: document.getElementById('panelBody'),
+    strongDefPopup: document.getElementById('strongDefPopup'),
+    strongDefPopupCode: document.getElementById('strongDefPopupCode'),
+    strongDefPopupBody: document.getElementById('strongDefPopupBody'),
+    strongDefPopupClose: document.getElementById('strongDefPopupClose'),
     close: document.getElementById('panelClose'),
     search: document.getElementById('searchTrigger'),
     tabs: [...document.querySelectorAll('.tab-rail__btn, .library-rail__btn')],
@@ -37,7 +41,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     sermonPanelTitle: document.getElementById('sermonPanelTitle'),
     sermonComparePanelToolbar: document.getElementById('sermonComparePanelToolbar'),
     sermonComparePanelBody: document.getElementById('sermonComparePanelBody'),
-    sermonComparePanelClose: document.getElementById('sermonComparePanelClose')
+    sermonComparePanelClose: document.getElementById('sermonComparePanelClose'),
+    sermonStrongDefPopup: document.getElementById('sermonStrongDefPopup'),
+    sermonStrongDefPopupCode: document.getElementById('sermonStrongDefPopupCode'),
+    sermonStrongDefPopupBody: document.getElementById('sermonStrongDefPopupBody'),
+    sermonStrongDefPopupClose: document.getElementById('sermonStrongDefPopupClose')
   };
 
   const backupData = await VerboBackup.init();
@@ -256,6 +264,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   const hlKey = (book, chapter, n) => `${book}:${chapter}:${n}`;
   const saveHighlights = () => { VerboBackup.setAllResaltados(highlights); };
   const HL_COLORS = ['hl-yellow','hl-green','hl-blue','hl-pink','hl-coral','hl-violet'];
+  // Biblia Verbo con Strong: se quitó del desplegable de versiones (2026-08-07,
+  // a pedido de Juan) para que viva únicamente dentro del panel "Biblia Strong"
+  // (ver renderDictionaryPanel), sin importar qué Biblia esté activa en el
+  // panel central. Ya no está en modules/registry.json → bibles/catalog, así
+  // que se referencia por su ruta fija — VerboModules.loadBible() solo
+  // necesita el manifest.json, no depende de que el módulo esté listado ahí.
+  const STRONG_BIBLE_PATH = 'modules/bibles/rv-verbo-strong-provisional/manifest.json';
   const escapeHTML = value => String(value ?? '').replace(/[&<>'"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','\"':'&quot;'}[ch]));
   const bibleCatalog = () => catalog.bibles.map(item => ({ id:item.manifest.id, label:item.manifest.abbreviation || item.manifest.name, full:item.manifest.name, path:item.path, lang:item.manifest.language || 'es', remote:Boolean(item.remote || item.manifest.remote), manifest:item.manifest }));
   // Idioma de Strong/comentarios/Padres sigue al botón ES/EN de la interfaz
@@ -692,6 +707,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   function openPanel(tab, focus=null, verseCommentaries=null) {
     const panelWasClosed=!els.side.classList.contains('side-panel--open');
+    // El pop-up de definición Strong nunca debe quedar flotando sobre OTRO
+    // panel (Cambio 3) — se cierra acá al salir de 'diccionario', pero no al
+    // reabrir la misma pestaña (openDictionary ya evita llamar a openPanel en
+    // ese caso).
+    if(activeTab==='diccionario' && tab!=='diccionario') closeStrongPopup();
     activeTab=tab;
     if(tab!=='historia') els.side.classList.remove('side-panel--history-expanded');
     const isSheet=window.innerWidth<=760 && SHEET_TABS.includes(tab);
@@ -710,6 +730,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
   function closePanel(){
     const wasSheet=!!els.side.dataset.sheet;
+    if(activeTab==='diccionario') closeStrongPopup();
     // Al cerrar el panel completo (no al cambiar de tab y volver), Historia
     // vuelve siempre al estante de libros — pedido explícito de Juan, revierte
     // el "conserva posición" que sí se mantiene al solo cambiar de tab.
@@ -787,6 +808,17 @@ document.addEventListener('DOMContentLoaded', async () => {
   function panelTitleEl(){ return sermonPanelTarget ? sermonPanelTarget.title : els.panelTitle; }
   function panelToolbarEl(){ return sermonPanelTarget ? sermonPanelTarget.toolbar : els.panelToolbar; }
   function panelBodyEl(){ return sermonPanelTarget ? sermonPanelTarget.body : els.panelBody; }
+  // Mismo par de nodos que panelBodyEl()/etc, pero para el popup de definición
+  // Strong (ver "Biblia Strong" más abajo): vive como hermano de #panelBody/
+  // #sermonComparePanelBody a propósito, nunca dentro de su innerHTML, para
+  // que re-pintar la lista de versículos (cambio de capítulo, clic en otro
+  // versículo) no lo borre ni lo tape — el popup solo se abre/cierra por su
+  // cuenta (ver openStrongPopup/closeStrongPopup).
+  function strongPopupEls(){
+    return sermonPanelTarget
+      ? { root: els.sermonStrongDefPopup, code: els.sermonStrongDefPopupCode, body: els.sermonStrongDefPopupBody }
+      : { root: els.strongDefPopup, code: els.strongDefPopupCode, body: els.strongDefPopupBody };
+  }
 
   function renderPanel(tab, focus=null, verseCommentaries=null, delayScroll=false) {
     panelToolbarEl().innerHTML='';
@@ -1308,6 +1340,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     return !!els.sermonComparePanel?.classList.contains('sermon-compare-panel--open');
   }
   function openSermonSidePanel(tab){
+    if(sermonPanelTab==='diccionario' && tab!=='diccionario') closeStrongPopup();
     sermonPanelTab = tab;
     sermonPanelTarget = { title: els.sermonPanelTitle, toolbar: els.sermonComparePanelToolbar, body: els.sermonComparePanelBody };
     els.sermonComparePanel?.classList.add('sermon-compare-panel--open');
@@ -1315,6 +1348,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     renderSermonSidePanel(tab);
   }
   function closeSermonSidePanel(){
+    if(sermonPanelTab==='diccionario') closeStrongPopup();
     els.sermonComparePanel?.classList.remove('sermon-compare-panel--open');
     els.tabs.forEach(btn=>{ if(SERMON_SIDE_PANEL_TABS.includes(btn.dataset.tab)) btn.classList.remove('tab-rail__btn--active'); });
     sermonPanelTab = null;
@@ -2969,14 +3003,126 @@ document.addEventListener('DOMContentLoaded', async () => {
     return box.innerHTML;
   }
 
+  // Fila de un versículo de la Biblia Strong: reutiliza .verse__num/.verse__text/
+  // .strongs-tag/.word-segment de la Biblia principal para heredar su estilo
+  // (ver style.css), pero NO la clase base ".verse" ni ".verse--active" —
+  // esas se consultan sin scope en varios lugares de este archivo (navegación
+  // con flechas, activeVerse(), etc.) y mezclarían las filas de este panel con
+  // las del panel central. Usa ".strong-bible-verse"/"--active" en su lugar
+  // (mismo estilo, ver style.css).
+  function strongVerseRowHtml(n, verseObj, activeN){
+    const segments=verseObj?.segments;
+    let inner;
+    if(Array.isArray(segments) && segments.length){
+      inner=segments.map((seg,index)=>{
+        const word=`<span class="word-segment">${index?' ':''}${escapeHTML(seg.text||'')}</span>`;
+        const strongCodes=[...(seg.strong?[seg.strong]:[]),...(Array.isArray(seg.strongs)?seg.strongs:[])].filter((code,pos,all)=>code&&all.indexOf(code)===pos);
+        const morphs=[...(seg.morph?[seg.morph]:[]),...(Array.isArray(seg.morphs)?seg.morphs:[])];
+        const tags=strongCodes.map((code,codeIndex)=>{
+          const title=morphs[codeIndex]?t('biblia.morfologiaTitle',{value:morphs[codeIndex]}):t('biblia.abrirDiccionarioTitle');
+          return `<button type="button" class="strongs-tag" data-strong-code="${escapeHTML(code)}" title="${escapeHTML(title)}">${escapeHTML(code)}</button>`;
+        }).join('');
+        return word+tags;
+      }).join('');
+    } else {
+      inner=escapeHTML(verseObj?.text||'');
+    }
+    return `<div class="strong-bible-verse${n===activeN?' strong-bible-verse--active':''}" data-verse-n="${n}"><span class="verse__num">${n}</span><span class="verse__text">${inner}</span></div>`;
+  }
+
+  // Pop-up de definición Strong pendiente de abrir en cuanto termine de pintarse
+  // la lista de versículos (ver openDictionary): evita pedir el capítulo dos
+  // veces (una vez al abrir el panel, otra al intentar mostrar el pop-up antes
+  // de tiempo).
+  let pendingStrongPopupCode=null;
+
+  // "Biblia Strong": Biblia Verbo con capa Strong (ver STRONG_BIBLE_PATH),
+  // siempre sincronizada con el libro/capítulo que se esté leyendo (mismo
+  // patrón que renderCompare/commentaryContext), independiente de qué Biblia
+  // esté seleccionada en el panel central. Reemplaza al viejo panel de
+  // Diccionario, que estaba vacío hasta que el usuario tocaba un código Strong
+  // en la Biblia principal (ver commit de este cambio, 2026-08-07).
   async function renderDictionaryPanel(focus=null){
     panelToolbarEl().innerHTML='';
-    const selected=getStrongDictionary();
-    panelTitleEl().textContent=selected?.full || 'Léxico Strong';
-    if(!selected){ panelBodyEl().innerHTML=emptyState('📚','No hay diccionario Strong/Multiléxico instalado todavía.'); return; }
-    currentDictionary=selected.id;
-    localStorage.setItem('verbo:lastDictionary', currentDictionary);
-    panelBodyEl().innerHTML=emptyState('🔤','Pulsa un código Strong en una Biblia compatible para consultar el Multiléxico.');
+    panelTitleEl().textContent=t('nav.diccionario');
+    const ctx=activeBibleContext();
+    panelBodyEl().innerHTML=emptyState('⌛',t('diccionario.buscandoEntrada'));
+    try{
+      const loaded=await VerboModules.loadBible(STRONG_BIBLE_PATH, ctx.book, ctx.chapter);
+      if(!loaded){ panelBodyEl().innerHTML=emptyState('📖','La Biblia Strong todavía no tiene este capítulo.'); return; }
+      const nums=Object.keys(loaded.verses).map(Number).sort((a,b)=>a-b);
+      const activeN=focus||activeVerse();
+      panelBodyEl().innerHTML=`<div class="strong-bible-list">${nums.map(n=>strongVerseRowHtml(n,loaded.verses[String(n)],activeN)).join('')}</div>`;
+      panelBodyEl().querySelectorAll('.strongs-tag').forEach(tag=>tag.addEventListener('click', e=>{ e.stopPropagation(); openStrongPopup(tag.dataset.strongCode); }));
+      if(activeN) panelBodyEl().querySelector(`[data-verse-n="${activeN}"]`)?.scrollIntoView({block:'center'});
+    }catch(error){
+      console.error(error);
+      panelBodyEl().innerHTML=emptyState('⚠️','No se pudo cargar la Biblia Strong.');
+    }finally{
+      if(pendingStrongPopupCode){ const code=pendingStrongPopupCode; pendingStrongPopupCode=null; openStrongPopup(code); }
+    }
+  }
+
+  // Nodo del popup actualmente abierto (o null) — sirve tanto de guardia
+  // ("ya hay uno abierto, no lo reemplaces", Cambio 3) como de referencia para
+  // cerrarlo. Solo puede haber uno a la vez, en el panel normal o en el de
+  // sermón, nunca los dos.
+  let openStrongPopupRoot=null;
+
+  async function openStrongPopup(code){
+    if(openStrongPopupRoot){
+      // Ya hay una definición abierta: no la reemplazamos con la nueva (pedido
+      // explícito de Juan, Cambio 3) — solo un pequeño "shake" para indicar
+      // que hay que cerrar la actual primero.
+      openStrongPopupRoot.classList.remove('strong-def-popup--shake');
+      void openStrongPopupRoot.offsetWidth; // reinicia la animación si ya estaba corriendo
+      openStrongPopupRoot.classList.add('strong-def-popup--shake');
+      return;
+    }
+    const p=strongPopupEls();
+    if(!p.root) return;
+    openStrongPopupRoot=p.root;
+    p.root.hidden=false;
+    p.code.textContent=code;
+    p.body.innerHTML=emptyState('⌛',t('diccionario.buscandoEntrada'));
+    const selected=getStrongDictionary(code);
+    currentDictionary=selected?.id||null;
+    if(currentDictionary) localStorage.setItem('verbo:lastDictionary', currentDictionary);
+    try{
+      const result=await VerboModules.getDictionaryEntry(code, currentDictionary);
+      if(openStrongPopupRoot!==p.root) return; // se cerró mientras cargaba
+      if(!result){ p.body.innerHTML=emptyState('🔎',t('diccionario.sinEntrada',{code})); return; }
+      const rawHtml=result.entry.html||result.entry.definition||result.entry.content||'';
+      const html=formatStrongEntryHtml(result.code,result.entry,rawHtml);
+      const showEnglish=contentLang()==='en';
+      p.body.innerHTML=`<article class="dict-entry"><div class="dict-entry__term">${result.code}</div><div class="dict-entry__source">${escapeHTML(result.manifest.name)}</div><button class="note-card__copy" id="copyDictEntry" type="button">${t('diccionario.copiarDiccionario')}</button><div class="dict-entry__def" id="dictionaryEntryBody">${showEnglish?html:`<p class="note-card__translating">${t('diccionario.traduciendoEspanol')}</p>${html}`}</div></article>`;
+      const body=p.body.querySelector('#dictionaryEntryBody');
+      if(!showEnglish && body){
+        const translated=await translateDictionaryEntry(result.code,html);
+        if(openStrongPopupRoot===p.root && contentLang()==='es' && p.body.querySelector('#dictionaryEntryBody')===body){
+          body.innerHTML=translated;
+          wireDictionaryLinks(body);
+        }
+      } else if(body) wireDictionaryLinks(body);
+      p.body.querySelector('#copyDictEntry')?.addEventListener('click',()=>{
+        const visible=p.body.querySelector('#dictionaryEntryBody')?.innerHTML||html;
+        copyToClipboard(`${result.code}\n${String(visible).replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim()}`);
+      });
+    }catch(error){
+      console.error(error);
+      if(openStrongPopupRoot===p.root) p.body.innerHTML=emptyState('⚠️',t('diccionario.errorEntrada'));
+    }
+  }
+
+  // Se cierra únicamente desde acá: por su botón X (ver wiring más abajo) o al
+  // salir de la pestaña/panel "Biblia Strong" — nunca por re-pintar la lista
+  // de versículos (cambio de capítulo, clic en otro versículo), para que
+  // navegar el capítulo mientras se consulta una palabra no cierre el popup.
+  function closeStrongPopup(){
+    if(!openStrongPopupRoot) return;
+    openStrongPopupRoot.hidden=true;
+    openStrongPopupRoot.classList.remove('strong-def-popup--shake');
+    openStrongPopupRoot=null;
   }
 
 
@@ -3962,44 +4108,26 @@ document.addEventListener('DOMContentLoaded', async () => {
     area.addEventListener('input',()=>{status.textContent=t('notas.escribiendo');clearTimeout(timer);timer=setTimeout(()=>{VerboBackup.setNota(key,area.value);status.textContent=t('notas.guardado');},400);});
   }
 
+  // Punto de entrada para CUALQUIER clic en un código Strong fuera del panel
+  // Biblia Strong (ej. .strongs-tag de la Biblia principal si tiene datos
+  // Strong propios como KJV+, o un enlace a.strong dentro de un comentario):
+  // asegura que el panel Biblia Strong esté abierto y sincronizado, y ahí
+  // pide el pop-up — nunca dibuja nada fuera de ese panel (Cambio 3).
   async function openDictionary(code){
     // Mismo criterio que el dock (ver click de .tab-rail__btn más abajo): en
     // modo sermón + escritorio, Diccionario comparte el segundo panel con
     // Comparar/Comentarios/Notas/Mapas/Prédicas en vez de reemplazar la
     // Biblia del panel único. Por debajo de 901px o fuera de modo sermón,
     // sigue usando el panel único de siempre.
-    if(sermonMode && window.matchMedia('(min-width: 901px)').matches) openSermonSidePanel('diccionario');
-    else openPanel('diccionario');
-    const selected=getStrongDictionary(code);
-    currentDictionary=selected?.id || null;
-    if(currentDictionary) localStorage.setItem('verbo:lastDictionary', currentDictionary);
-    panelTitleEl().textContent=`${selected?.full || t('diccionario.lexicoStrong')} · ${code}`;
-    panelToolbarEl().innerHTML='';
-    panelBodyEl().innerHTML=emptyState('⌛',t('diccionario.buscandoEntrada'));
-    try{
-      const result=await VerboModules.getDictionaryEntry(code, currentDictionary);
-      if(!result){ panelBodyEl().innerHTML=emptyState('🔎',t('diccionario.sinEntrada',{code})); return; }
-      const rawHtml=result.entry.html||result.entry.definition||result.entry.content||'';
-      const html=formatStrongEntryHtml(result.code,result.entry,rawHtml);
-      const renderEntry=async()=>{
-        const showEnglish=contentLang()==='en';
-        panelToolbarEl().innerHTML='';
-        panelBodyEl().innerHTML=`<article class="dict-entry"><div class="dict-entry__term">${result.code}</div><div class="dict-entry__source">${escapeHTML(result.manifest.name)}</div><button class="note-card__copy" id="copyDictEntry" type="button">${t('diccionario.copiarDiccionario')}</button><div class="dict-entry__def" id="dictionaryEntryBody">${showEnglish?html:`<p class="note-card__translating">${t('diccionario.traduciendoEspanol')}</p>${html}`}</div></article>`;
-        const body=document.getElementById('dictionaryEntryBody');
-        if(!showEnglish && body){
-          const translated=await translateDictionaryEntry(result.code,html);
-          if(contentLang()==='es' && document.getElementById('dictionaryEntryBody')===body){
-            body.innerHTML=translated;
-            wireDictionaryLinks(body);
-          }
-        } else if(body) wireDictionaryLinks(body);
-        document.getElementById('copyDictEntry')?.addEventListener('click',()=>{
-          const visible=document.getElementById('dictionaryEntryBody')?.innerHTML||html;
-          copyToClipboard(`${result.code}\n${String(visible).replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim()}`);
-        });
-      };
-      await renderEntry();
-    }catch(error){console.error(error);panelBodyEl().innerHTML=emptyState('⚠️',t('diccionario.errorEntrada'));}
+    const isSermonSide=sermonMode && window.matchMedia('(min-width: 901px)').matches;
+    const alreadyShowing=isSermonSide ? sermonPanelTab==='diccionario' : activeTab==='diccionario';
+    if(alreadyShowing){ openStrongPopup(code); return; }
+    // El panel todavía no está en 'diccionario': dejamos el código pendiente y
+    // lo abrimos recién cuando renderDictionaryPanel termine de pintar la
+    // lista del capítulo (la abre openPanel/openSermonSidePanel más abajo) —
+    // evita pedir el capítulo dos veces en paralelo.
+    pendingStrongPopupCode=code;
+    if(isSermonSide) openSermonSidePanel('diccionario'); else openPanel('diccionario');
   }
   function updateNavButtons(){ const idx=catalog.books.findIndex(b=>b.id===currentBook); const atStart=idx===0&&currentChapter===1; const atEnd=idx===catalog.books.length-1&&currentChapter===els.chapter.options.length; els.prev.disabled=atStart; els.next.disabled=atEnd; if(els.innerPrev) els.innerPrev.disabled=atStart; if(els.innerNext) els.innerNext.disabled=atEnd; }
   async function moveChapter(delta){
@@ -4147,6 +4275,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   }));
   els.search.addEventListener('click',()=>openPanel('buscar'));
   els.close.addEventListener('click',closePanel);
+  els.strongDefPopupClose?.addEventListener('click', closeStrongPopup);
+  els.sermonStrongDefPopupClose?.addEventListener('click', closeStrongPopup);
   els.copyVerseText?.addEventListener('click', copySelectedText);
   els.copyVerseRef?.addEventListener('click', copySelectedReferences);
   els.closeVerseAction?.addEventListener('click', ()=>{
