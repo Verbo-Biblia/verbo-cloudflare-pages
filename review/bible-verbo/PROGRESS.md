@@ -107,7 +107,7 @@ Un libro solo puede marcarse como cerrado cuando:
 | 2 Juan | 1 | candidato | Revisión integral completada: 1 capítulo y 13 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas); "hablar boca a boca" modernizado a "hablar cara a cara" (12), pulido el orden de palabras en 7 |
 | 3 Juan | 1 | candidato | Revisión integral completada: 1 capítulo y 14 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas); corregida forma subjuntivo futuro residual "si ayudares" a "si les ayudas" en 6; "parlando" a "hablando", "prohibe" a "prohíbe" (7), "Gentiles" a "gentiles" (7), "boca a boca" a "cara a cara" (14); preserva "salud" en 2 (sentido literal de salud física, no salvación) |
 | Judas | 1 | candidato | Revisión integral completada: 1 capítulo y 25 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas); "salud" (que es salvación) a "salvación" en 3, "disolución" a "libertinaje" (4), "amancillan"/"potestad"/"potestades superiores" a "contaminan"/"autoridad"/"seres gloriosos" (8), "convites" a "banquetes de amor fraternal" (12), "eternalmente" a "eternamente" (13), "Adam" a "Adán" (14), "postrer tiempo" a "último tiempo" (18); preserva "Jacobo" en 1:1 (grafía tradicional de Reina-Valera para el hermano de Judas, distinta de "Santiago" en el título de esa epístola) |
-| Apocalipsis | 22 | pendiente | Último libro |
+| Apocalipsis | 22 | candidato | Revisión integral completada: 22 capítulos y 404 versículos; JSON, estructura, conteos frente a RVA1909/BSB/ASV, sin arcaísmos "vosotros" ni comillas (0 problemas); "presto" modernizado a "pronto" (8 apariciones), "Alpha" a "Alfa", "Jerusalem" a "Jerusalén", "Gentiles/Judíos/Nicolaítas" a minúsculas, "bermejo/bermeja" a "rojo/roja", "arco celeste" a "arco iris", "hebraico" a "hebreo", "mácula" a "mancha", "cuitado" a "desdichado", "nono" a "noveno", "Issachâr" a "Isacar", "Abaddon/Apollyon" a "Abadón/Apolión", "lidiar/lidiaban" a "luchar/luchaban", "postrero/postreras" a "último/últimas", "sanidad" (de las naciones) a "sanación"; corregidos dos errores de concordancia de género "la poder"→"el/del poder" (7:12, 18:3) y "criaste/criado/criadas" (crear, no criar) en 4:11 y 10:6. **Con este libro se completan los 66 libros de la Biblia Verbo (BV2026) — candidatos editoriales, pendientes de aprobación final de Juan.** |
 
 ## Orden de trabajo
 
@@ -116,8 +116,11 @@ proyecto: Génesis, Éxodo, Levítico, Números, Deuteronomio y así sucesivamen
 hasta Apocalipsis. Los cuatro evangelios, Hechos, Romanos, 1 y 2 Corintios,
 Gálatas, Efesios, Filipenses, Colosenses, 1 Tesalonicenses, 2 Tesalonicenses,
 1 Timoteo, 2 Timoteo, Tito, Filemón, Hebreos, Santiago, 1 Pedro, 2 Pedro,
-1 Juan, 2 Juan, 3 Juan y Judas quedaron completamente revisados y
-publicados; el próximo y último punto exacto es Apocalipsis 1.
+1 Juan, 2 Juan, 3 Juan, Judas y Apocalipsis quedaron completamente
+revisados y publicados. **Los 66 libros de la Biblia Verbo (BV2026) están
+ahora completos como candidatos editoriales.** Falta únicamente la
+aprobación final expresa de Juan para declarar la Biblia oficial (ver
+sección "Publicación" abajo).
 
 ## Publicación
 
@@ -128,10 +131,12 @@ Daniel, Oseas, Joel, Amós, Abdías, Jonás, Miqueas, Nahúm, Habacuc, Sofonías
 Hageo, Zacarías, Malaquías, Mateo, Marcos, Lucas, Juan, Hechos, Romanos,
 1 Corintios, 2 Corintios, Gálatas, Efesios, Filipenses, Colosenses,
 1 Tesalonicenses, 2 Tesalonicenses, 1 Timoteo, 2 Timoteo, Tito, Filemón,
-Hebreos, Santiago, 1 Pedro, 2 Pedro, 1 Juan, 2 Juan, 3 Juan y Judas
-quedaron completamente revisados, validados y publicados; la revisión
-continúa desde Apocalipsis 1, el último libro. No se declarará completa ni
-oficial la Biblia hasta cerrar los 66 libros.
+Hebreos, Santiago, 1 Pedro, 2 Pedro, 1 Juan, 2 Juan, 3 Juan, Judas y
+Apocalipsis quedaron completamente revisados, validados y publicados. Los
+66 libros de la Biblia Verbo están completos como candidatos editoriales.
+**No se declara completa ni oficial la Biblia hasta que Juan la apruebe
+expresamente** — la revisión mecánica y editorial de esta sesión no
+sustituye esa aprobación humana final.
 
 ## Cambio de repositorio (2026-08-07)
 

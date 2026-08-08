@@ -1,4 +1,16 @@
-# Estado restante — Biblia Verbo — 2026-08-07
+# Estado — Biblia Verbo — 2026-08-07
+
+## Los 66 libros están completos como candidatos editoriales
+
+Con Apocalipsis (22 capítulos, 404 versículos), cerrado y publicado el
+2026-08-07, la Biblia Verbo (BV2026) tiene sus 66 libros revisados
+verso a verso y publicados como **candidatos editoriales**. Esto NO
+significa que la Biblia sea oficial: falta la aprobación final expresa
+de Juan (ver "Publicación" abajo). No se ha hecho todavía un muestreo
+de auditoría dedicado a buscar arcaísmos residuales en los libros ya
+cerrados — cada libro reveló categorías nuevas de error que las
+pasadas anteriores no habían detectado, así que no se puede garantizar
+cero arcaísmos restantes sin una revisión dedicada a eso.
 
 ## Cambio de repositorio
 
@@ -6,135 +18,102 @@ Este proyecto arrancó en `verbo-github-pages-v1` (Génesis–Malaquías comitea
 publicado ahí). Ese repo ya no despliega a producción — lo hace
 `verbo-cloudflare-pages` desde 2026-08-04. Mateo 1–2 se había revisado en el
 repo viejo pero quedó **sin comitear**; se rescató del working tree y se aplicó
-aquí. Desde esta sesión, todo el trabajo del Nuevo Testamento continúa en
+aquí. Desde esa sesión, todo el trabajo del Nuevo Testamento continuó en
 `verbo-cloudflare-pages`.
 
-## Próximo punto exacto
+## Los 66 libros, cerrados y publicados (2026-08-07)
 
-- Mateo, Marcos, Lucas, Juan, Hechos, Romanos, 1 Corintios, 2 Corintios,
-  Gálatas, Efesios, Filipenses, Colosenses, 1 Tesalonicenses,
-  2 Tesalonicenses, 1 Timoteo, 2 Timoteo, Tito, Filemón, Hebreos, Santiago,
-  1 Pedro, 2 Pedro, 1 Juan, 2 Juan, 3 Juan y Judas quedaron completamente cerrados (2026-08-07):
-  Mateo, 28 capítulos y 1.071 versículos; Marcos, 16 capítulos y 678
-  versículos; Lucas, 24 capítulos y 1.151 versículos; Juan, 21 capítulos y
-  879 versículos; Hechos, 28 capítulos y 1.006 versículos; Romanos, 16
-  capítulos y 433 versículos; 1 Corintios, 16 capítulos y 437 versículos;
-  2 Corintios, 13 capítulos y 256 versículos; Gálatas, 6 capítulos y 149
-  versículos; Efesios, 6 capítulos y 155 versículos; Filipenses, 4
-  capítulos y 104 versículos; Colosenses, 4 capítulos y 95 versículos;
-  1 Tesalonicenses, 5 capítulos y 89 versículos; 2 Tesalonicenses, 3
-  capítulos y 47 versículos; 1 Timoteo, 6 capítulos y 113 versículos;
-  2 Timoteo, 4 capítulos y 83 versículos; Tito, 3 capítulos y 46
-  versículos; Filemón, 1 capítulo y 25 versículos; Hebreos, 13 capítulos y
-  303 versículos; Santiago, 5 capítulos y 108 versículos; 1 Pedro, 5
-  capítulos y 105 versículos; 2 Pedro, 3 capítulos y 61 versículos;
-  1 Juan, 5 capítulos y 105 versículos; 2 Juan, 1 capítulo y 13 versículos;
-  3 Juan, 1 capítulo y 14 versículos; Judas, 1 capítulo y 25 versículos;
-  todos con validación de calidad sobre el libro completo, 0 problemas
-  (sin desajuste de conteo vs. RVA1909, sin campos vacíos, sin arcaísmos
-  "vosotros" residuales, sin comillas indebidas).
-- **Instrucción vigente (2026-08-07):** Juan pidió intentar terminar la
-  Biblia completa sin detenerse ("intenta terminar la biblia, no se si los
-  tokens me alcanzan"). El trabajo continúa de forma continua por el resto
-  de las epístolas hasta Apocalipsis, publicando cada libro al cerrarlo,
-  hasta que se acaben los tokens de la sesión o Juan pida detenerse.
-- Siguiente archivo: `biblia/modules/bibles/rv-verbo/books/REV.json` (último libro).
-- Nota de método (aplica a Hechos, Romanos, 1-2 Corintios, Gálatas,
-  Efesios, Filipenses, Colosenses y 1 Tesalonicenses, y previsiblemente al
-  resto de epístolas): varios versículos con lectura Textus Receptus/RVA1909
-  sin paralelo en el texto crítico moderno (BSB/ASV) se preservaron íntegros,
-  conforme al método ya establecido (RVA1909 controla estructura y
-  variantes textuales): Hechos 8:37, 15:34, 18:21, 24:6-8, 28:29; Romanos
-  16:24 (doxología final); 1 Corintios 10:28 (cláusula repetida), 11:24
-  ("Tomen, coman"), 15:47 ("que es el Señor"); Gálatas 5:19 ("adulterio"
-  en la lista de obras de la carne); Efesios 5:30 ("de su carne y de sus
-  huesos"); Colosenses 2:2 ("y del Padre, y de Cristo"). También:
-  "caridad" (RVA1909) se modernizó a "amor" en 1 Corintios 13, Gálatas
-  5:6/5:22, Colosenses 3:14 y 1 Tesalonicenses 3:6/5:8; "obispos" se
-  modernizó a "supervisores" en Filipenses 1:1 (consistente con Hechos
-  20:28). En 1 Tesalonicenses 4:4 se preservó "vaso" de forma literal
-  (RVA1909/ASV "vessel") en vez de interpretarlo como "cuerpo" (BSB) o
-  "esposa" — el griego skeuos es ambiguo y es tema de debate exegético, así
-  que no se tomó partido (regla de neutralidad doctrinal). En 1
-  Tesalonicenses 5:27 se corrigió "Conjúroos" — un residuo del "vosotros"
-  fundido en un solo verbo (conjuro+os) que el script de modernización
-  original no detectó por no ser un sufijo separado — a "les encargo
-  solemnemente"; vigilar que no aparezcan más casos de este patrón
-  (verbo+os fusionado) en el resto del NT. Los colofones finales de cada
-  epístola (quién la escribió, desde dónde se envió) se conservan como
-  parte del último versículo, igual que en Romanos, 1-2 Corintios, Gálatas,
-  Efesios, Filipenses, Colosenses y 1 Tesalonicenses.
-- Nota de estilo confirmada en Juan 1–17 (ya presente antes de esta sesión,
-  también usada en Marcos y Lucas): las comillas curvas “” SÍ se usan, pero
-  solo para citas o discurso anidado dentro de otro discurso (p. ej. una cita
-  de Escritura dentro de las palabras de Jesús, o alguien repitiendo lo que
-  otro dijo). El discurso directo de primer nivel sigue sin comillas (dos
-  puntos + mayúscula). No es un error — el script de validación de calidad
-  debe filtrar comillas curvas “” y solo marcar guillemets «» como problema.
-- Nota textual: Juan 21:15-17 preserva "hijo de Jonás" (lectura del Textus
-  Receptus / RVA1909), aunque BSB y ASV (texto crítico moderno) dicen "hijo
-  de Juan" — decisión conforme al método (RVA1909 controla estructura y
-  variantes textuales, no las guías modernas). Juan 21:25 conserva el
-  "Amén." final de RVA1909, igual que se hizo en Mateo 28:20, Marcos 16:20 y
-  Lucas 24:53.
-- El avance desde Génesis hasta Juan ya fue revisado, validado y publicado.
-- Trabajar desde el texto BV2026 actual, preservando mejoras válidas.
-- Revisar cada versículo en contexto y validar cada capítulo antes de avanzar.
+Mateo, 28 capítulos y 1.071 versículos; Marcos, 16 capítulos y 678
+versículos; Lucas, 24 capítulos y 1.151 versículos; Juan, 21 capítulos y
+879 versículos; Hechos, 28 capítulos y 1.006 versículos; Romanos, 16
+capítulos y 433 versículos; 1 Corintios, 16 capítulos y 437 versículos;
+2 Corintios, 13 capítulos y 256 versículos; Gálatas, 6 capítulos y 149
+versículos; Efesios, 6 capítulos y 155 versículos; Filipenses, 4
+capítulos y 104 versículos; Colosenses, 4 capítulos y 95 versículos;
+1 Tesalonicenses, 5 capítulos y 89 versículos; 2 Tesalonicenses, 3
+capítulos y 47 versículos; 1 Timoteo, 6 capítulos y 113 versículos;
+2 Timoteo, 4 capítulos y 83 versículos; Tito, 3 capítulos y 46
+versículos; Filemón, 1 capítulo y 25 versículos; Hebreos, 13 capítulos y
+303 versículos; Santiago, 5 capítulos y 108 versículos; 1 Pedro, 5
+capítulos y 105 versículos; 2 Pedro, 3 capítulos y 61 versículos;
+1 Juan, 5 capítulos y 105 versículos; 2 Juan, 1 capítulo y 13 versículos;
+3 Juan, 1 capítulo y 14 versículos; Judas, 1 capítulo y 25 versículos;
+Apocalipsis, 22 capítulos y 404 versículos; todo el Antiguo Testamento
+(Génesis–Malaquías, ver detalle abajo). Todos con validación de calidad
+sobre el libro completo, 0 problemas (sin desajuste de conteo vs.
+RVA1909, sin campos vacíos, sin arcaísmos "vosotros" residuales, sin
+comillas indebidas).
+
+**Instrucción de Juan que motivó terminar el NT sin pausar (2026-08-07):**
+"intenta terminar la biblia, no se si los tokens me alcanzan". El trabajo
+avanzó de forma continua por todas las epístolas hasta Apocalipsis,
+publicando cada libro al cerrarlo.
+
+## Notas de método acumuladas (para cualquier auditoría futura)
+
+- Varios versículos con lectura Textus Receptus/RVA1909 sin paralelo en
+  el texto crítico moderno (BSB/ASV) se preservaron íntegros, conforme al
+  método (RVA1909 controla estructura y variantes textuales): Hechos
+  8:37, 15:34, 18:21, 24:6-8, 28:29; Romanos 16:24 (doxología final);
+  1 Corintios 10:28, 11:24, 15:47; Gálatas 5:19; Efesios 5:30; Colosenses
+  2:2; 1 Timoteo 3:16 ("Dios ha sido manifestado en carne"); 1 Timoteo
+  1:11 ("de los gentiles"); 2 Timoteo 1:11 ("de los gentiles"); 1 Juan
+  5:7 (Comma Johanneum completo); Juan 21:15-17 ("hijo de Jonás").
+- "Caridad" (RVA1909) se modernizó a "amor" de forma sistemática en todo
+  el NT donde aparecía (1 Corintios 13, Gálatas 5:6/5:22, Colosenses
+  3:14, 1 Tesalonicenses 3:6/5:8, 2 Tesalonicenses 1:3, 1 Timoteo 1:5 y
+  otros, Tito 2:2, 2 Timoteo 2:22/3:10, Santiago (no tenía), 1 Pedro
+  1:22/4:8/5:14, 2 Pedro 1:7, 1 Juan 2:5, Judas, Apocalipsis 2:19).
+- "Obispo(s)" se modernizó a "supervisor(es)" cuando se refiere al oficio
+  neotestamentario de *episkopos* (Filipenses 1:1, 1 Timoteo 3:1-2, Tito
+  1:7, 1 Pedro 2:25) — pero se preservó "obispo" en los colofones finales
+  de 2 Timoteo y Tito, que describen el oficio episcopal posterior de la
+  iglesia primitiva (distinto uso histórico, no el término técnico
+  neotestamentario).
+- "Salud" (RVA1909, arcaísmo por "salvación") se corrigió a "salvación"
+  en decenas de apariciones a través de Hebreos, Santiago, 1-2 Pedro,
+  Judas — con cuidado de NO tocarlo donde de verdad significa salud
+  física (3 Juan 1:2).
+- Se encontraron y corrigieron varios **errores de concordancia de
+  género** heredados del script de modernización original: "la poder" →
+  "el poder" (2 Pedro 1:3/1:16, Apocalipsis 7:12/18:3); "creó/crió"
+  confundidos (1 Timoteo 5:10 "creó hijos"→"crió hijos"; Apocalipsis 4:11
+  y 10:6 "criaste/criado"→"creaste/creado", sentido correcto era
+  "crear" no "criar").
+- Formas subjuntivo futuro arcaicas residuales (que el script de
+  conversión "vosotros"→"ustedes" no detectó por no ser vosotros
+  propiamente) aparecieron sueltas en varios libros: 1 Timoteo 4:6
+  ("propusieres"), 3 Juan 1:6 ("ayudares"). Y un residuo de "vosotros"
+  fundido en un solo verbo (conjuro+os) en 1 Tesalonicenses 5:27
+  ("Conjúroos").
+- Nota de estilo (ya presente antes de esta sesión, confirmada en Juan
+  1–17, Marcos, Lucas): las comillas curvas “” SÍ se usan, pero solo
+  para citas o discurso anidado dentro de otro discurso. El discurso
+  directo de primer nivel sigue sin comillas (dos puntos + mayúscula).
+  El script de validación de calidad debe filtrar comillas curvas “” y
+  solo marcar guillemets «» como problema.
+- Los colofones finales de cada epístola (quién la escribió, desde dónde
+  se envió) se conservan como parte del último versículo en todas las
+  epístolas paulinas y generales.
 
 ## Decisión de estilo ya resuelta (2026-08-07)
 
-- Mateo 1–2 había introducido comillas angulares/curvas para todo el discurso
-  directo, distinto del estilo del AT ya publicado ("y dijo Dios: Sea la
-  luz", dos puntos + mayúscula, sin comillas). Juan decidió mantener
-  consistencia total con el AT: se quitaron las comillas de Mateo 1–2 y el
-  resto del NT sigue el mismo patrón sin comillas.
+Mateo 1–2 había introducido comillas angulares/curvas para todo el discurso
+directo, distinto del estilo del AT ya publicado ("y dijo Dios: Sea la
+luz", dos puntos + mayúscula, sin comillas). Juan decidió mantener
+consistencia total con el AT: se quitaron las comillas de Mateo 1–2 y el
+resto del NT sigue el mismo patrón sin comillas.
 
-## Trabajo restante
+## Cierres del Antiguo Testamento (ya completados antes de esta sesión)
 
-- Resta 1 libro: Apocalipsis (el último).
-- Restan 22 capítulos: Apocalipsis 1 a Apocalipsis 22.
+Génesis, Éxodo, Levítico, Números, Deuteronomio, Josué, Jueces, Rut,
+1 Samuel–2 Crónicas, Esdras, Nehemías, Ester, Job, Salmos, Proverbios,
+Eclesiastés, Cantares, Isaías, Jeremías, Lamentaciones, Ezequiel, Daniel,
+Oseas, Joel, Amós, Abdías, Jonás, Miqueas, Nahúm, Habacuc, Sofonías,
+Hageo, Zacarías, Malaquías — todos candidatos editoriales publicados.
+Detalle capítulo por capítulo en `review/bible-verbo/PROGRESS.md`.
 
-## Cierres ya descontados
-
-- Génesis: 50 capítulos y 1.533 versículos; candidato editorial.
-- Éxodo: 40 capítulos y 1.213 versículos; candidato editorial.
-- Levítico: 27 capítulos y 859 versículos; candidato editorial.
-- Números: 36 capítulos y 1.288 versículos; candidato editorial.
-- Deuteronomio: 34 capítulos y 959 versículos; candidato editorial.
-- Josué: 24 capítulos y 658 versículos; candidato editorial.
-- Jueces: 21 capítulos y 618 versículos; candidato editorial.
-- Rut: 4 capítulos y 85 versículos; candidato editorial.
-- 1 Samuel–2 Crónicas: 167 capítulos; candidatos editoriales publicados.
-- Esdras: 10 capítulos y 280 versículos; candidato editorial publicado.
-- Nehemías: 13 capítulos y 406 versículos; candidato editorial publicado.
-- Ester: 10 capítulos y 167 versículos; candidato editorial publicado.
-- Job: 42 capítulos y 1.070 versículos; candidato editorial publicado.
-- Proverbios: 31 capítulos y 915 versículos; candidato editorial publicado.
-- Eclesiastés: 12 capítulos y 222 versículos; candidato editorial publicado.
-- Cantares: 8 capítulos y 117 versículos; candidato editorial publicado.
-- Isaías: 66 capítulos y 1.292 versículos; candidato editorial publicado.
-- Jeremías: 52 capítulos y 1.364 versículos; candidato editorial publicado.
-- Lamentaciones: 5 capítulos y 154 versículos; candidato editorial publicado.
-- Ezequiel: 48 capítulos y 1.273 versículos; candidato editorial publicado.
-- Daniel: 12 capítulos y 357 versículos; candidato editorial publicado.
-- Oseas: 14 capítulos y 197 versículos; candidato editorial publicado.
-- Joel: 3 capítulos y 73 versículos; candidato editorial publicado.
-- Amós: 9 capítulos y 146 versículos; candidato editorial publicado.
-- Abdías: 1 capítulo y 21 versículos; candidato editorial publicado.
-- Jonás: 4 capítulos y 48 versículos; candidato editorial publicado.
-- Miqueas: 7 capítulos y 105 versículos; candidato editorial publicado.
-- Nahúm: 3 capítulos y 47 versículos; candidato editorial publicado.
-- Habacuc: 3 capítulos y 56 versículos; candidato editorial publicado.
-- Sofonías: 3 capítulos y 53 versículos; candidato editorial publicado.
-- Hageo: 2 capítulos y 38 versículos; candidato editorial publicado.
-- Zacarías: 14 capítulos y 211 versículos; candidato editorial publicado.
-- Malaquías: 4 capítulos y 55 versículos; candidato editorial publicado.
-- Mateo: 28 capítulos y 1.071 versículos; candidato editorial publicado.
-- Marcos: 16 capítulos y 678 versículos; candidato editorial publicado.
-- Lucas: 24 capítulos y 1.151 versículos; candidato editorial publicado.
-- Total AT+Mateo+Marcos+Lucas terminado: 42 libros y 997 capítulos.
-
-## Método obligatorio restante
+## Método usado en toda la revisión
 
 1. Usar BV2026 como texto base; RVA1909 solo para controlar estructura,
    numeración e historia textual, nunca como modelo de redacción.
@@ -147,23 +126,30 @@ aquí. Desde esta sesión, todo el trabajo del Nuevo Testamento continúa en
 4. Verificar estructura, numeración, textos no vacíos, cifras, negaciones,
    sujetos, términos teológicos, referencias y JSON.
 5. Cuidado especial en genealogías y listas: no introducir distinciones que el
-   texto original no marca (ver nota de calidad más abajo sobre Mateo 1:8).
-6. Mantener este archivo centrado solamente en lo que falta y actualizarlo al
-   cerrar cada nuevo avance.
+   texto original no marca.
 
 ## Nota de calidad — revisión de Mateo 1–2 (Claude, 2026-08-07)
 
 Ver informe completo en `review/bible-verbo/OPINION-MATEO-1-2.md`. Resumen: la
 traducción es de buena calidad, natural y fiel al griego; corrige bien nombres
-propios arcaicos y reestructura la genealogía de forma legible. Dos ajustes
-ya aplicados en esta sesión: (1) Mateo 1:8 corregido de "antepasado de Uzías"
-a "padre de Uzías", parejo con el resto de la genealogía — el griego usa el
-mismo verbo en todos los eslabones, aunque históricamente se sepa que ahí
-Mateo omite tres reyes; vigilar que no se repita el patrón en otras
-genealogías (p. ej. Lucas 3). (2) Comillas quitadas de Mateo 1–2 para igualar
-el estilo sin comillas del AT ya publicado.
+propios arcaicos y reestructura la genealogía de forma legible.
+
+## Pendiente para una fase futura (no bloquea nada, pero no está hecho)
+
+- Un muestreo/auditoría dedicado a buscar arcaísmos residuales en libros
+  ya cerrados, en vez de encontrarlos de rebote mientras se revisa el
+  siguiente libro (que es como se encontraron casi todos los errores de
+  este historial).
+- Revisión del Antiguo Testamento con el mismo nivel de detalle línea por
+  línea que se aplicó al Nuevo Testamento en esta sesión (el AT se cerró
+  en sesiones anteriores con un proceso que puede no haber sido igual de
+  exhaustivo verso a verso).
 
 ## Publicación
 
-- Juan autorizó comitear y subir cada libro terminado.
-- La Biblia completa todavía no está terminada ni debe marcarse como oficial.
+- Juan autorizó comitear y subir cada libro terminado, y cada uno se
+  publicó en GitHub → Cloudflare Pages al cerrarse.
+- **La Biblia completa (66/66 libros) todavía no está aprobada ni debe
+  marcarse como oficial.** Cada libro es un "candidato editorial" —
+  la aprobación final ("aprobado") requiere una decisión expresa de Juan,
+  no solo que el trabajo mecánico/editorial esté terminado.
