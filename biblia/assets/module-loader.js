@@ -846,7 +846,7 @@ const VerboModules = (() => {
       const id=`${commentaryId}::${rawId}`;
       notes[id]={
         title:entry.title||`${c.manifest.name}: ${start}${end!==start?'–'+end:''}`,
-        author:entry.author||c.manifest.name,
+        author:entry.author||c.manifest.author||c.manifest.name,
         body:entry.content||'',
         commentaryId,
         commentaryName:c.manifest.name,

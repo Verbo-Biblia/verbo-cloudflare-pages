@@ -451,7 +451,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     entries.forEach(e => {
       if (!e.id) return;
       const id = `${commentaryId}::${e.id}`;
-      target.notes[id] = { ...(target.notes[id]||{}), title:e.title||'', author:e.author||'', body:e.content||'', commentaryId };
+      target.notes[id] = { ...(target.notes[id]||{}), title:e.title||'', author:e.author||entry.manifest.author||entry.manifest.name||'', body:e.content||'', commentaryId };
     });
     target.loadedCommentaries.add(commentaryId);
     return true;
@@ -3068,12 +3068,19 @@ document.addEventListener('DOMContentLoaded', async () => {
   // cerrarlo. Solo puede haber uno a la vez, en el panel normal o en el de
   // sermón, nunca los dos.
   let openStrongPopupRoot=null;
+  // Pila de códigos visitados dentro del popup ya abierto (clic en "Palabras
+  // relacionadas") — alimenta el botón "atrás". Se reinicia cada vez que el
+  // popup se abre desde cero (openStrongPopup) o se cierra.
+  let strongPopupHistory=[];
 
   async function openStrongPopup(code){
     if(openStrongPopupRoot){
       // Ya hay una definición abierta: no la reemplazamos con la nueva (pedido
       // explícito de Juan, Cambio 3) — solo un pequeño "shake" para indicar
-      // que hay que cerrar la actual primero.
+      // que hay que cerrar la actual primero. Esto es para códigos Strong
+      // clicados FUERA del popup (texto bíblico, panel Biblia Strong); la
+      // navegación por "Palabras relacionadas" DENTRO del popup ya abierto no
+      // pasa por acá — usa goToStrongPopupEntry() más abajo.
       openStrongPopupRoot.classList.remove('strong-def-popup--shake');
       void openStrongPopupRoot.offsetWidth; // reinicia la animación si ya estaba corriendo
       openStrongPopupRoot.classList.add('strong-def-popup--shake');
@@ -3083,6 +3090,33 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(!p.root) return;
     openStrongPopupRoot=p.root;
     p.root.hidden=false;
+    strongPopupHistory=[];
+    await renderStrongPopupEntry(code);
+  }
+
+  // Navega el popup YA ABIERTO a otro código (clic en un chip de "Palabras
+  // relacionadas" dentro del propio popup): reemplaza el contenido en el
+  // mismo popup, sin cerrarlo ni abrir uno nuevo encima, y apila el código
+  // actual para poder volver con goBackStrongPopup().
+  async function goToStrongPopupEntry(code){
+    if(!openStrongPopupRoot) return;
+    const currentCode=strongPopupEls().code.textContent;
+    if(currentCode && currentCode!==code) strongPopupHistory.push(currentCode);
+    await renderStrongPopupEntry(code);
+  }
+
+  async function goBackStrongPopup(){
+    if(!strongPopupHistory.length) return;
+    await renderStrongPopupEntry(strongPopupHistory.pop());
+  }
+
+  // Núcleo de carga + pintado de una entrada dentro del popup — lo usan tanto
+  // openStrongPopup (primera apertura) como goToStrongPopupEntry/
+  // goBackStrongPopup (navegación interna). No decide si el popup debe
+  // abrirse o no; eso es responsabilidad de quien la llama.
+  async function renderStrongPopupEntry(code){
+    const p=strongPopupEls();
+    if(!p.root) return;
     p.code.textContent=code;
     p.body.innerHTML=emptyState('⌛',t('diccionario.buscandoEntrada'));
     const selected=getStrongDictionary(code);
@@ -3095,15 +3129,18 @@ document.addEventListener('DOMContentLoaded', async () => {
       const rawHtml=result.entry.html||result.entry.definition||result.entry.content||'';
       const html=formatStrongEntryHtml(result.code,result.entry,rawHtml);
       const showEnglish=contentLang()==='en';
-      p.body.innerHTML=`<article class="dict-entry"><div class="dict-entry__term">${result.code}</div><div class="dict-entry__source">${escapeHTML(result.manifest.name)}</div><button class="note-card__copy" id="copyDictEntry" type="button">${t('diccionario.copiarDiccionario')}</button><div class="dict-entry__def" id="dictionaryEntryBody">${showEnglish?html:`<p class="note-card__translating">${t('diccionario.traduciendoEspanol')}</p>${html}`}</div></article>`;
+      const previousCode=strongPopupHistory[strongPopupHistory.length-1];
+      const backHtml=previousCode?`<button class="note-card__copy" id="strongPopupBack" type="button">← ${escapeHTML(previousCode)}</button>`:'';
+      p.body.innerHTML=`<article class="dict-entry">${backHtml}<div class="dict-entry__term">${result.code}</div><div class="dict-entry__source">${escapeHTML(result.manifest.name)}</div><button class="note-card__copy" id="copyDictEntry" type="button">${t('diccionario.copiarDiccionario')}</button><div class="dict-entry__def" id="dictionaryEntryBody">${showEnglish?html:`<p class="note-card__translating">${t('diccionario.traduciendoEspanol')}</p>${html}`}</div></article>`;
+      p.body.querySelector('#strongPopupBack')?.addEventListener('click', e=>{ e.stopPropagation(); goBackStrongPopup(); });
       const body=p.body.querySelector('#dictionaryEntryBody');
       if(!showEnglish && body){
         const translated=await translateDictionaryEntry(result.code,html);
         if(openStrongPopupRoot===p.root && contentLang()==='es' && p.body.querySelector('#dictionaryEntryBody')===body){
           body.innerHTML=translated;
-          wireDictionaryLinks(body);
+          wireStrongPopupRelatedLinks(body);
         }
-      } else if(body) wireDictionaryLinks(body);
+      } else if(body) wireStrongPopupRelatedLinks(body);
       p.body.querySelector('#copyDictEntry')?.addEventListener('click',()=>{
         const visible=p.body.querySelector('#dictionaryEntryBody')?.innerHTML||html;
         copyToClipboard(`${result.code}\n${String(visible).replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim()}`);
@@ -3112,6 +3149,25 @@ document.addEventListener('DOMContentLoaded', async () => {
       console.error(error);
       if(openStrongPopupRoot===p.root) p.body.innerHTML=emptyState('⚠️',t('diccionario.errorEntrada'));
     }
+  }
+
+  // Convierte los enlaces "Palabras relacionadas" del HTML de la entrada
+  // (<a class="strong" href="#sG25">) en botones reales (nunca <a href>, que
+  // apuntaría a un ancla que no existe dentro del popup) para navegar DENTRO
+  // del mismo popup vía goToStrongPopupEntry(). El código se extrae del href
+  // — nunca se traduce, a diferencia del texto visible del enlace — para no
+  // depender de que la traducción automática deje "G25"/"H26" intactos.
+  function wireStrongPopupRelatedLinks(root){
+    root.querySelectorAll('a.strong').forEach(a=>{
+      const m=((a.getAttribute('href')||'')+' '+a.textContent).match(/[GH]\d+/i);
+      const btn=document.createElement('button');
+      btn.type='button';
+      btn.className='strongs-tag strong-related-btn';
+      btn.textContent=m?m[0].toUpperCase():a.textContent;
+      if(m) btn.dataset.strongCode=m[0].toUpperCase();
+      a.replaceWith(btn);
+      btn.addEventListener('click', e=>{ e.stopPropagation(); if(btn.dataset.strongCode) goToStrongPopupEntry(btn.dataset.strongCode); });
+    });
   }
 
   // Se cierra únicamente desde acá: por su botón X (ver wiring más abajo) o al
@@ -3123,6 +3179,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     openStrongPopupRoot.hidden=true;
     openStrongPopupRoot.classList.remove('strong-def-popup--shake');
     openStrongPopupRoot=null;
+    strongPopupHistory=[];
   }
 
 
