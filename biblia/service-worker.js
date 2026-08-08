@@ -35,7 +35,7 @@
 // guardar. CACHE_VERSION ya no es crítico para que la app se actualice
 // (el network-first del shell resuelve eso solo); subirlo de vez en
 // cuando sigue sirviendo para limpiar entradas de caché viejas.
-const CACHE_VERSION = 'verbo-biblia-v18-shelf-placeholder-fix';
+const CACHE_VERSION = 'verbo-biblia-v19-conversor-error-fix';
 const SHELL_NETWORK_TIMEOUT_MS = 4000;
 
 const APP_SHELL = [

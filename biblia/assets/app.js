@@ -3923,7 +3923,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       catch(error){ console.error(error); }
     }
     if(!conversorData || !conversorData.categorias?.length){
-      els.panelBody.innerHTML=emptyState('⚖️',t('costumbres.coleccionPreparacion'));
+      els.panelBody.innerHTML=emptyState('⚖️',t('conversor.errorCarga'));
       return;
     }
     renderConversorBody();
