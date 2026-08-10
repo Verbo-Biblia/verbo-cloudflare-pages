@@ -422,5 +422,12 @@
     "method": "empty-target+code-absent-from-verse+step-verse",
     "addedAssociations": 27070,
     "addedSegments": 25845
+  },
+  "stepGlossVerification": {
+    "scope": "Nuevo Testamento",
+    "method": "step-spanish-gloss-exact",
+    "promotedAssociations": 16202,
+    "exactSingleCode": 16088,
+    "exactComposedMultiCode": 114
   }
 }

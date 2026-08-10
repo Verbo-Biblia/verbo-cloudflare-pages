@@ -50,8 +50,17 @@ promovieron 1.273 asociaciones en total.
 La fusión conservadora de RV1960+ añadió 27.070 asociaciones a 25.845 segmentos que
 estaban vacíos. Exigió que el código estuviera ausente de todo el versículo y presente
 en STEPBible; no movió ni reemplazó asociaciones existentes. El resultado contiene
-253.792 asociaciones, alcanza 60,68 % de cobertura y conserva 181.635 como
-`provisional-reference`.
+253.792 asociaciones, alcanza 60,68 % de cobertura y dejó inicialmente 181.635 como
+`provisional-reference` antes de la verificación abierta del Nuevo Testamento.
+
+La verificación abierta por glosa exacta del Nuevo Testamento promovió otras 16.202
+asociaciones a `verified-open`: 16.088 de código único y 114 en 57 segmentos que
+componen exactamente «sino» a partir de las glosas `si` + `no`. Exige coincidencia
+literal normalizada con la glosa española STEPBible, la misma ocurrencia del código
+en orden y morfología compatible. Después de estos lotes quedan 165.433 asociaciones
+`provisional-reference`. Los informes reproducibles están en
+`review/strong/step-gloss-nt-report.json` y
+`review/strong/step-gloss-nt-composition-report.json`.
 
 No se debe modificar `reference`, `verse_text`, `word`, `strong`, `morphology`, `step_gloss`, `status` ni `confidence`, porque permiten importar después las decisiones de forma reproducible.
 
