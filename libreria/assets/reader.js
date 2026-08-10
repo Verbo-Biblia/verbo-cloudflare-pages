@@ -377,7 +377,6 @@
 
     var content = el("div", "reader-content");
     content.addEventListener("mouseup", function () { handleSelection(content); });
-    content.addEventListener("touchend", function () { handleSelection(content); });
     root.appendChild(content);
 
     var foot = el("div", "reader-foot");
@@ -454,6 +453,65 @@
     render(ui);
   }
 
+  // Navegación táctil del lector independiente de /libreria/. La aplicación
+  // bíblica tiene su propio swipe, pero estos libros usan reader.js y por eso
+  // necesitan el gesto aquí. Solo responde en móvil y a un movimiento
+  // claramente horizontal, para no interferir con el scroll vertical ni con
+  // la selección de texto usada por los resaltados.
+  function installSwipeNavigation(ui) {
+    var startX = null;
+    var startY = null;
+    var singleTouch = false;
+
+    ui.content.addEventListener("touchstart", function (e) {
+      singleTouch = e.touches.length === 1;
+      if (!singleTouch) {
+        startX = null;
+        startY = null;
+        return;
+      }
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }, { passive: true });
+
+    ui.content.addEventListener("touchend", function (e) {
+      if (!singleTouch || startX === null || !e.changedTouches.length) {
+        startX = null;
+        startY = null;
+        singleTouch = false;
+        handleSelection(ui.content);
+        return;
+      }
+
+      var dx = e.changedTouches[0].clientX - startX;
+      var dy = Math.abs(e.changedTouches[0].clientY - startY);
+      var selection = window.getSelection();
+      var hasTextSelection = selection && !selection.isCollapsed && selection.rangeCount > 0 &&
+        ui.content.contains(selection.getRangeAt(0).commonAncestorContainer);
+      var isHorizontalSwipe = window.innerWidth <= 760 &&
+        Math.abs(dx) >= 60 && dy <= Math.abs(dx) / 2;
+
+      startX = null;
+      startY = null;
+      singleTouch = false;
+
+      if (hasTextSelection || !isHorizontalSwipe) {
+        handleSelection(ui.content);
+        return;
+      }
+
+      // Un swipe no debe convertirse accidentalmente en un resaltado.
+      if (selection) selection.removeAllRanges();
+      goTo(ui, current + (dx < 0 ? 1 : -1));
+    });
+
+    ui.content.addEventListener("touchcancel", function () {
+      startX = null;
+      startY = null;
+      singleTouch = false;
+    }, { passive: true });
+  }
+
   function init(raw) {
     chapters = normalize(raw);
     if (!chapters.length) {
@@ -463,6 +521,7 @@
 
     var ui = buildSkeleton();
     buildChapterOptions(ui);
+    installSwipeNavigation(ui);
 
     var hashChapter = parseInt((window.location.hash || "").replace("#", ""), 10);
     if (hashChapter && hashChapter >= 1 && hashChapter <= chapters.length) {

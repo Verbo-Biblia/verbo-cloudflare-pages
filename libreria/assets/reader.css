@@ -176,6 +176,13 @@ body.recursos-page .reader-chapter-title {
   margin: 0 0 22px;
 }
 
+@media (max-width: 760px) {
+  /* Conserva el scroll vertical y deja el eje horizontal para cambiar de
+     capítulo con el gesto implementado en reader.js. La pulsación prolongada
+     y la selección de texto siguen disponibles para los resaltados. */
+  body.recursos-page .reader-content { touch-action: pan-y; }
+}
+
 body.recursos-page .reader-para {
   font-size: 1.05rem;
   line-height: 1.8;
