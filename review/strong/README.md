@@ -71,6 +71,13 @@ asociaciones con prefijo común, similitud mínima del 94 %, misma ocurrencia y
 morfología compatible. La evidencia nueva permitió promover otras nueve relaciones
 corpus-wide inequívocas. Quedan 164.965 asociaciones `provisional-reference`.
 
+El cruce posterior por pares exactos palabra–Strong permitió conservar la polisemia
+legítima: una palabra española puede corresponder a códigos diferentes, pero cada par
+promovido debe aparecer al menos cinco veces como `verified-open` y el código debe
+estar presente en STEPBible para el versículo candidato. Promovió 6.776 asociaciones
+adicionales. Quedan 158.189 asociaciones `provisional-reference`; el informe está en
+`review/strong/open-pair-crosscheck-report.json`.
+
 No se debe modificar `reference`, `verse_text`, `word`, `strong`, `morphology`, `step_gloss`, `status` ni `confidence`, porque permiten importar después las decisiones de forma reproducible.
 
 `row_id`, `segment_index` y `code_index` identifican de forma inequívoca cada asociación. Tampoco deben editarse. El importador rechazará el CSV si el módulo cambió después de exportarlo.

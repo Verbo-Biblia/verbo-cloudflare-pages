@@ -416,7 +416,7 @@
     "method": "unique-open-word-code-crosscheck",
     "minimumOccurrences": 3,
     "minimumPrecision": 1.0,
-    "promotedAssociations": 1657
+    "promotedAssociations": 8433
   },
   "rv1960ConservativeMerge": {
     "method": "empty-target+code-absent-from-verse+step-verse",
@@ -430,5 +430,10 @@
     "exactSingleCode": 16088,
     "exactComposedMultiCode": 114,
     "highSimilarityInflection": 84
+  },
+  "repeatedOpenPairVerification": {
+    "method": "repeated-open-word-code-pair+step-verse",
+    "minimumOccurrences": 5,
+    "promotedAssociations": 6776
   }
 }
