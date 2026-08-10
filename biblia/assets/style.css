@@ -2622,6 +2622,63 @@ body.map-viewer-fullscreen-active { overflow: hidden; }
 }
 .editor-pane__title-input:focus { outline: none; border-color: var(--wine-soft); }
 
+.editor-pane__search { position: relative; flex: 1; min-width: 140px; max-width: 260px; }
+
+.editor-pane__search-input {
+  width: 100%;
+  border: 1px solid var(--rule-strong);
+  background: var(--chrome);
+  color: var(--ink);
+  font: inherit;
+  /* 16px exactos: mismo motivo que .editor-pane__title-input (zoom automático
+     de Safari/iPhone al enfocar un campo por debajo de ese tamaño). */
+  font-size: 16px;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+.editor-pane__search-input:focus { outline: none; border-color: var(--wine-soft); }
+
+.editor-pane__search-results {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: var(--paper-raised);
+  border: 1px solid var(--rule-strong);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  max-height: 280px;
+  overflow-y: auto;
+  z-index: 20;
+}
+
+.editor-pane__search-hit {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: none;
+  border-bottom: 1px solid var(--rule);
+  background: none;
+  font: inherit;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ink);
+  padding: 8px 10px;
+  cursor: pointer;
+}
+.editor-pane__search-hit:last-child { border-bottom: none; }
+.editor-pane__search-hit:hover,
+.editor-pane__search-hit:focus { background: var(--chrome); outline: none; }
+.editor-pane__search-hit mark { background: var(--wine-soft); color: #fff; border-radius: 2px; padding: 0 1px; }
+
+.editor-pane__search-empty { padding: 8px 10px; font-size: 13px; color: var(--sepia); }
+
+/* Resaltado temporal (no persistente) de una coincidencia dentro del texto de
+   la prédica al hacer clic en un resultado — ver flashSermonSearchHit en
+   app.js. Se inserta con data-mce-bogus="1" (TinyMCE lo excluye siempre de
+   getContent()) y se retira solo unos segundos después. */
+mark.predica-search-hit { background: var(--wine-soft); color: #fff; border-radius: 2px; }
+
 .editor-pane__actions-buttons { display: flex; gap: 8px; flex-shrink: 0; }
 
 .editor-pane__export-btn {
@@ -2661,6 +2718,12 @@ body.map-viewer-fullscreen-active { overflow: hidden; }
 @media (max-width: 760px) {
   .editor-pane__actions { flex-wrap: wrap; }
   .editor-pane__title-input { flex-basis: 100%; max-width: none; order: -1; }
+  /* Título, buscador y botones apilados en su propia fila cada uno, en ese
+     orden — mismo criterio que el título: en paneles angostos (Biblia o
+     Comentario abiertos junto al editor) no hay ancho para los tres lado a
+     lado. */
+  .editor-pane__search { flex-basis: 100%; max-width: none; order: 0; }
+  .editor-pane__actions-buttons { order: 1; }
 }
 
 .editor-pane__inner {

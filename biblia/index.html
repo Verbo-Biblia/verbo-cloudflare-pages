@@ -17,7 +17,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Verbo">
-<link rel="stylesheet" href="assets/style.css?v=20260809-paneles-swipe-buscador">
+<link rel="stylesheet" href="assets/style.css?v=20260810-buscador-predica">
 <link rel="stylesheet" href="assets/historia-nota-rapida.css?v=20260806-ios-font-size-fix">
 </head>
 <body>
@@ -126,6 +126,10 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
       <div class="editor-pane__toolbar" id="editorToolbar"></div>
       <div class="editor-pane__actions">
         <input type="text" class="editor-pane__title-input" id="predicaTituloInput" placeholder="Título de la prédica (opcional)">
+        <div class="editor-pane__search">
+          <input type="text" class="editor-pane__search-input" id="predicaBuscarInput" autocomplete="off" placeholder="Buscar en esta predicación…" data-i18n-attr="placeholder:predicas.buscarEnEditorPlaceholder,aria-label:predicas.buscarEnEditorAria">
+          <div class="editor-pane__search-results" id="predicaBuscarResults" hidden></div>
+        </div>
         <div class="editor-pane__actions-buttons">
           <button type="button" class="editor-pane__save-btn" id="guardarSermonBtn">Guardar</button>
           <button type="button" class="editor-pane__export-btn" id="exportWordBtn">Exportar a Word</button>
@@ -299,7 +303,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   <script src="assets/i18n.js?v=20260809-paneles-swipe-buscador"></script>
   <script src="assets/module-loader.js?v=20260808-comentario-verbo-author"></script>
   <script src="assets/sync.js?v=20260801-sermon-predicas"></script>
-  <script src="assets/app.js?v=20260810-strong-bible-language"></script>
+  <script src="assets/app.js?v=20260810-buscador-predica"></script>
   <script src="assets/historia-nota-rapida.js?v=20260805-padres-nota-rapida"></script>
 </body>
 </html>
