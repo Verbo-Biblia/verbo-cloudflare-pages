@@ -115,6 +115,11 @@ tomada de la única ocurrencia STEPBible; no copió texto de RV1960+. Quedan 3.1
 asociaciones ausentes en la auditoría posicional NT. Véase
 `review/strong/open-evidence-additions-nt-report.json`.
 
+Una pasada de baja frecuencia añadió otros dos casos semánticamente inequívocos
+con dos observaciones abiertas: Mt 14:2 (`G1411`, «poderes») y Jn 8:44 (`G2398`,
+«suyo»). Se registraron con confianza 0,98. La cola NT queda en 3.170 asociaciones
+ausentes; véase `review/strong/open-evidence-additions-nt-low-frequency-report.json`.
+
 No se debe modificar `reference`, `verse_text`, `word`, `strong`, `morphology`, `step_gloss`, `status` ni `confidence`, porque permiten importar después las decisiones de forma reproducible.
 
 `row_id`, `segment_index` y `code_index` identifican de forma inequívoca cada asociación. Tampoco deben editarse. El importador rechazará el CSV si el módulo cambió después de exportarlo.

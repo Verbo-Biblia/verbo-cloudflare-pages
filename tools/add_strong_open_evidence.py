@@ -87,7 +87,7 @@ def add_missing(module: Path, reference_path: Path, minimum: int,
                             target["strongMeta"] = {
                                 "status": "cross-verified-open",
                                 "method": "rv1960-position+unique-open-pair+step-occurrence",
-                                "confidence": 0.99,
+                                "confidence": 0.99 if minimum >= 3 else 0.98,
                             }
                             changed = True
                             verse_changed = True

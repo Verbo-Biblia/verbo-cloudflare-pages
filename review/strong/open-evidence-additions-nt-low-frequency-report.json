@@ -1,0 +1,32 @@
+{
+  "module": "/home/juan/Verbo/verbo-cloudflare-pages/biblia/modules/bibles/rv-verbo-strong-provisional",
+  "applied": true,
+  "scope": "Nuevo Testamento",
+  "referenceUse": "RV1960+ solo como guía posicional; no se copia texto",
+  "minimumVerifiedOpenObservations": 2,
+  "uniqueOpenPairs": 1701,
+  "stats": {
+    "positionalCandidates": 9798,
+    "excludedCodeAlreadyPresent": 4382,
+    "excludedWithoutUniqueOpenPair": 5346,
+    "excludedNonUniqueStepOccurrence": 68,
+    "addedAssociations": 2,
+    "changedBooks": 2
+  },
+  "samples": [
+    {
+      "reference": "MAT 14:2",
+      "word": "poderes",
+      "strong": "G1411",
+      "stepGloss": "obras poderosas",
+      "minimumRequiredVerifiedOpenObservations": 2
+    },
+    {
+      "reference": "JHN 8:44",
+      "word": "suyo",
+      "strong": "G2398",
+      "stepGloss": "suyos",
+      "minimumRequiredVerifiedOpenObservations": 2
+    }
+  ]
+}
