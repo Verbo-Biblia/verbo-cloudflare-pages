@@ -48,7 +48,8 @@
   },
   "panel": {
     "defaultTitle": "Panel",
-    "closeAria": "Close panel"
+    "closeAria": "Close panel",
+    "resizeAria": "Drag to resize panels"
   },
   "historia": {
     "title": "Church History",
@@ -63,6 +64,7 @@
     "volverIndice": "Back to table of contents",
     "leer": "Read",
     "buscarEnTodo": "Search the whole archive",
+    "buscarRapidoPlaceholder": "Search by chapter title…",
     "toc": {
       "libro": "Book",
       "martiresPalestina": "The Martyrs of Palestine",
@@ -274,7 +276,11 @@
     "seccionesCount": "{{count}} sections",
     "volverIndice": "Document index",
     "seccionNoEncontrada": "This section wasn't found.",
-    "traduccionAuto": "Automatic {{source}}→{{target}} translation, based on the interface language."
+    "traduccionAuto": "Automatic {{source}}→{{target}} translation, based on the interface language.",
+    "anterior": "Previous",
+    "siguiente": "Next",
+    "buscarPlaceholder": "Search by document or section title…",
+    "indiceCargando": "Loading search index…"
   },
   "costumbres": {
     "title": "Customs & Traditions",
@@ -290,7 +296,9 @@
     "entradaNoEncontrada": "This entry wasn't found.",
     "anterior": "Previous",
     "siguiente": "Next",
-    "leer": "Read"
+    "leer": "Read",
+    "buscarPlaceholder": "Search by work or entry title…",
+    "indiceCargando": "Loading search index…"
   },
   "conversor": {
     "title": "Measurement converter",

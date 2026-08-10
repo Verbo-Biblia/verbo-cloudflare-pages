@@ -968,6 +968,18 @@ body {
   background: var(--chrome);
 }
 
+/* Buscador rápido (autocomplete) sobre el estante de Historia/Padres/
+   Costumbres — reutiliza .history-search-autocomplete/.history-predictions/
+   .history-prediction (ya existían para la búsqueda de Historia dentro del
+   toolbar) fuera de ese contexto de grid, por eso necesita su propio margen. */
+.church-shelf__quicksearch {
+  margin: 4px 2px 16px;
+}
+.history-prediction--loading {
+  color: var(--muted);
+  cursor: default;
+}
+
 /* ── Estante de portadas de Historia de la Iglesia ──────────────────────── */
 .church-shelf {
   display: grid;
@@ -2552,7 +2564,10 @@ body.map-viewer-fullscreen-active { overflow: hidden; }
 
 .editor-pane {
   flex: 1;
-  min-width: 0;
+  /* 320px mínimo: evita que los divisores arrastrables (ver
+     "Divisores arrastrables entre paneles" más abajo) puedan robarle tanto
+     espacio al editor que quede inutilizable. */
+  min-width: 320px;
   overflow-y: auto;
   scroll-behavior: smooth;
   display: flex;
@@ -2814,6 +2829,72 @@ body.sermon-mode .sermon-compare-panel { display: flex; }
    alcance de esta tarea) — se desactiva para no dejar un estado roto. */
 @media (max-width: 900px) {
   .sermon-compare-panel { display: none !important; }
+}
+
+/* ---------- Divisores arrastrables entre paneles (modo Predicación) ----------
+   Los anchos de #sidePanel ("Biblia") y #sermonComparePanel ("Comentario")
+   en modo sermón normalmente vienen de --panel-width (380px, fijo). Aquí se
+   añade un nivel de indirección: si el usuario arrastra un divisor,
+   sermon-resize.js fija --sermon-bible-panel-w / --sermon-compare-panel-w en
+   :root (y los persiste en localStorage); si nunca arrastró nada, el var()
+   con fallback deja el ancho de siempre. .editor-pane no necesita su propio
+   ajuste: al ser flex:1 absorbe automáticamente el espacio que le sobra o le
+   falta a los paneles vecinos. */
+/* Gateado a escritorio ancho (901px+, mismo umbral que .sermon-compare-panel
+   y los divisores más abajo): por debajo de eso #sidePanel vuelve a su
+   comportamiento normal de panel único (incluida la hoja a pantalla completa
+   fija en --panel-width:100% bajo 860px) — un ancho arrastrado y guardado en
+   escritorio nunca debe forzarse sobre el layout mobile. */
+@media (min-width: 901px) {
+  body.sermon-mode #sidePanel.side-panel--open {
+    width: var(--sermon-bible-panel-w, var(--panel-width));
+  }
+  body.sermon-mode #sidePanel.side-panel--open .side-panel__inner {
+    width: var(--sermon-bible-panel-w, var(--panel-width));
+  }
+  #sermonComparePanel.sermon-compare-panel--open {
+    width: var(--sermon-compare-panel-w, var(--panel-width));
+  }
+  #sermonComparePanel.sermon-compare-panel--open .side-panel__inner {
+    width: var(--sermon-compare-panel-w, var(--panel-width));
+  }
+}
+
+.sermon-resize-handle {
+  display: none;
+  width: 6px;
+  flex-shrink: 0;
+  cursor: col-resize;
+  position: relative;
+  background: transparent;
+  touch-action: none; /* evita que el navegador interprete el arrastre como scroll en tablets */
+}
+.sermon-resize-handle::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; left: 2px; right: 2px;
+  border-radius: 2px;
+  background: var(--rule-strong, var(--rule));
+  transition: background 0.15s ease;
+}
+.sermon-resize-handle:hover::after,
+.sermon-resize-handle--dragging::after {
+  background: var(--wine-soft);
+}
+
+/* Solo visibles en escritorio ancho, donde el layout lado a lado de hasta 3
+   paneles (editor + Biblia + comentario) tiene sentido — mismo umbral que
+   .sermon-compare-panel (900px) para no ofrecer un divisor que no tiene nada
+   real que redimensionar al otro lado. :has() referencia hacia adelante en
+   el DOM (el panel viene después del divisor), por eso no puede resolverse
+   con combinadores CSS clásicos. */
+@media (min-width: 901px) {
+  body.sermon-mode:has(#sidePanel.side-panel--open) #sermonResizeHandle1 {
+    display: block;
+  }
+  body.sermon-mode:has(#sidePanel.side-panel--open):has(#sermonComparePanel.sermon-compare-panel--open) #sermonResizeHandle2 {
+    display: block;
+  }
 }
 
 .predicas-panel__new {

@@ -17,7 +17,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Verbo">
-<link rel="stylesheet" href="assets/style.css?v=20260807-biblia-strong">
+<link rel="stylesheet" href="assets/style.css?v=20260809-paneles-swipe-buscador">
 <link rel="stylesheet" href="assets/historia-nota-rapida.css?v=20260806-ios-font-size-fix">
 </head>
 <body>
@@ -138,6 +138,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
     </main>
 
     <div class="sheet-backdrop" id="sheetBackdrop"></div>
+    <div class="sermon-resize-handle" id="sermonResizeHandle1" data-i18n-attr="aria-label:panel.resizeAria" role="separator" aria-orientation="vertical" tabindex="-1"></div>
     <aside class="side-panel" id="sidePanel">
       <div class="side-panel__inner">
         <div class="sheet-handle" aria-hidden="true"></div>
@@ -157,6 +158,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
       </div>
     </aside>
 
+    <div class="sermon-resize-handle" id="sermonResizeHandle2" data-i18n-attr="aria-label:panel.resizeAria" role="separator" aria-orientation="vertical" tabindex="-1"></div>
     <aside class="sermon-compare-panel" id="sermonComparePanel">
       <div class="side-panel__inner">
         <div class="side-panel__header">
@@ -294,10 +296,10 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   <script src="https://pkg.api.bible/fumsV3.min.js" defer></script>
   <script>window.fumsData=window.fumsData||[];window.fums=window.fums||function(){window.fumsData.push(arguments);};</script>
   <script src="assets/backup.js?v=20260804-notas-historia-bugfix"></script>
-  <script src="assets/i18n.js?v=20260807-biblia-strong"></script>
+  <script src="assets/i18n.js?v=20260809-paneles-swipe-buscador"></script>
   <script src="assets/module-loader.js?v=20260808-comentario-verbo-author"></script>
   <script src="assets/sync.js?v=20260801-sermon-predicas"></script>
-  <script src="assets/app.js?v=20260808-comentario-verbo-author"></script>
+  <script src="assets/app.js?v=20260809-paneles-swipe-buscador"></script>
   <script src="assets/historia-nota-rapida.js?v=20260805-padres-nota-rapida"></script>
 </body>
 </html>

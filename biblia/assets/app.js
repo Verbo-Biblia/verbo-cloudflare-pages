@@ -45,7 +45,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     sermonStrongDefPopup: document.getElementById('sermonStrongDefPopup'),
     sermonStrongDefPopupCode: document.getElementById('sermonStrongDefPopupCode'),
     sermonStrongDefPopupBody: document.getElementById('sermonStrongDefPopupBody'),
-    sermonStrongDefPopupClose: document.getElementById('sermonStrongDefPopupClose')
+    sermonStrongDefPopupClose: document.getElementById('sermonStrongDefPopupClose'),
+    sermonResizeHandle1: document.getElementById('sermonResizeHandle1'),
+    sermonResizeHandle2: document.getElementById('sermonResizeHandle2')
   };
 
   const backupData = await VerboBackup.init();
@@ -1382,13 +1384,122 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(activeTab) renderPanel(activeTab);
   }
 
+  // ── Divisores arrastrables entre paneles (modo Predicación) ────────────────
+  // Redimensionan #sidePanel ("Biblia") y #sermonComparePanel ("Comentario")
+  // fijando --sermon-bible-panel-w / --sermon-compare-panel-w en :root (ver
+  // style.css, "Divisores arrastrables entre paneles"). .editor-pane nunca se
+  // toca directamente: al ser flex:1 absorbe el espacio que le sobra o le
+  // falta a los paneles vecinos.
+  const SERMON_PANEL_MIN = 260; // px — por debajo de esto un panel deja de ser útil
+  const SERMON_EDITOR_MIN = 320; // px — debe coincidir con .editor-pane{min-width} en style.css
+  const rootStyle = document.documentElement.style;
+
+  function clampNum(n,min,max){ return Math.min(Math.max(n,min), Math.max(min,max)); }
+
+  function loadSavedPanelWidth(key){
+    const n = Number(localStorage.getItem(key));
+    return Number.isFinite(n) && n>0 ? n : null;
+  }
+  (function applySavedSermonPanelWidths(){
+    const bibleW = loadSavedPanelWidth('verbo:sermonPanelWidth:biblia');
+    if(bibleW) rootStyle.setProperty('--sermon-bible-panel-w', bibleW+'px');
+    const compareW = loadSavedPanelWidth('verbo:sermonPanelWidth:comentario');
+    if(compareW) rootStyle.setProperty('--sermon-compare-panel-w', compareW+'px');
+  })();
+
+  function sermonRailsWidth(){
+    const rail1 = document.querySelector('.library-rail')?.getBoundingClientRect().width || 0;
+    const rail2 = document.querySelector('.tab-rail')?.getBoundingClientRect().width || 0;
+    return rail1 + rail2;
+  }
+
+  // Soporta mouse y touch con la misma lógica (onMove.start/move/end reciben
+  // dx en px desde el punto donde empezó el arrastre).
+  function wireResizeDrag(handle, onMove){
+    if(!handle) return;
+    let dragging=false, startX=0;
+    const pointerX = e => e.touches ? e.touches[0].clientX : e.clientX;
+    function start(e){
+      dragging=true; startX=pointerX(e);
+      handle.classList.add('sermon-resize-handle--dragging');
+      document.body.style.userSelect='none';
+      onMove.start?.();
+      e.preventDefault();
+    }
+    function move(e){
+      if(!dragging) return;
+      onMove.move(pointerX(e)-startX);
+      e.preventDefault();
+    }
+    function end(){
+      if(!dragging) return;
+      dragging=false;
+      handle.classList.remove('sermon-resize-handle--dragging');
+      document.body.style.userSelect='';
+      onMove.end?.();
+    }
+    handle.addEventListener('mousedown', start);
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', end);
+    handle.addEventListener('touchstart', start, {passive:false});
+    window.addEventListener('touchmove', move, {passive:false});
+    window.addEventListener('touchend', end);
+    window.addEventListener('touchcancel', end);
+  }
+
+  // Divisor 1 (editor ↔ Biblia): solo mueve el panel Biblia — el editor
+  // (flex:1) cede o recupera espacio automáticamente.
+  let dragStartBibleW=0;
+  wireResizeDrag(els.sermonResizeHandle1, {
+    start(){ dragStartBibleW = els.side.getBoundingClientRect().width; },
+    move(dx){
+      const compareOpen = els.sermonComparePanel?.classList.contains('sermon-compare-panel--open');
+      const compareW = compareOpen ? els.sermonComparePanel.getBoundingClientRect().width : 0;
+      const appBodyW = document.querySelector('.app-body')?.getBoundingClientRect().width || 0;
+      const handlesW = (els.sermonResizeHandle1.getBoundingClientRect().width) + (compareOpen ? els.sermonResizeHandle2.getBoundingClientRect().width : 0);
+      const available = appBodyW - sermonRailsWidth() - handlesW - compareW;
+      const maxBibleW = Math.max(SERMON_PANEL_MIN, available - SERMON_EDITOR_MIN);
+      const newW = clampNum(dragStartBibleW - dx, SERMON_PANEL_MIN, maxBibleW);
+      rootStyle.setProperty('--sermon-bible-panel-w', newW+'px');
+    },
+    end(){
+      const w = parseFloat(rootStyle.getPropertyValue('--sermon-bible-panel-w'));
+      if(Number.isFinite(w)) localStorage.setItem('verbo:sermonPanelWidth:biblia', String(Math.round(w)));
+    }
+  });
+
+  // Divisor 2 (Biblia ↔ Comentario): mueve ambos paneles en sentido opuesto,
+  // manteniendo constante la suma de sus anchos (el editor no participa).
+  let dragStartLeftW=0, dragStartRightW=0;
+  wireResizeDrag(els.sermonResizeHandle2, {
+    start(){
+      dragStartLeftW = els.side.getBoundingClientRect().width;
+      dragStartRightW = els.sermonComparePanel.getBoundingClientRect().width;
+    },
+    move(dx){
+      const total = dragStartLeftW + dragStartRightW;
+      const newLeftW = clampNum(dragStartLeftW + dx, SERMON_PANEL_MIN, total - SERMON_PANEL_MIN);
+      const newRightW = total - newLeftW;
+      rootStyle.setProperty('--sermon-bible-panel-w', newLeftW+'px');
+      rootStyle.setProperty('--sermon-compare-panel-w', newRightW+'px');
+    },
+    end(){
+      const leftW = parseFloat(rootStyle.getPropertyValue('--sermon-bible-panel-w'));
+      const rightW = parseFloat(rootStyle.getPropertyValue('--sermon-compare-panel-w'));
+      if(Number.isFinite(leftW)) localStorage.setItem('verbo:sermonPanelWidth:biblia', String(Math.round(leftW)));
+      if(Number.isFinite(rightW)) localStorage.setItem('verbo:sermonPanelWidth:comentario', String(Math.round(rightW)));
+    }
+  });
+
   els.sermonToggle?.addEventListener('click', toggleSermonMode);
 
   // ── Editor de texto (TinyMCE autoalojado, cargado vía CDN) ─────────────────
 
-  // El toolbar de TinyMCE puede envolverse en varias filas según el ancho
-  // disponible; medimos su alto real para que la barra de Guardar/Exportar
-  // (sticky) se pegue justo debajo sin taparlo ni dejar hueco.
+  // El toolbar de TinyMCE usa toolbar_mode:'sliding' (una sola fila con botón
+  // "»" para el resto) en vez de envolverse en varias filas — importante en
+  // paneles angostos (modo Predicación con 2-3 paneles) para no comerse
+  // espacio vertical del editor. Igual medimos su alto real para que la barra
+  // de Guardar/Exportar (sticky) se pegue justo debajo sin taparlo ni dejar hueco.
   if(els.editorToolbar && els.editorPane){
     const syncToolbarHeight = ()=>{
       els.editorPane.style.setProperty('--editor-toolbar-h', els.editorToolbar.offsetHeight + 'px');
@@ -1428,7 +1539,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           promotion: false,
           plugins: 'lists link table',
           toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | forecolor backcolor | align | bullist numlist outdent indent | link table removeformat',
-          toolbar_mode: 'wrap',
+          toolbar_mode: 'sliding',
           fixed_toolbar_container_target: els.editorToolbar,
           toolbar_persist: true,
           // Menú propio de clic derecho desactivado: sin esto, TinyMCE lo reemplaza
@@ -2271,6 +2382,70 @@ document.addEventListener('DOMContentLoaded', async () => {
     return words.some(word=>Math.abs(word.length-token.length)<=tolerance&&churchHistoryEditDistance(token,word)<=tolerance);
   }
 
+  // ── Buscador rápido (autocomplete) — Padres Apostólicos, Historia de la
+  // Iglesia y Costumbres y Tradiciones ────────────────────────────────────────
+  // Búsqueda de texto simple (substring/fuzzy, sin semántica ni API externa)
+  // contra un índice ligero de títulos ya cargado en el cliente. Reutiliza
+  // normalizeSearchText/churchHistoryTokenMatches de arriba (genéricos pese al
+  // nombre) para el mismo criterio de coincidencia que ya usa la búsqueda de
+  // Historia, en vez de inventar uno nuevo. Cada módulo arma su propio índice
+  // más abajo (historiaQuickIndex/patristicQuickIndex/costumbresQuickIndex) y
+  // llama a wireQuickSearchInput con un getter que lo entrega — síncrono si ya
+  // está en memoria (Historia: churchHistoryEntries ya cargado), o una Promise
+  // si hay que construirlo bajo demanda (Padres/Costumbres: requiere cargar
+  // cada documento/obra la primera vez que el usuario usa el buscador).
+  function quickSearchMatches(index, query, limit=8){
+    const normalized=normalizeSearchText(query);
+    if(normalized.length<2) return [];
+    const queryWords=normalized.split(/\s+/).filter(Boolean);
+    return index.map((item,i)=>{
+      const candidate=normalizeSearchText(item.label);
+      const words=candidate.split(/\s+/);
+      if(!queryWords.every(word=>candidate.includes(word)||churchHistoryTokenMatches(word,words))) return null;
+      const score=candidate.startsWith(normalized)?0:words.some(w=>w.startsWith(normalized))?1:candidate.includes(normalized)?2:3;
+      return {item,score,i};
+    }).filter(Boolean).sort((a,b)=>a.score-b.score||a.i-b.i).slice(0,limit).map(r=>r.item);
+  }
+  function renderQuickSearchDropdown(box, matches, onSelect, loadingLabel){
+    if(!box) return;
+    if(matches==='loading'){
+      box.innerHTML=`<span class="history-prediction history-prediction--loading">${escapeHTML(loadingLabel||'')}</span>`;
+      box.classList.add('history-predictions--visible');
+      return;
+    }
+    box.innerHTML=matches.map((item,i)=>`<button type="button" class="history-prediction" data-quick-index="${i}">${escapeHTML(item.label)}</button>`).join('');
+    box.classList.toggle('history-predictions--visible',matches.length>0);
+    box.querySelectorAll('[data-quick-index]').forEach(btn=>btn.addEventListener('mousedown',event=>{
+      event.preventDefault();
+      onSelect(matches[Number(btn.dataset.quickIndex)]);
+    }));
+  }
+  function wireQuickSearchInput(input, box, getIndex, onSelect, loadingLabel){
+    if(!input||!box) return;
+    async function run(){
+      const query=input.value;
+      const maybeIndex=getIndex();
+      if(maybeIndex instanceof Promise){
+        renderQuickSearchDropdown(box,'loading',onSelect,loadingLabel);
+        const resolved=await maybeIndex;
+        if(input.value!==query) return; // el usuario ya siguió escribiendo mientras cargaba
+        renderQuickSearchDropdown(box,quickSearchMatches(resolved,query),onSelect);
+      } else {
+        renderQuickSearchDropdown(box,quickSearchMatches(maybeIndex,query),onSelect);
+      }
+    }
+    input.addEventListener('input',run);
+    input.addEventListener('focus',()=>{
+      // Precarga el índice al enfocar (si hace falta red) sin mostrar el
+      // dropdown todavía — para cuando el usuario termine de escribir 2
+      // letras, el índice ya suele estar listo.
+      const maybeIndex=getIndex();
+      if(maybeIndex instanceof Promise) maybeIndex.catch(()=>{});
+      if(input.value) run();
+    });
+    input.addEventListener('blur',()=>setTimeout(()=>box.classList.remove('history-predictions--visible'),120));
+  }
+
   // Las 6 épocas de "Historia de la Iglesia" (taxonomía confirmada por Juan,
   // 2026-08-01) — id interno (usado en entries.json) → etiqueta corta ES,
   // en el mismo orden cronológico que CHURCH_HISTORY_EPOCA_ORDER.
@@ -2628,11 +2803,34 @@ document.addEventListener('DOMContentLoaded', async () => {
       openChurchHistoryVolume(btn.dataset.shelfRead);
     }));
   }
+  // Índice del buscador rápido: churchHistoryEntries ya está cargado siempre
+  // que se llega al estante (renderChurchHistoryPanel lo carga antes), así
+  // que esto es síncrono — se cachea para no reconstruir el array en cada
+  // tecla. volumeKey queda precalculado para que seleccionar un resultado
+  // pueda abrir directamente el TOC del volumen correcto si el usuario vuelve.
+  let historiaQuickIndexCache=null;
+  function historiaQuickIndex(){
+    if(!historiaQuickIndexCache || historiaQuickIndexCache.length!==(churchHistoryEntries||[]).length){
+      historiaQuickIndexCache=(churchHistoryEntries||[]).map(e=>({label:e.title, id:e.id, volumeKey:churchHistoryVolumeKey(e)}));
+    }
+    return historiaQuickIndexCache;
+  }
+  function selectHistoriaQuickResult(item){
+    churchHistoryOpenId=item.id;
+    churchHistoryOpenFromShelf=true;
+    churchHistoryOpenVolume=item.volumeKey;
+    renderChurchHistoryPanel();
+  }
   function renderChurchHistoryShelfView(){
     els.side.classList.remove('side-panel--history-expanded');
     els.panelToolbar.innerHTML='';
     if(!churchHistoryShelf.length){ els.panelBody.innerHTML=emptyState('⛪',t('historia.sinContenido')); return; }
-    els.panelBody.innerHTML=`<div class="church-shelf">${churchHistoryShelf.map(churchHistoryShelfItemHTML).join('')}</div>
+    els.panelBody.innerHTML=`
+      <div class="history-search-autocomplete church-shelf__quicksearch">
+        <input id="historiaQuickSearchInput" class="search-panel-input" type="search" placeholder="${t('historia.buscarRapidoPlaceholder')}" autocomplete="off">
+        <div id="historiaQuickSearchPredictions" class="history-predictions"></div>
+      </div>
+      <div class="church-shelf">${churchHistoryShelf.map(churchHistoryShelfItemHTML).join('')}</div>
       <button type="button" class="church-shelf__search-link" id="churchHistoryGoSearch">${t('historia.buscarEnTodo')}</button>`;
     wireChurchHistoryShelf();
     applyChurchShelfTranslation(churchHistoryShelf,'historia');
@@ -2640,6 +2838,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       churchHistorySearchActive=true;
       renderChurchHistoryPanel();
     });
+    wireQuickSearchInput(document.getElementById('historiaQuickSearchInput'), document.getElementById('historiaQuickSearchPredictions'), historiaQuickIndex, selectHistoriaQuickResult);
   }
   function openChurchHistoryVolume(volumeId){
     churchHistoryOpenVolume=volumeId;
@@ -2915,8 +3114,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       </div>
       <div class="dict-entry__def" data-entry-id="${escapeHTML(entry.id)}">${entry.content||entry.excerpt||''}</div>
       <nav class="history-entry-nav" aria-label="${t('historia.navegacionLectura')}">
-        ${previous?`<button type="button" class="history-entry-nav__button" data-history-neighbor="${escapeHTML(previous.id)}">← ${t('historia.anterior')}</button>`:'<span></span>'}
-        ${next?`<button type="button" class="history-entry-nav__button" data-history-neighbor="${escapeHTML(next.id)}">${t('historia.siguiente')} →</button>`:'<span></span>'}
+        ${previous?`<button type="button" class="history-entry-nav__button" data-history-neighbor="${escapeHTML(previous.id)}" data-nav-dir="prev">← ${t('historia.anterior')}</button>`:'<span></span>'}
+        ${next?`<button type="button" class="history-entry-nav__button" data-history-neighbor="${escapeHTML(next.id)}" data-nav-dir="next">${t('historia.siguiente')} →</button>`:'<span></span>'}
       </nav>
     </article>`;
     els.panelBody.offsetHeight; // fuerza reflow — mismo patrón que openChurchHistoryEntryFromTOC/openPanel
@@ -3621,6 +3820,39 @@ document.addEventListener('DOMContentLoaded', async () => {
     }catch(error){ console.error(error); els.panelBody.innerHTML=emptyState('⚠️',t('padres.errorRecurso')); }
   }
 
+  // Índice del buscador rápido de Padres Apostólicos: a diferencia de Historia,
+  // las secciones de cada documento no están precargadas (loadPatristic carga
+  // un documento a la vez) — la primera vez que el usuario usa el buscador se
+  // cargan TODOS los documentos del catálogo en paralelo (~1MB en total, 11
+  // documentos) y se cachean tanto el índice de títulos como los datos
+  // completos de cada documento (patristicQuickIndexDocs), para que
+  // seleccionar un resultado navegue al instante sin volver a pedirlo por red.
+  let patristicQuickIndexCache=null, patristicQuickIndexPromise=null;
+  const patristicQuickIndexDocs=new Map();
+  function patristicQuickIndex(){
+    if(patristicQuickIndexCache) return patristicQuickIndexCache;
+    if(patristicQuickIndexPromise) return patristicQuickIndexPromise;
+    patristicQuickIndexPromise=(async()=>{
+      const docs=await Promise.all((patristicCatalog||[]).map(doc=>VerboModules.loadPatristic(doc.id).catch(error=>{ console.warn(error); return null; })));
+      const items=[];
+      docs.forEach((data,i)=>{
+        if(!data) return;
+        const doc=patristicCatalog[i];
+        patristicQuickIndexDocs.set(doc.id,data);
+        (data.sections||[]).forEach(section=>items.push({label:`${doc.label} — ${section.title}`, docId:doc.id, sectionN:section.n}));
+      });
+      patristicQuickIndexCache=items;
+      return items;
+    })();
+    return patristicQuickIndexPromise;
+  }
+  function selectPatristicQuickResult(item){
+    const cached=patristicQuickIndexDocs.get(item.docId);
+    if(cached) patristicDocData=cached;
+    patristicOpenDoc=item.docId;
+    patristicOpenSection=item.sectionN;
+    renderPadresPanel();
+  }
   async function renderPadresPanel(focus=null){
     els.panelTitle.textContent=t('padres.title');
 
@@ -3675,9 +3907,15 @@ document.addEventListener('DOMContentLoaded', async () => {
       catch(error){ console.error(error); patristicShelf=[]; }
     }
     const shelfVolumes=(patristicShelf||[]).filter(v=>patristicCatalog.some(d=>d.id===v.id));
-    els.panelBody.innerHTML=`<div class="church-shelf">${shelfVolumes.map(patristicShelfItemHTML).join('')}</div>`;
+    els.panelBody.innerHTML=`
+      <div class="history-search-autocomplete church-shelf__quicksearch">
+        <input id="padresQuickSearchInput" class="search-panel-input" type="search" placeholder="${t('padres.buscarPlaceholder')}" autocomplete="off">
+        <div id="padresQuickSearchPredictions" class="history-predictions"></div>
+      </div>
+      <div class="church-shelf">${shelfVolumes.map(patristicShelfItemHTML).join('')}</div>`;
     wirePatristicShelf();
     applyChurchShelfTranslation(shelfVolumes,'padres');
+    wireQuickSearchInput(document.getElementById('padresQuickSearchInput'), document.getElementById('padresQuickSearchPredictions'), patristicQuickIndex, selectPatristicQuickResult, t('padres.indiceCargando'));
   }
 
   let patristicDocData=null;
@@ -3737,8 +3975,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function renderPatristicSection(){
-    const section=patristicDocData.sections.find(s=>s.n===patristicOpenSection);
+    const sections=patristicDocData.sections;
+    const idx=sections.findIndex(s=>s.n===patristicOpenSection);
+    const section=sections[idx];
     if(!section){ els.panelBody.innerHTML=emptyState('⚠️',t('padres.seccionNoEncontrada')); return; }
+    const previous=idx>0?sections[idx-1]:null;
+    const next=idx>=0&&idx<sections.length-1?sections[idx+1]:null;
     els.panelToolbar.innerHTML=`
       <button class="note-card__copy" id="backToPatristicIndex" type="button">← ${t('padres.volverIndice')}</button>
       <button id="patristicExpand" class="history-panel-expand" type="button" aria-pressed="${els.side.classList.contains('side-panel--history-expanded')?'true':'false'}">${els.side.classList.contains('side-panel--history-expanded')?t('historia.vistaCompacta'):t('historia.ampliarLectura')}</button>`;
@@ -3767,8 +4009,17 @@ document.addEventListener('DOMContentLoaded', async () => {
       ${translationNote}
       <div class="dict-entry__def" data-patristic-body="1">${bodyHtml}</div>
       ${historiaNotaControlHTML('padres', patristicRef)}
+      <nav class="history-entry-nav" aria-label="${t('historia.navegacionLectura')}">
+        ${previous?`<button type="button" class="history-entry-nav__button" data-patristic-neighbor="${previous.n}" data-nav-dir="prev">← ${t('padres.anterior')}</button>`:'<span></span>'}
+        ${next?`<button type="button" class="history-entry-nav__button" data-patristic-neighbor="${next.n}" data-nav-dir="next">${t('padres.siguiente')} →</button>`:'<span></span>'}
+      </nav>
     </article>`;
     wireHistoriaNotaControl('padres', patristicRef, {obra:patristicDocData.manifest.abbreviation||patristicDocData.manifest.name, capitulo:section.title});
+    els.panelBody.querySelectorAll('[data-patristic-neighbor]').forEach(button=>button.addEventListener('click',()=>{
+      patristicOpenSection=Number(button.dataset.patristicNeighbor);
+      renderPatristicSection();
+      els.panelBody.scrollTop=0;
+    }));
     if(needsTranslation) setTimeout(()=>applyPatristicTranslation(section,source,target), 150);
   }
 
@@ -3833,6 +4084,42 @@ document.addEventListener('DOMContentLoaded', async () => {
     }));
   }
 
+  // Índice del buscador rápido de Costumbres y Tradiciones: mismo patrón que
+  // patristicQuickIndex — la primera vez que el usuario busca se cargan todas
+  // las obras del estante (Freeman + Tucker, ~2MB) y se cachean tanto el
+  // índice de títulos como los datos completos de cada obra
+  // (costumbresQuickIndexWorks), para navegar al instante sin volver a pedir
+  // nada por red.
+  let costumbresQuickIndexCache=null, costumbresQuickIndexPromise=null;
+  const costumbresQuickIndexWorks=new Map();
+  function costumbresQuickIndex(){
+    if(costumbresQuickIndexCache) return costumbresQuickIndexCache;
+    if(costumbresQuickIndexPromise) return costumbresQuickIndexPromise;
+    costumbresQuickIndexPromise=(async()=>{
+      if(!costumbresShelf){
+        try{ costumbresShelf=await VerboModules.loadCostumbresShelf(); }
+        catch(error){ console.error(error); costumbresShelf=[]; }
+      }
+      const works=await Promise.all(costumbresShelf.map(v=>VerboModules.loadCostumbres(v.id).catch(error=>{ console.warn(error); return null; })));
+      const items=[];
+      works.forEach((data,i)=>{
+        if(!data) return;
+        const volume=costumbresShelf[i];
+        costumbresQuickIndexWorks.set(volume.id,data);
+        (data.entries||[]).forEach(entry=>items.push({label:`${volume.titulo} — ${entry.titulo}`, workId:volume.id, entryId:entry.id}));
+      });
+      costumbresQuickIndexCache=items;
+      return items;
+    })();
+    return costumbresQuickIndexPromise;
+  }
+  function selectCostumbresQuickResult(item){
+    const cached=costumbresQuickIndexWorks.get(item.workId);
+    if(cached) costumbresDocData=cached;
+    costumbresOpenWork=item.workId;
+    costumbresOpenId=item.entryId;
+    renderCostumbresPanel();
+  }
   async function renderCostumbresPanel(){
     els.panelTitle.textContent=t('costumbres.title');
     els.panelToolbar.innerHTML='';
@@ -3871,9 +4158,15 @@ document.addEventListener('DOMContentLoaded', async () => {
       if(!volumes.length) return '';
       return `<div class="costumbres-shelf__category">${escapeHTML(cat.label)}</div><div class="church-shelf">${volumes.map(costumbresShelfItemHTML).join('')}</div>`;
     }).join('');
-    els.panelBody.innerHTML=sections || emptyState('🏺',t('costumbres.coleccionPreparacion'));
+    els.panelBody.innerHTML=sections
+      ? `<div class="history-search-autocomplete church-shelf__quicksearch">
+           <input id="costumbresQuickSearchInput" class="search-panel-input" type="search" placeholder="${t('costumbres.buscarPlaceholder')}" autocomplete="off">
+           <div id="costumbresQuickSearchPredictions" class="history-predictions"></div>
+         </div>${sections}`
+      : emptyState('🏺',t('costumbres.coleccionPreparacion'));
     wireCostumbresShelf();
     applyChurchShelfTranslation(costumbresShelf,'costumbres');
+    wireQuickSearchInput(document.getElementById('costumbresQuickSearchInput'), document.getElementById('costumbresQuickSearchPredictions'), costumbresQuickIndex, selectCostumbresQuickResult, t('costumbres.indiceCargando'));
   }
 
   function costumbresBackToShelf(){
@@ -3994,8 +4287,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       <div class="dict-entry__source">${escapeHTML(costumbresDocData.manifest.abbreviation||costumbresDocData.manifest.name)}</div>
       <div class="dict-entry__def" data-costumbres-entry-id="${escapeHTML(entry.id)}">${entry.content||entry.excerpt||''}</div>
       <nav class="history-entry-nav" aria-label="${t('historia.navegacionLectura')}">
-        ${previous?`<button type="button" class="history-entry-nav__button" data-costumbres-neighbor="${escapeHTML(previous.id)}">← ${t('costumbres.anterior')}</button>`:'<span></span>'}
-        ${next?`<button type="button" class="history-entry-nav__button" data-costumbres-neighbor="${escapeHTML(next.id)}">${t('costumbres.siguiente')} →</button>`:'<span></span>'}
+        ${previous?`<button type="button" class="history-entry-nav__button" data-costumbres-neighbor="${escapeHTML(previous.id)}" data-nav-dir="prev">← ${t('costumbres.anterior')}</button>`:'<span></span>'}
+        ${next?`<button type="button" class="history-entry-nav__button" data-costumbres-neighbor="${escapeHTML(next.id)}" data-nav-dir="next">${t('costumbres.siguiente')} →</button>`:'<span></span>'}
       </nav>
     </article>`;
     els.panelBody.querySelectorAll('[data-costumbres-neighbor]').forEach(button=>button.addEventListener('click',()=>{
@@ -4219,6 +4512,37 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(Math.abs(dx)<60||dy>Math.abs(dx)/2||activeTab) return;
     if(window.innerWidth>760) return;
     moveChapter(dx<0?1:-1);
+  });
+  // ─────────────────────────────────────────────────────────────────────────────
+
+  // ── Swipe horizontal para pasar de entrada/sección en la Librería (Historia
+  // de la Iglesia, Padres Apostólicos, Costumbres y Tradiciones) — solo móvil
+  // ─────────────────────────────────────────────────────────────────────────
+  // Mismo umbral y lógica que el swipe de capítulo de la Biblia de arriba
+  // (dx>60px, gesto predominantemente horizontal, solo bajo 760px) para que
+  // la sensibilidad se sienta igual en toda la app — funciona sin importar
+  // cuánto haya hecho scroll el usuario dentro del panel, porque escucha en
+  // #panelBody entero, no cerca de los botones "Anterior"/"Siguiente". No
+  // necesita revisar activeTab: los tres lectores marcan sus botones de
+  // navegación con data-nav-dir="prev"/"next" dentro de .history-entry-nav
+  // (ver renderChurchHistoryEntry/renderPatristicSection/renderCostumbresEntry)
+  // — si ese botón no existe (cualquier otra pestaña, o sin página vecina en
+  // esa dirección), el swipe simplemente no hace nada. Las flechitas siguen
+  // siendo la alternativa visible en cualquier ancho; esto solo agrega el
+  // gesto en móvil.
+  let librarySwipeStartX=null, librarySwipeStartY=null;
+  els.panelBody.addEventListener('touchstart',e=>{
+    librarySwipeStartX=e.touches[0].clientX; librarySwipeStartY=e.touches[0].clientY;
+  },{passive:true});
+  els.panelBody.addEventListener('touchend',e=>{
+    if(librarySwipeStartX===null) return;
+    const dx=e.changedTouches[0].clientX-librarySwipeStartX;
+    const dy=Math.abs(e.changedTouches[0].clientY-librarySwipeStartY);
+    librarySwipeStartX=null; librarySwipeStartY=null;
+    if(Math.abs(dx)<60||dy>Math.abs(dx)/2) return;
+    if(window.innerWidth>760) return; // solo móvil, mismo umbral que el swipe de capítulo de la Biblia
+    const dir=dx<0?'next':'prev';
+    els.panelBody.querySelector(`.history-entry-nav [data-nav-dir="${dir}"]`)?.click();
   });
   // ─────────────────────────────────────────────────────────────────────────────
 

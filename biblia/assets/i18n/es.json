@@ -48,7 +48,8 @@
   },
   "panel": {
     "defaultTitle": "Panel",
-    "closeAria": "Cerrar panel"
+    "closeAria": "Cerrar panel",
+    "resizeAria": "Arrastrar para redimensionar paneles"
   },
   "historia": {
     "title": "Historia de la Iglesia",
@@ -63,6 +64,7 @@
     "volverIndice": "Volver al índice",
     "leer": "Leer",
     "buscarEnTodo": "Buscar en todo el archivo",
+    "buscarRapidoPlaceholder": "Buscar por título de capítulo…",
     "toc": {
       "libro": "Libro",
       "martiresPalestina": "Los mártires de Palestina",
@@ -274,7 +276,11 @@
     "seccionesCount": "{{count}} secciones",
     "volverIndice": "Índice del documento",
     "seccionNoEncontrada": "No se encontró esta sección.",
-    "traduccionAuto": "Traducción automática {{source}}→{{target}} según el idioma de interfaz."
+    "traduccionAuto": "Traducción automática {{source}}→{{target}} según el idioma de interfaz.",
+    "anterior": "Anterior",
+    "siguiente": "Siguiente",
+    "buscarPlaceholder": "Buscar por título de documento o sección…",
+    "indiceCargando": "Cargando índice de búsqueda…"
   },
   "costumbres": {
     "title": "Costumbres y Tradiciones",
@@ -290,7 +296,9 @@
     "entradaNoEncontrada": "No se encontró esta entrada.",
     "anterior": "Anterior",
     "siguiente": "Siguiente",
-    "leer": "Leer"
+    "leer": "Leer",
+    "buscarPlaceholder": "Buscar por título de obra o entrada…",
+    "indiceCargando": "Cargando índice de búsqueda…"
   },
   "conversor": {
     "title": "Conversor de medidas",
