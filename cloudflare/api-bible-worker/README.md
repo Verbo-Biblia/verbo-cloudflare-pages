@@ -16,14 +16,14 @@ Body: `{ "text": "...", "targetLang": "es" | "en" }`. Responde
 `{ "translation": "...", "cached": true|false }`.
 
 - Usa `ANTHROPIC_API_KEY` (secret de Wrangler, ya configurado) para llamar a
-  `api.anthropic.com/v1/messages` con el modelo `claude-haiku-4-5-20251001`.
+  `api.anthropic.com/v1/messages` con el modelo definido en `worker.js`.
   `max_tokens` se calcula a partir del tamaño del texto de entrada, no es fijo.
 - **Cachea en `SYNC_KV`** (el mismo namespace de la sincronización, bajo el
-  prefijo `translate:v1:<targetLang>:<sha256(text)>`) para que el mismo texto
+  prefijo `translate:v3:<targetLang>:<sha256(text)>`) para que el mismo texto
   de origen no se vuelva a traducir — y a pagar — para cada usuario distinto.
   Sin expiración: el contenido teológico traducido no cambia. Si el modelo o
   el system prompt cambian de forma que invalide el caché existente, subir el
-  prefijo a `translate:v2` en `worker.js` fuerza a recalcular todo sin tocar
+  la versión del prefijo en `worker.js` fuerza a recalcular todo sin tocar
   a mano las demás claves del namespace (`link:`/`session:`/`blob:`).
 - Límite de entrada: 20 000 caracteres por solicitud (protege la cuota de
   Anthropic de un texto anormalmente largo).
@@ -45,8 +45,7 @@ solicitudes en Cloudflare para proteger la cuota de API.Bible.
 
 ## Configuración adicional para sincronización (pasos manuales de Juan)
 
-Estos pasos NO se pueden hacer desde Claude Code — requieren tu cuenta de
-Cloudflare y de Resend.
+Estos pasos requieren acceso interactivo a las cuentas de Cloudflare y Resend.
 
 1. **Crear el namespace de KV** (guarda los magic links, sesiones y el blob de
    datos por usuario):

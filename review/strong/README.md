@@ -2,18 +2,9 @@
 
 ## Progreso
 
-- Génesis 1: completado. Sus 396 asociaciones están en estado
-  `editorial-reviewed` y no quedan grupos STEPBible pendientes sin una decisión.
-- Génesis 2: completado. Sus 310 asociaciones están en estado
-  `editorial-reviewed` y no quedan grupos STEPBible pendientes sin una decisión.
-- Génesis 3: completado. Sus asociaciones están en estado
-  `editorial-reviewed` y no quedan grupos STEPBible pendientes sin una decisión.
-- Génesis 4: completado. Sus asociaciones están en estado
-  `editorial-reviewed` y no quedan grupos STEPBible pendientes sin una decisión.
-- Génesis 5:1-5: completado. Sus asociaciones están en estado
-  `editorial-reviewed` y no quedan grupos STEPBible pendientes sin una decisión.
-- Génesis 5:6-11: completado. Sus asociaciones están en estado
-  `editorial-reviewed` y no quedan grupos STEPBible pendientes sin una decisión.
+- El módulo completo fue reconstruido sobre el texto editorial definitivo de Biblia Verbo.
+- Los CSV de Génesis conservan las decisiones de la revisión anterior como material de trabajo, pero no se importaron automáticamente porque cambiaron el texto y los identificadores de segmentos.
+- Actualmente ninguna asociación se presenta como `editorial-reviewed`. Las decisiones anteriores deben revalidarse contra el módulo reconstruido antes de recuperar ese estado.
 
 Cada CSV corresponde a un libro de RV2026+ y puede abrirse en Excel o LibreOffice.
 

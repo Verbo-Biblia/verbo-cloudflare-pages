@@ -9,7 +9,7 @@
   const SCRIPT_BASE = scriptPath ? scriptPath.replace(/[^/]+$/, '') : './';
   // Reutiliza el "?v=" del propio <script src="i18n.js?v=..."> como cache-
   // busting de los diccionarios: no tenían query string propio, así que un
-  // navegador que ya los cacheó nunca veía claves nuevas (ver CLAUDE.md,
+  // navegador que ya los cacheó nunca veía claves nuevas (ver AGENTS.md,
   // "Cache-busting de assets" — mismo problema, aplicado aquí).
   const scriptQuery = scriptSrc.includes('?') ? '?' + scriptSrc.split('?')[1] : '';
   const DICT_URLS = { es: SCRIPT_BASE + 'i18n/es.json' + scriptQuery, en: SCRIPT_BASE + 'i18n/en.json' + scriptQuery };

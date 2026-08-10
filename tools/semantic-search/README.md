@@ -1,6 +1,6 @@
 # Verbo semantic search
 
-Offline generator for semantic search over the full Bible (66 books) in `modules/bibles/rva-1909`. Output is published to `modules/semantic-search/bible-rva-1909/` and consumed client-side by `assets/module-loader.js` (`searchSemanticBible`) — no backend, the embedding model runs locally in the browser.
+Offline generator for semantic search over the full Bible (66 books) in `biblia/modules/bibles/rva-1909`. Output is published to `biblia/modules/semantic-search/bible-rva-1909/` and consumed client-side by `biblia/assets/module-loader.js` (`searchSemanticBible`) — no backend, the embedding model runs locally in the browser.
 
 This tool intentionally lives outside the published static site. It uses the same model intended for browser validation:
 
@@ -24,7 +24,7 @@ npm run eval:preset
 - `out/pericopes.i8.bin`
 - `out/pericopes.meta.json`
 
-Copy these four files into `modules/semantic-search/bible-rva-1909/` to publish a rebuilt index.
+Copy these four files into `biblia/modules/semantic-search/bible-rva-1909/` to publish a rebuilt index.
 
 The binary files are int8-quantized, L2-normalized vectors. Metadata contains references, labels, source text, offsets, and vector dimensions.
 

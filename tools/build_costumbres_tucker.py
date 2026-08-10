@@ -6,7 +6,7 @@ public domain).
 Source: Project Gutenberg ebook #12875 (proofread volunteer transcription of
 the original edition). This script only extracts and lightly cleans that real
 text; it never generates or paraphrases content attributed to Tucker (see
-CLAUDE.md).
+AGENTS.md).
 
 The book is a flat sequence: Introduction, then Chapters I-XXIII (roman
 numerals), each opening with a "CHAPTER <roman>" heading immediately followed

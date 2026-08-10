@@ -731,7 +731,7 @@ def main():
         lines = [
             "# Clasificación pendiente de revisión\n",
             "Piezas donde la línea entre Artículo/Reflexión no fue clara por definición",
-            "estricta (ver CLAUDE.md / tarea de taxonomía). Se les asignó un `tipo` por",
+            "estricta (ver AGENTS.md / tarea de taxonomía). Se les asignó un `tipo` por",
             "defecto para que el filtro funcione, marcado con `pendiente_revision: true`",
             "en `recursos/data/recursos.json`. Confirmar o corregir con Juan.\n",
         ]

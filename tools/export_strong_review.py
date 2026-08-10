@@ -12,7 +12,7 @@ import build_rv_verbo_strong as builder
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_MODULE = ROOT / "modules/bibles/rv-verbo-strong-provisional"
+DEFAULT_MODULE = ROOT / "biblia/modules/bibles/rv-verbo-strong-provisional"
 
 
 def row_id(book_id: str, chapter: str, verse: str, segment_index: int,
