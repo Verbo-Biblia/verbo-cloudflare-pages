@@ -131,3 +131,15 @@
 - Decisiones editoriales pendientes: `mi depósito` en 1:12 puede entenderse como lo confiado por Pablo a Dios o lo confiado por Dios a Pablo; se preservó su concisión sin resolver la dirección. En 2:26, el referente de `su voluntad` admite discusión; se mantuvo la relación gramatical del texto actual. La expresión `mujeres débiles` de 3:6 conserva el matiz despectivo del diminutivo griego sin adoptar una caracterización coloquial.
 - Segunda pasada: se releyó cada unidad de pensamiento y se contrastaron nuevamente los 83 versículos con RVA1909, RVG2004, BSB, ASV y, en los casos delicados, los datos morfológicos locales de KJV Strong. Esta pasada produjo 12 ajustes adicionales, incluidos tres que restauran la tradición textual o verbal del proyecto.
 - Validación técnica: JSON válido; 4 capítulos; 83 versículos; claves y versificación idénticas a RVA1909; sin textos vacíos, duplicaciones exactas, caracteres anómalos ni errores de formato; `git diff --check` sin incidencias.
+
+### Filemón
+
+- Estado: revisión editorial completa en dos lecturas; candidato editorial pendiente de revisión humana final.
+- Versículos revisados: 25.
+- Versículos modificados: 19.
+- Tipos principales de corrección: continuidad retórica de la carta, referentes personales, concordancia, pasivos, situación social de Onésimo, expresiones idiomáticas, puntuación y naturalidad epistolar.
+- Errores objetivos destacados: se eliminó `hermano` añadido a Filemón en 1:1 y se vinculó correctamente con Timoteo; se reparó la relación sintáctica entre 1:4–5; se restauraron `Cristo Jesús` en 1:6 y el plural tradicional `tenemos` en 1:7; el pasivo providencial de 1:15 quedó expresado como `fue apartado`; `te me debes` fue reconstruido en 1:19; se recuperó en 1:20 el juego semántico de beneficio relacionado con el nombre Onésimo.
+- Variantes tradicionales conservadas deliberadamente: `amada Apia` en 1:2; `en ustedes` y `Cristo Jesús` en 1:6; primera persona plural en 1:7; la exhortación extensa `recíbelo ... como a mi propio corazón` en 1:12; `Cristo` en 1:20; `nuestro` y `Amén` en 1:25; suscripción histórica sobre Roma y Onésimo al final de 1:25.
+- Decisiones editoriales pendientes: 1:6 es sintáctica y exegéticamente complejo; se conservó `participación de tu fe` sin reducirlo a evangelización ni a generosidad. En 1:16 se usó `esclavo` porque el contexto describe la condición social concreta de Onésimo; esto no establece una sustitución global de `siervo` para *doulos*. El pasivo de 1:22 se mantuvo sin nombrar explícitamente a Dios como agente.
+- Segunda lectura: se releyó la carta completa como una sola unidad retórica después de aplicar la primera corrección; esta lectura produjo tres ajustes adicionales en 1:8, 1:13 y 1:21 y confirmó que la metáfora `compañero de milicia` de 1:2 sigue siendo defendible.
+- Validación técnica: JSON válido; 1 capítulo; 25 versículos; claves y versificación idénticas a RVA1909; sin textos vacíos, duplicaciones exactas, caracteres anómalos ni errores de formato; `git diff --check` sin incidencias.
