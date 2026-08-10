@@ -11,7 +11,7 @@ from __future__ import annotations
 
 import argparse
 import json
-from collections import Counter
+from collections import Counter, defaultdict
 from pathlib import Path
 
 import build_rv_verbo_strong as builder
@@ -36,9 +36,13 @@ def build_pairs(payloads: list[tuple[dict, dict]]) -> Counter:
 def classify(payloads: list[tuple[dict, dict]], pairs: Counter,
              step: dict, minimum: int, apply: bool,
              sample_limit: int, minimum_token_length: int,
-             exclude_stopwords: bool) -> tuple[Counter, list[dict]]:
+             exclude_stopwords: bool,
+             require_unique_code: bool) -> tuple[Counter, list[dict]]:
     stats = Counter()
     samples: list[dict] = []
+    token_codes = defaultdict(set)
+    for token, code in pairs:
+        token_codes[token].add(code)
     for book, payload in payloads:
         changed = False
         for chapter, verses in payload["chapters"].items():
@@ -55,6 +59,9 @@ def classify(payloads: list[tuple[dict, dict]], pairs: Counter,
                     if (len(token) < minimum_token_length or
                             (exclude_stopwords and token in builder.STOPWORDS)):
                         stats["excludedShortOrStopword"] += 1
+                        continue
+                    if require_unique_code and len(token_codes[token]) != 1:
+                        stats["excludedNonUniqueCode"] += 1
                         continue
                     if not verse_step_codes[segment_codes[0]]:
                         stats["excludedNotStep"] += 1
@@ -76,7 +83,8 @@ def classify(payloads: list[tuple[dict, dict]], pairs: Counter,
                         segment["strongMeta"] = {
                             "status": "cross-verified-open",
                             "method": "repeated-open-word-code-pair",
-                            "confidence": 0.99 if minimum >= 5 else 0.98,
+                            "confidence": (0.99 if minimum >= 5 else
+                                           0.98 if minimum >= 3 else 0.97),
                         }
                         changed = True
         if changed:
@@ -93,6 +101,7 @@ def main() -> None:
     parser.add_argument("--sample-limit", type=int, default=200)
     parser.add_argument("--minimum-token-length", type=int, default=1)
     parser.add_argument("--exclude-stopwords", action="store_true")
+    parser.add_argument("--require-unique-code", action="store_true")
     args = parser.parse_args()
     if args.minimum_occurrences < 2:
         parser.error("--minimum-occurrences debe ser al menos 2")
@@ -103,7 +112,8 @@ def main() -> None:
     step = builder.parse_step()
     stats, samples = classify(payloads, pairs, step, args.minimum_occurrences,
                               args.in_place, max(0, args.sample_limit),
-                              args.minimum_token_length, args.exclude_stopwords)
+                              args.minimum_token_length, args.exclude_stopwords,
+                              args.require_unique_code)
     if args.in_place:
         for book, payload in payloads:
             dump(args.module / book["file"], payload)
@@ -113,6 +123,7 @@ def main() -> None:
         "minimumOccurrences": args.minimum_occurrences,
         "minimumTokenLength": args.minimum_token_length,
         "excludeStopwords": args.exclude_stopwords,
+        "requireUniqueCode": args.require_unique_code,
         "observedPairs": len(pairs),
         "method": "par palabra-código observado repetidamente como verified-open",
         "stats": dict(stats),

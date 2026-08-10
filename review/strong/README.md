@@ -84,6 +84,13 @@ letras. Promovió 145 asociaciones con confianza 0,98. Quedan 158.044 asociacion
 `provisional-reference`; el informe reproducible está en
 `review/strong/open-pair-crosscheck-low-frequency-report.json`.
 
+Para pares con solo dos observaciones se añadió una salvaguarda más estricta:
+la palabra debe tener al menos cuatro letras y corresponder a un único código
+Strong en toda la evidencia `verified-open`. Este lote promovió 129 asociaciones
+del Nuevo Testamento con confianza 0,97 y excluyó los casos polisémicos. Quedan
+157.915 asociaciones `provisional-reference`; el informe reproducible está en
+`review/strong/open-pair-crosscheck-unique-low-frequency-report.json`.
+
 No se debe modificar `reference`, `verse_text`, `word`, `strong`, `morphology`, `step_gloss`, `status` ni `confidence`, porque permiten importar después las decisiones de forma reproducible.
 
 `row_id`, `segment_index` y `code_index` identifican de forma inequívoca cada asociación. Tampoco deben editarse. El importador rechazará el CSV si el módulo cambió después de exportarlo.

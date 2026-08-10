@@ -416,7 +416,7 @@
     "method": "unique-open-word-code-crosscheck",
     "minimumOccurrences": 3,
     "minimumPrecision": 1.0,
-    "promotedAssociations": 8578
+    "promotedAssociations": 8707
   },
   "rv1960ConservativeMerge": {
     "method": "empty-target+code-absent-from-verse+step-verse",
@@ -438,6 +438,11 @@
     "lowFrequencyPromotedAssociations": 145,
     "lowFrequencyMinimumOccurrences": 3,
     "lowFrequencyMinimumTokenLength": 3,
-    "lowFrequencyExcludeStopwords": true
+    "lowFrequencyExcludeStopwords": true,
+    "uniqueLowFrequencyPromotedAssociations": 129,
+    "uniqueLowFrequencyMinimumOccurrences": 2,
+    "uniqueLowFrequencyMinimumTokenLength": 4,
+    "uniqueLowFrequencyExcludeStopwords": true,
+    "uniqueLowFrequencyRequireUniqueCode": true
   }
 }
