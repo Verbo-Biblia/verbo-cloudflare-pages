@@ -1771,7 +1771,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   function setSermonSaveBtnState(state){
     const btn = document.getElementById('guardarSermonBtn');
     if(!btn) return;
-    const labels = { idle:'Guardar', saving:'Guardando…', syncing:'Sincronizando…', saved:'Guardado ✓' };
+    const labels = { idle:t('predicas.guardarBtn'), saving:t('predicas.guardandoBtn'), syncing:t('predicas.sincronizandoBtn'), saved:t('predicas.guardadoBtn') };
     btn.textContent = labels[state] || labels.idle;
     btn.disabled = state==='saving' || state==='syncing';
   }
@@ -3468,6 +3468,28 @@ document.addEventListener('DOMContentLoaded', async () => {
     return installed.find(d=>d.id==='strong-verbo') || installed[0] || null;
   }
 
+  // El HTML de cada entrada Strong (biblia/modules/dictionaries/strong-verbo/
+  // entries-G.json y entries-H.json) trae sus encabezados de sección fijos
+  // escritos en español porque el dato fuente es español-primero; cuando la
+  // interfaz está en inglés (contentLang()==='en') ese HTML se muestra tal
+  // cual, sin pasar por traducción automática (ver showEnglish más abajo), y
+  // esos encabezados quedaban en español. Esto NO toca el dato (definiciones,
+  // glosas, números Strong): solo reemplaza, al momento de mostrarlo en
+  // inglés, un puñado fijo de etiquetas de estructura/UI por su equivalente.
+  const STRONG_UI_LABELS_EN = {
+    'Definición original de Strong': "Original Strong's Definition",
+    'Traducciones y usos en la KJV': 'KJV Translations and Usage',
+    'Palabras relacionadas': 'Related Words',
+    'Pronunciación:': 'Pronunciation:',
+    'James Strong, 1890 · Dominio público · Texto estructurado: Open Scriptures (CC BY-SA) · Edición Verbo': 'James Strong, 1890 · Public domain · Structured text: Open Scriptures (CC BY-SA) · Verbo edition',
+    'Diccionario Strong': 'Strong Dictionary',
+  };
+  function localizeStrongUiLabels(html){
+    let out=String(html||'');
+    for(const [es,en] of Object.entries(STRONG_UI_LABELS_EN)) out=out.split(es).join(en);
+    return out;
+  }
+
   function formatStrongEntryHtml(code, entry, html){
     if(!/^G\d+$/i.test(code) || !entry?.term) return html;
     const box=document.createElement('div');
@@ -3617,9 +3639,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       const rawHtml=result.entry.html||result.entry.definition||result.entry.content||'';
       const html=formatStrongEntryHtml(result.code,result.entry,rawHtml);
       const showEnglish=contentLang()==='en';
+      const sourceName=showEnglish?localizeStrongUiLabels(result.manifest.name):result.manifest.name;
       const previousCode=strongPopupHistory[strongPopupHistory.length-1];
       const backHtml=previousCode?`<button class="note-card__copy" id="strongPopupBack" type="button">← ${escapeHTML(previousCode)}</button>`:'';
-      p.body.innerHTML=`<article class="dict-entry">${backHtml}<div class="dict-entry__term">${result.code}</div><div class="dict-entry__source">${escapeHTML(result.manifest.name)}</div><button class="note-card__copy" id="copyDictEntry" type="button">${t('diccionario.copiarDiccionario')}</button><div class="dict-entry__def" id="dictionaryEntryBody">${showEnglish?html:`<p class="note-card__translating">${t('diccionario.traduciendoEspanol')}</p>${html}`}</div></article>`;
+      p.body.innerHTML=`<article class="dict-entry">${backHtml}<div class="dict-entry__term">${result.code}</div><div class="dict-entry__source">${escapeHTML(sourceName)}</div><button class="note-card__copy" id="copyDictEntry" type="button">${t('diccionario.copiarDiccionario')}</button><div class="dict-entry__def" id="dictionaryEntryBody">${showEnglish?localizeStrongUiLabels(html):`<p class="note-card__translating">${t('diccionario.traduciendoEspanol')}</p>${html}`}</div></article>`;
       p.body.querySelector('#strongPopupBack')?.addEventListener('click', e=>{ e.stopPropagation(); goBackStrongPopup(); });
       const body=p.body.querySelector('#dictionaryEntryBody');
       if(!showEnglish && body){
@@ -4631,6 +4654,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     const rounded=Number(value.toFixed(maxDecimals));
     return rounded.toLocaleString('es', {maximumFractionDigits:maxDecimals});
   }
+  // biblia/modules/conversor/unidades.json trae en español los nombres de
+  // unidad base (kilogramos/libras/metros/pies/litros) y de metal
+  // (plata/oro/cobre) — vocabulario genérico, a diferencia de los nombres de
+  // cada unidad bíblica individual (Codo, Siclo, Efa…) que SÍ son decisiones
+  // de traducción/transliteración reales y quedan fuera de este alcance. No
+  // toca el dato ni ningún factor de conversión: solo traduce ese puñado de
+  // etiquetas genéricas al mostrarlas con interfaz en inglés.
+  const CONVERSOR_LABELS_EN = {
+    'kilogramos':'kilograms', 'libras':'pounds', 'metros':'meters', 'pies':'feet', 'litros':'liters',
+    'plata':'silver', 'oro':'gold', 'cobre':'copper'
+  };
+  function localizeConversorLabel(value){
+    if(contentLang()!=='en') return value;
+    return CONVERSOR_LABELS_EN[value] || value;
+  }
   function conversorCategoriaLabel(cat){
     const map={peso:'categoriaPeso', longitud:'categoriaLongitud', volumen_seco:'categoriaVolumenSeco', volumen_liquido:'categoriaVolumenLiquido', monedas:'categoriaMonedas'};
     return t(`conversor.${map[cat.id]||'categoria'}`) || cat.nombre;
@@ -4644,7 +4682,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const usd=gramos*precioGramo;
       const diasLabel=Math.abs(dias-1)<0.0001 ? t('conversor.diaAbrev') : t('conversor.diasAbrev');
       return `<div class="conversor-result">
-        <div class="conversor-result__row"><span>${t('conversor.pesoMetal')}</span><strong>${conversorFormatNumber(gramos,2)} g (${escapeHTML(unidad.metal)})</strong></div>
+        <div class="conversor-result__row"><span>${t('conversor.pesoMetal')}</span><strong>${conversorFormatNumber(gramos,2)} g (${escapeHTML(localizeConversorLabel(unidad.metal))})</strong></div>
         <div class="conversor-result__row"><span>${t('conversor.jornalEquivalente')}</span><strong>${conversorFormatNumber(dias,3)} ${diasLabel}</strong></div>
         <div class="conversor-result__row"><span>${t('conversor.valorUsd')}</span><strong>≈ $${conversorFormatNumber(usd,2)} USD</strong></div>
         <p class="conversor-result__note">${t('conversor.jornalNota')}. ${t('conversor.avisoReferencial',{fecha:conversorData.actualizado})}</p>
@@ -4654,22 +4692,22 @@ document.addEventListener('DOMContentLoaded', async () => {
       const kg=cantidad*unidad.factorKg;
       const lb=kg*(categoria.factorKgALb||2.20462);
       return `<div class="conversor-result">
-        <div class="conversor-result__row"><span>${categoria.unidadBaseNombre}</span><strong>${conversorFormatNumber(kg,3)} kg</strong></div>
-        <div class="conversor-result__row"><span>${categoria.unidadBaseImperialNombre}</span><strong>${conversorFormatNumber(lb,3)} lb</strong></div>
+        <div class="conversor-result__row"><span>${escapeHTML(localizeConversorLabel(categoria.unidadBaseNombre))}</span><strong>${conversorFormatNumber(kg,3)} kg</strong></div>
+        <div class="conversor-result__row"><span>${escapeHTML(localizeConversorLabel(categoria.unidadBaseImperialNombre))}</span><strong>${conversorFormatNumber(lb,3)} lb</strong></div>
       </div>`;
     }
     if(categoria.id==='longitud'){
       const m=cantidad*unidad.factorM;
       const ft=m*(categoria.factorMAFt||3.28084);
       return `<div class="conversor-result">
-        <div class="conversor-result__row"><span>${categoria.unidadBaseNombre}</span><strong>${conversorFormatNumber(m,3)} m</strong></div>
-        <div class="conversor-result__row"><span>${categoria.unidadBaseImperialNombre}</span><strong>${conversorFormatNumber(ft,3)} ft</strong></div>
+        <div class="conversor-result__row"><span>${escapeHTML(localizeConversorLabel(categoria.unidadBaseNombre))}</span><strong>${conversorFormatNumber(m,3)} m</strong></div>
+        <div class="conversor-result__row"><span>${escapeHTML(localizeConversorLabel(categoria.unidadBaseImperialNombre))}</span><strong>${conversorFormatNumber(ft,3)} ft</strong></div>
       </div>`;
     }
     // volumen_seco / volumen_liquido: solo litros
     const litros=cantidad*unidad.factorL;
     return `<div class="conversor-result">
-      <div class="conversor-result__row"><span>${categoria.unidadBaseNombre}</span><strong>${conversorFormatNumber(litros,3)} L</strong></div>
+      <div class="conversor-result__row"><span>${escapeHTML(localizeConversorLabel(categoria.unidadBaseNombre))}</span><strong>${conversorFormatNumber(litros,3)} L</strong></div>
     </div>`;
   }
   function renderConversorBody(){
