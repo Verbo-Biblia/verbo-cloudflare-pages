@@ -10,7 +10,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_MODULE = ROOT / "modules/bibles/rv-verbo-strong-provisional"
+DEFAULT_MODULE = ROOT / "biblia/modules/bibles/rv-verbo-strong-provisional"
 CODE = re.compile(r"^[GH][1-9]\d{0,4}$")
 ALLOWED_STATUSES = {
     "verified-open", "cross-verified-open", "provisional-reference", "editorial-reviewed",
@@ -27,7 +27,7 @@ def segment_codes(segment: dict) -> list[str]:
 
 
 def dictionary_codes() -> set[str]:
-    base = ROOT / "modules/dictionaries/strong-verbo"
+    base = ROOT / "biblia/modules/dictionaries/strong-verbo"
     manifest = load(base / "manifest.json")
     result: set[str] = set()
     for relative in manifest["entryFiles"].values():

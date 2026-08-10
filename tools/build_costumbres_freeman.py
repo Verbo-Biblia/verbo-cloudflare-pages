@@ -6,7 +6,7 @@ Source: bibletruthpublishers.com hosts a clean manual transcription of the book
 (verified against the archive.org OCR scan of the same edition — both end at the
 same final entry, #893 "Many Crowns", Revelation 19:12). This script only extracts
 and lightly cleans the real 1874 text; it never generates or paraphrases content
-attributed to Freeman (see CLAUDE.md).
+attributed to Freeman (see AGENTS.md).
 
 Two-step fetch:
   1. The index page lists all 894 articles (0=Preface, 1..893=real entries) with a

@@ -18,7 +18,7 @@ Esta revisión clasifica las 367 citas ya indexadas con un campo nuevo `connecti
 - **Categoría especial `polemica-numerica`** creada para las 21 citas de Ireneo que usan medidas/cantidades bíblicas (arca, candelabro, 70 discípulos, 5 vírgenes, etc.) para refutar aritméticamente la numerología gnóstica — no encajaban limpio en narrativa/referencial.
 - **11 entradas marcadas `needsSourceReview: true`** con `reviewNote` (contenido verificado contra el texto real y confirmado que no corresponde al versículo anclado; no se adivinó la referencia correcta sin evidencia clara — ver detalle abajo). No se eliminó ninguna.
 - **1 corrección de referencia verificada con alta confianza:** `bernabe-sec11a-jer-2-12` (antes `bernabe-sec11a-isa-16-1`) — el contenido ("fuente de agua viva... cisternas rotas") es Jeremías 2:12-13 textual, no Isaías 16. La entrada se **movió físicamente** de `bernabe/books/ISA.json` a `bernabe/books/JER.json` (el motor de sincronización carga por archivo/libro vía `manifest.books[].file`, no filtra por `reference.book` — cambiar solo el campo habría dejado la cita huérfana). Se renombró el `id` para reflejar el libro correcto.
-- `MODULES.md` actualizado con el esquema de `connectionType`/`needsSourceReview` para referencia futura.
+- El esquema `connectionType`/`needsSourceReview` permanece implementado en los datos y herramientas correspondientes.
 - Verificado tras la corrección: 367/367 entradas con JSON válido, mismo conteo por módulo que antes (nada se perdió), 124 archivos modificados.
 
 ### Detalle de las 11 entradas con `needsSourceReview`

@@ -24,8 +24,8 @@ def segment_codes(segment: dict) -> list[str]:
 
 
 def valid_dictionary_codes() -> set[str]:
-    manifest = builder.load(ROOT / "modules/dictionaries/strong-verbo/manifest.json")
-    base = ROOT / "modules/dictionaries/strong-verbo"
+    manifest = builder.load(ROOT / "biblia/modules/dictionaries/strong-verbo/manifest.json")
+    base = ROOT / "biblia/modules/dictionaries/strong-verbo"
     codes: set[str] = set()
     for relative in manifest["entryFiles"].values():
         payload = builder.load(base / relative)

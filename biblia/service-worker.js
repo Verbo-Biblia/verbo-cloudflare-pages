@@ -12,7 +12,7 @@
 //   CACHE_VERSION — esa disciplina manual era la causa real del bug.
 // - El resto de los assets (JS/CSS/JSON/etc.) sigue cache-first: ya se
 //   auto-invalidan solos por su propio "?v=" en las etiquetas de
-//   index.html (ver CLAUDE.md, "Cache-busting de assets"), y cache-first
+//   index.html (ver AGENTS.md, "Arquitectura y publicación"), y cache-first
 //   ahí es lo correcto para velocidad y para el soporte offline real.
 //
 // Gap conocido (encontrado 2026-08-03, estante de Historia de la Iglesia):
@@ -35,7 +35,7 @@
 // guardar. CACHE_VERSION ya no es crítico para que la app se actualice
 // (el network-first del shell resuelve eso solo); subirlo de vez en
 // cuando sigue sirviendo para limpiar entradas de caché viejas.
-const CACHE_VERSION = 'verbo-biblia-v19-conversor-error-fix';
+const CACHE_VERSION = 'verbo-biblia-v20-verbo-strong-sync';
 const SHELL_NETWORK_TIMEOUT_MS = 4000;
 
 const APP_SHELL = [

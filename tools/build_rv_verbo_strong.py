@@ -20,8 +20,9 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-STEP = ROOT / "Archivos Verbo/STEPBible-Data-master/Translators Amalgamated OT+NT"
-SOURCE = ROOT / "modules/bibles/rv-verbo"
+ARCHIVE_ROOT = ROOT.parent / "Archivos Verbo"
+STEP = ARCHIVE_ROOT / "STEPBible-Data-master/Translators Amalgamated OT+NT"
+SOURCE = ROOT / "biblia/modules/bibles/rv-verbo"
 WORD = re.compile(r"[^\s]+", re.UNICODE)
 REF = re.compile(r"^((?:[1-3])?[A-Z][a-z]{1,2})\.(\d+)\.(\d+)#\d+=([^\t]+)\t")
 CODE = re.compile(r"([GH])0*(\d+)", re.I)
@@ -315,6 +316,25 @@ def load_reference_sqlite(path: Path) -> dict[tuple[str, str, str], str]:
         connection.close()
 
 
+def load_reference_module(path: Path) -> dict[tuple[str, str, str], str]:
+    """Convierte un módulo Strong existente en referencia posicional de solo lectura."""
+    manifest = load(path / "manifest.json")
+    result = {}
+    for book in manifest["books"]:
+        payload = load(path / book["file"])
+        for chapter, verses in payload["chapters"].items():
+            for verse, record in verses.items():
+                tagged_tokens = []
+                for segment in record.get("segments", []):
+                    codes = segment.get("strongs") or (
+                        [segment["strong"]] if segment.get("strong") else []
+                    )
+                    suffix = "".join(f"{{{code}}}" for code in codes)
+                    tagged_tokens.append(f'{segment.get("text", "")}{suffix}')
+                result[(book["id"], chapter, verse)] = " ".join(tagged_tokens)
+    return result
+
+
 def lcs_mapping(source: list[str], target: list[str]) -> dict[int, int]:
     """Mapea una subsecuencia exacta, conservando el orden del versículo."""
     rows, columns = len(source), len(target)
@@ -390,16 +410,51 @@ def align_reference(text: str, groups: list[dict], reference: str,
                 segment["morphs"] = code_morphs
         stats["assigned"] += len(accepted)
         stats["referenceMatchedWords"] += 1
+    # Añadir las asociaciones estrictas derivadas directamente de STEPBible
+    # para palabras nuevas o modificadas que la referencia antigua no pudo
+    # transferir por coincidencia exacta.
+    for target, source_segment in enumerate(independent):
+        if segments[target].get("strong") or segments[target].get("strongs"):
+            continue
+        candidates = source_segment.get("strongs") or (
+            [source_segment["strong"]] if source_segment.get("strong") else []
+        )
+        accepted = []
+        for code in candidates:
+            if used[code] >= allowed[code]:
+                continue
+            used[code] += 1
+            accepted.append(code)
+        if not accepted:
+            continue
+        segment = segments[target]
+        segment["strong"] = accepted[0]
+        if len(accepted) > 1:
+            segment["strongs"] = accepted
+        segment["strongMeta"] = {
+            "status": "verified-open",
+            "method": "step-open-alignment",
+            "confidence": 1.0,
+        }
+        if source_segment.get("morph"):
+            segment["morph"] = source_segment["morph"]
+        if source_segment.get("morphs"):
+            segment["morphs"] = source_segment["morphs"]
+        stats["verifiedOpen"] += len(accepted)
+        stats["assigned"] += len(accepted)
+        stats["openAddedAfterReference"] += len(accepted)
     stats["referenceUnmatchedEntries"] = len(entries) - len(mapping)
     return segments, stats
 
 
-def build(out_id: str, selected_books: set[str], reference_sqlite: Path | None = None) -> dict:
+def build(out_id: str, selected_books: set[str], reference_sqlite: Path | None = None,
+          reference_module: Path | None = None, output_dir: Path | None = None) -> dict:
     tagged = parse_step()
     manifest = load(SOURCE / "manifest.json")
     ot_lexicon = train_strict_ot_lexicon(tagged, manifest)
-    reference = load_reference_sqlite(reference_sqlite) if reference_sqlite else {}
-    out = ROOT / f"modules/bibles/{out_id}"
+    reference = (load_reference_sqlite(reference_sqlite) if reference_sqlite else
+                 load_reference_module(reference_module) if reference_module else {})
+    out = output_dir or ROOT / f"biblia/modules/bibles/{out_id}"
     if out.exists():
         shutil.rmtree(out)
     totals = Counter()
@@ -427,6 +482,14 @@ def build(out_id: str, selected_books: set[str], reference_sqlite: Path | None =
                     segments, stats = align_strict_ot(text, groups, ot_lexicon)
                 else:
                     segments, stats = align_strict_nt(text, groups)
+                for segment in segments:
+                    if ((segment.get("strong") or segment.get("strongs")) and
+                            not segment.get("strongMeta")):
+                        segment["strongMeta"] = {
+                            "status": "verified-open",
+                            "method": "step-open-alignment",
+                            "confidence": 1.0,
+                        }
                 result["chapters"][chapter][verse] = {
                     "text": text,
                     "segments": segments,
@@ -501,6 +564,10 @@ def main():
     parser.add_argument("--books", default="ALL", help="IDs separados por coma, o ALL")
     parser.add_argument("--reference-sqlite", type=Path,
                         help="RV1909+ provisional; se abre en modo solo lectura")
+    parser.add_argument("--reference-module", type=Path,
+                        help="Módulo Strong legado usado como referencia posicional de solo lectura")
+    parser.add_argument("--output-dir", type=Path,
+                        help="Directorio de salida explícito; útil para construcciones de prueba")
     args = parser.parse_args()
     all_books = {item["id"] for item in load(SOURCE / "manifest.json")["books"]}
     books = all_books if args.books.strip().upper() == "ALL" else {
@@ -510,7 +577,12 @@ def main():
         parser.error("--books contiene un ID desconocido")
     if args.reference_sqlite and not args.reference_sqlite.is_file():
         parser.error("--reference-sqlite no existe")
-    report = build(args.out_id, books, args.reference_sqlite)
+    if args.reference_module and not (args.reference_module / "manifest.json").is_file():
+        parser.error("--reference-module no contiene manifest.json")
+    if args.reference_sqlite and args.reference_module:
+        parser.error("--reference-sqlite y --reference-module son excluyentes")
+    report = build(args.out_id, books, args.reference_sqlite, args.reference_module,
+                   args.output_dir)
     print(json.dumps({"coveragePercent": report["coveragePercent"], **report["totals"]}, indent=2))
 
 
