@@ -122,11 +122,12 @@
 
 ### 2 Timoteo
 
-- Estado: revisión editorial completa; candidato editorial pendiente de revisión humana final.
+- Estado: revisión editorial completa en dos pasadas; candidato editorial pendiente de revisión humana final.
 - Versículos revisados: 83.
-- Versículos modificados: 38.
+- Versículos modificados: 45.
 - Tipos principales de corrección: sintaxis epistolar, precisión verbal y aspectual, imágenes militares y atléticas, vocabulario pastoral, arcaísmos, concordancia y puntuación.
-- Errores objetivos destacados: se recuperó el sentido conjunto de `sufre conmigo` en 1:8 y 2:3; `quitó la muerte` se precisó como `abolió la muerte` en 1:10; el futuro indicativo se restituyó en 2:7; `si sufrimos` se corrigió a `si perseveramos` en 2:12; `uso ordinario` dejó de suavizar el contraste y se corrigió a `uso deshonroso` en 2:20; la adición interpretativa `novedades` fue eliminada en 4:3.
-- Variantes tradicionales conservadas deliberadamente: `maestro de los gentiles` en 1:11; `delante del Señor` en 2:14; `nombre de Cristo` en 2:19; formulación tradicional de 4:1; futuro indicativo en 4:14; `El Señor Jesucristo` y la suscripción histórica completa en 4:22.
+- Errores objetivos destacados: se recuperó el sentido conjunto de `sufre conmigo` en 1:8 y 2:3; `quitó la muerte` se precisó como `abolió la muerte` en 1:10; se reparó la ruptura sintáctica entre 1:10–11; `misericordia junto al Señor` se corrigió en 1:18; `si sufrimos` se corrigió a `si perseveramos` en 2:12; `uso ordinario` dejó de suavizar el contraste y se corrigió a `uso deshonroso` en 2:20; la adición interpretativa `novedades` fue eliminada en 4:3; se recuperaron el aspecto progresivo de 4:6 y el perfecto de 4:8.
+- Variantes tradicionales conservadas deliberadamente: `maestro de los gentiles` en 1:11; optativo en 2:7; `delante del Señor` en 2:14; `nombre de Cristo` en 2:19; `Señor Jesucristo` en 4:1; optativo en 4:14; `El Señor Jesucristo` y la suscripción histórica completa en 4:22.
 - Decisiones editoriales pendientes: `mi depósito` en 1:12 puede entenderse como lo confiado por Pablo a Dios o lo confiado por Dios a Pablo; se preservó su concisión sin resolver la dirección. En 2:26, el referente de `su voluntad` admite discusión; se mantuvo la relación gramatical del texto actual. La expresión `mujeres débiles` de 3:6 conserva el matiz despectivo del diminutivo griego sin adoptar una caracterización coloquial.
+- Segunda pasada: se releyó cada unidad de pensamiento y se contrastaron nuevamente los 83 versículos con RVA1909, RVG2004, BSB, ASV y, en los casos delicados, los datos morfológicos locales de KJV Strong. Esta pasada produjo 12 ajustes adicionales, incluidos tres que restauran la tradición textual o verbal del proyecto.
 - Validación técnica: JSON válido; 4 capítulos; 83 versículos; claves y versificación idénticas a RVA1909; sin textos vacíos, duplicaciones exactas, caracteres anómalos ni errores de formato; `git diff --check` sin incidencias.
