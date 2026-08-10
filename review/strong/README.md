@@ -92,11 +92,21 @@ del Nuevo Testamento con confianza 0,97 y excluyó los casos polisémicos. Queda
 `review/strong/open-pair-crosscheck-unique-low-frequency-report.json`.
 
 La auditoría posicional también admite separar Antiguo y Nuevo Testamento. El
-informe NT actual registra 10.692 candidatos cuyo código está en otra posición y
+informe NT inicial registró 10.692 candidatos cuyo código estaba en otra posición y
 3.189 asociaciones ausentes, siempre filtrados primero por el código presente en
 STEPBible. Son una cola prioritaria de revisión, no promociones automáticas; las
 primeras 500 discrepancias se documentan en
 `review/strong/rv1960-location-audit-nt.json` sin copiar texto de RV1960+.
+
+La primera resolución de esa cola exigió simultáneamente destino vacío, par
+palabra–código único con al menos tres observaciones `verified-open`, una sola
+ocurrencia del código en STEPBible y un único origen provisional no respaldado
+por ese mismo par. Reubicó cuatro asociaciones: Hch 1:25 (`G2398`, «propio»),
+Hch 10:11 y 11:5 (`G5100`, «algo») y 1 Ti 5:4 (`G2398`, «propia»). Los demás
+candidatos quedaron intactos. Véase
+`review/strong/open-evidence-relocations-nt-report.json`.
+Tras estas correcciones, la cola posicional NT quedó en 10.688 posibles
+desplazamientos y 3.189 asociaciones ausentes.
 
 No se debe modificar `reference`, `verse_text`, `word`, `strong`, `morphology`, `step_gloss`, `status` ni `confidence`, porque permiten importar después las decisiones de forma reproducible.
 

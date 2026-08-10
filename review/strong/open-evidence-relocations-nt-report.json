@@ -1,0 +1,47 @@
+{
+  "module": "/home/juan/Verbo/verbo-cloudflare-pages/biblia/modules/bibles/rv-verbo-strong-provisional",
+  "applied": true,
+  "scope": "Nuevo Testamento",
+  "referenceUse": "RV1960+ solo como guía posicional; no se copia texto",
+  "minimumVerifiedOpenObservations": 3,
+  "uniqueOpenPairs": 1250,
+  "stats": {
+    "positionalCandidates": 9835,
+    "excludedWithoutUniqueOpenPair": 9663,
+    "excludedNonUniqueStepOccurrence": 118,
+    "excludedUnsafeOwner": 33,
+    "excludedOwnerCount": 17,
+    "relocatedAssociations": 4,
+    "changedBooks": 2
+  },
+  "samples": [
+    {
+      "reference": "ACT 1:25",
+      "strong": "G2398",
+      "fromWord": "su",
+      "toWord": "propio",
+      "minimumRequiredVerifiedOpenObservations": 3
+    },
+    {
+      "reference": "ACT 10:11",
+      "strong": "G5100",
+      "fromWord": "un",
+      "toWord": "algo",
+      "minimumRequiredVerifiedOpenObservations": 3
+    },
+    {
+      "reference": "ACT 11:5",
+      "strong": "G5100",
+      "fromWord": "un",
+      "toWord": "algo",
+      "minimumRequiredVerifiedOpenObservations": 3
+    },
+    {
+      "reference": "1TI 5:4",
+      "strong": "G2398",
+      "fromWord": "su",
+      "toWord": "propia",
+      "minimumRequiredVerifiedOpenObservations": 3
+    }
+  ]
+}

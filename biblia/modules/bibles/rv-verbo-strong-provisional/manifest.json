@@ -444,5 +444,11 @@
     "uniqueLowFrequencyMinimumTokenLength": 4,
     "uniqueLowFrequencyExcludeStopwords": true,
     "uniqueLowFrequencyRequireUniqueCode": true
+  },
+  "openEvidenceRelocation": {
+    "scope": "Nuevo Testamento",
+    "method": "rv1960-position+unique-open-pair+unique-step-occurrence",
+    "minimumVerifiedOpenOccurrences": 3,
+    "relocatedAssociations": 4
   }
 }
