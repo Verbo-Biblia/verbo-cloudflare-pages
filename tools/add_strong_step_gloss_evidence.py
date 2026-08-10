@@ -15,10 +15,11 @@ from pathlib import Path
 import build_rv_verbo_strong as builder
 from audit_rv1960_strong_locations import DEFAULT_REFERENCE, load_reference, segment_codes
 from promote_strong_evidence import DEFAULT_MODULE, book_payloads, dump, norm
+from promote_strong_step_gloss_similarity import best_match
 
 
 def add_missing(module: Path, reference_path: Path, apply: bool,
-                sample_limit: int) -> dict:
+                sample_limit: int, minimum_similarity: float) -> dict:
     payloads = book_payloads(module)
     reference = load_reference(reference_path)
     step = builder.parse_step()
@@ -71,7 +72,11 @@ def add_missing(module: Path, reference_path: Path, apply: bool,
                         if not group:
                             stats["excludedNonUniqueStepOccurrence"] += 1
                             continue
-                        if token not in builder.gloss_words(group.get("gloss", "")):
+                        score, gloss_word = best_match(token, group.get("gloss", ""))
+                        if (minimum_similarity == 1.0 and
+                                token in builder.gloss_words(group.get("gloss", ""))):
+                            score, gloss_word = 1.0, token
+                        if score < minimum_similarity:
                             stats["excludedWithoutExactStepGloss"] += 1
                             continue
                         stats["addedAssociations"] += 1
@@ -83,6 +88,8 @@ def add_missing(module: Path, reference_path: Path, apply: bool,
                                 "word": target.get("text", ""),
                                 "strong": code,
                                 "stepGloss": group.get("gloss", ""),
+                                "matchedGlossWord": gloss_word,
+                                "similarity": round(score, 4),
                                 "morphology": group.get("morph", ""),
                             })
                         if apply:
@@ -91,8 +98,10 @@ def add_missing(module: Path, reference_path: Path, apply: bool,
                                 target["morph"] = group["morph"]
                             target["strongMeta"] = {
                                 "status": "verified-open",
-                                "method": "rv1960-position+step-spanish-gloss-exact",
-                                "confidence": 1.0,
+                                "method": ("rv1960-position+step-spanish-gloss-exact"
+                                           if score == 1.0 else
+                                           "rv1960-position+step-spanish-gloss-inflection"),
+                                "confidence": round(score, 4),
                             }
                             changed = True
                             verse_changed = True
@@ -110,7 +119,8 @@ def add_missing(module: Path, reference_path: Path, apply: bool,
         "applied": apply,
         "scope": "Nuevo Testamento",
         "referenceUse": "RV1960+ solo como guía posicional; no se copia texto",
-        "method": "destino vacío+código ausente+ocurrencia STEPBible única+glosa exacta",
+        "minimumSimilarity": minimum_similarity,
+        "method": "destino vacío+código ausente+ocurrencia STEPBible única+glosa española",
         "stats": dict(stats),
         "samples": samples,
     }
@@ -123,9 +133,12 @@ def main() -> None:
     parser.add_argument("--in-place", action="store_true")
     parser.add_argument("--report", type=Path)
     parser.add_argument("--sample-limit", type=int, default=200)
+    parser.add_argument("--minimum-similarity", type=float, default=1.0)
     args = parser.parse_args()
+    if not 0.9 <= args.minimum_similarity <= 1.0:
+        parser.error("--minimum-similarity debe estar entre 0.9 y 1.0")
     result = add_missing(args.module, args.reference, args.in_place,
-                         max(0, args.sample_limit))
+                         max(0, args.sample_limit), args.minimum_similarity)
     if args.report:
         dump(args.report, result, pretty=True)
     print(json.dumps(result, ensure_ascii=False, indent=2))

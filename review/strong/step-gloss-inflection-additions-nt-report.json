@@ -1,0 +1,55 @@
+{
+  "module": "/home/juan/Verbo/verbo-cloudflare-pages/biblia/modules/bibles/rv-verbo-strong-provisional",
+  "applied": true,
+  "scope": "Nuevo Testamento",
+  "referenceUse": "RV1960+ solo como guía posicional; no se copia texto",
+  "minimumSimilarity": 0.94,
+  "method": "destino vacío+código ausente+ocurrencia STEPBible única+glosa española",
+  "stats": {
+    "excludedShortOrStopword": 6184,
+    "positionalCandidates": 3559,
+    "excludedCodeAlreadyPresent": 1288,
+    "excludedNonUniqueStepOccurrence": 1911,
+    "excludedWithoutExactStepGloss": 356,
+    "addedAssociations": 4,
+    "changedBooks": 4
+  },
+  "samples": [
+    {
+      "reference": "MRK 2:26",
+      "word": "sacerdote,",
+      "strong": "G749",
+      "stepGloss": "jefe de sacerdotes",
+      "matchedGlossWord": "sacerdotes",
+      "similarity": 0.9474,
+      "morphology": "N-GSM"
+    },
+    {
+      "reference": "LUK 17:1",
+      "word": "tropiezos,",
+      "strong": "G4625",
+      "stepGloss": "causas de tropiezo",
+      "matchedGlossWord": "tropiezo",
+      "similarity": 0.9412,
+      "morphology": "N-APN"
+    },
+    {
+      "reference": "ACT 17:34",
+      "word": "areopagita,",
+      "strong": "G698",
+      "stepGloss": "areopaguita",
+      "matchedGlossWord": "areopaguita",
+      "similarity": 0.9524,
+      "morphology": "N-NSM-LG"
+    },
+    {
+      "reference": "1PE 2:1",
+      "word": "hipocresía,",
+      "strong": "G5272",
+      "stepGloss": "hipocresías",
+      "matchedGlossWord": "hipocresias",
+      "similarity": 0.9524,
+      "morphology": "N-APF"
+    }
+  ]
+}

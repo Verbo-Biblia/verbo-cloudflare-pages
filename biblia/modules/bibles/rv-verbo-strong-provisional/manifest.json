@@ -462,6 +462,8 @@
   "stepGlossOpenEvidenceAddition": {
     "scope": "Nuevo Testamento",
     "method": "rv1960-position+code-absent+unique-step-occurrence+exact-spanish-gloss",
-    "addedAssociations": 29
+    "addedAssociations": 29,
+    "highSimilarityThreshold": 0.94,
+    "highSimilarityAddedAssociations": 4
   }
 }
