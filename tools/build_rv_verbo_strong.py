@@ -46,6 +46,7 @@ BOOK_IDS = {
 
 BOOK_NUMBERS = {index + 1: book_id for index, book_id in enumerate(BOOK_IDS.values())}
 REFERENCE_PATTERN = re.compile(r"(\S+?)((?:\{[GH]\d+\})+)", re.I)
+MYBIBLE_STRONG_TOKEN = re.compile(r"^[GH]0*([1-9]\d{0,4})$", re.I)
 
 
 def load(path: Path):
@@ -316,6 +317,39 @@ def load_reference_sqlite(path: Path) -> dict[tuple[str, str, str], str]:
         connection.close()
 
 
+def mybible_reference_text(scripture: str) -> str:
+    """Convierte una línea MyBible con Strong/morfología en guía posicional."""
+    entries: list[list] = []
+    for token in scripture.split():
+        match = MYBIBLE_STRONG_TOKEN.fullmatch(token)
+        if match and entries:
+            code = f"{token[0].upper()}{int(match.group(1))}"
+            if code not in entries[-1][1]:
+                entries[-1][1].append(code)
+            continue
+        if entries and token == token.upper() and not any(char.isdigit() for char in token):
+            continue
+        entries.append([token, []])
+    return " ".join(
+        word + "".join(f"{{{code}}}" for code in codes)
+        for word, codes in entries if codes
+    )
+
+
+def load_reference_mybible(path: Path) -> dict[tuple[str, str, str], str]:
+    connection = sqlite3.connect(f"file:{path}?mode=ro", uri=True)
+    try:
+        return {
+            (BOOK_NUMBERS[int(book)], str(int(chapter)), str(int(verse))):
+                mybible_reference_text(scripture)
+            for book, chapter, verse, scripture in connection.execute(
+                "SELECT Book, Chapter, Verse, Scripture FROM Bible")
+            if int(book) in BOOK_NUMBERS
+        }
+    finally:
+        connection.close()
+
+
 def load_reference_module(path: Path) -> dict[tuple[str, str, str], str]:
     """Convierte un módulo Strong existente en referencia posicional de solo lectura."""
     manifest = load(path / "manifest.json")
@@ -448,12 +482,14 @@ def align_reference(text: str, groups: list[dict], reference: str,
 
 
 def build(out_id: str, selected_books: set[str], reference_sqlite: Path | None = None,
-          reference_module: Path | None = None, output_dir: Path | None = None) -> dict:
+          reference_module: Path | None = None, reference_mybible: Path | None = None,
+          output_dir: Path | None = None) -> dict:
     tagged = parse_step()
     manifest = load(SOURCE / "manifest.json")
     ot_lexicon = train_strict_ot_lexicon(tagged, manifest)
     reference = (load_reference_sqlite(reference_sqlite) if reference_sqlite else
-                 load_reference_module(reference_module) if reference_module else {})
+                 load_reference_module(reference_module) if reference_module else
+                 load_reference_mybible(reference_mybible) if reference_mybible else {})
     out = output_dir or ROOT / f"biblia/modules/bibles/{out_id}"
     if out.exists():
         shutil.rmtree(out)
@@ -566,6 +602,8 @@ def main():
                         help="RV1909+ provisional; se abre en modo solo lectura")
     parser.add_argument("--reference-module", type=Path,
                         help="Módulo Strong legado usado como referencia posicional de solo lectura")
+    parser.add_argument("--reference-mybible", type=Path,
+                        help="Base MyBible usada como referencia posicional de solo lectura")
     parser.add_argument("--output-dir", type=Path,
                         help="Directorio de salida explícito; útil para construcciones de prueba")
     args = parser.parse_args()
@@ -579,10 +617,13 @@ def main():
         parser.error("--reference-sqlite no existe")
     if args.reference_module and not (args.reference_module / "manifest.json").is_file():
         parser.error("--reference-module no contiene manifest.json")
-    if args.reference_sqlite and args.reference_module:
-        parser.error("--reference-sqlite y --reference-module son excluyentes")
+    if args.reference_mybible and not args.reference_mybible.is_file():
+        parser.error("--reference-mybible no existe")
+    if sum(bool(value) for value in (
+            args.reference_sqlite, args.reference_module, args.reference_mybible)) > 1:
+        parser.error("las opciones de referencia son excluyentes")
     report = build(args.out_id, books, args.reference_sqlite, args.reference_module,
-                   args.output_dir)
+                   args.reference_mybible, args.output_dir)
     print(json.dumps({"coveragePercent": report["coveragePercent"], **report["totals"]}, indent=2))
 
 

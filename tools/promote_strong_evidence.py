@@ -48,7 +48,8 @@ def book_payloads(module: Path) -> list[tuple[dict, dict]]:
     return [(book, load(module / book["file"])) for book in manifest["books"]]
 
 
-def build_lexicon(payloads: list[tuple[dict, dict]], minimum: int) -> tuple[dict[str, str], dict]:
+def build_lexicon(payloads: list[tuple[dict, dict]], minimum: int,
+                  minimum_precision: float) -> tuple[dict[str, str], dict]:
     observations: dict[str, Counter] = defaultdict(Counter)
     for _, payload in payloads:
         for verses in payload["chapters"].values():
@@ -61,21 +62,24 @@ def build_lexicon(payloads: list[tuple[dict, dict]], minimum: int) -> tuple[dict
                     if len(token) < 3 or len(segment_codes) != 1:
                         continue
                     observations[token][segment_codes[0]] += 1
-    lexicon = {
-        token: next(iter(counts))
-        for token, counts in observations.items()
-        if len(counts) == 1 and sum(counts.values()) >= minimum
-    }
+    lexicon = {}
+    for token, counts in observations.items():
+        total = sum(counts.values())
+        code, occurrences = counts.most_common(1)[0]
+        if occurrences >= minimum and occurrences / total >= minimum_precision:
+            lexicon[token] = code
     stats = {
         "observedTokens": len(observations),
         "unambiguousTokens": len(lexicon),
         "minimumOccurrences": minimum,
+        "minimumPrecision": minimum_precision,
         "seedOccurrences": sum(observations[token][code] for token, code in lexicon.items()),
     }
     return lexicon, stats
 
 
-def classify(payloads: list[tuple[dict, dict]], lexicon: dict[str, str], apply: bool) -> Counter:
+def classify(payloads: list[tuple[dict, dict]], lexicon: dict[str, str], apply: bool,
+             minimum_precision: float) -> Counter:
     stats = Counter()
     for _, payload in payloads:
         for verses in payload["chapters"].values():
@@ -95,8 +99,11 @@ def classify(payloads: list[tuple[dict, dict]], lexicon: dict[str, str], apply: 
                         if apply:
                             segment["strongMeta"] = {
                                 "status": "cross-verified-open",
-                                "method": "unique-open-word-code-crosscheck",
-                                "confidence": 0.99,
+                                "method": ("unique-open-word-code-crosscheck"
+                                           if minimum_precision == 1.0 else
+                                           "dominant-open-word-code-crosscheck"),
+                                "confidence": (0.99 if minimum_precision == 1.0 else
+                                               round(minimum_precision, 4)),
                             }
                     else:
                         stats["remainingProvisional"] += len(segment_codes)
@@ -110,16 +117,23 @@ def main() -> None:
     parser.add_argument("--in-place", action="store_true",
                         help="Actualiza el módulo de entrada después de clasificar")
     parser.add_argument("--minimum-occurrences", type=int, default=3)
+    parser.add_argument("--minimum-precision", type=float, default=1.0,
+                        help="Proporción mínima del código dominante para una palabra")
     parser.add_argument("--report", type=Path)
     args = parser.parse_args()
     if args.minimum_occurrences < 2:
         parser.error("--minimum-occurrences debe ser al menos 2")
+    if not 0.5 < args.minimum_precision <= 1.0:
+        parser.error("--minimum-precision debe ser mayor que 0.5 y menor o igual a 1")
     payloads = book_payloads(args.module)
-    lexicon, lexicon_stats = build_lexicon(payloads, args.minimum_occurrences)
+    lexicon, lexicon_stats = build_lexicon(
+        payloads, args.minimum_occurrences, args.minimum_precision
+    )
     if args.in_place and args.output_module:
         parser.error("--in-place y --output-module son excluyentes")
     apply_changes = bool(args.output_module) or args.in_place
-    stats = classify(payloads, lexicon, apply=apply_changes)
+    stats = classify(payloads, lexicon, apply=apply_changes,
+                     minimum_precision=args.minimum_precision)
     report = {"sourceModule": str(args.module), "lexicon": lexicon_stats,
               "classification": dict(stats)}
     if args.output_module:
@@ -132,8 +146,11 @@ def main() -> None:
         manifest["id"] = args.output_module.name
         manifest["status"] = "review-candidate"
         manifest["crossVerification"] = {
-            "method": "unique-open-word-code-crosscheck",
+            "method": ("unique-open-word-code-crosscheck"
+                       if args.minimum_precision == 1.0 else
+                       "dominant-open-word-code-crosscheck"),
             "minimumOccurrences": args.minimum_occurrences,
+            "minimumPrecision": args.minimum_precision,
         }
         dump(args.output_module / "manifest.json", manifest, pretty=True)
         for book, payload in payloads:
@@ -145,8 +162,11 @@ def main() -> None:
     elif args.in_place:
         manifest = load(args.module / "manifest.json")
         manifest["crossVerification"] = {
-            "method": "unique-open-word-code-crosscheck",
+            "method": ("unique-open-word-code-crosscheck"
+                       if args.minimum_precision == 1.0 else
+                       "dominant-open-word-code-crosscheck"),
             "minimumOccurrences": args.minimum_occurrences,
+            "minimumPrecision": args.minimum_precision,
             "promotedAssociations": stats["promotedAssociations"],
         }
         dump(args.module / "manifest.json", manifest, pretty=True)

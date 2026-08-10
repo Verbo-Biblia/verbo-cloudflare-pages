@@ -5,12 +5,18 @@
     "errors": 0,
     "books": 66,
     "verses": 31097,
-    "taggedVerses": 28942,
-    "associations": 226722,
+    "taggedVerses": 29080,
+    "associations": 253792,
     "verifiedOpen": 65037,
-    "crossVerifiedOpen": 5847,
-    "provisionalReference": 155838,
+    "crossVerifiedOpen": 7120,
+    "provisionalReference": 181635,
     "textDifferencesFromBibliaVerbo": 0
+  },
+  "postProcessing": {
+    "rv1960ConservativeAdditions": 27070,
+    "openCrosscheckPromotions": 1273,
+    "coveragePercent": 60.68,
+    "auditReport": "review/strong/strong-audit.json"
   },
   "otLexiconSize": 620,
   "totals": {

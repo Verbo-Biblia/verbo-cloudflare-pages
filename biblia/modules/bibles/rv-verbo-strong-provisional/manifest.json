@@ -409,12 +409,18 @@
   ],
   "status": "provisional-noncommercial",
   "strongSource": "STEPBible Data (CC BY 4.0)",
-  "alignmentMethod": "Referencia RV1909+ alineada por subsecuencia textual exacta y confirmada por STEPBible.",
-  "referenceSource": "Bible SuperSearch rv_1909_strongs.sqlite (uso no comercial)",
+  "alignmentMethod": "Referencias RV1909+ y RV1960+ alineadas por subsecuencia textual exacta; cada código se confirma por versículo contra STEPBible. Las adiciones RV1960+ exigen además destino vacío y código ausente del versículo.",
+  "referenceSource": "Bible SuperSearch rv_1909_strongs.sqlite (uso no comercial); RV1960+.bbl.mybible (solo guía posicional local)",
   "strongEditorAttribution": "Etiquetado RV1909 de referencia desarrollado por Rubén Gómez",
   "crossVerification": {
-    "method": "unique-open-word-code-crosscheck",
+    "method": "dominant-open-word-code-crosscheck",
     "minimumOccurrences": 5,
-    "promotedAssociations": 5847
+    "minimumPrecision": 0.99,
+    "promotedAssociations": 1273
+  },
+  "rv1960ConservativeMerge": {
+    "method": "empty-target+code-absent-from-verse+step-verse",
+    "addedAssociations": 27070,
+    "addedSegments": 25845
   }
 }

@@ -1,0 +1,15 @@
+{
+  "module": "/home/juan/Verbo/verbo-cloudflare-pages/biblia/modules/bibles/rv-verbo-strong-provisional",
+  "candidate": "/tmp/rv-verbo-strong-rv1960-candidate",
+  "candidateBuild": "python3 tools/build_rv_verbo_strong.py --books ALL --reference-mybible '../Archivos Verbo/RV1960+.bbl.mybible' --out-id rv-verbo-strong-rv1960-candidate --output-dir /tmp/rv-verbo-strong-rv1960-candidate",
+  "applied": true,
+  "rule": "destino vacío, código ausente del versículo, mismo texto y segmentos",
+  "stats": {
+    "candidateAssociations": 258694,
+    "excludedOccupiedTarget": 213142,
+    "acceptedAssociations": 27070,
+    "acceptedSegments": 25845,
+    "excludedCodeElsewhere": 18482,
+    "changedBooks": 66
+  }
+}

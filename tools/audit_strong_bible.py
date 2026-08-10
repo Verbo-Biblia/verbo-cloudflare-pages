@@ -11,6 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_MODULE = ROOT / "biblia/modules/bibles/rv-verbo-strong-provisional"
+SOURCE_MODULE = ROOT / "biblia/modules/bibles/rv-verbo"
 CODE = re.compile(r"^[GH][1-9]\d{0,4}$")
 ALLOWED_STATUSES = {
     "verified-open", "cross-verified-open", "provisional-reference", "editorial-reviewed",
@@ -38,6 +39,8 @@ def dictionary_codes() -> set[str]:
 
 def audit(module: Path) -> tuple[dict, list[str]]:
     manifest = load(module / "manifest.json")
+    source_manifest = load(SOURCE_MODULE / "manifest.json")
+    source_books = {book["id"]: book for book in source_manifest["books"]}
     valid_codes = dictionary_codes()
     totals = Counter()
     books: dict[str, dict] = {}
@@ -55,15 +58,34 @@ def audit(module: Path) -> tuple[dict, list[str]]:
             errors.append(f"{book_id}: falta {book['file']}")
             continue
         payload = load(path)
+        source_book = source_books.get(book_id)
+        source_payload = load(SOURCE_MODULE / source_book["file"]) if source_book else None
         stats = Counter()
         if payload.get("book") != book_id:
             errors.append(f"{book_id}: el campo book no coincide")
+        if source_payload is None:
+            errors.append(f"{book_id}: no existe en Biblia Verbo")
+        elif set(payload.get("chapters", {})) != set(source_payload.get("chapters", {})):
+            errors.append(f"{book_id}: los capítulos no coinciden con Biblia Verbo")
         for chapter, verses in payload.get("chapters", {}).items():
+            source_verses = (source_payload or {}).get("chapters", {}).get(chapter, {})
+            if set(verses) != set(source_verses):
+                errors.append(f"{book_id} {chapter}: los versículos no coinciden con Biblia Verbo")
             for verse, record in verses.items():
                 reference = f"{book_id} {chapter}:{verse}"
                 stats["verses"] += 1
+                source_record = source_verses.get(verse, {})
+                source_text = (source_record.get("text", "") if isinstance(source_record, dict)
+                               else source_record)
+                if record.get("text") != source_text:
+                    errors.append(f"{reference}: el texto difiere de Biblia Verbo")
+                segments = record.get("segments", [])
+                if not segments or any(not segment.get("text") for segment in segments):
+                    errors.append(f"{reference}: segmentos vacíos o ausentes")
+                elif " ".join(segment["text"] for segment in segments) != record.get("text"):
+                    errors.append(f"{reference}: los segmentos no reconstruyen el texto")
                 actual: set[str] = set()
-                for index, segment in enumerate(record.get("segments", [])):
+                for index, segment in enumerate(segments):
                     codes = segment_codes(segment)
                     if not codes:
                         continue
