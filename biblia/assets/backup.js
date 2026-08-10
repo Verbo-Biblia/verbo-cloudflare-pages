@@ -283,9 +283,13 @@ window.VerboBackup = (() => {
   }
 
   // ---- Posición de lectura ----
+  // `version` (id de Biblia activa) viaja junto a libro/capítulo desde 2026-08:
+  // es la forma más simple de sincronizar la Biblia elegida entre dispositivos
+  // sin un mecanismo nuevo, reusando el mismo campo que ya sincroniza posición
+  // de lectura (ver VerboSync push/pull + reconcile).
   function getPosicionBiblia() { return cached.posicion_lectura?.biblia || null; }
-  function setPosicionBiblia(libro, capitulo) {
-    cached.posicion_lectura.biblia = { libro, capitulo };
+  function setPosicionBiblia(libro, capitulo, version) {
+    cached.posicion_lectura.biblia = { libro, capitulo, version: version || cached.posicion_lectura?.biblia?.version || null };
     persist();
   }
 

@@ -1,10 +1,11 @@
+import { createHash } from 'node:crypto';
 import { mkdir, readFile, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { env, pipeline } from '@xenova/transformers';
 
 const MODEL = 'Xenova/paraphrase-multilingual-MiniLM-L12-v2';
-const BOOKS = [
+const BOOKS_ES = [
   ['GEN', 'Génesis'], ['EXO', 'Éxodo'], ['LEV', 'Levítico'], ['NUM', 'Números'], ['DEU', 'Deuteronomio'],
   ['JOS', 'Josué'], ['JDG', 'Jueces'], ['RUT', 'Rut'], ['1SA', '1 Samuel'], ['2SA', '2 Samuel'],
   ['1KI', '1 Reyes'], ['2KI', '2 Reyes'], ['1CH', '1 Crónicas'], ['2CH', '2 Crónicas'], ['EZR', 'Esdras'],
@@ -20,14 +21,37 @@ const BOOKS = [
   ['JAS', 'Santiago'], ['1PE', '1 Pedro'], ['2PE', '2 Pedro'], ['1JN', '1 Juan'], ['2JN', '2 Juan'],
   ['3JN', '3 Juan'], ['JUD', 'Judas'], ['REV', 'Apocalipsis'],
 ];
+const BOOKS_EN = [
+  ['GEN', 'Genesis'], ['EXO', 'Exodus'], ['LEV', 'Leviticus'], ['NUM', 'Numbers'], ['DEU', 'Deuteronomy'],
+  ['JOS', 'Joshua'], ['JDG', 'Judges'], ['RUT', 'Ruth'], ['1SA', '1 Samuel'], ['2SA', '2 Samuel'],
+  ['1KI', '1 Kings'], ['2KI', '2 Kings'], ['1CH', '1 Chronicles'], ['2CH', '2 Chronicles'], ['EZR', 'Ezra'],
+  ['NEH', 'Nehemiah'], ['EST', 'Esther'], ['JOB', 'Job'], ['PSA', 'Psalms'], ['PRO', 'Proverbs'],
+  ['ECC', 'Ecclesiastes'], ['SNG', 'Song of Solomon'], ['ISA', 'Isaiah'], ['JER', 'Jeremiah'], ['LAM', 'Lamentations'],
+  ['EZK', 'Ezekiel'], ['DAN', 'Daniel'], ['HOS', 'Hosea'], ['JOL', 'Joel'], ['AMO', 'Amos'],
+  ['OBA', 'Obadiah'], ['JON', 'Jonah'], ['MIC', 'Micah'], ['NAM', 'Nahum'], ['HAB', 'Habakkuk'],
+  ['ZEP', 'Zephaniah'], ['HAG', 'Haggai'], ['ZEC', 'Zechariah'], ['MAL', 'Malachi'],
+  ['MAT', 'Matthew'], ['MRK', 'Mark'], ['LUK', 'Luke'], ['JHN', 'John'], ['ACT', 'Acts'],
+  ['ROM', 'Romans'], ['1CO', '1 Corinthians'], ['2CO', '2 Corinthians'], ['GAL', 'Galatians'], ['EPH', 'Ephesians'],
+  ['PHP', 'Philippians'], ['COL', 'Colossians'], ['1TH', '1 Thessalonians'], ['2TH', '2 Thessalonians'],
+  ['1TI', '1 Timothy'], ['2TI', '2 Timothy'], ['TIT', 'Titus'], ['PHM', 'Philemon'], ['HEB', 'Hebrews'],
+  ['JAS', 'James'], ['1PE', '1 Peter'], ['2PE', '2 Peter'], ['1JN', '1 John'], ['2JN', '2 John'],
+  ['3JN', '3 John'], ['JUD', 'Jude'], ['REV', 'Revelation'],
+];
 const PERICOPE_SIZE = 6;
 const BATCH_SIZE = Number.parseInt(process.env.BATCH_SIZE || '16', 10);
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, '..', '..');
+const bibliaRoot = path.join(repoRoot, 'biblia');
 const BIBLE_ID = process.env.BIBLE_ID || 'rv-verbo';
-const bibleDir = path.join(repoRoot, 'modules', 'bibles', BIBLE_ID, 'books');
-const outDir = path.join(__dirname, 'out');
+const LANG = process.env.BIBLE_LANG || 'es';
+const BOOKS = LANG === 'en' ? BOOKS_EN : BOOKS_ES;
+// OUT_ID nombra la carpeta publicada bajo biblia/modules/semantic-search/bible-<OUT_ID>/
+// — normalmente igual a BIBLE_ID, pero permite (ej. inglés) publicar el índice bajo un
+// nombre propio (bible-en-bsb) que no colisiona con el manifest.json de la Biblia bsb.
+const OUT_ID = process.env.OUT_ID || BIBLE_ID;
+const bibleDir = path.join(bibliaRoot, 'modules', 'bibles', BIBLE_ID, 'books');
+const outDir = path.join(bibliaRoot, 'modules', 'semantic-search', `bible-${OUT_ID}`);
 
 env.cacheDir = path.join(__dirname, '.cache');
 
@@ -35,10 +59,23 @@ function normalizeWhitespace(text) {
   return text.replace(/\s+/g, ' ').trim();
 }
 
+// El `book` de BOOKS_ES/BOOKS_EN es el id CANÓNICO que usa el resto de la app
+// (registry.defaultBible → rv-verbo → catalog.primary.manifest.books, lo que
+// llena el <select> de libros y resuelve capítulos). Un resultado de búsqueda
+// guarda ese id para poder navegar. Pero el NOMBRE DE ARCHIVO de una Biblia
+// fuente concreta puede diferir del id canónico (ej. bsb/books/NAH.json para
+// Nahúm, mientras el id canónico —y el de rv-verbo— es NAM); sin este mapa,
+// el índice en inglés guardaría "NAH" y hacer clic en ese resultado fallaría
+// porque el selector de libros no conoce ese id.
+const FILE_ID_OVERRIDES = {
+  bsb: { NAM: 'NAH' },
+};
+
 async function loadBibleVerses() {
+  const overrides = FILE_ID_OVERRIDES[BIBLE_ID] || {};
   const rows = [];
   for (const [book, bookName] of BOOKS) {
-    const file = path.join(bibleDir, `${book}.json`);
+    const file = path.join(bibleDir, `${overrides[book] || book}.json`);
     const data = JSON.parse(await readFile(file, 'utf8'));
     const chapters = Object.keys(data.chapters).map(Number).sort((a, b) => a - b);
     for (const chapter of chapters) {
@@ -54,7 +91,7 @@ async function loadBibleVerses() {
           chapterEnd: chapter,
           verseEnd: verse,
           label: `${bookName} ${chapter}:${verse}`,
-          // Algunas Biblias guardan el verso como string plano (rv-verbo) y otras
+          // Algunas Biblias guardan el verso como string plano (rv-verbo, bsb) y otras
           // como objeto {text, segments} (rva-1909 con Strong) — mismo patrón de
           // normalización que ya usa buildChapterData() en assets/module-loader.js.
           text: normalizeWhitespace(typeof verses[String(verse)] === 'string' ? verses[String(verse)] : verses[String(verse)].text),
@@ -136,12 +173,19 @@ function quantizeUnitVector(vector) {
   return quantized;
 }
 
+function sourceHash(records) {
+  const hash = createHash('sha256');
+  for (const record of records) hash.update(record.id).update(' ').update(record.text).update('\n');
+  return hash.digest('hex').slice(0, 16);
+}
+
 async function writeIndex(name, records, vectors) {
   const dimensions = vectors[0].length;
   const vectorBytes = new Int8Array(records.length * dimensions);
   const metadata = {
-    schemaVersion: 1,
-    source: `modules/bibles/${BIBLE_ID}`,
+    schemaVersion: 2,
+    source: `biblia/modules/bibles/${BIBLE_ID}`,
+    language: LANG,
     books: BOOKS.map(([id, name]) => ({ id, name })),
     model: MODEL,
     dimensions,
@@ -155,6 +199,9 @@ async function writeIndex(name, records, vectors) {
       ? { strategy: 'fixed_verse_windows_by_chapter', versesPerChunk: PERICOPE_SIZE, overlap: 0 }
       : { strategy: 'single_verse' },
     vectorFile: `${name}.i8.bin`,
+    generatedAt: new Date().toISOString(),
+    sourceHash: sourceHash(records),
+    recordCount: records.length,
     records: records.map((record, index) => ({
       id: record.id,
       book: record.book,
@@ -189,7 +236,14 @@ async function writeIndex(name, records, vectors) {
 async function main() {
   const verses = await loadBibleVerses();
   const pericopes = buildPericopes(verses);
-  console.log(`Loaded ${verses.length} verses and ${pericopes.length} fixed pericope chunks`);
+  console.log(`Loaded ${verses.length} verses and ${pericopes.length} fixed pericope chunks from ${BIBLE_ID} (${LANG})`);
+  console.log(`Publishing to ${outDir}`);
+
+  const expectedBooks = BOOKS.length;
+  const seenBooks = new Set(verses.map((v) => v.book));
+  if (seenBooks.size !== expectedBooks) {
+    throw new Error(`Se esperaban ${expectedBooks} libros, se encontraron ${seenBooks.size}`);
+  }
 
   console.log('Building verse index...');
   await writeIndex('verses', verses, await embedRecords(verses));

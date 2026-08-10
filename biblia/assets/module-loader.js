@@ -2,7 +2,13 @@
 const VerboModules = (() => {
   const cache = new Map();
   const semanticSearch = {
-    basePath: 'modules/semantic-search/bible-rv-verbo',
+    // Un índice bíblico por idioma (mismo patrón que STRONG_BIBLE_PATHS en
+    // app.js): español se indexa desde Biblia Verbo, inglés desde BSB
+    // (dominio público, local) — NASB no se puede descargar en bloque para
+    // indexar porque viene de API.Bible. La Biblia ACTIVA de lectura del
+    // usuario puede ser cualquier otra; el índice solo encuentra referencias,
+    // ver searchSemanticBible.
+    basePaths: { es: 'modules/semantic-search/bible-rv-verbo', en: 'modules/semantic-search/bible-en-bsb' },
     churchHistoryBasePath: 'modules/semantic-search/church-history',
     model: 'Xenova/paraphrase-multilingual-MiniLM-L12-v2',
     transformerUrl: 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2/+esm',
@@ -546,13 +552,15 @@ const VerboModules = (() => {
     return results;
   }
 
-  async function loadSemanticIndex(indexType='verses') {
+  async function loadSemanticIndex(indexType='verses', lang='es') {
+    const basePath = semanticSearch.basePaths[lang] || semanticSearch.basePaths.es;
     const type = indexType === 'pericopes' ? 'pericopes' : 'verses';
-    if (semanticSearch.indexes.has(type)) return semanticSearch.indexes.get(type);
-    const meta = await getJSON(`${semanticSearch.basePath}/${type}.meta.json`);
-    const buffer = await getArrayBuffer(`${semanticSearch.basePath}/${meta.vectorFile}`);
+    const key = `${lang}:${type}`;
+    if (semanticSearch.indexes.has(key)) return semanticSearch.indexes.get(key);
+    const meta = await getJSON(`${basePath}/${type}.meta.json`);
+    const buffer = await getArrayBuffer(`${basePath}/${meta.vectorFile}`);
     const index = { meta, vectors:new Int8Array(buffer) };
-    semanticSearch.indexes.set(type, index);
+    semanticSearch.indexes.set(key, index);
     return index;
   }
 
@@ -586,7 +594,7 @@ const VerboModules = (() => {
     };
   }
 
-  const semanticStopwords = new Set([
+  const semanticStopwordsEs = new Set([
     'a','al','ante','bajo','con','contra','de','del','desde','el','en','entre','es','la','las','lo','los','mas','me','mi','no','o','para','por','que','se','sin','sobre','su','sus','te','tu','un','una','y',
     'como','cual','cuales','quien','quienes','cuando','donde','porque','dijo','dios','jesus','senor','sobre','todos',
     // Palabras propias del "envoltorio" de la pregunta ("¿dónde habla la Biblia de X?",
@@ -598,7 +606,7 @@ const VerboModules = (() => {
     'trata','tratan','tema','acerca','respecto','hay','existe','existen','ejemplo','ejemplos',
     'significa','significado','version','opina','opinar'
   ]);
-  const semanticQueryExpansions = [
+  const semanticQueryExpansionsEs = [
     { test:/\bdivorci|\brepudi/i, terms:['divorcio','repudiar','repudiarla','repudiare','repudiada','mujer','adulterio'] },
     { test:/\bperdon|\bofend/i, terms:['perdon','perdona','perdonados','perdonareis','perdonale','misericordia','deudas','ofensas'] },
     { test:/\bperdid|\bsalvar|\bsalvaci/i, terms:['perdido','perdidos','salvar','salvo','salvacion','misericordia','pecadores'] },
@@ -612,6 +620,24 @@ const VerboModules = (() => {
     { test:/\bdijo\b.*\bcruz|\bcruz\b.*\bdijo|\bpalabras?\b.*\bcruz/i, terms:['padre','perdonalos','paraiso','encomiendo','espiritu','sed','consumado','madre','hijo'] }
   ];
 
+  const semanticStopwordsEn = new Set([
+    'a','an','the','and','or','but','if','of','to','in','on','at','for','with','about','as','by','from','is','are','was','were','be','been','it','this','that','what','who','how','when','where','why',
+    'do','does','did','say','says','said','bible','scripture','scriptures','verse','verses','chapter','chapters','passage','passages','mention','mentions','topic','regarding','example','examples','mean','meaning','version','god','jesus','lord'
+  ]);
+  const semanticQueryExpansionsEn = [
+    { test:/\bdivorce|\bdivorced/i, terms:['divorce','divorced','adultery','wife','marriage'] },
+    { test:/\bforgiv|\boffen/i, terms:['forgive','forgiven','forgiveness','mercy','debts','offenses'] },
+    { test:/\blost|\bsav(e|ing|ed|ation)/i, terms:['lost','save','saved','salvation','mercy','sinners'] },
+    { test:/\bmoney|\bwealth|\brich|\btreasure/i, terms:['money','wealth','riches','rich','treasure','poor','offering'] },
+    { test:/\btired|\brest|\bweary/i, terms:['weary','burdened','rest','labor','come'] },
+    { test:/\bpray(er)?|\balone|\bsecret/i, terms:['pray','prayer','praying','room','secret','father','hypocrites'] },
+    { test:/\bborn again|\bbirth/i, terms:['born','again','birth','nicodemus','water','spirit'] },
+    { test:/\bsinner|\boutcast|\bsick/i, terms:['sinners','tax','collectors','mercy','sick','samaritan','zacchaeus'] },
+    { test:/\bfalse prophet|\bdeceiv/i, terms:['false','prophets','deceive','wolves','christs'] },
+    { test:/\bcross|\bcrucif/i, terms:['cross','crucified','crucify','calvary','golgotha'] },
+    { test:/\banxi(ety|ous)|\bworry|\bworried/i, terms:['anxious','worry','worried','troubled','cares','afraid'] }
+  ];
+
   function normalizeSemanticText(value) {
     return String(value || '')
       .toLowerCase()
@@ -621,11 +647,13 @@ const VerboModules = (() => {
       .trim();
   }
 
-  function semanticTokens(query) {
+  function semanticTokens(query, lang='es') {
+    const stopwords = lang === 'en' ? semanticStopwordsEn : semanticStopwordsEs;
+    const expansions = lang === 'en' ? semanticQueryExpansionsEn : semanticQueryExpansionsEs;
     const normalized = normalizeSemanticText(query);
-    const tokens = normalized.split(' ').filter(token => token.length > 2 && !semanticStopwords.has(token));
+    const tokens = normalized.split(' ').filter(token => token.length > 2 && !stopwords.has(token));
     const expanded = new Set(tokens);
-    semanticQueryExpansions.forEach(rule => {
+    expansions.forEach(rule => {
       if (!rule.test.test(query)) return;
       rule.terms.forEach(term => expanded.add(normalizeSemanticText(term)));
     });
@@ -668,11 +696,11 @@ const VerboModules = (() => {
     return adjustment;
   }
 
-  async function searchSemanticBible(query, { indexType='verses', limit=50, onProgress=null }={}) {
+  async function searchSemanticBible(query, { indexType='verses', limit=50, lang='es', onProgress=null }={}) {
     const clean = String(query || '').trim();
     if (clean.length < 2) return [];
     onProgress?.({ stage:'index' });
-    const index = await loadSemanticIndex(indexType);
+    const index = await loadSemanticIndex(indexType, lang);
     onProgress?.({ stage:'model' });
     const extractor = await getSemanticExtractor();
     onProgress?.({ stage:'embedding' });
@@ -681,7 +709,7 @@ const VerboModules = (() => {
     const dimensions = Number(index.meta.dimensions);
     const records = index.meta.records || [];
     const results = [];
-    const tokens = semanticTokens(clean);
+    const tokens = semanticTokens(clean, lang);
     onProgress?.({ stage:'ranking' });
     for (let recordIndex=0; recordIndex<records.length; recordIndex++) {
       const offset = recordIndex * dimensions;
@@ -690,7 +718,7 @@ const VerboModules = (() => {
         score += queryVector[dim] * (index.vectors[offset + dim] / 127);
       }
       score += semanticLexicalBoost(records[recordIndex], tokens);
-      score += semanticSpecialAdjustment(records[recordIndex], clean);
+      if (lang !== 'en') score += semanticSpecialAdjustment(records[recordIndex], clean);
       results.push(semanticResultFromRecord(records[recordIndex], score, indexType));
     }
     results.sort((a,b)=>b.score-a.score);

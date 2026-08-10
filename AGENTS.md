@@ -16,6 +16,7 @@
 - Después de integrar comentarios, reconstruir sus índices con `tools/build_commentary_index.py` y luego el catálogo con `tools/build_registry_catalog.py`.
 - Si cambian `biblia/assets/app.js`, `module-loader.js` o `style.css`, revisar y actualizar sus parámetros `?v=` en `biblia/index.html` para invalidar caché.
 - Cloudflare Pages se publica desde Git. El Worker de `cloudflare/api-bible-worker/` tiene despliegue separado y manual con Wrangler.
+- Buscador semántico (solo Biblia, `tools/semantic-search/`): un índice local por idioma, generado offline y publicado en `biblia/modules/semantic-search/bible-<id>/` — nunca en cada build. Español se indexa desde Biblia Verbo; inglés desde BSB (dominio público, ya local) porque NASB es remota vía API.Bible y no se puede descargar/serializar en bloque para indexar. NASB sigue siendo la Biblia visual predeterminada en inglés — el índice solo encuentra referencias, la app siempre muestra el resultado en la Biblia activa del usuario. Ver `tools/semantic-search/README.md`.
 - No modificar API, secretos, KV, cachés, prompts, Worker ni configuración de Cloudflare cuando la tarea sea exclusivamente editorial.
 
 ## Biblia Verbo: norma editorial

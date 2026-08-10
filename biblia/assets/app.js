@@ -207,7 +207,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     VerboSync.on('link-error', () => { toast(t('toast.errorSync')); if (activeTab === 'ajustes') renderAjustes(); });
     VerboSync.init().catch(err => console.warn('[sync] init falló', err));
   }
-  let catalog, data, activeTab = null, currentVersion = localStorage.getItem('verbo:lastVersion') || null, compareVersion = null;
+  // Si este dispositivo no tiene 'verbo:lastVersion' (localStorage, nunca
+  // sincronizado) pero sí llegó una posición de lectura sincronizada de otro
+  // dispositivo (VerboBackup, ver Fase 1 sync), usar esa versión — así la
+  // Biblia elegida viaja entre dispositivos sin duplicar el mecanismo de sync.
+  let catalog, data, activeTab = null, currentVersion = localStorage.getItem('verbo:lastVersion') || VerboBackup.getPosicionBiblia()?.version || null, compareVersion = null;
   let xrefTarget = null, xrefData = null;
   function resetXrefMode(){ xrefTarget = null; xrefData = null; }
   let sermonMode = false;
@@ -322,18 +326,27 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   try {
     catalog = await VerboModules.getCatalog();
-    // Primera visita (sin `verbo:lastVersion` guardado todavía): usar el
-    // idioma detectado/guardado de interfaz (ver assets/i18n.js) para elegir
-    // también la Biblia por defecto — una Biblia en ese idioma si existe, si
-    // no RVA 1909 como respaldo. Es una decisión de arranque única: en
-    // cuanto el usuario elige una Biblia (o esta corrida guarda una), queda
-    // fijada en `verbo:lastVersion` como siempre y esta lógica no vuelve a
-    // correr. No toca contentLang() ni el idioma de interfaz.
+    // Primera visita (sin `verbo:lastVersion` guardado ni versión sincronizada
+    // todavía): usar el idioma detectado/guardado de interfaz (ver
+    // assets/i18n.js) para elegir la Biblia POR DEFECTO CANÓNICA de Verbo en
+    // ese idioma — Biblia Verbo en español, NASB en inglés (remota vía
+    // API.Bible, ya soportada como versión activa por ensureVersionLoaded) —
+    // no simplemente "la primera Biblia que coincida con el idioma" del
+    // catálogo, que antes caía en RVA 1909 / ASV por orden de listado. Si la
+    // canónica no está disponible (ej. registry.json editado a mano sin esa
+    // entrada, o API.Bible caída), cae a cualquier Biblia en ese idioma y
+    // luego a RVA 1909. Es una decisión de arranque única: en cuanto el
+    // usuario elige una Biblia (o esta corrida guarda una), queda fijada en
+    // `verbo:lastVersion` como siempre y esta lógica no vuelve a correr. No
+    // toca contentLang() ni el idioma de interfaz.
     if (!currentVersion && window.VerboI18n) {
       const detectedLang = window.VerboI18n.getUiLang();
-      const bySameLang = bibleCatalog().find(v => v.lang === detectedLang);
-      const fallback = detectedLang !== 'es' ? bibleCatalog().find(v => v.id === 'rva-1909') : null;
-      const preferred = bySameLang || fallback;
+      const canonicalDefaults = { es: 'rv-verbo', en: 'api-nasb2020' };
+      const all = bibleCatalog();
+      const canonical = all.find(v => v.id === canonicalDefaults[detectedLang]);
+      const bySameLang = all.find(v => v.lang === detectedLang);
+      const fallback = detectedLang !== 'es' ? all.find(v => v.id === 'rva-1909') : null;
+      const preferred = canonical || bySameLang || fallback;
       if (preferred) currentVersion = preferred.id;
     }
     await populateBooks();
@@ -394,7 +407,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       selectedVerses.clear();
       renderChapter();
       updateActionBar();
-      VerboBackup.setPosicionBiblia(currentBook, currentChapter);
+      VerboBackup.setPosicionBiblia(currentBook, currentChapter, currentVersion);
       gospelOpenChapter=null;
       if (activeTab) renderPanel(activeTab);
       window.scrollTo({top:0, behavior:'smooth'});
@@ -534,6 +547,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       await ensureVersionLoaded(id);
       currentVersion = id;
       localStorage.setItem('verbo:lastVersion', currentVersion);
+      VerboBackup.setPosicionBiblia(currentBook, currentChapter, currentVersion);
       if (compareVersion === currentVersion) compareVersion = bibleCatalog().find(x => x.id !== currentVersion)?.id || currentVersion;
       populateVersions();
       await populateBooks();
@@ -2158,17 +2172,54 @@ document.addEventListener('DOMContentLoaded', async () => {
     await renderSermonBiblePanel(next.verse);
   }
 
-  async function openSearchResult(r, versionId){
-    currentBook=r.bookId; currentChapter=r.chapter; currentVersion=versionId;
+  // El buscador semántico usa una Biblia base fija para encontrar referencias
+  // (Biblia Verbo en español, BSB en inglés — ver semanticSearch.basePaths en
+  // module-loader.js), pero abrir un resultado NUNCA debe cambiar la Biblia
+  // que el usuario está leyendo: solo navega al libro/capítulo/versículo
+  // encontrado y lo muestra en `currentVersion`, sea cual sea.
+  async function openSearchResult(r){
+    currentBook=r.bookId; currentChapter=r.chapter;
     els.book.value=currentBook; await refreshChapters(); els.chapter.value=String(currentChapter); await loadPassage();
     openPanel('buscar');
     const row=document.querySelector(`[data-verse-n="${r.verse}"]`);
     if(row){ document.querySelectorAll('.verse--active').forEach(x=>x.classList.remove('verse--active')); row.classList.add('verse--active'); row.scrollIntoView({behavior:'smooth',block:'center'}); }
   }
 
+  // La lista de resultados debe mostrar el texto en la Biblia ACTIVA del
+  // usuario, no en la Biblia base del índice — salvo que la activa sea
+  // remota (API.Bible), donde traer el texto de hasta ~90 resultados
+  // dispararía demasiadas peticiones y podría chocar con el límite de la
+  // API; en ese caso se deja el texto de la Biblia base como vista previa
+  // (marcado con previewSource) y se resuelve a la Biblia real recién al
+  // abrir un resultado puntual (openSearchResult ya usa currentVersion).
+  async function resolveResultsToActiveVersion(results, versionId, previewLabel){
+    const active=bibleCatalog().find(v=>v.id===versionId);
+    if(!active || active.remote){ results.forEach(r=>{ r.previewSource=previewLabel; }); return results; }
+    const chapterCache=new Map();
+    const getChapterVerses=(bookId,chapter)=>{
+      const key=`${bookId}.${chapter}`;
+      if(!chapterCache.has(key)) chapterCache.set(key, VerboModules.loadBible(active.path, bookId, chapter).then(raw=>raw?.verses||null).catch(()=>null));
+      return chapterCache.get(key);
+    };
+    await Promise.all(results.map(async r=>{
+      if(r.chapterStart!==r.chapterEnd) return;
+      const verses=await getChapterVerses(r.bookId, r.chapterStart);
+      if(!verses) return;
+      const parts=[];
+      for(let v=r.verseStart; v<=r.verseEnd; v++){
+        const raw=verses[String(v)];
+        const text=raw==null ? null : (typeof raw==='string' ? raw : raw.text);
+        if(!text){ parts.length=0; break; }
+        parts.push(r.verseEnd>r.verseStart ? `${v}. ${text}` : text);
+      }
+      if(parts.length) r.text=parts.join(' ');
+    }));
+    return results;
+  }
+
   function renderSavedSearchResults(){
     if(!searchState?.results?.length) return;
-    const {results, versionId, scopeLabel, semantic}=searchState;
+    const {results, scopeLabel, semantic}=searchState;
     const pageSize=semantic ? 30 : 100;
     let page=searchState.page || 0;
     const totalPages=Math.ceil(results.length/pageSize);
@@ -2181,14 +2232,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         <span>${t('busqueda.mostrando',{scope:escapeHTML(scopeLabel),start:start+1,end})}</span>
       </div>
       <div class="search-results-list">
-        ${visible.map((r,i)=>`<button class="search-result" type="button" data-result="${start+i}"><span class="search-result__ref">${escapeHTML(r.book)} ${r.chapter}:${r.verse}${r.verseEnd && r.verseEnd!==r.verse ? `-${r.verseEnd}` : ''}${semantic ? ` · ${(r.score*100).toFixed(1)}%` : ''}</span><span class="search-result__text">${escapeHTML(r.text)}</span></button>`).join('')}
+        ${visible.map((r,i)=>`<button class="search-result" type="button" data-result="${start+i}"><span class="search-result__ref">${escapeHTML(r.book)} ${r.chapter}:${r.verse}${r.verseEnd && r.verseEnd!==r.verse ? `-${r.verseEnd}` : ''}${semantic ? ` · ${(r.score*100).toFixed(1)}%` : ''}${r.previewSource ? ` · ${escapeHTML(t('busqueda.vistaPrevia',{fuente:r.previewSource}))}` : ''}</span><span class="search-result__text">${escapeHTML(r.text)}</span></button>`).join('')}
       </div>
       <nav class="search-pagination" aria-label="${t('busqueda.paginasAria')}">
         <button class="search-page-button" id="searchPrevPage" type="button" ${page===0?'disabled':''}>${t('busqueda.anterior')}</button>
         <span class="search-page-status">${t('busqueda.paginaEstado',{page:page+1,total:totalPages})}</span>
         <button class="search-page-button" id="searchNextPage" type="button" ${page>=totalPages-1?'disabled':''}>${t('busqueda.siguiente')}</button>
       </nav>`;
-    els.panelBody.querySelectorAll('.search-result').forEach(btn=>btn.addEventListener('click',()=>openSearchResult(results[Number(btn.dataset.result)], versionId)));
+    els.panelBody.querySelectorAll('.search-result').forEach(btn=>btn.addEventListener('click',()=>openSearchResult(results[Number(btn.dataset.result)])));
     document.getElementById('searchPrevPage')?.addEventListener('click',()=>{ if(page>0){ searchState.page=page-1; renderSavedSearchResults(); els.panelBody.scrollTop=0;} });
     document.getElementById('searchNextPage')?.addEventListener('click',()=>{ if(page<totalPages-1){ searchState.page=page+1; renderSavedSearchResults(); els.panelBody.scrollTop=0;} });
   }
@@ -2200,7 +2251,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // contexto que a versículos sueltos muy cortos, que suelen quedar mal
     // rankeados (ver evaluación con "chisme": el versículo correcto quedaba
     // en el puesto ~9500/31000, pero la perícopa correcta en el puesto ~400/5700).
-    const saved = searchState || { query:'', versionId:'rv-verbo', indexType:'pericopes', results:[], page:0, scopeLabel:t('busqueda.scopeInicial'), semantic:true };
+    const saved = searchState || { query:'', indexType:'pericopes', results:[], page:0, scopeLabel:t('busqueda.scopeInicial'), semantic:true };
     els.panelToolbar.innerHTML=`<form class="search-panel-form" id="searchForm">
       <input id="searchInput" class="search-panel-input" type="search" minlength="2" placeholder="${t('busqueda.placeholder')}" autocomplete="off" value="${escapeHTML(saved.query)}">
       <select id="searchIndexType" class="search-panel-select" aria-label="${t('busqueda.tipoIndiceAria')}">
@@ -2233,19 +2284,32 @@ document.addEventListener('DOMContentLoaded', async () => {
     form?.addEventListener('submit',async e=>{
       e.preventDefault();
       const query=input.value.trim();
-      const versionId='rv-verbo';
       const indexType=indexTypeSelect.value === 'pericopes' ? 'pericopes' : 'verses';
       if(query.length<2){ searchState=null; els.panelBody.innerHTML=emptyState('⌕',t('busqueda.minCaracteres')); return; }
+      // Una referencia directa ("Juan 3:16", "Jn 3 16", "Romanos 8", "John 3:16")
+      // no necesita búsqueda semántica: se navega directo, sin gastar una
+      // consulta al modelo (ver Fase 9 del pedido de auditoría del buscador).
+      const directRef=parseSearchReference(query);
+      if(directRef){
+        searchState=null;
+        closePanel();
+        await goToBibleReference(directRef);
+        return;
+      }
+      const lang=contentLang();
+      const indexSourceLabel=lang==='en' ? 'BSB' : 'Biblia Verbo';
       els.panelBody.innerHTML=emptyState('⌛',t('busqueda.preparando'));
       try{
         const stageText={index:t('busqueda.stageIndex'),model:t('busqueda.stageModel'),embedding:t('busqueda.stageEmbedding'),ranking:t('busqueda.stageRanking')};
-        const results=await VerboModules.searchSemanticBible(query,{
+        let results=await VerboModules.searchSemanticBible(query,{
           indexType,
           limit:90,
+          lang,
           onProgress:p=>{els.panelBody.innerHTML=emptyState('⌛',stageText[p.stage] || t('busqueda.buscando'));}
         });
+        results=await resolveResultsToActiveVersion(results, currentVersion, indexSourceLabel);
         const scopeLabel=t('busqueda.scopeDinamica',{tipo:t(indexType==='pericopes'?'busqueda.tipoPericopas':'busqueda.tipoVersiculos')});
-        searchState={query, versionId, indexType, results, page:0, scopeLabel, semantic:true};
+        searchState={query, indexType, results, page:0, scopeLabel, semantic:true};
         if(!results.length){ els.panelBody.innerHTML=emptyState('🔎',t('busqueda.sinResultados',{query:escapeHTML(query)})); return; }
         renderSavedSearchResults();
       }catch(error){ console.error(error); els.panelBody.innerHTML=emptyState('⚠️',t('busqueda.errorBusqueda')); }
@@ -2482,6 +2546,45 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadPassage();
     const row=document.querySelector(`[data-verse-n="${ref.verse}"]`);
     if(row){ document.querySelectorAll('.verse--active').forEach(x=>x.classList.remove('verse--active')); row.classList.add('verse--active'); row.scrollIntoView({behavior:'smooth',block:'center'}); }
+  }
+  // Alias en inglés de los mismos libros — solo para reconocer referencias
+  // directas escritas en inglés en el buscador (parseSearchReference), no
+  // reemplaza bibleNameAliases (que sigue siendo español, usado por los
+  // enlaces "a.bible" generados por comentarios/diccionarios).
+  const bibleNameAliasesEn = {
+    GEN:['gen','genesis'], EXO:['exo','exodus','ex'], LEV:['lev','leviticus','lv'], NUM:['num','numbers','nm'], DEU:['deu','deut','deuteronomy','dt'],
+    JOS:['jos','josh','joshua'], JDG:['jdg','judg','judges'], RUT:['rut','ruth','ru'], '1SA':['1sa','1 sam','1sam','1 samuel'], '2SA':['2sa','2 sam','2sam','2 samuel'],
+    '1KI':['1ki','1 kgs','1kgs','1 kings'], '2KI':['2ki','2 kgs','2kgs','2 kings'], '1CH':['1ch','1 chr','1chr','1 chronicles'], '2CH':['2ch','2 chr','2chr','2 chronicles'], EZR:['ezr','ezra'],
+    NEH:['neh','nehemiah'], EST:['est','esther'], JOB:['job'], PSA:['psa','ps','psalm','psalms'], PRO:['pro','prov','proverbs'],
+    ECC:['ecc','eccl','ecclesiastes'], SNG:['sng','song','song of solomon','songs'], ISA:['isa','isaiah'], JER:['jer','jeremiah'], LAM:['lam','lamentations'],
+    EZK:['ezk','eze','ezekiel'], DAN:['dan','daniel'], HOS:['hos','hosea'], JOL:['jol','joel'], AMO:['amo','amos'],
+    OBA:['oba','obadiah'], JON:['jon','jonah'], MIC:['mic','micah'], NAM:['nam','nah','nahum'], HAB:['hab','habakkuk'],
+    ZEP:['zep','zeph','zephaniah'], HAG:['hag','haggai'], ZEC:['zec','zech','zechariah'], MAL:['mal','malachi'],
+    MAT:['mat','matt','matthew'], MRK:['mrk','mark'], LUK:['luk','luke'], JHN:['jhn','john'], ACT:['act','acts'],
+    ROM:['rom','romans'], '1CO':['1co','1 cor','1cor','1 corinthians'], '2CO':['2co','2 cor','2cor','2 corinthians'], GAL:['gal','galatians'], EPH:['eph','ephesians'],
+    PHP:['php','phil','philippians'], COL:['col','colossians'], '1TH':['1th','1 thess','1thess','1 thessalonians'], '2TH':['2th','2 thess','2thess','2 thessalonians'],
+    '1TI':['1ti','1 tim','1tim','1 timothy'], '2TI':['2ti','2 tim','2tim','2 timothy'], TIT:['tit','titus'], PHM:['phm','philemon'], HEB:['heb','hebrews'],
+    JAS:['jas','james'], '1PE':['1pe','1 pet','1pet','1 peter'], '2PE':['2pe','2 pet','2pet','2 peter'], '1JN':['1jn','1 john'], '2JN':['2jn','2 john'], '3JN':['3jn','3 john'],
+    JUD:['jud','jude'], REV:['rev','revelation']
+  };
+  // Reconocimiento de referencia directa para el buscador (Fase 9): más
+  // permisivo que parseBibleReference (acepta "Libro C V" sin dos puntos y
+  // "Libro C" solo con capítulo) y bilingüe (español + inglés), porque acá
+  // el usuario puede escribir "Jn 3 16", "Romanos 8" o "John 3:16" y no debe
+  // gastarse una búsqueda semántica en algo que ya es una navegación directa.
+  function parseSearchReference(text){
+    const clean=String(text||'').toLocaleLowerCase('es').normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[._]/g,' ').replace(/\s+/g,' ').trim().replace(/[;,)]$/,'');
+    let bookPart, chapter, verse=null;
+    let m=clean.match(/^(.+?)\s+(\d+)\s*(?::|\s)\s*(\d+)(?:-\d+)?$/);
+    if(m){ bookPart=m[1]; chapter=Number(m[2]); verse=Number(m[3]); }
+    else{
+      m=clean.match(/^(.+?)\s+(\d+)$/);
+      if(!m) return null;
+      bookPart=m[1]; chapter=Number(m[2]);
+    }
+    const alias=normalizeBibleName(bookPart);
+    const bookId=Object.keys(bibleNameAliases).find(id=>bibleNameAliases[id].some(a=>normalizeBibleName(a)===alias) || (bibleNameAliasesEn[id]||[]).some(a=>normalizeBibleName(a)===alias));
+    return bookId ? {bookId, chapter, verse} : null;
   }
   function wireDictionaryLinks(root){
     root.querySelectorAll('a.strong').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const m=((a.getAttribute('href')||'')+' '+a.textContent).match(/[GH]\d+/i);if(m)openDictionary(m[0].toUpperCase());}));
