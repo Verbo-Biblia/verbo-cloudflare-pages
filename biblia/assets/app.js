@@ -266,13 +266,15 @@ document.addEventListener('DOMContentLoaded', async () => {
   const hlKey = (book, chapter, n) => `${book}:${chapter}:${n}`;
   const saveHighlights = () => { VerboBackup.setAllResaltados(highlights); };
   const HL_COLORS = ['hl-yellow','hl-green','hl-blue','hl-pink','hl-coral','hl-violet'];
-  // Biblia Verbo con Strong: se quitó del desplegable de versiones (2026-08-07,
-  // a pedido de Juan) para que viva únicamente dentro del panel "Biblia Strong"
-  // (ver renderDictionaryPanel), sin importar qué Biblia esté activa en el
-  // panel central. Ya no está en modules/registry.json → bibles/catalog, así
-  // que se referencia por su ruta fija — VerboModules.loadBible() solo
-  // necesita el manifest.json, no depende de que el módulo esté listado ahí.
-  const STRONG_BIBLE_PATH = 'modules/bibles/rv-verbo-strong-provisional/manifest.json';
+  // Las Biblias con etiquetas Strong viven únicamente dentro del panel
+  // "Biblia Strong", nunca en el selector principal. La fuente sigue el mismo
+  // idioma activo que comentarios/diccionarios (contentLang): Biblia Verbo +
+  // Strong en español y KJV + Strong en inglés. loadBible() acepta la ruta
+  // directa y no necesita que estos módulos estén en el catálogo público.
+  const STRONG_BIBLE_PATHS = {
+    es: 'modules/bibles/rv-verbo-strong-provisional/manifest.json',
+    en: 'modules/bibles/kjv-strong/manifest.json'
+  };
   const escapeHTML = value => String(value ?? '').replace(/[&<>'"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','\"':'&quot;'}[ch]));
   const bibleCatalog = () => catalog.bibles.map(item => ({ id:item.manifest.id, label:item.manifest.abbreviation || item.manifest.name, full:item.manifest.name, path:item.path, lang:item.manifest.language || 'es', remote:Boolean(item.remote || item.manifest.remote), manifest:item.manifest }));
   // Idioma de Strong/comentarios/Padres sigue al botón ES/EN de la interfaz
@@ -280,6 +282,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // 2026-08-04: la Biblia activa puede quedarse en español mientras el usuario
   // quiere leer el resto del contenido traducido, o viceversa.
   const contentLang = () => window.VerboI18n?.getUiLang() || 'es';
+  const strongBiblePath = () => STRONG_BIBLE_PATHS[contentLang()] || STRONG_BIBLE_PATHS.es;
   const commentaryCatalog = () => (catalog.commentaries || []).map(item => ({ id:item.manifest.id, label:item.manifest.abbreviation || item.manifest.name, full:item.manifest.name, path:item.path, manifest:item.manifest }));
   // Léxico Strong: módulos numéricos (G1234 / H1234) consultados al tocar una etiqueta Strong en el texto.
   const isStrongLexicon = item => Boolean(item.manifest.strong);
@@ -3274,20 +3277,24 @@ document.addEventListener('DOMContentLoaded', async () => {
   // veces (una vez al abrir el panel, otra al intentar mostrar el pop-up antes
   // de tiempo).
   let pendingStrongPopupCode=null;
+  let strongBibleRenderRequest=0;
 
-  // "Biblia Strong": Biblia Verbo con capa Strong (ver STRONG_BIBLE_PATH),
-  // siempre sincronizada con el libro/capítulo que se esté leyendo (mismo
-  // patrón que renderCompare/commentaryContext), independiente de qué Biblia
-  // esté seleccionada en el panel central. Reemplaza al viejo panel de
-  // Diccionario, que estaba vacío hasta que el usuario tocaba un código Strong
-  // en la Biblia principal (ver commit de este cambio, 2026-08-07).
+  // "Biblia Strong": Biblia Verbo + Strong o KJV + Strong según contentLang()
+  // (ver strongBiblePath), siempre sincronizada con el libro/capítulo que se
+  // esté leyendo (mismo patrón que renderCompare/commentaryContext),
+  // independiente de la Biblia seleccionada en el panel central. Reemplaza al
+  // viejo panel de Diccionario, que estaba vacío hasta que el usuario tocaba un
+  // código Strong en la Biblia principal (ver cambio de 2026-08-07).
   async function renderDictionaryPanel(focus=null){
+    const request=++strongBibleRenderRequest;
     panelToolbarEl().innerHTML='';
     panelTitleEl().textContent=t('nav.diccionario');
     const ctx=activeBibleContext();
+    const sourcePath=strongBiblePath();
     panelBodyEl().innerHTML=emptyState('⌛',t('diccionario.buscandoEntrada'));
     try{
-      const loaded=await VerboModules.loadBible(STRONG_BIBLE_PATH, ctx.book, ctx.chapter);
+      const loaded=await VerboModules.loadBible(sourcePath, ctx.book, ctx.chapter);
+      if(request!==strongBibleRenderRequest || sourcePath!==strongBiblePath()) return;
       if(!loaded){ panelBodyEl().innerHTML=emptyState('📖','La Biblia Strong todavía no tiene este capítulo.'); return; }
       const nums=Object.keys(loaded.verses).map(Number).sort((a,b)=>a-b);
       const activeN=focus||activeVerse();
@@ -3295,10 +3302,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       panelBodyEl().querySelectorAll('.strongs-tag').forEach(tag=>tag.addEventListener('click', e=>{ e.stopPropagation(); openStrongPopup(tag.dataset.strongCode); }));
       if(activeN) panelBodyEl().querySelector(`[data-verse-n="${activeN}"]`)?.scrollIntoView({block:'center'});
     }catch(error){
+      if(request!==strongBibleRenderRequest) return;
       console.error(error);
       panelBodyEl().innerHTML=emptyState('⚠️','No se pudo cargar la Biblia Strong.');
     }finally{
-      if(pendingStrongPopupCode){ const code=pendingStrongPopupCode; pendingStrongPopupCode=null; openStrongPopup(code); }
+      if(request===strongBibleRenderRequest && pendingStrongPopupCode){ const code=pendingStrongPopupCode; pendingStrongPopupCode=null; openStrongPopup(code); }
     }
   }
 
@@ -4771,7 +4779,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     // cambio de versículo/pestaña.
     const refreshDynamicText=()=>{
       if(data) renderChapter(activeVerse());
-      if(activeTab) renderPanel(activeTab);
+      if(sermonPanelTab) renderSermonSidePanel(sermonPanelTab);
+      else if(activeTab) renderPanel(activeTab);
+      if(openStrongPopupRoot){
+        const code=strongPopupEls().code?.textContent;
+        if(code) renderStrongPopupEntry(code);
+      }
     };
     buttons.forEach(btn=>btn.addEventListener('click',()=>VerboI18n.setUiLang(btn.dataset.lang)));
     document.addEventListener('verbo:uilang-changed', ()=>{ markActive(); refreshDynamicText(); });
