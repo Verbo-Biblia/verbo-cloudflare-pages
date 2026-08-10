@@ -2406,6 +2406,15 @@ document.addEventListener('DOMContentLoaded', async () => {
       return {item,score,i};
     }).filter(Boolean).sort((a,b)=>a.score-b.score||a.i-b.i).slice(0,limit).map(r=>r.item);
   }
+  // item.prefixPart (autor/obra) nunca se traduce — son básicamente nombres
+  // propios (Ireneo, Freeman, Tucker) y mezclarlo en el mismo texto a traducir
+  // que el título arriesgaba traducciones de baja calidad sobre una cadena
+  // bilingüe. Solo item.titlePart (o item.label si el índice no separa
+  // prefijo, como Historia) se traduce bajo demanda — ver wireQuickSearchInput.
+  function quickSearchDisplayLabel(item){
+    if(item.prefixPart==null) return item.displayLabel||item.label;
+    return `${item.prefixPart} — ${item.displayTitlePart||item.titlePart}`;
+  }
   function renderQuickSearchDropdown(box, matches, onSelect, loadingLabel){
     if(!box) return;
     if(matches==='loading'){
@@ -2413,26 +2422,57 @@ document.addEventListener('DOMContentLoaded', async () => {
       box.classList.add('history-predictions--visible');
       return;
     }
-    box.innerHTML=matches.map((item,i)=>`<button type="button" class="history-prediction" data-quick-index="${i}">${escapeHTML(item.label)}</button>`).join('');
+    box.innerHTML=matches.map((item,i)=>`<button type="button" class="history-prediction" data-quick-index="${i}">${escapeHTML(quickSearchDisplayLabel(item))}</button>`).join('');
     box.classList.toggle('history-predictions--visible',matches.length>0);
     box.querySelectorAll('[data-quick-index]').forEach(btn=>btn.addEventListener('mousedown',event=>{
       event.preventDefault();
       onSelect(matches[Number(btn.dataset.quickIndex)]);
     }));
   }
-  function wireQuickSearchInput(input, box, getIndex, onSelect, loadingLabel){
+  // sourceLang: idioma real del texto de item.label en este índice (fijo por
+  // módulo — Padres Apostólicos 'es', Historia/Costumbres 'en'). Si difiere
+  // del idioma de interfaz (contentLang()):
+  //  1) si escribir en el idioma de interfaz no encuentra nada, se traduce la
+  //     consulta al idioma de origen (texto corto, cacheado) y se reintenta —
+  //     mismo patrón que scheduleChurchHistoryQueryTranslation, sin el debounce
+  //     porque acá es opcional/best-effort, no la ruta principal;
+  //  2) los títulos que SÍ se van a mostrar (máximo `limit`, nunca el índice
+  //     completo) se traducen bajo demanda para el dropdown — evita traducir
+  //     de antemano los 500+ títulos de un módulo que el usuario tal vez ni
+  //     busque. Corrige que las predicciones salían siempre en el idioma
+  //     original de la fuente sin importar el idioma de interfaz elegido
+  //     (bug reportado por Juan, 2026-08-10).
+  function wireQuickSearchInput(input, box, getIndex, onSelect, {loadingLabel, sourceLang, moduleId}={}){
     if(!input||!box) return;
+    async function translateShownLabels(matches, target){
+      if(!sourceLang || sourceLang===target || !matches.length) return;
+      await Promise.all(matches.map(async item=>{
+        if(item._translatedLang===target) return;
+        const key=item.quickKey || item.label;
+        const original=item.titlePart!=null ? item.titlePart : item.label;
+        const translated=await translateCommentaryHeader(`quicksearch-label:${moduleId}:${key}`,'label',original,sourceLang,target).catch(()=>original);
+        if(item.titlePart!=null) item.displayTitlePart=translated; else item.displayLabel=translated;
+        item._translatedLang=target;
+      }));
+    }
     async function run(){
       const query=input.value;
-      const maybeIndex=getIndex();
-      if(maybeIndex instanceof Promise){
+      let index=getIndex();
+      if(index instanceof Promise){
         renderQuickSearchDropdown(box,'loading',onSelect,loadingLabel);
-        const resolved=await maybeIndex;
+        index=await index;
         if(input.value!==query) return; // el usuario ya siguió escribiendo mientras cargaba
-        renderQuickSearchDropdown(box,quickSearchMatches(resolved,query),onSelect);
-      } else {
-        renderQuickSearchDropdown(box,quickSearchMatches(maybeIndex,query),onSelect);
       }
+      const target=contentLang();
+      let matches=quickSearchMatches(index,query);
+      if(!matches.length && sourceLang && sourceLang!==target && query.trim().length>=2){
+        const translatedQuery=await translateCommentaryHeader(`quicksearch-query:${moduleId}`,'q',query.trim(),target,sourceLang).catch(()=>'');
+        if(input.value!==query) return;
+        if(translatedQuery) matches=quickSearchMatches(index,translatedQuery);
+      }
+      await translateShownLabels(matches,target);
+      if(input.value!==query) return;
+      renderQuickSearchDropdown(box,matches,onSelect);
     }
     input.addEventListener('input',run);
     input.addEventListener('focus',()=>{
@@ -2811,7 +2851,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   let historiaQuickIndexCache=null;
   function historiaQuickIndex(){
     if(!historiaQuickIndexCache || historiaQuickIndexCache.length!==(churchHistoryEntries||[]).length){
-      historiaQuickIndexCache=(churchHistoryEntries||[]).map(e=>({label:e.title, id:e.id, volumeKey:churchHistoryVolumeKey(e)}));
+      historiaQuickIndexCache=(churchHistoryEntries||[]).map(e=>({label:e.title, quickKey:e.id, id:e.id, volumeKey:churchHistoryVolumeKey(e)}));
     }
     return historiaQuickIndexCache;
   }
@@ -2838,7 +2878,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       churchHistorySearchActive=true;
       renderChurchHistoryPanel();
     });
-    wireQuickSearchInput(document.getElementById('historiaQuickSearchInput'), document.getElementById('historiaQuickSearchPredictions'), historiaQuickIndex, selectHistoriaQuickResult);
+    wireQuickSearchInput(document.getElementById('historiaQuickSearchInput'), document.getElementById('historiaQuickSearchPredictions'), historiaQuickIndex, selectHistoriaQuickResult, {sourceLang:'en', moduleId:'historia'});
   }
   function openChurchHistoryVolume(volumeId){
     churchHistoryOpenVolume=volumeId;
@@ -3839,7 +3879,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         if(!data) return;
         const doc=patristicCatalog[i];
         patristicQuickIndexDocs.set(doc.id,data);
-        (data.sections||[]).forEach(section=>items.push({label:`${doc.label} — ${section.title}`, docId:doc.id, sectionN:section.n}));
+        (data.sections||[]).forEach(section=>items.push({
+          label:`${doc.label} — ${section.title}`, prefixPart:doc.label, titlePart:section.title,
+          quickKey:`${doc.id}:${section.n}`, docId:doc.id, sectionN:section.n
+        }));
       });
       patristicQuickIndexCache=items;
       return items;
@@ -3915,7 +3958,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       <div class="church-shelf">${shelfVolumes.map(patristicShelfItemHTML).join('')}</div>`;
     wirePatristicShelf();
     applyChurchShelfTranslation(shelfVolumes,'padres');
-    wireQuickSearchInput(document.getElementById('padresQuickSearchInput'), document.getElementById('padresQuickSearchPredictions'), patristicQuickIndex, selectPatristicQuickResult, t('padres.indiceCargando'));
+    wireQuickSearchInput(document.getElementById('padresQuickSearchInput'), document.getElementById('padresQuickSearchPredictions'), patristicQuickIndex, selectPatristicQuickResult, {loadingLabel:t('padres.indiceCargando'), sourceLang:'es', moduleId:'padres'});
   }
 
   let patristicDocData=null;
@@ -4106,7 +4149,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         if(!data) return;
         const volume=costumbresShelf[i];
         costumbresQuickIndexWorks.set(volume.id,data);
-        (data.entries||[]).forEach(entry=>items.push({label:`${volume.titulo} — ${entry.titulo}`, workId:volume.id, entryId:entry.id}));
+        (data.entries||[]).forEach(entry=>{
+          // capituloTitulo (Tucker, navegación temática) o titulo (Freeman,
+          // navegación bíblica) — mismo campo que usa costumbresTocRowHTML/el
+          // índice de nivel 2 para mostrar cada entrada.
+          const entryTitle=entry.capituloTitulo||entry.titulo||'';
+          items.push({
+            label:`${volume.titulo} — ${entryTitle}`, prefixPart:volume.titulo, titlePart:entryTitle,
+            quickKey:`${volume.id}:${entry.id}`, workId:volume.id, entryId:entry.id
+          });
+        });
       });
       costumbresQuickIndexCache=items;
       return items;
@@ -4166,7 +4218,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       : emptyState('🏺',t('costumbres.coleccionPreparacion'));
     wireCostumbresShelf();
     applyChurchShelfTranslation(costumbresShelf,'costumbres');
-    wireQuickSearchInput(document.getElementById('costumbresQuickSearchInput'), document.getElementById('costumbresQuickSearchPredictions'), costumbresQuickIndex, selectCostumbresQuickResult, t('costumbres.indiceCargando'));
+    wireQuickSearchInput(document.getElementById('costumbresQuickSearchInput'), document.getElementById('costumbresQuickSearchPredictions'), costumbresQuickIndex, selectCostumbresQuickResult, {loadingLabel:t('costumbres.indiceCargando'), sourceLang:'en', moduleId:'costumbres'});
   }
 
   function costumbresBackToShelf(){
