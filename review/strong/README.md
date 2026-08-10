@@ -132,6 +132,12 @@ La extensión flexiva con prefijo común de cuatro letras y similitud mínima de
 «hipocresía»). La cola NT queda en 3.137 asociaciones ausentes; véase
 `review/strong/step-gloss-inflection-additions-nt-report.json`.
 
+Una revisión manual del intervalo de similitud 0,90–0,94 aceptó otros 11 casos
+flexivos o toponímicos coherentes y rechazó la promoción automática fuera de esa
+lista. Entre ellos están «humea–humear», «palmera–palmeras», «Cencrea–Cencreas»
+y «mentes–mente». La cola NT queda en 3.126 asociaciones ausentes; véase
+`review/strong/step-gloss-inflection-90-additions-nt-report.json`.
+
 No se debe modificar `reference`, `verse_text`, `word`, `strong`, `morphology`, `step_gloss`, `status` ni `confidence`, porque permiten importar después las decisiones de forma reproducible.
 
 `row_id`, `segment_index` y `code_index` identifican de forma inequívoca cada asociación. Tampoco deben editarse. El importador rechazará el CSV si el módulo cambió después de exportarlo.

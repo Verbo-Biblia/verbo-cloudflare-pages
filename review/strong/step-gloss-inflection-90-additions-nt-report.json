@@ -1,0 +1,118 @@
+{
+  "module": "/home/juan/Verbo/verbo-cloudflare-pages/biblia/modules/bibles/rv-verbo-strong-provisional",
+  "applied": true,
+  "scope": "Nuevo Testamento",
+  "referenceUse": "RV1960+ solo como guía posicional; no se copia texto",
+  "minimumSimilarity": 0.9,
+  "method": "destino vacío+código ausente+ocurrencia STEPBible única+glosa española",
+  "stats": {
+    "excludedShortOrStopword": 6184,
+    "positionalCandidates": 3553,
+    "excludedCodeAlreadyPresent": 1286,
+    "excludedNonUniqueStepOccurrence": 1911,
+    "excludedWithoutRequiredGlossMatch": 345,
+    "addedAssociations": 11,
+    "changedBooks": 9
+  },
+  "samples": [
+    {
+      "reference": "MAT 12:20",
+      "word": "humea,",
+      "strong": "G5188",
+      "stepGloss": "estando siendo hecho humear",
+      "matchedGlossWord": "humear",
+      "similarity": 0.9091,
+      "morphology": "V-PPP-ASN"
+    },
+    {
+      "reference": "MAT 21:41",
+      "word": "tiempo.",
+      "strong": "G2540",
+      "stepGloss": "tiempos señalados",
+      "matchedGlossWord": "tiempos",
+      "similarity": 0.9231,
+      "morphology": "N-DPM"
+    },
+    {
+      "reference": "MRK 3:8",
+      "word": "alrededores",
+      "strong": "G4012",
+      "stepGloss": "alrededor de",
+      "matchedGlossWord": "alrededor",
+      "similarity": 0.9,
+      "morphology": "PREP"
+    },
+    {
+      "reference": "LUK 21:28",
+      "word": "cabeza,",
+      "strong": "G2776",
+      "stepGloss": "cabezas",
+      "matchedGlossWord": "cabezas",
+      "similarity": 0.9231,
+      "morphology": "N-APF"
+    },
+    {
+      "reference": "LUK 22:28",
+      "word": "pruebas;",
+      "strong": "G3986",
+      "stepGloss": "puestas a prueba",
+      "matchedGlossWord": "prueba",
+      "similarity": 0.9231,
+      "morphology": "N-DPM"
+    },
+    {
+      "reference": "JHN 12:13",
+      "word": "palmera",
+      "strong": "G5404",
+      "stepGloss": "palmeras",
+      "matchedGlossWord": "palmeras",
+      "similarity": 0.9333,
+      "morphology": "N-GPM"
+    },
+    {
+      "reference": "ACT 13:1",
+      "word": "Cirene,",
+      "strong": "G2956",
+      "stepGloss": "Cireneo",
+      "matchedGlossWord": "cireneo",
+      "similarity": 0.9231,
+      "morphology": "N-NSM-LG"
+    },
+    {
+      "reference": "ROM 16:1",
+      "word": "Cencrea,",
+      "strong": "G2747",
+      "stepGloss": "Cencreas",
+      "matchedGlossWord": "cencreas",
+      "similarity": 0.9333,
+      "morphology": "N-DPF-L"
+    },
+    {
+      "reference": "2CO 7:15",
+      "word": "cariño",
+      "strong": "G4698",
+      "stepGloss": "tiernos cariños",
+      "matchedGlossWord": "carinos",
+      "similarity": 0.9231,
+      "morphology": "N-NPN"
+    },
+    {
+      "reference": "2TI 1:16",
+      "word": "cadenas.",
+      "strong": "G254",
+      "stepGloss": "cadena",
+      "matchedGlossWord": "cadena",
+      "similarity": 0.9231,
+      "morphology": "N-ASF"
+    },
+    {
+      "reference": "HEB 10:16",
+      "word": "mentes,",
+      "strong": "G1271",
+      "stepGloss": "mente",
+      "matchedGlossWord": "mente",
+      "similarity": 0.9091,
+      "morphology": "N-ASF"
+    }
+  ]
+}

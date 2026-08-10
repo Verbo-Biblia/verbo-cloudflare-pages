@@ -77,7 +77,7 @@ def add_missing(module: Path, reference_path: Path, apply: bool,
                                 token in builder.gloss_words(group.get("gloss", ""))):
                             score, gloss_word = 1.0, token
                         if score < minimum_similarity:
-                            stats["excludedWithoutExactStepGloss"] += 1
+                            stats["excludedWithoutRequiredGlossMatch"] += 1
                             continue
                         stats["addedAssociations"] += 1
                         claimed_targets.add(target_index)
