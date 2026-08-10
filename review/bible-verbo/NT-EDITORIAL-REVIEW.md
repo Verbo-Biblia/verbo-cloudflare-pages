@@ -108,3 +108,25 @@
 - Variantes tradicionales conservadas deliberadamente: `santificados` en 1:1; `el Señor` en 1:5; `manchas` en 1:12; la estructura tradicional de dos grupos en 1:22–23; `único Dios sabio` y la forma tradicional de la doxología en 1:25.
 - Decisiones editoriales pendientes: Judas 1:5, 12 y 22–23 presentan variantes textuales importantes; se mantuvieron expresamente las lecturas tradicionales ya adoptadas por Biblia Verbo. La identidad precisa de los seres aludidos en 1:7 no se hizo explícita en la traducción.
 - Validación técnica: JSON válido; 1 capítulo; 25 versículos; claves y versificación idénticas a RVA1909; sin textos vacíos, duplicaciones exactas, caracteres anómalos ni errores de formato; `git diff --check` sin incidencias.
+
+### 1 Timoteo
+
+- Estado: revisión editorial completa; candidato editorial pendiente de revisión humana final.
+- Versículos revisados: 113.
+- Versículos modificados: 61.
+- Tipos principales de corrección: sintaxis epistolar, arcaísmos, precisión en vocabulario pastoral, relaciones entre cláusulas, concordancia, puntuación y naturalidad de las exhortaciones.
+- Errores objetivos destacados: `milites ... la buena milicia` reconstruido como `pelees la buena batalla` en 1:18; `manos limpias` precisado como `manos santas` en 2:8; `de doble palabra` expresado como `no hablar con doblez` en 3:8; `fábulas ... de viejas` corregido en 4:7; `ustedes` implícito y la secuencia singular/plural de 2:15 fueron aclarados sin eliminar el cambio gramatical del original.
+- Variantes tradicionales conservadas deliberadamente: `del Señor Jesucristo` en 1:1; `único y sabio Dios` en 1:17; las cláusulas sobre ganancias deshonestas en 3:3 y 3:8; `Dios fue manifestado en carne` en 3:16; `en espíritu` en 4:12; `apártate de los tales` en 6:5; `vida eterna` en 6:19; `Amén` y la nota histórica final en 6:21.
+- Decisiones editoriales pendientes: 2:15 admite interpretaciones distintas de `por medio de tener hijos` y presenta un cambio de singular a plural; se conservó ese cambio sin añadir una explicación doctrinal. En 3:11, `las mujeres` puede referirse a diaconisas o a esposas de diáconos; se mantuvo la ambigüedad. En 5:9, `esposa de un solo marido` conserva la formulación tradicional sin resolver sus posibles aplicaciones pastorales.
+- Validación técnica: JSON válido; 6 capítulos; 113 versículos; claves y versificación idénticas a RVA1909; sin textos vacíos, duplicaciones exactas, caracteres anómalos ni errores de formato; `git diff --check` sin incidencias.
+
+### 2 Timoteo
+
+- Estado: revisión editorial completa; candidato editorial pendiente de revisión humana final.
+- Versículos revisados: 83.
+- Versículos modificados: 38.
+- Tipos principales de corrección: sintaxis epistolar, precisión verbal y aspectual, imágenes militares y atléticas, vocabulario pastoral, arcaísmos, concordancia y puntuación.
+- Errores objetivos destacados: se recuperó el sentido conjunto de `sufre conmigo` en 1:8 y 2:3; `quitó la muerte` se precisó como `abolió la muerte` en 1:10; el futuro indicativo se restituyó en 2:7; `si sufrimos` se corrigió a `si perseveramos` en 2:12; `uso ordinario` dejó de suavizar el contraste y se corrigió a `uso deshonroso` en 2:20; la adición interpretativa `novedades` fue eliminada en 4:3.
+- Variantes tradicionales conservadas deliberadamente: `maestro de los gentiles` en 1:11; `delante del Señor` en 2:14; `nombre de Cristo` en 2:19; formulación tradicional de 4:1; futuro indicativo en 4:14; `El Señor Jesucristo` y la suscripción histórica completa en 4:22.
+- Decisiones editoriales pendientes: `mi depósito` en 1:12 puede entenderse como lo confiado por Pablo a Dios o lo confiado por Dios a Pablo; se preservó su concisión sin resolver la dirección. En 2:26, el referente de `su voluntad` admite discusión; se mantuvo la relación gramatical del texto actual. La expresión `mujeres débiles` de 3:6 conserva el matiz despectivo del diminutivo griego sin adoptar una caracterización coloquial.
+- Validación técnica: JSON válido; 4 capítulos; 83 versículos; claves y versificación idénticas a RVA1909; sin textos vacíos, duplicaciones exactas, caracteres anómalos ni errores de formato; `git diff --check` sin incidencias.
