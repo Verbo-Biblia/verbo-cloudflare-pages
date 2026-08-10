@@ -1,0 +1,4603 @@
+{
+  "module": "rv-verbo-strong-provisional",
+  "reference": {
+    "file": "RV1960+.bbl.mybible",
+    "use": "solo referencia posicional; no se copia texto ni se promueven estados"
+  },
+  "openVerification": "cada candidato fue filtrado por ocurrencia en STEPBible",
+  "scope": "nt",
+  "totals": {
+    "versesCompared": 7955,
+    "referenceAssociations": 139385,
+    "stepSupported": 128106,
+    "unmappedPosition": 30580,
+    "mappedPosition": 97526,
+    "agreesAtPosition": 83645,
+    "agreementStatus:provisional-reference": 26924,
+    "agreementStatus:verified-open": 48023,
+    "missingCurrent": 3189,
+    "currentElsewhere": 10692,
+    "agreementStatus:cross-verified-open": 8698,
+    "excludedNotStep": 11279
+  },
+  "books": {
+    "MAT": {
+      "versesCompared": 1071,
+      "referenceAssociations": 18575,
+      "stepSupported": 17158,
+      "unmappedPosition": 4239,
+      "mappedPosition": 12919,
+      "agreesAtPosition": 11285,
+      "agreementStatus:provisional-reference": 3578,
+      "agreementStatus:verified-open": 6588,
+      "missingCurrent": 426,
+      "currentElsewhere": 1208,
+      "agreementStatus:cross-verified-open": 1119,
+      "excludedNotStep": 1417
+    },
+    "MRK": {
+      "versesCompared": 678,
+      "referenceAssociations": 11484,
+      "stepSupported": 10627,
+      "mappedPosition": 7537,
+      "agreesAtPosition": 6476,
+      "agreementStatus:verified-open": 3648,
+      "agreementStatus:provisional-reference": 2205,
+      "currentElsewhere": 816,
+      "excludedNotStep": 857,
+      "unmappedPosition": 3090,
+      "agreementStatus:cross-verified-open": 623,
+      "missingCurrent": 245
+    },
+    "LUK": {
+      "versesCompared": 1151,
+      "referenceAssociations": 19672,
+      "stepSupported": 18040,
+      "unmappedPosition": 5189,
+      "mappedPosition": 12851,
+      "agreesAtPosition": 11003,
+      "agreementStatus:verified-open": 6307,
+      "agreementStatus:cross-verified-open": 1064,
+      "agreementStatus:provisional-reference": 3632,
+      "excludedNotStep": 1632,
+      "currentElsewhere": 1306,
+      "missingCurrent": 542
+    },
+    "JHN": {
+      "versesCompared": 879,
+      "referenceAssociations": 15836,
+      "stepSupported": 14228,
+      "mappedPosition": 11225,
+      "agreesAtPosition": 9686,
+      "agreementStatus:verified-open": 5727,
+      "excludedNotStep": 1608,
+      "agreementStatus:cross-verified-open": 954,
+      "agreementStatus:provisional-reference": 3005,
+      "currentElsewhere": 1169,
+      "unmappedPosition": 3003,
+      "missingCurrent": 370
+    },
+    "ACT": {
+      "versesCompared": 1006,
+      "referenceAssociations": 18578,
+      "stepSupported": 17277,
+      "unmappedPosition": 4294,
+      "mappedPosition": 12983,
+      "agreesAtPosition": 11053,
+      "agreementStatus:cross-verified-open": 1116,
+      "agreementStatus:verified-open": 6308,
+      "missingCurrent": 498,
+      "excludedNotStep": 1301,
+      "agreementStatus:provisional-reference": 3629,
+      "currentElsewhere": 1432
+    },
+    "ROM": {
+      "versesCompared": 433,
+      "referenceAssociations": 7188,
+      "stepSupported": 6617,
+      "mappedPosition": 5364,
+      "agreesAtPosition": 4511,
+      "agreementStatus:verified-open": 2543,
+      "agreementStatus:provisional-reference": 1416,
+      "agreementStatus:cross-verified-open": 552,
+      "missingCurrent": 183,
+      "currentElsewhere": 670,
+      "unmappedPosition": 1253,
+      "excludedNotStep": 571
+    },
+    "1CO": {
+      "versesCompared": 437,
+      "referenceAssociations": 6882,
+      "stepSupported": 6261,
+      "mappedPosition": 4912,
+      "agreesAtPosition": 4283,
+      "agreementStatus:verified-open": 2430,
+      "agreementStatus:provisional-reference": 1310,
+      "agreementStatus:cross-verified-open": 543,
+      "unmappedPosition": 1349,
+      "currentElsewhere": 501,
+      "excludedNotStep": 621,
+      "missingCurrent": 128
+    },
+    "2CO": {
+      "versesCompared": 256,
+      "referenceAssociations": 4483,
+      "stepSupported": 3986,
+      "mappedPosition": 3029,
+      "agreesAtPosition": 2568,
+      "agreementStatus:verified-open": 1377,
+      "agreementStatus:provisional-reference": 895,
+      "agreementStatus:cross-verified-open": 296,
+      "unmappedPosition": 957,
+      "currentElsewhere": 359,
+      "excludedNotStep": 497,
+      "missingCurrent": 102
+    },
+    "GAL": {
+      "versesCompared": 149,
+      "referenceAssociations": 2249,
+      "stepSupported": 2049,
+      "mappedPosition": 1651,
+      "agreesAtPosition": 1427,
+      "agreementStatus:verified-open": 781,
+      "agreementStatus:provisional-reference": 476,
+      "agreementStatus:cross-verified-open": 170,
+      "excludedNotStep": 200,
+      "currentElsewhere": 193,
+      "unmappedPosition": 398,
+      "missingCurrent": 31
+    },
+    "EPH": {
+      "versesCompared": 155,
+      "referenceAssociations": 2453,
+      "stepSupported": 2259,
+      "mappedPosition": 1901,
+      "agreesAtPosition": 1593,
+      "agreementStatus:verified-open": 884,
+      "agreementStatus:provisional-reference": 542,
+      "agreementStatus:cross-verified-open": 167,
+      "excludedNotStep": 194,
+      "currentElsewhere": 251,
+      "unmappedPosition": 358,
+      "missingCurrent": 57
+    },
+    "PHP": {
+      "versesCompared": 104,
+      "referenceAssociations": 1634,
+      "stepSupported": 1448,
+      "mappedPosition": 1111,
+      "agreesAtPosition": 970,
+      "agreementStatus:verified-open": 530,
+      "agreementStatus:provisional-reference": 346,
+      "agreementStatus:cross-verified-open": 94,
+      "excludedNotStep": 186,
+      "unmappedPosition": 337,
+      "currentElsewhere": 110,
+      "missingCurrent": 31
+    },
+    "COL": {
+      "versesCompared": 95,
+      "referenceAssociations": 1616,
+      "stepSupported": 1475,
+      "mappedPosition": 1181,
+      "agreesAtPosition": 952,
+      "agreementStatus:verified-open": 588,
+      "agreementStatus:provisional-reference": 271,
+      "agreementStatus:cross-verified-open": 93,
+      "unmappedPosition": 294,
+      "excludedNotStep": 141,
+      "missingCurrent": 45,
+      "currentElsewhere": 184
+    },
+    "1TH": {
+      "versesCompared": 89,
+      "referenceAssociations": 1493,
+      "stepSupported": 1290,
+      "mappedPosition": 1002,
+      "agreesAtPosition": 811,
+      "agreementStatus:verified-open": 460,
+      "currentElsewhere": 151,
+      "agreementStatus:provisional-reference": 257,
+      "agreementStatus:cross-verified-open": 94,
+      "excludedNotStep": 203,
+      "missingCurrent": 40,
+      "unmappedPosition": 288
+    },
+    "2TH": {
+      "versesCompared": 47,
+      "referenceAssociations": 833,
+      "stepSupported": 734,
+      "mappedPosition": 577,
+      "agreesAtPosition": 491,
+      "agreementStatus:verified-open": 262,
+      "currentElsewhere": 71,
+      "agreementStatus:provisional-reference": 170,
+      "excludedNotStep": 99,
+      "agreementStatus:cross-verified-open": 59,
+      "unmappedPosition": 157,
+      "missingCurrent": 15
+    },
+    "1TI": {
+      "versesCompared": 113,
+      "referenceAssociations": 1614,
+      "stepSupported": 1517,
+      "mappedPosition": 1207,
+      "agreesAtPosition": 1092,
+      "agreementStatus:verified-open": 569,
+      "agreementStatus:provisional-reference": 422,
+      "excludedNotStep": 97,
+      "missingCurrent": 26,
+      "agreementStatus:cross-verified-open": 101,
+      "unmappedPosition": 310,
+      "currentElsewhere": 89
+    },
+    "2TI": {
+      "versesCompared": 83,
+      "referenceAssociations": 1250,
+      "stepSupported": 1155,
+      "mappedPosition": 944,
+      "agreesAtPosition": 857,
+      "agreementStatus:verified-open": 486,
+      "agreementStatus:provisional-reference": 290,
+      "agreementStatus:cross-verified-open": 81,
+      "excludedNotStep": 95,
+      "currentElsewhere": 70,
+      "missingCurrent": 17,
+      "unmappedPosition": 211
+    },
+    "TIT": {
+      "versesCompared": 46,
+      "referenceAssociations": 664,
+      "stepSupported": 619,
+      "mappedPosition": 482,
+      "agreesAtPosition": 439,
+      "agreementStatus:verified-open": 234,
+      "agreementStatus:provisional-reference": 171,
+      "agreementStatus:cross-verified-open": 34,
+      "currentElsewhere": 39,
+      "unmappedPosition": 137,
+      "missingCurrent": 4,
+      "excludedNotStep": 45
+    },
+    "PHM": {
+      "versesCompared": 25,
+      "referenceAssociations": 339,
+      "stepSupported": 281,
+      "mappedPosition": 216,
+      "agreesAtPosition": 184,
+      "agreementStatus:verified-open": 107,
+      "agreementStatus:provisional-reference": 66,
+      "unmappedPosition": 65,
+      "currentElsewhere": 22,
+      "excludedNotStep": 58,
+      "missingCurrent": 10,
+      "agreementStatus:cross-verified-open": 11
+    },
+    "HEB": {
+      "versesCompared": 303,
+      "referenceAssociations": 4989,
+      "stepSupported": 4715,
+      "mappedPosition": 3631,
+      "currentElsewhere": 340,
+      "agreesAtPosition": 3173,
+      "agreementStatus:verified-open": 1755,
+      "unmappedPosition": 1084,
+      "agreementStatus:provisional-reference": 1100,
+      "agreementStatus:cross-verified-open": 318,
+      "excludedNotStep": 274,
+      "missingCurrent": 118
+    },
+    "JAS": {
+      "versesCompared": 108,
+      "referenceAssociations": 1760,
+      "stepSupported": 1627,
+      "mappedPosition": 1207,
+      "agreesAtPosition": 1080,
+      "agreementStatus:provisional-reference": 350,
+      "agreementStatus:verified-open": 628,
+      "agreementStatus:cross-verified-open": 102,
+      "unmappedPosition": 420,
+      "excludedNotStep": 133,
+      "currentElsewhere": 101,
+      "missingCurrent": 26
+    },
+    "1PE": {
+      "versesCompared": 105,
+      "referenceAssociations": 1720,
+      "stepSupported": 1602,
+      "mappedPosition": 1163,
+      "agreesAtPosition": 983,
+      "agreementStatus:verified-open": 544,
+      "agreementStatus:provisional-reference": 335,
+      "unmappedPosition": 439,
+      "agreementStatus:cross-verified-open": 104,
+      "excludedNotStep": 118,
+      "currentElsewhere": 139,
+      "missingCurrent": 41
+    },
+    "2PE": {
+      "versesCompared": 61,
+      "referenceAssociations": 1097,
+      "excludedNotStep": 93,
+      "stepSupported": 1004,
+      "mappedPosition": 708,
+      "agreesAtPosition": 619,
+      "agreementStatus:verified-open": 363,
+      "agreementStatus:provisional-reference": 210,
+      "unmappedPosition": 296,
+      "currentElsewhere": 72,
+      "agreementStatus:cross-verified-open": 46,
+      "missingCurrent": 17
+    },
+    "1JN": {
+      "versesCompared": 105,
+      "referenceAssociations": 2183,
+      "stepSupported": 1924,
+      "mappedPosition": 1692,
+      "currentElsewhere": 235,
+      "excludedNotStep": 259,
+      "agreesAtPosition": 1426,
+      "agreementStatus:verified-open": 895,
+      "missingCurrent": 31,
+      "unmappedPosition": 232,
+      "agreementStatus:provisional-reference": 375,
+      "agreementStatus:cross-verified-open": 156
+    },
+    "2JN": {
+      "versesCompared": 13,
+      "referenceAssociations": 249,
+      "stepSupported": 228,
+      "mappedPosition": 181,
+      "agreesAtPosition": 162,
+      "agreementStatus:verified-open": 90,
+      "agreementStatus:provisional-reference": 54,
+      "currentElsewhere": 15,
+      "agreementStatus:cross-verified-open": 18,
+      "unmappedPosition": 47,
+      "excludedNotStep": 21,
+      "missingCurrent": 4
+    },
+    "3JN": {
+      "versesCompared": 14,
+      "referenceAssociations": 220,
+      "stepSupported": 185,
+      "mappedPosition": 139,
+      "agreesAtPosition": 122,
+      "agreementStatus:verified-open": 71,
+      "agreementStatus:provisional-reference": 37,
+      "unmappedPosition": 46,
+      "missingCurrent": 7,
+      "agreementStatus:cross-verified-open": 14,
+      "excludedNotStep": 35,
+      "currentElsewhere": 10
+    },
+    "JUD": {
+      "versesCompared": 25,
+      "referenceAssociations": 452,
+      "stepSupported": 415,
+      "mappedPosition": 289,
+      "agreesAtPosition": 256,
+      "agreementStatus:verified-open": 150,
+      "agreementStatus:provisional-reference": 90,
+      "excludedNotStep": 37,
+      "unmappedPosition": 126,
+      "currentElsewhere": 23,
+      "agreementStatus:cross-verified-open": 16,
+      "missingCurrent": 10
+    },
+    "REV": {
+      "versesCompared": 404,
+      "referenceAssociations": 9872,
+      "stepSupported": 9385,
+      "mappedPosition": 7424,
+      "agreesAtPosition": 6143,
+      "agreementStatus:provisional-reference": 1692,
+      "agreementStatus:cross-verified-open": 753,
+      "missingCurrent": 165,
+      "agreementStatus:verified-open": 3698,
+      "unmappedPosition": 1961,
+      "currentElsewhere": 1116,
+      "excludedNotStep": 487
+    }
+  },
+  "conflictSamples": [
+    {
+      "reference": "MAT 1:2",
+      "word": "Isaac;",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2464"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:2",
+      "word": "Isaac,",
+      "suggestedStrong": "G1161",
+      "currentAtWord": [
+        "G2464"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:2",
+      "word": "Isaac,",
+      "suggestedStrong": "G1080",
+      "currentAtWord": [
+        "G2464"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:2",
+      "word": "Jacob;",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2384"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:2",
+      "word": "Jacob,",
+      "suggestedStrong": "G1080",
+      "currentAtWord": [
+        "G2384"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:2",
+      "word": "Judá",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2455"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:2",
+      "word": "hermanos.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G80"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:3",
+      "word": "y",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [
+        "G1161"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:3",
+      "word": "Zara,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2196"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:3",
+      "word": "Fares",
+      "suggestedStrong": "G5329",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:3",
+      "word": "Fares",
+      "suggestedStrong": "G1161",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:3",
+      "word": "Fares",
+      "suggestedStrong": "G1080",
+      "currentAtWord": [],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:3",
+      "word": "Esrom,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2074"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:3",
+      "word": "y",
+      "suggestedStrong": "G1161",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:3",
+      "word": "Esrom,",
+      "suggestedStrong": "G1080",
+      "currentAtWord": [
+        "G2074"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:3",
+      "word": "Aram.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G689"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:4",
+      "word": "Aminadab;",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G284"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:4",
+      "word": "Aminadab,",
+      "suggestedStrong": "G1161",
+      "currentAtWord": [
+        "G284"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:4",
+      "word": "Aminadab,",
+      "suggestedStrong": "G1080",
+      "currentAtWord": [
+        "G284"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:4",
+      "word": "Naasón,",
+      "suggestedStrong": "G3476",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:4",
+      "word": "Naasón,",
+      "suggestedStrong": "G1080",
+      "currentAtWord": [],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:4",
+      "word": "Salmón.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G4533"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:5",
+      "word": "Booz,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G1003"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:5",
+      "word": "Obed,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G5601"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:5",
+      "word": "Obed,",
+      "suggestedStrong": "G1080",
+      "currentAtWord": [
+        "G5601"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:6",
+      "word": "David.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G1138"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:6",
+      "word": "Urías.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3774"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:7",
+      "word": "Roboam;",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G4497"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:7",
+      "word": "Roboam,",
+      "suggestedStrong": "G1161",
+      "currentAtWord": [
+        "G4497"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:7",
+      "word": "Roboam,",
+      "suggestedStrong": "G1080",
+      "currentAtWord": [
+        "G4497"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:7",
+      "word": "Abías,",
+      "suggestedStrong": "G7",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:7",
+      "word": "Abías,",
+      "suggestedStrong": "G1080",
+      "currentAtWord": [],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:7",
+      "word": "Asa.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G760"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:8",
+      "word": "Josafat,",
+      "suggestedStrong": "G2498",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:8",
+      "word": "Josafat,",
+      "suggestedStrong": "G1161",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:8",
+      "word": "Josafat,",
+      "suggestedStrong": "G1080",
+      "currentAtWord": [],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:8",
+      "word": "Joram;",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2496"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:8",
+      "word": "Joram,",
+      "suggestedStrong": "G1080",
+      "currentAtWord": [
+        "G2496"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:8",
+      "word": "Uzías.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3604"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:9",
+      "word": "Jotam,",
+      "suggestedStrong": "G2488",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:9",
+      "word": "Jotam,",
+      "suggestedStrong": "G1161",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:9",
+      "word": "Jotam,",
+      "suggestedStrong": "G1080",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:9",
+      "word": "Acaz;",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:9",
+      "word": "Acaz;",
+      "suggestedStrong": "G881",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:9",
+      "word": "Ezequías.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G1478"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:10",
+      "word": "Manasés;",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3128"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:10",
+      "word": "Manasés,",
+      "suggestedStrong": "G1161",
+      "currentAtWord": [
+        "G3128"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:10",
+      "word": "Manasés,",
+      "suggestedStrong": "G1080",
+      "currentAtWord": [
+        "G3128"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:10",
+      "word": "Josías.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2502"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:11",
+      "word": "Jeconías",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2423"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:11",
+      "word": "hermanos",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G80"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:12",
+      "word": "Salatiel,",
+      "suggestedStrong": "G4528",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:12",
+      "word": "Salatiel,",
+      "suggestedStrong": "G1080",
+      "currentAtWord": [],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:12",
+      "word": "Zorobabel;",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2216"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:13",
+      "word": "Abiud;",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G10"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:13",
+      "word": "Abiud,",
+      "suggestedStrong": "G1161",
+      "currentAtWord": [
+        "G10"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:13",
+      "word": "Abiud,",
+      "suggestedStrong": "G1080",
+      "currentAtWord": [
+        "G10"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:13",
+      "word": "Eliaquim,",
+      "suggestedStrong": "G1662",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:13",
+      "word": "Eliaquim,",
+      "suggestedStrong": "G1080",
+      "currentAtWord": [],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:13",
+      "word": "Azor.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G107"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:14",
+      "word": "Sadoc;",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G4524"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:14",
+      "word": "Sadoc,",
+      "suggestedStrong": "G1161",
+      "currentAtWord": [
+        "G4524"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:14",
+      "word": "Sadoc,",
+      "suggestedStrong": "G1080",
+      "currentAtWord": [
+        "G4524"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:14",
+      "word": "Aquim,",
+      "suggestedStrong": "G885",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:14",
+      "word": "Aquim,",
+      "suggestedStrong": "G1080",
+      "currentAtWord": [],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:14",
+      "word": "Eliud.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G1664"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:15",
+      "word": "Eleazar;",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G1648"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:15",
+      "word": "Eleazar,",
+      "suggestedStrong": "G1161",
+      "currentAtWord": [
+        "G1648"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:15",
+      "word": "Eleazar,",
+      "suggestedStrong": "G1080",
+      "currentAtWord": [
+        "G1648"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:15",
+      "word": "Matán,",
+      "suggestedStrong": "G3157",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:15",
+      "word": "Matán,",
+      "suggestedStrong": "G1161",
+      "currentAtWord": [],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:15",
+      "word": "Matán,",
+      "suggestedStrong": "G1080",
+      "currentAtWord": [],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:15",
+      "word": "Jacob.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2384"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:16",
+      "word": "José,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2501"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:16",
+      "word": "llamado",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3004"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:17",
+      "word": "David,",
+      "suggestedStrong": "G1074",
+      "currentAtWord": [
+        "G1138"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:17",
+      "word": "catorce",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [
+        "G1180"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:17",
+      "word": "Babilonia",
+      "suggestedStrong": "G1074",
+      "currentAtWord": [
+        "G897"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:17",
+      "word": "Cristo.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G5547"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:17",
+      "word": "Cristo.",
+      "suggestedStrong": "G1074",
+      "currentAtWord": [
+        "G5547"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:18",
+      "word": "Jesucristo",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2424",
+        "G5547"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:18",
+      "word": "así:",
+      "suggestedStrong": "G1063",
+      "currentAtWord": [
+        "G3779"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:18",
+      "word": "madre,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3384"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:18",
+      "word": "con",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:21",
+      "word": "luz",
+      "suggestedStrong": "G5088",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:21",
+      "word": "nombre",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3686"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:21",
+      "word": "nombre",
+      "suggestedStrong": "G2424",
+      "currentAtWord": [
+        "G3686"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:21",
+      "word": "pueblo",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2992"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:21",
+      "word": "pecados.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G266"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:22",
+      "word": "para",
+      "suggestedStrong": "G2443",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:22",
+      "word": "del",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:23",
+      "word": "luz",
+      "suggestedStrong": "G5088",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:23",
+      "word": "hijo,",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [
+        "G5207"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:23",
+      "word": "Dios",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2316"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:24",
+      "word": "José",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2501"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:25",
+      "word": "Pero",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:25",
+      "word": "luz",
+      "suggestedStrong": "G5088",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 1:25",
+      "word": "hijo,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G5207"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:25",
+      "word": "nombre",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3686"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 1:25",
+      "word": "nombre",
+      "suggestedStrong": "G2424",
+      "currentAtWord": [
+        "G3686"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 2:1",
+      "word": "Judea,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2449"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 2:1",
+      "word": "Herodes,",
+      "suggestedStrong": "G2400",
+      "currentAtWord": [
+        "G2264"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 2:2",
+      "word": "estrella",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G792"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 2:5",
+      "word": "Judea,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2449"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 2:6",
+      "word": "pueblo",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2992"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 2:6",
+      "word": "Israel.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2474"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 2:8",
+      "word": "para",
+      "suggestedStrong": "G3704",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 2:11",
+      "word": "al",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 2:11",
+      "word": "madre.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3384"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 2:11",
+      "word": "tesoros",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2344"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 2:11",
+      "word": "oro,",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [
+        "G5557"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 2:13",
+      "word": "José",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2501"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 2:13",
+      "word": "madre",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3384"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 2:13",
+      "word": "niño",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3813"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 2:14",
+      "word": "madre,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3384"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 2:15",
+      "word": "por",
+      "suggestedStrong": "G1223",
+      "currentAtWord": [
+        "G5259"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 2:15",
+      "word": "del",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 2:15",
+      "word": "Hijo.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G5207"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 2:16",
+      "word": "niños",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [
+        "G3816"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 2:16",
+      "word": "alrededores",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 2:16",
+      "word": "alrededores",
+      "suggestedStrong": "G3725",
+      "currentAtWord": [],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 2:18",
+      "word": "hijos",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G5043"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 2:18",
+      "word": "hijos",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [
+        "G5043"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 2:19",
+      "word": "Herodes,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2264"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 2:20",
+      "word": "madre",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3384"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 2:20",
+      "word": "y",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 2:21",
+      "word": "madre,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3384"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 2:22",
+      "word": "Judea",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2449"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 2:22",
+      "word": "padre",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3962"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 2:22",
+      "word": "Galilea",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G1056"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 3:1",
+      "word": "días",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2250"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 3:1",
+      "word": "Judea,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2449"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 3:3",
+      "word": "sendas.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 3:3",
+      "word": "sendas.",
+      "suggestedStrong": "G5147",
+      "currentAtWord": [],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 3:4",
+      "word": "Juan",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2491"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 3:4",
+      "word": "comida",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G5160"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 3:5",
+      "word": "Judea",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2449"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 3:6",
+      "word": "pecados.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G266"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 3:7",
+      "word": "bautismo,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G908"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 3:7",
+      "word": "les",
+      "suggestedStrong": "G846",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 3:8",
+      "word": "arrepentimiento,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3341"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 3:9",
+      "word": "Dios",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2316"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 3:9",
+      "word": "Abraham",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G11"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 3:9",
+      "word": "piedras.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3037"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 3:12",
+      "word": "mano,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G5495"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 3:12",
+      "word": "era:",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G257"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 3:12",
+      "word": "trigo",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G4621"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 3:13",
+      "word": "Jesús",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2424"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 3:13",
+      "word": "Galilea",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G1056"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 3:13",
+      "word": "Jordán,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2446"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 3:13",
+      "word": "Jordán,",
+      "suggestedStrong": "G2491",
+      "currentAtWord": [
+        "G2446"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 3:14",
+      "word": "Juan",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2491"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 3:15",
+      "word": "Jesús",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2424"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 3:16",
+      "word": "Jesús",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2424"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 3:16",
+      "word": "Dios",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2316"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 3:17",
+      "word": "Hijo",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G5207"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 3:17",
+      "word": "amado,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G27"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:1",
+      "word": "el",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:1",
+      "word": "el",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:3",
+      "word": "Dios,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2316"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:3",
+      "word": "piedras",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3037"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:4",
+      "word": "de",
+      "suggestedStrong": "G1909",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:5",
+      "word": "el",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:6",
+      "word": "Dios,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2316"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 4:6",
+      "word": "está:",
+      "suggestedStrong": "G3754",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:6",
+      "word": "ángeles",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G32"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 4:6",
+      "word": "pie",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G4228"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 4:7",
+      "word": "Jesús",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2424"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 4:7",
+      "word": "Dios.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2316"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 4:10",
+      "word": "Jesús",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2424"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 4:10",
+      "word": "Dios",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2316"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 4:12",
+      "word": "Jesús",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2424"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 4:12",
+      "word": "Galilea;",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G1056"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 4:13",
+      "word": "Nazaret,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3478"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 4:14",
+      "word": "para",
+      "suggestedStrong": "G2443",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:15",
+      "word": "del",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:16",
+      "word": "asentado",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2521"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:16",
+      "word": "luz;",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [
+        "G5457"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:17",
+      "word": "Jesús",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2424"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:18",
+      "word": "al",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:18",
+      "word": "Galilea,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G1056"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:18",
+      "word": "llamado",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3004"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:18",
+      "word": "y",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:18",
+      "word": "hermano,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G80"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:21",
+      "word": "Zebedeo,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2199"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:21",
+      "word": "hermano,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G80"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:21",
+      "word": "padre,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3962"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:21",
+      "word": "redes;",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G1350"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:22",
+      "word": "padre,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3962"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:23",
+      "word": "Jesús",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2424"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:23",
+      "word": "Galilea,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G1056"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:24",
+      "word": "fama",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G189"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:24",
+      "word": "Siria;",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G4947"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:24",
+      "word": "y",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:24",
+      "word": "y",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:24",
+      "word": "tormentos,",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [
+        "G931"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:24",
+      "word": "endemoniados,",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [
+        "G1139"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:25",
+      "word": "Galilea,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G1056"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:25",
+      "word": "Galilea,",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [
+        "G1056"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:25",
+      "word": "Decápolis,",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [
+        "G1179"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 4:25",
+      "word": "Jerusalén,",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [
+        "G2414"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:1",
+      "word": "discípulos.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3101"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:3",
+      "word": "espíritu,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G4151"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:6",
+      "word": "justicia,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G1343"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:6",
+      "word": "saciados.",
+      "suggestedStrong": "G5526",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:8",
+      "word": "corazón,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2588"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:8",
+      "word": "Dios.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2316"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:15",
+      "word": "casa.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3614"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:16",
+      "word": "luz",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G5457"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:16",
+      "word": "para",
+      "suggestedStrong": "G3704",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:16",
+      "word": "obras",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2041"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:16",
+      "word": "Padre",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3962"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:18",
+      "word": "una",
+      "suggestedStrong": "G1520",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:19",
+      "word": "manera",
+      "suggestedStrong": "G3767",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:19",
+      "word": "mandamientos,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G1785"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:19",
+      "word": "enseñe,",
+      "suggestedStrong": "G1321",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:20",
+      "word": "justicia",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G1343"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:21",
+      "word": "juicio.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2920"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:22",
+      "word": "Pero",
+      "suggestedStrong": "G1161",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:22",
+      "word": "cualquiera",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3956"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:22",
+      "word": "hermano",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G80"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:22",
+      "word": "juicio;",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2920"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:22",
+      "word": "cualquiera",
+      "suggestedStrong": "G302",
+      "currentAtWord": [
+        "G3739"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 5:22",
+      "word": "cualquiera",
+      "suggestedStrong": "G302",
+      "currentAtWord": [
+        "G3739"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 5:22",
+      "word": "diga:",
+      "suggestedStrong": "G2036",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:22",
+      "word": "fuego",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G4442"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:23",
+      "word": "hermano",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G80"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:24",
+      "word": "ofrenda",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:24",
+      "word": "ofrenda",
+      "suggestedStrong": "G1435",
+      "currentAtWord": [],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 5:24",
+      "word": "hermano,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G80"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:24",
+      "word": "ofrenda.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:24",
+      "word": "ofrenda.",
+      "suggestedStrong": "G1435",
+      "currentAtWord": [],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 5:25",
+      "word": "adversario,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G476"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:27",
+      "word": "adulterio.",
+      "suggestedStrong": "G3431",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:28",
+      "word": "cualquiera",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3956"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 5:28",
+      "word": "codiciarla,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G1937",
+        "G846"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 5:28",
+      "word": "corazón.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2588"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 5:29",
+      "word": "ojo",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3788"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 5:29",
+      "word": "derecho",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G1188"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 5:29",
+      "word": "miembros,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3196"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 5:29",
+      "word": "y",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:29",
+      "word": "cuerpo",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G4983"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 5:30",
+      "word": "mano",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G5495"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 5:30",
+      "word": "miembros,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3196"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 5:30",
+      "word": "y",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:30",
+      "word": "cuerpo",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G4983"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 5:32",
+      "word": "repudia",
+      "suggestedStrong": "G630",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:33",
+      "word": "juramentos",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3727"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:34",
+      "word": "Dios;",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2316"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:35",
+      "word": "pies;",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G4228"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:36",
+      "word": "cabeza,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2776"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 5:37",
+      "word": "hablar",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3056"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:39",
+      "word": "la",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:40",
+      "word": "la",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:43",
+      "word": "prójimo,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G4139"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 5:43",
+      "word": "enemigo.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2190"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 5:44",
+      "word": "enemigos,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2190"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:45",
+      "word": "para",
+      "suggestedStrong": "G3704",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:45",
+      "word": "Padre",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3962"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:45",
+      "word": "sol",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2246"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:47",
+      "word": "hermanos,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G80"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 5:48",
+      "word": "Padre",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3962"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:1",
+      "word": "vistos",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2300"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:1",
+      "word": "de",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:1",
+      "word": "de",
+      "suggestedStrong": "G3962",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:1",
+      "word": "que",
+      "suggestedStrong": "G1722",
+      "currentAtWord": [
+        "G3588"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:1",
+      "word": "está",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:2",
+      "word": "des",
+      "suggestedStrong": "G4160",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:2",
+      "word": "recompensa.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3408"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:3",
+      "word": "des",
+      "suggestedStrong": "G4160",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:3",
+      "word": "izquierda",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G710"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 6:3",
+      "word": "derecha,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G1188"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 6:4",
+      "word": "para",
+      "suggestedStrong": "G3704",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:4",
+      "word": "limosna",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G1654"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:4",
+      "word": "secreto;",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2927"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:4",
+      "word": "Padre,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3962"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:5",
+      "word": "en",
+      "suggestedStrong": "G1722",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:5",
+      "word": "y",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:5",
+      "word": "las",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:5",
+      "word": "para",
+      "suggestedStrong": "G302",
+      "currentAtWord": [
+        "G3704"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 6:5",
+      "word": "recompensa.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:5",
+      "word": "recompensa.",
+      "suggestedStrong": "G3408",
+      "currentAtWord": [],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 6:6",
+      "word": "ores,",
+      "suggestedStrong": "G4336",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:6",
+      "word": "Padre",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3962"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:6",
+      "word": "secreto;",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2927"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:6",
+      "word": "Padre,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3962"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:7",
+      "word": "palabrería.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:7",
+      "word": "palabrería.",
+      "suggestedStrong": "G4180",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:8",
+      "word": "Padre",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3962"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 6:9",
+      "word": "nombre.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3686"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:10",
+      "word": "reino.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G932"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:10",
+      "word": "voluntad,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2307"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:12",
+      "word": "deudas,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3783"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 6:12",
+      "word": "deudores.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3781"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 6:13",
+      "word": "mal;",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G4190"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:13",
+      "word": "por",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G1519"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:13",
+      "word": "por",
+      "suggestedStrong": "G165",
+      "currentAtWord": [
+        "G1519"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:14",
+      "word": "ofensas,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3900"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:14",
+      "word": "Padre",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3962"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:14",
+      "word": "celestial",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3770"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:15",
+      "word": "Padre",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3962"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:15",
+      "word": "ofensas.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3900"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:16",
+      "word": "recompensa.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:16",
+      "word": "recompensa.",
+      "suggestedStrong": "G3408",
+      "currentAtWord": [],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 6:17",
+      "word": "cabeza",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2776"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 6:17",
+      "word": "rostro,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G4383"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 6:18",
+      "word": "Padre",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3962"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:18",
+      "word": "secreto;",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:18",
+      "word": "Padre,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3962"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:21",
+      "word": "tesoro,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2344"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 6:21",
+      "word": "corazón.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2588"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 6:22",
+      "word": "así",
+      "suggestedStrong": "G3767",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:22",
+      "word": "ojo",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3788"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:22",
+      "word": "cuerpo",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G4983"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:23",
+      "word": "ojo",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3788"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:23",
+      "word": "cuerpo",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G4983"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:23",
+      "word": "Así",
+      "suggestedStrong": "G3767",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:24",
+      "word": "al",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:25",
+      "word": "vida,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G5590"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:25",
+      "word": "cuerpo,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G4983"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:26",
+      "word": "Padre",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3962"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:26",
+      "word": "celestial",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3770"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:27",
+      "word": "estatura?",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2244"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 6:29",
+      "word": "gloria,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G1391"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 6:32",
+      "word": "Padre",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3962"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:32",
+      "word": "celestial",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3770"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:33",
+      "word": "Dios",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2316"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:33",
+      "word": "justicia,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G1343"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:34",
+      "word": "Así",
+      "suggestedStrong": "G3767",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:34",
+      "word": "traerá",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 6:34",
+      "word": "día",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2250"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:1",
+      "word": "para",
+      "suggestedStrong": "G2443",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:2",
+      "word": "con",
+      "suggestedStrong": "G1722",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:3",
+      "word": "hermano,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G80"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:3",
+      "word": "ojo?",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3788"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:4",
+      "word": "hermano:",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G80"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:4",
+      "word": "ojo,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:4",
+      "word": "ojo,",
+      "suggestedStrong": "G3788",
+      "currentAtWord": [],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 7:4",
+      "word": "el",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:5",
+      "word": "ojo,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3788"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:5",
+      "word": "sacar",
+      "suggestedStrong": "G1544",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:5",
+      "word": "hermano.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G80"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:6",
+      "word": "perlas",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3135"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:6",
+      "word": "pisoteen",
+      "suggestedStrong": "G2662",
+      "currentAtWord": [],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 7:6",
+      "word": "pisoteen",
+      "suggestedStrong": "G1722",
+      "currentAtWord": [],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 7:6",
+      "word": "pisoteen",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:6",
+      "word": "pisoteen",
+      "suggestedStrong": "G4228",
+      "currentAtWord": [],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 7:6",
+      "word": "pisoteen",
+      "suggestedStrong": "G846",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:9",
+      "word": "hijo",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G5207"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 7:9",
+      "word": "le",
+      "suggestedStrong": "G846",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:10",
+      "word": "¿O",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [
+        "G2228"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 7:10",
+      "word": "le",
+      "suggestedStrong": "G846",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:11",
+      "word": "hijos,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G5043"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:11",
+      "word": "Padre",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3962"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:12",
+      "word": "Así",
+      "suggestedStrong": "G3767",
+      "currentAtWord": [
+        "G3779"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:12",
+      "word": "que",
+      "suggestedStrong": "G2443",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:13",
+      "word": "la",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:16",
+      "word": "frutos",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2590"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 7:17",
+      "word": "da",
+      "suggestedStrong": "G4160",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:18",
+      "word": "dar",
+      "suggestedStrong": "G4160",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:20",
+      "word": "frutos",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2590"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 7:21",
+      "word": "Padre",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3962"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:22",
+      "word": "día:",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2250"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 7:22",
+      "word": "nombre,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3686"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 7:22",
+      "word": "nombre",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3686"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 7:22",
+      "word": "nombre",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3686"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 7:22",
+      "word": "muchos",
+      "suggestedStrong": "G4183",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:23",
+      "word": "maldad.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G458"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:24",
+      "word": "palabras",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3056"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:24",
+      "word": "casa",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3614"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:25",
+      "word": "ríos,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G4215"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:25",
+      "word": "vientos",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G417"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:25",
+      "word": "y",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:25",
+      "word": "casa,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3614"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:25",
+      "word": "y",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:26",
+      "word": "palabras",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3056"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:26",
+      "word": "casa",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3614"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:27",
+      "word": "lluvia,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G1028"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 7:27",
+      "word": "ríos,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G4215"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 7:27",
+      "word": "vientos",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G417"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 7:27",
+      "word": "y",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:27",
+      "word": "casa,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3614"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 7:27",
+      "word": "y",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:27",
+      "word": "ruina",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G4431"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 7:28",
+      "word": "Jesús",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2424"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 7:28",
+      "word": "palabras,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3056"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:1",
+      "word": "monte,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3735"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 8:3",
+      "word": "Jesús",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2424"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:3",
+      "word": "su",
+      "suggestedStrong": "G846",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:3",
+      "word": "lepra.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3014"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:4",
+      "word": "Jesús",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2424"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:5",
+      "word": "Jesús",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2424"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 8:6",
+      "word": "casa,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3614"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 8:7",
+      "word": "Jesús",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2424"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 8:8",
+      "word": "techo;",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G4721"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:8",
+      "word": "techo;",
+      "suggestedStrong": "G235",
+      "currentAtWord": [
+        "G4721"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 8:9",
+      "word": "siervo:",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G1401"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 8:10",
+      "word": "Jesús",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2424"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:12",
+      "word": "dientes.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3599"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:13",
+      "word": "Jesús",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2424"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:13",
+      "word": "hora.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G5610"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:14",
+      "word": "Jesús",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2424"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 8:14",
+      "word": "casa",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3614"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 8:15",
+      "word": "mano,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G5495"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:17",
+      "word": "para",
+      "suggestedStrong": "G3704",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:17",
+      "word": "enfermedades",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G769"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:17",
+      "word": "dolencias.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3554"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:18",
+      "word": "Jesús",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2424"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:18",
+      "word": "lado",
+      "suggestedStrong": "G4008",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:20",
+      "word": "Jesús",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2424"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:21",
+      "word": "discípulos",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3101"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 8:21",
+      "word": "padre.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3962"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 8:22",
+      "word": "Jesús",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2424"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:22",
+      "word": "muertos.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3498"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:23",
+      "word": "discípulos",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3101"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:25",
+      "word": "discípulos",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3101"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 8:26",
+      "word": "poca",
+      "suggestedStrong": "G3640",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:26",
+      "word": "los",
+      "suggestedStrong": "G417",
+      "currentAtWord": [
+        "G3588"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:26",
+      "word": "vientos",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G417"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:26",
+      "word": "al",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:28",
+      "word": "llegó",
+      "suggestedStrong": "G2064",
+      "currentAtWord": [],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 8:28",
+      "word": "llegó",
+      "suggestedStrong": "G846",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:28",
+      "word": "a",
+      "suggestedStrong": "G1519",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:28",
+      "word": "gadarenos,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G1046"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:28",
+      "word": "camino.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3598"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:29",
+      "word": "Y",
+      "suggestedStrong": "G2400",
+      "currentAtWord": [
+        "G2532"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 8:29",
+      "word": "¿Qué",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [
+        "G5101"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:29",
+      "word": "con",
+      "suggestedStrong": "G5207",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:29",
+      "word": "de",
+      "suggestedStrong": "G2064",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:29",
+      "word": "Dios?",
+      "suggestedStrong": "G5602",
+      "currentAtWord": [
+        "G2316"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:29",
+      "word": "venido",
+      "suggestedStrong": "G928",
+      "currentAtWord": [
+        "G2064"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 8:31",
+      "word": "cerdos.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G5519"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:32",
+      "word": "cerdos;",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G5519"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:32",
+      "word": "y",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:32",
+      "word": "un",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 8:34",
+      "word": "Jesús;",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2424"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:1",
+      "word": "ciudad.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G4172"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:2",
+      "word": "Jesús",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2424"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:2",
+      "word": "al",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:2",
+      "word": "pecados",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G266"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:4",
+      "word": "Jesús,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2424"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 9:4",
+      "word": "corazones?",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2588"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 9:6",
+      "word": "para",
+      "suggestedStrong": "G2443",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:6",
+      "word": "casa.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3624"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:7",
+      "word": "casa.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3624"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 9:8",
+      "word": "Dios,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2316"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:9",
+      "word": "dijo:",
+      "suggestedStrong": "G3004",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:10",
+      "word": "sentado",
+      "suggestedStrong": "G345",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:10",
+      "word": "la",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:10",
+      "word": "casa,",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [
+        "G3614"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:10",
+      "word": "y",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:10",
+      "word": "discípulos.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3101"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:11",
+      "word": "discípulos:",
+      "suggestedStrong": "G846",
+      "currentAtWord": [
+        "G3101"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 9:11",
+      "word": "Maestro",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G1320"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:12",
+      "word": "Jesús",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2424"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:13",
+      "word": "y",
+      "suggestedStrong": "G1161",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:14",
+      "word": "y",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:14",
+      "word": "discípulos",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3101"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:15",
+      "word": "Jesús",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2424"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:15",
+      "word": "los",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G5207"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:15",
+      "word": "les",
+      "suggestedStrong": "G575",
+      "currentAtWord": [],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 9:15",
+      "word": "les",
+      "suggestedStrong": "G846",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:16",
+      "word": "remiendo",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G4138"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:16",
+      "word": "remiendo",
+      "suggestedStrong": "G846",
+      "currentAtWord": [
+        "G4138"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 9:17",
+      "word": "se",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:17",
+      "word": "vino",
+      "suggestedStrong": "G1632",
+      "currentAtWord": [
+        "G3631"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:17",
+      "word": "se",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:17",
+      "word": "derrama",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G1632"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:17",
+      "word": "y",
+      "suggestedStrong": "G779",
+      "currentAtWord": [
+        "G2532"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:17",
+      "word": "se",
+      "suggestedStrong": "G235",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:17",
+      "word": "pierden.",
+      "suggestedStrong": "G906",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:17",
+      "word": "echan",
+      "suggestedStrong": "G3631",
+      "currentAtWord": [
+        "G906"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:17",
+      "word": "el",
+      "suggestedStrong": "G3501",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:17",
+      "word": "vino",
+      "suggestedStrong": "G1519",
+      "currentAtWord": [
+        "G3631"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:17",
+      "word": "nuevo",
+      "suggestedStrong": "G779",
+      "currentAtWord": [
+        "G3501"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:17",
+      "word": "en",
+      "suggestedStrong": "G2537",
+      "currentAtWord": [
+        "G1519"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:17",
+      "word": "odres",
+      "suggestedStrong": "G2532",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:17",
+      "word": "y",
+      "suggestedStrong": "G297",
+      "currentAtWord": [
+        "G2532"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:18",
+      "word": "les",
+      "suggestedStrong": "G846",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:18",
+      "word": "un",
+      "suggestedStrong": "G2400",
+      "currentAtWord": [
+        "G1520"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 9:18",
+      "word": "hija",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2364"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 9:18",
+      "word": "mano",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G5495"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 9:19",
+      "word": "levantó",
+      "suggestedStrong": "G1453",
+      "currentAtWord": [],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 9:19",
+      "word": "discípulos.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G3101"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 9:20",
+      "word": "manto,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:20",
+      "word": "manto,",
+      "suggestedStrong": "G2440",
+      "currentAtWord": [],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 9:22",
+      "word": "Jesús",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2424"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:22",
+      "word": "fe",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G4102"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:23",
+      "word": "Jesús",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2424"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:23",
+      "word": "la",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:24",
+      "word": "les",
+      "suggestedStrong": "G846",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:25",
+      "word": "echada",
+      "suggestedStrong": "G1544",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:25",
+      "word": "la",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:25",
+      "word": "niña",
+      "suggestedStrong": "G846",
+      "currentAtWord": [],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 9:26",
+      "word": "tierra.",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G1093"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 9:27",
+      "word": "Jesús",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2424"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 9:28",
+      "word": "Jesús",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G2424"
+      ],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:28",
+      "word": "dijeron:",
+      "suggestedStrong": "G3004",
+      "currentAtWord": [],
+      "category": "currentElsewhere"
+    },
+    {
+      "reference": "MAT 9:29",
+      "word": "ojos",
+      "suggestedStrong": "G846",
+      "currentAtWord": [
+        "G3788"
+      ],
+      "category": "missingCurrent"
+    },
+    {
+      "reference": "MAT 9:29",
+      "word": "fe,",
+      "suggestedStrong": "G3588",
+      "currentAtWord": [
+        "G4102"
+      ],
+      "category": "currentElsewhere"
+    }
+  ]
+}

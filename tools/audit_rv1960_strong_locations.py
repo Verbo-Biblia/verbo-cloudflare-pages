@@ -60,7 +60,8 @@ def load_reference(path: Path) -> dict[tuple[str, str, str], list[tuple[str, lis
         connection.close()
 
 
-def audit(module: Path, reference_path: Path, sample_limit: int) -> dict:
+def audit(module: Path, reference_path: Path, sample_limit: int,
+          scope: str = "all") -> dict:
     manifest = builder.load(module / "manifest.json")
     step = builder.parse_step()
     reference = load_reference(reference_path)
@@ -69,6 +70,9 @@ def audit(module: Path, reference_path: Path, sample_limit: int) -> dict:
     samples: list[dict] = []
 
     for book in manifest["books"]:
+        is_nt = book["number"] >= 40
+        if (scope == "nt" and not is_nt) or (scope == "ot" and is_nt):
+            continue
         payload = builder.load(module / book["file"])
         stats = Counter()
         for chapter, verses in payload["chapters"].items():
@@ -127,6 +131,7 @@ def audit(module: Path, reference_path: Path, sample_limit: int) -> dict:
             "use": "solo referencia posicional; no se copia texto ni se promueven estados",
         },
         "openVerification": "cada candidato fue filtrado por ocurrencia en STEPBible",
+        "scope": scope,
         "totals": dict(totals),
         "books": books,
         "conflictSamples": samples,
@@ -139,10 +144,11 @@ def main() -> None:
     parser.add_argument("--reference", type=Path, default=DEFAULT_REFERENCE)
     parser.add_argument("--output", type=Path)
     parser.add_argument("--sample-limit", type=int, default=200)
+    parser.add_argument("--scope", choices=("all", "ot", "nt"), default="all")
     args = parser.parse_args()
     if not args.reference.is_file():
         parser.error("--reference no existe")
-    report = audit(args.module, args.reference, max(0, args.sample_limit))
+    report = audit(args.module, args.reference, max(0, args.sample_limit), args.scope)
     rendered = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)
