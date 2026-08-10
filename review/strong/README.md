@@ -120,6 +120,12 @@ con dos observaciones abiertas: Mt 14:2 (`G1411`, «poderes») y Jn 8:44 (`G2398
 «suyo»). Se registraron con confianza 0,98. La cola NT queda en 3.170 asociaciones
 ausentes; véase `review/strong/open-evidence-additions-nt-low-frequency-report.json`.
 
+Una pasada independiente exigió coincidencia literal entre la palabra de Biblia
+Verbo y una glosa española STEPBible, además de destino vacío, código ausente y
+ocurrencia griega única. Añadió 29 asociaciones `verified-open` con su morfología
+STEPBible. La cola NT queda en 3.141 asociaciones ausentes; véase
+`review/strong/step-gloss-additions-nt-report.json`.
+
 No se debe modificar `reference`, `verse_text`, `word`, `strong`, `morphology`, `step_gloss`, `status` ni `confidence`, porque permiten importar después las decisiones de forma reproducible.
 
 `row_id`, `segment_index` y `code_index` identifican de forma inequívoca cada asociación. Tampoco deben editarse. El importador rechazará el CSV si el módulo cambió después de exportarlo.

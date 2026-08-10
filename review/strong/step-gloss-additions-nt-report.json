@@ -1,0 +1,221 @@
+{
+  "module": "/home/juan/Verbo/verbo-cloudflare-pages/biblia/modules/bibles/rv-verbo-strong-provisional",
+  "applied": true,
+  "scope": "Nuevo Testamento",
+  "referenceUse": "RV1960+ solo como guía posicional; no se copia texto",
+  "method": "destino vacío+código ausente+ocurrencia STEPBible única+glosa exacta",
+  "stats": {
+    "excludedShortOrStopword": 6184,
+    "positionalCandidates": 3603,
+    "excludedCodeAlreadyPresent": 1302,
+    "excludedNonUniqueStepOccurrence": 1911,
+    "excludedWithoutExactStepGloss": 361,
+    "addedAssociations": 29,
+    "changedBooks": 14
+  },
+  "samples": [
+    {
+      "reference": "MRK 1:35",
+      "word": "mañana,",
+      "strong": "G4404",
+      "stepGloss": "temprano en la mañana",
+      "morphology": "ADV"
+    },
+    {
+      "reference": "LUK 1:52",
+      "word": "poderosos,",
+      "strong": "G1413",
+      "stepGloss": "a poderosos",
+      "morphology": "N-APM"
+    },
+    {
+      "reference": "LUK 2:11",
+      "word": "nacido,",
+      "strong": "G5088",
+      "stepGloss": "fue nacido",
+      "morphology": "V-API-3S"
+    },
+    {
+      "reference": "LUK 3:1",
+      "word": "gobernador",
+      "strong": "G2230",
+      "stepGloss": "estando siendo gobernador",
+      "morphology": "V-PAP-GSM"
+    },
+    {
+      "reference": "LUK 6:15",
+      "word": "llamado",
+      "strong": "G2564",
+      "stepGloss": "estando siendo llamado",
+      "morphology": "V-PPP-ASM"
+    },
+    {
+      "reference": "LUK 19:2",
+      "word": "jefe",
+      "strong": "G754",
+      "stepGloss": "jefe de recaudadores de impuestos",
+      "morphology": "N-NSM"
+    },
+    {
+      "reference": "LUK 23:33",
+      "word": "llamado",
+      "strong": "G2564",
+      "stepGloss": "estando siendo llamado",
+      "morphology": "V-PPP-ASM"
+    },
+    {
+      "reference": "JHN 3:31",
+      "word": "arriba",
+      "strong": "G509",
+      "stepGloss": "desde arriba",
+      "morphology": "ADV"
+    },
+    {
+      "reference": "JHN 4:46",
+      "word": "vino.",
+      "strong": "G3631",
+      "stepGloss": "vino",
+      "morphology": "N-ASM"
+    },
+    {
+      "reference": "ACT 5:19",
+      "word": "Señor",
+      "strong": "G2962",
+      "stepGloss": "de Señor",
+      "morphology": "N-GSM-T"
+    },
+    {
+      "reference": "ACT 8:9",
+      "word": "magia",
+      "strong": "G3096",
+      "stepGloss": "estando practicando magia",
+      "morphology": "V-PAP-NSM"
+    },
+    {
+      "reference": "ACT 15:16",
+      "word": "caído;",
+      "strong": "G4098",
+      "stepGloss": "ha caído",
+      "morphology": "V-RAP-ASF"
+    },
+    {
+      "reference": "ACT 19:23",
+      "word": "tiempo",
+      "strong": "G2540",
+      "stepGloss": "tiempo señalado",
+      "morphology": "N-ASM"
+    },
+    {
+      "reference": "ROM 4:11",
+      "word": "contada",
+      "strong": "G3049",
+      "stepGloss": "ser contada",
+      "morphology": "V-APN"
+    },
+    {
+      "reference": "ROM 7:5",
+      "word": "fruto",
+      "strong": "G2592",
+      "stepGloss": "llevar fruto",
+      "morphology": "V-AAN"
+    },
+    {
+      "reference": "ROM 9:29",
+      "word": "semejantes",
+      "strong": "G3666",
+      "stepGloss": "fuimos hechos semejantes",
+      "morphology": "V-API-1P"
+    },
+    {
+      "reference": "ROM 11:24",
+      "word": "olivo",
+      "strong": "G1636",
+      "stepGloss": "olivo",
+      "morphology": "N-DSF"
+    },
+    {
+      "reference": "1CO 8:11",
+      "word": "débil,",
+      "strong": "G770",
+      "stepGloss": "estando débil",
+      "morphology": "V-PAP-NSM"
+    },
+    {
+      "reference": "PHP 1:23",
+      "word": "partir",
+      "strong": "G360",
+      "stepGloss": "partir (hacia la muerte)",
+      "morphology": "V-AAN"
+    },
+    {
+      "reference": "COL 2:7",
+      "word": "abundando",
+      "strong": "G4052",
+      "stepGloss": "estando abundando",
+      "morphology": "V-PAP-NPM"
+    },
+    {
+      "reference": "COL 4:10",
+      "word": "compañero",
+      "strong": "G4869",
+      "stepGloss": "compañero de cárcel",
+      "morphology": "N-NSM"
+    },
+    {
+      "reference": "TIT 3:3",
+      "word": "esclavos",
+      "strong": "G1398",
+      "stepGloss": "estando sirviendo como esclavos",
+      "morphology": "V-PAP-NPM"
+    },
+    {
+      "reference": "HEB 6:9",
+      "word": "salvación.",
+      "strong": "G4991",
+      "stepGloss": "de salvación",
+      "morphology": "N-GSF"
+    },
+    {
+      "reference": "JAS 1:11",
+      "word": "calor",
+      "strong": "G2742",
+      "stepGloss": "calor ardiente",
+      "morphology": "N-DSM"
+    },
+    {
+      "reference": "JAS 3:4",
+      "word": "pequeño",
+      "strong": "G1646",
+      "stepGloss": "más pequeño",
+      "morphology": "A-GSN"
+    },
+    {
+      "reference": "1PE 4:12",
+      "word": "prueba",
+      "strong": "G3986",
+      "stepGloss": "puesta a prueba",
+      "morphology": "N-ASM"
+    },
+    {
+      "reference": "2PE 2:18",
+      "word": "carne",
+      "strong": "G4561",
+      "stepGloss": "de carne",
+      "morphology": "N-GSF"
+    },
+    {
+      "reference": "REV 9:17",
+      "word": "azufre.",
+      "strong": "G2306",
+      "stepGloss": "amarillo de azufre",
+      "morphology": "A-APM"
+    },
+    {
+      "reference": "REV 18:12",
+      "word": "púrpura,",
+      "strong": "G4209",
+      "stepGloss": "de púrpura",
+      "morphology": "N-GSF"
+    }
+  ]
+}
