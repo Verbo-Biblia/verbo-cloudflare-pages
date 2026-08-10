@@ -7,16 +7,17 @@
     "verses": 31097,
     "taggedVerses": 29080,
     "associations": 253792,
-    "verifiedOpen": 81239,
-    "crossVerifiedOpen": 7120,
-    "provisionalReference": 165433,
+    "verifiedOpen": 81323,
+    "crossVerifiedOpen": 7504,
+    "provisionalReference": 164965,
     "textDifferencesFromBibliaVerbo": 0
   },
   "postProcessing": {
     "rv1960ConservativeAdditions": 27070,
-    "openCrosscheckPromotions": 1273,
+    "openCrosscheckPromotions": 1657,
     "ntExactStepGlossPromotions": 16088,
     "ntExactComposedStepGlossPromotions": 114,
+    "ntStepGlossInflectionPromotions": 84,
     "coveragePercent": 60.68,
     "auditReport": "review/strong/strong-audit.json"
   },

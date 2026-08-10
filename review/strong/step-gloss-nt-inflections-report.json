@@ -1,0 +1,771 @@
+{
+  "module": "/home/juan/Verbo/verbo-cloudflare-pages/biblia/modules/bibles/rv-verbo-strong-provisional",
+  "applied": true,
+  "scope": "Nuevo Testamento",
+  "minimumSimilarity": 0.94,
+  "method": "variante flexiva con prefijo común, misma ocurrencia Strong y morfología compatible",
+  "stats": {
+    "remainingProvisional": 15355,
+    "excludedShortOrStopword": 15798,
+    "promotedAssociations": 84,
+    "changedBooks": 18
+  },
+  "samples": [
+    {
+      "reference": "MAT 8:3",
+      "word": "extendió",
+      "strong": "G1614",
+      "stepGloss": "habiendo extendido",
+      "matchedGlossWord": "extendido",
+      "similarity": 0.9412,
+      "morphology": "V-AAP-NSM"
+    },
+    {
+      "reference": "MAT 13:18",
+      "word": "sembrador:",
+      "strong": "G4687",
+      "stepGloss": "habiendo sembrado",
+      "matchedGlossWord": "sembrado",
+      "similarity": 0.9412,
+      "morphology": "V-AAP-GSM"
+    },
+    {
+      "reference": "MAT 14:9",
+      "word": "juramento,",
+      "strong": "G3727",
+      "stepGloss": "juramentos",
+      "matchedGlossWord": "juramentos",
+      "similarity": 0.9474,
+      "morphology": "N-APM"
+    },
+    {
+      "reference": "MAT 20:21",
+      "word": "izquierda.",
+      "strong": "G2176",
+      "stepGloss": "izquierdas",
+      "matchedGlossWord": "izquierdas",
+      "similarity": 0.9474,
+      "morphology": "A-GPN"
+    },
+    {
+      "reference": "MAT 20:23",
+      "word": "izquierda",
+      "strong": "G2176",
+      "stepGloss": "izquierdas",
+      "matchedGlossWord": "izquierdas",
+      "similarity": 0.9474,
+      "morphology": "A-GPN"
+    },
+    {
+      "reference": "MAT 24:30",
+      "word": "aparecerá",
+      "strong": "G5316",
+      "stepGloss": "será hecha aparecer",
+      "matchedGlossWord": "aparecer",
+      "similarity": 0.9412,
+      "morphology": "V-2FPI-3S"
+    },
+    {
+      "reference": "MAT 25:33",
+      "word": "izquierda.",
+      "strong": "G2176",
+      "stepGloss": "izquierdas",
+      "matchedGlossWord": "izquierdas",
+      "similarity": 0.9474,
+      "morphology": "A-GPN"
+    },
+    {
+      "reference": "MAT 25:41",
+      "word": "izquierda:",
+      "strong": "G2176",
+      "stepGloss": "izquierdas",
+      "matchedGlossWord": "izquierdas",
+      "similarity": 0.9474,
+      "morphology": "A-GPN"
+    },
+    {
+      "reference": "MAT 26:21",
+      "word": "entregar.",
+      "strong": "G3860",
+      "stepGloss": "entregará",
+      "matchedGlossWord": "entregara",
+      "similarity": 0.9412,
+      "morphology": "V-FAI-3S"
+    },
+    {
+      "reference": "MAT 26:23",
+      "word": "entregar.",
+      "strong": "G3860",
+      "stepGloss": "entregará",
+      "matchedGlossWord": "entregara",
+      "similarity": 0.9412,
+      "morphology": "V-FAI-3S"
+    },
+    {
+      "reference": "MAT 27:3",
+      "word": "entregado,",
+      "strong": "G3860",
+      "stepGloss": "estando entregando",
+      "matchedGlossWord": "entregando",
+      "similarity": 0.9474,
+      "morphology": "V-PAP-NSM"
+    },
+    {
+      "reference": "MAT 27:4",
+      "word": "entregando",
+      "strong": "G3860",
+      "stepGloss": "habiendo entregado",
+      "matchedGlossWord": "entregado",
+      "similarity": 0.9474,
+      "morphology": "V-2AAP-NSM"
+    },
+    {
+      "reference": "MAT 27:38",
+      "word": "izquierda.",
+      "strong": "G2176",
+      "stepGloss": "izquierdas",
+      "matchedGlossWord": "izquierdas",
+      "similarity": 0.9474,
+      "morphology": "A-GPN"
+    },
+    {
+      "reference": "MRK 1:41",
+      "word": "extendió",
+      "strong": "G1614",
+      "stepGloss": "habiendo extendido",
+      "matchedGlossWord": "extendido",
+      "similarity": 0.9412,
+      "morphology": "V-AAP-NSM"
+    },
+    {
+      "reference": "MRK 10:40",
+      "word": "izquierda",
+      "strong": "G2176",
+      "stepGloss": "izquierdas",
+      "matchedGlossWord": "izquierdas",
+      "similarity": 0.9474,
+      "morphology": "A-GPN"
+    },
+    {
+      "reference": "MRK 10:50",
+      "word": "arrojando",
+      "strong": "G577",
+      "stepGloss": "habiendo arrojado completamente",
+      "matchedGlossWord": "arrojado",
+      "similarity": 0.9412,
+      "morphology": "V-2AAP-NSM"
+    },
+    {
+      "reference": "MRK 12:28",
+      "word": "respondido",
+      "strong": "G611",
+      "stepGloss": "respondió",
+      "matchedGlossWord": "respondio",
+      "similarity": 0.9474,
+      "morphology": "V-ADI-3S"
+    },
+    {
+      "reference": "MRK 12:34",
+      "word": "respondido",
+      "strong": "G611",
+      "stepGloss": "respondió",
+      "matchedGlossWord": "respondio",
+      "similarity": 0.9474,
+      "morphology": "V-ADI-3S"
+    },
+    {
+      "reference": "MRK 14:18",
+      "word": "entregar.",
+      "strong": "G3860",
+      "stepGloss": "entregará",
+      "matchedGlossWord": "entregara",
+      "similarity": 0.9412,
+      "morphology": "V-FAI-3S"
+    },
+    {
+      "reference": "MRK 14:47",
+      "word": "sacerdote,",
+      "strong": "G749",
+      "stepGloss": "jefe de sacerdotes",
+      "matchedGlossWord": "sacerdotes",
+      "similarity": 0.9474,
+      "morphology": "N-GSM"
+    },
+    {
+      "reference": "MRK 14:53",
+      "word": "sacerdote,",
+      "strong": "G749",
+      "stepGloss": "jefe de sacerdotes",
+      "matchedGlossWord": "sacerdotes",
+      "similarity": 0.9474,
+      "morphology": "N-ASM"
+    },
+    {
+      "reference": "MRK 14:54",
+      "word": "sacerdote,",
+      "strong": "G749",
+      "stepGloss": "jefe de sacerdotes",
+      "matchedGlossWord": "sacerdotes",
+      "similarity": 0.9474,
+      "morphology": "N-GSM"
+    },
+    {
+      "reference": "MRK 14:60",
+      "word": "sacerdote",
+      "strong": "G749",
+      "stepGloss": "jefe de sacerdotes",
+      "matchedGlossWord": "sacerdotes",
+      "similarity": 0.9474,
+      "morphology": "N-NSM"
+    },
+    {
+      "reference": "MRK 14:61",
+      "word": "sacerdote",
+      "strong": "G749",
+      "stepGloss": "jefe de sacerdotes",
+      "matchedGlossWord": "sacerdotes",
+      "similarity": 0.9474,
+      "morphology": "N-NSM"
+    },
+    {
+      "reference": "MRK 14:63",
+      "word": "sacerdote",
+      "strong": "G749",
+      "stepGloss": "jefe de sacerdotes",
+      "matchedGlossWord": "sacerdotes",
+      "similarity": 0.9474,
+      "morphology": "N-NSM"
+    },
+    {
+      "reference": "MRK 14:66",
+      "word": "sacerdote,",
+      "strong": "G749",
+      "stepGloss": "jefe de sacerdotes",
+      "matchedGlossWord": "sacerdotes",
+      "similarity": 0.9474,
+      "morphology": "N-GSM"
+    },
+    {
+      "reference": "MRK 15:27",
+      "word": "izquierda.",
+      "strong": "G2176",
+      "stepGloss": "izquierdas",
+      "matchedGlossWord": "izquierdas",
+      "similarity": 0.9474,
+      "morphology": "A-GPN"
+    },
+    {
+      "reference": "MRK 16:9",
+      "word": "apareció",
+      "strong": "G5316",
+      "stepGloss": "fue aparecido",
+      "matchedGlossWord": "aparecido",
+      "similarity": 0.9412,
+      "morphology": "V-2API-3S"
+    },
+    {
+      "reference": "LUK 23:33",
+      "word": "izquierda.",
+      "strong": "G710",
+      "stepGloss": "izquierdas",
+      "matchedGlossWord": "izquierdas",
+      "similarity": 0.9474,
+      "morphology": "A-GPN"
+    },
+    {
+      "reference": "JHN 3:13",
+      "word": "descendió",
+      "strong": "G2597",
+      "stepGloss": "habiendo descendido",
+      "matchedGlossWord": "descendido",
+      "similarity": 0.9474,
+      "morphology": "V-2AAP-NSM"
+    },
+    {
+      "reference": "JHN 6:41",
+      "word": "descendió",
+      "strong": "G2597",
+      "stepGloss": "habiendo descendido",
+      "matchedGlossWord": "descendido",
+      "similarity": 0.9474,
+      "morphology": "V-2AAP-NSM"
+    },
+    {
+      "reference": "JHN 6:58",
+      "word": "descendió",
+      "strong": "G2597",
+      "stepGloss": "habiendo descendido",
+      "matchedGlossWord": "descendido",
+      "similarity": 0.9474,
+      "morphology": "V-2AAP-NSM"
+    },
+    {
+      "reference": "JHN 6:64",
+      "word": "entregar.)",
+      "strong": "G3860",
+      "stepGloss": "entregará",
+      "matchedGlossWord": "entregara",
+      "similarity": 0.9412,
+      "morphology": "V-FAP-NSM"
+    },
+    {
+      "reference": "JHN 13:21",
+      "word": "entregar.",
+      "strong": "G3860",
+      "stepGloss": "entregará",
+      "matchedGlossWord": "entregara",
+      "similarity": 0.9412,
+      "morphology": "V-FAI-3S"
+    },
+    {
+      "reference": "JHN 14:26",
+      "word": "recordará",
+      "strong": "G5279",
+      "stepGloss": "hará recordar",
+      "matchedGlossWord": "recordar",
+      "similarity": 0.9412,
+      "morphology": "V-FAI-3S"
+    },
+    {
+      "reference": "JHN 16:2",
+      "word": "sinagogas;",
+      "strong": "G656",
+      "stepGloss": "Expulsados de sinagoga",
+      "matchedGlossWord": "sinagoga",
+      "similarity": 0.9412,
+      "morphology": "A-APM"
+    },
+    {
+      "reference": "ACT 7:6",
+      "word": "maltratarían",
+      "strong": "G2559",
+      "stepGloss": "maltratarán",
+      "matchedGlossWord": "maltrataran",
+      "similarity": 0.9565,
+      "morphology": "V-FAI-3P"
+    },
+    {
+      "reference": "ACT 9:31",
+      "word": "edificadas,",
+      "strong": "G3618",
+      "stepGloss": "estando siendo edificada",
+      "matchedGlossWord": "edificada",
+      "similarity": 0.9474,
+      "morphology": "V-PPP-NSF"
+    },
+    {
+      "reference": "ACT 20:15",
+      "word": "Navegando",
+      "strong": "G636",
+      "stepGloss": "habiendo navegado desde",
+      "matchedGlossWord": "navegado",
+      "similarity": 0.9412,
+      "morphology": "V-AAP-NPM"
+    },
+    {
+      "reference": "ACT 21:40",
+      "word": "permitió,",
+      "strong": "G2010",
+      "stepGloss": "Habiendo permitido",
+      "matchedGlossWord": "permitido",
+      "similarity": 0.9412,
+      "morphology": "V-AAP-GSM"
+    },
+    {
+      "reference": "ACT 22:16",
+      "word": "invocando",
+      "strong": "G1941",
+      "stepGloss": "habiendo para ti invocado",
+      "matchedGlossWord": "invocado",
+      "similarity": 0.9412,
+      "morphology": "V-AMP-NSM"
+    },
+    {
+      "reference": "ACT 23:4",
+      "word": "sacerdote",
+      "strong": "G749",
+      "stepGloss": "jefe de sacerdotes",
+      "matchedGlossWord": "sacerdotes",
+      "similarity": 0.9474,
+      "morphology": "N-ASM"
+    },
+    {
+      "reference": "ACT 23:5",
+      "word": "sacerdote,",
+      "strong": "G749",
+      "stepGloss": "jefe de sacerdotes",
+      "matchedGlossWord": "sacerdotes",
+      "similarity": 0.9474,
+      "morphology": "N-NSM"
+    },
+    {
+      "reference": "ACT 24:1",
+      "word": "sacerdote",
+      "strong": "G749",
+      "stepGloss": "jefe de sacerdotes",
+      "matchedGlossWord": "sacerdotes",
+      "similarity": 0.9474,
+      "morphology": "N-NSM"
+    },
+    {
+      "reference": "ROM 1:2",
+      "word": "prometido",
+      "strong": "G4279",
+      "stepGloss": "antes prometió",
+      "matchedGlossWord": "prometio",
+      "similarity": 0.9412,
+      "morphology": "V-ADI-3S"
+    },
+    {
+      "reference": "ROM 1:29",
+      "word": "contiendas,",
+      "strong": "G2054",
+      "stepGloss": "de contienda",
+      "matchedGlossWord": "contienda",
+      "similarity": 0.9474,
+      "morphology": "N-GSF"
+    },
+    {
+      "reference": "ROM 8:23",
+      "word": "primicias",
+      "strong": "G536",
+      "stepGloss": "primicia",
+      "matchedGlossWord": "primicia",
+      "similarity": 0.9412,
+      "morphology": "N-ASF"
+    },
+    {
+      "reference": "ROM 11:16",
+      "word": "primicias",
+      "strong": "G536",
+      "stepGloss": "primicia",
+      "matchedGlossWord": "primicia",
+      "similarity": 0.9412,
+      "morphology": "N-NSF"
+    },
+    {
+      "reference": "ROM 13:13",
+      "word": "contiendas",
+      "strong": "G2054",
+      "stepGloss": "a contienda",
+      "matchedGlossWord": "contienda",
+      "similarity": 0.9474,
+      "morphology": "N-DSF"
+    },
+    {
+      "reference": "1CO 3:3",
+      "word": "contiendas",
+      "strong": "G2054",
+      "stepGloss": "contienda",
+      "matchedGlossWord": "contienda",
+      "similarity": 0.9474,
+      "morphology": "N-NSF"
+    },
+    {
+      "reference": "1CO 4:17",
+      "word": "recordará",
+      "strong": "G363",
+      "stepGloss": "hará recordar",
+      "matchedGlossWord": "recordar",
+      "similarity": 0.9412,
+      "morphology": "V-FAI-3S"
+    },
+    {
+      "reference": "1CO 12:10",
+      "word": "discernimiento",
+      "strong": "G1253",
+      "stepGloss": "discernimientos",
+      "matchedGlossWord": "discernimientos",
+      "similarity": 0.9655,
+      "morphology": "N-NPF"
+    },
+    {
+      "reference": "1CO 15:20",
+      "word": "primicias",
+      "strong": "G536",
+      "stepGloss": "primicia",
+      "matchedGlossWord": "primicia",
+      "similarity": 0.9412,
+      "morphology": "N-NSF"
+    },
+    {
+      "reference": "1CO 15:23",
+      "word": "primicias;",
+      "strong": "G536",
+      "stepGloss": "primicia",
+      "matchedGlossWord": "primicia",
+      "similarity": 0.9412,
+      "morphology": "N-NSF"
+    },
+    {
+      "reference": "2CO 2:10",
+      "word": "perdonado,",
+      "strong": "G5483",
+      "stepGloss": "están perdonando en gracia",
+      "matchedGlossWord": "perdonando",
+      "similarity": 0.9474,
+      "morphology": "V-PNI-2P"
+    },
+    {
+      "reference": "2CO 4:16",
+      "word": "desgastando,",
+      "strong": "G1311",
+      "stepGloss": "está siendo desgastado",
+      "matchedGlossWord": "desgastado",
+      "similarity": 0.9524,
+      "morphology": "V-PPI-3S"
+    },
+    {
+      "reference": "2CO 12:20",
+      "word": "contiendas,",
+      "strong": "G2054",
+      "stepGloss": "contienda",
+      "matchedGlossWord": "contienda",
+      "similarity": 0.9474,
+      "morphology": "N-NSF"
+    },
+    {
+      "reference": "EPH 4:9",
+      "word": "descendido",
+      "strong": "G2597",
+      "stepGloss": "descendió",
+      "matchedGlossWord": "descendio",
+      "similarity": 0.9474,
+      "morphology": "V-2AAI-3S"
+    },
+    {
+      "reference": "EPH 4:10",
+      "word": "descendió,",
+      "strong": "G2597",
+      "stepGloss": "habiendo descendido",
+      "matchedGlossWord": "descendido",
+      "similarity": 0.9474,
+      "morphology": "V-2AAP-NSM"
+    },
+    {
+      "reference": "EPH 4:16",
+      "word": "coyunturas",
+      "strong": "G860",
+      "stepGloss": "coyuntura",
+      "matchedGlossWord": "coyuntura",
+      "similarity": 0.9474,
+      "morphology": "N-GSF"
+    },
+    {
+      "reference": "PHP 3:7",
+      "word": "ganancia,",
+      "strong": "G2771",
+      "stepGloss": "ganancias",
+      "matchedGlossWord": "ganancias",
+      "similarity": 0.9412,
+      "morphology": "N-NPN"
+    },
+    {
+      "reference": "COL 2:4",
+      "word": "persuasivas.",
+      "strong": "G4086",
+      "stepGloss": "habla persuasiva",
+      "matchedGlossWord": "persuasiva",
+      "similarity": 0.9524,
+      "morphology": "N-DSF"
+    },
+    {
+      "reference": "COL 2:8",
+      "word": "filosofías",
+      "strong": "G5385",
+      "stepGloss": "filosofía",
+      "matchedGlossWord": "filosofia",
+      "similarity": 0.9474,
+      "morphology": "N-GSF"
+    },
+    {
+      "reference": "COL 2:15",
+      "word": "triunfando",
+      "strong": "G2358",
+      "stepGloss": "habiendo triunfado sobre",
+      "matchedGlossWord": "triunfado",
+      "similarity": 0.9474,
+      "morphology": "V-AAP-NSM"
+    },
+    {
+      "reference": "COL 3:4",
+      "word": "manifestados",
+      "strong": "G5319",
+      "stepGloss": "sea manifestado",
+      "matchedGlossWord": "manifestado",
+      "similarity": 0.9565,
+      "morphology": "V-APS-3S"
+    },
+    {
+      "reference": "1TH 2:5",
+      "word": "lisonjeras,",
+      "strong": "G2850",
+      "stepGloss": "lisonjera",
+      "matchedGlossWord": "lisonjera",
+      "similarity": 0.9474,
+      "morphology": "N-GSF"
+    },
+    {
+      "reference": "1TI 5:21",
+      "word": "prejuicios",
+      "strong": "G4299",
+      "stepGloss": "prejuicio",
+      "matchedGlossWord": "prejuicio",
+      "similarity": 0.9474,
+      "morphology": "N-GSN"
+    },
+    {
+      "reference": "TIT 1:15",
+      "word": "contaminadas.",
+      "strong": "G3392",
+      "stepGloss": "ha sido contaminada",
+      "matchedGlossWord": "contaminada",
+      "similarity": 0.9565,
+      "morphology": "V-RPI-3S"
+    },
+    {
+      "reference": "TIT 3:15",
+      "word": "cretenses,",
+      "strong": "G2912",
+      "stepGloss": "cretense",
+      "matchedGlossWord": "cretense",
+      "similarity": 0.9412,
+      "morphology": "N-GPM-LG"
+    },
+    {
+      "reference": "HEB 4:12",
+      "word": "coyunturas",
+      "strong": "G719",
+      "stepGloss": "de coyuntura",
+      "matchedGlossWord": "coyuntura",
+      "similarity": 0.9474,
+      "morphology": "N-GPM"
+    },
+    {
+      "reference": "HEB 9:14",
+      "word": "conciencias",
+      "strong": "G4893",
+      "stepGloss": "conciencia",
+      "matchedGlossWord": "conciencia",
+      "similarity": 0.9524,
+      "morphology": "N-ASF"
+    },
+    {
+      "reference": "JAS 1:12",
+      "word": "prometido",
+      "strong": "G1861",
+      "stepGloss": "prometió",
+      "matchedGlossWord": "prometio",
+      "similarity": 0.9412,
+      "morphology": "V-ADI-3S"
+    },
+    {
+      "reference": "JAS 2:5",
+      "word": "prometido",
+      "strong": "G1861",
+      "stepGloss": "prometió",
+      "matchedGlossWord": "prometio",
+      "similarity": 0.9412,
+      "morphology": "V-ADI-3S"
+    },
+    {
+      "reference": "1PE 1:18",
+      "word": "corruptibles,",
+      "strong": "G5349",
+      "stepGloss": "a corruptible (cosa)",
+      "matchedGlossWord": "corruptible",
+      "similarity": 0.9565,
+      "morphology": "A-DPN"
+    },
+    {
+      "reference": "REV 5:8",
+      "word": "incienso,",
+      "strong": "G2368",
+      "stepGloss": "de inciensos",
+      "matchedGlossWord": "inciensos",
+      "similarity": 0.9412,
+      "morphology": "N-GPN"
+    },
+    {
+      "reference": "REV 8:3",
+      "word": "incienso",
+      "strong": "G2368",
+      "stepGloss": "inciensos",
+      "matchedGlossWord": "inciensos",
+      "similarity": 0.9412,
+      "morphology": "N-NPN"
+    },
+    {
+      "reference": "REV 8:4",
+      "word": "incienso",
+      "strong": "G2368",
+      "stepGloss": "inciensos",
+      "matchedGlossWord": "inciensos",
+      "similarity": 0.9412,
+      "morphology": "N-GPN"
+    },
+    {
+      "reference": "REV 8:7",
+      "word": "arrojados",
+      "strong": "G906",
+      "stepGloss": "fue arrojado",
+      "matchedGlossWord": "arrojado",
+      "similarity": 0.9412,
+      "morphology": "V-API-3S"
+    },
+    {
+      "reference": "REV 12:12",
+      "word": "descendido",
+      "strong": "G2597",
+      "stepGloss": "descendió",
+      "matchedGlossWord": "descendio",
+      "similarity": 0.9474,
+      "morphology": "V-2AAI-3S"
+    },
+    {
+      "reference": "REV 13:11",
+      "word": "semejantes",
+      "strong": "G3664",
+      "stepGloss": "semejante",
+      "matchedGlossWord": "semejante",
+      "similarity": 0.9474,
+      "morphology": "A-NPN"
+    },
+    {
+      "reference": "REV 14:4",
+      "word": "primicias",
+      "strong": "G536",
+      "stepGloss": "primicia",
+      "matchedGlossWord": "primicia",
+      "similarity": 0.9412,
+      "morphology": "N-NSF"
+    },
+    {
+      "reference": "REV 17:4",
+      "word": "preciosas",
+      "strong": "G5093",
+      "stepGloss": "preciosa",
+      "matchedGlossWord": "preciosa",
+      "similarity": 0.9412,
+      "morphology": "A-DSM"
+    },
+    {
+      "reference": "REV 18:12",
+      "word": "preciosas,",
+      "strong": "G5093",
+      "stepGloss": "preciosa",
+      "matchedGlossWord": "preciosa",
+      "similarity": 0.9412,
+      "morphology": "A-GSM"
+    },
+    {
+      "reference": "REV 18:16",
+      "word": "preciosas",
+      "strong": "G5093",
+      "stepGloss": "preciosa",
+      "matchedGlossWord": "preciosa",
+      "similarity": 0.9412,
+      "morphology": "A-DSM"
+    }
+  ]
+}

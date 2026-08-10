@@ -57,10 +57,19 @@ La verificación abierta por glosa exacta del Nuevo Testamento promovió otras 1
 asociaciones a `verified-open`: 16.088 de código único y 114 en 57 segmentos que
 componen exactamente «sino» a partir de las glosas `si` + `no`. Exige coincidencia
 literal normalizada con la glosa española STEPBible, la misma ocurrencia del código
-en orden y morfología compatible. Después de estos lotes quedan 165.433 asociaciones
+en orden y morfología compatible. Después de estos lotes quedaron 165.433 asociaciones
 `provisional-reference`. Los informes reproducibles están en
 `review/strong/step-gloss-nt-report.json` y
 `review/strong/step-gloss-nt-composition-report.json`.
+
+Al incorporar esas glosas como evidencia abierta, una nueva pasada corpus-wide con
+precisión del 100 % y al menos tres observaciones promovió 375 asociaciones más a
+`cross-verified-open`. Quedan 165.058 asociaciones `provisional-reference`.
+
+Una revisión posterior de variantes flexivas del Nuevo Testamento promovió 84
+asociaciones con prefijo común, similitud mínima del 94 %, misma ocurrencia y
+morfología compatible. La evidencia nueva permitió promover otras nueve relaciones
+corpus-wide inequívocas. Quedan 164.965 asociaciones `provisional-reference`.
 
 No se debe modificar `reference`, `verse_text`, `word`, `strong`, `morphology`, `step_gloss`, `status` ni `confidence`, porque permiten importar después las decisiones de forma reproducible.
 

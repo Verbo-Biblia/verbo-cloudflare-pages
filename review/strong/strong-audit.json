@@ -4,11 +4,11 @@
   "totals": {
     "verses": 31097,
     "taggedSegments": 250666,
-    "status:provisional-reference": 165433,
+    "status:provisional-reference": 164965,
     "associations": 253792,
     "taggedVerses": 29080,
-    "status:verified-open": 81239,
-    "status:cross-verified-open": 7120
+    "status:verified-open": 81323,
+    "status:cross-verified-open": 7504
   },
   "valid": true,
   "errorCount": 0,
@@ -16,11 +16,11 @@
     "GEN": {
       "verses": 1533,
       "taggedSegments": 11297,
-      "status:provisional-reference": 9548,
+      "status:provisional-reference": 9544,
       "associations": 11434,
       "taggedVerses": 1499,
       "status:verified-open": 1755,
-      "status:cross-verified-open": 131
+      "status:cross-verified-open": 135
     },
     "EXO": {
       "verses": 1213,
@@ -45,9 +45,9 @@
       "taggedSegments": 9424,
       "status:verified-open": 1785,
       "associations": 9541,
-      "status:provisional-reference": 7649,
+      "status:provisional-reference": 7646,
       "taggedVerses": 1243,
-      "status:cross-verified-open": 107
+      "status:cross-verified-open": 110
     },
     "DEU": {
       "verses": 959,
@@ -70,11 +70,11 @@
     "JDG": {
       "verses": 618,
       "taggedSegments": 5705,
-      "status:provisional-reference": 4724,
+      "status:provisional-reference": 4722,
       "associations": 5777,
       "status:verified-open": 931,
       "taggedVerses": 618,
-      "status:cross-verified-open": 122
+      "status:cross-verified-open": 124
     },
     "RUT": {
       "verses": 85,
@@ -88,20 +88,20 @@
     "1SA": {
       "verses": 809,
       "taggedSegments": 6822,
-      "status:provisional-reference": 5477,
+      "status:provisional-reference": 5467,
       "associations": 6888,
       "status:verified-open": 1135,
       "taggedVerses": 772,
-      "status:cross-verified-open": 276
+      "status:cross-verified-open": 286
     },
     "2SA": {
       "verses": 694,
       "taggedSegments": 5684,
-      "status:provisional-reference": 4581,
+      "status:provisional-reference": 4580,
       "associations": 5751,
       "status:verified-open": 1016,
       "taggedVerses": 650,
-      "status:cross-verified-open": 154
+      "status:cross-verified-open": 155
     },
     "1KI": {
       "verses": 816,
@@ -124,11 +124,11 @@
     "1CH": {
       "verses": 942,
       "taggedSegments": 5651,
-      "status:provisional-reference": 4280,
+      "status:provisional-reference": 4270,
       "associations": 5745,
       "status:verified-open": 1356,
       "taggedVerses": 823,
-      "status:cross-verified-open": 109
+      "status:cross-verified-open": 119
     },
     "2CH": {
       "verses": 821,
@@ -364,73 +364,73 @@
     "MAT": {
       "verses": 1071,
       "taggedSegments": 12531,
-      "status:provisional-reference": 4337,
+      "status:provisional-reference": 4307,
       "associations": 12672,
-      "status:verified-open": 7677,
+      "status:verified-open": 7690,
       "taggedVerses": 1071,
-      "status:cross-verified-open": 658
+      "status:cross-verified-open": 675
     },
     "MRK": {
       "verses": 678,
       "taggedSegments": 7409,
-      "status:verified-open": 4453,
+      "status:verified-open": 4468,
       "associations": 7522,
-      "status:provisional-reference": 2713,
+      "status:provisional-reference": 2684,
       "taggedVerses": 678,
-      "status:cross-verified-open": 356
+      "status:cross-verified-open": 370
     },
     "LUK": {
       "verses": 1151,
       "taggedSegments": 12467,
-      "status:verified-open": 7635,
+      "status:verified-open": 7636,
       "associations": 12696,
-      "status:cross-verified-open": 574,
-      "status:provisional-reference": 4487,
+      "status:cross-verified-open": 599,
+      "status:provisional-reference": 4461,
       "taggedVerses": 1150
     },
     "JHN": {
       "verses": 879,
       "taggedSegments": 10895,
-      "status:verified-open": 6843,
+      "status:verified-open": 6850,
       "associations": 11066,
-      "status:provisional-reference": 3739,
-      "status:cross-verified-open": 484,
+      "status:provisional-reference": 3698,
+      "status:cross-verified-open": 518,
       "taggedVerses": 878
     },
     "ACT": {
       "verses": 1006,
       "taggedSegments": 12510,
-      "status:cross-verified-open": 548,
+      "status:cross-verified-open": 590,
       "associations": 12737,
-      "status:verified-open": 7497,
-      "status:provisional-reference": 4692,
+      "status:verified-open": 7505,
+      "status:provisional-reference": 4642,
       "taggedVerses": 1006
     },
     "ROM": {
       "verses": 433,
       "taggedSegments": 5233,
-      "status:verified-open": 3083,
+      "status:verified-open": 3088,
       "associations": 5296,
-      "status:provisional-reference": 1897,
+      "status:provisional-reference": 1855,
       "taggedVerses": 430,
-      "status:cross-verified-open": 316
+      "status:cross-verified-open": 353
     },
     "1CO": {
       "verses": 437,
       "taggedSegments": 4953,
-      "status:verified-open": 3004,
+      "status:verified-open": 3009,
       "associations": 5011,
-      "status:provisional-reference": 1669,
+      "status:provisional-reference": 1641,
       "taggedVerses": 437,
-      "status:cross-verified-open": 338
+      "status:cross-verified-open": 361
     },
     "2CO": {
       "verses": 256,
       "taggedSegments": 3039,
-      "status:verified-open": 1756,
+      "status:verified-open": 1759,
       "associations": 3100,
-      "status:provisional-reference": 1201,
-      "status:cross-verified-open": 143,
+      "status:provisional-reference": 1182,
+      "status:cross-verified-open": 159,
       "taggedVerses": 255
     },
     "GAL": {
@@ -438,44 +438,44 @@
       "taggedSegments": 1706,
       "status:verified-open": 975,
       "associations": 1729,
-      "status:provisional-reference": 676,
-      "status:cross-verified-open": 78,
+      "status:provisional-reference": 664,
+      "status:cross-verified-open": 90,
       "taggedVerses": 149
     },
     "EPH": {
       "verses": 155,
       "taggedSegments": 1810,
-      "status:verified-open": 1061,
+      "status:verified-open": 1064,
       "associations": 1835,
-      "status:provisional-reference": 705,
-      "status:cross-verified-open": 69,
+      "status:provisional-reference": 689,
+      "status:cross-verified-open": 82,
       "taggedVerses": 155
     },
     "PHP": {
       "verses": 104,
       "taggedSegments": 1141,
-      "status:verified-open": 669,
+      "status:verified-open": 670,
       "associations": 1157,
-      "status:provisional-reference": 453,
-      "status:cross-verified-open": 35,
+      "status:provisional-reference": 448,
+      "status:cross-verified-open": 39,
       "taggedVerses": 102
     },
     "COL": {
       "verses": 95,
       "taggedSegments": 1182,
-      "status:verified-open": 766,
+      "status:verified-open": 770,
       "associations": 1190,
-      "status:provisional-reference": 390,
+      "status:provisional-reference": 379,
       "taggedVerses": 95,
-      "status:cross-verified-open": 34
+      "status:cross-verified-open": 41
     },
     "1TH": {
       "verses": 89,
       "taggedSegments": 1000,
-      "status:verified-open": 611,
+      "status:verified-open": 612,
       "associations": 1017,
-      "status:provisional-reference": 344,
-      "status:cross-verified-open": 62,
+      "status:provisional-reference": 338,
+      "status:cross-verified-open": 67,
       "taggedVerses": 89
     },
     "2TH": {
@@ -483,35 +483,35 @@
       "taggedSegments": 584,
       "status:verified-open": 341,
       "associations": 597,
-      "status:provisional-reference": 229,
-      "status:cross-verified-open": 27,
+      "status:provisional-reference": 222,
+      "status:cross-verified-open": 34,
       "taggedVerses": 47
     },
     "1TI": {
       "verses": 113,
       "taggedSegments": 1231,
-      "status:verified-open": 674,
+      "status:verified-open": 675,
       "associations": 1247,
-      "status:provisional-reference": 526,
+      "status:provisional-reference": 518,
       "taggedVerses": 113,
-      "status:cross-verified-open": 47
+      "status:cross-verified-open": 54
     },
     "2TI": {
       "verses": 83,
       "taggedSegments": 972,
       "status:verified-open": 581,
       "associations": 983,
-      "status:provisional-reference": 371,
-      "status:cross-verified-open": 31,
+      "status:provisional-reference": 365,
+      "status:cross-verified-open": 37,
       "taggedVerses": 83
     },
     "TIT": {
       "verses": 46,
       "taggedSegments": 519,
-      "status:verified-open": 297,
+      "status:verified-open": 299,
       "associations": 529,
-      "status:provisional-reference": 217,
-      "status:cross-verified-open": 15,
+      "status:provisional-reference": 211,
+      "status:cross-verified-open": 19,
       "taggedVerses": 46
     },
     "PHM": {
@@ -519,35 +519,35 @@
       "taggedSegments": 224,
       "status:verified-open": 140,
       "associations": 230,
-      "status:provisional-reference": 87,
+      "status:provisional-reference": 85,
       "taggedVerses": 25,
-      "status:cross-verified-open": 3
+      "status:cross-verified-open": 5
     },
     "HEB": {
       "verses": 303,
       "taggedSegments": 3628,
-      "status:verified-open": 2092,
+      "status:verified-open": 2094,
       "associations": 3666,
-      "status:provisional-reference": 1407,
-      "status:cross-verified-open": 167,
+      "status:provisional-reference": 1393,
+      "status:cross-verified-open": 179,
       "taggedVerses": 303
     },
     "JAS": {
       "verses": 108,
       "taggedSegments": 1207,
-      "status:provisional-reference": 418,
+      "status:provisional-reference": 401,
       "associations": 1218,
-      "status:verified-open": 746,
-      "status:cross-verified-open": 54,
+      "status:verified-open": 748,
+      "status:cross-verified-open": 69,
       "taggedVerses": 108
     },
     "1PE": {
       "verses": 105,
       "taggedSegments": 1171,
-      "status:verified-open": 679,
+      "status:verified-open": 680,
       "associations": 1197,
-      "status:provisional-reference": 472,
-      "status:cross-verified-open": 46,
+      "status:provisional-reference": 457,
+      "status:cross-verified-open": 60,
       "taggedVerses": 105
     },
     "2PE": {
@@ -555,26 +555,26 @@
       "taggedSegments": 716,
       "status:verified-open": 444,
       "associations": 733,
-      "status:provisional-reference": 262,
-      "status:cross-verified-open": 27,
+      "status:provisional-reference": 259,
+      "status:cross-verified-open": 30,
       "taggedVerses": 61
     },
     "1JN": {
       "verses": 105,
       "taggedSegments": 1601,
-      "status:provisional-reference": 504,
+      "status:provisional-reference": 494,
       "associations": 1626,
       "status:verified-open": 1033,
       "taggedVerses": 105,
-      "status:cross-verified-open": 89
+      "status:cross-verified-open": 99
     },
     "2JN": {
       "verses": 13,
       "taggedSegments": 173,
       "status:verified-open": 99,
       "associations": 176,
-      "status:provisional-reference": 70,
-      "status:cross-verified-open": 7,
+      "status:provisional-reference": 68,
+      "status:cross-verified-open": 9,
       "taggedVerses": 13
     },
     "3JN": {
@@ -582,27 +582,27 @@
       "taggedSegments": 149,
       "status:verified-open": 86,
       "associations": 152,
-      "status:provisional-reference": 57,
+      "status:provisional-reference": 56,
       "taggedVerses": 14,
-      "status:cross-verified-open": 9
+      "status:cross-verified-open": 10
     },
     "JUD": {
       "verses": 25,
       "taggedSegments": 286,
       "status:verified-open": 174,
       "associations": 294,
-      "status:provisional-reference": 114,
+      "status:provisional-reference": 113,
       "taggedVerses": 24,
-      "status:cross-verified-open": 6
+      "status:cross-verified-open": 7
     },
     "REV": {
       "verses": 404,
       "taggedSegments": 6872,
-      "status:provisional-reference": 2264,
+      "status:provisional-reference": 2233,
       "associations": 6975,
-      "status:verified-open": 4289,
+      "status:verified-open": 4299,
       "taggedVerses": 404,
-      "status:cross-verified-open": 422
+      "status:cross-verified-open": 443
     }
   }
 }

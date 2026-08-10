@@ -413,10 +413,10 @@
   "referenceSource": "Bible SuperSearch rv_1909_strongs.sqlite (uso no comercial); RV1960+.bbl.mybible (solo guía posicional local)",
   "strongEditorAttribution": "Etiquetado RV1909 de referencia desarrollado por Rubén Gómez",
   "crossVerification": {
-    "method": "dominant-open-word-code-crosscheck",
-    "minimumOccurrences": 5,
-    "minimumPrecision": 0.99,
-    "promotedAssociations": 1273
+    "method": "unique-open-word-code-crosscheck",
+    "minimumOccurrences": 3,
+    "minimumPrecision": 1.0,
+    "promotedAssociations": 1657
   },
   "rv1960ConservativeMerge": {
     "method": "empty-target+code-absent-from-verse+step-verse",
@@ -426,8 +426,9 @@
   "stepGlossVerification": {
     "scope": "Nuevo Testamento",
     "method": "step-spanish-gloss-exact",
-    "promotedAssociations": 16202,
+    "promotedAssociations": 16286,
     "exactSingleCode": 16088,
-    "exactComposedMultiCode": 114
+    "exactComposedMultiCode": 114,
+    "highSimilarityInflection": 84
   }
 }
