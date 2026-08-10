@@ -78,6 +78,12 @@ estar presente en STEPBible para el versículo candidato. Promovió 6.776 asocia
 adicionales. Quedan 158.189 asociaciones `provisional-reference`; el informe está en
 `review/strong/open-pair-crosscheck-report.json`.
 
+Un segundo lote conservador aplicó el mismo cruce a pares con tres o cuatro
+observaciones abiertas, excluyendo palabras funcionales y formas de menos de tres
+letras. Promovió 145 asociaciones con confianza 0,98. Quedan 158.044 asociaciones
+`provisional-reference`; el informe reproducible está en
+`review/strong/open-pair-crosscheck-low-frequency-report.json`.
+
 No se debe modificar `reference`, `verse_text`, `word`, `strong`, `morphology`, `step_gloss`, `status` ni `confidence`, porque permiten importar después las decisiones de forma reproducible.
 
 `row_id`, `segment_index` y `code_index` identifican de forma inequívoca cada asociación. Tampoco deben editarse. El importador rechazará el CSV si el módulo cambió después de exportarlo.

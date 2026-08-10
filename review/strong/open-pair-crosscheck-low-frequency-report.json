@@ -1,0 +1,888 @@
+{
+  "module": "/home/juan/Verbo/verbo-cloudflare-pages/biblia/modules/bibles/rv-verbo-strong-provisional",
+  "applied": true,
+  "minimumOccurrences": 3,
+  "minimumTokenLength": 3,
+  "excludeStopwords": true,
+  "observedPairs": 5304,
+  "method": "par palabra-código observado repetidamente como verified-open",
+  "stats": {
+    "remainingProvisional": 115648,
+    "excludedShortOrStopword": 36404,
+    "promotedAssociations": 145,
+    "evidenceAtLeast:3": 145,
+    "changedBooks": 20
+  },
+  "samples": [
+    {
+      "reference": "ISA 21:13",
+      "word": "Arabia:",
+      "strong": "H6152",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "ISA 21:13",
+      "word": "Arabia.",
+      "strong": "H6152",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "MAT 5:33",
+      "word": "sino",
+      "strong": "G1161",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "MAT 5:39",
+      "word": "malo;",
+      "strong": "G4190",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "MAT 6:24",
+      "word": "señores,",
+      "strong": "G2962",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "MAT 8:13",
+      "word": "sano",
+      "strong": "G2390",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "MAT 9:16",
+      "word": "viejo,",
+      "strong": "G3820",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "MAT 11:2",
+      "word": "envió",
+      "strong": "G3992",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "MAT 19:21",
+      "word": "ven,",
+      "strong": "G1204",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "MAT 19:27",
+      "word": "dejado",
+      "strong": "G863",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "MAT 19:27",
+      "word": "seguido;",
+      "strong": "G190",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "MAT 19:29",
+      "word": "dejado",
+      "strong": "G863",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "MAT 24:44",
+      "word": "vendrá",
+      "strong": "G2064",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "MAT 25:26",
+      "word": "malo",
+      "strong": "G4190",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "MAT 26:15",
+      "word": "plata.",
+      "strong": "G694",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "MAT 27:3",
+      "word": "plata",
+      "strong": "G694",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "MAT 27:5",
+      "word": "plata",
+      "strong": "G694",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "MAT 27:6",
+      "word": "plata",
+      "strong": "G694",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "MAT 27:9",
+      "word": "plata,",
+      "strong": "G694",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "MAT 27:55",
+      "word": "seguido",
+      "strong": "G190",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "MAT 27:59",
+      "word": "limpia",
+      "strong": "G2513",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "MRK 2:21",
+      "word": "viejo;",
+      "strong": "G3820",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "MRK 5:1",
+      "word": "región",
+      "strong": "G5561",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "MRK 5:10",
+      "word": "región.",
+      "strong": "G5561",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "MRK 10:21",
+      "word": "ven,",
+      "strong": "G1204",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "MRK 10:28",
+      "word": "dejado",
+      "strong": "G863",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "MRK 10:29",
+      "word": "dejado",
+      "strong": "G863",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "MRK 13:35",
+      "word": "vendrá",
+      "strong": "G2064",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "MRK 15:41",
+      "word": "seguido",
+      "strong": "G190",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "LUK 2:31",
+      "word": "preparado",
+      "strong": "G2090",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "LUK 4:26",
+      "word": "ninguna",
+      "strong": "G3762",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "LUK 5:5",
+      "word": "red.",
+      "strong": "G1350",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "LUK 5:36",
+      "word": "viejo;",
+      "strong": "G3820",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "LUK 7:7",
+      "word": "sano.",
+      "strong": "G2390",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "LUK 11:26",
+      "word": "peor",
+      "strong": "G5501",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "LUK 12:40",
+      "word": "vendrá",
+      "strong": "G2064",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "LUK 16:13",
+      "word": "señores,",
+      "strong": "G2962",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "LUK 16:24",
+      "word": "llama.",
+      "strong": "G5395",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "LUK 17:20",
+      "word": "vendrá",
+      "strong": "G2064",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "LUK 17:22",
+      "word": "Vendrá",
+      "strong": "G2064",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "LUK 18:22",
+      "word": "ven,",
+      "strong": "G1204",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "LUK 18:28",
+      "word": "seguido.",
+      "strong": "G190",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "LUK 18:29",
+      "word": "dejado",
+      "strong": "G863",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "LUK 23:4",
+      "word": "ninguna",
+      "strong": "G3762",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "LUK 24:1",
+      "word": "preparado.",
+      "strong": "G2090",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "JHN 1:33",
+      "word": "envió",
+      "strong": "G3992",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 2:6",
+      "word": "cada",
+      "strong": "G303",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 3:19",
+      "word": "malas.",
+      "strong": "G4190",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "JHN 4:34",
+      "word": "envió,",
+      "strong": "G3992",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 5:23",
+      "word": "envió.",
+      "strong": "G3992",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 5:24",
+      "word": "envió",
+      "strong": "G3992",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 5:30",
+      "word": "envió.",
+      "strong": "G3992",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 5:37",
+      "word": "envió",
+      "strong": "G3992",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 6:38",
+      "word": "envió.",
+      "strong": "G3992",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 6:39",
+      "word": "envió:",
+      "strong": "G3992",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 6:44",
+      "word": "envió",
+      "strong": "G3992",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 7:7",
+      "word": "malas.",
+      "strong": "G4190",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "JHN 7:16",
+      "word": "envió.",
+      "strong": "G3992",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 7:18",
+      "word": "envió,",
+      "strong": "G3992",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 7:28",
+      "word": "envió",
+      "strong": "G3992",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 7:33",
+      "word": "envió.",
+      "strong": "G3992",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 8:16",
+      "word": "envió.",
+      "strong": "G3992",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 8:18",
+      "word": "envió.",
+      "strong": "G3992",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 8:26",
+      "word": "envió",
+      "strong": "G3992",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 8:29",
+      "word": "envió",
+      "strong": "G3992",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 8:29",
+      "word": "dejado",
+      "strong": "G863",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "JHN 9:4",
+      "word": "envió,",
+      "strong": "G3992",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 10:41",
+      "word": "ninguna",
+      "strong": "G3762",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 11:56",
+      "word": "vendrá",
+      "strong": "G2064",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "JHN 12:44",
+      "word": "envió;",
+      "strong": "G3992",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 12:45",
+      "word": "envió.",
+      "strong": "G3992",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 12:49",
+      "word": "envió",
+      "strong": "G3992",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 13:1",
+      "word": "amado",
+      "strong": "G25",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 13:16",
+      "word": "envió.",
+      "strong": "G3992",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 13:20",
+      "word": "envió.",
+      "strong": "G3992",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 13:34",
+      "word": "amado,",
+      "strong": "G25",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 14:10",
+      "word": "sino",
+      "strong": "G1161",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "JHN 14:24",
+      "word": "envió.",
+      "strong": "G3992",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 15:9",
+      "word": "amado;",
+      "strong": "G25",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 15:12",
+      "word": "amado.",
+      "strong": "G25",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 16:5",
+      "word": "envió,",
+      "strong": "G3992",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 17:23",
+      "word": "amado",
+      "strong": "G25",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 17:23",
+      "word": "amado",
+      "strong": "G25",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 17:26",
+      "word": "amado",
+      "strong": "G25",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 20:21",
+      "word": "envió",
+      "strong": "G3992",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "ACT 1:11",
+      "word": "visto",
+      "strong": "G2300",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "ACT 7:34",
+      "word": "ven,",
+      "strong": "G1204",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "ACT 8:34",
+      "word": "algún",
+      "strong": "G5100",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "ACT 10:8",
+      "word": "todo,",
+      "strong": "G537",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "ACT 11:10",
+      "word": "todo",
+      "strong": "G537",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "ACT 12:14",
+      "word": "sino",
+      "strong": "G1161",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "ACT 15:9",
+      "word": "ninguna",
+      "strong": "G3762",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "ACT 15:21",
+      "word": "antiguos,",
+      "strong": "G744",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "ACT 18:14",
+      "word": "algún",
+      "strong": "G5100",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "ACT 19:15",
+      "word": "malo",
+      "strong": "G4190",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "ACT 19:16",
+      "word": "malo",
+      "strong": "G4190",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "ACT 25:5",
+      "word": "algún",
+      "strong": "G5100",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "ACT 25:19",
+      "word": "sino",
+      "strong": "G1161",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "ACT 26:18",
+      "word": "reciban,",
+      "strong": "G2983",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "ACT 28:21",
+      "word": "algún",
+      "strong": "G5100",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "ROM 1:11",
+      "word": "algún",
+      "strong": "G5100",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "ROM 4:5",
+      "word": "sino",
+      "strong": "G1161",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "ROM 9:7",
+      "word": "llamada",
+      "strong": "G2564",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "ROM 12:18",
+      "word": "paz",
+      "strong": "G1514",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "1CO 2:8",
+      "word": "conoció,",
+      "strong": "G1097",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "1CO 2:9",
+      "word": "preparado",
+      "strong": "G2090",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "1CO 7:37",
+      "word": "sino",
+      "strong": "G1161",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "1CO 10:27",
+      "word": "algún",
+      "strong": "G5100",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "1CO 14:24",
+      "word": "algún",
+      "strong": "G5100",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "1CO 15:54",
+      "word": "vestido",
+      "strong": "G1746",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "1CO 15:54",
+      "word": "vestido",
+      "strong": "G1746",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "1CO 16:7",
+      "word": "algún",
+      "strong": "G5100",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "2CO 5:21",
+      "word": "conoció",
+      "strong": "G1097",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "2CO 10:15",
+      "word": "sino",
+      "strong": "G1161",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "2CO 12:15",
+      "word": "amado",
+      "strong": "G25",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "GAL 1:4",
+      "word": "malo,",
+      "strong": "G4190",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "EPH 4:15",
+      "word": "sino",
+      "strong": "G1161",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "EPH 6:13",
+      "word": "malo,",
+      "strong": "G4190",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "EPH 6:13",
+      "word": "todo,",
+      "strong": "G537",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "PHP 2:1",
+      "word": "algún",
+      "strong": "G5100",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "PHP 2:25",
+      "word": "necesidades,",
+      "strong": "G5532",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "PHP 3:12",
+      "word": "sino",
+      "strong": "G1161",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "1TH 5:2",
+      "word": "vendrá",
+      "strong": "G2064",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "1TH 5:3",
+      "word": "dolores",
+      "strong": "G5604",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "1TI 2:14",
+      "word": "sino",
+      "strong": "G1161",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "1TI 5:16",
+      "word": "algún",
+      "strong": "G5100",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "1TI 6:4",
+      "word": "malas",
+      "strong": "G4190",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "TIT 3:12",
+      "word": "envíe",
+      "strong": "G3992",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "HEB 1:9",
+      "word": "amado",
+      "strong": "G25",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "HEB 7:3",
+      "word": "sino",
+      "strong": "G1161",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "HEB 9:14",
+      "word": "mancha",
+      "strong": "G299",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "HEB 10:27",
+      "word": "sino",
+      "strong": "G1161",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "HEB 11:16",
+      "word": "preparado",
+      "strong": "G2090",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "HEB 11:18",
+      "word": "llamada",
+      "strong": "G2564",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "1PE 2:23",
+      "word": "sino",
+      "strong": "G1161",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "2PE 2:20",
+      "word": "peor",
+      "strong": "G5501",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "1JN 4:11",
+      "word": "amado,",
+      "strong": "G25",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "1JN 5:20",
+      "word": "conocer",
+      "strong": "G1097",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "REV 2:4",
+      "word": "dejado",
+      "strong": "G863",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "REV 3:9",
+      "word": "amado.",
+      "strong": "G25",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "REV 4:7",
+      "word": "becerro;",
+      "strong": "G3448",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "REV 4:7",
+      "word": "cuarto",
+      "strong": "G5067",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "REV 6:7",
+      "word": "cuarto",
+      "strong": "G5067",
+      "verifiedOpenObservations": 4
+    },
+    {
+      "reference": "REV 9:8",
+      "word": "cabello",
+      "strong": "G2359",
+      "verifiedOpenObservations": 3
+    },
+    {
+      "reference": "REV 12:4",
+      "word": "estaba",
+      "strong": "G3195",
+      "verifiedOpenObservations": 4
+    }
+  ]
+}
