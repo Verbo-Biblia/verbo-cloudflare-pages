@@ -1,0 +1,137 @@
+{
+  "module": "/home/juan/Verbo/verbo-cloudflare-pages/biblia/modules/bibles/rv-verbo-strong-provisional",
+  "applied": true,
+  "scope": "Nuevo Testamento",
+  "referenceUse": "RV1960+ solo como guía posicional; no se copia texto",
+  "minimumVerifiedOpenObservations": 3,
+  "uniqueOpenPairs": 1250,
+  "stats": {
+    "positionalCandidates": 9824,
+    "excludedCodeAlreadyPresent": 4390,
+    "excludedWithoutUniqueOpenPair": 5354,
+    "excludedNonUniqueStepOccurrence": 63,
+    "addedAssociations": 17,
+    "changedBooks": 9
+  },
+  "samples": [
+    {
+      "reference": "MRK 8:8",
+      "word": "pedazos",
+      "strong": "G2801",
+      "stepGloss": "de pedazos",
+      "minimumRequiredVerifiedOpenObservations": 3
+    },
+    {
+      "reference": "MRK 10:1",
+      "word": "lado",
+      "strong": "G4008",
+      "stepGloss": "al otro lado de",
+      "minimumRequiredVerifiedOpenObservations": 3
+    },
+    {
+      "reference": "LUK 15:2",
+      "word": "pecadores",
+      "strong": "G268",
+      "stepGloss": "a pecadores",
+      "minimumRequiredVerifiedOpenObservations": 3
+    },
+    {
+      "reference": "JHN 7:18",
+      "word": "propia",
+      "strong": "G2398",
+      "stepGloss": "propio",
+      "minimumRequiredVerifiedOpenObservations": 3
+    },
+    {
+      "reference": "ACT 2:5",
+      "word": "bajo",
+      "strong": "G5259",
+      "stepGloss": "debajo",
+      "minimumRequiredVerifiedOpenObservations": 3
+    },
+    {
+      "reference": "ACT 13:33",
+      "word": "escrito",
+      "strong": "G1125",
+      "stepGloss": "ha sido escrito",
+      "minimumRequiredVerifiedOpenObservations": 3
+    },
+    {
+      "reference": "ACT 19:8",
+      "word": "acerca",
+      "strong": "G4012",
+      "stepGloss": "acerca de",
+      "minimumRequiredVerifiedOpenObservations": 3
+    },
+    {
+      "reference": "ACT 19:12",
+      "word": "malos",
+      "strong": "G4190",
+      "stepGloss": "malignos",
+      "minimumRequiredVerifiedOpenObservations": 3
+    },
+    {
+      "reference": "ROM 3:4",
+      "word": "juzgado.",
+      "strong": "G2919",
+      "stepGloss": "estar siendo juzgado",
+      "minimumRequiredVerifiedOpenObservations": 3
+    },
+    {
+      "reference": "TIT 1:9",
+      "word": "fiel",
+      "strong": "G4103",
+      "stepGloss": "de fiel",
+      "minimumRequiredVerifiedOpenObservations": 3
+    },
+    {
+      "reference": "HEB 12:2",
+      "word": "Jesús,",
+      "strong": "G2424",
+      "stepGloss": "a Jesús",
+      "minimumRequiredVerifiedOpenObservations": 3
+    },
+    {
+      "reference": "1JN 2:17",
+      "word": "deseos,",
+      "strong": "G1939",
+      "stepGloss": "deseo",
+      "minimumRequiredVerifiedOpenObservations": 3
+    },
+    {
+      "reference": "REV 4:7",
+      "word": "tercero",
+      "strong": "G5154",
+      "stepGloss": "tercera",
+      "minimumRequiredVerifiedOpenObservations": 3
+    },
+    {
+      "reference": "REV 4:8",
+      "word": "vivientes",
+      "strong": "G2226",
+      "stepGloss": "criaturas vivientes",
+      "minimumRequiredVerifiedOpenObservations": 3
+    },
+    {
+      "reference": "REV 14:1",
+      "word": "frente.",
+      "strong": "G3359",
+      "stepGloss": "frentes",
+      "minimumRequiredVerifiedOpenObservations": 3
+    },
+    {
+      "reference": "REV 18:12",
+      "word": "perlas,",
+      "strong": "G3135",
+      "stepGloss": "de perlas",
+      "minimumRequiredVerifiedOpenObservations": 3
+    },
+    {
+      "reference": "REV 19:18",
+      "word": "esclavos,",
+      "strong": "G1401",
+      "stepGloss": "de esclavos",
+      "minimumRequiredVerifiedOpenObservations": 3
+    }
+  ]
+}
