@@ -143,3 +143,15 @@
 - Decisiones editoriales pendientes: 1:6 es sintáctica y exegéticamente complejo; se conservó `participación de tu fe` sin reducirlo a evangelización ni a generosidad. En 1:16 se usó `esclavo` porque el contexto describe la condición social concreta de Onésimo; esto no establece una sustitución global de `siervo` para *doulos*. El pasivo de 1:22 se mantuvo sin nombrar explícitamente a Dios como agente.
 - Segunda lectura: se releyó la carta completa como una sola unidad retórica después de aplicar la primera corrección; esta lectura produjo tres ajustes adicionales en 1:8, 1:13 y 1:21 y confirmó que la metáfora `compañero de milicia` de 1:2 sigue siendo defendible.
 - Validación técnica: JSON válido; 1 capítulo; 25 versículos; claves y versificación idénticas a RVA1909; sin textos vacíos, duplicaciones exactas, caracteres anómalos ni errores de formato; `git diff --check` sin incidencias.
+
+### Tito
+
+- Estado: revisión editorial completa en dos lecturas; candidato editorial pendiente de revisión humana final.
+- Versículos revisados: 46.
+- Versículos modificados: 31.
+- Tipos principales de corrección: sintaxis pastoral, términos de liderazgo, listas de virtudes y vicios, condición social de los esclavos, continuidad argumental, tiempos y modos verbales, puntuación y naturalidad contemporánea.
+- Errores objetivos destacados: se restauró `Señor` en 1:4; `soberbio` se precisó como `obstinado` en 1:7; `ancianos` se aclaró como `hombres mayores` en 2:2 para no confundirlos con el oficio de 1:5; se recuperaron el matiz de sensatez en 2:4 y `sinceridad` en 2:7; `defrauden` se precisó en 2:10; `derramó en nosotros` se corrigió a `derramó ... sobre nosotros` en 3:6; la fórmula de viaje de 3:13 y la gramática de la suscripción en 3:15 fueron reconstruidas.
+- Variantes tradicionales conservadas deliberadamente: `misericordia` y `Señor` en 1:4; `sinceridad` en 2:7; pronombre plural `ustedes` en 2:8; formulación tradicional de 2:11 sobre la gracia que trae salvación a todos; unidad personal de `gran Dios y Salvador nuestro Jesucristo` en 2:13; `Amén` y la suscripción histórica extensa en 3:15.
+- Decisiones editoriales pendientes: `hijos creyentes` en 1:6 puede entenderse como creyentes o fieles; se conservó la lectura actual. Tito 2:13 se mantuvo sin puntuación que separe a `Dios` de `Salvador`. En 3:5, `lavamiento de la regeneración` conserva deliberadamente su formulación sin añadir una interpretación bautismal. En 3:8, `han creído en Dios` permanece como una traducción defendible del dativo griego.
+- Segunda lectura: se releyeron los tres capítulos después de la primera corrección; se eliminó una repetición artificial en 2:4–5 conservando los dos matices relacionados de sensatez y dominio propio, y se ajustaron 1:5–6, 2:12 y 3:5–6 sin introducir nuevas decisiones exegéticas.
+- Validación técnica: JSON válido; 3 capítulos; 46 versículos; claves y versificación idénticas a RVA1909; sin textos vacíos, duplicaciones exactas, caracteres anómalos ni errores de formato; `git diff --check` sin incidencias.
