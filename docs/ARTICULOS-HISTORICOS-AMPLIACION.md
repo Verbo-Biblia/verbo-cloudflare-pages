@@ -76,4 +76,4 @@ Localmente: las 35 piezas existentes conservan contenido y muestran a Juan José
 
 ## Commit final
 
-Pendiente de crear y registrar después de las validaciones finales.
+Commit de implementación: `22aa613` — `Ampliar artículos con autoría y cartas históricas`. La publicación y verificación de producción se registran a continuación al concluir el despliegue.
