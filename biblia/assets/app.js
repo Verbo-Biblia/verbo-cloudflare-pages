@@ -1061,6 +1061,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   let translateActiveCalls = 0;
   let translateShowTimer = null;
   let translateSafetyTimer = null;
+  // Se incrementa cada vez que el usuario deja de esperar una traducción en
+  // curso (cambia de versículo/panel/documento/idioma) — ver
+  // abandonPendingTranslations(). La traducción de fondo sigue corriendo
+  // (sigue siendo útil: calienta el caché en KV para el próximo lector) pero
+  // deja de contar para el indicador, que solo debe reflejar lo que el
+  // usuario tiene delante ahora mismo, no trabajo abandonado.
+  let translateGeneration = 0;
 
   function ensureTranslateIndicatorEl(){
     if(translateIndicatorEl) return translateIndicatorEl;
@@ -1079,29 +1086,51 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(translateIndicatorEl) translateIndicatorEl.classList.remove('verbo-translate-indicator--show');
   }
 
+  // Devuelve la generación vigente en el momento de la llamada — el llamador
+  // (verboTranslate) debe guardarla y pasarla de vuelta a
+  // hideTranslatingIndicator() al terminar, para que una traducción
+  // abandonada a mitad de camino no apague el indicador de una traducción
+  // nueva y legítima que haya empezado después.
   function showTranslatingIndicator(){
+    const gen = translateGeneration;
     translateActiveCalls++;
-    if(translateActiveCalls > 1) return;
-    clearTimeout(translateShowTimer);
-    translateShowTimer = setTimeout(() => {
-      if(translateActiveCalls < 1) return;
-      const el = ensureTranslateIndicatorEl();
-      el.querySelector('.verbo-translate-indicator__text').textContent = t('site.translatingIndicator');
-      el.classList.add('verbo-translate-indicator--show');
-    }, TRANSLATE_INDICATOR_DELAY_MS);
-    clearTimeout(translateSafetyTimer);
-    translateSafetyTimer = setTimeout(() => {
-      translateActiveCalls = 0;
-      hideTranslateIndicatorNow();
-    }, TRANSLATE_INDICATOR_SAFETY_MS);
+    if(translateActiveCalls === 1){
+      clearTimeout(translateShowTimer);
+      translateShowTimer = setTimeout(() => {
+        if(gen !== translateGeneration || translateActiveCalls < 1) return;
+        const el = ensureTranslateIndicatorEl();
+        el.querySelector('.verbo-translate-indicator__text').textContent = t('site.translatingIndicator');
+        el.classList.add('verbo-translate-indicator--show');
+      }, TRANSLATE_INDICATOR_DELAY_MS);
+      clearTimeout(translateSafetyTimer);
+      translateSafetyTimer = setTimeout(() => {
+        if(gen !== translateGeneration) return;
+        translateActiveCalls = 0;
+        hideTranslateIndicatorNow();
+      }, TRANSLATE_INDICATOR_SAFETY_MS);
+    }
+    return gen;
   }
 
-  function hideTranslatingIndicator(){
+  function hideTranslatingIndicator(gen){
+    if(gen !== translateGeneration) return; // generación ya abandonada, nada que hacer
     translateActiveCalls = Math.max(0, translateActiveCalls - 1);
     if(translateActiveCalls === 0){
       clearTimeout(translateSafetyTimer);
       hideTranslateIndicatorNow();
     }
+  }
+
+  // Llamar en cada punto donde el usuario deja de esperar la traducción que
+  // estaba en curso (navega a otro versículo/sección/documento, cambia de
+  // idioma, cierra el panel). No cancela los fetch en curso — solo deja de
+  // contarlos para el indicador, que se oculta de inmediato.
+  function abandonPendingTranslations(){
+    translateGeneration++;
+    translateActiveCalls = 0;
+    clearTimeout(translateShowTimer);
+    clearTimeout(translateSafetyTimer);
+    hideTranslateIndicatorNow();
   }
 
   async function verboTranslate(text, sourceLang='en', targetLang='es'){
@@ -1139,7 +1168,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       console.error(`[traducción] /translate no respondió tras ${attempts} intentos — se muestra el texto original sin traducir.`);
       return null;
     }
-    showTranslatingIndicator();
+    const translateIndicatorGen = showTranslatingIndicator();
     try{
       if(text.length<=4500){
         const result=await fetchTranslate(text);
@@ -1159,7 +1188,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
       return fixKnownBookNameMistranslations(parts.join(' '), targetLang);
     } finally {
-      hideTranslatingIndicator();
+      hideTranslatingIndicator(translateIndicatorGen);
     }
   }
 
@@ -1207,6 +1236,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   async function applyCommentaryTranslation(focusNoteId=null, sourceLang=null){
+    abandonPendingTranslations();
     const manifest=catalog?.commentaries?.find(c=>c.manifest.id===currentCommentary)?.manifest;
     const source=sourceLang||manifest?.language;
     const target=contentLang();
@@ -3265,6 +3295,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // ("tocLabel") porque el texto es la etiqueta ya recortada del prefijo
   // (churchHistoryTocRowLabel), no el título completo.
   async function applyChurchHistoryTocTranslation(entries){
+    abandonPendingTranslations();
     const target=contentLang();
     const token=++churchHistoryTocToken;
     let index=0;
@@ -3407,6 +3438,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // un token por render aborta el trabajo de búsquedas ya obsoletas (el usuario
   // sigue escribiendo y cada tecla vuelve a llamar a esta función).
   async function applyChurchHistoryResultsTranslation(results){
+    abandonPendingTranslations();
     const target=contentLang();
     const token=++churchHistoryResultsToken;
     let index=0;
@@ -3504,6 +3536,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // corre si el idioma de la entrada (normalmente inglés, ver manifest.language)
   // difiere del idioma de interfaz (botón ES/EN).
   async function applyChurchHistoryTranslation(entry){
+    abandonPendingTranslations();
     const source=entry.sourceLang||'en';
     const target=contentLang();
     if(!source || source===target) return;
@@ -3688,6 +3721,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // goBackStrongPopup (navegación interna). No decide si el popup debe
   // abrirse o no; eso es responsabilidad de quien la llama.
   async function renderStrongPopupEntry(code){
+    abandonPendingTranslations();
     const p=strongPopupEls();
     if(!p.root) return;
     p.code.textContent=code;
@@ -4402,6 +4436,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   async function applyPatristicTranslation(section, sourceLang, targetLang){
+    abandonPendingTranslations();
     const titleEl=els.panelBody.querySelector('[data-patristic-title]');
     if(titleEl && titleEl.dataset.translated!==targetLang){
       titleEl.dataset.translated='pending';

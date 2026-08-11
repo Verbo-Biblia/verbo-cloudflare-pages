@@ -26,6 +26,12 @@
   let translateActiveCalls = 0;
   let translateShowTimer = null;
   let translateSafetyTimer = null;
+  // Se incrementa cada vez que el usuario deja de esperar una traducción en
+  // curso (cambia de capítulo/página/idioma) — ver abandonPendingTranslations
+  // más abajo y su uso en applyLiveTranslation() y en libreria/assets/
+  // reader.js. La traducción de fondo sigue corriendo (sigue calentando el
+  // caché en KV) pero deja de contar para el indicador.
+  let translateGeneration = 0;
 
   function ensureTranslateIndicatorEl(){
     if(translateIndicatorEl) return translateIndicatorEl;
@@ -44,30 +50,50 @@
     if(translateIndicatorEl) translateIndicatorEl.classList.remove('verbo-translate-indicator--show');
   }
 
+  // Devuelve la generación vigente — el llamador (verboTranslate) debe
+  // guardarla y pasarla de vuelta a hideTranslatingIndicator() al terminar,
+  // para que una traducción abandonada a mitad de camino no apague el
+  // indicador de una traducción nueva y legítima que haya empezado después.
   function showTranslatingIndicator(){
+    const gen = translateGeneration;
     translateActiveCalls++;
-    if(translateActiveCalls > 1) return;
-    clearTimeout(translateShowTimer);
-    translateShowTimer = setTimeout(() => {
-      if(translateActiveCalls < 1) return;
-      const el = ensureTranslateIndicatorEl();
-      el.querySelector('.verbo-translate-indicator__text').textContent =
-        window.VerboI18n ? window.VerboI18n.t('site.translatingIndicator') : 'Traduciendo para usted, espere unos segundos…';
-      el.classList.add('verbo-translate-indicator--show');
-    }, TRANSLATE_INDICATOR_DELAY_MS);
-    clearTimeout(translateSafetyTimer);
-    translateSafetyTimer = setTimeout(() => {
-      translateActiveCalls = 0;
-      hideTranslateIndicatorNow();
-    }, TRANSLATE_INDICATOR_SAFETY_MS);
+    if(translateActiveCalls === 1){
+      clearTimeout(translateShowTimer);
+      translateShowTimer = setTimeout(() => {
+        if(gen !== translateGeneration || translateActiveCalls < 1) return;
+        const el = ensureTranslateIndicatorEl();
+        el.querySelector('.verbo-translate-indicator__text').textContent =
+          window.VerboI18n ? window.VerboI18n.t('site.translatingIndicator') : 'Traduciendo para usted, espere unos segundos…';
+        el.classList.add('verbo-translate-indicator--show');
+      }, TRANSLATE_INDICATOR_DELAY_MS);
+      clearTimeout(translateSafetyTimer);
+      translateSafetyTimer = setTimeout(() => {
+        if(gen !== translateGeneration) return;
+        translateActiveCalls = 0;
+        hideTranslateIndicatorNow();
+      }, TRANSLATE_INDICATOR_SAFETY_MS);
+    }
+    return gen;
   }
 
-  function hideTranslatingIndicator(){
+  function hideTranslatingIndicator(gen){
+    if(gen !== translateGeneration) return; // generación ya abandonada, nada que hacer
     translateActiveCalls = Math.max(0, translateActiveCalls - 1);
     if(translateActiveCalls === 0){
       clearTimeout(translateSafetyTimer);
       hideTranslateIndicatorNow();
     }
+  }
+
+  // Llamar cuando el usuario deja de esperar la traducción en curso (cambia
+  // de capítulo/página/idioma). No cancela los fetch en curso, solo deja de
+  // contarlos para el indicador, que se oculta de inmediato.
+  function abandonPendingTranslations(){
+    translateGeneration++;
+    translateActiveCalls = 0;
+    clearTimeout(translateShowTimer);
+    clearTimeout(translateSafetyTimer);
+    hideTranslateIndicatorNow();
   }
 
   function hashText(text){
@@ -141,7 +167,7 @@
       console.error(`[traducción] /translate no respondió tras ${attempts} intentos — se muestra el texto original sin traducir.`);
       return null;
     }
-    showTranslatingIndicator();
+    const translateIndicatorGen = showTranslatingIndicator();
     try{
       if(text.length<=4500) return await fetchTranslate(text);
       const chunks=splitTextIntoChunks(text);
@@ -153,7 +179,7 @@
       }
       return parts.join(' ');
     } finally {
-      hideTranslatingIndicator();
+      hideTranslatingIndicator(translateIndicatorGen);
     }
   }
 
@@ -196,6 +222,7 @@
   // VerboI18n. El sitio nace en español, así que sourceLang es 'es' salvo
   // que se indique otra cosa.
   async function applyLiveTranslation(root, sourceLang){
+    abandonPendingTranslations();
     if(!window.VerboI18n) return;
     sourceLang = sourceLang || 'es';
     const targetLang = VerboI18n.getUiLang();
@@ -208,5 +235,5 @@
     }
   }
 
-  window.VerboSiteTranslate = { applyLiveTranslation, translateText };
+  window.VerboSiteTranslate = { applyLiveTranslation, translateText, abandonPendingTranslations };
 })();

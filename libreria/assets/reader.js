@@ -19,6 +19,57 @@
   var bookmark = loadJSON(BM_KEY, null);
   var paraTexts = []; // texto plano de cada párrafo del capítulo actual
 
+  // ---------- tamaño de letra (pellizco + botones A−/A+) ----------
+  // Preferencia compartida por todo /libreria/ (sin cfg.id en la clave, a
+  // diferencia de HL_KEY/BM_KEY): un solo tamaño para toda la sección, igual
+  // que pide la tarea. --reading-font-size es font-size real sobre
+  // .reader-para (reader.css), no transform:scale — el texto se reacomoda.
+  var FONT_SIZE_KEY = "verbo:libreria:fontSize";
+  var FONT_SIZE_MIN = 0.85;
+  var FONT_SIZE_MAX = 2;
+  var FONT_SIZE_DEFAULT = 1.05;
+  var FONT_SIZE_STEP = 0.1;
+  var uiRef = null;
+  var fontSize = clampFontSize(parseFloat(loadJSON(FONT_SIZE_KEY, FONT_SIZE_DEFAULT)));
+  if (isNaN(fontSize)) fontSize = FONT_SIZE_DEFAULT;
+
+  function clampFontSize(v) {
+    return Math.max(FONT_SIZE_MIN, Math.min(FONT_SIZE_MAX, v));
+  }
+
+  function applyFontSize() {
+    root.style.setProperty("--reading-font-size", fontSize.toFixed(2) + "rem");
+  }
+
+  function updateFontSizeButtons() {
+    if (!uiRef) return;
+    if (uiRef.fontDecBtn) uiRef.fontDecBtn.disabled = fontSize <= FONT_SIZE_MIN + 1e-6;
+    if (uiRef.fontIncBtn) uiRef.fontIncBtn.disabled = fontSize >= FONT_SIZE_MAX - 1e-6;
+  }
+
+  // Aplica el nuevo tamaño de inmediato (llamado hasta una vez por frame
+  // durante el pellizco vía requestAnimationFrame) sin tocar localStorage —
+  // ver persistFontSize() para el guardado, deliberadamente separado para no
+  // escribir en cada frame de un gesto.
+  function setFontSizeImmediate(v) {
+    fontSize = clampFontSize(v);
+    applyFontSize();
+    updateFontSizeButtons();
+  }
+
+  var persistFontSizeTimer = null;
+  function persistFontSize() {
+    clearTimeout(persistFontSizeTimer);
+    persistFontSizeTimer = setTimeout(function () { saveJSON(FONT_SIZE_KEY, fontSize); }, 300);
+  }
+
+  function setFontSize(v) {
+    setFontSizeImmediate(v);
+    persistFontSize();
+  }
+
+  applyFontSize();
+
   // ---------- traducción ES->EN on-demand (estrategia_traduccion) ----------
   // "auto" (default): se traduce el capítulo completo vía el mismo
   // mecanismo que usa el resto del sitio (Google Translate no oficial +
@@ -83,6 +134,8 @@
     ui.resumeLink.textContent = t("reader.continue");
     ui.resumeDismiss.textContent = t("reader.discard");
     ui.bmBtn.textContent = (bookmark && bookmark.chapter === current) ? t("reader.marked") : t("reader.markChapter");
+    if (ui.fontDecBtn) ui.fontDecBtn.setAttribute("aria-label", t("reader.fontDecrease"));
+    if (ui.fontIncBtn) ui.fontIncBtn.setAttribute("aria-label", t("reader.fontIncrease"));
     return resolveBookStrings().then(function (book) {
       ui.badge.textContent = "Librería · " + book.author;
       ui.title.textContent = book.title;
@@ -316,8 +369,25 @@
     root.innerHTML = "";
 
     var headTop = el("div", "reader-head-top");
+    var headLeft = el("div", "reader-head-left");
     var badge = el("span", "reader-badge", "Librería · " + cfg.author);
-    headTop.appendChild(badge);
+    headLeft.appendChild(badge);
+
+    var textsize = el("div", "reader-textsize");
+    textsize.setAttribute("role", "group");
+    var fontDecBtn = document.createElement("button");
+    fontDecBtn.type = "button";
+    fontDecBtn.className = "reader-textsize-btn reader-textsize-btn--dec";
+    fontDecBtn.textContent = "A−";
+    var fontIncBtn = document.createElement("button");
+    fontIncBtn.type = "button";
+    fontIncBtn.className = "reader-textsize-btn reader-textsize-btn--inc";
+    fontIncBtn.textContent = "A+";
+    textsize.appendChild(fontDecBtn);
+    textsize.appendChild(fontIncBtn);
+    headLeft.appendChild(textsize);
+
+    headTop.appendChild(headLeft);
     var bmBtn = el("button", "reader-bookmark-btn", "☆ Marcar este capítulo");
     bmBtn.type = "button";
     headTop.appendChild(bmBtn);
@@ -387,7 +457,8 @@
       bmBtn: bmBtn, progressBar: progressBar, manualNote: manualNote,
       resume: resume, resumeText: resumeText, resumeLink: resumeLink, resumeDismiss: resumeDismiss,
       prevBtn: prevBtn, select: select, nextBtn: nextBtn,
-      chapterTitle: chapterTitle, content: content, foot: foot
+      chapterTitle: chapterTitle, content: content, foot: foot,
+      fontDecBtn: fontDecBtn, fontIncBtn: fontIncBtn
     };
   }
 
@@ -413,6 +484,13 @@
   function render(ui) {
     var ch = chapters[current];
     var token = ++renderToken;
+    // El usuario deja atrás el capítulo/idioma anterior: cualquier traducción
+    // suya que siga en curso sigue corriendo (calienta el caché igual), pero
+    // ya no debe mantener visible el indicador "Traduciendo…" — ver
+    // abandonPendingTranslations en site-translate.js.
+    if (window.VerboSiteTranslate && window.VerboSiteTranslate.abandonPendingTranslations) {
+      window.VerboSiteTranslate.abandonPendingTranslations();
+    }
     var t = window.VerboI18n ? window.VerboI18n.t : function (k) { return k; };
     updateManualBanner(ui);
 
@@ -512,6 +590,68 @@
     }, { passive: true });
   }
 
+  // Pellizco con dos dedos sobre el texto: cambia --reading-font-size en
+  // vivo (font-size real vía setFontSizeImmediate — reader.css usa esa
+  // variable en .reader-para, así que el texto se reacomoda, no es un
+  // transform:scale). touch-action:pan-y en .reader-content (reader.css) ya
+  // le quita al navegador el zoom nativo sobre esta zona; el preventDefault
+  // de abajo es un refuerzo para navegadores que aun así intenten manejarlo.
+  // Actualiza como máximo una vez por frame (requestAnimationFrame) para no
+  // recalcular estilos en cada touchmove, y solo escribe en localStorage al
+  // soltar los dedos (persistFontSize), no en cada frame del gesto.
+  function installPinchZoom(ui) {
+    var startDist = null;
+    var startSize = null;
+    var pendingSize = null;
+    var raf = null;
+
+    function distance(touches) {
+      var dx = touches[0].clientX - touches[1].clientX;
+      var dy = touches[0].clientY - touches[1].clientY;
+      return Math.sqrt(dx * dx + dy * dy);
+    }
+
+    function flush() {
+      raf = null;
+      if (pendingSize != null) {
+        setFontSizeImmediate(pendingSize);
+        pendingSize = null;
+      }
+    }
+
+    ui.content.addEventListener("touchstart", function (e) {
+      if (e.touches.length === 2) {
+        startDist = distance(e.touches);
+        startSize = fontSize;
+        ui.content.classList.add("is-pinching");
+      } else if (startDist != null) {
+        // Se sumó un tercer dedo durante el pellizco — se corta el gesto
+        // en vez de intentar reinterpretarlo con más de dos toques.
+        endPinch({ touches: [] });
+      }
+    }, { passive: true });
+
+    ui.content.addEventListener("touchmove", function (e) {
+      if (e.touches.length !== 2 || startDist == null) return;
+      e.preventDefault();
+      var dist = distance(e.touches);
+      if (!dist || !startDist) return;
+      pendingSize = clampFontSize(startSize * (dist / startDist));
+      if (!raf) raf = window.requestAnimationFrame(flush);
+    }, { passive: false });
+
+    function endPinch(e) {
+      if (startDist == null) return;
+      if (!e || e.touches.length < 2) {
+        startDist = null;
+        ui.content.classList.remove("is-pinching");
+        persistFontSize();
+      }
+    }
+    ui.content.addEventListener("touchend", endPinch);
+    ui.content.addEventListener("touchcancel", function () { endPinch({ touches: [] }); }, { passive: true });
+  }
+
   function init(raw) {
     chapters = normalize(raw);
     if (!chapters.length) {
@@ -520,8 +660,13 @@
     }
 
     var ui = buildSkeleton();
+    uiRef = ui;
+    updateFontSizeButtons();
+    ui.fontDecBtn.addEventListener("click", function () { setFontSize(fontSize - FONT_SIZE_STEP); });
+    ui.fontIncBtn.addEventListener("click", function () { setFontSize(fontSize + FONT_SIZE_STEP); });
     buildChapterOptions(ui);
     installSwipeNavigation(ui);
+    installPinchZoom(ui);
 
     var hashChapter = parseInt((window.location.hash || "").replace("#", ""), 10);
     if (hashChapter && hashChapter >= 1 && hashChapter <= chapters.length) {
