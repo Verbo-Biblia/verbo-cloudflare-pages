@@ -73,6 +73,12 @@ body {
   display: flex;
   align-items: baseline;
   gap: 10px;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.app-header__brand:hover {
+  opacity: 0.8;
 }
 
 .app-header__portal-back {

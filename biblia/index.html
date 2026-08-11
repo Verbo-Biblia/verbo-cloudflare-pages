@@ -17,18 +17,18 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Verbo">
-<link rel="stylesheet" href="assets/style.css?v=20260811-back-arrow-hitbox">
+<link rel="stylesheet" href="assets/style.css?v=20260811-brand-back-link">
 <link rel="stylesheet" href="assets/historia-nota-rapida.css?v=20260806-ios-font-size-fix">
 </head>
 <body>
 
   <header class="app-header">
     <a class="app-header__portal-back" href="../" data-i18n-attr="title:header.backToPortal,aria-label:header.backToPortal">←</a>
-    <div class="app-header__brand">
+    <a class="app-header__brand" href="../" data-i18n-attr="title:header.backToPortal,aria-label:header.backToPortal">
       <span class="app-header__mark">Verbo</span>
       <span class="app-header__sub" data-i18n="header.tagline">Estudio bíblico en español</span>
 
-    </div>
+    </a>
     <div class="app-header__nav">
       <div class="ui-lang-switcher" id="uiLangSwitcher" role="group" data-i18n-attr="aria-label:header.uiLangAria">
         <button type="button" class="ui-lang-switcher__btn" data-lang="es">ES</button>
