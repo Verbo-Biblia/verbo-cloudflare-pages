@@ -727,6 +727,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   function isMobileSheet(){ return window.innerWidth<=760 && SHEET_TABS.includes(activeTab); }
 
   function openPanel(tab, focus=null, verseCommentaries=null) {
+    // Cambiar de pestaña o reabrir el panel deja atrás lo que se estaba
+    // viendo antes: cualquier traducción en curso para ESE contenido ya no
+    // debe mantener visible el indicador (sigue corriendo en segundo plano,
+    // solo deja de contar — ver abandonPendingTranslations).
+    abandonPendingTranslations();
     const panelWasClosed=!els.side.classList.contains('side-panel--open');
     // El pop-up de definición Strong nunca debe quedar flotando sobre OTRO
     // panel (Cambio 3) — se cierra acá al salir de 'diccionario', pero no al
@@ -750,6 +755,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     renderPanel(tab,focus,verseCommentaries,panelWasClosed);
   }
   function closePanel(){
+    // Cerrar el panel sin abrir nada más también abandona lo que estuviera
+    // traduciéndose — este es justo el caso que openPanel() no cubre.
+    abandonPendingTranslations();
     const wasSheet=!!els.side.dataset.sheet;
     if(activeTab==='diccionario') closeStrongPopup();
     // Al cerrar el panel completo (no al cambiar de tab y volver), Historia
@@ -895,7 +903,17 @@ document.addEventListener('DOMContentLoaded', async () => {
       }).join(''):emptyState('📖',t('comentario.sinComentarios'));
       panelBodyEl().querySelectorAll('[data-copy-note]').forEach(btn=>btn.addEventListener('click',()=>{ const note=commentCtx.data.notes[btn.dataset.copyNote]; if(note) copyToClipboard(`${note.title}\n${String(note.body).replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim()}`); }));
       if(focus){ if(delayScroll) setTimeout(()=>scrollCommentToNote(focus),320); else scrollCommentToNote(focus); }
-      if(needsCommentaryTranslation) setTimeout(()=>applyCommentaryTranslation(focus, commentarySourceLang), 150);
+      // El guard de abajo (activeTab==='comentario' && panel abierto) es lo
+      // que realmente evita el bug reportado: sin él, cerrar el panel (o
+      // cambiar de pestaña) DENTRO de los 150ms no cancela este timer —
+      // dispara igual, y como abandonPendingTranslations() ya está adentro
+      // de applyCommentaryTranslation, esa llamada se ve a sí misma como
+      // "legítima" (ella misma es quien fija la generación vigente) aunque
+      // el usuario ya se haya ido. Sin este chequeo previo, el indicador
+      // reaparecía para un panel que ya no estaba en pantalla.
+      if(needsCommentaryTranslation) setTimeout(()=>{
+        if(activeTab==='comentario' && els.side?.classList.contains('side-panel--open')) applyCommentaryTranslation(focus, commentarySourceLang);
+      }, 150);
     }
     if(tab==='comparar'){ els.panelTitle.textContent='Comparar versiones'; renderCompare(focus||activeVerse()); }
     if(tab==='sermon-biblia') renderSermonBiblePanel(focus||activeVerse());
@@ -1202,6 +1220,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   // idioma original — ahora ese bloque puntual cae a su propio texto sin
   // traducir y el resto del capítulo sí se ve traducido.
   async function translateEntry(noteId, htmlContent, sourceLang='en', targetLang='es'){
+    // myGen: si el llamador (applyCommentaryTranslation, etc.) ya viene con
+    // la generación abandonada al invocar esto, ni empieza (ver el chequeo
+    // en el while); si se abandona a mitad de este pool de workers (el
+    // usuario cierra el panel con el cuerpo del comentario todavía
+    // traduciéndose en bloques), cada worker corta ahí en vez de seguir
+    // pidiendo bloques nuevos y reactivar el indicador para un panel ya
+    // cerrado.
+    const myGen=translateGeneration;
     const cacheKey=translationCacheKey(noteId,htmlContent,targetLang);
     const cached=tcacheGet(cacheKey); if(cached) return cached;
     const blocks=htmlToTranslationBlocks(htmlContent);
@@ -1212,12 +1238,18 @@ document.addEventListener('DOMContentLoaded', async () => {
       let index=0;
       async function worker(){
         while(index<blocks.length){
+          if(myGen!==translateGeneration) return;
           const i=index++;
           const translated=await verboTranslate(blocks[i], sourceLang, targetLang);
           translatedBlocks[i]=translated!=null ? translated : blocks[i];
         }
       }
       await Promise.all(Array.from({length:Math.min(4,blocks.length)},worker));
+      // Abandonada a mitad de camino: translatedBlocks queda incompleto (hay
+      // bloques que ningún worker llegó a pedir). Ni se cachea ni se
+      // devuelve ese resultado parcial — el original sin traducir es la
+      // única respuesta segura, igual que si nunca se hubiera llamado.
+      if(myGen!==translateGeneration) return htmlContent;
       const result=translatedBlocksToHtml(translatedBlocks);
       tcacheSet(cacheKey, result);
       return result;
@@ -1237,6 +1269,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   async function applyCommentaryTranslation(focusNoteId=null, sourceLang=null){
     abandonPendingTranslations();
+    // abandonPendingTranslations() ya cambió la generación — esta es la
+    // "propia" de esta llamada. Si alguien más la abandona a mitad de
+    // camino (otra tarjeta, otro panel), translateGeneration vuelve a
+    // cambiar y myGen queda desactualizada: el bucle de abajo debe cortar
+    // ahí mismo, o cada tarjeta siguiente dispararía una traducción nueva
+    // que reactivaría el indicador para un panel que el usuario ya cerró.
+    const myGen=translateGeneration;
     const manifest=catalog?.commentaries?.find(c=>c.manifest.id===currentCommentary)?.manifest;
     const source=sourceLang||manifest?.language;
     const target=contentLang();
@@ -1247,23 +1286,28 @@ document.addEventListener('DOMContentLoaded', async () => {
       ? [...cards.filter(c=>c.dataset.noteId===focusNoteId), ...cards.filter(c=>c.dataset.noteId!==focusNoteId)]
       : cards;
     for(const card of sorted){
+      if(myGen!==translateGeneration) return;
       const noteId=card.dataset.noteId;
       const bodyEl=card.querySelector('.note-card__body');
       if(!bodyEl||bodyEl.dataset.translated===target) continue;
       const note=commentaryContext().data.notes[noteId];
       if(!note) continue;
       for(const field of ['title','author']){
+        if(myGen!==translateGeneration) return;
         const headerEl=card.querySelector(`[data-commentary-header="${field}"]`);
         if(!headerEl||headerEl.dataset.translated===target||!note[field]) continue;
         headerEl.dataset.translated='pending';
         const translatedHeader=await translateCommentaryHeader(noteId,field,note[field],source,target);
+        if(myGen!==translateGeneration) return;
         if(headerEl.dataset.translated==='pending'){
           headerEl.textContent=translatedHeader;
           headerEl.dataset.translated=target;
         }
       }
+      if(myGen!==translateGeneration) return;
       bodyEl.dataset.translated='pending';
       const translated=await translateEntry(noteId, note.body, source, target);
+      if(myGen!==translateGeneration) return;
       if(bodyEl.dataset.translated==='pending'){
         const prevTop = noteId===focusNoteId ? card.getBoundingClientRect().top : null;
         bodyEl.innerHTML=`${translated}${originalSourceDetailsHtml(note.body,source)}`;
@@ -1278,17 +1322,25 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   async function translateDictionaryEntry(code, htmlContent){
+    // myGen: capturada al entrar, no al llamar abandonPendingTranslations()
+    // acá — eso ya lo hizo renderStrongPopupEntry() antes de invocar esta
+    // función. Solo hace falta enterarse si alguien la abandona DESPUÉS
+    // (usuario cierra el popup a mitad de esta entrada), para no seguir
+    // traduciendo nodo por nodo y reactivar el indicador sin querer.
+    const myGen=translateGeneration;
     const cacheKey=translationCacheKey(`strong:${code}`,htmlContent);
     const cached=tcacheGet(cacheKey); if(cached) return cached;
     const box=document.createElement('div'); box.innerHTML=htmlContent;
     const paragraphs=[...box.querySelectorAll('.lexicon-section > p')];
     for(const paragraph of paragraphs){
+      if(myGen!==translateGeneration) return htmlContent;
       // Traducir solo el texto fuente. Los enlaces Strong quedan como nodos
       // independientes para que sigan abriendo sus respectivas entradas.
       const textNodes=[];
       const walker=document.createTreeWalker(paragraph,NodeFilter.SHOW_TEXT);
       while(walker.nextNode()) if(walker.currentNode.textContent.trim()) textNodes.push(walker.currentNode);
       for(const node of textNodes){
+        if(myGen!==translateGeneration) return htmlContent;
         const translated=await verboTranslate(node.textContent);
         if(translated) node.textContent=translated;
       }
@@ -3296,12 +3348,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   // (churchHistoryTocRowLabel), no el título completo.
   async function applyChurchHistoryTocTranslation(entries){
     abandonPendingTranslations();
+    const myGen=translateGeneration; // ver comentario en applyCommentaryTranslation
     const target=contentLang();
     const token=++churchHistoryTocToken;
     let index=0;
     async function worker(){
       while(index<entries.length){
-        if(token!==churchHistoryTocToken) return;
+        if(token!==churchHistoryTocToken||myGen!==translateGeneration) return;
         const entry=entries[index++];
         const source=entry.sourceLang||'en';
         if(!source||source===target) continue;
@@ -3309,7 +3362,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if(!labelEl||labelEl.dataset.translated===target) continue;
         const original=churchHistoryTocRowLabel(entry);
         const translated=await translateCommentaryHeader(`historia:${entry.id}`,'tocLabel',original,source,target);
-        if(token!==churchHistoryTocToken) return;
+        if(token!==churchHistoryTocToken||myGen!==translateGeneration) return;
         labelEl.textContent=translated;
         labelEl.dataset.translated=target;
       }
@@ -3439,12 +3492,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   // sigue escribiendo y cada tecla vuelve a llamar a esta función).
   async function applyChurchHistoryResultsTranslation(results){
     abandonPendingTranslations();
+    const myGen=translateGeneration; // ver comentario en applyCommentaryTranslation
     const target=contentLang();
     const token=++churchHistoryResultsToken;
     let index=0;
     async function worker(){
       while(index<results.length){
-        if(token!==churchHistoryResultsToken) return;
+        if(token!==churchHistoryResultsToken||myGen!==translateGeneration) return;
         const entry=results[index++];
         const source=entry.sourceLang||'en';
         if(!source||source===target) continue;
@@ -3452,14 +3506,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         const excerptEl=els.panelBody.querySelector(`[data-history-excerpt="${CSS.escape(entry.id)}"]`);
         if(titleEl && titleEl.dataset.translated!==target){
           const translatedTitle=await translateCommentaryHeader(`historia:${entry.id}`,'title',entry.title,source,target);
-          if(token!==churchHistoryResultsToken) return;
+          if(token!==churchHistoryResultsToken||myGen!==translateGeneration) return;
           titleEl.textContent=translatedTitle;
           titleEl.dataset.translated=target;
         }
         if(excerptEl && excerptEl.dataset.translated!==target){
           const originalExcerpt=excerptEl.textContent;
           const translatedExcerpt=await translateCommentaryHeader(`historia:${entry.id}`,'excerpt',originalExcerpt,source,target);
-          if(token!==churchHistoryResultsToken) return;
+          if(token!==churchHistoryResultsToken||myGen!==translateGeneration) return;
           excerptEl.textContent=translatedExcerpt;
           excerptEl.dataset.translated=target;
         }
@@ -3537,6 +3591,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // difiere del idioma de interfaz (botón ES/EN).
   async function applyChurchHistoryTranslation(entry){
     abandonPendingTranslations();
+    const myGen=translateGeneration; // ver comentario en applyCommentaryTranslation
     const source=entry.sourceLang||'en';
     const target=contentLang();
     if(!source || source===target) return;
@@ -3548,6 +3603,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const translatedTitle=await translateCommentaryHeader(`historia:${entry.id}`,'title',entry.title,source,target);
       if(termEl.dataset.translated==='pending'){ termEl.textContent=translatedTitle; termEl.dataset.translated=target; }
     }
+    if(myGen!==translateGeneration) return;
     if(defEl.dataset.translated!==target){
       defEl.dataset.translated='pending';
       const original=entry.content||entry.excerpt||'';
@@ -3784,6 +3840,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // navegar el capítulo mientras se consulta una palabra no cierre el popup.
   function closeStrongPopup(){
     if(!openStrongPopupRoot) return;
+    abandonPendingTranslations();
     openStrongPopupRoot.hidden=true;
     openStrongPopupRoot.classList.remove('strong-def-popup--shake');
     openStrongPopupRoot=null;
@@ -4432,23 +4489,33 @@ document.addEventListener('DOMContentLoaded', async () => {
       renderPatristicSection();
       els.panelBody.scrollTop=0;
     }));
-    if(needsTranslation) setTimeout(()=>applyPatristicTranslation(section,source,target), 150);
+    // Mismo guard y mismo motivo que en renderPanel('comentario') más
+    // arriba: sin comprobar que seguimos en 'padres' y en la MISMA sección
+    // al disparar el timer, cerrar el panel (o pasar a otra sección) dentro
+    // de los 150ms no lo cancela, y applyPatristicTranslation() se ve a sí
+    // misma como legítima aunque el usuario ya se haya ido.
+    if(needsTranslation) setTimeout(()=>{
+      if(activeTab==='padres' && patristicOpenSection===section.n && els.side?.classList.contains('side-panel--open')) applyPatristicTranslation(section,source,target);
+    }, 150);
   }
 
   async function applyPatristicTranslation(section, sourceLang, targetLang){
     abandonPendingTranslations();
+    const myGen=translateGeneration; // ver comentario en applyCommentaryTranslation
     const titleEl=els.panelBody.querySelector('[data-patristic-title]');
     if(titleEl && titleEl.dataset.translated!==targetLang){
       titleEl.dataset.translated='pending';
       const translatedTitle=await translateCommentaryHeader(`patristic-title:${patristicOpenDoc}:${section.n}`,'title',section.title,sourceLang,targetLang);
       if(titleEl.dataset.translated==='pending'){ titleEl.textContent=translatedTitle; titleEl.dataset.translated=targetLang; }
     }
+    if(myGen!==translateGeneration) return;
     const docNameEl=els.panelBody.querySelector('[data-patristic-docname]');
     if(docNameEl && docNameEl.dataset.translated!==targetLang){
       docNameEl.dataset.translated='pending';
       const translatedName=await translateCommentaryHeader(`patristic-docname:${patristicOpenDoc}`,'name',patristicDocData.manifest.name,sourceLang,targetLang);
       if(docNameEl.dataset.translated==='pending'){ docNameEl.textContent=translatedName; docNameEl.dataset.translated=targetLang; }
     }
+    if(myGen!==translateGeneration) return;
     const bodyEl=els.panelBody.querySelector('[data-patristic-body]');
     if(!bodyEl || bodyEl.dataset.translated===targetLang) return;
     bodyEl.dataset.translated='pending';
