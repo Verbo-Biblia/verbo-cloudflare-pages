@@ -33,7 +33,47 @@ body.recursos-page .reader-head-top {
   gap: 8px 12px;
   margin-bottom: 10px;
 }
+body.recursos-page .reader-head-left {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  min-width: 0;
+}
 body.recursos-page .reader-bookmark-btn { flex: 0 0 auto; }
+
+/* Control de tamaño de letra (A− / A+), alternativa accesible al pellizco
+   con dos dedos implementado en reader.js — mismos límites y misma
+   variable --reading-font-size que el gesto. */
+body.recursos-page .reader-textsize {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+body.recursos-page .reader-textsize-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--r-ink-soft);
+  background: none;
+  border: 1px solid var(--r-rule);
+  cursor: pointer;
+  padding: 6px 11px;
+  transition: border-color .15s ease, color .15s ease, background .15s ease;
+}
+body.recursos-page .reader-textsize-btn:first-child {
+  border-radius: 999px 0 0 999px;
+}
+body.recursos-page .reader-textsize-btn:last-child {
+  border-radius: 0 999px 999px 0;
+  border-left: none;
+}
+body.recursos-page .reader-textsize-btn:hover:not(:disabled) {
+  border-color: var(--r-gold);
+  color: var(--r-ink);
+}
+body.recursos-page .reader-textsize-btn:disabled { opacity: .35; cursor: default; }
 
 body.recursos-page .reader-title {
   font-family: 'Fraunces', serif;
@@ -176,20 +216,29 @@ body.recursos-page .reader-chapter-title {
   margin: 0 0 22px;
 }
 
-@media (max-width: 760px) {
-  /* Conserva el scroll vertical y deja el eje horizontal para cambiar de
-     capítulo con el gesto implementado en reader.js. La pulsación prolongada
-     y la selección de texto siguen disponibles para los resaltados. */
-  body.recursos-page .reader-content { touch-action: pan-y; }
-}
+/* Sin position, sin media query: el navegador no debe interceptar el
+   pellizco (zoom nativo, sin reflow) ni el paneo horizontal (reservado
+   para cambiar de capítulo en móvil, ver installSwipeNavigation en
+   reader.js) sobre esta zona en ningún ancho — incluye tablets/laptops
+   táctiles, no solo el breakpoint móvil del gesto de swipe. La pulsación
+   prolongada y la selección de texto siguen disponibles para los
+   resaltados; el scroll vertical (pan-y) sigue funcionando siempre. */
+body.recursos-page .reader-content { touch-action: pan-y; }
 
 body.recursos-page .reader-para {
-  font-size: 1.05rem;
+  font-size: var(--reading-font-size, 1.05rem);
   line-height: 1.8;
   color: var(--r-ink);
   margin: 0 0 20px;
   -webkit-user-select: text;
   user-select: text;
+  transition: font-size .15s ease;
+}
+/* Mientras el pellizco está activo (reader.js añade/quita esta clase en
+   .reader-content) el tamaño debe seguir al gesto 1:1, sin el retraso que
+   introduciría la transición de arriba en cada frame. */
+body.recursos-page .reader-content.is-pinching .reader-para {
+  transition: none;
 }
 body.recursos-page .reader-para::selection,
 body.recursos-page .reader-para *::selection {
