@@ -13,6 +13,63 @@
   function tcacheGet(key){ try{ return JSON.parse(localStorage.getItem(T_PREFIX+key)); }catch{ return null; } }
   function tcacheSet(key,val){ try{ localStorage.setItem(T_PREFIX+key, JSON.stringify(val)); }catch{} }
 
+  // Indicador flotante "Traduciendo para usted…" mientras verboTranslate()
+  // espera una respuesta en vivo (sin caché) de POST /translate. Un solo
+  // elemento reutilizado + contador de llamadas activas: varios bloques
+  // traduciéndose a la vez (ver applyLiveTranslation) muestran un único
+  // indicador que solo se oculta cuando el último termina. Delay antes de
+  // mostrarlo para no parpadear en respuestas rápidas (KV hit en el Worker);
+  // timeout de seguridad por si algo se queda colgado.
+  const TRANSLATE_INDICATOR_DELAY_MS = 180;
+  const TRANSLATE_INDICATOR_SAFETY_MS = 18000;
+  let translateIndicatorEl = null;
+  let translateActiveCalls = 0;
+  let translateShowTimer = null;
+  let translateSafetyTimer = null;
+
+  function ensureTranslateIndicatorEl(){
+    if(translateIndicatorEl) return translateIndicatorEl;
+    const el = document.createElement('div');
+    el.className = 'verbo-translate-indicator';
+    el.setAttribute('role', 'status');
+    el.setAttribute('aria-live', 'polite');
+    el.innerHTML = '<span class="verbo-translate-indicator__spinner" aria-hidden="true"></span><span class="verbo-translate-indicator__text"></span>';
+    document.body.appendChild(el);
+    translateIndicatorEl = el;
+    return el;
+  }
+
+  function hideTranslateIndicatorNow(){
+    clearTimeout(translateShowTimer);
+    if(translateIndicatorEl) translateIndicatorEl.classList.remove('verbo-translate-indicator--show');
+  }
+
+  function showTranslatingIndicator(){
+    translateActiveCalls++;
+    if(translateActiveCalls > 1) return;
+    clearTimeout(translateShowTimer);
+    translateShowTimer = setTimeout(() => {
+      if(translateActiveCalls < 1) return;
+      const el = ensureTranslateIndicatorEl();
+      el.querySelector('.verbo-translate-indicator__text').textContent =
+        window.VerboI18n ? window.VerboI18n.t('site.translatingIndicator') : 'Traduciendo para usted, espere unos segundos…';
+      el.classList.add('verbo-translate-indicator--show');
+    }, TRANSLATE_INDICATOR_DELAY_MS);
+    clearTimeout(translateSafetyTimer);
+    translateSafetyTimer = setTimeout(() => {
+      translateActiveCalls = 0;
+      hideTranslateIndicatorNow();
+    }, TRANSLATE_INDICATOR_SAFETY_MS);
+  }
+
+  function hideTranslatingIndicator(){
+    translateActiveCalls = Math.max(0, translateActiveCalls - 1);
+    if(translateActiveCalls === 0){
+      clearTimeout(translateSafetyTimer);
+      hideTranslateIndicatorNow();
+    }
+  }
+
   function hashText(text){
     let hash=2166136261;
     const value=String(text||'');
@@ -84,15 +141,20 @@
       console.error(`[traducción] /translate no respondió tras ${attempts} intentos — se muestra el texto original sin traducir.`);
       return null;
     }
-    if(text.length<=4500) return fetchTranslate(text);
-    const chunks=splitTextIntoChunks(text);
-    const parts=[];
-    for(const chunk of chunks){
-      const r=await fetchTranslate(chunk);
-      if(r===null) return null;
-      parts.push(r);
+    showTranslatingIndicator();
+    try{
+      if(text.length<=4500) return await fetchTranslate(text);
+      const chunks=splitTextIntoChunks(text);
+      const parts=[];
+      for(const chunk of chunks){
+        const r=await fetchTranslate(chunk);
+        if(r===null) return null;
+        parts.push(r);
+      }
+      return parts.join(' ');
+    } finally {
+      hideTranslatingIndicator();
     }
-    return parts.join(' ');
   }
 
   async function translateElement(el, id, sourceLang, targetLang){

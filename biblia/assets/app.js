@@ -1046,6 +1046,64 @@ document.addEventListener('DOMContentLoaded', async () => {
     return String(catalog?.registry?.apiBible?.proxyUrl || '').trim().replace(/\/+$/, '');
   }
 
+  // Indicador flotante "Traduciendo para usted…" mientras verboTranslate()
+  // espera una respuesta en vivo (sin caché) de POST /translate — comentario,
+  // Strong, Historia de la Iglesia y Padres Apostólicos comparten este mismo
+  // punto de entrada. Un solo elemento reutilizado + contador de llamadas
+  // activas: translateEntry() dispara varias verboTranslate() en paralelo
+  // (pool de workers) para un solo bloque de texto y eso debe mostrar un
+  // único indicador, no uno por bloque. Delay antes de mostrarlo para no
+  // parpadear en respuestas rápidas (KV hit en el Worker); timeout de
+  // seguridad por si algo se queda colgado.
+  const TRANSLATE_INDICATOR_DELAY_MS = 180;
+  const TRANSLATE_INDICATOR_SAFETY_MS = 18000;
+  let translateIndicatorEl = null;
+  let translateActiveCalls = 0;
+  let translateShowTimer = null;
+  let translateSafetyTimer = null;
+
+  function ensureTranslateIndicatorEl(){
+    if(translateIndicatorEl) return translateIndicatorEl;
+    const el = document.createElement('div');
+    el.className = 'verbo-translate-indicator';
+    el.setAttribute('role', 'status');
+    el.setAttribute('aria-live', 'polite');
+    el.innerHTML = '<span class="verbo-translate-indicator__spinner" aria-hidden="true"></span><span class="verbo-translate-indicator__text"></span>';
+    document.body.appendChild(el);
+    translateIndicatorEl = el;
+    return el;
+  }
+
+  function hideTranslateIndicatorNow(){
+    clearTimeout(translateShowTimer);
+    if(translateIndicatorEl) translateIndicatorEl.classList.remove('verbo-translate-indicator--show');
+  }
+
+  function showTranslatingIndicator(){
+    translateActiveCalls++;
+    if(translateActiveCalls > 1) return;
+    clearTimeout(translateShowTimer);
+    translateShowTimer = setTimeout(() => {
+      if(translateActiveCalls < 1) return;
+      const el = ensureTranslateIndicatorEl();
+      el.querySelector('.verbo-translate-indicator__text').textContent = t('site.translatingIndicator');
+      el.classList.add('verbo-translate-indicator--show');
+    }, TRANSLATE_INDICATOR_DELAY_MS);
+    clearTimeout(translateSafetyTimer);
+    translateSafetyTimer = setTimeout(() => {
+      translateActiveCalls = 0;
+      hideTranslateIndicatorNow();
+    }, TRANSLATE_INDICATOR_SAFETY_MS);
+  }
+
+  function hideTranslatingIndicator(){
+    translateActiveCalls = Math.max(0, translateActiveCalls - 1);
+    if(translateActiveCalls === 0){
+      clearTimeout(translateSafetyTimer);
+      hideTranslateIndicatorNow();
+    }
+  }
+
   async function verboTranslate(text, sourceLang='en', targetLang='es'){
     // Fase 2 (2026-08-07): reemplaza el endpoint no oficial de Google
     // Translate por POST /translate en el Worker verbo-api-bible (Claude
@@ -1081,23 +1139,28 @@ document.addEventListener('DOMContentLoaded', async () => {
       console.error(`[traducción] /translate no respondió tras ${attempts} intentos — se muestra el texto original sin traducir.`);
       return null;
     }
-    if(text.length<=4500){
-      const result=await fetchTranslate(text);
-      return fixKnownBookNameMistranslations(result, targetLang);
+    showTranslatingIndicator();
+    try{
+      if(text.length<=4500){
+        const result=await fetchTranslate(text);
+        return fixKnownBookNameMistranslations(result, targetLang);
+      }
+      // Long text: translate in chunks sequentially — ya no hace falta por el
+      // límite de una URL (esto ahora es un POST con body JSON), pero se
+      // conserva: trocear en paralelo por bloque sigue siendo más rápido y más
+      // resiliente a que un solo fragmento falle que mandar todo el texto de
+      // una entrada larga como una sola llamada.
+      const chunks=splitTextIntoChunks(text);
+      const parts=[];
+      for(const chunk of chunks){
+        const r=await fetchTranslate(chunk);
+        if(r===null) return null;
+        parts.push(r);
+      }
+      return fixKnownBookNameMistranslations(parts.join(' '), targetLang);
+    } finally {
+      hideTranslatingIndicator();
     }
-    // Long text: translate in chunks sequentially — ya no hace falta por el
-    // límite de una URL (esto ahora es un POST con body JSON), pero se
-    // conserva: trocear en paralelo por bloque sigue siendo más rápido y más
-    // resiliente a que un solo fragmento falle que mandar todo el texto de
-    // una entrada larga como una sola llamada.
-    const chunks=splitTextIntoChunks(text);
-    const parts=[];
-    for(const chunk of chunks){
-      const r=await fetchTranslate(chunk);
-      if(r===null) return null;
-      parts.push(r);
-    }
-    return fixKnownBookNameMistranslations(parts.join(' '), targetLang);
   }
 
   // Traduce bloque por bloque con un pool de workers concurrentes (mismo patrón

@@ -1862,6 +1862,54 @@ body[data-theme="rosewood"] {
   transform: translate(-50%, 0);
 }
 
+/* Aviso flotante mientras una traducción en vivo sin caché está en curso
+   (POST /translate al Worker, ver assets/site-translate.js y assets/app.js).
+   Esquina opuesta a .verbo-toast (centro) y .app-banner-stack (derecha)
+   para no solaparse con ninguno de los dos. */
+.verbo-translate-indicator {
+  position: fixed;
+  left: 16px;
+  bottom: 22px;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  background: var(--paper-raised);
+  color: var(--ink);
+  border: 1px solid var(--rule-strong);
+  border-radius: 999px;
+  padding: 8px 14px 8px 10px;
+  font-family: var(--font-body);
+  font-size: .82rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,.14);
+  transition: opacity .18s ease, transform .18s ease;
+}
+.verbo-translate-indicator--show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.verbo-translate-indicator__spinner {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  border: 2px solid var(--rule-strong);
+  border-top-color: var(--wine);
+  border-radius: 50%;
+  animation: verboTranslateSpin .7s linear infinite;
+}
+@keyframes verboTranslateSpin {
+  to { transform: rotate(360deg); }
+}
+@media (max-width: 760px) {
+  .verbo-translate-indicator {
+    left: 12px;
+    bottom: calc(var(--mobile-dock-height, 76px) + 12px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
 /* Contenedor común para avisos discretos apilables (recordatorio de
    exportación, aviso de actualización disponible, etc.) — evita que dos
    banners independientes se dibujen encima uno del otro si coinciden. */
