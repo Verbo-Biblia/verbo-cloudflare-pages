@@ -794,6 +794,32 @@ def main():
         )
         index_path.write_text(index_html, encoding="utf-8")
         print(f"Aplicado: {index_path.relative_to(ROOT)} ({len(articulos)} piezas)")
+
+        # La portada de Recursos conserva cifras visibles, pero nunca
+        # hardcodeadas sin control: se actualizan en build desde los mismos
+        # inventarios que alimentan el catálogo. No añade fetch ni JS en vivo.
+        recursos_index_path = RECURSOS / "index.html"
+        recursos_index = recursos_index_path.read_text(encoding="utf-8")
+
+        def update_card_count(source, count, noun):
+            nonlocal recursos_index
+            pattern = re.compile(
+                rf'(<a class="r-card"[^>]*data-count-source="{re.escape(source)}"[^>]*>)(.*?)(</a>)',
+                re.S,
+            )
+            matches = pattern.findall(recursos_index)
+            if len(matches) != 1:
+                raise SystemExit(f"No se encontró exactamente una tarjeta de conteo: {source}")
+            recursos_index = pattern.sub(
+                lambda m: m.group(1) + re.sub(rf'\d+\s+{noun}', f'{count} {noun}', m.group(2)) + m.group(3),
+                recursos_index,
+                count=1,
+            )
+
+        update_card_count("escuela-dominical", len(escuela), "lecciones")
+        update_card_count("articulos-y-reflexiones", len(articulos), "piezas")
+        recursos_index_path.write_text(recursos_index, encoding="utf-8")
+        print(f"Aplicado: {recursos_index_path.relative_to(ROOT)} ({len(escuela)} lecciones, {len(articulos)} piezas)")
     (BUILD / "libreria_filterbar.html").write_text(render_libreria_filterbar(libreria) + "\n", encoding="utf-8")
     (BUILD / "novedades_section.html").write_text(render_novedades_block(combined) + "\n", encoding="utf-8")
 
