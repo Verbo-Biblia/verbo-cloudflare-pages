@@ -249,10 +249,11 @@ def build_articulos(approx_flags):
         fecha = article_attr(html, "data-date-added") or (parse_badge_date(datestr, git_date, approx_flags) if datestr else git_date)
 
         declared_category = article_attr(html, "data-category")
-        tipo = TIPO_OVERRIDE.get(slug)
-        if tipo is None:
-            tipo = "devocional-reflexion" if declared_category == "devocional" else "articulo"
-        elif tipo in {"devocional", "reflexion"}:
+        subtipo = TIPO_OVERRIDE.get(slug)
+        if subtipo is None:
+            subtipo = "devocional" if declared_category == "devocional" else "articulo"
+        tipo = subtipo
+        if tipo in {"devocional", "reflexion"}:
             tipo = "devocional-reflexion"
         temas = TEMAS_OVERRIDE.get(slug)
         if temas is None:
@@ -268,6 +269,7 @@ def build_articulos(approx_flags):
             "titulo": titulo,
             "seccion": "recursos",
             "tipo": tipo,
+            "subtipo": subtipo,
             "categoria": categoria,
             "idioma": "es",
             "temas": temas,
@@ -484,8 +486,9 @@ def render_articulo_row(it):
         ruta_en_attr = f' data-ruta-en="{ruta_en_rel}"'
         titulo_en_attr = f' data-titulo-en="{esc(it["titulo_en"])}"'
     primary_topic = it["temas"][0] if it["temas"] else "vida-cristiana"
-    category_label = "Reflexión y devocional" if it["categoria"] == "devocional" else "Estudio temático"
-    category_key = "articulosIndex.cardDevotional" if it["categoria"] == "devocional" else "articulosIndex.cardStudy"
+    subtype_labels = {"articulo": "Artículo", "reflexion": "Reflexión", "devocional": "Devocional"}
+    subtype_keys = {"articulo": "filtros.articulo", "reflexion": "filtros.reflexion", "devocional": "filtros.devocional"}
+    subtype = it["subtipo"]
     icon = (
         '<svg class="article-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">'
         '<path d="M5 19h14M7 16l8.8-8.8a1.7 1.7 0 0 1 2.4 2.4L9.4 18.4 6 19l.6-3Z"/></svg>'
@@ -495,11 +498,12 @@ def render_articulo_row(it):
     )
     return (
         f'    <a class="r-article-row" data-item data-tipo="{it["tipo"]}" '
+        f'data-subtipo="{subtype}" '
         f'data-categoria="{it["categoria"]}" '
         f'data-tema="{temas_attr}" data-titulo-es="{esc(it["titulo_es"])}" '
         f'data-ruta-es="{it["id"]}/"{titulo_en_attr}{ruta_en_attr} href="{it["id"]}/">'
         f'<span class="article-cover">{icon}'
-        f'<span class="article-cover-kicker" data-i18n="{category_key}">{category_label}</span>'
+        f'<span class="article-cover-kicker" data-i18n="{subtype_keys[subtype]}">{subtype_labels[subtype]}</span>'
         f'<span class="r-article-row-title">{esc(it["titulo"])}</span>'
         f'<span class="article-cover-rule"></span>'
         f'<span class="article-cover-author">{esc(it["autor"])}</span>'
@@ -514,27 +518,27 @@ def render_articulo_row(it):
 def render_articulos_block(items):
     items_sorted = sorted(items, key=lambda it: it["fecha_agregado"], reverse=True)
     out = ['<!-- CONTENT-FILTERS:START -->']
-    for categoria, list_id, heading_key, heading_es in CATEGORIA_SECTIONS:
-        section_items = [it for it in items_sorted if it["categoria"] == categoria]
-        temas = sorted({t for it in section_items for t in it["temas"]})
-        out.append(f'<section class="r-content-group" data-categoria="{categoria}">')
-        out.append('  <div class="r-section-label">')
-        out.append(f'    <h2 data-i18n="{heading_key}">{heading_es}</h2>')
-        out.append(f'    <span class="r-section-count">{len(section_items)}</span>')
-        out.append('  </div>')
-        out.append(f'  <div class="r-filterbar" data-filter-bar data-filter-target="#{list_id}">')
-        out.append(f'    <select class="r-filter-select" data-filter-group="tema" data-i18n-attr="aria-label:filtros.filtrarPorTema" aria-label="Filtrar por tema">')
-        out.append('      <option value="todos" data-i18n="filtros.todosLosTemas">Todos los temas</option>')
-        for t in temas:
-            out.append(f'      <option value="{t}" data-i18n="temas.{tema_i18n_key(t)}">{tema_label(t)}</option>')
-        out.append('    </select>')
-        out.append('  </div>')
-        out.append(f'  <div class="r-article-list r-article-grid" id="{list_id}">')
-        for it in section_items:
-            out.append(render_articulo_row(it))
-        out.append('  </div>')
-        out.append('  <p class="r-filter-empty" hidden data-i18n="filtros.sinResultadosArticulos">No hay piezas que coincidan con estos filtros.</p>')
-        out.append('</section>')
+    temas = sorted({t for it in items_sorted for t in it["temas"]})
+    out.append('<section class="r-content-group">')
+    out.append('  <div class="r-filterbar" data-filter-bar data-filter-target="#articulos-grid">')
+    out.append('    <select class="r-filter-select" data-filter-group="subtipo" data-i18n-attr="aria-label:filtros.filtrarPorTipo" aria-label="Filtrar por tipo">')
+    out.append('      <option value="todos" data-i18n="filtros.todos">Todos</option>')
+    out.append('      <option value="articulo" data-i18n="filtros.articulos">Artículos</option>')
+    out.append('      <option value="reflexion" data-i18n="filtros.reflexiones">Reflexiones</option>')
+    out.append('      <option value="devocional" data-i18n="filtros.devocionales">Devocionales</option>')
+    out.append('    </select>')
+    out.append('    <select class="r-filter-select" data-filter-group="tema" data-i18n-attr="aria-label:filtros.filtrarPorTema" aria-label="Filtrar por tema">')
+    out.append('      <option value="todos" data-i18n="filtros.todosLosTemas">Todos los temas</option>')
+    for t in temas:
+        out.append(f'      <option value="{t}" data-i18n="temas.{tema_i18n_key(t)}">{tema_label(t)}</option>')
+    out.append('    </select>')
+    out.append('  </div>')
+    out.append('  <div class="r-article-list r-article-grid" id="articulos-grid">')
+    for it in items_sorted:
+        out.append(render_articulo_row(it))
+    out.append('  </div>')
+    out.append('  <p class="r-filter-empty" hidden data-i18n="filtros.sinResultadosArticulos">No hay piezas que coincidan con estos filtros.</p>')
+    out.append('</section>')
     out.append('<!-- CONTENT-FILTERS:END -->')
     return "\n".join(out)
 
