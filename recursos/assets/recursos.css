@@ -442,6 +442,144 @@ body.recursos-page .r-article-row-main {
 }
 body.recursos-page .r-article-row-tags { display: flex; gap: 6px; flex-wrap: wrap; }
 
+/* ---------- catálogo visual de Artículos y Reflexiones ----------
+   Adapta el lenguaje de portadas de Librería sin fingir que los artículos
+   son libros: proporción más corta, metadatos editoriales propios y una
+   familia cromática por la división real del contenido. */
+body.recursos-page .r-article-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px 20px;
+}
+body.recursos-page .r-article-grid .r-article-row {
+  display: block;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  color: var(--r-ink);
+  text-decoration: none;
+}
+body.recursos-page .article-cover {
+  --article-cover-color: #6f3540;
+  --article-cover-shade: #351a20;
+  --article-cover-accent: #e1bd70;
+  position: relative;
+  min-height: 278px;
+  aspect-ratio: 4 / 4.65;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, .38);
+  border-radius: 6px;
+  padding: 22px 21px 20px;
+  display: flex;
+  flex-direction: column;
+  color: #f4eedf;
+  background:
+    radial-gradient(130% 90% at 8% 0%, color-mix(in srgb, var(--article-cover-accent) 18%, transparent), transparent 56%),
+    linear-gradient(158deg, var(--article-cover-color), var(--article-cover-shade));
+  box-shadow: 0 16px 30px -21px rgba(var(--r-shadow), .58);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+body.recursos-page .article-cover::before {
+  content: "";
+  position: absolute;
+  inset: 11px;
+  border: 1px solid color-mix(in srgb, var(--article-cover-accent) 54%, transparent);
+  border-radius: 2px;
+  pointer-events: none;
+  transition: border-color .18s ease;
+}
+body.recursos-page .r-article-row[data-categoria="estudio"] .article-cover {
+  --article-cover-color: #304f65;
+  --article-cover-shade: #172a38;
+  --article-cover-accent: #d8bf79;
+}
+body.recursos-page .r-article-row[data-tema*="sufrimiento"] .article-cover,
+body.recursos-page .r-article-row[data-tema*="esperanza"] .article-cover {
+  --article-cover-color: #536b78;
+  --article-cover-shade: #293943;
+  --article-cover-accent: #e2c98d;
+}
+body.recursos-page .r-article-row:hover .article-cover,
+body.recursos-page .r-article-row:focus-visible .article-cover {
+  transform: translateY(-5px);
+  border-color: rgba(0, 0, 0, .58);
+  box-shadow: 0 25px 38px -20px rgba(var(--r-shadow), .62);
+}
+body.recursos-page .r-article-row:hover .article-cover::before,
+body.recursos-page .r-article-row:focus-visible .article-cover::before {
+  border-color: color-mix(in srgb, var(--article-cover-accent) 88%, transparent);
+}
+body.recursos-page .r-article-row:focus-visible { outline: 2px solid var(--r-gold); outline-offset: 5px; border-radius: 6px; }
+body.recursos-page .article-cover-icon {
+  width: 25px;
+  height: 25px;
+  flex: 0 0 auto;
+  color: var(--article-cover-accent);
+  margin-bottom: 17px;
+}
+body.recursos-page .article-cover-kicker {
+  position: relative;
+  z-index: 1;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9.5px;
+  line-height: 1.4;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--article-cover-accent);
+  margin-bottom: auto;
+}
+body.recursos-page .r-article-grid .r-article-row-title {
+  position: relative;
+  z-index: 1;
+  display: block;
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.05rem, 1.45vw, 1.23rem);
+  font-weight: 600;
+  line-height: 1.22;
+  color: #f4eedf;
+  margin: 22px 0 11px;
+  overflow-wrap: anywhere;
+}
+body.recursos-page .r-article-row:hover .r-article-row-title { color: #fffaf0; }
+body.recursos-page .article-cover-rule {
+  position: relative;
+  z-index: 1;
+  width: 26px;
+  height: 1px;
+  flex: 0 0 auto;
+  background: color-mix(in srgb, var(--article-cover-accent) 62%, transparent);
+  margin-bottom: 9px;
+}
+body.recursos-page .article-cover-author {
+  position: relative;
+  z-index: 1;
+  font-size: .78rem;
+  font-style: italic;
+  line-height: 1.35;
+  color: #d2c0a4;
+}
+body.recursos-page .article-card-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 11px 2px 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  color: var(--r-ink-soft);
+}
+body.recursos-page .article-card-topic { min-width: 0; overflow-wrap: anywhere; }
+body.recursos-page .r-article-grid .r-article-row-date { font-size: inherit; }
+
+@media (max-width: 900px) {
+  body.recursos-page .r-article-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 580px) {
+  body.recursos-page .r-article-grid { grid-template-columns: 1fr; gap: 22px; }
+  body.recursos-page .article-cover { aspect-ratio: auto; min-height: 248px; }
+  body.recursos-page .r-article-grid .r-article-row-title { font-size: 1.2rem; }
+}
+
 /* etiqueta de idioma sobre la portada del libro */
 body.recursos-page .book-cover-lang {
   position: absolute;

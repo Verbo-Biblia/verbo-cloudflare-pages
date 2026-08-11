@@ -467,6 +467,8 @@ CATEGORIA_SECTIONS = (
 
 def render_articulo_row(it):
     temas_attr = ",".join(it["temas"])
+    if not it.get("autor"):
+        raise ValueError(f"Artículo sin autor para tarjeta: {it['id']}")
     # El listado es una sola página física (recursos/articulos-y-reflexiones/
     # index.html) que sirve ambos idiomas: lang-aware-list.js reescribe
     # título+href en tiempo de ejecución según VerboI18n.getUiLang(),
@@ -481,16 +483,31 @@ def render_articulo_row(it):
                        else f"../articles-and-reflections-en/{it['id']}/")
         ruta_en_attr = f' data-ruta-en="{ruta_en_rel}"'
         titulo_en_attr = f' data-titulo-en="{esc(it["titulo_en"])}"'
+    primary_topic = it["temas"][0] if it["temas"] else "vida-cristiana"
+    category_label = "Reflexión y devocional" if it["categoria"] == "devocional" else "Estudio temático"
+    category_key = "articulosIndex.cardDevotional" if it["categoria"] == "devocional" else "articulosIndex.cardStudy"
+    icon = (
+        '<svg class="article-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">'
+        '<path d="M5 19h14M7 16l8.8-8.8a1.7 1.7 0 0 1 2.4 2.4L9.4 18.4 6 19l.6-3Z"/></svg>'
+        if it["categoria"] == "devocional" else
+        '<svg class="article-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">'
+        '<path d="M4 5h7a3 3 0 0 1 3 3v12a4 4 0 0 0-4-4H4V5Zm16 0h-3a3 3 0 0 0-3 3v12a4 4 0 0 1 4-4h2V5Z"/></svg>'
+    )
     return (
         f'    <a class="r-article-row" data-item data-tipo="{it["tipo"]}" '
+        f'data-categoria="{it["categoria"]}" '
         f'data-tema="{temas_attr}" data-titulo-es="{esc(it["titulo_es"])}" '
         f'data-ruta-es="{it["id"]}/"{titulo_en_attr}{ruta_en_attr} href="{it["id"]}/">'
-        f'<span class="r-article-row-main">'
+        f'<span class="article-cover">{icon}'
+        f'<span class="article-cover-kicker" data-i18n="{category_key}">{category_label}</span>'
         f'<span class="r-article-row-title">{esc(it["titulo"])}</span>'
-        f'<span class="r-article-row-tags">'
-        f'<span class="r-tag r-tag-tipo" data-i18n="{TIPO_I18N_KEY[it["tipo"]]}">{TIPO_LABEL[it["tipo"]]}</span>'
-        f'</span></span>'
-        f'<span class="r-article-row-date">{fmt_fecha_corta(it["fecha_agregado"])}</span></a>'
+        f'<span class="article-cover-rule"></span>'
+        f'<span class="article-cover-author">{esc(it["autor"])}</span>'
+        f'</span>'
+        f'<span class="article-card-meta">'
+        f'<span class="article-card-topic" data-i18n="temas.{tema_i18n_key(primary_topic)}">{tema_label(primary_topic)}</span>'
+        f'<span class="r-article-row-date">{fmt_fecha_corta(it["fecha_agregado"])}</span>'
+        f'</span></a>'
     )
 
 
@@ -512,7 +529,7 @@ def render_articulos_block(items):
             out.append(f'      <option value="{t}" data-i18n="temas.{tema_i18n_key(t)}">{tema_label(t)}</option>')
         out.append('    </select>')
         out.append('  </div>')
-        out.append(f'  <div class="r-article-list" id="{list_id}">')
+        out.append(f'  <div class="r-article-list r-article-grid" id="{list_id}">')
         for it in section_items:
             out.append(render_articulo_row(it))
         out.append('  </div>')
