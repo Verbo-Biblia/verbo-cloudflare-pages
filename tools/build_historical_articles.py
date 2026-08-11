@@ -48,16 +48,16 @@ NEWTON_TITLE_MATCH = {
 }
 
 RUTHERFORD = [
-    ("rutherford-carta-3-lady-kenmure", "III", "Carta 3 a Lady Kenmure", "Sobre enfermedad y depresión espiritual", ["sufrimiento", "fe"]),
-    ("rutherford-carta-4-lady-kenmure", "IV", "Carta 4 a Lady Kenmure", "Sobre la muerte de su hija y el sufrimiento", ["sufrimiento", "esperanza"]),
-    ("rutherford-carta-13-marion-mnaught", "XIII", "Carta 13 a Marion M'Naught", "Sobre la paciencia frente al reproche", ["perseverancia", "vida-cristiana"]),
-    ("rutherford-carta-19-lady-kenmure", "XIX", "Carta 19 a Lady Kenmure", "Sobre la fe y la inmutabilidad de Cristo", ["fe", "fidelidad-de-dios"]),
-    ("rutherford-carta-20-lady-kenmure", "XX", "Carta 20 a Lady Kenmure", "Sobre la seguridad del amor de Cristo durante las pruebas", ["sufrimiento", "seguridad-en-cristo"]),
-    ("rutherford-carta-23-lady-kenmure", "XXIII", "Carta 23 a Lady Kenmure", "Sobre la tribulación y la esperanza futura", ["sufrimiento", "esperanza"]),
-    ("rutherford-carta-29-marion-mnaught", "XXIX", "Carta 29 a Marion M'Naught", "Sobre Cristo con su pueblo en la aflicción", ["sufrimiento", "vida-en-cristo"]),
-    ("rutherford-carta-61-lady-kenmure", "LXI", "Carta 61 a Lady Kenmure", "Desde el destierro en Aberdeen", ["perseverancia", "sufrimiento"]),
-    ("rutherford-carta-65-robert-gordon", "LXV", "Carta 65 a Robert Gordon", "Sobre cómo Dios sostiene durante el camino", ["fe", "perseverancia"]),
-    ("rutherford-carta-142-william-livingstone", "CXLII", "Carta 142 a William Livingstone", "Consejo espiritual a un joven", ["juventud", "vida-cristiana"]),
+    ("rutherford-carta-3-lady-kenmure", "III", "Carta 3 a Lady Kenmure", "Sobre enfermedad y depresión espiritual", ["sufrimiento", "fe"], "devocional"),
+    ("rutherford-carta-4-lady-kenmure", "IV", "Carta 4 a Lady Kenmure", "Sobre la muerte de su hija y el sufrimiento", ["sufrimiento", "esperanza"], "devocional"),
+    ("rutherford-carta-13-marion-mnaught", "XIII", "Carta 13 a Marion M'Naught", "Sobre la paciencia frente al reproche", ["perseverancia", "vida-cristiana"], "reflexion"),
+    ("rutherford-carta-19-lady-kenmure", "XIX", "Carta 19 a Lady Kenmure", "Sobre la fe y la inmutabilidad de Cristo", ["fe", "fidelidad-de-dios"], "devocional"),
+    ("rutherford-carta-20-lady-kenmure", "XX", "Carta 20 a Lady Kenmure", "Sobre la seguridad del amor de Cristo durante las pruebas", ["sufrimiento", "seguridad-en-cristo"], "devocional"),
+    ("rutherford-carta-23-lady-kenmure", "XXIII", "Carta 23 a Lady Kenmure", "Sobre la tribulación y la esperanza futura", ["sufrimiento", "esperanza"], "devocional"),
+    ("rutherford-carta-29-marion-mnaught", "XXIX", "Carta 29 a Marion M'Naught", "Sobre Cristo con su pueblo en la aflicción", ["sufrimiento", "vida-en-cristo"], "devocional"),
+    ("rutherford-carta-61-lady-kenmure", "LXI", "Carta 61 a Lady Kenmure", "Desde el destierro en Aberdeen", ["perseverancia", "sufrimiento"], "reflexion"),
+    ("rutherford-carta-65-robert-gordon", "LXV", "Carta 65 a Robert Gordon", "Sobre cómo Dios sostiene durante el camino", ["fe", "perseverancia"], "devocional"),
+    ("rutherford-carta-142-william-livingstone", "CXLII", "Carta 142 a William Livingstone", "Consejo espiritual a un joven", ["juventud", "vida-cristiana"], "reflexion"),
 ]
 
 
@@ -227,7 +227,7 @@ def html_page(item: dict) -> str:
     <a class="static-page__back" href="../">← Artículos y Reflexiones</a>
   </header>
   <main class="static-page__main">
-    <article data-author="{html.escape(item['author'])}" data-source-lang="en" data-i18n-strategy="auto" data-title-es="{html.escape(item['title_es'], quote=True)}" data-title-en="{html.escape(item['title_en'], quote=True)}" data-topics="{','.join(item['topics'])}" data-category="{item['category']}" data-date-added="2026-08-10">
+    <article data-author="{html.escape(item['author'])}" data-source-lang="en" data-i18n-strategy="auto" data-title-es="{html.escape(item['title_es'], quote=True)}" data-title-en="{html.escape(item['title_en'], quote=True)}" data-topics="{','.join(item['topics'])}" data-category="{item['category']}" data-subtype="{item['subtype']}" data-date-added="2026-08-10">
       <p class="article-badge">Artículos y Reflexiones · Documento histórico · {item['year_label']}</p>
       <h1>{html.escape(item['title_en'])}</h1>
       <p class="historical-editorial-subtitle"><span>Subtítulo editorial de Verbo:</span> {html.escape(item['subtitle_es'])}</p>
@@ -296,12 +296,12 @@ def main() -> None:
         editorial_heading, paragraphs = newton[key]
         editorial_heading = editorial_heading.replace("■", "").replace("ordLaary", "ordinary").replace("^Prayer", "Prayer")
         paragraphs = trim_newton(slug, paragraphs)
-        items.append({"id": slug, "author": "John Newton", "title_es": title_es, "title_en": f"Letter to {recipient.replace('the Rev. ', 'Rev. ')}", "subtitle_es": subtitle, "topics": topics, "category": "devocional", "year_label": "siglo XVIII", "document_type": "Carta original", "publication": f"Carta conservada en la edición histórica de Josiah Bull; encabezado del editor: {editorial_heading}", "source_url": NEWTON_SOURCE, "source_label": "Cornell University Library / Internet Archive, cu31924029450982", "rights": "Dominio público; texto de la carta solamente", "paragraphs": paragraphs})
-    for slug, numeral, title_es, subtitle, topics in RUTHERFORD:
+        items.append({"id": slug, "author": "John Newton", "title_es": title_es, "title_en": f"Letter to {recipient.replace('the Rev. ', 'Rev. ')}", "subtitle_es": subtitle, "topics": topics, "category": "devocional", "subtype": "devocional", "year_label": "siglo XVIII", "document_type": "Carta original", "publication": f"Carta conservada en la edición histórica de Josiah Bull; encabezado del editor: {editorial_heading}", "source_url": NEWTON_SOURCE, "source_label": "Cornell University Library / Internet Archive, cu31924029450982", "rights": "Dominio público; texto de la carta solamente", "paragraphs": paragraphs})
+    for slug, numeral, title_es, subtitle, topics, subtype in RUTHERFORD:
         paragraphs = rutherford.get(numeral)
         if not paragraphs:
             raise RuntimeError(f"No se pudo identificar Rutherford {numeral}")
-        items.append({"id": slug, "author": "Samuel Rutherford", "title_es": title_es, "title_en": title_es.replace("Carta", "Letter").replace(" a ", " to "), "subtitle_es": subtitle, "topics": topics, "category": "devocional", "year_label": "siglo XVII", "document_type": "Carta original", "publication": f"Letter {numeral}, Letters of Samuel Rutherford, tercera edición, ed. Andrew A. Bonar", "source_url": RUTHERFORD_SOURCE, "source_label": "Project Gutenberg eBook 42557", "rights": "Public domain in the USA (Project Gutenberg)", "paragraphs": paragraphs})
+        items.append({"id": slug, "author": "Samuel Rutherford", "title_es": title_es, "title_en": title_es.replace("Carta", "Letter").replace(" a ", " to "), "subtitle_es": subtitle, "topics": topics, "category": "devocional", "subtype": subtype, "year_label": "siglo XVII", "document_type": "Carta original", "publication": f"Letter {numeral}, Letters of Samuel Rutherford, tercera edición, ed. Andrew A. Bonar", "source_url": RUTHERFORD_SOURCE, "source_label": "Project Gutenberg eBook 42557", "rights": "Public domain in the USA (Project Gutenberg)", "paragraphs": paragraphs})
     princeton_specs = [
         (args.warfield_1903, "warfield-modern-theories-atonement", "B. B. Warfield", "Modern Theories of the Atonement", "Teorías modernas de la expiación", "Sobre las teorías modernas de la expiación", ["teologia"], "1903", r"MODERN\s+THEORIES\s+OF\s+THE\s+ATONEMENT[^\n]*\n", r"B\.\s*B\.\s*Warfield\.\s*\n\s*Princeton\.", "Princeton Theological Review, vol. 1 (1903), pp. 571–592", "https://archive.org/details/princetontheolog1119arms"),
         (args.vos_1903, "vos-alleged-legalism-justification", "Geerhardus Vos", "The Alleged Legalism in Paul's Doctrine of Justification", "El supuesto legalismo en la doctrina paulina de la justificación", "Sobre la justificación paulina y la acusación de legalismo", ["teologia"], "1903", r"THE\s+ALLEGED\s+LEGALISM\s+IN\s+PAUL.S\s+DOC-?\s*TRINE\s+OF\s+JUSTIFICATION\.\s*", r"Geerhardus\s+Vos\.", "Princeton Theological Review, vol. 1, no. 2 (1903)", "https://archive.org/details/princetontheolog1219arms"),
@@ -312,7 +312,7 @@ def main() -> None:
         if not path:
             continue
         paragraphs = extract_princeton(path, start, end)
-        items.append({"id": slug, "author": author, "title_es": title_es, "title_en": title_en, "subtitle_es": subtitle, "topics": topics, "category": "estudio", "year_label": year, "document_type": "Artículo académico", "publication": publication, "source_url": source_url, "source_label": "Princeton Theological Seminary / Internet Archive, fascículo histórico", "rights": "No Copyright - United States (Theological Commons)", "paragraphs": paragraphs})
+        items.append({"id": slug, "author": author, "title_es": title_es, "title_en": title_en, "subtitle_es": subtitle, "topics": topics, "category": "estudio", "subtype": "articulo", "year_label": year, "document_type": "Artículo académico", "publication": publication, "source_url": source_url, "source_label": "Princeton Theological Seminary / Internet Archive, fascículo histórico", "rights": "No Copyright - United States (Theological Commons)", "paragraphs": paragraphs})
     for item in items:
         if len(" ".join(item["paragraphs"])) < 500:
             raise RuntimeError(f"Texto sospechosamente corto: {item['id']}")

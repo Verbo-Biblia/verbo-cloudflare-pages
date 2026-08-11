@@ -459,6 +459,10 @@ body.recursos-page .r-article-grid .r-article-row {
   color: var(--r-ink);
   text-decoration: none;
 }
+/* Debe ir después de display:block de la tarjeta: el filtro aplica `hidden`
+   a los tipos/temas descartados y esta regla garantiza que no reaparezcan
+   por la cascada CSS. */
+body.recursos-page .r-article-grid .r-article-row[hidden] { display: none; }
 body.recursos-page .article-cover {
   --article-paper: #e8eef2;
   --article-paper-edge: #bdcbd3;
@@ -619,6 +623,21 @@ body.recursos-page .r-article-grid .r-article-row-date { font-size: inherit; }
     padding-top: 7px;
     font-size: 8.7px;
   }
+}
+@media (max-width: 430px) {
+  body.recursos-page .r-article-grid {
+    grid-template-columns: repeat(2, minmax(0, 132px));
+    justify-content: center;
+    gap: 18px 10px;
+  }
+  body.recursos-page .article-cover {
+    aspect-ratio: 3 / 4.1;
+    padding: 12px 10px 11px 18px;
+  }
+  body.recursos-page .article-cover-kicker { font-size: 7px; }
+  body.recursos-page .r-article-grid .r-article-row-title { font-size: .78rem; }
+  body.recursos-page .article-cover-author { font-size: .6rem; }
+  body.recursos-page .article-card-meta { font-size: 8px; }
 }
 
 /* etiqueta de idioma sobre la portada del libro */

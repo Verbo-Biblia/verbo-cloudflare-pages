@@ -249,7 +249,7 @@ def build_articulos(approx_flags):
         fecha = article_attr(html, "data-date-added") or (parse_badge_date(datestr, git_date, approx_flags) if datestr else git_date)
 
         declared_category = article_attr(html, "data-category")
-        subtipo = TIPO_OVERRIDE.get(slug)
+        subtipo = article_attr(html, "data-subtype") or TIPO_OVERRIDE.get(slug)
         if subtipo is None:
             subtipo = "devocional" if declared_category == "devocional" else "articulo"
         tipo = subtipo
