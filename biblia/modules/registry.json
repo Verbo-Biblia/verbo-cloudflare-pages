@@ -4957,7 +4957,7 @@
           "name": "Comentarios Verbo",
           "abbreviation": "Verbo",
           "language": "es",
-          "author": "Comentario Verbo",
+          "author": "Verbo",
           "description": "Comentarios bíblicos originales de Verbo, con exposición pastoral, contexto histórico y atención al argumento de cada libro.",
           "license": "Todos los derechos reservados por el autor.",
           "books": [
@@ -4984,6 +4984,24 @@
               "name": "Filipenses",
               "file": "books/PHP.json",
               "indexFile": "books/PHP.index.json"
+            },
+            {
+              "id": "ROM",
+              "name": "Romanos",
+              "file": "books/ROM.json",
+              "indexFile": "books/ROM.index.json"
+            },
+            {
+              "id": "1CO",
+              "name": "1 Corintios",
+              "file": "books/1CO.json",
+              "indexFile": "books/1CO.index.json"
+            },
+            {
+              "id": "2CO",
+              "name": "2 Corintios",
+              "file": "books/2CO.json",
+              "indexFile": "books/2CO.index.json"
             }
           ]
         }
