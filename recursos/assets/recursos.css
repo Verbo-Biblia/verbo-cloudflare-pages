@@ -460,10 +460,10 @@ body.recursos-page .r-article-grid .r-article-row {
   text-decoration: none;
 }
 body.recursos-page .article-cover {
-  --article-paper: #f3ead6;
-  --article-paper-edge: #d7c8aa;
-  --article-ink: #342c27;
-  --article-cover-accent: #8a3f49;
+  --article-paper: #e8eef2;
+  --article-paper-edge: #bdcbd3;
+  --article-ink: #263943;
+  --article-cover-accent: #476f82;
   position: relative;
   min-height: 228px;
   aspect-ratio: 4 / 4.8;
@@ -504,17 +504,25 @@ body.recursos-page .article-cover::after {
   background: color-mix(in srgb, var(--article-cover-accent) 22%, transparent);
   pointer-events: none;
 }
-body.recursos-page .r-article-row[data-categoria="estudio"] .article-cover {
-  --article-paper: #edf0eb;
-  --article-paper-edge: #c6cec7;
-  --article-ink: #26363d;
-  --article-cover-accent: #476b7b;
+/* Cada subtipo editorial conserva una familia de papel estable. El tema no
+   cambia el color: se lee en el metadato inferior y no compite con el tipo. */
+body.recursos-page .r-article-row[data-subtipo="articulo"] .article-cover {
+  --article-paper: #e8eef2;
+  --article-paper-edge: #bdcbd3;
+  --article-ink: #263943;
+  --article-cover-accent: #476f82;
 }
-body.recursos-page .r-article-row[data-tema*="sufrimiento"] .article-cover,
-body.recursos-page .r-article-row[data-tema*="esperanza"] .article-cover {
-  --article-paper: #edf0ed;
-  --article-paper-edge: #c7d0cb;
-  --article-cover-accent: #607984;
+body.recursos-page .r-article-row[data-subtipo="reflexion"] .article-cover {
+  --article-paper: #f2e5df;
+  --article-paper-edge: #d9bfb7;
+  --article-ink: #432b2d;
+  --article-cover-accent: #914a56;
+}
+body.recursos-page .r-article-row[data-subtipo="devocional"] .article-cover {
+  --article-paper: #e8eee2;
+  --article-paper-edge: #c5d0ba;
+  --article-ink: #2f3d2d;
+  --article-cover-accent: #5b7655;
 }
 body.recursos-page .r-article-row:hover .article-cover,
 body.recursos-page .r-article-row:focus-visible .article-cover {
