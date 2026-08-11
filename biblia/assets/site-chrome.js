@@ -15,11 +15,12 @@
       buttons.forEach(btn => btn.classList.toggle('is-active', btn.dataset.lang === current));
     };
     markActive();
-    if(window.VerboSiteTranslate) await VerboSiteTranslate.applyLiveTranslation(document);
+    const sourceLang = () => document.querySelector('article[data-source-lang]')?.dataset.sourceLang || 'es';
+    if(window.VerboSiteTranslate) await VerboSiteTranslate.applyLiveTranslation(document, sourceLang());
     buttons.forEach(btn => btn.addEventListener('click', () => VerboI18n.setUiLang(btn.dataset.lang)));
     document.addEventListener('verbo:uilang-changed', async () => {
       markActive();
-      if(window.VerboSiteTranslate) await VerboSiteTranslate.applyLiveTranslation(document);
+      if(window.VerboSiteTranslate) await VerboSiteTranslate.applyLiveTranslation(document, sourceLang());
     });
   });
 })();

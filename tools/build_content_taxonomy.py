@@ -21,6 +21,8 @@ solo genera datos y fragmentos de HTML en build/ para revisión, salvo los
 tres archivos JSON/MD de arriba, que sí son la fuente de datos final.
 """
 import json
+import argparse
+import html as html_module
 import re
 import subprocess
 import unicodedata
@@ -203,6 +205,12 @@ TEMAS_OVERRIDE = {
 
 BADGE_RE = re.compile(r'<p class="article-badge">Art[ií]culos y Reflexiones · ([^·]+) · ([^<]+)</p>')
 H1_RE = re.compile(r"<h1>(.+?)</h1>", re.S)
+AUTHOR_RE = re.compile(r'<article\b[^>]*\bdata-author="([^"]+)"')
+
+
+def article_attr(html, name):
+    match = re.search(rf'<article\b[^>]*\b{name}="([^"]*)"', html)
+    return match.group(1).strip() if match else None
 
 
 def build_articulos(approx_flags):
@@ -220,45 +228,56 @@ def build_articulos(approx_flags):
         m = BADGE_RE.search(html)
         topic, datestr = (m.group(1).strip(), m.group(2).strip()) if m else ("", "")
         h1_m = H1_RE.search(html)
-        titulo = re.sub(r"\s+", " ", h1_m.group(1)).strip() if h1_m else slug
+        titulo_h1 = re.sub(r"\s+", " ", h1_m.group(1)).strip() if h1_m else slug
+        titulo = html_module.unescape(article_attr(html, "data-title-es") or titulo_h1)
+        author_m = AUTHOR_RE.search(html)
+        autor = author_m.group(1).strip() if author_m else None
 
         # Contraparte nativa en inglés (traducida por Codex, 2026-07-29). Si
         # todavía no existe -> el artículo se queda sin titulo_en/ruta_en y el
         # listado/navegador cae de vuelta al español en silencio (ver
         # lang-aware-list.js / article-lang-redirect.js).
         idx_en = base_en / slug / "index.html"
-        titulo_en = None
+        titulo_en = article_attr(html, "data-title-en")
+        titulo_en = html_module.unescape(titulo_en) if titulo_en else None
         if idx_en.exists():
             html_en = idx_en.read_text(encoding="utf-8")
             h1_en_m = H1_RE.search(html_en)
             titulo_en = re.sub(r"\s+", " ", h1_en_m.group(1)).strip() if h1_en_m else None
 
         git_date = git_add_date(idx)
-        fecha = parse_badge_date(datestr, git_date, approx_flags) if datestr else git_date
+        fecha = article_attr(html, "data-date-added") or (parse_badge_date(datestr, git_date, approx_flags) if datestr else git_date)
 
+        declared_category = article_attr(html, "data-category")
         tipo = TIPO_OVERRIDE.get(slug)
         if tipo is None:
-            tipo = "articulo"  # Apologética / Teología / Historia de la Biblia / Vida cristiana
+            tipo = "devocional-reflexion" if declared_category == "devocional" else "articulo"
         elif tipo in {"devocional", "reflexion"}:
             tipo = "devocional-reflexion"
         temas = TEMAS_OVERRIDE.get(slug)
         if temas is None:
-            temas = [slugify(topic)] if topic else []
+            declared_topics = article_attr(html, "data-topics")
+            temas = [t.strip() for t in declared_topics.split(",") if t.strip()] if declared_topics else ([slugify(topic)] if topic else [])
+
+        categoria = declared_category or categoria_para(slug, tipo)
+        source_lang = article_attr(html, "data-source-lang")
+        single_source_route = source_lang == "en" and not idx_en.exists()
 
         items.append({
             "id": slug,
             "titulo": titulo,
             "seccion": "recursos",
             "tipo": tipo,
-            "categoria": categoria_para(slug, tipo),
+            "categoria": categoria,
             "idioma": "es",
             "temas": temas,
             "fecha_agregado": fecha,
+            "autor": autor,
             "url": f"/recursos/articulos-y-reflexiones/{slug}/",
             "titulo_es": titulo,
             "titulo_en": titulo_en,
             "ruta_es": f"/recursos/articulos-y-reflexiones/{slug}/",
-            "ruta_en": f"/recursos/articles-and-reflections-en/{slug}/" if titulo_en else None,
+            "ruta_en": (f"/recursos/articulos-y-reflexiones/{slug}/" if single_source_route else f"/recursos/articles-and-reflections-en/{slug}/") if titulo_en else None,
             "estrategia_traduccion": estrategia_para(slug),
             **({"pendiente_revision": True, "nota_pendiente": PENDIENTES[slug]} if slug in PENDIENTES else {}),
         })
@@ -400,6 +419,10 @@ TEMA_LABEL = {
     "devocional": "Devocional", "familia": "Familia", "evangelismo": "Evangelismo",
     "evangelios": "Evangelios", "armonia-evangelica": "Armonía evangélica",
     "comentario-biblico": "Comentario bíblico",
+    "ministerio": "Ministerio", "unidad": "Unidad", "oracion": "Oración",
+    "perseverancia": "Perseverancia", "juventud": "Juventud", "predicacion": "Predicación",
+    "iglesia": "Iglesia", "doctrina": "Doctrina", "escritura": "Escritura",
+    "cultura": "Cultura", "liderazgo": "Liderazgo",
     "siglo-1": "Siglo I", "siglo-2": "Siglo II", "siglo-17": "Siglo XVII", "siglo-19": "Siglo XIX",
 }
 
@@ -454,7 +477,8 @@ def render_articulo_row(it):
     ruta_en_attr = ""
     titulo_en_attr = ""
     if it.get("ruta_en") and it.get("titulo_en"):
-        ruta_en_rel = f"../articles-and-reflections-en/{it['id']}/"
+        ruta_en_rel = (f"{it['id']}/" if it["ruta_en"] == it["ruta_es"]
+                       else f"../articles-and-reflections-en/{it['id']}/")
         ruta_en_attr = f' data-ruta-en="{ruta_en_rel}"'
         titulo_en_attr = f' data-titulo-en="{esc(it["titulo_en"])}"'
     return (
@@ -704,6 +728,9 @@ def generate_matthew_henry():
 # ============================================================
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--apply-articles", action="store_true", help="Actualiza también el bloque filtrable del índice vivo de Artículos")
+    args = parser.parse_args()
     approx_flags = []
     articulos = build_articulos(approx_flags)
     escuela = build_escuela_dominical()
@@ -752,7 +779,21 @@ def main():
         json.dumps(combined[:12], ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
 
-    (BUILD / "articulos_list.html").write_text(render_articulos_block(articulos) + "\n", encoding="utf-8")
+    articles_block = render_articulos_block(articulos)
+    (BUILD / "articulos_list.html").write_text(articles_block + "\n", encoding="utf-8")
+    if args.apply_articles:
+        index_path = RECURSOS / "articulos-y-reflexiones" / "index.html"
+        index_html = index_path.read_text(encoding="utf-8")
+        pattern = re.compile(r'<!-- CONTENT-FILTERS:START -->.*?<!-- CONTENT-FILTERS:END -->', re.S)
+        if len(pattern.findall(index_html)) != 1:
+            raise SystemExit("No se encontró exactamente un bloque CONTENT-FILTERS en el índice")
+        index_html = pattern.sub(articles_block, index_html)
+        index_html = re.sub(
+            r'(<div class="r-section-label"><h2>)\d+( <span data-i18n="articulosIndex\.piezas">)',
+            rf'\g<1>{len(articulos)}\g<2>', index_html, count=1,
+        )
+        index_path.write_text(index_html, encoding="utf-8")
+        print(f"Aplicado: {index_path.relative_to(ROOT)} ({len(articulos)} piezas)")
     (BUILD / "libreria_filterbar.html").write_text(render_libreria_filterbar(libreria) + "\n", encoding="utf-8")
     (BUILD / "novedades_section.html").write_text(render_novedades_block(combined) + "\n", encoding="utf-8")
 

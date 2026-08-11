@@ -145,6 +145,19 @@ body.recursos-page .static-page__main article h2 {
   padding-left: 12px;
   margin: 36px 0 14px;
 }
+body.recursos-page .historical-editorial-subtitle {
+  margin: -6px 0 30px;
+  color: var(--r-ink-soft) !important;
+  font-size: .9rem;
+  font-style: italic;
+}
+body.recursos-page .historical-editorial-subtitle span {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: .75rem;
+  font-style: normal;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+}
 body.recursos-page .static-page__main article p {
   color: var(--r-ink);
   line-height: 1.75;
@@ -163,6 +176,17 @@ body.recursos-page .static-page__main article blockquote p { margin: 0; }
 body.recursos-page .static-page__main article hr {
   border-top-color: var(--r-rule);
 }
+body.recursos-page .article-attribution {
+  margin: 42px 0 22px;
+  padding-top: 16px;
+  border-top: 1px solid var(--r-rule);
+  color: var(--r-ink-soft);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  line-height: 1.65;
+}
+body.recursos-page .static-page__main article .article-attribution p { margin: 0; color: inherit; }
+body.recursos-page .static-page__main article .article-attribution strong { font-weight: 500; }
 body.recursos-page .static-page__main article table {
   border-collapse: collapse;
   width: 100%;
