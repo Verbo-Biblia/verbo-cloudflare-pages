@@ -2,7 +2,7 @@
 
 ## Estado
 
-Documento creado el 10 de agosto de 2026 antes de modificar código o contenido y actualizado durante la ejecución. Implementación local completada; pendiente de commit, despliegue y comprobación final en producción.
+Documento creado el 10 de agosto de 2026 antes de modificar código o contenido y actualizado durante la ejecución. Implementación publicada y comprobada en producción.
 
 ## Objetivo
 
@@ -63,6 +63,7 @@ Prueba real: una petición inglés→español devolvió una traducción coherent
 - Revisión de marcadores Gutenberg, notas, caracteres de reemplazo y residuos editoriales en las diez cartas: sin coincidencias.
 - Revisión visual local: índice a 1440×1200 y carta a 390×844; tipografía, ancho de lectura, selector, scroll y responsive correctos.
 - Traducción y caché comprobados contra el Worker real. La verificación completa de interacción se repetirá sobre producción tras el despliegue.
+- Producción: la URL canónica devolvió HTTP 200, 45 piezas y las filas de Rutherford; una carta nueva devolvió HTTP 200 con autor, fuente y metadatos; una pieza existente mostró a Juan José Venegas al pie. La primera consulta del índice durante la propagación devolvió 35; la URL canónica sin parámetros quedó después actualizada a 45 con `cf-cache-status: DYNAMIC`.
 
 ## Decisiones
 
@@ -72,7 +73,7 @@ Prueba real: una petición inglés→español devolvió una traducción coherent
 
 ## Resultado final
 
-Localmente: las 35 piezas existentes conservan contenido y muestran a Juan José Venegas al pie; se agregaron 10 cartas verificadas de Samuel Rutherford; filtros, temas, catálogo, sitemap, responsive y traducción permanecen integrados.
+En producción: las 35 piezas existentes conservan contenido y muestran a Juan José Venegas al pie; se agregaron 10 cartas verificadas de Samuel Rutherford; filtros, temas, catálogo, sitemap, responsive y traducción permanecen integrados. URL verificada: `https://verbobiblia.com/recursos/articulos-y-reflexiones/`.
 
 ## Commit final
 
