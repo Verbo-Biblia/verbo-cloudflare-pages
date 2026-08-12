@@ -468,10 +468,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     const entry = commentaryCatalog().find(c => c.id === commentaryId);
     if (!entry) return false;
     const { entries } = await VerboModules.loadCommentary(entry.path, bookId, chapter);
+    const lang = contentLang();
+    const pick = f => (f && typeof f === 'object') ? (f[lang] || f.es || f.en || '') : (f || '');
     entries.forEach(e => {
       if (!e.id) return;
       const id = `${commentaryId}::${e.id}`;
-      target.notes[id] = { ...(target.notes[id]||{}), title:e.title||'', author:e.author||entry.manifest.author||entry.manifest.name||'', body:e.content||'', commentaryId };
+      const bilingual = Boolean(e.content && typeof e.content === 'object');
+      target.notes[id] = { ...(target.notes[id]||{}), title:pick(e.title), author:e.author||entry.manifest.author||entry.manifest.name||'', body:pick(e.content), commentaryId, bilingual };
     });
     target.loadedCommentaries.add(commentaryId);
     return true;
@@ -867,7 +870,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       const installed=commentaryCatalog();
       const currentManifest=catalog?.commentaries?.find(c=>c.manifest.id===currentCommentary)?.manifest;
       const commentarySourceLang=currentManifest?.language||null;
-      const needsCommentaryTranslation=Boolean(commentarySourceLang) && commentarySourceLang!==contentLang();
+      const currentCommentaryIsBilingual=Object.values(commentCtx.data.notes).some(n=>n.commentaryId===currentCommentary && n.bilingual);
+      const needsCommentaryTranslation=Boolean(commentarySourceLang) && commentarySourceLang!==contentLang() && !currentCommentaryIsBilingual;
       if(installed.length){
         const options=installed.map(c=>`<option value="${c.id}" ${c.id===currentCommentary?'selected':''}>${escapeHTML(c.label)}</option>`).join('');
         panelToolbarEl().innerHTML=`<div class="compare-toolbar"><select class="compare-toolbar__select" id="commentarySelect">${options}</select></div>`;
@@ -1292,6 +1296,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       if(!bodyEl||bodyEl.dataset.translated===target) continue;
       const note=commentaryContext().data.notes[noteId];
       if(!note) continue;
+      if(note.bilingual) continue;
       for(const field of ['title','author']){
         if(myGen!==translateGeneration) return;
         const headerEl=card.querySelector(`[data-commentary-header="${field}"]`);
