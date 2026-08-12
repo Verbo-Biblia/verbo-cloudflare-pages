@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 2,
+  "id": "comentarios-verbo-en",
+  "type": "commentary",
+  "name": "Comentarios Verbo (EN)",
+  "abbreviation": "Verbo EN",
+  "language": "en",
+  "author": "Verbo",
+  "description": "Original Bible commentaries by Verbo, with pastoral exposition, historical context, and attention to each book's argument.",
+  "license": "All rights reserved by the author.",
+  "books": [
+    {
+      "id": "HEB",
+      "name": "Hebrews",
+      "file": "books/HEB.json",
+      "indexFile": "books/HEB.index.json"
+    }
+  ]
+}
