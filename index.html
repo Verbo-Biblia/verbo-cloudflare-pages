@@ -5,13 +5,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>
-(() => {
-  const themes = new Set(['paper', 'cream', 'sage', 'mist', 'pearl', 'sand', 'mint', 'rosewood']);
-  const selected = localStorage.getItem('verbo:theme') || 'paper';
-  document.documentElement.dataset.theme = themes.has(selected) ? selected : 'paper';
-})();
-</script>
-<script>
 if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location.hostname)) {
   location.replace(`https://${location.host}${location.pathname}${location.search}${location.hash}`);
 }
@@ -21,84 +14,20 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
 <link rel="canonical" href="https://verbobiblia.com/">
 <link rel="icon" type="image/png" sizes="192x192" href="biblia/assets/icons/icon-192.png">
 <link rel="apple-touch-icon" href="biblia/assets/icons/icon-192.png">
-<meta name="theme-color" content="#10192B">
+<meta name="theme-color" content="#1C1D1E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+  /* Portada con un solo look fijo — a propósito NO cambia con el tema de
+     lectura elegido en Ajustes. Estilo Presonus Studio One: gris grafito
+     casi negro (calibrado contra el icono real de la app) + un solo
+     acento cian vívido. */
   :root {
-    --ink: #10192B;
-    --ink-deep: #0A101C;
-    --parchment: #F4EEDF;
-    --parchment-dim: #E7DFC9;
-    --gold: #C9A227;
-    --gold-dim: #A98A22;
-    --wine: #7A2E2E;
-    --text-on-ink: #EDE6D6;
-    --text-muted: #9FA9BD;
-    --ink-rgb: 16, 25, 43;
-    --shadow-rgb: 10, 16, 28;
-    --card-start-rgb: 22, 34, 58;
-    --card-end-rgb: 15, 26, 46;
-    --card-hover-start-rgb: 26, 39, 64;
-    --card-hover-end-rgb: 16, 27, 48;
-  }
-
-  html[data-theme="paper"] {
-    --ink: #241C14; --ink-deep: #150F0A; --gold: #C89F58; --gold-dim: #A98245;
-    --text-on-ink: #F1E3C8; --text-muted: #C2B296;
-    --ink-rgb: 36,28,20; --shadow-rgb: 21,15,10;
-    --card-start-rgb: 54,42,29; --card-end-rgb: 38,29,21;
-    --card-hover-start-rgb: 64,49,34; --card-hover-end-rgb: 45,35,24;
-  }
-  html[data-theme="cream"] {
-    --ink: #261D11; --ink-deep: #161008; --gold: #D2A343; --gold-dim: #B88C35;
-    --text-on-ink: #F5E7C8; --text-muted: #C7B99B;
-    --ink-rgb: 38,29,17; --shadow-rgb: 22,16,8;
-    --card-start-rgb: 57,43,23; --card-end-rgb: 39,30,18;
-    --card-hover-start-rgb: 67,50,27; --card-hover-end-rgb: 47,35,20;
-  }
-  html[data-theme="sage"] {
-    --ink: #172319; --ink-deep: #0C150D; --gold: #B6A04E; --gold-dim: #95823E;
-    --text-on-ink: #E7EFDF; --text-muted: #AABCA0;
-    --ink-rgb: 23,35,25; --shadow-rgb: 12,21,13;
-    --card-start-rgb: 34,52,38; --card-end-rgb: 23,38,27;
-    --card-hover-start-rgb: 42,63,46; --card-hover-end-rgb: 28,45,33;
-  }
-  html[data-theme="mist"] {
-    --ink: #12232D; --ink-deep: #09151B; --gold: #BCA35F; --gold-dim: #9B854C;
-    --text-on-ink: #E4F0F5; --text-muted: #A5BBC6;
-    --ink-rgb: 18,35,45; --shadow-rgb: 9,21,27;
-    --card-start-rgb: 25,51,64; --card-end-rgb: 17,37,47;
-    --card-hover-start-rgb: 31,61,76; --card-hover-end-rgb: 21,44,56;
-  }
-  html[data-theme="pearl"] {
-    --ink: #24211D; --ink-deep: #151310; --gold: #BFA05B; --gold-dim: #9C8148;
-    --text-on-ink: #ECE9E2; --text-muted: #B8B1A6;
-    --ink-rgb: 36,33,29; --shadow-rgb: 21,19,16;
-    --card-start-rgb: 53,49,43; --card-end-rgb: 38,35,31;
-    --card-hover-start-rgb: 63,58,51; --card-hover-end-rgb: 45,41,36;
-  }
-  html[data-theme="sand"] {
-    --ink: #2B1B1E; --ink-deep: #190E11; --gold: #C99C57; --gold-dim: #A77D43;
-    --text-on-ink: #F3E2DD; --text-muted: #C6AAA3;
-    --ink-rgb: 43,27,30; --shadow-rgb: 25,14,17;
-    --card-start-rgb: 65,38,43; --card-end-rgb: 45,27,31;
-    --card-hover-start-rgb: 77,45,51; --card-hover-end-rgb: 54,32,37;
-  }
-  html[data-theme="mint"] {
-    --ink: #102922; --ink-deep: #081812; --gold: #B6A85D; --gold-dim: #928649;
-    --text-on-ink: #E0F4ED; --text-muted: #A2C3B8;
-    --ink-rgb: 16,41,34; --shadow-rgb: 8,24,18;
-    --card-start-rgb: 23,59,49; --card-end-rgb: 16,42,35;
-    --card-hover-start-rgb: 28,70,59; --card-hover-end-rgb: 19,50,42;
-  }
-  html[data-theme="rosewood"] {
-    --ink: #2D1921; --ink-deep: #1A0D12; --gold: #C49A5B; --gold-dim: #A17A47;
-    --text-on-ink: #F4E1E7; --text-muted: #C7A8B2;
-    --ink-rgb: 45,25,33; --shadow-rgb: 26,13,18;
-    --card-start-rgb: 67,36,47; --card-end-rgb: 47,25,34;
-    --card-hover-start-rgb: 79,43,56; --card-hover-end-rgb: 56,30,40;
+    --ink: #1C1D1E; --ink-deep: #131414; --ink-rgb: 28,29,30;
+    --gold: #22C7FE; --gold-dim: #1A96C0;
+    --parchment: #ECECEC; --parchment-dim: #C7C7C7;
+    --text-on-ink: #E4E4E4; --text-muted: #9A9A9A;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -138,9 +67,10 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
     justify-content: space-between;
     min-height: 66px;
     padding: 0.85rem clamp(1rem, 5vw, 4rem);
-    background: rgba(var(--ink-rgb), 0.85);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(201, 162, 39, 0.15);
+    background: rgba(var(--ink-rgb), 0.55);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border-bottom: 1px solid rgba(34, 199, 254, 0.18);
   }
 
   .wordmark {
@@ -176,9 +106,10 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
     inset: -8%;
     background: url('assets/fondo.png') center / cover no-repeat;
     opacity: 0.86;
-    transform: translate3d(0, var(--hero-parallax, 0px), 0) scale(1.08);
+    transform: translate3d(var(--hero-parallax-x, 0px), calc(var(--hero-parallax, 0px) + var(--hero-parallax-y, 0px)), 0) scale(1.08);
     will-change: transform;
     pointer-events: none;
+    transition: transform 0.25s ease-out;
   }
 
   .hero::after {
@@ -186,8 +117,8 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(100deg, rgba(var(--shadow-rgb),0.72) 0%, rgba(var(--shadow-rgb),0.38) 46%, rgba(var(--shadow-rgb),0.16) 100%),
-      linear-gradient(0deg, rgba(var(--ink-rgb),0.7) 0%, transparent 42%);
+      linear-gradient(100deg, rgba(var(--ink-rgb),0.62) 0%, rgba(var(--ink-rgb),0.3) 46%, rgba(var(--ink-rgb),0.1) 100%),
+      linear-gradient(0deg, rgba(var(--ink-rgb),0.55) 0%, transparent 42%);
     pointer-events: none;
   }
 
@@ -239,10 +170,11 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
 
   .card {
     position: relative;
-    background: linear-gradient(155deg, rgba(var(--card-start-rgb),0.88) 0%, rgba(var(--card-end-rgb),0.9) 100%);
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(201, 162, 39, 0.12);
-    border-radius: 12px;
+    background: linear-gradient(155deg, rgba(var(--ink-rgb),0.45) 0%, rgba(var(--ink-rgb),0.2) 100%);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
     min-height: clamp(132px, 18vh, 174px);
     padding: clamp(1rem, 2vw, 1.5rem);
     display: flex;
@@ -250,14 +182,14 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
     align-items: flex-start;
     justify-content: space-between;
     gap: 0.75rem;
-    box-shadow: 0 18px 40px rgba(4, 8, 15, 0.16);
+    box-shadow: 0 18px 40px rgba(4, 8, 15, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08);
     transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
   }
 
   .card:hover {
     transform: translateY(-3px);
-    border-color: rgba(201, 162, 39, 0.4);
-    background: linear-gradient(155deg, rgba(var(--card-hover-start-rgb),0.94) 0%, rgba(var(--card-hover-end-rgb),0.95) 100%);
+    border-color: rgba(34, 199, 254, 0.45);
+    background: linear-gradient(155deg, rgba(var(--ink-rgb),0.62) 0%, rgba(var(--ink-rgb),0.34) 100%);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -279,7 +211,11 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   /* ---------- MÁS DE VERBO ---------- */
   .more-verbo,
   .contact-card-wrap {
+    position: relative;
     padding: clamp(3rem, 6vw, 5rem) clamp(1rem, 5vw, 4rem);
+    background:
+      radial-gradient(60% 90% at 12% 0%, rgba(34,199,254,0.1) 0%, transparent 60%),
+      radial-gradient(50% 80% at 100% 100%, rgba(34,199,254,0.06) 0%, transparent 65%);
   }
 
   .more-head {
@@ -289,7 +225,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
     gap: 1rem;
     padding-bottom: 1rem;
     margin-bottom: 1.25rem;
-    border-bottom: 1px solid rgba(201, 162, 39, 0.15);
+    border-bottom: 1px solid rgba(34, 199, 254, 0.15);
   }
   .more-head h2 { font-size: 1.6rem; }
   .more-head span {
@@ -307,15 +243,16 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
     flex-direction: column;
     gap: 0.5rem;
     padding: 1.1rem 1.3rem;
-    background: linear-gradient(155deg, rgba(var(--card-start-rgb),0.88) 0%, rgba(var(--card-end-rgb),0.9) 100%);
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(201, 162, 39, 0.12);
-    border-radius: 6px;
+    background: linear-gradient(155deg, rgba(var(--ink-rgb),0.24) 0%, rgba(var(--ink-rgb),0.08) 100%);
+    backdrop-filter: blur(22px) saturate(180%);
+    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
     transition: transform 0.15s ease, border-color 0.15s ease;
   }
   .more-card:hover {
     transform: translateY(-2px);
-    border-color: rgba(201, 162, 39, 0.4);
+    border-color: rgba(34, 199, 254, 0.4);
   }
   .more-card-kicker {
     font-family: 'IBM Plex Mono', monospace;
@@ -338,14 +275,16 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
     max-width: 520px;
     margin: 0 auto;
     padding: 1.2rem 1.4rem;
-    border: 1px solid rgba(201, 162, 39, 0.2);
+    border: 1px solid rgba(34, 199, 254, 0.2);
     border-radius: 12px;
     text-align: center;
     color: var(--parchment);
-    background: rgba(var(--shadow-rgb), 0.6);
+    background: rgba(var(--ink-rgb), 0.2);
+    backdrop-filter: blur(20px) saturate(170%);
+    -webkit-backdrop-filter: blur(20px) saturate(170%);
   }
   .contact-card:hover {
-    border-color: rgba(201, 162, 39, 0.55);
+    border-color: rgba(34, 199, 254, 0.55);
     color: var(--gold);
   }
 
@@ -353,8 +292,8 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   .quote-strip {
     padding: 4rem clamp(1.5rem, 5vw, 4rem);
     background: var(--ink-deep);
-    border-top: 1px solid rgba(201, 162, 39, 0.1);
-    border-bottom: 1px solid rgba(201, 162, 39, 0.1);
+    border-top: 1px solid rgba(34, 199, 254, 0.1);
+    border-bottom: 1px solid rgba(34, 199, 254, 0.1);
     text-align: center;
   }
 
@@ -392,7 +331,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   /* ---------- Selector de idioma de interfaz ---------- */
   .ui-lang-switcher {
     display: inline-flex;
-    border: 1px solid rgba(201, 162, 39, 0.3);
+    border: 1px solid rgba(34, 199, 254, 0.3);
     border-radius: 4px;
     overflow: hidden;
     margin-right: 0.75rem;
@@ -407,7 +346,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
     padding: 0.4rem 0.65rem;
     cursor: pointer;
   }
-  .ui-lang-switcher__btn + .ui-lang-switcher__btn { border-left: 1px solid rgba(201, 162, 39, 0.3); }
+  .ui-lang-switcher__btn + .ui-lang-switcher__btn { border-left: 1px solid rgba(34, 199, 254, 0.3); }
   .ui-lang-switcher__btn:hover { color: var(--parchment); }
   .ui-lang-switcher__btn.is-active { background: var(--gold); color: var(--ink-deep); }
 
@@ -548,6 +487,36 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
       ticking = true;
     }
   }, { passive: true });
+
+  // Parallax activo: la ilustración del hero responde a la posición del
+  // mouse (además del scroll), dando sensación de profundidad. Rango
+  // deliberadamente pequeño (±14px) para que se sienta vivo sin marear.
+  const hero = document.querySelector('.hero');
+  if (hero && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    let mouseTicking = false;
+    let targetX = 0, targetY = 0;
+    const RANGE_X = 14, RANGE_Y = 10;
+    const applyMouseParallax = () => {
+      document.documentElement.style.setProperty('--hero-parallax-x', `${targetX}px`);
+      document.documentElement.style.setProperty('--hero-parallax-y', `${targetY}px`);
+      mouseTicking = false;
+    };
+    hero.addEventListener('mousemove', (e) => {
+      const rect = hero.getBoundingClientRect();
+      const relX = (e.clientX - rect.left) / rect.width - 0.5;
+      const relY = (e.clientY - rect.top) / rect.height - 0.5;
+      targetX = relX * -RANGE_X;
+      targetY = relY * -RANGE_Y;
+      if (!mouseTicking) {
+        requestAnimationFrame(applyMouseParallax);
+        mouseTicking = true;
+      }
+    }, { passive: true });
+    hero.addEventListener('mouseleave', () => {
+      targetX = 0; targetY = 0;
+      requestAnimationFrame(applyMouseParallax);
+    }, { passive: true });
+  }
 })();
 </script>
 </body>

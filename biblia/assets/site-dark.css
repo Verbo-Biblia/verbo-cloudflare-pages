@@ -1,0 +1,23 @@
+/* Reviste las páginas informativas estáticas (Acerca, Misión, Privacidad,
+   Licencias, Seminario, Sobre el fundador) con el mismo look que la portada
+   (/index.html) — estilo Presonus Studio One: gris grafito casi negro
+   (calibrado contra el icono real de la app) + un solo acento cian vívido,
+   sin depender del selector de 8 temas de lectura. Redefine las variables
+   SOLO en el scope de body.static-page (no toca :root ni
+   body[data-theme=...]), así que /biblia/ y el picker de temas en
+   /ajustes/ — que sí necesita mostrar el tema real elegido — siguen
+   intactos. No se incluye a propósito en /ajustes/: esa página cambia
+   --paper en vivo al elegir un tema (vista previa), y este archivo lo
+   taparía. */
+body.static-page {
+  --paper: #1C1D1E;
+  --paper-raised: #28292A;
+  --ink: #E4E4E4;
+  --ink-soft: #9A9A9A;
+  --sepia: #9A9A9A;
+  --wine: #22C7FE;
+  --wine-soft: #1A96C0;
+  --rule: rgba(34, 199, 254, 0.18);
+  --rule-strong: rgba(34, 199, 254, 0.32);
+  --gold-glow: #22C7FE;
+}
