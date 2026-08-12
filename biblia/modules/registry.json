@@ -45,8 +45,7 @@
     "commentaries/clarke/manifest.json",
     "commentaries/calvin/manifest.json",
     "commentaries/cambridge/manifest.json",
-    "commentaries/comentarios-verbo/manifest.json",
-    "commentaries/comentarios-verbo-en/manifest.json"
+    "commentaries/comentarios-verbo/manifest.json"
   ],
   "dictionaries": [
     "dictionaries/strong-verbo/manifest.json"
@@ -5003,34 +5002,6 @@
               "name": "2 Corintios",
               "file": "books/2CO.json",
               "indexFile": "books/2CO.index.json"
-            },
-            {
-              "id": "HEB",
-              "name": "Hebreos",
-              "file": "books/HEB.json",
-              "indexFile": "books/HEB.index.json"
-            }
-          ]
-        }
-      },
-      {
-        "path": "modules/commentaries/comentarios-verbo-en/manifest.json",
-        "manifest": {
-          "schemaVersion": 2,
-          "id": "comentarios-verbo-en",
-          "type": "commentary",
-          "name": "Comentarios Verbo (EN)",
-          "abbreviation": "Verbo EN",
-          "language": "en",
-          "author": "Verbo",
-          "description": "Original Bible commentaries by Verbo, with pastoral exposition, historical context, and attention to each book's argument.",
-          "license": "All rights reserved by the author.",
-          "books": [
-            {
-              "id": "HEB",
-              "name": "Hebrews",
-              "file": "books/HEB.json",
-              "indexFile": "books/HEB.index.json"
             }
           ]
         }
