@@ -161,18 +161,81 @@ body.recursos-page .historical-editorial-subtitle span {
 body.recursos-page .static-page__main article p {
   color: var(--r-ink);
   line-height: 1.75;
+  font-size: var(--reading-font-size, 1rem);
+  transition: font-size .15s ease;
+}
+/* Mientras el pellizco está activo (article-fontsize.js añade/quita esta
+   clase en <article>) el tamaño debe seguir al gesto 1:1, sin el retraso que
+   introduciría la transición de arriba en cada frame. */
+body.recursos-page .static-page__main article.is-pinching p,
+body.recursos-page .static-page__main article.is-pinching blockquote,
+body.recursos-page .static-page__main article.is-pinching li {
+  transition: none;
 }
 body.recursos-page .static-page__main article strong { color: var(--r-ink); }
 body.recursos-page .static-page__main article a { color: var(--r-gold); }
 body.recursos-page .static-page__main article a:hover { color: var(--r-gold-bright); }
+body.recursos-page .static-page__main article ul,
+body.recursos-page .static-page__main article ol {
+  font-size: var(--reading-font-size, 1rem);
+  line-height: 1.75;
+  color: var(--r-ink);
+  transition: font-size .15s ease;
+}
 body.recursos-page .static-page__main article blockquote {
   border-left: 2px solid var(--r-gold-bright);
   background: none;
   padding: 4px 0 4px 20px;
   color: var(--r-ink-soft);
   font-style: italic;
+  font-size: var(--reading-font-size, 1rem);
+  transition: font-size .15s ease;
 }
-body.recursos-page .static-page__main article blockquote p { margin: 0; }
+body.recursos-page .static-page__main article blockquote p {
+  margin: 0;
+  font-size: inherit;
+}
+
+/* Sin media query: el navegador no debe interceptar el pellizco (zoom
+   nativo, sin reflow) sobre el artículo en ningún ancho — incluye
+   tablets/laptops táctiles, no solo móvil. El scroll vertical (pan-y) sigue
+   funcionando siempre; ver article-fontsize.js. */
+body.recursos-page .static-page__main article { touch-action: pan-y; }
+
+/* Control de tamaño de letra (A− / A+), alternativa accesible al pellizco
+   con dos dedos — mismos límites y misma variable --reading-font-size que
+   el gesto. Mismo estilo que .reader-textsize de /libreria/. */
+body.recursos-page .article-textsize {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0;
+  margin: 0 0 14px;
+}
+body.recursos-page .article-textsize-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--r-ink-soft);
+  background: none;
+  border: 1px solid var(--r-rule);
+  cursor: pointer;
+  padding: 6px 11px;
+  transition: border-color .15s ease, color .15s ease, background .15s ease;
+}
+body.recursos-page .article-textsize-btn:first-child {
+  border-radius: 999px 0 0 999px;
+}
+body.recursos-page .article-textsize-btn:last-child {
+  border-radius: 0 999px 999px 0;
+  border-left: none;
+}
+body.recursos-page .article-textsize-btn:hover:not(:disabled) {
+  border-color: var(--r-gold);
+  color: var(--r-ink);
+}
+body.recursos-page .article-textsize-btn:disabled { opacity: .35; cursor: default; }
 body.recursos-page .static-page__main article hr {
   border-top-color: var(--r-rule);
 }
