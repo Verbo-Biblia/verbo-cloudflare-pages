@@ -108,11 +108,14 @@ function estimateMaxTokens(text) {
   return Math.min(8192, Math.max(128, withExpansionBuffer));
 }
 
-// Prefijo versionado: si el modelo o el system prompt cambian de forma que
-// invalide traducciones ya cacheadas, subir a "v3" fuerza a recalcular todo
-// sin tener que borrar el namespace KV a mano (que también guarda datos de
-// sync bajo otros prefijos, "link:"/"session:"/"blob:").
-const TRANSLATE_CACHE_PREFIX = 'translate:v3';
+// Prefijo versionado: si el modelo, el system prompt o la detección de
+// preámbulos cambian de forma que invalide traducciones ya cacheadas, subir
+// el número fuerza a recalcular todo sin tener que borrar el namespace KV a
+// mano (que también guarda datos de sync bajo otros prefijos,
+// "link:"/"session:"/"blob:"). Subido a v4 el 2026-08-12: una traducción de
+// "Verbo" (nombre de autor de Comentarios Verbo) había quedado cacheada como
+// un preámbulo conversacional que PREAMBLE_PATTERNS no atrapaba entonces.
+const TRANSLATE_CACHE_PREFIX = 'translate:v4';
 
 async function translateCacheKey(text, targetLang) {
   return `${TRANSLATE_CACHE_PREFIX}:${targetLang}:${await sha256Hex(text)}`;
@@ -127,12 +130,21 @@ async function translateCacheKey(text, targetLang) {
 // provide the actual text" en vez de traducir. Se detecta por patrones
 // conocidos de negativa/aclaración y se reintenta una vez; si persiste, se
 // falla la petición (502) en vez de cachear o devolver el preámbulo.
+// Confirmado en vivo el 2026-08-12: el campo "author" de Comentarios Verbo
+// manda la palabra sola "Verbo" — que también es el nombre de la app citado
+// en el system prompt — y el modelo respondió hablando de la app en vez de
+// traducir ("I see you've typed 'Verbo,' which is the name of the Bible
+// study application..." / "I await the source text to translate. Please
+// provide the content..."), ninguna de las dos atrapada por los patrones
+// de entonces.
 const PREAMBLE_PATTERNS = [
   /^i'?m (?:ready|a translation engine|prepared)\b/i,
   /^i am (?:ready|a translation engine|prepared)\b/i,
   /^please provide\b/i,
   /^i don'?t see\b/i,
   /^i notice\b/i,
+  /^i see you\b/i,
+  /^i await\b/i,
   /^you'?ve (?:provided|sent|given)\b/i,
   /^this (?:appears to be|is not|doesn't appear|does not appear)\b/i,
   /^it (?:appears|looks like) (?:you|this)\b/i,
@@ -142,6 +154,9 @@ const PREAMBLE_PATTERNS = [
   /^according to my (?:role|instructions)\b/i,
   /^what you'?ve (?:provided|given|sent)\b/i,
   /doesn'?t appear to be (?:content|text|part) from\b/i,
+  /please provide the (?:text|content|source text)\b/i,
+  /what would you like me to translate\b/i,
+  /(?:my|the) system instructions\b/i,
   /^estoy list[oa]\b/i,
   /^por favor (?:proporcion|env[ií]a)/i,
   /^no veo\b/i,
