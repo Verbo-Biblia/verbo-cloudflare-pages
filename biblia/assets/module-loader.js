@@ -872,10 +872,18 @@ const VerboModules = (() => {
       const commentaryId=c.manifest.id;
       const rawId=entry.id||`${bookId}-${chapter}-${start}-${end}`;
       const id=`${commentaryId}::${rawId}`;
+      const localizedTitle=entry.title && typeof entry.title==='object' ? entry.title : null;
+      const localizedBody=entry.content && typeof entry.content==='object' ? entry.content : null;
       notes[id]={
-        title:entry.title||`${c.manifest.name}: ${start}${end!==start?'–'+end:''}`,
+        // Los comentarios bilingües conservan ambos idiomas. app.js elige el
+        // que corresponde a la interfaz; estos fallbacks evitan entregar un
+        // objeto al DOM antes de que ocurra esa selección.
+        title:localizedTitle?.es||localizedTitle?.en||entry.title||`${c.manifest.name}: ${start}${end!==start?'–'+end:''}`,
         author:entry.author||c.manifest.author||c.manifest.name,
-        body:entry.content||'',
+        body:localizedBody?.es||localizedBody?.en||entry.content||'',
+        localizedTitle,
+        localizedBody,
+        bilingual:Boolean(localizedBody?.es && localizedBody?.en),
         commentaryId,
         commentaryName:c.manifest.name,
         commentaryLabel:c.manifest.abbreviation || c.manifest.name

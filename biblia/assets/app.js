@@ -288,6 +288,16 @@ document.addEventListener('DOMContentLoaded', async () => {
   // 2026-08-04: la Biblia activa puede quedarse en español mientras el usuario
   // quiere leer el resto del contenido traducido, o viceversa.
   const contentLang = () => window.VerboI18n?.getUiLang() || 'es';
+  const pickLocalizedCommentaryValue = (value, lang=contentLang()) =>
+    value && typeof value === 'object' ? (value[lang] || value.es || value.en || '') : (value || '');
+  function applyCommentaryLanguage(targetData){
+    if(!targetData?.notes) return;
+    Object.values(targetData.notes).forEach(note=>{
+      if(note.localizedTitle) note.title=pickLocalizedCommentaryValue(note.localizedTitle);
+      if(note.localizedBody) note.body=pickLocalizedCommentaryValue(note.localizedBody);
+      note.bilingual=Boolean(note.localizedBody?.es && note.localizedBody?.en);
+    });
+  }
   const strongBiblePath = () => STRONG_BIBLE_PATHS[contentLang()] || STRONG_BIBLE_PATHS.es;
   const commentaryCatalog = () => (catalog.commentaries || []).map(item => ({ id:item.manifest.id, label:item.manifest.abbreviation || item.manifest.name, full:item.manifest.name, path:item.path, manifest:item.manifest }));
   // Léxico Strong: módulos numéricos (G1234 / H1234) consultados al tocar una etiqueta Strong en el texto.
@@ -393,6 +403,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
       const previous = preserveVersion ? currentVersion : null;
       data = await VerboModules.buildChapterData({bookId: currentBook, chapter: currentChapter, commentaryId: currentCommentary, bibleId: previous || currentVersion});
+      applyCommentaryLanguage(data);
       if (previous && bibleCatalog().some(version => version.id === previous)) {
         try { await ensureVersionLoaded(previous); }
         catch (error) { console.warn(`No se pudo restaurar ${previous}; se usará la Biblia local.`, error); }
@@ -468,13 +479,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     const entry = commentaryCatalog().find(c => c.id === commentaryId);
     if (!entry) return false;
     const { entries } = await VerboModules.loadCommentary(entry.path, bookId, chapter);
-    const lang = contentLang();
-    const pick = f => (f && typeof f === 'object') ? (f[lang] || f.es || f.en || '') : (f || '');
     entries.forEach(e => {
       if (!e.id) return;
       const id = `${commentaryId}::${e.id}`;
-      const bilingual = Boolean(e.content && typeof e.content === 'object');
-      target.notes[id] = { ...(target.notes[id]||{}), title:pick(e.title), author:e.author||entry.manifest.author||entry.manifest.name||'', body:pick(e.content), commentaryId, bilingual };
+      const localizedTitle=e.title && typeof e.title==='object' ? e.title : null;
+      const localizedBody=e.content && typeof e.content==='object' ? e.content : null;
+      target.notes[id] = {
+        ...(target.notes[id]||{}),
+        title:pickLocalizedCommentaryValue(e.title),
+        author:e.author||entry.manifest.author||entry.manifest.name||'',
+        body:pickLocalizedCommentaryValue(e.content),
+        localizedTitle,
+        localizedBody,
+        commentaryId,
+        bilingual:Boolean(localizedBody?.es && localizedBody?.en)
+      };
     });
     target.loadedCommentaries.add(commentaryId);
     return true;
@@ -860,6 +879,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       // En modo sermón, "activo" es el versículo elegido en la pestaña Biblia (sermonBible),
       // no el de la Biblia principal, que queda oculta/congelada mientras se escribe.
       const commentCtx = commentaryContext();
+      // Una entrada que ya contiene es/en cambia de texto junto con la
+      // interfaz y nunca debe pasar por el servicio de traducción.
+      applyCommentaryLanguage(commentCtx.data);
       if(!focus && !verseCommentaries){
         const selectedVerseNumber = commentCtx.activeVerseN;
         const selectedVerse = commentCtx.data?.verses?.find(v => v.n === selectedVerseNumber);
@@ -2172,6 +2194,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   async function loadSermonBibleData(){
     sermonBible.data = await VerboModules.buildChapterData({bookId: sermonBible.book, chapter: sermonBible.chapter, bibleId: sermonBible.version, commentaryId: currentCommentary});
+    applyCommentaryLanguage(sermonBible.data);
     if(!sermonBible.data.versions[sermonBible.version]){
       try{ await ensureVersionLoaded(sermonBible.version, {targetData: sermonBible.data, bookId: sermonBible.book, chapter: sermonBible.chapter}); }
       catch(error){ console.warn(error); sermonBible.version = sermonBible.data.meta.version; }
