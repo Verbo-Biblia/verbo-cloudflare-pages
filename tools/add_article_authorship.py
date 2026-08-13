@@ -19,7 +19,7 @@ COLLECTIONS = (
 def update_page(path: Path, label: str) -> bool:
     html = path.read_text(encoding="utf-8")
     original = html
-    html = re.sub(r"recursos\.css\?v=[^\"']+", "recursos.css?v=20260813-mobile-internal", html)
+    html = re.sub(r"recursos\.css\?v=[^\"']+", "recursos.css?v=20260813-compact-catalog-headings", html)
     if "data-author=" in html:
         if html != original:
             path.write_text(html, encoding="utf-8")
