@@ -1,13 +1,13 @@
 # Plan: simplificar vista móvil de subpáginas de Recursos
 
-Estado: **implementado y validado localmente, pendiente de publicación.** El
-2026-08-13 se aplicó el patrón móvil a Devocionales, Artículos y Reflexiones,
-Sermones Históricos y los índices de Escuela Dominical para 4–7 y 8–10 años.
-Se comprobaron visualmente Sermones Históricos en móvil y escritorio y Escuela
-Dominical en móvil; la validación detectó y corrigió la pérdida inicial de los
-márgenes laterales causada por `display: contents`. Tras la primera publicación,
-se eliminó la barra de botones en móvil y se dejó una única flecha de regreso
-con mayor presencia y área táctil; escritorio conserva la navegación completa.
+Estado: **implementado y validado localmente en toda la familia de páginas,
+pendiente de publicación.** El 2026-08-13 el patrón se amplió desde los índices
+a todas las páginas de Librería y Recursos, incluidas lecturas individuales,
+Artículos, Devocionales, Sermones Históricos y Escuela Dominical. La regla común
+oculta `quick-nav` en móvil, conserva el encabezado compacto y aplica un margen
+exterior de 16–24 px. También se eliminó `display: contents`, causa de que el
+padding del contenedor desapareciera y hubiera que compensarlo por descendiente.
+Escritorio y tablet conservan la navegación completa.
 
 ## Contexto
 

@@ -218,7 +218,7 @@ def html_page(item: dict) -> str:
 <link rel="icon" type="image/png" sizes="192x192" href="../../../biblia/assets/icons/icon-192.png">
 <meta name="theme-color" content="#7f2d35">
 <link rel="stylesheet" href="../../../biblia/assets/style.css?v=20260730-rail-center">
-<link rel="stylesheet" href="../../../recursos/assets/recursos.css?v=20260810-autoria">
+<link rel="stylesheet" href="../../../recursos/assets/recursos.css?v=20260813-mobile-internal">
 </head>
 <body class="static-page recursos-page">
   <header class="static-page__header">
