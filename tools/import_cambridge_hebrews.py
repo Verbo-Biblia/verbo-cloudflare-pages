@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Import the public-domain Cambridge Hebrews commentary from saved HTML pages.
+"""Legacy importer for the first Cambridge Hebrews pilot.
+
+Deprecated: use ``tools/import_cambridge_complete.py``. This file remains only
+as documentation of the original pilot.
 
 Expected input files are ``cambridge-heb-1.html`` through
 ``cambridge-heb-13.html``, downloaded from:
@@ -93,6 +96,7 @@ def parse_chapter(path: Path, chapter: int) -> list[dict]:
 
 
 def main() -> None:
+    raise SystemExit("Obsoleto: usa tools/import_cambridge_complete.py")
     parser = argparse.ArgumentParser()
     parser.add_argument("source_dir", type=Path, help="Directory containing the 13 saved HTML pages")
     args = parser.parse_args()

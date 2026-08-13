@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Build provisional Cambridge Bible commentary modules from OCR sources."""
+"""Legacy Cambridge OCR converter.
+
+Deprecated: use ``tools/import_cambridge_complete.py``. This file remains only
+as documentation of the first provisional conversion.
+"""
 
 from __future__ import annotations
 
@@ -456,6 +460,7 @@ def build_manifest() -> None:
 
 
 def main() -> None:
+    raise SystemExit("Obsoleto: usa tools/import_cambridge_complete.py")
     build_manifest()
     build_romans()
     build_book_from_anchors(
