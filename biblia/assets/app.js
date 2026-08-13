@@ -3961,6 +3961,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function interlinearUnitHtml(relation,tokens,segments,direction,morphology){
+    const es=contentLang()==='es';
     const originals=(relation.originalTokens||[]).map(id=>tokens.get(id)).filter(Boolean);
     const targets=(relation.verboSegments||[]).map(id=>segments.get(id)).filter(Boolean);
     const strong=[...new Set(originals.flatMap(token=>token.strong||[]))];
@@ -3968,11 +3969,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     const transliteration=originals.map(token=>token.transliteration).filter(Boolean).join(' · ');
     const spanish=targets.map(segment=>segment.text).join(' ');
     const meta=strong.map(code=>`<button type="button" class="strongs-tag" data-strong-code="${escapeHTML(code)}">${escapeHTML(code)}</button>`).join(' ');
+    const statusLabel=relation.status==='automatic'
+      ?(es?'Alineación automática':'Automatic alignment')
+      :relation.status==='approved'
+        ?(es?'Alineación aprobada':'Approved alignment')
+        :relation.status==='reviewed'
+          ?(es?'Alineación revisada':'Reviewed alignment')
+          :relation.status==='ambiguous'
+            ?(es?'Correspondencia posible':'Possible correspondence')
+            :(es?'Sin correspondencia segura':'No reliable correspondence');
     return `<article class="interlinear-unit interlinear-unit--${escapeHTML(relation.status)}" data-relation-id="${escapeHTML(relation.id)}">
-      <div class="interlinear-unit__original" dir="${direction}">${originalHtml}</div>
-      ${transliteration?`<div class="interlinear-unit__translit" dir="ltr">${escapeHTML(transliteration)}</div>`:''}
-      <div class="interlinear-unit__spanish" dir="ltr">${escapeHTML(spanish||'—')}</div>
-      <div class="interlinear-unit__meta" dir="ltr">${meta}<span>${escapeHTML(relation.relation)} · ${escapeHTML(relation.status)}</span></div>
+      <div class="interlinear-unit__source"><div class="interlinear-unit__original" dir="${direction}">${originalHtml}</div>${transliteration?`<div class="interlinear-unit__translit" dir="ltr">${escapeHTML(transliteration)}</div>`:''}</div>
+      <div class="interlinear-unit__arrow" aria-hidden="true">↓</div>
+      <div class="interlinear-unit__target"><div class="interlinear-unit__spanish" dir="ltr">${escapeHTML(spanish||(es?'Sin equivalente separado':'No separate equivalent'))}</div><div class="interlinear-unit__meta" dir="ltr">${meta}<span>${escapeHTML(statusLabel)}</span></div></div>
       <div class="original-detail-slot"></div>
     </article>`;
   }
@@ -3990,7 +3999,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const byVerse=new Map();
       (loaded.alignment?.relations||[]).forEach(relation=>{const verse=String(relation.verse||relation.id.split('.')[2]);if(!byVerse.has(verse))byVerse.set(verse,[]);byVerse.get(verse).push(relation);});
       const targetLabel=es?'Biblia Verbo':'BSB';
-      panelBodyEl().innerHTML=`<div class="interlinear-source" dir="ltr"><strong>${es?'Interlineal Verbo':'Verbo Interlinear'}</strong><span>${es?'Alineación':'Alignment'}: ${targetLabel}</span><small>${escapeHTML(loaded.chapter.dataset)} · STEP Bible · CC BY 4.0</small></div><div class="interlinear-list">${Object.entries(loaded.chapter.verses).map(([verse,payload])=>`<section class="interlinear-verse${Number(verse)===(focus||activeVerse())?' interlinear-verse--active':''}" data-interlinear-verse="${verse}"><div class="interlinear-verse__heading">${verse}</div><div class="interlinear-units">${(byVerse.get(verse)||[]).map(relation=>interlinearUnitHtml(relation,tokens,segments,loaded.chapter.direction,loaded.morphology)).join('')}</div><details class="interlinear-verse__translation"><summary>${es?'Biblia Verbo completa':'Full BSB verse'}</summary><p>${escapeHTML(loaded.alignment?.targetTexts?.[verse]||(loaded.alignment?.targetSegments?.[verse]||[]).map(segment=>segment.text).join(' '))}</p></details></section>`).join('')}</div>`;
+      panelBodyEl().innerHTML=`<div class="interlinear-source" dir="ltr"><strong>${es?'Interlineal Verbo':'Verbo Interlinear'}</strong><span>${es?'Texto original y correspondencias aproximadas con':'Original text and approximate correspondences with'} ${targetLabel}</span><small>${es?'Toca una palabra para ver lema, morfología y Strong.':'Tap a word to see its lemma, morphology, and Strong.'} · ${escapeHTML(loaded.chapter.dataset)} · CC BY 4.0</small></div><div class="interlinear-list">${Object.entries(loaded.chapter.verses).map(([verse,payload])=>`<section class="interlinear-verse${Number(verse)===(focus||activeVerse())?' interlinear-verse--active':''}" data-interlinear-verse="${verse}"><div class="interlinear-verse__heading">${verse}</div><div class="interlinear-verse__original" dir="${loaded.chapter.direction}">${payload.tokens.map(token=>escapeHTML(token.surface)).join(' ')}</div><div class="interlinear-verse__translation"><span>${targetLabel}</span><p>${escapeHTML(loaded.alignment?.targetTexts?.[verse]||(loaded.alignment?.targetSegments?.[verse]||[]).map(segment=>segment.text).join(' '))}</p></div><details class="interlinear-verse__word-study"><summary>${es?'Ver correspondencias palabra por palabra':'See word-by-word correspondences'}</summary><div class="interlinear-units">${(byVerse.get(verse)||[]).map(relation=>interlinearUnitHtml(relation,tokens,segments,loaded.chapter.direction,loaded.morphology)).join('')}</div></details></section>`).join('')}</div>`;
       panelBodyEl().querySelectorAll('.interlinear-token').forEach(button=>button.addEventListener('click',()=>{const unit=button.closest('.interlinear-unit');unit.querySelectorAll('.interlinear-token').forEach(x=>x.classList.toggle('is-active',x===button));const slot=unit.querySelector('.original-detail-slot');slot.innerHTML=originalTokenDetail(tokens.get(button.dataset.tokenId),loaded.alignment,loaded.morphology);slot.querySelectorAll('[data-strong-code]').forEach(tag=>tag.addEventListener('click',event=>{event.stopPropagation();openStrongPopup(tag.dataset.strongCode);}));}));
       panelBodyEl().querySelectorAll('.interlinear-unit > .interlinear-unit__meta [data-strong-code]').forEach(tag=>tag.addEventListener('click',event=>{event.stopPropagation();openStrongPopup(tag.dataset.strongCode);}));
       if(focus)panelBodyEl().querySelector(`[data-interlinear-verse="${focus}"]`)?.scrollIntoView({block:'center'});
