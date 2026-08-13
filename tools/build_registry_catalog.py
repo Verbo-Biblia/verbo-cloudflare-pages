@@ -21,6 +21,7 @@ REGISTRY_PATH = ROOT / "registry.json"
 MODULE_KEYS = [
     "bibles", "commentaries", "dictionaries", "exegesis",
     "library", "gospel", "patristic", "patristicByVerse", "crossrefs",
+    "originalLanguages",
 ]
 
 

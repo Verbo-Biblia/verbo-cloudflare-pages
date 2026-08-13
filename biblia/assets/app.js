@@ -226,6 +226,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   let searchState = null;
   let currentCommentary = localStorage.getItem('verbo:lastCommentary') || null;
   let currentDictionary = localStorage.getItem('verbo:lastDictionary') || null;
+  let languageStudyMode = localStorage.getItem('verbo:languageStudyMode') || 'interlinear';
   let currentExegesis = localStorage.getItem('verbo:lastExegesis') || null;
   let gospelData=null;
   let gospelOpenChapter=null;
@@ -921,7 +922,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     if(tab==='comparar'){ els.panelTitle.textContent='Comparar versiones'; renderCompare(focus||activeVerse()); }
     if(tab==='sermon-biblia') renderSermonBiblePanel(focus||activeVerse());
-    if(tab==='diccionario') renderDictionaryPanel(focus || activeVerse());
+    if(tab==='diccionario') renderLanguagesPanel(focus || activeVerse());
     if(tab==='historia') renderChurchHistoryPanel();
     if(tab==='padres') renderPadresPanel(focus || activeVerse());
     if(tab==='notas') renderNotes();
@@ -3855,16 +3856,166 @@ document.addEventListener('DOMContentLoaded', async () => {
   let pendingStrongPopupCode=null;
   let strongBibleRenderRequest=0;
 
+  function languagesToolbar(){
+    const es=contentLang()==='es';
+    return `<div class="language-study-tabs" role="tablist" aria-label="${es?'Herramientas de idiomas bíblicos':'Biblical language tools'}">
+      <button type="button" class="language-study-tab${languageStudyMode==='original'?' is-active':''}" data-language-mode="original" role="tab" aria-selected="${languageStudyMode==='original'}">${es?'Texto original':'Original text'}</button>
+      <button type="button" class="language-study-tab${languageStudyMode==='interlinear'?' is-active':''}" data-language-mode="interlinear" role="tab" aria-selected="${languageStudyMode==='interlinear'}">${es?'Interlineal':'Interlinear'}</button>
+      <button type="button" class="language-study-tab${languageStudyMode==='strong'?' is-active':''}" data-language-mode="strong" role="tab" aria-selected="${languageStudyMode==='strong'}">Strong</button>
+    </div>`;
+  }
+
+  function wireLanguagesToolbar(focus){
+    panelToolbarEl().querySelectorAll('[data-language-mode]').forEach(button=>button.addEventListener('click',()=>{
+      languageStudyMode=button.dataset.languageMode;
+      localStorage.setItem('verbo:languageStudyMode',languageStudyMode);
+      renderLanguagesPanel(focus);
+    }));
+  }
+
+  function morphDescription(morph){
+    const code=String(morph?.code||'');
+    const es=contentLang()==='es';
+    const direct={PREP:["preposición","preposition"],CONJ:["conjunción","conjunction"],ADV:["adverbio","adverb"],INJ:["interjección","interjection"]};
+    if(direct[code]) return direct[code][es?0:1];
+    const greek=code.match(/^([NATPX])[-]([NGDAV])([SPD])([MFN])/);
+    if(greek){
+      const pos={N:['sustantivo','noun'],A:['adjetivo','adjective'],T:['artículo','article'],P:['pronombre','pronoun'],X:['pronombre indefinido','indefinite pronoun']}[greek[1]];
+      const cases={N:['nominativo','nominative'],G:['genitivo','genitive'],D:['dativo','dative'],A:['acusativo','accusative'],V:['vocativo','vocative']}[greek[2]];
+      const number=greek[3]==='S'?["singular","singular"]:["plural","plural"];
+      const gender={M:['masculino','masculine'],F:['femenino','feminine'],N:['neutro','neuter']}[greek[4]];
+      return [pos,cases,number,gender].map(x=>x[es?0:1]).join(', ');
+    }
+    const verb=code.match(/^V-([PIFAXY2])([AMPEDON])([ISOMNP])-(\d)([SP])/);
+    if(verb){
+      const tense={P:['presente','present'],I:['imperfecto','imperfect'],F:['futuro','future'],A:['aoristo','aorist'],X:['perfecto','perfect'],Y:['pluscuamperfecto','pluperfect'],2:['segundo aoristo','second aorist']}[verb[1]]||[verb[1],verb[1]];
+      const voice={A:['activa','active'],M:['media','middle'],P:['pasiva','passive'],E:['media o pasiva','middle or passive'],D:['deponente','deponent'],O:['media o pasiva','middle or passive'],N:['media o pasiva','middle or passive']}[verb[2]]||[verb[2],verb[2]];
+      const mood={I:['indicativo','indicative'],S:['subjuntivo','subjunctive'],O:['optativo','optative'],M:['imperativo','imperative'],N:['infinitivo','infinitive'],P:['participio','participle']}[verb[3]]||[verb[3],verb[3]];
+      return `${es?'verbo':'verb'}, ${tense[es?0:1]}, ${voice[es?0:1]}, ${mood[es?0:1]}, ${verb[4]}${es?'ª':'th'} ${verb[5]==='S'?(es?'singular':'singular'):(es?'plural':'plural')}`;
+    }
+    if(morph?.scheme==='step-hebrew'){
+      const parts=[];
+      if(code.includes('N')) parts.push(es?'sustantivo':'noun');
+      else if(code.includes('V')) parts.push(es?'verbo':'verb');
+      else if(code.includes('R')) parts.push(es?'preposición':'preposition');
+      else if(code.includes('C')) parts.push(es?'conjunción':'conjunction');
+      if(code.includes('m')) parts.push(es?'masculino':'masculine');
+      if(code.includes('f')) parts.push(es?'femenino':'feminine');
+      if(code.includes('s')) parts.push(es?'singular':'singular');
+      if(code.includes('p')) parts.push(es?'plural':'plural');
+      return parts.length?parts.join(', '):(es?'Código hebreo STEPBible':'STEPBible Hebrew code');
+    }
+    return es?'Código morfológico de la fuente':'Source morphology code';
+  }
+
+  function importedMorphDescription(token,morphology){
+    const entry=morphology?.entries?.[`${token.morphology?.scheme}:${token.morphology?.code}`];
+    if(!entry?.recognized) return morphDescription(token.morphology);
+    const language=contentLang()==='es'?'es':'en';
+    const groups=entry.features?.[language]||[];
+    const values=groups.flatMap(group=>Object.values(group||{})).filter(Boolean);
+    return values.join(', ')||morphDescription(token.morphology);
+  }
+
+  function alignmentForToken(alignment,tokenId){
+    return (alignment?.relations||[]).filter(item=>item.originalTokens?.includes(tokenId));
+  }
+
+  function originalTokenDetail(token,alignment,morphology){
+    const es=contentLang()==='es';
+    const relations=alignmentForToken(alignment,token.id);
+    const alignmentHtml=relations.length?relations.map(item=>`<span class="original-status original-status--${escapeHTML(item.status)}">${escapeHTML(item.status)} · ${escapeHTML(item.relation)}</span>`).join(''):`<span class="original-status original-status--unresolved">unresolved</span>`;
+    const strongButtons=(token.strong||[]).map(code=>`<button type="button" class="strongs-tag" data-strong-code="${escapeHTML(code)}">${escapeHTML(code)}</button>`).join(' ');
+    return `<article class="original-token-detail" dir="ltr">
+      <div class="original-token-detail__surface" dir="${token.morphology?.scheme==='step-hebrew'?'rtl':'ltr'}">${escapeHTML(token.surface)}</div>
+      <div class="original-token-detail__translit">${escapeHTML(token.transliteration||'—')}</div>
+      <dl><dt>${es?'Lema':'Lemma'}</dt><dd dir="auto">${escapeHTML(token.lemma||'—')}</dd><dt>${es?'Morfología':'Morphology'}</dt><dd>${escapeHTML(importedMorphDescription(token,morphology))}<code>${escapeHTML(token.morphology?.code||'—')}</code></dd><dt>Strong</dt><dd>${strongButtons||'—'}</dd><dt>${es?'Fuente':'Source'}</dt><dd>${escapeHTML(token.sourceReading||'—')} · ${escapeHTML(token.textPolicy||'—')}</dd></dl>
+      <div class="original-token-detail__alignment"><strong>${es?'Alineación':'Alignment'}:</strong> ${alignmentHtml}</div>
+    </article>`;
+  }
+
+  async function renderOriginalLanguagePanel(focus=null){
+    const request=++strongBibleRenderRequest;
+    const ctx=activeBibleContext();
+    panelBodyEl().innerHTML=emptyState('⌛',contentLang()==='es'?'Cargando texto original…':'Loading original text…');
+    try{
+      const targetBible=contentLang()==='es'?'rv-verbo':'bsb';
+      const loaded=await VerboModules.loadOriginalLanguage(ctx.book,ctx.chapter,targetBible);
+      if(request!==strongBibleRenderRequest) return;
+      if(!loaded?.chapter){ panelBodyEl().innerHTML=emptyState('א',contentLang()==='es'?'No hay texto original para este pasaje.':'Original text is unavailable for this passage.'); return; }
+      const verses=loaded.chapter.verses;
+      panelBodyEl().innerHTML=`<div class="original-language-source" dir="ltr">${escapeHTML(loaded.chapter.dataset)} · CC BY 4.0 · STEP Bible</div><div class="original-language-list">${Object.entries(verses).map(([number,verse])=>`<section class="original-verse${Number(number)===(focus||activeVerse())?' original-verse--active':''}" data-original-verse="${number}"><div class="original-verse__number" dir="ltr">${number}</div><div class="original-token-row" dir="${loaded.chapter.direction}">${verse.tokens.map(token=>`<button type="button" class="original-token" data-token-id="${escapeHTML(token.id)}" dir="${loaded.chapter.direction}">${escapeHTML(token.surface)}</button>`).join('')}</div><div class="original-detail-slot"></div></section>`).join('')}</div>`;
+      const byId=new Map(Object.values(verses).flatMap(verse=>verse.tokens).map(token=>[token.id,token]));
+      panelBodyEl().querySelectorAll('.original-token').forEach(button=>button.addEventListener('click',()=>{
+        const section=button.closest('.original-verse');
+        section.querySelectorAll('.original-token').forEach(x=>x.classList.toggle('is-active',x===button));
+        const slot=section.querySelector('.original-detail-slot');
+        slot.innerHTML=originalTokenDetail(byId.get(button.dataset.tokenId),loaded.alignment,loaded.morphology);
+        slot.querySelectorAll('[data-strong-code]').forEach(tag=>tag.addEventListener('click',event=>{ event.stopPropagation(); openStrongPopup(tag.dataset.strongCode); }));
+      }));
+      if(focus) panelBodyEl().querySelector(`[data-original-verse="${focus}"]`)?.scrollIntoView({block:'center'});
+    }catch(error){
+      console.error(error);
+      if(request===strongBibleRenderRequest) panelBodyEl().innerHTML=emptyState('⚠️',contentLang()==='es'?'No se pudo cargar el texto original.':'Original text could not be loaded.');
+    }
+  }
+
+  function interlinearUnitHtml(relation,tokens,segments,direction,morphology){
+    const originals=(relation.originalTokens||[]).map(id=>tokens.get(id)).filter(Boolean);
+    const targets=(relation.verboSegments||[]).map(id=>segments.get(id)).filter(Boolean);
+    const strong=[...new Set(originals.flatMap(token=>token.strong||[]))];
+    const originalHtml=originals.length?originals.map(token=>`<button type="button" class="interlinear-token" data-token-id="${escapeHTML(token.id)}" dir="${direction}">${escapeHTML(token.surface)}</button>`).join(' '):`<span class="interlinear-unit__empty">∅</span>`;
+    const transliteration=originals.map(token=>token.transliteration).filter(Boolean).join(' · ');
+    const spanish=targets.map(segment=>segment.text).join(' ');
+    const meta=strong.map(code=>`<button type="button" class="strongs-tag" data-strong-code="${escapeHTML(code)}">${escapeHTML(code)}</button>`).join(' ');
+    return `<article class="interlinear-unit interlinear-unit--${escapeHTML(relation.status)}" data-relation-id="${escapeHTML(relation.id)}">
+      <div class="interlinear-unit__original" dir="${direction}">${originalHtml}</div>
+      ${transliteration?`<div class="interlinear-unit__translit" dir="ltr">${escapeHTML(transliteration)}</div>`:''}
+      <div class="interlinear-unit__spanish" dir="ltr">${escapeHTML(spanish||'—')}</div>
+      <div class="interlinear-unit__meta" dir="ltr">${meta}<span>${escapeHTML(relation.relation)} · ${escapeHTML(relation.status)}</span></div>
+      <div class="original-detail-slot"></div>
+    </article>`;
+  }
+
+  async function renderInterlinearPanel(focus=null){
+    const request=++strongBibleRenderRequest; const ctx=activeBibleContext(); const es=contentLang()==='es';
+    panelBodyEl().innerHTML=emptyState('⌛',es?'Cargando Interlineal Verbo…':'Loading Verbo Interlinear…');
+    try{
+      const targetBible=contentLang()==='es'?'rv-verbo':'bsb';
+      const loaded=await VerboModules.loadOriginalLanguage(ctx.book,ctx.chapter,targetBible);
+      if(request!==strongBibleRenderRequest)return;
+      if(!loaded?.chapter){panelBodyEl().innerHTML=emptyState('א',es?'No hay texto original para este pasaje.':'Original text is unavailable for this passage.');return;}
+      const tokens=new Map(Object.values(loaded.chapter.verses).flatMap(v=>v.tokens).map(token=>[token.id,token]));
+      const segments=new Map(Object.values(loaded.alignment?.targetSegments||{}).flat().map(segment=>[segment.id,segment]));
+      const byVerse=new Map();
+      (loaded.alignment?.relations||[]).forEach(relation=>{const verse=String(relation.verse||relation.id.split('.')[2]);if(!byVerse.has(verse))byVerse.set(verse,[]);byVerse.get(verse).push(relation);});
+      const targetLabel=es?'Biblia Verbo':'BSB';
+      panelBodyEl().innerHTML=`<div class="interlinear-source" dir="ltr"><strong>${es?'Interlineal Verbo':'Verbo Interlinear'}</strong><span>${es?'Alineación':'Alignment'}: ${targetLabel}</span><small>${escapeHTML(loaded.chapter.dataset)} · STEP Bible · CC BY 4.0</small></div><div class="interlinear-list">${Object.entries(loaded.chapter.verses).map(([verse,payload])=>`<section class="interlinear-verse${Number(verse)===(focus||activeVerse())?' interlinear-verse--active':''}" data-interlinear-verse="${verse}"><div class="interlinear-verse__heading">${verse}</div><div class="interlinear-units">${(byVerse.get(verse)||[]).map(relation=>interlinearUnitHtml(relation,tokens,segments,loaded.chapter.direction,loaded.morphology)).join('')}</div><details class="interlinear-verse__translation"><summary>${es?'Biblia Verbo completa':'Full BSB verse'}</summary><p>${escapeHTML(loaded.alignment?.targetTexts?.[verse]||(loaded.alignment?.targetSegments?.[verse]||[]).map(segment=>segment.text).join(' '))}</p></details></section>`).join('')}</div>`;
+      panelBodyEl().querySelectorAll('.interlinear-token').forEach(button=>button.addEventListener('click',()=>{const unit=button.closest('.interlinear-unit');unit.querySelectorAll('.interlinear-token').forEach(x=>x.classList.toggle('is-active',x===button));const slot=unit.querySelector('.original-detail-slot');slot.innerHTML=originalTokenDetail(tokens.get(button.dataset.tokenId),loaded.alignment,loaded.morphology);slot.querySelectorAll('[data-strong-code]').forEach(tag=>tag.addEventListener('click',event=>{event.stopPropagation();openStrongPopup(tag.dataset.strongCode);}));}));
+      panelBodyEl().querySelectorAll('.interlinear-unit > .interlinear-unit__meta [data-strong-code]').forEach(tag=>tag.addEventListener('click',event=>{event.stopPropagation();openStrongPopup(tag.dataset.strongCode);}));
+      if(focus)panelBodyEl().querySelector(`[data-interlinear-verse="${focus}"]`)?.scrollIntoView({block:'center'});
+    }catch(error){console.error(error);if(request===strongBibleRenderRequest)panelBodyEl().innerHTML=emptyState('⚠️',es?'No se pudo cargar el interlineal.':'Interlinear could not be loaded.');}
+  }
+
+  function renderLanguagesPanel(focus=null){
+    panelTitleEl().textContent=contentLang()==='es'?'Idiomas bíblicos':'Biblical languages';
+    panelToolbarEl().innerHTML=languagesToolbar();
+    wireLanguagesToolbar(focus);
+    if(languageStudyMode==='strong') renderDictionaryPanel(focus,true);
+    else if(languageStudyMode==='interlinear') renderInterlinearPanel(focus);
+    else renderOriginalLanguagePanel(focus);
+  }
+
   // "Biblia Strong": Biblia Verbo + Strong o KJV + Strong según contentLang()
   // (ver strongBiblePath), siempre sincronizada con el libro/capítulo que se
   // esté leyendo (mismo patrón que renderCompare/commentaryContext),
   // independiente de la Biblia seleccionada en el panel central. Reemplaza al
   // viejo panel de Diccionario, que estaba vacío hasta que el usuario tocaba un
   // código Strong en la Biblia principal (ver cambio de 2026-08-07).
-  async function renderDictionaryPanel(focus=null){
+  async function renderDictionaryPanel(focus=null,keepToolbar=false){
     const request=++strongBibleRenderRequest;
-    panelToolbarEl().innerHTML='';
-    panelTitleEl().textContent=t('nav.diccionario');
+    if(!keepToolbar) panelToolbarEl().innerHTML='';
+    if(!keepToolbar) panelTitleEl().textContent=t('nav.diccionario');
     const ctx=activeBibleContext();
     const sourcePath=strongBiblePath();
     panelBodyEl().innerHTML=emptyState('⌛',t('diccionario.buscandoEntrada'));

@@ -998,5 +998,23 @@ const VerboModules = (() => {
     return null;
   }
 
-  return { getCatalog,getBookInfo,resolveBibleBooks,buildChapterData,loadBible,loadRemoteBible,loadCommentary,loadCommentaryIndex,loadLinkedEntries,loadLinkedArticle,loadChurchHistory,loadChurchHistoryShelf,getDictionaryEntry,loadDictionaryEntries,loadDictionaryIndex,loadGospel,loadPatristic,loadPatristicShelf,loadCostumbres,loadCostumbresShelf,loadConversorUnidades,searchBible,searchRemoteBible,searchSemanticBible,searchSemanticChurchHistory };
+  // Texto original: manifest pequeño en el catálogo y capítulo/alineación
+  // bajo demanda. No se descarga el corpus al iniciar la aplicación.
+  async function loadOriginalLanguage(bookId, chapter, targetBible='rv-verbo') {
+    const registry = await getJSON('modules/registry.json');
+    const path = (registry.originalLanguages || [])[0];
+    if (!path) return null;
+    const manifestPath = `modules/${path}`;
+    const manifest = await getJSON(manifestPath);
+    const book = manifest.books?.[bookId];
+    const chapterFile = book?.chapters?.[String(chapter)];
+    if (!chapterFile) return { manifest, book:null, chapter:null, alignment:null };
+    const chapterData = await getJSON(resolveFromManifest(manifestPath, chapterFile));
+    const alignmentFile = book.alignments?.[targetBible]?.[String(chapter)] || book.alignment?.[String(chapter)];
+    const alignment = alignmentFile ? await getJSON(resolveFromManifest(manifestPath, alignmentFile)) : null;
+    const morphology = manifest.morphologyFile ? await getJSON(resolveFromManifest(manifestPath, manifest.morphologyFile)) : null;
+    return { manifest, book, chapter:chapterData, alignment, morphology };
+  }
+
+  return { getCatalog,getBookInfo,resolveBibleBooks,buildChapterData,loadBible,loadRemoteBible,loadCommentary,loadCommentaryIndex,loadLinkedEntries,loadLinkedArticle,loadChurchHistory,loadChurchHistoryShelf,getDictionaryEntry,loadDictionaryEntries,loadDictionaryIndex,loadGospel,loadPatristic,loadPatristicShelf,loadCostumbres,loadCostumbresShelf,loadConversorUnidades,loadOriginalLanguage,searchBible,searchRemoteBible,searchSemanticBible,searchSemanticChurchHistory };
 })();
