@@ -5,7 +5,9 @@ Estado: **implementado y validado localmente, pendiente de publicación.** El
 Sermones Históricos y los índices de Escuela Dominical para 4–7 y 8–10 años.
 Se comprobaron visualmente Sermones Históricos en móvil y escritorio y Escuela
 Dominical en móvil; la validación detectó y corrigió la pérdida inicial de los
-márgenes laterales causada por `display: contents`.
+márgenes laterales causada por `display: contents`. Tras la primera publicación,
+se eliminó la barra de botones en móvil y se dejó una única flecha de regreso
+con mayor presencia y área táctil; escritorio conserva la navegación completa.
 
 ## Contexto
 
