@@ -249,6 +249,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   let costumbresOpenWork=null;
   let costumbresDocData=null;
   let costumbresOpenId=null;
+  let costumbresIndexToken=0;
   // Conversor de medidas: datos fijos cargados una sola vez (no hay estados
   // de navegación tipo estante/índice, es una calculadora de una sola vista).
   let conversorData=null;
@@ -5087,27 +5088,40 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  // Traduce en un solo request todos los títulos del índice visible (fila del
-  // TOC bíblico o del listado temático), igual que translatePatristicSectionTitles.
+  // Traduce cada título del índice visible (fila del TOC bíblico o del
+  // listado temático) por separado, con un pool de workers concurrentes —
+  // mismo patrón que applyChurchHistoryTocTranslation. Antes se armaba UN
+  // solo request con los ~892 títulos de Freeman unidos por un delimitador
+  // ("@@@"), pero ese texto (~19000 caracteres) superaba el umbral de
+  // envío directo (4500) y se troceaba en fragmentos que Claude traducía
+  // por separado sin noción del delimitador — el recuento de partes ya no
+  // coincidía con el de títulos y el resultado completo se descartaba en
+  // silencio, dejando TODO el índice sin traducir (bug reportado por Juan,
+  // 2026-08-13). Por título separado no hay techo de tamaño de lote, cada
+  // uno cachea aparte, y si uno falla el resto igual se traduce.
   async function translateCostumbresIndexTitles(docData){
     const source=docData.manifest.language||'en';
     const target=contentLang();
     if(source===target) return;
     const labelEls=[...els.panelBody.querySelectorAll('[data-costumbres-toc-label],[data-costumbres-index-title]')];
     if(!labelEls.length) return;
-    const DELIM='\n@@@\n';
-    const originals=labelEls.map(el=>el.textContent);
-    const cacheKey=translationCacheKey(`costumbres-index:${costumbresOpenWork}`, originals.join(DELIM), target);
-    let translated=tcacheGet(cacheKey);
-    if(!translated){
-      const result=await verboTranslate(originals.join(DELIM), source, target);
-      if(!result) return;
-      const parts=result.split(/\s*@@@\s*/).map(x=>x.trim());
-      if(parts.length!==labelEls.length) return; // el delimitador se rompió en la traducción; no aplicar nada
-      translated=parts;
-      tcacheSet(cacheKey, translated);
+    const token=++costumbresIndexToken;
+    let index=0;
+    async function worker(){
+      while(index<labelEls.length){
+        if(token!==costumbresIndexToken) return;
+        const el=labelEls[index++];
+        if(el.dataset.translated===target) continue;
+        const original=el.textContent;
+        if(!original) continue;
+        const id=el.dataset.costumbresTocLabel || el.dataset.costumbresIndexTitle;
+        const translated=await translateCommentaryHeader(`costumbres-index:${docData.manifest.id}:${id}`,'label',original,source,target);
+        if(token!==costumbresIndexToken) return;
+        el.textContent=translated;
+        el.dataset.translated=target;
+      }
     }
-    labelEls.forEach((el,i)=>{ el.textContent=translated[i]; el.dataset.translated=target; });
+    await Promise.all(Array.from({length:Math.min(4,labelEls.length)},worker));
   }
 
   function renderCostumbresEntry(){
