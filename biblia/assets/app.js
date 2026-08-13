@@ -1950,6 +1950,68 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
   els.editorPane?.querySelector('#guardarSermonBtn')?.addEventListener('click', handleSaveSermon);
 
+  // ── Traducir predicación (fidelidad literal, pensado para predicar con
+  // intérprete en vivo) ───────────────────────────────────────────────────
+  // Distinto del resto de la traducción del sitio: llama a POST
+  // /translate-sermon-doc (sin caché KV — ver worker.js), y el resultado se
+  // guarda como una prédica NUEVA en "Mis prédicas" (id:null fuerza una
+  // entrada nueva) en vez de reemplazar la que está abierta en el editor —
+  // si la traducción sale mal, el original nunca se tocó.
+  function sermonTranslateTargetLang(){
+    // Traduce siempre hacia el idioma opuesto al de la interfaz actual: es
+    // el criterio más simple y predecible para el pastor (usando Verbo en
+    // español, "Traducir" da la versión en inglés, y viceversa) sin
+    // necesitar detectar el idioma real del contenido escrito.
+    return window.VerboI18n?.getUiLang() === 'es' ? 'en' : 'es';
+  }
+  async function handleTranslateSermon(){
+    const btn=document.getElementById('traducirPredicaBtn');
+    if(!sermonEditor || btn?.disabled) return;
+    const targetLang=sermonTranslateTargetLang();
+    const originalLabel=btn.textContent;
+    btn.disabled=true;
+    btn.textContent=t('predicas.traduciendoBtn');
+    try{
+      const html=sermonEditor.getContent();
+      const plainText=sermonEditor.getBody()?.textContent || '';
+      const bibleRefs=await resolveBibleRefsForTranslation(plainText, targetLang).catch(()=>[]);
+      const base=translateWorkerBase();
+      if(!base) throw new Error('worker-base-unavailable');
+      const controller=new AbortController();
+      const timeoutId=setTimeout(()=>controller.abort(), 30000);
+      let resp;
+      try{
+        resp=await fetch(`${base}/translate-sermon-doc`, {
+          method:'POST',
+          headers:{ 'Content-Type':'application/json' },
+          body:JSON.stringify({ html, targetLang, bibleRefs }),
+          signal:controller.signal
+        });
+      } finally { clearTimeout(timeoutId); }
+      if(!resp.ok) throw new Error(`translate-sermon-doc ${resp.status}`);
+      const json=await resp.json();
+      const translation=typeof json?.translation==='string' ? json.translation : '';
+      if(!translation.trim()) throw new Error('empty-translation');
+      const tituloInput=document.getElementById('predicaTituloInput');
+      const suffix=targetLang==='en' ? ' (EN)' : ' (ES)';
+      const baseTitulo=(tituloInput?.value || '').trim();
+      // Sin título propio, dejamos que savePredica derive uno del contenido
+      // traducido (mismo criterio que el botón "Guardar") en vez de guardar
+      // el texto del placeholder como si fuera un título real.
+      const titulo=baseTitulo ? baseTitulo + suffix : '';
+      VerboBackup.savePredica({ id:null, titulo, contenido:translation, pasaje_base:'' });
+      if(sermonPanelTab==='predicas') renderPredicasPanel();
+      toast(t('predicas.traducirExitoToast'));
+    }catch(error){
+      console.error('[sermon] no se pudo traducir la prédica', error);
+      toast(t('predicas.traducirErrorToast'));
+    } finally {
+      btn.disabled=false;
+      btn.textContent=originalLabel;
+    }
+  }
+  els.editorPane?.querySelector('#traducirPredicaBtn')?.addEventListener('click', handleTranslateSermon);
+
   // ── Panel "Mis prédicas" (guardar/abrir/eliminar, modo sermón) ─────────────
 
   function newPredica(){
@@ -2736,6 +2798,88 @@ document.addEventListener('DOMContentLoaded', async () => {
     const bookId=Object.keys(bibleNameAliases).find(id=>bibleNameAliases[id].some(a=>normalizeBibleName(a)===alias) || (bibleNameAliasesEn[id]||[]).some(a=>normalizeBibleName(a)===alias));
     return bookId ? {bookId, chapter, verse} : null;
   }
+
+  // ── Escaneo de referencias bíblicas dentro de un texto largo (traducción
+  // de Predicación) ───────────────────────────────────────────────────────
+  // A diferencia de parseSearchReference (asume que TODO el input es una
+  // única referencia), esto encuentra cualquier cantidad de referencias
+  // sueltas dentro de un documento normal — para resolverlas contra la
+  // Biblia local del idioma destino antes de traducir una prédica completa.
+  let bibleAliasScanPattern = null;
+  function buildBibleAliasScanPattern(){
+    if(bibleAliasScanPattern) return bibleAliasScanPattern;
+    const aliasToBook = new Map();
+    for(const dict of [bibleNameAliases, bibleNameAliasesEn]){
+      for(const bookId of Object.keys(dict)){
+        for(const alias of dict[bookId]){
+          const norm = normalizeBibleName(alias);
+          if(norm) aliasToBook.set(norm, bookId);
+        }
+      }
+    }
+    const sorted=[...aliasToBook.keys()].sort((a,b)=>b.length-a.length);
+    const escaped=sorted.map(a=>a.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'));
+    const regex=new RegExp(`\\b(${escaped.join('|')})\\s+(\\d{1,3})\\s*:\\s*(\\d{1,3})(?:\\s*[-–]\\s*(\\d{1,3}))?`,'gi');
+    bibleAliasScanPattern={regex,aliasToBook};
+    return bibleAliasScanPattern;
+  }
+  function findBibleReferencesInPlainText(text){
+    const {regex,aliasToBook}=buildBibleAliasScanPattern();
+    const normalized=normalizeBibleName(String(text||''));
+    regex.lastIndex=0;
+    const results=[];
+    const seen=new Set();
+    let m;
+    while((m=regex.exec(normalized))){
+      const bookId=aliasToBook.get(m[1]);
+      if(!bookId) continue;
+      const chapter=Number(m[2]);
+      const verseStart=Number(m[3]);
+      const verseEnd=m[4] ? Number(m[4]) : verseStart;
+      const key=`${bookId}.${chapter}.${verseStart}-${verseEnd}`;
+      if(seen.has(key)) continue;
+      seen.add(key);
+      results.push({bookId,chapter,verseStart,verseEnd});
+    }
+    return results;
+  }
+  // Resuelve cada referencia encontrada contra la Biblia local del idioma
+  // destino (BV2026 en español, BSB en inglés — mismo par que usa el índice
+  // del buscador semántico, VerboModules.semanticSearch.basePaths) para que
+  // las citas bíblicas de la prédica traducida coincidan con lo que Verbo ya
+  // publica, en vez de que el modelo improvise su propia traducción de la
+  // cita. Si una referencia no se puede resolver (libro/capítulo fuera de
+  // rango, error de red), se omite sin romper el resto de la traducción.
+  const SERMON_BIBLE_MANIFEST_BY_LANG = { es:'modules/bibles/rv-verbo/manifest.json', en:'modules/bibles/bsb/manifest.json' };
+  async function resolveBibleRefsForTranslation(plainText, targetLang){
+    const manifestPath=SERMON_BIBLE_MANIFEST_BY_LANG[targetLang];
+    if(!manifestPath) return [];
+    const refs=findBibleReferencesInPlainText(plainText).slice(0,40);
+    const chapterCache=new Map();
+    const out=[];
+    for(const ref of refs){
+      const cacheKey=`${ref.bookId}.${ref.chapter}`;
+      let loaded=chapterCache.get(cacheKey);
+      if(loaded===undefined){
+        loaded=await VerboModules.loadBible(manifestPath, ref.bookId, ref.chapter).catch(()=>null);
+        chapterCache.set(cacheKey, loaded);
+      }
+      if(!loaded?.verses) continue;
+      const parts=[];
+      for(let v=ref.verseStart; v<=ref.verseEnd; v++){
+        const verseText=loaded.verses[String(v)];
+        if(verseText) parts.push(verseText);
+      }
+      if(!parts.length) continue;
+      const bookName=loaded.bookInfo?.name || ref.bookId;
+      const reference=ref.verseStart===ref.verseEnd
+        ? `${bookName} ${ref.chapter}:${ref.verseStart}`
+        : `${bookName} ${ref.chapter}:${ref.verseStart}-${ref.verseEnd}`;
+      out.push({reference, text:parts.join(' ')});
+    }
+    return out;
+  }
+
   function wireDictionaryLinks(root){
     root.querySelectorAll('a.strong').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const m=((a.getAttribute('href')||'')+' '+a.textContent).match(/[GH]\d+/i);if(m)openDictionary(m[0].toUpperCase());}));
     root.querySelectorAll('a.bible').forEach(a=>{

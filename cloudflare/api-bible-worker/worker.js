@@ -466,6 +466,103 @@ Translate the supplied content and output only the result.`;
   return jsonOk({ translation, cached: false }, headers);
 }
 
+// ── /translate-sermon-doc ───────────────────────────────────────────────
+//
+// Caso de uso distinto a /translate: un pastor traduce su propia prédica
+// (editor de "Predicación" en /biblia/), preparada con el editor rich-text,
+// para predicar con ayuda de un intérprete en vivo. Endpoint separado con
+// su propio system prompt porque las prioridades son distintas de la
+// traducción general del sitio:
+//   - Fidelidad literal de correspondencia oración-por-oración (para que el
+//     intérprete pueda seguir el documento en paralelo), por encima de la
+//     naturalidad idiomática que /translate prioriza para el resto del sitio.
+//   - Es contenido propio del usuario, no una fuente histórica de terceros —
+//     igual se preserva su voz/postura tal cual, sin neutralizarla.
+// A propósito NO usa el caché compartido en SYNC_KV: es contenido personal
+// del pastor, no material público reutilizado por otros visitantes — se
+// traduce y se devuelve directo, sin leer ni escribir KV.
+function buildSermonTranslateSystemPrompt(targetLangName, bibleRefs) {
+  let referenceBlock = '';
+  if (Array.isArray(bibleRefs) && bibleRefs.length) {
+    const lines = bibleRefs
+      .filter(entry => entry && typeof entry.reference === 'string' && typeof entry.text === 'string')
+      .map(entry => `${entry.reference} → "${entry.text}"`)
+      .join('\n');
+    if (lines) {
+      referenceBlock = `
+
+AUTHORITATIVE BIBLE TEXT
+
+The following table gives the authoritative ${targetLangName} wording (from Verbo's own Bible text) for specific Bible references that appear in the source document:
+
+${lines}
+
+When the source document quotes one of these references as an actual Scripture quotation, use the supplied wording verbatim instead of producing your own translation of it. If the source only paraphrases or alludes to the passage without quoting it directly, do not force the exact supplied wording — translate the paraphrase normally.`;
+    }
+  }
+
+  return `You are the translation engine embedded in "Verbo", a Bible study application, handling one specific and narrow case: translating a pastor's own sermon document, written in Verbo's "Predicación" (sermon prep) editor, so the pastor can preach with the help of a live interpreter.
+
+TRANSLATION PRIORITIES
+
+1. Preserve the full meaning of the source exactly as the pastor wrote it. This is the pastor's own theological voice and content, not third-party material — never soften, strengthen, neutralize, modernize, or otherwise editorialize the pastor's claims or emphasis.
+2. LITERAL, SENTENCE-LEVEL CORRESPONDENCE FOR LIVE INTERPRETATION. This is the priority that makes this case different from ordinary translation: the pastor will preach from this translated document while a live interpreter follows along or interprets from it in real time. Keep a close, literal correspondence between each source sentence and its ${targetLangName} counterpart — same sentence boundaries, same order of ideas, same paragraph and sentence count wherever target-language grammar allows it. Do not merge, split, reorder, paraphrase, or restructure sentences for stylistic fluency. Favor a translation that is easy to track sentence-by-sentence against the original over one that reads as polished, idiomatic prose.
+3. Do not omit, add, summarize, simplify, expand, explain, or reinterpret content.
+4. The translation must still be grammatical and understandable in ${targetLangName} — literal correspondence never means broken or nonsensical language. When source-language word order would be truly unreadable in ${targetLangName}, adjust only as much as required for grammaticality, and no more.
+
+FORMATTING
+
+The source is HTML from a rich-text editor (headings, bold, colors, tables, lists).
+
+* Preserve every HTML tag and every attribute (including inline style="..." and color attributes) exactly as given.
+* Do not remove, add, rename, or corrupt any tag or attribute.
+* Translate only the human-readable text content inside the tags.
+* Do not expose, explain, or comment on the HTML markup in the output.
+
+BIBLICAL REFERENCES AND QUOTATIONS
+
+Preserve Bible references (e.g., "Romans 8:28", "Rom. 8:28") as references, not expanded quotations. When the source quotes Scripture directly, translate the quotation faithfully from the text actually provided — do not substitute the wording of a published Bible version unless instructed to by the reference table below.${referenceBlock}
+
+OUTPUT RULE
+
+Return ONLY the translated HTML. Do not include introductions, explanations, translator notes, warnings, labels such as "Translation:", or Markdown fences. Do not discuss the translation or explain your choices. Translate the supplied content and output only the result.`;
+}
+
+async function handleTranslateSermonDoc(request, env, headers) {
+  if (request.method !== 'POST') return jsonError('Método no permitido', 405, headers);
+  if (!env.ANTHROPIC_API_KEY) return jsonError('ANTHROPIC_API_KEY no está configurada', 500, headers);
+
+  const body = await readJson(request);
+  const html = typeof body?.html === 'string' ? body.html : '';
+  const targetLang = body?.targetLang;
+  const targetLangName = TRANSLATE_TARGET_NAMES[targetLang];
+  const bibleRefs = Array.isArray(body?.bibleRefs) ? body.bibleRefs.slice(0, 40) : [];
+
+  if (!html.trim()) return jsonError('Falta el documento a traducir', 400, headers);
+  if (html.length > MAX_TRANSLATE_CHARS) return jsonError(`El documento supera el límite de ${MAX_TRANSLATE_CHARS} caracteres`, 400, headers);
+  if (!targetLangName) return jsonError('targetLang debe ser "es" o "en"', 400, headers);
+
+  const systemPrompt = buildSermonTranslateSystemPrompt(targetLangName, bibleRefs);
+
+  let result = await callAnthropicTranslate(html, systemPrompt, env);
+  if (result.error) return jsonError(result.error, 502, headers);
+  let translation = result.translation;
+
+  if (!translation || looksLikeConversationalPreamble(translation)) {
+    console.error('Anthropic /translate-sermon-doc preámbulo o respuesta vacía, reintentando');
+    result = await callAnthropicTranslate(html, systemPrompt, env);
+    if (result.error) return jsonError(result.error, 502, headers);
+    translation = result.translation;
+  }
+
+  if (!translation || looksLikeConversationalPreamble(translation)) {
+    console.error('Anthropic /translate-sermon-doc sigue devolviendo preámbulo tras reintento');
+    return jsonError('El proveedor de traducción no devolvió una traducción válida', 502, headers);
+  }
+
+  return jsonOk({ translation }, headers);
+}
+
 function isValidEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value || '').trim());
 }
@@ -634,6 +731,7 @@ export default {
 
     if (url.pathname.startsWith('/v1/sync/')) return handleSync(request, url, env, headers);
     if (url.pathname === '/translate') return handleTranslate(request, env, headers);
+    if (url.pathname === '/translate-sermon-doc') return handleTranslateSermonDoc(request, env, headers);
     return handleApiBible(request, url, env, headers);
   }
 };
