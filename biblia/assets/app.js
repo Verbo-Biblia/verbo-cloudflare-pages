@@ -1156,7 +1156,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     hideTranslateIndicatorNow();
   }
 
-  async function verboTranslate(text, sourceLang='en', targetLang='es'){
+  // silent=true: llamada de fondo para una generación ya abandonada (ver
+  // translateEntry) — sigue pidiendo la traducción para calentar el caché,
+  // pero sin pasar por showTranslatingIndicator()/hideTranslatingIndicator().
+  // Sin esto, una llamada vieja que sigue en vuelo se ve indistinguible de
+  // una traducción nueva y legítima (ambas leen translateGeneration como
+  // "vigente" en el momento en que arrancan) y termina prolongando o
+  // reactivando el indicador de un panel que ya no describe — el bug que
+  // 198e0cc2 quiso cerrar. La generación abandonada ya no puede alimentar
+  // el indicador, pero sí puede seguir traduciendo en silencio.
+  async function verboTranslate(text, sourceLang='en', targetLang='es', {silent=false}={}){
     // Fase 2 (2026-08-07): reemplaza el endpoint no oficial de Google
     // Translate por POST /translate en el Worker verbo-api-bible (Claude
     // Haiku 4.5 + caché compartido en Cloudflare KV — ver
@@ -1191,8 +1200,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       console.error(`[traducción] /translate no respondió tras ${attempts} intentos — se muestra el texto original sin traducir.`);
       return null;
     }
-    const translateIndicatorGen = showTranslatingIndicator();
-    try{
+    async function run(){
       if(text.length<=4500){
         const result=await fetchTranslate(text);
         return fixKnownBookNameMistranslations(result, targetLang);
@@ -1210,9 +1218,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         parts.push(r);
       }
       return fixKnownBookNameMistranslations(parts.join(' '), targetLang);
-    } finally {
-      hideTranslatingIndicator(translateIndicatorGen);
     }
+    if(silent) return run();
+    const translateIndicatorGen = showTranslatingIndicator();
+    try{ return await run(); }
+    finally{ hideTranslatingIndicator(translateIndicatorGen); }
   }
 
   // Traduce bloque por bloque con un pool de workers concurrentes (mismo patrón
@@ -1226,12 +1236,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   // traducir y el resto del capítulo sí se ve traducido.
   async function translateEntry(noteId, htmlContent, sourceLang='en', targetLang='es'){
     // myGen: si el llamador (applyCommentaryTranslation, etc.) ya viene con
-    // la generación abandonada al invocar esto, ni empieza (ver el chequeo
-    // en el while); si se abandona a mitad de este pool de workers (el
-    // usuario cierra el panel con el cuerpo del comentario todavía
-    // traduciéndose en bloques), cada worker corta ahí en vez de seguir
-    // pidiendo bloques nuevos y reactivar el indicador para un panel ya
-    // cerrado.
+    // la generación abandonada al invocar esto, arranca igual pero en modo
+    // silencioso (ver abajo) — sigue calentando el caché aunque el usuario
+    // ya se haya ido, sin tocar el indicador de una traducción nueva y
+    // legítima que haya empezado después (bug cerrado en 198e0cc2: una
+    // llamada vieja que sigue en vuelo se ve indistinguible de una
+    // traducción nueva para translateGeneration).
     const myGen=translateGeneration;
     const cacheKey=translationCacheKey(noteId,htmlContent,targetLang);
     const cached=tcacheGet(cacheKey); if(cached) return cached;
@@ -1243,21 +1253,31 @@ document.addEventListener('DOMContentLoaded', async () => {
       let index=0;
       async function worker(){
         while(index<blocks.length){
-          if(myGen!==translateGeneration) return;
           const i=index++;
-          const translated=await verboTranslate(blocks[i], sourceLang, targetLang);
+          // silent: esta generación ya fue abandonada (el usuario navegó a
+          // otra sección/documento mientras este bloque o uno anterior del
+          // mismo pool seguía en vuelo) — sigue pidiendo el resto de los
+          // bloques para poder cachear la entrada completa, pero sin pasar
+          // por showTranslatingIndicator(), que si no reactivaría el rótulo
+          // "Traduciendo…" para un panel que el usuario ya cerró.
+          const silent=myGen!==translateGeneration;
+          const translated=await verboTranslate(blocks[i], sourceLang, targetLang, {silent});
           translatedBlocks[i]=translated!=null ? translated : blocks[i];
         }
       }
       await Promise.all(Array.from({length:Math.min(4,blocks.length)},worker));
-      // Abandonada a mitad de camino: translatedBlocks queda incompleto (hay
-      // bloques que ningún worker llegó a pedir). Ni se cachea ni se
-      // devuelve ese resultado parcial — el original sin traducir es la
-      // única respuesta segura, igual que si nunca se hubiera llamado.
-      if(myGen!==translateGeneration) return htmlContent;
+      // A diferencia del indicador (que solo debe reflejar la generación
+      // vigente), el resultado traducido sigue siendo válido y reutilizable
+      // aunque la generación haya cambiado mientras se traducía — se cachea
+      // siempre, para que la próxima visita a esta misma entrada (aunque
+      // esta se haya abandonado a mitad de camino) lo encuentre ya listo en
+      // vez de volver a pedirlo. Solo el valor que se le DEVUELVE al
+      // llamador respeta la generación: si ya no es la vigente, se devuelve
+      // el original sin traducir, igual que antes — el llamador nunca debe
+      // aplicar al DOM un resultado de una generación que ya abandonó.
       const result=translatedBlocksToHtml(translatedBlocks);
       tcacheSet(cacheKey, result);
-      return result;
+      return myGen===translateGeneration ? result : htmlContent;
     }catch{ return htmlContent; }
   }
 
@@ -4996,7 +5016,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
   function costumbresTocGroupHTML(group){
     return `<section class="history-toc__group">
-      <h3 class="history-toc__group-title">${escapeHTML(group.label)}</h3>
+      <h3 class="history-toc__group-title" data-costumbres-toc-group="${escapeHTML(group.key)}">${escapeHTML(group.label)}</h3>
       <ol class="history-toc__list">${group.items.map(costumbresTocRowHTML).join('')}</ol>
     </section>`;
   }
@@ -5030,10 +5050,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       els.panelBody.innerHTML=emptyState('📜',t('costumbres.sinContenido'));
       return;
     }
+    let biblicalGroups=null;
     if(costumbresDocData.manifest.navegacion==='biblico'){
-      const groups=churchHistoryGroupByOrder(entries, entry=>entry.libro)
-        .map(g=>({label: catalog.books.find(b=>b.id===g.key)?.name || g.key, items:g.items}));
-      els.panelBody.innerHTML=`<div class="history-toc">${groups.map(costumbresTocGroupHTML).join('')}</div>`;
+      biblicalGroups=churchHistoryGroupByOrder(entries, entry=>entry.libro)
+        .map(g=>({key:g.key, label: catalog.books.find(b=>b.id===g.key)?.name || g.key, items:g.items}));
+      els.panelBody.innerHTML=`<div class="history-toc">${biblicalGroups.map(costumbresTocGroupHTML).join('')}</div>`;
     } else {
       const sorted=[...entries].sort((a,b)=>(a.capituloNumero||0)-(b.capituloNumero||0));
       const list=sorted.map(e=>`
@@ -5044,6 +5065,26 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     wireCostumbresIndex();
     translateCostumbresIndexTitles(costumbresDocData);
+    if(biblicalGroups) translateCostumbresGroupLabels(biblicalGroups);
+  }
+
+  // Encabezados de grupo del índice bíblico (nombre del libro, ej. "Génesis"):
+  // a diferencia del resto del índice (traducido en translateCostumbresIndexTitles
+  // con el idioma de la OBRA como origen — inglés para Freeman/Tucker), estos
+  // vienen de catalog.books, que solo existe en español (es metadata de la
+  // versión de la Biblia, no de la obra) — por eso quedaban sin traducir cuando
+  // la interfaz estaba en inglés (bug reportado por Juan, 2026-08-13). Se
+  // traducen aparte, con sourceLang fijo 'es', igual que applyChurchShelfTranslation.
+  async function translateCostumbresGroupLabels(groups){
+    const target=contentLang();
+    if(target==='es') return;
+    for(const group of groups){
+      const el=els.panelBody.querySelector(`[data-costumbres-toc-group="${CSS.escape(group.key)}"]`);
+      if(!el || el.dataset.translated===target || !group.label) continue;
+      const translated=await translateCommentaryHeader(`costumbres-group:${group.key}`,'label',group.label,'es',target);
+      el.textContent=translated;
+      el.dataset.translated=target;
+    }
   }
 
   // Traduce en un solo request todos los títulos del índice visible (fila del
