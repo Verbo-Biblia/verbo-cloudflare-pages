@@ -842,36 +842,27 @@ body.recursos-page .r-sermon-row:hover .r-article-row-title { color: var(--sermo
 }
 
 /* ============================================================
-   Móvil — subpáginas índice de Recursos (Devocionales, Artículos
-   y Reflexiones, Sermones Históricos, Escuela Dominical): bajar
-   navegación/descripción de prioridad para llegar al contenido
-   real más rápido, sin scroll innecesario. Escopeado a
-   body.recursos-page.recursos-index — nunca afecta páginas de
-   lectura individual (artículo/devocional/sermón/lección) ni
-   Biblia/Librería/Seminario. Ver PLAN-MOBILE-RECURSOS.md.
-
-   Técnica: <main> pasa a display:contents en este breakpoint, así
-   sus hijos (eyebrow/h1/lede/contador/filtro+grid, o el <article>
-   completo en Escuela Dominical) se vuelven ítems flex directos de
-   <body> y se pueden reordenar sin tocar el DOM ni filters.js. La
-   navegación rápida se oculta: el encabezado conserva una flecha de
-   regreso amplia como única navegación secundaria. Fuera de
-   este breakpoint, <main> vuelve a su display normal (sin efecto
-   en desktop/tablet). */
-@media (max-width: 680px) {
-  body.recursos-page.recursos-index {
-    display: flex;
-    flex-direction: column;
+   Móvil — navegación y contenedor comunes de Librería y Recursos.
+   Todas estas páginas comparten body.recursos-page, aunque parte del
+   HTML proceda de generadores distintos. La navegación principal se
+   oculta en páginas móviles y el encabezado compacto queda como único
+   chrome superior. El margen exterior vive aquí, no en descendientes,
+   para alinear títulos, filtros, tarjetas y paneles de lectura.
+   ============================================================ */
+@media (max-width: 760px) {
+  body.recursos-page {
+    --r-mobile-gutter: clamp(16px, 4vw, 24px);
   }
-  body.recursos-page.recursos-index > header.static-page__header { order: 1; }
-  body.recursos-page.recursos-index > main.static-page__main { display: contents; }
-  body.recursos-page.recursos-index > nav.quick-nav { display: none; }
-
-  /* Control de regreso con área táctil clara, sin convertir el encabezado
-     en otra barra de botones. El texto accesible original se conserva. */
-  body.recursos-page.recursos-index .static-page__back {
+  body.recursos-page > nav.quick-nav { display: none; }
+  body.recursos-page .static-page__header {
+    width: 100%;
+    padding-inline: var(--r-mobile-gutter);
+  }
+  body.recursos-page .static-page__back {
+    flex: 0 0 40px;
     width: 40px;
     height: 40px;
+    font-size: 0 !important;
     padding: 0;
     margin: 0;
     border: 1px solid var(--r-rule-strong);
@@ -880,46 +871,43 @@ body.recursos-page .r-sermon-row:hover .r-article-row-title { color: var(--sermo
     color: var(--r-ink);
     box-shadow: 0 3px 10px rgba(var(--r-shadow), .08);
   }
-  body.recursos-page.recursos-index .static-page__back::before {
+  body.recursos-page .static-page__back::before {
+    content: "←";
     font-size: 25px;
     transform: translateY(-1px);
   }
 
+  body.recursos-page .static-page__main,
+  body.recursos-page.recursos-index .static-page__main {
+    width: calc(100% - (2 * var(--r-mobile-gutter)));
+    margin-inline: var(--r-mobile-gutter);
+    padding-inline: clamp(18px, 5vw, 24px);
+  }
+  body.recursos-page.recursos-index .static-page__main {
+    padding-inline: 0;
+  }
+
   /* Devocionales / Artículos y Reflexiones / Sermones Históricos:
-     ocultar breadcrumb, descripción larga y contador; el título
-     sube de posición y baja de tamaño. */
+     ocultar breadcrumb, descripción larga y contador. */
   body.recursos-page.recursos-index .r-eyebrow,
   body.recursos-page.recursos-index .r-lede,
   body.recursos-page.recursos-index .r-section-label {
     display: none;
   }
-  body.recursos-page.recursos-index .r-content-group {
-    order: 3;
-    margin: 0 32px 32px;
-  }
+  body.recursos-page.recursos-index .r-content-group { margin-bottom: 32px; }
 
-  /* Escuela Dominical (sin eyebrow/lede/filtro propios): el
-     <article> completo (badge + título + lecciones) se mueve como
-     bloque único; el badge se oculta igual que el breadcrumb. */
-  body.recursos-page.recursos-index > main.static-page__main > article {
-    order: 2;
-    margin: 0 32px;
-  }
+  /* Escuela Dominical: el badge se oculta igual que el breadcrumb. */
   body.recursos-page.recursos-index .lesson-badge { display: none; }
 
-  /* Título: mismo tratamiento para ambos grupos, sea ítem flex
-     directo (grupo A) o quede dentro de <article> (grupo B, donde
-     `order` no aplica por no ser ítem flex — el tamaño/margen sí). */
-  body.recursos-page.recursos-index h1 {
-    order: 2;
-    font-size: 1.5rem;
-  }
-  body.recursos-page.recursos-index > main.static-page__main > h1 {
-    margin: 4px 32px 14px;
-  }
-  body.recursos-page.recursos-index > main.static-page__main > article h1 {
-    margin: 4px 0 14px;
-  }
+  body.recursos-page.recursos-index h1 { font-size: 1.5rem; }
+  body.recursos-page.recursos-index > main.static-page__main > h1,
+  body.recursos-page.recursos-index > main.static-page__main > article h1 { margin: 4px 0 14px; }
+
+  /* La cuadrícula aprovecha el ancho disponible sin pegar tarjetas al
+     viewport; el gap sigue perteneciendo al diseño original. */
+  body.recursos-page .r-book-grid,
+  body.recursos-page .r-card-grid,
+  body.recursos-page .r-article-grid { width: 100%; }
 }
 
 @media print {
