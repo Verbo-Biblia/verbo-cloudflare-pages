@@ -1,7 +1,11 @@
 # Plan: simplificar vista móvil de subpáginas de Recursos
 
-Estado: **preparación, sin ejecutar.** Guardado el 2026-08-13 para retomar
-más adelante — no es la tarea activa de esta sesión.
+Estado: **implementado y validado localmente, pendiente de publicación.** El
+2026-08-13 se aplicó el patrón móvil a Devocionales, Artículos y Reflexiones,
+Sermones Históricos y los índices de Escuela Dominical para 4–7 y 8–10 años.
+Se comprobaron visualmente Sermones Históricos en móvil y escritorio y Escuela
+Dominical en móvil; la validación detectó y corrigió la pérdida inicial de los
+márgenes laterales causada por `display: contents`.
 
 ## Contexto
 

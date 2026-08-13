@@ -841,6 +841,68 @@ body.recursos-page .r-sermon-row:hover .r-article-row-title { color: var(--sermo
   body.recursos-page .sermon-cover-kicker { font-size: 7px; }
 }
 
+/* ============================================================
+   Móvil — subpáginas índice de Recursos (Devocionales, Artículos
+   y Reflexiones, Sermones Históricos, Escuela Dominical): bajar
+   navegación/descripción de prioridad para llegar al contenido
+   real más rápido, sin scroll innecesario. Escopeado a
+   body.recursos-page.recursos-index — nunca afecta páginas de
+   lectura individual (artículo/devocional/sermón/lección) ni
+   Biblia/Librería/Seminario. Ver PLAN-MOBILE-RECURSOS.md.
+
+   Técnica: <main> pasa a display:contents en este breakpoint, así
+   sus hijos (eyebrow/h1/lede/contador/filtro+grid, o el <article>
+   completo en Escuela Dominical) se vuelven ítems flex directos de
+   <body> junto con <header> y <nav class="quick-nav">, y se pueden
+   reordenar con `order` sin tocar el DOM ni filters.js. Fuera de
+   este breakpoint, <main> vuelve a su display normal (sin efecto
+   en desktop/tablet). */
+@media (max-width: 680px) {
+  body.recursos-page.recursos-index {
+    display: flex;
+    flex-direction: column;
+  }
+  body.recursos-page.recursos-index > header.static-page__header { order: 1; }
+  body.recursos-page.recursos-index > main.static-page__main { display: contents; }
+  body.recursos-page.recursos-index > nav.quick-nav { order: 3; }
+
+  /* Devocionales / Artículos y Reflexiones / Sermones Históricos:
+     ocultar breadcrumb, descripción larga y contador; el título
+     sube de posición y baja de tamaño. */
+  body.recursos-page.recursos-index .r-eyebrow,
+  body.recursos-page.recursos-index .r-lede,
+  body.recursos-page.recursos-index .r-section-label {
+    display: none;
+  }
+  body.recursos-page.recursos-index .r-content-group {
+    order: 4;
+    margin: 0 32px 32px;
+  }
+
+  /* Escuela Dominical (sin eyebrow/lede/filtro propios): el
+     <article> completo (badge + título + lecciones) se mueve como
+     bloque único; el badge se oculta igual que el breadcrumb. */
+  body.recursos-page.recursos-index > main.static-page__main > article {
+    order: 2;
+    margin: 0 32px;
+  }
+  body.recursos-page.recursos-index .lesson-badge { display: none; }
+
+  /* Título: mismo tratamiento para ambos grupos, sea ítem flex
+     directo (grupo A) o quede dentro de <article> (grupo B, donde
+     `order` no aplica por no ser ítem flex — el tamaño/margen sí). */
+  body.recursos-page.recursos-index h1 {
+    order: 2;
+    font-size: 1.5rem;
+  }
+  body.recursos-page.recursos-index > main.static-page__main > h1 {
+    margin: 4px 32px 14px;
+  }
+  body.recursos-page.recursos-index > main.static-page__main > article h1 {
+    margin: 4px 0 14px;
+  }
+}
+
 @media print {
   body.recursos-page .quick-nav { display: none; }
   body.recursos-page .r-filterbar { display: none; }
