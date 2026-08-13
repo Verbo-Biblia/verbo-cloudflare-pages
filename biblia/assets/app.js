@@ -1992,7 +1992,15 @@ document.addEventListener('DOMContentLoaded', async () => {
           signal:controller.signal
         });
       } finally { clearTimeout(timeoutId); }
-      if(!resp.ok) throw new Error(`translate-sermon-doc ${resp.status}`);
+      if(!resp.ok){
+        // 400 = error de validación (documento vacío/demasiado largo, etc.):
+        // el Worker manda un mensaje puntual, más útil que el toast genérico.
+        if(resp.status===400){
+          const errJson=await resp.json().catch(()=>null);
+          throw new Error(errJson?.error || `translate-sermon-doc ${resp.status}`, {cause:'validation'});
+        }
+        throw new Error(`translate-sermon-doc ${resp.status}`);
+      }
       const json=await resp.json();
       const translation=typeof json?.translation==='string' ? json.translation : '';
       if(!translation.trim()) throw new Error('empty-translation');
@@ -2008,7 +2016,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       toast(t('predicas.traducirExitoToast'));
     }catch(error){
       console.error('[sermon] no se pudo traducir la prédica', error);
-      toast(t('predicas.traducirErrorToast'));
+      toast(error?.cause==='validation' && error.message ? error.message : t('predicas.traducirErrorToast'));
     } finally {
       btn.disabled=false;
       btn.textContent=originalLabel;

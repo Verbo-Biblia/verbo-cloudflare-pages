@@ -96,6 +96,7 @@ async function handleApiBible(request, url, env, headers) {
 
 const TRANSLATE_TARGET_NAMES = { es: 'Spanish', en: 'English' };
 const MAX_TRANSLATE_CHARS = 20000; // cubre una entrada larga de comentario/costumbres; evita abuso de la cuota de Anthropic
+const MAX_SERMON_DOC_CHARS = 30000; // documento completo de Predicación (HTML de TinyMCE, no texto plano) — ver handleTranslateSermonDoc
 const ANTHROPIC_MODEL = 'claude-haiku-4-5-20251001';
 
 // El texto traducido ronda un tamaño similar al de entrada (a veces algo más
@@ -539,7 +540,11 @@ async function handleTranslateSermonDoc(request, env, headers) {
   const bibleRefs = Array.isArray(body?.bibleRefs) ? body.bibleRefs.slice(0, 40) : [];
 
   if (!html.trim()) return jsonError('Falta el documento a traducir', 400, headers);
-  if (html.length > MAX_TRANSLATE_CHARS) return jsonError(`El documento supera el límite de ${MAX_TRANSLATE_CHARS} caracteres`, 400, headers);
+  // Límite propio, más alto que MAX_TRANSLATE_CHARS (pensado para fragmentos
+  // sueltos de comentario/diccionario): el HTML real de TinyMCE (style=,
+  // colores, spans) infla mucho el conteo de caracteres frente al texto
+  // visible de una prédica normal — con 20000 rechazaba documentos reales.
+  if (html.length > MAX_SERMON_DOC_CHARS) return jsonError(`El documento supera el límite de ${MAX_SERMON_DOC_CHARS} caracteres. Acortalo o traducilo por partes.`, 400, headers);
   if (!targetLangName) return jsonError('targetLang debe ser "es" o "en"', 400, headers);
 
   const systemPrompt = buildSermonTranslateSystemPrompt(targetLangName, bibleRefs);
