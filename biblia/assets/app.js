@@ -1978,7 +1978,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       const base=translateWorkerBase();
       if(!base) throw new Error('worker-base-unavailable');
       const controller=new AbortController();
-      const timeoutId=setTimeout(()=>controller.abort(), 30000);
+      // Traducir un documento entero (sin caché, prioridad de fidelidad
+      // literal que no comprime la salida) tarda bastante más que un
+      // fragmento suelto — 30s cortaba prédicas largas reales antes de
+      // que Anthropic terminara de responder.
+      const timeoutId=setTimeout(()=>controller.abort(), 90000);
       let resp;
       try{
         resp=await fetch(`${base}/translate-sermon-doc`, {
