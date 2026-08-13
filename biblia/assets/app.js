@@ -234,6 +234,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   let patristicShelf=null;
   let patristicOpenDoc=null;
   let patristicOpenSection=null;
+  let patristicIndexToken=0;
   let patristicMode=localStorage.getItem('verbo:patristicMode') || 'docs';
   let patristicByVerseCatalog=null;
   let currentPatristicByVerse=null;
@@ -4761,28 +4762,36 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // Traduce los títulos de sección del índice de nivel 2 (ej. "Capítulo 5 — La
-  // nueva alianza..."). Un solo request para todo el índice (join con
-  // delimitador) en vez de uno por sección — documentos como Ireneo tienen
-  // decenas de secciones.
+  // nueva alianza...") uno por uno con un pool de workers concurrentes —
+  // mismo patrón que translateCostumbresIndexTitles/applyChurchHistoryTocTranslation.
+  // Antes se armaba un solo request con todo el índice unido por un
+  // delimitador ("@@@"); para documentos largos (Clemente 1: 65 secciones,
+  // ~9000 caracteres; Hermas Pastor: 108 secciones, ~5500) ese texto superaba
+  // el umbral de envío directo, se troceaba en fragmentos que Claude
+  // traducía sin noción del delimitador, el conteo de partes ya no coincidía
+  // con el de secciones y el índice completo se quedaba sin traducir en
+  // silencio — mismo bug que translateCostumbresIndexTitles (Freeman,
+  // reportado por Juan, 2026-08-13).
   async function translatePatristicSectionTitles(docData){
     const source=docData.manifest.language||'es';
     const target=contentLang();
     if(source===target) return;
-    const DELIM='\n@@@\n';
-    const cacheKey=translationCacheKey(`patristic-index:${docData.manifest.id}`, docData.sections.map(s=>s.title).join(DELIM), target);
-    let translatedTitles=tcacheGet(cacheKey);
-    if(!translatedTitles){
-      const translated=await verboTranslate(docData.sections.map(s=>s.title).join(DELIM), source, target);
-      if(!translated) return;
-      const parts=translated.split(/\s*@@@\s*/).map(x=>x.trim());
-      if(parts.length!==docData.sections.length) return; // el delimitador se rompió en la traducción; no aplicar nada
-      translatedTitles=parts;
-      tcacheSet(cacheKey, translatedTitles);
+    const sections=docData.sections;
+    const token=++patristicIndexToken;
+    let index=0;
+    async function worker(){
+      while(index<sections.length){
+        if(token!==patristicIndexToken) return;
+        const s=sections[index++];
+        const el=els.panelBody.querySelector(`[data-patristic-section-title="${s.n}"]`);
+        if(!el || el.dataset.translated===target || !s.title) continue;
+        const translated=await translateCommentaryHeader(`patristic-index:${docData.manifest.id}:${s.n}`,'title',s.title,source,target);
+        if(token!==patristicIndexToken) return;
+        el.textContent=translated;
+        el.dataset.translated=target;
+      }
     }
-    docData.sections.forEach((s,i)=>{
-      const el=els.panelBody.querySelector(`[data-patristic-section-title="${s.n}"]`);
-      if(el){ el.textContent=translatedTitles[i]; el.dataset.translated=target; }
-    });
+    await Promise.all(Array.from({length:Math.min(4,sections.length)},worker));
   }
 
   function renderPatristicSection(){
