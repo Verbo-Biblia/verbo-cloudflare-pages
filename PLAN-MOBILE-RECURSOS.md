@@ -9,6 +9,10 @@ exterior de 16–24 px. También se eliminó `display: contents`, causa de que e
 padding del contenedor desapareciera y hubiera que compensarlo por descendiente.
 Escritorio y tablet conservan la navegación completa.
 
+En los índices con filtros, escritorio conserva esa navegación pero reduce el
+encabezado del catálogo a un título de 1.5 rem: se ocultan breadcrumb,
+descripción y conteo para que filtros y tarjetas aparezcan inmediatamente.
+
 ## Contexto
 
 Verbo (verbobiblia.com), sitio estático en Cloudflare Pages, sin framework.

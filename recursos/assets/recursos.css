@@ -841,6 +841,30 @@ body.recursos-page .r-sermon-row:hover .r-article-row-title { color: var(--sermo
   body.recursos-page .sermon-cover-kicker { font-size: 7px; }
 }
 
+/* Índices de catálogo con filtros (Librería, Devocionales, Artículos y
+   Sermones Históricos): en escritorio se conserva quick-nav, pero el bloque
+   introductorio se reduce al nombre de la sección. No afecta la portada de
+   Recursos ni los encabezados internos que organizan su contenido. */
+body.recursos-page.recursos-index:has(.r-filterbar) .static-page__main > .r-eyebrow,
+body.recursos-page.recursos-index:has(.r-filterbar) .static-page__main > .r-lede,
+body.recursos-page.recursos-index:has(.r-filterbar) .static-page__main > .r-section-label {
+  display: none;
+}
+body.recursos-page.recursos-index:has(.r-filterbar) .static-page__main > h1 {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+@media (min-width: 761px) {
+  body.recursos-page.recursos-index:has(.r-filterbar) .static-page__main {
+    margin-top: 24px;
+    padding-top: 20px;
+  }
+  body.recursos-page.recursos-index:has(.r-filterbar) .r-filterbar {
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+  }
+}
+
 /* ============================================================
    Móvil — navegación y contenedor comunes de Librería y Recursos.
    Todas estas páginas comparten body.recursos-page, aunque parte del

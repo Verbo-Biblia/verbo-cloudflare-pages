@@ -233,7 +233,7 @@ def page_html(book, data_url):
 <link rel="icon" type="image/png" sizes="192x192" href="../../biblia/assets/icons/icon-192.png">
 <meta name="theme-color" content="#7f2d35">
 <link rel="stylesheet" href="../../biblia/assets/style.css?v=20260730-rail-center">
-<link rel="stylesheet" href="../../recursos/assets/recursos.css?v=20260813-mobile-internal">
+<link rel="stylesheet" href="../../recursos/assets/recursos.css?v=20260813-compact-catalog-headings">
 <link rel="stylesheet" href="../assets/reader.css?v=13">
 </head>
 <body class="static-page recursos-page">
