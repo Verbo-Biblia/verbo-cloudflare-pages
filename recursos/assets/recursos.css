@@ -236,6 +236,11 @@ body.recursos-page .article-textsize-btn:hover:not(:disabled) {
   color: var(--r-ink);
 }
 body.recursos-page .article-textsize-btn:disabled { opacity: .35; cursor: default; }
+body.recursos-page .article-textsize-btn--share {
+  display: inline-flex;
+  align-items: center;
+  border-left: 1px solid var(--r-rule);
+}
 body.recursos-page .static-page__main article hr {
   border-top-color: var(--r-rule);
 }

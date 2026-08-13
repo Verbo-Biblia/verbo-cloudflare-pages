@@ -103,7 +103,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   .hero::before {
     content: "";
     position: absolute;
-    inset: -8%;
+    inset: -20%;
     background: url('assets/fondo.png') center / cover no-repeat;
     opacity: 0.86;
     transform: translate3d(var(--hero-parallax-x, 0px), calc(var(--hero-parallax, 0px) + var(--hero-parallax-y, 0px)), 0) scale(1.08);
@@ -164,7 +164,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
 
   .card-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: clamp(0.65rem, 1.5vw, 1rem);
   }
 
@@ -439,6 +439,24 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
         <path d="M9 14h6"/>
       </svg>
       <h3 data-i18n="portal.cardRecursosTitle">Recursos</h3>
+    </a>
+
+    <!-- Artículos y Reflexiones -->
+    <a class="card" href="/recursos/articulos-y-reflexiones/">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+        <path d="M6 3h9l5 5v13H6z"/>
+        <path d="M15 3v5h5"/>
+        <path d="M9 13h6M9 17h6"/>
+      </svg>
+      <h3 data-i18n="portal.cardArticulosTitle">Artículos y Reflexiones</h3>
+    </a>
+
+    <!-- Devocionales -->
+    <a class="card" href="/recursos/devocionales/">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+        <path d="M12 20.5S3.5 15.6 3.5 9.6C3.5 6.5 5.9 4 9 4c1.6 0 3 .8 3 .8s1.4-.8 3-.8c3.1 0 5.5 2.5 5.5 5.6 0 6-8.5 10.9-8.5 10.9Z"/>
+      </svg>
+      <h3 data-i18n="portal.cardDevocionalesTitle">Devocionales</h3>
     </a>
 
   </div>
