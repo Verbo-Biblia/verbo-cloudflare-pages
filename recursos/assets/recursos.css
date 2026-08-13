@@ -723,6 +723,124 @@ body.recursos-page .book-cover-lang {
   border: 1px solid rgba(201, 162, 39, .5);
 }
 
+/* ============================================================
+   Portada de Sermones Históricos — pergamino con sello de cera.
+   Tercer código visual junto a .book-cover (Biblioteca, libro de piel) y
+   .article-cover (Devocionales/Artículos, cartita de papel con esquina
+   doblada): papel envejecido, borde superior irregular tipo deckle en vez
+   de dog-ear, sello de cera en vez de icono de libro/pluma.
+   ============================================================ */
+body.recursos-page .sermon-cover {
+  --sermon-paper: #eee0c4;
+  --sermon-paper-shade: #e2d0a8;
+  --sermon-ink: #4a3620;
+  --sermon-seal: #7f2d35;
+  --sermon-seal-shine: #a8434c;
+  position: relative;
+  min-height: 228px;
+  aspect-ratio: 4 / 4.8;
+  overflow: visible;
+  border: 1px solid color-mix(in srgb, var(--sermon-ink) 22%, transparent);
+  padding: 24px 18px 17px 20px;
+  display: flex;
+  flex-direction: column;
+  color: var(--sermon-ink);
+  background:
+    radial-gradient(160% 70% at 20% 0%, rgba(255,255,255,.35), transparent 55%),
+    radial-gradient(120% 90% at 100% 100%, var(--sermon-paper-shade), transparent 60%),
+    var(--sermon-paper);
+  clip-path: polygon(
+    0% 3%, 4% 0%, 8% 3.5%, 12% .8%, 16% 3%, 20% .3%, 24% 3.6%, 28% 1%,
+    32% 3%, 36% .5%, 40% 3.4%, 44% 1.2%, 48% 2.8%, 52% .4%, 56% 3.5%,
+    60% 1%, 64% 3%, 68% .3%, 72% 3.6%, 76% 1%, 80% 3%, 84% .5%, 88% 3.4%,
+    92% 1.2%, 96% 2.8%, 100% 0%,
+    100% 100%, 0% 100%
+  );
+  box-shadow: 0 13px 24px -17px rgba(var(--r-shadow), .48);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+body.recursos-page .sermon-cover-seal {
+  position: absolute;
+  top: -8px;
+  right: 20px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 28%, var(--sermon-seal-shine), var(--sermon-seal) 62%, #5a1f26 100%);
+  box-shadow: 0 4px 8px -3px rgba(0,0,0,.45), inset 0 -2px 4px rgba(0,0,0,.35), inset 0 2px 3px rgba(255,255,255,.2);
+  pointer-events: none;
+}
+body.recursos-page .sermon-cover-seal::after {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  border: 1px solid rgba(244, 230, 200, .55);
+  border-radius: 50%;
+}
+body.recursos-page .r-sermon-row:hover .sermon-cover,
+body.recursos-page .r-sermon-row:focus-visible .sermon-cover {
+  transform: translateY(-5px);
+  border-color: color-mix(in srgb, var(--sermon-seal) 40%, var(--sermon-ink) 20%);
+  box-shadow: 0 20px 30px -18px rgba(var(--r-shadow), .56);
+}
+body.recursos-page .r-sermon-row:focus-visible { outline: 2px solid var(--r-gold); outline-offset: 5px; border-radius: 6px; }
+body.recursos-page .sermon-cover-kicker {
+  position: relative;
+  z-index: 1;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8.8px;
+  line-height: 1.4;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--sermon-seal);
+  margin: 10px 0 auto;
+}
+body.recursos-page .sermon-cover-rule {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 5px;
+  flex: 0 0 auto;
+  margin-bottom: 9px;
+  background:
+    repeating-linear-gradient(90deg,
+      color-mix(in srgb, var(--sermon-seal) 55%, transparent) 0 3px,
+      transparent 3px 7px);
+}
+body.recursos-page .sermon-cover-author {
+  position: relative;
+  z-index: 1;
+  font-family: 'Fraunces', serif;
+  font-size: .72rem;
+  font-style: italic;
+  line-height: 1.35;
+  color: var(--sermon-seal);
+}
+body.recursos-page .r-sermon-grid .r-article-row-title {
+  color: var(--sermon-ink);
+}
+body.recursos-page .r-sermon-row:hover .r-article-row-title { color: var(--sermon-seal); }
+
+@media (max-width: 900px) {
+  body.recursos-page .r-sermon-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 680px) {
+  body.recursos-page .r-sermon-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 12px; }
+  body.recursos-page .sermon-cover { min-height: 0; aspect-ratio: 3 / 4.15; padding: 20px 12px 13px 14px; }
+  body.recursos-page .sermon-cover-seal { width: 28px; height: 28px; right: 14px; top: -6px; }
+  body.recursos-page .sermon-cover-kicker { font-size: 7.7px; letter-spacing: .1em; }
+}
+@media (max-width: 430px) {
+  body.recursos-page .r-sermon-grid {
+    grid-template-columns: repeat(2, minmax(0, 132px));
+    justify-content: center;
+    gap: 18px 10px;
+  }
+  body.recursos-page .sermon-cover { aspect-ratio: 3 / 4.1; padding: 18px 10px 11px 12px; }
+  body.recursos-page .sermon-cover-kicker { font-size: 7px; }
+}
+
 @media print {
   body.recursos-page .quick-nav { display: none; }
   body.recursos-page .r-filterbar { display: none; }
