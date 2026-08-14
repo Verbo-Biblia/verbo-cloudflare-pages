@@ -82,7 +82,7 @@
         var mark = document.createElement("mark");
         mark.className = MARK_CLASS + " " + MARK_CLASS + "--" + item.color;
         mark.setAttribute("data-highlight-color", item.color);
-        range.surroundContents(mark);
+        try { range.surroundContents(mark); } catch (_) {}
       });
     });
   }
@@ -160,9 +160,26 @@
       paint(root, items);
     });
 
-    root.addEventListener("pointerup", function () { window.setTimeout(showForSelection, 0); });
+    var selectionTimer = null;
+    function scheduleSelectionCheck(delay) {
+      window.clearTimeout(selectionTimer);
+      selectionTimer = window.setTimeout(showForSelection, delay || 0);
+    }
+    // `mouseup` es el disparador principal en PC. `pointerup` cubre lápiz y
+    // dispositivos híbridos; `selectionchange` sirve de respaldo para
+    // selección por teclado y navegadores que no entregan el evento al article.
+    root.addEventListener("mouseup", function () { scheduleSelectionCheck(0); });
+    root.addEventListener("pointerup", function (event) {
+      if (event.pointerType && event.pointerType !== "mouse") scheduleSelectionCheck(0);
+    });
+    document.addEventListener("selectionchange", function () {
+      var selection = window.getSelection();
+      if (selection && !selection.isCollapsed && selection.rangeCount && root.contains(selection.anchorNode)) {
+        scheduleSelectionCheck(120);
+      }
+    });
     root.addEventListener("keyup", function (event) {
-      if (event.key === "Shift" || event.key.indexOf("Arrow") !== -1) window.setTimeout(showForSelection, 0);
+      if (event.key === "Shift" || String(event.key || "").indexOf("Arrow") !== -1) scheduleSelectionCheck(0);
     });
     document.addEventListener("pointerdown", function (event) {
       if (!palette.contains(event.target) && !root.contains(event.target)) hide();
