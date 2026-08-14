@@ -244,11 +244,11 @@ body.recursos-page .reader-para::selection,
 body.recursos-page .reader-para *::selection {
   background: rgba(201, 162, 39, .35);
 }
-/* Mismo resaltado amarillo que ya se usa en el lector bíblico
-   (.verse.hl-yellow en biblia/assets/style.css), para que se sienta
-   familiar a quien ya usa la Biblia de Verbo. */
+/* Mismos 6 colores que ya usan el resaltador de versículos de la Biblia
+   (.verse.hl-* en biblia/assets/style.css) y el de las lecciones de
+   Escuela Dominical (recursos/assets/text-highlighter.js), para que se
+   sienta familiar en todo el sitio. */
 body.recursos-page mark.reader-hl {
-  background: rgba(254, 240, 138, .55);
   color: var(--r-ink);
   border-radius: 3px;
   padding: 1px 2px;
@@ -256,7 +256,76 @@ body.recursos-page mark.reader-hl {
   cursor: pointer;
   transition: background .12s ease;
 }
-body.recursos-page mark.reader-hl:hover { background: rgba(254, 240, 138, .8); }
+body.recursos-page mark.reader-hl--yellow { background: rgba(254, 240, 138, .55); }
+body.recursos-page mark.reader-hl--yellow:hover { background: rgba(254, 240, 138, .8); }
+body.recursos-page mark.reader-hl--green  { background: rgba(134, 239, 172, .5); }
+body.recursos-page mark.reader-hl--green:hover  { background: rgba(134, 239, 172, .75); }
+body.recursos-page mark.reader-hl--blue   { background: rgba(147, 197, 253, .5); }
+body.recursos-page mark.reader-hl--blue:hover   { background: rgba(147, 197, 253, .75); }
+body.recursos-page mark.reader-hl--pink   { background: rgba(249, 168, 212, .5); }
+body.recursos-page mark.reader-hl--pink:hover   { background: rgba(249, 168, 212, .75); }
+body.recursos-page mark.reader-hl--coral  { background: rgba(252, 165, 165, .5); }
+body.recursos-page mark.reader-hl--coral:hover  { background: rgba(252, 165, 165, .75); }
+body.recursos-page mark.reader-hl--violet { background: rgba(216, 180, 254, .5); }
+body.recursos-page mark.reader-hl--violet:hover { background: rgba(216, 180, 254, .75); }
+/* Selección recién hecha, todavía sin color asignado (paleta abierta). */
+body.recursos-page mark.reader-hl--pending {
+  background: rgba(127, 45, 53, .22);
+  outline: 1px dashed rgba(127, 45, 53, .55);
+  outline-offset: -1px;
+  cursor: default;
+}
+
+/* ---------- paleta de colores del resaltado ---------- */
+.reader-hl-palette {
+  position: fixed;
+  z-index: 2600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 12px;
+  border: 1px solid rgba(127, 45, 53, .14);
+  border-radius: 999px;
+  background: rgba(255, 253, 248, .96);
+  box-shadow: 0 8px 32px rgba(42, 31, 23, .22), 0 1px 3px rgba(42, 31, 23, .1);
+  backdrop-filter: blur(18px) saturate(1.6);
+  -webkit-backdrop-filter: blur(18px) saturate(1.6);
+  transform: translate(-50%, calc(-100% - 12px));
+}
+.reader-hl-palette[hidden] { display: none; }
+.reader-hl-palette__swatch {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.reader-hl-palette__swatch:hover,
+.reader-hl-palette__swatch:focus-visible {
+  outline: none;
+  transform: scale(1.16);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .2);
+}
+.reader-hl-palette__swatch[data-color="yellow"] { background: #fef08a; }
+.reader-hl-palette__swatch[data-color="green"]  { background: #86efac; }
+.reader-hl-palette__swatch[data-color="blue"]   { background: #93c5fd; }
+.reader-hl-palette__swatch[data-color="pink"]   { background: #f9a8d4; }
+.reader-hl-palette__swatch[data-color="coral"]  { background: #fca5a5; }
+.reader-hl-palette__swatch[data-color="violet"] { background: #d8b4fe; }
+.reader-hl-palette__swatch--erase {
+  display: grid;
+  place-items: center;
+  border: 1.5px dashed rgba(100, 75, 55, .35);
+  background: transparent;
+  color: rgba(100, 75, 55, .65);
+  font: 700 12px/1 sans-serif;
+}
+@media (max-width: 520px) {
+  .reader-hl-palette { gap: 4px; padding: 8px 9px; }
+  .reader-hl-palette__swatch { width: 26px; height: 26px; }
+}
 
 body.recursos-page .reader-hint {
   font-family: 'IBM Plex Mono', monospace;

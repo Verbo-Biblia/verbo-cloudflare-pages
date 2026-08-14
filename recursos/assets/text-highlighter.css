@@ -10,6 +10,11 @@
 .lesson-highlight--pink   { background: rgba(249, 168, 212, .52); }
 .lesson-highlight--coral  { background: rgba(252, 165, 165, .52); }
 .lesson-highlight--violet { background: rgba(216, 180, 254, .52); }
+.lesson-highlight--pending {
+  background: rgba(127, 45, 53, .22);
+  outline: 1px dashed rgba(127, 45, 53, .55);
+  outline-offset: -1px;
+}
 
 .lesson-source-meta {
   display: grid;

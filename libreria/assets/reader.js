@@ -249,62 +249,87 @@
   }
 
   // ---------- resaltado por rangos de texto libres ----------
-
-  function mergeRanges(ranges) {
-    ranges.sort(function (a, b) { return a[0] - b[0]; });
-    var out = [];
-    ranges.forEach(function (r) {
-      var last = out[out.length - 1];
-      if (last && r[0] <= last[1]) {
-        last[1] = Math.max(last[1], r[1]);
-      } else {
-        out.push(r.slice());
-      }
-    });
-    return out;
-  }
+  // Mismos 6 colores que el resaltador de versículos de la Biblia
+  // (.verse.hl-* en biblia/assets/style.css) y el de las lecciones de
+  // Escuela Dominical (recursos/assets/text-highlighter.js), para que se
+  // sienta igual en todo el sitio.
+  var HL_COLORS = ["yellow", "green", "blue", "pink", "coral", "violet"];
 
   function hlKey(paraIndex) { return current + ":" + paraIndex; }
 
-  function addHighlightRange(paraIndex, start, end) {
+  // Los datos viejos (antes de agregar color) guardaban pares [start, end]
+  // sin tercer elemento; se tratan como amarillo, el único color que existía.
+  function loadRanges(paraIndex) {
+    return (highlights[hlKey(paraIndex)] || []).map(function (r) {
+      return { start: r[0], end: r[1], color: r[2] || "yellow" };
+    });
+  }
+
+  function saveRanges(paraIndex, ranges) {
     var key = hlKey(paraIndex);
-    var ranges = highlights[key] || [];
-    ranges.push([start, end]);
-    highlights[key] = mergeRanges(ranges);
+    if (ranges.length) {
+      highlights[key] = ranges.map(function (r) { return [r.start, r.end, r.color]; });
+    } else {
+      delete highlights[key];
+    }
     saveJSON(HL_KEY, highlights);
   }
 
-  function removeHighlightRange(paraIndex, start, end) {
-    var key = hlKey(paraIndex);
-    var ranges = highlights[key] || [];
-    ranges = ranges.filter(function (r) { return !(r[0] === start && r[1] === end); });
-    if (ranges.length) highlights[key] = ranges; else delete highlights[key];
-    saveJSON(HL_KEY, highlights);
+  // Recorta [start, end) de una lista de rangos, partiendo los que se
+  // solapan parcialmente. Se usa tanto para reemplazar/borrar un resaltado
+  // guardado como para abrir un hueco visual donde se dibuja la selección
+  // "pendiente" (ver renderParaContent) sin tocar localStorage todavía.
+  function punchRanges(ranges, start, end) {
+    var next = [];
+    ranges.forEach(function (r) {
+      if (r.end <= start || r.start >= end) { next.push(r); return; }
+      if (r.start < start) next.push({ start: r.start, end: start, color: r.color });
+      if (r.end > end) next.push({ start: end, end: r.end, color: r.color });
+    });
+    return next;
+  }
+
+  // color === null borra el resaltado en ese rango.
+  function replaceRange(paraIndex, start, end, color) {
+    var next = punchRanges(loadRanges(paraIndex), start, end);
+    if (color) next.push({ start: start, end: end, color: color });
+    next.sort(function (a, b) { return a.start - b.start; });
+    saveRanges(paraIndex, next);
   }
 
   // Reconstruye el contenido de un <p> a partir del texto plano y sus
   // rangos resaltados, intercalando <mark> para las zonas resaltadas.
-  function renderParaContent(pEl, text, paraIndex) {
+  // `pending`, si viene, es la selección recién hecha que todavía no se ha
+  // guardado (el usuario está eligiendo color) — se dibuja encima de
+  // cualquier resaltado guardado que se solape, sin persistirla.
+  function renderParaContent(pEl, text, paraIndex, pending) {
     pEl.innerHTML = "";
     // En modo traducido no se aplican los rangos guardados: los offsets de
     // caracteres corresponden al texto original en español y no coinciden
     // con el texto traducido (el resaltado no se pierde, solo no se dibuja
     // mientras se ve la traducción).
-    var ranges = translatedMode ? [] : (highlights[hlKey(paraIndex)] || []);
+    var ranges = translatedMode ? [] : loadRanges(paraIndex);
+    if (pending && !translatedMode) {
+      ranges = punchRanges(ranges, pending.start, pending.end);
+      ranges.push({ start: pending.start, end: pending.end, color: "pending" });
+      ranges.sort(function (a, b) { return a.start - b.start; });
+    }
     var pos = 0;
     ranges.forEach(function (r) {
-      var start = Math.max(0, Math.min(r[0], text.length));
-      var end = Math.max(start, Math.min(r[1], text.length));
+      var start = Math.max(0, Math.min(r.start, text.length));
+      var end = Math.max(start, Math.min(r.end, text.length));
       if (start > pos) pEl.appendChild(document.createTextNode(text.slice(pos, start)));
       var mark = document.createElement("mark");
-      mark.className = "reader-hl";
-      mark.title = "Toca para quitar el resaltado";
+      mark.className = "reader-hl reader-hl--" + r.color;
       mark.textContent = text.slice(start, end);
-      mark.addEventListener("click", function (e) {
-        e.stopPropagation();
-        removeHighlightRange(paraIndex, r[0], r[1]);
-        renderParaContent(pEl, text, paraIndex);
-      });
+      if (r.color !== "pending") {
+        mark.title = "Toca para quitar el resaltado";
+        mark.addEventListener("click", function (e) {
+          e.stopPropagation();
+          replaceRange(paraIndex, start, end, null);
+          renderParaContent(pEl, text, paraIndex);
+        });
+      }
       pEl.appendChild(mark);
       pos = end;
     });
@@ -335,6 +360,66 @@
     return found;
   }
 
+  // ---------- paleta de colores para el resaltado ----------
+  // Igual que recursos/assets/text-highlighter.js: en cuanto se conoce el
+  // rango elegido se limpia la Selection nativa (para que el navegador no
+  // dibuje su propia barra de Copiar/Cortar encima) y se muestra un
+  // resaltado "pending" temporal mientras el usuario elige color.
+  var pendingSel = null; // { paraIndex, start, end, pEl, text }
+  var hlPalette = null;
+
+  function dismissPending() {
+    if (hlPalette) hlPalette.hidden = true;
+    if (pendingSel) {
+      var sel = pendingSel;
+      pendingSel = null;
+      renderParaContent(sel.pEl, sel.text, sel.paraIndex);
+    }
+  }
+
+  function buildHighlightPalette() {
+    var palette = document.createElement("div");
+    palette.className = "reader-hl-palette";
+    palette.hidden = true;
+    palette.setAttribute("role", "toolbar");
+    var isEnglish = currentLang() === "en";
+    palette.setAttribute("aria-label", isEnglish ? "Highlighter colors" : "Colores del resaltador");
+    var colorNames = isEnglish
+      ? { yellow: "yellow", green: "green", blue: "blue", pink: "pink", coral: "coral", violet: "violet" }
+      : { yellow: "amarillo", green: "verde", blue: "azul", pink: "rosa", coral: "coral", violet: "violeta" };
+    HL_COLORS.forEach(function (color) {
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "reader-hl-palette__swatch";
+      button.dataset.color = color;
+      button.setAttribute("aria-label", (isEnglish ? "Highlight in " : "Resaltar en ") + colorNames[color]);
+      palette.appendChild(button);
+    });
+    var erase = document.createElement("button");
+    erase.type = "button";
+    erase.className = "reader-hl-palette__swatch reader-hl-palette__swatch--erase";
+    erase.dataset.color = "";
+    erase.setAttribute("aria-label", isEnglish ? "Remove highlight" : "Quitar resaltado");
+    erase.textContent = "×";
+    palette.appendChild(erase);
+    document.body.appendChild(palette);
+
+    palette.addEventListener("pointerdown", function (e) { e.preventDefault(); });
+    palette.addEventListener("click", function (e) {
+      var button = e.target.closest("[data-color]");
+      if (!button || !pendingSel) return;
+      var sel = pendingSel;
+      pendingSel = null;
+      palette.hidden = true;
+      replaceRange(sel.paraIndex, sel.start, sel.end, button.dataset.color || null);
+      renderParaContent(sel.pEl, sel.text, sel.paraIndex);
+    });
+    document.addEventListener("pointerdown", function (e) {
+      if (!palette.hidden && !palette.contains(e.target)) dismissPending();
+    });
+    return palette;
+  }
+
   function handleSelection(contentEl) {
     // El resaltado se guarda como rangos de caracteres sobre el texto en
     // español; en modo traducido esos offsets no significarían nada al
@@ -357,12 +442,20 @@
     var paraIndex = parseInt(startPara.dataset.para, 10);
     var a = textOffsetInContainer(startPara, range.startContainer, range.startOffset);
     var b = textOffsetInContainer(startPara, range.endContainer, range.endOffset);
+    var rect = range.getBoundingClientRect();
     sel.removeAllRanges();
     if (a < 0 || b < 0 || a === b) return;
     var start = Math.min(a, b), end = Math.max(a, b);
+    var text = paraTexts[paraIndex];
 
-    addHighlightRange(paraIndex, start, end);
-    renderParaContent(startPara, paraTexts[paraIndex], paraIndex);
+    if (!hlPalette) hlPalette = buildHighlightPalette();
+    pendingSel = { paraIndex: paraIndex, start: start, end: end, pEl: startPara, text: text };
+    renderParaContent(startPara, text, paraIndex, { start: start, end: end });
+    var x = Math.max(155, Math.min(window.innerWidth - 155, rect.left + rect.width / 2));
+    var y = Math.max(62, rect.top);
+    hlPalette.style.left = x + "px";
+    hlPalette.style.top = y + "px";
+    hlPalette.hidden = false;
   }
 
   function buildSkeleton() {
@@ -482,6 +575,14 @@
   }
 
   function render(ui) {
+    // El contenido del capítulo se reconstruye por completo más abajo, así
+    // que cualquier selección "pendiente" (paleta de color abierta, ver
+    // handleSelection) quedaría apuntando a nodos huérfanos -- y si el
+    // usuario navegó de capítulo, replaceRange escribiría en el capítulo
+    // equivocado (usa el `current` global, ya actualizado). Se descarta sin
+    // guardar, igual que un toque afuera de la paleta.
+    pendingSel = null;
+    if (hlPalette) hlPalette.hidden = true;
     var ch = chapters[current];
     var token = ++renderToken;
     // El usuario deja atrás el capítulo/idioma anterior: cualquier traducción

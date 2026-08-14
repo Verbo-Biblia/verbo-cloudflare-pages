@@ -134,16 +134,60 @@
     document.body.appendChild(palette);
 
     var pending = null;
-    function hide() { palette.hidden = true; pending = null; }
-    function showForSelection() {
+    var pendingMarks = [];
+    function clearPendingMark() {
+      pendingMarks.forEach(function (mark) {
+        if (!mark.isConnected) return;
+        var parent = mark.parentNode;
+        while (mark.firstChild) parent.insertBefore(mark.firstChild, mark);
+        parent.removeChild(mark);
+        parent.normalize();
+      });
+      pendingMarks = [];
+    }
+    function paintPendingMark(offsets) {
+      clearPendingMark();
+      var nodes = textNodes(root);
+      var cursor = 0;
+      for (var i = 0; i < nodes.length; i++) {
+        var node = nodes[i];
+        var start = cursor;
+        cursor += node.nodeValue.length;
+        var from = Math.max(offsets.start, start);
+        var to = Math.min(offsets.end, cursor);
+        if (to <= from) continue;
+        var range = document.createRange();
+        range.setStart(node, from - start);
+        range.setEnd(node, to - start);
+        var mark = document.createElement("mark");
+        mark.className = MARK_CLASS + " " + MARK_CLASS + "--pending";
+        try { range.surroundContents(mark); pendingMarks.push(mark); } catch (_) {}
+      }
+    }
+    function hide() { palette.hidden = true; pending = null; clearPendingMark(); }
+    // Dejar la selección nativa activa hace que el navegador dibuje su
+    // propia barra (Copiar/Cortar/Buscar en móvil; a veces también en
+    // escritorio) encima o junto a nuestra paleta -- las dos compiten por
+    // el mismo gesto. `clearNative` replica lo que ya hace
+    // libreria/assets/reader.js: en cuanto se conoce el rango elegido se
+    // limpia la Selection nativa (así el navegador no llega a dibujar su
+    // barra) y se pinta un resaltado temporal "pending" para que el
+    // usuario siga viendo qué texto quedó marcado mientras elige color.
+    // Se aplica al terminar el gesto (mouseup/pointerup), nunca a mitad de
+    // un arrastre en curso -- ver el gateo de `selectionchange` más abajo.
+    function showForSelection(clearNative) {
       if (uiLanguage() !== pageLanguage(root)) { hide(); return; }
       var selection = window.getSelection();
       if (!selection || selection.isCollapsed || !selection.rangeCount) { hide(); return; }
       var range = selection.getRangeAt(0);
       var offsets = selectionOffsets(root, range);
       if (!offsets || !selection.toString().trim()) { hide(); return; }
-      pending = offsets;
       var rect = range.getBoundingClientRect();
+      pending = offsets;
+      if (clearNative) {
+        selection.removeAllRanges();
+        paintPendingMark(offsets);
+      }
       var x = Math.max(155, Math.min(window.innerWidth - 155, rect.left + rect.width / 2));
       var y = Math.max(62, rect.top);
       palette.style.left = x + "px";
@@ -163,18 +207,27 @@
     });
 
     var selectionTimer = null;
-    function scheduleSelectionCheck(delay) {
+    function scheduleSelectionCheck(delay, clearNative) {
       window.clearTimeout(selectionTimer);
-      selectionTimer = window.setTimeout(showForSelection, delay || 0);
+      selectionTimer = window.setTimeout(function () { showForSelection(clearNative); }, delay || 0);
     }
-    // `mouseup` es el disparador principal en PC. `pointerup` cubre lápiz y
-    // dispositivos híbridos; `selectionchange` sirve de respaldo para
-    // selección por teclado y navegadores que no entregan el evento al article.
-    root.addEventListener("mouseup", function () { scheduleSelectionCheck(0); });
+    // `mouseup` (PC) y `pointerup` (táctil, lápiz e híbridos) limpian la
+    // selección nativa al soltar (ver showForSelection) porque son el único
+    // momento en que sabemos que el usuario terminó de arrastrar el rango.
+    // `selectionchange` sirve de respaldo para selección por teclado y
+    // navegadores que no entregan el evento al article -- sin clearNative,
+    // porque se dispara en cada paso de CUALQUIER arrastre en curso (mouse
+    // o táctil) y limpiar la selección ahí cortaría el gesto a la mitad.
+    // Se ignora directamente mientras el último puntero fue táctil, para
+    // que ni siquiera la vista previa de la paleta aparezca a mitad de un
+    // arrastre táctil, chocando con los manejadores nativos de selección.
+    var lastPointerType = "mouse";
+    root.addEventListener("mouseup", function () { scheduleSelectionCheck(0, true); });
     root.addEventListener("pointerup", function (event) {
-      if (event.pointerType && event.pointerType !== "mouse") scheduleSelectionCheck(0);
+      if (event.pointerType && event.pointerType !== "mouse") scheduleSelectionCheck(0, true);
     });
     document.addEventListener("selectionchange", function () {
+      if (lastPointerType !== "mouse") return;
       var selection = window.getSelection();
       if (selection && !selection.isCollapsed && selection.rangeCount && root.contains(selection.anchorNode)) {
         scheduleSelectionCheck(120);
@@ -184,6 +237,7 @@
       if (event.key === "Shift" || String(event.key || "").indexOf("Arrow") !== -1) scheduleSelectionCheck(0);
     });
     document.addEventListener("pointerdown", function (event) {
+      lastPointerType = event.pointerType || "mouse";
       if (!palette.contains(event.target) && !root.contains(event.target)) hide();
     });
     document.addEventListener("verbo:uilang-changed", function () {
