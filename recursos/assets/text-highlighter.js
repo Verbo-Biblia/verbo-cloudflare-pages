@@ -101,7 +101,9 @@
   function init(root) {
     var slug = root.getAttribute("data-highlight-slug");
     if (!slug) return;
-    var storageKey = "highlight:leccion-12-14:" + slug;
+    // Las colecciones antiguas pueden declarar su clave completa. El fallback
+    // conserva las claves ya publicadas de 12–14 para no perder resaltados.
+    var storageKey = root.getAttribute("data-highlight-key") || ("highlight:leccion-12-14:" + slug);
     var isEnglish = pageLanguage(root) === "en";
     var colorNames = isEnglish
       ? { yellow: "yellow", green: "green", blue: "blue", pink: "pink", coral: "coral", violet: "violet" }
