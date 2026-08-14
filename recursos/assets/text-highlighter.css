@@ -1,0 +1,76 @@
+/* Resaltador autónomo para lecciones. No depende de la aplicación bíblica. */
+.lesson-highlight {
+  border-radius: .16em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.lesson-highlight--yellow { background: rgba(254, 240, 138, .58); }
+.lesson-highlight--green  { background: rgba(134, 239, 172, .52); }
+.lesson-highlight--blue   { background: rgba(147, 197, 253, .52); }
+.lesson-highlight--pink   { background: rgba(249, 168, 212, .52); }
+.lesson-highlight--coral  { background: rgba(252, 165, 165, .52); }
+.lesson-highlight--violet { background: rgba(216, 180, 254, .52); }
+
+.lesson-source-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px 24px;
+  margin: 24px 0 34px;
+  padding: 18px 20px;
+  border: 1px solid rgba(127, 45, 53, .12);
+  border-radius: 4px;
+  background: rgba(255, 253, 248, .55);
+}
+.lesson-source-meta p { margin: 0; }
+
+.lesson-highlight-palette {
+  position: fixed;
+  z-index: 2600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 12px;
+  border: 1px solid rgba(127, 45, 53, .14);
+  border-radius: 999px;
+  background: rgba(255, 253, 248, .96);
+  box-shadow: 0 8px 32px rgba(42, 31, 23, .22), 0 1px 3px rgba(42, 31, 23, .1);
+  backdrop-filter: blur(18px) saturate(1.6);
+  -webkit-backdrop-filter: blur(18px) saturate(1.6);
+  transform: translate(-50%, calc(-100% - 12px));
+}
+.lesson-highlight-palette[hidden] { display: none; }
+.lesson-highlight-palette__swatch {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.lesson-highlight-palette__swatch:hover,
+.lesson-highlight-palette__swatch:focus-visible {
+  outline: none;
+  transform: scale(1.16);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .2);
+}
+.lesson-highlight-palette__swatch[data-color="yellow"] { background: #fef08a; }
+.lesson-highlight-palette__swatch[data-color="green"]  { background: #86efac; }
+.lesson-highlight-palette__swatch[data-color="blue"]   { background: #93c5fd; }
+.lesson-highlight-palette__swatch[data-color="pink"]   { background: #f9a8d4; }
+.lesson-highlight-palette__swatch[data-color="coral"]  { background: #fca5a5; }
+.lesson-highlight-palette__swatch[data-color="violet"] { background: #d8b4fe; }
+.lesson-highlight-palette__swatch--erase {
+  display: grid;
+  place-items: center;
+  border: 1.5px dashed rgba(100, 75, 55, .35);
+  background: transparent;
+  color: rgba(100, 75, 55, .65);
+  font: 700 12px/1 sans-serif;
+}
+
+@media (max-width: 520px) {
+  .lesson-source-meta { grid-template-columns: 1fr; }
+  .lesson-highlight-palette { gap: 4px; padding: 8px 9px; }
+  .lesson-highlight-palette__swatch { width: 26px; height: 26px; }
+}
