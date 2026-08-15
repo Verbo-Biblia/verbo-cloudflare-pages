@@ -155,6 +155,32 @@ def link_greek_words(html: str) -> str:
     return GREEK_WORD_WRAP_RE.sub(repl, html)
 
 
+# link_greek_words() solo engancha la mención CITADA junto a su código (la que
+# trae "(transliteración, G1586)" al lado). La misma palabra suele repetirse
+# después en el resto de la unidad sin repetir la cita (ej. "τοῦτο" mencionado
+# 3 veces más tras introducirse una vez) — antes esas repeticiones quedaban en
+# negrita pero sin enlazar. Esta pasada arma, dentro de cada unidad, un mapa
+# palabra→href a partir de lo que YA se enlazó, y reutiliza ese mismo enlace en
+# cualquier otra mención textual idéntica de esa palabra que haya quedado
+# suelta — nunca inventa un código para una palabra que no lo tuvo ni una vez.
+def link_repeated_greek_words(html: str) -> str:
+    word_href = {}
+    for m in re.finditer(r'<a class="strong" href="(#s[GH]\d+)"><strong>([^<]+)</strong></a>', html):
+        word_href.setdefault(m.group(2), m.group(1))
+    if not word_href:
+        return html
+
+    def repl(m: re.Match) -> str:
+        already_linked, word = m.group(1), m.group(2)
+        if already_linked:
+            return m.group(0)
+        href = word_href.get(word)
+        if not href:
+            return m.group(0)
+        return f'<a class="strong" href="{href}"><strong>{word}</strong></a>'
+    return re.sub(r'(<a class="strong"[^>]*>)?<strong>([^<]+)</strong>', repl, html)
+
+
 def link_bible_references(html: str) -> str:
     def repl(m: re.Match) -> str:
         if m.group(4):  # referencia de rango ("1:1–3") — no enlazar, ver comentario arriba
@@ -164,7 +190,9 @@ def link_bible_references(html: str) -> str:
 
 
 def add_links(html: str) -> str:
-    return link_bible_references(link_greek_words(link_strong_codes(html)))
+    linked = link_greek_words(link_strong_codes(html))
+    linked = link_repeated_greek_words(linked)
+    return link_bible_references(linked)
 
 
 def build_book(book_dir: Path):
