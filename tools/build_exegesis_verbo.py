@@ -106,6 +106,10 @@ BIBLE_NAME_ALIASES = {
 # "(<em>G2098</em>)" (Marcos: el código va envuelto en su propia etiqueta). El
 # lookahead admite cero o más etiquetas de cierre entre el código y el ")".
 STRONG_CODE_RE = re.compile(r"\b([GH]\d{1,4})\b(?=(?:</\w+>)*\))")
+# Cuenta CUALQUIER código Strong en el texto fuente, sin el lookahead de
+# arriba — sirve para detectar si algún libro nuevo usa un formato de
+# puntuación distinto (como pasó con Marcos) que STRONG_CODE_RE no reconoce.
+STRONG_CODE_RAW_RE = re.compile(r"\b[GH]\d{1,4}\b")
 
 # Alternativas ordenadas de más larga a más corta para que el regex prefiera
 # "1 corintios" sobre intentar matchear fragmentos más cortos primero.
@@ -149,9 +153,11 @@ def build_book(book_dir: Path):
         f for f in manifest["files"] if re.match(rf"^{re.escape(book_id)}-\d+\.json$", f)
     )
     entries = []
+    raw_strong_count = 0
     for fname in unit_files:
         chapter_data = json.loads((book_dir / fname).read_text(encoding="utf-8"))
         for unit in chapter_data["units"]:
+            raw_strong_count += len(STRONG_CODE_RAW_RE.findall(unit["content"]))
             entries.append({
                 "id": unit["id"],
                 "title": unit["title"],
@@ -163,6 +169,17 @@ def build_book(book_dir: Path):
     bible_links = sum(e["content"].count('class="bible"') for e in entries)
     print(f"  {book_id} ({book_name}): {len(entries)} unidades, "
           f"{strong_links} enlaces Strong, {bible_links} enlaces bíblicos")
+    # Verificación automática: todo código Strong presente en la fuente debe
+    # haber terminado enlazado (revisión que Juan pidió correr siempre, no
+    # solo cuando la pide explícitamente) y cada href debe coincidir con su
+    # texto visible.
+    if raw_strong_count != strong_links:
+        print(f"  *** AVISO: {book_id} tiene {raw_strong_count} códigos Strong en la fuente "
+              f"pero solo {strong_links} quedaron enlazados — revisar formato.")
+    for e in entries:
+        for m in re.finditer(r'<a class="strong" href="#s([GH]\d+)">([GH]\d+)</a>', e["content"]):
+            if m.group(1) != m.group(2):
+                print(f"  *** AVISO: {book_id}/{e['id']} enlace Strong con href/texto distintos: {m.group(0)}")
     return book_id, book_name, entries
 
 
@@ -199,8 +216,8 @@ def main():
         "schemaVersion": 2,
         "id": "exegesis-verbo",
         "type": "commentary",
-        "name": "Comentario Exegético Verbo",
-        "abbreviation": "Exegético Verbo",
+        "name": "Exégesis Verbo",
+        "abbreviation": "Exégesis Verbo",
         "language": "es",
         "author": "Verbo",
         "description": "Comentario exegético académico de Verbo: contexto literario, histórico y lingüístico, análisis del idioma original, crítica textual e implicaciones teológicas por perícopa.",
