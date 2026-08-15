@@ -5352,23 +5352,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Punto de entrada para CUALQUIER clic en un código Strong fuera del panel
   // Biblia Strong (ej. .strongs-tag de la Biblia principal si tiene datos
   // Strong propios como KJV+, o un enlace a.strong dentro de un comentario):
-  // asegura que el panel Biblia Strong esté abierto y sincronizado, y ahí
-  // pide el pop-up — nunca dibuja nada fuera de ese panel (Cambio 3).
+  // abre directamente el pop-up flotante (.strong-def-popup, superpuesto
+  // dentro del panel actual — ver strongPopupEls()) SIN cambiar de pestaña.
+  // Antes forzaba la pestaña "Idiomas bíblicos"; eso perdía el scroll del
+  // panel de origen (ej. Comentario) al volver — pedido explícito de Juan.
   async function openDictionary(code){
-    // Mismo criterio que el dock (ver click de .tab-rail__btn más abajo): en
-    // modo sermón + escritorio, Diccionario comparte el segundo panel con
-    // Comparar/Comentarios/Notas/Mapas/Prédicas en vez de reemplazar la
-    // Biblia del panel único. Por debajo de 901px o fuera de modo sermón,
-    // sigue usando el panel único de siempre.
-    const isSermonSide=sermonMode && window.matchMedia('(min-width: 901px)').matches;
-    const alreadyShowing=isSermonSide ? sermonPanelTab==='diccionario' : activeTab==='diccionario';
-    if(alreadyShowing){ openStrongPopup(code); return; }
-    // El panel todavía no está en 'diccionario': dejamos el código pendiente y
-    // lo abrimos recién cuando renderDictionaryPanel termine de pintar la
-    // lista del capítulo (la abre openPanel/openSermonSidePanel más abajo) —
-    // evita pedir el capítulo dos veces en paralelo.
-    pendingStrongPopupCode=code;
-    if(isSermonSide) openSermonSidePanel('diccionario'); else openPanel('diccionario');
+    await openStrongPopup(code);
   }
   function updateNavButtons(){ const idx=catalog.books.findIndex(b=>b.id===currentBook); const atStart=idx===0&&currentChapter===1; const atEnd=idx===catalog.books.length-1&&currentChapter===els.chapter.options.length; els.prev.disabled=atStart; els.next.disabled=atEnd; if(els.innerPrev) els.innerPrev.disabled=atStart; if(els.innerNext) els.innerNext.disabled=atEnd; }
   async function moveChapter(delta){
