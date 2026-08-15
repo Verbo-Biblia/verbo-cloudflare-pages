@@ -133,6 +133,28 @@ def link_strong_codes(html: str) -> str:
     return STRONG_CODE_RE.sub(r'<a class="strong" href="#s\1">\1</a>', html)
 
 
+# Nadie que no lea griego/hebreo sabe qué dice una palabra como "λόγος" con solo
+# mirarla — pero el código Strong de al lado ya abre su definición. Este segundo
+# paso envuelve la palabra en negrita (el término léxico) con el MISMO enlace que
+# su código, para que también se pueda tocar la palabra en sí, no solo "G3056".
+# Busca <strong>PALABRA</strong> seguida —antes del próximo ")" y sin que se
+# interponga otro <strong>— de un enlace a.strong ya generado por
+# link_strong_codes(); cubre los dos formatos reales del corpus (código suelto
+# antes del paréntesis, o código envuelto en su propia <em>).
+GREEK_WORD_WRAP_RE = re.compile(
+    r'<strong>([^<]+)</strong>'
+    r'((?:(?!<strong>|\)).)*?<a class="strong" href="(#s[GH]\d+)">[GH]\d+</a>(?:(?!<strong>).)*?\))',
+    re.DOTALL,
+)
+
+
+def link_greek_words(html: str) -> str:
+    def repl(m: re.Match) -> str:
+        word, middle, href = m.group(1), m.group(2), m.group(3)
+        return f'<a class="strong" href="{href}"><strong>{word}</strong></a>{middle}'
+    return GREEK_WORD_WRAP_RE.sub(repl, html)
+
+
 def link_bible_references(html: str) -> str:
     def repl(m: re.Match) -> str:
         if m.group(4):  # referencia de rango ("1:1–3") — no enlazar, ver comentario arriba
@@ -142,7 +164,7 @@ def link_bible_references(html: str) -> str:
 
 
 def add_links(html: str) -> str:
-    return link_bible_references(link_strong_codes(html))
+    return link_bible_references(link_greek_words(link_strong_codes(html)))
 
 
 def build_book(book_dir: Path):
@@ -165,21 +187,32 @@ def build_book(book_dir: Path):
                 "reference": unit["reference"],
                 "content": add_links(unit["content"]),
             })
-    strong_links = sum(e["content"].count('class="strong"') for e in entries)
+    # code_links: enlaces cuyo texto visible ES el código ("...">G1586</a>). Es
+    # el número que debe coincidir 1:1 con raw_strong_count. greek_word_links:
+    # el mismo código, pero envolviendo la palabra griega/hebrea en negrita en
+    # vez del código — ver link_greek_words(). Total real de <a class="strong">
+    # en el HTML es la suma de ambos (cuenta doble a propósito: la palabra y su
+    # código apuntan al mismo lugar).
+    code_links = 0
+    greek_word_links = sum(
+        len(re.findall(r'<a class="strong" href="#s[GH]\d+"><strong>', e["content"])) for e in entries
+    )
+    for e in entries:
+        for m in re.finditer(r'<a class="strong" href="#s([GH]\d+)">([GH]\d+)</a>', e["content"]):
+            code_links += 1
+            if m.group(1) != m.group(2):
+                print(f"  *** AVISO: {book_id}/{e['id']} enlace Strong con href/texto distintos: {m.group(0)}")
     bible_links = sum(e["content"].count('class="bible"') for e in entries)
     print(f"  {book_id} ({book_name}): {len(entries)} unidades, "
-          f"{strong_links} enlaces Strong, {bible_links} enlaces bíblicos")
+          f"{code_links} enlaces Strong ({greek_word_links} también sobre la palabra griega/hebrea), "
+          f"{bible_links} enlaces bíblicos")
     # Verificación automática: todo código Strong presente en la fuente debe
     # haber terminado enlazado (revisión que Juan pidió correr siempre, no
     # solo cuando la pide explícitamente) y cada href debe coincidir con su
     # texto visible.
-    if raw_strong_count != strong_links:
+    if raw_strong_count != code_links:
         print(f"  *** AVISO: {book_id} tiene {raw_strong_count} códigos Strong en la fuente "
-              f"pero solo {strong_links} quedaron enlazados — revisar formato.")
-    for e in entries:
-        for m in re.finditer(r'<a class="strong" href="#s([GH]\d+)">([GH]\d+)</a>', e["content"]):
-            if m.group(1) != m.group(2):
-                print(f"  *** AVISO: {book_id}/{e['id']} enlace Strong con href/texto distintos: {m.group(0)}")
+              f"pero solo {code_links} quedaron enlazados — revisar formato.")
     return book_id, book_name, entries
 
 
