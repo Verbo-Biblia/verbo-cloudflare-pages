@@ -10,6 +10,66 @@
   "license": "Todos los derechos reservados por el autor.",
   "books": [
     {
+      "id": "GEN",
+      "name": "Génesis",
+      "file": "books/GEN.json",
+      "indexFile": "books/GEN.index.json"
+    },
+    {
+      "id": "EXO",
+      "name": "Éxodo",
+      "file": "books/EXO.json",
+      "indexFile": "books/EXO.index.json"
+    },
+    {
+      "id": "LEV",
+      "name": "Levítico",
+      "file": "books/LEV.json",
+      "indexFile": "books/LEV.index.json"
+    },
+    {
+      "id": "NUM",
+      "name": "Números",
+      "file": "books/NUM.json",
+      "indexFile": "books/NUM.index.json"
+    },
+    {
+      "id": "DEU",
+      "name": "Deuteronomio",
+      "file": "books/DEU.json",
+      "indexFile": "books/DEU.index.json"
+    },
+    {
+      "id": "JOS",
+      "name": "Josué",
+      "file": "books/JOS.json",
+      "indexFile": "books/JOS.index.json"
+    },
+    {
+      "id": "JDG",
+      "name": "Jueces",
+      "file": "books/JDG.json",
+      "indexFile": "books/JDG.index.json"
+    },
+    {
+      "id": "RUT",
+      "name": "Rut",
+      "file": "books/RUT.json",
+      "indexFile": "books/RUT.index.json"
+    },
+    {
+      "id": "1SA",
+      "name": "1 Samuel",
+      "file": "books/1SA.json",
+      "indexFile": "books/1SA.index.json"
+    },
+    {
+      "id": "2SA",
+      "name": "2 Samuel",
+      "file": "books/2SA.json",
+      "indexFile": "books/2SA.index.json"
+    },
+    {
       "id": "MAT",
       "name": "Mateo",
       "file": "books/MAT.json",
@@ -170,18 +230,6 @@
       "name": "Apocalipsis",
       "file": "books/REV.json",
       "indexFile": "books/REV.index.json"
-    },
-    {
-      "id": "GEN",
-      "name": "Génesis",
-      "file": "books/GEN.json",
-      "indexFile": "books/GEN.index.json"
-    },
-    {
-      "id": "EXO",
-      "name": "Éxodo",
-      "file": "books/EXO.json",
-      "indexFile": "books/EXO.index.json"
     }
   ]
 }
