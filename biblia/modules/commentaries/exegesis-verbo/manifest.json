@@ -10,6 +10,12 @@
   "license": "Todos los derechos reservados por Verbo.",
   "books": [
     {
+      "id": "EPH",
+      "name": "Efesios",
+      "file": "books/EPH.json",
+      "indexFile": "books/EPH.index.json"
+    },
+    {
       "id": "PHP",
       "name": "Filipenses",
       "file": "books/PHP.json",
