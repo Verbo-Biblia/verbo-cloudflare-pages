@@ -1032,8 +1032,31 @@ document.addEventListener('DOMContentLoaded', async () => {
     const blocks=nodes.length ? nodes.map(node=>htmlToPlainText(node.innerHTML)) : [htmlToPlainText(html)];
     return blocks.map(block=>block.trim()).filter(block=>block.length>=2);
   }
+  // htmlToTranslationBlocks() de arriba extrae solo texto plano antes de
+  // traducir (ver esa función) — cualquier <a class="strong">/<a class="bible">
+  // que hubiera en el original se pierde ahí. El traductor no suele alterar
+  // códigos tipo "G1586" ni nombres de libros bíblicos, así que después de
+  // traducir se puede re-detectar el mismo patrón y reconstruir el enlace —
+  // mismo criterio que tools/build_exegesis_verbo.py sobre el contenido
+  // fuente (incluida la regla de no enlazar rangos, "Juan 1:1–3": el
+  // navegador de referencias solo puede saltar al primer versículo).
+  function relinkStrongCodes(text){
+    return text.replace(/\b([GH]\d{1,4})\b/g, (m,code)=>`<a class="strong" href="#s${code}">${code}</a>`);
+  }
+  let _bibleRefRelinkRe=null;
+  function bibleRefRelinkRe(){
+    if(_bibleRefRelinkRe) return _bibleRefRelinkRe;
+    const names=[...new Set([...Object.values(bibleNameAliases).flat(), ...Object.values(bibleNameAliasesEn).flat()])]
+      .sort((a,b)=>b.length-a.length)
+      .map(n=>n.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'));
+    _bibleRefRelinkRe=new RegExp(`\\b(${names.join('|')})\\s+(\\d{1,3})\\s*:\\s*(\\d{1,3})\\b(?!\\s*[–‒-]\\s*\\d)`,'gi');
+    return _bibleRefRelinkRe;
+  }
+  function relinkBibleReferences(text){
+    return text.replace(bibleRefRelinkRe(), m=>`<a class="bible" href="#">${m}</a>`);
+  }
   function translatedBlocksToHtml(blocks){
-    return blocks.map(block=>`<p>${escapeHTML(block)}</p>`).join('');
+    return blocks.map(block=>`<p>${relinkBibleReferences(relinkStrongCodes(escapeHTML(block)))}</p>`).join('');
   }
   function originalSourceDetailsHtml(htmlContent, sourceLang='en'){
     const label=sourceLang==='en'?t('comentario.originalIngles'):t('comentario.textoOriginal');
@@ -1340,6 +1363,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       if(bodyEl.dataset.translated==='pending'){
         const prevTop = noteId===focusNoteId ? card.getBoundingClientRect().top : null;
         bodyEl.innerHTML=`${translated}${originalSourceDetailsHtml(note.body,source)}`;
+        wireDictionaryLinks(bodyEl);
         bodyEl.dataset.translated=target;
         // Re-anchor scroll to keep focused card in place
         if(prevTop!==null){
@@ -2767,6 +2791,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const translatedBody=await translateEntry(id, body, source, target);
         if(bodyEl.dataset.translated==='pending'){
           bodyEl.innerHTML=`${translatedBody}${originalSourceDetailsHtml(body,source)}`;
+          wireDictionaryLinks(bodyEl);
           bodyEl.dataset.translated=target;
         }
       }
