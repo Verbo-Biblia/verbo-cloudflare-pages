@@ -45,7 +45,8 @@
     "commentaries/clarke/manifest.json",
     "commentaries/calvin/manifest.json",
     "commentaries/cambridge/manifest.json",
-    "commentaries/comentarios-verbo/manifest.json"
+    "commentaries/comentarios-verbo/manifest.json",
+    "commentaries/exegesis-verbo/manifest.json"
   ],
   "dictionaries": [
     "dictionaries/strong-verbo/manifest.json"
@@ -5718,6 +5719,40 @@
               "name": "Apocalipsis",
               "file": "books/REV.json",
               "indexFile": "books/REV.index.json"
+            }
+          ]
+        }
+      },
+      {
+        "path": "modules/commentaries/exegesis-verbo/manifest.json",
+        "manifest": {
+          "schemaVersion": 2,
+          "id": "exegesis-verbo",
+          "type": "commentary",
+          "name": "Comentario Exegético Verbo",
+          "abbreviation": "Exegético Verbo",
+          "language": "es",
+          "author": "Verbo",
+          "description": "Comentario exegético académico de Verbo: contexto literario, histórico y lingüístico, análisis del idioma original, crítica textual e implicaciones teológicas por perícopa.",
+          "license": "Todos los derechos reservados por Verbo.",
+          "books": [
+            {
+              "id": "PHP",
+              "name": "Filipenses",
+              "file": "books/PHP.json",
+              "indexFile": "books/PHP.index.json"
+            },
+            {
+              "id": "MRK",
+              "name": "Marcos",
+              "file": "books/MRK.json",
+              "indexFile": "books/MRK.index.json"
+            },
+            {
+              "id": "MAT",
+              "name": "Mateo",
+              "file": "books/MAT.json",
+              "indexFile": "books/MAT.index.json"
             }
           ]
         }

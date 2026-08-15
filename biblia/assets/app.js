@@ -909,6 +909,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         return `<div class="note-card" data-note-id="${id}"><div class="note-card__ref">${commentCtx.data.meta.book} ${commentCtx.data.meta.chapter}</div><div class="note-card__title" data-commentary-header="title"${cachedTitle?` data-translated="${contentLang()}"`:''}>${escapeHTML(cachedTitle||n.title)}</div><div class="note-card__author" data-commentary-header="author"${cachedAuthor?` data-translated="${contentLang()}"`:''}>${escapeHTML(cachedAuthor||n.author)}</div><button class="note-card__copy" type="button" data-copy-note="${id}">${t('comentario.copiarComentario')}</button><div class="note-card__body">${bodyHtml}</div></div>`;
       }).join(''):emptyState('📖',t('comentario.sinComentarios'));
       panelBodyEl().querySelectorAll('[data-copy-note]').forEach(btn=>btn.addEventListener('click',()=>{ const note=commentCtx.data.notes[btn.dataset.copyNote]; if(note) copyToClipboard(`${note.title}\n${String(note.body).replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim()}`); }));
+      wireDictionaryLinks(panelBodyEl());
       if(focus){ if(delayScroll) setTimeout(()=>scrollCommentToNote(focus),320); else scrollCommentToNote(focus); }
       // El guard de abajo (activeTab==='comentario' && panel abierto) es lo
       // que realmente evita el bug reportado: sin él, cerrar el panel (o
@@ -2695,6 +2696,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         <div class="note-card__body" data-linked-body="${index}">${body}</div>
       </div>`;
     }).join('');
+    wireDictionaryLinks(els.panelBody);
     translateLinkedResourceEntries(resource, entries, focus);
     els.panelBody.querySelectorAll('[data-copy-linked]').forEach(btn=>btn.addEventListener('click',()=>{
       const entry=entries[Number(btn.dataset.copyLinked)];
