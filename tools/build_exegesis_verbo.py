@@ -21,6 +21,7 @@ Después: python3 tools/build_registry_catalog.py
 """
 import json
 import re
+import unicodedata
 from pathlib import Path
 
 SOURCE_DIR = Path("/home/juan/Verbo/Comentario")
@@ -39,6 +40,14 @@ BOOK_NAMES_ES = {
     b["id"]: b["name"]
     for b in json.loads(_COMENTARIOS_VERBO_MANIFEST.read_text(encoding="utf-8"))["books"]
 } if _COMENTARIOS_VERBO_MANIFEST.exists() else {}
+
+
+def _normalize_for_typo_check(name: str) -> str:
+    """"1_Corintios" / "Filemon" -> "1corintios" / "filemon", para comparar
+    contra el catálogo canónico ignorando guiones bajos, espacios y tildes."""
+    decomposed = unicodedata.normalize("NFKD", name)
+    without_accents = "".join(c for c in decomposed if not unicodedata.combining(c))
+    return re.sub(r"[\s_]+", "", without_accents).lower()
 
 # Copia exacta de bibleNameAliases (biblia/assets/app.js) — si esa lista
 # cambia allá, hay que reflejarlo acá para que los enlaces generados sigan
@@ -213,12 +222,18 @@ def build_book(book_dir: Path):
         # Formato original: {"book": {"id": "ACT", "nameEs": "Hechos..."}, "files": [...]}
         book_id = book_field["id"]
         source_name = book_field["nameEs"]
-        # nameEs a veces trae un slug con guion bajo en vez de un nombre real
-        # (ej. "1_Corintios") — en ese caso usar el catálogo canónico que ya
-        # usa "Comentarios Verbo". Si nameEs es un nombre normal (con
-        # espacios, como "Hechos de los Apóstoles"), se respeta tal cual: es
-        # una elección editorial del paquete, no un error a corregir.
-        book_name = BOOK_NAMES_ES.get(book_id, source_name) if "_" in source_name else source_name
+        # nameEs a veces trae un typo evidente frente al catálogo canónico
+        # (guion bajo en vez de espacio como "1_Corintios", o falta de tilde
+        # como "Filemon" en vez de "Filemón") — se detecta comparando ambos
+        # nombres sin espacios/guiones/tildes y, si coinciden, se usa el
+        # canónico. Si nameEs es un nombre genuinamente distinto (más largo,
+        # como "Hechos de los Apóstoles"), se respeta tal cual: es una
+        # elección editorial del paquete, no un error a corregir.
+        canonical_name = BOOK_NAMES_ES.get(book_id)
+        if canonical_name and canonical_name != source_name and _normalize_for_typo_check(canonical_name) == _normalize_for_typo_check(source_name):
+            book_name = canonical_name
+        else:
+            book_name = source_name
         unit_files = sorted(
             f for f in manifest["files"] if re.match(rf"^{re.escape(book_id)}-\d+\.json$", f)
         )
