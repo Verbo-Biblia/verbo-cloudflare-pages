@@ -10,6 +10,18 @@
   "license": "Todos los derechos reservados por Verbo.",
   "books": [
     {
+      "id": "1CO",
+      "name": "1 Corintios",
+      "file": "books/1CO.json",
+      "indexFile": "books/1CO.index.json"
+    },
+    {
+      "id": "2CO",
+      "name": "2 Corintios",
+      "file": "books/2CO.json",
+      "indexFile": "books/2CO.index.json"
+    },
+    {
       "id": "EPH",
       "name": "Efesios",
       "file": "books/EPH.json",

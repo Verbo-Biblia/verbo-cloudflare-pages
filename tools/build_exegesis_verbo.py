@@ -212,7 +212,13 @@ def build_book(book_dir: Path):
     if isinstance(book_field, dict):
         # Formato original: {"book": {"id": "ACT", "nameEs": "Hechos..."}, "files": [...]}
         book_id = book_field["id"]
-        book_name = book_field["nameEs"]
+        source_name = book_field["nameEs"]
+        # nameEs a veces trae un slug con guion bajo en vez de un nombre real
+        # (ej. "1_Corintios") — en ese caso usar el catálogo canónico que ya
+        # usa "Comentarios Verbo". Si nameEs es un nombre normal (con
+        # espacios, como "Hechos de los Apóstoles"), se respeta tal cual: es
+        # una elección editorial del paquete, no un error a corregir.
+        book_name = BOOK_NAMES_ES.get(book_id, source_name) if "_" in source_name else source_name
         unit_files = sorted(
             f for f in manifest["files"] if re.match(rf"^{re.escape(book_id)}-\d+\.json$", f)
         )
