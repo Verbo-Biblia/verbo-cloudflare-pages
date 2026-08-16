@@ -25,22 +25,21 @@
       <button class="btn-chico" id="btn-cambiar-sala" type="button">Cambiar código</button>
     </header>
 
-    <section class="seccion-diapositiva">
-      <div class="diapositiva-contador" id="diapositiva-contador"></div>
-      <div class="diapositiva-texto" id="diapositiva-texto">Nada seleccionado</div>
-      <div class="diapositiva-referencia" id="diapositiva-referencia"></div>
-      <div class="nav-diapositiva">
-        <button class="btn-nav" id="btn-anterior" type="button">‹ Anterior</button>
-        <button class="btn-nav" id="btn-siguiente" type="button">Siguiente ›</button>
-      </div>
-    </section>
+    <div class="columnas">
+      <section class="col-orden">
+        <h2>Orden del culto</h2>
+        <div class="lista-orden" id="lista-orden">
+          <div class="orden-vacio">Nada en el orden del culto todavía.</div>
+        </div>
+      </section>
 
-    <section class="seccion-orden">
-      <h2>Orden del culto</h2>
-      <div class="lista-orden" id="lista-orden">
-        <div class="orden-vacio">Nada en el orden del culto todavía.</div>
-      </div>
-    </section>
+      <section class="col-diapositivas">
+        <h2>Diapositivas</h2>
+        <div class="carrusel-diapositivas" id="carrusel-diapositivas">
+          <div class="orden-vacio">Nada seleccionado.</div>
+        </div>
+      </section>
+    </div>
 
     <section class="seccion-audio">
       <h2>Audio de fondo</h2>

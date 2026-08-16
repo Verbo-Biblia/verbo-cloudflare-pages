@@ -740,16 +740,21 @@ const PROYECTOR_ESTADO_CAMPOS = [
   // el audio de fondo.
   'ordenCulto', 'ordenActivoIndex',
   'diapositivaTexto', 'diapositivaReferencia', 'diapositivaIndex', 'diapositivaTotal',
+  'diapositivas',
 ];
 const PROYECTOR_ESTADO_POR_DEFECTO = {
   reproduciendo: false, volumen: 100, itemActivo: null, origen: null,
   ordenCulto: [], ordenActivoIndex: -1,
   diapositivaTexto: null, diapositivaReferencia: null, diapositivaIndex: -1, diapositivaTotal: 0,
+  diapositivas: [],
 };
 const PROYECTOR_ORDEN_MAX_ITEMS = 100;
 const PROYECTOR_ORDEN_CAMPO_MAX_CHARS = 200;
 const PROYECTOR_DIAPOSITIVA_TEXTO_MAX_CHARS = 4000;
 const PROYECTOR_DIAPOSITIVA_REF_MAX_CHARS = 300;
+const PROYECTOR_DIAPOSITIVAS_MAX_ITEMS = 200;
+const PROYECTOR_DIAPOSITIVA_TAG_MAX_CHARS = 20;
+const PROYECTOR_DIAPOSITIVA_SNIPPET_MAX_CHARS = 200;
 
 function proyectorOrdenValido(valor) {
   if (!Array.isArray(valor) || valor.length > PROYECTOR_ORDEN_MAX_ITEMS) return false;
@@ -757,6 +762,15 @@ function proyectorOrdenValido(valor) {
     item && typeof item === 'object' &&
     typeof item.tag === 'string' && item.tag.length <= PROYECTOR_ORDEN_CAMPO_MAX_CHARS &&
     typeof item.descripcion === 'string' && item.descripcion.length <= PROYECTOR_ORDEN_CAMPO_MAX_CHARS
+  );
+}
+
+function proyectorDiapositivasValidas(valor) {
+  if (!Array.isArray(valor) || valor.length > PROYECTOR_DIAPOSITIVAS_MAX_ITEMS) return false;
+  return valor.every((item) =>
+    item && typeof item === 'object' &&
+    typeof item.tag === 'string' && item.tag.length <= PROYECTOR_DIAPOSITIVA_TAG_MAX_CHARS &&
+    typeof item.snippet === 'string' && item.snippet.length <= PROYECTOR_DIAPOSITIVA_SNIPPET_MAX_CHARS
   );
 }
 
@@ -771,6 +785,7 @@ function proyectorCampoValido(campo, valor) {
   if (campo === 'diapositivaReferencia') return valor === null || (typeof valor === 'string' && valor.length <= PROYECTOR_DIAPOSITIVA_REF_MAX_CHARS);
   if (campo === 'diapositivaIndex') return typeof valor === 'number' && Number.isInteger(valor) && valor >= -1;
   if (campo === 'diapositivaTotal') return typeof valor === 'number' && Number.isInteger(valor) && valor >= 0;
+  if (campo === 'diapositivas') return proyectorDiapositivasValidas(valor);
   return false;
 }
 

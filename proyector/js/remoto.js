@@ -14,13 +14,8 @@ const estadoConexionControl = document.getElementById("estado-conexion-control")
 const codigoConectado = document.getElementById("codigo-conectado");
 const btnCambiarSala = document.getElementById("btn-cambiar-sala");
 
-const diapositivaContador = document.getElementById("diapositiva-contador");
-const diapositivaTexto = document.getElementById("diapositiva-texto");
-const diapositivaReferencia = document.getElementById("diapositiva-referencia");
-const btnAnterior = document.getElementById("btn-anterior");
-const btnSiguiente = document.getElementById("btn-siguiente");
-
 const listaOrden = document.getElementById("lista-orden");
+const carruselDiapositivas = document.getElementById("carrusel-diapositivas");
 
 const btnPlayPausa = document.getElementById("btn-play-pausa");
 const btnDetener = document.getElementById("btn-detener");
@@ -30,7 +25,6 @@ const outputVolumen = document.getElementById("output-volumen");
 let aplicandoRemoto = false;
 let reproduciendoActual = false;
 let diapositivaIndexActual = -1;
-let diapositivaTotalActual = 0;
 let ordenActivoIndexActual = -1;
 
 function aplicarEstadoRemoto(estado) {
@@ -44,22 +38,11 @@ function aplicarEstadoRemoto(estado) {
       inputVolumen.value = String(estado.volumen);
       outputVolumen.textContent = `${estado.volumen}%`;
     }
-    if (typeof estado.diapositivaIndex === "number") diapositivaIndexActual = estado.diapositivaIndex;
-    if (typeof estado.diapositivaTotal === "number") diapositivaTotalActual = estado.diapositivaTotal;
-    if (diapositivaIndexActual >= 0 && diapositivaTotalActual > 0) {
-      diapositivaContador.textContent = `${diapositivaIndexActual + 1} / ${diapositivaTotalActual}`;
-      diapositivaTexto.textContent = estado.diapositivaTexto || "";
-      diapositivaReferencia.textContent = estado.diapositivaReferencia || "";
-    } else {
-      diapositivaContador.textContent = "";
-      diapositivaTexto.textContent = "Nada seleccionado";
-      diapositivaReferencia.textContent = "";
-    }
-    btnAnterior.disabled = diapositivaIndexActual <= 0;
-    btnSiguiente.disabled = diapositivaIndexActual < 0 || diapositivaIndexActual + 1 >= diapositivaTotalActual;
-
     if (typeof estado.ordenActivoIndex === "number") ordenActivoIndexActual = estado.ordenActivoIndex;
     if (Array.isArray(estado.ordenCulto)) renderListaOrden(estado.ordenCulto, ordenActivoIndexActual);
+
+    if (typeof estado.diapositivaIndex === "number") diapositivaIndexActual = estado.diapositivaIndex;
+    if (Array.isArray(estado.diapositivas)) renderCarruselDiapositivas(estado.diapositivas, diapositivaIndexActual);
 
     estadoConexionControl.classList.remove("error");
     estadoConexionControl.textContent = "";
@@ -92,6 +75,35 @@ function renderListaOrden(ordenCulto, activoIndex) {
     });
     listaOrden.appendChild(boton);
   });
+}
+
+function renderCarruselDiapositivas(diapositivas, activoIndex) {
+  carruselDiapositivas.innerHTML = "";
+  if (!diapositivas.length) {
+    const vacio = document.createElement("div");
+    vacio.className = "orden-vacio";
+    vacio.textContent = "Nada seleccionado.";
+    carruselDiapositivas.appendChild(vacio);
+    return;
+  }
+  let tarjetaActiva = null;
+  diapositivas.forEach((item, index) => {
+    const boton = document.createElement("button");
+    boton.type = "button";
+    boton.className = `diapositiva-item${index === activoIndex ? " activa" : ""}`;
+    const tag = document.createElement("strong");
+    tag.textContent = item.tag;
+    const snippet = document.createElement("span");
+    snippet.textContent = item.snippet;
+    boton.append(tag, snippet);
+    boton.addEventListener("click", () => {
+      if (aplicandoRemoto) return;
+      relay.enviar({ diapositivaIndex: index, origen: "remoto" });
+    });
+    carruselDiapositivas.appendChild(boton);
+    if (index === activoIndex) tarjetaActiva = boton;
+  });
+  tarjetaActiva?.scrollIntoView({ block: "nearest", behavior: "smooth" });
 }
 
 const relay = crearRelayProyector({
@@ -135,15 +147,6 @@ formCodigo.addEventListener("submit", (event) => {
     return;
   }
   conectarSala(codigo);
-});
-
-btnAnterior.addEventListener("click", () => {
-  if (aplicandoRemoto || diapositivaIndexActual <= 0) return;
-  relay.enviar({ diapositivaIndex: diapositivaIndexActual - 1, origen: "remoto" });
-});
-btnSiguiente.addEventListener("click", () => {
-  if (aplicandoRemoto || diapositivaIndexActual < 0 || diapositivaIndexActual + 1 >= diapositivaTotalActual) return;
-  relay.enviar({ diapositivaIndex: diapositivaIndexActual + 1, origen: "remoto" });
 });
 
 btnPlayPausa.addEventListener("click", () => {

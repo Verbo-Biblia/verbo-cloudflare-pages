@@ -1697,6 +1697,20 @@ function resumenOrdenCulto() {
   });
 }
 
+// Igual que las tarjetas de #slides-grid (mismo recorte a 90 caracteres),
+// para que el remoto pueda listar y tocar cualquier diapositiva del ítem
+// activo, no solo avanzar de a una. Un verso suelto (sin grid propio) se
+// representa como una lista de una sola diapositiva.
+function resumenDiapositivas() {
+  if (currentIndex >= 0 && currentSlides.length) {
+    return currentSlides.map((s) => ({ tag: s.tag, snippet: (s.texto || "").slice(0, 90) }));
+  }
+  if (estadoVisualActual?.tipo === "slide") {
+    return [{ tag: "•", snippet: (estadoVisualActual.payload.texto || "").slice(0, 90) }];
+  }
+  return [];
+}
+
 function estadoCompartidoActual() {
   const item = obtenerMediaSeleccionada();
   // Una canción o un grid de versículos navegado llena currentSlides/
@@ -1721,6 +1735,7 @@ function estadoCompartidoActual() {
       : (visualEsSlide ? estadoVisualActual.payload.referencia ?? null : null),
     diapositivaIndex: haySlideGrid ? currentIndex : (visualEsSlide ? 0 : -1),
     diapositivaTotal: haySlideGrid ? currentSlides.length : (visualEsSlide ? 1 : 0),
+    diapositivas: resumenDiapositivas(),
   };
 }
 
