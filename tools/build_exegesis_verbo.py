@@ -29,6 +29,17 @@ REGISTRY_PATH = Path(__file__).resolve().parent.parent / "biblia" / "modules" / 
 MODULE_MANIFEST_REL = "commentaries/exegesis-verbo/manifest.json"
 REGISTRY_KEY = "commentaries"
 
+# Nombres en español para los paquetes fuente cuyo manifest.json no trae
+# "book": {"nameEs": ...} (ver build_book) — mismo catálogo que ya usa
+# "Comentarios Verbo" para los 66 libros, para no duplicar la lista a mano.
+_COMENTARIOS_VERBO_MANIFEST = (
+    MODULE_DIR.parent / "comentarios-verbo" / "manifest.json"
+)
+BOOK_NAMES_ES = {
+    b["id"]: b["name"]
+    for b in json.loads(_COMENTARIOS_VERBO_MANIFEST.read_text(encoding="utf-8"))["books"]
+} if _COMENTARIOS_VERBO_MANIFEST.exists() else {}
+
 # Copia exacta de bibleNameAliases (biblia/assets/app.js) — si esa lista
 # cambia allá, hay que reflejarlo acá para que los enlaces generados sigan
 # siendo resolubles por parseBibleReference().
@@ -197,11 +208,21 @@ def add_links(html: str) -> str:
 
 def build_book(book_dir: Path):
     manifest = json.loads((book_dir / "manifest.json").read_text(encoding="utf-8"))
-    book_id = manifest["book"]["id"]
-    book_name = manifest["book"]["nameEs"]
-    unit_files = sorted(
-        f for f in manifest["files"] if re.match(rf"^{re.escape(book_id)}-\d+\.json$", f)
-    )
+    book_field = manifest["book"]
+    if isinstance(book_field, dict):
+        # Formato original: {"book": {"id": "ACT", "nameEs": "Hechos..."}, "files": [...]}
+        book_id = book_field["id"]
+        book_name = book_field["nameEs"]
+        unit_files = sorted(
+            f for f in manifest["files"] if re.match(rf"^{re.escape(book_id)}-\d+\.json$", f)
+        )
+    else:
+        # Formato alterno visto en Romanos v1.1: {"book": "ROM", ...} sin "files" —
+        # se listan los ROM-XX.json directo de la carpeta, y el nombre en español
+        # sale del mismo catálogo que ya usa "Comentarios Verbo" para los 66 libros.
+        book_id = book_field
+        book_name = BOOK_NAMES_ES.get(book_id, book_id)
+        unit_files = sorted(f.name for f in book_dir.glob(f"{book_id}-*.json"))
     entries = []
     raw_strong_count = 0
     for fname in unit_files:
