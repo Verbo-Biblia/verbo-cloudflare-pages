@@ -18,7 +18,7 @@
 
 html, body {
   margin: 0;
-  min-height: 100%;
+  height: 100%;
   background: var(--bg-app);
   color: var(--text-primary);
   font-family: var(--font-ui);
@@ -27,7 +27,8 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
 }
 
 /* ---------- Pantalla de código ---------- */
@@ -98,9 +99,9 @@ h1 {
 /* ---------- Pantalla de control (orden + diapositiva + audio) ---------- */
 .pantalla-control {
   flex: 1;
+  min-height: 0;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
 }
 .pantalla-control[hidden] { display: none; }
 
