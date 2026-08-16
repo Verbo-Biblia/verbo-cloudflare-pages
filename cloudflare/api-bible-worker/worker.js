@@ -733,14 +733,44 @@ async function handleSync(request, url, env, headers) {
 // cada ~800ms) y escriben con POST — el Worker es solo un buzón compartido
 // en KV. No hay requisito de latencia real-time para play/pausa/volumen.
 const PROYECTOR_ROOM_TTL_SECONDS = 5 * 60; // 5 minutos, renovado en cada POST
-const PROYECTOR_ESTADO_CAMPOS = ['reproduciendo', 'volumen', 'itemActivo', 'origen'];
-const PROYECTOR_ESTADO_POR_DEFECTO = { reproduciendo: false, volumen: 100, itemActivo: null, origen: null };
+const PROYECTOR_ESTADO_CAMPOS = [
+  'reproduciendo', 'volumen', 'itemActivo', 'origen',
+  // Orden del culto y diapositiva activa (letra/versículo), para que el
+  // remoto navegue lo mismo que ve el operador en control.html — no solo
+  // el audio de fondo.
+  'ordenCulto', 'ordenActivoIndex',
+  'diapositivaTexto', 'diapositivaReferencia', 'diapositivaIndex', 'diapositivaTotal',
+];
+const PROYECTOR_ESTADO_POR_DEFECTO = {
+  reproduciendo: false, volumen: 100, itemActivo: null, origen: null,
+  ordenCulto: [], ordenActivoIndex: -1,
+  diapositivaTexto: null, diapositivaReferencia: null, diapositivaIndex: -1, diapositivaTotal: 0,
+};
+const PROYECTOR_ORDEN_MAX_ITEMS = 100;
+const PROYECTOR_ORDEN_CAMPO_MAX_CHARS = 200;
+const PROYECTOR_DIAPOSITIVA_TEXTO_MAX_CHARS = 4000;
+const PROYECTOR_DIAPOSITIVA_REF_MAX_CHARS = 300;
+
+function proyectorOrdenValido(valor) {
+  if (!Array.isArray(valor) || valor.length > PROYECTOR_ORDEN_MAX_ITEMS) return false;
+  return valor.every((item) =>
+    item && typeof item === 'object' &&
+    typeof item.tag === 'string' && item.tag.length <= PROYECTOR_ORDEN_CAMPO_MAX_CHARS &&
+    typeof item.descripcion === 'string' && item.descripcion.length <= PROYECTOR_ORDEN_CAMPO_MAX_CHARS
+  );
+}
 
 function proyectorCampoValido(campo, valor) {
   if (campo === 'reproduciendo') return typeof valor === 'boolean';
   if (campo === 'volumen') return typeof valor === 'number' && Number.isFinite(valor) && valor >= 0 && valor <= 100;
   if (campo === 'itemActivo') return valor === null || typeof valor === 'string';
   if (campo === 'origen') return typeof valor === 'string';
+  if (campo === 'ordenCulto') return proyectorOrdenValido(valor);
+  if (campo === 'ordenActivoIndex') return typeof valor === 'number' && Number.isInteger(valor) && valor >= -1;
+  if (campo === 'diapositivaTexto') return valor === null || (typeof valor === 'string' && valor.length <= PROYECTOR_DIAPOSITIVA_TEXTO_MAX_CHARS);
+  if (campo === 'diapositivaReferencia') return valor === null || (typeof valor === 'string' && valor.length <= PROYECTOR_DIAPOSITIVA_REF_MAX_CHARS);
+  if (campo === 'diapositivaIndex') return typeof valor === 'number' && Number.isInteger(valor) && valor >= -1;
+  if (campo === 'diapositivaTotal') return typeof valor === 'number' && Number.isInteger(valor) && valor >= 0;
   return false;
 }
 

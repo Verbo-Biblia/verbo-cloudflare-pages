@@ -2,6 +2,7 @@
    Estado global
 --------------------------------------------------------- */
 let presentWindow = null;
+let relayProyector = null; // asignado más abajo; renderOrdenCulto()/irADiapositiva() ya notifican en la carga inicial
 let detallesPantallas = null;
 let pantallaDePresentacion = null;
 let vigilandoPantallas = false;
@@ -1249,6 +1250,7 @@ function renderOrdenCulto() {
     vacio.className = "empty-state compact";
     vacio.textContent = "Agrega canciones, versículos o multimedia con los botones +.";
     orderList.appendChild(vacio);
+    notificarRelayProyector();
     return;
   }
   ordenCulto.forEach((item, index) => {
@@ -1276,6 +1278,7 @@ function renderOrdenCulto() {
     row.append(proyectar, controles);
     orderList.appendChild(row);
   });
+  notificarRelayProyector();
 }
 
 document.getElementById("btn-order-prev").addEventListener("click", () => {
@@ -1402,6 +1405,7 @@ function irADiapositiva(index, silencioso = false) {
     type: "slide",
     payload,
   });
+  notificarRelayProyector();
 }
 
 function siguienteDiapositiva() {
@@ -1677,19 +1681,52 @@ const remoteControlStatus = document.getElementById("remote-control-status");
 
 let aplicandoRemotoProyector = false;
 
-function estadoMultimediaActual() {
+// Mismo texto que ya arma renderOrdenCulto() para cada fila — versión
+// liviana (sin la letra/slides completos) para no inflar el payload del
+// relay. El Worker además trunca cada campo a 200 caracteres.
+function resumenOrdenCulto() {
+  return ordenCulto.map((item) => {
+    let descripcion;
+    if (item.tipo === "cancion") descripcion = item.autor || "";
+    else if (["audio", "video", "imagen"].includes(item.tipo)) {
+      descripcion = `${{ audio: "MP3", video: "Video", imagen: "Imagen" }[item.tipo]} · ${item.nombre}`;
+    } else {
+      descripcion = `${item.referencia || "Sin referencia"} — ${(item.texto || "").replace(/\n/g, " ")}`;
+    }
+    return { tag: item.tag, descripcion: descripcion.slice(0, 200) };
+  });
+}
+
+function estadoCompartidoActual() {
   const item = obtenerMediaSeleccionada();
+  // Una canción o un grid de versículos navegado llena currentSlides/
+  // currentIndex (navegable con Anterior/Siguiente). Un verso suelto del
+  // orden del culto se proyecta directo sin pasar por ese grid — en ese
+  // caso se refleja como una "diapositiva única" (total 1), sin currentSlides
+  // pero sí en estadoVisualActual (que ya usa la misma forma {texto,
+  // referencia} en ambos casos).
+  const haySlideGrid = currentIndex >= 0 && currentIndex < currentSlides.length;
+  const slideActual = haySlideGrid ? currentSlides[currentIndex] : null;
+  const visualEsSlide = estadoVisualActual?.tipo === "slide";
   return {
     reproduciendo: audioActivo.playing || visualActivo.playing,
     volumen: Math.round(mediaVolume * 100),
     itemActivo: item?.nombre ?? null,
     origen: "control",
+    ordenCulto: resumenOrdenCulto(),
+    ordenActivoIndex: ordenIndex,
+    diapositivaTexto: haySlideGrid ? (slideActual?.texto ?? null) : (visualEsSlide ? estadoVisualActual.payload.texto ?? null : null),
+    diapositivaReferencia: haySlideGrid
+      ? (slideActual?.referencia ?? currentTitle ?? null)
+      : (visualEsSlide ? estadoVisualActual.payload.referencia ?? null : null),
+    diapositivaIndex: haySlideGrid ? currentIndex : (visualEsSlide ? 0 : -1),
+    diapositivaTotal: haySlideGrid ? currentSlides.length : (visualEsSlide ? 1 : 0),
   };
 }
 
 function notificarRelayProyector() {
-  if (!relayProyector.room || aplicandoRemotoProyector) return;
-  relayProyector.enviar(estadoMultimediaActual());
+  if (!relayProyector?.room || aplicandoRemotoProyector) return;
+  relayProyector.enviar(estadoCompartidoActual());
 }
 
 function aplicarEstadoRemotoProyector(estado) {
@@ -1706,12 +1743,30 @@ function aplicarEstadoRemotoProyector(estado) {
       if (estado.reproduciendo) reproducirMediaSeleccionada();
       else pausarMediaSeleccionada();
     }
+    let cambioDeContenido = false;
+    if (typeof estado.ordenActivoIndex === "number" && estado.ordenActivoIndex !== ordenIndex) {
+      proyectarElementoOrden(estado.ordenActivoIndex);
+      cambioDeContenido = true;
+    } else if (typeof estado.diapositivaIndex === "number" && estado.diapositivaIndex !== currentIndex) {
+      irADiapositiva(estado.diapositivaIndex);
+      cambioDeContenido = true;
+    }
+    // El remoto solo manda el índice elegido, no el texto — la PC es la
+    // única que conoce el contenido real de esa diapositiva/ítem. Hay que
+    // completar el estado compartido con ese contenido ya, sin esperar a
+    // que otro cambio dispare el siguiente post. El guard de
+    // aplicandoRemotoProyector no aplica acá a propósito: esto no es un
+    // eco del mismo dato, es la PC completando lo que el remoto no puede
+    // saber.
+    if (cambioDeContenido && relayProyector?.room) {
+      relayProyector.enviar(estadoCompartidoActual());
+    }
   } finally {
     aplicandoRemotoProyector = false;
   }
 }
 
-const relayProyector = crearRelayProyector({
+relayProyector = crearRelayProyector({
   onEstado: aplicarEstadoRemotoProyector,
   onError: () => {
     // Se loguea en crearRelayProyector(); la reproducción local sigue
@@ -1725,7 +1780,7 @@ async function activarControlRemoto() {
   remoteControlStatus.textContent = "Generando código…";
   try {
     const codigo = await generarCodigoSalaLibre();
-    await relayProyector.postearEstado(codigo, estadoMultimediaActual());
+    await relayProyector.postearEstado(codigo, estadoCompartidoActual());
     relayProyector.room = codigo;
     relayProyector.iniciarPolling(codigo);
     remoteRoomCode.textContent = codigo;

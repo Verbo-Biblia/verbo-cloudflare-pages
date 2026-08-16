@@ -63,7 +63,14 @@ function crearRelayProyector({ onEstado, onError } = {}) {
   function enviar(cambios) {
     if (!room) return;
     postearEstado(room, cambios)
-      .then((estado) => marcarComoAplicado(estado?.ts))
+      .then((estado) => {
+        marcarComoAplicado(estado?.ts);
+        // El anti-eco evita que el próximo poll reaplique este mismo cambio
+        // (mismo ts) — pero el emisor también necesita ver su propio cambio
+        // reflejado ya, no recién cuando llegue otro cambio distinto. Se
+        // aplica acá una sola vez con el estado confirmado por el servidor.
+        onEstado?.(estado);
+      })
       .catch((error) => console.warn("No se pudo enviar el comando al relay de Proyector.", error));
   }
 

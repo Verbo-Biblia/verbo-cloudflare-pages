@@ -19,22 +19,41 @@
     <div class="estado-conexion" id="estado-conexion-codigo" role="status"></div>
   </main>
 
-  <main class="pantalla" id="pantalla-control" hidden>
-    <div class="item-activo" id="item-activo">Nada seleccionado</div>
-    <div class="controles-remoto">
-      <button class="btn-grande btn-play-pausa" id="btn-play-pausa" type="button">▶ Reproducir</button>
-      <button class="btn-grande btn-detener" id="btn-detener" type="button">■ Detener</button>
-      <label class="control-volumen" for="input-volumen">
-        <span>Volumen</span>
-        <div class="control-volumen-fila">
-          <input id="input-volumen" type="range" min="0" max="100" step="5" value="70" />
-          <output id="output-volumen" for="input-volumen">70%</output>
-        </div>
-      </label>
-      <button class="btn" id="btn-cambiar-sala" type="button">Cambiar código</button>
-    </div>
+  <div class="pantalla-control" id="pantalla-control" hidden>
+    <header class="barra-superior">
+      <span class="codigo-chico" id="codigo-conectado"></span>
+      <button class="btn-chico" id="btn-cambiar-sala" type="button">Cambiar código</button>
+    </header>
+
+    <section class="seccion-diapositiva">
+      <div class="diapositiva-contador" id="diapositiva-contador"></div>
+      <div class="diapositiva-texto" id="diapositiva-texto">Nada seleccionado</div>
+      <div class="diapositiva-referencia" id="diapositiva-referencia"></div>
+      <div class="nav-diapositiva">
+        <button class="btn-nav" id="btn-anterior" type="button">‹ Anterior</button>
+        <button class="btn-nav" id="btn-siguiente" type="button">Siguiente ›</button>
+      </div>
+    </section>
+
+    <section class="seccion-orden">
+      <h2>Orden del culto</h2>
+      <div class="lista-orden" id="lista-orden">
+        <div class="orden-vacio">Nada en el orden del culto todavía.</div>
+      </div>
+    </section>
+
+    <section class="seccion-audio">
+      <h2>Audio de fondo</h2>
+      <div class="audio-controles">
+        <button class="btn-audio" id="btn-play-pausa" type="button">▶</button>
+        <button class="btn-audio btn-detener" id="btn-detener" type="button">■</button>
+        <input id="input-volumen" type="range" min="0" max="100" step="5" value="70" />
+        <output id="output-volumen" for="input-volumen">70%</output>
+      </div>
+    </section>
+
     <div class="estado-conexion" id="estado-conexion-control" role="status"></div>
-  </main>
+  </div>
 
   <script src="js/proyector-relay.js"></script>
   <script src="js/remoto.js"></script>

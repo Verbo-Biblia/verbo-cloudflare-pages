@@ -30,6 +30,7 @@ body {
   min-height: 100vh;
 }
 
+/* ---------- Pantalla de código ---------- */
 .pantalla {
   flex: 1;
   display: flex;
@@ -91,77 +92,116 @@ h1 {
   color: #1a1305;
 }
 
-.estado-conexion { min-height: 20px; color: var(--text-faint); font-size: 13px; }
+.estado-conexion { min-height: 18px; padding: 0 14px 10px; color: var(--text-faint); font-size: 12px; text-align: center; }
 .estado-conexion.error { color: #ef9a9a; }
 
-#pantalla-control { justify-content: flex-start; padding-top: 40px; }
-
-.item-activo {
-  width: 100%;
-  max-width: 360px;
-  padding: 14px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: var(--bg-panel-raised);
-  color: var(--text-primary);
-  font: 16px var(--font-display);
-  min-height: 26px;
-}
-
-.controles-remoto {
+/* ---------- Pantalla de control (orden + diapositiva + audio) ---------- */
+.pantalla-control {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 14px;
-  width: 100%;
-  max-width: 360px;
+  min-height: 100vh;
 }
+.pantalla-control[hidden] { display: none; }
 
-.btn-grande {
-  width: 100%;
-  padding: 26px;
-  border-radius: 14px;
+.barra-superior {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.codigo-chico { font: 700 13px var(--font-mono); letter-spacing: 2px; color: var(--text-faint); }
+.btn-chico {
+  padding: 6px 10px;
+  border-radius: 6px;
   border: 1px solid var(--border);
-  font-size: 20px;
-  font-weight: 700;
+  background: transparent;
+  color: var(--text-faint);
+  font-size: 11px;
   cursor: pointer;
 }
 
-.btn-play-pausa {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #1a1305;
-}
-
-.btn-detener {
-  background: var(--bg-panel-raised);
-  color: #ef9a9a;
-  border-color: var(--border);
-}
-
-.control-volumen {
-  width: 100%;
+.seccion-diapositiva {
+  padding: 14px;
+  border-bottom: 1px solid var(--border);
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 8px;
-  color: var(--text-secondary);
-  font-size: 13px;
+  text-align: center;
 }
+.diapositiva-contador { color: var(--accent); font: 700 12px var(--font-mono); letter-spacing: 1px; }
+.diapositiva-texto {
+  width: 100%;
+  max-height: 26vh;
+  overflow-y: auto;
+  padding: 10px 4px;
+  color: var(--text-primary);
+  font: 20px/1.4 var(--font-display);
+  white-space: pre-line;
+}
+.diapositiva-referencia { color: var(--text-secondary); font-size: 12px; }
 
-.control-volumen-fila { display: flex; align-items: center; gap: 12px; }
-
-#input-volumen {
+.nav-diapositiva { display: flex; gap: 8px; width: 100%; margin-top: 2px; }
+.btn-nav {
   flex: 1;
-  height: 40px;
-  accent-color: var(--accent);
-}
-
-#output-volumen { color: var(--accent); font: 700 15px var(--font-mono); min-width: 3.5em; text-align: right; }
-
-#btn-cambiar-sala {
-  margin-top: 10px;
-  background: transparent;
-  color: var(--text-faint);
-  font-size: 13px;
   padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-panel-raised);
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
 }
+.btn-nav:active { background: var(--bg-hover); }
+
+.seccion-orden {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.seccion-orden h2, .seccion-audio h2 {
+  margin: 0 0 8px;
+  color: var(--text-faint);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .6px;
+  text-transform: uppercase;
+}
+.lista-orden { max-height: 38vh; overflow-y: auto; display: flex; flex-direction: column; gap: 6px; }
+.orden-vacio { color: var(--text-faint); font-size: 12px; padding: 8px 0; }
+.orden-item {
+  display: block;
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-panel-raised);
+  color: var(--text-primary);
+  text-align: left;
+  font-size: 13px;
+  cursor: pointer;
+}
+.orden-item strong { color: var(--accent); font-size: 11px; margin-right: 6px; }
+.orden-item span { color: var(--text-secondary); }
+.orden-item.activo { border-color: var(--accent); background: var(--accent-soft); }
+
+.seccion-audio { padding: 10px 14px 14px; }
+.audio-controles { display: flex; align-items: center; gap: 8px; }
+.btn-audio {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--accent);
+  color: #1a1305;
+  font-size: 14px;
+  cursor: pointer;
+}
+.btn-detener { background: var(--bg-panel-raised); color: #ef9a9a; }
+.audio-controles #input-volumen { flex: 1; accent-color: var(--accent); }
+.audio-controles #output-volumen { color: var(--accent); font: 700 12px var(--font-mono); min-width: 3em; text-align: right; }
