@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Proyector Verbo — Panel de control</title>
+<meta name="description" content="Proyector Verbo: pantalla de proyección gratuita para canciones y pasajes bíblicos durante el culto, con control remoto por celular. Sin cuentas, funciona desde el navegador.">
+<link rel="canonical" href="https://verbobiblia.com/proyector/control.html">
+<link rel="stylesheet" href="css/control.css" />
+</head>
+<body>
+
+  <aside id="sidebar">
+    <div class="brand">
+      <div class="name">✦ Proyección</div>
+      <div class="sub">Panel de control</div>
+      <a class="brand-back" href="/">← Volver a Verbo</a>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="canciones">Canciones</button>
+      <button class="tab-btn" data-tab="biblia">Biblia</button>
+    </div>
+
+    <div class="tab-content">
+      <!-- CANCIONES -->
+      <div class="tab-panel active" id="panel-canciones">
+        <div class="song-actions">
+          <button class="btn btn-accent" id="btn-nueva-cancion" type="button">+ Nueva canción</button>
+          <button class="btn" id="btn-exportar-canciones" type="button">Exportar respaldo</button>
+          <button class="btn" id="btn-importar-canciones" type="button">Importar respaldo</button>
+          <input id="archivo-importar-canciones" type="file" accept="application/json,.json" hidden />
+        </div>
+        <div class="search-box">
+          <input type="text" id="search-canciones" placeholder="Buscar canción..." />
+        </div>
+        <div class="list" id="lista-canciones"></div>
+      </div>
+
+      <!-- BIBLIA -->
+      <div class="tab-panel" id="panel-biblia">
+        <div class="bible-pickers">
+          <label>Versión A <select id="select-version-a" aria-label="Versión A (opcional)"></select></label>
+          <label>Versión B <select id="select-version-b" aria-label="Versión B (opcional)"></select></label>
+          <label>Libro <select id="select-libro" aria-label="Libro"></select></label>
+          <label>Capítulo <select id="select-capitulo" aria-label="Capítulo"></select></label>
+          <div class="bible-active-note" id="bible-active-note"></div>
+        </div>
+        <div class="list" id="lista-versiculos"><div class="empty-state compact">Cargando Biblias…</div></div>
+      </div>
+    </div>
+    <div class="panel-resizer sidebar-resizer" id="sidebar-resizer" role="separator" aria-label="Cambiar ancho de recursos" aria-orientation="vertical" tabindex="0"></div>
+  </aside>
+
+  <main id="main">
+    <div class="main-header">
+      <div>
+        <div class="item-title" id="item-title">Selecciona una canción o pasaje</div>
+        <div class="item-meta" id="item-meta">&nbsp;</div>
+      </div>
+      <div class="present-controls">
+        <label class="font-size-control" for="font-size-slider">
+          <span>Tamaño de letra</span>
+          <input id="font-size-slider" type="range" min="3.8" max="10" step="0.1" value="6.2" />
+          <output id="font-size-value" for="font-size-slider">6.2</output>
+        </label>
+        <button class="btn" id="btn-blank">Pantalla negra</button>
+        <button class="btn btn-danger" id="btn-clear">Limpiar</button>
+        <button class="btn btn-accent" id="btn-open-presentation">Abrir pantalla de presentación</button>
+        <span id="estado-pantallas" class="screen-status" role="status"></span>
+      </div>
+    </div>
+
+    <div class="workspace">
+      <aside id="order-panel">
+        <div class="order-header">
+          <div>
+            <div class="order-title">Orden del culto</div>
+            <div class="order-count" id="order-count">0 elementos</div>
+          </div>
+          <div class="order-nav">
+            <button class="icon-btn" id="btn-order-prev" type="button" title="Elemento anterior" aria-label="Elemento anterior">←</button>
+            <button class="icon-btn" id="btn-order-next" type="button" title="Elemento siguiente" aria-label="Elemento siguiente">→</button>
+          </div>
+        </div>
+        <div id="order-list" class="order-list">
+          <div class="empty-state compact">Agrega canciones completas o versículos con el botón +.</div>
+        </div>
+        <div class="order-media-imports" aria-label="Agregar multimedia al orden del culto">
+          <input id="order-audio-file" type="file" accept="audio/mpeg,audio/*,.mp3" hidden />
+          <input id="order-video-file" type="file" accept="video/*" hidden />
+          <input id="order-image-file" type="file" accept="image/*" hidden />
+          <button class="btn" id="btn-order-audio" type="button">+ MP3</button>
+          <button class="btn" id="btn-order-video" type="button">+ Video</button>
+          <button class="btn" id="btn-order-image" type="button">+ Imagen</button>
+        </div>
+      </aside>
+      <div class="panel-resizer order-resizer" id="order-resizer" role="separator" aria-label="Cambiar ancho del orden del culto" aria-orientation="vertical" tabindex="0"></div>
+
+      <div class="content-column">
+        <div class="slides-area">
+          <div class="slides-grid" id="slides-grid">
+            <div class="empty-state">Elige una canción o un pasaje bíblico en el panel izquierdo.</div>
+          </div>
+        </div>
+
+        <div class="preview-dock">
+          <div class="preview-screen" id="preview-screen">
+            <video id="preview-bg-video" muted loop playsinline></video>
+            <video id="preview-media-video" muted playsinline></video>
+            <img id="preview-media-image" alt="" />
+            <span class="live-dot"></span>
+            <div class="txt" id="preview-txt"></div>
+          </div>
+          <div class="preview-info">
+            <div class="status" id="preview-status">Sin señal</div>
+            <div>Vista previa de lo que ve la congregación</div>
+          </div>
+          <div class="bg-controls" id="bg-controls">
+            <span style="font-size:12px; color:var(--text-faint);">Fondo:</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="media-rail" aria-label="Controles multimedia">
+        <div class="media-rail-title">Multimedia</div>
+        <div id="media-current" class="media-current">Nada seleccionado</div>
+        <button class="btn media-command" id="btn-media-play" type="button" disabled>▶ Play</button>
+        <button class="btn media-command" id="btn-media-pause" type="button" disabled>❚❚ Pausa</button>
+        <label class="media-volume-control" for="media-volume">
+          <span>Volumen</span>
+          <input id="media-volume" type="range" min="0" max="1" step="0.05" value="0.7" />
+          <output id="media-volume-value" for="media-volume">70%</output>
+        </label>
+
+        <div class="remote-control-block" id="remote-control-block">
+          <button class="btn" id="btn-activar-remoto" type="button">📱 Control remoto</button>
+          <div class="remote-control-active" id="remote-control-active" hidden>
+            <div class="remote-room-code" id="remote-room-code"></div>
+            <div class="remote-qr" id="remote-qr"></div>
+            <button class="btn" id="btn-desactivar-remoto" type="button">Desactivar</button>
+          </div>
+          <div class="remote-control-status" id="remote-control-status" role="status"></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer id="footer">
+    <span><kbd>&rarr;</kbd><kbd>Espacio</kbd> Siguiente</span>
+    <span><kbd>&larr;</kbd> Anterior</span>
+    <span><kbd>B</kbd> Pantalla negra</span>
+    <span><kbd>Esc</kbd> Limpiar</span>
+  </footer>
+
+  <dialog id="editor-cancion" aria-labelledby="editor-cancion-titulo">
+    <form id="form-cancion">
+      <div class="modal-header">
+        <h2 id="editor-cancion-titulo">Nueva canción</h2>
+        <button class="icon-btn" id="btn-cerrar-editor" type="button" aria-label="Cerrar">×</button>
+      </div>
+      <div class="modal-body">
+        <input id="cancion-id" type="hidden" />
+        <details class="acordeon-letra" id="acordeon-letra">
+          <summary>Buscar o importar letra (opcional)</summary>
+          <div class="acordeon-letra-body">
+            <div class="lyrics-search" id="buscador-letras">
+              <h3>Buscar letra en internet</h3>
+              <div class="lyrics-search-row">
+                <input id="consulta-letra" type="search" placeholder="Título y artista, ej. Todo poderoso Danilo Montero" />
+                <button class="btn" id="btn-buscar-letra" type="button">Buscar letra</button>
+              </div>
+              <div id="estado-busqueda-letra" class="lyrics-status" role="status"></div>
+              <div id="resultados-letras" class="lyrics-results"></div>
+              <div id="importador-letra" hidden>
+                <label>Letra encontrada
+                  <textarea id="letra-importada" rows="12" placeholder="La letra encontrada aparecerá aquí…"></textarea>
+                </label>
+                <div class="lyrics-import-actions">
+                  <button class="btn" id="btn-dividir-letra" type="button">Dividir automáticamente en estrofas</button>
+                </div>
+              </div>
+            </div>
+            <div class="lyrics-divider"></div>
+            <div class="pdf-import">
+              <h3>Importar desde PDF</h3>
+              <div class="lyrics-search-row">
+                <button class="btn" id="btn-importar-pdf" type="button">Seleccionar PDF</button>
+                <input id="archivo-cancion-pdf" type="file" accept="application/pdf,.pdf" hidden />
+                <span id="estado-importar-pdf" class="lyrics-status" role="status"></span>
+              </div>
+            </div>
+          </div>
+        </details>
+        <div class="cancion-datos-basicos">
+          <label>Título <input id="cancion-titulo" type="text" required maxlength="160" /></label>
+          <label>Autor <input id="cancion-autor" type="text" required maxlength="160" /></label>
+        </div>
+        <div class="verses-heading">
+          <strong>Estrofas</strong>
+          <button class="btn" id="btn-agregar-estrofa" type="button">+ Agregar estrofa</button>
+        </div>
+        <div id="campos-estrofas"></div>
+        <div class="form-error" id="error-cancion" role="alert"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" id="btn-eliminar-cancion" type="button" hidden>Eliminar canción</button>
+        <span class="modal-spacer"></span>
+        <button class="btn" id="btn-cancelar-editor" type="button">Cancelar</button>
+        <button class="btn btn-accent" type="submit">Guardar canción</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="data/canciones.js"></script>
+  <script src="vendor/qrcode/qrcode.js"></script>
+  <script src="js/proyector-relay.js"></script>
+  <script src="js/control.js"></script>
+</body>
+</html>

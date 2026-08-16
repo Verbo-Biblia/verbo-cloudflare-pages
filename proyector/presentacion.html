@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<title>Presentación</title>
+<link rel="stylesheet" href="css/presentacion.css" />
+</head>
+<body>
+  <div id="stage">
+    <video id="background-video" muted loop playsinline></video>
+    <audio id="foreground-audio"></audio>
+    <div id="overlay"></div>
+    <div id="foreground-media" aria-hidden="true">
+      <video id="foreground-video" playsinline></video>
+      <img id="foreground-image" alt="" />
+    </div>
+    <div id="idle-mark">✦</div>
+    <div id="slide">
+      <div class="text" id="slide-text"></div>
+      <div class="text text-en" id="slide-text-en"></div>
+    </div>
+    <div id="reference"></div>
+  </div>
+
+  <script src="js/presentacion.js"></script>
+</body>
+</html>

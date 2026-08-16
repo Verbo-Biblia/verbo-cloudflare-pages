@@ -725,6 +725,56 @@ async function handleSync(request, url, env, headers) {
   return jsonError('Recurso no permitido', 404, headers);
 }
 
+// ── /proyector/estado ───────────────────────────────────────────────────
+//
+// Relay simple de comando/estado entre control.html (PC) y el futuro
+// remoto.html (celular), identificados por un código de sala de 6 dígitos.
+// Nada de WebRTC ni señalización propia: ambos lados hacen polling (GET
+// cada ~800ms) y escriben con POST — el Worker es solo un buzón compartido
+// en KV. No hay requisito de latencia real-time para play/pausa/volumen.
+const PROYECTOR_ROOM_TTL_SECONDS = 5 * 60; // 5 minutos, renovado en cada POST
+const PROYECTOR_ESTADO_CAMPOS = ['reproduciendo', 'volumen', 'itemActivo', 'origen'];
+const PROYECTOR_ESTADO_POR_DEFECTO = { reproduciendo: false, volumen: 100, itemActivo: null, origen: null };
+
+function proyectorCampoValido(campo, valor) {
+  if (campo === 'reproduciendo') return typeof valor === 'boolean';
+  if (campo === 'volumen') return typeof valor === 'number' && Number.isFinite(valor) && valor >= 0 && valor <= 100;
+  if (campo === 'itemActivo') return valor === null || typeof valor === 'string';
+  if (campo === 'origen') return typeof valor === 'string';
+  return false;
+}
+
+async function handleProyectorEstado(request, url, env, headers) {
+  if (!env.SYNC_KV) return jsonError('Sincronización no está configurada', 500, headers);
+  const room = String(url.searchParams.get('room') || '').trim();
+  if (!/^\d{6}$/.test(room)) return jsonError('El código de sala debe tener 6 dígitos', 400, headers);
+  const clave = `room:${room}:estado`;
+
+  if (request.method === 'GET') {
+    const raw = await env.SYNC_KV.get(clave);
+    if (!raw) return jsonError('Sala no encontrada', 404, headers);
+    return jsonOk(JSON.parse(raw), headers);
+  }
+
+  if (request.method === 'POST') {
+    const body = await readJson(request);
+    if (!body || typeof body !== 'object') return jsonError('Cuerpo inválido', 400, headers);
+
+    const raw = await env.SYNC_KV.get(clave);
+    const actual = raw ? JSON.parse(raw) : { ...PROYECTOR_ESTADO_POR_DEFECTO };
+
+    for (const campo of PROYECTOR_ESTADO_CAMPOS) {
+      if (campo in body && proyectorCampoValido(campo, body[campo])) actual[campo] = body[campo];
+    }
+    actual.ts = Date.now();
+
+    await env.SYNC_KV.put(clave, JSON.stringify(actual), { expirationTtl: PROYECTOR_ROOM_TTL_SECONDS });
+    return jsonOk(actual, headers);
+  }
+
+  return jsonError('Método no permitido', 405, headers);
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -737,6 +787,7 @@ export default {
     if (url.pathname.startsWith('/v1/sync/')) return handleSync(request, url, env, headers);
     if (url.pathname === '/translate') return handleTranslate(request, env, headers);
     if (url.pathname === '/translate-sermon-doc') return handleTranslateSermonDoc(request, env, headers);
+    if (url.pathname === '/proyector/estado') return handleProyectorEstado(request, url, env, headers);
     return handleApiBible(request, url, env, headers);
   }
 };

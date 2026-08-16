@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Control remoto — Proyector Verbo</title>
+<link rel="stylesheet" href="css/remoto.css" />
+</head>
+<body>
+
+  <main class="pantalla" id="pantalla-codigo">
+    <h1>Control remoto</h1>
+    <p>Ingresá el código de 6 dígitos que aparece en la pantalla de la PC, o escaneá el QR desde ahí.</p>
+    <form id="form-codigo">
+      <input id="input-codigo" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="6" placeholder="000000" autocomplete="off" />
+      <button class="btn btn-accent" type="submit">Conectar</button>
+    </form>
+    <div class="estado-conexion" id="estado-conexion-codigo" role="status"></div>
+  </main>
+
+  <main class="pantalla" id="pantalla-control" hidden>
+    <div class="item-activo" id="item-activo">Nada seleccionado</div>
+    <div class="controles-remoto">
+      <button class="btn-grande btn-play-pausa" id="btn-play-pausa" type="button">▶ Reproducir</button>
+      <button class="btn-grande btn-detener" id="btn-detener" type="button">■ Detener</button>
+      <label class="control-volumen" for="input-volumen">
+        <span>Volumen</span>
+        <div class="control-volumen-fila">
+          <input id="input-volumen" type="range" min="0" max="100" step="5" value="70" />
+          <output id="output-volumen" for="input-volumen">70%</output>
+        </div>
+      </label>
+      <button class="btn" id="btn-cambiar-sala" type="button">Cambiar código</button>
+    </div>
+    <div class="estado-conexion" id="estado-conexion-control" role="status"></div>
+  </main>
+
+  <script src="js/proyector-relay.js"></script>
+  <script src="js/remoto.js"></script>
+</body>
+</html>

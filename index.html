@@ -459,6 +459,16 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
       <h3 data-i18n="portal.cardSermonesTitle">Sermones Históricos</h3>
     </a>
 
+    <!-- Proyector Verbo -->
+    <a class="card" id="card-proyector" href="/proyector/control.html">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+        <rect x="3" y="4" width="18" height="12" rx="1"/>
+        <path d="M9 10.5l4 2.25-4 2.25z" fill="currentColor" stroke="none"/>
+        <path d="M8 20h8M12 16v4"/>
+      </svg>
+      <h3 data-i18n="portal.cardProyectorTitle">Proyector Verbo</h3>
+    </a>
+
   </div>
   </nav>
 </main>
@@ -535,6 +545,21 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
       requestAnimationFrame(applyMouseParallax);
     }, { passive: true });
   }
+})();
+
+// Proyector Verbo: en escritorio abre el panel de control; en móvil, el
+// control remoto (control.html nunca es responsive a propósito, ver
+// proyector/remoto.html). Mismo chequeo de ancho que ya usa el sitio
+// (biblia/assets/app.js, control.css).
+(() => {
+  const cardProyector = document.getElementById('card-proyector');
+  if (!cardProyector) return;
+  cardProyector.addEventListener('click', (event) => {
+    if (matchMedia('(max-width: 760px)').matches) {
+      event.preventDefault();
+      location.href = '/proyector/remoto.html';
+    }
+  });
 })();
 </script>
 </body>
