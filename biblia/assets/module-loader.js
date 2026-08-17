@@ -140,8 +140,14 @@ const VerboModules = (() => {
       'include-verse-spans':'true',
       'fums-version':'3'
     });
+    // "reference" (ej. "Genesis 1", "Hebreos 1") ya viene en el idioma real de
+    // esta Biblia — API.Bible lo arma a partir de su propio dataset, no hace
+    // falta una tabla local de nombres. Se le quita el número de capítulo al
+    // final para quedarse solo con el nombre del libro.
+    const bookName = String(result.data?.reference || '').replace(/\s+\d+$/, '').trim() || entry.name;
     return {
       manifest: { id:entry.id, abbreviation:entry.abbreviation, name:entry.name, language:entry.language, remote:true },
+      bookName,
       verses: parseApiBibleChapter(result.data?.content),
       copyright: result.data?.copyright || '',
       fumsToken: result.meta?.fumsToken || ''
@@ -770,12 +776,19 @@ const VerboModules = (() => {
     const registry = await getJSON('modules/registry.json');
     const catalogBibles = registry.catalog?.bibles || [];
     const wantedId = bibleId || registry.defaultBible;
+    // Si wantedId es una Biblia remota (API.Bible: LBLA/NTV/NASB 2020, etc.),
+    // no está en catalogBibles (solo lista las locales) — antes esto caía
+    // siempre al fallback de abajo (registry.bibles[0], rv-verbo en español),
+    // dejando el nombre del libro y el idioma del "eager load" fijos en
+    // español aunque la versión activa fuera en inglés. Se detecta acá para
+    // pedir esa Biblia remota directamente en vez de una local equivocada.
+    const remoteWanted = (registry.apiBible?.bibles || []).find(b => b.id === wantedId) || null;
     // catalogBibles[].path ya viene con el prefijo "modules/" (ver
     // tools/build_registry_catalog.py); el fallback a registry.bibles[0] es
     // una ruta cruda sin ese prefijo, por eso se agrega solo ahí.
-    const eagerPath = catalogBibles.find(b => b.manifest?.id === wantedId)?.path
-      || ((registry.bibles || [])[0] ? `modules/${registry.bibles[0]}` : null);
-    if (!eagerPath) throw new Error(`No hay Biblias disponibles para ${bookId} ${chapter}`);
+    const eagerPath = remoteWanted ? null : (catalogBibles.find(b => b.manifest?.id === wantedId)?.path
+      || ((registry.bibles || [])[0] ? `modules/${registry.bibles[0]}` : null));
+    if (!remoteWanted && !eagerPath) throw new Error(`No hay Biblias disponibles para ${bookId} ${chapter}`);
 
     // Se cargan los ÍNDICES livianos (id+reference, sin texto) de todos los
     // comentarios MENOS el activo, para poder indicar en cada versículo qué
@@ -801,6 +814,12 @@ const VerboModules = (() => {
       patristicByVerseResults
     ] = await Promise.all([
       (async () => {
+        if (remoteWanted) {
+          try {
+            const remote = await loadRemoteBible(wantedId, bookId, chapter);
+            return { manifest: remote.manifest, bookInfo: { id:bookId, name:remote.bookName }, verses: remote.verses, copyright: remote.copyright, fumsToken: remote.fumsToken };
+          } catch (error) { console.warn(`Biblia remota omitida: ${wantedId}`, error); return null; }
+        }
         try { return await loadBible(eagerPath, bookId, chapter); }
         catch (error) { console.warn(`Biblia omitida: ${eagerPath}`, error); return null; }
       })(),
@@ -848,7 +867,14 @@ const VerboModules = (() => {
     }
 
     const versions={};
-    bibleResults.forEach(({manifest:m})=>versions[m.id]={label:m.abbreviation,full:m.name,year:m.year,hasStrongs:Boolean(m.hasStrongs)});
+    // copyright/fumsToken solo vienen poblados cuando bibleResults trae una
+    // Biblia remota cargada acá mismo (ver eagerResult más arriba) — para
+    // las locales quedan undefined, igual que antes. Si esto quedara sin
+    // copiar, ensureVersionLoaded() más adelante (app.js:loadPassage) vería
+    // versions[wantedId] ya poblado y se saltaría por completo, perdiendo el
+    // aviso de copyright y el reporte FUMS que exige la licencia de API.Bible
+    // (ver app.js:984).
+    bibleResults.forEach(b=>{ const m=b.manifest; versions[m.id]={label:m.abbreviation,full:m.name,year:m.year,hasStrongs:Boolean(m.hasStrongs),remote:Boolean(m.remote),copyright:b.copyright,fumsToken:b.fumsToken}; });
     const allVerseNumbers=[...new Set(bibleResults.flatMap(b=>Object.keys(b.verses).map(Number)))].sort((a,b)=>a-b);
     const notes={}, notesByVerse=new Map();
     const firstVerse=allVerseNumbers[0] || 1;

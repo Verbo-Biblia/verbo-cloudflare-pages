@@ -298,6 +298,15 @@ document.addEventListener('DOMContentLoaded', async () => {
   const dictionaryCatalog = () => (catalog.dictionaries || []).filter(isStrongLexicon).map(item => ({ id:item.manifest.id, label:item.manifest.abbreviation || item.manifest.name, full:item.manifest.name, path:item.path, manifest:item.manifest, linked:Boolean(item.manifest.books?.length) }));
   const exegesisCatalog = () => (catalog.exegesis || []).map(item => ({ id:item.manifest.id, label:item.manifest.abbreviation || item.manifest.name, full:item.manifest.name, path:item.path, manifest:item.manifest }));
   const bookAbbr = { GEN:'Gn', EXO:'Ex', LEV:'Lv', NUM:'Nm', DEU:'Dt', JOS:'Jos', JDG:'Jue', RUT:'Rt', '1SA':'1 S', '2SA':'2 S', '1KI':'1 R', '2KI':'2 R', '1CH':'1 Cr', '2CH':'2 Cr', EZR:'Esd', NEH:'Neh', EST:'Est', JOB:'Job', PSA:'Sal', PRO:'Pr', ECC:'Ec', SNG:'Cnt', ISA:'Is', JER:'Jer', LAM:'Lm', EZK:'Ez', DAN:'Dn', HOS:'Os', JOL:'Jl', AMO:'Am', OBA:'Abd', JON:'Jon', MIC:'Mi', NAM:'Nah', HAB:'Hab', ZEP:'Sof', HAG:'Hag', ZEC:'Zac', MAL:'Mal', MAT:'Mt', MRK:'Mc', LUK:'Lc', JHN:'Jn', ACT:'Hch', ROM:'Ro', '1CO':'1 Cor', '2CO':'2 Cor', GAL:'Gá', EPH:'Ef', PHP:'Fil', COL:'Col', '1TH':'1 Tes', '2TH':'2 Tes', '1TI':'1 Ti', '2TI':'2 Ti', TIT:'Tit', PHM:'Flm', HEB:'Heb', JAS:'Stg', '1PE':'1 P', '2PE':'2 P', '1JN':'1 Jn', '2JN':'2 Jn', '3JN':'3 Jn', JUD:'Jud', REV:'Ap' };
+  // Nomenclatura estándar en inglés de los 66 libros, mismos ids/orden que
+  // bookAbbr — solo para NASB 2020 (registry.apiBible.bibles, id 'api-nasb2020'),
+  // la única Biblia remota en inglés. No hace falta esto para LBLA/NTV (remotas
+  // en español, ya coinciden con el fallback de nombres en español del
+  // desplegable) ni para las locales (resuelven su propio nombre vía
+  // resolveBibleBooks, ver populateBooks). Nombres fijos, sin ambigüedad
+  // editorial ni mantenimiento futuro — verificados contra la respuesta real
+  // de API.Bible (campo "reference") antes de escribir esta tabla.
+  const NASB_BOOK_NAMES = { GEN:'Genesis', EXO:'Exodus', LEV:'Leviticus', NUM:'Numbers', DEU:'Deuteronomy', JOS:'Joshua', JDG:'Judges', RUT:'Ruth', '1SA':'1 Samuel', '2SA':'2 Samuel', '1KI':'1 Kings', '2KI':'2 Kings', '1CH':'1 Chronicles', '2CH':'2 Chronicles', EZR:'Ezra', NEH:'Nehemiah', EST:'Esther', JOB:'Job', PSA:'Psalms', PRO:'Proverbs', ECC:'Ecclesiastes', SNG:'Song of Solomon', ISA:'Isaiah', JER:'Jeremiah', LAM:'Lamentations', EZK:'Ezekiel', DAN:'Daniel', HOS:'Hosea', JOL:'Joel', AMO:'Amos', OBA:'Obadiah', JON:'Jonah', MIC:'Micah', NAM:'Nahum', HAB:'Habakkuk', ZEP:'Zephaniah', HAG:'Haggai', ZEC:'Zechariah', MAL:'Malachi', MAT:'Matthew', MRK:'Mark', LUK:'Luke', JHN:'John', ACT:'Acts', ROM:'Romans', '1CO':'1 Corinthians', '2CO':'2 Corinthians', GAL:'Galatians', EPH:'Ephesians', PHP:'Philippians', COL:'Colossians', '1TH':'1 Thessalonians', '2TH':'2 Thessalonians', '1TI':'1 Timothy', '2TI':'2 Timothy', TIT:'Titus', PHM:'Philemon', HEB:'Hebrews', JAS:'James', '1PE':'1 Peter', '2PE':'2 Peter', '1JN':'1 John', '2JN':'2 John', '3JN':'3 John', JUD:'Jude', REV:'Revelation' };
   const compactRef = (bookId=currentBook, chapter=currentChapter, verses=[]) => {
     const sorted=[...new Set(verses.map(Number))].sort((a,b)=>a-b);
     if(!sorted.length) return `${bookAbbr[bookId] || data?.meta?.book || bookId} ${chapter}`;
@@ -379,7 +388,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     const nameById = Array.isArray(activeManifestBooks)
       ? new Map(activeManifestBooks.map(b => [b.id, b.name]))
       : null;
-    els.book.innerHTML = catalog.books.map(b => `<option value="${b.id}">${escapeHTML(nameById?.get(b.id) || b.name)}</option>`).join('');
+    // NASB 2020 es remota (registry.apiBible.bibles) y resolveBibleBooks()
+    // no tiene de dónde traer sus 66 nombres en inglés de una sola vez (su
+    // manifest.books es un fallback en español, ver getCatalog en
+    // module-loader.js) — se usa la tabla fija NASB_BOOK_NAMES en su lugar.
+    // LBLA/NTV (remotas en español) y las Biblias locales no entran acá.
+    const isNasb2020 = currentVersion === 'api-nasb2020';
+    els.book.innerHTML = catalog.books.map(b => `<option value="${b.id}">${escapeHTML(isNasb2020 ? (NASB_BOOK_NAMES[b.id] || b.name) : (nameById?.get(b.id) || b.name))}</option>`).join('');
   }
 
   async function refreshChapters() {
@@ -571,6 +586,15 @@ document.addEventListener('DOMContentLoaded', async () => {
   function renderChapter(restoreVerse=null) {
     els.eyebrow.textContent = data.versions[currentVersion]?.full || data.meta.versionFull;
     els.title.textContent = `${data.meta.book} ${data.meta.chapter}`;
+    // populateBooks() nombra el desplegable con el arreglo "books" de la Biblia
+    // activa (resolveBibleBooks) — para las Biblias remotas de API.Bible ese
+    // arreglo es un fallback en español (ver getCatalog en module-loader.js) y
+    // no refleja el idioma real de la versión elegida. data.meta.book ya viene
+    // resuelto correctamente (local o remoto, ver buildChapterData), así que
+    // se usa para corregir solo la opción del libro que se está leyendo ahora
+    // — el resto del desplegable sigue en español hasta navegar a ese libro.
+    const activeBookOption = els.book?.querySelector(`option[value="${data.meta.bookId}"]`);
+    if (activeBookOption) activeBookOption.textContent = data.meta.book;
     els.list.innerHTML = '';
     data.verses.forEach(v => {
       const row = document.createElement('div'); row.className='verse'; row.dataset.verseN=v.n;
