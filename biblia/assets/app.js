@@ -863,9 +863,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       // En modo sermón, "activo" es el versículo elegido en la pestaña Biblia (sermonBible),
       // no el de la Biblia principal, que queda oculta/congelada mientras se escribe.
       const commentCtx = commentaryContext();
+      const selectedVerse = commentCtx.data?.verses?.find(v => v.n === commentCtx.activeVerseN);
       if(!focus && !verseCommentaries){
-        const selectedVerseNumber = commentCtx.activeVerseN;
-        const selectedVerse = commentCtx.data?.verses?.find(v => v.n === selectedVerseNumber);
         const moduleInfo=selectedVerse?.commentaries?.find(c=>c.commentaryId===currentCommentary);
         focus = moduleInfo?.noteIds?.[0] || null;
       }
@@ -876,7 +875,13 @@ document.addEventListener('DOMContentLoaded', async () => {
       const currentCommentaryIsBilingual=Object.values(commentCtx.data.notes).some(n=>n.commentaryId===currentCommentary && n.bilingual);
       const needsCommentaryTranslation=Boolean(commentarySourceLang) && commentarySourceLang!==contentLang() && !currentCommentaryIsBilingual;
       if(installed.length){
-        const options=installed.map(c=>`<option value="${c.id}" ${c.id===currentCommentary?'selected':''}>${escapeHTML(c.label)}</option>`).join('');
+        // "● " antepuesto al texto visible cuando ya sabemos (sin verificación
+        // extra: selectedVerse.commentaries ya viene filtrado por buildChapterData)
+        // que ese comentarista tiene contenido para el versículo activo.
+        const options=installed.map(c=>{
+          const hasContent=selectedVerse?.commentaries?.some(sc=>sc.commentaryId===c.id);
+          return `<option value="${c.id}" ${c.id===currentCommentary?'selected':''}>${hasContent?'● ':''}${escapeHTML(c.label)}</option>`;
+        }).join('');
         panelToolbarEl().innerHTML=`<div class="compare-toolbar"><select class="compare-toolbar__select" id="commentarySelect">${options}</select></div>`;
         document.getElementById('commentarySelect')?.addEventListener('change', async e=>{
           currentCommentary=e.target.value;
@@ -4640,7 +4645,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     const selected=patristicByVerseCatalog.find(x=>x.id===currentPatristicByVerse) || patristicByVerseCatalog[0];
 
-    const sourceOptions=patristicByVerseCatalog.map(x=>`<option value="${x.id}" ${x.id===currentPatristicByVerse?'selected':''}>${escapeHTML(x.label)}</option>`).join('');
+    // "● " antepuesto cuando la fuente ya tiene un fragmento anclado a este
+    // versículo (verse.patristicSources ya viene calculado por buildChapterData,
+    // el mismo dato que alimenta el contador de la burbuja 📜 del versículo).
+    const activeVerseSources=data?.verses?.find(v=>v.n===activeVerse())?.patristicSources || [];
+    const sourceOptions=patristicByVerseCatalog.map(x=>`<option value="${x.id}" ${x.id===currentPatristicByVerse?'selected':''}>${activeVerseSources.includes(x.id)?'● ':''}${escapeHTML(x.label)}</option>`).join('');
     els.panelToolbar.innerHTML=`<div class="compare-toolbar">${patristicModeToggleHtml()}</div><div class="compare-toolbar"><span class="compare-toolbar__label">${t('padres.fuenteLabel')}</span><select class="compare-toolbar__select" id="patristicByVerseSelect">${sourceOptions}</select></div>`;
     wirePatristicModeToggle();
     document.getElementById('patristicByVerseSelect')?.addEventListener('change', e=>{
