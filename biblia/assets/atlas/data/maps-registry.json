@@ -1,0 +1,84 @@
+{
+  "version": 4,
+  "renderMode": "immutable-svg-master",
+  "maps": [
+    {
+      "id": "israel-nuevo-testamento",
+      "label": {
+        "es": "Israel — tiempos del Nuevo Testamento",
+        "en": "Israel — New Testament Times"
+      },
+      "masterSvg": "maps/master/israel-nuevo-testamento.svg",
+      "textCatalog": "data/map-texts/israel-nuevo-testamento.json",
+      "places": "data/places-israel-nuevo-testamento.json",
+      "showPinLabels": false
+    },
+    {
+      "id": "pablo-completo",
+      "label": {
+        "es": "Viajes completos de Pablo",
+        "en": "Complete Journeys of Paul"
+      },
+      "masterSvg": "maps/master/pablo-completo.svg",
+      "textCatalog": "data/map-texts/pablo-completo.json",
+      "places": "data/places-pablo-completo.json",
+      "showPinLabels": false
+    },
+    {
+      "id": "exodo-conquista",
+      "label": {
+        "es": "Éxodo y conquista de Canaán",
+        "en": "Exodus and Conquest of Canaan"
+      },
+      "masterSvg": "maps/master/exodo-conquista.svg",
+      "textCatalog": "data/map-texts/exodo-conquista.json",
+      "places": "data/places-exodo-conquista.json",
+      "showPinLabels": false
+    },
+    {
+      "id": "pablo",
+      "label": {
+        "es": "Pablo — Asia Menor y Chipre (detalle)",
+        "en": "Paul — Asia Minor and Cyprus (detail)"
+      },
+      "masterSvg": "maps/master/pablo.svg",
+      "textCatalog": "data/map-texts/pablo.json",
+      "places": "data/places-pablo.json",
+      "showPinLabels": false
+    },
+    {
+      "id": "mundo-antiguo",
+      "label": {
+        "es": "Mundo antiguo — época de los Patriarcas",
+        "en": "Ancient World — Age of the Patriarchs"
+      },
+      "masterSvg": "maps/master/mundo-antiguo.svg",
+      "textCatalog": "data/map-texts/mundo-antiguo.json",
+      "places": "data/places-mundo-antiguo.json",
+      "showPinLabels": false
+    },
+    {
+      "id": "doce-tribus",
+      "label": {
+        "es": "Las Doce Tribus de Israel",
+        "en": "The Twelve Tribes of Israel"
+      },
+      "masterSvg": "maps/master/doce-tribus.svg",
+      "textCatalog": "data/map-texts/doce-tribus.json",
+      "places": "data/places-doce-tribus.json",
+      "showPinLabels": false
+    },
+    {
+      "id": "reino-dividido",
+      "label": {
+        "es": "El Reino Dividido y los Profetas",
+        "en": "The Divided Kingdom and the Prophets"
+      },
+      "masterSvg": "maps/master/reino-dividido.svg",
+      "textCatalog": "data/map-texts/reino-dividido.json",
+      "places": "data/places-reino-dividido.json",
+      "showPinLabels": false
+    }
+  ],
+  "pendingMasters": []
+}

@@ -1,0 +1,445 @@
+{
+  "places": {
+    "ur": {
+      "name": {
+        "es": "Ur de los caldeos",
+        "en": "Ur of the Chaldeans"
+      },
+      "coords": [
+        45.64,
+        30.96
+      ],
+      "type": "city",
+      "desc": {
+        "es": "Ciudad natal de Abram en Mesopotamia. De aquí Dios lo llamó a salir hacia una tierra que le mostraría (Génesis 11:31, 15:7; Hechos 7:2-4).",
+        "en": "Abram's hometown in Mesopotamia. From here God called him to leave for a land he would show him (Genesis 11:31, 15:7; Acts 7:2-4)."
+      },
+      "mapPosition": [
+        732,
+        566
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "ur",
+      "mediaScope": "exact",
+      "scriptureRefs": [
+        "Genesis 11:31",
+        "Acts 7:2-4"
+      ]
+    },
+    "haran": {
+      "name": {
+        "es": "Harán",
+        "en": "Haran"
+      },
+      "coords": [
+        39.03,
+        36.87
+      ],
+      "type": "city",
+      "desc": {
+        "es": "Aquí se estableció la familia de Taré, padre de Abram, en su camino desde Ur. Abram partió de Harán a los 75 años, obedeciendo el llamado de Dios (Génesis 11:31-12:4).",
+        "en": "Here the family of Terah, Abram's father, settled on their way from Ur. Abram left Haran at age 75, obeying God's call (Genesis 11:31-12:4)."
+      },
+      "mapPosition": [
+        470,
+        294
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "haran",
+      "mediaScope": "exact",
+      "scriptureRefs": [
+        "Genesis 11:31-12"
+      ]
+    },
+    "damasco": {
+      "name": {
+        "es": "Damasco",
+        "en": "Damascus"
+      },
+      "coords": [
+        36.29,
+        33.51
+      ],
+      "type": "city",
+      "desc": {
+        "es": "Ciudad de Aram mencionada como el origen de Eliezer, el siervo de mayor confianza de Abraham (Génesis 15:2).",
+        "en": "City of Aram mentioned as the origin of Eliezer, Abraham's most trusted servant (Genesis 15:2)."
+      },
+      "mapPosition": [
+        374,
+        441
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "damascus",
+      "mediaScope": "exact",
+      "scriptureRefs": [
+        "Genesis 15:2"
+      ]
+    },
+    "siquem": {
+      "name": {
+        "es": "Siquem",
+        "en": "Shechem"
+      },
+      "coords": [
+        35.28,
+        32.21
+      ],
+      "type": "city",
+      "desc": {
+        "es": "Primer lugar donde Abram acampó al entrar en Canaán. Aquí el Señor se le apareció y le prometió la tierra a su descendencia; Abram construyó un altar (Génesis 12:6-7).",
+        "en": "The first place Abram camped upon entering Canaan. Here the Lord appeared to him and promised the land to his descendants; Abram built an altar (Genesis 12:6-7)."
+      },
+      "mapPosition": [
+        313,
+        494
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "samaria-shechem",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "Genesis 12:6-7"
+      ]
+    },
+    "betel": {
+      "name": {
+        "es": "Betel",
+        "en": "Bethel"
+      },
+      "coords": [
+        35.22,
+        31.93
+      ],
+      "type": "city",
+      "desc": {
+        "es": "Entre Betel y Hai, Abram levantó otro altar e invocó el nombre del Señor (Génesis 12:8). Años después, Jacob soñó aquí con la escalera al cielo (Génesis 28:10-19).",
+        "en": "Between Bethel and Ai, Abram built another altar and called on the name of the Lord (Genesis 12:8). Years later, Jacob dreamed here of the stairway to heaven (Genesis 28:10-19)."
+      },
+      "mapPosition": [
+        313,
+        512
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "bethel",
+      "mediaScope": "exact",
+      "scriptureRefs": [
+        "Genesis 12:8",
+        "Genesis 28:10-19"
+      ]
+    },
+    "hebron": {
+      "name": {
+        "es": "Hebrón (Mamre)",
+        "en": "Hebron (Mamre)"
+      },
+      "coords": [
+        35.1,
+        31.53
+      ],
+      "type": "city",
+      "desc": {
+        "es": "Abram plantó su tienda junto a los robles de Mamre, cerca de Hebrón, y allí edificó un altar (Génesis 13:18). Aquí compró la cueva de Macpela para sepultar a Sara (Génesis 23).",
+        "en": "Abram pitched his tent by the oaks of Mamre, near Hebron, and built an altar there (Genesis 13:18). Here he bought the cave of Machpelah to bury Sarah (Genesis 23)."
+      },
+      "mapPosition": [
+        314,
+        529
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "hebron",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "Genesis 13:18",
+        "Genesis 23"
+      ]
+    },
+    "beerseba": {
+      "name": {
+        "es": "Beerseba",
+        "en": "Beersheba"
+      },
+      "coords": [
+        34.79,
+        31.25
+      ],
+      "type": "city",
+      "desc": {
+        "es": "Aquí Abraham hizo un pacto con Abimelec y plantó un tamarisco, invocando el nombre del Señor, el Dios eterno (Génesis 21:22-34).",
+        "en": "Here Abraham made a covenant with Abimelech and planted a tamarisk tree, calling on the name of the Lord, the Everlasting God (Genesis 21:22-34)."
+      },
+      "mapPosition": [
+        317,
+        544
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "beersheba",
+      "mediaScope": "exact",
+      "scriptureRefs": [
+        "Genesis 21:22-34"
+      ]
+    },
+    "sodoma": {
+      "name": {
+        "es": "Sodoma (ubicación incierta)",
+        "en": "Sodom (uncertain location)"
+      },
+      "coords": [
+        35.45,
+        31.05
+      ],
+      "type": "town",
+      "desc": {
+        "es": "Ciudad de la llanura donde se estableció Lot, destruida por su maldad junto con Gomorra (Génesis 19). Su ubicación exacta es debatida; se marca aquí de forma aproximada, cerca del mar Muerto.",
+        "en": "City of the plain where Lot settled, destroyed for its wickedness along with Gomorrah (Genesis 19). Its exact location is debated; marked here approximately, near the Dead Sea."
+      },
+      "mapPosition": [
+        329,
+        565
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "dead-sea",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "Genesis 19"
+      ]
+    },
+    "menfis": {
+      "name": {
+        "es": "Menfis",
+        "en": "Memphis"
+      },
+      "coords": [
+        31.25,
+        29.85
+      ],
+      "type": "city",
+      "desc": {
+        "es": "Antigua capital de Egipto. Representa el centro del poder egipcio durante la estadía de Abram (Génesis 12:10-20) y, más tarde, de José y su familia.",
+        "en": "Ancient capital of Egypt. Represents the center of Egyptian power during Abram's stay (Genesis 12:10-20) and later, Joseph and his family's."
+      },
+      "mapPosition": [
+        151,
+        598
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "memphis",
+      "mediaScope": "exact",
+      "scriptureRefs": [
+        "Genesis 12:10-20"
+      ]
+    },
+    "gosen": {
+      "name": {
+        "es": "Gosén",
+        "en": "Goshen"
+      },
+      "coords": [
+        31.8,
+        30.8
+      ],
+      "type": "region",
+      "desc": {
+        "es": "Región fértil del delta del Nilo donde José estableció a su familia; aquí se multiplicó el pueblo de Israel durante su tiempo en Egipto (Génesis 47:1-6).",
+        "en": "Fertile region of the Nile delta where Joseph settled his family; here the people of Israel multiplied during their time in Egypt (Genesis 47:1-6)."
+      },
+      "mapPosition": [
+        200,
+        560
+      ],
+      "mapPositionSource": "calibrated-overlay",
+      "mediaKey": "egypt",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "Genesis 47:1-6"
+      ]
+    },
+    "nineve": {
+      "name": {
+        "es": "Nínive",
+        "en": "Nineveh"
+      },
+      "coords": [
+        43.15,
+        36.36
+      ],
+      "type": "city",
+      "desc": {
+        "es": "Gran ciudad de Mesopotamia, capital posterior del Imperio Asirio. Se incluye aquí como referencia geográfica de la región (Génesis 10:11-12).",
+        "en": "Great city of Mesopotamia, later capital of the Assyrian Empire. Included here as a geographic reference for the region (Genesis 10:11-12)."
+      },
+      "mapPosition": [
+        630,
+        302
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "nineveh",
+      "mediaScope": "exact",
+      "scriptureRefs": [
+        "Genesis 10:11-12"
+      ]
+    },
+    "babilonia": {
+      "name": {
+        "es": "Babel (Babilonia)",
+        "en": "Babel (Babylon)"
+      },
+      "coords": [
+        44.42,
+        32.54
+      ],
+      "type": "city",
+      "desc": {
+        "es": "Sitio de la torre de Babel, donde Dios confundió el lenguaje de la humanidad y la dispersó por toda la tierra (Génesis 11:1-9).",
+        "en": "Site of the Tower of Babel, where God confused humanity's language and scattered them across the earth (Genesis 11:1-9)."
+      },
+      "mapPosition": [
+        657,
+        485
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "babylon",
+      "mediaScope": "exact",
+      "scriptureRefs": [
+        "Genesis 11:1-9"
+      ]
+    },
+    "salem": {
+      "name": {
+        "es": "Salem (Jerusalén)",
+        "en": "Salem (Jerusalem)"
+      },
+      "type": "city",
+      "desc": {
+        "es": "Salem aparece en Génesis 14 como la ciudad de Melquisedec. La identificación tradicional con Jerusalén se representa en este mapa.",
+        "en": "Salem appears in Genesis 14 as Melchizedek’s city. Its traditional identification with Jerusalem is represented on this map."
+      },
+      "mapPosition": [
+        333,
+        518
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "jerusalem",
+      "mediaScope": "exact",
+      "scriptureRefs": [
+        "Genesis 14"
+      ]
+    }
+  },
+  "journeys": {
+    "llamado-abram": {
+      "label": {
+        "es": "El llamado de Abram (Ur a Canaán)",
+        "en": "Abram's Call (Ur to Canaan)"
+      },
+      "stops": [
+        "ur",
+        "haran",
+        "damasco",
+        "siquem",
+        "betel",
+        "hebron"
+      ],
+      "scriptureRefs": [
+        "Genesis 11:27–12:9"
+      ]
+    },
+    "abram-egipto": {
+      "label": {
+        "es": "Abram en Egipto y su regreso",
+        "en": "Abram in Egypt and His Return"
+      },
+      "stops": [
+        "hebron",
+        "beerseba",
+        "menfis",
+        "gosen",
+        "beerseba",
+        "betel",
+        "hebron"
+      ],
+      "scriptureRefs": [
+        "Genesis 12:10–13:18"
+      ]
+    },
+    "jose-egipto": {
+      "label": {
+        "es": "José y la familia en Egipto",
+        "en": "Joseph and the Family in Egypt"
+      },
+      "stops": [
+        "hebron",
+        "beerseba",
+        "gosen",
+        "menfis"
+      ],
+      "scriptureRefs": [
+        "Genesis 37–50"
+      ]
+    },
+    "abraham-canaan": {
+      "mode": "route",
+      "color": "#8d5a2b",
+      "label": {
+        "es": "Abraham dentro de Canaán",
+        "en": "Abraham within Canaan"
+      },
+      "desc": {
+        "es": "Recorrido temático por algunos de los principales lugares de Abraham dentro de Canaán. La Biblia registra movimientos adicionales y no especifica cada carretera.",
+        "en": "Thematic route through several major locations of Abraham within Canaan. The Bible records additional movements and does not specify every road."
+      },
+      "stops": [
+        "siquem",
+        "betel",
+        "hebron",
+        "beerseba"
+      ],
+      "scriptureRefs": [
+        "Genesis 12–22"
+      ]
+    },
+    "abraham-lot-rescate": {
+      "mode": "sites",
+      "color": "#7a3f2d",
+      "label": {
+        "es": "Abraham, Lot y el rescate de Génesis 14",
+        "en": "Abraham, Lot, and the Genesis 14 Rescue"
+      },
+      "desc": {
+        "es": "Resalta Hebrón/Mamre, Sodoma, la zona de Damasco y Salem. El relato de Génesis 14 lleva la persecución más al norte de Damasco; este master no contiene todos esos puntos, por lo que no se dibuja una ruta exacta.",
+        "en": "Highlights Hebron/Mamre, Sodom, the Damascus area, and Salem. Genesis 14 carries the pursuit north of Damascus; this master does not contain every point, so no exact route is drawn."
+      },
+      "stops": [
+        "hebron",
+        "sodoma",
+        "damasco",
+        "salem"
+      ],
+      "scriptureRefs": [
+        "Genesis 13–14"
+      ]
+    },
+    "jacob-haran-regreso": {
+      "mode": "route",
+      "color": "#6f4c8b",
+      "label": {
+        "es": "Jacob: Beerseba → Harán → regreso a Canaán",
+        "en": "Jacob: Beersheba → Haran → Return to Canaan"
+      },
+      "desc": {
+        "es": "Recorrido temático de Jacob desde Beerseba y Betel hacia Harán y su posterior regreso a Canaán. La línea conecta los grandes hitos del relato, no cada parada.",
+        "en": "Thematic route of Jacob from Beersheba and Bethel toward Haran and his later return to Canaan. The line connects major narrative landmarks, not every stop."
+      },
+      "stops": [
+        "beerseba",
+        "betel",
+        "haran",
+        "siquem",
+        "betel",
+        "hebron"
+      ],
+      "scriptureRefs": [
+        "Genesis 28–35"
+      ]
+    }
+  }
+}

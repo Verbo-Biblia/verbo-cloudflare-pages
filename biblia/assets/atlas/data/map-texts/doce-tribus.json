@@ -1,0 +1,411 @@
+{
+  "mapId": "doce-tribus",
+  "strategy": "source-text-key",
+  "note": "Geometry lives only in maps/master. This file localizes SVG <text> nodes without changing paths.",
+  "labels": {
+    "Sidon": {
+      "en": "Sidón",
+      "es": "Sidon"
+    },
+    "Tyre": {
+      "en": "Tiro",
+      "es": "Tyre"
+    },
+    "Ijon": {
+      "en": "Ijon",
+      "es": "Ijón"
+    },
+    "Dan": {
+      "es": "Dan",
+      "en": "Dan"
+    },
+    "Kedesh": {
+      "en": "Kedesh",
+      "es": "Cedes"
+    },
+    "Hazor": {
+      "en": "Hazor",
+      "es": "Hazor"
+    },
+    "Chinnereth": {
+      "en": "Chinnereth",
+      "es": "Cineret"
+    },
+    "Hamath": {
+      "en": "Hamath",
+      "es": "Hamat"
+    },
+    "Ashtaroth": {
+      "en": "Ashtaroth",
+      "es": "Astarot"
+    },
+    "Mount Tabor": {
+      "en": "Mount Tabor",
+      "es": "Monte Tabor"
+    },
+    "Achshaph": {
+      "en": "Achshaph",
+      "es": "Acsaf"
+    },
+    "Helkath": {
+      "en": "Helkath",
+      "es": "Helcat"
+    },
+    "Jokneam": {
+      "en": "Jokneam",
+      "es": "Jocneam"
+    },
+    "Dor": {
+      "en": "Dor",
+      "es": "Dor"
+    },
+    "Megiddo": {
+      "en": "Megiddo",
+      "es": "Meguido"
+    },
+    "Taanach": {
+      "en": "Taanach",
+      "es": "Taanac"
+    },
+    "Jezreel": {
+      "en": "Jezreel",
+      "es": "Jezreel"
+    },
+    "Japhia": {
+      "en": "Japhia",
+      "es": "Jafia"
+    },
+    "Bethshean": {
+      "en": "Bethshean",
+      "es": "Bet-seán"
+    },
+    "Camon": {
+      "en": "Camon",
+      "es": "Camón"
+    },
+    "Edrei": {
+      "en": "Edrei",
+      "es": "Edrei"
+    },
+    "Ramoth-Gilead": {
+      "en": "Ramoth-Gilead",
+      "es": "Ramot de Galaad"
+    },
+    "Shamir": {
+      "en": "Shamir",
+      "es": "Samir"
+    },
+    "Tirzah": {
+      "en": "Tirzah",
+      "es": "Tirsa"
+    },
+    "Shechem": {
+      "en": "Siquem",
+      "es": "Shechem"
+    },
+    "Pirathon": {
+      "en": "Pirathon",
+      "es": "Piratón"
+    },
+    "Zaphon": {
+      "en": "Zaphon",
+      "es": "Zafón"
+    },
+    "Mahanaim": {
+      "en": "Mahanaim",
+      "es": "Mahanaim"
+    },
+    "Gathrimmon": {
+      "en": "Gathrimmon",
+      "es": "Gat-rimón"
+    },
+    "Joppa": {
+      "en": "Joppa",
+      "es": "Jope"
+    },
+    "Aphek": {
+      "en": "Aphek",
+      "es": "Afec"
+    },
+    "Shiloh": {
+      "en": "Shiloh",
+      "es": "Silo"
+    },
+    "Eltekeh": {
+      "en": "Eltekeh",
+      "es": "Elteque"
+    },
+    "Gezer": {
+      "en": "Gezer",
+      "es": "Gezer"
+    },
+    "Bethoron": {
+      "en": "Bethoron",
+      "es": "Bet-horón"
+    },
+    "Bethel": {
+      "en": "Bethel",
+      "es": "Betel"
+    },
+    "Ai": {
+      "en": "Ai",
+      "es": "Hai"
+    },
+    "Gilgal": {
+      "en": "Gilgal",
+      "es": "Gilgal"
+    },
+    "Jericho": {
+      "en": "Jericó",
+      "es": "Jericho"
+    },
+    "Gibbethon": {
+      "en": "Gibbethon",
+      "es": "Gibetón"
+    },
+    "Gibeon": {
+      "en": "Gibeon",
+      "es": "Gabaón"
+    },
+    "Aijalon": {
+      "en": "Aijalon",
+      "es": "Ajalón"
+    },
+    "Ekron": {
+      "en": "Ekron",
+      "es": "Ecrón"
+    },
+    "Ashdod": {
+      "en": "Asdod",
+      "es": "Ashdod"
+    },
+    "Ashkelon": {
+      "en": "Ascalón",
+      "es": "Ashkelon"
+    },
+    "Gath": {
+      "en": "Gath",
+      "es": "Gat"
+    },
+    "Jarmuth": {
+      "en": "Jarmuth",
+      "es": "Jarmut"
+    },
+    "Bethlehem": {
+      "en": "Bethlehem",
+      "es": "Belén"
+    },
+    "Jerusalem": {
+      "en": "Jerusalén",
+      "es": "Jerusalem"
+    },
+    "Heshbon": {
+      "en": "Heshbon",
+      "es": "Hesbón"
+    },
+    "Mephaath": {
+      "en": "Mephaath",
+      "es": "Mefaat"
+    },
+    "Mount Nebo": {
+      "en": "Mount Nebo",
+      "es": "Monte Nebo"
+    },
+    "Bezer": {
+      "en": "Bezer",
+      "es": "Beser"
+    },
+    "Lachish": {
+      "en": "Láquis",
+      "es": "Lachish"
+    },
+    "Hebron": {
+      "en": "Hebrón",
+      "es": "Hebron"
+    },
+    "Debir": {
+      "en": "Debir",
+      "es": "Debir"
+    },
+    "Esh-temoa": {
+      "en": "Esh-temoa",
+      "es": "Estemoa"
+    },
+    "Arad": {
+      "en": "Arad",
+      "es": "Arad"
+    },
+    "Beersheba": {
+      "en": "Beerseba",
+      "es": "Beersheba"
+    },
+    "Jahaza": {
+      "en": "Jahaza",
+      "es": "Jahaza"
+    },
+    "Gaza": {
+      "en": "Gaza",
+      "es": "Gaza"
+    },
+    "Gerar": {
+      "en": "Gerar",
+      "es": "Gerar"
+    },
+    "Kadesh": {
+      "en": "Kadesh",
+      "es": "Cades"
+    },
+    "Zoar": {
+      "en": "Zoar",
+      "es": "Zoar"
+    },
+    "Kirhareseth": {
+      "en": "Kirhareseth",
+      "es": "Kir-hareset"
+    },
+    "Tamar": {
+      "en": "Tamar",
+      "es": "Tamar"
+    },
+    "zalmona": {
+      "en": "zalmona",
+      "es": "Zalmona"
+    },
+    "Bozrah": {
+      "en": "Bozrah",
+      "es": "Bosra"
+    },
+    "Punon": {
+      "en": "Punon",
+      "es": "Punón"
+    },
+    "ASER": {
+      "es": "ASER",
+      "en": "ASHER"
+    },
+    "NEFTALÍ": {
+      "es": "NEFTALÍ",
+      "en": "NAPHTALI"
+    },
+    "ZABULÓN": {
+      "es": "ZABULÓN",
+      "en": "ZEBULUN"
+    },
+    "ISACAR": {
+      "es": "ISACAR",
+      "en": "ISSACHAR"
+    },
+    "MANASÉS": {
+      "es": "MANASÉS",
+      "en": "MANASSEH"
+    },
+    "DAN": {
+      "es": "DAN",
+      "en": "DAN"
+    },
+    "EFRAÍN": {
+      "es": "EFRAÍN",
+      "en": "EPHRAIM"
+    },
+    "BENJAMÍN": {
+      "es": "BENJAMÍN",
+      "en": "BENJAMIN"
+    },
+    "JUDÁ": {
+      "es": "JUDÁ",
+      "en": "JUDAH"
+    },
+    "SIMEÓN": {
+      "es": "SIMEÓN",
+      "en": "SIMEON"
+    },
+    "GAD": {
+      "es": "GAD",
+      "en": "GAD"
+    },
+    "RUBÉN": {
+      "es": "RUBÉN",
+      "en": "REUBEN"
+    },
+    "BASÁN": {
+      "es": "BASÁN",
+      "en": "BASHAN"
+    },
+    "AMÓN": {
+      "es": "AMÓN",
+      "en": "AMMON"
+    },
+    "MOAB": {
+      "es": "MOAB",
+      "en": "MOAB"
+    },
+    "EDOM": {
+      "es": "EDOM",
+      "en": "EDOM"
+    },
+    "AMALEC": {
+      "es": "AMALEC",
+      "en": "AMALEK"
+    },
+    "ARAMEOS": {
+      "es": "ARAMEOS",
+      "en": "ARAMEANS"
+    },
+    "FILISTEA": {
+      "es": "FILISTEA",
+      "en": "PHILISTIA"
+    },
+    "Wilderness of": {
+      "en": "Wilderness of",
+      "es": "Desierto de"
+    },
+    "Zin": {
+      "en": "Zin",
+      "es": "Zin"
+    },
+    "Mediterráneo": {
+      "es": "Mediterráneo",
+      "en": "Mediterranean"
+    },
+    "Mar": {
+      "es": "Mar",
+      "en": "Sea"
+    },
+    "River Jordan": {
+      "en": "River Jordan",
+      "es": "Río Jordán"
+    },
+    "Dead Sea": {
+      "en": "Dead Sea",
+      "es": "Mar Muerto"
+    },
+    "THE TWELVE TRIBES": {
+      "en": "THE TWELVE TRIBES",
+      "es": "LAS DOCE TRIBUS"
+    },
+    "OF ISRAEL": {
+      "en": "OF ISRAEL",
+      "es": "DE ISRAEL"
+    },
+    "Around 1200-1050 B.C.": {
+      "en": "Around 1200-1050 B.C.",
+      "es": "Alrededor de 1200-1050 a. C."
+    },
+    "(according to the Book of Joshua)": {
+      "en": "(according to the Book of Joshua)",
+      "es": "(según el libro de Josué)"
+    },
+    "0": {
+      "es": "0",
+      "en": "0"
+    },
+    "(km)": {
+      "es": "(km)",
+      "en": "(km)"
+    },
+    "100": {
+      "es": "100",
+      "en": "100"
+    }
+  }
+}

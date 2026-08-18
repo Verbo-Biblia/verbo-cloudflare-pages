@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verbo Maps — Atlas interactivo</title>
+<link rel="stylesheet" href="style.css?v=20260818-step2">
+</head>
+<body>
+
+  <header class="chrome">
+    <div class="chrome-title">
+      <span class="eyebrow">Atlas Verbo</span>
+      <h1 id="map-title"></h1>
+    </div>
+
+    <div class="chrome-controls">
+      <label class="control">
+        <span class="control-label" id="map-control-label">Mapa</span>
+        <select id="map-select"></select>
+      </label>
+      <label class="control">
+        <span class="control-label" id="use-control-label">Uso / ruta</span>
+        <select id="journey-select"></select>
+      </label>
+    </div>
+  </header>
+
+  <main class="map-stage">
+    <div id="map-frame" class="map-frame" tabindex="0" aria-label="Mapa interactivo. Usa rueda, pellizco o controles para acercar y alejar.">
+      <div class="map-frame-inner">
+        <svg id="map-svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <marker id="atlasArrowHead" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+              <path d="M0,0 L10,5 L0,10 Z" fill="var(--route)"/>
+            </marker>
+          </defs>
+          <!-- The approved SVG is injected here unchanged. No GeoJSON projection. -->
+          <g id="layer-master-map"></g>
+          <!-- Interactivity lives above the immutable master. -->
+          <g id="layer-route"></g>
+          <g id="layer-pins"></g>
+        </svg>
+      </div>
+      <div class="zoom-controls" role="group" aria-label="Controles de zoom">
+        <button id="zoom-in" class="zoom-button" type="button" aria-label="Acercar" title="Acercar">+</button>
+        <div id="zoom-indicator" class="zoom-indicator" aria-live="polite">100%</div>
+        <button id="zoom-out" class="zoom-button" type="button" aria-label="Alejar" title="Alejar">−</button>
+        <button id="zoom-reset" class="zoom-button zoom-reset" type="button" aria-label="Restablecer vista" title="Restablecer vista">⌂</button>
+      </div>
+      <span class="frame-corner tl"></span>
+      <span class="frame-corner tr"></span>
+      <span class="frame-corner bl"></span>
+      <span class="frame-corner br"></span>
+      <span class="map-brand">VERBO <strong>MAPS</strong></span>
+    </div>
+
+    <p class="hint" id="hint-text">Selecciona un uso o ruta · Toca un punto para ver su historia</p>
+  </main>
+
+  <div id="panel-backdrop" class="panel-backdrop"></div>
+  <aside id="info-panel" class="info-panel" aria-hidden="true" aria-labelledby="panel-title">
+    <button id="panel-close" class="panel-close" type="button" aria-label="Cerrar">&times;</button>
+
+    <div class="panel-heading">
+      <div class="panel-kicker" id="panel-kicker"></div>
+      <h2 id="panel-title"></h2>
+    </div>
+
+    <div class="panel-layout">
+      <section id="panel-media" class="panel-media" aria-label="Galería de imágenes" hidden>
+        <div class="media-card">
+          <div class="media-viewport">
+            <img id="panel-image" alt="" loading="eager" decoding="async">
+            <button id="media-prev" class="media-nav media-prev" type="button" aria-label="Imagen anterior">&#8249;</button>
+            <button id="media-next" class="media-nav media-next" type="button" aria-label="Imagen siguiente">&#8250;</button>
+            <div id="media-counter" class="media-counter" aria-live="polite"></div>
+          </div>
+          <div class="media-card-body">
+            <p id="media-caption" class="media-caption"></p>
+            <p id="media-representative" class="media-representative" hidden></p>
+            <div class="media-credit">
+              <span id="media-license"></span>
+              <span aria-hidden="true">·</span>
+              <a id="media-source" target="_blank" rel="noopener noreferrer"></a>
+            </div>
+            <div id="media-dots" class="media-dots" role="tablist" aria-label="Seleccionar imagen"></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="panel-story">
+        <p id="panel-desc"></p>
+
+        <section id="panel-scripture" class="panel-scripture">
+          <h3 id="scripture-heading">Textos bíblicos</h3>
+          <div id="scripture-refs" class="scripture-refs"></div>
+          <div id="scripture-text" class="scripture-text"></div>
+        </section>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Sin dependencias externas: SVG maestro real + capas interactivas. -->
+  <script src="map.js?v=20260818-step2"></script>
+</body>
+</html>

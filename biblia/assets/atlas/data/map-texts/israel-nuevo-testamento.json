@@ -1,0 +1,719 @@
+{
+  "version": 2,
+  "labels": {
+    "Sidon": {
+      "es": "Sidón",
+      "en": "Sidon"
+    },
+    "Sarepta": {
+      "es": "Sarepta",
+      "en": "Sarepta"
+    },
+    "Tyre": {
+      "es": "Tiro",
+      "en": "Tyre"
+    },
+    "Ptolemais": {
+      "es": "Tolemaida",
+      "en": "Ptolemais"
+    },
+    "Caesarea": {
+      "es": "Cesarea",
+      "en": "Caesarea"
+    },
+    "Joppa": {
+      "es": "Jope",
+      "en": "Joppa"
+    },
+    "Ashkelon": {
+      "es": "Ascalón",
+      "en": "Ashkelon"
+    },
+    "Gaza": {
+      "es": "Gaza",
+      "en": "Gaza"
+    },
+    "Samaria": {
+      "es": "Samaria",
+      "en": "Samaria"
+    },
+    "Sychar, Shechem": {
+      "es": "Sicar, Siquem",
+      "en": "Sychar, Shechem"
+    },
+    "Antipatris": {
+      "es": "Antípatris",
+      "en": "Antipatris"
+    },
+    "Lydda": {
+      "es": "Lida",
+      "en": "Lydda"
+    },
+    "Arimathea": {
+      "es": "Arimatea",
+      "en": "Arimathea"
+    },
+    "Emmaus": {
+      "es": "Emaús",
+      "en": "Emmaus"
+    },
+    "Jerusalem": {
+      "es": "Jerusalén",
+      "en": "Jerusalem"
+    },
+    "Bethlehem": {
+      "es": "Belén",
+      "en": "Bethlehem"
+    },
+    "Bethany": {
+      "es": "Betania",
+      "en": "Bethany"
+    },
+    "Jericho": {
+      "es": "Jericó",
+      "en": "Jericho"
+    },
+    "Qumran": {
+      "es": "Qumrán",
+      "en": "Qumran"
+    },
+    "Herodium": {
+      "es": "Herodión",
+      "en": "Herodium"
+    },
+    "Hebron": {
+      "es": "Hebrón",
+      "en": "Hebron"
+    },
+    "Masada": {
+      "es": "Masada",
+      "en": "Masada"
+    },
+    "Capernaum": {
+      "es": "Capernaúm",
+      "en": "Capernaum"
+    },
+    "Chorazin": {
+      "es": "Corazín",
+      "en": "Chorazin"
+    },
+    "Bethsaida": {
+      "es": "Betsaida",
+      "en": "Bethsaida"
+    },
+    "Magdala": {
+      "es": "Magdala",
+      "en": "Magdala"
+    },
+    "Tiberias": {
+      "es": "Tiberíades",
+      "en": "Tiberias"
+    },
+    "Cana": {
+      "es": "Caná",
+      "en": "Cana"
+    },
+    "Nazareth": {
+      "es": "Nazaret",
+      "en": "Nazareth"
+    },
+    "Nain": {
+      "es": "Naín",
+      "en": "Nain"
+    },
+    "Megiddo": {
+      "es": "Meguido",
+      "en": "Megiddo"
+    },
+    "Scythopolis": {
+      "es": "Escitópolis",
+      "en": "Scythopolis"
+    },
+    "Gadara": {
+      "es": "Gadara",
+      "en": "Gadara"
+    },
+    "Caesarea Philippi": {
+      "es": "Cesarea de Filipo",
+      "en": "Caesarea Philippi"
+    },
+    "Damascus": {
+      "es": "Damasco",
+      "en": "Damascus"
+    },
+    "Mt.Tabor": {
+      "es": "Mt.Tabor",
+      "en": "Mt.Tabor"
+    },
+    "PHOENICIA": {
+      "es": "FENICIA",
+      "en": "PHOENICIA"
+    },
+    "GALILEE": {
+      "es": "GALILEA",
+      "en": "GALILEE"
+    },
+    "SAMARIA": {
+      "es": "SAMARIA",
+      "en": "SAMARIA"
+    },
+    "JUDEA": {
+      "es": "JUDEA",
+      "en": "JUDEA"
+    },
+    "IDUMEA": {
+      "es": "IDUMEA",
+      "en": "IDUMEA"
+    },
+    "NABATAEANS": {
+      "es": "NABATAEANS",
+      "en": "NABATAEANS"
+    },
+    "BATANEA": {
+      "es": "BATANEA",
+      "en": "BATANEA"
+    },
+    "PEREA": {
+      "es": "PEREA",
+      "en": "PEREA"
+    },
+    "DECAPOLIS": {
+      "es": "DECÁPOLIS",
+      "en": "DECAPOLIS"
+    },
+    "TRACHONITIS": {
+      "es": "TRACHONITIS",
+      "en": "TRACHONITIS"
+    },
+    "ITUREA": {
+      "es": "ITUREA",
+      "en": "ITUREA"
+    },
+    "GAULENITIS": {
+      "es": "GAULENITIS",
+      "en": "GAULENITIS"
+    },
+    "ABILENE": {
+      "es": "ABILENE",
+      "en": "ABILENE"
+    },
+    "SYRIA": {
+      "es": "SIRIA",
+      "en": "SYRIA"
+    },
+    "THE GREAT SEA": {
+      "es": "EL GRAN MAR",
+      "en": "THE GREAT SEA"
+    },
+    "(MEDITERRANEAN SEA)": {
+      "es": "(MAR MEDITERRÁNEO)",
+      "en": "(MEDITERRANEAN SEA)"
+    },
+    "Lake Merom": {
+      "es": "Lago Merom",
+      "en": "Lake Merom"
+    },
+    "(Semechonitis)": {
+      "es": "(Semeconitis)",
+      "en": "(Semechonitis)"
+    },
+    "Lake of Gennesaret": {
+      "es": "Lago de Genesaret",
+      "en": "Lake of Gennesaret"
+    },
+    "(sea of Tiberias)": {
+      "es": "(mar de Tiberíades)",
+      "en": "(sea of Tiberias)"
+    },
+    "DEAD": {
+      "es": "MAR",
+      "en": "DEAD"
+    },
+    "(SALT)": {
+      "es": "(SALADO)",
+      "en": "(SALT)"
+    },
+    "SEA": {
+      "es": "MUERTO",
+      "en": "SEA"
+    },
+    "Mt.Carmel": {
+      "es": "Monte Carmelo",
+      "en": "Mt.Carmel"
+    },
+    "Plain of Sharon": {
+      "es": "Llanura de Sarón",
+      "en": "Plain of Sharon"
+    },
+    "Lebanon mts.": {
+      "es": "Montes del Líbano",
+      "en": "Lebanon mts."
+    },
+    "Anti-Lebanon mts.": {
+      "es": "Montes del Antilíbano",
+      "en": "Anti-Lebanon mts."
+    },
+    "I": {
+      "es": "I",
+      "en": "I"
+    },
+    "IIa": {
+      "es": "IIa",
+      "en": "IIa"
+    },
+    "IIb": {
+      "es": "IIb",
+      "en": "IIb"
+    },
+    "III": {
+      "es": "III",
+      "en": "III"
+    },
+    "IV": {
+      "es": "IV",
+      "en": "IV"
+    },
+    "V": {
+      "es": "V",
+      "en": "V"
+    },
+    "VI": {
+      "es": "VI",
+      "en": "VI"
+    },
+    "ISRAEL": {
+      "es": "ISRAEL",
+      "en": "ISRAEL"
+    },
+    "New Testament times": {
+      "es": "Tiempos del Nuevo Testamento",
+      "en": "New Testament times"
+    },
+    "Ruins": {
+      "es": "Ruinas",
+      "en": "Ruins"
+    },
+    "Fortresses": {
+      "es": "Fortalezas",
+      "en": "Fortresses"
+    },
+    "Roman province Judea": {
+      "es": "Provincia romana de Judea",
+      "en": "Roman province Judea"
+    },
+    "(4 BC – 6 AD)": {
+      "es": "(4 BC – 6 AD)",
+      "en": "(4 BC – 6 AD)"
+    },
+    "Tetrarch Archelaus": {
+      "es": "Tetrarca Arquelao",
+      "en": "Tetrarch Archelaus"
+    },
+    "Northern border": {
+      "es": "Frontera norte",
+      "en": "Northern border"
+    },
+    "of Judea": {
+      "es": "de Judea",
+      "en": "of Judea"
+    },
+    "Tetrarchy of Herod Antipas": {
+      "es": "Tetrarquía de Herodes Antipas",
+      "en": "Tetrarchy of Herod Antipas"
+    },
+    "(4 BC – 39 AD)": {
+      "es": "(4 BC – 39 AD)",
+      "en": "(4 BC – 39 AD)"
+    },
+    "Tetrarchy of Philip": {
+      "es": "Tetrarquía de Filipo",
+      "en": "Tetrarchy of Philip"
+    },
+    "(4 BC – 34 AD)": {
+      "es": "(4 BC – 34 AD)",
+      "en": "(4 BC – 34 AD)"
+    },
+    "Roman province Syria": {
+      "es": "Provincia romana de Siria",
+      "en": "Roman province Syria"
+    },
+    "Tetrarchy of Lysanias": {
+      "es": "Tetrarquía de Lisanias",
+      "en": "Tetrarchy of Lysanias"
+    },
+    "Decapolis": {
+      "es": "Decápolis",
+      "en": "Decapolis"
+    },
+    "ELEVATION": {
+      "es": "ELEVACIÓN",
+      "en": "ELEVATION"
+    },
+    "3000": {
+      "es": "3000",
+      "en": "3000"
+    },
+    "2200": {
+      "es": "2200",
+      "en": "2200"
+    },
+    "1500": {
+      "es": "1500",
+      "en": "1500"
+    },
+    "1000": {
+      "es": "1000",
+      "en": "1000"
+    },
+    "600": {
+      "es": "600",
+      "en": "600"
+    },
+    "300": {
+      "es": "300",
+      "en": "300"
+    },
+    "0": {
+      "es": "0",
+      "en": "0"
+    },
+    "-415 m": {
+      "es": "-415 m",
+      "en": "-415 m"
+    },
+    "10000": {
+      "es": "10000",
+      "en": "10000"
+    },
+    "7500": {
+      "es": "7500",
+      "en": "7500"
+    },
+    "5000": {
+      "es": "5000",
+      "en": "5000"
+    },
+    "3500": {
+      "es": "3500",
+      "en": "3500"
+    },
+    "2000": {
+      "es": "2000",
+      "en": "2000"
+    },
+    "-1360 feet": {
+      "es": "-1360 feet",
+      "en": "-1360 feet"
+    },
+    "20": {
+      "es": "20",
+      "en": "20"
+    },
+    "40": {
+      "es": "40",
+      "en": "40"
+    },
+    "60": {
+      "es": "60",
+      "en": "60"
+    },
+    "80": {
+      "es": "80",
+      "en": "80"
+    },
+    "100": {
+      "es": "100",
+      "en": "100"
+    },
+    "km": {
+      "es": "km",
+      "en": "km"
+    }
+  },
+  "keys": {
+    "place.sidon": {
+      "es": "Sidón",
+      "en": "Sidon"
+    },
+    "place.sarepta": {
+      "es": "Sarepta",
+      "en": "Sarepta"
+    },
+    "place.tyre": {
+      "es": "Tiro",
+      "en": "Tyre"
+    },
+    "place.ptolemais": {
+      "es": "Tolemaida",
+      "en": "Ptolemais"
+    },
+    "place.caesarea": {
+      "es": "Cesarea",
+      "en": "Caesarea"
+    },
+    "place.joppa": {
+      "es": "Jope",
+      "en": "Joppa"
+    },
+    "place.ashkelon": {
+      "es": "Ascalón",
+      "en": "Ashkelon"
+    },
+    "place.gaza": {
+      "es": "Gaza",
+      "en": "Gaza"
+    },
+    "place.samaria": {
+      "es": "Samaria",
+      "en": "Samaria"
+    },
+    "place.sychar_shechem": {
+      "es": "Sicar, Siquem",
+      "en": "Sychar, Shechem"
+    },
+    "place.antipatris": {
+      "es": "Antípatris",
+      "en": "Antipatris"
+    },
+    "place.lydda": {
+      "es": "Lida",
+      "en": "Lydda"
+    },
+    "place.arimathea": {
+      "es": "Arimatea",
+      "en": "Arimathea"
+    },
+    "place.emmaus": {
+      "es": "Emaús",
+      "en": "Emmaus"
+    },
+    "place.jerusalem": {
+      "es": "Jerusalén",
+      "en": "Jerusalem"
+    },
+    "place.bethlehem": {
+      "es": "Belén",
+      "en": "Bethlehem"
+    },
+    "place.bethany": {
+      "es": "Betania",
+      "en": "Bethany"
+    },
+    "place.jericho": {
+      "es": "Jericó",
+      "en": "Jericho"
+    },
+    "place.qumran": {
+      "es": "Qumrán",
+      "en": "Qumran"
+    },
+    "place.herodium": {
+      "es": "Herodión",
+      "en": "Herodium"
+    },
+    "place.hebron": {
+      "es": "Hebrón",
+      "en": "Hebron"
+    },
+    "place.masada": {
+      "es": "Masada",
+      "en": "Masada"
+    },
+    "place.capernaum": {
+      "es": "Capernaúm",
+      "en": "Capernaum"
+    },
+    "place.chorazin": {
+      "es": "Corazín",
+      "en": "Chorazin"
+    },
+    "place.bethsaida": {
+      "es": "Betsaida",
+      "en": "Bethsaida"
+    },
+    "place.magdala": {
+      "es": "Magdala",
+      "en": "Magdala"
+    },
+    "place.tiberias": {
+      "es": "Tiberíades",
+      "en": "Tiberias"
+    },
+    "place.cana": {
+      "es": "Caná",
+      "en": "Cana"
+    },
+    "place.nazareth": {
+      "es": "Nazaret",
+      "en": "Nazareth"
+    },
+    "place.nain": {
+      "es": "Naín",
+      "en": "Nain"
+    },
+    "place.megiddo": {
+      "es": "Meguido",
+      "en": "Megiddo"
+    },
+    "place.scythopolis": {
+      "es": "Escitópolis",
+      "en": "Scythopolis"
+    },
+    "place.gadara": {
+      "es": "Gadara",
+      "en": "Gadara"
+    },
+    "place.caesarea_philippi": {
+      "es": "Cesarea de Filipo",
+      "en": "Caesarea Philippi"
+    },
+    "place.damascus": {
+      "es": "Damasco",
+      "en": "Damascus"
+    },
+    "place.mt_tabor": {
+      "es": "Mt.Tabor",
+      "en": "Mt.Tabor"
+    },
+    "place.mt_carmel": {
+      "es": "Meguido",
+      "en": "Megiddo"
+    },
+    "label.phoenicia": {
+      "es": "FENICIA",
+      "en": "PHOENICIA"
+    },
+    "label.galilee": {
+      "es": "GALILEA",
+      "en": "GALILEE"
+    },
+    "label.samaria": {
+      "es": "SAMARIA",
+      "en": "SAMARIA"
+    },
+    "label.judea": {
+      "es": "JUDEA",
+      "en": "JUDEA"
+    },
+    "label.idumea": {
+      "es": "IDUMEA",
+      "en": "IDUMEA"
+    },
+    "label.nabataeans": {
+      "es": "NABATAEANS",
+      "en": "NABATAEANS"
+    },
+    "label.batanea": {
+      "es": "BATANEA",
+      "en": "BATANEA"
+    },
+    "label.perea": {
+      "es": "PEREA",
+      "en": "PEREA"
+    },
+    "label.decapolis": {
+      "es": "DECÁPOLIS",
+      "en": "DECAPOLIS"
+    },
+    "label.trachonitis": {
+      "es": "TRACHONITIS",
+      "en": "TRACHONITIS"
+    },
+    "label.iturea": {
+      "es": "ITUREA",
+      "en": "ITUREA"
+    },
+    "label.gaulenitis": {
+      "es": "GAULENITIS",
+      "en": "GAULENITIS"
+    },
+    "label.abilene": {
+      "es": "ABILENE",
+      "en": "ABILENE"
+    },
+    "label.syria": {
+      "es": "SIRIA",
+      "en": "SYRIA"
+    },
+    "label.the_great_sea": {
+      "es": "EL GRAN MAR",
+      "en": "THE GREAT SEA"
+    },
+    "label.mediterranean_sea": {
+      "es": "(MAR MEDITERRÁNEO)",
+      "en": "(MEDITERRANEAN SEA)"
+    },
+    "label.lake_merom": {
+      "es": "Lago Merom",
+      "en": "Lake Merom"
+    },
+    "label.semechonitis": {
+      "es": "(Semeconitis)",
+      "en": "(Semechonitis)"
+    },
+    "label.lake_of_gennesaret": {
+      "es": "Lago de Genesaret",
+      "en": "Lake of Gennesaret"
+    },
+    "label.sea_of_tiberias": {
+      "es": "(mar de Tiberíades)",
+      "en": "(sea of Tiberias)"
+    },
+    "label.dead": {
+      "es": "MAR",
+      "en": "DEAD"
+    },
+    "label.salt": {
+      "es": "(SALADO)",
+      "en": "(SALT)"
+    },
+    "label.sea": {
+      "es": "MUERTO",
+      "en": "SEA"
+    },
+    "label.mtcarmel": {
+      "es": "Monte Carmelo",
+      "en": "Mt.Carmel"
+    },
+    "label.plain_of_sharon": {
+      "es": "Llanura de Sarón",
+      "en": "Plain of Sharon"
+    },
+    "label.lebanon_mts": {
+      "es": "Montes del Líbano",
+      "en": "Lebanon mts."
+    },
+    "label.antilebanon_mts": {
+      "es": "Montes del Antilíbano",
+      "en": "Anti-Lebanon mts."
+    },
+    "roman.i": {
+      "es": "I",
+      "en": "I"
+    },
+    "roman.iia": {
+      "es": "IIa",
+      "en": "IIa"
+    },
+    "roman.iib": {
+      "es": "IIb",
+      "en": "IIb"
+    },
+    "roman.iii": {
+      "es": "III",
+      "en": "III"
+    },
+    "roman.iv": {
+      "es": "IV",
+      "en": "IV"
+    },
+    "roman.v": {
+      "es": "V",
+      "en": "V"
+    },
+    "roman.vi": {
+      "es": "VI",
+      "en": "VI"
+    }
+  }
+}

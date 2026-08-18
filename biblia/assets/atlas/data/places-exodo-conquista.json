@@ -1,0 +1,816 @@
+{
+  "places": {
+    "rameses": {
+      "name": {
+        "es": "Ramesés / Zoán",
+        "en": "Rameses / Zoan"
+      },
+      "type": "site",
+      "desc": {
+        "es": "Punto de partida tradicionalmente propuesto para el éxodo en esta cartografía.",
+        "en": "Punto de partida tradicionalmente propuesto para el éxodo en esta cartografía."
+      },
+      "mapPosition": [
+        322,
+        341
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "egypt",
+      "mediaScope": "regional"
+    },
+    "sucot": {
+      "name": {
+        "es": "Sucot",
+        "en": "Succoth"
+      },
+      "type": "site",
+      "desc": {
+        "es": "Primera estación nombrada después de la salida desde Ramesés (Éxodo 12:37).",
+        "en": "Primera estación nombrada después de la salida desde Ramesés (Éxodo 12:37)."
+      },
+      "mapPosition": [
+        404,
+        344
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "egypt",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "Exodus 12:37"
+      ]
+    },
+    "etam": {
+      "name": {
+        "es": "Etam?",
+        "en": "Etham?"
+      },
+      "type": "site",
+      "desc": {
+        "es": "Estación junto al borde del desierto; su ubicación exacta es discutida.",
+        "en": "Estación junto al borde del desierto; su ubicación exacta es discutida."
+      },
+      "mapPosition": [
+        406,
+        388
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "egypt",
+      "mediaScope": "regional"
+    },
+    "pi-hahirot": {
+      "name": {
+        "es": "Pi-hahirot?",
+        "en": "Pi-hahiroth?"
+      },
+      "type": "site",
+      "desc": {
+        "es": "Lugar asociado con el campamento antes del cruce del mar; la ubicación exacta es discutida.",
+        "en": "Lugar asociado con el campamento antes del cruce del mar; la ubicación exacta es discutida."
+      },
+      "mapPosition": [
+        404,
+        447
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "egypt",
+      "mediaScope": "regional"
+    },
+    "baal-zefon": {
+      "name": {
+        "es": "Baal-zefón",
+        "en": "Baal-zephon"
+      },
+      "type": "site",
+      "desc": {
+        "es": "Lugar mencionado en el contexto del cruce del mar (Éxodo 14).",
+        "en": "Lugar mencionado en el contexto del cruce del mar (Éxodo 14)."
+      },
+      "mapPosition": [
+        395,
+        474
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "egypt",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "Exodus 14"
+      ]
+    },
+    "mara": {
+      "name": {
+        "es": "Mara?",
+        "en": "Marah?"
+      },
+      "type": "site",
+      "desc": {
+        "es": "Estación donde las aguas eran amargas (Éxodo 15:23-25).",
+        "en": "Estación donde las aguas eran amargas (Éxodo 15:23-25)."
+      },
+      "mapPosition": [
+        457,
+        512
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "sinai",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "Exodus 15:23-25"
+      ]
+    },
+    "elim": {
+      "name": {
+        "es": "Elim?",
+        "en": "Elim?"
+      },
+      "type": "site",
+      "desc": {
+        "es": "Lugar de doce fuentes y setenta palmeras (Éxodo 15:27).",
+        "en": "Lugar de doce fuentes y setenta palmeras (Éxodo 15:27)."
+      },
+      "mapPosition": [
+        512,
+        565
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "sinai",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "Exodus 15:27"
+      ]
+    },
+    "dofca": {
+      "name": {
+        "es": "Dofca?",
+        "en": "Dophkah?"
+      },
+      "type": "site",
+      "desc": {
+        "es": "Estación del itinerario del desierto mencionada en Números 33.",
+        "en": "Estación del itinerario del desierto mencionada en Números 33."
+      },
+      "mapPosition": [
+        563,
+        611
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "sinai",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "Numbers 33"
+      ]
+    },
+    "alus": {
+      "name": {
+        "es": "Alús?",
+        "en": "Alush?"
+      },
+      "type": "site",
+      "desc": {
+        "es": "Estación del itinerario del desierto mencionada en Números 33.",
+        "en": "Estación del itinerario del desierto mencionada en Números 33."
+      },
+      "mapPosition": [
+        583,
+        647
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "sinai",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "Numbers 33"
+      ]
+    },
+    "refidim": {
+      "name": {
+        "es": "Refidim?",
+        "en": "Rephidim?"
+      },
+      "type": "site",
+      "desc": {
+        "es": "Lugar asociado con agua de la roca y la batalla contra Amalec (Éxodo 17).",
+        "en": "Lugar asociado con agua de la roca y la batalla contra Amalec (Éxodo 17)."
+      },
+      "mapPosition": [
+        529,
+        691
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "sinai",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "Exodus 17"
+      ]
+    },
+    "sinai": {
+      "name": {
+        "es": "Monte Sinaí / Horeb?",
+        "en": "Mt. Sinai / Horeb?"
+      },
+      "type": "site",
+      "desc": {
+        "es": "Monte asociado con la entrega de la ley. La identificación cartográfica exacta es discutida.",
+        "en": "Monte asociado con la entrega de la ley. La identificación cartográfica exacta es discutida."
+      },
+      "mapPosition": [
+        580,
+        732
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "sinai",
+      "mediaScope": "regional"
+    },
+    "kibrot": {
+      "name": {
+        "es": "Kibrot-hataava?",
+        "en": "Kibroth-hattaavah?"
+      },
+      "type": "site",
+      "desc": {
+        "es": "Estación posterior al Sinaí mencionada en Números 11 y 33.",
+        "en": "Estación posterior al Sinaí mencionada en Números 11 y 33."
+      },
+      "mapPosition": [
+        597,
+        630
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "sinai",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "Numbers 11"
+      ]
+    },
+    "hazerot": {
+      "name": {
+        "es": "Hazerot?",
+        "en": "Hazeroth?"
+      },
+      "type": "site",
+      "desc": {
+        "es": "Estación posterior a Kibrot-hataava (Números 11–12).",
+        "en": "Estación posterior a Kibrot-hataava (Números 11–12)."
+      },
+      "mapPosition": [
+        635,
+        598
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "sinai",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "Numbers 11–12"
+      ]
+    },
+    "cades": {
+      "name": {
+        "es": "Cades-barnea?",
+        "en": "Kadesh-barnea?"
+      },
+      "type": "site",
+      "desc": {
+        "es": "Lugar central en los relatos del desierto y del envío de los espías. Su ubicación precisa se marca como propuesta.",
+        "en": "Lugar central en los relatos del desierto y del envío de los espías. Su ubicación precisa se marca como propuesta."
+      },
+      "mapPosition": [
+        522,
+        430
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "sinai",
+      "mediaScope": "regional"
+    },
+    "ezion": {
+      "name": {
+        "es": "Ezión-geber",
+        "en": "Ezion-geber"
+      },
+      "type": "site",
+      "desc": {
+        "es": "Estación cerca del golfo de Aqaba en el recorrido por el sur.",
+        "en": "Estación cerca del golfo de Aqaba en el recorrido por el sur."
+      },
+      "mapPosition": [
+        654,
+        491
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "transjordan",
+      "mediaScope": "regional"
+    },
+    "obot": {
+      "name": {
+        "es": "Obot?",
+        "en": "Oboth?"
+      },
+      "type": "site",
+      "desc": {
+        "es": "Estación del trayecto hacia el territorio de Moab (Números 21:10).",
+        "en": "Estación del trayecto hacia el territorio de Moab (Números 21:10)."
+      },
+      "mapPosition": [
+        730,
+        388
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "transjordan",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "Numbers 21:10"
+      ]
+    },
+    "ije": {
+      "name": {
+        "es": "Ije-abarim?",
+        "en": "Ije-abarim?"
+      },
+      "type": "site",
+      "desc": {
+        "es": "Estación en el desierto frente a Moab (Números 21:11).",
+        "en": "Estación en el desierto frente a Moab (Números 21:11)."
+      },
+      "mapPosition": [
+        776,
+        350
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "transjordan",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "Numbers 21:11"
+      ]
+    },
+    "dibon": {
+      "name": {
+        "es": "Dibón",
+        "en": "Dibon"
+      },
+      "type": "site",
+      "desc": {
+        "es": "Ciudad moabita de Transjordania.",
+        "en": "Ciudad moabita de Transjordania."
+      },
+      "mapPosition": [
+        809,
+        267
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "transjordan",
+      "mediaScope": "regional"
+    },
+    "hesbon": {
+      "name": {
+        "es": "Hesbón",
+        "en": "Heshbon"
+      },
+      "type": "site",
+      "desc": {
+        "es": "Capital de Sehón, rey amorreo, conquistada por Israel (Números 21).",
+        "en": "Capital de Sehón, rey amorreo, conquistada por Israel (Números 21)."
+      },
+      "mapPosition": [
+        814,
+        233
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "transjordan",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "Numbers 21"
+      ]
+    },
+    "jerico": {
+      "name": {
+        "es": "Jericó",
+        "en": "Jericho"
+      },
+      "type": "site",
+      "desc": {
+        "es": "Primera gran ciudad de Canaán en el relato de Josué 6.",
+        "en": "Primera gran ciudad de Canaán en el relato de Josué 6."
+      },
+      "mapPosition": [
+        760,
+        220
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "jericho",
+      "mediaScope": "exact",
+      "scriptureRefs": [
+        "Joshua 6"
+      ]
+    },
+    "gilgal": {
+      "name": {
+        "es": "Gilgal",
+        "en": "Gilgal"
+      },
+      "type": "site",
+      "desc": {
+        "es": "Primer centro importante de Israel después de cruzar el Jordán (Josué 4–5).",
+        "en": "Primer centro importante de Israel después de cruzar el Jordán (Josué 4–5)."
+      },
+      "mapPosition": [
+        779,
+        242
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "jordan-rift",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "Joshua 4–5"
+      ]
+    },
+    "jerusalen": {
+      "name": {
+        "es": "Jerusalén / Jebús",
+        "en": "Jerusalem / Jebus"
+      },
+      "type": "site",
+      "desc": {
+        "es": "Ciudad cananea que más tarde se convertiría en la capital de David.",
+        "en": "Ciudad cananea que más tarde se convertiría en la capital de David."
+      },
+      "mapPosition": [
+        730,
+        234
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "jerusalem",
+      "mediaScope": "exact"
+    },
+    "hebron": {
+      "name": {
+        "es": "Hebrón",
+        "en": "Hebron"
+      },
+      "type": "site",
+      "desc": {
+        "es": "Ciudad importante de la región montañosa de Judá.",
+        "en": "Ciudad importante de la región montañosa de Judá."
+      },
+      "mapPosition": [
+        713,
+        284
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "hebron",
+      "mediaScope": "regional"
+    },
+    "laquis": {
+      "name": {
+        "es": "Laquis",
+        "en": "Lachish"
+      },
+      "type": "site",
+      "desc": {
+        "es": "Ciudad fortificada del sur de Canaán.",
+        "en": "Ciudad fortificada del sur de Canaán."
+      },
+      "mapPosition": [
+        690,
+        258
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "lachish",
+      "mediaScope": "regional"
+    },
+    "gaza": {
+      "name": {
+        "es": "Gaza",
+        "en": "Gaza"
+      },
+      "type": "site",
+      "desc": {
+        "es": "Ciudad costera filistea en el suroeste de Canaán.",
+        "en": "Ciudad costera filistea en el suroeste de Canaán."
+      },
+      "mapPosition": [
+        653,
+        264
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "gaza",
+      "mediaScope": "regional"
+    },
+    "escol": {
+      "name": {
+        "es": "Valle de Escol (región aproximada)",
+        "en": "Valley of Eshcol (approximate region)"
+      },
+      "type": "site",
+      "desc": {
+        "es": "Región asociada con el racimo de uvas de Números 13. La posición es aproximada, cerca de Hebrón, y no pretende fijar una coordenada arqueológica exacta.",
+        "en": "Region associated with the cluster of grapes in Numbers 13. The position is approximate, near Hebron, and is not intended as an exact archaeological coordinate."
+      },
+      "mapPosition": [
+        700,
+        294
+      ],
+      "mapPositionSource": "thematic-approximation",
+      "mediaKey": "hebron",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "Numbers 13"
+      ]
+    },
+    "ai": {
+      "name": {
+        "es": "Hai / Ai (posición aproximada)",
+        "en": "Ai (approximate position)"
+      },
+      "type": "site",
+      "desc": {
+        "es": "Hai es central en Josué 7–8. El punto es aproximado dentro de la zona representada por este mapa y no debe leerse como una identificación arqueológica definitiva.",
+        "en": "Ai is central in Joshua 7–8. The point is approximate within the region represented by this map and should not be read as a definitive archaeological identification."
+      },
+      "mapPosition": [
+        748,
+        225
+      ],
+      "mapPositionSource": "thematic-approximation",
+      "mediaKey": "jericho",
+      "mediaScope": "exact",
+      "scriptureRefs": [
+        "Joshua 7–8"
+      ]
+    },
+    "hazor": {
+      "name": {
+        "es": "Hazor",
+        "en": "Hazor"
+      },
+      "type": "city",
+      "desc": {
+        "es": "Centro principal de la coalición del norte en Josué 11.",
+        "en": "Major center of the northern coalition in Joshua 11."
+      },
+      "mapPosition": [
+        730,
+        129
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "hazor-north",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "Joshua 11"
+      ]
+    },
+    "merom": {
+      "name": {
+        "es": "Aguas de Merom (región)",
+        "en": "Waters of Merom (region)"
+      },
+      "type": "site",
+      "desc": {
+        "es": "Región asociada con la campaña del norte en Josué 11. La cartografía antigua no permite tratar este punto como una coordenada exacta.",
+        "en": "Region associated with the northern campaign in Joshua 11. Ancient cartography does not permit treating this point as an exact coordinate."
+      },
+      "mapPosition": [
+        728,
+        151
+      ],
+      "mapPositionSource": "thematic-region",
+      "mediaKey": "hazor-north",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "Joshua 11"
+      ]
+    }
+  },
+  "journeys": {
+    "egipto-sinai": {
+      "mode": "route",
+      "color": "#2d86ff",
+      "label": {
+        "es": "De Egipto al Sinaí",
+        "en": "From Egypt to Sinai"
+      },
+      "desc": {
+        "es": "Ruta basada en las estaciones representadas en el mapa. Varias ubicaciones se muestran con signo de interrogación porque su identificación es discutida.",
+        "en": "Route based on the stations represented on the map. Several locations carry question marks because their identification is debated."
+      },
+      "stops": [
+        "rameses",
+        "sucot",
+        "etam",
+        "pi-hahirot",
+        "baal-zefon",
+        "mara",
+        "elim",
+        "dofca",
+        "alus",
+        "refidim",
+        "sinai"
+      ],
+      "scriptureRefs": [
+        "Exodus 12:37–17:7"
+      ]
+    },
+    "sinai-cades": {
+      "mode": "route",
+      "color": "#2d86ff",
+      "label": {
+        "es": "Del Sinaí a Cades-barnea",
+        "en": "From Sinai to Kadesh-barnea"
+      },
+      "desc": {
+        "es": "Recorrido de las estaciones principales después del Sinaí hasta Cades-barnea.",
+        "en": "Route through major stations after Sinai toward Kadesh-barnea."
+      },
+      "stops": [
+        "sinai",
+        "kibrot",
+        "hazerot",
+        "cades"
+      ],
+      "scriptureRefs": [
+        "Exodus 19–Numbers 13"
+      ]
+    },
+    "cades-moab": {
+      "mode": "route",
+      "color": "#2d86ff",
+      "label": {
+        "es": "De Cades hacia Transjordania",
+        "en": "From Kadesh toward Transjordan"
+      },
+      "desc": {
+        "es": "Recorrido temático desde Cades por el sur y el este hasta las regiones de Moab y Hesbón. Las líneas son esquemáticas.",
+        "en": "Thematic route from Kadesh south and east toward Moab and Heshbon. Lines are schematic."
+      },
+      "stops": [
+        "cades",
+        "ezion",
+        "obot",
+        "ije",
+        "dibon",
+        "hesbon"
+      ],
+      "scriptureRefs": [
+        "Numbers 20–21"
+      ]
+    },
+    "entrada-canaan": {
+      "mode": "route",
+      "color": "#2d86ff",
+      "label": {
+        "es": "Entrada y primeros centros en Canaán",
+        "en": "Entry and Early Centers in Canaan"
+      },
+      "desc": {
+        "es": "Resalta Jericó, Gilgal y algunos centros del sur. No pretende reconstruir todas las campañas de Josué.",
+        "en": "Highlights Jericho, Gilgal, and selected southern centers. It does not attempt to reconstruct every campaign in Joshua."
+      },
+      "stops": [
+        "hesbon",
+        "jerico",
+        "gilgal",
+        "jerusalen",
+        "laquis",
+        "hebron"
+      ],
+      "scriptureRefs": [
+        "Joshua 1–6"
+      ]
+    },
+    "estaciones-exodo": {
+      "mode": "sites",
+      "color": "#3c5a78",
+      "label": {
+        "es": "Estaciones principales del Éxodo",
+        "en": "Major Stations of the Exodus"
+      },
+      "desc": {
+        "es": "Muestra las estaciones principales que este mapa representa, sin unirlas como una ruta exacta.",
+        "en": "Shows the major stations represented on this map without connecting them as an exact route."
+      },
+      "stops": [
+        "rameses",
+        "sucot",
+        "etam",
+        "pi-hahirot",
+        "baal-zefon",
+        "mara",
+        "elim",
+        "dofca",
+        "alus",
+        "refidim",
+        "sinai",
+        "kibrot",
+        "hazerot",
+        "cades",
+        "ezion",
+        "obot",
+        "ije",
+        "dibon",
+        "hesbon"
+      ],
+      "scriptureRefs": [
+        "Numbers 33"
+      ]
+    },
+    "canaan-ciudades": {
+      "mode": "sites",
+      "color": "#7a5a2a",
+      "label": {
+        "es": "Ciudades clave de Canaán",
+        "en": "Key Cities of Canaan"
+      },
+      "desc": {
+        "es": "Conjunto de ciudades destacadas en la parte cananea del mapa.",
+        "en": "Set of highlighted cities in the Canaan portion of the map."
+      },
+      "stops": [
+        "gaza",
+        "laquis",
+        "hebron",
+        "jerusalen",
+        "jerico",
+        "gilgal",
+        "hesbon"
+      ],
+      "scriptureRefs": [
+        "Joshua 6–12"
+      ]
+    },
+    "doce-espias": {
+      "mode": "sites",
+      "color": "#81652e",
+      "label": {
+        "es": "Los doce espías desde Cades",
+        "en": "The Twelve Spies from Kadesh"
+      },
+      "desc": {
+        "es": "Resalta Cades-barnea, Hebrón y la región de Escol como hitos representables del reconocimiento de Números 13. No se dibuja una ruta exacta porque el texto no proporciona cada trayecto.",
+        "en": "Highlights Kadesh-barnea, Hebron, and the Eshcol region as representable landmarks of the reconnaissance in Numbers 13. No exact route is drawn because the text does not provide every segment."
+      },
+      "stops": [
+        "cades",
+        "hebron",
+        "escol"
+      ],
+      "scriptureRefs": [
+        "Numbers 13–14"
+      ]
+    },
+    "josue-central": {
+      "mode": "sites",
+      "color": "#2f68a0",
+      "label": {
+        "es": "Josué: campaña central",
+        "en": "Joshua: Central Campaign"
+      },
+      "desc": {
+        "es": "Conjunto de lugares asociado con la fase central: Jericó, Gilgal y Hai. El pin de Hai es aproximado.",
+        "en": "Set of places associated with the central phase: Jericho, Gilgal, and Ai. The Ai pin is approximate."
+      },
+      "stops": [
+        "jerico",
+        "gilgal",
+        "ai"
+      ],
+      "scriptureRefs": [
+        "Joshua 6–8"
+      ]
+    },
+    "josue-sur": {
+      "mode": "sites",
+      "color": "#8a4d2d",
+      "label": {
+        "es": "Josué: campaña del sur",
+        "en": "Joshua: Southern Campaign"
+      },
+      "desc": {
+        "es": "Ciudades del sur representadas con seguridad suficiente en este master y vinculadas con Josué 10: Laquis y Hebrón. Jerusalén se incluye como centro de la coalición meridional.",
+        "en": "Southern cities represented with sufficient confidence on this master and linked with Joshua 10: Lachish and Hebron. Jerusalem is included as a center of the southern coalition."
+      },
+      "stops": [
+        "jerusalen",
+        "laquis",
+        "hebron"
+      ],
+      "scriptureRefs": [
+        "Joshua 10"
+      ]
+    },
+    "josue-norte": {
+      "mode": "sites",
+      "color": "#4d7a46",
+      "label": {
+        "es": "Josué: campaña del norte",
+        "en": "Joshua: Northern Campaign"
+      },
+      "desc": {
+        "es": "Hazor y la región de las aguas de Merom, principales referencias geográficas de la campaña septentrional de Josué 11.",
+        "en": "Hazor and the Waters of Merom region, the major geographic references of the northern campaign in Joshua 11."
+      },
+      "stops": [
+        "hazor",
+        "merom"
+      ],
+      "scriptureRefs": [
+        "Joshua 11"
+      ]
+    }
+  }
+}

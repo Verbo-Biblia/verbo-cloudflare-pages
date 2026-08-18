@@ -1,0 +1,325 @@
+{
+  "places": {
+    "samaria-capital": {
+      "name": {
+        "es": "Samaria",
+        "en": "Samaria"
+      },
+      "coords": [
+        35.19,
+        32.28
+      ],
+      "type": "city",
+      "desc": {
+        "es": "Capital del reino del norte (Israel), construida por el rey Omri (1 Reyes 16:24). Aquí ministraron los profetas Elías y Eliseo frente a varios reyes idólatras.",
+        "en": "Capital of the northern kingdom (Israel), built by King Omri (1 Kings 16:24). Here the prophets Elijah and Elisha ministered before a series of idolatrous kings."
+      },
+      "mapPosition": [
+        244,
+        258
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "samaria-shechem",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "1 Kings 16:24"
+      ]
+    },
+    "jerusalen-reinos": {
+      "name": {
+        "es": "Jerusalén",
+        "en": "Jerusalem"
+      },
+      "coords": [
+        35.23,
+        31.78
+      ],
+      "type": "city",
+      "desc": {
+        "es": "Capital del reino del sur (Judá) y sede del templo. A pesar de reyes infieles, mantuvo la línea davídica y el culto en el templo hasta la conquista babilónica (2 Reyes 25).",
+        "en": "Capital of the southern kingdom (Judah) and site of the temple. Despite unfaithful kings, it preserved the Davidic line and temple worship until the Babylonian conquest (2 Kings 25)."
+      },
+      "mapPosition": [
+        248,
+        376
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "jerusalem",
+      "mediaScope": "exact",
+      "scriptureRefs": [
+        "2 Kings 25"
+      ]
+    },
+    "damasco-reinos": {
+      "name": {
+        "es": "Damasco",
+        "en": "Damascus"
+      },
+      "coords": [
+        36.29,
+        33.51
+      ],
+      "type": "city",
+      "desc": {
+        "es": "Capital del reino arameo, frecuente enemigo de Israel. Eliseo profetizó aquí sobre Hazael, quien asesinó a Ben-adad para tomar el trono (2 Reyes 8:7-15).",
+        "en": "Capital of the Aramean kingdom, a frequent enemy of Israel. Elisha prophesied here about Hazael, who murdered Ben-hadad to seize the throne (2 Kings 8:7-15)."
+      },
+      "mapPosition": [
+        470,
+        49
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "damascus",
+      "mediaScope": "exact",
+      "scriptureRefs": [
+        "2 Kings 8:7-15"
+      ]
+    },
+    "monte-carmelo": {
+      "name": {
+        "es": "Monte Carmelo",
+        "en": "Mount Carmel"
+      },
+      "coords": [
+        35.03,
+        32.73
+      ],
+      "type": "town",
+      "desc": {
+        "es": "Aquí Elías desafió a 450 profetas de Baal y demostró que el Señor es Dios, haciendo caer fuego del cielo (1 Reyes 18:16-40).",
+        "en": "Here Elijah challenged 450 prophets of Baal and demonstrated that the Lord is God, calling down fire from heaven (1 Kings 18:16-40)."
+      },
+      "mapPosition": [
+        217.54,
+        167.65
+      ],
+      "mapPositionSource": "calibrated-overlay",
+      "mediaKey": "mount-carmel",
+      "mediaScope": "exact",
+      "scriptureRefs": [
+        "1 Kings 18:16-40"
+      ]
+    },
+    "jezreel": {
+      "name": {
+        "es": "Jezreel",
+        "en": "Jezreel"
+      },
+      "coords": [
+        35.32,
+        32.57
+      ],
+      "type": "town",
+      "desc": {
+        "es": "Aquí Acab y Jezabel se apropiaron injustamente de la viña de Nabot (1 Reyes 21), y años después Jehú ejecutó el juicio contra la casa de Acab (2 Reyes 9-10).",
+        "en": "Here Ahab and Jezebel unjustly seized Naboth's vineyard (1 Kings 21), and years later Jehu carried out judgment against the house of Ahab (2 Kings 9-10)."
+      },
+      "mapPosition": [
+        273.48,
+        208.34
+      ],
+      "mapPositionSource": "calibrated-overlay",
+      "mediaKey": "jezreel",
+      "mediaScope": "exact",
+      "scriptureRefs": [
+        "1 Kings 21",
+        "2 Kings 9-10"
+      ]
+    },
+    "betel-reinos": {
+      "name": {
+        "es": "Betel",
+        "en": "Bethel"
+      },
+      "coords": [
+        35.22,
+        31.93
+      ],
+      "type": "city",
+      "desc": {
+        "es": "Jeroboam I estableció aquí uno de los dos becerros de oro para evitar que el pueblo del norte adorara en Jerusalén, iniciando el culto idólatra de Israel (1 Reyes 12:26-33).",
+        "en": "Jeroboam I set up one of the two golden calves here to keep the northern people from worshiping in Jerusalem, beginning Israel's idolatrous worship (1 Kings 12:26-33)."
+      },
+      "mapPosition": [
+        251,
+        326
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "bethel",
+      "mediaScope": "exact",
+      "scriptureRefs": [
+        "1 Kings 12:26-33"
+      ]
+    },
+    "laquis": {
+      "name": {
+        "es": "Laquis",
+        "en": "Lachish"
+      },
+      "coords": [
+        34.85,
+        31.57
+      ],
+      "type": "city",
+      "desc": {
+        "es": "Segunda ciudad más importante de Judá, célebre por su feroz resistencia y caída ante el asedio asirio de Senaquerib en 701 a.C. (2 Reyes 18:13-14).",
+        "en": "Judah's second most important city, famous for its fierce resistance and fall to the Assyrian siege of Sennacherib in 701 BC (2 Kings 18:13-14)."
+      },
+      "mapPosition": [
+        177,
+        396
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "lachish",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "2 Kings 18:13-14"
+      ]
+    },
+    "rabat-amon": {
+      "name": {
+        "es": "Rabá (de los amonitas)",
+        "en": "Rabbah (of the Ammonites)"
+      },
+      "coords": [
+        35.93,
+        31.95
+      ],
+      "type": "city",
+      "desc": {
+        "es": "Capital del reino de Amón. David envió aquí a Urías a la primera línea de batalla para encubrir su pecado con Betsabé (2 Samuel 11).",
+        "en": "Capital of the kingdom of Ammon. David sent Uriah here to the front line of battle to cover up his sin with Bathsheba (2 Samuel 11)."
+      },
+      "mapPosition": [
+        394,
+        358
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "transjordan",
+      "mediaScope": "regional"
+    },
+    "dibon-reinos": {
+      "name": {
+        "es": "Dibón",
+        "en": "Dibon"
+      },
+      "coords": [
+        35.79,
+        31.5
+      ],
+      "type": "city",
+      "desc": {
+        "es": "Capital del reino de Moab bajo el rey Mesa, quien se rebeló contra Israel tras la muerte de Acab (2 Reyes 3:4-27), evento confirmado por la Estela de Mesa.",
+        "en": "Capital of the kingdom of Moab under King Mesha, who rebelled against Israel after Ahab's death (2 Kings 3:4-27), an event confirmed by the Mesha Stele."
+      },
+      "mapPosition": [
+        355,
+        428
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "transjordan",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "2 Kings 3:4-27"
+      ]
+    },
+    "bosra-edom": {
+      "name": {
+        "es": "Bosra",
+        "en": "Bozrah"
+      },
+      "coords": [
+        35.68,
+        30.75
+      ],
+      "type": "city",
+      "desc": {
+        "es": "Ciudad principal de Edom, nación frecuentemente denunciada por los profetas por su hostilidad hacia Judá (Amós 1:11-12; Abdías 1).",
+        "en": "Main city of Edom, a nation frequently denounced by the prophets for its hostility toward Judah (Amos 1:11-12; Obadiah 1)."
+      },
+      "mapPosition": [
+        332.19,
+        583.62
+      ],
+      "mapPositionSource": "calibrated-overlay",
+      "mediaKey": "transjordan",
+      "mediaScope": "regional"
+    }
+  },
+  "journeys": {
+    "elias-eliseo": {
+      "label": {
+        "es": "Elías y Eliseo en el reino del norte",
+        "en": "Elijah and Elisha in the Northern Kingdom"
+      },
+      "stops": [
+        "betel-reinos",
+        "samaria-capital",
+        "jezreel",
+        "monte-carmelo",
+        "damasco-reinos"
+      ],
+      "scriptureRefs": [
+        "1 Kings 17–2 Kings 13"
+      ]
+    },
+    "caida-reinos": {
+      "label": {
+        "es": "La caída de los dos reinos",
+        "en": "The Fall of the Two Kingdoms"
+      },
+      "stops": [
+        "samaria-capital",
+        "laquis",
+        "jerusalen-reinos"
+      ],
+      "scriptureRefs": [
+        "2 Kings 17",
+        "2 Kings 24–25"
+      ]
+    },
+    "asiria-laquis-jerusalen": {
+      "mode": "route",
+      "color": "#70483b",
+      "label": {
+        "es": "Campaña asiria: Laquis → Jerusalén",
+        "en": "Assyrian Campaign: Lachish → Jerusalem"
+      },
+      "desc": {
+        "es": "Recorrido temático asociado con la campaña de Senaquerib contra Judá, que destaca Laquis y Jerusalén. No representa todas las ciudades ni una carretera militar exacta.",
+        "en": "Thematic route associated with Sennacherib’s campaign against Judah, highlighting Lachish and Jerusalem. It does not represent every city or an exact military road."
+      },
+      "stops": [
+        "laquis",
+        "jerusalen-reinos"
+      ],
+      "scriptureRefs": [
+        "2 Kings 18–19",
+        "Isaiah 36–37"
+      ]
+    },
+    "centros-politicos-vecinos": {
+      "mode": "sites",
+      "color": "#4d5f78",
+      "label": {
+        "es": "Capitales y naciones vecinas",
+        "en": "Capitals and Neighboring Kingdoms"
+      },
+      "desc": {
+        "es": "Resalta centros políticos del reino dividido y de sus vecinos: Samaria, Jerusalén, Damasco, Rabá, Dibón y Bosra.",
+        "en": "Highlights political centers of the divided kingdoms and their neighbors: Samaria, Jerusalem, Damascus, Rabbah, Dibon, and Bozrah."
+      },
+      "stops": [
+        "samaria-capital",
+        "jerusalen-reinos",
+        "damasco-reinos",
+        "rabat-amon",
+        "dibon-reinos",
+        "bosra-edom"
+      ],
+      "scriptureRefs": [
+        "1 Kings 12–2 Kings 25"
+      ]
+    }
+  }
+}

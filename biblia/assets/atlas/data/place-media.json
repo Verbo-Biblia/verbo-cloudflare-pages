@@ -1,0 +1,2221 @@
+{
+  "version": 1,
+  "policy": {
+    "allowedLicenses": [
+      "Public domain",
+      "CC0"
+    ],
+    "minimumItemsPerPlace": 2,
+    "targetItemsPerPlace": "2–5",
+    "maximumItemsPerPlace": 10,
+    "source": "Wikimedia Commons",
+    "note": {
+      "es": "Se usan únicamente archivos marcados como dominio público o CC0 en Wikimedia Commons. Cuando un sitio bíblico es incierto, no conserva restos identificables o no tiene fotografía adecuada en dominio público, la ficha usa imágenes regionales explícitamente marcadas como representativas.",
+      "en": "Only files marked as public domain or CC0 on Wikimedia Commons are used. When a biblical site is uncertain, lacks identifiable remains, or lacks a suitable public-domain photograph, the card uses regional images explicitly marked as representative."
+    }
+  },
+  "pools": {
+    "jerusalem": {
+      "label": {
+        "en": "Jerusalem",
+        "es": "Jerusalén"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Street in Jerusalem (before 1899).jpg",
+          "caption": {
+            "en": "Jerusalem street before 1899",
+            "es": "Calle de Jerusalén antes de 1899"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Street_in_Jerusalem_(before_1899).jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Street_in_Jerusalem_(before_1899).jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Jerusalem, Temple area from S.E. corner showing a great part of the Old City. ppmsca.18914.jpg",
+          "caption": {
+            "en": "Temple area and Old City of Jerusalem",
+            "es": "Área del templo y Ciudad Vieja de Jerusalén"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Jerusalem,_Temple_area_from_S.E._corner_showing_a_great_part_of_the_Old_City._ppmsca.18914.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Jerusalem,_Temple_area_from_S.E._corner_showing_a_great_part_of_the_Old_City._ppmsca.18914.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "JerusalemConservatoireMembers.jpg",
+          "caption": {
+            "en": "Historical Jerusalem",
+            "es": "Jerusalén histórico"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:JerusalemConservatoireMembers.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/JerusalemConservatoireMembers.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "bethlehem": {
+      "label": {
+        "en": "Bethlehem",
+        "es": "Belén"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Bethlehem Palestine ca. 1900.jpg",
+          "caption": {
+            "en": "Bethlehem around 1900",
+            "es": "Belén hacia 1900"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Bethlehem_Palestine_ca._1900.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Bethlehem_Palestine_ca._1900.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Church of the Nativity, Bethlehem, Palestine 04155u original.jpg",
+          "caption": {
+            "en": "Church of the Nativity, Bethlehem",
+            "es": "Iglesia de la Natividad, Belén"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Church_of_the_Nativity,_Bethlehem,_Palestine_04155u_original.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Church_of_the_Nativity,_Bethlehem,_Palestine_04155u_original.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "capernaum": {
+      "label": {
+        "en": "Capernaum",
+        "es": "Capernaúm"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Capernaum Tel Hum 1903.jpg",
+          "caption": {
+            "en": "Capernaum / Tell Hum in 1903",
+            "es": "Capernaúm / Tell Hum en 1903"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Capernaum_Tel_Hum_1903.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Capernaum_Tel_Hum_1903.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Sea of Galilee, Site of Capernaum. 93.Holy land photographed. Daniel B. Shepp. 1894.jpg",
+          "caption": {
+            "en": "Site of Capernaum by the Sea of Galilee",
+            "es": "Sitio de Capernaúm junto al Mar de Galilea"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Sea_of_Galilee,_Site_of_Capernaum._93.Holy_land_photographed._Daniel_B._Shepp._1894.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Sea_of_Galilee,_Site_of_Capernaum._93.Holy_land_photographed._Daniel_B._Shepp._1894.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "nazareth": {
+      "label": {
+        "en": "Nazareth",
+        "es": "Nazaret"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Nazareth, Palestine, Early 20th Century.jpg",
+          "caption": {
+            "en": "Nazareth in the early 20th century",
+            "es": "Nazaret a inicios del siglo XX"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Nazareth,_Palestine,_Early_20th_Century.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Nazareth,_Palestine,_Early_20th_Century.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Air views of Palestine. Air route over Cana of Galilee, Nazareth, Plain of Sharon, etc. Nazareth. Approaching town from E. showing Franciscan monastery & Church of Annunciation LOC matpc.15870.jpg",
+          "caption": {
+            "en": "Aerial view approaching Nazareth",
+            "es": "Vista aérea aproximándose a Nazaret"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Air_views_of_Palestine._Air_route_over_Cana_of_Galilee,_Nazareth,_Plain_of_Sharon,_etc._Nazareth._Approaching_town_from_E._showing_Franciscan_monastery_%26_Church_of_Annunciation_LOC_matpc.15870.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Air_views_of_Palestine._Air_route_over_Cana_of_Galilee,_Nazareth,_Plain_of_Sharon,_etc._Nazareth._Approaching_town_from_E._showing_Franciscan_monastery_%26_Church_of_Annunciation_LOC_matpc.15870.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "bethany": {
+      "label": {
+        "en": "Bethany",
+        "es": "Betania"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Tomb of Lazarus, Bethany, Holy Land, (i.e. West Bank)-LCCN2002724964.jpg",
+          "caption": {
+            "en": "Traditional Tomb of Lazarus at Bethany",
+            "es": "Tumba tradicional de Lázaro en Betania"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Tomb_of_Lazarus,_Bethany,_Holy_Land,_(i.e._West_Bank)-LCCN2002724964.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Tomb_of_Lazarus,_Bethany,_Holy_Land,_(i.e._West_Bank)-LCCN2002724964.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Series of first aerial photographs of Palestine and Syria. Jericho Road, descent from Bethany, 3000 m. LOC matpc.05588.jpg",
+          "caption": {
+            "en": "Descent from Bethany toward Jericho",
+            "es": "Descenso desde Betania hacia Jericó"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Series_of_first_aerial_photographs_of_Palestine_and_Syria._Jericho_Road,_descent_from_Bethany,_3000_m._LOC_matpc.05588.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Series_of_first_aerial_photographs_of_Palestine_and_Syria._Jericho_Road,_descent_from_Bethany,_3000_m._LOC_matpc.05588.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "bethel": {
+      "label": {
+        "en": "Bethel",
+        "es": "Betel"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Bethel, 72.Holy land photographed. Daniel B. Shepp. 1894.jpg",
+          "caption": {
+            "en": "Bethel region, 1894",
+            "es": "Región de Betel, 1894"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Bethel,_72.Holy_land_photographed._Daniel_B._Shepp._1894.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Bethel,_72.Holy_land_photographed._Daniel_B._Shepp._1894.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Bethel excavations LOC matpc.16402.jpg",
+          "caption": {
+            "en": "Historical excavations at Bethel",
+            "es": "Excavaciones históricas en Betel"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Bethel_excavations_LOC_matpc.16402.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Bethel_excavations_LOC_matpc.16402.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "cana": {
+      "label": {
+        "en": "Cana",
+        "es": "Caná"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Abbud.front.jpg",
+          "caption": {
+            "en": "Historical view associated with Cana / Galilee",
+            "es": "Vista histórica asociada con Caná / Galilea"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Abbud.front.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Abbud.front.jpg?width=1200",
+          "representative": true
+        },
+        {
+          "file": "Man in fields in Kfar Kanna Galilee.JPG",
+          "caption": {
+            "en": "Fields at Kafr Kanna, traditional Cana identification",
+            "es": "Campos en Kafr Kanna, identificación tradicional de Caná"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Man_in_fields_in_Kfar_Kanna_Galilee.JPG",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Man_in_fields_in_Kfar_Kanna_Galilee.JPG?width=1200",
+          "representative": true
+        }
+      ]
+    },
+    "caesarea": {
+      "label": {
+        "en": "Caesarea Maritima",
+        "es": "Cesarea Marítima"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Caesarea 1945.jpg",
+          "caption": {
+            "en": "Caesarea in 1945",
+            "es": "Cesarea en 1945"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Caesarea_1945.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Caesarea_1945.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Caesarea (NYPL b10607452-80645).jpg",
+          "caption": {
+            "en": "Historical view of Caesarea",
+            "es": "Vista histórica de Cesarea"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Caesarea_(NYPL_b10607452-80645).jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Caesarea_(NYPL_b10607452-80645).jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "caesarea-philippi": {
+      "label": {
+        "en": "Caesarea Philippi / Banias",
+        "es": "Cesarea de Filipo / Banias"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Northern views. Village of Banias, Caesarea Philippi LOC matpc.05188.jpg",
+          "caption": {
+            "en": "Banias / Caesarea Philippi",
+            "es": "Banias / Cesarea de Filipo"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Northern_views._Village_of_Banias,_Caesarea_Philippi_LOC_matpc.05188.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Northern_views._Village_of_Banias,_Caesarea_Philippi_LOC_matpc.05188.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Caesarea philippi 1886.jpg",
+          "caption": {
+            "en": "Caesarea Philippi in 1886",
+            "es": "Cesarea de Filipo en 1886"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Caesarea_philippi_1886.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Caesarea_philippi_1886.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "chorazin": {
+      "label": {
+        "en": "Chorazin",
+        "es": "Corazín"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Chorazin Synagogue - Stone Seat.jpg",
+          "caption": {
+            "en": "Synagogue remains at Chorazin",
+            "es": "Restos de la sinagoga de Corazín"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Chorazin_Synagogue_-_Stone_Seat.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Chorazin_Synagogue_-_Stone_Seat.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Northern views. Ruins of a synagogue at Chorazin LOC matpc.01111.jpg",
+          "caption": {
+            "en": "Historical view of Chorazin synagogue ruins",
+            "es": "Vista histórica de las ruinas de la sinagoga de Corazín"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Northern_views._Ruins_of_a_synagogue_at_Chorazin_LOC_matpc.01111.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Northern_views._Ruins_of_a_synagogue_at_Chorazin_LOC_matpc.01111.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "magdala": {
+      "label": {
+        "en": "Magdala",
+        "es": "Magdala"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Magdala um 1900.jpg",
+          "caption": {
+            "en": "Magdala around 1900",
+            "es": "Magdala hacia 1900"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Magdala_um_1900.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Magdala_um_1900.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Al-Majdal photographed by Felix Bonfils.jpg",
+          "caption": {
+            "en": "Al-Majdal / Magdala, historical photograph",
+            "es": "Al-Majdal / Magdala, fotografía histórica"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Al-Majdal_photographed_by_Felix_Bonfils.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Al-Majdal_photographed_by_Felix_Bonfils.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "nain": {
+      "label": {
+        "en": "Nain",
+        "es": "Naín"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "General view, Nain, Holy Land, (i.e., Nein, Israel)-LCCN2002725044.jpg",
+          "caption": {
+            "en": "General view of Nain",
+            "es": "Vista general de Naín"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:General_view,_Nain,_Holy_Land,_(i.e.,_Nein,_Israel)-LCCN2002725044.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/General_view,_Nain,_Holy_Land,_(i.e.,_Nein,_Israel)-LCCN2002725044.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Northern views. Nain LOC matpc.06991.jpg",
+          "caption": {
+            "en": "Historical view of Nain",
+            "es": "Vista histórica de Naín"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Northern_views._Nain_LOC_matpc.06991.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Northern_views._Nain_LOC_matpc.06991.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "sea-galilee": {
+      "label": {
+        "en": "Sea of Galilee",
+        "es": "Mar de Galilea"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Sea of Galilee Boat 1898.jpg",
+          "caption": {
+            "en": "Boat on the Sea of Galilee, 1898",
+            "es": "Barca en el Mar de Galilea, 1898"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Sea_of_Galilee_Boat_1898.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Sea_of_Galilee_Boat_1898.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Sea of Galilee (before 1899).jpg",
+          "caption": {
+            "en": "Sea of Galilee before 1899",
+            "es": "Mar de Galilea antes de 1899"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Sea_of_Galilee_(before_1899).jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Sea_of_Galilee_(before_1899).jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "jericho": {
+      "label": {
+        "en": "Jericho",
+        "es": "Jericó"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Air views of Palestine. Air route following the old Jerusalem-Jericho Road. Mound of ancient Jericho. Looking southward, modern Jericho in distance LOC matpc.22117.jpg",
+          "caption": {
+            "en": "Aerial view of ancient Jericho mound",
+            "es": "Vista aérea del montículo de la antigua Jericó"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Air_views_of_Palestine._Air_route_following_the_old_Jerusalem-Jericho_Road._Mound_of_ancient_Jericho._Looking_southward,_modern_Jericho_in_distance_LOC_matpc.22117.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Air_views_of_Palestine._Air_route_following_the_old_Jerusalem-Jericho_Road._Mound_of_ancient_Jericho._Looking_southward,_modern_Jericho_in_distance_LOC_matpc.22117.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Tell es-sultan.jpg",
+          "caption": {
+            "en": "Tell es-Sultan, ancient Jericho",
+            "es": "Tell es-Sultan, antigua Jericó"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Tell_es-sultan.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Tell_es-sultan.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "joppa": {
+      "label": {
+        "en": "Joppa / Jaffa",
+        "es": "Jope / Jaffa"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Jaffa , the Joppa of Bible times, Palestine, by Keystone View Company.jpg",
+          "caption": {
+            "en": "Jaffa, the biblical Joppa",
+            "es": "Jaffa, la Jope bíblica"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Jaffa_,_the_Joppa_of_Bible_times,_Palestine,_by_Keystone_View_Company.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Jaffa_,_the_Joppa_of_Bible_times,_Palestine,_by_Keystone_View_Company.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Jaffa (Joppa) and environs. The market place. Approximately 1900 to 1920. matpc.00004.A.jpg",
+          "caption": {
+            "en": "Joppa marketplace, c. 1900–1920",
+            "es": "Mercado de Jope, ca. 1900–1920"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Jaffa_(Joppa)_and_environs._The_market_place._Approximately_1900_to_1920._matpc.00004.A.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Jaffa_(Joppa)_and_environs._The_market_place._Approximately_1900_to_1920._matpc.00004.A.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "lydda": {
+      "label": {
+        "en": "Lydda",
+        "es": "Lida"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Lydda circa 1910.jpg",
+          "caption": {
+            "en": "Lydda around 1910",
+            "es": "Lida hacia 1910"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Lydda_circa_1910.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lydda_circa_1910.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "St Georges Church Lydda.jpg",
+          "caption": {
+            "en": "Historical Lydda",
+            "es": "Lida histórica"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:St_Georges_Church_Lydda.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/St_Georges_Church_Lydda.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "tiberias": {
+      "label": {
+        "en": "Tiberias",
+        "es": "Tiberíades"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Francis Frith. Tiberias, from the South.jpg",
+          "caption": {
+            "en": "Tiberias from the south",
+            "es": "Tiberíades desde el sur"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Francis_Frith._Tiberias,_from_the_South.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Francis_Frith._Tiberias,_from_the_South.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Sea of Galilee. The Town of Tiberias. 1865-1875.jpg",
+          "caption": {
+            "en": "Tiberias on the Sea of Galilee, 1865–1875",
+            "es": "Tiberíades junto al Mar de Galilea, 1865–1875"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Sea_of_Galilee._The_Town_of_Tiberias._1865-1875.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Sea_of_Galilee._The_Town_of_Tiberias._1865-1875.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "mount-carmel": {
+      "label": {
+        "en": "Mount Carmel",
+        "es": "Monte Carmelo"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Haifa and Mount Carmel (before 1899).jpg",
+          "caption": {
+            "en": "Haifa and Mount Carmel before 1899",
+            "es": "Haifa y Monte Carmelo antes de 1899"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Haifa_and_Mount_Carmel_(before_1899).jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Haifa_and_Mount_Carmel_(before_1899).jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Mount Carmel 1930s.jpg",
+          "caption": {
+            "en": "Mount Carmel in the 1930s",
+            "es": "Monte Carmelo en la década de 1930"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Mount_Carmel_1930s.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Mount_Carmel_1930s.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "samaria-shechem": {
+      "label": {
+        "en": "Samaria / Shechem region",
+        "es": "Región de Samaria / Siquem"
+      },
+      "scope": "regional",
+      "items": [
+        {
+          "file": "Samaria (Tulkarm, Nablus, Sebastia).jpg",
+          "caption": {
+            "en": "Historical view of Samaria region",
+            "es": "Vista histórica de la región de Samaria"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Samaria_(Tulkarm,_Nablus,_Sebastia).jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Samaria_(Tulkarm,_Nablus,_Sebastia).jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Gerizim2.jpg",
+          "caption": {
+            "en": "Mount Gerizim near Shechem / Nablus",
+            "es": "Monte Gerizim junto a Siquem / Nablus"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Gerizim2.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Gerizim2.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "beersheba": {
+      "label": {
+        "en": "Beersheba",
+        "es": "Beerseba"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Southern Palestine. Old well at Beersheba. LOC matpc.06871.jpg",
+          "caption": {
+            "en": "Old well at Beersheba",
+            "es": "Antiguo pozo de Beerseba"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Southern_Palestine._Old_well_at_Beersheba._LOC_matpc.06871.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Southern_Palestine._Old_well_at_Beersheba._LOC_matpc.06871.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Beersheba and surroundings. (Beer Saba). Beersheba. An ancient well LOC matpc.15525.jpg",
+          "caption": {
+            "en": "Ancient well at Beersheba",
+            "es": "Pozo antiguo en Beerseba"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Beersheba_and_surroundings._(Beer_Saba)._Beersheba._An_ancient_well_LOC_matpc.15525.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Beersheba_and_surroundings._(Beer_Saba)._Beersheba._An_ancient_well_LOC_matpc.15525.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "hazor-north": {
+      "label": {
+        "en": "Hazor / Upper Galilee",
+        "es": "Hazor / Alta Galilea"
+      },
+      "scope": "regional",
+      "items": [
+        {
+          "file": "Orthostat Temple, Hazor, 15th-13th C. BC (43167753242).jpg",
+          "caption": {
+            "en": "Orthostat temple at Hazor",
+            "es": "Templo de ortostatos en Hazor"
+          },
+          "license": "CC0",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Orthostat_Temple,_Hazor,_15th-13th_C._BC_(43167753242).jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Orthostat_Temple,_Hazor,_15th-13th_C._BC_(43167753242).jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "126701 tel hazor PikiWiki Israel.jpg",
+          "caption": {
+            "en": "Tel Hazor",
+            "es": "Tel Hazor"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:126701_tel_hazor_PikiWiki_Israel.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/126701_tel_hazor_PikiWiki_Israel.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "hebron": {
+      "label": {
+        "en": "Hebron / Judean hills",
+        "es": "Hebrón / montes de Judea"
+      },
+      "scope": "regional",
+      "items": [
+        {
+          "file": "Hebron circa 1910.jpg",
+          "caption": {
+            "en": "Hebron around 1910",
+            "es": "Hebrón hacia 1910"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Hebron_circa_1910.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Hebron_circa_1910.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Southern Palestine. Carmel. South of Hebron LOC matpc.00087.jpg",
+          "caption": {
+            "en": "Landscape south of Hebron",
+            "es": "Paisaje al sur de Hebrón"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Southern_Palestine._Carmel._South_of_Hebron_LOC_matpc.00087.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Southern_Palestine._Carmel._South_of_Hebron_LOC_matpc.00087.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "jezreel": {
+      "label": {
+        "en": "Jezreel Valley",
+        "es": "Valle de Jezreel"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Zirin.jpg",
+          "caption": {
+            "en": "Zir‘in / Jezreel, historical photograph",
+            "es": "Zir‘in / Jezreel, fotografía histórica"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Zirin.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Zirin.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Air views of Palestine. Air route over Cana of Galilee, Nazareth, Plain of Sharon, etc. Plain of Jezreel. Showing Gilboa, Gideon's fountain and Jewish colonies LOC matpc.00247.jpg",
+          "caption": {
+            "en": "Aerial view of the Jezreel Plain",
+            "es": "Vista aérea de la llanura de Jezreel"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Air_views_of_Palestine._Air_route_over_Cana_of_Galilee,_Nazareth,_Plain_of_Sharon,_etc._Plain_of_Jezreel._Showing_Gilboa,_Gideon's_fountain_and_Jewish_colonies_LOC_matpc.00247.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Air_views_of_Palestine._Air_route_over_Cana_of_Galilee,_Nazareth,_Plain_of_Sharon,_etc._Plain_of_Jezreel._Showing_Gilboa,_Gideon's_fountain_and_Jewish_colonies_LOC_matpc.00247.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "shiloh": {
+      "label": {
+        "en": "Shiloh",
+        "es": "Silo"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Ruins of a synagogue at Shiloh.jpg",
+          "caption": {
+            "en": "Ruins at Shiloh, c. 1890",
+            "es": "Ruinas en Silo, ca. 1890"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Ruins_of_a_synagogue_at_Shiloh.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Ruins_of_a_synagogue_at_Shiloh.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Ancient doorway at Shiloh, and ruins of the \"Convent Castle\" in Wady Lubban (Lebonah) (NYPL b10607452-80400).jpg",
+          "caption": {
+            "en": "Historical remains at Shiloh",
+            "es": "Restos históricos en Silo"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Ancient_doorway_at_Shiloh,_and_ruins_of_the_%22Convent_Castle%22_in_Wady_Lubban_(Lebonah)_(NYPL_b10607452-80400).jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Ancient_doorway_at_Shiloh,_and_ruins_of_the_%22Convent_Castle%22_in_Wady_Lubban_(Lebonah)_(NYPL_b10607452-80400).jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "lachish": {
+      "label": {
+        "en": "Lachish",
+        "es": "Laquis"
+      },
+      "scope": "regional",
+      "items": [
+        {
+          "file": "Lachish gate.jpg",
+          "caption": {
+            "en": "Iron Age city gate at Lachish",
+            "es": "Puerta de la ciudad de la Edad del Hierro en Laquis"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Lachish_gate.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lachish_gate.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Southern Palestine, Hebron, Beersheba and Gaza area. Valley of Elah. I Sam. 17-1 LOC matpc.22878.jpg",
+          "caption": {
+            "en": "Judean landscape near the Lachish region",
+            "es": "Paisaje de Judea próximo a la región de Laquis"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Southern_Palestine,_Hebron,_Beersheba_and_Gaza_area._Valley_of_Elah._I_Sam._17-1_LOC_matpc.22878.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Southern_Palestine,_Hebron,_Beersheba_and_Gaza_area._Valley_of_Elah._I_Sam._17-1_LOC_matpc.22878.jpg?width=1200",
+          "representative": true
+        }
+      ]
+    },
+    "gaza": {
+      "label": {
+        "en": "Gaza / southern coastal plain",
+        "es": "Gaza / llanura costera meridional"
+      },
+      "scope": "regional",
+      "items": [
+        {
+          "file": "Southern Palestine, Hebron, Beersheba and Gaza area. Gaza, central section LOC matpc.22887.jpg",
+          "caption": {
+            "en": "Historical Gaza area",
+            "es": "Área histórica de Gaza"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Southern_Palestine,_Hebron,_Beersheba_and_Gaza_area._Gaza,_central_section_LOC_matpc.22887.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Southern_Palestine,_Hebron,_Beersheba_and_Gaza_area._Gaza,_central_section_LOC_matpc.22887.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Southern Palestine. Old well at Beersheba. LOC matpc.06871.jpg",
+          "caption": {
+            "en": "Southern Palestine landscape context",
+            "es": "Contexto paisajístico del sur de Palestina"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Southern_Palestine._Old_well_at_Beersheba._LOC_matpc.06871.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Southern_Palestine._Old_well_at_Beersheba._LOC_matpc.06871.jpg?width=1200",
+          "representative": true
+        }
+      ]
+    },
+    "damascus": {
+      "label": {
+        "en": "Damascus",
+        "es": "Damasco"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Damascus-73.jpg",
+          "caption": {
+            "en": "Historical Damascus",
+            "es": "Damasco histórico"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Damascus-73.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Damascus-73.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "The street called straight, Damascus, Holy Land, (i.e. Syria)-LCCN2002724979.jpg",
+          "caption": {
+            "en": "The traditional Street Called Straight in Damascus",
+            "es": "La tradicional Calle Derecha de Damasco"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:The_street_called_straight,_Damascus,_Holy_Land,_(i.e._Syria)-LCCN2002724979.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/The_street_called_straight,_Damascus,_Holy_Land,_(i.e._Syria)-LCCN2002724979.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "dead-sea": {
+      "label": {
+        "en": "Dead Sea region",
+        "es": "Región del Mar Muerto"
+      },
+      "scope": "regional",
+      "items": [
+        {
+          "file": "Air views of Palestine. North end of Dead Sea. Dead Sea. Northern end. An evening silhouette. Showing salt pans LOC matpc.22095.jpg",
+          "caption": {
+            "en": "Aerial view of the north end of the Dead Sea",
+            "es": "Vista aérea del extremo norte del Mar Muerto"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Air_views_of_Palestine._North_end_of_Dead_Sea._Dead_Sea._Northern_end._An_evening_silhouette._Showing_salt_pans_LOC_matpc.22095.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Air_views_of_Palestine._North_end_of_Dead_Sea._Dead_Sea._Northern_end._An_evening_silhouette._Showing_salt_pans_LOC_matpc.22095.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Man with donkey, near Dead Sea, American Colony Photo Dept., ca. 1919.jpg",
+          "caption": {
+            "en": "Landscape near the Dead Sea, c. 1919",
+            "es": "Paisaje junto al Mar Muerto, ca. 1919"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Man_with_donkey,_near_Dead_Sea,_American_Colony_Photo_Dept.,_ca._1919.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Man_with_donkey,_near_Dead_Sea,_American_Colony_Photo_Dept.,_ca._1919.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "jordan-rift": {
+      "label": {
+        "en": "Jordan Rift",
+        "es": "Valle del Jordán"
+      },
+      "scope": "regional",
+      "items": [
+        {
+          "file": "Series of first aerial photographs of Palestine and Syria. Jordan entering the Dead Sea, 300 m. LOC matpc.05593.jpg",
+          "caption": {
+            "en": "Jordan River entering the Dead Sea",
+            "es": "Río Jordán entrando al Mar Muerto"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Series_of_first_aerial_photographs_of_Palestine_and_Syria._Jordan_entering_the_Dead_Sea,_300_m._LOC_matpc.05593.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Series_of_first_aerial_photographs_of_Palestine_and_Syria._Jordan_entering_the_Dead_Sea,_300_m._LOC_matpc.05593.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Air views of Palestine. Flying south over the Jordan Rift. Jordan river. Area near convent of St. John LOC matpc.15841.jpg",
+          "caption": {
+            "en": "Aerial view of the Jordan Rift",
+            "es": "Vista aérea del valle del Jordán"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Air_views_of_Palestine._Flying_south_over_the_Jordan_Rift._Jordan_river._Area_near_convent_of_St._John_LOC_matpc.15841.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Air_views_of_Palestine._Flying_south_over_the_Jordan_Rift._Jordan_river._Area_near_convent_of_St._John_LOC_matpc.15841.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "transjordan": {
+      "label": {
+        "en": "Transjordan / Edom-Moab region",
+        "es": "Transjordania / región de Edom y Moab"
+      },
+      "scope": "regional",
+      "items": [
+        {
+          "file": "Transjordan (Petra) LOC matpc.11881.jpg",
+          "caption": {
+            "en": "Historical Transjordan / Petra landscape",
+            "es": "Paisaje histórico de Transjordania / Petra"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Transjordan_(Petra)_LOC_matpc.11881.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Transjordan_(Petra)_LOC_matpc.11881.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Petra Jordan BW 37.JPG",
+          "caption": {
+            "en": "Petra, representative of southern Transjordan",
+            "es": "Petra, representativa del sur de Transjordania"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Petra_Jordan_BW_37.JPG",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Petra_Jordan_BW_37.JPG?width=1200",
+          "representative": true
+        }
+      ]
+    },
+    "sinai": {
+      "label": {
+        "en": "Sinai Peninsula",
+        "es": "Península del Sinaí"
+      },
+      "scope": "regional",
+      "items": [
+        {
+          "file": "Mt. Sinai LOC matpc.09596.jpg",
+          "caption": {
+            "en": "Historical photograph of Mount Sinai",
+            "es": "Fotografía histórica del Monte Sinaí"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Mt._Sinai_LOC_matpc.09596.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Mt._Sinai_LOC_matpc.09596.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Santa Catarina Sinai.JPG",
+          "caption": {
+            "en": "Saint Catherine’s Monastery near Mount Sinai",
+            "es": "Monasterio de Santa Catalina junto al Monte Sinaí"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Santa_Catarina_Sinai.JPG",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Santa_Catarina_Sinai.JPG?width=1200",
+          "representative": false
+        },
+        {
+          "file": "View From Sinai.JPG",
+          "caption": {
+            "en": "View from Mount Sinai",
+            "es": "Vista desde el Monte Sinaí"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:View_From_Sinai.JPG",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/View_From_Sinai.JPG?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "egypt": {
+      "label": {
+        "en": "Egypt / Nile Delta",
+        "es": "Egipto / Delta del Nilo"
+      },
+      "scope": "regional",
+      "items": [
+        {
+          "file": "Egypt. Pyramids. The land of Goshen with pyramids in the distance LOC matpc.23065.jpg",
+          "caption": {
+            "en": "The land of Goshen with pyramids in the distance",
+            "es": "La tierra de Gosén con las pirámides al fondo"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Egypt._Pyramids._The_land_of_Goshen_with_pyramids_in_the_distance_LOC_matpc.23065.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Egypt._Pyramids._The_land_of_Goshen_with_pyramids_in_the_distance_LOC_matpc.23065.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Air views of Palestine. Flight down the delta of the Nile to Alexandria. Irrigation canals and water ways of the Nile delta showing tiny sailboats LOC matpc.15922.jpg",
+          "caption": {
+            "en": "Aerial view of the Nile Delta",
+            "es": "Vista aérea del Delta del Nilo"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Air_views_of_Palestine._Flight_down_the_delta_of_the_Nile_to_Alexandria._Irrigation_canals_and_water_ways_of_the_Nile_delta_showing_tiny_sailboats_LOC_matpc.15922.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Air_views_of_Palestine._Flight_down_the_delta_of_the_Nile_to_Alexandria._Irrigation_canals_and_water_ways_of_the_Nile_delta_showing_tiny_sailboats_LOC_matpc.15922.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "memphis": {
+      "label": {
+        "en": "Memphis, Egypt",
+        "es": "Menfis, Egipto"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Egypt. Memphis. Paleu grove of Memphis LOC matpc.18006.jpg",
+          "caption": {
+            "en": "Palm grove at Memphis",
+            "es": "Palmeral de Menfis"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Egypt._Memphis._Paleu_grove_of_Memphis_LOC_matpc.18006.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Egypt._Memphis._Paleu_grove_of_Memphis_LOC_matpc.18006.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Egyptian views; The pyramids of Gizeh. Forest of palms, Memphis LOC matpc.01516.jpg",
+          "caption": {
+            "en": "Forest of palms at Memphis",
+            "es": "Bosque de palmeras en Menfis"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Egyptian_views%3B_The_pyramids_of_Gizeh._Forest_of_palms,_Memphis_LOC_matpc.01516.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Egyptian_views%3B_The_pyramids_of_Gizeh._Forest_of_palms,_Memphis_LOC_matpc.01516.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "ur": {
+      "label": {
+        "en": "Ur",
+        "es": "Ur"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Iraq. Ur. (So called of the Chaldees). A general view of the ruins LOC matpc.16102.jpg",
+          "caption": {
+            "en": "General view of the ruins of Ur",
+            "es": "Vista general de las ruinas de Ur"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Iraq._Ur._(So_called_of_the_Chaldees)._A_general_view_of_the_ruins_LOC_matpc.16102.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Iraq._Ur._(So_called_of_the_Chaldees)._A_general_view_of_the_ruins_LOC_matpc.16102.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Ur from the Air.jpg",
+          "caption": {
+            "en": "Ur from the air, 1927",
+            "es": "Ur desde el aire, 1927"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Ur_from_the_Air.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Ur_from_the_Air.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "haran": {
+      "label": {
+        "en": "Harran",
+        "es": "Harán"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Harran 19th century.png",
+          "caption": {
+            "en": "Harran in the 19th century",
+            "es": "Harán en el siglo XIX"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Harran_19th_century.png",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Harran_19th_century.png?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Tholoi-Harran.jpg",
+          "caption": {
+            "en": "Traditional beehive houses at Harran",
+            "es": "Casas tradicionales abovedadas de Harán"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Tholoi-Harran.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Tholoi-Harran.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "sidon": {
+      "label": {
+        "en": "Sidon",
+        "es": "Sidón"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Along the sea coast. Old castle at Sidon LOC matpc.01191.jpg",
+          "caption": {
+            "en": "Old castle at Sidon",
+            "es": "Antiguo castillo de Sidón"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Along_the_sea_coast._Old_castle_at_Sidon_LOC_matpc.01191.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Along_the_sea_coast._Old_castle_at_Sidon_LOC_matpc.01191.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "No Known Restrictions Sidon Street by C. H. Graves, November 1903 (LOC) (392175951).jpg",
+          "caption": {
+            "en": "Sidon street in 1903",
+            "es": "Calle de Sidón en 1903"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:No_Known_Restrictions_Sidon_Street_by_C._H._Graves,_November_1903_(LOC)_(392175951).jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/No_Known_Restrictions_Sidon_Street_by_C._H._Graves,_November_1903_(LOC)_(392175951).jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "tyre": {
+      "label": {
+        "en": "Tyre",
+        "es": "Tiro"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Tyre South Lebanon 1931.jpg",
+          "caption": {
+            "en": "Tyre, South Lebanon, 1931",
+            "es": "Tiro, sur del Líbano, 1931"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Tyre_South_Lebanon_1931.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Tyre_South_Lebanon_1931.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Tyre 1950.jpg",
+          "caption": {
+            "en": "Tyre in 1950",
+            "es": "Tiro en 1950"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Tyre_1950.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Tyre_1950.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "acre": {
+      "label": {
+        "en": "Acre / Ptolemais",
+        "es": "Acre / Tolemaida"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Akka (Acre, Accho). The crusader castle. approximately 1920 to 1933. matpc.00220.B.jpg",
+          "caption": {
+            "en": "Historical Acre / Ptolemais",
+            "es": "Acre / Tolemaida histórica"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Akka_(Acre,_Accho)._The_crusader_castle._approximately_1920_to_1933._matpc.00220.B.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Akka_(Acre,_Accho)._The_crusader_castle._approximately_1920_to_1933._matpc.00220.B.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "PikiWiki Israel 62591 ancient acre.jpg",
+          "caption": {
+            "en": "Ancient Acre",
+            "es": "Acre antigua"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:PikiWiki_Israel_62591_ancient_acre.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/PikiWiki_Israel_62591_ancient_acre.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "athens": {
+      "label": {
+        "en": "Athens",
+        "es": "Atenas"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Acropolis 1903.jpg",
+          "caption": {
+            "en": "Acropolis of Athens, 1903",
+            "es": "Acrópolis de Atenas, 1903"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Acropolis_1903.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Acropolis_1903.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Athens. The Acropolis LOC matpc.15124.jpg",
+          "caption": {
+            "en": "Historical view of the Acropolis",
+            "es": "Vista histórica de la Acrópolis"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Athens._The_Acropolis_LOC_matpc.15124.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Athens._The_Acropolis_LOC_matpc.15124.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "corinth": {
+      "label": {
+        "en": "Corinth",
+        "es": "Corinto"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "The Temple of Apollo in Ancient Corinth on June 6, 2018.jpg",
+          "caption": {
+            "en": "Temple of Apollo at ancient Corinth",
+            "es": "Templo de Apolo en la antigua Corinto"
+          },
+          "license": "CC0",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:The_Temple_of_Apollo_in_Ancient_Corinth_on_June_6,_2018.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/The_Temple_of_Apollo_in_Ancient_Corinth_on_June_6,_2018.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "The ruins of the Northwest Shops in the Roman Forum of Ancient Corinth on 6 April 2019.jpg",
+          "caption": {
+            "en": "Roman Forum of ancient Corinth",
+            "es": "Foro romano de la antigua Corinto"
+          },
+          "license": "CC0",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:The_ruins_of_the_Northwest_Shops_in_the_Roman_Forum_of_Ancient_Corinth_on_6_April_2019.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/The_ruins_of_the_Northwest_Shops_in_the_Roman_Forum_of_Ancient_Corinth_on_6_April_2019.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "thessalonica": {
+      "label": {
+        "en": "Thessalonica",
+        "es": "Tesalónica"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Eleftherias Square, Thessaloniki, late 19th century.png",
+          "caption": {
+            "en": "Thessaloniki in the late 19th century",
+            "es": "Tesalónica a finales del siglo XIX"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Eleftherias_Square,_Thessaloniki,_late_19th_century.png",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Eleftherias_Square,_Thessaloniki,_late_19th_century.png?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Thessaloniki Customs House 1900s.png",
+          "caption": {
+            "en": "Thessaloniki waterfront / customs house",
+            "es": "Frente marítimo / aduana de Tesalónica"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Thessaloniki_Customs_House_1900s.png",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Thessaloniki_Customs_House_1900s.png?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "macedonia": {
+      "label": {
+        "en": "Macedonia",
+        "es": "Macedonia"
+      },
+      "scope": "regional",
+      "items": [
+        {
+          "file": "VeriaPanoramic.JPG",
+          "caption": {
+            "en": "Panoramic view of Veria / Berea",
+            "es": "Vista panorámica de Veria / Berea"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:VeriaPanoramic.JPG",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/VeriaPanoramic.JPG?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Βασιλική Δ΄ Παλαιοχριστιανική Αμφίπολη 2.jpg",
+          "caption": {
+            "en": "Archaeological remains at Amphipolis",
+            "es": "Restos arqueológicos en Anfípolis"
+          },
+          "license": "CC0",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:%CE%92%CE%B1%CF%83%CE%B9%CE%BB%CE%B9%CE%BA%CE%AE_%CE%94%CE%84_%CE%A0%CE%B1%CE%BB%CE%B1%CE%B9%CE%BF%CF%87%CF%81%CE%B9%CF%83%CF%84%CE%B9%CE%B1%CE%BD%CE%B9%CE%BA%CE%AE_%CE%91%CE%BC%CF%86%CE%AF%CF%80%CE%BF%CE%BB%CE%B7_2.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/%CE%92%CE%B1%CF%83%CE%B9%CE%BB%CE%B9%CE%BA%CE%AE_%CE%94%CE%84_%CE%A0%CE%B1%CE%BB%CE%B1%CE%B9%CE%BF%CF%87%CF%81%CE%B9%CF%83%CF%84%CE%B9%CE%B1%CE%BD%CE%B9%CE%BA%CE%AE_%CE%91%CE%BC%CF%86%CE%AF%CF%80%CE%BF%CE%BB%CE%B7_2.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "ephesus": {
+      "label": {
+        "en": "Ephesus",
+        "es": "Éfeso"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Goddess Nike at Ephesus, Turkey.JPG",
+          "caption": {
+            "en": "Archaeological remains at Ephesus",
+            "es": "Restos arqueológicos de Éfeso"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Goddess_Nike_at_Ephesus,_Turkey.JPG",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Goddess_Nike_at_Ephesus,_Turkey.JPG?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Tomb of Saint John the Apostle.jpg",
+          "caption": {
+            "en": "Traditional site associated with John at Ephesus",
+            "es": "Sitio tradicional asociado con Juan en Éfeso"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Tomb_of_Saint_John_the_Apostle.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Tomb_of_Saint_John_the_Apostle.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "pergamon": {
+      "label": {
+        "en": "Pergamon",
+        "es": "Pérgamo"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Bergama 20 06 07.jpg",
+          "caption": {
+            "en": "Bergama / ancient Pergamon",
+            "es": "Bergama / antigua Pérgamo"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Bergama_20_06_07.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Bergama_20_06_07.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Bergama tiyatro.jpg",
+          "caption": {
+            "en": "Theater at Pergamon",
+            "es": "Teatro de Pérgamo"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Bergama_tiyatro.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Bergama_tiyatro.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "smyrna": {
+      "label": {
+        "en": "Smyrna / Izmir",
+        "es": "Esmirna / Izmir"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "AK - Smyrna - Izmir - um 1909.jpg",
+          "caption": {
+            "en": "Smyrna / Izmir around 1909",
+            "es": "Esmirna / Izmir hacia 1909"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:AK_-_Smyrna_-_Izmir_-_um_1909.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/AK_-_Smyrna_-_Izmir_-_um_1909.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Smyrna wharf c. 1910.jpg",
+          "caption": {
+            "en": "Smyrna wharf around 1910",
+            "es": "Muelle de Esmirna hacia 1910"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Smyrna_wharf_c._1910.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Smyrna_wharf_c._1910.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "sardis": {
+      "label": {
+        "en": "Sardis",
+        "es": "Sardis"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "RuinsofSardis.jpg",
+          "caption": {
+            "en": "Ruins of Sardis",
+            "es": "Ruinas de Sardis"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:RuinsofSardis.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/RuinsofSardis.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "SardisByzantineShops1February2003.JPG",
+          "caption": {
+            "en": "Archaeological remains at Sardis",
+            "es": "Restos arqueológicos en Sardis"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:SardisByzantineShops1February2003.JPG",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/SardisByzantineShops1February2003.JPG?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "laodicea": {
+      "label": {
+        "en": "Laodicea",
+        "es": "Laodicea"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Ruïne van het gymnasion en het stadion van Laodicea aan de Lycus, RP-F-2001-7-440-11.jpg",
+          "caption": {
+            "en": "Historical photograph of ruins at Laodicea",
+            "es": "Fotografía histórica de las ruinas de Laodicea"
+          },
+          "license": "CC0",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Ru%C3%AFne_van_het_gymnasion_en_het_stadion_van_Laodicea_aan_de_Lycus,_RP-F-2001-7-440-11.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Ru%C3%AFne_van_het_gymnasion_en_het_stadion_van_Laodicea_aan_de_Lycus,_RP-F-2001-7-440-11.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Laodicea, Western Theatre, 2021.jpg",
+          "caption": {
+            "en": "Western theater at Laodicea",
+            "es": "Teatro occidental de Laodicea"
+          },
+          "license": "CC0",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Laodicea,_Western_Theatre,_2021.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Laodicea,_Western_Theatre,_2021.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "western-anatolia": {
+      "label": {
+        "en": "Western Anatolia biblical cities",
+        "es": "Ciudades bíblicas de Anatolia occidental"
+      },
+      "scope": "regional",
+      "items": [
+        {
+          "file": "RuinsofSardis.jpg",
+          "caption": {
+            "en": "Ancient-city landscape in western Anatolia",
+            "es": "Paisaje de ciudad antigua en Anatolia occidental"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:RuinsofSardis.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/RuinsofSardis.jpg?width=1200",
+          "representative": true
+        },
+        {
+          "file": "Laodicea, Western Theatre, 2021.jpg",
+          "caption": {
+            "en": "Ancient-city landscape in the Lycus valley",
+            "es": "Paisaje de ciudad antigua en el valle del Lico"
+          },
+          "license": "CC0",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Laodicea,_Western_Theatre,_2021.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Laodicea,_Western_Theatre,_2021.jpg?width=1200",
+          "representative": true
+        }
+      ]
+    },
+    "central-anatolia": {
+      "label": {
+        "en": "Central Anatolia",
+        "es": "Anatolia central"
+      },
+      "scope": "regional",
+      "items": [
+        {
+          "file": "Konya Mevlana Muezesi.jpg",
+          "caption": {
+            "en": "Konya / ancient Iconium region",
+            "es": "Konya / región de la antigua Iconio"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Konya_Mevlana_Muezesi.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Konya_Mevlana_Muezesi.jpg?width=1200",
+          "representative": true
+        },
+        {
+          "file": "Konya Ark gate.jpg",
+          "caption": {
+            "en": "Konya, central Anatolia",
+            "es": "Konya, Anatolia central"
+          },
+          "license": "CC0",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Konya_Ark_gate.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Konya_Ark_gate.jpg?width=1200",
+          "representative": true
+        }
+      ]
+    },
+    "lycia": {
+      "label": {
+        "en": "Lycia",
+        "es": "Licia"
+      },
+      "scope": "regional",
+      "items": [
+        {
+          "file": "Myra cliff 2.jpg",
+          "caption": {
+            "en": "Rock-cut tombs at Myra",
+            "es": "Tumbas excavadas en roca en Mira"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Myra_cliff_2.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Myra_cliff_2.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "PataraTheater.JPG",
+          "caption": {
+            "en": "Theater at Patara",
+            "es": "Teatro de Pátara"
+          },
+          "license": "CC0",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:PataraTheater.JPG",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/PataraTheater.JPG?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "myra": {
+      "label": {
+        "en": "Myra",
+        "es": "Mira"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Myra cliff 2.jpg",
+          "caption": {
+            "en": "Rock-cut tombs at Myra",
+            "es": "Tumbas excavadas en roca en Mira"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Myra_cliff_2.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Myra_cliff_2.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Turkey. Myra 1844984988.jpg",
+          "caption": {
+            "en": "Archaeological remains at Myra",
+            "es": "Restos arqueológicos en Mira"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Turkey._Myra_1844984988.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Turkey._Myra_1844984988.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "patara": {
+      "label": {
+        "en": "Patara",
+        "es": "Pátara"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "PataraTheater.JPG",
+          "caption": {
+            "en": "Theater at Patara",
+            "es": "Teatro de Pátara"
+          },
+          "license": "CC0",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:PataraTheater.JPG",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/PataraTheater.JPG?width=1200",
+          "representative": false
+        },
+        {
+          "file": "PataraBouteuterion.jpg",
+          "caption": {
+            "en": "Bouleuterion at Patara",
+            "es": "Bouleuterion de Pátara"
+          },
+          "license": "CC0",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:PataraBouteuterion.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/PataraBouteuterion.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "antalya": {
+      "label": {
+        "en": "Pamphylia / Antalya region",
+        "es": "Panfilia / región de Antalya"
+      },
+      "scope": "regional",
+      "items": [
+        {
+          "file": "Antalyabeach.JPG",
+          "caption": {
+            "en": "Antalya coast, region of ancient Attalia",
+            "es": "Costa de Antalya, región de la antigua Atalía"
+          },
+          "license": "CC0",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Antalyabeach.JPG",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Antalyabeach.JPG?width=1200",
+          "representative": true
+        },
+        {
+          "file": "Antalya, Turkey (Unsplash zU- CGMvGp0).jpg",
+          "caption": {
+            "en": "Antalya region",
+            "es": "Región de Antalya"
+          },
+          "license": "CC0",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Antalya,_Turkey_(Unsplash_zU-_CGMvGp0).jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Antalya,_Turkey_(Unsplash_zU-_CGMvGp0).jpg?width=1200",
+          "representative": true
+        }
+      ]
+    },
+    "cilicia-syria": {
+      "label": {
+        "en": "Cilicia and Antioch region",
+        "es": "Cilicia y región de Antioquía"
+      },
+      "scope": "regional",
+      "items": [
+        {
+          "file": "Tarsus bazaar.JPG",
+          "caption": {
+            "en": "Tarsus, Cilicia",
+            "es": "Tarso, Cilicia"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Tarsus_bazaar.JPG",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Tarsus_bazaar.JPG?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Antioch with old bridge across the Orontes LOC matpc.16680.jpg",
+          "caption": {
+            "en": "Antioch on the Orontes",
+            "es": "Antioquía junto al Orontes"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Antioch_with_old_bridge_across_the_Orontes_LOC_matpc.16680.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Antioch_with_old_bridge_across_the_Orontes_LOC_matpc.16680.jpg?width=1200",
+          "representative": true
+        }
+      ]
+    },
+    "aegean": {
+      "label": {
+        "en": "Aegean islands",
+        "es": "Islas del Egeo"
+      },
+      "scope": "regional",
+      "items": [
+        {
+          "file": "Aegeansea.jpg",
+          "caption": {
+            "en": "Satellite view of the Aegean Sea",
+            "es": "Vista satelital del Mar Egeo"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Aegeansea.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Aegeansea.jpg?width=1200",
+          "representative": true
+        },
+        {
+          "file": "WV banner South Aegean Islands Gallissas beach.jpg",
+          "caption": {
+            "en": "Aegean island landscape",
+            "es": "Paisaje de las islas del Egeo"
+          },
+          "license": "CC0",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:WV_banner_South_Aegean_Islands_Gallissas_beach.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/WV_banner_South_Aegean_Islands_Gallissas_beach.jpg?width=1200",
+          "representative": true
+        }
+      ]
+    },
+    "crete": {
+      "label": {
+        "en": "Crete",
+        "es": "Creta"
+      },
+      "scope": "regional",
+      "items": [
+        {
+          "file": "Columns in Knossos, Crete.jpg",
+          "caption": {
+            "en": "Columns at Knossos, Crete",
+            "es": "Columnas en Cnosos, Creta"
+          },
+          "license": "CC0",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Columns_in_Knossos,_Crete.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Columns_in_Knossos,_Crete.jpg?width=1200",
+          "representative": true
+        },
+        {
+          "file": "Hills over Knossos Crete Greece.jpg",
+          "caption": {
+            "en": "Landscape of Crete",
+            "es": "Paisaje de Creta"
+          },
+          "license": "CC0",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Hills_over_Knossos_Crete_Greece.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Hills_over_Knossos_Crete_Greece.jpg?width=1200",
+          "representative": true
+        }
+      ]
+    },
+    "salamis-cyprus": {
+      "label": {
+        "en": "Salamis, Cyprus",
+        "es": "Salamina, Chipre"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Salamisampitheatre.jpg",
+          "caption": {
+            "en": "Theater at ancient Salamis, Cyprus",
+            "es": "Teatro de la antigua Salamina, Chipre"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Salamisampitheatre.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Salamisampitheatre.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Theater of Salamis, Cyprus.jpg",
+          "caption": {
+            "en": "Theater of ancient Salamis",
+            "es": "Teatro de la antigua Salamina"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Theater_of_Salamis,_Cyprus.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Theater_of_Salamis,_Cyprus.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "paphos": {
+      "label": {
+        "en": "Paphos",
+        "es": "Pafos"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Paphos Archaeological Park5.JPG",
+          "caption": {
+            "en": "Archaeological Park of Paphos",
+            "es": "Parque arqueológico de Pafos"
+          },
+          "license": "CC0",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Paphos_Archaeological_Park5.JPG",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Paphos_Archaeological_Park5.JPG?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Tombs of the Kings Paphos Cyprus Tomb1 1.JPG",
+          "caption": {
+            "en": "Tombs of the Kings at Paphos",
+            "es": "Tumbas de los Reyes en Pafos"
+          },
+          "license": "CC0",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Tombs_of_the_Kings_Paphos_Cyprus_Tomb1_1.JPG",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Tombs_of_the_Kings_Paphos_Cyprus_Tomb1_1.JPG?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "patmos": {
+      "label": {
+        "en": "Patmos / Aegean context",
+        "es": "Patmos / contexto del Egeo"
+      },
+      "scope": "regional",
+      "items": [
+        {
+          "file": "Aegeansea.jpg",
+          "caption": {
+            "en": "Aegean Sea around the island world of Patmos",
+            "es": "Mar Egeo, contexto insular de Patmos"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Aegeansea.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Aegeansea.jpg?width=1200",
+          "representative": true
+        },
+        {
+          "file": "WV banner South Aegean Islands Gallissas beach.jpg",
+          "caption": {
+            "en": "Aegean island landscape representative of Patmos",
+            "es": "Paisaje insular del Egeo representativo de Patmos"
+          },
+          "license": "CC0",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:WV_banner_South_Aegean_Islands_Gallissas_beach.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/WV_banner_South_Aegean_Islands_Gallissas_beach.jpg?width=1200",
+          "representative": true
+        }
+      ]
+    },
+    "rome": {
+      "label": {
+        "en": "Rome",
+        "es": "Roma"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Exterior of the Coliseum, Rome, Italy-LCCN2001700941.jpg",
+          "caption": {
+            "en": "Colosseum in Rome, historical photograph",
+            "es": "Coliseo de Roma, fotografía histórica"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Exterior_of_the_Coliseum,_Rome,_Italy-LCCN2001700941.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Exterior_of_the_Coliseum,_Rome,_Italy-LCCN2001700941.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "The Colisuem and Meta Sudans, Rome, Italy-LCCN2001700939.jpg",
+          "caption": {
+            "en": "Colosseum and Meta Sudans, Rome",
+            "es": "Coliseo y Meta Sudans, Roma"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:The_Colisuem_and_Meta_Sudans,_Rome,_Italy-LCCN2001700939.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/The_Colisuem_and_Meta_Sudans,_Rome,_Italy-LCCN2001700939.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "appian-way": {
+      "label": {
+        "en": "Appian Way",
+        "es": "Vía Apia"
+      },
+      "scope": "regional",
+      "items": [
+        {
+          "file": "Via appia.jpg",
+          "caption": {
+            "en": "Remains of the ancient Appian Way",
+            "es": "Restos de la antigua Vía Apia"
+          },
+          "license": "CC0",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Via_appia.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Via_appia.jpg?width=1200",
+          "representative": true
+        },
+        {
+          "file": "Gezicht op de Via Appia Antica nabij Rome Appian way. Rome (titel op object), RP-F-2001-7-362-24.jpg",
+          "caption": {
+            "en": "Historical view of the Appian Way",
+            "es": "Vista histórica de la Vía Apia"
+          },
+          "license": "CC0",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Gezicht_op_de_Via_Appia_Antica_nabij_Rome_Appian_way._Rome_(titel_op_object),_RP-F-2001-7-362-24.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Gezicht_op_de_Via_Appia_Antica_nabij_Rome_Appian_way._Rome_(titel_op_object),_RP-F-2001-7-362-24.jpg?width=1200",
+          "representative": true
+        }
+      ]
+    },
+    "puteoli": {
+      "label": {
+        "en": "Puteoli / Pozzuoli",
+        "es": "Puteoli / Pozzuoli"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Duomo di Pozzuoli aka tempio di Augusto 05.jpg",
+          "caption": {
+            "en": "Roman remains at Pozzuoli / Puteoli",
+            "es": "Restos romanos en Pozzuoli / Puteoli"
+          },
+          "license": "CC0",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Duomo_di_Pozzuoli_aka_tempio_di_Augusto_05.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Duomo_di_Pozzuoli_aka_tempio_di_Augusto_05.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "1911 Britannica - Amphitheatre at Pozzuoli.png",
+          "caption": {
+            "en": "Ancient amphitheater of Puteoli",
+            "es": "Anfiteatro antiguo de Puteoli"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:1911_Britannica_-_Amphitheatre_at_Pozzuoli.png",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/1911_Britannica_-_Amphitheatre_at_Pozzuoli.png?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "sicily": {
+      "label": {
+        "en": "Sicily / Syracuse region",
+        "es": "Sicilia / región de Siracusa"
+      },
+      "scope": "regional",
+      "items": [
+        {
+          "file": "The Campaign in Sicily 1943 NA4480.jpg",
+          "caption": {
+            "en": "Historical Syracuse / Sicily context",
+            "es": "Contexto histórico de Siracusa / Sicilia"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:The_Campaign_in_Sicily_1943_NA4480.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/The_Campaign_in_Sicily_1943_NA4480.jpg?width=1200",
+          "representative": true
+        },
+        {
+          "file": "Museo Archeologico Nazionale Siracusa.jpg",
+          "caption": {
+            "en": "Archaeological context in Syracuse",
+            "es": "Contexto arqueológico de Siracusa"
+          },
+          "license": "CC0",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Museo_Archeologico_Nazionale_Siracusa.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Museo_Archeologico_Nazionale_Siracusa.jpg?width=1200",
+          "representative": true
+        }
+      ]
+    },
+    "malta": {
+      "label": {
+        "en": "Malta",
+        "es": "Malta"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Calvert Jones, St. John's Square, Valletta, Malta 1846.jpg",
+          "caption": {
+            "en": "Valletta, Malta, 1846",
+            "es": "La Valeta, Malta, 1846"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Calvert_Jones,_St._John's_Square,_Valletta,_Malta_1846.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Calvert_Jones,_St._John's_Square,_Valletta,_Malta_1846.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Customs House, Valletta - Fenech photo.jpg",
+          "caption": {
+            "en": "Historical Valletta harbor context",
+            "es": "Contexto histórico del puerto de La Valeta"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Customs_House,_Valletta_-_Fenech_photo.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Customs_House,_Valletta_-_Fenech_photo.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "nineveh": {
+      "label": {
+        "en": "Nineveh",
+        "es": "Nínive"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Nergal gate in Nineveh.JPG",
+          "caption": {
+            "en": "Remains of the Nergal Gate in Nineveh",
+            "es": "Restos de la puerta de Nergal en Nínive"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Nergal_gate_in_Nineveh.JPG",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Nergal_gate_in_Nineveh.JPG?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Iraq (Babylonia). Nineveh, Tomb of Jonah LOC matpc.23039.jpg",
+          "caption": {
+            "en": "Nineveh / traditional Tomb of Jonah, historical photograph",
+            "es": "Nínive / tumba tradicional de Jonás, fotografía histórica"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Iraq_(Babylonia)._Nineveh,_Tomb_of_Jonah_LOC_matpc.23039.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Iraq_(Babylonia)._Nineveh,_Tomb_of_Jonah_LOC_matpc.23039.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    },
+    "babylon": {
+      "label": {
+        "en": "Babylon",
+        "es": "Babilonia"
+      },
+      "scope": "exact",
+      "items": [
+        {
+          "file": "Babylon, 1932.jpg",
+          "caption": {
+            "en": "Ruins of Babylon in 1932",
+            "es": "Ruinas de Babilonia en 1932"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Babylon,_1932.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Babylon,_1932.jpg?width=1200",
+          "representative": false
+        },
+        {
+          "file": "Iraq. Babylon 'the great.' Various views of the crumbling ruins. Brick walls and towers near the Ishtar gate LOC matpc.16079.jpg",
+          "caption": {
+            "en": "Walls and towers near the Ishtar Gate at Babylon",
+            "es": "Muros y torres junto a la puerta de Ishtar en Babilonia"
+          },
+          "license": "Public domain",
+          "source": "Wikimedia Commons",
+          "sourcePage": "https://commons.wikimedia.org/wiki/File:Iraq._Babylon_'the_great.'_Various_views_of_the_crumbling_ruins._Brick_walls_and_towers_near_the_Ishtar_gate_LOC_matpc.16079.jpg",
+          "mediaUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Iraq._Babylon_'the_great.'_Various_views_of_the_crumbling_ruins._Brick_walls_and_towers_near_the_Ishtar_gate_LOC_matpc.16079.jpg?width=1200",
+          "representative": false
+        }
+      ]
+    }
+  }
+}

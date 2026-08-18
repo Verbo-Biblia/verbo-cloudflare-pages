@@ -1,0 +1,755 @@
+{
+  "places": {
+    "belen": {
+      "name": {
+        "es": "Belén",
+        "en": "Bethlehem"
+      },
+      "type": "city",
+      "desc": {
+        "es": "Lugar del nacimiento de Jesús según Mateo 2 y Lucas 2.",
+        "en": "Place of Jesus’ birth in Matthew 2 and Luke 2."
+      },
+      "mapPosition": [
+        184,
+        539
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "bethlehem",
+      "mediaScope": "exact",
+      "scriptureRefs": [
+        "Matthew 2",
+        "Luke 2"
+      ]
+    },
+    "jerusalen": {
+      "name": {
+        "es": "Jerusalén",
+        "en": "Jerusalem"
+      },
+      "type": "city",
+      "desc": {
+        "es": "Centro del templo y escenario de la pasión, resurrección y primeros capítulos de Hechos.",
+        "en": "Temple center and setting of the Passion, Resurrection, and early chapters of Acts."
+      },
+      "mapPosition": [
+        224,
+        518
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "jerusalem",
+      "mediaScope": "exact"
+    },
+    "nazaret": {
+      "name": {
+        "es": "Nazaret",
+        "en": "Nazareth"
+      },
+      "type": "city",
+      "desc": {
+        "es": "Ciudad donde Jesús creció y desde donde inició su ministerio público.",
+        "en": "Town where Jesus grew up and from which he began his public ministry."
+      },
+      "mapPosition": [
+        176,
+        287
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "nazareth",
+      "mediaScope": "exact"
+    },
+    "capernaum": {
+      "name": {
+        "es": "Capernaúm",
+        "en": "Capernaum"
+      },
+      "type": "city",
+      "desc": {
+        "es": "Base importante del ministerio de Jesús en Galilea, junto al mar de Galilea.",
+        "en": "A major base of Jesus’ Galilean ministry on the Sea of Galilee."
+      },
+      "mapPosition": [
+        198,
+        244
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "capernaum",
+      "mediaScope": "exact"
+    },
+    "cana": {
+      "name": {
+        "es": "Caná",
+        "en": "Cana"
+      },
+      "type": "city",
+      "desc": {
+        "es": "Lugar del primer signo de Jesús en Juan 2 y de la sanidad del hijo de un oficial en Juan 4.",
+        "en": "Site of Jesus’ first sign in John 2 and healing of an official’s son in John 4."
+      },
+      "mapPosition": [
+        174,
+        272
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "cana",
+      "mediaScope": "exact",
+      "scriptureRefs": [
+        "John 2",
+        "John 4"
+      ]
+    },
+    "betsaida": {
+      "name": {
+        "es": "Betsaida",
+        "en": "Bethsaida"
+      },
+      "type": "city",
+      "desc": {
+        "es": "Localidad vinculada con varios discípulos y episodios del ministerio alrededor del lago.",
+        "en": "Town associated with several disciples and events around the lake."
+      },
+      "mapPosition": [
+        261,
+        244
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "sea-galilee",
+      "mediaScope": "exact"
+    },
+    "corazin": {
+      "name": {
+        "es": "Corazín",
+        "en": "Chorazin"
+      },
+      "type": "city",
+      "desc": {
+        "es": "Ciudad galilea mencionada por Jesús junto con Betsaida y Capernaúm (Mateo 11:21).",
+        "en": "Galilean town mentioned by Jesus with Bethsaida and Capernaum (Matthew 11:21)."
+      },
+      "mapPosition": [
+        232,
+        227
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "chorazin",
+      "mediaScope": "exact",
+      "scriptureRefs": [
+        "Matthew 11:21"
+      ]
+    },
+    "magdala": {
+      "name": {
+        "es": "Magdala",
+        "en": "Magdala"
+      },
+      "type": "city",
+      "desc": {
+        "es": "Localidad de la ribera occidental del mar de Galilea, asociada tradicionalmente con María Magdalena.",
+        "en": "Town on the western shore of the Sea of Galilee, traditionally associated with Mary Magdalene."
+      },
+      "mapPosition": [
+        193,
+        262
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "magdala",
+      "mediaScope": "exact"
+    },
+    "tiberiades": {
+      "name": {
+        "es": "Tiberíades",
+        "en": "Tiberias"
+      },
+      "type": "city",
+      "desc": {
+        "es": "Ciudad de la costa occidental del mar de Galilea, que dio al lago uno de sus nombres.",
+        "en": "City on the western shore of the Sea of Galilee, giving the lake one of its names."
+      },
+      "mapPosition": [
+        194,
+        279
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "tiberias",
+      "mediaScope": "exact"
+    },
+    "nain": {
+      "name": {
+        "es": "Naín",
+        "en": "Nain"
+      },
+      "type": "city",
+      "desc": {
+        "es": "Jesús resucitó aquí al hijo de una viuda (Lucas 7:11-17).",
+        "en": "Jesus raised a widow’s son here (Luke 7:11-17)."
+      },
+      "mapPosition": [
+        214,
+        294
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "nain",
+      "mediaScope": "exact",
+      "scriptureRefs": [
+        "Luke 7:11-17"
+      ]
+    },
+    "cesarea-filipo": {
+      "name": {
+        "es": "Cesarea de Filipo",
+        "en": "Caesarea Philippi"
+      },
+      "type": "city",
+      "desc": {
+        "es": "Zona donde Pedro confesó a Jesús como el Cristo (Mateo 16:13-20; Marcos 8:27-30).",
+        "en": "Region where Peter confessed Jesus as the Christ (Matthew 16:13-20; Mark 8:27-30)."
+      },
+      "mapPosition": [
+        246,
+        183
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "caesarea-philippi",
+      "mediaScope": "exact",
+      "scriptureRefs": [
+        "Matthew 16:13-20",
+        "Mark 8:27-30"
+      ]
+    },
+    "samaria": {
+      "name": {
+        "es": "Samaria",
+        "en": "Samaria"
+      },
+      "type": "city",
+      "desc": {
+        "es": "Región atravesada por Jesús en Juan 4 y escenario de la expansión del evangelio en Hechos 8.",
+        "en": "Region crossed by Jesus in John 4 and a setting of gospel expansion in Acts 8."
+      },
+      "mapPosition": [
+        166,
+        392
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "samaria-shechem",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "John 4",
+        "Acts 8"
+      ]
+    },
+    "sicar": {
+      "name": {
+        "es": "Sicar / Siquem",
+        "en": "Sychar / Shechem"
+      },
+      "type": "city",
+      "desc": {
+        "es": "En Juan 4 Jesús conversa con la mujer samaritana junto al pozo de Jacob.",
+        "en": "In John 4 Jesus speaks with the Samaritan woman near Jacob’s well."
+      },
+      "mapPosition": [
+        176,
+        418
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "samaria-shechem",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "John 4"
+      ]
+    },
+    "jerico": {
+      "name": {
+        "es": "Jericó",
+        "en": "Jericho"
+      },
+      "type": "city",
+      "desc": {
+        "es": "Ciudad relacionada con Bartimeo y Zaqueo durante el viaje de Jesús hacia Jerusalén.",
+        "en": "City associated with Bartimaeus and Zacchaeus during Jesus’ journey toward Jerusalem."
+      },
+      "mapPosition": [
+        242,
+        489
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "jericho",
+      "mediaScope": "exact"
+    },
+    "betania": {
+      "name": {
+        "es": "Betania",
+        "en": "Bethany"
+      },
+      "type": "city",
+      "desc": {
+        "es": "Aldea de Marta, María y Lázaro, muy vinculada con los días finales de Jesús en Jerusalén.",
+        "en": "Village of Martha, Mary, and Lazarus, closely tied to Jesus’ final days in Jerusalem."
+      },
+      "mapPosition": [
+        247,
+        516
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "bethany",
+      "mediaScope": "exact"
+    },
+    "emaus": {
+      "name": {
+        "es": "Emaús",
+        "en": "Emmaus"
+      },
+      "type": "city",
+      "desc": {
+        "es": "Destino de dos discípulos que encontraron al Cristo resucitado en Lucas 24.",
+        "en": "Destination of two disciples who met the risen Christ in Luke 24."
+      },
+      "mapPosition": [
+        197,
+        498
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "jerusalem",
+      "mediaScope": "exact",
+      "scriptureRefs": [
+        "Luke 24"
+      ]
+    },
+    "jope": {
+      "name": {
+        "es": "Jope",
+        "en": "Joppa"
+      },
+      "type": "city",
+      "desc": {
+        "es": "En Hechos 9 Pedro resucita a Tabita; desde aquí parte para visitar a Cornelio en Cesarea.",
+        "en": "In Acts 9 Peter raises Tabitha; from here he leaves to visit Cornelius at Caesarea."
+      },
+      "mapPosition": [
+        85,
+        449
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "joppa",
+      "mediaScope": "exact",
+      "scriptureRefs": [
+        "Acts 9"
+      ]
+    },
+    "cesarea": {
+      "name": {
+        "es": "Cesarea",
+        "en": "Caesarea"
+      },
+      "type": "port",
+      "desc": {
+        "es": "Puerto romano donde Pedro visita a Cornelio y donde Pablo estuvo preso antes de viajar a Roma.",
+        "en": "Roman port where Peter visits Cornelius and where Paul was imprisoned before sailing to Rome."
+      },
+      "mapPosition": [
+        110,
+        332
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "caesarea",
+      "mediaScope": "exact"
+    },
+    "damasco": {
+      "name": {
+        "es": "Damasco",
+        "en": "Damascus"
+      },
+      "type": "city",
+      "desc": {
+        "es": "Destino de Saulo cuando encontró al Cristo resucitado; allí comenzó su nueva etapa (Hechos 9).",
+        "en": "Saul’s destination when he encountered the risen Christ; there his new life began (Acts 9)."
+      },
+      "mapPosition": [
+        431,
+        106
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "damascus",
+      "mediaScope": "exact",
+      "scriptureRefs": [
+        "Acts 9"
+      ]
+    },
+    "lida": {
+      "name": {
+        "es": "Lida",
+        "en": "Lydda"
+      },
+      "type": "city",
+      "desc": {
+        "es": "En Hechos 9 Pedro sana a Eneas.",
+        "en": "In Acts 9 Peter heals Aeneas."
+      },
+      "mapPosition": [
+        145,
+        458
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "lydda",
+      "mediaScope": "exact",
+      "scriptureRefs": [
+        "Acts 9"
+      ]
+    },
+    "mar-galilea": {
+      "name": {
+        "es": "Mar de Galilea",
+        "en": "Sea of Galilee"
+      },
+      "type": "site",
+      "desc": {
+        "es": "Zona del lago asociada con numerosos episodios del ministerio de Jesús y con la aparición de Juan 21. El punto representa el lago, no un pueblo concreto.",
+        "en": "Lake region associated with many episodes in Jesus’ ministry and with the appearance in John 21. The point represents the lake, not a specific town."
+      },
+      "mapPosition": [
+        300,
+        250
+      ],
+      "mapPositionSource": "thematic-region",
+      "mediaKey": "sea-galilee",
+      "mediaScope": "exact",
+      "scriptureRefs": [
+        "John 21"
+      ]
+    }
+  },
+  "journeys": {
+    "galilea-ministerio": {
+      "mode": "sites",
+      "color": "#b23a3a",
+      "label": {
+        "es": "Ministerio de Jesús en Galilea",
+        "en": "Jesus’ Ministry in Galilee"
+      },
+      "desc": {
+        "es": "Resalta los principales lugares galileos asociados con el ministerio de Jesús. No pretende ordenar todos los episodios cronológicamente.",
+        "en": "Highlights major Galilean locations associated with Jesus’ ministry. It does not attempt to place every episode in chronological order."
+      },
+      "stops": [
+        "nazaret",
+        "cana",
+        "capernaum",
+        "corazin",
+        "betsaida",
+        "magdala",
+        "tiberiades",
+        "nain"
+      ],
+      "scriptureRefs": [
+        "Matthew 4–18",
+        "Mark 1–9",
+        "Luke 4–9"
+      ]
+    },
+    "cesarea-filipo": {
+      "mode": "route",
+      "color": "#795548",
+      "label": {
+        "es": "Galilea y Cesarea de Filipo",
+        "en": "Galilee and Caesarea Philippi"
+      },
+      "desc": {
+        "es": "Recorrido temático entre la zona del lago y Cesarea de Filipo, donde ocurre la confesión de Pedro. La trayectoria exacta no se conoce.",
+        "en": "A thematic route between the lake region and Caesarea Philippi, where Peter’s confession occurs. The exact road is unknown."
+      },
+      "stops": [
+        "capernaum",
+        "betsaida",
+        "cesarea-filipo"
+      ],
+      "scriptureRefs": [
+        "Matthew 16:13–28",
+        "Mark 8:27–9:1"
+      ]
+    },
+    "camino-jerusalen": {
+      "mode": "route",
+      "color": "#b23a3a",
+      "label": {
+        "es": "De Galilea hacia Jerusalén",
+        "en": "From Galilee toward Jerusalem"
+      },
+      "desc": {
+        "es": "Ruta temática que conecta Galilea, Samaria, Jericó, Betania y Jerusalén. Los Evangelios no permiten reconstruir una sola carretera exacta para todos los episodios.",
+        "en": "A thematic route linking Galilee, Samaria, Jericho, Bethany, and Jerusalem. The Gospels do not permit one exact road to be reconstructed for every episode."
+      },
+      "stops": [
+        "capernaum",
+        "samaria",
+        "sicar",
+        "jerico",
+        "betania",
+        "jerusalen"
+      ],
+      "scriptureRefs": [
+        "Luke 9:51–19:28"
+      ]
+    },
+    "semana-final": {
+      "mode": "sites",
+      "color": "#7a1f1f",
+      "label": {
+        "es": "Semana final y resurrección",
+        "en": "Final Week and Resurrection"
+      },
+      "desc": {
+        "es": "Lugares del mapa vinculados con la semana final y las apariciones posteriores: Betania, Jerusalén y Emaús.",
+        "en": "Locations on this map linked to the final week and later appearances: Bethany, Jerusalem, and Emmaus."
+      },
+      "stops": [
+        "betania",
+        "jerusalen",
+        "emaus"
+      ],
+      "scriptureRefs": [
+        "Matthew 21–28",
+        "Mark 11–16",
+        "Luke 19–24",
+        "John 12–21"
+      ]
+    },
+    "hechos-inicial": {
+      "mode": "sites",
+      "color": "#3c5a78",
+      "label": {
+        "es": "Primeros capítulos de Hechos",
+        "en": "Early Acts"
+      },
+      "desc": {
+        "es": "Lugares destacados de la expansión inicial descrita en Hechos: Jerusalén, Samaria, Lida, Jope, Cesarea y Damasco.",
+        "en": "Key places in the early expansion described in Acts: Jerusalem, Samaria, Lydda, Joppa, Caesarea, and Damascus."
+      },
+      "stops": [
+        "jerusalen",
+        "samaria",
+        "lida",
+        "jope",
+        "cesarea",
+        "damasco"
+      ],
+      "scriptureRefs": [
+        "Acts 1–10"
+      ]
+    },
+    "nacimiento-infancia": {
+      "mode": "sites",
+      "color": "#8a5a2b",
+      "label": {
+        "es": "Nacimiento e infancia de Jesús",
+        "en": "Birth and Childhood of Jesus"
+      },
+      "desc": {
+        "es": "Resalta los lugares visibles en este mapa vinculados con el nacimiento y la infancia: Belén, Jerusalén y Nazaret. La huida a Egipto de Mateo 2 queda fuera del recorte de este SVG maestro y por eso no se dibuja aquí.",
+        "en": "Highlights the places visible on this map connected with Jesus’ birth and childhood: Bethlehem, Jerusalem, and Nazareth. The flight to Egypt in Matthew 2 lies outside this master SVG crop and therefore is not drawn here."
+      },
+      "stops": [
+        "belen",
+        "jerusalen",
+        "nazaret"
+      ],
+      "placeNotes": {
+        "belen": {
+          "es": "Nacimiento de Jesús y visita de los pastores; Mateo 2 y Lucas 2 vinculan Belén con los relatos de la infancia.",
+          "en": "Jesus’ birth and the shepherds’ visit; Matthew 2 and Luke 2 connect Bethlehem with the infancy narratives."
+        },
+        "jerusalen": {
+          "es": "Presentación de Jesús en el templo según Lucas 2.",
+          "en": "Jesus is presented at the temple according to Luke 2."
+        },
+        "nazaret": {
+          "es": "Lugar donde Jesús creció después de los relatos de la infancia.",
+          "en": "Place where Jesus grew up after the infancy narratives."
+        }
+      },
+      "scriptureRefs": [
+        "Matthew 1–2",
+        "Luke 1–2"
+      ]
+    },
+    "apariciones-resurreccion": {
+      "mode": "sites",
+      "color": "#6b3fa0",
+      "label": {
+        "es": "Apariciones después de la resurrección",
+        "en": "Post-Resurrection Appearances"
+      },
+      "desc": {
+        "es": "Lugares y regiones representables en este mapa asociados con apariciones de Jesús resucitado. El pin del Mar de Galilea representa la región del lago, no una localización puntual demostrada.",
+        "en": "Places and regions representable on this map associated with appearances of the risen Jesus. The Sea of Galilee pin represents the lake region, not a demonstrated point location."
+      },
+      "stops": [
+        "jerusalen",
+        "emaus",
+        "mar-galilea"
+      ],
+      "placeNotes": {
+        "jerusalen": {
+          "es": "Jerusalén concentra varias apariciones narradas en Lucas 24 y Juan 20.",
+          "en": "Jerusalem is the setting for several appearances narrated in Luke 24 and John 20."
+        },
+        "emaus": {
+          "es": "Jesús se aparece a dos discípulos en el camino y es reconocido al partir el pan, Lucas 24:13–35.",
+          "en": "Jesus appears to two disciples on the road and is recognized in the breaking of bread, Luke 24:13–35."
+        },
+        "mar-galilea": {
+          "es": "Juan 21 sitúa una aparición junto al mar de Tiberíades/Galilea. El punto marca la región del lago.",
+          "en": "John 21 places an appearance by the Sea of Tiberias/Galilee. The point marks the lake region."
+        }
+      },
+      "scriptureRefs": [
+        "Luke 24",
+        "John 20–21"
+      ]
+    },
+    "milagros-jesus": {
+      "mode": "sites",
+      "color": "#b23a3a",
+      "label": {
+        "es": "Milagros de Jesús por lugar",
+        "en": "Miracles of Jesus by Location"
+      },
+      "desc": {
+        "es": "Selección de lugares donde los Evangelios sitúan milagros de Jesús. No intenta registrar todos los milagros ni resolver localizaciones discutidas.",
+        "en": "Selection of places where the Gospels locate miracles of Jesus. It does not attempt to list every miracle or resolve disputed locations."
+      },
+      "stops": [
+        "cana",
+        "capernaum",
+        "nain",
+        "betsaida",
+        "jerico",
+        "betania",
+        "jerusalen"
+      ],
+      "placeNotes": {
+        "cana": {
+          "es": "Transformación del agua en vino en las bodas de Caná, Juan 2:1–11.",
+          "en": "Water turned into wine at the wedding in Cana, John 2:1–11."
+        },
+        "capernaum": {
+          "es": "Capernaúm es escenario de numerosas sanidades y exorcismos en los Evangelios.",
+          "en": "Capernaum is the setting of numerous healings and exorcisms in the Gospels."
+        },
+        "nain": {
+          "es": "Resurrección del hijo de la viuda de Naín, Lucas 7:11–17.",
+          "en": "Raising of the widow’s son at Nain, Luke 7:11–17."
+        },
+        "betsaida": {
+          "es": "Marcos 8:22–26 sitúa aquí la sanidad de un ciego; la región también aparece cerca del relato de la alimentación de los cinco mil.",
+          "en": "Mark 8:22–26 places the healing of a blind man here; the region also appears near the feeding of the five thousand."
+        },
+        "jerico": {
+          "es": "En las cercanías de Jericó los Evangelios narran sanidades de ciegos durante el camino hacia Jerusalén.",
+          "en": "Near Jericho the Gospels narrate healings of blind men on the journey toward Jerusalem."
+        },
+        "betania": {
+          "es": "Resurrección de Lázaro, Juan 11.",
+          "en": "Raising of Lazarus, John 11."
+        },
+        "jerusalen": {
+          "es": "Jerusalén incluye, entre otros, los relatos de la sanidad en Betesda y del ciego de nacimiento, Juan 5 y 9.",
+          "en": "Jerusalem includes, among others, the healings at Bethesda and of the man born blind, John 5 and 9."
+        }
+      },
+      "scriptureRefs": [
+        "Matthew 8–9",
+        "Mark 1–8",
+        "Luke 4–9",
+        "John 2–6"
+      ]
+    },
+    "ensenanzas-lugares": {
+      "mode": "sites",
+      "color": "#2f6f5e",
+      "label": {
+        "es": "Enseñanzas de Jesús con ubicación conocida",
+        "en": "Teachings of Jesus with Known Locations"
+      },
+      "desc": {
+        "es": "Lugares donde los Evangelios sitúan enseñanzas o conversaciones extensas de Jesús. Se excluyen parábolas cuya ubicación narrativa no permite fijar un punto geográfico.",
+        "en": "Places where the Gospels locate extended teachings or conversations of Jesus. Parables whose narrative setting does not permit a geographic point are excluded."
+      },
+      "stops": [
+        "nazaret",
+        "capernaum",
+        "sicar",
+        "cesarea-filipo",
+        "betania",
+        "jerusalen"
+      ],
+      "placeNotes": {
+        "nazaret": {
+          "es": "Lectura y enseñanza en la sinagoga de Nazaret, Lucas 4:16–30.",
+          "en": "Reading and teaching in the synagogue at Nazareth, Luke 4:16–30."
+        },
+        "capernaum": {
+          "es": "Capernaúm aparece como lugar de enseñanza en la sinagoga y como centro del ministerio galileo.",
+          "en": "Capernaum appears as a place of synagogue teaching and a center of the Galilean ministry."
+        },
+        "sicar": {
+          "es": "Conversación con la mujer samaritana y enseñanza a los discípulos, Juan 4.",
+          "en": "Conversation with the Samaritan woman and teaching of the disciples, John 4."
+        },
+        "cesarea-filipo": {
+          "es": "Confesión de Pedro y enseñanza posterior sobre el discipulado y la cruz, Marcos 8 y paralelos.",
+          "en": "Peter’s confession and subsequent teaching on discipleship and the cross, Mark 8 and parallels."
+        },
+        "betania": {
+          "es": "Betania está asociada con enseñanzas en el círculo de Marta, María y Lázaro.",
+          "en": "Bethany is associated with teaching in the circle of Martha, Mary, and Lazarus."
+        },
+        "jerusalen": {
+          "es": "El templo y la ciudad son escenario de amplias secciones de enseñanza durante las visitas de Jesús a Jerusalén.",
+          "en": "The temple and city are the setting of extensive teaching sections during Jesus’ visits to Jerusalem."
+        }
+      },
+      "scriptureRefs": [
+        "Matthew 5–7",
+        "Luke 4",
+        "John 4",
+        "John 6"
+      ]
+    },
+    "pedro-hechos": {
+      "mode": "route",
+      "color": "#2878a8",
+      "label": {
+        "es": "Pedro: Jerusalén, Lida, Jope y Cesarea",
+        "en": "Peter: Jerusalem, Lydda, Joppa, and Caesarea"
+      },
+      "desc": {
+        "es": "Recorrido de Hechos 9–10 desde Jerusalén hacia Lida y Jope, seguido por el encuentro con Cornelio en Cesarea. La línea conecta los lugares bíblicos; no reconstruye cada tramo de carretera.",
+        "en": "Acts 9–10 route from Jerusalem toward Lydda and Joppa, followed by the encounter with Cornelius in Caesarea. The line connects the biblical locations; it does not reconstruct every road segment."
+      },
+      "stops": [
+        "jerusalen",
+        "lida",
+        "jope",
+        "cesarea"
+      ],
+      "placeNotes": {
+        "lida": {
+          "es": "Pedro sana a Eneas en Lida, Hechos 9:32–35.",
+          "en": "Peter heals Aeneas at Lydda, Acts 9:32–35."
+        },
+        "jope": {
+          "es": "Pedro resucita a Tabita y permanece en Jope, Hechos 9:36–43.",
+          "en": "Peter raises Tabitha and stays in Joppa, Acts 9:36–43."
+        },
+        "cesarea": {
+          "es": "Pedro entra en la casa de Cornelio, Hechos 10.",
+          "en": "Peter enters the house of Cornelius, Acts 10."
+        }
+      },
+      "scriptureRefs": [
+        "Acts 9:32–10:48"
+      ]
+    }
+  }
+}

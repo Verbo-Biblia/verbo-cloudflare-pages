@@ -1,0 +1,277 @@
+{
+  "places": {
+    "belen": {
+      "name": {
+        "es": "Belén",
+        "en": "Bethlehem"
+      },
+      "coords": [
+        35.2,
+        31.7
+      ],
+      "type": "city",
+      "desc": {
+        "es": "Ciudad de David donde nació Jesús, cumpliendo la profecía de Miqueas 5:2. Los pastores y los magos de oriente vinieron aquí a adorarlo (Lucas 2, Mateo 2).",
+        "en": "City of David where Jesus was born, fulfilling the prophecy of Micah 5:2. The shepherds and the magi from the east came here to worship him (Luke 2, Matthew 2)."
+      },
+      "mediaKey": "bethlehem",
+      "mediaScope": "exact"
+    },
+    "nazaret": {
+      "name": {
+        "es": "Nazaret",
+        "en": "Nazareth"
+      },
+      "coords": [
+        35.3,
+        32.7
+      ],
+      "type": "city",
+      "desc": {
+        "es": "Pueblo de Galilea donde Jesús creció. Aquí el ángel Gabriel anunció su nacimiento a María (Lucas 1:26-38), y aquí también fue rechazado al comenzar su ministerio público (Lucas 4:16-30).",
+        "en": "Galilean town where Jesus grew up. Here the angel Gabriel announced his birth to Mary (Luke 1:26-38), and here he was also rejected at the start of his public ministry (Luke 4:16-30)."
+      },
+      "mediaKey": "nazareth",
+      "mediaScope": "exact"
+    },
+    "cana": {
+      "name": {
+        "es": "Caná",
+        "en": "Cana"
+      },
+      "coords": [
+        35.34,
+        32.75
+      ],
+      "type": "city",
+      "desc": {
+        "es": "Lugar del primer milagro de Jesús: convirtió el agua en vino durante una boda (Juan 2:1-11), «principio de señales» que manifestó su gloria.",
+        "en": "Site of Jesus' first miracle: turning water into wine at a wedding (John 2:1-11), the \"beginning of signs\" that revealed his glory."
+      },
+      "mediaKey": "cana",
+      "mediaScope": "exact"
+    },
+    "capernaum": {
+      "name": {
+        "es": "Capernaúm",
+        "en": "Capernaum"
+      },
+      "coords": [
+        35.575,
+        32.881
+      ],
+      "type": "city",
+      "desc": {
+        "es": "Ciudad junto al mar de Galilea que Jesús hizo el centro de su ministerio (Mateo 4:13). Aquí sanó al siervo de un centurión, a la suegra de Pedro, y enseñó en la sinagoga.",
+        "en": "Town by the Sea of Galilee that Jesus made the base of his ministry (Matthew 4:13). Here he healed a centurion's servant, Peter's mother-in-law, and taught in the synagogue."
+      },
+      "mediaKey": "capernaum",
+      "mediaScope": "exact"
+    },
+    "betsaida": {
+      "name": {
+        "es": "Betsaida",
+        "en": "Bethsaida"
+      },
+      "coords": [
+        35.63,
+        32.91
+      ],
+      "type": "town",
+      "desc": {
+        "es": "Hogar de los apóstoles Pedro, Andrés y Felipe (Juan 1:44). Cerca de aquí Jesús alimentó a cinco mil personas con cinco panes y dos peces (Lucas 9:10-17).",
+        "en": "Hometown of the apostles Peter, Andrew, and Philip (John 1:44). Nearby, Jesus fed five thousand people with five loaves and two fish (Luke 9:10-17)."
+      },
+      "mediaKey": "sea-galilee",
+      "mediaScope": "exact"
+    },
+    "corazin": {
+      "name": {
+        "es": "Corazín",
+        "en": "Chorazin"
+      },
+      "coords": [
+        35.56,
+        32.91
+      ],
+      "type": "town",
+      "desc": {
+        "es": "Una de las ciudades donde Jesús hizo la mayoría de sus milagros, pero que él mismo lamentó por su falta de arrepentimiento (Mateo 11:20-24).",
+        "en": "One of the towns where Jesus performed most of his miracles, yet which he himself lamented for its lack of repentance (Matthew 11:20-24)."
+      },
+      "mediaKey": "chorazin",
+      "mediaScope": "exact"
+    },
+    "magdala": {
+      "name": {
+        "es": "Magdala",
+        "en": "Magdala"
+      },
+      "coords": [
+        35.51,
+        32.82
+      ],
+      "type": "town",
+      "desc": {
+        "es": "Pueblo pesquero en la orilla del mar de Galilea, hogar de María Magdalena, una de las mujeres que siguieron y sostuvieron el ministerio de Jesús (Lucas 8:2-3).",
+        "en": "Fishing village on the shore of the Sea of Galilee, hometown of Mary Magdalene, one of the women who followed and supported Jesus' ministry (Luke 8:2-3)."
+      },
+      "mediaKey": "magdala",
+      "mediaScope": "exact"
+    },
+    "gerasenos": {
+      "name": {
+        "es": "Región de los gadarenos",
+        "en": "Region of the Gadarenes"
+      },
+      "coords": [
+        35.68,
+        32.65
+      ],
+      "type": "region",
+      "desc": {
+        "es": "Territorio al otro lado del mar de Galilea donde Jesús liberó a un hombre poseído por una legión de demonios, enviándolos a una piara de cerdos (Marcos 5:1-20).",
+        "en": "Territory across the Sea of Galilee where Jesus freed a man possessed by a legion of demons, sending them into a herd of pigs (Mark 5:1-20)."
+      },
+      "mediaKey": "sea-galilee",
+      "mediaScope": "exact"
+    },
+    "cesarea-filipo": {
+      "name": {
+        "es": "Cesarea de Filipo",
+        "en": "Caesarea Philippi"
+      },
+      "coords": [
+        35.69,
+        33.25
+      ],
+      "type": "city",
+      "desc": {
+        "es": "En esta región, al pie del monte Hermón, Pedro confesó: «Tú eres el Cristo, el Hijo del Dios viviente» (Mateo 16:13-20), momento decisivo del ministerio de Jesús.",
+        "en": "In this region, at the foot of Mount Hermon, Peter confessed: \"You are the Christ, the Son of the living God\" (Matthew 16:13-20), a decisive moment in Jesus' ministry."
+      },
+      "mediaKey": "caesarea-philippi",
+      "mediaScope": "exact"
+    },
+    "sicar": {
+      "name": {
+        "es": "Sicar (pozo de Jacob)",
+        "en": "Sychar (Jacob's Well)"
+      },
+      "coords": [
+        35.28,
+        32.21
+      ],
+      "type": "town",
+      "desc": {
+        "es": "Aldea de Samaria donde Jesús habló con una mujer samaritana junto al pozo de Jacob, revelándole que era el Mesías (Juan 4:1-42).",
+        "en": "Samaritan village where Jesus spoke with a Samaritan woman at Jacob's well, revealing to her that he was the Messiah (John 4:1-42)."
+      },
+      "mediaKey": "samaria-shechem",
+      "mediaScope": "regional"
+    },
+    "jerico": {
+      "name": {
+        "es": "Jericó",
+        "en": "Jericho"
+      },
+      "coords": [
+        35.46,
+        31.86
+      ],
+      "type": "city",
+      "desc": {
+        "es": "Camino a Jerusalén, Jesús sanó aquí al ciego Bartimeo (Marcos 10:46-52) y se hospedó en casa de Zaqueo, el jefe de los publicanos (Lucas 19:1-10).",
+        "en": "On the road to Jerusalem, Jesus healed blind Bartimaeus here (Mark 10:46-52) and stayed at the home of Zacchaeus, the chief tax collector (Luke 19:1-10)."
+      },
+      "mediaKey": "jericho",
+      "mediaScope": "exact"
+    },
+    "betania": {
+      "name": {
+        "es": "Betania",
+        "en": "Bethany"
+      },
+      "coords": [
+        35.26,
+        31.77
+      ],
+      "type": "town",
+      "desc": {
+        "es": "Hogar de Marta, María y Lázaro, a quien Jesús resucitó de entre los muertos (Juan 11:1-44). Jesús se hospedaba aquí en sus visitas a Jerusalén.",
+        "en": "Home of Martha, Mary, and Lazarus, whom Jesus raised from the dead (John 11:1-44). Jesus stayed here during his visits to Jerusalem."
+      },
+      "mediaKey": "bethany",
+      "mediaScope": "exact"
+    },
+    "jerusalen": {
+      "name": {
+        "es": "Jerusalén",
+        "en": "Jerusalem"
+      },
+      "coords": [
+        35.23,
+        31.78
+      ],
+      "type": "city",
+      "desc": {
+        "es": "La ciudad santa: entrada triunfal, la última cena, el juicio, la crucifixión y la resurrección de Jesús ocurrieron aquí durante la semana de la Pascua (Mateo 21-28).",
+        "en": "The holy city: the triumphal entry, the last supper, the trial, the crucifixion, and the resurrection of Jesus all took place here during Passover week (Matthew 21-28)."
+      },
+      "mediaKey": "jerusalem",
+      "mediaScope": "exact"
+    }
+  },
+  "journeys": {
+    "ministerio-galilea": {
+      "label": {
+        "es": "Ministerio en Galilea",
+        "en": "Galilean Ministry"
+      },
+      "stops": [
+        "nazaret",
+        "cana",
+        "capernaum",
+        "betsaida",
+        "corazin",
+        "magdala",
+        "gerasenos",
+        "cesarea-filipo",
+        "capernaum"
+      ],
+      "scriptureRefs": [
+        "Matthew 4–18"
+      ]
+    },
+    "camino-jerusalen": {
+      "label": {
+        "es": "Camino final a Jerusalén",
+        "en": "Final Journey to Jerusalem"
+      },
+      "stops": [
+        "capernaum",
+        "sicar",
+        "jerico",
+        "betania",
+        "jerusalen"
+      ],
+      "scriptureRefs": [
+        "Luke 9:51–19:28"
+      ]
+    },
+    "nacimiento": {
+      "label": {
+        "es": "Nacimiento y niñez",
+        "en": "Birth and Childhood"
+      },
+      "stops": [
+        "belen",
+        "nazaret"
+      ],
+      "scriptureRefs": [
+        "Matthew 1–2",
+        "Luke 1–2"
+      ]
+    }
+  }
+}

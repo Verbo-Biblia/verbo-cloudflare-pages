@@ -1,0 +1,967 @@
+{
+  "version": 2,
+  "labels": {
+    "Rome": {
+      "es": "Roma",
+      "en": "Rome"
+    },
+    "The Three Taverns": {
+      "es": "Tres Tabernas",
+      "en": "The Three Taverns"
+    },
+    "Appii Forum": {
+      "es": "Foro de Apio",
+      "en": "Appii Forum"
+    },
+    "Neapolis": {
+      "es": "Neápolis",
+      "en": "Neapolis"
+    },
+    "Puteoli": {
+      "es": "Puteoli",
+      "en": "Puteoli"
+    },
+    "Rhegium": {
+      "es": "Regio",
+      "en": "Rhegium"
+    },
+    "Syracuse": {
+      "es": "Siracusa",
+      "en": "Syracuse"
+    },
+    "Melita (Malta)": {
+      "es": "Malta",
+      "en": "Melita (Malta)"
+    },
+    "Nicopolis": {
+      "es": "Nicópolis",
+      "en": "Nicopolis"
+    },
+    "Thessalonica": {
+      "es": "Tesalónica",
+      "en": "Thessalonica"
+    },
+    "Berea": {
+      "es": "Berea",
+      "en": "Berea"
+    },
+    "Philippi": {
+      "es": "Filipos",
+      "en": "Philippi"
+    },
+    "Apollonia": {
+      "es": "Apolonia",
+      "en": "Apollonia"
+    },
+    "Amphipolis": {
+      "es": "Anfípolis",
+      "en": "Amphipolis"
+    },
+    "Samothrace isl.": {
+      "es": "isla de Samotracia",
+      "en": "Samothrace isl."
+    },
+    "Troas": {
+      "es": "Troas",
+      "en": "Troas"
+    },
+    "Assos": {
+      "es": "Asón",
+      "en": "Assos"
+    },
+    "Mitylene": {
+      "es": "Mitilene",
+      "en": "Mitylene"
+    },
+    "Chios isl.": {
+      "es": "isla de Quíos",
+      "en": "Chios isl."
+    },
+    "Samos isl.": {
+      "es": "isla de Samos",
+      "en": "Samos isl."
+    },
+    "Patmos isl.": {
+      "es": "isla de Patmos",
+      "en": "Patmos isl."
+    },
+    "Kos isl.": {
+      "es": "isla de Cos",
+      "en": "Kos isl."
+    },
+    "Rhodes isl.": {
+      "es": "isla de Rodas",
+      "en": "Rhodes isl."
+    },
+    "Cnidus": {
+      "es": "Cnido",
+      "en": "Cnidus"
+    },
+    "Pergamos": {
+      "es": "Pérgamo",
+      "en": "Pergamos"
+    },
+    "Smyrna": {
+      "es": "Esmirna",
+      "en": "Smyrna"
+    },
+    "Ephesus": {
+      "es": "Éfeso",
+      "en": "Ephesus"
+    },
+    "Thyatira": {
+      "es": "Tiatira",
+      "en": "Thyatira"
+    },
+    "Sardis": {
+      "es": "Sardis",
+      "en": "Sardis"
+    },
+    "Philadelphia": {
+      "es": "Filadelfia",
+      "en": "Philadelphia"
+    },
+    "Hierapolis": {
+      "es": "Hierápolis",
+      "en": "Hierapolis"
+    },
+    "Laodicea": {
+      "es": "Laodicea",
+      "en": "Laodicea"
+    },
+    "Colosse": {
+      "es": "Colosas",
+      "en": "Colosse"
+    },
+    "Adramyttium": {
+      "es": "Adramitio",
+      "en": "Adramyttium"
+    },
+    "Trogyllium": {
+      "es": "Trogilio",
+      "en": "Trogyllium"
+    },
+    "Miletus": {
+      "es": "Mileto",
+      "en": "Miletus"
+    },
+    "Patara": {
+      "es": "Pátara",
+      "en": "Patara"
+    },
+    "Myra": {
+      "es": "Mira",
+      "en": "Myra"
+    },
+    "Attalia": {
+      "es": "Atalía",
+      "en": "Attalia"
+    },
+    "Perga": {
+      "es": "Perge",
+      "en": "Perga"
+    },
+    "Antioch": {
+      "es": "Antioquía",
+      "en": "Antioch"
+    },
+    "Iconium": {
+      "es": "Iconio",
+      "en": "Iconium"
+    },
+    "Lystra": {
+      "es": "Listra",
+      "en": "Lystra"
+    },
+    "Derbe": {
+      "es": "Derbe",
+      "en": "Derbe"
+    },
+    "Tarsus": {
+      "es": "Tarso",
+      "en": "Tarsus"
+    },
+    "Seleucia": {
+      "es": "Seleucia",
+      "en": "Seleucia"
+    },
+    "Salamis": {
+      "es": "Salamina",
+      "en": "Salamis"
+    },
+    "Paphos": {
+      "es": "Pafos",
+      "en": "Paphos"
+    },
+    "Sidon": {
+      "es": "Sidón",
+      "en": "Sidon"
+    },
+    "Tyre": {
+      "es": "Tiro",
+      "en": "Tyre"
+    },
+    "Ptolemais": {
+      "es": "Tolemaida",
+      "en": "Ptolemais"
+    },
+    "Caesarea": {
+      "es": "Cesarea",
+      "en": "Caesarea"
+    },
+    "Joppa": {
+      "es": "Jope",
+      "en": "Joppa"
+    },
+    "Azotus": {
+      "es": "Azoto",
+      "en": "Azotus"
+    },
+    "Gaza": {
+      "es": "Gaza",
+      "en": "Gaza"
+    },
+    "Jerusalem": {
+      "es": "Jerusalén",
+      "en": "Jerusalem"
+    },
+    "Bethlehem": {
+      "es": "Belén",
+      "en": "Bethlehem"
+    },
+    "Nazareth": {
+      "es": "Nazaret",
+      "en": "Nazareth"
+    },
+    "Samaria": {
+      "es": "Samaria",
+      "en": "Samaria"
+    },
+    "Damascus": {
+      "es": "Damasco",
+      "en": "Damascus"
+    },
+    "Alexandria": {
+      "es": "Alejandría",
+      "en": "Alexandria"
+    },
+    "Cyrene": {
+      "es": "Cirene",
+      "en": "Cyrene"
+    },
+    "Memphis": {
+      "es": "Menfis",
+      "en": "Memphis"
+    },
+    "Sinai Peninsula": {
+      "es": "Sinai Peninsula",
+      "en": "Sinai Peninsula"
+    },
+    "Haran": {
+      "es": "Harán",
+      "en": "Haran"
+    },
+    "Ancyra": {
+      "es": "Ancira",
+      "en": "Ancyra"
+    },
+    "Sinope": {
+      "es": "Sinope",
+      "en": "Sinope"
+    },
+    "Cyprus": {
+      "es": "Cyprus",
+      "en": "Cyprus"
+    },
+    "Crete": {
+      "es": "Crete",
+      "en": "Crete"
+    },
+    "Phenice": {
+      "es": "Fenice",
+      "en": "Phenice"
+    },
+    "Lasea": {
+      "es": "Lasea",
+      "en": "Lasea"
+    },
+    "The Fair Havens": {
+      "es": "Buenos Puertos",
+      "en": "The Fair Havens"
+    },
+    "Salmone": {
+      "es": "Salmone",
+      "en": "Salmone"
+    },
+    "Cape": {
+      "es": "Cabo",
+      "en": "Cape"
+    },
+    "Clauda isl.": {
+      "es": "isla de Clauda",
+      "en": "Clauda isl."
+    },
+    "Corinth": {
+      "es": "Corinto",
+      "en": "Corinth"
+    },
+    "Cenchrea": {
+      "es": "Cencrea",
+      "en": "Cenchrea"
+    },
+    "Athens": {
+      "es": "Atenas",
+      "en": "Athens"
+    },
+    "Peloponnesus": {
+      "es": "Peloponeso",
+      "en": "Peloponnesus"
+    },
+    "Pel.": {
+      "es": "Pel.",
+      "en": "Pel."
+    },
+    "Macedonia": {
+      "es": "Macedonia",
+      "en": "Macedonia"
+    },
+    "Thrace": {
+      "es": "Thrace",
+      "en": "Thrace"
+    },
+    "Asia": {
+      "es": "Asia",
+      "en": "Asia"
+    },
+    "Bithynia": {
+      "es": "Bithynia",
+      "en": "Bithynia"
+    },
+    "Cappadocia": {
+      "es": "Cappadocia",
+      "en": "Cappadocia"
+    },
+    "Pontus": {
+      "es": "Pontus",
+      "en": "Pontus"
+    },
+    "ITALY": {
+      "es": "ITALIA",
+      "en": "ITALY"
+    },
+    "ADRIATIC SEA": {
+      "es": "MAR ADRIÁTICO",
+      "en": "ADRIATIC SEA"
+    },
+    "ILLYRICUM": {
+      "es": "ILLYRICUM",
+      "en": "ILLYRICUM"
+    },
+    "MACEDONIA": {
+      "es": "MACEDONIA",
+      "en": "MACEDONIA"
+    },
+    "THRACE": {
+      "es": "TRACIA",
+      "en": "THRACE"
+    },
+    "AEGEAN SEA": {
+      "es": "MAR EGEO",
+      "en": "AEGEAN SEA"
+    },
+    "ASIA": {
+      "es": "ASIA",
+      "en": "ASIA"
+    },
+    "BITHYNIA": {
+      "es": "BITINIA",
+      "en": "BITHYNIA"
+    },
+    "CAPPADOCIA": {
+      "es": "CAPADOCIA",
+      "en": "CAPPADOCIA"
+    },
+    "SYRIA": {
+      "es": "SIRIA",
+      "en": "SYRIA"
+    },
+    "PHOENICIA": {
+      "es": "FENICIA",
+      "en": "PHOENICIA"
+    },
+    "EGYPT": {
+      "es": "EGYPT",
+      "en": "EGYPT"
+    },
+    "CYRENAICA": {
+      "es": "CIRENAICA",
+      "en": "CYRENAICA"
+    },
+    "LIBYA": {
+      "es": "LIBIA",
+      "en": "LIBYA"
+    },
+    "AFRICA": {
+      "es": "ÁFRICA",
+      "en": "AFRICA"
+    },
+    "THE GREAT SEA ( MEDITERRANEAN SEA )": {
+      "es": "EL GRAN MAR ( MAR MEDITERRÁNEO )",
+      "en": "THE GREAT SEA ( MEDITERRANEAN SEA )"
+    },
+    "PONTUS EUXINUS (BLACK SEA)": {
+      "es": "PONTO EUXINO (MAR NEGRO)",
+      "en": "PONTUS EUXINUS (BLACK SEA)"
+    },
+    "ARABIA": {
+      "es": "ARABIA",
+      "en": "ARABIA"
+    },
+    "Jordan": {
+      "es": "Jordán",
+      "en": "Jordan"
+    },
+    "DEAD (SALT) SEA": {
+      "es": "MAR MUERTO",
+      "en": "DEAD (SALT) SEA"
+    },
+    "Nile": {
+      "es": "Nilo",
+      "en": "Nile"
+    },
+    "APOSTLE PAUL'S": {
+      "es": "VIAJES DEL APÓSTOL",
+      "en": "APOSTLE PAUL'S"
+    },
+    "JOURNEYS": {
+      "es": "PABLO",
+      "en": "JOURNEYS"
+    },
+    "Supposed paths:": {
+      "es": "Rutas propuestas:",
+      "en": "Supposed paths:"
+    },
+    "1st Journey": {
+      "es": "1.er viaje",
+      "en": "1st Journey"
+    },
+    "2nd Journey": {
+      "es": "2.º viaje",
+      "en": "2nd Journey"
+    },
+    "3rd Journey": {
+      "es": "3.er viaje",
+      "en": "3rd Journey"
+    },
+    "Journey to Rome": {
+      "es": "Viaje a Roma",
+      "en": "Journey to Rome"
+    },
+    "Dashed line denotes": {
+      "es": "La línea discontinua indica",
+      "en": "Dashed line denotes"
+    },
+    "the least defined path": {
+      "es": "la ruta menos definida",
+      "en": "the least defined path"
+    },
+    "ELEVATION": {
+      "es": "ELEVACIÓN",
+      "en": "ELEVATION"
+    },
+    "3000": {
+      "es": "3000",
+      "en": "3000"
+    },
+    "2200": {
+      "es": "2200",
+      "en": "2200"
+    },
+    "1500": {
+      "es": "1500",
+      "en": "1500"
+    },
+    "1000": {
+      "es": "1000",
+      "en": "1000"
+    },
+    "600": {
+      "es": "600",
+      "en": "600"
+    },
+    "300": {
+      "es": "300",
+      "en": "300"
+    },
+    "0": {
+      "es": "0",
+      "en": "0"
+    },
+    "-415 m": {
+      "es": "-415 m",
+      "en": "-415 m"
+    },
+    "10000 and more": {
+      "es": "10000 and more",
+      "en": "10000 and more"
+    },
+    "7500": {
+      "es": "7500",
+      "en": "7500"
+    },
+    "5000": {
+      "es": "5000",
+      "en": "5000"
+    },
+    "3500": {
+      "es": "3500",
+      "en": "3500"
+    },
+    "2000": {
+      "es": "2000",
+      "en": "2000"
+    },
+    "-1360 feet": {
+      "es": "-1360 feet",
+      "en": "-1360 feet"
+    },
+    "100": {
+      "es": "100",
+      "en": "100"
+    },
+    "200": {
+      "es": "200",
+      "en": "200"
+    },
+    "400": {
+      "es": "400",
+      "en": "400"
+    },
+    "500 km": {
+      "es": "500 km",
+      "en": "500 km"
+    }
+  },
+  "keys": {
+    "place.rome": {
+      "es": "Roma",
+      "en": "Rome"
+    },
+    "place.the_three_taverns": {
+      "es": "Tres Tabernas",
+      "en": "The Three Taverns"
+    },
+    "place.appii_forum": {
+      "es": "Foro de Apio",
+      "en": "Appii Forum"
+    },
+    "place.neapolis": {
+      "es": "Neápolis",
+      "en": "Neapolis"
+    },
+    "place.puteoli": {
+      "es": "Puteoli",
+      "en": "Puteoli"
+    },
+    "place.rhegium": {
+      "es": "Regio",
+      "en": "Rhegium"
+    },
+    "place.syracuse": {
+      "es": "Siracusa",
+      "en": "Syracuse"
+    },
+    "place.melita_malta": {
+      "es": "Malta",
+      "en": "Melita (Malta)"
+    },
+    "place.nicopolis": {
+      "es": "Nicópolis",
+      "en": "Nicopolis"
+    },
+    "place.thessalonica": {
+      "es": "Tesalónica",
+      "en": "Thessalonica"
+    },
+    "place.berea": {
+      "es": "Berea",
+      "en": "Berea"
+    },
+    "place.philippi": {
+      "es": "Filipos",
+      "en": "Philippi"
+    },
+    "place.apollonia": {
+      "es": "Apolonia",
+      "en": "Apollonia"
+    },
+    "place.amphipolis": {
+      "es": "Anfípolis",
+      "en": "Amphipolis"
+    },
+    "place.samothrace_isl": {
+      "es": "isla de Samotracia",
+      "en": "Samothrace isl."
+    },
+    "place.troas": {
+      "es": "Troas",
+      "en": "Troas"
+    },
+    "place.assos": {
+      "es": "Asón",
+      "en": "Assos"
+    },
+    "place.mitylene": {
+      "es": "Mitilene",
+      "en": "Mitylene"
+    },
+    "place.chios_isl": {
+      "es": "isla de Quíos",
+      "en": "Chios isl."
+    },
+    "place.samos_isl": {
+      "es": "isla de Samos",
+      "en": "Samos isl."
+    },
+    "place.patmos_isl": {
+      "es": "isla de Patmos",
+      "en": "Patmos isl."
+    },
+    "place.kos_isl": {
+      "es": "isla de Cos",
+      "en": "Kos isl."
+    },
+    "place.rhodes_isl": {
+      "es": "isla de Rodas",
+      "en": "Rhodes isl."
+    },
+    "place.cnidus": {
+      "es": "Cnido",
+      "en": "Cnidus"
+    },
+    "place.pergamos": {
+      "es": "Pérgamo",
+      "en": "Pergamos"
+    },
+    "place.smyrna": {
+      "es": "Esmirna",
+      "en": "Smyrna"
+    },
+    "place.ephesus": {
+      "es": "Éfeso",
+      "en": "Ephesus"
+    },
+    "place.thyatira": {
+      "es": "Tiatira",
+      "en": "Thyatira"
+    },
+    "place.sardis": {
+      "es": "Sardis",
+      "en": "Sardis"
+    },
+    "place.philadelphia": {
+      "es": "Filadelfia",
+      "en": "Philadelphia"
+    },
+    "place.hierapolis": {
+      "es": "Hierápolis",
+      "en": "Hierapolis"
+    },
+    "place.laodicea": {
+      "es": "Laodicea",
+      "en": "Laodicea"
+    },
+    "place.colosse": {
+      "es": "Colosas",
+      "en": "Colosse"
+    },
+    "place.adramyttium": {
+      "es": "Adramitio",
+      "en": "Adramyttium"
+    },
+    "place.trogyllium": {
+      "es": "Trogilio",
+      "en": "Trogyllium"
+    },
+    "place.miletus": {
+      "es": "Mileto",
+      "en": "Miletus"
+    },
+    "place.patara": {
+      "es": "Pátara",
+      "en": "Patara"
+    },
+    "place.myra": {
+      "es": "Mira",
+      "en": "Myra"
+    },
+    "place.attalia": {
+      "es": "Atalía",
+      "en": "Attalia"
+    },
+    "place.perga": {
+      "es": "Perge",
+      "en": "Perga"
+    },
+    "place.antioch": {
+      "es": "Antioquía",
+      "en": "Antioch"
+    },
+    "place.iconium": {
+      "es": "Iconio",
+      "en": "Iconium"
+    },
+    "place.lystra": {
+      "es": "Listra",
+      "en": "Lystra"
+    },
+    "place.derbe": {
+      "es": "Derbe",
+      "en": "Derbe"
+    },
+    "place.tarsus": {
+      "es": "Tarso",
+      "en": "Tarsus"
+    },
+    "place.seleucia": {
+      "es": "Seleucia",
+      "en": "Seleucia"
+    },
+    "place.salamis": {
+      "es": "Salamina",
+      "en": "Salamis"
+    },
+    "place.paphos": {
+      "es": "Pafos",
+      "en": "Paphos"
+    },
+    "place.sidon": {
+      "es": "Sidón",
+      "en": "Sidon"
+    },
+    "place.tyre": {
+      "es": "Tiro",
+      "en": "Tyre"
+    },
+    "place.ptolemais": {
+      "es": "Tolemaida",
+      "en": "Ptolemais"
+    },
+    "place.caesarea": {
+      "es": "Cesarea",
+      "en": "Caesarea"
+    },
+    "place.joppa": {
+      "es": "Jope",
+      "en": "Joppa"
+    },
+    "place.azotus": {
+      "es": "Azoto",
+      "en": "Azotus"
+    },
+    "place.gaza": {
+      "es": "Gaza",
+      "en": "Gaza"
+    },
+    "place.jerusalem": {
+      "es": "Jerusalén",
+      "en": "Jerusalem"
+    },
+    "place.bethlehem": {
+      "es": "Belén",
+      "en": "Bethlehem"
+    },
+    "place.nazareth": {
+      "es": "Nazaret",
+      "en": "Nazareth"
+    },
+    "place.samaria": {
+      "es": "Samaria",
+      "en": "Samaria"
+    },
+    "place.damascus": {
+      "es": "Damasco",
+      "en": "Damascus"
+    },
+    "place.alexandria": {
+      "es": "Alejandría",
+      "en": "Alexandria"
+    },
+    "place.cyrene": {
+      "es": "Cirene",
+      "en": "Cyrene"
+    },
+    "place.memphis": {
+      "es": "Menfis",
+      "en": "Memphis"
+    },
+    "place.sinai_peninsula": {
+      "es": "Sinai Peninsula",
+      "en": "Sinai Peninsula"
+    },
+    "place.haran": {
+      "es": "Harán",
+      "en": "Haran"
+    },
+    "place.ancyra": {
+      "es": "Ancira",
+      "en": "Ancyra"
+    },
+    "place.sinope": {
+      "es": "Sinope",
+      "en": "Sinope"
+    },
+    "place.cyprus": {
+      "es": "Cyprus",
+      "en": "Cyprus"
+    },
+    "place.crete": {
+      "es": "Crete",
+      "en": "Crete"
+    },
+    "place.phenice": {
+      "es": "Fenice",
+      "en": "Phenice"
+    },
+    "place.lasea": {
+      "es": "Lasea",
+      "en": "Lasea"
+    },
+    "place.the_fair_havens": {
+      "es": "Buenos Puertos",
+      "en": "The Fair Havens"
+    },
+    "place.salmone": {
+      "es": "Salmone",
+      "en": "Salmone"
+    },
+    "place.cape": {
+      "es": "Cabo",
+      "en": "Cape"
+    },
+    "place.clauda_isl": {
+      "es": "isla de Clauda",
+      "en": "Clauda isl."
+    },
+    "place.corinth": {
+      "es": "Corinto",
+      "en": "Corinth"
+    },
+    "place.cenchrea": {
+      "es": "Cencrea",
+      "en": "Cenchrea"
+    },
+    "place.athens": {
+      "es": "Atenas",
+      "en": "Athens"
+    },
+    "place.peloponnesus": {
+      "es": "Peloponeso",
+      "en": "Peloponnesus"
+    },
+    "place.pel": {
+      "es": "Pel.",
+      "en": "Pel."
+    },
+    "place.macedonia": {
+      "es": "Macedonia",
+      "en": "Macedonia"
+    },
+    "place.thrace": {
+      "es": "Thrace",
+      "en": "Thrace"
+    },
+    "place.asia": {
+      "es": "Asia",
+      "en": "Asia"
+    },
+    "place.bithynia": {
+      "es": "Bithynia",
+      "en": "Bithynia"
+    },
+    "place.cappadocia": {
+      "es": "Cappadocia",
+      "en": "Cappadocia"
+    },
+    "place.pontus": {
+      "es": "Pontus",
+      "en": "Pontus"
+    },
+    "label.italy": {
+      "es": "ITALIA",
+      "en": "ITALY"
+    },
+    "label.adriatic_sea": {
+      "es": "MAR ADRIÁTICO",
+      "en": "ADRIATIC SEA"
+    },
+    "label.illyricum": {
+      "es": "ILLYRICUM",
+      "en": "ILLYRICUM"
+    },
+    "label.macedonia": {
+      "es": "MACEDONIA",
+      "en": "MACEDONIA"
+    },
+    "label.thrace": {
+      "es": "TRACIA",
+      "en": "THRACE"
+    },
+    "label.aegean_sea": {
+      "es": "MAR EGEO",
+      "en": "AEGEAN SEA"
+    },
+    "label.asia": {
+      "es": "ASIA",
+      "en": "ASIA"
+    },
+    "label.bithynia": {
+      "es": "BITINIA",
+      "en": "BITHYNIA"
+    },
+    "label.cappadocia": {
+      "es": "CAPADOCIA",
+      "en": "CAPPADOCIA"
+    },
+    "label.syria": {
+      "es": "SIRIA",
+      "en": "SYRIA"
+    },
+    "label.phoenicia": {
+      "es": "FENICIA",
+      "en": "PHOENICIA"
+    },
+    "label.egypt": {
+      "es": "EGYPT",
+      "en": "EGYPT"
+    },
+    "label.cyrenaica": {
+      "es": "CIRENAICA",
+      "en": "CYRENAICA"
+    },
+    "label.libya": {
+      "es": "LIBIA",
+      "en": "LIBYA"
+    },
+    "label.africa": {
+      "es": "ÁFRICA",
+      "en": "AFRICA"
+    },
+    "label.the_great_sea__mediterranean_sea_": {
+      "es": "EL GRAN MAR ( MAR MEDITERRÁNEO )",
+      "en": "THE GREAT SEA ( MEDITERRANEAN SEA )"
+    },
+    "label.pontus_euxinus_black_sea": {
+      "es": "PONTO EUXINO (MAR NEGRO)",
+      "en": "PONTUS EUXINUS (BLACK SEA)"
+    },
+    "label.pontus": {
+      "es": "Pontus",
+      "en": "Pontus"
+    },
+    "label.arabia": {
+      "es": "ARABIA",
+      "en": "ARABIA"
+    }
+  }
+}

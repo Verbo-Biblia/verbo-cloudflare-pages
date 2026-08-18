@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="526" height="768" viewBox="0 0 526 768">
+<defs>
+  <linearGradient id="land" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#efe7d6"/><stop offset="1" stop-color="#ebe2cf"/></linearGradient>
+  <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#aed3e7"/><stop offset="1" stop-color="#9fc8dd"/></linearGradient>
+  <linearGradient id="elev" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#cbd6bc"/><stop offset="0.3" stop-color="#ded7c4"/><stop offset="0.7" stop-color="#dec2ae"/><stop offset="1" stop-color="#ceb69e"/></linearGradient>
+  <style><![CDATA[
+    .bg{fill:url(#land)} .frame{fill:none;stroke:#333;stroke-width:1}
+    .sea{fill:url(#sea);stroke:#2b8fc2;stroke-width:1;stroke-linejoin:round}
+    .plain{fill:#dfe7cd;opacity:.62}
+    .relief-a{fill:#d7bea9;opacity:.16} .relief-b{fill:#c8aa93;opacity:.10}
+    .borderline{fill:none;stroke:#7ab66f;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round}
+    .river{fill:none;stroke:#168ec8;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+    .jordan{fill:none;stroke:#168ec8;stroke-width:2.7;stroke-linecap:round;stroke-linejoin:round}
+    .river2{fill:none;stroke:#3ea3d0;stroke-width:1.15;stroke-linecap:round;stroke-linejoin:round}
+    .place circle{fill:#fffdf7;stroke:#202020;stroke-width:1.8}
+    .place-label{font-family:Arial,Helvetica,sans-serif;font-size:13px;fill:#111;paint-order:stroke;stroke:#efe7d6;stroke-width:2.8px;stroke-linejoin:round}
+    .region{font-family:Arial,Helvetica,sans-serif;font-size:24px;font-weight:700;letter-spacing:8px;fill:#b33ab1;opacity:.94}
+    .region-spaced{font-family:Arial,Helvetica,sans-serif;font-size:17px;font-weight:700;letter-spacing:8px;fill:#b33ab1;opacity:.94}
+    .region-small{font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:700;letter-spacing:4px;fill:#b33ab1;opacity:.94}
+    .region-big{font-family:Arial,Helvetica,sans-serif;font-size:22px;font-weight:700;letter-spacing:12px;fill:#b33ab1;opacity:.94}
+    .sea-label{font-family:Arial,Helvetica,sans-serif;font-size:18px;font-weight:700;font-style:italic;fill:#0e6eb7}
+    .sea-label2{font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:700;font-style:italic;fill:#0e6eb7}
+    .water-label{font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:700;font-style:italic;fill:#0e6eb7}
+    .water-label2{font-family:Arial,Helvetica,sans-serif;font-size:10px;font-weight:700;font-style:italic;fill:#0e6eb7}
+    .water-label-vert{font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:700;font-style:italic;fill:#0e6eb7}
+    .water-label-vert2{font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:700;font-style:italic;fill:#0e6eb7}
+    .terrain{font-family:Georgia,serif;font-size:15px;font-style:italic;fill:#1f1f1f}
+    .roman{font-family:'Times New Roman',Times,serif;font-size:18px;font-weight:700;fill:#d51f1f}
+    .legend-box{fill:#f8f8f6;stroke:#333;stroke-width:1} .legend-title{font-family:'Times New Roman',Times,serif;font-size:17px;font-weight:700;fill:#111}
+    .legend-sub{font-family:'Times New Roman',Times,serif;font-size:11px;font-weight:700;fill:#111}
+    .legend-text{font-family:Arial,Helvetica,sans-serif;font-size:10px;fill:#111} .legend-text-small{font-family:Arial,Helvetica,sans-serif;font-size:8.5px;fill:#111}
+    .legend-roman{font-family:'Times New Roman',Times,serif;font-size:18px;font-weight:700;fill:#d51f1f}
+    .elev-head{font-family:Arial,Helvetica,sans-serif;font-size:10px;fill:#111} .elev-num{font-family:Arial,Helvetica,sans-serif;font-size:7px;fill:#111}
+    .scale-num{font-family:Arial,Helvetica,sans-serif;font-size:7px;fill:#555}
+    .fort{fill:none;stroke:#111;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round} .ruin circle{fill:#111}
+  ]]></style>
+</defs>
+<g inkscape:groupmode="layer" inkscape:label="01 Base" id="base">
+  <rect class="bg" x="0" y="0" width="526" height="768"/>
+  <path class="plain" d="M 147,73 C 138,97 134,122 138,148 C 142,174 151,198 160,220 C 170,246 176,270 177,292 C 179,321 171,349 162,378 C 154,405 144,430 136,455 C 130,473 124,492 116,509 C 110,525 102,543 93,560 C 83,579 71,598 59,616 C 45,638 30,657 13,675 C 9,679 4,683 0,686 L 0,768 L 173,768 C 164,747 155,725 149,703 C 143,683 142,661 146,641 C 151,619 162,602 173,586 C 184,569 195,552 199,531 C 204,510 202,487 201,466 C 200,446 203,428 213,412 C 222,399 232,389 239,375 C 245,364 248,351 247,337 C 245,319 238,303 228,287 C 219,272 211,256 209,238 C 207,223 210,209 214,196 C 219,180 224,164 223,146 C 223,127 218,109 215,90 C 212,75 213,57 220,40 C 225,28 232,16 241,0 L 149,0 Z"/>
+  <path class="relief-a" d="M 250,0 C 270,44 289,85 304,129 C 320,176 331,222 332,275 C 332,321 325,365 316,408 C 307,450 299,493 301,538 C 304,589 316,635 332,684 C 341,711 350,738 360,768 H 526 V 0 Z"/>
+  <path class="relief-b" d="M 141,0 C 132,23 126,47 124,72 C 122,102 130,132 143,161 C 157,194 172,226 180,259 C 188,289 190,320 185,351 C 179,390 162,425 150,463 C 138,500 132,535 135,572 C 138,610 150,646 160,681 C 168,709 176,738 181,768 H 0 V 0 Z"/>
+</g>
+<g inkscape:groupmode="layer" inkscape:label="02 Water" id="water">
+  <path class="sea" d="M 0,0 H 149 C 148,18 149,36 156,54 C 164,74 174,91 175,111 C 176,130 171,145 176,161 C 180,172 190,181 192,193 C 194,206 188,221 188,237 C 189,256 195,273 193,289 C 191,304 181,318 171,332 C 159,350 151,369 146,390 C 141,413 136,435 128,455 C 118,481 105,505 93,528 C 78,556 63,584 48,612 C 34,638 18,662 0,685 Z"/>
+  <path class="sea" d="M 272,169 C 275,162 284,160 291,163 C 296,167 297,176 293,182 C 288,188 278,189 272,184 C 269,180 268,174 272,169 Z"/>
+  <path class="sea" d="M 276,228 C 279,216 290,208 304,209 C 317,211 326,221 328,234 C 330,247 327,261 319,272 C 312,280 300,284 289,281 C 278,278 272,267 271,255 C 270,246 271,236 276,228 Z"/>
+  <path class="sea" d="M 255,518 C 258,502 269,492 281,492 C 292,493 299,503 298,518 C 297,530 291,540 293,554 C 295,568 304,583 304,600 C 304,614 299,628 290,638 C 282,648 271,650 264,643 C 257,636 256,623 257,610 C 257,596 255,584 251,570 C 248,558 246,544 247,532 C 248,526 251,522 255,518 Z"/>
+  <path class="river" d="M 288,160 C 286,170 286,182 289,194 C 292,206 299,216 301,229"/><path class="jordan" d="M 302,279 C 298,289 297,301 299,313 C 301,327 301,340 301,354 C 301,372 300,389 300,406 C 300,421 299,435 298,449 C 297,462 294,474 291,488"/><path class="river2" d="M 226,338 C 235,336 243,335 252,336 C 262,338 270,341 278,346"/><path class="river2" d="M 208,320 C 218,318 226,316 232,310 C 239,302 245,295 250,287"/><path class="river2" d="M 310,244 C 320,244 329,243 338,239 C 347,235 354,229 360,224"/><path class="river2" d="M 335,183 C 344,180 352,176 360,170 C 368,165 372,157 375,149"/><path class="river2" d="M 172,343 C 166,332 161,321 159,309 C 157,297 158,285 162,273"/><path class="river2" d="M 176,74 C 178,84 180,95 184,105 C 188,116 193,126 198,137"/>
+</g>
+<g inkscape:groupmode="layer" inkscape:label="03 Borders" id="borders">
+  <path class="borderline" d="M 84,767 C 92,742 103,721 116,700 C 126,683 139,663 148,646 C 154,632 156,616 154,598 C 152,582 149,565 150,549 C 151,531 159,517 169,503 C 179,489 189,473 191,454"/><path class="borderline" d="M 191,454 C 197,444 201,435 201,425 C 201,412 193,401 188,389 C 183,376 181,360 185,346 C 189,331 197,320 205,308 C 212,298 219,289 219,279"/><path class="borderline" d="M 218,279 C 228,281 239,284 252,285 C 266,287 281,288 293,286 C 308,283 320,277 330,267 C 338,258 347,248 357,243"/><path class="borderline" d="M 240,0 C 252,11 267,16 282,14 C 296,12 308,4 321,0"/><path class="borderline" d="M 248,61 C 261,70 277,70 291,63 C 302,57 313,48 325,43 C 339,37 355,36 368,42"/><path class="borderline" d="M 322,43 C 331,58 338,73 343,89 C 349,108 351,125 355,141 C 360,160 369,175 381,188"/><path class="borderline" d="M 355,141 C 365,139 375,140 386,144 C 399,149 411,154 422,162 C 434,170 444,181 456,188"/><path class="borderline" d="M 381,188 C 391,185 401,184 412,184 C 425,184 438,186 451,185 C 463,184 476,180 490,175"/><path class="borderline" d="M 358,245 C 378,246 395,246 411,252 C 428,258 445,271 460,286 C 474,300 489,308 506,305"/><path class="borderline" d="M 317,278 C 332,296 339,316 340,339 C 340,361 337,381 337,402 C 337,424 338,446 339,468 C 340,486 336,500 326,511"/><path class="borderline" d="M 327,511 C 341,511 354,510 365,509 C 377,508 387,504 397,498 C 406,492 414,482 423,476"/><path class="borderline" d="M 300,407 C 312,407 323,408 332,412 C 341,416 348,422 356,430 C 365,438 375,445 387,446"/><path class="borderline" d="M 137,416 C 149,406 162,402 176,402 C 188,402 198,408 207,415"/><path class="borderline" d="M 116,385 C 126,387 136,388 145,388 C 154,388 163,385 171,379 C 178,374 183,366 188,359"/><path class="borderline" d="M 220,328 C 233,335 245,339 257,339 C 271,340 283,337 296,333"/><path class="borderline" d="M 298,489 C 298,503 296,517 293,532 C 289,550 284,567 285,586 C 286,605 289,621 293,640 C 296,655 296,671 293,690"/>
+</g>
+<g inkscape:groupmode="layer" inkscape:label="04 Markers" id="markers">
+  <g class="place" data-source-x="207" data-source-y="84" data-place="Sidon"><circle cx="207" cy="84" r="5"/><title>Sidon</title></g>
+  <g class="place" data-source-x="188" data-source-y="110" data-place="Sarepta"><circle cx="188" cy="110" r="5"/><title>Sarepta</title></g>
+  <g class="place" data-source-x="183" data-source-y="156" data-place="Tyre"><circle cx="183" cy="156" r="5"/><title>Tyre</title></g>
+  <g class="place" data-source-x="178" data-source-y="231" data-place="Ptolemais"><circle cx="178" cy="231" r="5"/><title>Ptolemais</title></g>
+  <g class="place" data-source-x="110" data-source-y="332" data-place="Caesarea"><circle cx="110" cy="332" r="5"/><title>Caesarea</title></g>
+  <g class="place" data-source-x="85" data-source-y="449" data-place="Joppa"><circle cx="85" cy="449" r="5"/><title>Joppa</title></g>
+  <g class="place" data-source-x="70" data-source-y="543" data-place="Ashkelon"><circle cx="70" cy="543" r="5"/><title>Ashkelon</title></g>
+  <g class="place" data-source-x="51" data-source-y="583" data-place="Gaza"><circle cx="51" cy="583" r="5"/><title>Gaza</title></g>
+  <g class="place" data-source-x="166" data-source-y="392" data-place="Samaria"><circle cx="166" cy="392" r="5"/><title>Samaria</title></g>
+  <g class="place" data-source-x="176" data-source-y="418" data-place="Sychar, Shechem"><circle cx="176" cy="418" r="5"/><title>Sychar, Shechem</title></g>
+  <g class="place" data-source-x="139" data-source-y="434" data-place="Antipatris"><circle cx="139" cy="434" r="5"/><title>Antipatris</title></g>
+  <g class="place" data-source-x="145" data-source-y="458" data-place="Lydda"><circle cx="145" cy="458" r="5"/><title>Lydda</title></g>
+  <g class="place" data-source-x="190" data-source-y="460" data-place="Arimathea"><circle cx="190" cy="460" r="5"/><title>Arimathea</title></g>
+  <g class="place" data-source-x="197" data-source-y="498" data-place="Emmaus"><circle cx="197" cy="498" r="5"/><title>Emmaus</title></g>
+  <g class="place" data-source-x="224" data-source-y="518" data-place="Jerusalem"><circle cx="224" cy="518" r="5"/><title>Jerusalem</title></g>
+  <g class="place" data-source-x="184" data-source-y="539" data-place="Bethlehem"><circle cx="184" cy="539" r="5"/><title>Bethlehem</title></g>
+  <g class="place" data-source-x="247" data-source-y="516" data-place="Bethany"><circle cx="247" cy="516" r="5"/><title>Bethany</title></g>
+  <g class="place" data-source-x="242" data-source-y="489" data-place="Jericho"><circle cx="242" cy="489" r="5"/><title>Jericho</title></g>
+  <g class="place" data-source-x="247" data-source-y="532" data-place="Qumran"><circle cx="247" cy="532" r="5"/><title>Qumran</title></g>
+  <g class="place" data-source-x="205" data-source-y="551" data-place="Herodium"><circle cx="205" cy="551" r="5"/><title>Herodium</title></g>
+  <g class="place" data-source-x="172" data-source-y="576" data-place="Hebron"><circle cx="172" cy="576" r="5"/><title>Hebron</title></g>
+  <g class="place" data-source-x="207" data-source-y="632" data-place="Masada"><circle cx="207" cy="632" r="5"/><title>Masada</title></g>
+  <g class="place" data-source-x="198" data-source-y="244" data-place="Capernaum"><circle cx="198" cy="244" r="5"/><title>Capernaum</title></g>
+  <g class="place" data-source-x="232" data-source-y="227" data-place="Chorazin"><circle cx="232" cy="227" r="5"/><title>Chorazin</title></g>
+  <g class="place" data-source-x="261" data-source-y="244" data-place="Bethsaida"><circle cx="261" cy="244" r="5"/><title>Bethsaida</title></g>
+  <g class="place" data-source-x="193" data-source-y="262" data-place="Magdala"><circle cx="193" cy="262" r="5"/><title>Magdala</title></g>
+  <g class="place" data-source-x="194" data-source-y="279" data-place="Tiberias"><circle cx="194" cy="279" r="5"/><title>Tiberias</title></g>
+  <g class="place" data-source-x="174" data-source-y="272" data-place="Cana"><circle cx="174" cy="272" r="5"/><title>Cana</title></g>
+  <g class="place" data-source-x="176" data-source-y="287" data-place="Nazareth"><circle cx="176" cy="287" r="5"/><title>Nazareth</title></g>
+  <g class="place" data-source-x="214" data-source-y="294" data-place="Nain"><circle cx="214" cy="294" r="5"/><title>Nain</title></g>
+  <g class="place" data-source-x="146" data-source-y="328" data-place="Megiddo"><circle cx="146" cy="328" r="5"/><title>Megiddo</title></g>
+  <g class="place" data-source-x="209" data-source-y="339" data-place="Scythopolis"><circle cx="209" cy="339" r="5"/><title>Scythopolis</title></g>
+  <g class="place" data-source-x="252" data-source-y="287" data-place="Gadara"><circle cx="252" cy="287" r="5"/><title>Gadara</title></g>
+  <g class="place" data-source-x="246" data-source-y="183" data-place="Caesarea Philippi"><circle cx="246" cy="183" r="5"/><title>Caesarea Philippi</title></g>
+  <g class="place" data-source-x="431" data-source-y="106" data-place="Damascus"><circle cx="431" cy="106" r="5"/><title>Damascus</title></g>
+  <path class="fort" d="M 204,625 h 12 v 9 h -12 z M 204,625 l 2,-3 l 2,3 l 2,-3 l 2,3 l 2,-3 l 2,3"/>
+  <path class="fort" d="M 199,540 h 12 v 9 h -12 z M 199,540 l 2,-3 l 2,3 l 2,-3 l 2,3 l 2,-3 l 2,3"/>
+  <g class="ruin"><circle cx="161" cy="308" r="1.8"/><circle cx="165" cy="304" r="1.8"/><circle cx="169" cy="308" r="1.8"/><circle cx="165" cy="312" r="1.8"/></g>
+  <g class="ruin"><circle cx="248" cy="523" r="1.8"/><circle cx="252" cy="519" r="1.8"/><circle cx="256" cy="523" r="1.8"/><circle cx="252" cy="527" r="1.8"/></g>
+</g>
+<g inkscape:groupmode="layer" inkscape:label="05 Place labels" id="place-labels">
+  <text class="place-label" data-i18n="place.sidon" x="197" y="80" text-anchor="end">Sidon</text>
+  <text class="place-label" data-i18n="place.sarepta" x="180" y="108" text-anchor="end">Sarepta</text>
+  <text class="place-label" data-i18n="place.tyre" x="175" y="154" text-anchor="end">Tyre</text>
+  <text class="place-label" data-i18n="place.ptolemais" x="170" y="229" text-anchor="end">Ptolemais</text>
+  <text class="place-label" data-i18n="place.caesarea" x="102" y="330" text-anchor="end">Caesarea</text>
+  <text class="place-label" data-i18n="place.joppa" x="77" y="447" text-anchor="end">Joppa</text>
+  <text class="place-label" data-i18n="place.ashkelon" x="62" y="541" text-anchor="end">Ashkelon</text>
+  <text class="place-label" data-i18n="place.gaza" x="59" y="581" text-anchor="start">Gaza</text>
+  <text class="place-label" data-i18n="place.samaria" x="176" y="389" text-anchor="start">Samaria</text>
+  <text class="place-label" data-i18n="place.sychar_shechem" x="186" y="414" text-anchor="start">Sychar, Shechem</text>
+  <text class="place-label" data-i18n="place.antipatris" x="149" y="431" text-anchor="start">Antipatris</text>
+  <text class="place-label" data-i18n="place.lydda" x="155" y="455" text-anchor="start">Lydda</text>
+  <text class="place-label" data-i18n="place.arimathea" x="200" y="457" text-anchor="start">Arimathea</text>
+  <text class="place-label" data-i18n="place.emmaus" x="207" y="494" text-anchor="start">Emmaus</text>
+  <text class="place-label" data-i18n="place.jerusalem" x="216" y="542" text-anchor="end">Jerusalem</text>
+  <text class="place-label" data-i18n="place.bethlehem" x="176" y="559" text-anchor="end">Bethlehem</text>
+  <text class="place-label" data-i18n="place.bethany" x="257" y="514" text-anchor="start">Bethany</text>
+  <text class="place-label" data-i18n="place.jericho" x="252" y="487" text-anchor="start">Jericho</text>
+  <text class="place-label" data-i18n="place.qumran" x="257" y="538" text-anchor="start">Qumran</text>
+  <text class="place-label" data-i18n="place.herodium" x="215" y="557" text-anchor="start">Herodium</text>
+  <text class="place-label" data-i18n="place.hebron" x="182" y="574" text-anchor="start">Hebron</text>
+  <text class="place-label" data-i18n="place.masada" x="217" y="630" text-anchor="start">Masada</text>
+  <text class="place-label" data-i18n="place.capernaum" x="190" y="242" text-anchor="end">Capernaum</text>
+  <text class="place-label" data-i18n="place.chorazin" x="242" y="225" text-anchor="start">Chorazin</text>
+  <text class="place-label" data-i18n="place.bethsaida" x="271" y="242" text-anchor="start">Bethsaida</text>
+  <text class="place-label" data-i18n="place.magdala" x="203" y="260" text-anchor="start">Magdala</text>
+  <text class="place-label" data-i18n="place.tiberias" x="204" y="277" text-anchor="start">Tiberias</text>
+  <text class="place-label" data-i18n="place.cana" x="184" y="270" text-anchor="start">Cana</text>
+  <text class="place-label" data-i18n="place.nazareth" x="186" y="285" text-anchor="start">Nazareth</text>
+  <text class="place-label" data-i18n="place.nain" x="224" y="292" text-anchor="start">Nain</text>
+  <text class="place-label" data-i18n="place.megiddo" x="138" y="326" text-anchor="end">Megiddo</text>
+  <text class="place-label" data-i18n="place.scythopolis" x="219" y="337" text-anchor="start">Scythopolis</text>
+  <text class="place-label" data-i18n="place.gadara" x="262" y="285" text-anchor="start">Gadara</text>
+  <text class="place-label" data-i18n="place.caesarea_philippi" x="256" y="181" text-anchor="start">Caesarea Philippi</text>
+  <text class="place-label" data-i18n="place.damascus" x="441" y="104" text-anchor="start">Damascus</text>
+  <text class="place-label" data-i18n="place.mt_tabor" x="138" y="307" text-anchor="end">Mt.Tabor</text>
+  <text class="place-label" data-i18n="place.mt_carmel" x="140" y="323" text-anchor="end">Megiddo</text>
+</g>
+<g inkscape:groupmode="layer" inkscape:label="06 Region labels" id="region-labels">
+  <text class="region" data-i18n="label.phoenicia" x="74" y="246" transform="rotate(-63 74 246)">PHOENICIA</text><text class="region" data-i18n="label.galilee" x="204" y="302" transform="rotate(-33 204 302)">GALILEE</text><text class="region" data-i18n="label.samaria" x="140" y="379" transform="">SAMARIA</text><text class="region" data-i18n="label.judea" x="146" y="498" transform="">JUDEA</text><text class="region" data-i18n="label.idumea" x="164" y="610" transform="">IDUMEA</text><text class="region" data-i18n="label.nabataeans" x="96" y="721" transform="">NABATAEANS</text><text class="region-spaced" data-i18n="label.batanea" x="321" y="261" transform="rotate(28 321 261)">BATANEA</text><text class="region-spaced" data-i18n="label.perea" x="302" y="459" transform="rotate(-87 302 459)">PEREA</text><text class="region-spaced" data-i18n="label.decapolis" x="338" y="573" transform="rotate(-88 338 573)">DECAPOLIS</text><text class="region-small" data-i18n="label.trachonitis" x="367" y="203" transform="">TRACHONITIS</text><text class="region-small" data-i18n="label.iturea" x="298" y="129" transform="rotate(-65 298 129)">ITUREA</text><text class="region-small" data-i18n="label.gaulenitis" x="320" y="110" transform="rotate(-33 320 110)">GAULENITIS</text><text class="region-small" data-i18n="label.abilene" x="352" y="80" transform="rotate(-30 352 80)">ABILENE</text><text class="region-big" data-i18n="label.syria" x="445" y="75" transform="rotate(79 445 75)">SYRIA</text><text class="sea-label" data-i18n="label.the_great_sea" x="58" y="258" transform="">THE GREAT SEA</text><text class="sea-label2" data-i18n="label.mediterranean_sea" x="35" y="290" transform="">(MEDITERRANEAN SEA)</text><text class="water-label" data-i18n="label.lake_merom" x="251" y="194" transform="">Lake Merom</text><text class="water-label2" data-i18n="label.semechonitis" x="244" y="210" transform="">(Semechonitis)</text><text class="water-label" data-i18n="label.lake_of_gennesaret" x="274" y="281" transform="">Lake of Gennesaret</text><text class="water-label2" data-i18n="label.sea_of_tiberias" x="264" y="297" transform="">(sea of Tiberias)</text><text class="water-label-vert" data-i18n="label.dead" x="252" y="584" transform="rotate(0 252 584)">DEAD</text><text class="water-label-vert2" data-i18n="label.salt" x="249" y="601" transform="rotate(0 249 601)">(SALT)</text><text class="water-label-vert" data-i18n="label.sea" x="254" y="618" transform="rotate(0 254 618)">SEA</text><text class="terrain" data-i18n="label.mtcarmel" x="132" y="273" transform="rotate(68 132 273)">Mt.Carmel</text><text class="terrain" data-i18n="label.plain_of_sharon" x="105" y="441" transform="rotate(-71 105 441)">Plain of Sharon</text><text class="terrain" data-i18n="label.lebanon_mts" x="303" y="42" transform="rotate(-58 303 42)">Lebanon mts.</text><text class="terrain" data-i18n="label.antilebanon_mts" x="338" y="103" transform="rotate(-55 338 103)">Anti-Lebanon mts.</text>
+  <text class="roman" data-i18n="roman.i" x="136" y="449">I</text><text class="roman" data-i18n="roman.iia" x="193" y="185">IIa</text><text class="roman" data-i18n="roman.iib" x="265" y="445">IIb</text><text class="roman" data-i18n="roman.iii" x="340" y="180">III</text><text class="roman" data-i18n="roman.iv" x="218" y="121">IV</text><text class="roman" data-i18n="roman.v" x="294" y="136">V</text><text class="roman" data-i18n="roman.vi" x="252" y="311">VI</text>
+</g>
+<g inkscape:groupmode="layer" inkscape:label="07 Legend" id="legend">
+  <rect class="legend-box" x="0" y="0" width="148" height="228"/>
+  <text class="legend-title" x="74" y="20" text-anchor="middle">ISRAEL</text>
+  <text class="legend-title" x="74" y="40" text-anchor="middle">New Testament times</text>
+  <g transform="translate(12,57)"><circle cx="5" cy="6" r="1.5" fill="#111"/><circle cx="0" cy="9" r="1.5" fill="#111"/><circle cx="10" cy="9" r="1.5" fill="#111"/><text class="legend-text" x="18" y="10">Ruins</text></g>
+  <g transform="translate(11,71)"><path class="fort" d="M 0,10 h 10 v 7 h -10 z M 0,10 l 2,-3 l 2,3 l 2,-3 l 2,3 l 2,-3 l 2,3"/><text class="legend-text" x="18" y="16">Fortresses</text></g>
+  <line x1="22" y1="89" x2="22" y2="119" stroke="#111" stroke-width="1.2"/>
+  <text class="legend-roman" x="28" y="96">I</text>
+  <text class="legend-text-small" x="47" y="95">Roman province Judea</text>
+  <text class="legend-text-small" x="47" y="105">(4 BC – 6 AD)</text>
+  <text class="legend-text-small" x="47" y="115">Tetrarch Archelaus</text>
+  <line x1="47" y1="126" x2="90" y2="126" stroke="#7ab66f" stroke-width="2"/>
+  <line x1="90" y1="126" x2="128" y2="126" stroke="#7ab66f" stroke-width="2" stroke-dasharray="4 2"/>
+  <text class="legend-text-small" x="95" y="121">Northern border</text>
+  <text class="legend-text-small" x="95" y="131">of Judea</text>
+  <text class="legend-roman" x="9" y="132">IIa</text><text class="legend-text-small" x="47" y="142">Tetrarchy of Herod Antipas</text><text class="legend-text-small" x="47" y="152">(4 BC – 39 AD)</text>
+  <text class="legend-roman" x="9" y="154">III</text><text class="legend-text-small" x="47" y="164">Tetrarchy of Philip</text><text class="legend-text-small" x="47" y="174">(4 BC – 34 AD)</text>
+  <text class="legend-roman" x="9" y="176">IV</text><text class="legend-text-small" x="47" y="176">Roman province Syria</text>
+  <text class="legend-roman" x="9" y="194">V</text><text class="legend-text-small" x="47" y="194">Tetrarchy of Lysanias</text>
+  <text class="legend-roman" x="9" y="212">VI</text><text class="legend-text-small" x="47" y="212">Decapolis</text>
+  <g transform="translate(20,334)">
+    <text class="elev-head" x="0" y="-8">ELEVATION</text>
+    <rect x="46" y="0" width="36" height="96" fill="url(#elev)" stroke="#999" stroke-width="0.5"/>
+    <text class="elev-num" x="0" y="5">3000</text><text class="elev-num" x="0" y="18">2200</text><text class="elev-num" x="0" y="31">1500</text><text class="elev-num" x="0" y="44">1000</text><text class="elev-num" x="4" y="57">600</text><text class="elev-num" x="4" y="70">300</text><text class="elev-num" x="12" y="83">0</text><text class="elev-num" x="-5" y="96">-415 m</text>
+    <text class="elev-num" x="88" y="5">10000</text><text class="elev-num" x="88" y="18">7500</text><text class="elev-num" x="88" y="31">5000</text><text class="elev-num" x="88" y="44">3500</text><text class="elev-num" x="88" y="57">2000</text><text class="elev-num" x="88" y="70">1000</text><text class="elev-num" x="96" y="83">0</text><text class="elev-num" x="92" y="96">-1360 feet</text>
+  </g>
+  <g transform="translate(121,739)"><path d="M 0,0 h 120" stroke="#666" stroke-width="0.7" fill="none"/>
+    <path d="M 0,-4 v 8 M 20,-4 v 8 M 40,-4 v 8 M 60,-4 v 8 M 80,-4 v 8 M 100,-4 v 8 M 120,-4 v 8" stroke="#666" stroke-width="0.7"/>
+    <text class="scale-num" x="-2" y="-6">0</text><text class="scale-num" x="17" y="-6">20</text><text class="scale-num" x="37" y="-6">40</text><text class="scale-num" x="57" y="-6">60</text><text class="scale-num" x="77" y="-6">80</text><text class="scale-num" x="95" y="-6">100</text><text class="scale-num" x="113" y="-6">km</text>
+  </g>
+</g>
+<g inkscape:groupmode="layer" inkscape:label="08 Border frame" id="frame"><rect class="frame" x="1" y="1" width="524" height="766"/></g>
+<metadata>True vector SVG recreation of the "Israel — New Testament times" map. No raster image is embedded. Text remains editable and marked with data-i18n attributes for translation workflows.</metadata>
+</svg>

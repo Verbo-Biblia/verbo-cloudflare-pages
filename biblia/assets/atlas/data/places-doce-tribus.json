@@ -1,0 +1,535 @@
+{
+  "places": {
+    "kedesh": {
+      "name": {
+        "es": "Cedes (Cedes de Neftalí)",
+        "en": "Kedesh"
+      },
+      "coords": [
+        35.52,
+        33.11
+      ],
+      "type": "city",
+      "desc": {
+        "es": "Ciudad de refugio en Neftalí, en la región montañosa de Galilea, para quien matara a otro sin intención (Josué 20:7).",
+        "en": "City of refuge in Naphtali, in the hill country of Galilee, for anyone who killed another person unintentionally (Joshua 20:7)."
+      },
+      "mapPosition": [
+        278,
+        143
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "hazor-north",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "Joshua 20:7"
+      ]
+    },
+    "siquem": {
+      "name": {
+        "es": "Siquem",
+        "en": "Shechem"
+      },
+      "coords": [
+        35.28,
+        32.21
+      ],
+      "type": "city",
+      "desc": {
+        "es": "Ciudad de refugio en Efraín. Aquí Josué reunió a todas las tribus antes de morir y renovó el pacto con el Señor (Josué 24).",
+        "en": "City of refuge in Ephraim. Here Joshua gathered all the tribes before he died and renewed the covenant with the Lord (Joshua 24)."
+      },
+      "mapPosition": [
+        210,
+        351
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "samaria-shechem",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "Joshua 24"
+      ]
+    },
+    "hebron-refugio": {
+      "name": {
+        "es": "Hebrón",
+        "en": "Hebron"
+      },
+      "coords": [
+        35.1,
+        31.53
+      ],
+      "type": "city",
+      "desc": {
+        "es": "Ciudad de refugio en Judá, entregada también a los levitas descendientes de Aarón (Josué 21:13).",
+        "en": "City of refuge in Judah, also given to the Levite descendants of Aaron (Joshua 21:13)."
+      },
+      "mapPosition": [
+        189,
+        535
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "hebron",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "Joshua 21:13"
+      ]
+    },
+    "beser": {
+      "name": {
+        "es": "Beser",
+        "en": "Bezer"
+      },
+      "coords": [
+        35.85,
+        31.83
+      ],
+      "type": "town",
+      "desc": {
+        "es": "Ciudad de refugio en la tribu de Rubén, al oriente del Jordán, en la meseta desértica (Josué 20:8).",
+        "en": "City of refuge in the tribe of Reuben, east of the Jordan, on the desert plateau (Joshua 20:8)."
+      },
+      "mapPosition": [
+        361,
+        466
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "transjordan",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "Joshua 20:8"
+      ]
+    },
+    "ramot-galaad": {
+      "name": {
+        "es": "Ramot de Galaad",
+        "en": "Ramoth-Gilead"
+      },
+      "coords": [
+        35.85,
+        32.6
+      ],
+      "type": "town",
+      "desc": {
+        "es": "Ciudad de refugio en la tribu de Gad, en la región de Galaad al oriente del Jordán (Josué 20:8; 21:38).",
+        "en": "City of refuge in the tribe of Gad, in the region of Gilead east of the Jordan (Joshua 20:8; 21:38)."
+      },
+      "mapPosition": [
+        385,
+        292
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "transjordan",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "Joshua 20:8"
+      ]
+    },
+    "golan": {
+      "name": {
+        "es": "Golán",
+        "en": "Golan"
+      },
+      "coords": [
+        35.85,
+        32.9
+      ],
+      "type": "town",
+      "desc": {
+        "es": "Ciudad de refugio en la media tribu de Manasés, en Basán, al oriente del mar de Galilea (Josué 20:8; 21:27).",
+        "en": "City of refuge in the half-tribe of Manasseh, in Bashan, east of the Sea of Galilee (Joshua 20:8; 21:27)."
+      },
+      "mapPosition": [
+        365.2,
+        205.65
+      ],
+      "mapPositionSource": "calibrated-overlay",
+      "mediaKey": "hazor-north",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "Joshua 20:8"
+      ]
+    },
+    "silo": {
+      "name": {
+        "es": "Silo",
+        "en": "Shiloh"
+      },
+      "coords": [
+        35.29,
+        32.05
+      ],
+      "type": "city",
+      "desc": {
+        "es": "Aquí se estableció el tabernáculo y el arca del pacto durante gran parte del período de los jueces, antes de trasladarse a Jerusalén (Josué 18:1).",
+        "en": "Here the tabernacle and the ark of the covenant were set up for much of the period of the judges, before moving to Jerusalem (Joshua 18:1)."
+      },
+      "mapPosition": [
+        235,
+        390
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "shiloh",
+      "mediaScope": "exact",
+      "scriptureRefs": [
+        "Joshua 18:1"
+      ]
+    },
+    "betel-tribus": {
+      "name": {
+        "es": "Betel",
+        "en": "Bethel"
+      },
+      "coords": [
+        35.22,
+        31.93
+      ],
+      "type": "city",
+      "desc": {
+        "es": "En el límite entre Efraín y Benjamín. Lugar de culto importante durante el período de los jueces (Jueces 20:26-28).",
+        "en": "On the border between Ephraim and Benjamin. An important place of worship during the period of the judges (Judges 20:26-28)."
+      },
+      "mapPosition": [
+        222,
+        420
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "bethel",
+      "mediaScope": "exact",
+      "scriptureRefs": [
+        "Judges 20:26-28"
+      ]
+    },
+    "gilgal": {
+      "name": {
+        "es": "Gilgal",
+        "en": "Gilgal"
+      },
+      "coords": [
+        35.45,
+        31.87
+      ],
+      "type": "town",
+      "desc": {
+        "es": "Primer campamento de Israel en Canaán tras cruzar el Jordán; aquí se circuncidó a la nueva generación y se celebró la primera Pascua en la tierra prometida (Josué 5).",
+        "en": "Israel's first camp in Canaan after crossing the Jordan; here the new generation was circumcised and the first Passover in the promised land was celebrated (Joshua 5)."
+      },
+      "mapPosition": [
+        273,
+        427
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "jordan-rift",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "Joshua 5"
+      ]
+    },
+    "jerusalen-tribus": {
+      "name": {
+        "es": "Jerusalén (Jebús)",
+        "en": "Jerusalem (Jebus)"
+      },
+      "coords": [
+        35.23,
+        31.78
+      ],
+      "type": "city",
+      "desc": {
+        "es": "En el límite entre Judá y Benjamín. Ciudad jebusea que no fue conquistada plenamente hasta el reinado de David (Josué 15:63; 2 Samuel 5:6-9).",
+        "en": "On the border between Judah and Benjamin. A Jebusite city not fully conquered until the reign of David (Joshua 15:63; 2 Samuel 5:6-9)."
+      },
+      "mapPosition": [
+        246,
+        460
+      ],
+      "mapPositionSource": "master-svg",
+      "mediaKey": "jerusalem",
+      "mediaScope": "exact",
+      "scriptureRefs": [
+        "Joshua 15:63"
+      ]
+    }
+  },
+  "journeys": {
+    "ciudades-refugio": {
+      "label": {
+        "es": "Las seis ciudades de refugio",
+        "en": "The Six Cities of Refuge"
+      },
+      "stops": [
+        "kedesh",
+        "golan",
+        "ramot-galaad",
+        "siquem",
+        "beser",
+        "hebron-refugio"
+      ],
+      "scriptureRefs": [
+        "Numbers 35:9–34",
+        "Joshua 20"
+      ]
+    },
+    "centros-culto": {
+      "label": {
+        "es": "Centros de culto antes del templo",
+        "en": "Worship Centers Before the Temple"
+      },
+      "stops": [
+        "gilgal",
+        "silo",
+        "betel-tribus",
+        "jerusalen-tribus"
+      ],
+      "scriptureRefs": [
+        "Joshua 18:1",
+        "Judges 20:18–28"
+      ]
+    },
+    "territorio-aser": {
+      "mode": "territory",
+      "color": "#1f5f78",
+      "label": {
+        "es": "Territorio de Aser",
+        "en": "Territory of Asher"
+      },
+      "desc": {
+        "es": "Aísla visualmente el territorio atribuido a Aser en el SVG maestro y resalta, cuando están disponibles en el dataset, algunos centros relacionados.",
+        "en": "Visually isolates the territory attributed to Asher in the master SVG and highlights, when available in the dataset, selected related centers."
+      },
+      "stops": [],
+      "territoryIds": [
+        "territory-asher"
+      ],
+      "scriptureRefs": [
+        "Joshua 19:24–31"
+      ]
+    },
+    "territorio-neftali": {
+      "mode": "territory",
+      "color": "#1f5f78",
+      "label": {
+        "es": "Territorio de Neftalí",
+        "en": "Territory of Naphtali"
+      },
+      "desc": {
+        "es": "Aísla visualmente el territorio atribuido a Neftalí en el SVG maestro y resalta, cuando están disponibles en el dataset, algunos centros relacionados.",
+        "en": "Visually isolates the territory attributed to Naphtali in the master SVG and highlights, when available in the dataset, selected related centers."
+      },
+      "stops": [
+        "kedesh"
+      ],
+      "territoryIds": [
+        "territory-naphtali"
+      ],
+      "scriptureRefs": [
+        "Joshua 19:32–39"
+      ]
+    },
+    "territorio-zabulon": {
+      "mode": "territory",
+      "color": "#1f5f78",
+      "label": {
+        "es": "Territorio de Zabulón",
+        "en": "Territory of Zebulun"
+      },
+      "desc": {
+        "es": "Aísla visualmente el territorio atribuido a Zabulón en el SVG maestro y resalta, cuando están disponibles en el dataset, algunos centros relacionados.",
+        "en": "Visually isolates the territory attributed to Zebulun in the master SVG and highlights, when available in the dataset, selected related centers."
+      },
+      "stops": [],
+      "territoryIds": [
+        "territory-zebulun"
+      ],
+      "scriptureRefs": [
+        "Joshua 19:10–16"
+      ]
+    },
+    "territorio-isacar": {
+      "mode": "territory",
+      "color": "#1f5f78",
+      "label": {
+        "es": "Territorio de Isacar",
+        "en": "Territory of Issachar"
+      },
+      "desc": {
+        "es": "Aísla visualmente el territorio atribuido a Isacar en el SVG maestro y resalta, cuando están disponibles en el dataset, algunos centros relacionados.",
+        "en": "Visually isolates the territory attributed to Issachar in the master SVG and highlights, when available in the dataset, selected related centers."
+      },
+      "stops": [],
+      "territoryIds": [
+        "territory-issachar"
+      ],
+      "scriptureRefs": [
+        "Joshua 19:17–23"
+      ]
+    },
+    "territorio-manases": {
+      "mode": "territory",
+      "color": "#1f5f78",
+      "label": {
+        "es": "Territorio de Manasés",
+        "en": "Territory of Manasseh"
+      },
+      "desc": {
+        "es": "Aísla visualmente el territorio atribuido a Manasés en el SVG maestro y resalta, cuando están disponibles en el dataset, algunos centros relacionados.",
+        "en": "Visually isolates the territory attributed to Manasseh in the master SVG and highlights, when available in the dataset, selected related centers."
+      },
+      "stops": [
+        "golan"
+      ],
+      "territoryIds": [
+        "territory-manasseh_w",
+        "territory-manasseh_e"
+      ],
+      "scriptureRefs": [
+        "Joshua 17"
+      ]
+    },
+    "territorio-dan": {
+      "mode": "territory",
+      "color": "#1f5f78",
+      "label": {
+        "es": "Territorio de Dan",
+        "en": "Territory of Dan"
+      },
+      "desc": {
+        "es": "Aísla visualmente el territorio atribuido a Dan en el SVG maestro y resalta, cuando están disponibles en el dataset, algunos centros relacionados.",
+        "en": "Visually isolates the territory attributed to Dan in the master SVG and highlights, when available in the dataset, selected related centers."
+      },
+      "stops": [],
+      "territoryIds": [
+        "territory-dan"
+      ],
+      "scriptureRefs": [
+        "Joshua 19:40–48"
+      ]
+    },
+    "territorio-efrain": {
+      "mode": "territory",
+      "color": "#1f5f78",
+      "label": {
+        "es": "Territorio de Efraín",
+        "en": "Territory of Ephraim"
+      },
+      "desc": {
+        "es": "Aísla visualmente el territorio atribuido a Efraín en el SVG maestro y resalta, cuando están disponibles en el dataset, algunos centros relacionados.",
+        "en": "Visually isolates the territory attributed to Ephraim in the master SVG and highlights, when available in the dataset, selected related centers."
+      },
+      "stops": [
+        "siquem",
+        "silo"
+      ],
+      "territoryIds": [
+        "territory-ephraim"
+      ],
+      "scriptureRefs": [
+        "Joshua 16"
+      ]
+    },
+    "territorio-benjamin": {
+      "mode": "territory",
+      "color": "#1f5f78",
+      "label": {
+        "es": "Territorio de Benjamín",
+        "en": "Territory of Benjamin"
+      },
+      "desc": {
+        "es": "Aísla visualmente el territorio atribuido a Benjamín en el SVG maestro y resalta, cuando están disponibles en el dataset, algunos centros relacionados.",
+        "en": "Visually isolates the territory attributed to Benjamin in the master SVG and highlights, when available in the dataset, selected related centers."
+      },
+      "stops": [
+        "betel-tribus"
+      ],
+      "territoryIds": [
+        "territory-benjamin"
+      ],
+      "scriptureRefs": [
+        "Joshua 18:11–28"
+      ]
+    },
+    "territorio-juda": {
+      "mode": "territory",
+      "color": "#1f5f78",
+      "label": {
+        "es": "Territorio de Judá",
+        "en": "Territory of Judah"
+      },
+      "desc": {
+        "es": "Aísla visualmente el territorio atribuido a Judá en el SVG maestro y resalta, cuando están disponibles en el dataset, algunos centros relacionados.",
+        "en": "Visually isolates the territory attributed to Judah in the master SVG and highlights, when available in the dataset, selected related centers."
+      },
+      "stops": [
+        "hebron-refugio",
+        "jerusalen-tribus"
+      ],
+      "territoryIds": [
+        "territory-judah"
+      ],
+      "scriptureRefs": [
+        "Joshua 15"
+      ]
+    },
+    "territorio-simeon": {
+      "mode": "territory",
+      "color": "#1f5f78",
+      "label": {
+        "es": "Territorio de Simeón",
+        "en": "Territory of Simeon"
+      },
+      "desc": {
+        "es": "Aísla visualmente el territorio atribuido a Simeón en el SVG maestro y resalta, cuando están disponibles en el dataset, algunos centros relacionados.",
+        "en": "Visually isolates the territory attributed to Simeon in the master SVG and highlights, when available in the dataset, selected related centers."
+      },
+      "stops": [],
+      "territoryIds": [
+        "territory-simeon"
+      ],
+      "scriptureRefs": [
+        "Joshua 19:1–9"
+      ]
+    },
+    "territorio-gad": {
+      "mode": "territory",
+      "color": "#1f5f78",
+      "label": {
+        "es": "Territorio de Gad",
+        "en": "Territory of Gad"
+      },
+      "desc": {
+        "es": "Aísla visualmente el territorio atribuido a Gad en el SVG maestro y resalta, cuando están disponibles en el dataset, algunos centros relacionados.",
+        "en": "Visually isolates the territory attributed to Gad in the master SVG and highlights, when available in the dataset, selected related centers."
+      },
+      "stops": [
+        "ramot-galaad"
+      ],
+      "territoryIds": [
+        "territory-gad"
+      ],
+      "scriptureRefs": [
+        "Joshua 13:24–28"
+      ]
+    },
+    "territorio-ruben": {
+      "mode": "territory",
+      "color": "#1f5f78",
+      "label": {
+        "es": "Territorio de Rubén",
+        "en": "Territory of Reuben"
+      },
+      "desc": {
+        "es": "Aísla visualmente el territorio atribuido a Rubén en el SVG maestro y resalta, cuando están disponibles en el dataset, algunos centros relacionados.",
+        "en": "Visually isolates the territory attributed to Reuben in the master SVG and highlights, when available in the dataset, selected related centers."
+      },
+      "stops": [
+        "beser"
+      ],
+      "territoryIds": [
+        "territory-ruben"
+      ],
+      "scriptureRefs": [
+        "Joshua 13:15–23"
+      ]
+    }
+  }
+}

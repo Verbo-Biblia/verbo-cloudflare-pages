@@ -770,6 +770,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(activeTab==='diccionario' && tab!=='diccionario') closeStrongPopup();
     activeTab=tab;
     if(tab!=='historia') els.side.classList.remove('side-panel--history-expanded');
+    els.side.classList.toggle('side-panel--atlas-expanded', tab==='mapas');
     const isSheet=window.innerWidth<=760 && SHEET_TABS.includes(tab);
     els.side.classList.toggle('side-panel--left', ['historia','padres','licencias','historia-notas','costumbres','conversor'].includes(tab));
     if(isSheet){
@@ -800,11 +801,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       churchHistorySearchActive=false;
     }
     activeTab=null;
-    // El visor de mapas usa position:fixed (pantalla completa) fuera del flujo
-    // del panel: si se cierra el panel sin salir antes del fullscreen, hay que
-    // forzar la limpieza aquí o el mapa queda "pegado" cubriendo la pantalla.
-    document.getElementById('mapViewer')?.classList.remove('map-viewer--fullscreen');
-    document.body.classList.remove('map-viewer-fullscreen-active');
     // CSS: translateY(105%) para sheets. side-panel--left se quita en un
     // frame aparte a propósito: .side-panel--left tiene transition:none (el
     // panel izquierdo desaparece al instante, sin animar), pero si se quita
@@ -813,7 +809,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // regla base .side-panel{transition:width 0.28s} — se veía la animación
     // de "colapso de ancho" del panel derecho al cerrar Historia/Padres en
     // vez de desaparecer al instante (bug reportado por Juan, 2026-08-06).
-    els.side.classList.remove('side-panel--open','side-panel--history-expanded');
+    els.side.classList.remove('side-panel--open','side-panel--history-expanded','side-panel--atlas-expanded');
     requestAnimationFrame(()=>{ els.side.classList.remove('side-panel--left'); });
     els.backdrop?.classList.remove('sheet-backdrop--visible');
     els.tabs.forEach(b=>b.classList.remove('tab-rail__btn--active'));
@@ -858,7 +854,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Redirección genérica de destino de renderizado: en modo sermón, el
   // segundo panel (ver "Segundo panel del modo sermón" más abajo) comparte
   // las mismas funciones de renderizado que usa #sidePanel (renderPanel para
-  // 'comentario', renderNotes, renderMapsPanel/renderMapViewer,
+  // 'comentario', renderNotes, renderMapsPanel,
   // renderPredicasPanel) en vez de duplicarlas. sermonPanelTarget apunta a
   // sus nodos mientras ese panel esté abierto; si es null (todo el resto de
   // la app, siempre) estas funciones devuelven los nodos de siempre de
@@ -965,6 +961,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(tab==='exegesis') renderExegesis(focus || activeVerse());
     if(tab==='ajustes') renderAjustes();
     if(tab==='mapas') renderMapsPanel();
+    if(tab==='atlas-bible') renderAtlasBiblePanel();
     if(tab==='licencias') renderLicensesPanel();
     if(tab==='buscar') renderSearch();
   }
@@ -4341,250 +4338,139 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // ── Mapas bíblicos ───────────────────────────────────────────────────────────
-  // Mapas 01-14: churchmaps.info (dominio público), recorte y distribución vía
-  // FreeBibleimages.org bajo CC0. Los rótulos de esos mapas están en inglés
-  // (única versión disponible); los títulos aquí son una traducción propia
-  // solo de la ficha, no del contenido cartográfico.
-  // Mapas 15-18 (agregados 2026-07-28): Wikimedia Commons. 15 y 16 son
-  // CC BY-SA 3.0 (rótulos traducidos al español donde aplicaba) y llevan
-  // `credit` con atribución visible obligatoria; 17 también CC BY-SA 3.0
-  // (mismo autor tradujo del original en polaco); 18 es dominio público real
-  // (Encyclopædia Britannica 1911), `credit` ahí es solo referencia de fuente,
-  // no una obligación legal. Ver "Fuentes y licencias".
-  const CHURCH_MAPS=[
-    {id:'01', title:'El mundo antiguo en tiempos de los patriarcas', subtitle:'2000–1600 a.C.'},
-    {id:'02', title:'Canaán y Egipto en tiempos de los patriarcas', subtitle:'2000–1600 a.C.'},
-    {id:'03', title:'Mesopotamia en tiempos de los patriarcas', subtitle:'2000–1600 a.C.'},
-    {id:'04', title:'Ruta del éxodo y la conquista de Canaán', subtitle:'Recorrido tradicional propuesto'},
-    {id:'05', title:'Ruta del éxodo de Israel desde Egipto', subtitle:'Recorrido tradicional propuesto'},
-    {id:'06', title:'La conquista de Canaán'},
-    {id:'07', title:'Israel en tiempos de Jesús'},
-    {id:'08', title:'Norte de Israel, Fenicia y Siria', subtitle:'En tiempos de Jesús'},
-    {id:'09', title:'Galilea, Samaria y Judea', subtitle:'En tiempos de Jesús'},
-    {id:'10', title:'Samaria, Judea e Idumea', subtitle:'En tiempos de Jesús'},
-    {id:'11', title:'Los viajes del apóstol Pablo', subtitle:'Vista general'},
-    {id:'12', title:'Primer viaje misionero de Pablo'},
-    {id:'13', title:'Los tres viajes misioneros de Pablo'},
-    {id:'14', title:'Viajes misioneros de Pablo y su travesía a Roma'},
-    {id:'15', title:'El reino dividido: Israel y Judá', subtitle:'Siglo IX a.C.',
-      credit:'Mapa de Kordas, Richardprins y FinnWikiNo — Wikimedia Commons, CC BY-SA 3.0'},
-    {id:'16', title:'El reparto de las doce tribus de Israel', subtitle:'Según el libro de Josué',
-      credit:'Mapa de Richardprins, Kordas, יוסי y Janz — Wikimedia Commons, CC BY-SA 3.0 (tribus traducidas al español)'},
-    {id:'17', title:'El tabernáculo de Moisés', subtitle:'Planta del santuario en el desierto',
-      credit:'Diagrama de Adik86 — Wikimedia Commons, CC BY-SA 3.0 (etiquetas traducidas al español)'},
-    {id:'18', title:'El templo de Herodes en Jerusalén', subtitle:'Planta del templo y sus atrios',
-      credit:'Encyclopædia Britannica, 11.ª edición (1911) — dominio público'},
-  ];
-  const MAPS_BASE='assets/maps/churchmaps';
-  let mapsOpenId=null;
+  const ATLAS_BIBLE_MANIFEST={es:'modules/bibles/rv-verbo/manifest.json',en:'modules/bibles/bsb/manifest.json'};
+  let atlasBibleState=null;
+  let atlasBibleRenderToken=0;
+
+  async function resolveAtlasText({entry,language,fallback,scope,mapId,placeId,journeyId}){
+    if(!entry || typeof entry!=='object') return fallback;
+    if(typeof entry[language]==='string' && entry[language].trim()) return entry[language];
+    const sourceLang=language==='es'?'en':'es';
+    const source=entry[sourceLang];
+    if(typeof source!=='string' || !source.trim()) return fallback;
+    const id=['atlas',scope,mapId,placeId,journeyId].filter(Boolean).join(':');
+    const cacheKey=translationCacheKey(id,source,language);
+    const cached=tcacheGet(cacheKey);
+    if(cached) return cached;
+    const translated=await verboTranslate(source,sourceLang,language);
+    if(!translated) return fallback;
+    tcacheSet(cacheKey,translated);
+    return translated;
+  }
+
+  function connectAtlasFrame(frame){
+    let attempts=0;
+    const connect=()=>{
+      if(!frame.isConnected) return;
+      const api=frame.contentWindow?.VerboAtlas;
+      if(!api){
+        if(++attempts<50) setTimeout(connect,100);
+        else console.error('Atlas Verbo no expuso su API después de cargar el iframe.');
+        return;
+      }
+      api.setLanguage(contentLang());
+      api.setTextResolver(resolveAtlasText);
+      api.setBibleResolver(({reference})=>openAtlasBibleReference(reference));
+    };
+    connect();
+  }
 
   function renderMapsPanel(){
-    if(mapsOpenId){ renderMapViewer(mapsOpenId); return; }
-    panelTitleEl().textContent='Mapas bíblicos';
+    const appHeader=document.querySelector('.app-header');
+    if(appHeader) els.side.style.setProperty('--atlas-panel-top', `${Math.ceil(appHeader.getBoundingClientRect().bottom)}px`);
+    panelTitleEl().textContent=t('nav.mapasBiblicos');
     panelToolbarEl().innerHTML='';
     panelBodyEl().innerHTML=`
-      <div class="maps-gallery">
-        <div class="dictionary-library__count">${CHURCH_MAPS.length} mapas disponibles</div>
-        <div class="maps-gallery__grid">
-          ${CHURCH_MAPS.map(m=>`
-            <button type="button" class="maps-gallery__item" data-map-id="${m.id}">
-              <span class="maps-gallery__thumb"><img src="${MAPS_BASE}/thumb/${m.id}.jpg" alt="" loading="lazy"></span>
-              <span class="maps-gallery__label">${escapeHTML(m.title)}</span>
-            </button>`).join('')}
-        </div>
+      <div class="atlas-embed">
+        <iframe
+          class="atlas-embed__frame"
+          id="verboAtlasFrame"
+          src="assets/atlas/atlas.html"
+          title="${escapeHTML(t('nav.mapasBiblicos'))}"
+          loading="eager"
+          sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
+        </iframe>
       </div>`;
-    panelBodyEl().querySelectorAll('[data-map-id]').forEach(btn=>{
-      btn.addEventListener('click',()=>{ mapsOpenId=btn.dataset.mapId; renderMapViewer(mapsOpenId); });
-    });
+    const frame=panelBodyEl().querySelector('#verboAtlasFrame');
+    frame?.addEventListener('load',()=>connectAtlasFrame(frame),{once:true});
+    if(frame?.contentDocument?.readyState==='complete') connectAtlasFrame(frame);
   }
 
-  function renderMapViewer(id){
-    const map=CHURCH_MAPS.find(m=>m.id===id);
-    if(!map){ mapsOpenId=null; renderMapsPanel(); return; }
-    panelTitleEl().textContent=map.title;
-    panelToolbarEl().innerHTML=`<button class="note-card__copy" id="backToMapsIndex" type="button">← Mapas bíblicos</button>`;
-    document.getElementById('backToMapsIndex')?.addEventListener('click',()=>{ mapsOpenId=null; renderMapsPanel(); });
-    panelBodyEl().innerHTML=`
-      <div class="map-viewer-page">
-        <div class="map-viewer" id="mapViewer">
-          <div class="map-viewer__frame" id="mapViewerFrame">
-            <img class="map-viewer__img" id="mapViewerImg" src="${MAPS_BASE}/full/${map.id}.jpg" alt="${escapeHTML(map.title)}" draggable="false">
-            <button type="button" class="map-viewer__btn map-viewer__expand" id="mapExpandBtn" aria-label="Ver a pantalla completa">⛶</button>
-            <div class="map-viewer__controls">
-              <button type="button" class="map-viewer__btn" id="mapZoomOut" aria-label="Alejar">−</button>
-              <button type="button" class="map-viewer__btn" id="mapZoomReset" aria-label="Restablecer vista">⟲</button>
-              <button type="button" class="map-viewer__btn" id="mapZoomIn" aria-label="Acercar">+</button>
-            </div>
-          </div>
-        </div>
-        ${map.subtitle?`<div class="maps-gallery__subtitle">${escapeHTML(map.subtitle)}</div>`:''}
-        ${map.credit?`<div class="maps-gallery__credit">${escapeHTML(map.credit)}</div>`:''}
-        <p class="maps-gallery__hint">Toca ⛶ para ver el mapa a pantalla completa. Ahí puedes acercar/alejar con los botones, la rueda del mouse o pellizcando con dos dedos, y arrastrar para moverte.</p>
-      </div>`;
-    initMapViewer();
+  async function atlasRangeEndChapter(parsed){
+    if(parsed.end.chapter!==null) return parsed.end.chapter;
+    return (await VerboModules.getBookInfo(parsed.end.id)).chapterCount;
   }
 
-  // Zoom/pan con CSS transform puro (translate + scale), sin librerías.
-  // `viewerEl` (#mapViewer) es solo el fondo de pantalla completa; `frame`
-  // (#mapViewerFrame) es la caja que de verdad mantiene la proporción 4:3
-  // del mapa y contiene la imagen y los botones — así el botón de cerrar
-  // queda pegado a la esquina del mapa visible, no de la ventana entera.
-  function initMapViewer(){
-    const viewerEl=document.getElementById('mapViewer');
-    const frame=document.getElementById('mapViewerFrame');
-    const img=document.getElementById('mapViewerImg');
-    if(!viewerEl||!frame||!img) return;
-    const MIN_SCALE=1, MAX_SCALE=5, STEP=1.5;
-    let scale=1, tx=0, ty=0;
+  async function atlasBibleCanMove(delta){
+    if(!atlasBibleState) return false;
+    const {parsed,bookIndex,chapter}=atlasBibleState;
+    if(delta<0) return bookIndex>parsed.start.index || chapter>parsed.start.chapter;
+    const endChapter=await atlasRangeEndChapter(parsed);
+    return bookIndex<parsed.end.index || chapter<endChapter;
+  }
 
-    function apply(){ img.style.transform=`translate(${tx}px, ${ty}px) scale(${scale})`; }
-
-    function clamp(){
-      const cw=frame.clientWidth, ch=frame.clientHeight;
-      const iw=img.clientWidth*scale, ih=img.clientHeight*scale;
-      const maxX=Math.max(0,(iw-cw)/2), maxY=Math.max(0,(ih-ch)/2);
-      tx=Math.min(maxX,Math.max(-maxX,tx));
-      ty=Math.min(maxY,Math.max(-maxY,ty));
+  async function moveAtlasBible(delta){
+    if(!atlasBibleState || !(await atlasBibleCanMove(delta))) return;
+    const books=VerboAtlasReferenceParser.BOOKS;
+    let {bookIndex,chapter}=atlasBibleState;
+    if(delta>0){
+      const count=(await VerboModules.getBookInfo(books[bookIndex][1])).chapterCount;
+      if(chapter<count) chapter++;
+      else{ bookIndex++; chapter=1; }
+    }else if(chapter>1) chapter--;
+    else{
+      bookIndex--;
+      chapter=(await VerboModules.getBookInfo(books[bookIndex][1])).chapterCount;
     }
+    atlasBibleState.bookIndex=bookIndex;
+    atlasBibleState.chapter=chapter;
+    await renderAtlasBiblePanel();
+  }
 
-    function setScale(newScale, anchorX, anchorY){
-      newScale=Math.min(MAX_SCALE,Math.max(MIN_SCALE,newScale));
-      if(anchorX!==undefined){
-        // Mantiene el punto bajo el cursor/dedo fijo mientras cambia la escala.
-        const rect=frame.getBoundingClientRect();
-        const cx=anchorX-rect.left-rect.width/2;
-        const cy=anchorY-rect.top-rect.height/2;
-        const ratio=newScale/scale;
-        tx=cx-(cx-tx)*ratio;
-        ty=cy-(cy-ty)*ratio;
-      }
-      scale=newScale;
-      if(scale===MIN_SCALE){ tx=0; ty=0; }
-      clamp();
-      apply();
-    }
+  async function openAtlasBibleReference(reference){
+    const parsed=window.VerboAtlasReferenceParser?.parse(reference);
+    if(!parsed){ toast(contentLang()==='es'?'No se pudo interpretar esta referencia.':'This reference could not be parsed.'); return; }
+    atlasBibleState={parsed,bookIndex:parsed.start.index,chapter:parsed.start.chapter};
+    if(sermonMode && isSermonSidePanelOpen()) closeSermonSidePanel();
+    closePanel();
+    openPanel('atlas-bible');
+  }
 
-    function reset(){ scale=1; tx=0; ty=0; apply(); }
-
-    // Pantalla completa: el fondo cubre toda la ventana, pero `frame` se
-    // encoge para mantener la proporción 4:3 del mapa dentro de ese fondo
-    // (ver CSS .map-viewer--fullscreen .map-viewer__frame). Se cierra con
-    // el mismo botón o Escape.
-    const expandBtn=document.getElementById('mapExpandBtn');
-    let isFullscreen=false;
-    function setFullscreen(v){
-      isFullscreen=v;
-      viewerEl.classList.toggle('map-viewer--fullscreen', v);
-      document.body.classList.toggle('map-viewer-fullscreen-active', v);
-      if(expandBtn){
-        expandBtn.textContent=v?'✕':'⛶';
-        expandBtn.setAttribute('aria-label', v?'Salir de pantalla completa':'Ver a pantalla completa');
-      }
-      clamp(); apply();
-    }
-    expandBtn?.addEventListener('click', ()=>setFullscreen(!isFullscreen));
-    function onKeydown(e){
-      if(!document.body.contains(viewerEl)){ document.removeEventListener('keydown', onKeydown); return; }
-      if(e.key==='Escape' && isFullscreen) setFullscreen(false);
-    }
-    document.addEventListener('keydown', onKeydown);
-
-    document.getElementById('mapZoomIn')?.addEventListener('click',()=>{
-      const r=frame.getBoundingClientRect();
-      setScale(scale*STEP, r.left+r.width/2, r.top+r.height/2);
-    });
-    document.getElementById('mapZoomOut')?.addEventListener('click',()=>{
-      const r=frame.getBoundingClientRect();
-      setScale(scale/STEP, r.left+r.width/2, r.top+r.height/2);
-    });
-    document.getElementById('mapZoomReset')?.addEventListener('click', reset);
-
-    // Zoom, arrastre y gestos táctiles solo tienen efecto a pantalla completa
-    // (ver setFullscreen arriba) — en el panel chico el mapa es solo vista
-    // previa estática, no hay espacio real para explorar con zoom.
-
-    // Rueda del mouse en escritorio.
-    frame.addEventListener('wheel', e=>{
-      if(!isFullscreen) return;
-      e.preventDefault();
-      setScale(scale*(e.deltaY<0?1.15:1/1.15), e.clientX, e.clientY);
-    }, {passive:false});
-
-    // Doble clic/doble tap: alterna entre vista completa y zoom 2.5x.
-    let lastTapTime=0, lastTapX=0, lastTapY=0;
-    function toggleZoom(x,y){
-      if(scale>MIN_SCALE) reset(); else setScale(2.5,x,y);
-    }
-    frame.addEventListener('dblclick', e=>{
-      if(!isFullscreen) return;
-      e.preventDefault(); toggleZoom(e.clientX,e.clientY);
-    });
-
-    // Arrastre con mouse (solo aporta cuando hay zoom aplicado).
-    let dragging=false, dragStartX=0, dragStartY=0, startTx=0, startTy=0;
-    frame.addEventListener('mousedown', e=>{
-      if(!isFullscreen || scale<=MIN_SCALE) return;
-      dragging=true; dragStartX=e.clientX; dragStartY=e.clientY; startTx=tx; startTy=ty;
-      frame.classList.add('map-viewer--dragging');
-    });
-    window.addEventListener('mousemove', e=>{
-      if(!dragging) return;
-      tx=startTx+(e.clientX-dragStartX);
-      ty=startTy+(e.clientY-dragStartY);
-      clamp(); apply();
-    });
-    window.addEventListener('mouseup', ()=>{ dragging=false; frame.classList.remove('map-viewer--dragging'); });
-
-    // Touch: un dedo para arrastrar, dos dedos para pellizcar y hacer zoom.
-    let touchMode=null; // 'pan' | 'pinch'
-    let pinchStartDist=0, pinchStartScale=1;
-    let panStartX=0, panStartY=0, panStartTx=0, panStartTy=0;
-
-    function touchDist(t0,t1){ return Math.hypot(t1.clientX-t0.clientX, t1.clientY-t0.clientY); }
-    function touchMid(t0,t1){ return {x:(t0.clientX+t1.clientX)/2, y:(t0.clientY+t1.clientY)/2}; }
-
-    frame.addEventListener('touchstart', e=>{
-      if(!isFullscreen) return;
-      if(e.touches.length===2){
-        touchMode='pinch';
-        pinchStartDist=touchDist(e.touches[0],e.touches[1]);
-        pinchStartScale=scale;
-      } else if(e.touches.length===1){
-        const now=Date.now();
-        const t=e.touches[0];
-        if(now-lastTapTime<320 && Math.hypot(t.clientX-lastTapX,t.clientY-lastTapY)<24){
-          toggleZoom(t.clientX,t.clientY);
-          lastTapTime=0;
-          touchMode=null;
-          return;
-        }
-        lastTapTime=now; lastTapX=t.clientX; lastTapY=t.clientY;
-        touchMode='pan';
-        panStartX=t.clientX; panStartY=t.clientY; panStartTx=tx; panStartTy=ty;
-      }
-    }, {passive:true});
-
-    frame.addEventListener('touchmove', e=>{
-      if(touchMode==='pinch' && e.touches.length===2){
-        e.preventDefault();
-        const dist=touchDist(e.touches[0],e.touches[1]);
-        const mid=touchMid(e.touches[0],e.touches[1]);
-        setScale(pinchStartScale*(dist/pinchStartDist), mid.x, mid.y);
-      } else if(touchMode==='pan' && e.touches.length===1){
-        if(scale<=MIN_SCALE) return;
-        e.preventDefault();
-        const t=e.touches[0];
-        tx=panStartTx+(t.clientX-panStartX);
-        ty=panStartTy+(t.clientY-panStartY);
-        clamp(); apply();
-      }
-    }, {passive:false});
-
-    frame.addEventListener('touchend', e=>{
-      if(e.touches.length<2) touchMode = e.touches.length===1 ? 'pan' : null;
-    });
-
-    apply();
+  async function renderAtlasBiblePanel(){
+    if(!atlasBibleState) return;
+    const token=++atlasBibleRenderToken;
+    const lang=contentLang();
+    const books=VerboAtlasReferenceParser.BOOKS;
+    const bookId=books[atlasBibleState.bookIndex][1];
+    const chapter=atlasBibleState.chapter;
+    const parsed=atlasBibleState.parsed;
+    panelTitleEl().textContent=lang==='es'?'Biblia secundaria':'Secondary Bible';
+    panelToolbarEl().innerHTML=`<div class="atlas-bible-toolbar">
+      <button class="note-card__copy" id="backToAtlas" type="button">← ${lang==='es'?'Volver al Atlas':'Back to Atlas'}</button>
+      <span class="atlas-bible-toolbar__range">${escapeHTML(parsed.reference)}</span>
+      <button class="note-card__copy" id="atlasBiblePrev" type="button" aria-label="${lang==='es'?'Capítulo anterior':'Previous chapter'}">‹</button>
+      <button class="note-card__copy" id="atlasBibleNext" type="button" aria-label="${lang==='es'?'Capítulo siguiente':'Next chapter'}">›</button>
+    </div>`;
+    panelBodyEl().innerHTML=emptyState('⌛',lang==='es'?'Cargando pasaje…':'Loading passage…');
+    document.getElementById('backToAtlas')?.addEventListener('click',()=>openPanel('mapas'));
+    const prev=document.getElementById('atlasBiblePrev');
+    const next=document.getElementById('atlasBibleNext');
+    if(prev){ prev.disabled=!(await atlasBibleCanMove(-1)); prev.addEventListener('click',()=>moveAtlasBible(-1)); }
+    if(next){ next.disabled=!(await atlasBibleCanMove(1)); next.addEventListener('click',()=>moveAtlasBible(1)); }
+    const manifestPath=ATLAS_BIBLE_MANIFEST[lang]||ATLAS_BIBLE_MANIFEST.es;
+    const loaded=await VerboModules.loadBible(manifestPath,bookId,chapter).catch(error=>{ console.error(error); return null; });
+    if(token!==atlasBibleRenderToken || activeTab!=='atlas-bible') return;
+    if(!loaded){ panelBodyEl().innerHTML=emptyState('⚠️',lang==='es'?'No se pudo cargar este pasaje.':'This passage could not be loaded.'); return; }
+    const numbers=Object.keys(loaded.verses||{}).map(Number).filter(Number.isFinite).sort((a,b)=>a-b);
+    const first=atlasBibleState.bookIndex===parsed.start.index && chapter===parsed.start.chapter ? (parsed.start.verse||numbers[0]) : numbers[0];
+    const endChapter=await atlasRangeEndChapter(parsed);
+    const last=atlasBibleState.bookIndex===parsed.end.index && chapter===endChapter ? (parsed.end.verse||numbers.at(-1)) : numbers.at(-1);
+    const versionLabel=lang==='es'?'Biblia Verbo':'BSB';
+    panelBodyEl().innerHTML=`<article class="atlas-bible-passage">
+      <header class="atlas-bible-passage__header"><h3>${escapeHTML(loaded.bookInfo?.name||bookId)} ${chapter}</h3><span>${versionLabel}</span></header>
+      ${numbers.map(n=>`<div class="compare-verse${n>=first&&n<=last?' compare-verse--active':''}" data-verse-n="${n}"><span class="compare-verse__num">${n}</span><span class="compare-verse__text">${escapeHTML(loaded.verses[String(n)]||'')}</span></div>`).join('')}
+    </article>`;
+    panelBodyEl().querySelector(`[data-verse-n="${first}"]`)?.scrollIntoView({block:'start'});
   }
 
   function patristicModeToggleHtml(){
@@ -5657,7 +5543,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     // cambio de versículo/pestaña.
     const refreshDynamicText=()=>{
       if(data) renderChapter(activeVerse());
-      if(sermonPanelTab) renderSermonSidePanel(sermonPanelTab);
+      if(sermonPanelTab==='mapas') document.querySelector('#verboAtlasFrame')?.contentWindow?.VerboAtlas?.setLanguage(contentLang());
+      else if(sermonPanelTab) renderSermonSidePanel(sermonPanelTab);
+      else if(activeTab==='mapas') document.querySelector('#verboAtlasFrame')?.contentWindow?.VerboAtlas?.setLanguage(contentLang());
       else if(activeTab) renderPanel(activeTab);
       if(openStrongPopupRoot){
         const code=strongPopupEls().code?.textContent;
