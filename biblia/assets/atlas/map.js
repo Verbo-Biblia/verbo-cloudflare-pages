@@ -64,7 +64,7 @@
   const BUTTON_ZOOM_FACTOR = 1.35;
   const WHEEL_ZOOM_SENSITIVITY = 0.0018;
   const LAST_MAP_STORAGE_KEY = "verbo:atlas:lastMap";
-  const ATLAS_DATA_VERSION = "20260818-atlas-map-fixes";
+  const ATLAS_DATA_VERSION = "20260818-map-place-coverage";
 
   function versionedAtlasDataUrl(url) {
     return `${url}${url.includes("?") ? "&" : "?"}v=${ATLAS_DATA_VERSION}`;
@@ -457,6 +457,16 @@
 
   function applyMasterSurfaceCorrections() {
     if (!currentMap || currentMap.id !== "exodo-conquista") return;
+    const firstGulf = layerMaster.querySelector(".gulf");
+    if (firstGulf) {
+      // Restore the eastern Nile delta omitted between the master's sea and
+      // relief shapes. It contains Goshen and the first Exodus stations.
+      const easternDelta = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      easternDelta.setAttribute("d", "M 311,310 C 351,314 392,325 430,348 C 468,371 493,398 503,431 C 475,445 449,456 423,457 C 387,459 352,449 314,440 C 272,430 238,406 214,365 C 245,335 275,317 311,310 Z");
+      easternDelta.setAttribute("fill", "url(#land)");
+      easternDelta.dataset.runtimeCorrected = "eastern-nile-delta";
+      firstGulf.before(easternDelta);
+    }
     // En este maestro, las masas terrestres oriental y occidental quedaron
     // semitransparentes sobre el Mediterráneo. La copia runtime las restaura
     // como tierra sin modificar la geometría ni el archivo SVG aprobado.
