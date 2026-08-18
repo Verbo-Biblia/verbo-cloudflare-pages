@@ -63,6 +63,17 @@
   const MAX_ZOOM = 8;
   const BUTTON_ZOOM_FACTOR = 1.35;
   const WHEEL_ZOOM_SENSITIVITY = 0.0018;
+  const LAST_MAP_STORAGE_KEY = "verbo:atlas:lastMap";
+
+  function storedMapId() {
+    try { return localStorage.getItem(LAST_MAP_STORAGE_KEY); }
+    catch { return null; }
+  }
+
+  function rememberMapId(mapId) {
+    try { localStorage.setItem(LAST_MAP_STORAGE_KEY, mapId); }
+    catch { /* El Atlas sigue funcionando si el navegador bloquea almacenamiento. */ }
+  }
 
   function fallbackText(entry, language = lang) {
     if (entry == null) return "";
@@ -918,6 +929,7 @@
     if (!currentMap) return;
     const loaded = await loadMapData(currentMap);
     if (!loaded) return;
+    rememberMapId(currentMap.id);
     if (resetPanel) closePanel();
     activePinId = null;
     resetCamera();
@@ -939,7 +951,9 @@
   async function init() {
     await Promise.all([loadRegistry(), loadMediaCatalog()]);
     populateMapSelect();
-    await switchMap(mapsRegistry.maps[0].id, false);
+    const savedMapId = storedMapId();
+    const initialMap = mapsRegistry.maps.find((map) => map.id === savedMapId) || mapsRegistry.maps[0];
+    await switchMap(initialMap.id, false);
     installZoomInteractions();
 
     mapSelect.addEventListener("change", (e) => switchMap(e.target.value, true));

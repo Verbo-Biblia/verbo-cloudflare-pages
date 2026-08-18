@@ -4386,7 +4386,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         <iframe
           class="atlas-embed__frame"
           id="verboAtlasFrame"
-          src="assets/atlas/atlas.html"
+          src="assets/atlas/atlas.html?v=20260818-last-map"
           title="${escapeHTML(t('nav.mapasBiblicos'))}"
           loading="eager"
           sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
