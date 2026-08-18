@@ -1035,6 +1035,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   const T_PREFIX = 'verbo:t:';
   function tcacheGet(key){ try{ return JSON.parse(localStorage.getItem(T_PREFIX+key)); }catch{ return null; } }
   function tcacheSet(key,val){ try{ localStorage.setItem(T_PREFIX+key, JSON.stringify(val)); }catch{} }
+  function tcacheDelete(key){ try{ localStorage.removeItem(T_PREFIX+key); }catch{} }
+  // v5: invalida respuestas explicativas o negativas que el traductor remoto
+  // pudo haber almacenado como si fueran traducciones válidas.
   // v4: la clave incluye el idioma destino y fuerza regenerar traducciones
   // con preservacion basica de bloques + acceso al original.
   // v3: la clave incluye el idioma destino — antes de agregar traduccion ES->EN
@@ -1048,7 +1051,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       hash^=value.charCodeAt(i);
       hash=Math.imul(hash,16777619);
     }
-    return `v4:${targetLang}:${noteId}:${(hash>>>0).toString(16)}`;
+    return `v5:${targetLang}:${noteId}:${(hash>>>0).toString(16)}`;
   }
   function htmlToPlainText(html){ return html.replace(/<[^>]+>/g,' ').replace(/&nbsp;/g,' ').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/\s+/g,' ').trim(); }
   function htmlToTranslationBlocks(html){
@@ -1217,7 +1220,32 @@ document.addEventListener('DOMContentLoaded', async () => {
   // reactivando el indicador de un panel que ya no describe — el bug que
   // 198e0cc2 quiso cerrar. La generación abandonada ya no puede alimentar
   // el indicador, pero sí puede seguir traduciendo en silencio.
+  function translateCompactMetadata(text, sourceLang, targetLang){
+    const match=String(text||'').trim().match(/^(\d+)\s+(cap[ií]tulos?|fragmentos?|secciones?|chapters?|fragments?|sections?)$/i);
+    if(!match || sourceLang===targetLang) return null;
+    const count=Number(match[1]);
+    const noun=match[2].toLocaleLowerCase();
+    const kind=/cap[ií]t|chapter/.test(noun) ? 'chapter' : /fragment/.test(noun) ? 'fragment' : 'section';
+    const translatedNoun=targetLang==='en'
+      ? `${kind}${count===1?'':'s'}`
+      : kind==='chapter' ? (count===1?'capítulo':'capítulos')
+      : kind==='fragment' ? (count===1?'fragmento':'fragmentos')
+      : (count===1?'sección':'secciones');
+    return `${count} ${translatedNoun}`;
+  }
+  function isUsableTranslation(source, translated){
+    if(typeof translated!=='string' || !translated.trim()) return false;
+    const clean=translated.trim();
+    const metaReply=/(?:i need (?:the )?source (?:text|content)|please provide (?:the )?(?:actual |source )?(?:text|content)|you(?:'ve| have) provided only|i (?:can(?:not|'t)|am unable to) translate|as an ai|necesito (?:el )?(?:texto|contenido) (?:fuente|original)|por favor (?:proporcione|facilite|env[ií]e) (?:el )?(?:texto|contenido))/i;
+    if(metaReply.test(clean)) return false;
+    const sourceLength=String(source||'').trim().length;
+    if(sourceLength<=80 && clean.length>Math.max(180,sourceLength*6)) return false;
+    return true;
+  }
+
   async function verboTranslate(text, sourceLang='en', targetLang='es', {silent=false}={}){
+    const compactTranslation=translateCompactMetadata(text,sourceLang,targetLang);
+    if(compactTranslation) return compactTranslation;
     // Fase 2 (2026-08-07): reemplaza el endpoint no oficial de Google
     // Translate por POST /translate en el Worker verbo-api-bible (Claude
     // Haiku 4.5 + caché compartido en Cloudflare KV — ver
@@ -1255,6 +1283,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     async function run(){
       if(text.length<=4500){
         const result=await fetchTranslate(text);
+        if(!isUsableTranslation(text,result)) return null;
         return fixKnownBookNameMistranslations(result, targetLang);
       }
       // Long text: translate in chunks sequentially — ya no hace falta por el
@@ -1266,7 +1295,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const parts=[];
       for(const chunk of chunks){
         const r=await fetchTranslate(chunk);
-        if(r===null) return null;
+        if(!isUsableTranslation(chunk,r)) return null;
         parts.push(r);
       }
       return fixKnownBookNameMistranslations(parts.join(' '), targetLang);
@@ -1337,9 +1366,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(!text) return text;
     const cacheKey=translationCacheKey(`${noteId}:${field}`,text,targetLang);
     const cached=tcacheGet(cacheKey);
-    if(cached) return cached;
+    if(cached && isUsableTranslation(text,cached)) return cached;
+    if(cached) tcacheDelete(cacheKey);
     const translated=await verboTranslate(text,sourceLang,targetLang);
-    if(!translated) return text;
+    if(!isUsableTranslation(text,translated)) return text;
     tcacheSet(cacheKey,translated);
     return translated;
   }
