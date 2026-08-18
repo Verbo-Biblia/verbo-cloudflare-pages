@@ -6,6 +6,7 @@
   const layerRoute = document.getElementById("layer-route");
   const layerPins = document.getElementById("layer-pins");
   const mapTitle = document.getElementById("map-title");
+  const atlasLabel = document.getElementById("atlas-label");
   const mapSelect = document.getElementById("map-select");
   const journeySelect = document.getElementById("journey-select");
   const useControlLabel = document.getElementById("use-control-label");
@@ -392,9 +393,9 @@
     const availableW = Math.max(120, mapStage.clientWidth - padX);
     const availableH = Math.max(120, mapStage.clientHeight - padY - hintHeight - gap);
 
-    // Comfortable desktop cap so the map does not swallow the whole interface on large screens.
-    let boxW = Math.min(availableW, 980);
-    let boxH = Math.min(availableH, 620);
+    // Fill the stage in the limiting dimension while preserving the real master viewBox.
+    let boxW = availableW;
+    let boxH = availableH;
 
     if (boxW / boxH > ratio) boxW = boxH * ratio;
     else boxH = boxW / ratio;
@@ -872,6 +873,7 @@
   }
 
   function refreshTexts() {
+    if (atlasLabel) atlasLabel.textContent = lang === "es" ? "Mapa Verbo" : "Verbo Map";
     mapTitle.textContent = resolveText(currentMap.label, { scope: "map-title", mapId: currentMap.id });
     populateMapSelect();
     mapSelect.value = currentMap.id;
@@ -965,6 +967,7 @@
   window.VerboAtlas = {
     setLanguage,
     getLanguage: () => lang,
+    fitMapFrame,
     setTextResolver(resolver) {
       externalTextResolver = typeof resolver === "function" ? resolver : null;
       if (currentMap) refreshTexts();

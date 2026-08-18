@@ -4371,6 +4371,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       api.setLanguage(contentLang());
       api.setTextResolver(resolveAtlasText);
       api.setBibleResolver(({reference})=>openAtlasBibleReference(reference));
+      requestAnimationFrame(()=>api.fitMapFrame?.());
     };
     connect();
   }
@@ -4394,6 +4395,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     const frame=panelBodyEl().querySelector('#verboAtlasFrame');
     frame?.addEventListener('load',()=>connectAtlasFrame(frame),{once:true});
     if(frame?.contentDocument?.readyState==='complete') connectAtlasFrame(frame);
+    const hostPanel=frame?.closest('.side-panel, .sermon-compare-panel');
+    const refit=()=>frame?.contentWindow?.VerboAtlas?.fitMapFrame?.();
+    requestAnimationFrame(()=>requestAnimationFrame(refit));
+    hostPanel?.addEventListener('transitionend',refit,{once:true});
   }
 
   async function atlasRangeEndChapter(parsed){

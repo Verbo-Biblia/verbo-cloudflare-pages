@@ -4,13 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Verbo Maps — Atlas interactivo</title>
-<link rel="stylesheet" href="style.css?v=20260818-step2">
+<link rel="stylesheet" href="style.css?v=20260818-fill-panel">
 </head>
 <body>
 
   <header class="chrome">
     <div class="chrome-title">
-      <span class="eyebrow">Atlas Verbo</span>
+      <span class="eyebrow" id="atlas-label">Mapa Verbo</span>
+      <span class="chrome-title-separator" aria-hidden="true">·</span>
       <h1 id="map-title"></h1>
     </div>
 
@@ -102,6 +103,6 @@
   </aside>
 
   <!-- Sin dependencias externas: SVG maestro real + capas interactivas. -->
-  <script src="map.js?v=20260818-step2"></script>
+  <script src="map.js?v=20260818-fill-panel"></script>
 </body>
 </html>
