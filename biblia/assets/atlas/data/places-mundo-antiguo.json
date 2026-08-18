@@ -326,6 +326,26 @@
     }
   },
   "journeys": {
+    "babel-y-naciones": {
+      "mode": "sites",
+      "color": "#9d1738",
+      "label": {
+        "es": "Babel y Nínive en Génesis 10–11",
+        "en": "Babel and Nineveh in Genesis 10–11"
+      },
+      "desc": {
+        "es": "Ubica Babel y Nínive como referencias mesopotámicas de Génesis 10–11. Se muestran como sitios, sin trazar una ruta entre ellos.",
+        "en": "Locates Babel and Nineveh as Mesopotamian references in Genesis 10–11. They are shown as sites, without drawing a route between them."
+      },
+      "stops": [
+        "babilonia",
+        "nineve"
+      ],
+      "scriptureRefs": [
+        "Genesis 10:8–12",
+        "Genesis 11:1–9"
+      ]
+    },
     "llamado-abram": {
       "label": {
         "es": "El llamado de Abram (Ur a Canaán)",

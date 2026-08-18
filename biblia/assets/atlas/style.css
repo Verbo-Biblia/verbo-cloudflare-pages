@@ -6,8 +6,8 @@
   --sea: #a3c9d1;
   --border: #d8d0c0;
   --route: #b23a3a;
-  --pin: #3c5a78;
-  --pin-active: #b23a3a;
+  --pin: #9d1738;
+  --pin-active: #c21845;
   --province-outline: #5a5042;
   --province-label: #4a4234;
 
@@ -363,7 +363,9 @@ body {
   transform-origin: center;
   transform-box: fill-box;
 }
-.pin:hover .pin-dot, .pin.active .pin-dot {
+.pin:hover .pin-dot,
+.pin:focus-visible .pin-dot,
+.pin.active .pin-dot {
   fill: var(--pin-active);
   transform: scale(1.35);
 }

@@ -948,7 +948,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if(activeTab==='comentario' && els.side?.classList.contains('side-panel--open')) applyCommentaryTranslation(focus, commentarySourceLang);
       }, 150);
     }
-    if(tab==='comparar'){ els.panelTitle.textContent='Comparar versiones'; renderCompare(focus||activeVerse()); }
+    if(tab==='comparar'){ els.panelTitle.textContent=t('nav.compararVersiones'); renderCompare(focus||activeVerse()); }
     if(tab==='sermon-biblia') renderSermonBiblePanel(focus||activeVerse());
     if(tab==='diccionario') renderLanguagesPanel(focus || activeVerse());
     if(tab==='historia') renderChurchHistoryPanel();
@@ -1534,15 +1534,17 @@ document.addEventListener('DOMContentLoaded', async () => {
   //
   // Nació (2026-08) como un panel dedicado únicamente a "Comparar
   // versiones". A pedido de Juan, que quería el mismo comportamiento para
-  // Comentarios/Notas/Mapas/Mis prédicas (hasta entonces reemplazaban el
-  // contenido de #sidePanel, tapando la Biblia), se generalizó para que las
-  // cinco pestañas compartan este mismo panel — mutuamente excluyentes entre
-  // sí — reutilizando las funciones de renderizado que ya existían para
-  // #sidePanel (renderPanel('comentario',…), renderNotes, renderMapsPanel,
-  // renderPredicasPanel) a través del redirect panelTitleEl()/
+  // Comentarios/Notas/Mis prédicas/Diccionario (hasta entonces reemplazaban
+  // el contenido de #sidePanel, tapando la Biblia), se generalizó para que
+  // las cinco pestañas compartan este panel — mutuamente excluyentes entre
+  // sí. Mapas queda fuera deliberadamente: usa el panel ancho normal y
+  // reemplaza los demás paneles incluso dentro del modo predicación.
+  // Se reutilizan las funciones de renderizado que ya existían mediante
+  // renderPanel('comentario',…), renderNotes y renderPredicasPanel, a través
+  // del redirect panelTitleEl()/
   // panelToolbarEl()/panelBodyEl() (ver justo antes de renderPanel), en vez
   // de duplicar esa lógica.
-  const SERMON_SIDE_PANEL_TABS = ['comparar','comentario','notas','mapas','predicas','diccionario'];
+  const SERMON_SIDE_PANEL_TABS = ['comparar','comentario','notas','predicas','diccionario'];
   let sermonPanelTab = null; // pestaña mostrada en este panel; null = cerrado
 
   // Sincronización de referencia (libro/capítulo/versículo) con la pestaña
@@ -1560,7 +1562,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(tab==='comparar') return t('nav.compararVersiones');
     if(tab==='comentario') return t('comentario.title');
     if(tab==='notas') return t('notas.title');
-    if(tab==='mapas') return 'Mapas bíblicos';
     if(tab==='predicas') return t('predicas.title');
     if(tab==='diccionario') return t('nav.diccionario');
     return '';
@@ -1577,7 +1578,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(tab==='comparar') renderSermonCompare(activeVerse());
     else if(tab==='comentario') renderPanel('comentario');
     else if(tab==='notas') renderNotes();
-    else if(tab==='mapas') renderMapsPanel();
     else if(tab==='predicas') renderPredicasPanel();
     else if(tab==='diccionario') renderPanel('diccionario');
   }
@@ -1586,6 +1586,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
   function openSermonSidePanel(tab){
     if(sermonPanelTab==='diccionario' && tab!=='diccionario') closeStrongPopup();
+    // Si el Atlas normal estaba abierto en #sidePanel, cualquier herramienta
+    // secundaria vuelve primero al layout de paneles propio de predicación.
+    if(activeTab==='mapas') closePanel();
     sermonPanelTab = tab;
     sermonPanelTarget = { title: els.sermonPanelTitle, toolbar: els.sermonComparePanelToolbar, body: els.sermonComparePanelBody };
     els.sermonComparePanel?.classList.add('sermon-compare-panel--open');
@@ -4386,7 +4389,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         <iframe
           class="atlas-embed__frame"
           id="verboAtlasFrame"
-          src="assets/atlas/atlas.html?v=20260818-atlas-map-fixes"
+          src="assets/atlas/atlas.html?v=20260818-map-place-coverage"
           title="${escapeHTML(t('nav.mapasBiblicos'))}"
           loading="eager"
           sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
@@ -5466,15 +5469,24 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
       clearMobileToolArm();
     }
-    // En modo sermón, Comparar/Comentarios/Notas/Mapas/Mis prédicas/
+    // En modo sermón, Comparar/Comentarios/Notas/Mis prédicas/
     // Diccionario no reemplazan el panel de Biblia: comparten un segundo
     // panel lado a lado (ver .sermon-compare-panel), fuera del sistema de
     // panel único que usa el resto de la app. Ese layout de 3 columnas no se
     // resuelve debajo de 900px (.sermon-compare-panel queda display:none —
-    // ver style.css), así que por debajo de ese ancho estos seis caen al
+    // ver style.css), así que por debajo de ese ancho estos cinco caen al
     // sistema de panel único de siempre (reemplaza a Biblia), igual que
     // cualquier otra pestaña en móvil — la alternativa era que el ícono no
     // hiciera nada visible ahí.
+    // Mapas es la excepción deliberada: usa exactamente el panel ancho del
+    // modo normal. Cierra los otros paneles y deja el editor en el espacio
+    // residual, como la lectura bíblica normal cuando abre el Atlas.
+    if(sermonMode && b.dataset.tab==='mapas'){
+      resetXrefMode();
+      closeSermonSidePanel();
+      activeTab==='mapas' ? closePanel() : openPanel('mapas');
+      return;
+    }
     if(sermonMode && SERMON_SIDE_PANEL_TABS.includes(b.dataset.tab) && window.matchMedia('(min-width: 901px)').matches){
       resetXrefMode();
       toggleSermonSidePanel(b.dataset.tab);
