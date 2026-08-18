@@ -64,6 +64,11 @@
   const BUTTON_ZOOM_FACTOR = 1.35;
   const WHEEL_ZOOM_SENSITIVITY = 0.0018;
   const LAST_MAP_STORAGE_KEY = "verbo:atlas:lastMap";
+  const ATLAS_DATA_VERSION = "20260818-atlas-map-fixes";
+
+  function versionedAtlasDataUrl(url) {
+    return `${url}${url.includes("?") ? "&" : "?"}v=${ATLAS_DATA_VERSION}`;
+  }
 
   function storedMapId() {
     try { return localStorage.getItem(LAST_MAP_STORAGE_KEY); }
@@ -115,7 +120,7 @@
   }
 
   async function loadRegistry() {
-    mapsRegistry = await fetch("data/maps-registry.json").then((r) => {
+    mapsRegistry = await fetch(versionedAtlasDataUrl("data/maps-registry.json")).then((r) => {
       if (!r.ok) throw new Error(`Registry HTTP ${r.status}`);
       return r.json();
     });
@@ -125,7 +130,7 @@
   }
 
   async function loadMediaCatalog() {
-    mediaCatalog = await fetch("data/place-media.json").then((r) => {
+    mediaCatalog = await fetch(versionedAtlasDataUrl("data/place-media.json")).then((r) => {
       if (!r.ok) throw new Error(`Media catalog HTTP ${r.status}`);
       return r.json();
     });
@@ -437,6 +442,9 @@
       layerMaster.appendChild(document.importNode(node, true));
     });
 
+    applyMasterSurfaceCorrections();
+    applyMasterPositionCorrections();
+
     // Source text is the translation key. Geometry remains exactly as stored in maps/master.
     layerMaster.querySelectorAll("text").forEach((el) => {
       const source = (el.textContent || "").trim();
@@ -447,15 +455,50 @@
     });
   }
 
+  function applyMasterSurfaceCorrections() {
+    if (!currentMap || currentMap.id !== "exodo-conquista") return;
+    // En este maestro, las masas terrestres oriental y occidental quedaron
+    // semitransparentes sobre el Mediterráneo. La copia runtime las restaura
+    // como tierra sin modificar la geometría ni el archivo SVG aprobado.
+    layerMaster.querySelectorAll(".relief").forEach((surface) => {
+      surface.style.fill = "url(#land)";
+      surface.style.opacity = "1";
+      surface.dataset.runtimeCorrected = "surface";
+    });
+  }
+
+  function applyMasterPositionCorrections() {
+    const markers = Array.from(layerMaster.querySelectorAll(".place[data-source-x][data-source-y]"));
+    const labels = Array.from(layerMaster.querySelectorAll(".place-label"));
+    Object.values((placesData && placesData.places) || {}).forEach((place) => {
+      if (!Array.isArray(place.masterPosition) || !Array.isArray(place.mapPosition)) return;
+      const [sourceX, sourceY] = place.masterPosition;
+      const [targetX, targetY] = place.mapPosition;
+      const marker = markers.find((item) => Number(item.dataset.sourceX) === sourceX && Number(item.dataset.sourceY) === sourceY);
+      if (!marker) return;
+      const dx = targetX - sourceX;
+      const dy = targetY - sourceY;
+      const index = markers.indexOf(marker);
+      const translate = `translate(${dx} ${dy})`;
+      marker.setAttribute("transform", `${translate} ${marker.getAttribute("transform") || ""}`.trim());
+      marker.dataset.runtimeCorrected = "true";
+      const label = labels[index];
+      if (label) {
+        label.setAttribute("transform", `${translate} ${label.getAttribute("transform") || ""}`.trim());
+        label.dataset.runtimeCorrected = "true";
+      }
+    });
+  }
+
   async function loadMapData(mapEntry) {
     const token = ++loadToken;
     const [places, rawSvg, catalog] = await Promise.all([
-      fetch(mapEntry.places).then((r) => r.json()),
+      fetch(versionedAtlasDataUrl(mapEntry.places)).then((r) => r.json()),
       fetch(mapEntry.masterSvg).then((r) => {
         if (!r.ok) throw new Error(`Master SVG HTTP ${r.status}: ${mapEntry.masterSvg}`);
         return r.text();
       }),
-      fetch(mapEntry.textCatalog).then((r) => r.json()),
+      fetch(versionedAtlasDataUrl(mapEntry.textCatalog)).then((r) => r.json()),
     ]);
     if (token !== loadToken) return false;
     placesData = places;

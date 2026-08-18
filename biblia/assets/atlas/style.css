@@ -54,7 +54,7 @@ body {
   align-items: baseline;
   gap: 7px;
   min-width: 0;
-  flex: 1 1 auto;
+  flex: 1 1 260px;
 }
 
 .eyebrow {
@@ -84,10 +84,10 @@ body {
   align-items: center;
   gap: 10px;
   min-width: 0;
-  flex: 0 1 auto;
+  flex: 1 1 560px;
 }
 
-.control { display: flex; align-items: center; gap: 5px; min-width: 0; }
+.control { display: flex; align-items: center; gap: 5px; min-width: 0; flex: 1 1 0; }
 
 .control-label {
   font-size: 10px;
@@ -106,6 +106,7 @@ body {
   background: var(--page-bg);
   color: var(--ink);
   min-width: 0;
+  width: 100%;
   max-width: 285px;
   cursor: pointer;
 }
@@ -153,6 +154,7 @@ body {
   .control-label { font-size: 8px; }
   #map-select, #journey-select { width: 100%; max-width: none; font-size: 12px; }
   .map-stage { padding: 6px 7px 5px; }
+  .map-frame { max-width: calc(100% - 12px); margin-inline: auto; }
 }
 
 .map-frame {
@@ -275,9 +277,9 @@ body {
 
 /* Mobile keeps the real aspect ratio of each master map. */
 @media (max-width: 640px) {
-  .chrome { padding: 9px 12px; gap: 8px; }
+  .chrome { padding: 7px 42px 7px 8px; gap: 6px; }
   .chrome-title { width: 100%; }
-  .chrome-title h1 { font-size: 18px; }
+  .chrome-title h1 { font-size: 14px; }
   .chrome-controls { width: 100%; gap: 6px; flex-wrap: nowrap; }
   .control { min-width: 0; flex: 1; }
   #map-select, #journey-select { min-width: 0; width: 100%; font-size: 12px; padding: 6px 7px; }
