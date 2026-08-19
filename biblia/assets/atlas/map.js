@@ -64,7 +64,7 @@
   const BUTTON_ZOOM_FACTOR = 1.35;
   const WHEEL_ZOOM_SENSITIVITY = 0.0018;
   const LAST_MAP_STORAGE_KEY = "verbo:atlas:lastMap";
-  const ATLAS_DATA_VERSION = "20260818-map-place-coverage";
+  const ATLAS_DATA_VERSION = "20260818-route-media-audit";
 
   function versionedAtlasDataUrl(url) {
     return `${url}${url.includes("?") ? "&" : "?"}v=${ATLAS_DATA_VERSION}`;

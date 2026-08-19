@@ -3420,15 +3420,20 @@ document.addEventListener('DOMContentLoaded', async () => {
   // y volver a "historia" conserve dónde estaba el usuario (no vuelve al estante).
   async function renderChurchHistoryPanel(){
     els.panelTitle.textContent=t('historia.title');
-    if(!churchHistoryEntries || !churchHistoryShelf){
+    // El estante solo necesita shelf.json. Antes se descargaban y analizaban
+    // también los cinco entries.json (casi 10 MiB) antes de mostrar una sola
+    // portada, haciendo que abrir el panel pareciera bloquear toda la app.
+    if(!churchHistoryShelf){
       els.panelToolbar.innerHTML='';
       els.panelBody.innerHTML=emptyState('⌛',t('historia.cargando'));
-      const [entries,shelf]=await Promise.all([
-        churchHistoryEntries ? Promise.resolve(churchHistoryEntries) : VerboModules.loadChurchHistory().catch(error=>{ console.error(error); return []; }),
-        churchHistoryShelf ? Promise.resolve(churchHistoryShelf) : VerboModules.loadChurchHistoryShelf().catch(error=>{ console.error(error); return []; }),
-      ]);
-      churchHistoryEntries=entries;
-      churchHistoryShelf=shelf;
+      churchHistoryShelf=await VerboModules.loadChurchHistoryShelf().catch(error=>{ console.error(error); return []; });
+    }
+
+    const needsEntries=churchHistorySearchActive || churchHistoryOpenVolume || churchHistoryOpenId;
+    if(needsEntries && !churchHistoryEntries){
+      els.panelToolbar.innerHTML='';
+      els.panelBody.innerHTML=emptyState('⌛',t('historia.cargando'));
+      churchHistoryEntries=await VerboModules.loadChurchHistory().catch(error=>{ console.error(error); return []; });
     }
 
     if(!churchHistorySearchActive && !churchHistoryOpenVolume && !churchHistoryOpenId){
@@ -3502,11 +3507,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       openChurchHistoryVolume(btn.dataset.shelfRead);
     }));
   }
-  // Índice del buscador rápido: churchHistoryEntries ya está cargado siempre
-  // que se llega al estante (renderChurchHistoryPanel lo carga antes), así
-  // que esto es síncrono — se cachea para no reconstruir el array en cada
-  // tecla. volumeKey queda precalculado para que seleccionar un resultado
-  // pueda abrir directamente el TOC del volumen correcto si el usuario vuelve.
+  // Índice del buscador rápido. Después de la primera búsqueda o de abrir un
+  // volumen, churchHistoryEntries queda cacheado y este índice es síncrono.
+  // En la primera visita el corpus todavía no se descarga: renderShelfView
+  // deriva al buscador completo cuando el usuario enfoca este campo.
   let historiaQuickIndexCache=null;
   function historiaQuickIndex(){
     if(!historiaQuickIndexCache || historiaQuickIndexCache.length!==(churchHistoryEntries||[]).length){
@@ -3537,13 +3541,21 @@ document.addEventListener('DOMContentLoaded', async () => {
       churchHistorySearchActive=true;
       renderChurchHistoryPanel();
     });
-    wireQuickSearchInput(document.getElementById('historiaQuickSearchInput'), document.getElementById('historiaQuickSearchPredictions'), historiaQuickIndex, selectHistoriaQuickResult, {sourceLang:'en', moduleId:'historia'});
+    const quickSearch=document.getElementById('historiaQuickSearchInput');
+    if(churchHistoryEntries){
+      wireQuickSearchInput(quickSearch, document.getElementById('historiaQuickSearchPredictions'), historiaQuickIndex, selectHistoriaQuickResult, {sourceLang:'en', moduleId:'historia'});
+    }else{
+      quickSearch?.addEventListener('focus',()=>{
+        churchHistorySearchActive=true;
+        renderChurchHistoryPanel();
+      },{once:true});
+    }
   }
   function openChurchHistoryVolume(volumeId){
     churchHistoryOpenVolume=volumeId;
     churchHistoryOpenId=null;
     churchHistoryOpenFromShelf=false;
-    renderChurchHistoryTOCView(volumeId);
+    renderChurchHistoryPanel();
   }
   function churchHistoryBackToShelf(){
     churchHistoryOpenVolume=null;
@@ -4419,7 +4431,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         <iframe
           class="atlas-embed__frame"
           id="verboAtlasFrame"
-          src="assets/atlas/atlas.html?v=20260818-map-place-coverage"
+          src="assets/atlas/atlas.html?v=20260818-route-media-audit"
           title="${escapeHTML(t('nav.mapasBiblicos'))}"
           loading="eager"
           sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">

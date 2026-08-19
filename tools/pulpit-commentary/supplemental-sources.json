@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "id": "internet-archive-volume-15",
+      "books": ["EZR", "NEH", "EST"],
+      "title": "The Pulpit Commentary, volume XV: Ezra, Nehemiah, Esther",
+      "editor": "H. D. M. Spence-Jones (1836–1917)",
+      "date": "[189-?]",
+      "publisher": "New York, Toronto: Funk & Wagnalls Company",
+      "internetArchiveIdentifier": "cu31924101105041",
+      "metadataUrl": "https://archive.org/metadata/cu31924101105041",
+      "canonicalPdfUrl": "https://archive.org/download/cu31924101105041/cu31924101105041.pdf",
+      "canonicalOcrUrl": "https://archive.org/download/cu31924101105041/cu31924101105041_djvu.txt",
+      "canonicalPdf": {
+        "bytes": 37132083,
+        "md5": "f0783f4b1b3ebe27aa348c0598aad491",
+        "sha1": "5083795513f9f7c962aa88b82c981d4cc496e046"
+      },
+      "canonicalOcr": {
+        "bytes": 2815335,
+        "sha256": "a7711d70386d849e1ae445cff8f758c850fbe85f44b3d5e5c98f2a14638495d4"
+      },
+      "userProvidedDerivative": {
+        "fileName": "Noor-Book.com  تعليق المنبر 2 .pdf",
+        "bytes": 23760580,
+        "sha256": "aeb96e654e4d2644241b6956aa75031ecdf1c0a3a3fe58f907520545346418ba",
+        "pages": 554,
+        "note": "PDF recomprimido; los metadatos internos apuntan al identificador canónico de Internet Archive. No coincide byte por byte con el PDF canónico."
+      },
+      "usage": "Fuente secundaria de cotejo OCR y facsímil; las fichas individuales de Theology on the Web siguen siendo la declaración de dominio público usada para publicación."
+    }
+  ]
+}

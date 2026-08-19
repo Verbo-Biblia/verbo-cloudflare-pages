@@ -354,7 +354,6 @@
       "stops": [
         "ur",
         "haran",
-        "damasco",
         "siquem",
         "betel",
         "hebron"
@@ -364,16 +363,14 @@
       ]
     },
     "abram-egipto": {
+      "mode": "sites",
       "label": {
         "es": "Abram en Egipto y su regreso",
         "en": "Abram in Egypt and His Return"
       },
       "stops": [
-        "hebron",
-        "beerseba",
+        "betel",
         "menfis",
-        "gosen",
-        "beerseba",
         "betel",
         "hebron"
       ],
@@ -382,6 +379,7 @@
       ]
     },
     "jose-egipto": {
+      "mode": "sites",
       "label": {
         "es": "José y la familia en Egipto",
         "en": "Joseph and the Family in Egypt"
@@ -397,7 +395,7 @@
       ]
     },
     "abraham-canaan": {
-      "mode": "route",
+      "mode": "sites",
       "color": "#8d5a2b",
       "label": {
         "es": "Abraham dentro de Canaán",
@@ -439,7 +437,7 @@
       ]
     },
     "jacob-haran-regreso": {
-      "mode": "route",
+      "mode": "sites",
       "color": "#6f4c8b",
       "label": {
         "es": "Jacob: Beerseba → Harán → regreso a Canaán",

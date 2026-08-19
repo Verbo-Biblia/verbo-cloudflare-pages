@@ -1,0 +1,144 @@
+{
+  "book": "PHM",
+  "referenceHeaderCorrections": [
+    {
+      "chapter": 1,
+      "ocr": "Vere. 23, 24.",
+      "corrected": "Vers. 23, 24.",
+      "physicalPage": 17,
+      "reason": "El facsímil muestra ‘Vers. 23, 24’; el OCR leyó la s como e."
+    },
+    {
+      "chapter": 1,
+      "ocr": "Ven. 1-3.",
+      "corrected": "Vers. 1-3.",
+      "physicalPage": 17,
+      "reason": "El facsímil muestra ‘Vers. 1–3’; el OCR degradó rs a n."
+    },
+    {
+      "chapter": 1,
+      "ocr": "Vere. 6, 6.",
+      "corrected": "Ver. 6.",
+      "physicalPage": 19,
+      "reason": "El facsímil impreso repite el 6 en ‘Vers. 6, 6’; se normaliza el encabezado tipográfico duplicado a un único rango, pues la homilía trata el versículo 6."
+    },
+    {
+      "chapter": 1,
+      "ocr": "Vera. 8-10.",
+      "corrected": "Vers. 8-10.",
+      "physicalPage": 19,
+      "reason": "El facsímil muestra ‘Vers. 8–10’; el OCR leyó la s como a."
+    },
+    {
+      "chapter": 1,
+      "ocr": "Ver11.",
+      "corrected": "Vers. 1, 2.",
+      "physicalPage": 23,
+      "reason": "El facsímil muestra ‘Vers. 1, 2’; el OCR fusionó la s y la puntuación con los dos números."
+    },
+    {
+      "chapter": 1,
+      "ocr": "Vera. 1-3.",
+      "corrected": "Vers. 1-3.",
+      "physicalPage": 24,
+      "reason": "El facsímil muestra ‘Vers. 1–3’; el OCR leyó la s como a."
+    },
+    {
+      "chapter": 1,
+      "ocr": "Vere. 4--7.",
+      "corrected": "Vers. 4-7.",
+      "physicalPage": 25,
+      "reason": "El facsímil muestra ‘Vers. 4–7’; el OCR leyó la s como e y duplicó el guión."
+    },
+    {
+      "chapter": 1,
+      "ocr": "Vere. 12-16.",
+      "corrected": "Vers. 12-16.",
+      "physicalPage": 27,
+      "reason": "El facsímil muestra ‘Vers. 12–16’; el OCR leyó la s como e."
+    }
+  ],
+  "bodyTextCorrections": [
+    {
+      "chapter": 1,
+      "ocr": "Ver. S.-0:raoe to yon, Blld peaoe.",
+      "corrected": "Ver. 3.-0:raoe to yon, Blld peaoe.",
+      "physicalPage": 14,
+      "reason": "El facsímil muestra el encabezado ‘Ver. 3’; el OCR leyó el 3 como S. Se corrige antes de detectar encabezados para recuperar la entrada omitida."
+    },
+    {
+      "chapter": 1,
+      "ocr": "HOMILETIUS.",
+      "corrected": "HOMILETICS.",
+      "physicalPage": 17,
+      "reason": "El facsímil muestra el encabezado de sección ‘HOMILETICS’; el OCR leyó la C como U."
+    },
+    {
+      "chapter": 1,
+      "ocr": "K6pwv",
+      "corrected": "Κύριον",
+      "physicalPage": 14,
+      "reason": "El facsímil muestra claramente el acusativo griego Κύριον; el OCR mezcló caracteres latinos y un dígito."
+    },
+    {
+      "chapter": 1,
+      "ocr": "eve1lastingly",
+      "corrected": "everlastingly",
+      "physicalPage": 16,
+      "reason": "El facsímil muestra ‘everlastingly’; el OCR leyó la r como 1."
+    },
+    {
+      "chapter": 1,
+      "ocr": "themsrlt1flll",
+      "corrected": "themselves",
+      "physicalPage": 20,
+      "reason": "El facsímil muestra ‘themselves’; el OCR degradó la segunda mitad de la palabra."
+    },
+    {
+      "chapter": 1,
+      "ocr": "fai1h",
+      "corrected": "faith",
+      "physicalPage": 29,
+      "reason": "El facsímil muestra ‘faith’; el OCR leyó la t como 1."
+    }
+  ],
+  "entryTextReplacements": [
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 1.",
+      "physicalPages": [13],
+      "reason": "Entrada completa cotejada línea por línea contra la columna izquierda de la página física 13; se preservan la puntuación, las citas y la división temática del facsímil.",
+      "paragraphs": [
+        "A prisoner of Christ Jesus. He writes a private letter, as friend to friend, and therefore does not describe himself by his official title of apostle. Having to plead the cause of a slave, he begins by putting himself into a similar position as the \"bondman of Jesus Christ\"—\"to obtain thereby the more ready compliance\" (Chrysostom). By such a reverend bondage he beseeches Philemon, \"and the bondage of Paul was liberty to Onesimus\" (Scipio Gentilis).",
+        "Timothy, etc. He was, then, with St. Paul at the time of writing; therefore at Rome; and this fixes the date of composition at all events before that of the Second Epistle to Timothy, when the apostle was again at Rome (2 Tim. i. 17; iv. 6, 16). Fellow-worker with St. Paul in promoting the spread of the gospel, either by his wealth and influence, less probably by preaching. The time when would be that of St. Paul's long stay at Ephesus and its neighbourhood (Acts xix. 8–22)."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 2.",
+      "physicalPages": [13, 14],
+      "reason": "Entrada completa cotejada línea por línea contra la columna izquierda y la columna derecha de la página física 13 y su continuación en la columna izquierda de la página física 14. Se restauran las letras griegas, nombres propios, referencias y palabras que la capa OCR confundió.",
+      "paragraphs": [
+        "Our beloved Apphia. Codices A, D*, E*, F, G, and א (Sinaiticus) read ἀδελφῇ (sister) for ἀγαπητῇ (beloved), and also Jerome, Griesbach, Meyer; which also has been adopted in the Revised Version. The name Appia, or Apphia, is either the Roman Appia Hellenized, which was the conjecture of Grotius (see Introduction), or more probably a native Phrygian name, from Appa or Appha, a term of endearment. The name does not occur elsewhere in Scripture. The word ἀδελφῇ is not unlikely to have been added by way of explanation. St. Paul has used it in five other places, and always in the same sense, viz. Rom. xvi. 1, 15; 1 Cor. vii. 15; ix. 5; 1 Tim. v. 2. Most commentators, and particularly Chrysostom, Theodoret, and Theophylact, among the ancients, infer that Apphia was the wife of Philemon. Otherwise, why mention her name here? Archippus; comp. Col. iv. 17, where he is said to have received a διακονία, i.e. a ministry or service, in the Church. This word, when used without a determining genitive, denotes service to others in a general and undefined sense. But more commonly with some limiting word; as διακονία λόγου, office of teaching (Acts vi. 4); διακονία τοῦ θανάτου, office or function of death (2 Cor. iii. 7). The general view is that Archippus was the presbyter who ministered to that congregation which assembled at the house of Philemon, though Ambrose and Jerome, with other commentators ancient and modern, think that he was the bishop. Grotius, however, takes him to have been a deacon. (It is a very precarious inference that he was a son of Philemon and Appia.) Probably he was fulfilling a temporary mission only in Colossæ, and that would be the διακονία in the passage cited. Epaphras, a resident in Colossæ (Col. iv. 12), is spoken of as having been the founder of the Church there (Col. i. 7, 8), and as still being responsible for it (Col. iv. 13). Primasius calls Epaphras bishop and Archippus deacon; and so Grotius. It may be that these theories err in ascribing too rigid and technical a meaning to the terms of ecclesiastical service at this early stage of their employment. Epaphras was, however, at this time in Rome with St. Paul (Col. iv. 12, 13), and it is possible that Archippus was filling his place temporarily. It will be safer to call him (with Bishop Wordsworth) a presbyter. It is, as we have said, an unsupported idea of some writers ancient and modern (Theod. Mopsuest., Michaelis, Rosenmüller, Olshausen, Lightfoot) that he was the son of Philemon (but see below). Our fellow-soldier; i.e. of himself and St. Timothy, as engaged in the same warfare for Christ (1 Cor. ix. 7; 2 Cor. x. 4; 1 Tim. i. 18). The same term is applied in Phil. ii. 25 to Epaphroditus, and also the συνεργός of ver. 1. And to the Church in thy house. Mede (so Chrysostom and Theodoret also) understands this as meaning “and to the whole of thy family” (which is a Christian one)—a suggestion quite worth considering. For a separate letter “to the saints and faithful brethren in Christ which are at Colossæ” (Col. i. 2) was brought by the same messengers, and it would seem natural that, in a matter so personal to Philemon, salutations should be confined to his own family. The phrase is used more than once (see Rom. xvi. 5; 1 Cor. xvi. 19, which seems rather to point the other way; but especially Col. iv. 15, “Nymphas and the Church which is in his house,” which, since it was in Colossæ itself, seems almost conclusive for that meaning). The Ecclesia domestica was very familiar in the apostolic times. Theodoret states that the house of Philemon was still pointed out as late as the fifth century."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 3.",
+      "physicalPages": [14],
+      "reason": "Entrada completa cotejada línea por línea contra la columna izquierda de la página física 14. Se restauran la fórmula griega, las referencias y las palabras latinas degradadas por el OCR.",
+      "paragraphs": [
+        "Grace to you, and peace. The secular formula of salutation was χαίρειν (Acts xxiii. 26); in Latin, multam or plurimam salutem aut plenissimam. St. Paul's formula was almost invariably as above, “Grace to you, and peace” (Rom. i. 7; 1 Cor. i. 3; Gal. i. 3; and others). To Timothy (1 Tim. i. 2; 2 Tim. i. 2) and Titus (i. 4), “Grace, mercy, and peace.”"
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 4.",
+      "physicalPages": [14],
+      "reason": "Entrada completa cotejada línea por línea contra la columna izquierda de la página física 14. Se restauran palabras, puntuación, referencias y el término griego que la capa OCR degradó.",
+      "paragraphs": [
+        "I thank my God always. We ought, therefore, to thank God, not only for gifts bestowed upon ourselves, but also for those bestowed upon others. This is an habitual phrase of St. Paul (comp. Rom. i. 8; 1 Cor. i. 4; Eph. i. 16; Phil. i. 3; 1 Thess. i. 2; 2 Thess. i. 3; 2 Tim. i. 3). “It is to be noted that for the thing on account of which he gives thanks, he at the same time prays” (Calvin). For no good work is ever so complete in us that it does not need to be “continued and ended” in us by God. Making mention of thee in my prayers. The foregoing remark again applies. Grotius observes that “we learn from this that all addresses to God may be called prayers (προσευχαί), even those in which nothing is asked but thanks are given.” But this is apparently not such a case; the petition which St. Paul offered for Philemon being stated in ver. 6. And thus Chrysostom explains the passage. “Always” may be connected with “I thank,” or with “making mention,” preferably the former (Chrysostom, Theophylact, Calvin, Lightfoot)."
+      ]
+    }
+  ]
+}

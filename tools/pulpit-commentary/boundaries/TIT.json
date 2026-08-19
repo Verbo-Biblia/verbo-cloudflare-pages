@@ -1,0 +1,30 @@
+{
+  "book": "TIT",
+  "sourceId": "theology-on-the-web-titus-hervey",
+  "boundaries": [
+    {
+      "chapter": 1,
+      "ocrMarker": "PAUL TO TITUS.\n\n                                         EXPOSITION.\n                                                     authors",
+      "physicalPage": 2,
+      "printedPage": 1,
+      "visualEvidence": "La página muestra PAUL TO TITUS, EXPOSITION y CHAPTER I.",
+      "verifiedAgainstFacsimile": true
+    },
+    {
+      "chapter": 2,
+      "ocrMarker": "EXPOSITION.\n                       CHAPTER Il.",
+      "physicalPage": 25,
+      "printedPage": 24,
+      "visualEvidence": "La página muestra EXPOSITION y CHAPTER II después del cierre del capítulo I.",
+      "verifiedAgainstFacsimile": true
+    },
+    {
+      "chapter": 3,
+      "ocrMarker": "OHAPTER nL                           (1 Cor. iv. 21",
+      "physicalPage": 44,
+      "printedPage": 43,
+      "visualEvidence": "La página muestra EXPOSITION y CHAPTER III; el OCR degradó el encabezado como ‘OHAPTER nL’.",
+      "verifiedAgainstFacsimile": true
+    }
+  ]
+}

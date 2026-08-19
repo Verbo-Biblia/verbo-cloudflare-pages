@@ -224,6 +224,7 @@
   },
   "journeys": {
     "ministerio-galilea": {
+      "mode": "sites",
       "label": {
         "es": "Ministerio en Galilea",
         "en": "Galilean Ministry"
@@ -250,7 +251,6 @@
       },
       "stops": [
         "capernaum",
-        "sicar",
         "jerico",
         "betania",
         "jerusalen"
@@ -266,6 +266,7 @@
       },
       "stops": [
         "belen",
+        "jerusalen",
         "nazaret"
       ],
       "scriptureRefs": [
