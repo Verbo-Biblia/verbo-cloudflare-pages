@@ -5215,6 +5215,29 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(contentLang()!=='en') return value;
     return CONVERSOR_LABELS_EN[value] || value;
   }
+  // El nombre de cada unidad bíblica (Mina, Siclo, Talento…) queda sin
+  // traducir a propósito — ver comentario de CONVERSOR_LABELS_EN arriba.
+  // Pero el texto explicativo entre paréntesis ("50 siclos", "6 codos") no
+  // es una decisión de transliteración del nombre propio, es solo la
+  // cantidad+unidad de referencia — sí debería traducirse. Vocabulario
+  // genérico y chico (nunca crece salvo que se agreguen categorías nuevas
+  // al conversor), por eso alcanza con diccionario estático en vez de
+  // mandarlo a /translate (evita el mismo tipo de fragmento corto y sin
+  // contexto que ya rompió otra traducción — ver bug de "10 fragmentos").
+  const CONVERSOR_PAREN_WORDS_EN = {
+    'medio':'half', 'siclo':'shekel', 'siclos':'shekels',
+    'codo':'cubit', 'codos':'cubits',
+    'coro':'cor', 'efa':'ephah', 'efas':'ephahs',
+    'moneda':'coin', 'monedas':'coins',
+    'dracma':'drachma', 'dracmas':'drachmas',
+    'ómer':'omer', 'tetradracma':'tetradrachm', 'blanca':'mite'
+  };
+  function localizeConversorNombre(nombre){
+    if(contentLang()!=='en') return nombre;
+    return nombre.replace(/\(([^)]+)\)/, (match, inner) =>
+      `(${inner.replace(/[A-Za-zÀ-ÿ]+/g, w => CONVERSOR_PAREN_WORDS_EN[w.toLowerCase()] || w)})`
+    );
+  }
   function conversorCategoriaLabel(cat){
     const map={peso:'categoriaPeso', longitud:'categoriaLongitud', volumen_seco:'categoriaVolumenSeco', volumen_liquido:'categoriaVolumenLiquido', monedas:'categoriaMonedas'};
     return t(`conversor.${map[cat.id]||'categoria'}`) || cat.nombre;
@@ -5261,7 +5284,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     conversorCategoria=categoria.id;
     if(!categoria.unidades.some(u=>u.id===conversorUnidadOrigen)) conversorUnidadOrigen=categoria.unidades[0]?.id || null;
     const catOptions=conversorData.categorias.map(c=>`<option value="${escapeHTML(c.id)}" ${c.id===categoria.id?'selected':''}>${escapeHTML(conversorCategoriaLabel(c))}</option>`).join('');
-    const unitOptions=categoria.unidades.map(u=>`<option value="${escapeHTML(u.id)}" ${u.id===conversorUnidadOrigen?'selected':''}>${escapeHTML(u.nombre)}</option>`).join('');
+    const unitOptions=categoria.unidades.map(u=>`<option value="${escapeHTML(u.id)}" ${u.id===conversorUnidadOrigen?'selected':''}>${escapeHTML(localizeConversorNombre(u.nombre))}</option>`).join('');
     els.panelBody.innerHTML=`<form class="conversor-form" id="conversorForm">
       <label class="conversor-form__field">
         <span>${t('conversor.categoria')}</span>

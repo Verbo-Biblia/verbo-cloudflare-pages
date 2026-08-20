@@ -410,6 +410,8 @@ If HTML tags are present:
 
 Do not expose or explain HTML tags in the output.
 
+If no HTML tags are present, the source is plain text — output plain text only. Do not introduce Markdown syntax (**bold**, *italic*, __underline__, # headings, - bullet lists, or any other markup) that was not literally present in the source, even when the content has natural emphasis or structure that might tempt you to mark it up. The caller renders this output as plain text, never as Markdown — any such syntax you add will appear literally on screen, not formatted.
+
 NO ADDITIONS OR OMISSIONS
 
 Before producing the final output, internally verify that:
@@ -438,6 +440,7 @@ Do not include:
 * labels such as "Translation:";
 * surrounding quotation marks unless they belong to the source;
 * Markdown fences;
+* Markdown formatting syntax not literally present in the source (**bold**, *italic*, # headings, - bullet lists);
 * apologies;
 * requests for clarification.
 
