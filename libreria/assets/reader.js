@@ -83,6 +83,62 @@
     return window.VerboI18n ? window.VerboI18n.getUiLang() : "es";
   }
 
+  // ---------- texto a voz (window.VerboTTS, biblia/assets/tts-player.js) ----------
+  var ttsController = null;
+  var ttsEstado = "detenido"; // detenido | reproduciendo | pausado
+  var TTS_ETIQUETAS = {
+    es: { escuchar: "Escuchar", pausar: "Pausar", reanudar: "Reanudar" },
+    en: { escuchar: "Listen", pausar: "Pause", reanudar: "Resume" }
+  };
+
+  function actualizarBotonTTS(ui) {
+    if (!ui.ttsBtn) return;
+    var t = TTS_ETIQUETAS[currentLang() === "en" ? "en" : "es"];
+    if (ttsEstado === "reproduciendo") {
+      ui.ttsBtn.textContent = t.pausar;
+      ui.ttsBtn.classList.add("is-active");
+    } else if (ttsEstado === "pausado") {
+      ui.ttsBtn.textContent = t.reanudar;
+      ui.ttsBtn.classList.add("is-active");
+    } else {
+      ui.ttsBtn.textContent = t.escuchar;
+      ui.ttsBtn.classList.remove("is-active");
+    }
+  }
+
+  // Se llama al cambiar de capítulo/idioma (render() reconstruye
+  // .reader-content) y al salir de la página, para no dejar una voz leyendo
+  // párrafos que ya no están en pantalla.
+  function detenerTTS(ui) {
+    if (ttsController) ttsController.stop();
+    ttsController = null;
+    ttsEstado = "detenido";
+    if (ui) actualizarBotonTTS(ui);
+  }
+
+  // Solo el título del capítulo actual y sus párrafos — nunca el título del
+  // libro (.reader-title, se anuncia una vez, no en cada capítulo), la
+  // licencia, la barra de progreso ni la navegación de capítulo.
+  function alClicTTS(ui) {
+    if (!window.VerboTTS) return;
+    if (ttsEstado === "detenido") {
+      ttsController = window.VerboTTS.leerBloque(root, {
+        idioma: currentLang() === "en" ? "en" : "es",
+        tituloSelector: ".reader-chapter-title",
+        cuerpoSelector: ".reader-content .reader-para",
+        onFinished: function () { detenerTTS(ui); }
+      });
+      ttsEstado = "reproduciendo";
+    } else if (ttsEstado === "reproduciendo") {
+      ttsController.pause();
+      ttsEstado = "pausado";
+    } else if (ttsEstado === "pausado") {
+      ttsController.resume();
+      ttsEstado = "reproduciendo";
+    }
+    actualizarBotonTTS(ui);
+  }
+
   function canAutoTranslate() {
     return strategy === "auto" && currentLang() !== "es" && !!window.VerboSiteTranslate;
   }
@@ -483,6 +539,16 @@
     fontIncBtn.textContent = "A+";
     textsize.appendChild(fontDecBtn);
     textsize.appendChild(fontIncBtn);
+
+    var ttsBtn = null;
+    if (window.VerboTTS) {
+      ttsBtn = document.createElement("button");
+      ttsBtn.type = "button";
+      ttsBtn.className = "reader-textsize-btn reader-textsize-btn--tts";
+      ttsBtn.textContent = "Escuchar";
+      textsize.appendChild(ttsBtn);
+    }
+
     headLeft.appendChild(textsize);
 
     headTop.appendChild(headLeft);
@@ -556,7 +622,7 @@
       resume: resume, resumeText: resumeText, resumeLink: resumeLink, resumeDismiss: resumeDismiss,
       prevBtn: prevBtn, select: select, nextBtn: nextBtn,
       chapterTitle: chapterTitle, content: content, foot: foot,
-      fontDecBtn: fontDecBtn, fontIncBtn: fontIncBtn
+      fontDecBtn: fontDecBtn, fontIncBtn: fontIncBtn, ttsBtn: ttsBtn
     };
   }
 
@@ -588,6 +654,7 @@
     // guardar, igual que un toque afuera de la paleta.
     pendingSel = null;
     if (hlPalette) hlPalette.hidden = true;
+    detenerTTS(ui); // el capítulo/idioma que se estaba leyendo va a desaparecer del DOM
     var ch = chapters[current];
     var token = ++renderToken;
     // El usuario deja atrás el capítulo/idioma anterior: cualquier traducción
@@ -770,6 +837,8 @@
     updateFontSizeButtons();
     ui.fontDecBtn.addEventListener("click", function () { setFontSize(fontSize - FONT_SIZE_STEP); });
     ui.fontIncBtn.addEventListener("click", function () { setFontSize(fontSize + FONT_SIZE_STEP); });
+    if (ui.ttsBtn) ui.ttsBtn.addEventListener("click", function () { alClicTTS(ui); });
+    window.addEventListener("pagehide", function () { detenerTTS(ui); });
     buildChapterOptions(ui);
     installSwipeNavigation(ui);
     installPinchZoom(ui);

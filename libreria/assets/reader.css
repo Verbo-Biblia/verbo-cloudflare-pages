@@ -74,6 +74,13 @@ body.recursos-page .reader-textsize-btn:hover:not(:disabled) {
   color: var(--r-ink);
 }
 body.recursos-page .reader-textsize-btn:disabled { opacity: .35; cursor: default; }
+body.recursos-page .reader-textsize-btn--tts {
+  border-left: 1px solid var(--r-rule);
+}
+body.recursos-page .reader-textsize-btn--tts.is-active {
+  border-color: var(--r-gold);
+  color: var(--r-ink);
+}
 
 body.recursos-page .reader-title {
   font-family: 'Fraunces', serif;

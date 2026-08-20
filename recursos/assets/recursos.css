@@ -241,6 +241,13 @@ body.recursos-page .article-textsize-btn--share {
   align-items: center;
   border-left: 1px solid var(--r-rule);
 }
+body.recursos-page .article-textsize-btn--tts {
+  border-left: 1px solid var(--r-rule);
+}
+body.recursos-page .article-textsize-btn--tts.is-active {
+  border-color: var(--r-gold);
+  color: var(--r-ink);
+}
 body.recursos-page .static-page__main article hr {
   border-top-color: var(--r-rule);
 }
