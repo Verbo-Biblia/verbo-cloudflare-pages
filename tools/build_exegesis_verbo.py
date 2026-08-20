@@ -17,8 +17,11 @@ que se agregue en el directorio fuente — no hace falta tocar este script para
 sumar libros, solo volver a correrlo.
 
 Uso: python3 tools/build_exegesis_verbo.py
+     python3 tools/build_exegesis_verbo.py --package /ruta/al/paquete [...]
 Después: python3 tools/build_registry_catalog.py
 """
+import argparse
+import html
 import json
 import re
 import unicodedata
@@ -121,11 +124,10 @@ BIBLE_NAME_ALIASES = {
     "REV": ["ap", "apo", "apoc", "apocalipsis"],
 }
 
-# Dos formatos reales conviven en el corpus: "..., G1249)" (Efesios/Filipenses/
-# Mateo: el código va suelto justo antes del paréntesis de cierre) y
-# "(<em>G2098</em>)" (Marcos: el código va envuelto en su propia etiqueta). El
-# lookahead admite cero o más etiquetas de cierre entre el código y el ")".
-STRONG_CODE_RE = re.compile(r"\b([GH]\d{1,4})\b(?=(?:</\w+>)*\))")
+# Los paquetes fuente usan más de una convención tipográfica: códigos entre
+# paréntesis, dentro de <em> o entre corchetes. Como esta función solo recibe el
+# contenido fuente (aún sin enlaces generados), se enlaza toda aparición válida.
+STRONG_CODE_RE = re.compile(r"\b([GH]\d{1,4})\b")
 # Cuenta CUALQUIER código Strong en el texto fuente, sin el lookahead de
 # arriba — sirve para detectar si algún libro nuevo usa un formato de
 # puntuación distinto (como pasó con Marcos) que STRONG_CODE_RE no reconoce.
@@ -150,7 +152,11 @@ BIBLE_REF_RE = re.compile(
 
 
 def link_strong_codes(html: str) -> str:
-    return STRONG_CODE_RE.sub(r'<a class="strong" href="#s\1">\1</a>', html)
+    def repl(m: re.Match) -> str:
+        # Strong usa códigos canónicos sin ceros iniciales (G386, no G0386).
+        code = f"{m.group(1)[0]}{int(m.group(1)[1:])}"
+        return f'<a class="strong" href="#s{code}">{code}</a>'
+    return STRONG_CODE_RE.sub(repl, html)
 
 
 # Nadie que no lea griego/hebreo sabe qué dice una palabra como "λόγος" con solo
@@ -166,6 +172,22 @@ GREEK_WORD_WRAP_RE = re.compile(
     r'((?:(?!<strong>|\)).)*?<a class="strong" href="(#s[GH]\d+)">[GH]\d+</a>(?:(?!<strong>).)*?\))',
     re.DOTALL,
 )
+
+BRACKETED_GREEK_WORD_RE = re.compile(
+    r'<strong>([^<]+?)\s*\[<a class="strong" href="(#s[GH]\d+)">([GH]\d+)</a>\]\.?</strong>'
+)
+
+
+def link_bracketed_greek_words(html: str) -> str:
+    """Admite la convención nueva ``<strong>λόγος [G3056].</strong>``."""
+    def repl(m: re.Match) -> str:
+        word, href, code = m.group(1), m.group(2), m.group(3)
+        punctuation = "." if m.group(0).endswith(".</strong>") else ""
+        return (
+            f'<a class="strong" href="{href}"><strong>{word}</strong></a> '
+            f'[<a class="strong" href="{href}">{code}</a>]{punctuation}'
+        )
+    return BRACKETED_GREEK_WORD_RE.sub(repl, html)
 
 
 def link_greek_words(html: str) -> str:
@@ -209,8 +231,46 @@ def link_bible_references(html: str) -> str:
     return BIBLE_REF_RE.sub(repl, html)
 
 
+STRUCTURED_PARAGRAPH_RE = re.compile(r"<p>(\{.*?\})</p>")
+CANONICAL_PATTERN_NAMES = {
+    "exodus-pattern": "éxodo",
+    "creation-new-creation": "creación–nueva creación",
+    "temple-presence": "templo–presencia",
+}
+
+
+def render_structured_paragraphs(content: str) -> str:
+    """Convierte metadatos JSON incrustados por algunos paquetes nuevos en
+    prosa HTML legible, sin alterar el contenido semántico de la fuente."""
+    def repl(m: re.Match) -> str:
+        try:
+            data = json.loads(m.group(1))
+        except json.JSONDecodeError:
+            return m.group(0)
+        if data.get("author") and data.get("summary"):
+            author = html.escape(str(data["author"]))
+            work = html.escape(str(data.get("work", "")))
+            date = data.get("date") or {}
+            start, end = date.get("yearStart"), date.get("yearEnd")
+            years = f"{start}–{end}" if start and end and start != end else str(start or end or "")
+            citation = author
+            if work:
+                citation += f", <em>{work}</em>"
+            if years:
+                citation += f" (c. {years})"
+            return f'<p><strong>{citation}.</strong> {html.escape(str(data["summary"]))}</p>'
+        if data.get("type") and data.get("basis"):
+            pattern = CANONICAL_PATTERN_NAMES.get(data["type"], str(data["type"]).replace("-", " "))
+            return f'<p><strong>Patrón canónico: {html.escape(pattern)}.</strong> {html.escape(str(data["basis"]))}</p>'
+        return m.group(0)
+    return STRUCTURED_PARAGRAPH_RE.sub(repl, content)
+
+
 def add_links(html: str) -> str:
-    linked = link_greek_words(link_strong_codes(html))
+    linked = render_structured_paragraphs(html)
+    linked = link_strong_codes(linked)
+    linked = link_bracketed_greek_words(linked)
+    linked = link_greek_words(linked)
     linked = link_repeated_greek_words(linked)
     return link_bible_references(linked)
 
@@ -238,12 +298,14 @@ def build_book(book_dir: Path):
             f for f in manifest["files"] if re.match(rf"^{re.escape(book_id)}-\d+\.json$", f)
         )
     else:
-        # Formato alterno visto en Romanos v1.1: {"book": "ROM", ...} sin "files" —
-        # se listan los ROM-XX.json directo de la carpeta, y el nombre en español
-        # sale del mismo catálogo que ya usa "Comentarios Verbo" para los 66 libros.
+        # Formato alterno: {"book": "ROM", ...}. Los paquetes nuevos pueden
+        # declarar capítulos anidados ("chapters/01.json"); los anteriores no
+        # traían "files" y guardaban ROM-XX.json directamente en la carpeta.
         book_id = book_field
         book_name = BOOK_NAMES_ES.get(book_id, book_id)
-        unit_files = sorted(f.name for f in book_dir.glob(f"{book_id}-*.json"))
+        unit_files = manifest.get("files") or sorted(
+            f.name for f in book_dir.glob(f"{book_id}-*.json")
+        )
     entries = []
     raw_strong_count = 0
     for fname in unit_files:
@@ -286,13 +348,32 @@ def build_book(book_dir: Path):
     return book_id, book_name, entries
 
 
+def parse_args():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--package",
+        action="append",
+        type=Path,
+        help="Importa solo este paquete y conserva los demás libros del módulo. Repetible.",
+    )
+    return parser.parse_args()
+
+
 def main():
-    book_dirs = sorted(SOURCE_DIR.glob("Comentario_Exegetico_Verbo_*"))
+    args = parse_args()
+    targeted = bool(args.package)
+    book_dirs = args.package if targeted else sorted(SOURCE_DIR.glob("Comentario_Exegetico_Verbo_*"))
     if not book_dirs:
         print(f"No se encontraron paquetes fuente en {SOURCE_DIR}")
         return
 
-    books_manifest = []
+    manifest_path = MODULE_DIR / "manifest.json"
+    if targeted and manifest_path.exists():
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        books_by_id = {book["id"]: book for book in manifest.get("books", [])}
+    else:
+        manifest = None
+        books_by_id = {}
     (MODULE_DIR / "books").mkdir(parents=True, exist_ok=True)
     for book_dir in book_dirs:
         if not (book_dir / "manifest.json").exists():
@@ -303,30 +384,35 @@ def main():
             json.dumps({"entries": entries}, ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8",
         )
-        books_manifest.append({"id": book_id, "name": book_name, "file": f"books/{book_id}.json"})
+        # Al reemplazar un libro existente, se reinserta en el orden explícito
+        # de --package; los libros no seleccionados conservan su orden actual.
+        books_by_id.pop(book_id, None)
+        books_by_id[book_id] = {"id": book_id, "name": book_name, "file": f"books/{book_id}.json"}
 
     # Limpia archivos huérfanos de libros que ya no están en la carpeta fuente
     # (ej. Juan sacó Efesios para reescribirlo) — sin esto quedarían servidos
     # datos viejos sin ninguna entrada en manifest.json que los referencie.
-    current_ids = {b["id"] for b in books_manifest}
-    for stale in (MODULE_DIR / "books").glob("*.json"):
-        stem_id = stale.stem.split(".")[0]
-        if stem_id not in current_ids:
-            stale.unlink()
-            print(f"  (eliminado archivo huérfano: books/{stale.name})")
+    if not targeted:
+        current_ids = set(books_by_id)
+        for stale in (MODULE_DIR / "books").glob("*.json"):
+            stem_id = stale.stem.split(".")[0]
+            if stem_id not in current_ids:
+                stale.unlink()
+                print(f"  (eliminado archivo huérfano: books/{stale.name})")
 
-    manifest = {
-        "schemaVersion": 2,
-        "id": "exegesis-verbo",
-        "type": "commentary",
-        "name": "Exegesis Verbo",
-        "abbreviation": "Exegesis Verbo",
-        "language": "es",
-        "author": "Verbo",
-        "description": "Comentario exegético académico de Verbo: contexto literario, histórico y lingüístico, análisis del idioma original, crítica textual e implicaciones teológicas por perícopa.",
-        "license": "Todos los derechos reservados por Verbo.",
-        "books": books_manifest,
-    }
+    if manifest is None:
+        manifest = {
+            "schemaVersion": 2,
+            "id": "exegesis-verbo",
+            "type": "commentary",
+            "name": "Exegesis Verbo",
+            "abbreviation": "Exegesis Verbo",
+            "language": "es",
+            "author": "Verbo",
+            "description": "Comentario exegético académico de Verbo: contexto literario, histórico y lingüístico, análisis del idioma original, crítica textual e implicaciones teológicas por perícopa.",
+            "license": "Todos los derechos reservados por Verbo.",
+        }
+    manifest["books"] = list(books_by_id.values())
     (MODULE_DIR / "manifest.json").write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
