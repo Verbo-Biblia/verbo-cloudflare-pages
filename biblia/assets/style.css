@@ -1814,12 +1814,15 @@ body[data-theme="rosewood"] {
 .theme-option__label { font-weight: 600; }
 
 /* Selección, resaltado y copiado de pasajes */
-.verse-action-bar {
+.verse-action-bar-positioner {
   position: fixed;
   bottom: 28px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2500;
+}
+.verse-action-bar {
+  --verse-action-scale: 1;
   display: flex;
   align-items: center;
   gap: 5px;
@@ -1831,18 +1834,19 @@ body[data-theme="rosewood"] {
   border: 1px solid rgba(127,45,53,.14);
   box-shadow: 0 8px 32px rgba(42,31,23,.22), 0 1px 3px rgba(42,31,23,.1);
   white-space: nowrap;
+  transform: scale(var(--verse-action-scale));
+  transform-origin: center bottom;
   animation: barSlideUp .22s cubic-bezier(.16,1,.3,1);
 }
 .verse-action-bar[hidden] { display: none; }
 @media (max-width: 760px) {
   .verse-action-bar {
-    scale: .75;
-    transform-origin: center bottom;
+    --verse-action-scale: .75;
   }
 }
 @keyframes barSlideUp {
-  from { opacity:0; transform: translateX(-50%) translateY(12px); }
-  to   { opacity:1; transform: translateX(-50%) translateY(0); }
+  from { opacity:0; transform: translateY(12px) scale(var(--verse-action-scale)); }
+  to   { opacity:1; transform: translateY(0) scale(var(--verse-action-scale)); }
 }
 .verse-action-bar__sep {
   width: 1px; height: 20px;

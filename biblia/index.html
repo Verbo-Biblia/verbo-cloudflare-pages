@@ -23,7 +23,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Verbo">
-<link rel="stylesheet" href="assets/style.css?v=20260820-mobile-action-bar-75">
+<link rel="stylesheet" href="assets/style.css?v=20260820-mobile-action-bar-centered-75">
 <link rel="stylesheet" href="assets/historia-nota-rapida.css?v=20260806-ios-font-size-fix">
 </head>
 <body>
@@ -289,6 +289,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
       </button>
     </nav>
 
+  <div class="verse-action-bar-positioner">
   <div class="verse-action-bar" id="verseActionBar" hidden>
     <button class="verse-swatch" data-color="hl-yellow" data-i18n-attr="aria-label:verseAction.amarillo,title:verseAction.amarilloTitle"></button>
     <button class="verse-swatch" data-color="hl-green"  data-i18n-attr="aria-label:verseAction.verde,title:verseAction.verdeTitle"></button>
@@ -305,6 +306,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
     </button>
     <div class="verse-action-bar__sep"></div>
     <button class="verse-action-bar__close" id="closeVerseAction" type="button" data-i18n-attr="aria-label:verseAction.cerrarAria">✕</button>
+  </div>
   </div>
 
   <script src="https://pkg.api.bible/fumsV3.min.js" defer></script>
