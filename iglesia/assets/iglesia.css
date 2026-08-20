@@ -1,0 +1,472 @@
+/* ============================================================
+   Verbo — Iglesia: piel visual propia (publicaciones, feed).
+   Se aplica sobre .static-page vía body.iglesia-page, igual que
+   recursos.css se aplica vía body.recursos-page — no toca la
+   piel de ninguna otra sección.
+   ============================================================ */
+
+body.iglesia-page {
+  background: linear-gradient(175deg, var(--paper) 0%, var(--paper-raised) 100%);
+  color: var(--ink);
+}
+
+.iglesia-eyebrow {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--sepia);
+  margin: 0 0 8px;
+}
+
+.iglesia-lede {
+  max-width: 640px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  margin: 0 0 32px;
+}
+
+/* Selector de rol (iglesia/index.html) ------------------------ */
+
+.iglesia-role-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 760px;
+}
+@media (max-width: 640px) {
+  .iglesia-role-grid { grid-template-columns: 1fr; }
+}
+
+.iglesia-role-card {
+  background: var(--chrome);
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.iglesia-role-card h2 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  margin: 0;
+  color: var(--ink);
+}
+.iglesia-role-card p {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  font-size: 14.5px;
+}
+
+.iglesia-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: 10px;
+  background: var(--wine);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 11px 18px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background .15s ease;
+}
+.iglesia-btn:hover { background: var(--wine-soft); }
+.iglesia-btn:disabled { opacity: .55; cursor: default; }
+
+.iglesia-btn--ghost {
+  background: transparent;
+  border: 1px solid var(--rule-strong);
+  color: var(--ink);
+}
+.iglesia-btn--ghost:hover { background: var(--paper); }
+
+.iglesia-invite-form {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+.iglesia-input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid var(--rule-strong);
+  border-radius: 9px;
+  padding: 10px 12px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  background: var(--paper-raised);
+  color: var(--ink);
+}
+.iglesia-input:focus { outline: 2px solid var(--gold-glow); outline-offset: 1px; }
+
+.iglesia-error {
+  color: var(--wine);
+  font-size: 13.5px;
+  margin: 6px 0 0;
+}
+
+/* Panel publicador (iglesia/publicador.html) ------------------- */
+
+.iglesia-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 640px;
+}
+
+.iglesia-section {
+  background: var(--chrome);
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  padding: 22px 24px;
+}
+.iglesia-section h3 {
+  font-family: var(--font-display);
+  font-size: 17px;
+  margin: 0 0 6px;
+  color: var(--ink);
+}
+.iglesia-section p {
+  margin: 0 0 14px;
+  color: var(--ink-soft);
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+
+.iglesia-login-form {
+  display: flex;
+  gap: 8px;
+}
+@media (max-width: 480px) {
+  .iglesia-login-form { flex-direction: column; }
+}
+
+.iglesia-pending-msg,
+.iglesia-linked-msg {
+  margin: 12px 0 0;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+}
+
+.iglesia-editor-placeholder {
+  border: 1px dashed var(--rule-strong);
+  border-radius: 10px;
+  padding: 16px;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  background: var(--paper);
+}
+
+.iglesia-post-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.iglesia-post-list__empty {
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+.iglesia-post-item {
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+.iglesia-post-item__body { flex: 1; min-width: 0; }
+.iglesia-post-item__meta {
+  font-size: 12px;
+  color: var(--sepia);
+  margin: 0 0 4px;
+}
+.iglesia-post-item__text {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.iglesia-post-item__delete {
+  background: none;
+  border: none;
+  color: var(--wine);
+  cursor: pointer;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+.iglesia-post-item__delete:hover { text-decoration: underline; }
+
+/* Feed de miembro (iglesia/index.html en modo "vinculado") ----- */
+
+.iglesia-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 620px;
+}
+.iglesia-feed__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.iglesia-feed-post {
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--chrome);
+  scroll-margin-top: 90px;
+}
+.iglesia-feed-post__bg {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--paper);
+  /* fontSize del post está autorado contra el canvas lógico de 1080
+     (ver fondos/manifest.json) — con esto, "Xcqw" en el texto siempre
+     se ve proporcional a este contenedor sin importar su ancho real. */
+  container-type: inline-size;
+}
+.iglesia-feed-post__bg svg,
+.iglesia-feed-post__bg img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+/* Posición/tamaño/color/rotación via style="" inline por publicación
+   (x/y/scale/rotation/fontFamily/color, dato puro — ver feed.js). Acá
+   solo lo que es igual para cualquier publicación. */
+.iglesia-feed-post__overlay-text {
+  position: absolute;
+  max-width: 82%;
+  line-height: 1.3;
+  white-space: pre-wrap;
+  word-break: break-word;
+  text-shadow: 0 1px 4px rgba(0,0,0,.35);
+  text-align: center;
+}
+
+.iglesia-feed-post__body { padding: 14px 16px; }
+.iglesia-feed-post__text { margin: 0; font-size: 15px; line-height: 1.6; white-space: pre-wrap; word-break: break-word; }
+.iglesia-feed-post__meta { margin: 0 0 6px; font-size: 12px; color: var(--sepia); }
+
+.iglesia-feed-post__embed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--ink);
+}
+.iglesia-feed-post__embed iframe {
+  position: absolute; inset: 0; width: 100%; height: 100%; border: none;
+}
+
+/* Editor del publicador (iglesia/editor.js) ---------------------- */
+
+.iglesia-editor-tipos {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.iglesia-editor-tipo-btn {
+  border: 1px solid var(--rule-strong);
+  background: var(--paper);
+  color: var(--ink-soft);
+  border-radius: 8px;
+  padding: 7px 14px;
+  font-size: 13.5px;
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+.iglesia-editor-tipo-btn.is-active { background: var(--wine); border-color: var(--wine); color: #fff; }
+
+.iglesia-editor-textarea {
+  width: 100%;
+  min-height: 90px;
+  border: 1px solid var(--rule-strong);
+  border-radius: 9px;
+  padding: 10px 12px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  background: var(--paper-raised);
+  color: var(--ink);
+  resize: vertical;
+}
+
+/* Picker de fondos: categorías primero, nunca los 450 de una vez. */
+.iglesia-picker-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 8px;
+}
+.iglesia-picker-category-card {
+  border: 1px solid var(--rule);
+  border-radius: 9px;
+  padding: 12px 10px;
+  background: var(--paper-raised);
+  color: var(--ink);
+  font-size: 13px;
+  text-align: center;
+  cursor: pointer;
+  line-height: 1.3;
+}
+.iglesia-picker-category-card:hover { border-color: var(--gold-glow); }
+
+.iglesia-picker-search {
+  margin-bottom: 12px;
+}
+
+.iglesia-picker-crumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+.iglesia-picker-crumb button {
+  background: none; border: none; color: var(--wine); cursor: pointer; font-size: 13px; padding: 0;
+}
+
+.iglesia-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 8px;
+  max-height: 420px;
+  overflow-y: auto;
+}
+.iglesia-picker-thumb {
+  aspect-ratio: 4 / 5;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--paper);
+  padding: 0;
+}
+.iglesia-picker-thumb:hover { border-color: var(--gold-glow); }
+.iglesia-picker-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.iglesia-picker-more {
+  display: block;
+  margin: 10px auto 0;
+}
+
+/* Lienzo de edición: fondo elegido + texto arrastrable/escalable/rotable
+   directamente encima, vía Pointer Events nativos (mismo patrón que
+   biblia/assets/atlas/map.js — pan de 1 dedo, pinch de 2 — sin ninguna
+   librería de gestos). Nunca se hornea a imagen: esto es solo la vista
+   previa en vivo del mismo dato que se guarda (x/y/scale/rotation/...). */
+.iglesia-editor-canvas {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 4 / 5;
+  margin: 0 auto 14px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--paper);
+  container-type: inline-size;
+  touch-action: none;
+  user-select: none;
+}
+.iglesia-editor-canvas__bg {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none;
+}
+.iglesia-editor-canvas__empty {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  color: var(--ink-soft); font-size: 13px; text-align: center; padding: 20px;
+}
+
+.iglesia-editor-text {
+  position: absolute;
+  max-width: 82%;
+  line-height: 1.3;
+  white-space: pre-wrap;
+  word-break: break-word;
+  text-align: center;
+  text-shadow: 0 1px 4px rgba(0,0,0,.35);
+  cursor: grab;
+  padding: 6px;
+}
+.iglesia-editor-text:active { cursor: grabbing; }
+
+.iglesia-editor-handle {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--wine);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,.3);
+  cursor: pointer;
+  touch-action: none;
+}
+.iglesia-editor-handle--transform {
+  right: -11px;
+  bottom: -11px;
+}
+
+.iglesia-editor-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.iglesia-editor-controls__full { grid-column: 1 / -1; }
+.iglesia-editor-controls label {
+  display: block;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  margin-bottom: 4px;
+}
+.iglesia-editor-controls select,
+.iglesia-editor-controls input[type="color"],
+.iglesia-editor-controls input[type="range"] {
+  width: 100%;
+}
+.iglesia-editor-controls input[type="color"] {
+  height: 34px;
+  border: 1px solid var(--rule-strong);
+  border-radius: 6px;
+  padding: 2px;
+  background: var(--paper-raised);
+}
+.iglesia-editor-controls select {
+  border: 1px solid var(--rule-strong);
+  border-radius: 8px;
+  padding: 8px;
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  background: var(--paper-raised);
+  color: var(--ink);
+}
+
+.iglesia-editor-embed-preview {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--ink);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+.iglesia-editor-embed-preview iframe {
+  position: absolute; inset: 0; width: 100%; height: 100%; border: none;
+}

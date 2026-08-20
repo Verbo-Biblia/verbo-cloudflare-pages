@@ -494,5 +494,108 @@
     "historicalSource": "Historical source",
     "share": "Share",
     "linkCopied": "Link copied"
+  },
+  "iglesia": {
+    "pageTitle": "Church | Verbo",
+    "metaDescription": "Publish announcements, sermons and events for your church, or follow your church's feed with no account or password.",
+    "eyebrow": "Verbo · Church",
+    "heading": "Church",
+    "lede": "Publish announcements, sermons and events — or follow your church's feed.",
+    "roleChooser": {
+      "publicadorTitle": "I'm a publisher",
+      "publicadorDesc": "Sync with your email and manage your church's posts.",
+      "publicadorBtn": "Enter as publisher",
+      "miembroInfo": "Were you sent your church's invitation link? Just open it — no need to paste any code here."
+    },
+    "confirm": {
+      "title": "Accept this invitation?",
+      "question": "Do you want to follow {{nombre}}'s posts?",
+      "questionGenerico": "Do you want to follow this church's posts?",
+      "acceptBtn": "Accept",
+      "cancelBtn": "Cancel",
+      "notFound": "We couldn't find that church. The link may be broken."
+    },
+    "perfil": {
+      "title": "Your church's name",
+      "desc": "This is what members will see when they accept your invitation link.",
+      "placeholder": "Your church's name",
+      "saveBtn": "Save",
+      "saved": "Saved"
+    },
+    "login": {
+      "title": "Publisher access",
+      "desc": "No passwords: we'll send an access link to your email.",
+      "placeholder": "you@email.com",
+      "btn": "Send link",
+      "pendingMsg": "Check your email and tap the link to sign in.",
+      "linkedMsg": "Signed in as {{email}}",
+      "unlinkBtn": "Sign out",
+      "error": "Couldn't send the link. Please try again."
+    },
+    "editor": {
+      "title": "New post",
+      "postsTitle": "Your posts",
+      "tipoTexto": "Text",
+      "tipoFondo": "Background",
+      "tipoEmbed": "Video/link",
+      "textPlaceholder": "Write your text…",
+      "captionPlaceholder": "Caption (optional)",
+      "font": "Font",
+      "color": "Color",
+      "size": "Size",
+      "text": "Text",
+      "changeFondo": "Change background",
+      "publishBtn": "Publish",
+      "error": "Couldn't publish. Please try again."
+    },
+    "picker": {
+      "searchPlaceholder": "Search by topic (faith, family, christmas…)",
+      "categorias": "Categories",
+      "loadMore": "Load more"
+    },
+    "fonts": {
+      "system": "System",
+      "arial": "Arial",
+      "helvetica": "Helvetica",
+      "georgia": "Georgia",
+      "times": "Times New Roman",
+      "verdana": "Verdana",
+      "trebuchet": "Trebuchet MS",
+      "courier": "Courier New",
+      "palatino": "Palatino",
+      "comicSans": "Comic Sans MS"
+    },
+    "invite": {
+      "title": "Invitation link",
+      "desc": "Share it with your church members — it never expires.",
+      "copyBtn": "Copy link",
+      "copied": "Link copied"
+    },
+    "feed": {
+      "emptyMsg": "This church hasn't posted anything yet.",
+      "notFoundMsg": "We couldn't find that church.",
+      "desyncBtn": "Stop following this church",
+      "desyncConfirm": "Stop following this church on this device?"
+    },
+    "categorias": {
+      "predicacion_biblia": "Preaching & Bible",
+      "cristo_evangelio": "Christ & Gospel",
+      "oracion_adoracion": "Prayer & Worship",
+      "espiritu_santo": "Holy Spirit",
+      "fe_esperanza_camino": "Faith, Hope & Journey",
+      "amor_gracia_perdon": "Love, Grace & Forgiveness",
+      "paz_consuelo": "Peace & Comfort",
+      "familia_matrimonio": "Family & Marriage",
+      "mujeres": "Women",
+      "hombres": "Men",
+      "jovenes": "Youth",
+      "ninos": "Children",
+      "iglesia_comunidad": "Church & Community",
+      "eventos_conferencias": "Events & Conferences",
+      "celebracion": "Celebration",
+      "pascua_resurreccion": "Easter & Resurrection",
+      "navidad": "Christmas",
+      "abstractos_fondos": "Abstract & Backgrounds"
+    }
   }
 }

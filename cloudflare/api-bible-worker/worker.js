@@ -725,6 +725,316 @@ async function handleSync(request, url, env, headers) {
   return jsonError('Recurso no permitido', 404, headers);
 }
 
+// ── /v1/iglesia/* ────────────────────────────────────────────────────
+//
+// Sincronización de iglesia (publicador/miembro): namespace propio y
+// paralelo al sync de usuario de arriba, sin tocarlo. A propósito NO
+// comparte prefijo de clave con link:/session: (aunque la forma del
+// dato es idéntica) — así el propio KV queda inequívoco sobre qué es
+// de usuario y qué es de iglesia, y este flujo puede divergir a futuro
+// (otro TTL, otra validación) sin volver a tocar el código de arriba.
+const IGLESIA_LINK_TTL_SECONDS = 30 * 60; // 30 minutos, igual que el link de usuario
+const IGLESIA_SESSION_TTL_SECONDS = 60 * 60 * 24 * 365; // 1 año, igual que el de usuario
+const IGLESIA_FEED_MAX_ITEMS = 30;
+const IGLESIA_POST_TEXTO_MAX_CHARS = 2000;
+const IGLESIA_POST_FONDOID_MAX_CHARS = 80;
+const IGLESIA_POST_EMBED_MAX_CHARS = 500;
+const IGLESIA_POST_TIPOS = new Set(['texto', 'fondo-svg', 'embed']);
+// Whitelist de fuentes del sistema (ids cortos, no strings CSS crudos) —
+// debe mantenerse sincronizada a mano con IGLESIA_FONTS en iglesia/panel.js
+// (ver comentario ahí). Ningún archivo de fuente nuevo, solo las que ya
+// trae cada plataforma; el id es lo único que viaja en el post.
+const IGLESIA_FONT_IDS = new Set(['system', 'arial', 'helvetica', 'georgia', 'times', 'verdana', 'trebuchet', 'courier', 'palatino', 'comic-sans']);
+const IGLESIA_POST_FONT_SIZE_MIN = 16;
+const IGLESIA_POST_FONT_SIZE_MAX = 200; // unidades relativas al viewBox lógico de 1080 (ver fondos/manifest.json)
+const IGLESIA_POST_SCALE_MIN = 0.3;
+const IGLESIA_POST_SCALE_MAX = 4;
+const IGLESIA_POST_ROTATION_MIN = -180;
+const IGLESIA_POST_ROTATION_MAX = 180;
+const IGLESIA_POST_XY_MIN = -20; // % del canvas — algo de margen fuera de 0-100 para texto que sobresale al arrastrar
+const IGLESIA_POST_XY_MAX = 120;
+const IGLESIA_COLOR_RE = /^#[0-9a-f]{6}$/i;
+// Solo YouTube/Facebook, igual que valida iglesia/feed.js del lado cliente
+// (defensa en profundidad: el cliente ya restringe el picker, esto evita
+// que cualquier otra URL quede guardada como si fuera un embed válido).
+const IGLESIA_EMBED_RE = /^https:\/\/(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|facebook\.com\/)/;
+
+const IGLESIA_EMAIL = {
+  es: {
+    subject: 'Confirma tu correo — panel de iglesia en Verbo',
+    html: (confirmUrl) => `
+      <p>Hola,</p>
+      <p>Confirma este correo para entrar al panel de publicaciones de tu iglesia en Verbo.</p>
+      <p><a href="${confirmUrl}">Entrar al panel de iglesia</a></p>
+      <p>Este enlace expira en 30 minutos. Si no lo pediste tú, puedes ignorar este correo.</p>
+    `
+  },
+  en: {
+    subject: 'Confirm your email — church panel on Verbo',
+    html: (confirmUrl) => `
+      <p>Hello,</p>
+      <p>Confirm this email to access your church's post panel on Verbo.</p>
+      <p><a href="${confirmUrl}">Open the church panel</a></p>
+      <p>This link expires in 30 minutes. If you didn't request it, you can ignore this email.</p>
+    `
+  }
+};
+
+// Copia deliberada de handleLinkRequest, no una llamada a ella: la
+// original arma confirmUrl con env.APP_URL (fijo, apunta a /biblia/) y
+// usa SYNC_EMAIL ("notas, marcadores y subrayados") — ambos incorrectos
+// para un publicador de iglesia. Todo lo demás (validar email/deviceId,
+// generar token, enviar por Resend) es la misma forma.
+async function handleIglesiaLinkRequest(request, env, headers) {
+  const body = await readJson(request);
+  const email = String(body?.email || '').trim().toLowerCase();
+  const deviceId = String(body?.deviceId || '').trim();
+  const lang = body?.lang === 'en' ? 'en' : 'es';
+  if (!isValidEmail(email)) return jsonError('Correo inválido', 400, headers);
+  if (!deviceId) return jsonError('Falta identificador de dispositivo', 400, headers);
+  if (!env.SYNC_KV) return jsonError('Sincronización no está configurada', 500, headers);
+  if (!env.RESEND_API_KEY) return jsonError('RESEND_API_KEY no está configurada', 500, headers);
+
+  const token = crypto.randomUUID();
+  await env.SYNC_KV.put(`iglesia-link:${token}`, JSON.stringify({ email, deviceId }), { expirationTtl: IGLESIA_LINK_TTL_SECONDS });
+
+  const appUrl = String(env.APP_URL_IGLESIA || 'https://verbobiblia.com/iglesia/publicador.html').replace(/\/+$/, '');
+  const confirmUrl = `${appUrl}?syncToken=${encodeURIComponent(token)}`;
+  const template = IGLESIA_EMAIL[lang];
+
+  const resendResponse = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${env.RESEND_API_KEY}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      from: env.RESEND_FROM || 'Verbo <no-reply@verbobiblia.com>',
+      to: [email],
+      subject: template.subject,
+      html: template.html(confirmUrl)
+    })
+  });
+  if (!resendResponse.ok) {
+    await env.SYNC_KV.delete(`iglesia-link:${token}`);
+    return jsonError('No se pudo enviar el correo', 502, headers);
+  }
+  return jsonOk({ ok:true }, headers);
+}
+
+// Copia de handleLinkConfirm sobre iglesia-link:/iglesia-session: en vez
+// de link:/session: — misma forma exacta, namespace separado.
+async function handleIglesiaLinkConfirm(request, env, headers) {
+  const body = await readJson(request);
+  const token = String(body?.token || '').trim();
+  if (!token) return jsonError('Falta el token', 400, headers);
+  if (!env.SYNC_KV) return jsonError('Sincronización no está configurada', 500, headers);
+
+  const raw = await env.SYNC_KV.get(`iglesia-link:${token}`);
+  if (!raw) return jsonError('El enlace expiró o ya se usó', 400, headers);
+  await env.SYNC_KV.delete(`iglesia-link:${token}`);
+
+  const { email } = JSON.parse(raw);
+  const emailHash = await sha256Hex(email);
+  const sessionToken = crypto.randomUUID();
+  await env.SYNC_KV.put(`iglesia-session:${sessionToken}`, JSON.stringify({ emailHash }), { expirationTtl: IGLESIA_SESSION_TTL_SECONDS });
+
+  return jsonOk({ sessionToken, emailMasked: maskEmail(email) }, headers);
+}
+
+async function handleIglesiaUnlink(request, env, headers) {
+  if (!env.SYNC_KV) return jsonError('Sincronización no está configurada', 500, headers);
+  const token = bearerToken(request);
+  if (token) await env.SYNC_KV.delete(`iglesia-session:${token}`);
+  return jsonOk({ ok:true }, headers);
+}
+
+// Copia de requireSession() sobre iglesia-session: — mismo shape
+// { emailHash }, namespace separado del de usuario.
+async function requireIglesiaSession(request, env, headers) {
+  const token = bearerToken(request);
+  if (!token) return { error: jsonError('Falta la sesión de publicador', 401, headers) };
+  const raw = await env.SYNC_KV.get(`iglesia-session:${token}`);
+  if (!raw) return { error: jsonError('Sesión inválida o expirada', 401, headers) };
+  const { emailHash } = JSON.parse(raw);
+  return { emailHash };
+}
+
+function iglesiaNumEnRango(valor, min, max) {
+  return typeof valor === 'number' && Number.isFinite(valor) && valor >= min && valor <= max;
+}
+
+// Editor de texto libre (bloque 3, corrección de Juan): fondo-svg ya no
+// guarda textZone/textContrast fijos, guarda la transformación real que
+// dejó el publicador — x/y/scale/rotation/fontFamily/fontSize/color, todo
+// dato, nunca imagen horneada. textZone/textContrast del manifest solo
+// sugieren el punto de partida del lado cliente, el Worker no los ve.
+function iglesiaPostValido(body) {
+  if (!body || typeof body !== 'object') return false;
+  if (!IGLESIA_POST_TIPOS.has(body.tipo)) return false;
+  if (body.texto != null && (typeof body.texto !== 'string' || body.texto.length > IGLESIA_POST_TEXTO_MAX_CHARS)) return false;
+  if (body.tipo === 'texto' && !body.texto) return false;
+  if (body.tipo === 'embed' && (typeof body.embedUrl !== 'string' || body.embedUrl.length > IGLESIA_POST_EMBED_MAX_CHARS || !IGLESIA_EMBED_RE.test(body.embedUrl))) return false;
+  if (body.tipo === 'fondo-svg') {
+    if (typeof body.fondoId !== 'string' || !body.fondoId || body.fondoId.length > IGLESIA_POST_FONDOID_MAX_CHARS) return false;
+    if (!body.texto) return false;
+    if (!IGLESIA_FONT_IDS.has(body.fontFamily)) return false;
+    if (!iglesiaNumEnRango(body.fontSize, IGLESIA_POST_FONT_SIZE_MIN, IGLESIA_POST_FONT_SIZE_MAX)) return false;
+    if (typeof body.color !== 'string' || !IGLESIA_COLOR_RE.test(body.color)) return false;
+    if (!iglesiaNumEnRango(body.x, IGLESIA_POST_XY_MIN, IGLESIA_POST_XY_MAX)) return false;
+    if (!iglesiaNumEnRango(body.y, IGLESIA_POST_XY_MIN, IGLESIA_POST_XY_MAX)) return false;
+    if (!iglesiaNumEnRango(body.scale, IGLESIA_POST_SCALE_MIN, IGLESIA_POST_SCALE_MAX)) return false;
+    if (!iglesiaNumEnRango(body.rotation, IGLESIA_POST_ROTATION_MIN, IGLESIA_POST_ROTATION_MAX)) return false;
+  }
+  return true;
+}
+
+const IGLESIA_NOMBRE_MAX_CHARS = 80;
+
+// Nombre visible de la iglesia (perfil del publicador) — necesario para
+// que iglesia/index.html pueda mostrar "¿Aceptar seguir las
+// publicaciones de <nombre>?" antes de vincular al miembro (corrección
+// de Juan: el enlace de invitación abre una confirmación explícita, no
+// vincula solo ni pide pegar un código). Clave propia y chica, separada
+// del feed/invite para no forzar una escritura grande solo por esto.
+async function handleIglesiaPerfilSet(request, env, headers) {
+  if (!env.SYNC_KV) return jsonError('Sincronización no está configurada', 500, headers);
+  const session = await requireIglesiaSession(request, env, headers);
+  if (session.error) return session.error;
+  const body = await readJson(request);
+  const nombre = String(body?.nombre || '').trim();
+  if (!nombre || nombre.length > IGLESIA_NOMBRE_MAX_CHARS) return jsonError('Nombre inválido', 400, headers);
+  await env.SYNC_KV.put(`iglesia:${session.emailHash}:perfil`, JSON.stringify({ nombre }));
+  return jsonOk({ nombre }, headers);
+}
+
+// Público, sin sesión: el código de invitación es la única credencial
+// que necesita un miembro. Resuelve código -> emailHash -> feed en una
+// sola llamada, para que el cliente miembro nunca maneje el emailHash.
+// Incluye el nombre de la iglesia para la pantalla de confirmación del
+// miembro — se pide ANTES de vincular, así que tiene que ser público.
+async function handleIglesiaFeedGet(request, url, env, headers) {
+  if (!env.SYNC_KV) return jsonError('Sincronización no está configurada', 500, headers);
+  const code = String(url.searchParams.get('code') || '').trim();
+  if (!code) return jsonError('Falta el código de invitación', 400, headers);
+  const inviteRaw = await env.SYNC_KV.get(`iglesia-invite:${code}`);
+  if (!inviteRaw) return jsonError('No encontramos esa iglesia', 404, headers);
+  const { emailHash } = JSON.parse(inviteRaw);
+  const [feedRaw, perfilRaw] = await Promise.all([
+    env.SYNC_KV.get(`iglesia:${emailHash}:feed`),
+    env.SYNC_KV.get(`iglesia:${emailHash}:perfil`),
+  ]);
+  const posts = feedRaw ? JSON.parse(feedRaw) : [];
+  const nombre = perfilRaw ? JSON.parse(perfilRaw).nombre : null;
+  return jsonOk({ posts, nombre }, headers);
+}
+
+async function handleIglesiaMine(request, env, headers) {
+  if (!env.SYNC_KV) return jsonError('Sincronización no está configurada', 500, headers);
+  const session = await requireIglesiaSession(request, env, headers);
+  if (session.error) return session.error;
+  const [feedRaw, inviteRaw, perfilRaw] = await Promise.all([
+    env.SYNC_KV.get(`iglesia:${session.emailHash}:feed`),
+    env.SYNC_KV.get(`iglesia:${session.emailHash}:invite`),
+    env.SYNC_KV.get(`iglesia:${session.emailHash}:perfil`),
+  ]);
+  const posts = feedRaw ? JSON.parse(feedRaw) : [];
+  const invite = inviteRaw ? JSON.parse(inviteRaw) : null;
+  const nombre = perfilRaw ? JSON.parse(perfilRaw).nombre : null;
+  return jsonOk({ feed: posts, invite, nombre }, headers);
+}
+
+// Un solo código por publicador: si ya existe, lo devuelve tal cual (no
+// expira, no se regenera solo). iglesia:<emailHash>:invite es el puntero
+// directo (para que el publicador vea su propio código sin buscarlo);
+// iglesia-invite:<código> es el inverso, el que usa handleIglesiaFeedGet.
+async function handleIglesiaInvite(request, env, headers) {
+  if (!env.SYNC_KV) return jsonError('Sincronización no está configurada', 500, headers);
+  const session = await requireIglesiaSession(request, env, headers);
+  if (session.error) return session.error;
+
+  const existingRaw = await env.SYNC_KV.get(`iglesia:${session.emailHash}:invite`);
+  if (existingRaw) return jsonOk(JSON.parse(existingRaw), headers);
+
+  let code = '';
+  for (let intento = 0; intento < 5 && !code; intento += 1) {
+    const candidato = crypto.randomUUID().replace(/-/g, '').slice(0, 8);
+    const taken = await env.SYNC_KV.get(`iglesia-invite:${candidato}`);
+    if (!taken) code = candidato;
+  }
+  if (!code) return jsonError('No se pudo generar un código de invitación', 500, headers);
+
+  await env.SYNC_KV.put(`iglesia-invite:${code}`, JSON.stringify({ emailHash: session.emailHash }));
+  await env.SYNC_KV.put(`iglesia:${session.emailHash}:invite`, JSON.stringify({ code }));
+  return jsonOk({ code }, headers);
+}
+
+// Rotación FIFO en una sola escritura: agrega la publicación nueva y,
+// si supera las 30 vigentes, descarta la más antigua antes del PUT —
+// nunca hay más de un PUT por publicación, igual que handleDataPut.
+async function handleIglesiaPostCreate(request, env, headers) {
+  if (!env.SYNC_KV) return jsonError('Sincronización no está configurada', 500, headers);
+  const session = await requireIglesiaSession(request, env, headers);
+  if (session.error) return session.error;
+  const body = await readJson(request);
+  if (!iglesiaPostValido(body)) return jsonError('Publicación inválida', 400, headers);
+
+  const feedRaw = await env.SYNC_KV.get(`iglesia:${session.emailHash}:feed`);
+  const posts = feedRaw ? JSON.parse(feedRaw) : [];
+  posts.push({
+    id: crypto.randomUUID(),
+    tipo: body.tipo,
+    texto: body.texto || null,
+    fondoId: body.tipo === 'fondo-svg' ? body.fondoId : null,
+    embedUrl: body.tipo === 'embed' ? body.embedUrl : null,
+    fontFamily: body.tipo === 'fondo-svg' ? body.fontFamily : null,
+    fontSize: body.tipo === 'fondo-svg' ? body.fontSize : null,
+    color: body.tipo === 'fondo-svg' ? body.color : null,
+    x: body.tipo === 'fondo-svg' ? body.x : null,
+    y: body.tipo === 'fondo-svg' ? body.y : null,
+    scale: body.tipo === 'fondo-svg' ? body.scale : null,
+    rotation: body.tipo === 'fondo-svg' ? body.rotation : null,
+    fecha: new Date().toISOString(),
+  });
+  while (posts.length > IGLESIA_FEED_MAX_ITEMS) posts.shift();
+
+  await env.SYNC_KV.put(`iglesia:${session.emailHash}:feed`, JSON.stringify(posts));
+  return jsonOk({ feed: posts }, headers);
+}
+
+// POST en vez de DELETE a propósito: corsHeaders() (compartido con todo
+// el Worker) no lista DELETE entre los métodos permitidos, y agregarlo
+// ahí para esta sola función no vale el riesgo de tocar código
+// compartido — más simple que este handler use POST.
+async function handleIglesiaPostDelete(request, env, headers) {
+  if (!env.SYNC_KV) return jsonError('Sincronización no está configurada', 500, headers);
+  const session = await requireIglesiaSession(request, env, headers);
+  if (session.error) return session.error;
+  const body = await readJson(request);
+  const id = String(body?.id || '').trim();
+  if (!id) return jsonError('Falta el id de la publicación', 400, headers);
+
+  const feedRaw = await env.SYNC_KV.get(`iglesia:${session.emailHash}:feed`);
+  const posts = feedRaw ? JSON.parse(feedRaw) : [];
+  const filtered = posts.filter(p => p.id !== id);
+
+  await env.SYNC_KV.put(`iglesia:${session.emailHash}:feed`, JSON.stringify(filtered));
+  return jsonOk({ feed: filtered }, headers);
+}
+
+async function handleIglesia(request, url, env, headers) {
+  if (url.pathname === '/v1/iglesia/link-request' && request.method === 'POST') return handleIglesiaLinkRequest(request, env, headers);
+  if (url.pathname === '/v1/iglesia/link-confirm' && request.method === 'POST') return handleIglesiaLinkConfirm(request, env, headers);
+  if (url.pathname === '/v1/iglesia/unlink' && request.method === 'POST') return handleIglesiaUnlink(request, env, headers);
+  if (url.pathname === '/v1/iglesia/mine' && request.method === 'GET') return handleIglesiaMine(request, env, headers);
+  if (url.pathname === '/v1/iglesia/perfil' && request.method === 'POST') return handleIglesiaPerfilSet(request, env, headers);
+  if (url.pathname === '/v1/iglesia/invite' && request.method === 'POST') return handleIglesiaInvite(request, env, headers);
+  if (url.pathname === '/v1/iglesia/post' && request.method === 'POST') return handleIglesiaPostCreate(request, env, headers);
+  if (url.pathname === '/v1/iglesia/post-delete' && request.method === 'POST') return handleIglesiaPostDelete(request, env, headers);
+  if (url.pathname === '/v1/iglesia/feed' && request.method === 'GET') return handleIglesiaFeedGet(request, url, env, headers);
+  return jsonError('Recurso no permitido', 404, headers);
+}
+
 // ── /proyector/estado ───────────────────────────────────────────────────
 //
 // Relay simple de comando/estado entre control.html (PC) y el futuro
@@ -830,6 +1140,7 @@ export default {
     if (!headers['Access-Control-Allow-Origin']) return jsonError('Origen no autorizado', 403, headers);
 
     if (url.pathname.startsWith('/v1/sync/')) return handleSync(request, url, env, headers);
+    if (url.pathname.startsWith('/v1/iglesia/')) return handleIglesia(request, url, env, headers);
     if (url.pathname === '/translate') return handleTranslate(request, env, headers);
     if (url.pathname === '/translate-sermon-doc') return handleTranslateSermonDoc(request, env, headers);
     if (url.pathname === '/proyector/estado') return handleProyectorEstado(request, url, env, headers);

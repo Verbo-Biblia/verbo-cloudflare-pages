@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="iglesia.login.title">Acceso de publicador | Verbo</title>
+<meta name="description" data-i18n-attr="content:iglesia.metaDescription" content="Publica anuncios, predicaciones y eventos de tu iglesia, o sigue el feed de tu iglesia sin cuenta ni contraseña.">
+<link rel="canonical" href="https://verbobiblia.com/iglesia/publicador.html">
+<link rel="manifest" href="../biblia/manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="../biblia/assets/icons/icon-192.png">
+<link rel="apple-touch-icon" href="../biblia/assets/icons/icon-192.png">
+<meta name="theme-color" content="#7f2d35">
+<link rel="stylesheet" href="../biblia/assets/style.css?v=20260819-iglesia-v1">
+<link rel="stylesheet" href="assets/iglesia.css?v=20260819-iglesia-v1">
+</head>
+<body class="static-page iglesia-page">
+
+  <header class="static-page__header">
+    <a class="static-page__brand" href="../">Verbo</a>
+    <div class="ui-lang-switcher" id="uiLangSwitcher" role="group" data-i18n-attr="aria-label:header.uiLangAria">
+      <button type="button" class="ui-lang-switcher__btn" data-lang="es">ES</button>
+      <button type="button" class="ui-lang-switcher__btn" data-lang="en">EN</button>
+    </div>
+    <a class="static-page__back" href="./" data-i18n="site.backToVerbo">← Volver a Verbo</a>
+  </header>
+
+  <main class="static-page__main">
+    <span class="iglesia-eyebrow" data-i18n="iglesia.eyebrow">Verbo · Iglesia</span>
+    <h1 data-i18n="iglesia.login.title">Acceso de publicador</h1>
+
+    <div class="iglesia-panel">
+
+      <!-- Login (visible mientras no haya sesión) -->
+      <section class="iglesia-section" id="iglesiaLoginSection">
+        <h3 data-i18n="iglesia.login.title">Acceso de publicador</h3>
+        <p data-i18n="iglesia.login.desc">Sin contraseñas: te enviamos un enlace de acceso a tu correo.</p>
+        <form class="iglesia-login-form" id="iglesiaLoginForm">
+          <input class="iglesia-input" type="email" id="iglesiaLoginEmail" data-i18n-attr="placeholder:iglesia.login.placeholder" placeholder="tu@correo.com" required>
+          <button class="iglesia-btn" type="submit" data-i18n="iglesia.login.btn">Enviar enlace</button>
+        </form>
+        <p class="iglesia-pending-msg" id="iglesiaLoginPending" hidden data-i18n="iglesia.login.pendingMsg">Revisa tu correo y toca el enlace para entrar.</p>
+        <p class="iglesia-error" id="iglesiaLoginError" hidden data-i18n="iglesia.login.error">No se pudo enviar el enlace. Intenta de nuevo.</p>
+      </section>
+
+      <!-- Panel del publicador (visible con sesión activa) -->
+      <div id="iglesiaPublicadorPanel" hidden>
+
+        <section class="iglesia-section">
+          <h3 data-i18n="iglesia.login.title">Acceso de publicador</h3>
+          <p class="iglesia-linked-msg" id="iglesiaLinkedMsg"></p>
+          <button class="iglesia-btn iglesia-btn--ghost" type="button" id="iglesiaUnlinkBtn" data-i18n="iglesia.login.unlinkBtn">Cerrar sesión</button>
+        </section>
+
+        <section class="iglesia-section">
+          <h3 data-i18n="iglesia.perfil.title">Nombre de tu iglesia</h3>
+          <p data-i18n="iglesia.perfil.desc">Así te verán los miembros al aceptar tu enlace de invitación.</p>
+          <div class="iglesia-invite-form">
+            <input class="iglesia-input" type="text" id="iglesiaPerfilNombre" data-i18n-attr="placeholder:iglesia.perfil.placeholder" placeholder="Nombre de tu iglesia" maxlength="80">
+            <button class="iglesia-btn" type="button" id="iglesiaPerfilSaveBtn" data-i18n="iglesia.perfil.saveBtn">Guardar</button>
+          </div>
+        </section>
+
+        <section class="iglesia-section">
+          <h3 data-i18n="iglesia.invite.title">Enlace de invitación</h3>
+          <p data-i18n="iglesia.invite.desc">Compártelo con los miembros de tu iglesia — no expira.</p>
+          <div class="iglesia-invite-form">
+            <input class="iglesia-input" type="text" id="iglesiaInviteUrl" readonly>
+            <button class="iglesia-btn" type="button" id="iglesiaInviteCopyBtn" data-i18n="iglesia.invite.copyBtn">Copiar enlace</button>
+          </div>
+        </section>
+
+        <section class="iglesia-section">
+          <h3 data-i18n="iglesia.editor.title">Nueva publicación</h3>
+          <div id="iglesiaEditorRoot"></div>
+        </section>
+
+        <section class="iglesia-section">
+          <h3 data-i18n="iglesia.editor.postsTitle">Tus publicaciones</h3>
+          <ul class="iglesia-post-list" id="iglesiaPostList"></ul>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="../biblia/assets/i18n.js?v=20260819-iglesia-v1"></script>
+  <script src="../biblia/assets/site-chrome.js?v=20260729-1"></script>
+  <script src="panel.js?v=20260819-iglesia-v1"></script>
+  <script src="editor.js?v=20260819-iglesia-v1"></script>
+  <script>
+    (async () => {
+      await window.VerboI18n?.ready?.();
+      const P = window.VerboIglesiaPanel;
+      const t = window.VerboI18n?.t || (k => k);
+      const loginSection = document.getElementById('iglesiaLoginSection');
+      const panel = document.getElementById('iglesiaPublicadorPanel');
+      const pending = document.getElementById('iglesiaLoginPending');
+      const loginError = document.getElementById('iglesiaLoginError');
+
+      function escapeHTML(str) {
+        return String(str ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+      }
+
+      async function loadPanel() {
+        loginSection.hidden = true;
+        panel.hidden = false;
+        document.getElementById('iglesiaLinkedMsg').textContent = t('iglesia.login.linkedMsg', { email: P.getEmailMasked() });
+
+        try {
+          const invite = await P.getOrCreateInvite();
+          document.getElementById('iglesiaInviteUrl').value = P.inviteUrl(invite.code);
+        } catch (error) { console.warn('[iglesia] no se pudo obtener el enlace de invitación', error); }
+
+        try {
+          const mine = await P.fetchMine();
+          renderPosts(mine.feed || []);
+          if (mine.nombre) document.getElementById('iglesiaPerfilNombre').value = mine.nombre;
+        } catch (error) { console.warn('[iglesia] no se pudo cargar el feed propio', error); }
+
+        window.VerboIglesiaEditor.mount(document.getElementById('iglesiaEditorRoot'), {
+          onPublished: (feed) => renderPosts(feed),
+        });
+      }
+
+      function renderPosts(posts) {
+        const list = document.getElementById('iglesiaPostList');
+        if (!posts.length) {
+          list.innerHTML = `<li class="iglesia-post-list__empty">${escapeHTML(t('iglesia.feed.emptyMsg'))}</li>`;
+          return;
+        }
+        list.innerHTML = [...posts].reverse().map(post => `
+          <li class="iglesia-post-item" data-id="${escapeHTML(post.id)}">
+            <div class="iglesia-post-item__body">
+              <p class="iglesia-post-item__meta">${post.fecha ? new Date(post.fecha).toLocaleString() : ''} · ${escapeHTML(post.tipo)}</p>
+              <p class="iglesia-post-item__text">${escapeHTML(post.texto || post.contenido || post.embedUrl || '')}</p>
+            </div>
+            <button class="iglesia-post-item__delete" type="button" data-delete="${escapeHTML(post.id)}">✕</button>
+          </li>`).join('');
+        list.querySelectorAll('[data-delete]').forEach(btn => {
+          btn.addEventListener('click', async () => {
+            btn.disabled = true;
+            try { const result = await P.deletePost(btn.dataset.delete); renderPosts(result.feed || []); }
+            catch (error) { console.warn('[iglesia] no se pudo eliminar la publicación', error); btn.disabled = false; }
+          });
+        });
+      }
+
+      // Confirmación de magic link (?syncToken= en la URL de esta página).
+      const url = new URL(location.href);
+      if (url.searchParams.get('syncToken')) {
+        try { await P.consumeTokenFromUrl(); }
+        catch (error) { console.warn('[iglesia] no se pudo confirmar el vínculo', error); loginError.hidden = false; }
+      }
+
+      if (P.isLinked()) await loadPanel();
+      else loginSection.hidden = false;
+
+      document.getElementById('iglesiaLoginForm')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        loginError.hidden = true;
+        const email = document.getElementById('iglesiaLoginEmail').value.trim();
+        if (!email) return;
+        try { await P.requestLink(email); pending.hidden = false; }
+        catch (error) { console.error(error); loginError.hidden = false; }
+      });
+
+      document.getElementById('iglesiaUnlinkBtn')?.addEventListener('click', async () => {
+        await P.unlink();
+        panel.hidden = true;
+        loginSection.hidden = false;
+        pending.hidden = true;
+      });
+
+      document.getElementById('iglesiaPerfilSaveBtn')?.addEventListener('click', async () => {
+        const btn = document.getElementById('iglesiaPerfilSaveBtn');
+        const nombre = document.getElementById('iglesiaPerfilNombre').value.trim();
+        if (!nombre) return;
+        const original = btn.textContent;
+        btn.disabled = true;
+        try {
+          await P.setPerfil(nombre);
+          btn.textContent = t('iglesia.perfil.saved');
+          setTimeout(() => { btn.textContent = original; }, 1500);
+        } catch (error) { console.warn('[iglesia] no se pudo guardar el nombre', error); }
+        btn.disabled = false;
+      });
+
+      document.getElementById('iglesiaInviteCopyBtn')?.addEventListener('click', async () => {
+        const input = document.getElementById('iglesiaInviteUrl');
+        try {
+          await navigator.clipboard.writeText(input.value);
+        } catch {
+          input.select();
+          document.execCommand('copy');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1350" data-id="v2-navidad-008" data-category="navidad" data-text-contrast="light" data-text-zone="upper-left" data-primary-motif="night-star">
+<metadata>{"id":"v2-navidad-008","category":"navidad","tags":["advent","bottom_hero","christmas","nativity","night-star","royal"],"style":"bottom_hero","textZone":"upper-left","textContrast":"light","brightness":"dark","orientation":"portrait","primaryMotif":"night-star","collection":"Verbo SVG V2","visualRule":"prominent motif; editorial safe zone preserved"}</metadata>
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1c2452"/><stop offset="1" stop-color="#5e5bb0"/></linearGradient>
+ <radialGradient id="glow"><stop offset="0" stop-color="#ffffff" stop-opacity=".55"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="1080" height="1350" fill="url(#bg)"/>
+<circle cx="376" cy="264" r="180" fill="url(#glow)" opacity=".55"/>
+<rect x="38" y="38" width="1004" height="1274" rx="50" fill="none" stroke="#fffdf5" stroke-width="4" opacity=".68"/>
+<rect x="58" y="58" width="964" height="1234" rx="42" fill="none" stroke="#f2d58c" stroke-width="2" opacity=".38"/>
+<path d="M120 170 C250 105 360 115 440 170 M640 170 C720 115 830 105 960 170" fill="none" stroke="#fffdf5" stroke-width="5" opacity=".3"/>
+<path d="M540 900 l30 78 83 5 -65 52 20 82 -68 -46 -68 46 20 -82 -65 -52 83 -5z" fill="#fffdf5"/><g fill="#f2d58c"><circle cx="260" cy="1110" r="13"/><circle cx="800" cy="1050" r="10"/><circle cx="720" cy="1220" r="8"/><circle cx="350" cy="1240" r="9"/></g>
+</svg>

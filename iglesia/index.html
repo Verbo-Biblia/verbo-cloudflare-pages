@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="iglesia.pageTitle">Iglesia | Verbo</title>
+<meta name="description" data-i18n-attr="content:iglesia.metaDescription" content="Publica anuncios, predicaciones y eventos de tu iglesia, o sigue el feed de tu iglesia sin cuenta ni contraseña.">
+<link rel="canonical" href="https://verbobiblia.com/iglesia/">
+<link rel="manifest" href="../biblia/manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="../biblia/assets/icons/icon-192.png">
+<link rel="apple-touch-icon" href="../biblia/assets/icons/icon-192.png">
+<meta name="theme-color" content="#7f2d35">
+<link rel="stylesheet" href="../biblia/assets/style.css?v=20260819-iglesia-v1">
+<link rel="stylesheet" href="assets/iglesia.css?v=20260819-iglesia-v1">
+</head>
+<body class="static-page iglesia-page">
+
+  <header class="static-page__header">
+    <a class="static-page__brand" href="../">Verbo</a>
+    <div class="ui-lang-switcher" id="uiLangSwitcher" role="group" data-i18n-attr="aria-label:header.uiLangAria">
+      <button type="button" class="ui-lang-switcher__btn" data-lang="es">ES</button>
+      <button type="button" class="ui-lang-switcher__btn" data-lang="en">EN</button>
+    </div>
+    <a class="static-page__back" href="../" data-i18n="site.backToVerbo">← Volver a Verbo</a>
+  </header>
+
+  <main class="static-page__main">
+    <span class="iglesia-eyebrow" data-i18n="iglesia.eyebrow">Verbo · Iglesia</span>
+    <h1 data-i18n="iglesia.heading">Iglesia</h1>
+    <p class="iglesia-lede" data-i18n="iglesia.lede">Publica anuncios, predicaciones y eventos — o sigue el feed de tu iglesia.</p>
+
+    <section id="iglesiaRoleChooser" hidden>
+      <div class="iglesia-role-grid">
+        <div class="iglesia-role-card">
+          <h2 data-i18n="iglesia.roleChooser.publicadorTitle">Soy publicador</h2>
+          <p data-i18n="iglesia.roleChooser.publicadorDesc">Sincroniza con tu correo y administra las publicaciones de tu iglesia.</p>
+          <a class="iglesia-btn" href="publicador.html" data-i18n="iglesia.roleChooser.publicadorBtn">Entrar como publicador</a>
+        </div>
+      </div>
+      <p class="iglesia-lede" data-i18n="iglesia.roleChooser.miembroInfo">¿Te compartieron un enlace de invitación de tu iglesia? Solo ábrelo — no hace falta pegar ningún código aquí.</p>
+    </section>
+
+    <!-- Al abrir un enlace de invitación (?invite=código): confirmación
+         explícita antes de vincular nada — nunca se vincula solo. -->
+    <section id="iglesiaConfirmView" hidden>
+      <div class="iglesia-role-card" style="max-width:420px">
+        <h2 data-i18n="iglesia.confirm.title">¿Aceptar esta invitación?</h2>
+        <p id="iglesiaConfirmQuestion"></p>
+        <div class="iglesia-invite-form">
+          <button class="iglesia-btn" type="button" id="iglesiaConfirmAcceptBtn" data-i18n="iglesia.confirm.acceptBtn">Aceptar</button>
+          <button class="iglesia-btn iglesia-btn--ghost" type="button" id="iglesiaConfirmCancelBtn" data-i18n="iglesia.confirm.cancelBtn">Cancelar</button>
+        </div>
+        <p class="iglesia-error" id="iglesiaConfirmError" hidden data-i18n="iglesia.confirm.notFound">No encontramos esa iglesia. El enlace puede estar roto.</p>
+      </div>
+    </section>
+
+    <section id="iglesiaFeedView" hidden>
+      <div class="iglesia-feed">
+        <div class="iglesia-feed__header">
+          <button class="iglesia-btn iglesia-btn--ghost" type="button" id="iglesiaDesyncBtn" data-i18n="iglesia.feed.desyncBtn">Dejar de seguir esta iglesia</button>
+        </div>
+        <div id="iglesiaFeedList"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="../biblia/assets/i18n.js?v=20260819-iglesia-v1"></script>
+  <script src="../biblia/assets/site-chrome.js?v=20260729-1"></script>
+  <script src="panel.js?v=20260819-iglesia-v1"></script>
+  <script src="feed.js?v=20260819-iglesia-v1"></script>
+  <script>
+    (async () => {
+      await window.VerboI18n?.ready?.();
+      const t = window.VerboI18n?.t || (k => k);
+      const P = window.VerboIglesiaPanel;
+      const chooser = document.getElementById('iglesiaRoleChooser');
+      const confirmView = document.getElementById('iglesiaConfirmView');
+      const confirmQuestion = document.getElementById('iglesiaConfirmQuestion');
+      const confirmError = document.getElementById('iglesiaConfirmError');
+      const feedView = document.getElementById('iglesiaFeedView');
+      const feedList = document.getElementById('iglesiaFeedList');
+
+      function showOnly(section) {
+        chooser.hidden = section !== chooser;
+        confirmView.hidden = section !== confirmView;
+        feedView.hidden = section !== feedView;
+      }
+
+      async function showFeed(code) {
+        showOnly(feedView);
+        try {
+          const result = await P.fetchPublicFeed(code);
+          await window.VerboIglesiaFeed.mount(feedList, result.posts || []);
+        } catch (error) {
+          console.warn('[iglesia] no se pudo cargar el feed', error);
+          P.clearMemberCode();
+          showOnly(chooser);
+        }
+      }
+
+      // Enlace de invitación (?invite=código): SIEMPRE pasa por
+      // confirmación explícita, nunca vincula solo con solo abrir el
+      // enlace — corrección de Juan al flujo de miembro.
+      async function showConfirm(code) {
+        showOnly(confirmView);
+        confirmError.hidden = true;
+        try {
+          const result = await P.fetchPublicFeed(code);
+          confirmQuestion.textContent = result.nombre
+            ? t('iglesia.confirm.question', { nombre: result.nombre })
+            : t('iglesia.confirm.questionGenerico');
+          document.getElementById('iglesiaConfirmAcceptBtn').onclick = () => {
+            P.setMemberCode(code);
+            showFeed(code);
+          };
+        } catch (error) {
+          console.warn('[iglesia] enlace de invitación inválido', error);
+          confirmError.hidden = false;
+          document.getElementById('iglesiaConfirmAcceptBtn').onclick = null;
+        }
+      }
+
+      const urlCode = new URL(location.href).searchParams.get('invite');
+      if (urlCode) {
+        const url = new URL(location.href);
+        url.searchParams.delete('invite');
+        history.replaceState(null, '', url.toString());
+      }
+
+      const storedCode = P.getMemberCode();
+      if (storedCode) showFeed(storedCode);
+      else if (urlCode) showConfirm(urlCode);
+      else showOnly(chooser);
+
+      document.getElementById('iglesiaConfirmCancelBtn')?.addEventListener('click', () => showOnly(chooser));
+
+      document.getElementById('iglesiaDesyncBtn')?.addEventListener('click', () => {
+        if (!confirm(window.VerboI18n?.t('iglesia.feed.desyncConfirm') || '')) return;
+        P.clearMemberCode();
+        showOnly(chooser);
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -494,5 +494,108 @@
     "historicalSource": "Fuente histórica",
     "share": "Compartir",
     "linkCopied": "Enlace copiado"
+  },
+  "iglesia": {
+    "pageTitle": "Iglesia | Verbo",
+    "metaDescription": "Publica anuncios, predicaciones y eventos de tu iglesia, o sigue el feed de tu iglesia sin cuenta ni contraseña.",
+    "eyebrow": "Verbo · Iglesia",
+    "heading": "Iglesia",
+    "lede": "Publica anuncios, predicaciones y eventos — o sigue el feed de tu iglesia.",
+    "roleChooser": {
+      "publicadorTitle": "Soy publicador",
+      "publicadorDesc": "Sincroniza con tu correo y administra las publicaciones de tu iglesia.",
+      "publicadorBtn": "Entrar como publicador",
+      "miembroInfo": "¿Te compartieron un enlace de invitación de tu iglesia? Solo ábrelo — no hace falta pegar ningún código aquí."
+    },
+    "confirm": {
+      "title": "¿Aceptar esta invitación?",
+      "question": "¿Quieres seguir las publicaciones de {{nombre}}?",
+      "questionGenerico": "¿Quieres seguir las publicaciones de esta iglesia?",
+      "acceptBtn": "Aceptar",
+      "cancelBtn": "Cancelar",
+      "notFound": "No encontramos esa iglesia. El enlace puede estar roto."
+    },
+    "perfil": {
+      "title": "Nombre de tu iglesia",
+      "desc": "Así te verán los miembros al aceptar tu enlace de invitación.",
+      "placeholder": "Nombre de tu iglesia",
+      "saveBtn": "Guardar",
+      "saved": "Guardado"
+    },
+    "login": {
+      "title": "Acceso de publicador",
+      "desc": "Sin contraseñas: te enviamos un enlace de acceso a tu correo.",
+      "placeholder": "tu@correo.com",
+      "btn": "Enviar enlace",
+      "pendingMsg": "Revisa tu correo y toca el enlace para entrar.",
+      "linkedMsg": "Conectado como {{email}}",
+      "unlinkBtn": "Cerrar sesión",
+      "error": "No se pudo enviar el enlace. Intenta de nuevo."
+    },
+    "editor": {
+      "title": "Nueva publicación",
+      "postsTitle": "Tus publicaciones",
+      "tipoTexto": "Texto",
+      "tipoFondo": "Fondo",
+      "tipoEmbed": "Video/enlace",
+      "textPlaceholder": "Escribe tu texto…",
+      "captionPlaceholder": "Descripción (opcional)",
+      "font": "Fuente",
+      "color": "Color",
+      "size": "Tamaño",
+      "text": "Texto",
+      "changeFondo": "Cambiar fondo",
+      "publishBtn": "Publicar",
+      "error": "No se pudo publicar. Intenta de nuevo."
+    },
+    "picker": {
+      "searchPlaceholder": "Buscar por tema (fe, familia, navidad…)",
+      "categorias": "Categorías",
+      "loadMore": "Ver más"
+    },
+    "fonts": {
+      "system": "Sistema",
+      "arial": "Arial",
+      "helvetica": "Helvetica",
+      "georgia": "Georgia",
+      "times": "Times New Roman",
+      "verdana": "Verdana",
+      "trebuchet": "Trebuchet MS",
+      "courier": "Courier New",
+      "palatino": "Palatino",
+      "comicSans": "Comic Sans MS"
+    },
+    "invite": {
+      "title": "Enlace de invitación",
+      "desc": "Compártelo con los miembros de tu iglesia — no expira.",
+      "copyBtn": "Copiar enlace",
+      "copied": "Enlace copiado"
+    },
+    "feed": {
+      "emptyMsg": "Esta iglesia todavía no tiene publicaciones.",
+      "notFoundMsg": "No encontramos esa iglesia.",
+      "desyncBtn": "Dejar de seguir esta iglesia",
+      "desyncConfirm": "¿Dejar de seguir esta iglesia en este dispositivo?"
+    },
+    "categorias": {
+      "predicacion_biblia": "Predicación y Biblia",
+      "cristo_evangelio": "Cristo y Evangelio",
+      "oracion_adoracion": "Oración y Adoración",
+      "espiritu_santo": "Espíritu Santo",
+      "fe_esperanza_camino": "Fe, Esperanza y Camino",
+      "amor_gracia_perdon": "Amor, Gracia y Perdón",
+      "paz_consuelo": "Paz y Consuelo",
+      "familia_matrimonio": "Familia y Matrimonio",
+      "mujeres": "Mujeres",
+      "hombres": "Hombres",
+      "jovenes": "Jóvenes",
+      "ninos": "Niños",
+      "iglesia_comunidad": "Iglesia y Comunidad",
+      "eventos_conferencias": "Eventos y Conferencias",
+      "celebracion": "Celebración",
+      "pascua_resurreccion": "Pascua y Resurrección",
+      "navidad": "Navidad",
+      "abstractos_fondos": "Abstractos y Fondos"
+    }
   }
 }
