@@ -25,23 +25,40 @@ Si un archivo aportado por un tercero es una recompresión, se documentan por
 separado su hash y los hashes del archivo canónico para no presentarlos como si
 fueran idénticos.
 
-## Flujo de preparación
+## Flujo editorial y publicación por libro
 
-1. Descargar el PDF fuera del árbol versionado.
-2. Extraer su capa de texto con `pdftotext -raw`. Los facsímiles suelen tener
-   dos columnas y la extracción con `-layout` puede entrelazarlas dentro de una
-   misma entrada. Antes de convertir un libro, comprobar visualmente en varias
-   páginas que el orden de lectura conserva primero la columna izquierda y luego
-   la derecha.
-3. Ejecutar `audit_ocr.py` para medir capítulos y marcadores de versículos.
-4. Corregir el OCR contrastándolo con la imagen del facsímil. Los límites que
-   el OCR no pueda reconocer se documentan en `boundaries/<ID>.json`, con la
-   página física y la página impresa donde fueron comprobados visualmente.
-5. Convertir únicamente el texto verificado al esquema de comentarios de Verbo.
-   Cada exposición u homilía debe conservar una referencia de inicio y fin para
-   que aparezca al seleccionar cualquiera de los versículos que realmente trata.
-6. Validar cada rango contra la versificación de Biblia Verbo, además de validar
-   capítulos, JSON e índices, antes de registrar el módulo.
+1. Catalogar el facsímil de dominio público y descargar el PDF fuera del árbol
+   versionado.
+2. Extraer preferentemente su capa de texto con `pdftotext -raw`; comprobar
+   visualmente el orden de las columnas antes de aceptar el OCR como base. Si un
+   libro necesita `-layout` para recuperar sus límites históricos, se mantiene
+   `ocr-unreviewed` hasta comprobar que las columnas no quedaron entrelazadas.
+3. Ejecutar `audit_ocr.py` y documentar en `boundaries/<ID>.json` los límites
+   cotejados contra el facsímil.
+4. Cotejar cada entrada completa contra el facsímil y registrar correcciones o
+   reemplazos reproducibles en `corrections/<ID>.json`.
+5. Convertir el staging con `build_book.py` y auditarlo con
+   `audit_staging.py`; ninguna señal automática sustituye el cotejo integral.
+6. Clasificar cada entrada como `exposition` o `homiletics`, conservando el
+   encabezado y el contenido inglés originales. No se pretraduce: cuando el
+   módulo esté publicado, la traducción será bajo demanda por el pipeline
+   existente de `POST /translate` y su caché en `SYNC_KV`.
+7. Validar capítulos y rangos de inicio y fin contra la versificación de Biblia
+   Verbo, incluidas listas discontinuas y diferencias de versificación.
+8. Preparar `books/<ID>.json` y `books/<ID>.index.json` con
+   `prepare_module_book.py`; esta preparación fuerza todas las entradas a
+   `editorialStatus: ocr-unreviewed` y no registra el libro.
+9. Obtener la aprobación manual de Juan. El estado global del libro solo puede
+   pasar a `reviewed` cuando **todas** sus entradas fuente hayan sido cotejadas
+   contra el facsímil.
+10. Incorporar el libro aprobado a `manifest.json` y, únicamente en el paso de
+    publicación autorizado, reconstruir los índices y el catálogo y registrar
+    el módulo.
+
+Orden recomendado: Filemón, Abdías, 2 Juan, 3 Juan y Judas primero, por ser
+libros de un capítulo y menor riesgo; después Tito, 2 Pedro,
+2 Tesalonicenses y Santiago. Génesis, Romanos y 1 Corintios quedan al final por
+su volumen.
 
 Las correcciones del cuerpo OCR se registran en `bodyTextCorrections` dentro
 del archivo `corrections/<ID>.json`. Cada corrección debe indicar el capítulo,
@@ -49,6 +66,11 @@ la cadena OCR exacta, el texto corregido, la página física y la razón basada 
 el facsímil. Si una cadena se repite, `occurrence` (comenzando en 1) identifica
 la aparición que debe sustituirse. El conversor falla si no encuentra una
 corrección declarada, para impedir que una regeneración la omita silenciosamente.
+
+Cuando se usa una capa OCR alternativa, `--allow-unused-corrections` permite
+conservar correcciones ligadas a la cadena exacta de otra capa; esta excepción
+no omite la validación de capítulos, referencias ni rangos, y nunca concede
+estado `reviewed` al artefacto preparado para el módulo.
 
 Una entrada cotejada de principio a fin puede registrarse en
 `entryTextReplacements`, identificada por capítulo, encabezado fuente y páginas
@@ -86,3 +108,38 @@ python3 tools/pulpit-commentary/audit_ocr.py \
 
 El comando termina con estado distinto de cero mientras falten capítulos. Esa
 condición es intencional: evita que un OCR parcial llegue al catálogo público.
+
+## Ideas futuras (no implementadas)
+
+### Sermones históricos como plantilla editable en el Editor de Sermones
+
+Estado: idea aprobada por Juan, sin fecha ni diseño técnico. No implementar
+sin instrucción explícita.
+
+Concepto: además de que el material homilético de Pulpit Commentary
+(entradas con section: "homiletics") aparezca como comentario visible en
+modo prédica —comportamiento ya cubierto por la arquitectura actual, sin
+cambios de código—, la idea adicional es permitir que el usuario tome un
+sermón histórico de Pulpit y lo cargue como punto de partida DENTRO del
+Editor de Sermones (sermonComparePanel en app.js), lo edite libremente, y
+lo guarde como su propia versión (autoguardado, como ya funciona el
+editor).
+
+Esto es distinto de "mostrar comentario en modo prédica": es una función
+de escritura nueva ("usar como plantilla") que clona contenido externo
+hacia el estado editable del usuario. El editor hoy compara y muestra
+contenido, pero no tiene un flujo de "importar como borrador propio".
+
+Prerrequisitos antes de siquiera diseñarlo:
+
+- Pulpit Commentary publicado con volumen suficiente para que valga la pena
+  (no tiene sentido con solo Filemón).
+- Definir si "usar como plantilla" crea una copia local (localStorage/
+  IndexedDB, igual que el resto del editor) o si necesita algún otro
+  mecanismo.
+- Definir atribución: si el usuario edita un sermón de Eales/Pulpit y lo
+  guarda como propio, ¿el editor conserva algún rastro de que partió de
+  una fuente histórica, o queda como sermón nuevo sin marca?
+
+No crear ningún código, componente ni campo de schema para esto ahora.
+Es solo registro de la idea para revisarla cuando Pulpit esté publicado.

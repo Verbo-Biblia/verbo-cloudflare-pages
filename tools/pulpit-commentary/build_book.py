@@ -38,6 +38,18 @@ def compact(text: str) -> str:
     return text.strip()
 
 
+def marker_offset(text: str, marker: str) -> int:
+    """Encuentra un límite preservando el offset aun si cambia el espaciado OCR."""
+    exact = text.find(marker)
+    if exact >= 0:
+        return exact
+    parts = re.split(r"\s+", marker.strip())
+    if not parts:
+        return -1
+    match = re.search(r"\s+".join(re.escape(part) for part in parts), text)
+    return match.start() if match else -1
+
+
 def paragraphs(text: str) -> str:
     cleaned = []
     for block in re.split(r"\n\s*\n", compact(text)):
@@ -101,25 +113,42 @@ def main() -> int:
     parser.add_argument("--corrections", required=True, type=Path)
     parser.add_argument("--bible", required=True, type=Path)
     parser.add_argument("--output", required=True, type=Path)
+    parser.add_argument(
+        "--allow-unused-corrections",
+        action="store_true",
+        help="Admite correcciones ligadas a otra capa OCR sin aplicarlas.",
+    )
     args = parser.parse_args()
 
     auditor = load_auditor()
     text = args.source.read_text(encoding="utf-8", errors="replace")
     verified_payload = json.loads(args.verified_boundaries.read_text(encoding="utf-8"))
-    verified = {
-        int(item["chapter"]): text.find(item["ocrMarker"])
-        for item in verified_payload["boundaries"]
+    verified = {}
+    for item in verified_payload["boundaries"]:
+        markers = [item["ocrMarker"], *item.get("alternateOcrMarkers", [])]
+        offsets = [marker_offset(text, marker) for marker in markers]
+        verified[int(item["chapter"])] = next(
+            (offset for offset in offsets if offset >= 0), -1
+        )
+    initial_candidates = auditor.chapter_candidates(text, args.chapters)
+    chapters_with_headings = {
+        int(item["chapter"])
+        for item in initial_candidates
+        if item["evidence"] == "chapter-heading"
     }
-    missing_markers = [chapter for chapter, offset in verified.items() if offset < 0]
+    missing_markers = [
+        chapter
+        for chapter, offset in verified.items()
+        if offset < 0 and chapter not in chapters_with_headings
+    ]
     if missing_markers:
         raise SystemExit(f"marcadores verificados ausentes: {missing_markers}")
-    initial_candidates = auditor.chapter_candidates(text, args.chapters)
     first_headings = [
         item
         for item in initial_candidates
         if item["chapter"] == 1 and item["evidence"] == "chapter-heading"
     ]
-    if 1 in verified:
+    if verified.get(1, -1) >= 0:
         body_start = verified[1]
     elif first_headings:
         body_start = int(first_headings[0]["offset"])
@@ -137,7 +166,7 @@ def main() -> int:
             item for item in candidates
             if int(item["chapter"]) == chapter and item["evidence"] == "chapter-heading"
         ]
-        if chapter in verified:
+        if verified.get(chapter, -1) >= 0:
             offsets[chapter] = verified[chapter]
         elif headings:
             offsets[chapter] = body_start + int(headings[0]["offset"])
@@ -260,16 +289,18 @@ def main() -> int:
 
     for (chapter, header), values in sorted(corrections.items()):
         remaining = len(values) - used_corrections[(chapter, header)]
-        errors.extend(
-            f"corrección no utilizada: {chapter} {header} (ocurrencia pendiente)"
-            for _ in range(remaining)
-        )
+        if remaining and not args.allow_unused_corrections:
+            errors.extend(
+                f"corrección no utilizada: {chapter} {header} (ocurrencia pendiente)"
+                for _ in range(remaining)
+            )
     for (chapter, header), values in sorted(entry_replacements.items()):
         remaining = len(values) - used_entry_replacements[(chapter, header)]
-        errors.extend(
-            f"reemplazo de entrada no utilizado: {chapter} {header}"
-            for _ in range(remaining)
-        )
+        if remaining and not args.allow_unused_corrections:
+            errors.extend(
+                f"reemplazo de entrada no utilizado: {chapter} {header}"
+                for _ in range(remaining)
+            )
     if errors:
         raise SystemExit("\n".join(errors))
 

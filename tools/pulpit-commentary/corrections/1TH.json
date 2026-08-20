@@ -1,4 +1,12 @@
 {
   "book": "1TH",
-  "referenceHeaderCorrections": []
+  "referenceHeaderCorrections": [
+    {
+      "chapter": 2,
+      "ocr": "Vera. 6, 6.",
+      "corrected": "Vers. 5, 6.",
+      "physicalPage": 42,
+      "reason": "El facsímil muestra claramente ‘Vers. 5, 6’; el OCR leyó la s como a y el 5 como 6."
+    }
+  ]
 }

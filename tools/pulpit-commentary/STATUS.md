@@ -1,6 +1,6 @@
 # Estado de incorporación de The Pulpit Commentary
 
-Última actualización: 2026-08-18 (America/Costa_Rica).
+Última actualización: 2026-08-20 (America/Costa_Rica).
 
 ## Estado general
 
@@ -10,34 +10,38 @@
 - Borradores estructuralmente sincronizados: 25 libros.
 - Libros publicados o registrados: 0.
 - Todos los borradores conservan `editorialStatus: ocr-unreviewed`.
+- Módulo de trabajo creado en
+  `biblia/modules/commentaries/pulpit-commentary/`, todavía sin registrar y con
+  el arreglo `books` vacío. Los 25 libros están preparados físicamente como
+  artefactos de revisión; sus 6,038 entradas permanecen `ocr-unreviewed`.
 
 | Libro | Entradas | Grupos fuente | Capítulos | Errores estructurales | Cola OCR |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| Génesis | 1,134 | 1,061 | 50 | 0 | 789 |
-| Esdras | 171 | 161 | 10 | 0 | 90 |
-| Nehemías | 330 | 315 | 13 | 0 | 153 |
-| Ester | 267 | 245 | 10 | 0 | 125 |
-| Filemón | 50 | 45 | 1 | 0 | 39 |
-| Abdías | 40 | 34 | 1 | 0 | 34 |
-| 2 Juan | 19 | 16 | 1 | 0 | 18 |
-| 3 Juan | 14 | 11 | 1 | 0 | 12 |
-| Judas | 34 | 25 | 1 | 0 | 29 |
-| Tito | 69 | 65 | 3 | 0 | 64 |
-| Santiago | 87 | 79 | 5 | 0 | 79 |
-| 2 Pedro | 64 | 61 | 3 | 0 | 58 |
-| 2 Timoteo | 80 | 77 | 4 | 0 | 69 |
-| 1 Pedro | 143 | 135 | 5 | 0 | 132 |
-| 1 Juan | 109 | 98 | 5 | 0 | 106 |
-| 1 Timoteo | 139 | 135 | 6 | 0 | 127 |
-| 1 Tesalonicenses | 130 | 124 | 5 | 0 | 106 |
-| 2 Tesalonicenses | 63 | 61 | 3 | 0 | 58 |
-| Efesios | 245 | 227 | 6 | 0 | 226 |
-| Filipenses | 178 | 146 | 4 | 0 | 165 |
-| Colosenses | 144 | 133 | 4 | 0 | 134 |
-| Gálatas | 226 | 204 | 6 | 0 | 209 |
-| 2 Corintios | 401 | 384 | 13 | 0 | 363 |
-| Romanos | 233 | 215 | 16 | 0 | 228 |
-| 1 Corintios | 672 | 613 | 16 | 0 | 599 |
+| Génesis | 1,274 | 1,174 | 50 | 0 | 908 |
+| Esdras | 264 | 254 | 10 | 0 | 164 |
+| Nehemías | 391 | 376 | 13 | 0 | 207 |
+| Ester | 312 | 288 | 10 | 0 | 193 |
+| Filemón | 50 | 45 | 1 | 0 | 38 |
+| Abdías | 52 | 43 | 1 | 0 | 43 |
+| 2 Juan | 20 | 17 | 1 | 0 | 18 |
+| 3 Juan | 18 | 14 | 1 | 0 | 15 |
+| Judas | 43 | 31 | 1 | 0 | 35 |
+| Tito | 90 | 80 | 3 | 0 | 84 |
+| Santiago | 117 | 103 | 5 | 0 | 106 |
+| 2 Pedro | 72 | 68 | 3 | 0 | 66 |
+| 2 Timoteo | 108 | 99 | 4 | 0 | 92 |
+| 1 Pedro | 167 | 154 | 5 | 0 | 151 |
+| 1 Juan | 130 | 115 | 5 | 0 | 127 |
+| 1 Timoteo | 192 | 171 | 6 | 0 | 175 |
+| 1 Tesalonicenses | 174 | 153 | 5 | 0 | 146 |
+| 2 Tesalonicenses | 93 | 80 | 3 | 0 | 83 |
+| Efesios | 292 | 269 | 6 | 0 | 267 |
+| Filipenses | 223 | 177 | 4 | 0 | 203 |
+| Colosenses | 179 | 162 | 4 | 0 | 165 |
+| Gálatas | 241 | 218 | 6 | 0 | 224 |
+| 2 Corintios | 441 | 416 | 13 | 0 | 396 |
+| Romanos | 390 | 340 | 16 | 0 | 370 |
+| 1 Corintios | 705 | 639 | 16 | 0 | 625 |
 
 Los conteos de la cola son señales automáticas prioritarias; no sustituyen la
 revisión completa de cada entrada contra el facsímil.
@@ -50,8 +54,10 @@ revisión completa de cada entrada contra el facsímil.
   recompresión y hashes están documentados en `supplemental-sources.json`.
 - La capa OCR canónica de Internet Archive para ese volumen fue comprobada con
   el identificador `cu31924101105041`.
-- Los borradores y reportes actuales están en `/tmp` y se regeneran con
-  `build_book.py` y `audit_staging.py`; no son contenido publicable versionado.
+- Los stagings y reportes regenerables están en `/tmp`; los 25 pares
+  normalizados de libro e índice están en el módulo como artefactos de revisión.
+  Ninguno es publicable mientras conserve `ocr-unreviewed` o quede fuera del
+  manifest.
 - El facsímil de Éxodo, volumen 1, fue descargado y validado temporalmente como
   `/tmp/pulpit-exodus-v1-complete.pdf`, pero Éxodo todavía no se ha convertido.
 - El facsímil de Filemón fue descargado y validado (1,148,536 bytes, 31 páginas,
@@ -158,6 +164,51 @@ revisión completa de cada entrada contra el facsímil.
   `pdftotext -layout` y regenerar el borrador y la auditoría antes de continuar.
 - No se modificaron el catálogo, los índices, el módulo público ni Cloudflare.
 
+### Reanudación (2026-08-20)
+
+- Se regeneraron el facsímil, la capa de texto `-raw`, el borrador y la auditoría
+  temporales de Filemón. El PDF volvió a coincidir con el tamaño, las 31 páginas
+  y el SHA-256 ya documentados.
+- La exposición de `Ver. 5.` se cotejó íntegramente contra las dos columnas de
+  la página física 14 y quedó registrada como `reviewed`, incluidas las
+  expresiones griegas que el OCR había degradado.
+- La evidencia versionada de Filemón contiene ahora 14 de 50 exposiciones
+  cotejadas contra el facsímil (versículos 1–14); quedan 36 entradas fuente por
+  cotejar. El staging temporal previo solo reflejaba las primeras 8, por lo que
+  la preparación del piloto aplica los reemplazos más recientes de
+  `corrections/PHM.json`. El libro completo y sus 50 entradas en el módulo se
+  mantienen deliberadamente como `ocr-unreviewed` hasta decisión manual de
+  Juan. La última auditoría del staging generó 38 señales automáticas, 45 grupos
+  fuente y 0 errores estructurales.
+- También se cotejaron íntegramente las exposiciones de `Ver. 6.` y `Ver. 7.`
+  contra la columna derecha de la página física 14, restaurando el griego, las
+  citas latinas y las referencias dañadas por el OCR.
+- También se cotejó la exposición de `Ver. 8.` entre las páginas físicas 14–15.
+- También se cotejaron las exposiciones de `Ver. 9.` a `Ver. 14.` y se
+  versionaron sus reemplazos completos en `corrections/PHM.json`.
+- Siguiente unidad exacta: exposición `Ver. 15.`, página física 16 del
+  facsímil canónico de Filemón. No se modificaron registro ni catálogos.
+
+## Paso 0 del módulo independiente
+
+- Estructura creada: `biblia/modules/commentaries/pulpit-commentary/`.
+- `manifest.json` es compatible con comentarios esquema 2, pero conserva
+  `books: []`; por tanto Filemón no está registrado como libro disponible.
+- Los 25 pares `books/<ID>.json` y `books/<ID>.index.json` son artefactos de
+  revisión, no una publicación. Las 6,038 entradas están marcadas
+  `ocr-unreviewed`; el manifest continúa con `books: []`.
+- Las capas OCR se regeneraron desde los facsímiles catalogados. Cuando una
+  extracción alternativa no reutilizó correcciones ligadas textualmente a otra
+  capa OCR, el conversor permitió dejarlas sin aplicar, pero nunca relajó la
+  validación de capítulos y rangos. Los 25 libros terminaron con cero errores
+  estructurales y conservan sus colas completas de revisión visual.
+- Filemón conserva 50 entradas; aunque 14 reemplazos fuente ya tienen evidencia
+  de cotejo, las 50 siguen `ocr-unreviewed` por instrucción expresa de no otorgar
+  aprobación editorial en este paso.
+- Antes de publicar Filemón faltan: cotejar las 36 entradas restantes, resolver
+  todas las señales OCR, validar nuevamente JSON/rangos/índice y recibir la
+  aprobación manual de Juan.
+
 ## Plan de reanudación
 
 1. Corregir integralmente las colas OCR de los cinco libros de un capítulo
@@ -167,9 +218,36 @@ revisión completa de cada entrada contra el facsímil.
    Ester, manteniéndolos fuera del catálogo hasta completar el cotejo.
 3. Preparar y convertir los restantes 41 libros con el mismo control de
    licencias, límites, rangos y estado editorial.
-4. Cuando los 66 libros estén revisados, crear el módulo definitivo, ejecutar
-   `tools/build_commentary_index.py`, luego `tools/build_registry_catalog.py`,
-   validar toda la colección y solo entonces registrarla para publicación.
+4. Preparar cada libro terminado en el módulo independiente y publicarlo solo
+   después de aprobación manual, siguiendo el orden recomendado documentado en
+   `README.md`. La reconstrucción de índices, catálogo y registro pertenece al
+   paso de publicación autorizado, no a esta preparación.
 
 No reconstruir índices ni modificar `biblia/modules/registry.json` mientras
 exista algún libro con OCR sin revisar.
+
+## Pausa guardada: preparación de los 25 libros (2026-08-20)
+
+- Los 25 libros estructurados están materializados en
+  `biblia/modules/commentaries/pulpit-commentary/books/`, cada uno con su JSON
+  completo y su índice liviano: 50 archivos y 6,038 entradas en total.
+- Las 6,038 entradas conservan `editorialStatus: ocr-unreviewed`; ninguna fue
+  aprobada durante la preparación.
+- Los 25 pares libro/índice tienen identificadores únicos, correspondencia
+  exacta entre índice y contenido, capítulos y rangos válidos contra Biblia
+  Verbo, contenido no vacío y cero errores estructurales en
+  `audit_staging.py`.
+- `biblia/modules/commentaries/pulpit-commentary/manifest.json` conserva
+  `books: []`. El módulo no está en `biblia/modules/registry.json`, no es
+  visible en la aplicación y no debe presentarse todavía como publicado.
+- No se ejecutaron `tools/build_commentary_index.py` ni
+  `tools/build_registry_catalog.py`; tampoco se hicieron operaciones de staging,
+  commit o push en Git.
+- Los facsímiles, capas OCR, stagings y auditorías regenerables de esta sesión
+  están temporalmente en `/tmp`. Los artefactos valiosos que deben conservarse
+  a largo plazo son el módulo, las herramientas, límites, correcciones y esta
+  documentación dentro del repositorio.
+- Próxima decisión de Juan: escoger entre guardar en Git solamente la
+  infraestructura y los artefactos de revisión todavía invisibles, o continuar
+  primero el cotejo editorial de Filemón. Registrar o hacer visible cualquier
+  libro requiere una instrucción posterior explícita.

@@ -2,6 +2,10 @@
   "book": "ROM",
   "referenceHeaderCorrections": [
     {"chapter": 7, "ocr": "Vers. 22, 28.", "corrected": "Vers. 22, 23.", "physicalPage": 219, "reason": "El facsímil muestra claramente ‘Vers. 22, 23’; el OCR confundió el 3 con un 8."},
-    {"chapter": 8, "ocr": "Ver. 82.", "corrected": "Ver. 32.", "physicalPage": 246, "reason": "El facsímil muestra claramente ‘Ver. 32’; el OCR invirtió la forma del primer dígito."}
+    {"chapter": 8, "ocr": "Ver. 82.", "corrected": "Ver. 32.", "physicalPage": 246, "reason": "El facsímil muestra claramente ‘Ver. 32’; el OCR invirtió la forma del primer dígito."},
+    {"chapter": 7, "ocr": "Vere. 24, 26.", "corrected": "Vers. 24, 25.", "physicalPage": 219, "reason": "El facsímil muestra claramente ‘Vers. 24, 25’; el OCR leyó la s como e y el 5 como 6."},
+    {"chapter": 9, "ocr": "Vere. 82, 83.", "corrected": "Vers. 32, 33.", "physicalPage": 293, "reason": "El facsímil muestra claramente ‘Vers. 32, 33’; el OCR leyó la s como e y ambos dígitos 3 como 8."},
+    {"chapter": 11, "ocr": "Vere. 38-86.", "corrected": "Vers. 33-36.", "physicalPage": 349, "reason": "El facsímil muestra claramente ‘Vers. 33–36’; el OCR leyó la s como e y dos dígitos 3 como 8."},
+    {"chapter": 11, "ocr": "Vere, 33-86.", "corrected": "Vers. 33-36.", "physicalPage": 361, "reason": "El facsímil muestra claramente ‘Vers. 33–36’; el OCR leyó la s como e, el punto como coma y el 3 como 8."}
   ]
 }
