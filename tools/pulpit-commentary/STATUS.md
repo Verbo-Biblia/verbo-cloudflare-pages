@@ -1,6 +1,6 @@
 # Estado de incorporación de The Pulpit Commentary
 
-Última actualización: 2026-08-18 (America/Costa_Rica).
+Última actualización: 2026-08-20 (America/Costa_Rica).
 
 ## Estado general
 
@@ -17,7 +17,7 @@
 | Esdras | 171 | 161 | 10 | 0 | 90 |
 | Nehemías | 330 | 315 | 13 | 0 | 153 |
 | Ester | 267 | 245 | 10 | 0 | 125 |
-| Filemón | 50 | 45 | 1 | 0 | 39 |
+| Filemón | 50 | 45 | 1 | 0 | 38 |
 | Abdías | 40 | 34 | 1 | 0 | 34 |
 | 2 Juan | 19 | 16 | 1 | 0 | 18 |
 | 3 Juan | 14 | 11 | 1 | 0 | 12 |
@@ -157,6 +157,24 @@ revisión completa de cada entrada contra el facsímil.
   descargar el facsímil de Filemón indicado en `sources.json`, extraerlo con
   `pdftotext -layout` y regenerar el borrador y la auditoría antes de continuar.
 - No se modificaron el catálogo, los índices, el módulo público ni Cloudflare.
+
+### Reanudación (2026-08-20)
+
+- Se regeneraron el facsímil, la capa de texto `-raw`, el borrador y la auditoría
+  temporales de Filemón. El PDF volvió a coincidir con el tamaño, las 31 páginas
+  y el SHA-256 ya documentados.
+- La exposición de `Ver. 5.` se cotejó íntegramente contra las dos columnas de
+  la página física 14 y quedó registrada como `reviewed`, incluidas las
+  expresiones griegas que el OCR había degradado.
+- Filemón tiene ahora 8 de 50 entradas revisadas; las 42 restantes y el libro
+  completo conservan `ocr-unreviewed`. La auditoría genera 38 señales
+  automáticas, 45 grupos fuente y 0 errores estructurales.
+- También se cotejaron íntegramente las exposiciones de `Ver. 6.` y `Ver. 7.`
+  contra la columna derecha de la página física 14, restaurando el griego, las
+  citas latinas y las referencias dañadas por el OCR.
+- También se cotejó la exposición de `Ver. 8.` entre las páginas físicas 14–15.
+- Siguiente unidad exacta: exposición `Ver. 9.`, página física 15 del facsímil
+  canónico de Filemón. No se modificaron catálogo, índices ni módulo público.
 
 ## Plan de reanudación
 
