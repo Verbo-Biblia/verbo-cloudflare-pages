@@ -503,7 +503,7 @@
     "linkCopied": "Enlace copiado"
   },
   "iglesia": {
-    "pageTitle": "Iglesia | Verbo",
+    "pageTitle": "Conecta con tu Iglesia | Verbo",
     "metaDescription": "Publica anuncios, predicaciones y eventos de tu iglesia, o sigue el feed de tu iglesia sin cuenta ni contraseña.",
     "eyebrow": "Verbo · Iglesia",
     "heading": "Iglesia",
@@ -531,7 +531,7 @@
     },
     "login": {
       "title": "Acceso de publicador",
-      "desc": "Sin contraseñas: te enviamos un enlace de acceso a tu correo.",
+      "desc": "Sin contraseñas: te enviamos un enlace de acceso a tu correo. Si ya usas el correo de tu iglesia, solo pide el enlace — no hace falta crear nada nuevo, y cualquiera con acceso a esa bandeja puede entrar desde su propio dispositivo.",
       "placeholder": "tu@correo.com",
       "btn": "Enviar enlace",
       "pendingMsg": "Revisa tu correo y toca el enlace para entrar.",
@@ -553,7 +553,9 @@
       "text": "Texto",
       "changeFondo": "Cambiar fondo",
       "publishBtn": "Publicar",
-      "error": "No se pudo publicar. Intenta de nuevo."
+      "error": "No se pudo publicar. Intenta de nuevo.",
+      "deleteBtn": "Eliminar",
+      "embedUrlPlaceholder": "https://youtube.com/... o https://facebook.com/..."
     },
     "picker": {
       "searchPlaceholder": "Buscar por tema (fe, familia, navidad…)",

@@ -86,6 +86,7 @@
   <script src="../biblia/assets/i18n.js?v=20260819-iglesia-v1"></script>
   <script src="../biblia/assets/site-chrome.js?v=20260729-1"></script>
   <script src="panel.js?v=20260819-iglesia-v1"></script>
+  <script src="feed.js?v=20260819-iglesia-v1"></script>
   <script src="editor.js?v=20260819-iglesia-v1"></script>
   <script>
     (async () => {
@@ -122,19 +123,21 @@
         });
       }
 
-      function renderPosts(posts) {
+      async function renderPosts(posts) {
         const list = document.getElementById('iglesiaPostList');
         if (!posts.length) {
           list.innerHTML = `<li class="iglesia-post-list__empty">${escapeHTML(t('iglesia.feed.emptyMsg'))}</li>`;
           return;
         }
-        list.innerHTML = [...posts].reverse().map(post => `
+        // Misma función que arma el feed del miembro (feed.js) — así el
+        // publicador ve el mismo render exacto (fondo+overlay real, no una
+        // vista de solo texto), ver iglesia/feed.js:renderPost.
+        const ordered = [...posts].reverse();
+        const cards = await Promise.all(ordered.map(post => window.VerboIglesiaFeed.renderPost(post)));
+        list.innerHTML = ordered.map((post, i) => `
           <li class="iglesia-post-item" data-id="${escapeHTML(post.id)}">
-            <div class="iglesia-post-item__body">
-              <p class="iglesia-post-item__meta">${post.fecha ? new Date(post.fecha).toLocaleString() : ''} · ${escapeHTML(post.tipo)}</p>
-              <p class="iglesia-post-item__text">${escapeHTML(post.texto || post.contenido || post.embedUrl || '')}</p>
-            </div>
-            <button class="iglesia-post-item__delete" type="button" data-delete="${escapeHTML(post.id)}">✕</button>
+            ${cards[i]}
+            <button class="iglesia-post-item__delete" type="button" data-delete="${escapeHTML(post.id)}">${escapeHTML(t('iglesia.editor.deleteBtn'))}</button>
           </li>`).join('');
         list.querySelectorAll('[data-delete]').forEach(btn => {
           btn.addEventListener('click', async () => {

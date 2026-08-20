@@ -42,7 +42,7 @@ window.VerboIglesiaFeed = (() => {
       return `<article class="iglesia-feed-post" id="post-${escapeHTML(post.id)}">
         <div class="iglesia-feed-post__bg">
           ${src ? `<img src="${escapeHTML(src)}" alt="" loading="lazy">` : ''}
-          ${post.texto ? `<div class="iglesia-feed-post__overlay-text" style="${style}">${escapeHTML(post.texto)}</div>` : ''}
+          ${post.texto ? `<div class="iglesia-feed-post__overlay-text" style="${escapeHTML(style)}">${escapeHTML(post.texto)}</div>` : ''}
         </div>
         <div class="iglesia-feed-post__body">
           <p class="iglesia-feed-post__meta">${escapeHTML(fecha)}</p>
@@ -74,5 +74,10 @@ window.VerboIglesiaFeed = (() => {
     first?.scrollIntoView({ block: 'start' });
   }
 
-  return { mount };
+  // renderPost expuesto para publicador.html: la vista propia del
+  // publicador reusa esta misma función para su lista "Tus publicaciones"
+  // — así el render (fondo+overlay con x/y/scale/rotation/fontFamily/
+  // color reales) es idéntico al que ve el miembro, nunca una vista
+  // aparte de solo texto con posición por defecto.
+  return { mount, renderPost };
 })();

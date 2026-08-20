@@ -3,8 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title data-i18n="iglesia.pageTitle">Iglesia | Verbo</title>
+<title data-i18n="iglesia.pageTitle">Conecta con tu Iglesia | Verbo</title>
 <meta name="description" data-i18n-attr="content:iglesia.metaDescription" content="Publica anuncios, predicaciones y eventos de tu iglesia, o sigue el feed de tu iglesia sin cuenta ni contraseña.">
+<meta property="og:title" content="Conecta con tu Iglesia | Verbo">
+<meta property="og:description" content="Publica anuncios, predicaciones y eventos de tu iglesia, o sigue el feed de tu iglesia sin cuenta ni contraseña.">
+<meta property="og:url" content="https://verbobiblia.com/iglesia/">
+<meta property="og:locale" content="es_ES">
+<meta property="og:type" content="website">
 <link rel="canonical" href="https://verbobiblia.com/iglesia/">
 <link rel="manifest" href="../biblia/manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="../biblia/assets/icons/icon-192.png">
@@ -57,6 +62,7 @@
     <section id="iglesiaFeedView" hidden>
       <div class="iglesia-feed">
         <div class="iglesia-feed__header">
+          <h2 class="iglesia-feed__church-name" id="iglesiaFeedChurchName"></h2>
           <button class="iglesia-btn iglesia-btn--ghost" type="button" id="iglesiaDesyncBtn" data-i18n="iglesia.feed.desyncBtn">Dejar de seguir esta iglesia</button>
         </div>
         <div id="iglesiaFeedList"></div>
@@ -90,6 +96,7 @@
         showOnly(feedView);
         try {
           const result = await P.fetchPublicFeed(code);
+          document.getElementById('iglesiaFeedChurchName').textContent = result.nombre || t('iglesia.heading');
           await window.VerboIglesiaFeed.mount(feedList, result.posts || []);
         } catch (error) {
           console.warn('[iglesia] no se pudo cargar el feed', error);

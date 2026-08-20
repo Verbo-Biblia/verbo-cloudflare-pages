@@ -503,7 +503,7 @@
     "linkCopied": "Link copied"
   },
   "iglesia": {
-    "pageTitle": "Church | Verbo",
+    "pageTitle": "Connect With Your Church | Verbo",
     "metaDescription": "Publish announcements, sermons and events for your church, or follow your church's feed with no account or password.",
     "eyebrow": "Verbo · Church",
     "heading": "Church",
@@ -531,7 +531,7 @@
     },
     "login": {
       "title": "Publisher access",
-      "desc": "No passwords: we'll send an access link to your email.",
+      "desc": "No passwords: we'll send an access link to your email. If you already use your church's shared email, just request the link — no need to set anything up, and anyone with access to that inbox can sign in from their own device.",
       "placeholder": "you@email.com",
       "btn": "Send link",
       "pendingMsg": "Check your email and tap the link to sign in.",
@@ -553,7 +553,9 @@
       "text": "Text",
       "changeFondo": "Change background",
       "publishBtn": "Publish",
-      "error": "Couldn't publish. Please try again."
+      "error": "Couldn't publish. Please try again.",
+      "deleteBtn": "Delete",
+      "embedUrlPlaceholder": "https://youtube.com/... or https://facebook.com/..."
     },
     "picker": {
       "searchPlaceholder": "Search by topic (faith, family, christmas…)",

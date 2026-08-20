@@ -328,7 +328,7 @@ window.VerboIglesiaEditor = (() => {
 
   function renderEmbedTipo(bodyEl) {
     bodyEl.innerHTML = `
-      <input class="iglesia-input" type="url" id="iglesiaEditorEmbedUrl" placeholder="https://youtube.com/watch?v=…" value="${escapeHTML(state.embedUrl)}">
+      <input class="iglesia-input" type="url" id="iglesiaEditorEmbedUrl" placeholder="${escapeHTML(t('iglesia.editor.embedUrlPlaceholder'))}" value="${escapeHTML(state.embedUrl)}">
       <div id="iglesiaEditorEmbedPreview"></div>
       <textarea class="iglesia-editor-textarea" id="iglesiaEditorEmbedTexto" placeholder="${escapeHTML(t('iglesia.editor.captionPlaceholder'))}">${escapeHTML(state.texto)}</textarea>`;
     const refreshPreview = () => {

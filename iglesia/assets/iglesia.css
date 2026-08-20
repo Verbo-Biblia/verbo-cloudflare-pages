@@ -177,35 +177,28 @@ body.iglesia-page {
   font-size: 14px;
 }
 
+/* Cada <li> envuelve la MISMA tarjeta .iglesia-feed-post que arma
+   feed.js (ver iglesia/feed.js:renderPost, reusada tal cual acá) — así
+   el publicador ve exactamente el mismo render que va a ver el miembro,
+   con el fondo+overlay de texto ya posicionado/escalado/rotado, nunca
+   una vista de solo texto con posición por defecto. */
 .iglesia-post-item {
   border: 1px solid var(--rule);
   border-radius: 10px;
-  padding: 12px 14px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 10px;
+  padding: 10px;
+  max-width: 280px;
 }
-.iglesia-post-item__body { flex: 1; min-width: 0; }
-.iglesia-post-item__meta {
-  font-size: 12px;
-  color: var(--sepia);
-  margin: 0 0 4px;
-}
-.iglesia-post-item__text {
-  margin: 0;
-  font-size: 14.5px;
-  line-height: 1.5;
-  white-space: pre-wrap;
-  word-break: break-word;
-}
+.iglesia-post-item .iglesia-feed-post { border: none; border-radius: 6px; }
 .iglesia-post-item__delete {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
   background: none;
   border: none;
   color: var(--wine);
   cursor: pointer;
   font-size: 13px;
-  flex-shrink: 0;
+  text-align: right;
 }
 .iglesia-post-item__delete:hover { text-decoration: underline; }
 
@@ -223,6 +216,12 @@ body.iglesia-page {
   justify-content: space-between;
   gap: 10px;
   flex-wrap: wrap;
+}
+.iglesia-feed__church-name {
+  font-family: var(--font-display);
+  font-size: 21px;
+  margin: 0;
+  color: var(--ink);
 }
 
 .iglesia-feed-post {

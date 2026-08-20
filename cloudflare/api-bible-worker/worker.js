@@ -757,10 +757,11 @@ const IGLESIA_POST_ROTATION_MAX = 180;
 const IGLESIA_POST_XY_MIN = -20; // % del canvas — algo de margen fuera de 0-100 para texto que sobresale al arrastrar
 const IGLESIA_POST_XY_MAX = 120;
 const IGLESIA_COLOR_RE = /^#[0-9a-f]{6}$/i;
-// Solo YouTube/Facebook, igual que valida iglesia/feed.js del lado cliente
-// (defensa en profundidad: el cliente ya restringe el picker, esto evita
-// que cualquier otra URL quede guardada como si fuera un embed válido).
-const IGLESIA_EMBED_RE = /^https:\/\/(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|facebook\.com\/)/;
+// Solo YouTube/Facebook, igual que valida iglesia/panel.js del lado
+// cliente (defensa en profundidad: el cliente ya restringe el picker,
+// esto evita que cualquier otra URL quede guardada como si fuera un
+// embed válido). fb.watch = dominio de enlaces cortos de Facebook.
+const IGLESIA_EMBED_RE = /^https:\/\/(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|facebook\.com\/|fb\.watch\/)/;
 
 const IGLESIA_EMAIL = {
   es: {

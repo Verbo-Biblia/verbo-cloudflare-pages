@@ -253,13 +253,23 @@ window.VerboIglesiaPanel = (() => {
 
   // Solo YouTube/Facebook, misma regla que valida el Worker
   // (IGLESIA_EMBED_RE) — usado tanto por el editor (validar antes de
-  // publicar) como por feed.js (armar el <iframe> al mostrar).
-  const EMBED_RE = /^https:\/\/(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|facebook\.com\/)/;
+  // publicar) como por feed.js (armar el <iframe> al mostrar). fb.watch
+  // es el dominio de enlaces cortos de Facebook (lo que la gente copia
+  // desde la app móvil) — Facebook resuelve el href del lado de ellos,
+  // el plugin de iframe lo acepta igual que la URL larga.
+  const EMBED_RE = /^https:\/\/(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|facebook\.com\/|fb\.watch\/)/;
   function embedSrc(embedUrl) {
-    const yt = String(embedUrl || '').match(/(?:youtu\.be\/|youtube\.com\/watch\?v=|youtube\.com\/embed\/)([\w-]{6,})/);
+    const url = String(embedUrl || '');
+    const yt = url.match(/(?:youtu\.be\/|youtube\.com\/watch\?v=|youtube\.com\/embed\/)([\w-]{6,})/);
     if (yt) return `https://www.youtube.com/embed/${yt[1]}`;
-    if (/^https:\/\/(www\.)?facebook\.com\//.test(embedUrl || '')) {
-      return `https://www.facebook.com/plugins/post.php?href=${encodeURIComponent(embedUrl)}&show_text=false`;
+    if (/^https:\/\/(www\.)?(facebook\.com\/|fb\.watch\/)/.test(url)) {
+      // No hace falta el SDK de Facebook (script externo) para esto: el
+      // iframe de sus plugins públicos alcanza. video.php para links de
+      // video (facebook.com/.../videos/... o fb.watch/...), post.php para
+      // cualquier otro post público — mismo patrón, sin dependencia nueva.
+      const esVideo = /facebook\.com\/[^/]+\/videos\//.test(url) || /fb\.watch\//.test(url);
+      const plugin = esVideo ? 'video.php' : 'post.php';
+      return `https://www.facebook.com/plugins/${plugin}?href=${encodeURIComponent(url)}&show_text=false`;
     }
     return '';
   }
