@@ -198,9 +198,9 @@ window.VerboIglesiaPanel = (() => {
   }
 
   // ---- Catálogo de fondos SVG (manifest.json, ver bloque 0) ----------
-  // Un solo fetch perezoso del manifest (metadata liviana, ~300KB de
-  // texto para 450 items) — nunca se cargan los 450 SVG de una: cada
-  // fondo se resuelve a su ruta y se pinta con <img src="...svg">
+  // Un solo fetch perezoso del manifest (metadata liviana) — nunca se
+  // cargan todos los SVG de una: cada fondo se resuelve a su ruta y se
+  // pinta con <img src="...svg">
   // (safe: sin <script>/base64 verificado en el bloque 0) solo cuando
   // hace falta mostrarlo (picker con scroll/lazy en bloque 3, feed
   // renderizando solo las publicaciones visibles).
