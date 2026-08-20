@@ -1844,7 +1844,7 @@ body[data-theme="rosewood"] {
     bottom: calc(var(--mobile-dock-height, 76px) + 8px + env(safe-area-inset-bottom, 0px));
   }
   .verse-action-bar {
-    --verse-action-scale: .75;
+    --verse-action-scale: .825;
   }
 }
 @keyframes barSlideUp {
