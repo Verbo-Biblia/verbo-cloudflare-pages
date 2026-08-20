@@ -234,6 +234,12 @@ body.recursos-page .reader-para {
   user-select: text;
   transition: font-size .15s ease;
 }
+/* Versículos bíblicos: cada uno es su propio .reader-para (para el
+   resaltado por párrafo), pero sin el espaciado de prosa entre ellos —
+   se leen como versículos consecutivos, no como párrafos separados. */
+body.recursos-page .reader-para--verse {
+  margin: 0 0 4px;
+}
 /* Mientras el pellizco está activo (reader.js añade/quita esta clase en
    .reader-content) el tamaño debe seguir al gesto 1:1, sin el retraso que
    introduciría la transición de arriba en cada frame. */

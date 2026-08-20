@@ -169,6 +169,10 @@
   // así los índices de párrafo sirven como clave estable para el resaltado.
   function splitIntoParagraphs(text) {
     if (!text) return [];
+    // Biblia: cada versículo ya viene separado por "\n\n" en loadBibleContent
+    // (uno por línea, en vez de reflow por oraciones) — así se lee como
+    // texto bíblico normal, no como prosa corrida.
+    if (cfg.bibleManifestUrl) return text.split(/\n{2,}/).map(function (s) { return s.trim(); }).filter(Boolean);
     var sentences = text.match(/[^.!?]+[.!?]+(?=\s|$)|[^.!?]+$/g) || [text];
     var paras = [];
     var buf = "";
@@ -230,7 +234,8 @@
                   n: book.number + "." + chapter,
                   title: book.name + " " + chapter,
                   content: Object.keys(verses).map(function (verse) {
-                    return verse + " " + verses[verse].text;
+                    var v = verses[verse];
+                    return verse + " " + (typeof v === "string" ? v : v.text);
                   }).join("\n\n")
                 };
               });
@@ -609,7 +614,7 @@
       ui.content.innerHTML = "";
       paraTexts = splitIntoParagraphs(resolved.text);
       paraTexts.forEach(function (text, pi) {
-        var p = el("p", "reader-para");
+        var p = el("p", "reader-para" + (cfg.bibleManifestUrl ? " reader-para--verse" : ""));
         p.dataset.para = String(pi);
         renderParaContent(p, text, pi);
         ui.content.appendChild(p);
