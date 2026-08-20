@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Prueba manual — VerboTTS</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.5; }
+  .caso { margin-bottom: 1.5rem; border-bottom: 1px solid #ddd; padding-bottom: 1rem; }
+  .entrada { color: #555; }
+  .salida { color: #0a5; font-weight: 600; }
+  .ok { color: green; }
+  .fail { color: red; font-weight: bold; }
+  button { margin-top: 1rem; padding: .5rem 1rem; margin-right: .5rem; }
+</style>
+</head>
+<body>
+<h1>Prueba manual de tts-player.js</h1>
+<p>Abrir este archivo directamente en el navegador (no requiere servidor — carga <code>./tts-player.js</code> con ruta relativa). No forma parte del sitio publicado.</p>
+<div id="resultados"></div>
+
+<h2>Prueba de voz (leerBloque)</h2>
+<p>Requiere altavoces/audio para verificar de oído la pausa título→cuerpo y que el guion de apertura no se lea.</p>
+<article id="bloque-demo" style="display:none">
+  <h2>Génesis 1</h2>
+  <p>—¿Qué haré para ser salvo? —dijo Cristiano, angustiado.</p>
+  <p>EVANGELISTA le señaló el camino angosto.</p>
+</article>
+<button id="btn-hablar">Leer bloque de ejemplo en voz alta</button>
+<button id="btn-detener">Detener</button>
+
+<script src="./tts-player.js"></script>
+<script>
+(function () {
+  var casos = [
+    {
+      etiqueta: 'a+b: numeral romano en referencia (Rutherford) — Isaías',
+      entrada: 'Como dice el profeta (Isa. liii. 10), el Señor quiso quebrantarlo.',
+      idioma: 'es',
+      esperado: 'Isaías capítulo 53, versículo 10'
+    },
+    {
+      etiqueta: 'a+b: numeral romano — Amós',
+      entrada: 'Recuerda lo dicho en Amós ix. 9 sobre el cedazo.',
+      idioma: 'es',
+      esperado: 'Amós capítulo 9, versículo 9'
+    },
+    {
+      etiqueta: 'a+b: numeral romano y lista de versículos — Mateo',
+      entrada: 'Mateo xiii. 25, 38 explica la parábola del trigo y la cizaña.',
+      idioma: 'es',
+      esperado: 'Mateo capítulo 13, versículos 25 y 38'
+    },
+    {
+      etiqueta: 'b: referencia con dos puntos, inline sin paréntesis (estilo patrística)',
+      entrada: 'Isaías 58:4-5 A nosotros nos dice el profeta lo que agrada a Dios.',
+      idioma: 'es',
+      esperado: 'Isaías capítulo 58, versículos 4 al 5'
+    },
+    {
+      etiqueta: 'b: referencia entre paréntesis + multi-referencia con punto y coma',
+      entrada: 'Así lo enseña la Escritura (Sal. 119:105; 2 Ped. 1:19).',
+      idioma: 'es',
+      esperado: null,
+      validar: function (s) {
+        return s.indexOf('Salmos capítulo 119, versículo 105') !== -1 &&
+               s.indexOf('2 Pedro capítulo 1, versículo 19') !== -1;
+      }
+    },
+    {
+      etiqueta: 'b: referencia en inglés (idioma "en")',
+      entrada: 'As it is written in Rom. 8:28, all things work together for good.',
+      idioma: 'en',
+      esperado: 'Romans chapter 8, verse 28'
+    },
+    {
+      etiqueta: 'c: mayúsculas sostenidas (Progreso del peregrino, nombres alegóricos)',
+      entrada: 'CRISTIANO se encontró con el Sr. DOS LENGUAS cerca de la Feria de Vanidad, y también apareció EVANGELISTA.',
+      idioma: 'es',
+      esperado: null,
+      validar: function (s) {
+        // "DOS" tiene 3 letras y queda intacto a propósito (regla es por
+        // palabra, no por frase); "LENGUAS" (7 letras) sí se normaliza.
+        return s.indexOf('Cristiano') !== -1 && s.indexOf('CRISTIANO') === -1 &&
+               s.indexOf('Evangelista') !== -1 &&
+               s.indexOf('DOS Lenguas') !== -1;
+      }
+    },
+    {
+      etiqueta: 'c: acrónimo corto de 1-3 letras (no debe tocarse)',
+      entrada: 'La ONU y la ADN no deben normalizarse aunque estén en mayúsculas.',
+      idioma: 'es',
+      esperado: null,
+      validar: function (s) { return s.indexOf('ONU') !== -1 && s.indexOf('ADN') !== -1; }
+    },
+    {
+      etiqueta: 'd: guion largo de diálogo al inicio de línea/párrafo',
+      entrada: '—¿Qué haré para ser salvo? —dijo Cristiano, angustiado.\n—No puedo evitarlo —respondió Evangelista.',
+      idioma: 'es',
+      esperado: null,
+      validar: function (s) {
+        var lineas = s.split('\n');
+        var ningunaEmpiezaConGuion = lineas.every(function (l) { return l.indexOf('—') !== 0; });
+        // El guion de cierre de la acotación intermedia NO está al inicio
+        // de línea, así que debe seguir intacto.
+        var guionMedioIntacto = s.indexOf('dijo Cristiano') !== -1 && s.indexOf('Cristiano, angustiado') !== -1;
+        return ningunaEmpiezaConGuion && guionMedioIntacto;
+      }
+    }
+  ];
+
+  var cont = document.getElementById('resultados');
+  var falladas = 0;
+  casos.forEach(function (caso) {
+    var salida = window.VerboTTS.normalizarTexto(caso.entrada, caso.idioma);
+    var pasa = caso.validar ? caso.validar(salida) : salida.indexOf(caso.esperado) !== -1;
+    if (!pasa) falladas++;
+    var div = document.createElement('div');
+    div.className = 'caso';
+    div.innerHTML =
+      '<strong>' + caso.etiqueta + '</strong><br>' +
+      '<span class="entrada">Entrada: ' + caso.entrada.replace(/\n/g, '⏎') + '</span><br>' +
+      '<span class="salida">Salida: ' + salida.replace(/\n/g, '⏎') + '</span><br>' +
+      '<span class="' + (pasa ? 'ok' : 'fail') + '">' + (pasa ? '✓ pasa' : '✗ falla') + '</span>';
+    cont.appendChild(div);
+  });
+
+  var resumen = document.createElement('h2');
+  resumen.textContent = falladas === 0
+    ? 'Todos los casos pasan (' + casos.length + '/' + casos.length + ')'
+    : falladas + ' de ' + casos.length + ' casos fallan';
+  resumen.className = falladas === 0 ? 'ok' : 'fail';
+  cont.parentNode.insertBefore(resumen, cont);
+
+  document.getElementById('btn-hablar').addEventListener('click', function () {
+    var el = document.getElementById('bloque-demo');
+    window.__ctrl = window.VerboTTS.leerBloque(el, {
+      idioma: 'es',
+      onFinished: function () { console.log('VerboTTS: lectura terminada.'); }
+    });
+  });
+  document.getElementById('btn-detener').addEventListener('click', function () {
+    if (window.__ctrl) window.__ctrl.stop();
+  });
+})();
+</script>
+</body>
+</html>
