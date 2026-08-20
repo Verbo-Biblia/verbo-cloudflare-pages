@@ -116,7 +116,7 @@ function estimateMaxTokens(text) {
 // "link:"/"session:"/"blob:"). Subido a v4 el 2026-08-12: una traducción de
 // "Verbo" (nombre de autor de Comentarios Verbo) había quedado cacheada como
 // un preámbulo conversacional que PREAMBLE_PATTERNS no atrapaba entonces.
-const TRANSLATE_CACHE_PREFIX = 'translate:v4';
+const TRANSLATE_CACHE_PREFIX = 'translate:v5';
 
 async function translateCacheKey(text, targetLang) {
   return `${TRANSLATE_CACHE_PREFIX}:${targetLang}:${await sha256Hex(text)}`;
@@ -277,6 +277,8 @@ The translation must read as natural, professional, contemporary ${targetLangNam
 When translating into Spanish, use natural contemporary Latin American Spanish unless the source itself requires a different historical, regional, technical, or stylistic register.
 
 Do not imitate English or other source-language word order when that structure sounds unnatural in Spanish.
+
+Never coin a hybrid word by attaching a target-language ending to a source-language root (e.g. adapting an English word with a Spanish suffix to invent a word that does not exist in Spanish). If a precise natural equivalent is uncertain, choose the closest real, established word in the target language rather than inventing one.
 
 Do not deliberately archaize the translation merely because the source is old.
 
