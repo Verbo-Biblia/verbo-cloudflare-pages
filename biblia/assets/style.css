@@ -1840,6 +1840,9 @@ body[data-theme="rosewood"] {
 }
 .verse-action-bar[hidden] { display: none; }
 @media (max-width: 760px) {
+  .verse-action-bar-positioner {
+    bottom: calc(var(--mobile-dock-height, 76px) + 8px + env(safe-area-inset-bottom, 0px));
+  }
   .verse-action-bar {
     --verse-action-scale: .75;
   }
