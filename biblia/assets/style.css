@@ -1834,6 +1834,12 @@ body[data-theme="rosewood"] {
   animation: barSlideUp .22s cubic-bezier(.16,1,.3,1);
 }
 .verse-action-bar[hidden] { display: none; }
+@media (max-width: 760px) {
+  .verse-action-bar {
+    scale: .75;
+    transform-origin: center bottom;
+  }
+}
 @keyframes barSlideUp {
   from { opacity:0; transform: translateX(-50%) translateY(12px); }
   to   { opacity:1; transform: translateX(-50%) translateY(0); }
