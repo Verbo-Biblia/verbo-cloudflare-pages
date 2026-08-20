@@ -247,7 +247,13 @@ body.iglesia-page {
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: cover;
+  /* contain, no cover: los fondos ya están compuestos a 4:5 (1080x1350)
+     igual que este contenedor, pero cover recorta en cuanto el redondeo
+     de píxeles del navegador desalinea el ratio real — se comía el
+     marco decorativo y parte del motivo de la pieza. contain nunca
+     recorta, como mucho deja un borde parejo si el ratio no calza
+     exacto. */
+  object-fit: contain;
 }
 /* Posición/tamaño/color/rotación via style="" inline por publicación
    (x/y/scale/rotation/fontFamily/color, dato puro — ver feed.js). Acá
@@ -386,7 +392,10 @@ body.iglesia-page {
   user-select: none;
 }
 .iglesia-editor-canvas__bg {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none;
+  /* contain, no cover — ver la misma nota en .iglesia-feed-post__bg img:
+     el editor tiene que mostrar exactamente lo mismo que se va a
+     publicar, nunca recortado. */
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none;
 }
 .iglesia-editor-canvas__empty {
   position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
