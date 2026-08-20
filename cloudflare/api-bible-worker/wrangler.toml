@@ -7,6 +7,7 @@ preview_urls = false
 [vars]
 ALLOWED_ORIGINS = "https://verbobiblia.com,https://www.verbobiblia.com,https://juvejona1978.github.io,http://localhost:8000,http://127.0.0.1:8000"
 APP_URL = "https://verbobiblia.com/biblia/"
+APP_URL_IGLESIA = "https://verbobiblia.com/iglesia/publicador.html"
 RESEND_FROM = "Verbo <no-reply@verbobiblia.com>"
 
 # Reemplaza "a1a2e2765ff34bc7b3abd1dbd17dfb71" con el id que entrega
