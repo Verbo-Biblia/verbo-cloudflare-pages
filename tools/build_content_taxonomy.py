@@ -614,14 +614,13 @@ MH_OUT = LIBRERIA / "matthew-henry"
 
 NAV_SVG = {
     "biblia": '<path d="M12 5C10 3.5 6.5 3 4 3.5v15c2.5-.5 6 0 8 1.5m0-15c2-1.5 5.5-2 8-1.5v15c-2.5-.5-6 0-8 1.5m0-15v15"/>',
-    "seminario": '<path d="M3 8.5L12 4l9 4.5-9 4.5-9-4.5Z"/><path d="M7 10.8V16c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5v-5.2"/>',
     "libreria": '<path d="M4 4h3v16H4zM9 4h3v16H9zM14 5l3-.5 2 15.5-3 .5z"/>',
     "recursos": '<path d="M4 4h16v4H4zM4 10h16v10H4z"/><path d="M9 14h6"/>',
 }
 
 
 def nav_block(root_rel, current):
-    items = [("biblia", "Biblia"), ("seminario", "Seminario"), ("libreria", "Librería"), ("recursos", "Recursos")]
+    items = [("biblia", "Biblia"), ("libreria", "Librería"), ("recursos", "Recursos")]
     out = [f'  <nav class="quick-nav" aria-label="Otras áreas de Verbo">']
     for key, label in items:
         cur = ' class="is-current"' if key == current else ""
