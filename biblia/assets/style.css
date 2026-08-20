@@ -1880,6 +1880,23 @@ body[data-theme="rosewood"] {
 }
 .verse-action-btn:hover { background: rgba(127,45,53,.09); }
 .verse-action-btn--secondary { font-weight: 500; opacity: .8; }
+.verse-action-btn--icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+}
+.verse-action-btn--icon svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 .verse-action-bar__close {
   border: none;
   background: none;

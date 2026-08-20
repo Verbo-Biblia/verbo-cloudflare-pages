@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     verseActionBar: document.getElementById('verseActionBar'),
     copyVerseText: document.getElementById('copyVerseText'),
     copyVerseRef: document.getElementById('copyVerseRef'),
+    shareVerse: document.getElementById('shareVerse'),
     closeVerseAction: document.getElementById('closeVerseAction'),
     backdrop: document.getElementById('sheetBackdrop'),
     sermonToggle: document.getElementById('sermonModeToggle'),
@@ -211,7 +212,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   // sincronizado) pero sí llegó una posición de lectura sincronizada de otro
   // dispositivo (VerboBackup, ver Fase 1 sync), usar esa versión — así la
   // Biblia elegida viaja entre dispositivos sin duplicar el mecanismo de sync.
-  let catalog, data, activeTab = null, currentVersion = localStorage.getItem('verbo:lastVersion') || VerboBackup.getPosicionBiblia()?.version || null, compareVersion = null;
+  const sharedPassageParams = new URLSearchParams(location.search);
+  const sharedVersion = sharedPassageParams.get('version');
+  const sharedBook = sharedPassageParams.get('book');
+  const sharedChapter = Number(sharedPassageParams.get('chapter'));
+  const sharedVerse = Number(String(sharedPassageParams.get('verse') || '').split(',')[0]);
+  let catalog, data, activeTab = null, currentVersion = sharedVersion || localStorage.getItem('verbo:lastVersion') || VerboBackup.getPosicionBiblia()?.version || null, compareVersion = null;
   let xrefTarget = null, xrefData = null;
   function resetXrefMode(){ xrefTarget = null; xrefData = null; }
   let sermonMode = false;
@@ -257,8 +263,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   let conversorCategoria=null;
   let conversorUnidadOrigen=null;
   const posicionBiblia = VerboBackup.getPosicionBiblia();
-  let currentBook = posicionBiblia?.libro || 'ROM';
-  let currentChapter = Number(posicionBiblia?.capitulo) || 7;
+  let currentBook = sharedBook || posicionBiblia?.libro || 'ROM';
+  let currentChapter = sharedChapter > 0 ? sharedChapter : (Number(posicionBiblia?.capitulo) || 7);
   const themes = [
     { id:'paper', sample:'#F1E3C8' },
     { id:'cream', sample:'#F5E7C8' },
@@ -368,7 +374,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!catalog.books.some(b => b.id === currentBook)) currentBook = catalog.books[0].id;
     els.book.value = currentBook;
     await refreshChapters();
-    await loadPassage();
+    await loadPassage({restoreVerse: sharedVerse > 0 ? sharedVerse : null});
   } catch (error) {
     console.error(error);
     showFatal(error);
@@ -405,7 +411,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     updateNavButtons();
   }
 
-  async function loadPassage({preserveVersion=true}={}) {
+  async function loadPassage({preserveVersion=true, restoreVerse=null}={}) {
     setLoading(true);
     resetXrefMode();
     try {
@@ -423,12 +429,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         ? compareVersion : preferredCompare;
       populateVersions();
       selectedVerses.clear();
-      renderChapter();
+      renderChapter(restoreVerse);
       updateActionBar();
       VerboBackup.setPosicionBiblia(currentBook, currentChapter, currentVersion);
       gospelOpenChapter=null;
       if (activeTab) renderPanel(activeTab);
       window.scrollTo({top:0, behavior:'smooth'});
+      if(restoreVerse){
+        requestAnimationFrame(()=>els.list.querySelector(`[data-verse-n="${restoreVerse}"]`)?.scrollIntoView({block:'center'}));
+      }
     } catch (error) {
       console.error(error);
       els.list.innerHTML = emptyState('⚠️', t('biblia.loadError'));
@@ -742,12 +751,44 @@ document.addEventListener('DOMContentLoaded', async () => {
     const nums=selectedVerseNumbers();
     if(!nums.length) return;
     const ctx=activeBibleContext();
-    const lines=nums.map(n=>{
+    copyToClipboard(selectedVerseText(ctx, nums));
+  }
+
+  function selectedVerseText(ctx, nums){
+    return nums.map(n=>{
       const verse=ctx.data.verses.find(v=>v.n===n);
       const text=verse?.text?.[ctx.version] || Object.values(verse?.text || {})[0] || '';
       return `${compactRef(ctx.book,ctx.chapter,[n])} ${String(text).replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim()}`;
-    });
-    copyToClipboard(lines.join('\n'));
+    }).join('\n');
+  }
+
+  async function shareSelectedVerses(){
+    const nums=selectedVerseNumbers();
+    if(!nums.length) return;
+    const ctx=activeBibleContext();
+    const text=selectedVerseText(ctx, nums);
+    const title=compactRef(ctx.book,ctx.chapter,nums);
+    // El enlace siempre debe ser público. En la app nativa `location.origin`
+    // puede ser capacitor://localhost y no serviría para quien lo recibe.
+    const url=new URL('https://verbobiblia.com/biblia/');
+    url.searchParams.set('version', ctx.version);
+    url.searchParams.set('book', ctx.book);
+    url.searchParams.set('chapter', String(ctx.chapter));
+    url.searchParams.set('verse', nums.join(','));
+    const shareUrl=url.toString();
+    try {
+      if(window.Capacitor?.isNativePlatform?.() && window.Capacitor?.Plugins?.Share){
+        await window.Capacitor.Plugins.Share.share({title,text,url:shareUrl});
+        return;
+      }
+      if(navigator.share){
+        await navigator.share({title,text,url:shareUrl});
+        return;
+      }
+    } catch(error) {
+      if(error?.name==='AbortError') return;
+    }
+    await copyToClipboard(`${text}\n${shareUrl}`);
   }
 
   // Antes solo Comentario/Comparar/Diccionario usaban la hoja parcial (72vh);
@@ -5566,6 +5607,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   els.sermonStrongDefPopupClose?.addEventListener('click', closeStrongPopup);
   els.copyVerseText?.addEventListener('click', copySelectedText);
   els.copyVerseRef?.addEventListener('click', copySelectedReferences);
+  els.shareVerse?.addEventListener('click', shareSelectedVerses);
   els.closeVerseAction?.addEventListener('click', ()=>{
     selectedVerses.clear();
     document.querySelectorAll('.verse--selected').forEach(x=>x.classList.remove('verse--selected'));
