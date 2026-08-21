@@ -73,18 +73,23 @@ def main() -> int:
         chapters[chapter] += 1
         groups[entry.get("sourceGroupId", entry_id)].append((chapter, start, end))
 
-        text = plain_text(entry.get("content", ""))
-        reasons = []
-        if match := LOST_HEADER_RE.search(text):
-            reasons.append(f"posible encabezado de versículo absorbido: {match.group(0)}")
-        if match := PAGE_NOISE_RE.search(text):
-            reasons.append(f"posible cabecera o pie de página: {match.group(0)}")
-        if match := OCR_GLYPH_RE.search(text):
-            reasons.append(f"glifo OCR sospechoso: {match.group(0)}")
-        if len(text) > 10000:
-            reasons.append(f"entrada excepcionalmente larga: {len(text)} caracteres")
-        if reasons:
-            review.append({"id": entry_id, "reference": ref, "reasons": reasons})
+        # Una entrada reemplazada desde una transcripción cotejada conserva en
+        # ocasiones referencias internas como “ver. 1.” que se parecen a un
+        # encabezado perdido. Esas señales ya fueron resueltas contra el
+        # facsímil y no deben volver a entrar en la cola automática.
+        if entry.get("editorialStatus") != "reviewed":
+            text = plain_text(entry.get("content", ""))
+            reasons = []
+            if match := LOST_HEADER_RE.search(text):
+                reasons.append(f"posible encabezado de versículo absorbido: {match.group(0)}")
+            if match := PAGE_NOISE_RE.search(text):
+                reasons.append(f"posible cabecera o pie de página: {match.group(0)}")
+            if match := OCR_GLYPH_RE.search(text):
+                reasons.append(f"glifo OCR sospechoso: {match.group(0)}")
+            if len(text) > 10000:
+                reasons.append(f"entrada excepcionalmente larga: {len(text)} caracteres")
+            if reasons:
+                review.append({"id": entry_id, "reference": ref, "reasons": reasons})
 
     missing_chapters = sorted(set(map(int, bible)) - set(chapters))
     if missing_chapters:

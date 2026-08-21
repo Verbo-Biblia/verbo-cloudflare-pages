@@ -9,7 +9,7 @@ incorporación del libro al manifest son operaciones manuales posteriores.
 import argparse
 import html
 import json
-from collections import Counter
+from collections import Counter, defaultdict
 from pathlib import Path
 
 
@@ -50,45 +50,88 @@ def main():
     if staging.get("book") != book_id:
         raise SystemExit(f"El staging es {staging.get('book')}, no {book_id}")
 
-    replacements = {}
+    replacements = defaultdict(list)
     if args.corrections:
         corrections = json.loads(args.corrections.read_text(encoding="utf-8"))
         if corrections.get("book") != book_id:
             raise SystemExit(f"Las correcciones son de {corrections.get('book')}, no de {book_id}")
+        normalized_headers = defaultdict(list)
+        for item in corrections.get("referenceHeaderCorrections", []):
+            normalized_headers[(
+                int(item["chapter"]),
+                item["ocr"],
+                item.get("section"),
+            )].append(item["corrected"])
+        used_header_corrections = Counter()
         for item in corrections.get("entryTextReplacements", []):
-            key = (int(item["chapter"]), item["sourceHeader"])
-            if key in replacements:
-                raise SystemExit(f"Reemplazo duplicado: {key}")
-            replacements[key] = replacement_html(item)
+            chapter = int(item["chapter"])
+            section = item.get("section", "exposition")
+            scoped_header_key = (chapter, item["sourceHeader"], section)
+            unscoped_header_key = (chapter, item["sourceHeader"], None)
+            header_key = (
+                scoped_header_key
+                if scoped_header_key in normalized_headers
+                else unscoped_header_key
+            )
+            correction_number = used_header_corrections[header_key]
+            available_headers = normalized_headers.get(header_key, [])
+            source_header = (
+                available_headers[correction_number]
+                if correction_number < len(available_headers)
+                else item["sourceHeader"]
+            )
+            if source_header != item["sourceHeader"]:
+                used_header_corrections[header_key] += 1
+            key = (
+                chapter,
+                source_header,
+                section,
+            )
+            replacements[key].append(item)
 
     seen = Counter()
     entries = []
-    used_replacements = set()
+    used_replacements = Counter()
+    group_replacements = {}
     for source_entry in staging["entries"]:
         section = source_entry.get("section")
         if section not in SECTION_CODES:
             raise SystemExit(f"Sección no admitida: {section!r}")
         reference = source_entry["reference"]
-        key = (int(reference["chapterStart"]), source_entry["sourceHeader"])
+        key = (int(reference["chapterStart"]), source_entry["sourceHeader"], section)
         content = source_entry["content"]
         # Los reemplazos versionados son la fuente más reciente cuando el
-        # staging temporal quedó rezagado. Solo corresponden a exposiciones.
-        if section == "exposition" and key in replacements:
-            content = replacements[key]
-            used_replacements.add(key)
+        # staging temporal quedó rezagado. La sección forma parte de la clave
+        # para no confundir exposiciones y homilías con el mismo encabezado.
+        replacement = None
+        source_group = source_entry.get("sourceGroupId", source_entry["id"])
+        if source_group in group_replacements:
+            replacement = group_replacements[source_group]
+        elif used_replacements[key] < len(replacements.get(key, [])):
+            replacement = replacements[key][used_replacements[key]]
+            used_replacements[key] += 1
+            group_replacements[source_group] = replacement
+        if replacement is not None:
+            content = replacement_html(replacement)
         entry = {
             "id": normalized_id(book_id, source_entry, seen),
             "title": source_entry["title"],
-            "author": args.author,
+            "author": replacement.get("author", args.author) if replacement else args.author,
             "section": section,
             "sourceHeader": source_entry["sourceHeader"],
             "editorialStatus": "ocr-unreviewed",
             "reference": reference,
             "content": content,
         }
+        if replacement and replacement.get("editorialNote"):
+            entry["editorialNote"] = replacement["editorialNote"]
         entries.append(entry)
 
-    unused = set(replacements) - used_replacements
+    unused = {
+        key: len(items) - used_replacements[key]
+        for key, items in replacements.items()
+        if len(items) != used_replacements[key]
+    }
     if unused:
         raise SystemExit(f"Reemplazos no aplicados: {sorted(unused)}")
     if len({entry["id"] for entry in entries}) != len(entries):

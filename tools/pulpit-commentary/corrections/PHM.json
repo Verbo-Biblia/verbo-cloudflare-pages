@@ -18,9 +18,9 @@
     {
       "chapter": 1,
       "ocr": "Vere. 6, 6.",
-      "corrected": "Ver. 6.",
+      "corrected": "Vers. 5, 6.",
       "physicalPage": 19,
-      "reason": "El facsímil impreso repite el 6 en ‘Vers. 6, 6’; se normaliza el encabezado tipográfico duplicado a un único rango, pues la homilía trata el versículo 6."
+      "reason": "El facsímil muestra claramente ‘Vers. 5, 6’; el OCR leyó el 5 como 6 y degradó la s. La corrección anterior a ‘Ver. 6.’ era incorrecta y omitía la asociación legítima con Filemón 1:5."
     },
     {
       "chapter": 1,
@@ -100,6 +100,27 @@
       "corrected": "faith",
       "physicalPage": 29,
       "reason": "El facsímil muestra ‘faith’; el OCR leyó la t como 1."
+    },
+    {
+      "chapter": 1,
+      "ocr": "Vel'll. 9, 10.-Love's motit•e-power.",
+      "corrected": "Vers. 9, 10.-Love's motive-power.",
+      "physicalPage": 24,
+      "reason": "El facsímil muestra ‘Vers. 9, 10.—Love's motive-power’; el OCR degradó el encabezado hasta impedir que el conversor detectara la entrada completa."
+    },
+    {
+      "chapter": 1,
+      "ocr": "\\\"era. 8--11.-.Appeal by ,m,treaty raJli.er than command.",
+      "corrected": "Vers. 8-11.-Appeal by entreaty rather than command.",
+      "physicalPage": 26,
+      "reason": "El facsímil muestra ‘Vers. 8–11.—Appeal by entreaty rather than command’; el OCR sustituyó la V inicial por comillas y degradó el título, impidiendo que el conversor detectara la entrada."
+    },
+    {
+      "chapter": 1,
+      "ocr": "Vel'11. 18, 19.-The upostW,fr-k a,captanceofpe,eu11iaryrespOfUJiot1ityfor Onaimu,.",
+      "corrected": "Vers. 18, 19.-The apostle's frank acceptance of pecuniary responsibility for Onesimus.",
+      "physicalPage": 28,
+      "reason": "El facsímil muestra ‘Vers. 18, 19.—The apostle's frank acceptance of pecuniary responsibility for Onesimus’; el OCR degradó tanto el encabezado como el título e impedía separar esta homilía de Ver. 17."
     }
   ],
   "entryTextReplacements": [
@@ -228,6 +249,437 @@
       "reason": "Entrada completa cotejada línea por línea contra la columna derecha de la página física 15 y su continuación en la columna izquierda de la página física 16. Se restauran los verbos griegos, la referencia a la LXX y la puntuación degradada por la capa OCR.",
       "paragraphs": [
         "But without thy mind I would do nothing. The “would” of ver. 13 is ἐβουλόμην; the “would” here is ἠθέλησα. The former denoted natural but indeterminate impulse; the latter deliberate conclusion of the will (cf. Rom. vii. 15, 16). Mind; i.e. knowledge and decision. “Why was he unwilling? For many causes. (1) Because grave penalties were denounced by Roman law upon those who received or retained fugitive slaves. (2) That he might not seem to keep back something which was due to Philemon, perhaps to his injury; of which, perhaps, Philemon might have complained. (3) Because Onesimus himself chose to go back, in order that he might show conclusively that he had not embraced the Christian religion that he might withdraw himself from the power of his lawful lord. (4) That the gospel might not be by this means slandered, as if under the pretext of it slaves might withdraw themselves with impunity from their lords” (Estius and others). Thy benefit—goodness (Revised Version)—as it were of necessity, but willingly. Philemon would not really have had the choice of granting or refusing given to him, had St. Paul kept Onesimus still at Rome, and merely written to inform him of the fact. His consent might then fairly have been said to be extorted, not freely given. This latter word is an ἅπαξ λεγόμενον (unique phrase) so far as the New Testament is concerned, though it is found in Numb. xv. 3 of the LXX., as in Xenophon and other classical writers. In Heb. x. 26 and 1 Pet. v. 2 the adverb ἑκουσίως is found."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 15.",
+      "physicalPages": [16],
+      "reason": "Entrada completa cotejada línea por línea contra la columna izquierda de la página física 16. Se restauran palabras, puntuación, referencias y la frase latina degradadas por el OCR.",
+      "paragraphs": [
+        "Therefore; for this purpose (final cause). Departed for a season. He was therefore parted from thee for a time (Revised Version). For ever; everlastingly (accusative, not an adverb). The relation of master and slave would have been in any case, and would still be, terminated by death. But it was now replaced by a new relation of Christian brotherhood, which would be permanent—a great advantage. So Calvin, Grotius, and many others. Meyer's objection does not seem of much weight (compare the Perpetua mancipia of Exod. xxi. 6; Deut. xv. 17). Baur thinks that in this verse he has reached the core of the Epistle—the ethical truth which it seeks to embody (but see Introduction: “Authenticity and Characteristics”)."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 16.",
+      "physicalPages": [16],
+      "reason": "Entrada completa cotejada línea por línea contra la columna izquierda de la página física 16. Se restauran palabras, puntuación y la expresión griega degradadas por el OCR.",
+      "paragraphs": [
+        "Not now as a servant, but above a servant, a brother beloved. So great a difference had his Christian calling and profession made to him and to others. Both in the flesh and in the Lord. A hysteron proteron. The apostle is pleading on behalf of Onesimus this new bond of Christian relationship, which was in the Lord, that it should bring about a renewed fulness of personal relation. In the flesh, because “in the Lord.”"
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 17.",
+      "physicalPages": [16],
+      "reason": "Entrada completa cotejada línea por línea contra la columna izquierda de la página física 16. Se restauran palabras, puntuación, referencias y el término griego degradados por el OCR.",
+      "paragraphs": [
+        "If thou count me therefore a partner; if thou holdest me for a friend—by our friendship I entreat this. The strongest form of entreaty possible to be used. Κοινωνία in Acts ii. 42 refers to the Holy Communion, and in 1 Cor. x. 16–21 partakers of it are plainly called by implication κοινωνοί—partakers, or, as we should say, “communicants.” But here the sense is apparently as above; literally, a partner."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 18.",
+      "physicalPages": [16],
+      "reason": "Entrada completa cotejada línea por línea contra la columna izquierda de la página física 16. Se restauran palabras, puntuación, siglas de códices y el término transliterado degradados por el OCR.",
+      "paragraphs": [
+        "[But] if he hath wronged thee [at all]. It would have been needlessly irritating to Philemon to go into the details of Onesimus's offences. No doubt St. Paul had had an account of them from the repentant youth, but he had far too much tact to occupy himself and Philemon in the discussion of details. The hypothetic form avoids the whole of these. It suffices that he assumes the responsibility of repayment. Owes thee anything. As a matter of moral right at the bar of conscience. For in a secular court the slave could be neither debtor nor creditor, properly speaking, as against his master. This offence was probably embezzlement or purloining while in service. A, C, D*, F, G, א, read (elloga), reckon it to me."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 19.",
+      "physicalPages": [16],
+      "reason": "Entrada completa cotejada línea por línea contra ambas columnas de la página física 16. Se restauran palabras, puntuación, la cita latina y el término griego degradados por el OCR.",
+      "paragraphs": [
+        "I Paul have written—write it (Revised Version)—with my own hand, I will repay it. Thus St. Paul took upon himself legally the repayment of the debt. “Prioribus verbis proprie cautio [a bail or security] continetur: his autem constituti obligatio. Hoc Latine dicitur pecuniam constituere: de quo titulus est in Digestis (Ἀναδέχεσθαι) dicunt Græci” (Scipio Gentilis). Albeit I do not say to thee, etc.; “though I do not remind thee [while so saying] that thou owest even thyself to me!” Philemon owed to the apostle that debt of which the obligation outweighed every other—the help by which he had been led out of spiritual darkness and brought to the knowledge of the truth. St. Paul was (as we must conclude from this allusion) the “spiritual father” of Philemon—a phrase he himself uses in 1 Cor. iv. 15."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 20.",
+      "physicalPages": [16],
+      "reason": "Entrada completa cotejada línea por línea contra la columna derecha de la página física 16. Se restauran palabras, puntuación, siglas de códices y expresiones griegas y latinas degradadas por el OCR.",
+      "paragraphs": [
+        "Yea, indeed, brother, let me have joy of thee. This word (ὀναίμην) is from the same root as the word “Onesimus,” and the apostle, more suo, relaxing into his friendly familiar manner after the grave and touching language of the last few verses, plays upon the word. Let me have profit of thee—let me have Onesimus of thee. In the Lord (comp. 1 Cor. x. 31). The phrase is twice repeated in this verse, and is very characteristic of St. Paul. But A, C, D*, F, G, L, read en Christo in the second clause. א has been altered, χῷ for κῷ, secund.; “refresh my heart in Christ” (Revised Version)."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 21.",
+      "physicalPages": [16],
+      "reason": "Entrada completa cotejada línea por línea contra la columna derecha de la página física 16. Se restauran palabras y puntuación degradadas por el OCR.",
+      "paragraphs": [
+        "I wrote unto thee; write (Revised Version; see ver. 19), or perhaps referring back, as in ver. 19, to the request in ver. 17. The strong, fervid, and repeated appeals of the apostle had not been caused by distrust of Philemon, nor of their own efficacy, but were the natural outcome of the strong interest he felt in the case of Onesimus, and the desire he felt to replace him in the favour of his master; partly also, perhaps, to the warmth and fervour of his natural character, which uttered itself involuntarily in forcible expressions."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 22.",
+      "physicalPages": [16, 17],
+      "reason": "Entrada completa cotejada línea por línea contra la columna derecha de la página física 16 y su continuación en la columna izquierda de la página física 17. Se restauran palabras, nombres, puntuación y el término griego degradados por el OCR.",
+      "paragraphs": [
+        "Lodging. There was this one additional inducement that could be brought to bear upon the mind of Philemon, viz. the expectation of speedily seeing him in person, and this, in conclusion, he uses. “I do not think that the apostle was so rich or encumbered with such great packages that he needed a lodging prepared beforehand, and was not content with a narrow dwelling-place, but thought the most spacious houses scanty for the accommodation of his small body; but that, while Philemon was expecting [the apostle] to come to him, he would the more do what he had requested” (Jerome). Meyer makes much of the improbability that St. Paul, starting from Rome, should bespeak a lodging in Colossæ. Yet he suggests that it was perfectly natural that, starting from Cæsarea, the apostle should take Colossæ on the road to Rome. But the one seems almost as probable as the other. The apostle, on his release, had, so far as we know, no definite plans; the cities of Asia Minor were familiar to him, and he would naturally prepare to go wherever the first pressing occasion, that of Onesimus, called him. א reads ἀσπάζεται, “salutes.”"
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Vere. 23, 24.",
+      "physicalPages": [17],
+      "reason": "Entrada completa cotejada línea por línea contra ambas columnas de la página física 17. Se restauran nombres, referencias, puntuación y la comparación tabular degradados por el OCR; la clave conserva el encabezado OCR requerido por el conversor.",
+      "paragraphs": [
+        "Salute. The salutations correspond generally to those with which the Epistle to the Colossians closes, but they are fuller, as is natural, in the longer Epistle. The order is in—",
+        "Colossians: Tychicus; Onesimus; Aristarchus; Marcus; Jesus Justus; Epaphras; Lucas; Demas. Philemon: Epaphras; Marcus; Aristarchus; Demas; Lucas.",
+        "My fellow-prisoner. The word occurs elsewhere only in Rom. xvi. 7, besides the parallel passage in Col. iv. 10. As to Epaphras, see above. Marcus, having once forsaken the apostle (Acts xiii. 13; xv. 37–39), had now returned, and was with him in Rome. Aristarchus was “a Macedonian of Thessalonica,” and had accompanied St. Paul in his memorable voyage to Rome (Acts xxvii. 2). Demas was now the “co-worker” of the apostle at Rome, but at a later period he had departed unto Thessalonica (2 Tim. iv. 10), and we know nothing of his subsequent history. Tradition (Epiph., ‘Hær.,’ xli. 6) relates that he also apostatized from Christianity; but the apostle's phrase, though a strong one, does not necessarily mean this. Lucas (see 2 Cor. viii. 18)."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 25.",
+      "physicalPages": [17],
+      "reason": "Entrada completa cotejada línea por línea contra la columna derecha de la página física 17. Se restauran palabras, puntuación y el término griego degradados por el OCR.",
+      "paragraphs": [
+        "The grace. A omits ἡμῶν. Theodoret has appended the following to his commentary: “It is fitting that those who have obtained the privilege of handing on the holy doctrine should so teach servants to submit themselves to their lords, that through all things Jesus Christ may be praised, to whom with the Father and the most Holy Spirit belong glory and greatness now and always and for ever. Amen.”"
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ven. 1-3.",
+      "section": "homiletics",
+      "physicalPages": [17],
+      "reason": "Entrada homilética completa cotejada línea por línea contra la sección inferior de la página física 17. Se restauran el título, palabras, referencias, numeración, puntuación y énfasis textual degradados por el OCR; la clave conserva el encabezado OCR requerido por el conversor.",
+      "paragraphs": [
+        "The hallowing of the ordinary intercourse of life. The salutation. Philemon's house had become a church, and the Church was in his house; thereby the household was made holy. Every household should likewise be made holy by the Christian profession and practice of its heads—the master and mistress. A profession of religion alone will not have this effect; there must be the daily practice of self-restraint, forbearance, Christian charity, and mutual love. Religion not wholly or chiefly an intellectual or doctrinal belief, though it is founded upon historical facts and shaped by the truths of the Creed. It is essentially practical; belief issuing in action—“faith which worketh by love” (Gal. v. 6; Jas. ii. 20–22).",
+        "I. No kind of intercourse between Christians but is capable of being thus hallowed. As e.g. that arising from the relations of husband and wife (Eph. v. 25–31; Titus ii. 4); of parents and children (Eph. vi. 1; 1 Tim. iii. 4); of masters and servants (Eph. vi. 5–9; 1 Cor. vii. 21, 22); of citizens bound to obey the governing power of the state in all things lawful (1 Pet. ii. 13, 14); of friends and equals (John xiii. 34; 1 Cor. viii. 13); of rich persons and poor persons, unequal in worldly station, but brethren, nothing less than brethren, as they can be nothing more, in Christ (Jas. ii. 6–9).",
+        "II. How these relations are to be hallowed. 1. Speaking generally, by the practice of religious principles. But specifically, by restraining the natural selfishness of human hearts. Love draws people together; selfishness separates them—isolates each in the pursuing of his own objects: “All seek their own, and not the things which are Jesus Christ's.” 2. By the endeavour to restrain the tongue from speaking evil (Ps. xxxiv. 13). Angry words, retorts reckless of truth and only meant to wound the hearer, scandal, angry and inconsiderate words to dependents,—what frequent occasions of sin are these! The tongue is the great medium of social intercourse, and it must be brought under control, if that is to be hallowed (Jas. iii. 5, 6). 3. The family relation is hallowed especially by family prayer. God dwells in an especial manner in the homes where he has been thus invoked by the family as a whole. Family prayer at once the expression of the Christian character and the means of preserving it and making it purer."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 3.",
+      "section": "homiletics",
+      "physicalPages": [18],
+      "reason": "Entrada homilética completa cotejada línea por línea contra la mitad superior de la página física 18. Se restauran el título, palabras, referencias, numeración y puntuación degradados por el OCR.",
+      "paragraphs": [
+        "The Christian family. The family of Philemon was Christian, doubtless, both in profession and practice. Many families at the present day are Christian in profession, but not in practice. The family really Christian may be known (like the individual) by its fruits (Matt. vii. 20).",
+        "I. In it God's Name is honoured. He is habitually regarded and spoken of as the Giver of all the family happiness, and of whatever measure of prosperity it enjoys. The parents have received from him their children as a charge to be brought up “in the nurture and admonition of the Lord.” Children recognize without hesitation the duty of obedience as paramount to all self-pleasing (Eph. vi. 1).",
+        "II. In it, therefore, the Law of God is recognized as the guide of life by both parents and children.",
+        "III. In it (that is, by its members) the public observances of religion are diligently kept. The habits of the household are so arranged as not to put unnecessary hindrance in the way of either the family or servants attending public worship at the proper times. Unnecessary labour on Sunday is not required, nor even permitted.",
+        "IV. In it, furthermore, God is willingly entrusted with its destinies. “In everything by prayer and supplication with thanksgiving let your requests be made known unto God” (Phil. iv. 6), and, as the correlative of this, “be careful for nothing;” that is, anxious and distressed about it. These are the rules which have been found of sovereign power in the Christian family.",
+        "V. As the law of God is in it the restraining rule, so the love of God is the inspiring motive. “Followers of God, as dear children” (Eph. v. 1), not performing the mechanical and enforced obedience of the slave, nor even merely the habitual obedience which can be instilled by education and training; but the free, unforced, willing, elastic service which is prompted by the love of a child.",
+        "VI. Lastly, in the Christian family charity is taught by precept and by example. The voice of slander is not heard in it. The elders are not “weary in well-doing,” and the younger learn (1 John iii. 17) that to help those who have need is to have something of the likeness of God, and to act under the direction of God's good Spirit."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Vers. 4, 5.",
+      "section": "homiletics",
+      "physicalPages": [18, 19],
+      "reason": "Entrada homilética completa cotejada línea por línea contra la mitad inferior de la página física 18 y su continuación al inicio de la página 19. Se restauran el título, palabras, referencias, numeración, puntuación y la cita poética degradados por el OCR.",
+      "paragraphs": [
+        "The constituent parts of acceptable prayer: thanksgiving, intercession, personal petitions.",
+        "1. An example of these here, incidentally given, not purposely, in St. Paul's practice with regard to Philemon. He was not familiarly known to the apostle. Perhaps it was with a certain surprise he learned that the great apostle habitually “made mention of him” in his prayers. In like manner, many Christians are being helped, without their own knowledge, by the prayers of others. The apostle's example to be followed.",
+        "2. Thanksgiving a necessary part of prayer. “I thank my God.” If this be omitted, we are ungrateful, and so our devotion will not be acceptable to God. We must thank God for past mercies bestowed upon us and upon others. Our service is not really devotion without this, but the reverse. A want of duty towards God therefore a sin (Ps. cix. 7).",
+        "3. Intercession for others. “Making mention of thee always in my prayers.” This the duty thrown upon us by our Christian fellowship. In this the “communion of saints” is shown forth. It is not to be confined to our immediate connections and friends. Philemon was not intimately known to St. Paul, yet he was remembered by him. Prayer without intercession is selfish, and therefore unacceptable to God. It may be that their too manifest selfishness of tone is the reason that many of our prayers do not obtain from God the answer they crave (Isa. i. 15). It ought always to embrace the whole Church of Christ, not merely that part of it in which we are immediately interested. This would have a reflex action upon ourselves, and would tend towards eventual union among us; for when the sympathies of the heart are wide, the sympathies of the intellect will hardly remain narrow.",
+        "4. Petitions for our personal needs are never likely to be absent from our prayers. The danger will be that they should form too large a part of them. They need to be restrained and regulated, not indulged. As the Christian grows in saintliness, his prayers for self will come to be more and more for spiritual blessings instead of temporal. At length they will be merged in the comprehensive petition that God's will may be done in the petitioner, and his Name glorified.",
+        "5. To cease analysis, and take a complete view of prayer, we find it to sum up in itself all the sentiments which the human soul should entertain towards its Divine Creator. “Prayer is the soul's sincere desire, uttered or unexpressed.” Therefore gratitude, confidence, affection, hope, anxiety for others or for ourselves, penitence, should all in their degree enter into our prayers. But none of these should monopolize them."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Vere. 6, 6.",
+      "section": "homiletics",
+      "physicalPages": [19],
+      "reason": "Entrada homilética completa cotejada línea por línea contra la página física 19. Se restauran el título, palabras, citas, referencias, numeración y puntuación degradados por el OCR; el rango correcto del facsímil es `Vers. 5, 6.`.",
+      "paragraphs": [
+        "Man glorifying God. Man is created for God's glory, and finds the highest end of his being, therefore, in glorifying him. Four ways may be distinguished in which he does this.",
+        "I. The way of good deeds done in his strength, which cause others to glorify him. “Let your light so shine before men, that they may see your good works, and glorify your Father which is in heaven” (Matt. v. 16). This is the mode referred to here: “That thy faith may become effectual by the acknowledging of every good thing which is in you.” The mutual benevolence of Christians was thus to God's glory, and tended to bring others into the fold.",
+        "II. The way of worship—an ancient, universal, and proper way. Acts of worship are directed to God. That they may be really to his glory, they must be for God; that is, he must be, not their object merely, but their end (Manton). As far as secondary motives prevail in our worship, so far it is for those motives, and not purely to God's glory. The sole element to be reckoned in worship is the earnestness, piety, and sincerity of the worshipper. God is no more glorified of necessity by great outward beauty and splendour; he is no less glorified by the barest simplicity, if the devotion be equal. The accessories of worship are for man's help, and to assist man's feeble and purblind view of eternal realities; and are not otherwise to God's glory than as they are fit vehicles of man's devotion.",
+        "III. The third way of obedience. Man glorifies God when he becomes that which God intended him to be. He realizes by obedience the thought of God when he said, “Let us make man in our image.” This was lost through the sin of Adam, and it is in process of restoration through the obedience of Christ, in individual Christians as they successively live upon the earth.",
+        "IV. God is best glorified, therefore, by this obedience of the soul and life. Hooker says, “Should you erect to him a temple more magnificent than Solomon's, and load his altars with hecatombs of sacrifices, and make it perpetually ring with psalms and resounding choirs of hallelujahs, it would not be comparably so great an honour to him as to convert your own souls into living temples, and make them the habitations of his glory and perfection. For he values no sacrifices like that of an obedient will, delights in no choir like that of pure and heavenly affections, nor hath he in all his creation an ensign of honour so truly worthy of him as that of a Divine and God-like soul, a soul that reflects his image, and shines back his own glory upon him.”"
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Vera. 8-10.",
+      "section": "homiletics",
+      "physicalPages": [19, 20],
+      "reason": "Entrada homilética completa cotejada línea por línea contra el final de la página física 19 y la mitad superior de la página 20. Se restauran el título, palabras, fechas, referencias, numeración y puntuación degradados por el OCR; la clave conserva el encabezado OCR requerido por el conversor.",
+      "paragraphs": [
+        "The religion of Christ a defence of social order, not a disturbing force. There have been religions which have been simply forces of destruction. Mohammedanism, when it was first preached, and even to this day, as far as its power extends, has the Koran in one hand and the scimitar in the other, and offers but the alternatives of conversion, slavery, or death. The actors in the French Revolution of 1789 strove to spread their new gospel of liberty, equality, and fraternity at the point of the sword. Communism in 1870, and Nihilism since, make war upon all that is old, and desire to destroy all existing social organizations to make room for their own schemes. These are destructive forces in human nature, and nothing more.",
+        "I. The religion of Christ is not itself a secular polity or form of government. It does not, therefore, seek to uproot the social order which exists in any country. It, indeed, acts upon the individuals which compose the nation, and so in course of time transforms from within the institutions of the country. But it does not attack them from without; and therefore it is compatible with any form of government.",
+        "II. It exercises no compulsory power, no physical force. It works through the will of the person addressed, and leads, but does not compel. That is the characteristic method of Christianity. Thus St. Paul would not force the will of Philemon. His apostolic authority would have warranted his speaking in a tone of command: “I might be much bold in Christ to enjoin thee that which is convenient.” But he preferred to persuade: “For love's sake I rather beseech thee.”",
+        "III. The Christian religion, therefore, makes good citizens. “Fear God. Honour the king” (1 Pet. ii. 17). It expressly recognizes the ruling powers de facto as entitled to obedience, and as the representatives of the Divine principle of authority and government (1 Pet. ii. 13); as having the right, therefore, to be legally obeyed. It inculcates quiet and peaceful conduct, harmless, law-abiding, observant to perform contracts and obligations (1 Thess. iv. 11, 12), and directs each to be careful of the rights of others (1 Thess. v. 15; Phil. ii. 4). These are the characteristics of its true followers; and in all its system it keeps in mind the great objects of promoting peace and unity, of qualifying its people by the elevation of their personal characters for the fullest measure of liberty, and at length of eternal happiness. It is the surest defence of nations."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 11.",
+      "section": "homiletics",
+      "physicalPages": [20],
+      "reason": "Entrada homilética completa cotejada línea por línea contra la sección central de la página física 20. Se restauran el título, palabras, citas, referencias, numeración y puntuación degradados por el OCR.",
+      "paragraphs": [
+        "Ungodly men are unprofitable to themselves and to others.",
+        "I. Is sin, then, profitable to the sinner? Whether the pleasures of sense or the possessions and honours of the world have prompted him to sin, it will be found that they alike issue in vanity and vexation. Should the desires not be satisfied, then the discontented appetite thirsts for more, and renders the man unhappy. If it be satisfied, yet it is a satisfaction of weariness, not contentment (Rom. vi. 21), and there is a sting of shame in the recollection of such pleasures.",
+        "II. “The wages of sin is death” (Rom. vi. 23)—a penalty which must necessarily outweigh any apparent profit or pleasure arising from sin, however great it can be supposed to be. “What shall a man give [or, ‘receive’] in exchange for his soul?” (Mark viii. 36, 37). Sin were unprofitable if we should only consider the ultimate consequences of exhaustion and satiety which it has on the sinner. When the judgment of God is taken into account, it becomes absolute and manifest folly. Two facts to be borne in mind: (1) man is accountable for what he does; and (2) he has an immortality of future existence in which to bear the penal consequences of his doing. Could the sinner have but a single sight of the awful fires of hell, he could never again doubt whether the sin which leads men thither were in any sense of the word profitable to any human being.",
+        "III. Is the sinner, then, profitable to others? He is rendered unprofitable to others in so far as he is given up into the power of sin. Onesimus had been “unprofitable” (ver. 11) in time past to Philemon, because, under the influence of sinful motives (we do not know of what precise kind), he had sought dishonestly his own interest, not his master's. The dishonest person will cheat his master or employer; the deceitful person will deceive others; and they are thus “unprofitable” in various ways to those who are brought into communication with them. Onesimus had become Christian, and his unprofitableness had disappeared. He was transformed by the grace of God. Self-seeking, dishonesty, untruthfulness, need not thenceforth be looked for from him (although these were the usual vices of the slave). He would be able to be trusted, and therefore he was profitable. See the influence of Christian motives. He would be faithful to Philemon as to others, kind, preferring others to himself (Phil. ii. 3, 4)."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 15.",
+      "section": "homiletics",
+      "physicalPages": [20, 21],
+      "reason": "Entrada homilética completa cotejada línea por línea contra el final de la página física 20 y la mitad superior de la página 21. Se restauran el título, palabras, citas, referencias, numeración y puntuación degradados por el OCR.",
+      "paragraphs": [
+        "Treasures in heaven.",
+        "I. Christians have the promise, not only of the life that now is, but of that which is to come. (1 Tim. iv. 8.) Philemon had had before a legal property in Onesimus, which was, however, temporary, because it necessarily ended at latest with the life of either man. But in gaining the tie of Christian fellowship with him, he obtained an interest in him which would endure permanently; and so Philemon had, in a sense, “received him for ever.”",
+        "II. This is therefore a typical instance. The world has only temporal and temporary treasures to offer; religion has eternal and abiding ones. “The things that are seen are temporal, but the things which are not seen are eternal” (2 Cor. iv. 18); the one has time for its sphere of action, and is bounded by time; the other has eternity.",
+        "III. Spiritual gifts and blessings are begun in this world, but will not be fully possessed by the blessed until after the final judgment. They are an inheritance—“treasures in heaven.” The Christian, as he “grows in grace,” possesses more and more completely: 1. Love and subjection towards God. 2. Love, sympathy, and forgiveness towards his neighbour. 3. Watchfulness and self-control over himself. The apostle enumerates these spiritual blessings without classification (Gal. v. 23), as “love, joy, peace, long-suffering, gentleness, goodness, faith, meekness, temperance.” The sum and substance and crown of them all is righteousness—an approximation, by the transforming power of the Holy Spirit of God, to the ideal of perfect manhood; that is, “to the measure of the stature of the fulness of Christ” (see Eph. iv. 13). And this righteousness prepares the soul for the presence of God (Luke xvii. 21). While other treasures, therefore, are possessions of the body, or at most of the mind, “treasures in heaven” belong to the soul, that is, to the immortal and permanent part of man's nature, and are to be valued accordingly.",
+        "IV. How eternal blessings are to be desired and sought for. 1. In preference to all other things, because of their greater importance. “Seek ye first the kingdom of God” (Matt. vi. 33), and also vers. 19, 20, “Lay up for yourselves treasures in heaven,” etc. 2. With all earnestness. “Strive to enter in” (Luke xiii. 24), as men who are so much in earnest as to be “violent” (Matt. xi. 12). 3. By the practice of graces given: of faith (2 Pet. i. 5), of charity and almsgiving (1 Tim. vi. 18, 19), of the knowledge of the Saviour and of heavenly things (2 Pet. iii. 18).",
+        "V. The Christian has the guarantee of God himself that his hopes for eternal happiness shall not be disappointed (2 Tim. i. 12; 1 Pet. iv. 19)."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 16.",
+      "section": "homiletics",
+      "physicalPages": [21, 22],
+      "reason": "Primera entrada homilética con este encabezado, cotejada línea por línea contra la mitad inferior de la página física 21 y su continuación al inicio de la página 22. Se restauran el título, palabras, cifras, citas, referencias, numeración y puntuación degradados por el OCR.",
+      "editorialNote": "Las cifras sobre población esclavizada en Ática, Corinto y Roma, y la lectura causal de la Guerra Civil estadounidense, reflejan estimaciones e interpretación histórica del siglo XIX; deben contrastarse con investigación histórica contemporánea.",
+      "paragraphs": [
+        "Christianity not permanently compatible with slavery as an institution.",
+        "I. It follows from the consideration of Christian brotherhood that, although it finds many slaves, yet it shall gradually raise them to a state of freedom. It frees their souls at once. They become “the Lord's freemen” (1 Cor. vii. 22), and the body cannot always remain bound when the soul is free. Thus, though it does not cut down the tree (of slavery), it severs the roots, and a state of slavery cannot therefore permanently flourish among Christians.",
+        "II. This is also the teaching of history. It was an age of slavery in which this Epistle was written. Europe and Asia were occupied by an immense population of slaves, far outnumbering the free persons. In the province of Attica alone there were four hundred thousand slaves and only thirty-one thousand freemen. In Corinth there were four hundred and sixty thousand slaves. It was not uncommon in Rome (where the apostle was at the time of writing) for one rich man to possess as many as ten or even twenty thousand slaves. They cultivated the fields; they monopolized all the trades. It was an age of slavery. Into this state of society the gospel of Christ came. It did not, indeed, propose to break the bonds of all slaves, and reach the kingdom of God through social convulsion and much bloodshed. Its propagators did not preach a servile revolt.",
+        "III. It proposed not a temporal but a spiritual freedom to its followers. It recognized all alike as immortal beings. There was one Church for all, whether bond or free; and the same sacraments in which all should participate. Other forms of religion had treated the slave as a chattel; this alone regarded him as a man. It raised into activity the moral powers of his nature. He had been managed by the fear of punishment merely. But the gospel spoke to him of moral differences in conduct—of right and wrong; it awoke in his soul an inspiring hope. It predicted a day of judgment, in which the difference between a good and evil life should have the most momentous consequences to each individual. Thus it transformed the slave altogether. He began to look before and after; to raise his thoughts, his hopes, and his voice to heaven; and to understand what was the “liberty wherewith Christ had made him [though a slave] free” (Gal. v. 1), even “the glorious liberty of the children of God” (Rom. viii. 21).",
+        "IV. To the master also the very same ends were proposed. He, too, was to run the same Christian course with his slave, guided by the same principles, helped by the same hopes, and constrained by the same sanctions. A similar object soon produced a similarity of character; and a similarity of (Christian) character brought about sympathy of feeling. In the rising tide of Christian fellowship the worst hardships of slavery melted away, even long before it was formally abolished. It became an anachronism, a relic of a vanished and gone-by condition of things.",
+        "V. And as it was in the first period of the gospel, so it has been since. There have been periods when circumstances had brought about partial revivals of the spirit of slavery. But the working of the principles of the gospel have proved irreconcilable as ever with slavery, and has either brought it to an end or cast it out. Take, for example, the civil war in America."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 16.",
+      "section": "homiletics",
+      "physicalPages": [22],
+      "reason": "Segunda entrada homilética con este encabezado, cotejada línea por línea contra la sección central de la página física 22. Se restauran el título, palabras, la cita extensa, referencias, numeración y puntuación degradados por el OCR.",
+      "paragraphs": [
+        "The brotherhood of all Christians. Onesimus, before his conversion to the faith, was the servant of Philemon; and afterwards, though he did not cease to be his servant, yet he became something more, viz. his brother in Christ Jesus. We may learn from this—",
+        "I. That the Christian religion does not take away the difference of ranks and conditions, nor regard them as unlawful. The Apostle Paul instructs masters how to behave towards servants, and servants towards masters (Eph. vi. 5, 9); governors how to conduct themselves towards the governed (Rom. xii. 8), and the governed towards their superiors; and thereby acknowledges each state as lawful.",
+        "II. Yet these differences are accidental, and consistent with an essential equality of all Christians. The gospel considers all Christians (as they are in the sight of God) without reference to their rank and station, their wealth or poverty, and classes them on moral considerations alone. “The poor man hath the Word of God offered unto him, read unto him, and preached unto him as well as the rich; he hath the sacraments of God provided for him as well as for them that are of high place; he may pray unto God as freely, as comfortably, as cheerfully, as the great men of the earth; and he hath a gracious promise to be heard and respected as well as they. Though thou farest hardly and meanly at home, yet God hath prepared thee a feast, and biddeth thee to his table richly furnished and plentifully stored with all provision. Though thou do not get up and down in silks and velvets, and hast no gorgeous attire to put on, yet God hath provided thee a better garment—he giveth thee his own Son to put on, and clotheth thee with his righteousness” (W. Attersoll).",
+        "III. The consideration that their servants and inferiors in station have an equal portion in Christ and in the means of salvation ought to be an instruction to those highly placed in this world to show mildness and consideration, patience, and even meekness to their inferiors and servants. Their advantages are great; they ought not to abuse those advantages by treating unfairly those who are committed to their charge (Jas. v. 3, 4).",
+        "IV. The responsibility of the rich man for the poor. The higher his rank above others, the more humble and unassuming should he be; for his obligations also are great: “For unto whomsoever much is given, of him shall be much required” (Luke xii. 48). His authority, his influence, his example, must needs produce good or evil effects on others, and for these he will be held responsible in the judgment."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 19.",
+      "section": "homiletics",
+      "physicalPages": [22, 23],
+      "reason": "Entrada homilética completa cotejada línea por línea contra el final de la página física 22 y la mitad superior de la página 23. Se restauran el título, palabras, citas, referencias, numeración y puntuación degradados por el OCR.",
+      "paragraphs": [
+        "Spiritual benefits the most valuable of all. Since St. Paul had (as it appears) won to the embracing of the faith of Christ as well Philemon himself as Onesimus his slave, he rightly reminds him, as his first and most powerful argument, that Philemon owes himself and his very life (that is, the life of his soul) to him.",
+        "I. He does not sum up this obligation. He leaves it to the conscience of Philemon to consider how much he was indebted. It was, perhaps, incommensurable with the favour he was asking. But it is clear that such an obligation must exceed every other. A man's self is more valuable than his lands or his goods (Job ii. 4). It is therefore a lifelong obligation that men are under to those who have been to them the instruments of great spiritual benefits, and one not capable of being fully discharged. So it is said, “How beautiful upon the mountains are the feet of him that bringeth good tidings, that publisheth peace!” (Isa. lii. 7; Rom. x. 15). St. Paul bears witness that the Galatians, whose spiritual father he was, regarded nothing as being too good or too costly to show their affection for him (iv. 14, 15); and he lays down in 1 Cor. ix. 11 that the spiritual benefits of which he had been the means were supreme in kind to any possible carnal recompense.",
+        "II. Spiritual benefits are indeed the gifts of God and the effects of his grace; but he uses the services of men, and particularly of his ministers, in the dispensing of them. “It is better to help our friends to recover lost grace than lost money” (Thomas Aquinas). And those who receive them rightly will be suitably grateful.",
+        "III. Spiritual benefits the most valuable, because the soul of man is his most precious possession (Mark viii. 36, 37). The life of the soul is impaired and at length wholly lost by sin; but is regained and strengthened by Divine grace. 1. The soul is more noble than earth or heaven; for of these the one is for its temporary habitation, the other for its eternal one. 2. It bears the image of God. It is like the piece of silver in the parable (Luke xv. 8), for which, when lost, such diligent search was made. The heavens were created with a word, but the redemption of the soul needed the incarnation of Christ, and his death upon the cross. 3. Hence its value, and the corresponding value of a service rendered to it—a value so great as not to be capable of being expressed (e.g.) in money.",
+        "IV. It is incommensurate with temporal things. So St. Paul does not give the sum of it. The freedom of Onesimus was a service in the spiritual sphere. It was a benefit to Onesimus himself; and, if he were employed as St. Paul proposed (ver. 13), in the service of the Church, might be the means of good to many other souls.",
+        "V. It was a fitting pledge, therefore, of the gratitude of Philemon."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver11.",
+      "section": "homiletics",
+      "author": "W. M. S.",
+      "physicalPages": [23],
+      "reason": "Entrada completa de “Homilies by Various Authors” cotejada línea por línea contra la sección central de la página física 23. Se restauran el título, palabras, citas, referencias, numeración, firma y puntuación degradados por el OCR; la clave conserva el encabezado OCR requerido por el conversor.",
+      "editorialNote": "La anécdota de la Guerra de Crimea se conserva como ilustración homilética histórica del siglo XIX; su detalle no se presenta como una afirmación historiográfica verificada por la edición Verbo.",
+      "paragraphs": [
+        "The sceptre of love. “Fellow-labourer . . . fellow-soldier.” These are terms expressive of the spirit of St. Paul. He was not only an ecclesiastic, speaking ex-cathedrâ, so as to have dominion over men's faith. He was a brother amongst brethren; he ruled by force of character and by depth of love; he addresses them in words which had not then degenerated into a formula: “Dearly beloved.”",
+        "I. Common work. “Fellow-labourer.” For Paul believed in work—in hard work. He had “journeys oft;” he returned to confirm the faith of the disciples. He worked in sorrow of brain and sweat of heart, and sometimes in sweat of brow.",
+        "II. Common conflict. “Fellow-soldier.” For all through the ages the Christian has a battle to fight—with himself, and with the world and the flesh and the devil. Men are sustained by the sight of men nobler than themselves risking life and health. In the Crimean War, when a young officer headed his troops, running by their side in the heat of the conflict, a private remarked, “There runs ten thousand a year!” Paul did not direct a campaign from afar; he did not do the dainty work, and leave others to hard fare and dungeons. He “fought a good fight,” and in that fight he fell, to be crowned with honour hereafter. How inspiring, therefore, would such a man be to other apostles—“a fellow-soldier”!—W. M. S."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 4.",
+      "section": "homiletics",
+      "author": "W. M. S.",
+      "physicalPages": [23],
+      "reason": "Entrada completa de “Homilies by Various Authors” cotejada línea por línea contra la mitad inferior de la página física 23. Se restauran el título, palabras, citas, numeración, firma y puntuación degradados por el OCR.",
+      "paragraphs": [
+        "Love's outcome in prayer. “Making mention of thee always in my prayers.” We may judge of the reality of our affection by the current of our thoughts. Do we find them tending towards some absent friends daily? Then we have evidence that ours is not the superficial love that can live only in the presence of its object. With the Christian thought turns to prayer. There on the throne of the universe is One who can best befriend our dearest friends.",
+        "I. There was blessedness in the experience. “I thank my God, making mention,” etc. It was not a prayer touched with sorrow for Philemon, Apphia, and Archippus, or with anxiety about their faith and character. It was the prayer of one who rejoiced that the Christ above could keep them from falling.",
+        "II. There was progress in the prayer. Paul remembers its subject-matter. When he heard of their love and faith towards the Lord Jesus, he prayed that their faith might not be merely personal or selfish, but that their religion might be, in the modern speech, “altruistic,” which is “otherism” as opposed to “selfism.” Paul prayed that the communication of their faith might be effectual, that the light might shine on others so as to guide them, that the fountain might flow into other hearts so as to refresh them.—W. M. S."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Vers. 9, 10.",
+      "section": "homiletics",
+      "author": "W. M. S.",
+      "physicalPages": [24],
+      "reason": "Entrada omitida por el detector anterior, recuperada y cotejada línea por línea contra la mitad superior de la página física 24. Se restauran el encabezado, título, palabras, citas, referencias, numeración, firma y puntuación degradados por el OCR.",
+      "editorialNote": "La explicación histórica sobre la abolición de la esclavitud y la poligamia refleja el argumento homilético del autor en el siglo XIX; se conserva como recepción histórica y no como síntesis historiográfica de Verbo.",
+      "paragraphs": [
+        "Love's motive-power. “For love's sake I rather beseech thee . . . for my son Onesimus.” Onesimus was a slave—one who in past times had been, as was natural, unmoved by any inspiration to good service—and was “unprofitable.” He had been begotten again through the ministry of Paul, and now that he sends him back, he tells Philemon that the new Divine life in him will make him faithful, earnest, and “profitable.”",
+        "I. Truth triumphs in time. Slavery did not fall at once, nor was polygamy destroyed at once. Revolution would have been the cost of any such attempt. Paul left the cross to do its mighty work. The spirit of the gospel made slavery and polygamy alike impossible, because the cross destroys self, teaches us that we are not our own, and emancipates all who are oppressed through a love which gives itself for others instead of holding them in bondage.",
+        "II. Love is the supreme command. He will not enjoin. Men resist orders and commands. They find excuses for inaction, and their pride is hurt. But when love intreats, and when that love is like that of Paul the aged, and Paul a prisoner, and Paul to whom Philemon owed his own self (ver. 19), we need not wonder that love won the day; so Onesimus would be received back as a servant (a bond-servant), “but above a servant, a brother beloved.”—W. M. S."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Vers. 19, 20.",
+      "section": "homiletics",
+      "author": "W. M. S.",
+      "physicalPages": [24],
+      "reason": "Entrada completa de “Homilies by Various Authors” cotejada línea por línea contra la sección central de la página física 24. Se restauran el título, palabras, citas, referencias, numeración, firma y puntuación degradados por el OCR.",
+      "paragraphs": [
+        "Personal obligation. “Thine own self.” This is more than all else. We can call nothing “our own” but “the self.” We are not rich in what we have, but in what we are. All things, houses, estates, lands, are outside us. The self is all.",
+        "I. Indebtedness of Philemon. Philemon owed his spiritual conversion, all the rich inheritance in the soul, to the ministry of Paul; and he delicately enough reminds him of this in an indirect form of speech, “Albeit I do not say to thee how thou owest unto me even thine own self.” It is one of those touches which show what a true gentleman St. Paul was. There is more than claim of right to counsel him, viz. the modest reminder that, if need be, he would repay any loss that Philemon might have sustained through the detention by Paul of Onesimus.",
+        "II. Expectation concerning him. “Let me have joy of thee in the Lord.” “Refresh me.” What by? That which alone can rejoice the heart of a true father in the gospel, viz. Christ's own Spirit in Christ's disciples. The gospel was to be spread, not alone by eloquence or erudition, but by Christ's own religion alive and in action in all who confessed his Name.—W. M. S."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 22.",
+      "section": "homiletics",
+      "author": "W. M. S.",
+      "physicalPages": [24],
+      "reason": "Entrada completa de “Homilies by Various Authors” cotejada línea por línea contra la mitad inferior de la página física 24. Se restauran el título, palabras, citas latinas, referencias, numeración, firma y puntuación degradados por el OCR.",
+      "editorialNote": "Las afirmaciones sobre las circunstancias y el método de la muerte de Pablo reflejan una reconstrucción homilética del siglo XIX y no una conclusión histórica establecida por la edición Verbo.",
+      "paragraphs": [
+        "Needful preparation. “Prepare me . . . a lodging.” Their prayers he hoped would open the door for him to come and see them. He knew that the golden key of prayer had opened many doors closed as fast as his own.",
+        "I. A lodging seems all he ever had. And not always had he that. A prison can scarcely be called a lodging—for, in one sense, when we lodge we have protection and rest, and are at liberty in our onward journey in life. This man gave up friends, country, home, for Christ's sake, and now he is completing his course and gives up dear life itself. Will he ever have this lodging? No; it is the time of his first imprisonment; he is treated as a malefactor, and we know what his end will be.",
+        "II. His next lodging-place will be the grave. But, in one sense, the idea that we associate with this resting-place was not fulfilled in his life. His death was probably one by the lions, or the executioner's axe, or the cross, which would leave even his poor body a prey to cruel hands.",
+        "III. His lodging was to give place to home. Soon now, very soon, his words were fulfilled, “I have finished my course, . . . henceforth there is laid up for me a crown of righteousness.” Here the volume of his life, illustrated with so many etchings from his own hands of his pains, forsakements, temptations, and tribulations, now comes to a close. “Finis” is written upon all. Yet it is not Vale, vale, in æternum vale! that we inscribe upon his aims and hopes. No; it is the catacomb motto, In pace; for henceforth he enjoys the immortal reward, the great peace; he is at rest in God.—W. M. S."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Vera. 1-3.",
+      "section": "homiletics",
+      "author": "T. C.",
+      "physicalPages": [24, 25],
+      "reason": "Entrada completa de “Homilies by Various Authors” cotejada línea por línea desde la última línea de la página física 24 y a lo largo de la mitad superior de la página 25. Se restauran el encabezado, título, nombres, palabras, citas, referencias, numeración, firma y puntuación degradados por el OCR.",
+      "editorialNote": "Las identificaciones de Filemón como natural de Colosas, de Apfia como su esposa y de Arquipo como hijo de ambos son reconstrucciones históricas probables o tradicionales del siglo XIX, no datos explícitos de la carta bíblica.",
+      "paragraphs": [
+        "The address and salutation. This strictly private letter, which has been well called “the polite Epistle,” carries upon the face of it a clear explanation of its contents.",
+        "I. The writer of the Epistle. “Paul, a prisoner of Jesus Christ.” He does not describe himself as an apostle, for there was no need here to assert his authority, but as a prisoner, to bespeak the sympathy of Philemon. He was not a prisoner for crime, but for the cause of Christ, and therefore “not ashamed of his chain.” Several of his weightiest Epistles were written in prison, as if to show that “the Word of God was not bound.” He associates with himself in the address, but with a separate title, the name of “Timothy our brother,” who was known to the Colossians (Col. i. 1), and now in sympathy with himself respecting the object of this Epistle.",
+        "II. The persons to whom the Epistle was addressed. 1. “Unto Philemon our beloved, and fellow-worker.” (1) He was probably a native of Colossæ, for his slave Onesimus belonged to it (Col. iv. 9). (2) He was a convert of the apostle (ver. 19). (3) He was an evangelist. (4) He was a person of mark at Colossæ; for the Church gathers in his house; he is able to “refresh the hearts of the saints” both with temporal and spiritual mercies. (5) It is a sign of the apostle's humility that he places Philemon on an equality with himself as “a fellow-worker.” Love bound the two servants of Christ closely together. 2. “Apphia our sister.” This name occurs in many Phrygian inscriptions. (1) She was probably the wife of Philemon. The apostle addresses her because, as the mistress of the household, her consent would be necessary to the reception of Onesimus on a new footing. (2) She was a true child of God; for she is addressed as “a sister” of the apostle. Therefore Philemon and Apphia were not unequally yoked together. (3) Mark how ready the apostle is to recognize the graces of the saints, and especially to acknowledge the true place of woman in her household. 3. “Archippus our fellow-soldier.” (1) He was probably the son of this worthy pair. (2) He was a minister of the gospel either at Colossæ or Laodicea (Col. iv. 7); for he is called “our fellow-soldier,” as Epaphroditus is called “a soldier of Jesus Christ.” The title suggests the idea of conflict and hard service for the truth, with a view to final victory. 4. “The Church in thy house.” This does not mean merely the private family of Philemon, though the object of the Epistle has the look of being a matter of strictly private concernment; but the assembly of Christians who met for worship under Philemon's roof. The restoration of Onesimus to his home under new relations would be a matter of profound interest and significance to the whole Church at Colossæ.",
+        "III. The salutation. “Grace to you, and peace, from God our Father and the Lord Jesus Christ” (see homiletical hints on Eph. i. 2).—T. C."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Vere. 4--7.",
+      "section": "homiletics",
+      "author": "T. C.",
+      "physicalPages": [25, 26],
+      "reason": "Entrada completa de “Homilies by Various Authors” cotejada línea por línea contra la mitad inferior de la página física 25 y la mitad superior de la página 26. Se restauran el encabezado, título, nombres, palabras, citas, referencias, numeración, firma y puntuación degradados por el OCR; el límite con `Vers. 8-11.` quedó recuperado por una corrección textual separada.",
+      "paragraphs": [
+        "Recognition of the Christian character and services of Philemon. This is after the apostle's usual manner.",
+        "I. The thanksgiving. “I thank my God always, making mention of thee in my prayers.” 1. Though it is not unlawful to praise men for their graces or virtues, God is first to be thanked as the Author of these dispositions. “We rejoice [or, ‘boast’] in God through our Lord Jesus Christ” (Rom. v. 11). It is the privilege of the believer to speak of God as “my God,” according to the tenure of the covenant: “I will be thy God.” Therefore the apostle says, “Whose I am, and whom I serve” (Acts xxvii. 23). 2. The occasion of his thanksgiving. “Making mention of thee in my prayers.” It mingled with his daily prayers. (1) Though a prisoner, the apostle had constant opportunities for secret devotion. (2) He was always mindful of others in his supplications. Many have no secret prayer; others pray only for themselves; the apostle prays for others. The saints had an individual place in the apostle's heart. (3) It is right to pray even for those who are the subjects of thanksgiving. The saints are not perfect, and therefore need to be prayed for, that they may enjoy a more abundant life in Christ Jesus (John x. 10).",
+        "II. The cause or reason of the thanksgiving. “Hearing of thy love and of the faith which thou hast toward the Lord Jesus, and toward all the saints.” 1. A good report extols God's Name and recommends religion. “By it the ancients obtained a good report” (Heb. xi. 3). 2. Good men love to hear, as well as report, the praises of good men. 3. We ought to pray fervently for those who enjoy the greatest graces. 4. The graces of Philemon were faith in Christ and love to the saints. (1) These graces, though distinguished from one another, never exist separately. “Faith worketh by love,” and never without it. Love proceeds from faith, even love to the saints (1 Thess. ii. 3). (2) The Object of faith is the Lord Jesus Christ; therefore it is called the faith of Jesus Christ (Rom. iii. 26). Faith, as an act of the understanding, sees Christ, and, as an act of will, trusts in him for eternal life. (3) The objects of love are the saints. Christ is to be loved in the saints, who are to be loved next to Christ. All the saints are to be loved, no matter what their character, disposition, or talents.",
+        "III. The object or purport of the apostle's prayer. “That the fellowship of thy faith may become effectual in the knowledge of every good thing which is in you unto Christ.” 1. The fellowship referred to the kindly offices of sympathy and charity which were the offspring of Philemon's faith. The apostle's prayers had in view the furtherance of Philemon's faith on its practical side. Faith is a bountiful grace, and is communicative in its very nature. 2. The energetic operation of faith (1) glorifies God; (2) refreshes the saints; (3) stops the mouths of malicious men; (4) and attests the true character of the saints even in the society of hypocrites. 3. The drift of a practical faith is towards a fuller knowledge and appreciation of good in Christian men. “The knowledge of the result and the reward of faith manifesting itself in deeds of love.” Insight springs from obedience. 4. The growth of faith in its upward tendency is “unto Christ,” as its Goal and final Resting-place, depending as it does upon union with him, and tending to intensify the experience of that union.",
+        "IV. The motive for the apostle's thanksgiving. “For I had great joy and consolation in thy love, because the bowels of the saints have been refreshed by thee, brother.” 1. Whatever causes joy and consolation is just ground for thanksgiving. “For what thanksgiving can we render again unto God for you, for all the joy wherewith we joy for your sakes before our God?” (1 Thess. iii. 9). Thanks ever be to that God who fills our hearts “with food and gladness.” The Apostle John found his joy in learning that his children walked in truth (2 John 4). 2. The proofs of Philemon's love to the saints. (1) The apostle rejoices in a love which carries blessings to others rather than himself. (2) The saints ought to be refreshed in several ways. (a) By words of consolation, which we can easily extract from the promises of our Lord in the Word. (b) By our deeds of charity. So the apostle himself was “oft refreshed” by Onesiphorus during his long imprisonment. (c) By our prayers for the afflicted saints. (3) The motives that prompt to this compassionate dealing with the saints are (a) that we herein imitate God, “who comforteth those who are cast down” (2 Cor. i. 4); (b) we refresh the bowels of Christ himself; (c) God will not forget our labour of love (1 Thess. i. 3).—T. C."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Vers. 8-11.",
+      "section": "homiletics",
+      "author": "T. C.",
+      "physicalPages": [26, 27],
+      "reason": "Entrada omitida por el detector anterior, recuperada y cotejada línea por línea desde la mitad inferior de la página física 26 hasta la mitad de la página 27. Se restauran el encabezado, título, palabras, citas, referencias, numeración, firma y puntuación degradados por el OCR.",
+      "editorialNote": "La identificación de Onesimus como esclavo fugitivo y ladrón refleja la reconstrucción histórica tradicional empleada por el autor; la carta lo presenta como esclavo y contempla una deuda o agravio, pero no narra explícitamente esas circunstancias.",
+      "paragraphs": [
+        "Appeal by entreaty rather than command. The apostle here enters on the main subject of his letter, and introduces it with a singular mixture of courtesy, affection, and authority.",
+        "I. It is sometimes wise to forego the exercise of authority. “Wherefore, though I have all boldness in Christ to enjoin thee that which is befitting, yet for love's sake I rather beseech thee.” 1. Ministers possess authority. They are required to speak with authority. “Charge them that are rich that they be not high-minded.” 2. Their authority is not in their own name, but in that of Christ. “I have all boldness in Christ.” They are but servants in the Church, as Moses was (Heb. iii. 5); “not having dominion over our faith, but helpers of our joy” (2 Cor. i. 24); for it is the authority of ambassadors (2 Cor. v. 20). 3. There are limits to this authority. “To enjoin thee that which is befitting.” This follows from the fact that Christ gives the command. He can only command that which is befitting. Thus it is right for a believer to do even more than strict law would demand, for he must do what reason and propriety dictate.",
+        "II. It is the delight as well as the wisdom of ministers to use entreaty rather than command. 1. Ministers often wisely forego their right in prosecuting their Master's work. Christians likewise find it needful to forego the use of things lawful, because their use would be inexpedient. They must not “abuse their liberty” or “hinder the gospel” (1 Cor. ix. 12, 18). 2. Love is the principal motive to prompt to this action. “Yet for love's sake I rather beseech thee.” Not the love of the apostle to Philemon, nor the love of Philemon to him, but love absolutely as a principle held in highest regard by all Christians. It is love that “seeketh not her own.” 3. An entreaty derives added weight from the age and sufferings of him who offers it. “Being such a one as Paul the aged, and now a prisoner also of Jesus Christ.” (1) Reverence is due to age. It is “a crown of glory when it is found in the way of righteousness.” The apostle was not now old, as the years of a life are reckoned, but he bore the signs of age in exhaustion and weariness and cares. (2) Ministers are to be regarded with peculiar respect and sympathy on account of their afflictions. The apostle was now a prisoner at Rome for the sake of Christ—“an ambassador in bonds.”",
+        "III. The object of the apostle's entreaty. “I beseech thee for my child whom I have begotten in my bonds, Onesimus.” 1. Onesimus was the runaway slave of Philemon of Colossæ, who had made his way to Rome, and come into contact with the apostle during his imprisonment. 2. He was a convert of the apostle. (1) The apostle was the instrument of his conversion at Rome. (2) Ministers ought to use private and casual opportunities of doing good to others. (3) Though the apostle was a prisoner, the Word of God was not bound. (4) God often sweetens the afflictions of his ministers by special favours. 3. His conversion became manifest by his better life. “Who was aforetime unprofitable to thee, but now is profitable to thee and to me.” (1) Good men may have bad servants. This Onesimus had been unprofitable, not only as a pilferer, but as an idler. The example of his godly master and mistress had no influence upon his conduct. (2) Conversion always results in a change of social character. It makes people conscientious in the discharge of all duties incident to their calling. Onesimus was henceforth “profitable” both to Philemon and the apostle. (a) He was profitable to the apostle. Religious servants are the most profitable. Onesimus gave new joy to the apostle by his conversion, while he waited on him, no doubt, in the ministry of private service and kindness. It is not enough that a sinner cease to do evil; he must learn to do well. We see in Onesimus the practical side of the apostle's counsel, “Let him that stole steal no more, but let him rather work with his hands that which is good” (Eph. iv. 28). (b) He was profitable to Philemon, in so far as he, in Philemon's stead, did that service to the apostle which his master would have readily done if it had been in his power. He would be yet more profitable to his master in the spirit and conditions of his new service, on his return back to Colossæ.—T. C."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Vere. 12-16.",
+      "section": "homiletics",
+      "author": "T. C.",
+      "physicalPages": [27, 28],
+      "reason": "Entrada completa de “Homilies by Various Authors” cotejada línea por línea desde la mitad inferior de la página física 27 hasta la sección superior de la página 28. Se restauran el encabezado, título, palabras, citas, referencias, numeración, firma y puntuación degradados por el OCR; la clave conserva el encabezado OCR requerido por el conversor.",
+      "editorialNote": "La afirmación de que los principios del evangelio abolieron finalmente la esclavitud en todas partes refleja la lectura histórica y homilética del autor en el siglo XIX; se conserva como afirmación de la fuente, no como síntesis historiográfica de Verbo.",
+      "paragraphs": [
+        "The motives that prompted the apostle to send back Onesimus to his master.",
+        "I. He did send him back. “Whom I have sent back to thee in his own person, that is, my very heart.” 1. Onesimus did not return of his own accord. He might, perhaps, have had some not unnatural misgivings as to the character of the reception he would meet with as a returned slave who had acted a dishonest part, and might have been ashamed besides to appear again in a community where his misdeeds had been made known. 2. The apostle recognized Philemon's right to the restored services of his fugitive slave. The gospel does not abolish civil rights. The conversion of Onesimus did not secure his manumission. Yet the gospel planted principles in society which in due time abolished slavery everywhere. “Wast thou called being a bond-servant? care not for it: but if thou canst become free, use it rather” (1 Cor. vii. 21). 3. He did not even wait till he had received an answer from Philemon as to the terms in which Onesimus would be received back into the Colossian household. He sent Onesimus at once in charge of his two letters, namely, that to the Colossian saints and that to Philemon himself. 4. Yet the apostle acted in the whole matter with the deepest affection for the poor bond-servant. He speaks of him as “his own heart.” What account Christianity makes of the meanest classes of society!",
+        "II. The apostle's explanation of his conduct and motives in the whole transaction. 1. His first feeling was to retain Onesimus about his person to do him the service that Philemon himself would have gladly done. He had now become profitable, according to the happy significance of his name. But it was not for the apostle to interfere with another man's servant. 2. The true cause of his sending Onesimus was that he would do nothing without the consent of his master. “But without thy mind would I do nothing.” But the motive that prompted this determination was that “thy goodness should not be as of necessity, but of free will.” If the apostle had kept Onesimus for the sake of the benefit to be derived from his personal ministrations, the whole transaction would have worn a semblance of constraint. We have no right to extort benefits from our friends against their will. 3. The providential aspect of the matter. “For perhaps he was therefore parted from thee for a season, that thou shouldest have him for ever.” (1) Nothing in this statement extenuates the misdeeds of Onesimus, which God overruled for good. (2) The acts of the meanest individual in society are included in the sphere of Divine providence. (3) God makes up for the losses of his saints in his own time and way. Philemon has his once unfaithful servant restored to him on an entirely new footing of advantage. (4) The restoration of the fugitive slave is to an eternal relationship. The earthly tie is sundered by death, but grace gives an eternity to the holy relationships of earth. 4. The new relation established between master and servant. “Not now as a servant, but above a servant, a brother beloved, most of all by me, but more than most of all by thee, in the flesh and in the Lord.” The apostle does not say, “not a servant,” but “not as a servant;” for grace did not abrogate the old tie of master and servant. (1) The brotherhood of saints is common to all the relationships of life. Philemon and Onesimus are now brethren beloved. (2) Pious servants are to be more regarded, as they are more faithful, than servants without religion. (3) There are none dearer to ministers than their converts. (4) There was a double obligation to duty on Philemon's part corresponding to the double tie—that of the flesh and that of the Spirit—by which he was now connected with Onesimus.—T. C."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 17.",
+      "section": "homiletics",
+      "author": "T. C.",
+      "physicalPages": [28],
+      "reason": "Entrada completa cotejada línea por línea contra la sección central de la página física 28. Se restauran título, palabras, citas, referencias, numeración, firma y puntuación degradados por el OCR; su límite final quedó recuperado mediante la corrección textual de `Vers. 18, 19.`.",
+      "paragraphs": [
+        "The plea of Christian fellowship. The apostle here directly puts his request, “If then thou countest me a partner, receive him as myself.” He regards Philemon as a partner in faith and love and life. It is a recurrence to an old argument, “If there be any fellowship of the Spirit, . . . fulfil ye my joy.”",
+        "I. The fellowship of believers. It subsists in the fellowship with the Father and the Son, and derives all its force therefrom. (1 John i. 3.) That fellowship implies that all saints have a common Father (Eph. iv. 6), a common elder Brother (Heb. ii. 11), a common inheritance (Eph. ii. 19; Rev. i. 9), a common grace (Phil. i. 7), a common suffering (1 Cor. xii. 26; Heb. x. 33, 34). The Holy Spirit is the Author and the Power of this fellowship (2 Cor. xiii. 13), as love is the “bond of perfection” (Col. iii. 14). Thus believers become of “one heart and one soul.”",
+        "II. The plea founded upon this fellowship. “Receive him as myself.” 1. It is a genuine plea; for the apostle elsewhere says, “If there be any fellowship of the Spirit . . . look not every man on his own things, but every man also on the things of others” (Phil. ii. 4). “Love seeketh not her own.” 2. Onesimus was now a partner as well as the apostle. Therefore, as the old Puritan says, “Love me, love my partner: one partner receives another, even for a partner's sake.” If Philemon loves Christ in the apostle, why not in Onesimus? “Inasmuch as ye have done it to one of these little ones, ye have done it unto me” (Matt. xxv. 40). We are to love Christ in the meanest of his servants.—T. C."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Vers. 18, 19.",
+      "section": "homiletics",
+      "author": "T. C.",
+      "physicalPages": [28, 29],
+      "reason": "Entrada omitida por el detector anterior, recuperada y cotejada línea por línea desde la mitad inferior de la página física 28 hasta la sección superior de la página 29. Se restauran encabezado, título, palabras, citas, numeración, firma y puntuación degradados por el OCR.",
+      "editorialNote": "La caracterización de Onesimus como ladrón se conserva como inferencia tradicional del autor a partir del posible agravio o deuda mencionado en la carta; no es un dato narrado explícitamente por Filemón.",
+      "paragraphs": [
+        "The apostle's frank acceptance of pecuniary responsibility for Onesimus. The injured master might plead that it was enough for him to forbear punishing his unfaithful servant, but the injuries he had received put it out of his power to replace him in his household.",
+        "I. There is here an acknowledgment of the wrong done by the now penitent slave. “If he hath wronged thee, or oweth thee aught, put that to mine account.” It is evident that Onesimus had frankly confessed his misdeeds to the apostle. 1. Mark the mild language in which the apostle describes them. He does not say that Onesimus robbed his master, as he did not wish either to hurt the feelings of the slave or to irritate the feelings of the master; but simply speaks of a wrong done, of a possible debt incurred. If a sinner is penitent, why should his old sins or follies be thrown in his teeth? 2. Restitution in case of civil injury is a first thing. It is one of the most practical proofs of repentance.",
+        "II. There is a responsibility assumed for the debt of Onesimus. “Put that to mine account: I Paul write it with mine own hand, I will repay it.” The apostle here puts his name, as it were, at the foot of the bond. 1. It was an act of self-sacrificing consideration for Onesimus, as if the apostle would remove every possible obstacle to the restoration of the penitent slave to his Colossian home. 2. Yet it is so put as to imply that Philemon would hardly exact the debt.",
+        "III. There is the statement of a much larger counter-claim. “Not to say to thee that thou owest to me even thine own self besides.” 1. It was a true claim. The apostle had been the instrument of Philemon's conversion. 2. It was an overpowering claim. The blessing that accrues to a man from his conversion cannot be weighed in the balance against all a man's property. 3. There ought to be mercy in the exaction of debts. This is implied in the nature of the apostle's appeal. Onesimus was utterly unable to make restitution, and, if the apostle became his surety, it was with an implied wish that Philemon would take a liberal view of his duty in the matter.—T. C."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 20.",
+      "section": "homiletics",
+      "author": "T. C.",
+      "physicalPages": [29],
+      "reason": "Entrada completa cotejada línea por línea contra la sección superior de la página física 29. Se restauran título, palabras, cita, referencia, numeración, firma y puntuación degradados por el OCR.",
+      "paragraphs": [
+        "A plea for personal consideration. The apostle now becomes more personal in his urgency. “Yea, brother, let me have joy of thee in the Lord: refresh my heart in Christ.”",
+        "I. Christians ought to aim at the spiritual gratification of each other. It is not well to make the hearts of the righteous sad (Ezek. xiii. 22). The apostle had care and anxiety and sadness enough to depress him, and it was natural he should seek some fresh joy from the obedience of his disciples.",
+        "II. The obedience of Christians is a great source of refreshing to ministers. The ready obedience of Philemon would revive the drooping spirit of the apostle, and inspire him with fresh vigour. As the refreshing was to be “in the Lord” as the aim of all a Christian's actions, so we see how constantly the apostle rejoiced and gloried in the Lord, and commended his example to his converts and to Christians generally.—T. C."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Vers. 21, 22.",
+      "section": "homiletics",
+      "author": "T. C.",
+      "physicalPages": [29],
+      "reason": "Entrada completa cotejada línea por línea contra la sección central de la página física 29. Se restauran título, palabras, citas, referencias, numeración, firma y puntuación degradados por el OCR.",
+      "paragraphs": [
+        "The apostle's concluding appeal. He now glides insensibly into the language of authority, which all along he had a right to assume. “Having confidence in thine obedience, I write unto thee, knowing that thou wilt do even beyond what I say.”",
+        "I. The most willing may be fairly urged to the course of duty. The apostle assures Philemon that he does not doubt his obedience, yet he thinks it necessary to stir up his pure mind to a remembrance of his obligations. 1. An obedient people make zealous ministers. 2. A good conscience ensures confidence in the wise and zealous conduct of life. “Credit and a good conscience are shipped both in one bottom.” 3. A good heart entitles us to expect a liberal construction of the extent of our duty. The apostle seems here to hint that Philemon might possibly manumit his slave. That the apostle had not demanded; yet it was within the possible scope of Philemon's liberal understanding of his duty to Onesimus.",
+        "II. The apostle bespeaks, on his approaching visit to Colossæ, a favourable reception to Onesimus. “But withal prepare me also a lodging: for I hope that through your prayers I shall be granted to you.” 1. The presence of the apostle at Colossæ would enable him to see that his expectations had not been disappointed. A Puritan writer says, “Who would not willingly receive Onesimus, coming as Paul's harbinger, to provide him lodging?” 2. The most eminent servants of God need the prayers of the humblest in his Church. (1) Because they are exposed to many dangers and temptations. (2) Because they have a responsible charge in God's kingdom. (3) Because their liberty to preach the gospel is often threatened, if not temporarily destroyed, by wicked men. (4) The apostle believed in the efficacy of prayer. The prayers of the Colossian household would or might unlock his prison-doors. “The effectual fervent prayer of a righteous man availeth much” (Jas. v. 16).—T. C."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Vers.23--25.",
+      "section": "homiletics",
+      "author": "T. C.",
+      "physicalPages": [29, 30],
+      "reason": "Entrada final cotejada línea por línea desde la sección inferior de la página física 29 hasta la página 30. Se restauran encabezado, título, nombres, palabras, citas, referencias, numeración, firma y puntuación degradados por el OCR; la clave conserva el encabezado OCR requerido por el conversor.",
+      "editorialNote": "Las circunstancias exactas del encarcelamiento de Epaphras se expresan aquí como reconstrucción histórica del autor; Colosenses y Filemón no describen todos esos detalles de manera explícita.",
+      "paragraphs": [
+        "Salutations and prayer.",
+        "I. Salutations. These are the expressions of Christian sympathy and kindness. 1. They are the salutations of the apostle's fellow-prisoner. “There salute thee Epaphras my fellow-prisoner in Christ Jesus.” (1) Epaphras was a Colossian evangelist (Col. i. 7; iv. 12). (2) He was imprisoned at Rome in the immediate society of the apostle. (a) This was an alleviation to both prisoners, on account of their common faith, their common hopes, and their common interests. Epaphras, as probably the younger man, would be very helpful to the apostle. (b) The cause of the imprisonment in both cases was “in Christ Jesus.” They suffered for the preaching of his gospel. 2. They are the salutations of the apostle's fellow-labourers. “Marcus” (Acts xii. 12), once temporarily estranged from the apostle, but now at his side; “Aristarchus” (Acts xix. 29, 30; Col. iv. 10); “Demas,” whose apostasy was yet future (2 Tim. iv. 10); “Luke,” the beloved physician and evangelist (Col. iv. 14). The apostle was happily circumstanced, even as a prisoner, through the constant or occasional society of these men.",
+        "II. Prayer. “The grace of our Lord Jesus Christ be with your spirit.” It is curious to find no allusion to God the Father in this prayer. If Christ is not God, how can we account for such a prayer? It is a simple but beautiful prayer addressed to the whole Philemon household.—T. C."
       ]
     }
   ]
