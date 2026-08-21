@@ -2963,10 +2963,21 @@ mark.predica-search-hit { background: var(--wine-soft); color: #fff; border-radi
 }
 
 /* Exportar a PDF: usa la función nativa "Imprimir → Guardar como PDF" del
-   navegador. Se oculta todo excepto el contenido del editor. */
+   navegador. Se oculta todo excepto el contenido del editor.
+   html/body traen height:100%+overflow:hidden (para el layout de una sola
+   pantalla de la app) y .app-body/.editor-pane heredan esa altura fija con
+   su propio overflow-y:auto — sin anularlos acá, el documento impreso queda
+   recortado a una sola pantalla de alto y el bosquejo se corta en una
+   página aunque tenga más contenido. */
 @media print {
   body.sermon-print-mode * {
     visibility: hidden;
+  }
+  body.sermon-print-mode.sermon-print-mode,
+  body.sermon-print-mode .app-body,
+  body.sermon-print-mode .editor-pane {
+    height: auto;
+    overflow: visible;
   }
   body.sermon-print-mode .editor-pane__surface,
   body.sermon-print-mode .editor-pane__surface * {
