@@ -25,6 +25,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
 <meta name="apple-mobile-web-app-title" content="Verbo">
 <link rel="stylesheet" href="assets/style.css?v=20260820-sermon-outline">
 <link rel="stylesheet" href="assets/historia-nota-rapida.css?v=20260806-ios-font-size-fix">
+<link rel="stylesheet" href="assets/tutorial-video.css?v=20260821-tutorial-videos">
 </head>
 <body>
 
@@ -112,10 +113,24 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
           <path d="M7 21c0-1 1-2 2-2h6c1 0 2 1 2 2"/>
         </svg>
       </button>
+      <button class="library-rail__btn tv-trigger tv-trigger--rail" type="button" id="tvBarraIzquierda" data-tv-trigger="1" data-video-es="DEKsZBymx6w" data-video-en="E0F2saiAGpM" data-i18n-attr="title:tutorial.barraIzquierdaAria,aria-label:tutorial.barraIzquierdaAria">
+        <svg class="tv-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="12" fill="#FF0000"/>
+          <path d="M9.5 7.5v9l8-4.5z" fill="#fff"/>
+        </svg>
+      </button>
     </nav>
 
     <main class="reading-pane" id="readingPane">
       <div class="reading-pane__inner">
+        <div class="tv-reading-sticky">
+          <button type="button" class="tv-trigger tv-trigger--reading" id="tvBajoVersiculo" data-video-es="-b_ZIW9pSXA" data-video-en="NcoxrXrK7zM" data-i18n-attr="aria-label:tutorial.bajoVersiculoAria,title:tutorial.bajoVersiculoAria">
+            <svg class="tv-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="12" fill="#FF0000"/>
+              <path d="M9.5 7.5v9l8-4.5z" fill="#fff"/>
+            </svg>
+          </button>
+        </div>
         <div class="reading-pane__app-mark" aria-hidden="true">Verbo</div>
         <div class="chapter-eyebrow"></div>
         <div class="chapter-title-row">
@@ -234,6 +249,12 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
           <path d="M9 17h6"/>
         </svg>
       </button>
+      <button class="tab-rail__btn tv-trigger tv-trigger--rail" type="button" id="tvBarraDerecha" data-tv-trigger="1" data-video-es="UyjCpHcoSUU" data-video-en="1POjlkSFcfM" data-i18n-attr="title:tutorial.barraDerechaAria,aria-label:tutorial.barraDerechaAria">
+        <svg class="tv-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="12" fill="#FF0000"/>
+          <path d="M9.5 7.5v9l8-4.5z" fill="#fff"/>
+        </svg>
+      </button>
     </nav>
 
   </div>
@@ -316,7 +337,8 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   <script src="assets/module-loader.js?v=20260813-interlinear-bilingual"></script>
   <script src="assets/atlas-reference-parser.js?v=20260818-atlas-step2"></script>
   <script src="assets/sync.js?v=20260801-sermon-predicas"></script>
-  <script src="assets/app.js?v=20260820-sermon-outline"></script>
+  <script src="assets/app.js?v=20260821-tutorial-videos"></script>
   <script src="assets/historia-nota-rapida.js?v=20260805-padres-nota-rapida"></script>
+  <script src="assets/tutorial-video.js?v=20260821-tutorial-videos"></script>
 </body>
 </html>

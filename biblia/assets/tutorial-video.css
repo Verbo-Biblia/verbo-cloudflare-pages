@@ -1,0 +1,130 @@
+/* Íconos de "tutorial en video" (4 ubicaciones fijas: portada, área de
+   lectura, barra lateral izquierda, barra lateral derecha — ver
+   tutorial-video.js) + su modal embebido. Ronda actual: SOLO desktop — los
+   4 íconos quedan display:none por debajo de 760px, mismo breakpoint que ya
+   usan .library-rail/.tab-rail (ver style.css) para ocultarse en móvil. No
+   hay todavía ningún comportamiento alternativo para móvil (deep-link a la
+   app de YouTube, etc.) — queda para una ronda aparte. */
+
+/* ---------- Overlay / modal (mismo patrón que .hnr-overlay/.hnr-modal en
+   historia-nota-rapida.css: mismo z-index, mismo mecanismo de cierre) ---------- */
+
+.tv-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 3000;
+}
+.tv-overlay[hidden] { display: none; }
+
+.tv-modal {
+  position: relative;
+  width: min(900px, 100%);
+  max-width: 100%;
+}
+
+.tv-modal__close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+.tv-modal__close:hover { opacity: .75; }
+
+.tv-modal__frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .5);
+}
+.tv-modal__frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ---------- Ícono compartido: círculo rojo con "play" blanco ---------- */
+
+/* Especificidad reforzada (.tv-trigger svg.tv-icon, no solo .tv-icon):
+   dentro de los rieles el botón también hereda .library-rail__btn svg /
+   .tab-rail__btn svg de style.css (20px / 19px respectivamente), que sin
+   este refuerzo le ganarían a una regla de una sola clase y romperían el
+   "mismo tamaño en los 4 lugares". */
+.tv-trigger svg.tv-icon { width: 20px; height: 20px; display: block; flex-shrink: 0; }
+
+/* ---------- Botón base ---------- */
+
+.tv-trigger {
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Variante portada: junto al selector de idioma en el header (index.html) */
+.tv-trigger--portal {
+  margin-right: .75rem;
+  opacity: .92;
+  transition: opacity .15s ease, transform .15s ease;
+}
+.tv-trigger--portal:hover { opacity: 1; transform: scale(1.06); }
+
+/* Variante área de lectura: envuelta en un wrapper sticky de altura 0 para
+   no empujar el título/versículos hacia abajo (ver biblia/index.html) —
+   .reading-pane es el contenedor con scroll (overflow-y:auto en
+   style.css), así que sticky en un descendiente suyo alcanza sin necesidad
+   de declarar position:relative en .reading-pane (evitaría convertirlo en
+   contenedor de posicionamiento para otros elementos que no lo esperan). */
+.tv-reading-sticky {
+  position: sticky;
+  top: 12px;
+  height: 0;
+  overflow: visible;
+  z-index: 6;
+}
+.tv-trigger--reading {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: rgba(255, 255, 255, .82);
+  border: 1px solid rgba(91, 54, 49, .18);
+  border-radius: 10px;
+  /* Valor literal, no var(--shadow-soft): --shadow-soft (definida en
+     style.css:24-31) es tono tinta/sepia calibrado para el fondo blanco
+     de los rieles; este botón flota sobre el propio texto de lectura, así
+     que usa un negro neutro en vez de heredar ese tono. */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .12);
+  padding: 5px;
+  transition: transform .15s ease;
+}
+.tv-trigger--reading:hover { transform: scale(1.06); }
+
+/* Variante rieles (izquierda/derecha): mismo <button> y misma clase visual
+   que los demás data-tab (library-rail__btn / tab-rail__btn en el HTML) —
+   acá solo se ajusta el cursor/hover a los del resto del riel, ya que el
+   ícono en sí (círculo rojo) no usa currentColor como los demás SVG. */
+.tv-trigger--rail:hover { background: rgba(255,255,255,.95); }
+
+/* ---------- Ocultos por completo en móvil — ronda actual sin comportamiento móvil ---------- */
+@media (max-width: 760px) {
+  .tv-trigger,
+  .tv-reading-sticky { display: none; }
+}

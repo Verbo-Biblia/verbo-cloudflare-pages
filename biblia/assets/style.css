@@ -22,6 +22,13 @@
   --rule: #E0CDAA;
   --rule-strong: #CBB486;
   --gold-glow: #C89F58;
+  /* Usada por .library-rail__btn (único uso en el archivo) — no estaba
+     definida acá, así que esa sombra nunca se pintaba. Mismo triplete de
+     color que .theme-option:hover (rgba(58,46,34,...), tono tinta/sepia,
+     no negro puro, igual que el resto de las sombras del archivo), con
+     blur/opacidad ajustados para un botón chico de 44px que la necesita
+     siempre visible, no solo en hover. */
+  --shadow-soft: 0 2px 6px rgba(58, 46, 34, .16);
 
   --font-display: 'Lora', serif;
   --font-body: 'Source Serif 4', serif;
@@ -594,6 +601,12 @@ body {
   border-right: 1px solid var(--rule);
   background: var(--chrome);
   z-index: 40;
+  /* Red de seguridad: con el ícono de tutorial agregado (ver
+     tutorial-video.js), un viewport de escritorio corto podría no tener
+     alto suficiente para el grupo completo de botones centrado
+     verticalmente — sin esto, el sobrante se recortaría en vez de quedar
+     alcanzable con scroll. */
+  overflow-y: auto;
 }
 .library-rail__btn {
   width: 44px;
@@ -628,6 +641,8 @@ body {
   gap: 6px;
   background: var(--chrome);
   z-index: 5;
+  /* Misma red de seguridad que .library-rail — ver comentario ahí. */
+  overflow-y: auto;
 }
 
 .tab-rail__btn {
