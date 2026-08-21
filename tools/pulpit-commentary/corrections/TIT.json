@@ -1,5 +1,28 @@
 {
   "book": "TIT",
+  "bodyTextCorrections": [
+    {
+      "chapter": 1,
+      "ocr": "Vur. 1.-Knowledy• for acknowledging,",
+      "corrected": "Ver. 1.-Knowledy• for acknowledging,",
+      "physicalPage": 2,
+      "reason": "El facsímil muestra `Ver. 1.—Knowledge for acknowledging`; el OCR degradó la e del encabezado y ocultó la primera exposición. Solo se normaliza aquí el encabezado para recuperar el grupo; el cuerpo queda pendiente de cotejo integral."
+    },
+    {
+      "chapter": 1,
+      "ocr": "\"er. 5.-Were for are, A.V.; appoint for",
+      "corrected": "Ver. 5.-Were for are, A.V.; appoint for",
+      "physicalPage": 3,
+      "reason": "El facsímil muestra `Ver. 5.—Were for are`; el OCR sustituyó la V por una comilla y ocultó la exposición. Solo se normaliza aquí el encabezado para recuperar el grupo; el cuerpo queda pendiente de cotejo integral."
+    },
+    {
+      "chapter": 1,
+      "ocr": "Ver. I0.-D11ruly men for vnruly and,",
+      "corrected": "Ver. 10.-D11ruly men for vnruly and,",
+      "physicalPage": 4,
+      "reason": "El facsímil muestra `Ver. 10.—Unruly men for unruly and`; el OCR leyó el cero como O mayúscula y ocultó la exposición. Solo se normaliza aquí el encabezado para recuperar el grupo; el cuerpo queda pendiente de cotejo integral."
+    }
+  ],
   "referenceHeaderCorrections": [
     {
       "chapter": 2,

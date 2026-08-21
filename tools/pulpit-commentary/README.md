@@ -73,17 +73,32 @@ no omite la validación de capítulos, referencias ni rangos, y nunca concede
 estado `reviewed` al artefacto preparado para el módulo.
 
 Una entrada cotejada de principio a fin puede registrarse en
-`entryTextReplacements`, identificada por capítulo, encabezado fuente y páginas
-físicas. El conversor sustituye solamente esa unidad, comprueba que el reemplazo
-se utilice y le asigna `editorialStatus: reviewed`; el resto del libro conserva
-`ocr-unreviewed`. Esto permite avanzar entrada por entrada sin presentar como
-revisado texto que todavía depende del OCR.
+`entryTextReplacements`, identificada por capítulo, encabezado fuente, sección
+(`exposition` u `homiletics`) y páginas físicas. Por compatibilidad, los
+reemplazos antiguos sin `section` se interpretan como `exposition`. El conversor
+sustituye solamente esa unidad y comprueba que el reemplazo se utilice. El
+artefacto preparado para el módulo conserva siempre `editorialStatus:
+ocr-unreviewed` hasta la aprobación manual de Juan.
+
+En volúmenes que incluyen “Homilies by Various Authors”, el reemplazo registra
+también `author` cuando el facsímil firma la entrada. El preparador usa ese autor
+individual y solo recurre al autor general del libro cuando la fuente no aporta
+una firma.
+
+Cuando una entrada conserva afirmaciones cronológicas, arqueológicas, de
+crítica textual o estadísticas propias de la erudición del siglo XIX que hoy
+requieren cautela, el reemplazo puede declarar `editorialNote`. La nota se copia
+como campo adicional al artefacto del módulo; nunca reemplaza, recorta ni
+reescribe el contenido histórico original.
 
 La conversión separa listas discontinuas: un encabezado como `Vers. 14, 16`
 genera dos rangos independientes y nunca hace aparecer el comentario en el
 versículo 15. Después de convertir, `audit_staging.py` vuelve a comprobar cada
 rango contra Biblia Verbo y genera una cola de entradas cuyo OCR exige cotejo
 visual. Una salida con `editorialStatus: ocr-unreviewed` jamás es publicable.
+Las heurísticas no vuelven a encolar una entrada cuyo reemplazo completo ya fue
+cotejado contra el facsímil y figura como `reviewed` en el staging; el artefacto
+del módulo conserva de todos modos `ocr-unreviewed` hasta la aprobación de Juan.
 
 No debe publicarse OCR crudo. La prueba inicial de Génesis confundió, entre
 otros casos, `God`/`Goel`, `truth`/`troth`, `verse`/`vcr.` y omitió varios

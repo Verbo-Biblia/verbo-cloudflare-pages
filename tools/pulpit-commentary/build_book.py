@@ -176,17 +176,25 @@ def main() -> int:
         raise SystemExit("los límites de capítulos no son estrictamente crecientes")
 
     correction_payload = json.loads(args.corrections.read_text(encoding="utf-8"))
-    corrections: dict[tuple[int, str], list[str]] = defaultdict(list)
+    corrections: dict[tuple[int, str, str | None], list[str]] = defaultdict(list)
     for item in correction_payload["referenceHeaderCorrections"]:
-        corrections[(int(item["chapter"]), item["ocr"])].append(item["corrected"])
-    used_corrections: Counter[tuple[int, str]] = Counter()
+        corrections[(
+            int(item["chapter"]),
+            item["ocr"],
+            item.get("section"),
+        )].append(item["corrected"])
+    used_corrections: Counter[tuple[int, str, str | None]] = Counter()
     text_corrections: dict[int, list[dict[str, object]]] = defaultdict(list)
     for item in correction_payload.get("bodyTextCorrections", []):
         text_corrections[int(item["chapter"])].append(item)
-    entry_replacements: dict[tuple[int, str], list[dict[str, object]]] = defaultdict(list)
+    entry_replacements: dict[tuple[int, str, str], list[dict[str, object]]] = defaultdict(list)
     for item in correction_payload.get("entryTextReplacements", []):
-        entry_replacements[(int(item["chapter"]), str(item["sourceHeader"]))].append(item)
-    used_entry_replacements: Counter[tuple[int, str]] = Counter()
+        entry_replacements[(
+            int(item["chapter"]),
+            str(item["sourceHeader"]),
+            str(item.get("section", "exposition")),
+        )].append(item)
+    used_entry_replacements: Counter[tuple[int, str, str]] = Counter()
     bible = json.loads(args.bible.read_text(encoding="utf-8"))["chapters"]
     entries = []
     errors = []
@@ -230,7 +238,13 @@ def main() -> int:
 
         for number, (match, entry_section, content_end) in enumerate(entry_events, 1):
             raw_header = compact(match.group(1))
-            correction_key = (chapter, raw_header)
+            scoped_correction_key = (chapter, raw_header, entry_section)
+            unscoped_correction_key = (chapter, raw_header, None)
+            correction_key = (
+                scoped_correction_key
+                if scoped_correction_key in corrections
+                else unscoped_correction_key
+            )
             correction_number = used_corrections[correction_key]
             available = corrections.get(correction_key, [])
             corrected_header = (
@@ -244,7 +258,7 @@ def main() -> int:
             max_verse = len(bible[str(chapter)])
             content_start = match.end()
             content = paragraphs(segment[content_start:content_end])
-            replacement_key = (chapter, raw_header)
+            replacement_key = (chapter, raw_header, entry_section)
             replacement_number = used_entry_replacements[replacement_key]
             available_replacements = entry_replacements.get(replacement_key, [])
             replacement = (
@@ -266,14 +280,13 @@ def main() -> int:
                         f"{verse_start}-{verse_end}, máximo {max_verse}"
                     )
                     continue
-                entries.append(
-                    {
+                entry = {
                         "id": f"{source_group}-{interval_number}-{verse_start}-{verse_end}",
                         "title": f"{args.book} {chapter}:{verse_start}"
                         + (f"–{verse_end}" if verse_end != verse_start else ""),
-                        "author": "The Pulpit Commentary",
+                        "author": replacement.get("author", "The Pulpit Commentary") if replacement else "The Pulpit Commentary",
                         "section": entry_section,
-                        "sourceHeader": raw_header,
+                        "sourceHeader": corrected_header,
                         "sourceGroupId": source_group,
                         "reference": {
                             "book": args.book,
@@ -285,20 +298,26 @@ def main() -> int:
                         "content": content,
                         "editorialStatus": "reviewed" if replacement is not None else "ocr-unreviewed",
                     }
-                )
+                if replacement is not None and replacement.get("editorialNote"):
+                    entry["editorialNote"] = replacement["editorialNote"]
+                entries.append(entry)
 
-    for (chapter, header), values in sorted(corrections.items()):
-        remaining = len(values) - used_corrections[(chapter, header)]
+    for (chapter, header, section), values in sorted(
+        corrections.items(),
+        key=lambda item: (item[0][0], item[0][1], item[0][2] or ""),
+    ):
+        remaining = len(values) - used_corrections[(chapter, header, section)]
         if remaining and not args.allow_unused_corrections:
             errors.extend(
-                f"corrección no utilizada: {chapter} {header} (ocurrencia pendiente)"
+                f"corrección no utilizada: {chapter} {header}"
+                f" ({section or 'cualquier sección'}; ocurrencia pendiente)"
                 for _ in range(remaining)
             )
-    for (chapter, header), values in sorted(entry_replacements.items()):
-        remaining = len(values) - used_entry_replacements[(chapter, header)]
+    for (chapter, header, section), values in sorted(entry_replacements.items()):
+        remaining = len(values) - used_entry_replacements[(chapter, header, section)]
         if remaining and not args.allow_unused_corrections:
             errors.extend(
-                f"reemplazo de entrada no utilizado: {chapter} {header}"
+                f"reemplazo de entrada no utilizado: {chapter} {header} ({section})"
                 for _ in range(remaining)
             )
     if errors:
