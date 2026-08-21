@@ -143,6 +143,7 @@ PENDIENTES = {}
 ESTRATEGIA_DEFAULT = {"modo": "auto_traducible"}
 
 ESTRATEGIA_OVERRIDE = {
+    "la-mejor-version-de-mi-fue-clavada-en-la-cruz": {"modo": "nativo_disponible"},
     # Librería — patrística ES traducida por Juan desde DOCX (sin OCR),
     # pero basada en Ante-Nicene Fathers (ed. Roberts & Donaldson), que SÍ
     # tiene traducción inglesa nativa de dominio público en newadvent.org/
