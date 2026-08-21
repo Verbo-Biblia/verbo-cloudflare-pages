@@ -2786,9 +2786,13 @@ body[data-theme="rosewood"] {
   z-index: 20;
 }
 
-/* Cada fila reproduce el tamaño real de ese nivel en .editor-pane__surface
-   h1..h6 (ver ahí mismo) — misma jerarquía visual que el propio texto y que
-   el selector "Encabezado 1..6" de la barra de herramientas. */
+/* Escala propia, en px fijos — a propósito NO reproduce el tamaño real de
+   .editor-pane__surface h1..h6 (los headings reales del documento, sin
+   tocar). Esto es una lista de navegación compacta, no una vista previa
+   del texto: usar la escala real del documento (10.7px–27.2px) se veía
+   como una nota normal, no como un desplegable. La jerarquía entre
+   niveles se conserva con la progresión descendente + h1 en semibold, no
+   con la diferencia de tamaño real del texto. */
 .editor-pane__outline-item {
   display: block;
   width: 100%;
@@ -2798,19 +2802,19 @@ body[data-theme="rosewood"] {
   background: none;
   font-family: var(--font-display);
   color: var(--ink);
-  padding: 8px 10px;
+  padding: 6px 10px;
   cursor: pointer;
   line-height: 1.3;
 }
 .editor-pane__outline-item:last-child { border-bottom: none; }
 .editor-pane__outline-item:hover,
 .editor-pane__outline-item:focus { background: var(--chrome); outline: none; }
-.editor-pane__outline-item--h1 { font-size: 1.7em; }
-.editor-pane__outline-item--h2 { font-size: 1.3em; }
-.editor-pane__outline-item--h3 { font-size: 1.17em; }
-.editor-pane__outline-item--h4 { font-size: 1em; }
-.editor-pane__outline-item--h5 { font-size: 0.83em; }
-.editor-pane__outline-item--h6 { font-size: 0.67em; }
+.editor-pane__outline-item--h1 { font-size: 15px; font-weight: 600; }
+.editor-pane__outline-item--h2 { font-size: 13.5px; }
+.editor-pane__outline-item--h3 { font-size: 12.5px; }
+.editor-pane__outline-item--h4 { font-size: 12px; }
+.editor-pane__outline-item--h5 { font-size: 11.5px; }
+.editor-pane__outline-item--h6 { font-size: 11px; }
 
 .editor-pane__outline-empty { padding: 8px 10px; font-size: 13px; color: var(--sepia); }
 
@@ -2894,10 +2898,12 @@ mark.predica-search-hit { background: var(--wine-soft); color: #fff; border-radi
 
 .editor-pane__surface h1 { font-family: var(--font-display); font-size: 1.7em; margin: 0.6em 0 0.3em; color: #2b2b2b; }
 .editor-pane__surface h2 { font-family: var(--font-display); font-size: 1.3em; margin: 0.6em 0 0.3em; color: #2b2b2b; }
-/* h3-h6 no tenían regla propia: quedaban en el tamaño por defecto del navegador
-   (1.17/1/0.83/0.67em). Se fija ese mismo valor acá, explícito, porque ahora
-   también lo usa el desplegable de encabezados (.editor-pane__outline-item--hN
-   más abajo) para que cada fila se vea del mismo tamaño que su encabezado real. */
+/* h3-h6 no tenían regla propia: quedaban en el tamaño por defecto del
+   navegador (1.17/1/0.83/0.67em). Se fija ese mismo valor acá, explícito,
+   para no depender del default del user-agent. (El desplegable de
+   encabezados, .editor-pane__outline-item--hN más abajo, ya NO reproduce
+   estos tamaños — tiene su propia escala fija en px, pensada para lista de
+   navegación compacta en vez de vista previa del heading real.) */
 .editor-pane__surface h3 { font-family: var(--font-display); font-size: 1.17em; margin: 0.6em 0 0.3em; color: #2b2b2b; }
 .editor-pane__surface h4 { font-family: var(--font-display); font-size: 1em; margin: 0.6em 0 0.3em; color: #2b2b2b; }
 .editor-pane__surface h5 { font-family: var(--font-display); font-size: 0.83em; margin: 0.6em 0 0.3em; color: #2b2b2b; }

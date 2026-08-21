@@ -1985,10 +1985,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     }catch(error){ console.warn('No se pudo resaltar el encabezado en la prédica', error); }
   }
 
-  // Cada fila reproduce el tamaño real de su nivel en el editor — ver
-  // .editor-pane__outline-item--hN en style.css, calcado de las reglas
-  // .editor-pane__surface h1..h6 — para que la jerarquía se vea igual acá
-  // que en el propio texto y en el selector "Encabezado 1..6" de la barra.
+  // El nivel real del heading (h1..h6) solo decide la clase --hN aplicada;
+  // el tamaño de cada fila ya NO reproduce el tamaño real del heading en el
+  // editor — ver .editor-pane__outline-item--hN en style.css, que tiene su
+  // propia escala fija en px (lista de navegación compacta, no vista previa
+  // del texto). El orden de niveles sigue siendo el mismo, así que la
+  // jerarquía se percibe igual aunque los tamaños ya no coincidan 1:1.
   function renderSermonOutline(){
     if(!els.predicaEsquemaResults) return;
     const headings = sermonOutlineHeadings();
