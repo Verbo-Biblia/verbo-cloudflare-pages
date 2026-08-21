@@ -534,6 +534,57 @@ body.recursos-page .r-book-row[href="mans-will-free-yet-bound-en/"] .book-cover 
   --book-cover-accent: #d7bd77;
 }
 
+/* Colección John Bunyan: encuadernación coordinada con variaciones por obra.
+   Se mantiene el lenguaje visual de Librería y se distingue la colección por
+   el lomo doble, el marco de latón y una paleta inspirada en piel del XVII. */
+body.recursos-page .r-book-row[data-tema*="john-bunyan"] .book-cover {
+  --book-cover-color: #653b2f;
+  --book-cover-shade: #291713;
+  --book-cover-accent: #ddb968;
+  overflow: hidden;
+  padding-left: 21px;
+}
+body.recursos-page .r-book-row[data-tema*="john-bunyan"] .book-cover::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 7px;
+  width: 5px;
+  border-inline: 1px solid color-mix(in srgb, var(--book-cover-accent) 45%, transparent);
+  background: rgba(0, 0, 0, .1);
+  pointer-events: none;
+}
+body.recursos-page .r-book-row[data-tema*="john-bunyan"] .book-cover-icon {
+  width: 27px;
+  height: 27px;
+  filter: drop-shadow(0 1px 0 rgba(0, 0, 0, .25));
+}
+body.recursos-page .r-book-row[data-tema*="john-bunyan"] .book-cover-title[data-long-title="true"] {
+  font-size: clamp(.83rem, 1.35vw, .96rem);
+  line-height: 1.17;
+}
+body.recursos-page .r-book-row[data-cover="the-pilgrims-progress-bunyan-en"] .book-cover,
+body.recursos-page .r-book-row[href="el-progreso-del-peregrino-para-todos-es/"] .book-cover {
+  --book-cover-color: #826027;
+  --book-cover-shade: #3d2b10;
+  --book-cover-accent: #f0d48b;
+}
+body.recursos-page .r-book-row[data-cover="the-holy-war-bunyan-en"] .book-cover {
+  --book-cover-color: #394b52;
+  --book-cover-shade: #182227;
+  --book-cover-accent: #d3b66f;
+}
+body.recursos-page .r-book-row[data-cover="the-jerusalem-sinner-saved-en"] .book-cover,
+body.recursos-page .r-book-row[data-cover="an-exhortation-to-peace-and-unity-en"] .book-cover {
+  --book-cover-color: #425c4c;
+  --book-cover-shade: #1b2b21;
+  --book-cover-accent: #dbc681;
+}
+body.recursos-page .r-book-row[data-cover^="works-of-john-bunyan-volume-"] .book-cover {
+  --book-cover-color: #34495d;
+  --book-cover-shade: #152330;
+  --book-cover-accent: #d9be78;
+}
+
 body.recursos-page .r-book-title {
   font-family: 'Fraunces', serif;
   font-size: .95rem;
