@@ -28,7 +28,7 @@
 | 2 Juan | 29 | 25 | 1 | 0 | 0 |
 | 3 Juan | 31 | 23 | 1 | 0 | 0 |
 | Judas | 73 | 53 | 1 | 0 | 0 |
-| Tito | 113 | 103 | 3 | 0 | 89 |
+| Tito | 113 | 103 | 3 | 0 | 84 |
 | Santiago | 117 | 103 | 5 | 0 | 106 |
 | 2 Pedro | 72 | 68 | 3 | 0 | 66 |
 | 2 Timoteo | 108 | 99 | 4 | 0 | 92 |
@@ -419,11 +419,17 @@ revisión completa de cada entrada contra el facsímil.
   (páginas físicas 6–8), esta última firmada por `T. C.`; se corrigieron sus
   encabezados OCR. El encabezado de la unidad siguiente se comprobó visualmente
   como `Ver. 5.—Titus’s commission in Crete`, no `Ver. 6` como decía el OCR. El
-  avance actual es 18 de 103 grupos fuente y 18 de 113 entradas revisadas, con
-  0 errores estructurales y 89 entradas en la cola automática. El artefacto del
+  Después quedaron cotejadas `Ver. 5.—Titus’s commission in Crete` (páginas
+  físicas 8–9), `Vers. 6, 7.—The character of bishops—their negative
+  qualifications` (9–10), `Ver. 8.—The bishop’s positive qualifications`
+  (10–11) y `Ver. 9.—The bishop’s qualification as to doctrine` (11), todas
+  firmadas por `T. C.`. El avance actual es 22 de 103 grupos fuente y 23 de 113
+  entradas revisadas, con 0 errores estructurales y 84 entradas en la cola
+  automática. El artefacto del
   módulo conserva deliberadamente las 113 entradas como `ocr-unreviewed`; el
-  siguiente paso es cotejar la homilía `Ver. 5.—Titus’s commission in Crete`,
-  que comienza en la página física 8, y mantener la búsqueda visual de otros encabezados
+  siguiente paso es cotejar la homilía `Vers. 10-13.—The character of the
+  adversaries at Crete`, que comienza en la página física 11, y mantener la
+  búsqueda visual de otros encabezados
   ocultos.
 
 ## Publicación piloto para revisión en línea (2026-08-21)
