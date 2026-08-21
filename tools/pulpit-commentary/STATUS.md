@@ -28,7 +28,7 @@
 | 2 Juan | 29 | 25 | 1 | 0 | 0 |
 | 3 Juan | 31 | 23 | 1 | 0 | 0 |
 | Judas | 73 | 53 | 1 | 0 | 0 |
-| Tito | 113 | 103 | 3 | 0 | 84 |
+| Tito | 113 | 103 | 3 | 0 | 80 |
 | Santiago | 117 | 103 | 5 | 0 | 106 |
 | 2 Pedro | 72 | 68 | 3 | 0 | 66 |
 | 2 Timoteo | 108 | 99 | 4 | 0 | 92 |
@@ -425,11 +425,16 @@ revisión completa de cada entrada contra el facsímil.
   (10–11) y `Ver. 9.—The bishop’s qualification as to doctrine` (11), todas
   firmadas por `T. C.`. El avance actual es 22 de 103 grupos fuente y 23 de 113
   entradas revisadas, con 0 errores estructurales y 84 entradas en la cola
+  automática. Después quedaron cotejadas las cuatro homilías finales de esta
+  serie de `T. C.`: `Vers. 10-13` (páginas físicas 11–12), `Vers. 13, 14`
+  (12–13), `Ver. 15` (13) y `Ver. 16` (13–14); también se corrigió el encabezado
+  OCR `Vere. 13, 14`. El avance actual es 26 de 103 grupos fuente y 28 de 113
+  entradas revisadas, con 0 errores estructurales y 80 entradas en la cola
   automática. El artefacto del
   módulo conserva deliberadamente las 113 entradas como `ocr-unreviewed`; el
-  siguiente paso es cotejar la homilía `Vers. 10-13.—The character of the
-  adversaries at Crete`, que comienza en la página física 11, y mantener la
-  búsqueda visual de otros encabezados
+  siguiente paso es cotejar la primera homilía de `W. M. S.`,
+  `Ver. 1.—Christian ministry`, que comienza en la página física 14, y mantener
+  la búsqueda visual de otros encabezados
   ocultos.
 
 ## Publicación piloto para revisión en línea (2026-08-21)
