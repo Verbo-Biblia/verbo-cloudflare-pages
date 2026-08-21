@@ -94,28 +94,27 @@
    de declarar position:relative en .reading-pane (evitaría convertirlo en
    contenedor de posicionamiento para otros elementos que no lo esperan).
 
-   A propósito NO es hijo de .reading-pane__inner (esa fue la ronda
-   anterior, ver historial): .reading-pane__inner es la columna de texto en
-   sí (max-width 640/720px, ver style.css), así que cualquier ajuste de
-   left/right ahí adentro solo elige QUÉ pisa — un botón de navegación a
-   scroll=0, o el texto de los versículos una vez que el sticky "engancha"
-   y el texto se desplaza debajo. Como hijo directo de .reading-pane (que
-   no tiene padding horizontal — style.css:306-311), el botón cae en el
-   margen junto a la columna de texto pero fuera de su ancho horizontal,
-   así que nunca compite con la navegación de capítulo ni con los
-   versículos sin importar el scroll, el ancho de ventana o el largo del
-   título. Deja de tener efecto solo si el viewport se angosta tanto que
-   .reading-pane__inner llena todo .reading-pane sin margen (por debajo de
-   ~896px) — pero los íconos de tutorial ya están completamente ocultos
-   por debajo de 760px (ver media query al final de este archivo), así que
-   la ventana de riesgo real es angosta.
-
-   Lado derecho (pedido explícito de Juan 2026-08-21, tras probar
-   izquierda): mismo margen, mismo mecanismo, junto al riel derecho.
-   El botón además baja ~25px respecto al wrapper (ver top en
-   .tv-trigger--reading) para centrarse con la fila título/flechas
+   SÍ es hijo de .reading-pane__inner (a propósito, pedido explícito de
+   Juan 2026-08-21: "en la columna derecha [de las 3 sub-columnas: margen
+   izq/texto/margen der], pero a la izquierda [de esa sub-columna]", es
+   decir pegado al borde derecho del propio texto, no pegado al riel). El
+   truco es que .tv-trigger--reading NO usa right (que mediría desde el
+   borde derecho de este wrapper = borde derecho del texto, chocando con
+   #innerNext o los versículos al hacer scroll — dos rondas anteriores
+   fallaron así, ver historial), sino `left: calc(100% + 12px)`: eso
+   coloca el borde IZQUIERDO del botón un 100%+12px a la derecha del
+   borde IZQUIERDO de este wrapper — o sea, exactamente 12px a la derecha
+   del borde derecho de la columna de texto (que .tv-reading-sticky
+   iguala en ancho, al ser un div de bloque normal dentro de
+   .reading-pane__inner). El botón entero queda así fuera del ancho de
+   la columna de texto sin importar cuán angosta o ancha sea esa columna
+   (640px, 720px, o lo que sea en el futuro), así que nunca compite con
+   #innerNext a scroll=0 ni con los versículos al hacer scroll — sin
+   depender de calcular a mano el ancho del margen ni el ancho de
+   .reading-pane. El botón además baja ~25px respecto al wrapper (ver
+   top en .tv-trigger--reading) para centrarse con la fila título/flechas
    (chapter-title-row) en vez de quedar a la altura del eyebrow "BIBLIA
-   VERBO" — pedido explícito con mockup adjunto. */
+   VERBO". */
 .tv-reading-sticky {
   position: sticky;
   top: 12px;
@@ -126,9 +125,10 @@
 .tv-trigger--reading {
   position: absolute;
   top: 25px;
-  /* Relativo al borde derecho de .reading-pane (ver comentario arriba),
-     no al de la columna de texto — 12px lo separa del riel derecho. */
-  right: 12px;
+  /* left, no right — ver comentario arriba: mide desde el borde IZQUIERDO
+     de la columna de texto, no el derecho, así el botón queda pegado
+     JUSTO fuera del borde derecho del texto sin importar su ancho. */
+  left: calc(100% + 12px);
   background: rgba(255, 255, 255, .82);
   border: 1px solid rgba(91, 54, 49, .18);
   border-radius: 10px;
