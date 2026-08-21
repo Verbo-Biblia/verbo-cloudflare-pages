@@ -92,7 +92,24 @@
    .reading-pane es el contenedor con scroll (overflow-y:auto en
    style.css), así que sticky en un descendiente suyo alcanza sin necesidad
    de declarar position:relative en .reading-pane (evitaría convertirlo en
-   contenedor de posicionamiento para otros elementos que no lo esperan). */
+   contenedor de posicionamiento para otros elementos que no lo esperan).
+
+   A propósito NO es hijo de .reading-pane__inner (esa fue la ronda
+   anterior, ver historial): .reading-pane__inner es la columna de texto en
+   sí (max-width 640/720px, ver style.css), así que cualquier ajuste de
+   right ahí adentro solo elige QUÉ pisa — la flecha #innerNext a
+   scroll=0, o el texto de los versículos una vez que el sticky "engancha"
+   y el texto se desplaza debajo. Como hijo directo de .reading-pane (que
+   no tiene padding horizontal — style.css:306-311), el botón cae en el
+   margen entre la columna de texto y el riel derecho, fuera del ancho
+   horizontal que la columna de texto pueda ocupar, así que nunca compite
+   con #innerNext ni con los versículos sin importar el scroll, el ancho
+   de ventana o el largo del título. Deja de tener efecto solo si el
+   viewport se angosta tanto que .reading-pane__inner llena todo
+   .reading-pane sin margen (por debajo de ~896px) — pero los íconos de
+   tutorial ya están completamente ocultos por debajo de 760px (ver media
+   query al final de este archivo), así que la ventana de riesgo real es
+   angosta. */
 .tv-reading-sticky {
   position: sticky;
   top: 12px;
@@ -103,13 +120,9 @@
 .tv-trigger--reading {
   position: absolute;
   top: 0;
-  /* 48px, no 0: comparte el mismo borde derecho de columna que #innerNext
-     (flecha "capítulo siguiente" en .chapter-title-row, style.css:339) y a
-     scroll=0 sus zonas verticales se solapan (ver investigación) — 48px es
-     más que el ancho real de #innerNext (~40-44px) para que no compartan
-     rango horizontal aunque cambie el título del capítulo o el ancho de
-     ventana. */
-  right: 48px;
+  /* Relativo al borde derecho de .reading-pane (ver comentario arriba),
+     no al de la columna de texto — 12px lo separa del riel derecho. */
+  right: 12px;
   background: rgba(255, 255, 255, .82);
   border: 1px solid rgba(91, 54, 49, .18);
   border-radius: 10px;
