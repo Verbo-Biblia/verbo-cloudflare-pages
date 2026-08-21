@@ -87,8 +87,16 @@
 }
 .tv-trigger--portal:hover { opacity: 1; transform: scale(1.06); }
 
-/* Variante área de lectura: envuelta en un wrapper sticky de altura 0 para
-   no empujar el título/versículos hacia abajo (ver biblia/index.html) —
+/* Variante área de lectura: wrapper sticky que ocupa su propio espacio real
+   en el flujo (alto natural del botón), en vez de altura 0 + botón
+   position:absolute superpuesto — esa superposición hacía que el ícono
+   quedara pisando la flecha "capítulo siguiente" (#innerNext, style.css) y
+   .chapter-title-row en el primer render de cada capítulo (recién se
+   despegaba tras scrollear ~36px, cuando el sticky se "engancha"). Al
+   ocupar su propio alto, .chapter-eyebrow/.chapter-title-row (ver
+   biblia/index.html) arrancan después del ícono siempre, sin superposición,
+   sin importar el ancho de pantalla ni el largo del título — a cambio, el
+   bloque de lectura arranca ~44px más abajo que antes.
    .reading-pane es el contenedor con scroll (overflow-y:auto en
    style.css), así que sticky en un descendiente suyo alcanza sin necesidad
    de declarar position:relative en .reading-pane (evitaría convertirlo en
@@ -96,14 +104,12 @@
 .tv-reading-sticky {
   position: sticky;
   top: 12px;
-  height: 0;
-  overflow: visible;
   z-index: 6;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
 }
 .tv-trigger--reading {
-  position: absolute;
-  top: 0;
-  right: 0;
   background: rgba(255, 255, 255, .82);
   border: 1px solid rgba(91, 54, 49, .18);
   border-radius: 10px;
