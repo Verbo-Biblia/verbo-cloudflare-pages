@@ -46,7 +46,8 @@
     "commentaries/calvin/manifest.json",
     "commentaries/cambridge/manifest.json",
     "commentaries/comentarios-verbo/manifest.json",
-    "commentaries/exegesis-verbo/manifest.json"
+    "commentaries/exegesis-verbo/manifest.json",
+    "commentaries/pulpit-commentary/manifest.json"
   ],
   "dictionaries": [
     "dictionaries/strong-verbo/manifest.json"
@@ -5891,6 +5892,52 @@
               "name": "Apocalipsis",
               "file": "books/REV.json",
               "indexFile": "books/REV.index.json"
+            }
+          ]
+        }
+      },
+      {
+        "path": "modules/commentaries/pulpit-commentary/manifest.json",
+        "manifest": {
+          "schemaVersion": 2,
+          "id": "pulpit-commentary",
+          "type": "commentary",
+          "name": "The Pulpit Commentary",
+          "abbreviation": "Pulpit",
+          "language": "en",
+          "author": "H. D. M. Spence, Joseph S. Exell y colaboradores",
+          "description": "The Pulpit Commentary — edición piloto en revisión de Verbo, con exposición exegética y material homilético separados por entrada.",
+          "license": "Dominio público.",
+          "books": [
+            {
+              "id": "OBA",
+              "name": "Obadiah",
+              "file": "books/OBA.json",
+              "indexFile": "books/OBA.index.json"
+            },
+            {
+              "id": "PHM",
+              "name": "Philemon",
+              "file": "books/PHM.json",
+              "indexFile": "books/PHM.index.json"
+            },
+            {
+              "id": "2JN",
+              "name": "2 John",
+              "file": "books/2JN.json",
+              "indexFile": "books/2JN.index.json"
+            },
+            {
+              "id": "3JN",
+              "name": "3 John",
+              "file": "books/3JN.json",
+              "indexFile": "books/3JN.index.json"
+            },
+            {
+              "id": "JUD",
+              "name": "Jude",
+              "file": "books/JUD.json",
+              "indexFile": "books/JUD.index.json"
             }
           ]
         }

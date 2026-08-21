@@ -6,7 +6,38 @@
   "abbreviation": "Pulpit",
   "language": "en",
   "author": "H. D. M. Spence, Joseph S. Exell y colaboradores",
-  "description": "The Pulpit Commentary — exposición exegética y material homilético, con secciones de exposición y homilética separadas por entrada.",
+  "description": "The Pulpit Commentary — edición piloto en revisión de Verbo, con exposición exegética y material homilético separados por entrada.",
   "license": "Dominio público.",
-  "books": []
+  "books": [
+    {
+      "id": "OBA",
+      "name": "Obadiah",
+      "file": "books/OBA.json",
+      "indexFile": "books/OBA.index.json"
+    },
+    {
+      "id": "PHM",
+      "name": "Philemon",
+      "file": "books/PHM.json",
+      "indexFile": "books/PHM.index.json"
+    },
+    {
+      "id": "2JN",
+      "name": "2 John",
+      "file": "books/2JN.json",
+      "indexFile": "books/2JN.index.json"
+    },
+    {
+      "id": "3JN",
+      "name": "3 John",
+      "file": "books/3JN.json",
+      "indexFile": "books/3JN.index.json"
+    },
+    {
+      "id": "JUD",
+      "name": "Jude",
+      "file": "books/JUD.json",
+      "indexFile": "books/JUD.index.json"
+    }
+  ]
 }

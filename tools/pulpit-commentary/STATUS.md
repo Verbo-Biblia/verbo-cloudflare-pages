@@ -8,12 +8,14 @@
   sincronizados con Biblia Verbo y validados antes de publicación.
 - Fuentes catalogadas: 66 libros, 77 PDF en `sources.json`.
 - Borradores estructuralmente sincronizados: 25 libros.
-- Libros publicados o registrados: 0.
+- Libros visibles en la edición piloto: 5 (Filemón, Abdías, 2 Juan, 3 Juan y
+  Judas), por autorización expresa de Juan para revisión en línea.
 - Todos los borradores conservan `editorialStatus: ocr-unreviewed`.
-- Módulo de trabajo creado en
-  `biblia/modules/commentaries/pulpit-commentary/`, todavía sin registrar y con
-  el arreglo `books` vacío. Los 25 libros están preparados físicamente como
-  artefactos de revisión; sus 6,141 entradas permanecen `ocr-unreviewed`.
+- El módulo está registrado en `biblia/modules/registry.json`. Su manifest solo
+  expone los cinco libros completamente cotejados; los otros 20 permanecen como
+  artefactos internos fuera del catálogo. Las 6,141 entradas preparadas
+  conservan `ocr-unreviewed`, incluida la edición piloto, para que su visibilidad
+  no se confunda con aprobación editorial definitiva.
 
 | Libro | Entradas | Grupos fuente | Capítulos | Errores estructurales | Cola OCR |
 | --- | ---: | ---: | ---: | ---: | ---: |
@@ -410,14 +412,15 @@ revisión completa de cada entrada contra el facsímil.
   exposición de `Ver. 1` desde la página física 2 y continuar la búsqueda visual
   de otros encabezados que el OCR pudiera haber ocultado.
 
-## Paso 0 del módulo independiente
+## Publicación piloto para revisión en línea (2026-08-21)
 
 - Estructura creada: `biblia/modules/commentaries/pulpit-commentary/`.
-- `manifest.json` es compatible con comentarios esquema 2, pero conserva
-  `books: []`; por tanto Filemón no está registrado como libro disponible.
+- `manifest.json` registra Filemón, Abdías, 2 Juan, 3 Juan y Judas, con sus
+  archivos completos e índices livianos.
 - Los 25 pares `books/<ID>.json` y `books/<ID>.index.json` son artefactos de
-  revisión, no una publicación. Las 6,141 entradas están marcadas
-  `ocr-unreviewed`; el manifest continúa con `books: []`.
+  revisión. Las 6,141 entradas están marcadas `ocr-unreviewed`; solo 264
+  entradas pertenecientes a los cinco libros cotejados son visibles en la
+  edición piloto.
 - Las capas OCR se regeneraron desde los facsímiles catalogados. Cuando una
   extracción alternativa no reutilizó correcciones ligadas textualmente a otra
   capa OCR, el conversor permitió dejarlas sin aplicar, pero nunca relajó la
@@ -427,15 +430,15 @@ revisión completa de cada entrada contra el facsímil.
   tienen evidencia de cotejo contra el facsímil y la auditoría no conserva
   señales pendientes; las 56 entradas del módulo siguen `ocr-unreviewed` por
   instrucción expresa de no otorgar aprobación editorial en este paso.
-- Antes de publicar Filemón faltan la aprobación manual de Juan y, en un paso de
-  publicación autorizado, agregar el libro al manifest y reconstruir los
-  índices y el catálogo correspondientes.
+- Por instrucción expresa de Juan, el módulo se añadió al registro y se
+  reconstruyeron los índices y el catálogo para permitir la revisión desde la
+  interfaz. Esta publicación piloto no declara los libros definitivos ni
+  aprobados editorialmente.
 
 ## Plan de reanudación
 
-1. Corregir integralmente las colas OCR de los cinco libros de un capítulo
-   (Filemón, Abdías, 2 Juan, 3 Juan y Judas) contra sus facsímiles; revisar
-   también las entradas no señaladas antes de cambiar cualquier estado.
+1. Recoger la revisión humana de los cinco libros piloto visibles en línea y
+   conservar su estado provisional hasta aprobación expresa.
 2. Continuar la corrección integral del OCR de Génesis, Esdras, Nehemías y
    Ester, manteniéndolos fuera del catálogo hasta completar el cotejo.
 3. Preparar y convertir los restantes 41 libros con el mismo control de
@@ -445,10 +448,12 @@ revisión completa de cada entrada contra el facsímil.
    `README.md`. La reconstrucción de índices, catálogo y registro pertenece al
    paso de publicación autorizado, no a esta preparación.
 
-No reconstruir índices ni modificar `biblia/modules/registry.json` mientras
-exista algún libro con OCR sin revisar.
+No agregar al manifest otros libros con OCR sin revisar integralmente.
 
 ## Pausa guardada: preparación de los 25 libros (2026-08-20)
+
+Registro histórico, superado por la publicación piloto autorizada el 21 de
+agosto de 2026.
 
 - Los 25 libros estructurados están materializados en
   `biblia/modules/commentaries/pulpit-commentary/books/`, cada uno con su JSON
