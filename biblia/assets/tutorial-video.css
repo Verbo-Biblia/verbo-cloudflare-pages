@@ -103,7 +103,13 @@
 .tv-trigger--reading {
   position: absolute;
   top: 0;
-  right: 0;
+  /* 48px, no 0: comparte el mismo borde derecho de columna que #innerNext
+     (flecha "capítulo siguiente" en .chapter-title-row, style.css:339) y a
+     scroll=0 sus zonas verticales se solapan (ver investigación) — 48px es
+     más que el ancho real de #innerNext (~40-44px) para que no compartan
+     rango horizontal aunque cambie el título del capítulo o el ancho de
+     ventana. */
+  right: 48px;
   background: rgba(255, 255, 255, .82);
   border: 1px solid rgba(91, 54, 49, .18);
   border-radius: 10px;
