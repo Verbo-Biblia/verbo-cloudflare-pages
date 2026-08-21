@@ -65,11 +65,34 @@
   }
 
   function wireTrigger(btn) {
-    btn.addEventListener('click', () => open(btn.dataset.videoEs, btn.dataset.videoEn));
+    btn.addEventListener('click', () => {
+      if (btn.classList.contains('tv-trigger--disabled')) return;
+      open(btn.dataset.videoEs, btn.dataset.videoEn);
+    });
+  }
+
+  // El video de "barra lateral derecha" cubre solo el riel del modo normal
+  // — en modo sermón ese riel muestra pestañas adicionales (Biblia/Mis
+  // prédicas, ver body.sermon-mode en style.css) que el video todavía no
+  // explica. El ícono sigue visible (nunca display:none), solo deja de
+  // abrir el modal mientras dura el modo sermón.
+  function setBarraDerechaDisabled(disabled) {
+    const btn = document.getElementById('tvBarraDerecha');
+    if (!btn) return;
+    btn.classList.toggle('tv-trigger--disabled', disabled);
+    btn.setAttribute('aria-disabled', String(disabled));
   }
 
   function init() {
     document.querySelectorAll('.tv-trigger[data-video-es]').forEach(wireTrigger);
+    // Estado inicial: si la página carga ya en modo sermón (poco frecuente
+    // hoy — sermonMode arranca en false en app.js — pero cubre el caso sin
+    // depender de ese detalle interno), el ícono debe nacer deshabilitado,
+    // no recién tras el primer toggle.
+    setBarraDerechaDisabled(document.body.classList.contains('sermon-mode'));
+    document.addEventListener('verbo:sermon-mode-changed', e => {
+      setBarraDerechaDisabled(!!e.detail?.sermonMode);
+    });
   }
 
   if (document.readyState === 'loading') {

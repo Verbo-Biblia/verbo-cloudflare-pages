@@ -1699,6 +1699,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     els.sermonToggle?.classList.toggle('sermon-mode-toggle--active', sermonMode);
     els.sermonToggle?.setAttribute('aria-pressed', String(sermonMode));
     document.body.classList.toggle('sermon-mode', sermonMode);
+    // Mismo patrón que verbo:uilang-changed (i18n.js) — permite que módulos
+    // aditivos (ver tutorial-video.js, ícono de la barra derecha) reaccionen
+    // al modo sermón sin acoplarse al resto de esta función.
+    document.dispatchEvent(new CustomEvent('verbo:sermon-mode-changed', {detail:{sermonMode}}));
     if(els.readingPane) els.readingPane.hidden = sermonMode;
     if(els.editorPane) els.editorPane.hidden = !sermonMode;
     if(sermonMode) await initSermonEditor();

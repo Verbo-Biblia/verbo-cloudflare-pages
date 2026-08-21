@@ -123,6 +123,17 @@
    ícono en sí (círculo rojo) no usa currentColor como los demás SVG. */
 .tv-trigger--rail:hover { background: rgba(255,255,255,.95); }
 
+/* Estado deshabilitado (solo #tvBarraDerecha en modo sermón por ahora — ver
+   tutorial-video.js). Mismo criterio opacity+cursor:not-allowed que el
+   resto de los estados :disabled del proyecto (.passage-picker__button,
+   .sermon-bible-toolbar__navbtn, etc. en style.css). Sigue visible a
+   propósito (nunca display:none) — solo deja de ser clickeable. */
+.tv-trigger--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.tv-trigger--disabled:hover { transform: none; background: transparent; }
+
 /* ---------- Ocultos por completo en móvil — ronda actual sin comportamiento móvil ---------- */
 @media (max-width: 760px) {
   .tv-trigger,
