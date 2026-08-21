@@ -2739,23 +2739,25 @@ body[data-theme="rosewood"] {
 }
 .editor-pane__title-input:focus { outline: none; border-color: var(--wine-soft); }
 
-.editor-pane__search { position: relative; flex: 1; min-width: 140px; max-width: 260px; }
+.editor-pane__outline { position: relative; flex: 1; min-width: 140px; max-width: 260px; }
 
-.editor-pane__search-input {
+.editor-pane__outline-toggle {
   width: 100%;
   border: 1px solid var(--rule-strong);
   background: var(--chrome);
   color: var(--ink);
   font: inherit;
-  /* 16px exactos: mismo motivo que .editor-pane__title-input (zoom automático
-     de Safari/iPhone al enfocar un campo por debajo de ese tamaño). */
-  font-size: 16px;
+  font-size: 14px;
+  text-align: left;
   padding: 6px 10px;
   border-radius: 6px;
+  cursor: pointer;
 }
-.editor-pane__search-input:focus { outline: none; border-color: var(--wine-soft); }
+.editor-pane__outline-toggle:hover,
+.editor-pane__outline-toggle:focus { outline: none; border-color: var(--wine-soft); }
+.editor-pane__outline-toggle::after { content: '▾'; float: right; opacity: 0.6; }
 
-.editor-pane__search-results {
+.editor-pane__outline-results {
   position: absolute;
   top: calc(100% + 4px);
   left: 0;
@@ -2769,30 +2771,37 @@ body[data-theme="rosewood"] {
   z-index: 20;
 }
 
-.editor-pane__search-hit {
+/* Cada fila reproduce el tamaño real de ese nivel en .editor-pane__surface
+   h1..h6 (ver ahí mismo) — misma jerarquía visual que el propio texto y que
+   el selector "Encabezado 1..6" de la barra de herramientas. */
+.editor-pane__outline-item {
   display: block;
   width: 100%;
   text-align: left;
   border: none;
   border-bottom: 1px solid var(--rule);
   background: none;
-  font: inherit;
-  font-size: 13px;
-  line-height: 1.4;
+  font-family: var(--font-display);
   color: var(--ink);
   padding: 8px 10px;
   cursor: pointer;
+  line-height: 1.3;
 }
-.editor-pane__search-hit:last-child { border-bottom: none; }
-.editor-pane__search-hit:hover,
-.editor-pane__search-hit:focus { background: var(--chrome); outline: none; }
-.editor-pane__search-hit mark { background: var(--wine-soft); color: #fff; border-radius: 2px; padding: 0 1px; }
+.editor-pane__outline-item:last-child { border-bottom: none; }
+.editor-pane__outline-item:hover,
+.editor-pane__outline-item:focus { background: var(--chrome); outline: none; }
+.editor-pane__outline-item--h1 { font-size: 1.7em; }
+.editor-pane__outline-item--h2 { font-size: 1.3em; }
+.editor-pane__outline-item--h3 { font-size: 1.17em; }
+.editor-pane__outline-item--h4 { font-size: 1em; }
+.editor-pane__outline-item--h5 { font-size: 0.83em; }
+.editor-pane__outline-item--h6 { font-size: 0.67em; }
 
-.editor-pane__search-empty { padding: 8px 10px; font-size: 13px; color: var(--sepia); }
+.editor-pane__outline-empty { padding: 8px 10px; font-size: 13px; color: var(--sepia); }
 
-/* Resaltado temporal (no persistente) de una coincidencia dentro del texto de
-   la prédica al hacer clic en un resultado — ver flashSermonSearchHit en
-   app.js. Se inserta con data-mce-bogus="1" (TinyMCE lo excluye siempre de
+/* Resaltado temporal (no persistente) del encabezado elegido en el
+   desplegable de encabezados — ver flashSermonOutlineHit en app.js. Se
+   inserta con data-mce-bogus="1" (TinyMCE lo excluye siempre de
    getContent()) y se retira solo unos segundos después. */
 mark.predica-search-hit { background: var(--wine-soft); color: #fff; border-radius: 2px; }
 
@@ -2835,11 +2844,11 @@ mark.predica-search-hit { background: var(--wine-soft); color: #fff; border-radi
 @media (max-width: 760px) {
   .editor-pane__actions { flex-wrap: wrap; }
   .editor-pane__title-input { flex-basis: 100%; max-width: none; order: -1; }
-  /* Título, buscador y botones apilados en su propia fila cada uno, en ese
+  /* Título, encabezados y botones apilados en su propia fila cada uno, en ese
      orden — mismo criterio que el título: en paneles angostos (Biblia o
      Comentario abiertos junto al editor) no hay ancho para los tres lado a
      lado. */
-  .editor-pane__search { flex-basis: 100%; max-width: none; order: 0; }
+  .editor-pane__outline { flex-basis: 100%; max-width: none; order: 0; }
   .editor-pane__actions-buttons { order: 1; }
 }
 
@@ -2870,6 +2879,14 @@ mark.predica-search-hit { background: var(--wine-soft); color: #fff; border-radi
 
 .editor-pane__surface h1 { font-family: var(--font-display); font-size: 1.7em; margin: 0.6em 0 0.3em; color: #2b2b2b; }
 .editor-pane__surface h2 { font-family: var(--font-display); font-size: 1.3em; margin: 0.6em 0 0.3em; color: #2b2b2b; }
+/* h3-h6 no tenían regla propia: quedaban en el tamaño por defecto del navegador
+   (1.17/1/0.83/0.67em). Se fija ese mismo valor acá, explícito, porque ahora
+   también lo usa el desplegable de encabezados (.editor-pane__outline-item--hN
+   más abajo) para que cada fila se vea del mismo tamaño que su encabezado real. */
+.editor-pane__surface h3 { font-family: var(--font-display); font-size: 1.17em; margin: 0.6em 0 0.3em; color: #2b2b2b; }
+.editor-pane__surface h4 { font-family: var(--font-display); font-size: 1em; margin: 0.6em 0 0.3em; color: #2b2b2b; }
+.editor-pane__surface h5 { font-family: var(--font-display); font-size: 0.83em; margin: 0.6em 0 0.3em; color: #2b2b2b; }
+.editor-pane__surface h6 { font-family: var(--font-display); font-size: 0.67em; margin: 0.6em 0 0.3em; color: #2b2b2b; }
 .editor-pane__surface p { margin: 0.5em 0; }
 .editor-pane__surface ul, .editor-pane__surface ol { padding-left: 1.4em; margin: 0.5em 0; }
 .editor-pane__surface li { margin: 0.2em 0; }

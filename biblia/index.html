@@ -23,7 +23,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Verbo">
-<link rel="stylesheet" href="assets/style.css?v=20260820-mobile-action-bar-82-5">
+<link rel="stylesheet" href="assets/style.css?v=20260820-sermon-outline">
 <link rel="stylesheet" href="assets/historia-nota-rapida.css?v=20260806-ios-font-size-fix">
 </head>
 <body>
@@ -132,9 +132,9 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
       <div class="editor-pane__toolbar" id="editorToolbar"></div>
       <div class="editor-pane__actions">
         <input type="text" class="editor-pane__title-input" id="predicaTituloInput" placeholder="Título de la prédica (opcional)" data-i18n-attr="placeholder:predicas.tituloPlaceholder">
-        <div class="editor-pane__search">
-          <input type="text" class="editor-pane__search-input" id="predicaBuscarInput" autocomplete="off" placeholder="Buscar en esta predicación…" data-i18n-attr="placeholder:predicas.buscarEnEditorPlaceholder,aria-label:predicas.buscarEnEditorAria">
-          <div class="editor-pane__search-results" id="predicaBuscarResults" hidden></div>
+        <div class="editor-pane__outline">
+          <button type="button" class="editor-pane__outline-toggle" id="predicaEsquemaBtn" aria-haspopup="listbox" aria-expanded="false" data-i18n="predicas.esquemaBtn" data-i18n-attr="aria-label:predicas.esquemaAria">Encabezados</button>
+          <div class="editor-pane__outline-results" id="predicaEsquemaResults" role="listbox" hidden></div>
         </div>
         <div class="editor-pane__actions-buttons">
           <button type="button" class="editor-pane__save-btn" id="guardarSermonBtn" data-i18n="predicas.guardarBtn">Guardar</button>
@@ -316,7 +316,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   <script src="assets/module-loader.js?v=20260813-interlinear-bilingual"></script>
   <script src="assets/atlas-reference-parser.js?v=20260818-atlas-step2"></script>
   <script src="assets/sync.js?v=20260801-sermon-predicas"></script>
-  <script src="assets/app.js?v=20260820-share-verse"></script>
+  <script src="assets/app.js?v=20260820-sermon-outline"></script>
   <script src="assets/historia-nota-rapida.js?v=20260805-padres-nota-rapida"></script>
 </body>
 </html>

@@ -38,8 +38,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     editorPane: document.getElementById('editorPane'),
     editorSurface: document.getElementById('editorSurface'),
     editorToolbar: document.getElementById('editorToolbar'),
-    predicaBuscarInput: document.getElementById('predicaBuscarInput'),
-    predicaBuscarResults: document.getElementById('predicaBuscarResults'),
+    predicaEsquemaBtn: document.getElementById('predicaEsquemaBtn'),
+    predicaEsquemaResults: document.getElementById('predicaEsquemaResults'),
     sermonComparePanel: document.getElementById('sermonComparePanel'),
     sermonPanelTitle: document.getElementById('sermonPanelTitle'),
     sermonComparePanelToolbar: document.getElementById('sermonComparePanelToolbar'),
@@ -1866,11 +1866,11 @@ document.addEventListener('DOMContentLoaded', async () => {
           init_instance_callback: editor=>{
             sermonEditor=editor;
             if(sermonEditorContent) editor.setContent(sermonEditorContent);
-            // Cierra el buscador propio de la prédica en cualquier cambio de
-            // contenido: los resultados guardan referencias directas a nodos
-            // de texto (ver sermonSearchMatches) que quedarían apuntando a
-            // posiciones equivocadas si el usuario sigue escribiendo.
-            editor.on('input change undo redo', ()=>{ sermonEditorContent=editor.getContent(); closeSermonSearchResults(); });
+            // Cierra el índice de encabezados en cualquier cambio de contenido:
+            // la lista se arma a partir de los <h1>-<h6> presentes al momento de
+            // abrirla, así que puede quedar desactualizada si el usuario sigue
+            // escribiendo (agrega/borra encabezados) con el panel abierto.
+            editor.on('input change undo redo', ()=>{ sermonEditorContent=editor.getContent(); closeSermonOutline(); });
             resolve();
           }
         });
@@ -1929,81 +1929,40 @@ document.addEventListener('DOMContentLoaded', async () => {
   els.editorPane?.querySelector('#exportWordBtn')?.addEventListener('click', exportSermonToWord);
   els.editorPane?.querySelector('#exportPdfBtn')?.addEventListener('click', exportSermonToPDF);
 
-  // ── Buscador propio de la prédica actual (no busca en la Biblia ni en
-  // comentarios) — pensado para saltar dentro de un bosquejo largo sin
-  // depender de que el usuario haya estructurado el texto con encabezados
-  // ni del Ctrl+F del navegador, que no sabe hacer scroll dentro de un
-  // panel angosto ni resaltar temporalmente. Ver informe de evaluación de
-  // opciones (índice de encabezados vs. este buscador) en el resumen de
-  // la tarea.
-  const SERMON_SEARCH_DIACRITICS = { 'á':'a','é':'e','í':'i','ó':'o','ú':'u','ü':'u','ñ':'n' };
-  // Solo pliega minúsculas/tildes, char-por-char — a propósito NO usa
-  // normalize('NFD') como el resto de la app (ver normalizeSemanticText):
-  // acá los índices resultantes se usan para cortar el texto ORIGINAL
-  // (Range.setStart/setEnd sobre el nodo real), así que necesitan la MISMA
-  // longitud que el texto sin plegar carácter a carácter, cosa que NFD no
-  // garantiza en todos los casos.
-  function foldSermonSearchText(value){
-    return String(value||'').toLowerCase().replace(/[áéíóúüñ]/g, ch => SERMON_SEARCH_DIACRITICS[ch]);
-  }
+  // ── Índice de encabezados de la prédica actual — desplegable para saltar
+  // dentro de un bosquejo largo sin depender del Ctrl+F del navegador, que no
+  // sabe hacer scroll dentro de un panel angosto ni resaltar temporalmente.
+  // Lista los <h1>-<h6> reales del documento (los mismos "Encabezado 1"…
+  // "Encabezado 6" del selector de bloque de la barra de herramientas):
+  // un bosquejo que no usa encabezados no tiene nada que listar.
+  const SERMON_OUTLINE_TAGS = ['H1','H2','H3','H4','H5','H6'];
 
-  // Busca dentro de los nodos de texto reales del editor (TreeWalker sobre
-  // editor.getBody() — TinyMCE está en modo inline, así que ese body vive en
-  // el `document` de la página, no en un iframe aparte). Cada coincidencia
-  // guarda el nodo + offsets exactos para poder ubicarla de verdad (no solo
-  // el texto plano), y no cruza límites de nodo — una frase partida a la
-  // mitad por una negrita/cursiva no aparece como coincidencia única; ver
-  // limitación documentada en el resumen de la tarea.
-  function sermonSearchMatches(rawQuery, limit=6){
+  function sermonOutlineHeadings(){
     if(!sermonEditor) return [];
-    const query = foldSermonSearchText(String(rawQuery||'').trim());
-    if(query.length<2) return [];
     const body = sermonEditor.getBody();
     if(!body) return [];
-    const walker = document.createTreeWalker(body, NodeFilter.SHOW_TEXT, {
-      acceptNode: node => (node.nodeValue && node.nodeValue.trim()) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT
-    });
-    const matches = [];
-    let node;
-    while((node = walker.nextNode())){
-      const text = node.nodeValue;
-      const folded = foldSermonSearchText(text);
-      let from = 0, idx;
-      while((idx = folded.indexOf(query, from)) !== -1){
-        const start = idx, end = idx + query.length;
-        const ctxStart = Math.max(0, start - 28);
-        const ctxEnd = Math.min(text.length, end + 28);
-        matches.push({
-          node, start, end,
-          before: (ctxStart > 0 ? '…' : '') + text.slice(ctxStart, start),
-          hit: text.slice(start, end),
-          after: text.slice(end, ctxEnd) + (ctxEnd < text.length ? '…' : '')
-        });
-        if(matches.length >= limit) return matches;
-        from = end;
-      }
-    }
-    return matches;
+    return Array.from(body.querySelectorAll(SERMON_OUTLINE_TAGS.join(',')))
+      .filter(el => el.textContent.trim());
   }
 
-  function closeSermonSearchResults(){
-    if(!els.predicaBuscarResults) return;
-    els.predicaBuscarResults.hidden = true;
-    els.predicaBuscarResults.innerHTML = '';
+  function closeSermonOutline(){
+    if(!els.predicaEsquemaResults) return;
+    els.predicaEsquemaResults.hidden = true;
+    els.predicaEsquemaResults.innerHTML = '';
+    els.predicaEsquemaBtn?.setAttribute('aria-expanded', 'false');
   }
 
-  // Resalta la coincidencia elegida SIN dejarla marcada en el contenido
-  // guardado: envuelve el rango en un <mark data-mce-bogus="1"> (TinyMCE
+  // Resalta el encabezado elegido SIN dejarlo marcado en el contenido
+  // guardado: envuelve su contenido en un <mark data-mce-bogus="1"> (TinyMCE
   // excluye siempre los nodos "bogus" de editor.getContent(), aunque el
   // usuario guarde justo en ese instante) dentro de undoManager.ignore()
   // (no genera un paso de deshacer ni ensucia el documento), y lo retira
   // solo después de un momento.
-  function flashSermonSearchHit(match){
-    if(!sermonEditor || !match?.node?.isConnected) return;
+  function flashSermonOutlineHit(headingEl){
+    if(!sermonEditor || !headingEl?.isConnected) return;
     try{
       const rng = document.createRange();
-      rng.setStart(match.node, match.start);
-      rng.setEnd(match.node, match.end);
+      rng.selectNodeContents(headingEl);
       const mark = document.createElement('mark');
       mark.className = 'predica-search-hit';
       mark.setAttribute('data-mce-bogus', '1');
@@ -2018,47 +1977,50 @@ document.addEventListener('DOMContentLoaded', async () => {
           parent.normalize();
         });
       }, 1500);
-    }catch(error){ console.warn('No se pudo resaltar la coincidencia en la prédica', error); }
+    }catch(error){ console.warn('No se pudo resaltar el encabezado en la prédica', error); }
   }
 
-  function renderSermonSearchResults(matches){
-    if(!els.predicaBuscarResults) return;
-    if(!matches.length){
-      els.predicaBuscarResults.innerHTML = `<div class="editor-pane__search-empty">${t('predicas.buscarSinResultados')}</div>`;
-      els.predicaBuscarResults.hidden = false;
-      return;
-    }
-    els.predicaBuscarResults.innerHTML = matches.map((m,i) =>
-      `<button type="button" class="editor-pane__search-hit" data-hit="${i}">${escapeHTML(m.before)}<mark>${escapeHTML(m.hit)}</mark>${escapeHTML(m.after)}</button>`
-    ).join('');
-    els.predicaBuscarResults.hidden = false;
-    els.predicaBuscarResults.querySelectorAll('[data-hit]').forEach(btn => {
-      // mousedown, no click: dispara antes de que el input pierda foco y el
-      // handler de "blur" (más abajo) vacíe la lista.
-      btn.addEventListener('mousedown', e => {
-        e.preventDefault();
-        flashSermonSearchHit(matches[Number(btn.dataset.hit)]);
+  // Cada fila reproduce el tamaño real de su nivel en el editor — ver
+  // .editor-pane__outline-item--hN en style.css, calcado de las reglas
+  // .editor-pane__surface h1..h6 — para que la jerarquía se vea igual acá
+  // que en el propio texto y en el selector "Encabezado 1..6" de la barra.
+  function renderSermonOutline(){
+    if(!els.predicaEsquemaResults) return;
+    const headings = sermonOutlineHeadings();
+    if(!headings.length){
+      els.predicaEsquemaResults.innerHTML = `<div class="editor-pane__outline-empty">${t('predicas.esquemaVacio')}</div>`;
+    }else{
+      els.predicaEsquemaResults.innerHTML = headings.map((h,i) => {
+        const level = h.tagName.slice(1);
+        return `<button type="button" role="option" class="editor-pane__outline-item editor-pane__outline-item--h${level}" data-outline="${i}">${escapeHTML(h.textContent.trim())}</button>`;
+      }).join('');
+      els.predicaEsquemaResults.querySelectorAll('[data-outline]').forEach(btn => {
+        // mousedown, no click: dispara antes que el listener de "click fuera"
+        // (más abajo) cierre el desplegable.
+        btn.addEventListener('mousedown', e => {
+          e.preventDefault();
+          flashSermonOutlineHit(headings[Number(btn.dataset.outline)]);
+          closeSermonOutline();
+        });
       });
-    });
+    }
+    els.predicaEsquemaResults.hidden = false;
+    els.predicaEsquemaBtn?.setAttribute('aria-expanded', 'true');
   }
 
-  let sermonSearchDebounce = null;
-  els.predicaBuscarInput?.addEventListener('input', () => {
-    clearTimeout(sermonSearchDebounce);
-    const query = els.predicaBuscarInput.value;
-    if(query.trim().length < 2){ closeSermonSearchResults(); return; }
-    sermonSearchDebounce = setTimeout(() => renderSermonSearchResults(sermonSearchMatches(query)), 250);
+  els.predicaEsquemaBtn?.addEventListener('click', () => {
+    if(els.predicaEsquemaResults && !els.predicaEsquemaResults.hidden){ closeSermonOutline(); return; }
+    renderSermonOutline();
   });
-  els.predicaBuscarInput?.addEventListener('keydown', e => {
+  els.predicaEsquemaBtn?.addEventListener('keydown', e => {
     if(e.key !== 'Escape') return;
-    els.predicaBuscarInput.value = '';
-    closeSermonSearchResults();
-    els.predicaBuscarInput.blur();
+    closeSermonOutline();
+    els.predicaEsquemaBtn.blur();
   });
-  els.predicaBuscarInput?.addEventListener('blur', () => {
-    // Retraso corto: el mousedown de un resultado (ver renderSermonSearchResults)
-    // necesita alcanzar a dispararse antes de que la lista desaparezca.
-    setTimeout(closeSermonSearchResults, 150);
+  document.addEventListener('click', e => {
+    if(!els.predicaEsquemaResults || els.predicaEsquemaResults.hidden) return;
+    if(els.predicaEsquemaBtn?.contains(e.target) || els.predicaEsquemaResults.contains(e.target)) return;
+    closeSermonOutline();
   });
 
   // ── Guardar (persistencia real de la prédica: local + push inmediato) ─────
