@@ -11,11 +11,11 @@
 - Libros publicados y aprobados: 5 (Filemón, Abdías, 2 Juan, 3 Juan y Judas),
   por aprobación humana expresa de Juan el 21 de agosto de 2026.
 - Entradas aprobadas con `editorialStatus: reviewed`: 264. Entradas todavía
-  provisionales con `editorialStatus: ocr-unreviewed`: 5,877.
+  provisionales con `editorialStatus: ocr-unreviewed`: 5,878.
 - El módulo está registrado en `biblia/modules/registry.json`. Su manifest solo
   expone los cinco libros completamente cotejados y aprobados; los otros 20
-  permanecen como artefactos internos fuera del catálogo. De las 6,141 entradas
-  preparadas, 264 están aprobadas y 5,877 conservan `ocr-unreviewed`.
+  permanecen como artefactos internos fuera del catálogo. De las 6,142 entradas
+  preparadas, 264 están aprobadas y 5,878 conservan `ocr-unreviewed`.
 
 | Libro | Entradas | Grupos fuente | Capítulos | Errores estructurales | Cola OCR |
 | --- | ---: | ---: | ---: | ---: | ---: |
@@ -28,7 +28,7 @@
 | 2 Juan | 29 | 25 | 1 | 0 | 0 |
 | 3 Juan | 31 | 23 | 1 | 0 | 0 |
 | Judas | 73 | 53 | 1 | 0 | 0 |
-| Tito | 112 | 102 | 3 | 0 | 106 |
+| Tito | 113 | 103 | 3 | 0 | 80 |
 | Santiago | 117 | 103 | 5 | 0 | 106 |
 | 2 Pedro | 72 | 68 | 3 | 0 | 66 |
 | 2 Timoteo | 108 | 99 | 4 | 0 | 92 |
@@ -406,11 +406,36 @@ revisión completa de cada entrada contra el facsímil.
   había omitido exposiciones. Se actualizó el límite OCR del capítulo 3 contra el
   facsímil para usar la extracción canónica `-raw` y se recuperaron los
   encabezados degradados de las exposiciones de 1:1, 1:5 y 1:10. La estructura
-  provisional resultante contiene 112 entradas y 102 grupos, con 0 errores
-  estructurales y 106 entradas en la cola automática. Ninguna entrada de Tito se
-  ha declarado cotejada todavía; el siguiente paso es verificar íntegramente la
-  exposición de `Ver. 1` desde la página física 2 y continuar la búsqueda visual
-  de otros encabezados que el OCR pudiera haber ocultado.
+  provisional parecía contener 112 entradas y 102 grupos. Al comenzar el cotejo
+  se comprobó que la capa OCR había representado la inicial de `Ver. 5` mediante
+  la secuencia literal `\\\"`; la corrección anterior no incluía la barra y por
+  ello Tito 1:5 seguía absorbido dentro de 1:4. Separado el encabezado contra el
+  facsímil, la estructura real contiene 113 entradas y 103 grupos. Las
+  exposiciones de `Ver. 1` a `Ver. 16` quedaron cotejadas íntegramente contra las
+  páginas físicas 2–5, incluidas las notas al pie de 1:1, 1:6, 1:8 y 1:11; se restauraron palabras
+  inglesas, referencias, puntuación y expresiones griegas degradadas por el OCR.
+  También quedaron cotejadas las homilías `Vers. 1-16.—The ministry of
+  character` (página física 6) y `Vers. 1-4.—Apostolic address and salutation`
+  (páginas físicas 6–8), esta última firmada por `T. C.`; se corrigieron sus
+  encabezados OCR. El encabezado de la unidad siguiente se comprobó visualmente
+  como `Ver. 5.—Titus’s commission in Crete`, no `Ver. 6` como decía el OCR. El
+  Después quedaron cotejadas `Ver. 5.—Titus’s commission in Crete` (páginas
+  físicas 8–9), `Vers. 6, 7.—The character of bishops—their negative
+  qualifications` (9–10), `Ver. 8.—The bishop’s positive qualifications`
+  (10–11) y `Ver. 9.—The bishop’s qualification as to doctrine` (11), todas
+  firmadas por `T. C.`. El avance actual es 22 de 103 grupos fuente y 23 de 113
+  entradas revisadas, con 0 errores estructurales y 84 entradas en la cola
+  automática. Después quedaron cotejadas las cuatro homilías finales de esta
+  serie de `T. C.`: `Vers. 10-13` (páginas físicas 11–12), `Vers. 13, 14`
+  (12–13), `Ver. 15` (13) y `Ver. 16` (13–14); también se corrigió el encabezado
+  OCR `Vere. 13, 14`. El avance actual es 26 de 103 grupos fuente y 28 de 113
+  entradas revisadas, con 0 errores estructurales y 80 entradas en la cola
+  automática. El artefacto del
+  módulo conserva deliberadamente las 113 entradas como `ocr-unreviewed`; el
+  siguiente paso es cotejar la primera homilía de `W. M. S.`,
+  `Ver. 1.—Christian ministry`, que comienza en la página física 14, y mantener
+  la búsqueda visual de otros encabezados
+  ocultos.
 
 ## Publicación piloto para revisión en línea (2026-08-21)
 
@@ -419,7 +444,7 @@ revisión completa de cada entrada contra el facsímil.
   archivos completos e índices livianos.
 - Los 25 pares `books/<ID>.json` y `books/<ID>.index.json` son artefactos de
   revisión. Las 264 entradas pertenecientes a los cinco libros cotejados y
-  aprobados están marcadas `reviewed` y son visibles; las otras 5,877 conservan
+  aprobados están marcadas `reviewed` y son visibles; las otras 5,878 conservan
   `ocr-unreviewed` y permanecen fuera del manifest.
 - Las capas OCR se regeneraron desde los facsímiles catalogados. Cuando una
   extracción alternativa no reutilizó correcciones ligadas textualmente a otra

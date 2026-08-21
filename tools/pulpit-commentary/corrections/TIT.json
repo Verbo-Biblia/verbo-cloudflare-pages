@@ -10,10 +10,10 @@
     },
     {
       "chapter": 1,
-      "ocr": "\"er. 5.-Were for are, A.V.; appoint for",
+      "ocr": "\\\"er. 5.-Were for are, A.V.; appoint for",
       "corrected": "Ver. 5.-Were for are, A.V.; appoint for",
       "physicalPage": 3,
-      "reason": "El facsímil muestra `Ver. 5.—Were for are`; el OCR sustituyó la V por una comilla y ocultó la exposición. Solo se normaliza aquí el encabezado para recuperar el grupo; el cuerpo queda pendiente de cotejo integral."
+      "reason": "El facsímil muestra `Ver. 5.—Were for are`; la capa OCR sustituyó la V por la secuencia literal `\\\"` y ocultó la exposición. Solo se normaliza aquí el encabezado para recuperar el grupo; el cuerpo queda pendiente de cotejo integral."
     },
     {
       "chapter": 1,
@@ -23,7 +23,412 @@
       "reason": "El facsímil muestra `Ver. 10.—Unruly men for unruly and`; el OCR leyó el cero como O mayúscula y ocultó la exposición. Solo se normaliza aquí el encabezado para recuperar el grupo; el cuerpo queda pendiente de cotejo integral."
     }
   ],
+  "entryTextReplacements": [
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 1.",
+      "section": "exposition",
+      "physicalPages": [
+        2
+      ],
+      "reason": "Entrada completa cotejada línea por línea contra ambas columnas de la página física 2; se restauran palabras inglesas, referencias, puntuación y expresiones griegas degradadas por la capa OCR, y se conserva la nota al pie del facsímil.",
+      "paragraphs": [
+        "Knowledge for acknowledging, A.V.; according to for after, A.V. A servant of God (δοῦλος Θεοῦ); so in the superscriptions: Rom. i. 1; Phil. i. 1, δοῦλος Ἰησοῦ Χριστοῦ; Jas. i. 1; 2 Pet. i. 1; Jude 1; Rev. i. 1. St. Paul also calls himself \"the servant of Christ\" (Gal. i. 10); and the phrase, δοῦλον Κυρίου, occurs in 2 Tim. ii. 24. But neither \"servant of God\" nor any equivalent is in the superscription of either 1 or 2 Timothy. \"Servant\" is a better rendering than \"slave,\" as Farrar renders it. An apostle, etc.; as in both 1 and 2 Timothy, and also in Rom. i. 1; 1 Cor. i. 1; 2 Cor. i. 1, etc.; showing that this is not a private letter, but a public and official document, conveying official authority to Titus over the Church in Crete. According to the faith of God’s elect. The phrase is peculiar to this passage, and the exact force of κατά is not easy to determine (see Bishop Ellicott’s notes, who renders κατά \"for,\" and explains that \"the faith of God’s elect is the destination of the apostleship,\" with the further explanation that this meaning of κατά is about equivalent to \"with special reference to,\" or \"destination for,\" as its object). It is nearly the same thing to say that the true faith, and the perfect knowledge of the truth, and the hope of eternal life promised by God, are the sphere in which the apostolic office moves and acts. \"The faith of God’s elect,\" etc., seems to imply that there was in some who were not elect (1 John ii. 19, 20) a corruption of the faith, a departure from it—a faith that was no faith, and something calling itself truth which was not \"according to godliness,\" and so to point to rising heresies.",
+        "Chrysostom, however, understands the phrase, ἀλήθειαν τῆς κατ’ εὐσέβειαν, to denote religious truth as distinguished from any other kind of truth. The authors of these heresies were chiefly Jews (ver. 10), of whom there was a considerable colony in Crete (Conybeare and Howson, vol. ii. p. 475; and Lewin, vol. ii. p. 337). According to godliness (for the use of εὐσέβεια in the pastoral Epistles, see 1 Tim. ii. 2; iii. 16; iv. 7, 8; vi. 3, 5, 6, 11; 2 Tim. iii. 5, and notes)."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 2.",
+      "section": "exposition",
+      "physicalPages": [
+        2
+      ],
+      "reason": "Entrada completa cotejada línea por línea contra la columna derecha de la página física 2; se restauran palabras, referencias, puntuación y expresiones griegas degradadas por la capa OCR.",
+      "paragraphs": [
+        "Who for that, A.V.; times eternal for the world began, A.V. In hope of eternal life. This seems to be a further description of the scope or sphere of the apostolate, which, as some take ἐπί, is based upon the hope of eternal life. Who cannot lie (ἀψευδής); here only in the New Testament, rarely in the LXX., but common in classical Greek. The epithet is here used to show the certainty of the fulfilment of the promise made before the ages (comp. Heb. vi. 18; Numb. xxiii. 19). Before times eternal (see 2 Tim. i. 9, note). The translation, \"before times eternal,\" conveys no sense; χρόνοι αἰώνιοι are \"the times of ages past\" (Rom. xvi. 25), placed in opposition to the καιροῖς ἰδίοις, or to the \"now\" of 2 Tim. i. 10, in which the manifestation of the promise took place."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 3.",
+      "section": "exposition",
+      "physicalPages": [
+        2,
+        3
+      ],
+      "reason": "Entrada completa cotejada línea por línea desde la columna derecha de la página física 2 hasta la columna izquierda de la página 3; se restauran palabras, referencias, puntuación y griego degradados por el OCR.",
+      "paragraphs": [
+        "In his own seasons for hath in due times, A.V.; in the message for through preaching, A.V.; wherewith I was entrusted for which is committed unto me, A.V. In his own seasons. The margin, its own seasons, is preferable (see 1 Tim. ii. 7, note). The phrase is equivalent to \"the fulness of the time\" (Gal. iv. 4). Manifested his Word. There is a change of construction. \"The relative sentence passes almost imperceptibly into a primary sentence\" (Buttmann in Huther); \"his Word\" becomes the object of the verb \"made manifest,\" instead of \"eternal life,\" as one would have expected. His Word is the whole revelation of the gospel, including the Person and work of Jesus Christ. Compare St. Peter’s address to Cornelius (Acts x. 36). This \"Word,\" which lay in the mind of God through the ages, and was only dimly expressed in the promises given from time to time (1 Pet. i. 10–12), was now \"made manifest,\" and proclaimed openly in that preaching of the gospel of God’s grace which was entrusted to St. Paul. This same idea is frequently expressed (see Rom. xvi. 25; Eph. i. 9, 10; iii. 3–11; 2 Tim. i. 9–11; 1 Pet. i. 20). In the message. Surely a poor and a false rendering. Ἐν κηρύγματι means \"by the open proclamation\" which St. Paul, as God’s herald, κῆρυξ, was commanded to make. But this is better expressed by the word which is appropriated to the proclamation of the gospel, viz. \"preaching.\" So, as above quoted, Rom. xvi. 25; 2 Tim. i. 11, and elsewhere frequently. According to the commandment (κατ’ ἐπιταγὴν Θεοῦ); Rom. xvi. 26; 1 Tim. i. 1 (comp. Gal. i. 1). God our Saviour (1 Tim. i. 1; ii. 3; ch. ii. 11; iii. 4; Jude 25; and also Luke i. 47). Elsewhere in the New Testament the term \"Saviour\" (Σωτήρ) is always applied to our Lord Jesus Christ."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 4.",
+      "section": "exposition",
+      "physicalPages": [
+        3
+      ],
+      "reason": "Entrada completa cotejada línea por línea contra la columna izquierda de la página física 3; se restauran palabras, referencias, puntuación y expresiones griegas degradadas por la capa OCR.",
+      "paragraphs": [
+        "My true child for mine own son, A.V.; a common for the common, A.V.; grace and peace for grace, mercy, and peace, A.V. and T.R.; Christ Jesus for the Lord Jesus Christ, A.V. and T.R. My true child (γνησίῳ τέκνῳ; 1 Tim. i. 2) after a common faith (κατὰ κοινὴν πίστιν). In 1 Tim. i. 2 it is ἐν πίστει (where see note). Beyond all doubt, Alford is right in both cases in rendering \"the faith\" (see his note on 1 Tim. i. 2). The \"common faith\" means the faith of all God’s elect. Grace and peace. So the R.T., omitting ἔλεος, mercy, which is found in 1 Tim. i. 2 and 2 Tim. i. 2. But the manuscripts vary, and the critics are divided as to whether ἔλεος ought to be retained here or not."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 5.",
+      "section": "exposition",
+      "physicalPages": [
+        3
+      ],
+      "reason": "Entrada completa cotejada línea por línea contra ambas columnas de la página física 3 después de separar el encabezado que la capa OCR había absorbido dentro de Tito 1:4; se restauran palabras, referencias, puntuación y expresiones griegas.",
+      "paragraphs": [
+        "Were for are, A.V.; appoint for ordain, A.V.; gave thee charge for had appointed thee, A.V. Left I thee in Crete. We have no account of St. Paul’s visit to Crete, nor do we know how the gospel was first brought to Crete. It may have been by some of those \"Cretes\" who were at Jerusalem on the Day of Pentecost, and heard the apostles speak in their tongue \"the wonderful works of God\" (Acts ii. 11), or by other Christian Jews visiting the Jewish community in Crete (note to ver. 1). If St. Paul was returning from Spain, and travelling by ship eastward, Crete would be on his way. The importance of the island, with which he made some acquaintance on his voyage from Cæsarea to Rome (Acts xxvii. 7, 8), and the large Jewish colony there, may naturally have inclined him to visit it. How long he remained there we do not know, but he did not stay long enough to organize the Church there completely. There were still things \"wanting\" (τὰ λείποντα), as it follows. This mention of Crete is an important chronological mark. The order of St. Paul’s progress, as gathered from the three pastoral Epistles, is very distinct—Crete, Miletus, Troas, Macedonia, Corinth, Nicopolis, Rome. He dropped Titus at Crete, and left Timothy behind at Ephesus. The Epistle to Titus, therefore, is the first of the three pastoral Epistles, and this is borne out by another circumstance. When he wrote to Titus he had not made up his mind whether he should send Artemas or Tychicus to take his place in Crete when he rejoined the apostle (ch. iii. 12). But when he wrote 2 Timothy he had sent Tychicus to Ephesus to replace Timothy (2 Tim. iv. 12), and Titus had already joined him, and been sent on by him to Dalmatia, presumably from Nicopolis. Set in order (ἐπιδιορθώσῃ); only here in the New Testament, and not found in the LXX. nor in classical Greek, except as a technical word in the art of rhetoric. But διορθόω is very common in classical Greek (see ἐπανόρθωσις, 2 Tim. iii. 16). The force of ἐπί in the compound here is \"further,\" or \"in addition.\" St. Paul had set the Church in order up to a certain point. But there were still certain things wanting, τὰ λείποντα (see ch. iii. 13; Luke xviii. 22); and these Titus was to supply and give the finishing touch to. Appoint (καταστήσῃς). This is a better rendering than the A.V. \"ordain,\" because it is a general word for \"to appoint, make.\" Probably the A.V. \"ordain\" was not intended to be taken in a strictly technical sense, but is used as in Heb. v. 1; viii. 3. The technical word was usually \"to order.\" \"The Ordering of Deacons,\" or \"of Priests,\" is the title of the service in the Book of Common Prayer. \"Meet to be ordered,\" \"shall surcease from ordering,\" occur repeatedly in the rubrics. Elders (πρεσβυτέρους); i.e. presbyters, or priests (comp. Acts xiv. 23; and see Acts xi. 30, note). In every city (κατὰ πόλιν); city by city. The phrase has a peculiar significance in Crete, which used to be famous for its hundred cities. It shows, too, that Christianity was widely spread among the cities of the island. The germ of the episcopal office, one bishop and many presbyters, is here very conspicuous."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 6.",
+      "section": "exposition",
+      "physicalPages": [
+        3,
+        4
+      ],
+      "reason": "Entrada completa cotejada línea por línea desde la columna derecha de la página física 3 hasta la columna izquierda de la página 4; se restauran palabras, referencias, puntuación, griego y la nota al pie degradados por el OCR.",
+      "paragraphs": [
+        "Any man is for any be, A.V.; children that believe for faithful children, A.V.; who are not for not, A.V. Blameless (ἀνέγκλητος); see 1 Tim. iii. 10, note. The husband of one wife (see 1 Tim. iii. 2, note 1). Having children that believe (see 1 Tim. iii. 4). Mark the importance given to the \"elder’s\" family as well as to his personal character. Not accused (μὴ ἐν κατηγορίᾳ κ.τ.λ.); literally, not under an accusation (see 1 Tim. v. 19). Riot (ἀσωτίας); see Eph. v. 18; 1 Pet. iv. 4; Luke xv. 13. Used in Plato and Aristotle for \"debauchery\" or \"profligacy,\" with the kindred words ἄσωτος, ἀσωτεύομαι, etc. Unruly (ἀνυπότακτα); ver. 10 and 1 Tim. i. 9, note (comp. 1 Tim. iii. 4, where the children are required to be ἐν ὑποταγῇ, \"under rule,\" in subjection).",
+        "Tyndale contends that St. Paul’s meaning is that every priest ought to have a wife, but only one alive at the same time (‘Answer to Sir Thos. More,’ bk. iii. ch. xiii.)."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver.7.",
+      "section": "exposition",
+      "physicalPages": [
+        4
+      ],
+      "reason": "Entrada completa cotejada línea por línea contra la columna izquierda de la página física 4; se restauran palabras, referencias, puntuación y expresiones griegas degradadas por la capa OCR.",
+      "paragraphs": [
+        "The for a, A.V.; God’s steward for the steward of God, A.V.; no brawler for not given to wine, A.V.; greedy of for given to, A.V. Blameless (see ver. 6). God’s steward (οἰκονόμον); comp. 1 Cor. iv. 1, 2; 1 Pet. iv. 10. (For the office of the steward, see Luke xii. 42, 43.) Self-willed (αὐθάδη); elsewhere in the New Testament only in 2 Pet. ii. 10; in the LXX. Gen. xlix. 3, 9 and Prov. xxi. 24; and common in classical Greek. It is always used in a bad sense—stubborn, harsh, remorseless, and the like. Soon angry (ὀργίλον); only here in the New Testament, found occasionally in the LXX., and common in classical Greek—passionate, quick-tempered, irascible (comp. Eph. iv. 31; Col. iii. 8). Brawler (πάροινον); see 1 Tim. iii. 3, note. Striker (1 Tim. iii. 3, note). Greedy of filthy lucre (αἰσχροκερδῆ); 1 Tim. iii. 3, 8, note."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 8.",
+      "section": "exposition",
+      "physicalPages": [
+        4
+      ],
+      "reason": "Entrada completa cotejada línea por línea contra la columna izquierda de la página física 4; se restauran palabras, referencias, puntuación, griego y la nota al pie degradados por el OCR.",
+      "paragraphs": [
+        "Given to for a lover of, A.V.; good for good men, A.V.; sober-minded for sober, A.V. Given to hospitality (φιλόξενον); 1 Tim. iii. 2, note. A lover of good (φιλάγαθον); see 2 Tim. iii. 3, note on ἀφιλάγαθον. Only here in the New Testament, and only once in the LXX., Wisd. vii. 22, where it seems to mean \"a lover of that which is good,\" and where the long string of adjectives is very similar to that here; found occasionally in classical Greek. Sober-minded (σώφρονα); see ch. ii. 2, 5, and 1 Tim. iii. 2, note. The rendering \"discreet\" in ch. ii. 5 (A.V.) expresses the meaning very well. Just, holy. Δίκαιος is usually considered as describing that side of a good man’s character which is in relation to his fellow-men, and ὅσιος that side which has respect to God. Joseph was δίκαιος (Matt. i. 19) in his conduct towards Mary; the Lord Jesus was God’s Holy One (τὸν ὅσιόν σου). In classical Greek the words are more commonly applied to things. \"Ὅσια καὶ δίκαια are things sanctioned by Divine and human laws respectively.\" Temperate (ἐγκρατῆ); only here in the New Testament, and never in this sense in the LXX.; but it has exactly the same meaning in Aristotle, viz. \"master of one’s self,\" having the appetites under control.",
+        "‘Answer to Sir Thos. More,’ bk. iii. ch. xiii."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 9.",
+      "section": "exposition",
+      "physicalPages": [
+        4
+      ],
+      "reason": "Entrada completa cotejada línea por línea contra la columna derecha de la página física 4; se restauran palabras, referencias, puntuación y expresiones griegas degradadas por la capa OCR.",
+      "paragraphs": [
+        "Holding to for holding fast, A.V.; which is according to the teaching for as he hath been taught, A.V.; both to exhort in the sound doctrine for by sound doctrine, both to exhort, A.V.; convict for convince, A.V. Holding to (ἀντεχόμενος). Holding fast is a better and more forcible rendering than holding to. It answers to the Latin adhærere, to cling to. The faithful word which is according to the teaching is awkwardly expressed. Ἡ διδαχή is \"the Christian truth\" as taught by the apostles, and \"the faithful\" or \"sure word\" to which Titus is to cleave is described as being \"according to that truth\" (comp. ch. i. 1, ἀληθείας τῆς κατ’ εὐσέβειαν). The A.V. gives substantially the apostle’s meaning. The result of this adhesion to the faithful word is that he will be able to comfort and encourage believers by (ἐν) his wholesome teaching, and also to convict the opposers of the truth. The gainsayers; or, contradictors (τοὺς ἀντιλέγοντας); such as those Jews described in Acts xiii. 45 and xxviii. 19 as \"contradicting and blaspheming.\""
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 10.",
+      "section": "exposition",
+      "physicalPages": [
+        4
+      ],
+      "reason": "Entrada completa cotejada línea por línea contra la columna derecha de la página física 4; se restauran palabras, referencias, puntuación y expresiones griegas degradadas por la capa OCR.",
+      "paragraphs": [
+        "Unruly men for unruly and, A.V. and T.R. Unruly (ἀνυπότακτοι); see ver. 6. Vain talkers (ματαιολόγοι); only here in the New Testament, not found in the LXX., and rare in classical Greek (see ματαιολογία, 1 Tim. i. 6). Κενολόγος and κενολογία are used in the same sense of \"vain, empty, talking.\" Deceivers (φρεναπάται); here only in the New Testament, not found in the LXX. or in classical Greek—literally, soul-deceivers, or, as some take it, self-deceivers (compare φρεναπατάω, Gal. vi. 3, and for the sense Jas. i. 26; but in both these instances the idea of self-deceiving is imported by the context, ἑαυτόν and καρδίαν αὐτοῦ). Here the word means \"deceivers,\" whose character is described in 2 Pet. ii. 14 as \"beguiling unstable souls.\" They of the circumcision; Judaizing Christians, the most obstinate and difficult adversaries with whom St. Paul had to cope (see Gal. passim; Phil. iii. 2, 3, etc.)."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 11.",
+      "section": "exposition",
+      "physicalPages": [
+        4,
+        5
+      ],
+      "reason": "Entrada completa cotejada línea por línea desde la columna derecha de la página física 4 hasta la columna izquierda de la página 5; se restauran palabras, referencias, puntuación, griego y la nota al pie degradados por el OCR.",
+      "paragraphs": [
+        "Men who overthrow for who subvert, A.V. Whose mouths must be stopped (οὓς δεῖ ἐπιστομίζειν); here only in the New Testament, not found in the LXX., but common in classical Greek. \"To curb\" (comp. Ps. xxxii. 9; Jas. iii. 2, 3). The meaning is nearly the same as that of χαλιναγωγεῖν in Jas. i. 26; some, however, assign to it the sense of \"to muzzle\" (Olshausen, etc.) or \"stop the mouth,\" which Bishop Ellicott thinks is \"perhaps the most common\" and \"the most suitable.\" So also Huther. It often means simply \"to silence\" (see Stephan, ‘Thesaur.’), and is applied to wind instruments. Overthrow (ἀνατρέπουσι); as 2 Tim. ii. 18, which shows the kind of overthrow here meant, that viz. of the faith of whole families, well expressed in the A.V. by \"subvert.\" The phrase, οἰκίας ἀνατρέπουσι, of the literal overthrow of houses, occurs in Plato (Alford). For filthy lucre’s sake; contrary to the apostolic precept to bishops and deacons (1 Tim. iii. 3, 8, and above, ver. 7). Polybius has a striking passage on the αἰσχροκερδεία of the Cretans quoted by Bishop Ellicott (‘Hist.,’ vi. 146. 3).",
+        "It may be worth noticing that the horses on Etruscan vases are usually represented as in effect muzzled by the bridle, and have their mouths shut; so that the two senses of the word would really be only one. In the New Testament, χαλινόω is applied exclusively to the mouth."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 12.",
+      "section": "exposition",
+      "physicalPages": [
+        5
+      ],
+      "reason": "Entrada completa cotejada línea por línea contra la columna izquierda de la página física 5; se restauran nombres, citas, referencias, puntuación y expresiones griegas degradadas por la capa OCR.",
+      "paragraphs": [
+        "A prophet for even a prophet, A.V.; Cretans for the Cretians, A.V.; idle gluttons for slow bellies, A.V. A prophet of their own; viz. Epimenides, a native either of Phæstus or of Cnossus in Crete, the original author of this line, which is also quoted by Callimachus. Epimenides is here called a prophet, not simply as a poet, but from his peculiar character as priest, bard, and seer; called by Plato θεῖος ἀνήρ, and coupled by Cicero with Bacis the Bœotian prophet, and the sibyl (Bishop Ellicott); described by other ancient writers as a prophet (Alford): \"everything we hear of him is of a priestly or religious nature\" (‘Dict. of Gr. and Rom. Biogr. and Mythol.’). Cretans are always liars, etc. So truly was this their characteristic, that κρητίζειν was used to denote \"telling lies\"—\"to lie like a Cretan\" (Plutarch, etc.). From their general bad character arose the line, Κρῆτες, Καππάδοκες, Κίλικες, τρία κάππα κάκιστα; and Livy, Polybius, and Plutarch alike bear witness to their covetousness and dishonesty: Τὴν Κρητῶν οἶδα δικαιοσύνην; \"When was there ever an upright Cretan?\" asks Leonides in an ‘Epigram’ (Farrar, ‘St. Paul,’ vol. ii. p. 534). Evil beasts. Θηρίον is \"a wild beast;\" applied to men as a term of reproach (1 Cor. xv. 32), it implies brutality, stupidity, unreasonableness, and, with the epithet κακά, mischief like the French méchante bête. The ‘Epigram’ above quoted calls them λῃσταὶ καὶ ἀνδροφόνοι, \"pirates and wreckers.\" Idle gluttons; literally, idle bellies. The substantive denotes their gluttony and sensuality (comp. Rom. xvi. 18; Phil. iii. 19, where ἡ κοιλία is equivalent to γαστήρ), and the adjective their sloth (ἀργαί, i.e. ἀεργοί); in old Greek it is usually of the common gender."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 13.",
+      "section": "exposition",
+      "physicalPages": [
+        5
+      ],
+      "reason": "Entrada completa cotejada línea por línea contra ambas columnas de la página física 5; se restauran palabras, referencias, puntuación y el término griego degradado por la capa OCR.",
+      "paragraphs": [
+        "Testimony for witness, A.V.; for which cause for wherefore, A.V.; reprove for rebuke, A.V. Sharply (ἀποτόμως); elsewhere only in 2 Cor. xiii. 10 (see also Rom. xi. 22). That they may be sound (see ch. ii. 2). The faithful pastor must use severity when it is necessary to the spiritual health of the flock, just as the skilful surgeon uses the knife to save the patient’s life."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 14.",
+      "section": "exposition",
+      "physicalPages": [
+        5
+      ],
+      "reason": "Entrada completa cotejada línea por línea contra la columna derecha de la página física 5; se restauran palabras, referencias, puntuación y expresiones griegas degradadas por la capa OCR.",
+      "paragraphs": [
+        "Who for that, A.V.; turn away for turn, A.V. Jewish fables (see 1 Tim. i. 4; iv. 7; 2 Tim. iv. 4, where the Jewish origin of the fables is implied, though not so distinctly stated as here). Commandments of men (ἐντολαῖς ἀνθρώπων); so in Col. ii. 22 the apostle speaks of the precepts \"touch not,\" \"taste not\" (originating with the Judaizing teachers), as τὰ ἐντάλματα καὶ διδασκαλίας τῶν ἀνθρώπων (see following note). Turning away from (ἀποστρεφομένων); see 2 Tim. i. 15, note."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 15.",
+      "section": "exposition",
+      "physicalPages": [
+        5
+      ],
+      "reason": "Entrada completa cotejada línea por línea contra la columna derecha de la página física 5; se restauran palabras, referencias y puntuación degradadas por la capa OCR.",
+      "paragraphs": [
+        "To for unto, A.V. (twice); nothing is for is nothing, A.V.; both for even, A.V.; their conscience for conscience, A.V.; are for is, A.V. To the pure, etc. This allusion shows clearly that the \"commandments of men,\" here condemned, are of the same kind as those referred to in the above-quoted passage in the Colossians. We learn also from Rom. xiv.; 1 Cor. viii.; and elsewhere, what were the kind of questions which agitated the Judaizing Christians. But St. Paul in a few wise words shows the utter worthlessness of such controversies. \"To the pure all things are pure.\" \"There is nothing from without a man,\" said our Lord, \"that entering into him can defile him\" (Mark vii. 15); \"Neither if we eat are we the better, neither if we eat not are we the worse\" (1 Cor. viii. 8); \"The kingdom of God is not meat and drink, but righteousness, and peace, and joy in the Holy Ghost\" (Rom. xiv. 17). But unto those that are defiled by what comes from within them, and have no faith (Rom. xiv. 23), nothing is pure. Their mind and conscience, being defiled, defile everything they do. The words καθαρὸν and μίασμα are the proper words for ceremonial \"cleanness\" and \"defilement\" respectively."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 16.",
+      "section": "exposition",
+      "physicalPages": [
+        5
+      ],
+      "reason": "Entrada completa cotejada línea por línea contra la columna derecha de la página física 5; se restauran palabras, referencias, puntuación y expresiones griegas degradadas por la capa OCR.",
+      "paragraphs": [
+        "By their for in, A.V. They profess that they know God (comp. Rom. ii. 17–20). The arrogant claim to be God’s people and to superior holiness, while all the while they were denying God by their evil deeds, and bringing dishonour upon his Name among the Gentiles, was a marked feature of the Jews in St. Paul’s time (comp. 2 Tim. iii. 5). Abominable (βδελυκτοί); objects or causes of disgust; only here in the New Testament, but found in the LXX. But βδέλυγμα and βδελύσσομαι are not uncommon. Reprobate (ἀδόκιμοι); as 2 Tim. iii. 8 (where see note). This picture of the circumcision is indeed sad (comp. 1 Thess. ii. 15, 16; Acts xxviii. 25–28)."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Vere. 1-16.",
+      "section": "homiletics",
+      "physicalPages": [
+        6
+      ],
+      "reason": "Homilía completa cotejada línea por línea contra la página física 6; se restauran el encabezado, palabras, puntuación y divisiones de párrafo degradadas por la capa OCR.",
+      "paragraphs": [
+        "The ministry of character. The pastoral Epistles, and this chapter in particular, bring prominently before us the Christian ministry as of commanding importance in the scheme of Christianity. Christianity, the sum and substance of Christian doctrine, was to be diffused among all nations; and the great instrument for maintaining it in efficiency and power was to be the ministry. But in describing the ministerial qualifications the apostle lays so much stress upon the personal character of the ministers, as to make us feel that the Christian ministry of which he speaks is a ministry of character as much as of preaching, or teaching, or any other ministration.",
+        "Looking at this side of the ministry, we learn that it is the purpose of the great Head of the Church, Jesus Christ our Lord, that his doctrine and the truth which he brought down from heaven should be presented to the world in the lives and characters of his accredited servants and ambassadors. Those servants of his were to be scattered among the people, \"in every city,\" and every village, where the gospel message had been brought, and the people were not only to hear from their lips, but were to see in their lives, the nature and practical effect of the doctrine delivered to them. And, in truth, the eloquence of holy, loving, and self-denying lives is more persuasive than that of any words, however good and however beautiful. We feel, even after reading the words of the Master himself, and having felt their power, that there is a still greater power in that life and death, wherein were embodied, in all the beauty of love and goodness, the sublime precepts which he taught. While, therefore, we see the importance of a learned clergy, an eloquent clergy, an orthodox clergy, and withal a clergy of business habits, we shall do well to keep steadily in view the commanding and essential quality of high and consistent Christian character, showing itself in all the details of the daily intercourse of life. The clergy of the Church should be the epistle of Christ, known and read of all men in every place where they are located, as bishops, priests, or deacons. In their manner of life and whole conversation should be seen worked out in practice what the grace of our Lord Jesus Christ is intended to effect in the renewal of human nature. Their conduct and character should be a living commentary on the Word of God which they preach to the people, and their silent argument for pressing it upon the people’s acceptance. And hence we may deduce the importance of a resident ministry. The functions of preaching and ministering the sacraments may be performed by strangers. The effectual sermon of a holy Christian life requires \"elders\" resident amidst the community to whom they preach. The pure morals, the well-ordered families, the meek and patient behaviour under provocation, the kindly genial sympathies, the fair and equitable dealing, the sober gravity, the self-control and self-mastery of the servant of God, must be seen near in the daily intercourse of life, to be judged of and appreciated. It is the glory of the English Church that, by means of her endowments, she is able to place a minister of Christ to reside in every parish. Let every such minister remember that the interests of the Christian faith are bound up with his own manner of life and that of his household, and do his utmost endeavour that that life may be a faithful reflection of the grace of God, which teaches men to deny ungodliness and worldly lusts, and to live soberly, righteously, and godly in this present world, while we wait for the appearing of the glory of our Saviour Jesus Christ."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Vera. 1-4.",
+      "section": "homiletics",
+      "physicalPages": [
+        6,
+        7,
+        8
+      ],
+      "author": "T. C.",
+      "reason": "Homilía completa cotejada línea por línea desde la página física 6 hasta la 8; se restauran el encabezado, palabras, referencias, puntuación y las cinco divisiones argumentales degradadas por la capa OCR, preservando la firma T. C.",
+      "paragraphs": [
+        "Apostolic address and salutation. The full representation which the apostle gives of his apostolic office is designed at once to mark the authority by which he gives the instructions that follow, and to serve as an index to the contents of the whole Epistle.",
+        "I. THE CLAIMS OF THE APOSTLE. \"Paul, a servant of God, and an apostle of Jesus Christ.\" 1. He is a servant of God. Not, as he often describes himself, \"a servant of Jesus Christ.\" The title seems to mark the relation (1) of one who had once been a slave to sin, but, having become free through Christ Jesus, was still, so far as obligation, service, and life were concerned, a servant of God; (2) his devotion to God after the type of Old Testament service, Moses and the prophets being pre-eminently called the \"servants of God;\" (3) his ministry in the service of a royal Master (Matt. xviii. 23–32), who makes him a member of his household, a pillar of his temple, a sharer of his throne (Rev. iii. 21). 2. He is an apostle of Jesus Christ. This is a more exact definition of his office. (1) He had his commission and his doctrine from him. (2) He had all the signs and proofs of an apostle in him, for he had received power to work miracles as well as to declare Divine truth. (3) It is, therefore, vain and deceptive for any to assume the name who cannot show the signs of an apostle.",
+        "II. THE END OF THE APOSTOLIC OFFICE. \"For the faith of God’s elect, and the full knowledge of the truth which is after godliness.\" It was designed for the furtherance of the faith and knowledge of believers. 1. The apostle felt that he was appointed to preach the doctrine of faith, and to be the instrument of bringing men to the obedience of faith (Rom. i. 5; x. 17). (1) Therefore all claims to apostolic authority by men who have abandoned the faith, or overlaid it with error and superstition, are to be rejected by the Church of God. (2) All true faith rests on the Divine foreordination; for it is \"the faith of God’s elect.\" Election is, therefore, not to be regarded as equivalent to faith, much less as its consequence (Eph. i. 4); for it is its true cause. The Father is the Elector, as the Son is the Redeemer, and the Holy Spirit the Sanctifier. 2. The apostolic office was designed likewise to impart the full knowledge of the truth which is after godliness. (1) Truth is the object—the Word of truth, which comes from him who is the God of truth, who is Christ the Truth itself, who is the Spirit of truth. It was this truth that the apostle preached with all faithfulness and clearness. (2) Knowledge is the subjective aspect of it, and becomes ours through faith. (3) The fruit of this truth is \"godliness.\" It is designed to promote holiness of life and character. It is impossible that this knowledge can be morally unfruitful.",
+        "III. THE BASIS OF THIS TRUTH. \"In hope of eternal life, which God, that cannot lie, promised before eternal times.\" The ground and condition of this truth is the hope of eternal life, which is the animating principle at once of the apostle and of the Church of God. 1. The principle of hope. The word occurs fifty-two times in the New Testament, and is always connected with God, with the Mediator, and with believers. (1) Its author is God, who is \"the God of hope\" (Rom. xv. 13), who has given us \"a good hope through grace\" (2 Thess. ii. 16), and given us Christ as \"our Hope,\" even \"the Hope of glory.\" (2) Hope connects us with the future as memory with the past, and is intended to neutralize the materializing influence of earthly life around us. Thus, God has given us prophecy and promise to gratify the wants, the longings, and the anticipations of the human soul. 2. The object and sum of Christian hope. \"Eternal life, which God, that cannot lie, promised before eternal times.\" (1) This life is in Christ Jesus; \"for the free gift of God is eternal life in Christ Jesus our Lord\" (Rom. vi. 23). But it includes (a) the full fruition of God to all eternity; (b) the fellowship of the Redeemer’s throne; (c) the fulness of joy; (d) likeness to Christ. (2) It is eternal life, without a break in the happy continuity of bliss; for it is life without sin or death to mar its perfectness. It is eternal, because he is at once its Author and Support, as being that \"Eternal Life that was with the Father\" (1 John i. 2). (3) The age of this promise. \"Before eternal times.\" (a) This is not merely before the times of the world, or (b) before the world began, (c) but really in the eternity past; because the reference is not to the covenants of Adam or Abraham, but to the covenant of redemption in Christ before the foundation of the world (2 Tim. i. 9–11). The apostle does not merely say that the promise of eternal life was the result of a Divine purpose fixed from eternity, but that it was made from eternity to believers, because it was made to Christ, whose members they are. It is impossible to understand the meaning of these words without reference to the federal transaction between the Father and the Son (Zech. vi. 13). This was the very \"promise of life in Christ Jesus\" of which the apostle speaks to Timothy (2 Tim. i. 1). (4) The guarantee for the fulfilment of this promise. \"God, that cannot lie, promised\" it. God gave both a promise and an oath to Abraham, that \"by two immutable things, in which it was impossible that God should lie,\" we should have a sure hope (Heb. vi. 18).",
+        "IV. THE MANIFESTATION OF THIS ANCIENT PROMISE. \"But in his own seasons manifested his Word in the message wherewith I was entrusted, according to the commandment of God our Saviour.\" 1. The manifestation was made in God’s own seasons. (1) It is not to be supposed that it was made only by the Apostle Paul, for it was made by the other apostles; and ages before their day it was manifested, with more or less clearness, under the Old Testament dispensation. (2) But the Apostle Paul was one of those specially entrusted with the Word, and specially with \"the revelation of the mystery hid for ages\" (Rom. xvi. 25). 2. The Word of God, and the whole order and fulness of the Church, are to be regarded as the unfolding of the ancient promise of eternal life. 3. The Word is made manifest by preaching (Rom. x. 17). Preaching is an institute peculiar to Christianity, which it formed for itself as its chosen mode of utterance. Christianity is not a philosophy or a thaumaturgy. It is propagated, not by priests, but by preachers. There are no priests in Christianity but the one High Priest of our profession, who, if he were on earth, would not be a priest (Heb. viii. 4). 4. The preaching is done in virtue of a Divine call or commission. \"Wherewith I was entrusted according to the commandment of God our Saviour.\" All the ministries of the New Testament, high and low, are committed as trusts to the Church. Therefore a minister ought to have a true call from on high before accepting the responsibilities of office. The apostle was very emphatic in announcing his call to the apostleship, not as in any way due to his own will or wish, but to Divine command. It was the command of \"God his Saviour;\" not the Son, but the Father—the usual phrase of the apostle being \"according to the will of God\" (2 Tim. i. 1).",
+        "V. THE APOSTOLIC SALUTATION. \"To Titus, my true son after the common faith.\" 1. The person thus addressed. (1) Titus was a pure Gentile. It is interesting to remember that the dearest friends and companions of the apostle’s life were Gentiles, and not Jews—such as Luke, Titus, and Timothy, who was half-Gentile. Was this leaning caused in any degree by the distrusts and enmities with which he was pursued through life by his Jewish countrymen? (2) Titus was, like Timothy, one of the apostle’s converts. This fact would endear him to the apostle’s heart. He was a genuine son of the apostle in virtue of the faith common to all Christians; implying that (a) there is but one faith (Eph. iv. 5); (b) one Object of faith, Jesus Christ; (c) one end of faith, eternal life. (3) Titus was evidently one of the apostle’s most trusty disciples, though he was less a companion than Timothy, and less allied to him on the terms of an affectionate intimacy. Titus was firm, strong, and capable, with adaptability in the way of administration and of repressing moral disorders among distracted or disturbed communities. 2. The greeting. \"Grace and peace from God the Father and the Lord Jesus Christ our Saviour.\" (1) The blessings sought for Titus. \"Grace and peace.\" (a) Grace is the full and eternal fountain of the goodness of God, opened to the wants of men in the blessed gospel; (b) peace is the blessing of the saints, to which they are called in one body, and the safeguard of heart and mind through him who is their Peace (Phil. iv. 7). (2) The source of these blessings, alike God the Father and God the Son, as being equally the Author and Giver of all spiritual blessings. The whole structure of the Epistle is based on the doctrine of the Deity of Christ.—T. C."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 6.",
+      "section": "homiletics",
+      "physicalPages": [
+        8,
+        9
+      ],
+      "author": "T. C.",
+      "reason": "Homilía completa cotejada línea por línea contra las páginas físicas 8–9; el facsímil demuestra que el encabezado correcto es `Ver. 5`, no `Ver. 6`, y se restauran palabras, referencias, puntuación y divisiones argumentales preservando la firma T. C.",
+      "paragraphs": [
+        "Titus’s commission in Crete. Its object was principally to supply the deficiencies in the Church organization of the island.",
+        "I. THE SCENE OF TITUS’S LABOURS—CRETE. 1. Its situation and history. It lies almost equidistant from Europe, Asia, and Africa; a large and populous island of the Mediterranean; the Caphtor of the Old Testament, and now known as Candia. It was a place of ancient civilization, noted for its hundred cities, and became a Roman possession about seventy years before Christ. 2. The foundation of the Cretan Church. This probably occurred immediately after Pentecost, for it is said that men of Crete were present on that occasion (Acts ii. 11), and we know that the island abounded with Jews of wealth and influence. The false teachers in Crete were Judaists. There are several reasons for believing that the Church must have been a considerable time in existence. Time must be allowed for the development of heresy. Time must likewise be allowed for the growth of character and reputation, so that Titus, guided by the Church, might have no difficulty in selecting the right class of office-bearers. The fact, likewise, that the bishops were to \"have believing children\" affords a strong presumption that the Church must have been in existence at least twenty or thirty years. 3. Its existence without organization. The Church in Crete seems to have had no regular parties, the ordinances were probably in confusion, and though the power of heathenism had been broken in one of its quasi-strongholds, the Christians had not utterly escaped contamination. The state of matters in this interesting island proves (1) that there may be a true Church where there is no regular ministry. Thus there is no foundation for the theory that the clergy are the Church, or even essential to its existence, though they are necessary to its edification. (2) It proves also that a regular ministry is necessary. Therefore the arguments of Darbyites go for nothing. A ministry was specially needed to check the unruly and vain talkers in Crete, as well as to apply the sanctifying influence of the gospel, as well as a wholesome Christian discipline to the cure of moral disorders.",
+        "II. THE SCOPE OF TITUS’S LABOURS. \"For this cause left I thee in Crete, that thou mightest set in order the things that were wanting, and ordain elders in every city.\" The apostle had himself successfully laboured in the island, and the gospel had in consequence spread among many of its cities. But he had been summoned away from the scene before he could do anything to organize the community or regulate its varied Church life. He therefore sent Titus as his delegate to discharge this duty. 1. Titus was to set in order the things that were wanting. As Crete was a most luxurious and corrupt place, as heathenism affected its whole family and public life, as the Church had got into disorder through its contiguity to paganism, or was unable to organize itself strongly in the face of a hostile world, Titus was left behind to fix the order and circumstances of public worship, including the celebration of Christian ordinances, to establish a godly discipline which would purify family life, to instruct the Cretans more fully in the doctrines of the gospel which were attacked by designing Judaists, and generally to superintend the development of all matters affecting Christian faith and practice. 2. He was to ordain elders in every city. (1) The elders were the pastors or teachers of congregations, and were so called on account of their age and gravity of manner. They were also called \"bishops\" (ver. 2; Acts xx. 17, 28), on account of their office as overseers of the flock. It is now universally conceded that these names are but different designations of the same office-bearers. We read in Scripture of \"bishops and deacons\" (Phil. i. 1), but never of \"bishops and elders,\" simply because bishops and deacons represent two different orders, but bishops and elders do not. These bishops were simply the pastors of congregations. (2) There were several elders in each congregation. Titus was \"to ordain elders in every city,\" that is, a plurality of elders for each Church. There was certainly a plurality in several Churches (Acts xiv. 23; xv. 22). (3) These elders were to be ordained or solemnly set apart to their office. (a) The word \"ordain\" throws no light on the question whether the appointment took place with or without the co-operation of the Church. But the same word is used in the account of the ordination of the deacons who were chosen by the Christian people (Acts vi. 3). In another case (Acts xiv. 23) the ordination of elders did not take place without the co-operation of the Church, which selected by a show of hands, as the word signifies, the candidates for ordination. The directions given by the apostle to Titus with regard to the qualifications of elders imply that the choice lay, not with Titus, who was a complete stranger to Crete, but with the body of the Christian people who were familiarly acquainted with the private work and public gifts of believers. (b) The ordination was the act of Titus, who was the delegate of the apostle. It is not improbable that Zenas and Apollos, who were then in Crete, were associated with him in the act of ordination. It is now generally admitted that he was not appointed permanent Bishop of Crete, for his stay was designed to be short (ch. iii. 12). This whole passage proves the importance of Church organization, while it presupposes a certain amount of Christian knowledge and feeling among the members of the Cretan Church.—T. C."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Vers. 6, 7.",
+      "section": "homiletics",
+      "physicalPages": [
+        9,
+        10
+      ],
+      "author": "T. C.",
+      "reason": "Homilía completa cotejada línea por línea contra las páginas físicas 9–10; se restauran palabras, referencias, puntuación y ocho divisiones argumentales degradadas por la capa OCR, preservando la firma T. C.",
+      "paragraphs": [
+        "The character of bishops—their negative qualifications. The apostle first mentions their qualifications in a moral point of view before he speaks of their duties as teachers.",
+        "I. BLAMELESSNESS. The minister must be one against whom no charge can be brought. His name must be spotless (1 Cor. i. 8; Col. i. 22). The Church must be able to respect him. 1. Because he must be an example to the believers. 2. Because he could not otherwise consistently check or reprove the blameworthy ways of others (ch. i. 13). Christian life in Crete was unsound both as to morals and doctrine. 3. Because as \"a steward of God\" he has grave responsibilities, both to God and to the flock. He must be both wise and faithful in relation to the \"house of God, … the Church of the living God\" (1 Tim. iii. 15), which is entrusted to his keeping.",
+        "II. THE HUSBAND OF ONE WIFE. His family relationships are of much moment, for polygamy was the established rule of heathenism. 1. This passage does not make the marriage of ministers compulsory, as it is in the case of priests in the Greek Church. 2. It is totally inconsistent with the principle of the celibacy of ministers in the Church of Rome. 3. It does not prevent the second marriage of a minister, which is sanctioned by Scripture (Rom. vii. 1; 1 Cor. vii. 8, 9, 39). 4. It simply condemns polygamy.",
+        "III. THE CONDUCT OF HIS CHILDREN. \"Having believing children, who are not accused of riot or unruly.\" 1. The bishop will be judged by his family life. The family is the nursery of the Church, and these two societies act and react upon each other reciprocally, so that a bad or weak or injudicious father can never be an efficient or respected minister. If he cannot rule his children, how can he rule the Church of God (1 Tim. iii. 5)? 2. His children ought to be: (1) Believers, adorning the doctrine of the gospel by purity and obedience. There must be evidence that they have been brought up in the nurture and admonition of the Lord. (2) They ought to be free from the imputation of dissoluteness. There must be no ill reports concerning profligacy. (3) They must not be unruly, that is, disobedient to parents. Those ministers would be unfit to govern the Church whose authority was disregarded by their own children. The minister’s home in Crete was, therefore, to be a pattern of order, purity, and piety.",
+        "IV. NOT SELF-WILLED. The elder ought not to cherish: 1. A self-loving spirit, which leads to the disregard of the rights, or claims, or feelings of others. 2. A haughty and imperious temper. One who is both obstinate and proud can have no influence over his flock. He ought to be humble, easy to be entreated, able to rule his own spirit, and considerate to others.",
+        "V. NOT SOON ANGRY. 1. He ought to have a temper not quickly provoked by contradiction or evil-speaking. Many tongues will be busy with him, as many eyes will be watchfully turned upon his walk. 2. He ought to remember the temper of his Master, \"who, when he was reviled, reviled not again.\" He ought to be \"slow to wrath,\" and imitate the Divine long-suffering and patience.",
+        "VI. NO BRAWLER. The word suggests the conduct of one insolent through wine, quarrelsome and furious. The minister must not only abstain from drunkenness, but avoid the passionate folly of men carried away by this sin.",
+        "VII. NO STRIKER. He must never lift his hand against his fellows. 1. He is the peacemaker of his parish. 2. How can he restrain the violence of others if he cannot hold his own hands?",
+        "VIII. NOT GIVEN TO FILTHY LUCRE. 1. Covetousness is idolatry in a minister as well as in the members of his flock. It implies the existence of a divided heart. 2. An avaricious temper is condemned by the example of Christ, who, \"though he was rich, became poor\" to make many rich. 3. It is a peculiarly heinous sin to make a gain of godliness. 4. A covetous minister will seek his own things, not the things of Jesus Christ.—T. C."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 8.",
+      "section": "homiletics",
+      "physicalPages": [
+        10,
+        11
+      ],
+      "author": "T. C.",
+      "reason": "Homilía completa cotejada línea por línea contra las páginas físicas 10–11; se restauran palabras, referencias, puntuación y seis divisiones argumentales degradadas por la capa OCR, preservando la firma T. C.",
+      "paragraphs": [
+        "The bishop’s positive qualifications.",
+        "I. BUT A LOVER OF HOSPITALITY. 1. This trait was specially suitable to a time when Christians, travelling from one place to another, were in the habit of receiving kindly entertainment from brethren. 2. This habit may bring blessing to our houses. Some have thereby \"entertained angels unawares\" (Heb. xiii. 2). 3. It recommends the gospel to find its ministers ready at all times to feed the hungry, opening heart and house to the poor and needy (Luke xiv. 13). 4. Yet the hospitality is not to be that of luxury or sensuality.",
+        "II. A LOVER OF GOOD. It points to a heart in sympathy with everything good and noble and of good report, as opposed to the corrupt tendencies at work in Cretan society.",
+        "III. SOBER. 1. The word points to the self-restraint which controls the passions, in accordance with the dictates of conscience, reason, and the gospel of Christ. It is opposed to the irascibility already condemned in ministers (ver. 7). 2. It points to sobriety of intellect; for the minister must not be led away by false enthusiasm or entangled with spiritual fanaticism. He is to follow quietly the even tenor of his way, under the guidance of truth.",
+        "IV. JUST. 1. There must be the full recognition of the rights of others. 2. There must be such a management of pastoral duty that poor and rich, ignorant and learned will be treated with the most impartial fairness. There must be \"no respect of persons.\" 3. There must be no casting of stumbling-blocks in the way of others. 4. There must be sincerity, uprightness, and faithfulness in admonitions and counsels.",
+        "V. HOLY. The minister must be true in his relations to God. 1. He rejoices to be numbered with the company of the saints. 2. His conduct must flow from a holy heart, as the effect of a new heart. 3. His holiness must rebuke the ungodly, and make his word like ointment poured forth. 4. It implies a separateness of walk, like him \"who was holy, harmless, undefiled, and separate from sinners.\"",
+        "VI. TEMPERATE. This word points to eating and drinking, to lusts of the flesh, to abstinence even from things lawful for the sake of peace and the glory of God.—T. C."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 9.",
+      "section": "homiletics",
+      "physicalPages": [
+        11
+      ],
+      "author": "T. C.",
+      "reason": "Homilía completa cotejada línea por línea contra la página física 11; se restauran palabras, referencias, puntuación y dos divisiones argumentales degradadas por la capa OCR, preservando la firma T. C.",
+      "paragraphs": [
+        "The bishop’s qualification as to doctrine. The apostle reserves to the last place the most important of all the qualifications needed by elders.",
+        "I. THE DUTY OF ADHERING TO THE TRUTH. \"Holding fast the faithful Word which is according to the teaching.\" 1. The doctrine of the gospel is \"the faithful word:\" (1) Because it contains nothing but the truth. (2) Because it never deceived any that trusted in it. (3) Because it truly displays the faithfulness of God. 2. It is no mere subjective opinion of the preacher, but is based upon or in agreement with the teaching of the apostles. \"Which is according to the teaching.\" The truth is not to be discovered by the preacher, but delivered to him. 3. It is to be steadfastly maintained. The preacher is not to allow it to be wrested from his grasp by false teachers. The apostle was always emphatic as to the importance of this duty. \"Hold fast the form of sound doctrine, which thou heardest from me\" (2 Tim. i. 13); \"Continue thou in the things thou hast learned\" (2 Tim. iii. 14). It was a powerful lever in his hands for moving the hearts of men.",
+        "II. THE DESIGN OF THIS QUALIFICATION. \"That he may be able both to exhort in the sound doctrine and to convince the gainsayers.\" 1. The preacher must be qualified for exhortation in the sphere of a sound, healthy, practical teaching. This implies that men had some knowledge of the truth, but they need to be persuaded to follow it rather than a morbid and unpractical teaching that can in no way minister to edification. 2. He must be qualified to refute the arguments of false teachers. And nothing is so powerfully conducive to this end as sound doctrine firmly held and wisely applied.—T. C."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Vers. 10-13.",
+      "section": "homiletics",
+      "physicalPages": [
+        11,
+        12
+      ],
+      "author": "T. C.",
+      "reason": "Homilía completa cotejada línea por línea contra las páginas físicas 11–12; se restauran palabras, referencias, puntuación y cinco divisiones argumentales degradadas por la capa OCR, preservando la firma T. C.",
+      "paragraphs": [
+        "The character of the adversaries at Crete. They were within the communion of the Christian Church. It was, therefore, all the more necessary that the ministers should be holy, laborious, and uncorrupt.",
+        "I. THE MORAL AND INTELLECTUAL CHARACTERISTICS OF THESE ADVERSARIES. \"For there are many unruly men, vain talkers and deceivers, especially they of the circumcision.\" 1. They were refractory. Though standing in Church relationships, they refused all obedience, and pursued purely factious and divisive courses, that led to the subversion of discipline and the distraction of families. Such persons mar the prosperity of many a Church. 2. They were vain talkers. Corruption quickly makes its way from the heart to the lips, and flows forth in glib and empty babbling. (1) There is no allusion here to heresy, for the vain talking is merely opposed to useful and solid doctrine. The teachers were fluent and superficial, speaking, perhaps, great swelling words of vanity, which were of no profit to the hearers. (2) The tongue was made for speaking, but it is the Lord’s will that it should always be used for his glory. It ought to be the utterer of the \"wisdom that is from above,\" which is \"first pure, then peaceable.\" (3) Vain talkers are the pest of Churches and families, sowing the seeds of distrust and turning men’s minds against the gospel. 3. They were deceivers. They deceived others by their good words and fair speeches, their vain speculations and their dexterous arguments, and thus became very dangerous persons. 4. They were the \"the circumcision\" party in the Church. (1) They were members of the Church, and therefore in a position to do much mischief. (2) They were Judaizing Christians, who blended the Law and the gospel, teaching that circumcision was necessary to salvation. (3) They were the persistent enemies of the Apostle Paul through his whole life, and thwarted him in his labours in every part of Asia and Europe.",
+        "II. THE EFFECT OF THEIR SEDUCTION. \"Subverting whole houses.\" They pursued a process of sapping and mining, subverting the faith (2 Tim. ii. 18), and bringing whole families to disorder and ruin. It was not a case of mischief done to a few isolated individuals. Thus they undermined the peace and stability of the Church itself.",
+        "III. THE MOTIVE OF THEIR TEACHING. \"Teaching things which they ought not, for filthy lucre’s sake.\" The real root of the evil is laid bare by the apostle. It was a sordid love of gain. Therefore the teaching was such as would accommodate itself to the prejudices of men. These men had no regard for God’s honour, for the interest of Christ, or for the welfare of souls; they only sought to increase their worldly substance by gaining popular applause. 1. Money in itself is no evil, for it has no moral character. It is only a blessing or a curse according to the use that is made of it. 2. \"The love of money is the root of all evil.\" It leads men to dishonour God, to ignore the claims of truth, to sacrifice the peace of the Church. The Pharisees in our Lord’s time devoured widows’ houses. How many people still sacrifice religion so far as they imagine it to conflict with their worldly advancement! 3. The motive of these Cretan adversaries was baser than if it had been mere fanaticism or the love of proselytism (Matt. xxiii. 15).",
+        "IV. THE JUSTIFICATION OF THE APOSTLE’S STRONG LANGUAGE CONCERNING THEM. \"One of themselves, a prophet of their own, said, Cretans are always liars, evil beasts, idle gluttons.\" This testimony is true. These words refer not to \"those of the circumcision,\" but to the inhabitants of Crete, who had generally welcomed the injurious teaching referred to. 1. The apostle’s quotation of a heathen poet, Epimenides, shows that it is not improper for Christians to study the literature of heathen nations. Classical studies were once, on moral grounds, discouraged by the Church. Calvin says that nothing learned ought to be rejected, even though it should proceed from \"the godless.\" 2. The quotation is the unbiassed judgment of a Cretan poet, held in high honour for so-called prophetical gifts. It represents the character of the Cretans in the darkest light, as if to justify a heathen proverb, \"The three worst C’s in the world are Cappadocia, Crete, and Cilicia.\" (1) \"Cretans are always liars.\" This estimate is fully borne out by profane writers, as well as by the proverb that makes \"Cretizing\" synonymous with \"deception.\" (2) They were \"evil beasts.\" In allusion to their fierceness, their wildness, their cruelty. (3) They were \"idle gluttons.\" They were sensual and slothful, corpulent and idle, and therefore fit disciples of teachers whose \"god was their belly,\" and were content to eat the bread of others without working. 3. The apostle endorses this heathen testimony, showing that the Cretans had not changed their national character in six hundred years.",
+        "V. THE TRUE METHOD OF DEALING WITH THE CRETAN ADVERSARIES. \"Whose mouths must be stopped.\" 1. This does not warrant civil persecution. 2. It warrants the use of cogent arguments to silence gainsayers, such as those by which our Lord silenced the Sadducees and the Pharisees, as well as the use of faithful and stringent discipline to repress ecclesiastical and moral disorders. The adversaries were to be opposed by reason, faithfulness, and love, above all, by the faithful preaching of the gospel in its positive as well as its negative aspects.—T. C."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Vere. 13, 14.",
+      "section": "homiletics",
+      "physicalPages": [
+        12,
+        13
+      ],
+      "author": "T. C.",
+      "reason": "Homilía completa cotejada línea por línea contra las páginas físicas 12–13; se corrige el encabezado OCR y se restauran palabras, referencias, puntuación y divisiones argumentales, preservando la firma T. C.",
+      "paragraphs": [
+        "The necessity of godly rebuke. At this point the apostle drops the reference to bishops, and lays upon Titus himself the duty of applying the proper remedy.",
+        "I. THE UTILITY OF REBUKE. \"Wherefore rebuke them sharply, that they may be sound in the faith.\" The nature of the people demanded sharp treatment. \"Sharpness and severity are but the other side of love itself, when the wounds can only be healed by cutting.\" Ministers are sent to give rebuke (Jer. xliv. 4; Micah iii. 8). 1. They may give it privately. 2. Or publicly (1 Tim. v. 20). 3. Fearlessly (Ezek. ii. 3–7). 4. With all authority (ch. ii. 15). 5. With long-suffering (2 Tim. iv. 2). 6. Sharply, yet with Christian love (2 Thess. iii. 15). 7. The good receive rebuke (1) kindly (Ps. cxli. 5); (2) with love to those who administer it (Prov. ix. 8; xxiv. 25); (3) they attend to rebuke (Prov. xv. 5).",
+        "II. THE DESIGN OF THE REBUKE. \"That they may be sound in the faith.\" It was: 1. That they might be recovered from their errors, and receive sound doctrine, and use sound speech that cannot be condemned. 2. That they may be sound in the grace of faith, and manifest it by departing from their evil works. This soundness of faith is described negatively by their \"not giving heed to Jewish fables, and commandments of men, that turn from the truth.\" (1) Jewish fables. These are mentioned in 1 Tim. i. 4; iv. 7; 2 Tim. iv. 4. They were, no doubt, rabbinical, and ultimately crystallized into the Talmud. Our Lord condemned them (Matt. xv. 3). The traditionary principle has, in spite of this warning, spread widely in the Church. We see it in the Latin Church, in the Greek Church, in Islamism. It is, in fact, the ruling principle of all these communities, which have no real love for the Scriptures. (2) The commandments of men. (a) They stand in antithesis to the commandments of God (Matt. xv. 9; Col. ii. 22). (b) They evidently were of a ceremonial character, and involved ascetic peculiarities, touching the question of abstinence from meats, and from other things created by God for man’s enjoyment. (c) Their origin was evil, for they sprang from men turning away from the truth. It was not merely Mosaical prohibitions with regard to food that they enforced, but ascetic additions and exaggerations in the spirit of the later Gnosticism. The course of these men was downward. They were departing fast from the gospel.—T. C."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 15.",
+      "section": "homiletics",
+      "physicalPages": [
+        13
+      ],
+      "author": "T. C.",
+      "reason": "Homilía completa cotejada línea por línea contra la página física 13; se restauran palabras, referencias, puntuación y dos divisiones argumentales degradadas por la capa OCR, preservando la firma T. C.",
+      "paragraphs": [
+        "A great counter-principle against this ascetic tendency. \"Unto the pure all things are pure: but to the defiled and unbelieving is nothing pure; but even their mind and conscience are defiled.\"",
+        "I. THE PRIVILEGES OF THE PURE. 1. The pure are not those ceremonially pure, but those (1) justified from all sin by Christ’s righteousness; (2) clean through the Word spoken to them; (3) with hearts purified by faith; (4) with the graces of faith unfeigned, love without dissimulation, and hope without hypocrisy. 2. Their privilege, purchased by the blood of Christ, was the lawful liberty of using all meats under the gospel which were forbidden by the ceremonial law. (1) Jesus had taught that defilement comes from the heart, not from the shambles (Luke xi. 39–41). (2) The Church solemnly at Jerusalem decreed the abolition of this old distinction of meats (Acts xv.). 3. The apostle elsewhere teaches the same truth. \"For meat destroy not the work of God. All things indeed are pure, but it is evil for that man that eateth with offence\" (Rom. xiv. 20). All meats are pure to the pure in heart. 4. The distinction of meats among Roman Catholics tends to the neglect of the Divine Law altogether. People on the Continent go to balls on the Lord’s day who will feel their souls in danger from eating an egg on Friday. 5. The saying of the apostle has an almost proverbial cast; for it asserts that \"all things\"—that is, more than mere food—may have a purifying tendency in the case of the pure. Nothing is unclean of itself, but good, and to be received with thanksgiving (1 Tim. iv. 3–5).",
+        "II. THE MORAL RETRIBUTION OF THE IMPURE. It is that they pollute all they touch, and everything becomes the means of increasing their depravity. 1. There is nothing impure or evil in creation; it is in the mind and heart of men; these can turn the choicest gifts of God into the means of moral defilement. 2. Unbelief is the fountain from which all the evil flows; for to the \"defiled and unbelieving is nothing pure.\" The worshippers may, by their distinctions of food, only foster pride and self-righteousness; but all alike springs from unbelief, which disregards the authority of the Word of God. 3. The impurity is not merely external, such as many dread, but internal; for it extends to \"the mind and conscience,\" to the whole intellectual, volitional, and moral nature of man. Thus the last safeguard of the soul disappears, as the retribution upon man’s neglect of God, truth, and purity. There is no longer a taste for the simple truth of the gospel, but a frightful facility for self-deception.—T. C."
+      ]
+    },
+    {
+      "chapter": 1,
+      "sourceHeader": "Ver. 16.",
+      "section": "homiletics",
+      "physicalPages": [
+        13,
+        14
+      ],
+      "author": "T. C.",
+      "reason": "Homilía completa cotejada línea por línea contra las páginas físicas 13–14; se restauran palabras, referencias, puntuación y dos divisiones argumentales degradadas por la capa OCR, preservando la firma T. C.",
+      "paragraphs": [
+        "The great contradiction. The apostle here describes their moral deficiency. \"They confess that they know God, but in works they deny him.\"",
+        "I. THEY WERE MERE PROFESSORS OF RELIGION, POSSESSING ITS FORM BUT DENYING ITS POWER. 1. Their knowledge of God was purely theoretical or speculative, for they were practical atheists. 2. Hypocrites often profess great knowledge of God. 3. Even in apostolic times the communion of the Church was considerably mixed. There is no trace of a pure Church anywhere on earth. The Church in Crete had unbelievers in its visible membership.",
+        "II. THEIR DENIAL OF GOD TOOK A MOST PRACTICAL SHAPE. Their conduct gave the lie to their profession. They were: 1. Abominable in the sight of God. They were morally abandoned. They were as hateful in the sight of God as the idols of the nations. 2. Disobedient. They were refractory and incorrigible, despising all order and repudiating obligation. 3. Reprobate unto every good work. They were as useless for the service of God as reprobate silver, which cannot bear the fire of the refiner. (1) They did no good works. (2) They had neither knowledge nor inclination to do good works. (3) Therefore they were quite useless in the service of God and man.—T. C."
+      ]
+    }
+  ],
   "referenceHeaderCorrections": [
+    {
+      "chapter": 1,
+      "ocr": "Vere. 1-16.",
+      "corrected": "Vers. 1-16.",
+      "section": "homiletics",
+      "physicalPage": 6,
+      "reason": "El facsímil muestra claramente `Vers. 1–16`; la capa OCR leyó la s como e."
+    },
+    {
+      "chapter": 1,
+      "ocr": "Vera. 1-4.",
+      "corrected": "Vers. 1-4.",
+      "section": "homiletics",
+      "physicalPage": 6,
+      "reason": "El facsímil muestra claramente `Vers. 1–4`; la capa OCR leyó la s como a."
+    },
+    {
+      "chapter": 1,
+      "ocr": "Ver. 6.",
+      "corrected": "Ver. 5.",
+      "section": "homiletics",
+      "physicalPage": 8,
+      "reason": "El facsímil muestra claramente `Ver. 5.—Titus’s commission in Crete`; la capa OCR confundió el 5 con un 6."
+    },
+    {
+      "chapter": 1,
+      "ocr": "Vere. 13, 14.",
+      "corrected": "Vers. 13, 14.",
+      "section": "homiletics",
+      "physicalPage": 12,
+      "reason": "El facsímil muestra claramente `Vers. 13, 14`; la capa OCR leyó la s como e."
+    },
     {
       "chapter": 2,
       "ocr": "Ver. 16.",
