@@ -2166,6 +2166,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     const tituloInput = document.getElementById('predicaTituloInput');
     if(tituloInput) tituloInput.value = p.titulo || '';
     closeSermonSidePanel();
+    // Por debajo de 901px, "Mis prédicas" no vive en .sermon-compare-panel
+    // (closeSermonSidePanel() de arriba no le hace nada ahí) sino en
+    // #sidePanel, el panel único de siempre (ver app.js, listener de los
+    // íconos del riel: SERMON_SIDE_PANEL_TABS cae a openPanel()/closePanel()
+    // bajo min-width:901px). Cerrarlo con closePanel() es seguro sin
+    // importar su estado (no-op si ya estaba cerrado). Solo por debajo de
+    // 860px (mismo umbral que style.css:1467) #sidePanel se vuelve overlay
+    // fijo que tapa el editor — entre 761-900px sigue siendo panel lateral
+    // y no hace falta cerrarlo. Desktop (≥901px) no entra acá: ese caso ya
+    // quedó resuelto arriba por closeSermonSidePanel().
+    if(window.matchMedia('(max-width: 860px)').matches) closePanel();
   }
 
   function deletePredicaWithConfirm(id){
