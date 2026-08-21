@@ -8,14 +8,14 @@
   sincronizados con Biblia Verbo y validados antes de publicación.
 - Fuentes catalogadas: 66 libros, 77 PDF en `sources.json`.
 - Borradores estructuralmente sincronizados: 25 libros.
-- Libros visibles en la edición piloto: 5 (Filemón, Abdías, 2 Juan, 3 Juan y
-  Judas), por autorización expresa de Juan para revisión en línea.
-- Todos los borradores conservan `editorialStatus: ocr-unreviewed`.
+- Libros publicados y aprobados: 5 (Filemón, Abdías, 2 Juan, 3 Juan y Judas),
+  por aprobación humana expresa de Juan el 21 de agosto de 2026.
+- Entradas aprobadas con `editorialStatus: reviewed`: 264. Entradas todavía
+  provisionales con `editorialStatus: ocr-unreviewed`: 5,877.
 - El módulo está registrado en `biblia/modules/registry.json`. Su manifest solo
-  expone los cinco libros completamente cotejados; los otros 20 permanecen como
-  artefactos internos fuera del catálogo. Las 6,141 entradas preparadas
-  conservan `ocr-unreviewed`, incluida la edición piloto, para que su visibilidad
-  no se confunda con aprobación editorial definitiva.
+  expone los cinco libros completamente cotejados y aprobados; los otros 20
+  permanecen como artefactos internos fuera del catálogo. De las 6,141 entradas
+  preparadas, 264 están aprobadas y 5,877 conservan `ocr-unreviewed`.
 
 | Libro | Entradas | Grupos fuente | Capítulos | Errores estructurales | Cola OCR |
 | --- | ---: | ---: | ---: | ---: | ---: |
@@ -418,27 +418,26 @@ revisión completa de cada entrada contra el facsímil.
 - `manifest.json` registra Filemón, Abdías, 2 Juan, 3 Juan y Judas, con sus
   archivos completos e índices livianos.
 - Los 25 pares `books/<ID>.json` y `books/<ID>.index.json` son artefactos de
-  revisión. Las 6,141 entradas están marcadas `ocr-unreviewed`; solo 264
-  entradas pertenecientes a los cinco libros cotejados son visibles en la
-  edición piloto.
+  revisión. Las 264 entradas pertenecientes a los cinco libros cotejados y
+  aprobados están marcadas `reviewed` y son visibles; las otras 5,877 conservan
+  `ocr-unreviewed` y permanecen fuera del manifest.
 - Las capas OCR se regeneraron desde los facsímiles catalogados. Cuando una
   extracción alternativa no reutilizó correcciones ligadas textualmente a otra
   capa OCR, el conversor permitió dejarlas sin aplicar, pero nunca relajó la
   validación de capítulos y rangos. Los 25 libros terminaron con cero errores
   estructurales y conservan sus colas completas de revisión visual.
-- Filemón conserva 56 entradas derivadas de 48 grupos fuente. Los 48 grupos ya
+- Filemón conserva 56 entradas derivadas de 48 grupos fuente. Los 48 grupos
   tienen evidencia de cotejo contra el facsímil y la auditoría no conserva
-  señales pendientes; las 56 entradas del módulo siguen `ocr-unreviewed` por
-  instrucción expresa de no otorgar aprobación editorial en este paso.
+  señales pendientes.
 - Por instrucción expresa de Juan, el módulo se añadió al registro y se
   reconstruyeron los índices y el catálogo para permitir la revisión desde la
-  interfaz. Esta publicación piloto no declara los libros definitivos ni
-  aprobados editorialmente.
+  interfaz. Tras comprobar el piloto en línea, Juan aprobó expresamente los cinco
+  libros; sus 264 entradas pasaron a `reviewed`.
 
 ## Plan de reanudación
 
-1. Recoger la revisión humana de los cinco libros piloto visibles en línea y
-   conservar su estado provisional hasta aprobación expresa.
+1. Conservar el registro de aprobación de los cinco libros publicados y atender
+   cualquier corrección humana posterior como una nueva revisión versionada.
 2. Continuar la corrección integral del OCR de Génesis, Esdras, Nehemías y
    Ester, manteniéndolos fuera del catálogo hasta completar el cotejo.
 3. Preparar y convertir los restantes 41 libros con el mismo control de
