@@ -110,9 +110,12 @@
    por debajo de 760px (ver media query al final de este archivo), así que
    la ventana de riesgo real es angosta.
 
-   Lado izquierdo, no derecho (pedido explícito de Juan 2026-08-21): mismo
-   margen, mismo mecanismo, solo que ahora junto al riel izquierdo en vez
-   del derecho — ver left en vez de right más abajo. */
+   Lado derecho (pedido explícito de Juan 2026-08-21, tras probar
+   izquierda): mismo margen, mismo mecanismo, junto al riel derecho.
+   El botón además baja ~25px respecto al wrapper (ver top en
+   .tv-trigger--reading) para centrarse con la fila título/flechas
+   (chapter-title-row) en vez de quedar a la altura del eyebrow "BIBLIA
+   VERBO" — pedido explícito con mockup adjunto. */
 .tv-reading-sticky {
   position: sticky;
   top: 12px;
@@ -122,10 +125,10 @@
 }
 .tv-trigger--reading {
   position: absolute;
-  top: 0;
-  /* Relativo al borde izquierdo de .reading-pane (ver comentario arriba),
-     no al de la columna de texto — 12px lo separa del riel izquierdo. */
-  left: 12px;
+  top: 25px;
+  /* Relativo al borde derecho de .reading-pane (ver comentario arriba),
+     no al de la columna de texto — 12px lo separa del riel derecho. */
+  right: 12px;
   background: rgba(255, 255, 255, .82);
   border: 1px solid rgba(91, 54, 49, .18);
   border-radius: 10px;
