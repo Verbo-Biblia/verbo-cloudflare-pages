@@ -97,19 +97,22 @@
    A propósito NO es hijo de .reading-pane__inner (esa fue la ronda
    anterior, ver historial): .reading-pane__inner es la columna de texto en
    sí (max-width 640/720px, ver style.css), así que cualquier ajuste de
-   right ahí adentro solo elige QUÉ pisa — la flecha #innerNext a
+   left/right ahí adentro solo elige QUÉ pisa — un botón de navegación a
    scroll=0, o el texto de los versículos una vez que el sticky "engancha"
    y el texto se desplaza debajo. Como hijo directo de .reading-pane (que
    no tiene padding horizontal — style.css:306-311), el botón cae en el
-   margen entre la columna de texto y el riel derecho, fuera del ancho
-   horizontal que la columna de texto pueda ocupar, así que nunca compite
-   con #innerNext ni con los versículos sin importar el scroll, el ancho
-   de ventana o el largo del título. Deja de tener efecto solo si el
-   viewport se angosta tanto que .reading-pane__inner llena todo
-   .reading-pane sin margen (por debajo de ~896px) — pero los íconos de
-   tutorial ya están completamente ocultos por debajo de 760px (ver media
-   query al final de este archivo), así que la ventana de riesgo real es
-   angosta. */
+   margen junto a la columna de texto pero fuera de su ancho horizontal,
+   así que nunca compite con la navegación de capítulo ni con los
+   versículos sin importar el scroll, el ancho de ventana o el largo del
+   título. Deja de tener efecto solo si el viewport se angosta tanto que
+   .reading-pane__inner llena todo .reading-pane sin margen (por debajo de
+   ~896px) — pero los íconos de tutorial ya están completamente ocultos
+   por debajo de 760px (ver media query al final de este archivo), así que
+   la ventana de riesgo real es angosta.
+
+   Lado izquierdo, no derecho (pedido explícito de Juan 2026-08-21): mismo
+   margen, mismo mecanismo, solo que ahora junto al riel izquierdo en vez
+   del derecho — ver left en vez de right más abajo. */
 .tv-reading-sticky {
   position: sticky;
   top: 12px;
@@ -120,9 +123,9 @@
 .tv-trigger--reading {
   position: absolute;
   top: 0;
-  /* Relativo al borde derecho de .reading-pane (ver comentario arriba),
-     no al de la columna de texto — 12px lo separa del riel derecho. */
-  right: 12px;
+  /* Relativo al borde izquierdo de .reading-pane (ver comentario arriba),
+     no al de la columna de texto — 12px lo separa del riel izquierdo. */
+  left: 12px;
   background: rgba(255, 255, 255, .82);
   border: 1px solid rgba(91, 54, 49, .18);
   border-radius: 10px;
