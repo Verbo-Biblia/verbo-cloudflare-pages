@@ -101,8 +101,24 @@ TIPO_OVERRIDE = {
     "aceptados-por-cristo": "reflexion",
     # --- las tres siguientes eran ambiguas; confirmadas por Juan el 2026-07-28 ---
     "fe-que-no-negocia": "reflexion",
-    "como-agradar-a-dios": "articulo",
-    "dios-no-compite-con-el-ruido": "articulo",
+    # 2026-07-28: tipo="articulo" confirmado por Juan (ver CATEGORIA_OVERRIDE
+    # debajo). 2026-08-22: subtipo ajustado de "articulo" a "devocional" para
+    # que el badge visual coincida con el breadcrumb propio de la página
+    # ("Devocionales · Reflexión") y con categoria="devocional" -- tipo="articulo"
+    # NO se toca (ver TIPO_FORZADO_ARTICULO, que lo reafirma después de que
+    # build_articulos derive tipo a partir de este subtipo).
+    "como-agradar-a-dios": "devocional",
+    "dios-no-compite-con-el-ruido": "devocional",
+}
+
+# tipo se deriva automáticamente de subtipo en build_articulos() (subtipo in
+# {"devocional","reflexion"} -> tipo="devocional-reflexion"). Estas 2 piezas
+# tienen subtipo="devocional" (arriba) pero deben conservar tipo="articulo",
+# la decisión editorial que Juan confirmó el 2026-07-28 -- este set reafirma
+# tipo="articulo" después de esa derivación, solo para estos 2 slugs.
+TIPO_FORZADO_ARTICULO = {
+    "como-agradar-a-dios",
+    "dios-no-compite-con-el-ruido",
 }
 
 # Taxonomía de "categoria" (2026-08-04), confirmada por Juan: agrupa las
@@ -256,6 +272,8 @@ def build_articulos(approx_flags):
         tipo = subtipo
         if tipo in {"devocional", "reflexion"}:
             tipo = "devocional-reflexion"
+        if slug in TIPO_FORZADO_ARTICULO:
+            tipo = "articulo"
         temas = TEMAS_OVERRIDE.get(slug)
         if temas is None:
             declared_topics = article_attr(html, "data-topics")
