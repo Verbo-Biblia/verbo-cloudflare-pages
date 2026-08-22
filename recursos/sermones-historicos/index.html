@@ -57,18 +57,16 @@
     <div class="r-section-label"><h2>60 <span data-i18n="articulosIndex.piezas">piezas</span></h2></div>
 <!-- CONTENT-FILTERS:START -->
 <section class="r-content-group">
-  <div class="r-filterbar" data-filter-bar data-filter-target="#sermones-grid">
-    <select class="r-filter-select" data-filter-group="tema" data-i18n-attr="aria-label:filtros.filtrarPorTema" aria-label="Filtrar por tema">
-      <option value="todos" data-i18n="filtros.todosLosTemas">Todos los temas</option>
-      <option value="evangelismo" data-i18n="temas.evangelismo">Evangelismo</option>
-      <option value="familia" data-i18n="temas.familia">Familia</option>
-      <option value="fe" data-i18n="temas.fe">Fe</option>
-      <option value="fidelidad-de-dios" data-i18n="temas.fidelidadDeDios">Fidelidad de Dios</option>
-      <option value="santidad" data-i18n="temas.santidad">Santidad</option>
-      <option value="seguridad-en-cristo" data-i18n="temas.seguridadEnCristo">Seguridad en Cristo</option>
-      <option value="vida-cristiana" data-i18n="temas.vidaCristiana">Vida cristiana</option>
-    </select>
-  </div>
+  <div class="r-discovery" data-discovery-layout data-discovery-grid="#sermones-grid">
+    <aside class="r-discovery-recientes">
+      <button type="button" class="r-discovery-recientes-toggle" data-discovery-recientes-toggle aria-expanded="false">
+        <span class="r-discovery-heading" data-discovery-text="sugeridos">Sugeridos</span>
+        <svg class="r-discovery-recientes-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <div class="r-discovery-recientes-list r-article-list" data-discovery-recientes-list></div>
+    </aside>
+    <div class="r-discovery-centro">
+      <h2 class="r-discovery-heading" data-discovery-text="centro">Para leer</h2>
   <div class="r-article-list r-article-grid r-sermon-grid" id="sermones-grid">
     <a class="r-sermon-row r-article-row" data-item data-tipo="sermon" data-subtipo="sermon" data-categoria="sermon" data-tema="fe,vida-cristiana" data-titulo-es="La vida victoriosa" data-ruta-es="moody-la-vida-victoriosa/" href="moody-la-vida-victoriosa/"><span class="sermon-cover"><span class="sermon-cover-seal" aria-hidden="true"></span><span class="sermon-cover-kicker" data-i18n="filtros.sermon">Sermón</span><span class="r-article-row-title">La vida victoriosa</span><span class="sermon-cover-rule"></span><span class="sermon-cover-author">D. L. Moody</span></span><span class="article-card-meta"><span class="article-card-topic" data-i18n="temas.fe">Fe</span><span class="r-article-row-date">1896</span></span></a>
     <a class="r-sermon-row r-article-row" data-item data-tipo="sermon" data-subtipo="sermon" data-categoria="sermon" data-tema="santidad,vida-cristiana" data-titulo-es="Los frutos del arrepentimiento verdadero" data-ruta-es="moody-frutos-del-arrepentimiento/" href="moody-frutos-del-arrepentimiento/"><span class="sermon-cover"><span class="sermon-cover-seal" aria-hidden="true"></span><span class="sermon-cover-kicker" data-i18n="filtros.sermon">Sermón</span><span class="r-article-row-title">Los frutos del arrepentimiento verdadero</span><span class="sermon-cover-rule"></span><span class="sermon-cover-author">D. L. Moody</span></span><span class="article-card-meta"><span class="article-card-topic" data-i18n="temas.santidad">Santidad</span><span class="r-article-row-date">1896</span></span></a>
@@ -131,13 +129,22 @@
     <a class="r-sermon-row r-article-row" data-item data-tipo="sermon" data-subtipo="sermon" data-categoria="sermon" data-tema="apologetica,evangelismo" data-titulo-es="Un predicador de entre los muertos" data-ruta-es="spurgeon-un-predicador-de-entre-los-muertos/" href="spurgeon-un-predicador-de-entre-los-muertos/"><span class="sermon-cover"><span class="sermon-cover-seal" aria-hidden="true"></span><span class="sermon-cover-kicker" data-i18n="filtros.sermon">Sermón</span><span class="r-article-row-title">Un predicador de entre los muertos</span><span class="sermon-cover-rule"></span><span class="sermon-cover-author">Charles H. Spurgeon</span></span><span class="article-card-meta"><span class="article-card-topic" data-i18n="temas.apologetica">Apologética</span><span class="r-article-row-date">1857</span></span></a>
     <a class="r-sermon-row r-article-row" data-item data-tipo="sermon" data-subtipo="sermon" data-categoria="sermon" data-tema="perseverancia,fe" data-titulo-es="Esperar solo en Dios" data-ruta-es="spurgeon-esperar-solo-en-dios/" href="spurgeon-esperar-solo-en-dios/"><span class="sermon-cover"><span class="sermon-cover-seal" aria-hidden="true"></span><span class="sermon-cover-kicker" data-i18n="filtros.sermon">Sermón</span><span class="r-article-row-title">Esperar solo en Dios</span><span class="sermon-cover-rule"></span><span class="sermon-cover-author">Charles H. Spurgeon</span></span><span class="article-card-meta"><span class="article-card-topic" data-i18n="temas.perseverancia">Perseverancia</span><span class="r-article-row-date">1857</span></span></a>
   </div>
-  <p class="r-filter-empty" hidden data-i18n="filtros.sinResultadosArticulos">No hay piezas que coincidan con estos filtros.</p>
+      <p class="r-filter-empty" hidden data-i18n="filtros.sinResultadosArticulos">No hay piezas que coincidan con estos filtros.</p>
+    </div>
+    <aside class="r-discovery-temas">
+      <h2 class="r-discovery-heading" data-discovery-text="temas">Temas</h2>
+      <div class="r-filterbar" data-filter-bar data-filter-target="#sermones-grid">
+        <div class="r-filter-group" data-filter-group="tema" data-i18n-attr="aria-label:filtros.filtrarPorTema" aria-label="Filtrar por tema"></div>
+      </div>
+    </aside>
+  </div>
 </section>
 <!-- CONTENT-FILTERS:END -->
   </main>
   <script src="../assets/filters.js?v=1"></script>
   <script src="../../biblia/assets/i18n.js?v=20260813-predicas-traducir"></script>
   <script src="../assets/lang-aware-list.js?v=2"></script>
+  <script src="../assets/discovery-layout.js?v=1"></script>
   <script src="../../biblia/assets/site-translate.js?v=20260811-translate-abandon"></script>
   <script src="../../biblia/assets/site-chrome.js?v=20260810-source-lang"></script>
 </body>

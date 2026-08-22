@@ -945,3 +945,149 @@ body.recursos-page.recursos-index:has(.r-filterbar) .static-page__main > h1 {
   body.recursos-page .quick-nav { display: none; }
   body.recursos-page .r-filterbar { display: none; }
 }
+
+/* ============================================================
+   Layout de descubrimiento (3 zonas) — Librería, Artículos y
+   Reflexiones, Devocionales, Sermones Históricos.
+   Clases nuevas únicamente: ninguna regla existente arriba se modifica.
+   Poblado por recursos/assets/discovery-layout.js; sin ese script, el
+   grid original sigue mostrando todos los ítems sin partir en zonas
+   (degradación aceptable, mismo criterio "progresivo" de filters.js).
+   ============================================================ */
+body.recursos-page .r-discovery {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr) 200px;
+  gap: 8px 36px;
+  align-items: start;
+}
+body.recursos-page .r-discovery-recientes { grid-column: 1; grid-row: 1 / span 2; }
+body.recursos-page .r-discovery-centro { grid-column: 2; grid-row: 1 / span 2; min-width: 0; }
+body.recursos-page .r-discovery-temas { grid-column: 3; grid-row: 1 / span 2; }
+
+body.recursos-page .r-discovery-heading {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--r-ink-soft);
+  margin: 0 0 14px;
+}
+body.recursos-page .r-discovery-recientes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+/* Tarjetas pequeñas de "recientes": solo título, sin la portada grande de
+   .article-cover/.sermon-cover/.book-cover — más parecido a un ítem de
+   menú que a una tarjeta del grid principal. */
+body.recursos-page .r-discovery-recientes-item {
+  display: block;
+  padding: 9px 11px;
+  border: 1px solid var(--r-rule);
+  border-radius: 7px;
+  background: rgba(255, 255, 255, .6);
+  text-decoration: none;
+  color: var(--r-ink);
+  transition: border-color .15s ease, color .15s ease;
+}
+body.recursos-page .r-discovery-recientes-item:hover { border-color: var(--r-gold); color: var(--r-gold); }
+body.recursos-page .r-discovery-recientes-item .r-article-row-title {
+  font-size: .84rem;
+  line-height: 1.3;
+}
+body.recursos-page.recursos-index .r-discovery-temas .r-filterbar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-bottom: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+body.recursos-page .r-discovery-temas .r-filter-group {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+body.recursos-page .r-discovery-temas .r-filter-pill { width: max-content; }
+
+/* La zona central reutiliza .r-article-grid/.r-book-grid tal cual, solo
+   se le da menos columnas porque el track central ya no ocupa el ancho
+   completo del panel (dos sidebars de 200px a los lados). */
+body.recursos-page .r-discovery-centro .r-article-grid,
+body.recursos-page .r-discovery-centro .r-book-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 900px) {
+  body.recursos-page .r-discovery { grid-template-columns: 160px minmax(0, 1fr) 160px; gap: 8px 20px; }
+}
+
+@media (max-width: 760px) {
+  /* Móvil: 1 columna. "Recientes" va primero, pero colapsado detrás del
+     botón hamburguesa (ver .r-discovery-recientes-toggle más abajo) — no
+     ocupa espacio real hasta que se abre. Debajo, centro -> temas. */
+  body.recursos-page .r-discovery { grid-template-columns: 1fr; gap: 0; }
+  body.recursos-page .r-discovery-recientes,
+  body.recursos-page .r-discovery-centro,
+  body.recursos-page .r-discovery-temas {
+    grid-column: 1;
+    grid-row: auto;
+    margin-bottom: 32px;
+  }
+  body.recursos-page .r-discovery-recientes { order: 1; margin-bottom: 18px; }
+  body.recursos-page .r-discovery-centro { order: 2; }
+  body.recursos-page .r-discovery-temas { order: 3; }
+  body.recursos-page .r-discovery-temas .r-filterbar,
+  body.recursos-page .r-discovery-temas .r-filter-group {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  body.recursos-page .r-discovery-centro .r-article-grid,
+  body.recursos-page .r-discovery-centro .r-book-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* A 430px el .r-article-grid/.r-book-grid "base" (fuera de este layout)
+   nunca baja de 2 columnas (132px fijos / 1fr con mínimo de 2, ver reglas
+   de arriba y libreria/assets/reader.css:371) — la zona central hereda
+   ese mismo piso sin pisarlo aquí, para no dejar tarjetas gigantes en
+   pantallas chicas. Nada que declarar en este breakpoint: la regla de
+   repeat(2, minmax(0, 1fr)) de la sección @media (max-width: 760px) de
+   arriba ya sigue vigente. */
+
+/* "Agregados recientemente" colapsado detrás de un botón hamburguesa en
+   móvil (no estorba el resto del layout: en escritorio es un <h2> normal,
+   sin ícono ni comportamiento de acordeón). */
+body.recursos-page .r-discovery-recientes-toggle {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  cursor: default;
+}
+body.recursos-page .r-discovery-recientes-toggle .r-discovery-heading { margin: 0; }
+body.recursos-page .r-discovery-recientes-toggle-icon { display: none; flex: 0 0 auto; }
+
+@media (max-width: 760px) {
+  body.recursos-page .r-discovery-recientes-toggle {
+    cursor: pointer;
+    padding: 10px 4px;
+    border: 1px solid var(--r-rule);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, .6);
+  }
+  body.recursos-page .r-discovery-recientes-toggle-icon {
+    display: block;
+    width: 18px;
+    height: 18px;
+    color: var(--r-ink-soft);
+  }
+  body.recursos-page .r-discovery-recientes-list {
+    display: none;
+    margin-top: 14px;
+  }
+  body.recursos-page .r-discovery-recientes-list.is-open { display: flex; }
+}

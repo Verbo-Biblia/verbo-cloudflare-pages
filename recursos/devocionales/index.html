@@ -53,30 +53,16 @@
     <div class="r-section-label"><h2>77 <span data-i18n="articulosIndex.piezas">piezas</span></h2></div>
 <!-- CONTENT-FILTERS:START -->
 <section class="r-content-group">
-  <div class="r-filterbar" data-filter-bar data-filter-target="#devocionales-grid">
-    <select class="r-filter-select" data-filter-group="tema" data-i18n-attr="aria-label:filtros.filtrarPorTema" aria-label="Filtrar por tema">
-      <option value="todos" data-i18n="filtros.todosLosTemas">Todos los temas</option>
-      <option value="escatologia" data-i18n="temas.escatologia">Escatología</option>
-      <option value="esperanza" data-i18n="temas.esperanza">Esperanza</option>
-      <option value="evangelismo" data-i18n="temas.evangelismo">Evangelismo</option>
-      <option value="familia" data-i18n="temas.familia">Familia</option>
-      <option value="fe" data-i18n="temas.fe">Fe</option>
-      <option value="fidelidad-de-dios" data-i18n="temas.fidelidadDeDios">Fidelidad de Dios</option>
-      <option value="gracia" data-i18n="temas.gracia">Gracia</option>
-      <option value="identidad-en-cristo" data-i18n="temas.identidadEnCristo">Identidad en Cristo</option>
-      <option value="iglesia" data-i18n="temas.iglesia">Iglesia</option>
-      <option value="juventud" data-i18n="temas.juventud">Juventud</option>
-      <option value="ministerio" data-i18n="temas.ministerio">Ministerio</option>
-      <option value="oracion" data-i18n="temas.oracion">Oración</option>
-      <option value="perseverancia" data-i18n="temas.perseverancia">Perseverancia</option>
-      <option value="santidad" data-i18n="temas.santidad">Santidad</option>
-      <option value="seguridad-en-cristo" data-i18n="temas.seguridadEnCristo">Seguridad en Cristo</option>
-      <option value="sufrimiento" data-i18n="temas.sufrimiento">Sufrimiento</option>
-      <option value="unidad" data-i18n="temas.unidad">Unidad</option>
-      <option value="vida-cristiana" data-i18n="temas.vidaCristiana">Vida cristiana</option>
-      <option value="vida-en-cristo" data-i18n="temas.vidaEnCristo">Vida en Cristo</option>
-    </select>
-  </div>
+  <div class="r-discovery" data-discovery-layout data-discovery-grid="#devocionales-grid">
+    <aside class="r-discovery-recientes">
+      <button type="button" class="r-discovery-recientes-toggle" data-discovery-recientes-toggle aria-expanded="false">
+        <span class="r-discovery-heading" data-discovery-text="recientes">Agregados recientemente</span>
+        <svg class="r-discovery-recientes-toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <div class="r-discovery-recientes-list r-article-list" data-discovery-recientes-list></div>
+    </aside>
+    <div class="r-discovery-centro">
+      <h2 class="r-discovery-heading" data-discovery-text="centro">Para leer</h2>
   <div class="r-article-list r-article-grid" id="devocionales-grid">
     <a class="r-article-row" data-item data-tipo="devocional-reflexion" data-subtipo="reflexion" data-categoria="devocional" data-tema="identidad-en-cristo,gracia,santidad" data-titulo-es="La mejor versión de mí fue clavada en la cruz" data-ruta-es="../articulos-y-reflexiones/la-mejor-version-de-mi-fue-clavada-en-la-cruz/" data-titulo-en="The best version of me was nailed to the cross" data-ruta-en="../articles-and-reflections-en/la-mejor-version-de-mi-fue-clavada-en-la-cruz/" href="../articulos-y-reflexiones/la-mejor-version-de-mi-fue-clavada-en-la-cruz/"><span class="article-cover"><svg class="article-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M5 19h14M7 16l8.8-8.8a1.7 1.7 0 0 1 2.4 2.4L9.4 18.4 6 19l.6-3Z"/></svg><span class="article-cover-kicker" data-i18n="filtros.reflexion">Reflexión</span><span class="r-article-row-title">La mejor versión de mí fue clavada en la cruz</span><span class="article-cover-rule"></span><span class="article-cover-author">Juan José Venegas</span></span><span class="article-card-meta"><span class="article-card-topic" data-i18n="temas.identidadEnCristo">Identidad en Cristo</span><span class="r-article-row-date">21 ago 2026</span></span></a>
     <a class="r-article-row" data-item data-tipo="devocional-reflexion" data-subtipo="devocional" data-categoria="devocional" data-tema="gracia,seguridad-en-cristo" data-titulo-es="Cuando alguien te decepciona" data-ruta-es="../articulos-y-reflexiones/cuando-alguien-te-decepciona/" data-titulo-en="When someone disappoints you" data-ruta-en="../articles-and-reflections-en/cuando-alguien-te-decepciona/" href="../articulos-y-reflexiones/cuando-alguien-te-decepciona/"><span class="article-cover"><svg class="article-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M5 19h14M7 16l8.8-8.8a1.7 1.7 0 0 1 2.4 2.4L9.4 18.4 6 19l.6-3Z"/></svg><span class="article-cover-kicker" data-i18n="filtros.devocional">Devocional</span><span class="r-article-row-title">Cuando alguien te decepciona</span><span class="article-cover-rule"></span><span class="article-cover-author">Verbo</span></span><span class="article-card-meta"><span class="article-card-topic" data-i18n="temas.gracia">Gracia</span><span class="r-article-row-date">12 ago 2026</span></span></a>
@@ -156,13 +142,22 @@
     <a class="r-article-row" data-item data-tipo="devocional-reflexion" data-subtipo="devocional" data-categoria="devocional" data-tema="seguridad-en-cristo" data-titulo-es="Romanos 8: seguridad en Cristo, no ausencia de dolor" data-ruta-es="../articulos-y-reflexiones/romanos-8/" data-titulo-en="Romans 8: security in Christ, not absence of pain" data-ruta-en="../articles-and-reflections-en/romanos-8/" href="../articulos-y-reflexiones/romanos-8/"><span class="article-cover"><svg class="article-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M5 19h14M7 16l8.8-8.8a1.7 1.7 0 0 1 2.4 2.4L9.4 18.4 6 19l.6-3Z"/></svg><span class="article-cover-kicker" data-i18n="filtros.devocional">Devocional</span><span class="r-article-row-title">Romanos 8: seguridad en Cristo, no ausencia de dolor</span><span class="article-cover-rule"></span><span class="article-cover-author">Juan José Venegas</span></span><span class="article-card-meta"><span class="article-card-topic" data-i18n="temas.seguridadEnCristo">Seguridad en Cristo</span><span class="r-article-row-date">27 jul 2026</span></span></a>
     <a class="r-article-row" data-item data-tipo="devocional-reflexion" data-subtipo="reflexion" data-categoria="devocional" data-tema="gracia,fidelidad-de-dios" data-titulo-es="Su fidelidad, no la mía" data-ruta-es="../articulos-y-reflexiones/su-fidelidad-no-la-mia/" data-titulo-en="His faithfulness, not mine" data-ruta-en="../articles-and-reflections-en/su-fidelidad-no-la-mia/" href="../articulos-y-reflexiones/su-fidelidad-no-la-mia/"><span class="article-cover"><svg class="article-cover-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M5 19h14M7 16l8.8-8.8a1.7 1.7 0 0 1 2.4 2.4L9.4 18.4 6 19l.6-3Z"/></svg><span class="article-cover-kicker" data-i18n="filtros.reflexion">Reflexión</span><span class="r-article-row-title">Su fidelidad, no la mía</span><span class="article-cover-rule"></span><span class="article-cover-author">Juan José Venegas</span></span><span class="article-card-meta"><span class="article-card-topic" data-i18n="temas.gracia">Gracia</span><span class="r-article-row-date">27 jul 2026</span></span></a>
   </div>
-  <p class="r-filter-empty" hidden data-i18n="filtros.sinResultadosArticulos">No hay piezas que coincidan con estos filtros.</p>
+      <p class="r-filter-empty" hidden data-i18n="filtros.sinResultadosArticulos">No hay piezas que coincidan con estos filtros.</p>
+    </div>
+    <aside class="r-discovery-temas">
+      <h2 class="r-discovery-heading" data-discovery-text="temas">Temas</h2>
+      <div class="r-filterbar" data-filter-bar data-filter-target="#devocionales-grid">
+        <div class="r-filter-group" data-filter-group="tema" data-i18n-attr="aria-label:filtros.filtrarPorTema" aria-label="Filtrar por tema"></div>
+      </div>
+    </aside>
+  </div>
 </section>
 <!-- CONTENT-FILTERS:END -->
   </main>
   <script src="../assets/filters.js?v=1"></script>
   <script src="../../biblia/assets/i18n.js?v=20260813-predicas-traducir"></script>
   <script src="../assets/lang-aware-list.js?v=2"></script>
+  <script src="../assets/discovery-layout.js?v=1"></script>
   <script src="../../biblia/assets/site-translate.js?v=20260811-translate-abandon"></script>
   <script src="../../biblia/assets/site-chrome.js?v=20260810-source-lang"></script>
 </body>
