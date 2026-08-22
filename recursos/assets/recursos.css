@@ -934,6 +934,18 @@ body.recursos-page.recursos-index:has(.r-filterbar) .static-page__main > h1 {
   body.recursos-page.recursos-index > main.static-page__main > h1,
   body.recursos-page.recursos-index > main.static-page__main > article h1 { margin: 4px 0 14px; }
 
+  /* Librería: en móvil la barra de idioma vive normalmente al fondo de la
+     página (dentro de .r-discovery-temas, order:3 más abajo) — muy lejos
+     del <h1>. discovery-layout.js mueve ahí el nodo real del grupo
+     data-filter-group="idioma" (no un clon) apenas se detecta viewport
+     móvil, así queda junto al encabezado sin duplicar el filtro ni tocar
+     filters.js. En escritorio el slot se queda vacío (:empty lo colapsa)
+     y la barra sigue en su lugar de siempre junto a "Temas". */
+  body.recursos-page .r-title-idioma-slot:empty { display: none; }
+  body.recursos-page .r-title-idioma-slot .r-filter-group {
+    margin: 2px 0 20px;
+  }
+
   /* La cuadrícula aprovecha el ancho disponible sin pegar tarjetas al
      viewport; el gap sigue perteneciendo al diseño original. */
   body.recursos-page .r-book-grid,

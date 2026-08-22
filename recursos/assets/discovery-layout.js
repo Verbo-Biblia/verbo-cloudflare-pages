@@ -247,9 +247,40 @@
     wireRecientesToggle(root);
   }
 
+  // Librería, solo móvil: el grupo data-filter-group="idioma" vive junto a
+  // "Temas" al fondo de la página (mismo r-filterbar, columna lateral en
+  // escritorio) — en móvil esa columna cae al final del documento (order:3
+  // en recursos.css), lejos del <h1>. Se reubica ahí el nodo REAL (no un
+  // clon) dentro de #libreria-idioma-slot, que el HTML ya deja vacío justo
+  // después del <h1>: filters.js ató su listener de click directamente
+  // sobre este elemento antes de que este script corra (ver orden de
+  // <script> en libreria/index.html), y ese listener sigue funcionando sin
+  // importar dónde viva el nodo — no depende de su padre ni de su posición
+  // en el DOM (mismo principio que buildCentro() más arriba). Sin el slot
+  // en el HTML (todas las demás páginas) no hace nada.
+  function wireIdiomaMobileSlot() {
+    var slot = document.getElementById("libreria-idioma-slot");
+    var group = document.querySelector('.r-discovery-temas [data-filter-group="idioma"]');
+    if (!slot || !group) return;
+    var homeParent = group.parentNode;
+    var homeNext = group.nextSibling;
+    function place(mobile) {
+      if (mobile) {
+        if (group.parentNode !== slot) slot.appendChild(group);
+      } else if (group.parentNode !== homeParent) {
+        homeParent.insertBefore(group, homeNext);
+      }
+    }
+    var mq = window.matchMedia("(max-width: 760px)");
+    place(mq.matches);
+    if (mq.addEventListener) mq.addEventListener("change", function (e) { place(e.matches); });
+    else if (mq.addListener) mq.addListener(function (e) { place(e.matches); });
+  }
+
   function init() {
     var roots = document.querySelectorAll("[data-discovery-layout]");
     roots.forEach(initRoot);
+    wireIdiomaMobileSlot();
     document.addEventListener("verbo:uilang-changed", function () {
       roots.forEach(function (root) {
         applyHeadingText(root);
