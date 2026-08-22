@@ -2099,8 +2099,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     return esHits>=enHits ? 'es' : 'en';
   }
   function sermonTranslateTargetLang(plainText){
-    const sourceLang=detectSermonSourceLang(plainText) || (window.VerboI18n?.getUiLang()==='es' ? 'en' : 'es');
-    return sourceLang==='es' ? 'en' : 'es';
+    const detectedSource=detectSermonSourceLang(plainText);
+    if(detectedSource) return detectedSource==='es' ? 'en' : 'es';
+    // Contenido demasiado corto/ambiguo para detectar un idioma (p.ej. una
+    // prédica de prueba de pocas palabras): igual que antes de la detección
+    // por contenido, se usa el idioma de interfaz como pista razonable.
+    return window.VerboI18n?.getUiLang()==='es' ? 'en' : 'es';
   }
   async function handleTranslateSermon(){
     const btn=document.getElementById('traducirPredicaBtn');
