@@ -2826,6 +2826,32 @@ mark.predica-search-hit { background: var(--wine-soft); color: #fff; border-radi
 
 .editor-pane__actions-buttons { display: flex; gap: 8px; flex-shrink: 0; }
 
+/* Idioma destino de "Traducir" — mismo patrón visual que .ui-lang-switcher
+   (header), pero es un control aparte: elige el idioma de la copia
+   traducida de esta prédica, no el idioma de la interfaz del sitio. */
+.sermon-translate-lang {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--rule-strong);
+  border-radius: 20px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.sermon-translate-lang__btn {
+  border: 0;
+  background: var(--paper-raised);
+  color: var(--sepia);
+  font-family: var(--font-body);
+  font-size: 12px;
+  letter-spacing: .02em;
+  padding: 6px 11px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.sermon-translate-lang__btn + .sermon-translate-lang__btn { border-left: 1px solid var(--rule-strong); }
+.sermon-translate-lang__btn:hover { color: var(--wine-soft); }
+.sermon-translate-lang__btn.is-active { background: var(--wine-soft); color: #fff; }
+
 .editor-pane__export-btn {
   border: 1px solid var(--rule-strong);
   background: var(--paper-raised);

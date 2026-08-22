@@ -1705,6 +1705,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.dispatchEvent(new CustomEvent('verbo:sermon-mode-changed', {detail:{sermonMode}}));
     if(els.readingPane) els.readingPane.hidden = sermonMode;
     if(els.editorPane) els.editorPane.hidden = !sermonMode;
+    // Sugerencia de idioma destino de "Traducir": se reevalúa cada vez que se
+    // entra al editor (no solo la primera vez) para seguir el idioma de
+    // interfaz actual, pero el pastor puede corregirla antes de traducir.
+    if(sermonMode) setSermonTranslateLang(sermonTranslateLangDefault());
     if(sermonMode) await initSermonEditor();
     if(data) renderChapter(activeVerse());
     if(activeTab) renderPanel(activeTab);
@@ -2078,12 +2082,24 @@ document.addEventListener('DOMContentLoaded', async () => {
   // guarda como una prédica NUEVA en "Mis prédicas" (id:null fuerza una
   // entrada nueva) en vez de reemplazar la que está abierta en el editor —
   // si la traducción sale mal, el original nunca se tocó.
-  function sermonTranslateTargetLang(){
-    // Traduce siempre hacia el idioma opuesto al de la interfaz actual: es
-    // el criterio más simple y predecible para el pastor (usando Verbo en
-    // español, "Traducir" da la versión en inglés, y viceversa) sin
-    // necesitar detectar el idioma real del contenido escrito.
+  // El idioma destino de "Traducir" lo elige el selector ES/EN propio del
+  // editor (#sermonTranslateLangSwitcher), no el idioma de interfaz del
+  // sitio (VerboI18n.getUiLang()) — la interfaz de un pastor puede quedar
+  // fija en un idioma mientras escribe prédicas en el otro, así que asumir
+  // que ambos coinciden traducía siempre hacia el mismo idioma sin importar
+  // el de la prédica real. getUiLang() solo se usa para sugerir un valor
+  // inicial razonable (sermonTranslateLangDefault, ver más abajo).
+  function sermonTranslateLangDefault(){
     return window.VerboI18n?.getUiLang() === 'es' ? 'en' : 'es';
+  }
+  function setSermonTranslateLang(lang){
+    document.querySelectorAll('#sermonTranslateLangSwitcher [data-lang]').forEach(btn=>{
+      btn.classList.toggle('is-active', btn.dataset.lang===lang);
+    });
+  }
+  function sermonTranslateTargetLang(){
+    return document.querySelector('#sermonTranslateLangSwitcher [data-lang].is-active')?.dataset.lang
+      || sermonTranslateLangDefault();
   }
   async function handleTranslateSermon(){
     const btn=document.getElementById('traducirPredicaBtn');
@@ -2144,6 +2160,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
   els.editorPane?.querySelector('#traducirPredicaBtn')?.addEventListener('click', handleTranslateSermon);
+  els.editorPane?.querySelectorAll('#sermonTranslateLangSwitcher [data-lang]').forEach(btn=>{
+    btn.addEventListener('click', ()=>setSermonTranslateLang(btn.dataset.lang));
+  });
 
   // ── Panel "Mis prédicas" (guardar/abrir/eliminar, modo sermón) ─────────────
 
