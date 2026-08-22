@@ -977,12 +977,17 @@ body.recursos-page .r-discovery-recientes-list {
   flex-direction: column;
   gap: 10px;
 }
-/* Tarjetas pequeñas de "recientes": solo título, sin la portada grande de
-   .article-cover/.sermon-cover/.book-cover — más parecido a un ítem de
-   menú que a una tarjeta del grid principal. */
-body.recursos-page .r-discovery-recientes-item {
-  display: block;
-  padding: 9px 11px;
+/* Tarjetas pequeñas de "recientes": clon de la fila completa (conserva la
+   portada real, colores por tema/autor incluidos) encogida a miniatura,
+   con el título aparte a su lado — ni el bloque grande del grid principal
+   ni una fila de solo texto. El selector repite .recursos-index para
+   ganarle por especificidad a reader.css (.r-book-row{display:block}),
+   que carga después en libreria/index.html. */
+body.recursos-page.recursos-index .r-discovery-recientes-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px;
   border: 1px solid var(--r-rule);
   border-radius: 7px;
   background: rgba(255, 255, 255, .6);
@@ -991,9 +996,59 @@ body.recursos-page .r-discovery-recientes-item {
   transition: border-color .15s ease, color .15s ease;
 }
 body.recursos-page .r-discovery-recientes-item:hover { border-color: var(--r-gold); color: var(--r-gold); }
-body.recursos-page .r-discovery-recientes-item .r-article-row-title {
-  font-size: .84rem;
-  line-height: 1.3;
+
+/* Portada en miniatura: ancho fijo chico, el alto lo da su propio
+   aspect-ratio ya declarado en la regla base de cada tipo de portada. */
+body.recursos-page .r-discovery-recientes-item .article-cover,
+body.recursos-page .r-discovery-recientes-item .sermon-cover,
+body.recursos-page .r-discovery-recientes-item .book-cover {
+  flex: 0 0 auto;
+  width: 40px;
+  min-height: 0;
+  padding: 5px 4px 4px 6px;
+}
+body.recursos-page .r-discovery-recientes-item .article-cover-icon,
+body.recursos-page .r-discovery-recientes-item .book-cover-icon {
+  width: 11px;
+  height: 11px;
+  margin-bottom: 0;
+}
+body.recursos-page .r-discovery-recientes-item .sermon-cover-seal {
+  width: 10px;
+  height: 10px;
+}
+/* A esta escala no cabe el resto del contenido decorativo de la portada
+   (kicker/regla/autor, y el título que en articulos/sermones vive DENTRO
+   de la portada) — se oculta aquí; el título se muestra aparte
+   (r-discovery-recientes-item-title para articulos/sermones, o el propio
+   <p class="r-book-title"> ya hermano de la portada en Librería). */
+body.recursos-page .r-discovery-recientes-item .article-cover-kicker,
+body.recursos-page .r-discovery-recientes-item .article-cover-rule,
+body.recursos-page .r-discovery-recientes-item .article-cover-author,
+body.recursos-page .r-discovery-recientes-item .article-cover .r-article-row-title,
+body.recursos-page .r-discovery-recientes-item .sermon-cover-kicker,
+body.recursos-page .r-discovery-recientes-item .sermon-cover-rule,
+body.recursos-page .r-discovery-recientes-item .sermon-cover-author,
+body.recursos-page .r-discovery-recientes-item .sermon-cover .r-article-row-title,
+body.recursos-page .r-discovery-recientes-item .book-cover-era,
+body.recursos-page .r-discovery-recientes-item .book-cover-title,
+body.recursos-page .r-discovery-recientes-item .book-cover-rule,
+body.recursos-page .r-discovery-recientes-item .book-cover-author {
+  display: none;
+}
+body.recursos-page .r-discovery-recientes-item .r-article-row-title,
+body.recursos-page .r-discovery-recientes-item .r-discovery-recientes-item-title {
+  font-size: .82rem;
+  line-height: 1.28;
+}
+body.recursos-page .r-discovery-recientes-item .r-book-title {
+  font-size: .82rem;
+  line-height: 1.28;
+  margin: 0;
+}
+body.recursos-page .r-discovery-recientes-item .r-book-meta,
+body.recursos-page .r-discovery-recientes-item .article-card-meta {
+  display: none;
 }
 body.recursos-page.recursos-index .r-discovery-temas .r-filterbar {
   display: flex;
@@ -1010,16 +1065,33 @@ body.recursos-page .r-discovery-temas .r-filter-group {
 }
 body.recursos-page .r-discovery-temas .r-filter-pill { width: max-content; }
 
-/* La zona central reutiliza .r-article-grid/.r-book-grid tal cual, solo
-   se le da menos columnas porque el track central ya no ocupa el ancho
-   completo del panel (dos sidebars de 200px a los lados). */
+/* El panel de las páginas índice normalmente cierra en 900px (regla base
+   arriba), pero con las 2 sidebars de 200px + gaps ahí dentro no queda
+   espacio real para 4 columnas de tarjeta sin que el texto se desborde del
+   borde (visto en vivo: títulos como "The Young Cottager"/"2 Clemente"
+   cortados). Se ensancha SOLO en las 4 páginas con este layout —
+   :has(.r-discovery) no matchea Escuela Dominical ni recursos/index.html,
+   que siguen en 900px sin tocar esa regla. */
+body.recursos-page.recursos-index .static-page__main:has(.r-discovery) {
+  max-width: 1600px;
+}
+
+/* La zona central reutiliza .r-article-grid/.r-book-grid tal cual. En
+   escritorio mantiene las 4 columnas del grid original (Juan: "en pc debes
+   mantener al menos filas de 4 libros no de 2") — se reduce solo cuando el
+   track central se angosta de verdad, en los mismos puntos de quiebre de
+   abajo. */
 body.recursos-page .r-discovery-centro .r-article-grid,
 body.recursos-page .r-discovery-centro .r-book-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 @media (max-width: 900px) {
   body.recursos-page .r-discovery { grid-template-columns: 160px minmax(0, 1fr) 160px; gap: 8px 20px; }
+  body.recursos-page .r-discovery-centro .r-article-grid,
+  body.recursos-page .r-discovery-centro .r-book-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 760px) {

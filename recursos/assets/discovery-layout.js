@@ -6,9 +6,9 @@
      1) clona los primeros 5 <a data-item> del grid original (ya vienen en
         orden reverse-cronológico, no se reordena ni se toca fecha) dentro
         de la sidebar "Agregados recientemente";
-     2) del resto, oculta todos salvo 10 elegidos al azar (re-mezclados en
+     2) del resto, oculta todos salvo 12 elegidos al azar (re-mezclados en
         cada carga, sin persistir el sorteo) para la zona central "Para
-        leer";
+        leer" — 12 llena 3 filas completas de 4 columnas en escritorio;
      3) genera las pills de "Temas" a partir de los valores únicos de
         data-tema ya presentes en la página, dentro del mismo contenedor
         [data-filter-group="tema"] que ya trae el HTML — filters.js ya ató
@@ -25,7 +25,7 @@
   "use strict";
 
   var RECIENTES_COUNT = 5;
-  var CENTRO_COUNT = 10;
+  var CENTRO_COUNT = 12;
 
   var STRINGS = {
     // "sugeridos" es la única excepción: sermones-historicos/index.html usa
@@ -109,8 +109,8 @@
     });
   }
 
-  // Título/ruta de un <a data-item>: articulos/devocionales/sermones traen
-  // data-titulo-es/data-ruta-es; Librería no (sus <a> solo tienen href y un
+  // Título de un <a data-item>: articulos/devocionales/sermones traen
+  // data-titulo-es; Librería no (sus <a> solo tienen href y un
   // <p class="r-book-title"> hijo), de ahí el fallback en dos pasos.
   function itemTitle(item) {
     var attr = item.getAttribute("data-titulo-es");
@@ -118,44 +118,34 @@
     var el = item.querySelector(".r-article-row-title, .r-book-title");
     return el ? el.textContent.trim() : item.textContent.trim();
   }
-  function itemHref(item) {
-    return item.getAttribute("data-ruta-es") || item.getAttribute("href");
-  }
 
-  // Tarjetas pequeñas para "recientes" (solo título, sin la portada grande
-  // de .article-cover/.sermon-cover/.book-cover) en vez de clonar la fila
-  // completa — misma idea que un elemento de menú, no una tarjeta de grid.
-  // Conserva data-item + data-titulo-es/en + data-ruta-es/en y la clase
-  // .r-article-row-title en el título: son los ganchos que ya usa
-  // lang-aware-list.js (selector ".r-article-list [data-item]"), así que el
-  // toggle de idioma sigue funcionando sin tocar ese archivo.
+  // Tarjetas pequeñas para "recientes": clona la fila completa (conserva
+  // portada real, con sus colores por tema/autor — ej. .book-cover con
+  // data-tema="patristica" — porque esos estilos dependen de selectores
+  // sobre el propio <a data-item>, no se pueden replicar clonando solo el
+  // ícono) y la encoge por CSS (.r-discovery-recientes-item en
+  // recursos.css). Al clonar, ya trae data-item/data-titulo-es/en/
+  // data-ruta-es/en tal cual — lang-aware-list.js sigue funcionando sobre
+  // el clon sin cambios (selector ".r-article-list [data-item]"), y como
+  // el original ya fue corregido por su applyLang() inicial (síncrono,
+  // antes de que este script corra) el clon nace en el idioma correcto.
+  // Articulos/devocionales/sermones guardan el título DENTRO de la
+  // portada (oculto a esta escala, ver CSS) — se agrega una copia visible
+  // aparte. Librería ya trae <p class="r-book-title"> como hermano de la
+  // portada, no hace falta duplicarlo.
   function buildRecientes(root, recientes) {
     var list = root.querySelector("[data-discovery-recientes-list]");
     if (!list) return;
     recientes.forEach(function (item) {
-      var a = document.createElement("a");
-      a.className = "r-discovery-recientes-item";
-      a.setAttribute("data-item", "");
-      var rutaEs = itemHref(item);
-      var tituloEs = itemTitle(item);
-      a.setAttribute("data-ruta-es", rutaEs);
-      a.setAttribute("data-titulo-es", tituloEs);
-      var rutaEn = item.getAttribute("data-ruta-en");
-      var tituloEn = item.getAttribute("data-titulo-en");
-      if (rutaEn) a.setAttribute("data-ruta-en", rutaEn);
-      if (tituloEn) a.setAttribute("data-titulo-en", tituloEn);
-      var title = document.createElement("span");
-      title.className = "r-article-row-title";
-      // Ítem recién creado: lang-aware-list.js ya corrió una vez antes de
-      // que este <a> existiera (su applyLang() inicial es síncrono, se
-      // ejecuta al parsear el <script> al pie de la página, antes del
-      // DOMContentLoaded donde corre este archivo) — sin esto, el primer
-      // render quedaría en español aunque la UI ya esté en inglés.
-      var useEn = currentLang() === "en" && rutaEn && tituloEn;
-      a.href = useEn ? rutaEn : rutaEs;
-      title.textContent = useEn ? tituloEn : tituloEs;
-      a.appendChild(title);
-      list.appendChild(a);
+      var clone = item.cloneNode(true);
+      clone.classList.add("r-discovery-recientes-item");
+      if (!clone.querySelector(".r-book-title")) {
+        var title = document.createElement("span");
+        title.className = "r-discovery-recientes-item-title";
+        title.textContent = itemTitle(item);
+        clone.appendChild(title);
+      }
+      list.appendChild(clone);
     });
   }
 
@@ -188,6 +178,22 @@
     hidden.forEach(function (item) { item.hidden = true; });
   }
 
+  // Algunos temas (ej. "biblia", "clasicos-cristianos", "consuelo") no
+  // tienen clave en biblia/assets/i18n/{es,en}.json todavía. t(key) de ese
+  // archivo devuelve la clave cruda cuando no la encuentra, y applyStatic()
+  // la escribe tal cual — "temas.clasicosCristianos" visible en la pill.
+  // Mismo criterio que ya usa lang-aware-list.js para su propio caso de
+  // traducción faltante ("la fila se queda en español sin error visible"):
+  // si después de traducir el texto sigue siendo la clave cruda, se
+  // restaura el fallback en español guardado en data-fallback-label.
+  function repairMissingI18n(root) {
+    root.querySelectorAll("[data-i18n][data-fallback-label]").forEach(function (el) {
+      if (el.textContent === el.getAttribute("data-i18n")) {
+        el.textContent = el.getAttribute("data-fallback-label");
+      }
+    });
+  }
+
   function buildTemasPills(root, allItems) {
     var group = root.querySelector('[data-filter-group="tema"]');
     if (!group) return;
@@ -197,6 +203,7 @@
     todos.className = "r-filter-pill is-active";
     todos.setAttribute("data-value", "todos");
     todos.setAttribute("data-i18n", "filtros.todosLosTemas");
+    todos.setAttribute("data-fallback-label", STRINGS.es.todos);
     todos.textContent = STRINGS[lang].todos;
     group.appendChild(todos);
 
@@ -206,11 +213,16 @@
       pill.className = "r-filter-pill";
       pill.setAttribute("data-value", slug);
       pill.setAttribute("data-i18n", temaI18nKey(slug));
+      pill.setAttribute("data-fallback-label", temaLabel(slug));
       pill.textContent = temaLabel(slug);
       group.appendChild(pill);
     });
 
     if (window.VerboI18n && window.VerboI18n.applyStatic) window.VerboI18n.applyStatic(group);
+    repairMissingI18n(group);
+    if (window.VerboI18n && window.VerboI18n.ready) {
+      window.VerboI18n.ready().then(function () { repairMissingI18n(group); });
+    }
   }
 
   function initRoot(root) {
@@ -239,7 +251,14 @@
     var roots = document.querySelectorAll("[data-discovery-layout]");
     roots.forEach(initRoot);
     document.addEventListener("verbo:uilang-changed", function () {
-      roots.forEach(applyHeadingText);
+      roots.forEach(function (root) {
+        applyHeadingText(root);
+        // El propio i18n.js corre applyStatic(document) en cada cambio de
+        // idioma, que puede volver a pisar las pills sin clave real en el
+        // diccionario nuevo (ver repairMissingI18n) — se repara de nuevo.
+        var group = root.querySelector('[data-filter-group="tema"]');
+        if (group) repairMissingI18n(group);
+      });
     });
   }
 
