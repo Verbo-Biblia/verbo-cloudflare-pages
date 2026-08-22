@@ -1705,10 +1705,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.dispatchEvent(new CustomEvent('verbo:sermon-mode-changed', {detail:{sermonMode}}));
     if(els.readingPane) els.readingPane.hidden = sermonMode;
     if(els.editorPane) els.editorPane.hidden = !sermonMode;
-    // Sugerencia de idioma destino de "Traducir": se reevalúa cada vez que se
-    // entra al editor (no solo la primera vez) para seguir el idioma de
-    // interfaz actual, pero el pastor puede corregirla antes de traducir.
-    if(sermonMode) setSermonTranslateLang(sermonTranslateLangDefault());
     if(sermonMode) await initSermonEditor();
     if(data) renderChapter(activeVerse());
     if(activeTab) renderPanel(activeTab);
@@ -2082,35 +2078,40 @@ document.addEventListener('DOMContentLoaded', async () => {
   // guarda como una prédica NUEVA en "Mis prédicas" (id:null fuerza una
   // entrada nueva) en vez de reemplazar la que está abierta en el editor —
   // si la traducción sale mal, el original nunca se tocó.
-  // El idioma destino de "Traducir" lo elige el selector ES/EN propio del
-  // editor (#sermonTranslateLangSwitcher), no el idioma de interfaz del
-  // sitio (VerboI18n.getUiLang()) — la interfaz de un pastor puede quedar
-  // fija en un idioma mientras escribe prédicas en el otro, así que asumir
-  // que ambos coinciden traducía siempre hacia el mismo idioma sin importar
-  // el de la prédica real. getUiLang() solo se usa para sugerir un valor
-  // inicial razonable (sermonTranslateLangDefault, ver más abajo).
-  function sermonTranslateLangDefault(){
-    return window.VerboI18n?.getUiLang() === 'es' ? 'en' : 'es';
+  // El idioma destino de "Traducir" se detecta a partir del contenido real
+  // de la prédica (no del idioma de interfaz, VerboI18n.getUiLang()): la
+  // interfaz de un pastor puede quedar fija en un idioma mientras escribe
+  // prédicas en el otro, así que asumir que ambos coinciden traducía
+  // siempre hacia el mismo idioma sin importar el de la prédica real.
+  // Heurística simple por señales léxicas (tildes/ñ/¿¡ + palabras función
+  // muy comunes) — suficiente para distinguir ES/EN en un documento
+  // completo; si el texto es demasiado corto o ambiguo, getUiLang() sigue
+  // sirviendo de respaldo razonable.
+  const SERMON_LANG_ES_WORDS=/\b(que|de|la|el|en|y|los|las|un|una|para|con|por|no|se|su|es|como|más|pero|si|ya|muy|también|entre|sobre|desde|hasta|cuando|porque|dios|señor|jesús|cristo|nuestro|nuestra)\b/g;
+  const SERMON_LANG_EN_WORDS=/\b(the|and|of|to|in|is|that|it|for|on|with|as|was|at|by|an|be|this|which|or|from|but|not|are|were|have|has|god|lord|jesus|christ|our)\b/g;
+  function detectSermonSourceLang(text){
+    const sample=(text||'').toLowerCase().trim();
+    if(!sample) return null;
+    if(/[ñ¿¡]|[áéíóúü]/.test(sample)) return 'es';
+    const esHits=(sample.match(SERMON_LANG_ES_WORDS)||[]).length;
+    const enHits=(sample.match(SERMON_LANG_EN_WORDS)||[]).length;
+    if(esHits===0 && enHits===0) return null;
+    return esHits>=enHits ? 'es' : 'en';
   }
-  function setSermonTranslateLang(lang){
-    document.querySelectorAll('#sermonTranslateLangSwitcher [data-lang]').forEach(btn=>{
-      btn.classList.toggle('is-active', btn.dataset.lang===lang);
-    });
-  }
-  function sermonTranslateTargetLang(){
-    return document.querySelector('#sermonTranslateLangSwitcher [data-lang].is-active')?.dataset.lang
-      || sermonTranslateLangDefault();
+  function sermonTranslateTargetLang(plainText){
+    const sourceLang=detectSermonSourceLang(plainText) || (window.VerboI18n?.getUiLang()==='es' ? 'en' : 'es');
+    return sourceLang==='es' ? 'en' : 'es';
   }
   async function handleTranslateSermon(){
     const btn=document.getElementById('traducirPredicaBtn');
     if(!sermonEditor || btn?.disabled) return;
-    const targetLang=sermonTranslateTargetLang();
     const originalLabel=btn.textContent;
     btn.disabled=true;
     btn.textContent=t('predicas.traduciendoBtn');
     try{
       const html=sermonEditor.getContent();
       const plainText=sermonEditor.getBody()?.textContent || '';
+      const targetLang=sermonTranslateTargetLang(plainText);
       const bibleRefs=await resolveBibleRefsForTranslation(plainText, targetLang).catch(()=>[]);
       const base=translateWorkerBase();
       if(!base) throw new Error('worker-base-unavailable');
@@ -2160,9 +2161,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
   els.editorPane?.querySelector('#traducirPredicaBtn')?.addEventListener('click', handleTranslateSermon);
-  els.editorPane?.querySelectorAll('#sermonTranslateLangSwitcher [data-lang]').forEach(btn=>{
-    btn.addEventListener('click', ()=>setSermonTranslateLang(btn.dataset.lang));
-  });
 
   // ── Panel "Mis prédicas" (guardar/abrir/eliminar, modo sermón) ─────────────
 

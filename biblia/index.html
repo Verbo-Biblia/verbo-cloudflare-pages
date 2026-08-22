@@ -23,7 +23,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Verbo">
-<link rel="stylesheet" href="assets/style.css?v=20260822-sermon-translate-lang">
+<link rel="stylesheet" href="assets/style.css?v=20260822-sermon-translate-autodetect">
 <link rel="stylesheet" href="assets/historia-nota-rapida.css?v=20260806-ios-font-size-fix">
 <link rel="stylesheet" href="assets/tutorial-video.css?v=20260821-tutorial-icon-hug-text">
 </head>
@@ -155,10 +155,6 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
           <button type="button" class="editor-pane__save-btn" id="guardarSermonBtn" data-i18n="predicas.guardarBtn">Guardar</button>
           <button type="button" class="editor-pane__export-btn" id="exportWordBtn" data-i18n="predicas.exportarWordBtn">Exportar a Word</button>
           <button type="button" class="editor-pane__export-btn" id="exportPdfBtn" data-i18n="predicas.exportarPdfBtn">Exportar a PDF</button>
-          <div class="sermon-translate-lang" id="sermonTranslateLangSwitcher" role="group" data-i18n-attr="aria-label:predicas.traducirIdiomaAria">
-            <button type="button" class="sermon-translate-lang__btn" data-lang="es">ES</button>
-            <button type="button" class="sermon-translate-lang__btn" data-lang="en">EN</button>
-          </div>
           <button type="button" class="editor-pane__export-btn" id="traducirPredicaBtn" data-i18n="predicas.traducirBtn">Traducir</button>
         </div>
       </div>
@@ -337,11 +333,11 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   <script src="https://pkg.api.bible/fumsV3.min.js" defer></script>
   <script>window.fumsData=window.fumsData||[];window.fums=window.fums||function(){window.fumsData.push(arguments);};</script>
   <script src="assets/backup.js?v=20260810-buscador-semantico"></script>
-  <script src="assets/i18n.js?v=20260822-sermon-translate-lang"></script>
+  <script src="assets/i18n.js?v=20260822-sermon-translate-autodetect"></script>
   <script src="assets/module-loader.js?v=20260813-interlinear-bilingual"></script>
   <script src="assets/atlas-reference-parser.js?v=20260818-atlas-step2"></script>
   <script src="assets/sync.js?v=20260801-sermon-predicas"></script>
-  <script src="assets/app.js?v=20260822-sermon-translate-lang"></script>
+  <script src="assets/app.js?v=20260822-sermon-translate-autodetect"></script>
   <script src="assets/historia-nota-rapida.js?v=20260805-padres-nota-rapida"></script>
   <script src="assets/tutorial-video.js?v=20260821-tutorial-videos"></script>
 </body>
