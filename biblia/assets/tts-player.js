@@ -207,7 +207,13 @@ window.VerboTTS = (() => {
     const tituloEl = elemento.querySelector(tituloSelector);
     if (tituloEl && tituloEl.textContent.trim()) textos.push(tituloEl.textContent.trim());
     elemento.querySelectorAll(cuerpoSelector).forEach(p => {
-      const t = p.textContent.trim();
+      let t = p.textContent.trim();
+      // Ediciones bíblicas (Librería: Biblia Verbo, Reina-Valera Gómez):
+      // cada párrafo es un versículo con su número pegado al texto
+      // ("1 En el principio…") para mostrarse en pantalla -- sin esto el
+      // lector de voz también leería el número como si fuera parte de la
+      // oración. Solo se activa si quien llama a leerBloque() lo pide.
+      if (opciones.omitirPrefijoNumerico) t = t.replace(/^\d+\s+/, '');
       if (t) textos.push(t);
     });
 

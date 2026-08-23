@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<!-- Toda la sección (menos el propio <head>/nav) reutiliza las tarjetas
+     REALES del catálogo, clonadas desde /libreria/ vía fetch+DOMParser en
+     mi-biblioteca-page.js -- sus href son relativos a /libreria/, no a esta
+     página un nivel más adentro. <base> les deja resolver sin reescribirlos
+     (reescribir el href rompería los selectores de portada por href exacto
+     de reader.css, ej. .r-book-row[href="catecismo-de-spurgeon-es/"]). Por
+     eso el resto de este documento (head, nav, CTA del estado vacío) usa
+     rutas absolutas en vez del "../" habitual del resto del sitio. -->
+<base href="/libreria/">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi biblioteca | Librería | Verbo</title>
+<meta name="description" content="Los libros que guardaste en Verbo para continuar leyendo, todos en un solo lugar.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://verbobiblia.com/libreria/mi-biblioteca/">
+<link rel="manifest" href="/biblia/manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="/biblia/assets/icons/icon-192.png">
+<link rel="apple-touch-icon" href="/biblia/assets/icons/icon-192.png">
+<meta name="theme-color" content="#7f2d35">
+<link rel="stylesheet" href="/biblia/assets/style.css?v=20260811-back-arrow-hitbox">
+<link rel="stylesheet" href="/recursos/assets/recursos.css?v=20260822-idioma-mobile-slot">
+<link rel="stylesheet" href="/libreria/assets/reader.css?v=20260823-mi-biblioteca">
+</head>
+<body class="static-page recursos-page recursos-index">
+
+  <header class="static-page__header">
+    <a class="static-page__brand" href="/">Verbo</a>
+    <div class="ui-lang-switcher" id="uiLangSwitcher" role="group" data-i18n-attr="aria-label:header.uiLangAria">
+      <button type="button" class="ui-lang-switcher__btn" data-lang="es">ES</button>
+      <button type="button" class="ui-lang-switcher__btn" data-lang="en">EN</button>
+    </div>
+
+    <a class="static-page__back" href="/" data-i18n="site.backToVerbo">← Volver a Verbo</a>
+  </header>
+
+  <nav class="quick-nav" data-i18n-attr="aria-label:site.otrasAreasAria">
+    <a href="/biblia/">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 5C10 3.5 6.5 3 4 3.5v15c2.5-.5 6 0 8 1.5m0-15c2-1.5 5.5-2 8-1.5v15c-2.5-.5-6 0-8 1.5m0-15v15"/></svg>
+      <span data-i18n="site.navBiblia">Biblia</span>
+    </a>
+    <a href="/libreria/">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 4h3v16H4zM9 4h3v16H9zM14 5l3-.5 2 15.5-3 .5z"/></svg>
+      <span data-i18n="site.navLibreria">Librería</span>
+    </a>
+    <a href="/libreria/mi-biblioteca/" class="is-current">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 4h12a1 1 0 0 1 1 1v15l-7-4-7 4V5a1 1 0 0 1 1-1Z"/></svg>
+      <span data-i18n="site.navMiBiblioteca">Mi biblioteca</span>
+    </a>
+    <a href="/recursos/">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 4h16v4H4zM4 10h16v10H4z"/><path d="M9 14h6"/></svg>
+      <span data-i18n="site.navRecursos">Recursos</span>
+    </a>
+    <a href="/recursos/articulos-y-reflexiones/">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 3h9l5 5v13H6z"/><path d="M15 3v5h5"/><path d="M9 13h6M9 17h6"/></svg>
+      <span data-i18n="site.navArticulos">Artículos y Reflexiones</span>
+    </a>
+    <a href="/recursos/devocionales/">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 20.5S3.5 15.6 3.5 9.6C3.5 6.5 5.9 4 9 4c1.6 0 3 .8 3 .8s1.4-.8 3-.8c3.1 0 5.5 2.5 5.5 5.6 0 6-8.5 10.9-8.5 10.9Z"/></svg>
+      <span data-i18n="site.navDevocionales">Devocionales</span>
+    </a>
+  </nav>
+
+  <main class="static-page__main recursos-index">
+    <span class="r-eyebrow" data-i18n="site.navLibreria">Librería</span>
+    <h1 data-i18n="site.navMiBiblioteca">Mi biblioteca</h1>
+    <p class="r-lede" data-i18n="miBiblioteca.lede">Los libros que guardaste para continuar leyendo, en un solo lugar.</p>
+
+    <div class="r-search-row" id="mibiblioteca-search-row" hidden>
+      <svg class="r-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></svg>
+      <input type="search" class="r-search-input" id="mibiblioteca-search" data-filter-group="q" autocomplete="off" data-i18n-attr="placeholder:filtros.buscarPlaceholder,aria-label:filtros.buscarPlaceholder" placeholder="Buscar por título o autor…">
+    </div>
+    <!-- Sin pills visibles (idioma/tema no aplican acá): solo enlaza el
+         buscador de arriba con la cuadrícula. data-filter-bar-manual (no
+         data-filter-bar) para que filters.js no la auto-inicialice antes de
+         que mi-biblioteca-page.js termine de poblar la cuadrícula -- ver
+         VerboFilters.initBar en recursos/assets/filters.js. -->
+    <div class="r-filterbar" data-filter-bar-manual data-filter-target="#mibiblioteca-grid" data-filter-extra="#mibiblioteca-search" hidden></div>
+
+    <div class="r-book-grid" id="mibiblioteca-grid"></div>
+    <p class="r-filter-empty r-filter-empty--search" hidden data-i18n="filtros.sinResultadosBusqueda">No encontramos libros con esa búsqueda.</p>
+
+    <div class="r-mibiblioteca-emptystate" id="mibiblioteca-empty" hidden>
+      <h2 data-i18n="miBiblioteca.emptyTitle">Tu biblioteca está vacía</h2>
+      <p data-i18n="miBiblioteca.emptyBody">Guarda los libros que quieras continuar leyendo y aparecerán aquí.</p>
+      <a class="r-mibiblioteca-emptystate-cta" href="/libreria/" data-i18n="miBiblioteca.emptyCta">Explorar Librería</a>
+    </div>
+
+    <p class="r-mibiblioteca-loaderror" id="mibiblioteca-loaderror" hidden data-i18n="miBiblioteca.loadError">No se pudo cargar tu biblioteca. Intenta de nuevo más tarde.</p>
+  </main>
+
+  <script src="/biblia/assets/backup.js?v=20260823-libreria-marcador"></script>
+  <script src="/biblia/assets/sync.js?v=20260823-libreria-marcador"></script>
+  <script src="/libreria/assets/mi-biblioteca.js?v=2-backup-sync"></script>
+  <script src="/biblia/assets/i18n.js?v=20260823-mi-biblioteca"></script>
+  <script src="/recursos/assets/filters.js?v=2-search-and-empty-fix"></script>
+  <script src="/biblia/assets/site-translate.js?v=20260811-translate-abandon"></script>
+  <script src="/biblia/assets/site-chrome.js?v=20260729-1"></script>
+  <script src="/libreria/assets/book-meta-i18n.js?v=20260823-mi-biblioteca"></script>
+  <script src="/libreria/assets/mi-biblioteca-page.js?v=1"></script>
+</body>
+</html>

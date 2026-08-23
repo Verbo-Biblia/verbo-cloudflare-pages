@@ -12,6 +12,24 @@
   // heredar datos incompatibles de la primera versión del lector.
   var HL_KEY = "verbo:libreria:" + cfg.id + ":hl2";
   var BM_KEY = "verbo:libreria:" + cfg.id + ":bookmark";
+  // Solo la marca de "ya se mostró el glow para este libro" es puramente
+  // local a este dispositivo (cosmético, no vale la pena sincronizarlo). El
+  // guardado real del libro ("Mi biblioteca") vive en window.VerboMiBiblioteca
+  // (libreria/assets/mi-biblioteca.js), que a su vez usa VerboBackup/VerboSync
+  // -- la misma capa de respaldo y sincronización por email que ya usan
+  // notas/resaltados/marcadores de la Biblia, en vez de una clave propia.
+  var MIBIB_SEEN_KEY = "verbo:libreria:miBiblioteca:seenGlow";
+  // Se resuelve cuando VerboBackup (IndexedDB) terminó de cargar -- ningún
+  // isSavedToMiBiblioteca()/toggle real puede consultarse antes de esto.
+  var mibibReady = (window.VerboMiBiblioteca ? window.VerboMiBiblioteca.ready() : Promise.resolve(null));
+  // Arranca la sincronización en segundo plano (pull inicial + intervalo)
+  // si este dispositivo ya vinculó su email en /ajustes/ -- VerboSync.init()
+  // es un no-op silencioso si nunca se vinculó. No condicionado a que este
+  // libro en particular se guarde: cualquier página con backup.js+sync.js
+  // cargados participa del mismo ciclo de sync, igual que /biblia/ y /ajustes/.
+  mibibReady.then(function () {
+    if (window.VerboSync) window.VerboSync.init().catch(function () {});
+  });
 
   var chapters = [];
   var current = 0;
@@ -126,6 +144,7 @@
         idioma: currentLang() === "en" ? "en" : "es",
         tituloSelector: ".reader-chapter-title",
         cuerpoSelector: ".reader-content .reader-para",
+        omitirPrefijoNumerico: !!cfg.bibleManifestUrl,
         onFinished: function () { detenerTTS(ui); }
       });
       ttsEstado = "reproduciendo";
@@ -184,6 +203,40 @@
   // Chrome fijo del lector (título del libro, autor, textos de ayuda,
   // botones) — se resuelve aparte del cuerpo del capítulo porque no cambia
   // al navegar entre capítulos, solo al cambiar de idioma.
+  var ICON_BOOKMARK_PLUS = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 4h12a1 1 0 0 1 1 1v15l-7-4-7 4V5a1 1 0 0 1 1-1Z"/><path d="M9.5 9h4M11.5 7v4"/></svg>';
+  var ICON_BOOKMARK_SAVED = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 4h12a1 1 0 0 1 1 1v15l-7-4-7 4V5a1 1 0 0 1 1-1Z"/><path d="m9 11 1.8 1.8L15 9"/></svg>';
+
+  // Botón "Guardar para continuar leyendo" — guarda EL LIBRO COMPLETO,
+  // distinto del marcador de capítulo (bmBtn/★, arriba) y del resaltado de
+  // texto. Se actualiza en cada applyChrome() (init + cambio de idioma) y
+  // justo después de alternar el guardado, para que texto/aria-label/ícono
+  // nunca queden desincronizados del estado real en localStorage.
+  function updateSaveBookUI(ui) {
+    if (!ui.saveBookBtn) return;
+    var t = window.VerboI18n ? window.VerboI18n.t : function (k) { return k; };
+    var saved = isSavedToMiBiblioteca();
+    ui.saveBookBtn.classList.toggle("is-saved", saved);
+    ui.saveBookBtn.setAttribute("aria-pressed", saved ? "true" : "false");
+    var label = saved ? t("reader.savedToLibrary") : t("reader.saveToLibrary");
+    ui.saveBookIcon.innerHTML = saved ? ICON_BOOKMARK_SAVED : ICON_BOOKMARK_PLUS;
+    ui.saveBookLabel.textContent = label;
+    ui.saveBookBtn.setAttribute("aria-label", label);
+  }
+
+  // Llamada de atención breve (CSS, ver .reader-savebook-btn--attn en
+  // reader.css) para enseñar que existe Mi biblioteca -- una sola vez por
+  // libro (markSeenSaveGlow) y nunca si el libro ya estaba guardado o si el
+  // usuario pidió menos movimiento.
+  function maybeShowSaveGlow(ui) {
+    if (!ui.saveBookBtn || isSavedToMiBiblioteca() || hasSeenSaveGlow()) return;
+    markSeenSaveGlow();
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    ui.saveBookBtn.classList.add("reader-savebook-btn--attn");
+    window.setTimeout(function () {
+      ui.saveBookBtn.classList.remove("reader-savebook-btn--attn");
+    }, 2600);
+  }
+
   function applyChrome(ui) {
     var t = window.VerboI18n ? window.VerboI18n.t : function (k) { return k; };
     ui.hint.textContent = t("reader.hint");
@@ -192,6 +245,7 @@
     ui.bmBtn.textContent = (bookmark && bookmark.chapter === current) ? t("reader.marked") : t("reader.markChapter");
     if (ui.fontDecBtn) ui.fontDecBtn.setAttribute("aria-label", t("reader.fontDecrease"));
     if (ui.fontIncBtn) ui.fontIncBtn.setAttribute("aria-label", t("reader.fontIncrease"));
+    updateSaveBookUI(ui);
     return resolveBookStrings().then(function (book) {
       ui.badge.textContent = "Librería · " + book.author;
       ui.title.textContent = book.title;
@@ -216,6 +270,42 @@
       window.localStorage.setItem(key, JSON.stringify(value));
     } catch (e) {
       /* almacenamiento no disponible, se ignora silenciosamente */
+    }
+  }
+
+  // ---------- Mi biblioteca (guardar el libro completo) ----------
+  // Delegado por completo a window.VerboMiBiblioteca (libreria/assets/
+  // mi-biblioteca.js), que a su vez guarda vía VerboBackup/VerboSync -- ver
+  // el comentario junto a mibibReady más arriba. Estas son solo envolturas
+  // finas para no repetir "if (!window.VerboMiBiblioteca) return" en cada
+  // sitio donde se usan.
+  function isSavedToMiBiblioteca() {
+    return !!(window.VerboMiBiblioteca && window.VerboMiBiblioteca.has(cfg.id));
+  }
+  // true = quedó guardado, false = se quitó.
+  function toggleMiBiblioteca() {
+    return window.VerboMiBiblioteca ? window.VerboMiBiblioteca.toggle(cfg.id) : false;
+  }
+  // Se llama una vez al abrir el lector si el libro ya estaba guardado, para
+  // que /libreria/mi-biblioteca/ pueda ordenar por lectura más reciente sin
+  // inventar un progreso de lectura que no existe.
+  function touchMiBibliotecaOpened() {
+    if (window.VerboMiBiblioteca) window.VerboMiBiblioteca.touchOpened(cfg.id);
+  }
+  function hasSeenSaveGlow() {
+    var seen = loadJSON(MIBIB_SEEN_KEY, []);
+    return Array.isArray(seen) && seen.indexOf(cfg.id) !== -1;
+  }
+  // Se marca "visto" apenas se decide mostrar (o no) el glow, no cuando
+  // termina la animación -- así un libro con prefers-reduced-motion activo
+  // también queda marcado y no se re-evalúa en cada visita.
+  function markSeenSaveGlow() {
+    var seen = loadJSON(MIBIB_SEEN_KEY, []);
+    if (!Array.isArray(seen)) seen = [];
+    if (seen.indexOf(cfg.id) === -1) {
+      seen.push(cfg.id);
+      if (seen.length > 400) seen = seen.slice(-400); // evita crecer sin límite
+      saveJSON(MIBIB_SEEN_KEY, seen);
     }
   }
 
@@ -564,6 +654,23 @@
     var title = el("h1", "reader-title", cfg.title);
     root.appendChild(title);
 
+    // "Guardar para continuar leyendo": guarda EL LIBRO COMPLETO en Mi
+    // biblioteca. Deliberadamente su propia fila (no metido en headTop junto
+    // al marcador de capítulo ☆) para que no se confunda con él, y pegado al
+    // título para que sea lo primero visible al abrir el libro, en móvil
+    // incluido (ver reader-savebook-row en reader.css).
+    var saveBookRow = el("div", "reader-savebook-row");
+    var saveBookBtn = document.createElement("button");
+    saveBookBtn.type = "button";
+    saveBookBtn.className = "reader-savebook-btn";
+    var saveBookIcon = el("span", "reader-savebook-btn-icon");
+    saveBookIcon.innerHTML = ICON_BOOKMARK_PLUS;
+    var saveBookLabel = el("span", "reader-savebook-btn-label", "Guardar para continuar leyendo");
+    saveBookBtn.appendChild(saveBookIcon);
+    saveBookBtn.appendChild(saveBookLabel);
+    saveBookRow.appendChild(saveBookBtn);
+    root.appendChild(saveBookRow);
+
     if (cfg.licenseNotice) {
       var licenseNotice = el("p", "reader-license", cfg.licenseNotice);
       root.appendChild(licenseNotice);
@@ -619,6 +726,7 @@
     return {
       badge: badge, title: title, hint: hint, unitLabel: cfg.unitLabel,
       bmBtn: bmBtn, progressBar: progressBar, manualNote: manualNote,
+      saveBookBtn: saveBookBtn, saveBookIcon: saveBookIcon, saveBookLabel: saveBookLabel,
       resume: resume, resumeText: resumeText, resumeLink: resumeLink, resumeDismiss: resumeDismiss,
       prevBtn: prevBtn, select: select, nextBtn: nextBtn,
       chapterTitle: chapterTitle, content: content, foot: foot,
@@ -877,6 +985,21 @@
       var t = window.VerboI18n ? window.VerboI18n.t : function (k) { return k; };
       ui.bmBtn.classList.toggle("is-active", !!bookmark);
       ui.bmBtn.textContent = bookmark ? t("reader.marked") : t("reader.markChapter");
+    });
+
+    ui.saveBookBtn.addEventListener("click", function () {
+      toggleMiBiblioteca();
+      ui.saveBookBtn.classList.remove("reader-savebook-btn--attn");
+      updateSaveBookUI(ui);
+    });
+    // El estado real (guardado o no) depende de VerboBackup/IndexedDB, que
+    // carga en paralelo al contenido del capítulo -- se resuelve el botón
+    // recién cuando mibibReady confirma que ya se puede consultar sin
+    // arriesgar un falso "no guardado" (ver mibibReady más arriba).
+    mibibReady.then(function () {
+      if (isSavedToMiBiblioteca()) touchMiBibliotecaOpened();
+      updateSaveBookUI(ui);
+      maybeShowSaveGlow(ui);
     });
 
     document.addEventListener("verbo:uilang-changed", function () {

@@ -746,7 +746,10 @@ def generate_matthew_henry():
   <script>
     window.__LIBRERIA_BOOK__ = {json.dumps(cfg, ensure_ascii=False, indent=2)};
   </script>
-  <script src="../../assets/reader.js?v=7"></script>'''
+  <script src="../../../biblia/assets/backup.js?v=20260823-libreria-marcador"></script>
+  <script src="../../../biblia/assets/sync.js?v=20260823-libreria-marcador"></script>
+  <script src="../../assets/mi-biblioteca.js?v=2-backup-sync"></script>
+  <script src="../../assets/reader.js?v=25-mi-biblioteca"></script>'''
         html = page_shell(
             root_rel="../../../",
             title=f"Matthew Henry — {b['name']} | Librería | Verbo",
@@ -754,7 +757,7 @@ def generate_matthew_henry():
             back_href="../",
             back_label="Matthew Henry",
             body_html=body,
-            extra_head='<link rel="stylesheet" href="../../assets/reader.css?v=7">\n',
+            extra_head='<link rel="stylesheet" href="../../assets/reader.css?v=20-mi-biblioteca">\n',
             body_class="static-page recursos-page",
         )
         (d / "index.html").write_text(html, encoding="utf-8")

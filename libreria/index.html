@@ -12,7 +12,7 @@
 <meta name="theme-color" content="#7f2d35">
 <link rel="stylesheet" href="../biblia/assets/style.css?v=20260811-back-arrow-hitbox">
 <link rel="stylesheet" href="../recursos/assets/recursos.css?v=20260822-idioma-mobile-slot">
-<link rel="stylesheet" href="assets/reader.css?v=20260821-bunyan-covers">
+<link rel="stylesheet" href="assets/reader.css?v=20260823-mi-biblioteca">
 </head>
 <body class="static-page recursos-page recursos-index">
 
@@ -35,6 +35,10 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 4h3v16H4zM9 4h3v16H9zM14 5l3-.5 2 15.5-3 .5z"/></svg>
       <span data-i18n="site.navLibreria">Librería</span>
     </a>
+    <a href="../libreria/mi-biblioteca/">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 4h12a1 1 0 0 1 1 1v15l-7-4-7 4V5a1 1 0 0 1 1-1Z"/></svg>
+      <span data-i18n="site.navMiBiblioteca">Mi biblioteca</span>
+    </a>
     <a href="../recursos/">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 4h16v4H4zM4 10h16v10H4z"/><path d="M9 14h6"/></svg>
       <span data-i18n="site.navRecursos">Recursos</span>
@@ -52,6 +56,20 @@
   <main class="static-page__main recursos-index">
     <span class="r-eyebrow" data-i18n-live>Librería · Verbo</span>
     <h1 data-i18n="site.navLibreria">Librería</h1>
+
+    <div class="r-libreria-toprow">
+      <a class="r-mibiblioteca-card" href="mi-biblioteca/">
+        <svg class="r-mibiblioteca-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M6 4h12a1 1 0 0 1 1 1v15l-7-4-7 4V5a1 1 0 0 1 1-1Z"/></svg>
+        <span class="r-mibiblioteca-card-title" data-i18n="site.navMiBiblioteca">Mi biblioteca</span>
+        <span class="r-mibiblioteca-card-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <div class="r-search-row">
+        <svg class="r-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></svg>
+        <input type="search" class="r-search-input" id="libreria-search" data-filter-group="q" autocomplete="off" data-i18n-attr="placeholder:filtros.buscarPlaceholder,aria-label:filtros.buscarPlaceholder" placeholder="Buscar por título o autor…">
+      </div>
+    </div>
+
     <div class="r-title-idioma-slot" id="libreria-idioma-slot"></div>
     <p class="r-lede" data-i18n-live>Lectura completa de libros clásicos y patrísticos, con marcadores y resaltado de texto que se guardan en tu dispositivo.</p>
 
@@ -1308,10 +1326,11 @@
 
     </div>
         <p class="r-filter-empty" hidden data-i18n="filtros.sinResultados">No hay libros que coincidan con estos filtros.</p>
+        <p class="r-filter-empty r-filter-empty--search" hidden data-i18n="filtros.sinResultadosBusqueda">No encontramos libros con esa búsqueda.</p>
       </div>
       <aside class="r-discovery-temas">
         <h2 class="r-discovery-heading" data-discovery-text="temas">Temas</h2>
-        <div class="r-filterbar" data-filter-bar data-filter-target="#libreria-grid">
+        <div class="r-filterbar" data-filter-bar data-filter-target="#libreria-grid" data-filter-extra="#libreria-search">
           <div class="r-filter-group" data-filter-group="idioma">
             <span class="r-filter-group-label" data-i18n="filtros.idioma">Idioma</span>
             <button type="button" class="r-filter-pill is-active" data-value="todos" data-i18n="filtros.todos">Todos</button>
@@ -1324,11 +1343,11 @@
     </div>
     <!-- CONTENT-FILTERS:END -->
   </main>
-  <script src="../recursos/assets/filters.js?v=1"></script>
-  <script src="../biblia/assets/i18n.js?v=20260813-predicas-traducir"></script>
+  <script src="../recursos/assets/filters.js?v=2-search-and-empty-fix"></script>
+  <script src="../biblia/assets/i18n.js?v=20260823-mi-biblioteca"></script>
   <script src="../recursos/assets/discovery-layout.js?v=3-recientes-intercalados"></script>
   <script src="../biblia/assets/site-translate.js?v=20260811-translate-abandon"></script>
   <script src="../biblia/assets/site-chrome.js?v=20260729-1"></script>
-  <script src="assets/book-meta-i18n.js?v=1"></script>
+  <script src="assets/book-meta-i18n.js?v=20260823-mi-biblioteca"></script>
 </body>
 </html>

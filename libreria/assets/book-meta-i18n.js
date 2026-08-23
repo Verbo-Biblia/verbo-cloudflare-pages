@@ -38,4 +38,10 @@
     window.VerboI18n.ready().then(localize);
     document.addEventListener("verbo:uilang-changed", localize);
   });
+
+  // Expuesto para Mi biblioteca (libreria/mi-biblioteca/): sus tarjetas se
+  // clonan del catálogo real después de DOMContentLoaded (fetch), así que
+  // el recorrido de arriba ya terminó antes de que existan -- se vuelve a
+  // llamar a mano una vez insertadas.
+  window.VerboBookMetaI18n = { localize: localize };
 })();

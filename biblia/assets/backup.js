@@ -217,20 +217,42 @@ window.VerboBackup = (() => {
   // ---- Marcadores (capítulo/sección completo, sin texto — Historia/Padres).
   // Reusa el array 'marcadores' ya reservado en emptyData/init/replaceData,
   // sin usar todavía por ningún getter/setter antes de esto. ----
+  // Guardas defensivas contra cached===null (init() todavía no resolvió):
+  // devuelven el default más seguro en vez de tirar, para quien llame antes
+  // de tiempo por error -- las llamadas normales siempre esperan init() y
+  // nunca deberían pasar por acá.
   function getMarcadores(tipo = null) {
+    if (!cached) return [];
     return tipo ? cached.marcadores.filter(m => m.ubicacion?.tipo === tipo) : [...cached.marcadores];
   }
   function isMarcado(tipo, ref) {
-    return cached.marcadores.some(m => m.ubicacion?.tipo === tipo && m.ubicacion.ref === ref);
+    return !!cached && cached.marcadores.some(m => m.ubicacion?.tipo === tipo && m.ubicacion.ref === ref);
   }
-  // Devuelve true si quedó marcado, false si se desmarcó.
+  // Devuelve true si quedó marcado, false si se desmarcó (o si cached
+  // todavía no cargó -- ver comentario de arriba).
   function toggleMarcador(tipo, ref, contexto) {
+    if (!cached) return false;
     const idx = cached.marcadores.findIndex(m => m.ubicacion?.tipo === tipo && m.ubicacion.ref === ref);
     if (idx >= 0) cached.marcadores.splice(idx, 1);
     else cached.marcadores.push({ id: `${tipo}:${ref}`, ubicacion: { tipo, ref }, fecha: new Date().toISOString(), ...(contexto ? { contexto } : {}) });
     cached.fecha_guardado = new Date().toISOString();
     persist();
     return idx < 0;
+  }
+  // Actualiza el contexto de un marcador YA existente sin tocar si está
+  // marcado o no (a diferencia de toggleMarcador). Pensado para "Mi
+  // biblioteca" (Librería): cada vez que se reabre un libro ya guardado se
+  // pisa contexto.lastOpenedAt, así /libreria/mi-biblioteca/ puede ordenar
+  // por lectura más reciente sin inventar un progreso de lectura real. No
+  // hace nada (y no mueve fecha_guardado) si el marcador no existe.
+  function updateMarcadorContexto(tipo, ref, contexto) {
+    if (!cached) return false;
+    const m = cached.marcadores.find(m => m.ubicacion?.tipo === tipo && m.ubicacion.ref === ref);
+    if (!m) return false;
+    m.contexto = { ...(m.contexto || {}), ...contexto };
+    cached.fecha_guardado = new Date().toISOString();
+    persist();
+    return true;
   }
 
   // ---- Prédicas (modo Preparación de Bosquejo/Estudio) ----
@@ -358,7 +380,7 @@ window.VerboBackup = (() => {
     getResaltadosMap, setAllResaltados,
     getNota, setNota, getNotas, getNotaObj, deleteNota,
     addNota, getNotaById, deleteNotaById,
-    getMarcadores, isMarcado, toggleMarcador,
+    getMarcadores, isMarcado, toggleMarcador, updateMarcadorContexto,
     getPredicas, getPredica, savePredica, deletePredica,
     getPosicionBiblia, setPosicionBiblia,
     exportDownload, importFromFile,

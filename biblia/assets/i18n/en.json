@@ -371,6 +371,7 @@
     "navArticulos": "Articles",
     "navDevocionales": "Devotionals",
     "navSermones": "Historical Sermons",
+    "navMiBiblioteca": "My Library",
     "translationPending": "English translation in preparation — showing the Spanish original below.",
     "translatingIndicator": "Translating for you, please wait a moment…"
   },
@@ -411,6 +412,8 @@
     "footOf": "{{unit}} {{current}} of {{total}}",
     "fontDecrease": "Decrease text size",
     "fontIncrease": "Increase text size",
+    "saveToLibrary": "Save to continue reading",
+    "savedToLibrary": "Saved to My Library",
     "unidades": {
       "fragmentos": "fragments",
       "salmos": "psalms",
@@ -435,7 +438,17 @@
     "todosLosTemas": "All topics",
     "filtrarPorTema": "Filter by topic",
     "sinResultados": "No books match these filters.",
-    "sinResultadosArticulos": "No pieces match these filters."
+    "sinResultadosArticulos": "No pieces match these filters.",
+    "sinResultadosBusqueda": "No books match your search.",
+    "buscarPlaceholder": "Search by title or author…"
+  },
+  "miBiblioteca": {
+    "lede": "The books you saved to continue reading, all in one place.",
+    "emptyTitle": "Your library is empty",
+    "emptyBody": "Save books you want to continue reading and they will appear here.",
+    "emptyCta": "Browse Library",
+    "loadError": "We couldn't load your library. Please try again later.",
+    "removeAria": "Remove {{title}} from My Library"
   },
   "temas": {
     "apologetica": "Apologetics",

@@ -91,6 +91,67 @@ body.recursos-page .reader-title {
   margin: 0 0 18px;
 }
 
+/* ---------- "Guardar para continuar leyendo" (Mi biblioteca) ----------
+   Deliberadamente distinto del marcador de capítulo (.reader-bookmark-btn,
+   ☆/★ más abajo) en icono y forma, para que no se confundan: este guarda el
+   libro completo, no una posición de lectura. */
+body.recursos-page .reader-savebook-row {
+  margin: 0 0 20px;
+}
+body.recursos-page .reader-savebook-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 44px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--r-ink-soft);
+  background: rgba(255, 255, 255, .65);
+  border: 1px solid var(--r-rule-strong);
+  border-radius: 999px;
+  padding: 9px 18px 9px 14px;
+  cursor: pointer;
+  transition: border-color .15s ease, color .15s ease, background .15s ease, box-shadow .15s ease;
+}
+body.recursos-page .reader-savebook-btn-icon {
+  display: flex;
+  flex-shrink: 0;
+}
+body.recursos-page .reader-savebook-btn-icon svg { width: 19px; height: 19px; }
+body.recursos-page .reader-savebook-btn:hover {
+  border-color: var(--r-gold);
+  color: var(--r-ink);
+}
+body.recursos-page .reader-savebook-btn:focus-visible {
+  outline: 2px solid var(--r-gold-bright);
+  outline-offset: 2px;
+}
+body.recursos-page .reader-savebook-btn.is-saved {
+  border-color: var(--r-gold-bright);
+  background: rgba(176, 138, 46, .14);
+  color: var(--r-ink);
+}
+@media (max-width: 480px) {
+  body.recursos-page .reader-savebook-btn { width: 100%; }
+}
+
+/* Llamada de atención breve al abrir un libro todavía no guardado — una
+   sola vez por libro (ver markSeenSaveGlow en reader.js). Nunca infinita:
+   dos pulsos (~2.6s) y el botón queda igual de visible pero quieto. */
+@keyframes reader-savebook-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(176, 138, 46, .55); border-color: var(--r-gold-bright); }
+  70%  { box-shadow: 0 0 0 10px rgba(176, 138, 46, 0); border-color: var(--r-gold-bright); }
+  100% { box-shadow: 0 0 0 0 rgba(176, 138, 46, 0); }
+}
+body.recursos-page .reader-savebook-btn--attn {
+  animation: reader-savebook-pulse 1.3s ease-out 2;
+}
+@media (prefers-reduced-motion: reduce) {
+  body.recursos-page .reader-savebook-btn--attn { animation: none; }
+}
+
 body.recursos-page .reader-license {
   margin: -.45rem 0 1rem;
   color: var(--muted, #675f58);
@@ -359,6 +420,199 @@ body.recursos-page .reader-foot {
 }
 body.recursos-page .reader-foot a { color: var(--r-ink-soft); text-decoration: none; }
 body.recursos-page .reader-foot a:hover { color: var(--r-gold); }
+
+/* ---------- Mi biblioteca: entrada + buscador en el catálogo ----------
+   Ambos son controles compactos de una sola fila: en desktop caben uno
+   junto al otro (el buscador toma el espacio sobrante); en móvil se
+   apilan, con la entrada a Mi biblioteca primero. */
+body.recursos-page .r-libreria-toprow {
+  display: flex;
+  align-items: stretch;
+  gap: 14px;
+  margin: 0 0 26px;
+}
+body.recursos-page .r-libreria-toprow .r-mibiblioteca-card,
+body.recursos-page .r-libreria-toprow .r-search-row {
+  margin: 0;
+}
+body.recursos-page .r-libreria-toprow .r-mibiblioteca-card {
+  flex: 0 0 auto;
+}
+body.recursos-page .r-libreria-toprow .r-search-row {
+  flex: 1 1 260px;
+  min-width: 0;
+}
+@media (max-width: 640px) {
+  body.recursos-page .r-libreria-toprow {
+    flex-direction: column;
+    gap: 12px;
+  }
+  /* flex-basis se interpreta sobre el eje principal -- al pasar la fila a
+     columna arriba, el "260px" pensado como ancho (desktop) pasaba a leerse
+     como alto y estiraba el buscador a 260px de alto (el ícono, centrado al
+     50% de esa caja, quedaba flotando muy por debajo del input). */
+  body.recursos-page .r-libreria-toprow .r-search-row {
+    flex: 0 0 auto;
+  }
+}
+
+body.recursos-page .r-mibiblioteca-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  margin: 0 0 22px;
+  padding: 10px 16px;
+  border: 1px solid var(--r-rule-strong);
+  border-radius: 999px;
+  background: rgba(176, 138, 46, .08);
+  text-decoration: none;
+  color: var(--r-ink);
+  white-space: nowrap;
+  transition: border-color .15s ease, background .15s ease, transform .15s ease;
+}
+body.recursos-page .r-mibiblioteca-card:hover {
+  border-color: var(--r-gold-bright);
+  background: rgba(176, 138, 46, .15);
+  transform: translateY(-1px);
+}
+body.recursos-page .r-mibiblioteca-card-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: var(--r-gold);
+}
+body.recursos-page .r-mibiblioteca-card-title {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 500;
+  font-size: 13.5px;
+}
+body.recursos-page .r-mibiblioteca-card-arrow {
+  margin-left: auto;
+  color: var(--r-ink-soft);
+  transition: transform .15s ease, color .15s ease;
+}
+body.recursos-page .r-mibiblioteca-card:hover .r-mibiblioteca-card-arrow {
+  color: var(--r-gold);
+  transform: translateX(3px);
+}
+
+body.recursos-page .r-search-row {
+  position: relative;
+  margin: 0 0 26px;
+}
+body.recursos-page .r-search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  color: var(--r-ink-soft);
+  pointer-events: none;
+}
+body.recursos-page .r-search-input {
+  width: 100%;
+  min-height: 44px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 14px;
+  color: var(--r-ink);
+  background: rgba(255, 255, 255, .7);
+  border: 1px solid var(--r-rule-strong);
+  border-radius: 999px;
+  padding: 10px 16px 10px 42px;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+body.recursos-page .r-search-input::placeholder { color: var(--r-ink-soft); opacity: .8; }
+body.recursos-page .r-search-input:focus {
+  outline: none;
+  border-color: var(--r-gold-bright);
+  box-shadow: 0 0 0 3px rgba(176, 138, 46, .16);
+}
+/* El botón "×" nativo de type=search en WebKit/Blink -- se agranda un poco
+   el hitbox para que sea cómodo de tocar en móvil. */
+body.recursos-page .r-search-input::-webkit-search-cancel-button { margin-right: 2px; }
+
+/* ---------- Mi biblioteca: tarjetas guardadas + estado vacío ---------- */
+body.recursos-page .r-mibiblioteca-item {
+  position: relative;
+}
+/* La tarjeta clonada (.r-book-row) ya trae su propio display/hover; acá
+   solo se posiciona el botón de quitar encima de la portada. */
+body.recursos-page .r-mibiblioteca-remove-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, .35);
+  background: rgba(11, 20, 36, .55);
+  color: #EDE6D6;
+  font: 700 18px/1 'IBM Plex Sans', sans-serif;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, transform .15s ease;
+}
+body.recursos-page .r-mibiblioteca-remove-btn:hover,
+body.recursos-page .r-mibiblioteca-remove-btn:focus-visible {
+  background: rgba(127, 45, 53, .88);
+  border-color: rgba(255, 255, 255, .6);
+  transform: scale(1.08);
+}
+body.recursos-page .r-mibiblioteca-remove-btn:focus-visible {
+  outline: 2px solid var(--r-gold-bright);
+  outline-offset: 2px;
+}
+
+body.recursos-page .r-mibiblioteca-emptystate {
+  text-align: center;
+  padding: 54px 20px;
+  border: 1px dashed var(--r-rule-strong);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, .4);
+}
+body.recursos-page .r-mibiblioteca-emptystate h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: var(--r-ink);
+  margin: 0 0 10px;
+}
+body.recursos-page .r-mibiblioteca-emptystate p {
+  color: var(--r-ink-soft);
+  max-width: 44ch;
+  margin: 0 auto 22px;
+  line-height: 1.55;
+}
+body.recursos-page .r-mibiblioteca-emptystate-cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 500;
+  font-size: 13.5px;
+  color: var(--r-ink);
+  background: rgba(176, 138, 46, .14);
+  border: 1px solid var(--r-gold-bright);
+  border-radius: 999px;
+  padding: 10px 22px;
+  text-decoration: none;
+  transition: background .15s ease, transform .15s ease;
+}
+body.recursos-page .r-mibiblioteca-emptystate-cta:hover {
+  background: rgba(176, 138, 46, .22);
+  transform: translateY(-1px);
+}
+
+body.recursos-page .r-mibiblioteca-loaderror {
+  color: var(--r-ink-soft);
+  text-align: center;
+  padding: 30px 4px;
+}
 
 /* ---------- estante (shelf) ---------- */
 body.recursos-page .r-book-grid {

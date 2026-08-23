@@ -371,6 +371,7 @@
     "navArticulos": "Artículos",
     "navDevocionales": "Devocionales",
     "navSermones": "Sermones Históricos",
+    "navMiBiblioteca": "Mi biblioteca",
     "translationPending": "Traducción al inglés en preparación — se muestra el original en español.",
     "translatingIndicator": "Traduciendo para usted, espere unos segundos…"
   },
@@ -411,6 +412,8 @@
     "footOf": "{{unit}} {{current}} de {{total}}",
     "fontDecrease": "Reducir tamaño de letra",
     "fontIncrease": "Aumentar tamaño de letra",
+    "saveToLibrary": "Guardar para continuar leyendo",
+    "savedToLibrary": "Guardado en Mi biblioteca",
     "unidades": {
       "fragmentos": "fragmentos",
       "salmos": "salmos",
@@ -435,7 +438,17 @@
     "todosLosTemas": "Todos los temas",
     "filtrarPorTema": "Filtrar por tema",
     "sinResultados": "No hay libros que coincidan con estos filtros.",
-    "sinResultadosArticulos": "No hay piezas que coincidan con estos filtros."
+    "sinResultadosArticulos": "No hay piezas que coincidan con estos filtros.",
+    "sinResultadosBusqueda": "No encontramos libros con esa búsqueda.",
+    "buscarPlaceholder": "Buscar por título o autor…"
+  },
+  "miBiblioteca": {
+    "lede": "Los libros que guardaste para continuar leyendo, en un solo lugar.",
+    "emptyTitle": "Tu biblioteca está vacía",
+    "emptyBody": "Guarda los libros que quieras continuar leyendo y aparecerán aquí.",
+    "emptyCta": "Explorar Librería",
+    "loadError": "No se pudo cargar tu biblioteca. Intenta de nuevo más tarde.",
+    "removeAria": "Quitar {{title}} de Mi biblioteca"
   },
   "temas": {
     "apologetica": "Apologética",
