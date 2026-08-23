@@ -278,6 +278,13 @@ def link_structured_lemmas(html: str, original_language_analysis: list) -> str:
         if not codes or not lemma:
             continue
         target = f"<strong>{lemma}</strong>"
+        # Algunos paquetes (ej. Profetas Menores) además citan el código
+        # suelto en el texto ("...δράσω (H1875)..."), que el resto de
+        # add_links() ya enlaza por su cuenta más abajo — sin este chequeo,
+        # esta pasada envolvía el <strong> otra vez encima de ese enlace ya
+        # puesto, dejando un <a><a>...</a></a> anidado.
+        if re.search(rf'<a class="strong"[^>]*>{re.escape(target)}</a>', html):
+            continue
         replacement = f'<a class="strong" href="#s{codes[0]}">{target}</a>'
         html = html.replace(target, replacement, 1)
     return html
@@ -285,11 +292,17 @@ def link_structured_lemmas(html: str, original_language_analysis: list) -> str:
 
 def add_links(html: str, original_language_analysis: list | None = None) -> str:
     linked = render_structured_paragraphs(html)
-    linked = link_structured_lemmas(linked, original_language_analysis)
+    # Los enlaces "clásicos" (código suelto citado en el propio texto, ej.
+    # "(H1875)") van primero: si un paquete además trae ese mismo lema en
+    # originalLanguageAnalysis, link_structured_lemmas() lo detecta ya
+    # enlazado (ver su chequeo) y no lo envuelve una segunda vez — al revés
+    # (estructurado primero) el <strong> ya envuelto vuelve a matchear el
+    # regex de estas pasadas, que no miran qué lo rodea, y anida <a><a>.
     linked = link_strong_codes(linked)
     linked = link_bracketed_greek_words(linked)
     linked = link_greek_words(linked)
     linked = link_repeated_greek_words(linked)
+    linked = link_structured_lemmas(linked, original_language_analysis)
     return link_bible_references(linked)
 
 
