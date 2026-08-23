@@ -3,9 +3,10 @@
    Archivo nuevo y separado de filters.js a propósito: no se toca la lógica
    show/hide existente (sigue siendo 100% de filters.js), esto solo prepara
    el DOM antes/alrededor de ella —
-     1) clona los primeros 5 <a data-item> del grid original (ya vienen en
-        orden reverse-cronológico, no se reordena ni se toca fecha) dentro
-        de la sidebar "Agregados recientemente";
+     1) clona los primeros 10 <a data-item> del grid original (ya vienen en
+        orden reverse-cronológico) dentro de la sidebar "Agregados
+        recientemente"; en Librería intercala español e inglés conservando
+        el orden relativo de cada idioma;
      2) del resto, oculta todos salvo 12 elegidos al azar (re-mezclados en
         cada carga, sin persistir el sorteo) para la zona central "Para
         leer" — 12 llena 3 filas completas de 4 columnas en escritorio;
@@ -94,6 +95,28 @@
       var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
     }
     return a;
+  }
+
+  function recentItems(grid, items) {
+    if (grid.id !== "libreria-grid") return items.slice(0, RECIENTES_COUNT);
+
+    var byLanguage = { es: [], en: [] };
+    items.forEach(function (item) {
+      var lang = item.getAttribute("data-idioma");
+      if (byLanguage[lang]) byLanguage[lang].push(item);
+    });
+
+    var interleaved = [];
+    var index = 0;
+    while (interleaved.length < RECIENTES_COUNT &&
+           (index < byLanguage.es.length || index < byLanguage.en.length)) {
+      if (index < byLanguage.es.length) interleaved.push(byLanguage.es[index]);
+      if (interleaved.length < RECIENTES_COUNT && index < byLanguage.en.length) {
+        interleaved.push(byLanguage.en[index]);
+      }
+      index++;
+    }
+    return interleaved;
   }
 
   function currentLang() {
@@ -232,8 +255,9 @@
     var items = Array.prototype.slice.call(grid.querySelectorAll("[data-item]"));
     if (items.length <= RECIENTES_COUNT) return; // muy pocos ítems: no vale la pena partir en zonas
 
-    var recientes = items.slice(0, RECIENTES_COUNT);
-    var resto = items.slice(RECIENTES_COUNT);
+    var recientes = recentItems(grid, items);
+    var recientesSet = new Set(recientes);
+    var resto = items.filter(function (item) { return !recientesSet.has(item); });
 
     buildRecientes(root, recientes);
     // Los originales se ocultan en el grid (ya viven, clonados, en la
