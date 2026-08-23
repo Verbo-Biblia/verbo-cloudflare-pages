@@ -139,11 +139,31 @@ def html_blocks(raw: bytes | str) -> list[tuple[str, str]]:
     return parser.blocks
 
 
+# Títulos de página que marcan front matter descartable, no una unidad real
+# de lectura: si una sección terminada queda con uno de estos títulos —
+# porque el EPUB los envuelve en <h1-h3> igual que un capítulo real, aunque
+# no lo sean — se descarta entera (índice, biografía del autor, aviso de
+# "Recursos de Chapel Library" repetido, etc., todo agrupado bajo ese
+# encabezado hasta el siguiente capítulo real). Antes solo se reconocía
+# "Contents"/"Table of Contents"; los EPUB en español de Chapel Library usan
+# "Contenido"/"Índice" y ese bloque quedaba pegado como si fuera el capítulo 1.
+FRONT_MATTER_TITLES = {
+    "contents", "table of contents", "contenido", "contenidos",
+    "índice", "indice", "tabla de contenido", "tabla de contenidos",
+}
+
+
 def sections_from_blocks(blocks, fallback_title):
     sections = []
     title = fallback_title
     body: list[str] = []
     started = False
+
+    def flush():
+        content = "\n\n".join(body).strip()
+        if len(content) >= 80 and title.strip().lower() not in FRONT_MATTER_TITLES:
+            sections.append({"n": len(sections) + 1, "title": title, "content": content})
+
     for tag, text in blocks:
         if text.lower() in {"contents", "table of contents"}:
             continue
@@ -151,9 +171,7 @@ def sections_from_blocks(blocks, fallback_title):
             re.match(r"^(chapter|chap\.?|capítulo|section|book|vision|commandment|similitude|fragment)\b", text, re.I)
         )
         if is_heading and started and body:
-            content = "\n\n".join(body).strip()
-            if len(content) >= 80:
-                sections.append({"n": len(sections) + 1, "title": title, "content": content})
+            flush()
             body = []
             title = text
         elif is_heading and not started:
@@ -163,9 +181,7 @@ def sections_from_blocks(blocks, fallback_title):
             started = True
             body.append(text)
     if body:
-        content = "\n\n".join(body).strip()
-        if len(content) >= 80:
-            sections.append({"n": len(sections) + 1, "title": title, "content": content})
+        flush()
     return sections
 
 
@@ -261,7 +277,7 @@ def card_html(book):
           <span class="book-cover-title">{html.escape(title)}</span>
           <span class="book-cover-rule"></span><span class="book-cover-author">{html.escape(author)}</span>
         </div>
-        <p class="r-book-title">{html.escape(title)}</p><p class="r-book-meta">{count} {label}</p>
+        <p class="r-book-title">{html.escape(title)}</p><p class="r-book-meta" data-meta-count>{count} {label}</p>
       </a>
 """
 

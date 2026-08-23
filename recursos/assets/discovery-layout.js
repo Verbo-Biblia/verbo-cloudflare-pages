@@ -24,7 +24,7 @@
 (function () {
   "use strict";
 
-  var RECIENTES_COUNT = 5;
+  var RECIENTES_COUNT = 10;
   var CENTRO_COUNT = 12;
 
   var STRINGS = {
