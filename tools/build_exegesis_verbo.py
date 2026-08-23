@@ -266,8 +266,26 @@ def render_structured_paragraphs(content: str) -> str:
     return STRUCTURED_PARAGRAPH_RE.sub(repl, content)
 
 
-def add_links(html: str) -> str:
+def link_structured_lemmas(html: str, original_language_analysis: list) -> str:
+    """Paquetes nuevos (schema CEV-1.0) no incrustan el código Strong como texto
+    plano en el content — lo traen aparte en originalLanguageAnalysis[].strong,
+    ya validado contra el resto del proyecto. Enlaza la primera mención de cada
+    lema (<strong>λόγος</strong> sin enlazar todavía) con ese código; las
+    repeticiones las toma después link_repeated_greek_words()."""
+    for ola in original_language_analysis or []:
+        codes = ola.get("strong") or []
+        lemma = ola.get("lemma")
+        if not codes or not lemma:
+            continue
+        target = f"<strong>{lemma}</strong>"
+        replacement = f'<a class="strong" href="#s{codes[0]}">{target}</a>'
+        html = html.replace(target, replacement, 1)
+    return html
+
+
+def add_links(html: str, original_language_analysis: list | None = None) -> str:
     linked = render_structured_paragraphs(html)
+    linked = link_structured_lemmas(linked, original_language_analysis)
     linked = link_strong_codes(linked)
     linked = link_bracketed_greek_words(linked)
     linked = link_greek_words(linked)
@@ -298,26 +316,56 @@ def build_book(book_dir: Path):
             f for f in manifest["files"] if re.match(rf"^{re.escape(book_id)}-\d+\.json$", f)
         )
     else:
-        # Formato alterno: {"book": "ROM", ...}. Los paquetes nuevos pueden
-        # declarar capítulos anidados ("chapters/01.json"); los anteriores no
-        # traían "files" y guardaban ROM-XX.json directamente en la carpeta.
+        # Formato alterno: {"book": "ROM", ...}. Los paquetes nuevos declaran
+        # capítulos anidados ("chapters/BOOK/01.json" + "files": {"chapters":
+        # "chapters/BOOK/", "crossChapter": "cross-chapter/"} en vez de una
+        # lista plana) y pueden traer unidades que atraviesan capítulos en
+        # archivos sueltos dentro de "crossChapter"; los paquetes anteriores
+        # no traían "files" y guardaban ROM-XX.json directamente en la carpeta.
         book_id = book_field
         book_name = BOOK_NAMES_ES.get(book_id, book_id)
-        unit_files = manifest.get("files") or sorted(
-            f.name for f in book_dir.glob(f"{book_id}-*.json")
-        )
+        files_field = manifest.get("files")
+        if isinstance(files_field, dict):
+            unit_files = sorted(
+                str(p.relative_to(book_dir))
+                for p in (book_dir / files_field["chapters"]).glob("*.json")
+            )
+            cross_chapter_rel = files_field.get("crossChapter")
+            if cross_chapter_rel:
+                cross_dir = book_dir / cross_chapter_rel
+                if cross_dir.is_dir():
+                    unit_files += sorted(
+                        str(p.relative_to(book_dir)) for p in cross_dir.glob("*.json")
+                    )
+        else:
+            unit_files = files_field or sorted(
+                f.name for f in book_dir.glob(f"{book_id}-*.json")
+            )
     entries = []
     raw_strong_count = 0
     for fname in unit_files:
         chapter_data = json.loads((book_dir / fname).read_text(encoding="utf-8"))
         for unit in chapter_data["units"]:
             raw_strong_count += len(STRONG_CODE_RAW_RE.findall(unit["content"]))
+            linked_content = add_links(unit["content"], unit.get("originalLanguageAnalysis"))
+            # Los paquetes CEV-1.0 no traen el código como texto plano en el
+            # content (ver link_structured_lemmas) — no pueden contarse con
+            # STRONG_CODE_RAW_RE arriba. Se valida aparte: cada lema con
+            # "strong" no vacío debe haber quedado enlazado al menos una vez.
+            for ola in unit.get("originalLanguageAnalysis") or []:
+                codes = ola.get("strong") or []
+                lemma = ola.get("lemma")
+                if not codes or not lemma:
+                    continue
+                if f'<a class="strong" href="#s{codes[0]}"><strong>{lemma}</strong></a>' not in linked_content:
+                    print(f"  *** AVISO: {book_id}/{unit['id']} lema '{lemma}' ({codes[0]}) "
+                          f"no quedó enlazado en content — revisar coincidencia de texto.")
             entries.append({
                 "id": unit["id"],
                 "title": unit["title"],
                 "author": unit.get("author", "Verbo"),
                 "reference": unit["reference"],
-                "content": add_links(unit["content"]),
+                "content": linked_content,
             })
     # code_links: enlaces cuyo texto visible ES el código ("...">G1586</a>). Es
     # el número que debe coincidir 1:1 con raw_strong_count. greek_word_links:
