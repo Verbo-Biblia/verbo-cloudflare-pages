@@ -695,7 +695,12 @@
     ui.foot.textContent = t("reader.footOf", { unit: unitLabel, current: current + 1, total: chapters.length });
 
     window.location.hash = String(current + 1);
-    window.scrollTo({ top: root.getBoundingClientRect().top + window.scrollY - 90, behavior: "smooth" });
+    // El contenedor que de verdad scrollea en estas páginas es <body>
+    // (body.static-page tiene overflow-y:auto; <html> se queda con
+    // overflow:hidden global — ver biblia/assets/style.css:50-58 y :3225),
+    // así que window.scrollTo aquí era un no-op. No hay header fijo/sticky
+    // que tape el contenido, por eso el reset va directo a 0.
+    document.body.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   function goTo(ui, index) {
