@@ -296,7 +296,17 @@ def add_links(html: str, original_language_analysis: list | None = None) -> str:
 def build_book(book_dir: Path):
     manifest = json.loads((book_dir / "manifest.json").read_text(encoding="utf-8"))
     book_field = manifest["book"]
-    if isinstance(book_field, dict):
+    if "bookId" in manifest:
+        # Tercer formato: {"book": "Génesis", "bookId": "GEN", ...} — "book"
+        # ya es el nombre en español (no hace falta BOOK_NAMES_ES), y no hay
+        # "files": los capítulos siempre viven en chapters/<bookId>/*.json.
+        book_id = manifest["bookId"]
+        book_name = book_field
+        unit_files = sorted(
+            str(p.relative_to(book_dir))
+            for p in (book_dir / "chapters" / book_id).glob("*.json")
+        )
+    elif isinstance(book_field, dict):
         # Formato original: {"book": {"id": "ACT", "nameEs": "Hechos..."}, "files": [...]}
         book_id = book_field["id"]
         source_name = book_field["nameEs"]
