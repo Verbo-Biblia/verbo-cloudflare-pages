@@ -244,13 +244,19 @@ window.VerboBackup = (() => {
   // biblioteca" (Librería): cada vez que se reabre un libro ya guardado se
   // pisa contexto.lastOpenedAt, así /libreria/mi-biblioteca/ puede ordenar
   // por lectura más reciente sin inventar un progreso de lectura real. No
-  // hace nada (y no mueve fecha_guardado) si el marcador no existe.
+  // hace nada si el marcador no existe.
+  // A propósito NO mueve fecha_guardado: guardar/borrar el libro (vía
+  // toggleMarcador) ya sella el reloj de sync una sola vez, como cualquier
+  // otro cambio de contenido real. Reabrir un libro es una acción pasiva
+  // (pasa cada vez que se entra al lector) y no debe competir por el
+  // "último en escribir gana" contra ediciones reales en otro dispositivo
+  // -- mismo bug de fondo que el de fecha_guardado documentado arriba en
+  // persist(), 2026-07-30.
   function updateMarcadorContexto(tipo, ref, contexto) {
     if (!cached) return false;
     const m = cached.marcadores.find(m => m.ubicacion?.tipo === tipo && m.ubicacion.ref === ref);
     if (!m) return false;
     m.contexto = { ...(m.contexto || {}), ...contexto };
-    cached.fecha_guardado = new Date().toISOString();
     persist();
     return true;
   }
