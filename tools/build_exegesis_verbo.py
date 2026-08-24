@@ -386,7 +386,7 @@ def build_book(book_dir: Path):
             entries.append({
                 "id": unit["id"],
                 "title": unit["title"],
-                "author": unit.get("author", "Verbo"),
+                "author": unit.get("author", "VERBO"),
                 "reference": unit["reference"],
                 "content": linked_content,
             })
@@ -479,7 +479,7 @@ def main():
             "name": "Exegesis Verbo",
             "abbreviation": "Exegesis Verbo",
             "language": "es",
-            "author": "Verbo",
+            "author": "VERBO",
             "description": "Comentario exegético académico de Verbo: contexto literario, histórico y lingüístico, análisis del idioma original, crítica textual e implicaciones teológicas por perícopa.",
             "license": "Todos los derechos reservados por Verbo.",
         }
