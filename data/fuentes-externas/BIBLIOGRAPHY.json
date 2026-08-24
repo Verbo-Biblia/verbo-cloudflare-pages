@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "schema_note": "02_VERBO_Schema_Maestro.md no estaba disponible; BIBLIOGRAPHY y provenance se conservan como interfaz provisional.",
+  "BIBLIOGRAPHY": [
+    {
+      "source_id": "macula-hebrew",
+      "title": "MACULA Hebrew Linguistic Datasets",
+      "creator": "Biblica, Inc. / Clear Bible",
+      "repository": "https://github.com/Clear-Bible/macula-hebrew",
+      "revision": "47db250bd55d0d8577f2a94fba114ef16c35b23c",
+      "retrieved": "2026-08-24",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "MACULA Hebrew Linguistic Datasets, available at https://github.com/Clear-Bible/macula-hebrew/",
+      "scope": "Salmo 8 integrado en la capa visible de Lenguajes originales.",
+      "files": [
+        {"path": "macula/hebrew/LICENSE.md", "upstream_path": "LICENSE.md", "sha256": "df45ba3224e7d6f9dba3ec8fd2d0b3f1d2febb2620147c889667886fccd4d8e1"},
+        {"path": "macula/hebrew/README.md", "upstream_path": "README.md", "sha256": "eab7e8334723e2819904049f040db5ea6fc939fa9093810b3636107fc693426f"},
+        {"path": "macula/hebrew/WLC/lowfat/19-Psa-008-lowfat.xml", "upstream_path": "WLC/lowfat/19-Psa-008-lowfat.xml", "sha256": "1631b7d876a4495b90c7d3d0806ce208ff1a791059df91a0e5783f50cf9bda62"}
+      ]
+    },
+    {
+      "source_id": "macula-greek",
+      "title": "MACULA Greek Linguistic Datasets — Nestle 1904",
+      "creator": "Biblica, Inc. / Clear Bible",
+      "repository": "https://github.com/Clear-Bible/macula-greek",
+      "revision": "8423afe47b9e8f24b7772e808af45c7159a6fe7e",
+      "retrieved": "2026-08-24",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "MACULA Greek Linguistic Datasets, available at https://github.com/Clear-Bible/macula-greek/",
+      "scope": "NT completo integrado en la capa visible de Lenguajes originales; alineación conservadora con TAGNT.",
+      "files": [
+        {"path": "macula/greek/LICENSE.md", "upstream_path": "LICENSE.md", "sha256": "41b49a2387b628a7bc772ddfae3a8af9dd8f4d4470b27b6132f6da6c73e4a557"},
+        {"path": "macula/greek/README.md", "upstream_path": "README.md", "sha256": "46bc2238caa8dcc0046798f7ce574fc402e460db54c1d396f45a85caf5a09501"},
+        {"path": "macula/greek/Nestle1904/tsv/macula-greek-Nestle1904.tsv", "upstream_path": "Nestle1904/tsv/macula-greek-Nestle1904.tsv", "sha256": "c7cf33b8273c0f549e3582d1610603c86210c18e1f245bb80a69281622385fa5"}
+      ]
+    }
+  ]
+}

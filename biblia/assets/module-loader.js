@@ -1039,7 +1039,26 @@ const VerboModules = (() => {
     const alignmentFile = book.alignments?.[targetBible]?.[String(chapter)] || book.alignment?.[String(chapter)];
     const alignment = alignmentFile ? await getJSON(resolveFromManifest(manifestPath, alignmentFile)) : null;
     const morphology = manifest.morphologyFile ? await getJSON(resolveFromManifest(manifestPath, manifest.morphologyFile)) : null;
-    return { manifest, book, chapter:chapterData, alignment, morphology };
+    let linguistic = null;
+    try {
+      const linguisticManifestPath = resolveFromManifest(manifestPath, 'linguistic/manifest.json');
+      const linguisticManifest = await getJSON(linguisticManifestPath);
+      const layers = [];
+      for (const [id, layer] of Object.entries(linguisticManifest.layers || {})) {
+        const matchesLanguage = !layer.languages || layer.languages.includes(book.language);
+        const conventionalPath = matchesLanguage && layer.pathPattern
+          ? layer.pathPattern.replace('{book}', bookId).replace('{chapter}', String(chapter))
+          : null;
+        const layerFile = layer.books?.[bookId]?.chapters?.[String(chapter)] || conventionalPath;
+        if (!layerFile) continue;
+        const data = await getJSON(resolveFromManifest(linguisticManifestPath, layerFile));
+        layers.push({ id, manifest:layer, data });
+      }
+      if (layers.length) linguistic = { manifest:linguisticManifest, layers };
+    } catch (error) {
+      console.warn('Capa lingüística opcional omitida', error);
+    }
+    return { manifest, book, chapter:chapterData, alignment, morphology, linguistic };
   }
 
   return { getCatalog,getBookInfo,resolveBibleBooks,buildChapterData,loadBible,loadRemoteBible,loadCommentary,loadCommentaryIndex,loadLinkedEntries,loadLinkedArticle,loadChurchHistory,loadChurchHistoryShelf,getDictionaryEntry,loadDictionaryEntries,loadDictionaryIndex,loadGospel,loadPatristic,loadPatristicShelf,loadCostumbres,loadCostumbresShelf,loadConversorUnidades,loadOriginalLanguage,searchBible,searchRemoteBible,searchSemanticBible,searchSemanticChurchHistory };

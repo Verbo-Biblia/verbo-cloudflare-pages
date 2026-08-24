@@ -4086,7 +4086,26 @@ document.addEventListener('DOMContentLoaded', async () => {
     return (alignment?.relations||[]).filter(item=>item.originalTokens?.includes(tokenId));
   }
 
-  function originalTokenDetail(token,alignment,morphology){
+  function linguisticTokenHtml(linguistic,tokenId){
+    const es=contentLang()==='es';
+    const matches=(linguistic?.layers||[]).map(layer=>({layer,token:layer.data?.tokens?.[tokenId]})).filter(item=>item.token);
+    if(!matches.length)return '';
+    return matches.map(({layer,token})=>{
+      const sourceMorphs=token.morphs||[token.sourceToken].filter(Boolean);
+      const morphs=sourceMorphs.map(morph=>{
+        const form=morph.unicode||morph.text||morph.lemma||'—';
+        const description=[morph.pos,morph.morph,morph.lemma,morph.english||morph.gloss].filter(Boolean).join(' · ');
+        const relation=[morph.role,morph.class,morph.frame].filter(Boolean).join(' · ');
+        return `<li><b dir="auto">${escapeHTML(form)}</b><span>${escapeHTML(description)}</span>${relation?`<small>${escapeHTML(relation)}</small>`:''}</li>`;
+      }).join('');
+      const semantic=[...(token.semantics?.sdbh||[]),...(token.semantics?.lexicalDomains||[]),...(token.semantics?.coreDomains||[]),...(token.semantics?.contextualDomains||[]),...(token.sourceToken?.domain?.split(' ')||[]),...(token.sourceToken?.ln?.split(' ')||[])];
+      const participants=token.semantics?.participants||[];
+      const metadata=[semantic.length?`${es?'Dominios':'Domains'}: ${semantic.join(', ')}`:'',participants.length?`${es?'Participantes':'Participants'}: ${participants.join(', ')}`:''].filter(Boolean).join(' · ');
+      return `<section class="original-token-detail__linguistic"><strong>${es?'Análisis lingüístico':'Linguistic analysis'} · ${escapeHTML(layer.manifest?.name||layer.id)}</strong><ul>${morphs}</ul>${metadata?`<small>${escapeHTML(metadata)}</small>`:''}<small>${es?'Fuente':'Source'}: ${escapeHTML(layer.manifest?.attribution||layer.id)} · ${escapeHTML(layer.manifest?.license||'')}</small></section>`;
+    }).join('');
+  }
+
+  function originalTokenDetail(token,alignment,morphology,linguistic=null){
     const es=contentLang()==='es';
     const relations=alignmentForToken(alignment,token.id);
     const alignmentHtml=relations.length?relations.map(item=>`<span class="original-status original-status--${escapeHTML(item.status)}">${escapeHTML(item.status)} · ${escapeHTML(item.relation)}</span>`).join(''):`<span class="original-status original-status--unresolved">unresolved</span>`;
@@ -4096,6 +4115,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       <div class="original-token-detail__translit">${escapeHTML(token.transliteration||'—')}</div>
       <dl><dt>${es?'Lema':'Lemma'}</dt><dd dir="auto">${escapeHTML(token.lemma||'—')}</dd><dt>${es?'Morfología':'Morphology'}</dt><dd>${escapeHTML(importedMorphDescription(token,morphology))}<code>${escapeHTML(token.morphology?.code||'—')}</code></dd><dt>Strong</dt><dd>${strongButtons||'—'}</dd><dt>${es?'Fuente':'Source'}</dt><dd>${escapeHTML(token.sourceReading||'—')} · ${escapeHTML(token.textPolicy||'—')}</dd></dl>
       <div class="original-token-detail__alignment"><strong>${es?'Alineación':'Alignment'}:</strong> ${alignmentHtml}</div>
+      ${linguisticTokenHtml(linguistic,token.id)}
     </article>`;
   }
 
@@ -4109,13 +4129,14 @@ document.addEventListener('DOMContentLoaded', async () => {
       if(request!==strongBibleRenderRequest) return;
       if(!loaded?.chapter){ panelBodyEl().innerHTML=emptyState('א',contentLang()==='es'?'No hay texto original para este pasaje.':'Original text is unavailable for this passage.'); return; }
       const verses=loaded.chapter.verses;
-      panelBodyEl().innerHTML=`<div class="original-language-source" dir="ltr">${escapeHTML(loaded.chapter.dataset)} · CC BY 4.0 · STEP Bible</div><div class="original-language-list">${Object.entries(verses).map(([number,verse])=>`<section class="original-verse${Number(number)===(focus||activeVerse())?' original-verse--active':''}" data-original-verse="${number}"><div class="original-verse__number" dir="ltr">${number}</div><div class="original-token-row" dir="${loaded.chapter.direction}">${verse.tokens.map(token=>`<button type="button" class="original-token" data-token-id="${escapeHTML(token.id)}" dir="${loaded.chapter.direction}">${escapeHTML(token.surface)}</button>`).join('')}</div><div class="original-detail-slot"></div></section>`).join('')}</div>`;
+      const linguisticLabel=loaded.linguistic?.layers?.length?` · ${loaded.linguistic.layers.map(layer=>escapeHTML(layer.manifest?.name||layer.id)).join(' · ')}`:'';
+      panelBodyEl().innerHTML=`<div class="original-language-source" dir="ltr">${escapeHTML(loaded.chapter.dataset)} · CC BY 4.0 · STEP Bible${linguisticLabel}</div><div class="original-language-list">${Object.entries(verses).map(([number,verse])=>`<section class="original-verse${Number(number)===(focus||activeVerse())?' original-verse--active':''}" data-original-verse="${number}"><div class="original-verse__number" dir="ltr">${number}</div><div class="original-token-row" dir="${loaded.chapter.direction}">${verse.tokens.map(token=>`<button type="button" class="original-token" data-token-id="${escapeHTML(token.id)}" dir="${loaded.chapter.direction}">${escapeHTML(token.surface)}</button>`).join('')}</div><div class="original-detail-slot"></div></section>`).join('')}</div>`;
       const byId=new Map(Object.values(verses).flatMap(verse=>verse.tokens).map(token=>[token.id,token]));
       panelBodyEl().querySelectorAll('.original-token').forEach(button=>button.addEventListener('click',()=>{
         const section=button.closest('.original-verse');
         section.querySelectorAll('.original-token').forEach(x=>x.classList.toggle('is-active',x===button));
         const slot=section.querySelector('.original-detail-slot');
-        slot.innerHTML=originalTokenDetail(byId.get(button.dataset.tokenId),loaded.alignment,loaded.morphology);
+        slot.innerHTML=originalTokenDetail(byId.get(button.dataset.tokenId),loaded.alignment,loaded.morphology,loaded.linguistic);
         slot.querySelectorAll('[data-strong-code]').forEach(tag=>tag.addEventListener('click',event=>{ event.stopPropagation(); openStrongPopup(tag.dataset.strongCode); }));
       }));
       if(focus) panelBodyEl().querySelector(`[data-original-verse="${focus}"]`)?.scrollIntoView({block:'center'});
@@ -4165,7 +4186,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       (loaded.alignment?.relations||[]).forEach(relation=>{const verse=String(relation.verse||relation.id.split('.')[2]);if(!byVerse.has(verse))byVerse.set(verse,[]);byVerse.get(verse).push(relation);});
       const targetLabel=es?'Biblia Verbo':'BSB';
       panelBodyEl().innerHTML=`<div class="interlinear-source" dir="ltr"><strong>${es?'Interlineal Verbo':'Verbo Interlinear'}</strong><span>${es?'Texto original y correspondencias aproximadas con':'Original text and approximate correspondences with'} ${targetLabel}</span><small>${es?'Toca una palabra para ver lema, morfología y Strong.':'Tap a word to see its lemma, morphology, and Strong.'} · ${escapeHTML(loaded.chapter.dataset)} · CC BY 4.0</small></div><div class="interlinear-list">${Object.entries(loaded.chapter.verses).map(([verse,payload])=>`<section class="interlinear-verse${Number(verse)===(focus||activeVerse())?' interlinear-verse--active':''}" data-interlinear-verse="${verse}"><div class="interlinear-verse__heading">${verse}</div><div class="interlinear-verse__original" dir="${loaded.chapter.direction}">${payload.tokens.map(token=>escapeHTML(token.surface)).join(' ')}</div><div class="interlinear-verse__translation"><span>${targetLabel}</span><p>${escapeHTML(loaded.alignment?.targetTexts?.[verse]||(loaded.alignment?.targetSegments?.[verse]||[]).map(segment=>segment.text).join(' '))}</p></div><details class="interlinear-verse__word-study"><summary>${es?'Ver correspondencias palabra por palabra':'See word-by-word correspondences'}</summary><div class="interlinear-units">${(byVerse.get(verse)||[]).map(relation=>interlinearUnitHtml(relation,tokens,segments,loaded.chapter.direction,loaded.morphology)).join('')}</div></details></section>`).join('')}</div>`;
-      panelBodyEl().querySelectorAll('.interlinear-token').forEach(button=>button.addEventListener('click',()=>{const unit=button.closest('.interlinear-unit');unit.querySelectorAll('.interlinear-token').forEach(x=>x.classList.toggle('is-active',x===button));const slot=unit.querySelector('.original-detail-slot');slot.innerHTML=originalTokenDetail(tokens.get(button.dataset.tokenId),loaded.alignment,loaded.morphology);slot.querySelectorAll('[data-strong-code]').forEach(tag=>tag.addEventListener('click',event=>{event.stopPropagation();openStrongPopup(tag.dataset.strongCode);}));}));
+      panelBodyEl().querySelectorAll('.interlinear-token').forEach(button=>button.addEventListener('click',()=>{const unit=button.closest('.interlinear-unit');unit.querySelectorAll('.interlinear-token').forEach(x=>x.classList.toggle('is-active',x===button));const slot=unit.querySelector('.original-detail-slot');slot.innerHTML=originalTokenDetail(tokens.get(button.dataset.tokenId),loaded.alignment,loaded.morphology,loaded.linguistic);slot.querySelectorAll('[data-strong-code]').forEach(tag=>tag.addEventListener('click',event=>{event.stopPropagation();openStrongPopup(tag.dataset.strongCode);}));}));
       panelBodyEl().querySelectorAll('.interlinear-unit > .interlinear-unit__meta [data-strong-code]').forEach(tag=>tag.addEventListener('click',event=>{event.stopPropagation();openStrongPopup(tag.dataset.strongCode);}));
       if(focus)panelBodyEl().querySelector(`[data-interlinear-verse="${focus}"]`)?.scrollIntoView({block:'center'});
     }catch(error){console.error(error);if(request===strongBibleRenderRequest)panelBodyEl().innerHTML=emptyState('⚠️',es?'No se pudo cargar el interlineal.':'Interlinear could not be loaded.');}
