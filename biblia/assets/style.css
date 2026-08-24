@@ -431,6 +431,15 @@ body {
   border-bottom: 1px dotted var(--gold-glow);
 }
 
+.main-interlinear { display:grid; gap:7px; width:100%; }
+.main-interlinear__original { display:flex; flex-wrap:wrap; gap:3px 7px; unicode-bidi:isolate; }
+.main-interlinear__token { border:1px solid transparent; border-radius:6px; padding:2px 4px; background:transparent; color:inherit; font-family:Georgia,'Times New Roman',serif; font-size:1.2em; line-height:1.4; cursor:pointer; }
+.main-interlinear__token:hover,.main-interlinear__token.is-active { border-color:var(--gold); background:rgba(201,166,107,.15); }
+.main-interlinear__translation { display:grid; grid-template-columns:max-content 1fr; gap:8px; align-items:baseline; line-height:1.55; }
+.main-interlinear__translation small { color:var(--wine-soft); font:9px var(--font-mono); letter-spacing:.04em; text-transform:uppercase; }
+.main-interlinear__unavailable { color:var(--muted); font-style:italic; }
+.main-interlinear__detail { cursor:default; }
+
 /* Panel "Biblia Strong" (ver renderDictionaryPanel en app.js): mismo look que
    .verse/.verse--active de la Biblia principal, pero con su propia clase —
    deliberadamente NO comparte ".verse"/".verse--active" porque esas se

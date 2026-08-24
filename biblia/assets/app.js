@@ -295,8 +295,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     es: 'modules/bibles/rv-verbo-strong-provisional/manifest.json',
     en: 'modules/bibles/kjv-strong/manifest.json'
   };
+  // Vistas virtuales del selector principal. Reutilizan las Biblias y la capa
+  // de idiomas originales existentes; no se registran como traducciones ni
+  // participan en comparación, búsqueda o modo prédica.
+  const INTERLINEAR_VIEWS = [
+    { id:'interlinear-rv-verbo', label:'INT · VERBO', full:'Interlineal Verbo — Hebreo/Griego + Biblia Verbo', lang:'es', targetId:'rv-verbo', interlinear:true },
+    { id:'interlinear-bsb', label:'INT · BSB', full:'Interlinear BSB — Hebrew/Greek + BSB', lang:'en', targetId:'bsb', interlinear:true }
+  ];
   const escapeHTML = value => String(value ?? '').replace(/[&<>'"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','\"':'&quot;'}[ch]));
   const bibleCatalog = () => catalog.bibles.map(item => ({ id:item.manifest.id, label:item.manifest.abbreviation || item.manifest.name, full:item.manifest.name, path:item.path, lang:item.manifest.language || 'es', remote:Boolean(item.remote || item.manifest.remote), manifest:item.manifest }));
+  const mainBibleCatalog = () => [...bibleCatalog(), ...INTERLINEAR_VIEWS];
+  const interlinearView = id => INTERLINEAR_VIEWS.find(view => view.id === id) || null;
+  const effectiveBibleVersionId = id => interlinearView(id)?.targetId || id;
   // Idioma de Strong/comentarios/Padres sigue al botón ES/EN de la interfaz
   // (VerboI18n.getUiLang()), no a la Biblia seleccionada — decisión de Juan
   // 2026-08-04: la Biblia activa puede quedarse en español mientras el usuario
@@ -394,7 +404,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // qué versión esté seleccionada. Algunas Biblias (ej. kjv/manifest.json)
     // no listan "books" directamente, sino vía "dataManifest" — ver
     // VerboModules.resolveBibleBooks.
-    const activeEntry = catalog.bibles.find(b => b.manifest.id === currentVersion);
+    const activeEntry = catalog.bibles.find(b => b.manifest.id === effectiveBibleVersionId(currentVersion));
     const activeManifestBooks = activeEntry ? await VerboModules.resolveBibleBooks(activeEntry) : null;
     const nameById = Array.isArray(activeManifestBooks)
       ? new Map(activeManifestBooks.map(b => [b.id, b.name]))
@@ -422,7 +432,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
       const previous = preserveVersion ? currentVersion : null;
       data = await VerboModules.buildChapterData({bookId: currentBook, chapter: currentChapter, commentaryId: currentCommentary, bibleId: previous || currentVersion});
-      if (previous && bibleCatalog().some(version => version.id === previous)) {
+      if (previous && mainBibleCatalog().some(version => version.id === previous)) {
         try { await ensureVersionLoaded(previous); }
         catch (error) { console.warn(`No se pudo restaurar ${previous}; se usará la Biblia local.`, error); }
       }
@@ -455,8 +465,25 @@ document.addEventListener('DOMContentLoaded', async () => {
   async function ensureVersionLoaded(versionId, {targetData=null, bookId=currentBook, chapter=currentChapter}={}) {
     const target = targetData || data;
     if (target.versions[versionId]) return true;
-    const selected = bibleCatalog().find(version => version.id === versionId);
+    const selected = mainBibleCatalog().find(version => version.id === versionId);
     if (!selected) return false;
+    if (selected.interlinear) {
+      await ensureVersionLoaded(selected.targetId, {targetData:target, bookId, chapter});
+      const original = await VerboModules.loadOriginalLanguage(bookId, chapter, selected.targetId);
+      if (!original?.chapter) throw new Error(`El texto original no está disponible para ${bookId} ${chapter}`);
+      target.interlinear = target.interlinear || {};
+      target.interlinear[versionId] = original;
+      target.versions[versionId] = {
+        label:selected.label,
+        full:selected.full,
+        hasStrongs:false,
+        remote:false,
+        copyright:`STEP Bible · CC BY 4.0${original.linguistic?.layers?.length ? ` · ${original.linguistic.layers.map(layer=>`${layer.manifest?.name||layer.id} · ${layer.manifest?.license||''}`).join(' · ')}` : ''}`,
+        fumsToken:''
+      };
+      target.verses.forEach(verse => { verse.text[versionId] = verse.text[selected.targetId] || ''; });
+      return true;
+    }
     let loaded, rawVerses=null, hasStrongs=false;
     if (selected.remote) {
       loaded = await VerboModules.loadRemoteBible(versionId, bookId, chapter);
@@ -513,7 +540,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function populateVersions() {
-    const all = bibleCatalog();
+    const all = mainBibleCatalog();
     const cur = all.find(v => v.id === currentVersion);
     els.versionInput.value = cur?.label || currentVersion || '';
     // Select nativo en móvil
@@ -525,7 +552,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function openVersionDropdown() {
-    const all = bibleCatalog(); // mostrar todas las versiones sin filtrar por idioma
+    const all = mainBibleCatalog(); // incluye las dos vistas interlineales virtuales
     const raw = els.versionInput.value.toLowerCase();
     const list = raw ? all.filter(v => v.label.toLowerCase().includes(raw) || v.full.toLowerCase().includes(raw)) : all;
     els.versionDropdown.innerHTML = list.map(v =>
@@ -557,7 +584,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   function closeVersionDropdown() {
     els.versionDropdown.hidden = true;
     els.versionDropdown.style.cssText = '';
-    const cur = bibleCatalog().find(v => v.id === currentVersion);
+    const cur = mainBibleCatalog().find(v => v.id === currentVersion);
     els.versionInput.value = cur?.label || currentVersion || '';
     els.versionInput.readOnly = true;
   }
@@ -566,7 +593,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const v = activeVerse();
     closeVersionDropdown();
     // Si la versión seleccionada no tiene el libro actual, navegar a su primer libro
-    const bibleEntry = catalog.bibles.find(b => b.manifest.id === id);
+    const bibleEntry = catalog.bibles.find(b => b.manifest.id === effectiveBibleVersionId(id));
     if (bibleEntry?.manifest.books?.length) {
       const hasCurrentBook = bibleEntry.manifest.books.some(b => b.id === currentBook);
       if (!hasCurrentBook) {
@@ -597,7 +624,52 @@ document.addEventListener('DOMContentLoaded', async () => {
     } finally { setLoading(false); }
   }
 
+  function renderMainInterlinearVerse(container, verse, view, original) {
+    const originalVerse=original?.chapter?.verses?.[String(verse.n)];
+    const stack=document.createElement('div');
+    stack.className='main-interlinear';
+    if(originalVerse?.tokens?.length){
+      const words=document.createElement('div');
+      words.className='main-interlinear__original';
+      words.dir=original.chapter.direction;
+      originalVerse.tokens.forEach(token=>{
+        const button=document.createElement('button');
+        button.type='button';
+        button.className='main-interlinear__token';
+        button.dir=original.chapter.direction;
+        button.textContent=token.surface;
+        button.addEventListener('click',event=>{
+          event.stopPropagation();
+          words.querySelectorAll('.main-interlinear__token').forEach(item=>item.classList.toggle('is-active',item===button));
+          detail.innerHTML=originalTokenDetail(token,original.alignment,original.morphology,original.linguistic);
+          detail.querySelectorAll('[data-strong-code]').forEach(tag=>tag.addEventListener('click',strongEvent=>{strongEvent.stopPropagation();openDictionary(tag.dataset.strongCode);}));
+        });
+        words.appendChild(button);
+      });
+      stack.appendChild(words);
+    } else {
+      const unavailable=document.createElement('small');
+      unavailable.className='main-interlinear__unavailable';
+      unavailable.textContent=contentLang()==='es'?'Texto original no disponible para este versículo.':'Original text is unavailable for this verse.';
+      stack.appendChild(unavailable);
+    }
+    const translation=document.createElement('div');
+    translation.className='main-interlinear__translation';
+    const label=document.createElement('small');
+    label.textContent=view.targetId==='rv-verbo'?'Biblia Verbo':'BSB';
+    const body=document.createElement('span');
+    body.textContent=verse.text[view.targetId] || verse.text[view.id] || '';
+    translation.append(label,body);
+    stack.appendChild(translation);
+    const detail=document.createElement('div');
+    detail.className='original-detail-slot main-interlinear__detail';
+    stack.appendChild(detail);
+    container.appendChild(stack);
+  }
+
   function renderChapter(restoreVerse=null) {
+    const activeInterlinear=interlinearView(currentVersion);
+    const original=activeInterlinear ? data.interlinear?.[currentVersion] : null;
     els.eyebrow.textContent = data.versions[currentVersion]?.full || data.meta.versionFull;
     els.title.textContent = `${data.meta.book} ${data.meta.chapter}`;
     // populateBooks() nombra el desplegable con el arreglo "books" de la Biblia
@@ -617,9 +689,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       const savedHl = highlights[hlKey(currentBook, currentChapter, v.n)];
       if (savedHl) row.classList.add(savedHl);
       const num=document.createElement('span'); num.className='verse__num'; num.textContent=v.n;
-      const text=document.createElement('span'); text.className='verse__text'+(v.hasNote?' verse__text--has-note':''); text.tabIndex=0;
+      const text=document.createElement(activeInterlinear?'div':'span'); text.className='verse__text'+(v.hasNote?' verse__text--has-note':''); text.tabIndex=0;
       const verseSegments=v.segments?.[currentVersion];
-      if(verseSegments?.length){
+      if(activeInterlinear){
+        renderMainInterlinearVerse(text,v,activeInterlinear,original);
+      } else if(verseSegments?.length){
         verseSegments.forEach((seg,index)=>{
           const word=document.createElement('span'); word.className='word-segment'; word.textContent=(index?' ':'')+(seg.text||'');
           text.appendChild(word);
@@ -2569,7 +2643,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // (marcado con previewSource) y se resuelve a la Biblia real recién al
   // abrir un resultado puntual (openSearchResult ya usa currentVersion).
   async function resolveResultsToActiveVersion(results, versionId, previewLabel){
-    const active=bibleCatalog().find(v=>v.id===versionId);
+    const active=bibleCatalog().find(v=>v.id===effectiveBibleVersionId(versionId));
     if(!active || active.remote){ results.forEach(r=>{ r.previewSource=previewLabel; }); return results; }
     const chapterCache=new Map();
     const getChapterVerses=(bookId,chapter)=>{
