@@ -1,7 +1,7 @@
 # The Pulpit Commentary
 
 Módulo de trabajo independiente para la edición inglesa de *The Pulpit
-Commentary*. No forma parte de `Comentarios Verbo`.
+Commentary*.
 
 El módulo todavía no está registrado. Un archivo presente en `books/` no está
 publicado: cada libro se incorpora manualmente a `manifest.json` solamente
