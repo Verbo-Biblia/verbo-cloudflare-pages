@@ -1111,10 +1111,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   // traducir (ver esa función) — cualquier <a class="strong">/<a class="bible">
   // que hubiera en el original se pierde ahí. El traductor no suele alterar
   // códigos tipo "G1586" ni nombres de libros bíblicos, así que después de
-  // traducir se puede re-detectar el mismo patrón y reconstruir el enlace —
-  // mismo criterio que tools/build_exegesis_verbo.py sobre el contenido
-  // fuente (incluida la regla de no enlazar rangos, "Juan 1:1–3": el
-  // navegador de referencias solo puede saltar al primer versículo).
+  // traducir se puede re-detectar el mismo patrón y reconstruir el enlace
+  // (incluida la regla de no enlazar rangos, "Juan 1:1–3": el navegador de
+  // referencias solo puede saltar al primer versículo).
   function relinkStrongCodes(text){
     return text.replace(/\b([GH]\d{1,4})\b/g, (m,code)=>`<a class="strong" href="#s${code}">${code}</a>`);
   }
