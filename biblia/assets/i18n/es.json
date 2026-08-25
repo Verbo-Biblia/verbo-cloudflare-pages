@@ -22,6 +22,7 @@
     "licencias": "Fuentes y licencias",
     "historiaNotas": "Notas de Historia",
     "costumbres": "Costumbres y Tradiciones",
+    "diccionarios": "Diccionarios bíblicos",
     "conversor": "Conversor de medidas"
   },
   "nav": {
@@ -44,6 +45,7 @@
     "predicas": "Mis prédicas",
     "historiaNotas": "Notas de Historia",
     "costumbres": "Costumbres y Tradiciones",
+    "diccionarios": "Diccionarios bíblicos",
     "conversor": "Conversor de medidas"
   },
   "panel": {
@@ -308,9 +310,6 @@
   },
   "costumbres": {
     "title": "Costumbres y Tradiciones",
-    "categoriaIsraelAntiguo": "Israel antiguo y judaísmo del s. I",
-    "categoriaRomaS1": "Roma del s. I (mundo de Pablo)",
-    "categoriaDiccionarioBiblico": "Diccionario bíblico",
     "cargandoColeccion": "Cargando colección…",
     "coleccionPreparacion": "Costumbres y Tradiciones está en preparación. Pronto encontrarás aquí las costumbres del Israel antiguo y del mundo romano del siglo I.",
     "volverEstante": "Volver al estante",
@@ -323,6 +322,23 @@
     "siguiente": "Siguiente",
     "leer": "Leer",
     "buscarPlaceholder": "Buscar por título de obra o entrada…",
+    "buscarEnObraPlaceholder": "Buscar en esta obra…",
+    "indiceCargando": "Cargando índice de búsqueda…"
+  },
+  "diccionarios": {
+    "title": "Diccionarios",
+    "coleccionPreparacion": "Diccionarios está en preparación. Pronto encontrarás aquí diccionarios bíblicos clásicos de dominio público.",
+    "volverEstante": "Volver al estante",
+    "cargandoObra": "Cargando obra…",
+    "errorObra": "No se pudo cargar esta obra.",
+    "sinContenido": "Esta obra todavía no tiene contenido indexado. Pronto encontrarás aquí las entradas de esta fuente.",
+    "volverIndice": "Volver al índice",
+    "entradaNoEncontrada": "No se encontró esta entrada.",
+    "anterior": "Anterior",
+    "siguiente": "Siguiente",
+    "leer": "Leer",
+    "buscarPlaceholder": "Buscar por título de obra o entrada…",
+    "buscarEnObraPlaceholder": "Buscar en esta obra…",
     "indiceCargando": "Cargando índice de búsqueda…"
   },
   "conversor": {

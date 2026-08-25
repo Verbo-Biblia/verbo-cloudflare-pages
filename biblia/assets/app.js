@@ -256,13 +256,19 @@ document.addEventListener('DOMContentLoaded', async () => {
   // al usuario adivinar en el selector "Fuente".
   let pendingPatristicSources=null;
   // Costumbres y Tradiciones: mismo patrón de 3 niveles que Padres Apostólicos
-  // (estante → índice de la obra → entrada), pero el estante se agrupa por
-  // categoría (ver renderCostumbresPanel).
+  // (estante → índice de la obra → entrada).
   let costumbresShelf=null;
   let costumbresOpenWork=null;
   let costumbresDocData=null;
   let costumbresOpenId=null;
   let costumbresIndexToken=0;
+  // Diccionarios (Easton/Smith/Hitchcock): mismo patrón de 3 niveles, sección
+  // propia separada de Costumbres (ver renderDiccionariosPanel).
+  let diccionariosShelf=null;
+  let diccionariosOpenWork=null;
+  let diccionariosDocData=null;
+  let diccionariosOpenId=null;
+  let diccionariosIndexToken=0;
   // Conversor de medidas: datos fijos cargados una sola vez (no hay estados
   // de navegación tipo estante/índice, es una calculadora de una sola vista).
   let conversorData=null;
@@ -893,7 +899,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(tab!=='historia') els.side.classList.remove('side-panel--history-expanded');
     els.side.classList.toggle('side-panel--atlas-expanded', tab==='mapas');
     const isSheet=window.innerWidth<=760 && SHEET_TABS.includes(tab);
-    els.side.classList.toggle('side-panel--left', ['historia','padres','licencias','historia-notas','costumbres','conversor'].includes(tab));
+    els.side.classList.toggle('side-panel--left', ['historia','padres','licencias','historia-notas','costumbres','diccionarios','conversor'].includes(tab));
     if(isSheet){
       els.side.dataset.sheet='1';  // CSS aplica translateY(105%) inmediatamente
       els.side.offsetHeight;       // fuerza reflow para que el estado inicial esté fijo
@@ -1078,6 +1084,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(tab==='predicas') renderPredicasPanel();
     if(tab==='historia-notas') renderHistoriaNotasPanel();
     if(tab==='costumbres') renderCostumbresPanel();
+    if(tab==='diccionarios') renderDiccionariosPanel();
     if(tab==='conversor') renderConversorPanel();
     if(tab==='exegesis') renderExegesis(focus || activeVerse());
     if(tab==='ajustes') renderAjustes();
@@ -5144,21 +5151,17 @@ document.addEventListener('DOMContentLoaded', async () => {
       catch(error){ console.error(error); costumbresShelf=[]; }
     }
     if(!costumbresShelf.length){ els.panelBody.innerHTML=emptyState('🏺',t('costumbres.coleccionPreparacion')); return; }
-    const categorias=[
-      {id:'israel_antiguo', label:t('costumbres.categoriaIsraelAntiguo')},
-      {id:'roma_s1', label:t('costumbres.categoriaRomaS1')},
-      {id:'diccionario_biblico', label:t('costumbres.categoriaDiccionarioBiblico')},
-    ];
-    const sections=categorias.map(cat=>{
-      const volumes=costumbresShelf.filter(v=>v.categoria===cat.id);
-      if(!volumes.length) return '';
-      return `<div class="costumbres-shelf__category">${escapeHTML(cat.label)}</div><div class="church-shelf">${volumes.map(costumbresShelfItemHTML).join('')}</div>`;
-    }).join('');
-    els.panelBody.innerHTML=sections
+    // Los diccionarios alfabéticos (Easton/Smith/Hitchcock) viven aparte, en
+    // la pestaña "Diccionarios" (ver renderDiccionariosPanel) — acá solo
+    // quedan las obras de costumbres propiamente dichas (Freeman, Tucker),
+    // en una sola cuadrícula (antes cada una en su categoría quedaba sola en
+    // su fila con espacio vacío al lado).
+    const shelfHTML=costumbresShelf.length ? `<div class="church-shelf">${costumbresShelf.map(costumbresShelfItemHTML).join('')}</div>` : '';
+    els.panelBody.innerHTML=shelfHTML
       ? `<div class="history-search-autocomplete church-shelf__quicksearch">
            <input id="costumbresQuickSearchInput" class="search-panel-input" type="search" placeholder="${t('costumbres.buscarPlaceholder')}" autocomplete="off">
            <div id="costumbresQuickSearchPredictions" class="history-predictions"></div>
-         </div>${sections}`
+         </div>${shelfHTML}`
       : emptyState('🏺',t('costumbres.coleccionPreparacion'));
     wireCostumbresShelf();
     applyChurchShelfTranslation(costumbresShelf,'costumbres');
@@ -5186,19 +5189,19 @@ document.addEventListener('DOMContentLoaded', async () => {
       <ol class="history-toc__list">${group.items.map(costumbresTocRowHTML).join('')}</ol>
     </section>`;
   }
+  function openCostumbresEntryFromIndex(id){
+    costumbresOpenId=id;
+    els.side.classList.add('side-panel--history-expanded');
+    els.side.offsetHeight; // fuerza reflow, mismo patrón que openChurchHistoryEntryFromTOC
+    renderCostumbresEntry();
+    els.panelBody.scrollTop=0;
+  }
   function wireCostumbresIndex(){
-    const openEntry=(id)=>{
-      costumbresOpenId=id;
-      els.side.classList.add('side-panel--history-expanded');
-      els.side.offsetHeight; // fuerza reflow, mismo patrón que openChurchHistoryEntryFromTOC
-      renderCostumbresEntry();
-      els.panelBody.scrollTop=0;
-    };
     els.panelBody.querySelectorAll('[data-costumbres-toc-id]').forEach(row=>{
-      row.addEventListener('click',()=>openEntry(row.dataset.costumbresTocId));
-      row.addEventListener('keydown',event=>{ if(event.key==='Enter'||event.key===' '){ event.preventDefault(); openEntry(row.dataset.costumbresTocId); } });
+      row.addEventListener('click',()=>openCostumbresEntryFromIndex(row.dataset.costumbresTocId));
+      row.addEventListener('keydown',event=>{ if(event.key==='Enter'||event.key===' '){ event.preventDefault(); openCostumbresEntryFromIndex(row.dataset.costumbresTocId); } });
     });
-    els.panelBody.querySelectorAll('[data-costumbres-entry]').forEach(btn=>btn.addEventListener('click',()=>openEntry(btn.dataset.costumbresEntry)));
+    els.panelBody.querySelectorAll('[data-costumbres-entry]').forEach(btn=>btn.addEventListener('click',()=>openCostumbresEntryFromIndex(btn.dataset.costumbresEntry)));
   }
   async function renderCostumbresIndex(){
     if(!costumbresDocData || costumbresDocData.manifest.id!==costumbresOpenWork){
@@ -5217,23 +5220,53 @@ document.addEventListener('DOMContentLoaded', async () => {
       return;
     }
     let biblicalGroups=null;
+    // Solo tiene sentido para obras con muchas entradas (Easton/Smith/Hitchcock,
+    // miles) — con pocas (Tucker, 24 capítulos; Freeman, agrupado por libro) el
+    // buscador es puro ruido sobre una lista ya corta o ya navegable.
+    const COSTUMBRES_SEARCH_MIN_ENTRIES=100;
+    const searchHTML=entries.length>COSTUMBRES_SEARCH_MIN_ENTRIES
+      ? `<div class="history-search-autocomplete">
+           <input class="search-panel-input" id="costumbresIndexSearch" type="search" placeholder="${escapeHTML(t('costumbres.buscarEnObraPlaceholder'))}" autocomplete="off">
+           <div id="costumbresIndexSearchPredictions" class="history-predictions"></div>
+         </div>`
+      : '';
     if(costumbresDocData.manifest.navegacion==='biblico'){
       biblicalGroups=churchHistoryGroupByOrder(entries, entry=>entry.libro)
         .map(g=>({key:g.key, label: catalog.books.find(b=>b.id===g.key)?.name || g.key, items:g.items}));
-      els.panelBody.innerHTML=`<div class="history-toc">${biblicalGroups.map(costumbresTocGroupHTML).join('')}</div>`;
+      els.panelBody.innerHTML=`<div class="dictionary-library">${searchHTML}</div><div class="history-toc">${biblicalGroups.map(costumbresTocGroupHTML).join('')}</div>`;
     } else {
       const sorted=[...entries].sort((a,b)=>(a.capituloNumero||0)-(b.capituloNumero||0));
       const list=sorted.map(e=>`
         <button type="button" class="dictionary-library__item" data-costumbres-entry="${escapeHTML(e.id)}">
           <span data-costumbres-index-title="${escapeHTML(e.id)}">${escapeHTML(e.capituloTitulo||e.titulo)}</span>
         </button>`).join('');
-      els.panelBody.innerHTML=`<div class="dictionary-library"><div class="dictionary-library__count">${t('padres.seccionesCount',{count:sorted.length})}</div><div>${list}</div></div>`;
+      els.panelBody.innerHTML=`<div class="dictionary-library">${searchHTML}<div class="dictionary-library__count">${t('padres.seccionesCount',{count:sorted.length})}</div><div>${list}</div></div>`;
     }
     wireCostumbresIndex();
+    wireCostumbresIndexSearch();
     translateCostumbresIndexTitles(costumbresDocData);
     if(biblicalGroups) translateCostumbresGroupLabels(biblicalGroups);
   }
 
+  // Buscador predictivo dentro del índice de UNA obra ya abierta (ej. las
+  // ~4000 entradas de Easton) — misma infraestructura que el buscador del
+  // estante (wireQuickSearchInput/quickSearchMatches), pero con un índice
+  // síncrono acotado a costumbresDocData (ya en memoria, sin promesa) en vez
+  // de todas las obras. Distinto de costumbresQuickSearchInput (nivel 1,
+  // busca en TODAS las obras a la vez).
+  function costumbresIndexQuickItems(){
+    return (costumbresDocData.entries||[]).map(e=>({label:e.capituloTitulo||e.titulo||'', entryId:e.id}));
+  }
+  function wireCostumbresIndexSearch(){
+    const input=document.getElementById('costumbresIndexSearch');
+    const box=document.getElementById('costumbresIndexSearchPredictions');
+    if(!input||!box) return;
+    wireQuickSearchInput(input, box, costumbresIndexQuickItems, item=>{
+      input.value='';
+      box.classList.remove('history-predictions--visible');
+      openCostumbresEntryFromIndex(item.entryId);
+    }, {sourceLang:costumbresDocData.manifest.language||'en', moduleId:`costumbres-index:${costumbresDocData.manifest.id}`});
+  }
   // Encabezados de grupo del índice bíblico (nombre del libro, ej. "Génesis"):
   // a diferencia del resto del índice (traducido en translateCostumbresIndexTitles
   // con el idioma de la OBRA como origen — inglés para Freeman/Tucker), estos
@@ -5348,6 +5381,349 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
   // ── Fin Costumbres y Tradiciones ────────────────────────────────────────
+
+  // ── Diccionarios ──────────────────────────────────────────────────────────
+  // Diccionarios bíblicos alfabéticos (Easton, Smith, Hitchcock) — antes
+  // vivían dentro de Costumbres y Tradiciones bajo la categoría "Diccionario
+  // bíblico", separados a su propia sección porque son un tipo de obra
+  // distinto (por palabra, no por versículo/capítulo). Mismos 3 niveles que
+  // Padres Apostólicos/Costumbres (estante → índice de la obra → entrada),
+  // reutilizando el mismo CSS (.church-shelf, .history-toc,
+  // .dictionary-library, .dict-entry) y el motor de traducción de
+  // Comentario/Historia.
+  function diccionariosShelfItemHTML(volume){
+    return `<div class="church-shelf__item" data-diccionarios-shelf-volume="${escapeHTML(volume.id)}" tabindex="0" role="group" aria-label="${escapeHTML(volume.titulo)}">
+      <img class="church-shelf__cover" src="${escapeHTML(volume.cover)}" alt="" loading="lazy">
+      <div class="church-shelf__title" data-shelf-title="${escapeHTML(volume.id)}">${escapeHTML(volume.titulo)}</div>
+      <div class="church-shelf__overlay">
+        ${volume.periodo?`<div class="church-shelf__overlay-period" data-shelf-period="${escapeHTML(volume.id)}">${escapeHTML(volume.periodo)}</div>`:''}
+        <p class="church-shelf__overlay-summary" data-shelf-summary="${escapeHTML(volume.id)}">${escapeHTML(volume.resumenBreve||'')}</p>
+        <button type="button" class="church-shelf__read-btn" data-diccionarios-shelf-read="${escapeHTML(volume.id)}">${t('diccionarios.leer')} →</button>
+      </div>
+    </div>`;
+  }
+  function wireDiccionariosShelf(){
+    els.panelBody.querySelectorAll('[data-diccionarios-shelf-volume]').forEach(item=>{
+      const toggle=()=>item.classList.toggle('church-shelf__item--active');
+      item.addEventListener('click',event=>{ if(event.target.closest('[data-diccionarios-shelf-read]')) return; toggle(); });
+      item.addEventListener('keydown',event=>{
+        if(event.target.closest('[data-diccionarios-shelf-read]')) return;
+        if(event.key==='Enter'||event.key===' '){ event.preventDefault(); toggle(); }
+      });
+    });
+    els.panelBody.querySelectorAll('[data-diccionarios-shelf-read]').forEach(btn=>btn.addEventListener('click',event=>{
+      event.stopPropagation();
+      diccionariosOpenWork=btn.dataset.diccionariosShelfRead;
+      diccionariosOpenId=null;
+      diccionariosDocData=null;
+      renderDiccionariosPanel();
+      els.panelBody.scrollTop=0;
+    }));
+  }
+
+  // Índice del buscador rápido del estante de Diccionarios: mismo patrón que
+  // patristicQuickIndex/costumbresQuickIndex — la primera vez que el usuario
+  // busca se cargan las 3 obras del estante (Easton/Smith/Hitchcock, ~10MB
+  // en total) y se cachean tanto el índice de títulos como los datos
+  // completos de cada obra (diccionariosQuickIndexWorks), para navegar al
+  // instante sin volver a pedir nada por red.
+  let diccionariosQuickIndexCache=null, diccionariosQuickIndexPromise=null;
+  const diccionariosQuickIndexWorks=new Map();
+  function diccionariosQuickIndex(){
+    if(diccionariosQuickIndexCache) return diccionariosQuickIndexCache;
+    if(diccionariosQuickIndexPromise) return diccionariosQuickIndexPromise;
+    diccionariosQuickIndexPromise=(async()=>{
+      if(!diccionariosShelf){
+        try{ diccionariosShelf=await VerboModules.loadDiccionariosShelf(); }
+        catch(error){ console.error(error); diccionariosShelf=[]; }
+      }
+      const works=await Promise.all(diccionariosShelf.map(v=>VerboModules.loadDiccionarios(v.id).catch(error=>{ console.warn(error); return null; })));
+      const items=[];
+      works.forEach((data,i)=>{
+        if(!data) return;
+        const volume=diccionariosShelf[i];
+        diccionariosQuickIndexWorks.set(volume.id,data);
+        (data.entries||[]).forEach(entry=>{
+          // capituloTitulo (navegación temática, el único modo que usan estos
+          // 3 diccionarios) o titulo — mismo campo que usa el índice de nivel
+          // 2 para mostrar cada entrada.
+          const entryTitle=entry.capituloTitulo||entry.titulo||'';
+          items.push({
+            label:`${volume.titulo} — ${entryTitle}`, prefixPart:volume.titulo, titlePart:entryTitle,
+            quickKey:`${volume.id}:${entry.id}`, workId:volume.id, entryId:entry.id
+          });
+        });
+      });
+      diccionariosQuickIndexCache=items;
+      return items;
+    })();
+    return diccionariosQuickIndexPromise;
+  }
+  function selectDiccionariosQuickResult(item){
+    const cached=diccionariosQuickIndexWorks.get(item.workId);
+    if(cached) diccionariosDocData=cached;
+    diccionariosOpenWork=item.workId;
+    diccionariosOpenId=item.entryId;
+    renderDiccionariosPanel();
+  }
+  async function renderDiccionariosPanel(){
+    els.panelTitle.textContent=t('diccionarios.title');
+    els.panelToolbar.innerHTML='';
+
+    // Nivel 3: entrada abierta dentro de una obra
+    if(diccionariosOpenWork && diccionariosOpenId){
+      if(!diccionariosDocData || diccionariosDocData.manifest.id!==diccionariosOpenWork){
+        els.panelBody.innerHTML=emptyState('⌛',t('diccionarios.cargandoObra'));
+        try{ diccionariosDocData=await VerboModules.loadDiccionarios(diccionariosOpenWork); }
+        catch(error){ console.error(error); }
+      }
+      if(!diccionariosDocData){ els.panelBody.innerHTML=emptyState('⚠️',t('diccionarios.errorObra')); return; }
+      renderDiccionariosEntry();
+      return;
+    }
+
+    // Nivel 2: índice de la obra elegida
+    if(diccionariosOpenWork){
+      await renderDiccionariosIndex();
+      return;
+    }
+
+    // Nivel 1: estante de portadas (Easton, Smith, Hitchcock — una sola
+    // cuadrícula, sin agrupar por categoría, las 3 son el mismo tipo de obra).
+    els.side.classList.remove('side-panel--history-expanded');
+    if(!diccionariosShelf){
+      try{ diccionariosShelf=await VerboModules.loadDiccionariosShelf(); }
+      catch(error){ console.error(error); diccionariosShelf=[]; }
+    }
+    if(!diccionariosShelf.length){ els.panelBody.innerHTML=emptyState('📖',t('diccionarios.coleccionPreparacion')); return; }
+    const shelfHTML=diccionariosShelf.length ? `<div class="church-shelf">${diccionariosShelf.map(diccionariosShelfItemHTML).join('')}</div>` : '';
+    els.panelBody.innerHTML=shelfHTML
+      ? `<div class="history-search-autocomplete church-shelf__quicksearch">
+           <input id="diccionariosQuickSearchInput" class="search-panel-input" type="search" placeholder="${t('diccionarios.buscarPlaceholder')}" autocomplete="off">
+           <div id="diccionariosQuickSearchPredictions" class="history-predictions"></div>
+         </div>${shelfHTML}`
+      : emptyState('📖',t('diccionarios.coleccionPreparacion'));
+    wireDiccionariosShelf();
+    applyChurchShelfTranslation(diccionariosShelf,'diccionarios');
+    wireQuickSearchInput(document.getElementById('diccionariosQuickSearchInput'), document.getElementById('diccionariosQuickSearchPredictions'), diccionariosQuickIndex, selectDiccionariosQuickResult, {loadingLabel:t('diccionarios.indiceCargando'), sourceLang:'en', moduleId:'diccionarios'});
+  }
+
+  function diccionariosBackToShelf(){
+    diccionariosOpenWork=null;
+    diccionariosOpenId=null;
+    diccionariosDocData=null;
+    els.side.classList.remove('side-panel--history-expanded');
+    renderDiccionariosPanel();
+    els.panelBody.scrollTop=0;
+  }
+
+  function diccionariosTocRowHTML(entry){
+    const label=entry.titulo || (entry.versiculoInicio!=null
+      ? `${entry.capitulo}:${entry.versiculoInicio}${entry.versiculoFin && entry.versiculoFin!==entry.versiculoInicio ? '-'+entry.versiculoFin : ''}`
+      : `${t('historia.toc.libro')} ${entry.capitulo||''}`);
+    return `<li class="history-toc__row" data-diccionarios-toc-id="${escapeHTML(entry.id)}" tabindex="0"><span data-diccionarios-toc-label="${escapeHTML(entry.id)}">${escapeHTML(label)}</span></li>`;
+  }
+  function diccionariosTocGroupHTML(group){
+    return `<section class="history-toc__group">
+      <h3 class="history-toc__group-title" data-diccionarios-toc-group="${escapeHTML(group.key)}">${escapeHTML(group.label)}</h3>
+      <ol class="history-toc__list">${group.items.map(diccionariosTocRowHTML).join('')}</ol>
+    </section>`;
+  }
+  function openDiccionariosEntryFromIndex(id){
+    diccionariosOpenId=id;
+    els.side.classList.add('side-panel--history-expanded');
+    els.side.offsetHeight; // fuerza reflow, mismo patrón que openChurchHistoryEntryFromTOC
+    renderDiccionariosEntry();
+    els.panelBody.scrollTop=0;
+  }
+  function wireDiccionariosIndex(){
+    els.panelBody.querySelectorAll('[data-diccionarios-toc-id]').forEach(row=>{
+      row.addEventListener('click',()=>openDiccionariosEntryFromIndex(row.dataset.diccionariosTocId));
+      row.addEventListener('keydown',event=>{ if(event.key==='Enter'||event.key===' '){ event.preventDefault(); openDiccionariosEntryFromIndex(row.dataset.diccionariosTocId); } });
+    });
+    els.panelBody.querySelectorAll('[data-diccionarios-entry]').forEach(btn=>btn.addEventListener('click',()=>openDiccionariosEntryFromIndex(btn.dataset.diccionariosEntry)));
+  }
+  async function renderDiccionariosIndex(){
+    if(!diccionariosDocData || diccionariosDocData.manifest.id!==diccionariosOpenWork){
+      els.panelBody.innerHTML=emptyState('⌛',t('diccionarios.cargandoObra'));
+      try{ diccionariosDocData=await VerboModules.loadDiccionarios(diccionariosOpenWork); }
+      catch(error){ console.error(error); }
+    }
+    if(!diccionariosDocData){ els.panelBody.innerHTML=emptyState('⚠️',t('diccionarios.errorObra')); return; }
+    els.side.classList.remove('side-panel--history-expanded');
+    els.panelToolbar.innerHTML=`<button class="note-card__copy" id="backToDiccionariosShelf" type="button">← ${t('diccionarios.volverEstante')}</button>`;
+    document.getElementById('backToDiccionariosShelf')?.addEventListener('click',diccionariosBackToShelf);
+
+    const entries=diccionariosDocData.entries||[];
+    if(!entries.length){
+      els.panelBody.innerHTML=emptyState('📜',t('diccionarios.sinContenido'));
+      return;
+    }
+    let biblicalGroups=null;
+    // Umbral heredado de Costumbres (ver renderCostumbresIndex): con pocas
+    // entradas el buscador es puro ruido. Los 3 diccionarios de acá (miles de
+    // entradas cada uno) siempre lo superan, pero se deja el mismo chequeo
+    // por si algún día se suma uno más chico.
+    const DICCIONARIOS_SEARCH_MIN_ENTRIES=100;
+    const searchHTML=entries.length>DICCIONARIOS_SEARCH_MIN_ENTRIES
+      ? `<div class="history-search-autocomplete">
+           <input class="search-panel-input" id="diccionariosIndexSearch" type="search" placeholder="${escapeHTML(t('diccionarios.buscarEnObraPlaceholder'))}" autocomplete="off">
+           <div id="diccionariosIndexSearchPredictions" class="history-predictions"></div>
+         </div>`
+      : '';
+    if(diccionariosDocData.manifest.navegacion==='biblico'){
+      biblicalGroups=churchHistoryGroupByOrder(entries, entry=>entry.libro)
+        .map(g=>({key:g.key, label: catalog.books.find(b=>b.id===g.key)?.name || g.key, items:g.items}));
+      els.panelBody.innerHTML=`<div class="dictionary-library">${searchHTML}</div><div class="history-toc">${biblicalGroups.map(diccionariosTocGroupHTML).join('')}</div>`;
+    } else {
+      const sorted=[...entries].sort((a,b)=>(a.capituloNumero||0)-(b.capituloNumero||0));
+      const list=sorted.map(e=>`
+        <button type="button" class="dictionary-library__item" data-diccionarios-entry="${escapeHTML(e.id)}">
+          <span data-diccionarios-index-title="${escapeHTML(e.id)}">${escapeHTML(e.capituloTitulo||e.titulo)}</span>
+        </button>`).join('');
+      els.panelBody.innerHTML=`<div class="dictionary-library">${searchHTML}<div class="dictionary-library__count">${t('padres.seccionesCount',{count:sorted.length})}</div><div>${list}</div></div>`;
+    }
+    wireDiccionariosIndex();
+    wireDiccionariosIndexSearch();
+    translateDiccionariosIndexTitles(diccionariosDocData);
+    if(biblicalGroups) translateDiccionariosGroupLabels(biblicalGroups);
+  }
+
+  // Buscador predictivo dentro del índice de UNA obra ya abierta (ej. las
+  // ~4000 entradas de Easton) — misma infraestructura que el buscador del
+  // estante (wireQuickSearchInput/quickSearchMatches), pero con un índice
+  // síncrono acotado a diccionariosDocData (ya en memoria, sin promesa) en vez
+  // de todas las obras. Distinto de diccionariosQuickSearchInput (nivel 1,
+  // busca en TODAS las obras a la vez).
+  function diccionariosIndexQuickItems(){
+    return (diccionariosDocData.entries||[]).map(e=>({label:e.capituloTitulo||e.titulo||'', entryId:e.id}));
+  }
+  function wireDiccionariosIndexSearch(){
+    const input=document.getElementById('diccionariosIndexSearch');
+    const box=document.getElementById('diccionariosIndexSearchPredictions');
+    if(!input||!box) return;
+    wireQuickSearchInput(input, box, diccionariosIndexQuickItems, item=>{
+      input.value='';
+      box.classList.remove('history-predictions--visible');
+      openDiccionariosEntryFromIndex(item.entryId);
+    }, {sourceLang:diccionariosDocData.manifest.language||'en', moduleId:`diccionarios-index:${diccionariosDocData.manifest.id}`});
+  }
+  // Encabezados de grupo del índice bíblico (nombre del libro, ej. "Génesis"):
+  // ninguno de los 3 diccionarios de acá usa navegación "biblico" hoy, pero
+  // se deja la misma lógica que Costumbres por si se suma uno que sí — a
+  // diferencia del resto del índice (traducido en translateDiccionariosIndexTitles
+  // con el idioma de la OBRA como origen), estos encabezados
+  // vienen de catalog.books, que solo existe en español (es metadata de la
+  // versión de la Biblia, no de la obra) — por eso quedaban sin traducir cuando
+  // la interfaz estaba en inglés (bug reportado por Juan, 2026-08-13). Se
+  // traducen aparte, con sourceLang fijo 'es', igual que applyChurchShelfTranslation.
+  async function translateDiccionariosGroupLabels(groups){
+    const target=contentLang();
+    if(target==='es') return;
+    for(const group of groups){
+      const el=els.panelBody.querySelector(`[data-diccionarios-toc-group="${CSS.escape(group.key)}"]`);
+      if(!el || el.dataset.translated===target || !group.label) continue;
+      const translated=await translateCommentaryHeader(`diccionarios-group:${group.key}`,'label',group.label,'es',target);
+      el.textContent=translated;
+      el.dataset.translated=target;
+    }
+  }
+
+  // Traduce cada título del índice visible por separado, con un pool de
+  // workers concurrentes — mismo patrón que translateCostumbresIndexTitles/
+  // applyChurchHistoryTocTranslation. En Costumbres, armar UN solo request
+  // con todos los títulos de una obra unidos por un delimitador ("@@@")
+  // rompía en obras grandes (el texto superaba el umbral de envío directo y
+  // se troceaba en fragmentos que Claude traducía sin noción del delimitador,
+  // descartando TODO el índice sin traducir — bug reportado por Juan,
+  // 2026-08-13). Con miles de entradas cada uno, Easton/Smith/Hitchcock son
+  // exactamente el caso que rompía eso; por título separado no hay techo de
+  // tamaño de lote, cada uno cachea aparte, y si uno falla el resto igual se
+  // traduce.
+  async function translateDiccionariosIndexTitles(docData){
+    const source=docData.manifest.language||'en';
+    const target=contentLang();
+    if(source===target) return;
+    const labelEls=[...els.panelBody.querySelectorAll('[data-diccionarios-toc-label],[data-diccionarios-index-title]')];
+    if(!labelEls.length) return;
+    const token=++diccionariosIndexToken;
+    let index=0;
+    async function worker(){
+      while(index<labelEls.length){
+        if(token!==diccionariosIndexToken) return;
+        const el=labelEls[index++];
+        if(el.dataset.translated===target) continue;
+        const original=el.textContent;
+        if(!original) continue;
+        const id=el.dataset.diccionariosTocLabel || el.dataset.diccionariosIndexTitle;
+        const translated=await translateCommentaryHeader(`diccionarios-index:${docData.manifest.id}:${id}`,'label',original,source,target);
+        if(token!==diccionariosIndexToken) return;
+        el.textContent=translated;
+        el.dataset.translated=target;
+      }
+    }
+    await Promise.all(Array.from({length:Math.min(4,labelEls.length)},worker));
+  }
+
+  function renderDiccionariosEntry(){
+    const entry=(diccionariosDocData.entries||[]).find(e=>e.id===diccionariosOpenId);
+    if(!entry){ diccionariosOpenId=null; els.panelBody.innerHTML=emptyState('⚠️',t('diccionarios.entradaNoEncontrada')); return; }
+    const entries=diccionariosDocData.entries||[];
+    const idx=entries.findIndex(e=>e.id===entry.id);
+    const previous=idx>0?entries[idx-1]:null;
+    const next=idx>=0 && idx<entries.length-1?entries[idx+1]:null;
+    els.panelToolbar.innerHTML=`
+      <button class="note-card__copy" id="backToDiccionariosIndex" type="button">← ${t('diccionarios.volverIndice')}</button>
+      <button id="diccionariosExpand" class="history-panel-expand" type="button" aria-pressed="${els.side.classList.contains('side-panel--history-expanded')?'true':'false'}">${els.side.classList.contains('side-panel--history-expanded')?t('historia.vistaCompacta'):t('historia.ampliarLectura')}</button>`;
+    document.getElementById('backToDiccionariosIndex')?.addEventListener('click',()=>{
+      els.side.classList.remove('side-panel--history-expanded');
+      diccionariosOpenId=null;
+      renderDiccionariosPanel();
+      els.panelBody.scrollTop=0;
+    });
+    document.getElementById('diccionariosExpand')?.addEventListener('click',event=>{
+      const scrollTop=els.panelBody.scrollTop;
+      const expanded=els.side.classList.toggle('side-panel--history-expanded');
+      event.currentTarget.setAttribute('aria-pressed',String(expanded));
+      event.currentTarget.textContent=expanded?t('historia.vistaCompacta'):t('historia.ampliarLectura');
+      requestAnimationFrame(()=>{ els.panelBody.scrollTop=scrollTop; });
+    });
+    els.panelBody.innerHTML=`<article class="dict-entry history-reader">
+      <div class="dict-entry__term" data-diccionarios-entry-id="${escapeHTML(entry.id)}">${escapeHTML(entry.titulo)}</div>
+      <div class="dict-entry__source">${escapeHTML(diccionariosDocData.manifest.abbreviation||diccionariosDocData.manifest.name)}</div>
+      <div class="dict-entry__def" data-diccionarios-entry-id="${escapeHTML(entry.id)}">${entry.content||entry.excerpt||''}</div>
+      <nav class="history-entry-nav" aria-label="${t('historia.navegacionLectura')}">
+        ${previous?`<button type="button" class="history-entry-nav__button" data-diccionarios-neighbor="${escapeHTML(previous.id)}" data-nav-dir="prev">← ${t('diccionarios.anterior')}</button>`:'<span></span>'}
+        ${next?`<button type="button" class="history-entry-nav__button" data-diccionarios-neighbor="${escapeHTML(next.id)}" data-nav-dir="next">${t('diccionarios.siguiente')} →</button>`:'<span></span>'}
+      </nav>
+    </article>`;
+    els.panelBody.querySelectorAll('[data-diccionarios-neighbor]').forEach(button=>button.addEventListener('click',()=>{
+      diccionariosOpenId=button.dataset.diccionariosNeighbor;
+      renderDiccionariosEntry();
+      els.panelBody.scrollTop=0;
+    }));
+    applyDiccionariosTranslation(entry);
+  }
+
+  async function applyDiccionariosTranslation(entry){
+    const source=diccionariosDocData.manifest.language||'en';
+    const target=contentLang();
+    if(!source || source===target) return;
+    const termEl=els.panelBody.querySelector(`.dict-entry__term[data-diccionarios-entry-id="${CSS.escape(entry.id)}"]`);
+    const defEl=els.panelBody.querySelector(`.dict-entry__def[data-diccionarios-entry-id="${CSS.escape(entry.id)}"]`);
+    if(!termEl||!defEl) return;
+    if(termEl.dataset.translated!==target){
+      termEl.dataset.translated='pending';
+      const translatedTitle=await translateCommentaryHeader(`diccionarios:${entry.id}`,'title',entry.titulo,source,target);
+      if(termEl.dataset.translated==='pending'){ termEl.textContent=translatedTitle; termEl.dataset.translated=target; }
+    }
+    if(defEl.dataset.translated!==target){
+      defEl.dataset.translated='pending';
+      const translated=await translateEntry(`diccionarios:${entry.id}`, entry.content||entry.excerpt||'', source, target);
+      if(defEl.dataset.translated==='pending'){ defEl.innerHTML=translated; defEl.dataset.translated=target; }
+    }
+  }
+  // ── Fin Diccionarios y Tradiciones ────────────────────────────────────────
 
   // ── Conversor de medidas ────────────────────────────────────────────────
   // Calculadora de una sola vista (sin estante/índice): categoría → unidad de

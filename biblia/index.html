@@ -101,6 +101,13 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
           <path d="M17 9c1.5 0 2.5 1 2.5 2.5"/>
         </svg>
       </button>
+      <button class="library-rail__btn" data-tab="diccionarios" data-i18n-attr="title:rail.diccionarios,aria-label:rail.diccionarios">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M12 6.5c-1.7-1.2-3.8-1.8-6-1.8-.6 0-1 .4-1 1v12.6c0 .6.4 1 1 1 2.2 0 4.3.6 6 1.8"/>
+          <path d="M12 6.5c1.7-1.2 3.8-1.8 6-1.8.6 0 1 .4 1 1v12.6c0 .6-.4 1-1 1-2.2 0-4.3.6-6 1.8"/>
+          <line x1="12" y1="6.5" x2="12" y2="20.1"/>
+        </svg>
+      </button>
       <button class="library-rail__btn" data-tab="conversor" data-i18n-attr="title:rail.conversor,aria-label:rail.conversor">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
           <line x1="12" y1="3" x2="12" y2="19"/>
@@ -300,6 +307,10 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 3h6"/><path d="M10 3v3l-2 2c-2 2-2 5-2 7 0 3 2.5 5 6 5s6-2 6-5c0-2 0-5-2-7l-2-2V3"/><path d="M7 9c-1.5 0-2.5 1-2.5 2.5"/><path d="M17 9c1.5 0 2.5 1 2.5 2.5"/></svg>
         <span class="mobile-tool-label" data-i18n="nav.costumbres">Costumbres y Tradiciones</span>
       </button>
+      <button class="mobile-tool-btn tab-rail__btn" data-tab="diccionarios" type="button" data-i18n-attr="aria-label:nav.diccionarios">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 6.5c-1.7-1.2-3.8-1.8-6-1.8-.6 0-1 .4-1 1v12.6c0 .6.4 1 1 1 2.2 0 4.3.6 6 1.8"/><path d="M12 6.5c1.7-1.2 3.8-1.8 6-1.8.6 0 1 .4 1 1v12.6c0 .6-.4 1-1 1-2.2 0-4.3.6-6 1.8"/><line x1="12" y1="6.5" x2="12" y2="20.1"/></svg>
+        <span class="mobile-tool-label" data-i18n="nav.diccionarios">Diccionarios</span>
+      </button>
       <button class="mobile-tool-btn tab-rail__btn" data-tab="conversor" type="button" data-i18n-attr="aria-label:nav.conversor">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="12" y1="3" x2="12" y2="19"/><line x1="5" y1="7" x2="19" y2="7"/><path d="M3 7l3-4 3 4"/><path d="M3 7c0 2 1.3 3.5 3 3.5S9 9 9 7"/><path d="M15 7l3-4 3 4"/><path d="M15 7c0 2 1.3 3.5 3 3.5S21 9 21 7"/><path d="M8 19h8"/><path d="M7 21c0-1 1-2 2-2h6c1 0 2 1 2 2"/></svg>
         <span class="mobile-tool-label" data-i18n="nav.conversor">Conversor de medidas</span>
@@ -333,11 +344,11 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   <script src="https://pkg.api.bible/fumsV3.min.js" defer></script>
   <script>window.fumsData=window.fumsData||[];window.fums=window.fums||function(){window.fumsData.push(arguments);};</script>
   <script src="assets/backup.js?v=20260823-no-bump-reapertura"></script>
-  <script src="assets/i18n.js?v=20260822-sermon-translate-autodetect"></script>
-  <script src="assets/module-loader.js?v=20260824-macula-linguistic-layer"></script>
+  <script src="assets/i18n.js?v=20260825-diccionarios-seccion-propia"></script>
+  <script src="assets/module-loader.js?v=20260825-diccionarios-seccion-propia"></script>
   <script src="assets/atlas-reference-parser.js?v=20260818-atlas-step2"></script>
   <script src="assets/sync.js?v=20260801-sermon-predicas"></script>
-  <script src="assets/app.js?v=20260825-sermon-unload-warning"></script>
+  <script src="assets/app.js?v=20260825-diccionarios-seccion-propia"></script>
   <script src="assets/historia-nota-rapida.js?v=20260805-padres-nota-rapida"></script>
   <script src="assets/tutorial-video.js?v=20260821-tutorial-videos"></script>
 </body>

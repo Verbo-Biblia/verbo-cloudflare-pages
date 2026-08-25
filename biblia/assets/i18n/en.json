@@ -22,6 +22,7 @@
     "licencias": "Sources & licenses",
     "historiaNotas": "History notes",
     "costumbres": "Customs & Traditions",
+    "diccionarios": "Bible dictionaries",
     "conversor": "Measurement converter"
   },
   "nav": {
@@ -44,6 +45,7 @@
     "predicas": "My sermons",
     "historiaNotas": "History notes",
     "costumbres": "Customs & Traditions",
+    "diccionarios": "Bible dictionaries",
     "conversor": "Measurement converter"
   },
   "panel": {
@@ -308,9 +310,6 @@
   },
   "costumbres": {
     "title": "Customs & Traditions",
-    "categoriaIsraelAntiguo": "Ancient Israel and 1st-century Judaism",
-    "categoriaRomaS1": "1st-century Rome (Paul's world)",
-    "categoriaDiccionarioBiblico": "Bible dictionary",
     "cargandoColeccion": "Loading collection…",
     "coleccionPreparacion": "Customs & Traditions is in progress. Soon you'll find the customs of ancient Israel and the 1st-century Roman world here.",
     "volverEstante": "Back to shelf",
@@ -323,6 +322,23 @@
     "siguiente": "Next",
     "leer": "Read",
     "buscarPlaceholder": "Search by work or entry title…",
+    "buscarEnObraPlaceholder": "Search within this work…",
+    "indiceCargando": "Loading search index…"
+  },
+  "diccionarios": {
+    "title": "Dictionaries",
+    "coleccionPreparacion": "Dictionaries is in progress. Soon you'll find classic public-domain Bible dictionaries here.",
+    "volverEstante": "Back to shelf",
+    "cargandoObra": "Loading work…",
+    "errorObra": "Couldn't load this work.",
+    "sinContenido": "This work doesn't have any indexed content yet. Soon you'll find entries from this source here.",
+    "volverIndice": "Back to index",
+    "entradaNoEncontrada": "This entry wasn't found.",
+    "anterior": "Previous",
+    "siguiente": "Next",
+    "leer": "Read",
+    "buscarPlaceholder": "Search by work or entry title…",
+    "buscarEnObraPlaceholder": "Search within this work…",
     "indiceCargando": "Loading search index…"
   },
   "conversor": {

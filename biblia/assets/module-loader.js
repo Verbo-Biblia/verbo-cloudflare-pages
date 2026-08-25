@@ -481,6 +481,39 @@ const VerboModules = (() => {
     }
   }
 
+  // Diccionarios bíblicos alfabéticos (Easton/Smith/Hitchcock) — mismo patrón
+  // exacto que loadCostumbres/loadCostumbresShelf (entriesFile + shelf.json
+  // propio), en su propia sección de la app en vez de mezclados con las
+  // obras de costumbres/vida cotidiana (que se navegan por versículo o
+  // capítulo, no por palabra).
+  async function loadDiccionarios(workId = null) {
+    const registry = await getJSON('modules/registry.json');
+    const paths = workId
+      ? (registry.diccionarios || []).filter(p => p.includes('/' + workId + '/') || p.endsWith('/' + workId + '/manifest.json'))
+      : (registry.diccionarios || []);
+    for (const path of paths) {
+      const manifestPath = `modules/${path}`;
+      try {
+        const manifest = await getJSON(manifestPath);
+        const data = await getJSON(resolveFromManifest(manifestPath, manifest.entriesFile));
+        return { manifest, entries: data.entries || [] };
+      } catch (error) {
+        console.warn(`Diccionarios: obra omitida ${manifestPath}`, error);
+      }
+    }
+    return null;
+  }
+
+  async function loadDiccionariosShelf() {
+    try {
+      const data = await getJSON('modules/diccionarios/shelf.json');
+      return data.volumes || [];
+    } catch (error) {
+      console.warn('Estante de Diccionarios: metadata omitida', error);
+      return [];
+    }
+  }
+
   // Conversor de medidas: un solo archivo de datos fijos (sin manifest por
   // "obra" ni entradas — no es un corpus de texto), pero se registra en
   // registry.json con el mismo mecanismo de manifest.json que el resto de
@@ -1061,5 +1094,5 @@ const VerboModules = (() => {
     return { manifest, book, chapter:chapterData, alignment, morphology, linguistic };
   }
 
-  return { getCatalog,getBookInfo,resolveBibleBooks,buildChapterData,loadBible,loadRemoteBible,loadCommentary,loadCommentaryIndex,loadLinkedEntries,loadLinkedArticle,loadChurchHistory,loadChurchHistoryShelf,getDictionaryEntry,loadDictionaryEntries,loadDictionaryIndex,loadGospel,loadPatristic,loadPatristicShelf,loadCostumbres,loadCostumbresShelf,loadConversorUnidades,loadOriginalLanguage,searchBible,searchRemoteBible,searchSemanticBible,searchSemanticChurchHistory };
+  return { getCatalog,getBookInfo,resolveBibleBooks,buildChapterData,loadBible,loadRemoteBible,loadCommentary,loadCommentaryIndex,loadLinkedEntries,loadLinkedArticle,loadChurchHistory,loadChurchHistoryShelf,getDictionaryEntry,loadDictionaryEntries,loadDictionaryIndex,loadGospel,loadPatristic,loadPatristicShelf,loadCostumbres,loadCostumbresShelf,loadDiccionarios,loadDiccionariosShelf,loadConversorUnidades,loadOriginalLanguage,searchBible,searchRemoteBible,searchSemanticBible,searchSemanticChurchHistory };
 })();
