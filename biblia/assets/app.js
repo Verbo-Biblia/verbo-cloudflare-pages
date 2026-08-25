@@ -228,6 +228,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   let sermonMode = false;
   let sermonEditor = null;
   let sermonEditorContent = null;
+  let sermonDirty = false;
   let sermonBible = null;
   let currentPredicaId = null;
   let selectedVerses = new Set();
@@ -1952,7 +1953,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             // la lista se arma a partir de los <h1>-<h6> presentes al momento de
             // abrirla, así que puede quedar desactualizada si el usuario sigue
             // escribiendo (agrega/borra encabezados) con el panel abierto.
-            editor.on('input change undo redo', ()=>{ sermonEditorContent=editor.getContent(); closeSermonOutline(); });
+            editor.on('input change undo redo', ()=>{ sermonEditorContent=editor.getContent(); sermonDirty=true; closeSermonOutline(); });
             resolve();
           }
         });
@@ -2111,7 +2112,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Única vía de guardado hoy: no hay autoguardado por inactividad ni botón
   // "Salir" todavía (confirmado con Juan 2026-08-01) — mientras tanto, si el
   // pastor recarga sin haber tocado "Guardar", el contenido en el editor se
-  // pierde (sermonEditorContent es solo memoria volátil).
+  // pierde (sermonEditorContent es solo memoria volátil). Por eso sermonDirty
+  // + el beforeunload de más abajo: no evita la pérdida, pero al menos avisa
+  // antes de recargar/cerrar con cambios sin guardar.
+  document.getElementById('predicaTituloInput')?.addEventListener('input', ()=>{ sermonDirty=true; });
   function setSermonSaveBtnState(state){
     const btn = document.getElementById('guardarSermonBtn');
     if(!btn) return;
@@ -2128,6 +2132,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const tituloInput = document.getElementById('predicaTituloInput');
       const saved = VerboBackup.savePredica({ id: currentPredicaId, titulo: tituloInput?.value || '', contenido, pasaje_base: '' });
       currentPredicaId = saved.id;
+      sermonDirty = false;
       if(tituloInput && !tituloInput.value) tituloInput.value = saved.titulo;
       if(window.VerboSync?.isLinked?.()){
         const result = await VerboSync.forcePush().catch(error=>{ console.warn('[sermon] no se pudo forzar la sincronización', error); return { synced:false, reason:'error' }; });
@@ -2143,6 +2148,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
   els.editorPane?.querySelector('#guardarSermonBtn')?.addEventListener('click', handleSaveSermon);
+
+  // Advertencia nativa del navegador (recargar/cerrar) si hay cambios de la
+  // prédica sin guardar — no evita la pérdida (sigue sin haber autoguardado),
+  // pero al menos le da al pastor la chance de cancelar y tocar "Guardar"
+  // primero. Los navegadores ignoran el texto custom de returnValue y
+  // muestran su propio diálogo genérico; no hace nada en móvil, que en su
+  // mayoría no soporta beforeunload.
+  window.addEventListener('beforeunload', e=>{
+    if(!sermonMode || !sermonDirty) return;
+    e.preventDefault();
+    e.returnValue = '';
+  });
 
   // ── Traducir predicación (fidelidad literal, pensado para predicar con
   // intérprete en vivo) ───────────────────────────────────────────────────
@@ -2246,6 +2263,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     currentPredicaId = null;
     sermonEditorContent = '';
     sermonEditor.setContent('');
+    sermonDirty = false;
     const tituloInput = document.getElementById('predicaTituloInput');
     if(tituloInput) tituloInput.value = '';
     closeSermonSidePanel();
@@ -2257,6 +2275,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     currentPredicaId = p.id;
     sermonEditorContent = p.contenido || '';
     sermonEditor.setContent(sermonEditorContent);
+    sermonDirty = false;
     const tituloInput = document.getElementById('predicaTituloInput');
     if(tituloInput) tituloInput.value = p.titulo || '';
     closeSermonSidePanel();
