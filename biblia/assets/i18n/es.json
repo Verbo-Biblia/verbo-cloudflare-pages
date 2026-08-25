@@ -32,7 +32,8 @@
     "historiaNotas": "Notas de Historia",
     "costumbres": "Costumbres y Tradiciones",
     "diccionarios": "Diccionarios bíblicos",
-    "conversor": "Conversor de medidas"
+    "conversor": "Conversor de medidas",
+    "extracanonico": "Literatura Extracanónica"
   },
   "nav": {
     "toolsAria": "Herramientas de estudio",
@@ -55,7 +56,8 @@
     "historiaNotas": "Notas de Historia",
     "costumbres": "Costumbres y Tradiciones",
     "diccionarios": "Diccionarios bíblicos",
-    "conversor": "Conversor de medidas"
+    "conversor": "Conversor de medidas",
+    "extracanonico": "Literatura Extracanónica"
   },
   "panel": {
     "defaultTitle": "Panel",
@@ -652,5 +654,22 @@
       "navidad": "Navidad",
       "abstractos_fondos": "Abstractos y Fondos"
     }
+  },
+  "extracanonico": {
+    "title": "Literatura Extracanónica",
+    "cargandoColeccion": "Cargando colección…",
+    "coleccionPreparacion": "Literatura Extracanónica está en preparación. Pronto encontrarás aquí apócrifos y pseudoepígrafos del Antiguo Testamento.",
+    "volverEstante": "Volver al estante",
+    "cargandoObra": "Cargando obra…",
+    "errorObra": "No se pudo cargar esta obra.",
+    "sinContenido": "Esta obra todavía no tiene contenido indexado.",
+    "volverIndice": "Volver al índice",
+    "entradaNoEncontrada": "No se encontró esta entrada.",
+    "anterior": "Anterior",
+    "siguiente": "Siguiente",
+    "leer": "Leer",
+    "buscarPlaceholder": "Buscar por título de obra o capítulo…",
+    "indiceCargando": "Cargando índice de búsqueda…",
+    "notaEditorial": "Nota editorial"
   }
 }

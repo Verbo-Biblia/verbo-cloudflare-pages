@@ -1,0 +1,380 @@
+#!/usr/bin/env python3
+"""Build the English Assumption of Moses (Testament of Moses) dataset.
+
+Unlike 1 Enoch (Wikisource, clean chapter pages) and Jubilees (CCEL, clean
+chapter pages), no clean web mirror of Charles' translation of this short
+work (12 chapters) was found: it is missing from the CCEL scan (never
+transcribed — see otpseudepig/home.html, the entry has no link) and not
+split into per-chapter Wikisource pages. The only available source is the
+archive.org OCR of the 1913 Oxford edition
+(archive.org/details/apocryphapseudep02charuoft), a raw page-scan text where
+each printed page interleaves running headers, translation, AND Charles'
+verse-by-verse critical/philological notes (Latin/Greek/Hebrew textual
+apparatus) with no markup separating them.
+
+Given the short length of this work, the text below was manually
+transcribed by reading that OCR dump start to finish and keeping only the
+continuous translation, dropping the interleaved notes apparatus (which
+consists of textual-critical discussion — manuscript readings, proposed
+emendations, Hebrew/Greek/Latin retroversions — not fit for a general
+reading text). Charles' own bracket conventions are preserved: (parentheses)
+for words he supplied for sense that are not literally in the Latin MS,
+[square brackets] for words he judged secondary/interpolated. The Latin
+manuscript itself breaks off mid-sentence at XII.13 — this is not a
+transcription error, the text is genuinely incomplete.
+
+Output: biblia/modules/extracanonico/asuncion-moises/{manifest.json,entries.json}.
+"""
+
+from __future__ import annotations
+
+import json
+
+OUT_DIR = "biblia/modules/extracanonico/asuncion-moises"
+
+CHAPTERS = {
+    1: "1. The Testament of Moses, even the things which he commanded in the "
+       "one hundred and twentieth year of his life, that is the two thousand "
+       "five hundredth year from the creation of the world, when the people "
+       "had gone forth after the Exodus that was made by Moses to Amman "
+       "beyond the Jordan, in the prophecy that was made by Moses in the "
+       "book Deuteronomy: 6. and he called to him Joshua the son of Nun, a "
+       "man approved of the Lord, that he might be 7. the minister of the "
+       "people and of the tabernacle of the testimony with all its holy "
+       "things, and that he 8. might bring the people into the land given "
+       "to their fathers, that it should be given to them according to the "
+       "covenant and the oath, which He spake in the tabernacle to give (it) "
+       "by Joshua: saying to Joshua 10. these words: '(Be strong) and of a "
+       "good courage so as to do with thy might all that has been commanded "
+       "12. that thou mayst be blameless unto God.' So saith the Lord of the "
+       "world. For He hath created 13. the world on behalf of His people. "
+       "But He was not pleased to manifest this purpose of creation from the "
+       "foundation of the world, in order that the Gentiles might thereby be "
+       "convicted, yea to their own 14. humiliation might by (their) "
+       "arguments convict one another. Accordingly He designed and devised "
+       "me, and He prepared me before the foundation of the world, that I "
+       "should be the mediator of His 15. covenant. And now I declare unto "
+       "thee that the time of the years of my life is fulfilled and I am "
+       "16. passing away to sleep with my fathers even in the presence of "
+       "all the people. And receive thou this 17. writing that thou mayst "
+       "know how to preserve the books which I shall deliver unto thee: and "
+       "thou shalt set these in order and anoint them with oil of cedar and "
+       "put them away in earthen vessels in 18. the place which He made from "
+       "the beginning of the creation of the world, that His name should be "
+       "called upon until the day of repentance in the visitation wherewith "
+       "the Lord will visit them in the consummation of the end of the days.",
+    2: "1. And now they shall go by means of thee into the land which He "
+       "determined and promised to give to 2. their fathers, in the which "
+       "thou shalt bless and give to them individually and confirm unto "
+       "them their inheritance in me and establish for them the kingdom, "
+       "and thou shalt appoint them prefectures 3. according to the good "
+       "pleasure of their Lord in judgement and righteousness. And it shall "
+       "come to pass five years after they enter into the land, that "
+       "thereafter they shall be ruled by chiefs and 4. kings for eighteen "
+       "years, and during nineteen years the ten tribes shall break away. "
+       "And the twelve tribes shall go down and transfer the tabernacle of "
+       "the testimony. Then the God of heaven will make the court of His "
+       "tabernacle and the tower of His sanctuary, and the two holy tribes "
+       "shall 5. be (there) established: but the ten tribes shall establish "
+       "kingdoms for themselves according to their own ordinances. 6. And "
+       "they shall offer sacrifices throughout twenty years: 7. and seven "
+       "shall entrench the walls, and I will protect nine, but four shall "
+       "transgress the covenant of the Lord, and profane the 8. oath which "
+       "the Lord made with them. And they shall sacrifice their sons to "
+       "strange gods, and they 9. shall set up idols in the sanctuary, to "
+       "worship them. And in the house of the Lord they shall work impiety "
+       "and engrave every form of beast, even many abominations.",
+    3: "1. And in those days a king from the east shall come against them "
+       "and his cavalry shall cover their 2. land. And he shall burn their "
+       "colony with fire together with the holy temple of the Lord, and he "
+       "shall 3. carry away all the holy vessels. And he shall cast forth "
+       "all the people, and he shall take them to the 4. land of his "
+       "nativity, yea he shall take the two tribes with him. Then the two "
+       "tribes shall call upon the 5. ten tribes, and shall march as a "
+       "lioness on the dusty plains, being hungry and thirsty. And they "
+       "shall cry aloud: 'Righteous and holy is the Lord, for, inasmuch as "
+       "ye have sinned, we too, in like manner, 6. have been carried away "
+       "with you, together with our children.' Then the ten tribes shall "
+       "mourn on 7. hearing the reproaches of the two tribes, and they shall "
+       "say: 'What have we done unto you, 8. brethren? Has not this "
+       "tribulation come on all the house of Israel?' And all the tribes "
+       "shall mourn, 9. crying unto heaven and saying: 'God of Abraham, God "
+       "of Isaac and God of Jacob, remember Thy covenant which Thou didst "
+       "make with them, and the oath which Thou didst swear unto them by "
+       "10. Thyself, that their seed should never fail from the land which "
+       "Thou hast given them.' Then they 11. shall remember me, saying, in "
+       "that day, tribe unto tribe and each man unto his neighbour: 'Is not "
+       "this that which Moses did then declare unto us in prophecies, who "
+       "suffered many things in Egypt 12. and in the Red Sea and in the "
+       "wilderness during forty years: and assuredly called heaven and "
+       "earth to witness against us, that we should not transgress His "
+       "commandments, in the which he was 13. a mediator unto us? Behold "
+       "these things have befallen us after his death according to his "
+       "declaration, as he declared to us at that time, yea behold these "
+       "have taken place even to our being carried away 14. captive into "
+       "the country of the east.' Who shall be also in bondage for about "
+       "seventy and seven years.",
+    4: "1. Then there shall enter one who is over them, and he shall spread "
+       "forth his hands, and kneel upon his 2. knees and pray on their "
+       "behalf saying: 'Lord of all, King on the lofty throne, who rulest "
+       "the world, and didst will that this people should be Thine elect "
+       "people, then (indeed) Thou didst will that Thou 3. shouldst be "
+       "called their God, according to the covenant which Thou didst make "
+       "with their fathers. And yet they have gone in captivity in another "
+       "land with their wives and their children, 4. and (go) around the "
+       "gates of strange peoples where there is great vanity. Regard and "
+       "have compassion on them, O Lord of heaven.' 5. Then God will "
+       "remember them on account of the covenant which He made with their "
+       "fathers, and He will manifest His compassion in those times also. "
+       "6. And He will put it into the mind of a king (Cyrus) to have "
+       "compassion on them, and he shall send them off to their land 7. and "
+       "country. Then some portions of the tribes shall go up and they "
+       "shall come to their appointed place, and they shall anew surround "
+       "the place with walls. 8. And the two tribes shall continue in their "
+       "prescribed faith, sad and lamenting because they will not be able "
+       "to offer sacrifices to the Lord of their 9. fathers. And the ten "
+       "tribes shall increase and multiply among the Gentiles during the "
+       "time of their captivity.",
+    5: "1. And when the times of chastisement draw nigh and vengeance "
+       "arises through the kings who share 2. in their guilt and punish "
+       "them, they themselves also shall be divided as to the truth. "
+       "3. Wherefore it hath been said: 'They shall turn aside from "
+       "righteousness and approach iniquity, and they shall defile with "
+       "pollutions the house of their worship,' and 'they shall go "
+       "a-whoring after 4. strange gods.' For they shall not follow the "
+       "truth of God, but some shall pollute the altar with the (very) "
+       "gifts which they offer to the Lord, who are not priests but "
+       "slaves, sons of slaves. 5. And many in those times shall have "
+       "respect unto desirable persons and receive gifts, and pervert "
+       "judgement. 6. And on this account the colony and the borders of "
+       "their habitation shall be filled with lawless deeds and iniquities: "
+       "those who wickedly depart from the Lord shall be judges: they shall "
+       "be ready to judge for money as each may wish.",
+    6: "1. Then there shall be raised up unto them kings bearing rule, and "
+       "they shall call themselves priests of 2. the Most High God: they "
+       "shall assuredly work iniquity in the holy of holies. And an "
+       "insolent king shall succeed them, who will not be of the race of "
+       "the priests, a man bold and shameless, 3. and he shall judge them "
+       "as they shall deserve. And he shall cut off their chief men with "
+       "the sword, and shall 4. destroy them in secret places, so that no "
+       "one may know where their bodies are. He shall slay the 5. old and "
+       "the young, and he shall not spare. Then the fear of him shall be "
+       "bitter unto them in their 6. land. And he shall execute judgements "
+       "on them as the Egyptians executed upon them, during 7. thirty and "
+       "four years, and he shall punish them. And he shall beget children, "
+       "(who) succeeding him 8. shall rule for shorter periods. Into their "
+       "parts cohorts and a powerful king of the west shall come, 9. who "
+       "shall conquer them: and he shall take them captive, and burn a part "
+       "of their temple with fire, (and) shall crucify some around their "
+       "colony.",
+    7: "1. And when this is done the times shall be ended, in a moment the "
+       "(second) course shall be (ended), 2. the four hours shall come. "
+       "3. And, in the time of these, destructive and 4. impious men shall "
+       "rule, saying that they are just. And these shall stir up the poison "
+       "of their minds, being treacherous men, self-pleasers, dissemblers "
+       "in all their own affairs and lovers of banquets at 5. every hour of "
+       "the day, gluttons, gourmands... 6. Devourers of the goods of the "
+       "(poor) saying that 7. they do so on the ground of their justice, "
+       "but in reality to destroy them, complainers, deceitful, concealing "
+       "themselves lest they should be recognized, impious, filled with "
+       "lawlessness and iniquity 8. from sunrise to sunset: saying: 'We "
+       "shall have feastings and luxury, eating and drinking, and we "
+       "9. shall esteem ourselves as princes.' And though their hands and "
+       "their minds touch unclean things, yet 10. their mouth shall speak "
+       "great things, and they shall say furthermore: 'Do not touch me lest "
+       "thou shouldst pollute me in the place (where I stand)...'",
+    8: "1. And there shall come upon them a second visitation and wrath, "
+       "such as has not befallen them from the beginning until that time, "
+       "in which He will stir up against them the king of the kings of the "
+       "earth and one that ruleth with great power, who shall crucify those "
+       "who confess to their circumcision: 2. and those who conceal (it) he "
+       "shall torture and deliver them up to be bound and led into prison. "
+       "3. And their wives shall be given to the gods among the Gentiles, "
+       "and their young sons shall be operated 4. on by the physicians in "
+       "order to bring forward their foreskin. And others amongst them "
+       "shall be punished by tortures and fire and sword, and they shall be "
+       "forced to bear in public their idols, polluted 5. as they are like "
+       "those who keep them. And they shall likewise be forced by those who "
+       "torture them to enter their inmost sanctuary, and they shall be "
+       "forced by goads to blaspheme with insolence the word, finally after "
+       "these things the laws and what they had above their altar.",
+    9: "1. Then in that day there shall be a man of the tribe of Levi, "
+       "whose name shall be Taxo, who having 2. seven sons shall speak to "
+       "them exhorting (them): 'Observe, my sons, behold a second ruthless "
+       "(and) unclean visitation has come upon the people, and a "
+       "punishment merciless and far exceeding the first. 3. For what "
+       "nation or what region or what people of those who are impious "
+       "towards the Lord, who 4. have done many abominations, have "
+       "suffered as great calamities as have befallen us? Now, therefore, "
+       "my sons, hear me: for observe and know that neither did the "
+       "fathers nor their forefathers 5. tempt God, so as to transgress "
+       "His commands. And ye know that this is our strength, and thus we "
+       "6. will do. Let us fast for the space of three days and on the "
+       "fourth let us go into a cave which is in the field, and let us die "
+       "rather than transgress the commands of the Lord of Lords, the God "
+       "of our 7. fathers. For if we do this and die, our blood shall be "
+       "avenged before the Lord.'",
+    10: "1. And then His kingdom shall appear throughout all His creation, "
+        "and then Satan shall be no more, and sorrow shall depart with "
+        "him. 2. Then the hands of the angel shall be filled who has been "
+        "appointed chief, and he shall forthwith avenge them of their "
+        "enemies. 3. For the Heavenly One will arise from His royal "
+        "throne, and He will go forth from His holy habitation with "
+        "indignation and wrath on account of His sons. 4. And the earth "
+        "shall tremble: to its confines shall it be shaken: and the high "
+        "mountains shall be made low and the hills shall be shaken and "
+        "fall. 5. And the horns of the sun shall be broken and he shall be "
+        "turned into darkness; and the moon shall not give her light, and "
+        "be turned wholly into blood, and the circle of the stars shall be "
+        "disturbed. 6. And the sea shall retire into the abyss, and the "
+        "fountains of waters shall fail, and the rivers shall dry up. "
+        "7. For the Most High will arise, the Eternal God alone, and He "
+        "will appear to punish the Gentiles, and He will destroy all their "
+        "idols. 8. Then thou, O Israel, shalt be happy, and thou shalt "
+        "[mount upon the necks and wings of the eagle, and they shall be "
+        "ended]. 9. And God will exalt thee, and He will cause thee to "
+        "approach to the heaven of the stars, [in the place of their "
+        "habitation]. 10. And thou shalt look from on high and shalt see "
+        "thy enemies in Ge(henna), and thou shalt recognize them and "
+        "rejoice, and thou shalt give thanks and confess thy Creator. "
+        "11, 12. And do thou, Joshua (the son of) Nun, keep these words "
+        "and this book; for from my death 13. [assumption] until His "
+        "advent there shall be two hundred and fifty times (i.e. 1,750 "
+        "years). And this is the course of the times 14. they shall "
+        "pursue till they are consummated. And I shall go to sleep with "
+        "my fathers. Wherefore, 15. Joshua thou (son of) Nun, (be strong "
+        "and) be of good courage; (for) God hath chosen (thee) to be "
+        "minister in the same covenant.",
+    11: "1. And when Joshua had heard the words of Moses that were so "
+        "written in his writing all that he had before said, he rent his "
+        "clothes and cast himself at Moses' feet. 2. And Moses comforted "
+        "him and 3, 4. wept with him. And Joshua answered him and said: "
+        "'Why dost thou comfort me, (my) lord Moses? And how shall I be "
+        "comforted in regard to the bitter word which thou hast spoken "
+        "which has gone forth from thy mouth, which is full of tears and "
+        "lamentation, in that thou departest from 5, 6. this people? (But "
+        "now) what place shall receive thee? Or what shall be the sign "
+        "that marks (thy) 7. sepulchre? Or who shall dare to move thy body "
+        "from thence as that of a mere man from place to 8. place? For all "
+        "men when they die have according to their age their sepulchres "
+        "on earth; but thy sepulchre is from the rising to the setting "
+        "sun, and from the south to the confines of the north: all "
+        "9, 10. the world is thy sepulchre. My lord, thou art departing, "
+        "and who shall feed this people? Or who 11. is there that shall "
+        "have compassion on them and who shall be their guide by the way? "
+        "Or who shall pray for them, not omitting a single day, in order "
+        "that I may lead them into the land of their fore- 12. fathers? "
+        "How therefore am I to foster this people as a father (his) only "
+        "son, or as a mistress her daughter, a virgin who is being "
+        "prepared to be given to the husband whom she will revere, while "
+        "she guards her person from the sun and (takes care) that her "
+        "feet are not unshod for running upon the 13. ground. (And how) "
+        "shall I supply them with food and drink according to the "
+        "pleasure of their 14. will? For of them there shall be 600,000 "
+        "(men), for these have multiplied to this degree through "
+        "15. thy prayers, (my) lord Moses. And what wisdom or "
+        "understanding have I that I should judge or 16. answer by word "
+        "in the house (of the Lord)? And the kings of the Amorites also "
+        "when they hear that we are attacking them, believing that there "
+        "is no longer among them the sacred spirit, manifold and "
+        "incomprehensible, who was worthy of the Lord, the lord of the "
+        "word, who was faithful in 17. all things, God's chief prophet "
+        "throughout the earth, the most perfect teacher in the world, "
+        "shall say \"Let us go against them. If the enemy have but once "
+        "wrought impiously against their Lord, they have no advocate to "
+        "offer prayers on their behalf to the Lord, like Moses the great "
+        "messenger, who every hour day and night had his knees fixed to "
+        "the earth, praying and looking for help to Him that ruleth all "
+        "18. the world with compassion and righteousness, reminding Him "
+        "of the covenant of the fathers and propitiating the Lord with "
+        "the oath.\" For they shall say: \"He is not with them: let us go "
+        "19. therefore and destroy them from off the face of the earth.\" "
+        "What shall then become of this people, my lord Moses?'",
+    12: "1, 2. And when Joshua had finished (these) words, he cast himself "
+        "again at the feet of Moses. And Moses took his hand and raised "
+        "him into the seat before him, and answered and said unto him: "
+        "3, 4. 'Joshua, do not despise thyself, but set thy mind at ease, "
+        "and hearken to my words. All the nations which are in the earth "
+        "God hath created, and us, He hath foreseen them and us from the "
+        "beginning of the creation of the earth unto the end of the age, "
+        "and nothing has been neglected by Him even to 5. the least "
+        "thing, but all things He hath foreseen and caused all to come "
+        "forth. (Yea) all things which are to be in this earth the Lord "
+        "hath foreseen and lo! they are brought forward (into the light). "
+        "6, 7. (The Lord) hath on their behalf appointed me to (pray) for "
+        "their sins and (make intercession) for them. For not for any "
+        "virtue or strength of mine, but of His good pleasure have His "
+        "8. compassion and longsuffering fallen to my lot. For I say unto "
+        "you, Joshua: it is not on account of the 9. godliness of this "
+        "people that thou shalt root out the nations. The lights of the "
+        "heaven, the foundations of the earth have been made and approved "
+        "by God and are under the signet ring of His right 10. hand. "
+        "Those, therefore, who do and fulfil the commandments of God "
+        "shall increase and be prospered: 11. but those who sin and set "
+        "at nought the commandments shall be without the blessings before "
+        "mentioned, 12. and they shall be punished with many torments by "
+        "the nations. But wholly to root out and destroy them is not "
+        "permitted. 13. For God will go forth, who has foreseen all "
+        "things for ever, and His covenant has been established and by "
+        "the oath which...",
+}
+
+NOTE_HTML = """
+<p><em>El manuscrito latino se interrumpe abruptamente a mitad de frase en este punto (XII.13) — no es un error de transcripción. Es el único testimonio conocido de la obra; el resto se perdió.</em></p>
+""".strip()
+
+EDITORIAL_NOTE_HTML = """
+<p><strong>Nota editorial de Verbo.</strong> La llamada "Asunción de Moisés" es en realidad, según el consenso de los estudiosos desde el propio R.H. Charles, el <strong>Testamento de Moisés</strong> — un relato en primera persona de las instrucciones finales de Moisés a Josué antes de morir, en el estilo de los "testamentos" de despedida judíos (cf. los Testamentos de los XII Patriarcas). Escrito en hebreo o arameo por un judío fariseo "quietista" entre los años 7 y 30 d.C. — es decir, durante la vida de Jesús — y conservado hoy solo en una traducción latina fragmentaria del siglo VI, descubierta por Ceriani en la Biblioteca Ambrosiana de Milán en 1861.</p>
+<p>El título "Asunción" corresponde en realidad a una <strong>obra distinta y hoy perdida</strong>, que narraba la muerte y "asunción" (traslado) sobrenatural del cuerpo de Moisés. De esa obra perdida solo sobreviven citas indirectas en escritores cristianos antiguos — y una de ellas es precisamente <strong>Judas 9</strong>: "Pero cuando el arcángel Miguel contendía con el diablo, disputando por el cuerpo de Moisés, no se atrevió a proferir juicio de maldición contra él, sino que dijo: El Señor te reprenda." Ese episodio (Miguel disputando con el diablo por el cuerpo de Moisés) no aparece en el texto del Testamento que se conserva y aquí se presenta — pertenecía a la sección perdida de la "Asunción" propiamente dicha. Padres como Orígenes (<em>De Principiis</em> III.2.1) y Clemente de Alejandría atestiguan haber conocido esa obra.</p>
+<p><strong>Citar no es canonizar.</strong> Igual que con 1 Enoc, el uso que Judas hace de una tradición extracanónica sobre Moisés no equivale a reconocerla como Escritura — el mismo principio con el que Pablo cita a los poetas paganos Arato y Epiménides (Hechos 17:28; Tito 1:12) sin canonizarlos. Padres como Orígenes discutieron abiertamente esta obra sin tratarla como inspirada; nunca fue seriamente propuesta para el canon del Antiguo Testamento, a diferencia de 1 Enoc, que sí gozó de aprecio en ciertos círculos (Tertuliano) antes de ser descartado también.</p>
+<p>Traducción: R.H. Charles (1897/1913), texto en inglés de dominio público. Fuente: OCR de la edición Oxford 1913, ya que ni Wikisource ni el espejo de CCEL conservan una transcripción limpia de esta obra — ver nota del equipo de Verbo en el manifiesto. Los corchetes <strong>[ ]</strong> marcan palabras que Charles consideró interpolaciones tardías; los paréntesis <strong>( )</strong> marcan palabras que él añadió para completar el sentido de un texto latino dañado.</p>
+""".strip()
+
+
+def main() -> None:
+    entries = [{
+        "id": "00-nota-editorial",
+        "titulo": "Nota editorial",
+        "capituloNumero": 0,
+        "content": EDITORIAL_NOTE_HTML,
+    }]
+    for n in sorted(CHAPTERS):
+        body = f"<p>{CHAPTERS[n]}</p>"
+        if n == 12:
+            body += NOTE_HTML
+        entries.append({
+            "id": f"asuncion-moises-{n}",
+            "titulo": f"Capítulo {n}",
+            "capituloNumero": n,
+            "content": body,
+        })
+
+    with open(f"{OUT_DIR}/entries.json", "w", encoding="utf-8") as f:
+        json.dump({"entries": entries}, f, ensure_ascii=False, indent=None)
+
+    manifest = {
+        "schemaVersion": 2,
+        "id": "asuncion-moises",
+        "type": "extracanonico",
+        "name": "El Testamento de Moisés (Asunción de Moisés)",
+        "abbreviation": "As. Moisés",
+        "language": "en",
+        "author": "Anónimo (fariseo quietista)",
+        "translator": "R.H. Charles (1897/1913)",
+        "year": 15,
+        "coverage": {"start": 7, "end": 30},
+        "description": "Testamento final de Moisés a Josué, citado en Judas 9 (episodio de la disputa entre Miguel y el diablo, perteneciente a la sección hoy perdida de la obra). Traducción inglesa de dominio público de R.H. Charles.",
+        "license": "Dominio público (traducción original de 1897/1913, sin aviso de copyright renovado).",
+        "sourceUrl": "https://archive.org/details/apocryphapseudep02charuoft",
+        "sourceNote": "Transcripción propia de Verbo a partir del OCR de archive.org (apocryphapseudep02charuoft_djvu.txt, pp. 407-424): ni el espejo de CCEL (otpseudepig) ni Wikisource conservan esta obra en HTML limpio, a diferencia de 1 Enoc y Jubileos. El aparato crítico filológico de Charles (interlineado por página con la traducción en el escaneo) se omitió; se conservó únicamente el texto corrido de lectura y las marcas de corchetes/paréntesis del propio Charles.",
+        "entriesFile": "entries.json",
+        "totalEntries": len(entries),
+        "navegacion": "capitular",
+    }
+    with open(f"{OUT_DIR}/manifest.json", "w", encoding="utf-8") as f:
+        json.dump(manifest, f, ensure_ascii=False, indent=2)
+    print(f"Wrote {len(entries)} entries to {OUT_DIR}")
+
+
+if __name__ == "__main__":
+    main()

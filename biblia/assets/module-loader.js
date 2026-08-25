@@ -481,6 +481,40 @@ const VerboModules = (() => {
     }
   }
 
+  // Literatura Extracanónica (apócrifos/pseudoepígrafos del AT: 1 Enoc,
+  // Asunción de Moisés, Jubileos) — mismo patrón exacto que
+  // loadCostumbres/loadCostumbresShelf (entriesFile + shelf.json propio), en
+  // su propia sección de la app. No es comentario verso-a-versículo: es
+  // lectura corrida como patristic/costumbres. Ver registry.extracanonico /
+  // modules/extracanonico/shelf.json.
+  async function loadExtracanonico(workId = null) {
+    const registry = await getJSON('modules/registry.json');
+    const paths = workId
+      ? (registry.extracanonico || []).filter(p => p.includes('/' + workId + '/') || p.endsWith('/' + workId + '/manifest.json'))
+      : (registry.extracanonico || []);
+    for (const path of paths) {
+      const manifestPath = `modules/${path}`;
+      try {
+        const manifest = await getJSON(manifestPath);
+        const data = await getJSON(resolveFromManifest(manifestPath, manifest.entriesFile));
+        return { manifest, entries: data.entries || [] };
+      } catch (error) {
+        console.warn(`Extracanónico: obra omitida ${manifestPath}`, error);
+      }
+    }
+    return null;
+  }
+
+  async function loadExtracanonicoShelf() {
+    try {
+      const data = await getJSON('modules/extracanonico/shelf.json');
+      return data.volumes || [];
+    } catch (error) {
+      console.warn('Estante de Literatura Extracanónica: metadata omitida', error);
+      return [];
+    }
+  }
+
   // Diccionarios bíblicos alfabéticos (Easton/Smith/Hitchcock) — mismo patrón
   // exacto que loadCostumbres/loadCostumbresShelf (entriesFile + shelf.json
   // propio), en su propia sección de la app en vez de mezclados con las
@@ -1094,5 +1128,5 @@ const VerboModules = (() => {
     return { manifest, book, chapter:chapterData, alignment, morphology, linguistic };
   }
 
-  return { getCatalog,getBookInfo,resolveBibleBooks,buildChapterData,loadBible,loadRemoteBible,loadCommentary,loadCommentaryIndex,loadLinkedEntries,loadLinkedArticle,loadChurchHistory,loadChurchHistoryShelf,getDictionaryEntry,loadDictionaryEntries,loadDictionaryIndex,loadGospel,loadPatristic,loadPatristicShelf,loadCostumbres,loadCostumbresShelf,loadDiccionarios,loadDiccionariosShelf,loadConversorUnidades,loadOriginalLanguage,searchBible,searchRemoteBible,searchSemanticBible,searchSemanticChurchHistory };
+  return { getCatalog,getBookInfo,resolveBibleBooks,buildChapterData,loadBible,loadRemoteBible,loadCommentary,loadCommentaryIndex,loadLinkedEntries,loadLinkedArticle,loadChurchHistory,loadChurchHistoryShelf,getDictionaryEntry,loadDictionaryEntries,loadDictionaryIndex,loadGospel,loadPatristic,loadPatristicShelf,loadCostumbres,loadCostumbresShelf,loadExtracanonico,loadExtracanonicoShelf,loadDiccionarios,loadDiccionariosShelf,loadConversorUnidades,loadOriginalLanguage,searchBible,searchRemoteBible,searchSemanticBible,searchSemanticChurchHistory };
 })();

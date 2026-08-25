@@ -269,6 +269,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   let diccionariosDocData=null;
   let diccionariosOpenId=null;
   let diccionariosIndexToken=0;
+  // Literatura Extracanónica (1 Enoc, Asunción de Moisés, Jubileos): mismo
+  // patrón de 3 niveles que Costumbres/Diccionarios (estante → índice de la
+  // obra → entrada). Sección propia, no comentario verso-a-versículo.
+  let extracanonicoShelf=null;
+  let extracanonicoOpenWork=null;
+  let extracanonicoDocData=null;
+  let extracanonicoOpenId=null;
+  let extracanonicoIndexToken=0;
   // Conversor de medidas: datos fijos cargados una sola vez (no hay estados
   // de navegación tipo estante/índice, es una calculadora de una sola vista).
   let conversorData=null;
@@ -1084,6 +1092,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(tab==='predicas') renderPredicasPanel();
     if(tab==='historia-notas') renderHistoriaNotasPanel();
     if(tab==='costumbres') renderCostumbresPanel();
+    if(tab==='extracanonico') renderExtracanonicoPanel();
     if(tab==='diccionarios') renderDiccionariosPanel();
     if(tab==='conversor') renderConversorPanel();
     if(tab==='exegesis') renderExegesis(focus || activeVerse());
@@ -5381,6 +5390,296 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
   // ── Fin Costumbres y Tradiciones ────────────────────────────────────────
+
+  // ── Literatura Extracanónica ─────────────────────────────────────────────
+  // Apócrifos/pseudoepígrafos del AT (1 Enoc, Asunción de Moisés, Jubileos)
+  // — mismos 3 niveles y misma infraestructura de traducción bajo demanda
+  // que Costumbres y Tradiciones (ver bloque anterior). No es un comentario
+  // anclado a versículo: es lectura corrida, como patristic/library.
+  function extracanonicoShelfItemHTML(volume){
+    return `<div class="church-shelf__item" data-extracanonico-shelf-volume="${escapeHTML(volume.id)}" tabindex="0" role="group" aria-label="${escapeHTML(volume.titulo)}">
+      <img class="church-shelf__cover" src="${escapeHTML(volume.cover)}" alt="" loading="lazy">
+      <div class="church-shelf__title" data-shelf-title="${escapeHTML(volume.id)}">${escapeHTML(volume.titulo)}</div>
+      <div class="church-shelf__overlay">
+        ${volume.periodo?`<div class="church-shelf__overlay-period" data-shelf-period="${escapeHTML(volume.id)}">${escapeHTML(volume.periodo)}</div>`:''}
+        <p class="church-shelf__overlay-summary" data-shelf-summary="${escapeHTML(volume.id)}">${escapeHTML(volume.resumenBreve||'')}</p>
+        <button type="button" class="church-shelf__read-btn" data-extracanonico-shelf-read="${escapeHTML(volume.id)}">${t('extracanonico.leer')} →</button>
+      </div>
+    </div>`;
+  }
+  function wireExtracanonicoShelf(){
+    els.panelBody.querySelectorAll('[data-extracanonico-shelf-volume]').forEach(item=>{
+      const toggle=()=>item.classList.toggle('church-shelf__item--active');
+      item.addEventListener('click',event=>{ if(event.target.closest('[data-extracanonico-shelf-read]')) return; toggle(); });
+      item.addEventListener('keydown',event=>{
+        if(event.target.closest('[data-extracanonico-shelf-read]')) return;
+        if(event.key==='Enter'||event.key===' '){ event.preventDefault(); toggle(); }
+      });
+    });
+    els.panelBody.querySelectorAll('[data-extracanonico-shelf-read]').forEach(btn=>btn.addEventListener('click',event=>{
+      event.stopPropagation();
+      extracanonicoOpenWork=btn.dataset.extracanonicoShelfRead;
+      extracanonicoOpenId=null;
+      extracanonicoDocData=null;
+      renderExtracanonicoPanel();
+      els.panelBody.scrollTop=0;
+    }));
+  }
+
+  // Índice del buscador rápido del estante: mismo patrón que
+  // costumbresQuickIndex — la primera vez que el usuario busca se cargan las
+  // 3 obras del estante y se cachean tanto el índice de títulos como los
+  // datos completos de cada obra (extracanonicoQuickIndexWorks), para
+  // navegar al instante sin volver a pedir nada por red.
+  let extracanonicoQuickIndexCache=null, extracanonicoQuickIndexPromise=null;
+  const extracanonicoQuickIndexWorks=new Map();
+  function extracanonicoQuickIndex(){
+    if(extracanonicoQuickIndexCache) return extracanonicoQuickIndexCache;
+    if(extracanonicoQuickIndexPromise) return extracanonicoQuickIndexPromise;
+    extracanonicoQuickIndexPromise=(async()=>{
+      if(!extracanonicoShelf){
+        try{ extracanonicoShelf=await VerboModules.loadExtracanonicoShelf(); }
+        catch(error){ console.error(error); extracanonicoShelf=[]; }
+      }
+      const works=await Promise.all(extracanonicoShelf.map(v=>VerboModules.loadExtracanonico(v.id).catch(error=>{ console.warn(error); return null; })));
+      const items=[];
+      works.forEach((data,i)=>{
+        if(!data) return;
+        const volume=extracanonicoShelf[i];
+        extracanonicoQuickIndexWorks.set(volume.id,data);
+        (data.entries||[]).forEach(entry=>{
+          if(entry.capituloNumero===0) return; // nota editorial, no es resultado de búsqueda
+          items.push({
+            label:`${volume.titulo} — ${entry.titulo}`, prefixPart:volume.titulo, titlePart:entry.titulo,
+            quickKey:`${volume.id}:${entry.id}`, workId:volume.id, entryId:entry.id
+          });
+        });
+      });
+      extracanonicoQuickIndexCache=items;
+      return items;
+    })();
+    return extracanonicoQuickIndexPromise;
+  }
+  function selectExtracanonicoQuickResult(item){
+    const cached=extracanonicoQuickIndexWorks.get(item.workId);
+    if(cached) extracanonicoDocData=cached;
+    extracanonicoOpenWork=item.workId;
+    extracanonicoOpenId=item.entryId;
+    renderExtracanonicoPanel();
+  }
+  async function renderExtracanonicoPanel(){
+    els.panelTitle.textContent=t('extracanonico.title');
+    els.panelToolbar.innerHTML='';
+
+    // Nivel 3: entrada abierta dentro de una obra
+    if(extracanonicoOpenWork && extracanonicoOpenId){
+      if(!extracanonicoDocData || extracanonicoDocData.manifest.id!==extracanonicoOpenWork){
+        els.panelBody.innerHTML=emptyState('⌛',t('extracanonico.cargandoObra'));
+        try{ extracanonicoDocData=await VerboModules.loadExtracanonico(extracanonicoOpenWork); }
+        catch(error){ console.error(error); }
+      }
+      if(!extracanonicoDocData){ els.panelBody.innerHTML=emptyState('⚠️',t('extracanonico.errorObra')); return; }
+      renderExtracanonicoEntry();
+      return;
+    }
+
+    // Nivel 2: índice de la obra elegida
+    if(extracanonicoOpenWork){
+      await renderExtracanonicoIndex();
+      return;
+    }
+
+    // Nivel 1: estante de portadas
+    els.side.classList.remove('side-panel--history-expanded');
+    if(!extracanonicoShelf){
+      try{ extracanonicoShelf=await VerboModules.loadExtracanonicoShelf(); }
+      catch(error){ console.error(error); extracanonicoShelf=[]; }
+    }
+    if(!extracanonicoShelf.length){ els.panelBody.innerHTML=emptyState('📜',t('extracanonico.coleccionPreparacion')); return; }
+    const shelfHTML=`<div class="church-shelf">${extracanonicoShelf.map(extracanonicoShelfItemHTML).join('')}</div>`;
+    els.panelBody.innerHTML=`<div class="history-search-autocomplete church-shelf__quicksearch">
+         <input id="extracanonicoQuickSearchInput" class="search-panel-input" type="search" placeholder="${t('extracanonico.buscarPlaceholder')}" autocomplete="off">
+         <div id="extracanonicoQuickSearchPredictions" class="history-predictions"></div>
+       </div>${shelfHTML}`;
+    wireExtracanonicoShelf();
+    applyChurchShelfTranslation(extracanonicoShelf,'extracanonico');
+    wireQuickSearchInput(document.getElementById('extracanonicoQuickSearchInput'), document.getElementById('extracanonicoQuickSearchPredictions'), extracanonicoQuickIndex, selectExtracanonicoQuickResult, {loadingLabel:t('extracanonico.indiceCargando'), sourceLang:'en', moduleId:'extracanonico'});
+  }
+
+  function extracanonicoBackToShelf(){
+    extracanonicoOpenWork=null;
+    extracanonicoOpenId=null;
+    extracanonicoDocData=null;
+    els.side.classList.remove('side-panel--history-expanded');
+    renderExtracanonicoPanel();
+    els.panelBody.scrollTop=0;
+  }
+
+  function openExtracanonicoEntryFromIndex(id){
+    extracanonicoOpenId=id;
+    els.side.classList.add('side-panel--history-expanded');
+    els.side.offsetHeight; // fuerza reflow, mismo patrón que openCostumbresEntryFromIndex
+    renderExtracanonicoEntry();
+    els.panelBody.scrollTop=0;
+  }
+  function wireExtracanonicoIndex(){
+    els.panelBody.querySelectorAll('[data-extracanonico-entry]').forEach(btn=>btn.addEventListener('click',()=>openExtracanonicoEntryFromIndex(btn.dataset.extracanonicoEntry)));
+  }
+  async function renderExtracanonicoIndex(){
+    if(!extracanonicoDocData || extracanonicoDocData.manifest.id!==extracanonicoOpenWork){
+      els.panelBody.innerHTML=emptyState('⌛',t('extracanonico.cargandoObra'));
+      try{ extracanonicoDocData=await VerboModules.loadExtracanonico(extracanonicoOpenWork); }
+      catch(error){ console.error(error); }
+    }
+    if(!extracanonicoDocData){ els.panelBody.innerHTML=emptyState('⚠️',t('extracanonico.errorObra')); return; }
+    els.side.classList.remove('side-panel--history-expanded');
+    els.panelToolbar.innerHTML=`<button class="note-card__copy" id="backToExtracanonicoShelf" type="button">← ${t('extracanonico.volverEstante')}</button>`;
+    document.getElementById('backToExtracanonicoShelf')?.addEventListener('click',extracanonicoBackToShelf);
+
+    const entries=extracanonicoDocData.entries||[];
+    if(!entries.length){ els.panelBody.innerHTML=emptyState('📜',t('extracanonico.sinContenido')); return; }
+    const sorted=[...entries].sort((a,b)=>(a.capituloNumero||0)-(b.capituloNumero||0));
+    // La nota editorial (capituloNumero 0) ya está en español (contenido
+    // propio de Verbo, no de la fuente histórica en inglés) — se etiqueta
+    // con la cadena i18n normal en vez de pasar por el traductor de índice
+    // (ver translateExtracanonicoIndexTitles, que solo recorre entradas
+    // capituloNumero>0).
+    const list=sorted.map(e=>e.capituloNumero===0
+      ? `<button type="button" class="dictionary-library__item" data-extracanonico-entry="${escapeHTML(e.id)}">
+        <span>📖 ${escapeHTML(t('extracanonico.notaEditorial'))}</span>
+      </button>`
+      : `<button type="button" class="dictionary-library__item" data-extracanonico-entry="${escapeHTML(e.id)}">
+        <span data-extracanonico-index-title="${escapeHTML(e.id)}">${escapeHTML(e.titulo)}</span>
+      </button>`).join('');
+    els.panelBody.innerHTML=`<div class="dictionary-library"><div class="dictionary-library__count">${t('padres.seccionesCount',{count:sorted.length-1})}</div><div>${list}</div></div>`;
+    wireExtracanonicoIndex();
+    translateExtracanonicoIndexTitles(extracanonicoDocData);
+  }
+
+  // Traduce cada título del índice por separado, con un pool de workers
+  // concurrentes — mismo patrón que translateCostumbresIndexTitles (evita el
+  // bug de lote único reportado por Juan el 2026-08-13: ver comentario allí).
+  async function translateExtracanonicoIndexTitles(docData){
+    const source=docData.manifest.language||'en';
+    const target=contentLang();
+    if(source===target) return;
+    const labelEls=[...els.panelBody.querySelectorAll('[data-extracanonico-index-title]')];
+    if(!labelEls.length) return;
+    const token=++extracanonicoIndexToken;
+    let index=0;
+    async function worker(){
+      while(index<labelEls.length){
+        if(token!==extracanonicoIndexToken) return;
+        const el=labelEls[index++];
+        if(el.dataset.translated===target) continue;
+        const original=el.textContent;
+        if(!original) continue;
+        const id=el.dataset.extracanonicoIndexTitle;
+        const translated=await translateCommentaryHeader(`extracanonico-index:${docData.manifest.id}:${id}`,'label',original,source,target);
+        if(token!==extracanonicoIndexToken) return;
+        el.textContent=translated;
+        el.dataset.translated=target;
+      }
+    }
+    await Promise.all(Array.from({length:Math.min(4,labelEls.length)},worker));
+  }
+
+  function renderExtracanonicoEntry(){
+    const entry=(extracanonicoDocData.entries||[]).find(e=>e.id===extracanonicoOpenId);
+    if(!entry){ extracanonicoOpenId=null; els.panelBody.innerHTML=emptyState('⚠️',t('extracanonico.entradaNoEncontrada')); return; }
+    const entries=extracanonicoDocData.entries||[];
+    const idx=entries.findIndex(e=>e.id===entry.id);
+    const previous=idx>0?entries[idx-1]:null;
+    const next=idx>=0 && idx<entries.length-1?entries[idx+1]:null;
+    els.panelToolbar.innerHTML=`
+      <button class="note-card__copy" id="backToExtracanonicoIndex" type="button">← ${t('extracanonico.volverIndice')}</button>
+      <button id="extracanonicoExpand" class="history-panel-expand" type="button" aria-pressed="${els.side.classList.contains('side-panel--history-expanded')?'true':'false'}">${els.side.classList.contains('side-panel--history-expanded')?t('historia.vistaCompacta'):t('historia.ampliarLectura')}</button>`;
+    document.getElementById('backToExtracanonicoIndex')?.addEventListener('click',()=>{
+      els.side.classList.remove('side-panel--history-expanded');
+      extracanonicoOpenId=null;
+      renderExtracanonicoPanel();
+      els.panelBody.scrollTop=0;
+    });
+    document.getElementById('extracanonicoExpand')?.addEventListener('click',event=>{
+      const scrollTop=els.panelBody.scrollTop;
+      const expanded=els.side.classList.toggle('side-panel--history-expanded');
+      event.currentTarget.setAttribute('aria-pressed',String(expanded));
+      event.currentTarget.textContent=expanded?t('historia.vistaCompacta'):t('historia.ampliarLectura');
+      requestAnimationFrame(()=>{ els.panelBody.scrollTop=scrollTop; });
+    });
+    // Fase 5 (aparato editorial): la nota fija de la obra (entrada
+    // capituloNumero 0) debe ser visible ANTES del cuerpo del texto sin
+    // importar por dónde navegue el usuario (índice, buscador rápido,
+    // anterior/siguiente) — no basta con que sea el primer ítem del índice,
+    // porque ese primer ítem es saltable. Se repite como aviso plegable
+    // (visible, no forzado a expandirse cada vez) encima de cada capítulo,
+    // salvo cuando la entrada abierta ES la propia nota.
+    const editorialNote=entry.capituloNumero===0 ? null : entries.find(e=>e.capituloNumero===0);
+    const editorialBannerHtml=editorialNote?`<details class="gospel-match" data-extracanonico-editorial-note>
+        <summary style="cursor:pointer;font-weight:600;">${t('extracanonico.notaEditorial')}</summary>
+        <div style="padding-top:8px;" data-extracanonico-editorial-body>${editorialNote.content}</div>
+      </details>`:'';
+    els.panelBody.innerHTML=`<article class="dict-entry history-reader">
+      ${editorialBannerHtml}
+      <div class="dict-entry__term" data-extracanonico-entry-id="${escapeHTML(entry.id)}">${escapeHTML(entry.titulo)}</div>
+      <div class="dict-entry__source">${escapeHTML(extracanonicoDocData.manifest.abbreviation||extracanonicoDocData.manifest.name)}</div>
+      <div class="dict-entry__def" data-extracanonico-entry-id="${escapeHTML(entry.id)}">${entry.content||''}</div>
+      <nav class="history-entry-nav" aria-label="${t('historia.navegacionLectura')}">
+        ${previous?`<button type="button" class="history-entry-nav__button" data-extracanonico-neighbor="${escapeHTML(previous.id)}" data-nav-dir="prev">← ${t('extracanonico.anterior')}</button>`:'<span></span>'}
+        ${next?`<button type="button" class="history-entry-nav__button" data-extracanonico-neighbor="${escapeHTML(next.id)}" data-nav-dir="next">${t('extracanonico.siguiente')} →</button>`:'<span></span>'}
+      </nav>
+    </article>`;
+    els.panelBody.querySelectorAll('[data-extracanonico-neighbor]').forEach(button=>button.addEventListener('click',()=>{
+      extracanonicoOpenId=button.dataset.extracanonicoNeighbor;
+      renderExtracanonicoEntry();
+      els.panelBody.scrollTop=0;
+    }));
+    // La nota editorial (capituloNumero 0) ya está escrita en español por
+    // Verbo, no en el idioma de la fuente histórica del manifiesto — se
+    // traduce con sourceLang fijo 'es' en vez del 'en' de la obra (ver
+    // applyExtracanonicoTranslation). El aviso plegable repetido en cada
+    // capítulo (editorialBannerHtml) se traduce aparte, más abajo.
+    applyExtracanonicoTranslation(entry, entry.capituloNumero===0?'es':null);
+    if(editorialNote) applyExtracanonicoEditorialBanner(editorialNote);
+  }
+
+  async function applyExtracanonicoTranslation(entry, sourceOverride=null){
+    // sourceOverride='es' se usa para la nota editorial (capituloNumero 0):
+    // es contenido propio de Verbo en español, no la fuente histórica en
+    // inglés del manifiesto — mismo patrón que translateCostumbresGroupLabels
+    // (sourceLang fijo 'es' para metadata curada a mano por Juan).
+    const source=sourceOverride||extracanonicoDocData.manifest.language||'en';
+    const target=contentLang();
+    if(!source || source===target) return;
+    const termEl=els.panelBody.querySelector(`.dict-entry__term[data-extracanonico-entry-id="${CSS.escape(entry.id)}"]`);
+    const defEl=els.panelBody.querySelector(`.dict-entry__def[data-extracanonico-entry-id="${CSS.escape(entry.id)}"]`);
+    if(!termEl||!defEl) return;
+    if(termEl.dataset.translated!==target){
+      termEl.dataset.translated='pending';
+      const translatedTitle=await translateCommentaryHeader(`extracanonico:${entry.id}`,'title',entry.titulo,source,target);
+      if(termEl.dataset.translated==='pending'){ termEl.textContent=translatedTitle; termEl.dataset.translated=target; }
+    }
+    if(defEl.dataset.translated!==target){
+      defEl.dataset.translated='pending';
+      const translated=await translateEntry(`extracanonico:${entry.id}`, entry.content||'', source, target);
+      if(defEl.dataset.translated==='pending'){ defEl.innerHTML=translated; defEl.dataset.translated=target; }
+    }
+  }
+
+  // Traduce el aviso plegable de nota editorial que se repite encima de cada
+  // capítulo (ver renderExtracanonicoEntry) — sourceLang fijo 'es' porque es
+  // contenido propio de Verbo, igual que applyExtracanonicoTranslation con
+  // sourceOverride para la nota abierta como entrada.
+  async function applyExtracanonicoEditorialBanner(editorialNote){
+    const target=contentLang();
+    if(target==='es') return;
+    const bodyEl=els.panelBody.querySelector('[data-extracanonico-editorial-body]');
+    if(!bodyEl || bodyEl.dataset.translated===target) return;
+    bodyEl.dataset.translated='pending';
+    const translated=await translateEntry(`extracanonico-banner:${editorialNote.id}`, editorialNote.content||'', 'es', target);
+    if(bodyEl.dataset.translated==='pending'){ bodyEl.innerHTML=translated; bodyEl.dataset.translated=target; }
+  }
+  // ── Fin Literatura Extracanónica ─────────────────────────────────────────
 
   // ── Diccionarios ──────────────────────────────────────────────────────────
   // Diccionarios bíblicos alfabéticos (Easton, Smith, Hitchcock) — antes

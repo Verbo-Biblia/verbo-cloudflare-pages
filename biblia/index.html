@@ -108,6 +108,14 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
           <line x1="12" y1="6.5" x2="12" y2="20.1"/>
         </svg>
       </button>
+      <button class="library-rail__btn" data-tab="extracanonico" data-i18n-attr="title:rail.extracanonico,aria-label:rail.extracanonico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+          <line x1="9" y1="7" x2="15" y2="7"/>
+          <line x1="9" y1="11" x2="15" y2="11"/>
+        </svg>
+      </button>
       <button class="library-rail__btn" data-tab="conversor" data-i18n-attr="title:rail.conversor,aria-label:rail.conversor">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
           <line x1="12" y1="3" x2="12" y2="19"/>
@@ -315,6 +323,10 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="12" y1="3" x2="12" y2="19"/><line x1="5" y1="7" x2="19" y2="7"/><path d="M3 7l3-4 3 4"/><path d="M3 7c0 2 1.3 3.5 3 3.5S9 9 9 7"/><path d="M15 7l3-4 3 4"/><path d="M15 7c0 2 1.3 3.5 3 3.5S21 9 21 7"/><path d="M8 19h8"/><path d="M7 21c0-1 1-2 2-2h6c1 0 2 1 2 2"/></svg>
         <span class="mobile-tool-label" data-i18n="nav.conversor">Conversor de medidas</span>
       </button>
+      <button class="mobile-tool-btn tab-rail__btn" data-tab="extracanonico" type="button" data-i18n-attr="aria-label:nav.extracanonico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/></svg>
+        <span class="mobile-tool-label" data-i18n="nav.extracanonico">Literatura Extracanónica</span>
+      </button>
       <button class="mobile-tool-btn tab-rail__btn" data-tab="predicas" type="button" data-i18n-attr="aria-label:nav.predicas">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M9 13h6"/><path d="M9 17h6"/></svg>
         <span class="mobile-tool-label" data-i18n="nav.predicas">Mis prédicas</span>
@@ -346,10 +358,10 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   <script src="assets/backup.js?v=20260823-no-bump-reapertura"></script>
   <script src="assets/i18n.js?v=20260825-support-verbo"></script>
   <script src="assets/support-verbo.js?v=20260825-1"></script>
-  <script src="assets/module-loader.js?v=20260825-diccionarios-seccion-propia"></script>
+  <script src="assets/module-loader.js?v=20260825-extracanonico"></script>
   <script src="assets/atlas-reference-parser.js?v=20260818-atlas-step2"></script>
   <script src="assets/sync.js?v=20260801-sermon-predicas"></script>
-  <script src="assets/app.js?v=20260825-diccionarios-seccion-propia"></script>
+  <script src="assets/app.js?v=20260825-extracanonico"></script>
   <script src="assets/historia-nota-rapida.js?v=20260805-padres-nota-rapida"></script>
   <script src="assets/tutorial-video.js?v=20260821-tutorial-videos"></script>
 </body>

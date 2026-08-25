@@ -32,7 +32,8 @@
     "historiaNotas": "History notes",
     "costumbres": "Customs & Traditions",
     "diccionarios": "Bible dictionaries",
-    "conversor": "Measurement converter"
+    "conversor": "Measurement converter",
+    "extracanonico": "Extracanonical Literature"
   },
   "nav": {
     "toolsAria": "Study tools",
@@ -55,7 +56,8 @@
     "historiaNotas": "History notes",
     "costumbres": "Customs & Traditions",
     "diccionarios": "Bible dictionaries",
-    "conversor": "Measurement converter"
+    "conversor": "Measurement converter",
+    "extracanonico": "Extracanonical Literature"
   },
   "panel": {
     "defaultTitle": "Panel",
@@ -652,5 +654,22 @@
       "navidad": "Christmas",
       "abstractos_fondos": "Abstract & Backgrounds"
     }
+  },
+  "extracanonico": {
+    "title": "Extracanonical Literature",
+    "cargandoColeccion": "Loading collection…",
+    "coleccionPreparacion": "Extracanonical Literature is in progress. Soon you'll find Old Testament apocrypha and pseudepigrapha here.",
+    "volverEstante": "Back to shelf",
+    "cargandoObra": "Loading work…",
+    "errorObra": "Couldn't load this work.",
+    "sinContenido": "This work doesn't have any indexed content yet.",
+    "volverIndice": "Back to index",
+    "entradaNoEncontrada": "This entry wasn't found.",
+    "anterior": "Previous",
+    "siguiente": "Next",
+    "leer": "Read",
+    "buscarPlaceholder": "Search by work or chapter title…",
+    "indiceCargando": "Loading search index…",
+    "notaEditorial": "Editorial note"
   }
 }
