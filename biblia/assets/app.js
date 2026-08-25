@@ -5147,6 +5147,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const categorias=[
       {id:'israel_antiguo', label:t('costumbres.categoriaIsraelAntiguo')},
       {id:'roma_s1', label:t('costumbres.categoriaRomaS1')},
+      {id:'diccionario_biblico', label:t('costumbres.categoriaDiccionarioBiblico')},
     ];
     const sections=categorias.map(cat=>{
       const volumes=costumbresShelf.filter(v=>v.categoria===cat.id);
