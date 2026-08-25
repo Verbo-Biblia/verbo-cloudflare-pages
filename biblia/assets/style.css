@@ -1089,8 +1089,8 @@ body {
 /* ── Estante de portadas de Historia de la Iglesia ──────────────────────── */
 .church-shelf {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(108px, 1fr));
+  gap: 12px;
   padding: 4px 2px 10px;
 }
 .church-shelf__item {
