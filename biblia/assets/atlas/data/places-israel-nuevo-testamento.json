@@ -436,33 +436,6 @@
     }
   },
   "journeys": {
-    "galilea-ministerio": {
-      "mode": "sites",
-      "color": "#b23a3a",
-      "label": {
-        "es": "Ministerio de Jesús en Galilea",
-        "en": "Jesus’ Ministry in Galilee"
-      },
-      "desc": {
-        "es": "Resalta los principales lugares galileos asociados con el ministerio de Jesús. No pretende ordenar todos los episodios cronológicamente.",
-        "en": "Highlights major Galilean locations associated with Jesus’ ministry. It does not attempt to place every episode in chronological order."
-      },
-      "stops": [
-        "nazaret",
-        "cana",
-        "capernaum",
-        "corazin",
-        "betsaida",
-        "magdala",
-        "tiberiades",
-        "nain"
-      ],
-      "scriptureRefs": [
-        "Matthew 4–18",
-        "Mark 1–9",
-        "Luke 4–9"
-      ]
-    },
     "cesarea-filipo": {
       "mode": "route",
       "color": "#795548",
@@ -507,20 +480,29 @@
       ]
     },
     "semana-final": {
-      "mode": "sites",
+      "mode": "route",
       "color": "#7a1f1f",
       "label": {
         "es": "Semana final y resurrección",
         "en": "Final Week and Resurrection"
       },
       "desc": {
-        "es": "Lugares del mapa vinculados con la semana final y las apariciones posteriores: Betania, Jerusalén y Emaús.",
-        "en": "Locations on this map linked to the final week and later appearances: Bethany, Jerusalem, and Emmaus."
+        "es": "Dos tramos temáticos conectan Betania con Jerusalén durante la semana final y Jerusalén con Emaús después de la resurrección.",
+        "en": "Two thematic segments connect Bethany with Jerusalem during the final week and Jerusalem with Emmaus after the resurrection."
       },
-      "stops": [
-        "betania",
-        "jerusalen",
-        "emaus"
+      "segments": [
+        {
+          "stops": [
+            "betania",
+            "jerusalen"
+          ]
+        },
+        {
+          "stops": [
+            "jerusalen",
+            "emaus"
+          ]
+        }
       ],
       "scriptureRefs": [
         "Matthew 21–28",
