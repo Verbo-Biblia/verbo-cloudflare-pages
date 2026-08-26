@@ -12,10 +12,20 @@ Fecha de pausa: 2026-08-26 (actualizado antes de reiniciar el equipo)
 - No se modificó el esquema, loader, interfaz, Worker, caché ni sistema de
   traducción de Verbo.
 
-## 2. John Trapp — detenido por cobertura incompleta
+## 2. John Trapp — completado (55 de 66 libros, decisión de Juan)
 
-Se completó el inventario TCP y se descargaron temporalmente seis XML para
-inspección. No se generó ni registró ningún módulo Trapp.
+Juan decidió explícitamente publicar la cobertura disponible en vez de
+seguir esperando fuentes CC0 para los 11 libros faltantes ("se sube lo
+que aya, preparalo", 2026-08-26). Módulo:
+`biblia/modules/commentaries/trapp-commentary/`, registrado en
+`registry.json → commentaries` (Trapp no es Padre de la Iglesia; a
+diferencia de Crisóstomo va en la lista normal de comentarios). Nombre:
+"John Trapp — Commentary (55 of 66 books)" — nunca "Complete Commentary".
+18.969 entradas, 22 anomalías de numeración documentadas y corregidas o
+excluidas con evidencia (nunca adivinadas). Detalle completo:
+`review/commentaries/john-trapp/PROVENANCE.md` y `VALIDATION.md`.
+
+Se completó el inventario TCP y se descargaron los seis XML para inspección.
 
 | TCP | Cobertura comprobada | Edición | Bytes | SHA-256 |
 |---|---|---|---:|---|
@@ -53,11 +63,10 @@ modernos ni otros sitios secundarios para rellenar los once libros sin una
 procedencia y licencia del texto digital equivalentes. Tampoco se publicarán
 los 55 libros como `Complete Commentary` sin una decisión editorial explícita.
 
-## Punto exacto de reanudación
+## Punto exacto de reanudación (histórico — ver estado real al final del archivo)
 
-1. Mantener Trapp detenido; decidir posteriormente entre importar los 55
-   libros con un nombre inequívocamente parcial o esperar fuentes CC0 para los
-   once faltantes.
+1. ~~Mantener Trapp detenido~~ — resuelto, ver sección 2 arriba: Juan pidió
+   publicar los 55 libros disponibles, ya hecho.
 2. Lightfoot quedó completado; continuar Wave 1 con Martin Luther,
    *Commentary on Galatians*, edición inglesa abreviada de Theodore Graebner.
 3. No tocar arquitectura de Verbo: cada comentario debe adaptarse al esquema
@@ -132,28 +141,35 @@ completo: `review/commentaries/chrysostom-mateo/PROVENANCE.md` y
 - Probado en navegador real (Chrome vía Playwright): badges por versículo,
   estante, buscador, apertura de homilía y traducción EN→ES bajo demanda,
   todo sin cambios de código ni errores de consola.
-- **Limitación de rendimiento conocida, no resuelta**: el archivo
-  `commentaries/chrysostom-mateo/books/MAT.json` pesa 2,5 MB porque
-  `loadLinkedEntries()` (compartida con "Biblioteca") no tiene un modo
-  índice liviano como sí tiene la lista `commentaries` — se descarga entero
-  la primera vez que se abre cualquier capítulo de Mateo en la sesión. No se
-  tocó esa función compartida sin decisión de Juan. Ver PROVENANCE.md,
-  sección final, para la recomendación completa.
+- **Limitación de rendimiento — resuelta el mismo día**: se extendió
+  `loadLinkedEntries()` con un parámetro opcional `lightweight` (ver
+  `perf(patristic): lightweight index path...`, commit `b0d16280`);
+  `chrysostom-mateo` ahora tiene `books/MAT.index.json` (11,7 KB) y el
+  cálculo del badge por versículo ya no descarga los 2,5 MB completos.
+  Mecanismo disponible para los próximos libros de Crisóstomo.
 
-## Punto exacto de reanudación (Crisóstomo)
+## 6. John Trapp — completado (55 de 66 libros)
 
-Quedan 16 libros de Crisóstomo por el orden ya fijado: Juan, Hechos,
-Romanos, 1–2 Corintios, Gálatas, Efesios, Filipenses, Colosenses,
-1–2 Tesalonicenses, 1–2 Timoteo, Tito, Filemón, Hebreos. Antes de seguir
-con Juan (el siguiente, NPNF1-14), decidir con Juan (usuario) si vale la
-pena invertir en un modo índice liviano para `patristicByVerse` — cada
-libro adicional de Crisóstomo va a repetir el mismo perfil de tamaño
-(homilías largas, ~2-4 MB por libro completo), y ese costo se paga por
-libro, no se acumula entre libros no visitados, pero 17 libros es mucho
-para no revisarlo antes de seguir.
+Ver sección 2 (arriba, actualizada) y
+`review/commentaries/john-trapp/PROVENANCE.md` /`VALIDATION.md`.
 
-Después de Crisóstomo (los 17 libros o los que se decida completar), sigue
-John Gill — Exposition of the Old and New Testaments, verificando primero
-el `.conf` SWORD concreto antes de importar (ver instrucciones originales
-de Wave 1: si el `.conf` no confirma clara y explícitamente dominio público,
-no importar).
+## Estado real y punto de reanudación (2026-08-26, fin de esta sesión)
+
+Orden de Wave 1: Poole ✅ · Trapp ✅ (55/66) · Lightfoot ✅ · Luther ✅ ·
+Crisóstomo 🔄 (solo Mateo, 1 de 17 libros previstos) · Gill ⏳ no iniciado.
+
+Juan pidió explícitamente seguir con **Gill después de Trapp** (no seguir
+de inmediato con los 16 libros restantes de Crisóstomo). Punto de
+reanudación:
+
+1. **Siguiente: John Gill — Exposition of the Old and New Testaments.**
+   Verificar primero el `.conf` SWORD concreto antes de importar nada — si
+   no confirma clara y explícitamente dominio público, no importar (regla
+   original de Wave 1, sin excepciones).
+2. Los 16 libros restantes de Crisóstomo (Juan, Hechos, Romanos, 1–2
+   Corintios, Gálatas, Efesios, Filipenses, Colosenses, 1–2 Tesalonicenses,
+   1–2 Timoteo, Tito, Filemón, Hebreos) quedan pendientes para después de
+   Gill, mismo patrón dual patristic + patristicByVerse ya establecido y
+   el índice liviano ya disponible.
+3. No tocar arquitectura de Verbo salvo necesidad verificada y documentada
+   (como la extensión de `loadLinkedEntries`, quirúrgica y retrocompatible).
