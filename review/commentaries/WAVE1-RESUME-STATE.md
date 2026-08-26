@@ -58,8 +58,8 @@ los 55 libros como `Complete Commentary` sin una decisión editorial explícita.
 1. Mantener Trapp detenido; decidir posteriormente entre importar los 55
    libros con un nombre inequívocamente parcial o esperar fuentes CC0 para los
    once faltantes.
-2. Continuar Wave 1 con J. B. Lightfoot, solamente *Colossians & Philemon*,
-   Project Gutenberg #50857.
+2. Lightfoot quedó completado; continuar Wave 1 con Martin Luther,
+   *Commentary on Galatians*, edición inglesa abreviada de Theodore Graebner.
 3. No tocar arquitectura de Verbo: cada comentario debe adaptarse al esquema
    existente. Si no puede hacerlo fielmente, detenerlo y documentarlo.
 
@@ -67,13 +67,10 @@ El único archivo ajeno/no rastreado observado antes de esta tarea es
 `DIAGNOSTICO-INDEXACION-2026-08-26.md`; debe preservarse y no incluirse en
 commits de comentarios.
 
-## 3. J. B. Lightfoot — trabajo local en curso, todavía no integrado
+## 3. J. B. Lightfoot — completado
 
-La importación de *St. Paul's Epistles to the Colossians and to Philemon* está
-pausada antes de su validación e integración definitiva. No hay cambios en el
-registro de módulos ni commit de Lightfoot.
-
-Archivos de trabajo no rastreados que deben conservarse:
+La importación de *St. Paul's Epistles to the Colossians and to Philemon* se
+completó y validó con la arquitectura existente. Archivos versionados:
 
 - `tools/import_lightfoot_colossians_philemon.py`
 - `review/commentaries/jb-lightfoot/`
@@ -90,26 +87,12 @@ Fuente comprobada:
 - SHA-256:
   `27b4b4c4dbf1f74131abb4e480963ae43739ebb570a3c7b7928ae503c5c27b09`.
 
-Estado técnico pendiente:
-
-1. El importador fue corregido para inferir capítulos desde los anclajes del
-   texto base excluido y recuperar Colosenses 4:1, pero todavía debe
-   regenerarse y validarse después de esa corrección.
-2. Revisar el recorrido editorial para conservar bloques significativos
-   centrados sin duplicar listas o elementos anidados.
-3. Dividir únicamente entradas mayores de unos 18.000 caracteres por bloques
-   HTML semánticos, manteniendo la misma referencia; no modificar cliente,
-   Worker, caché, loader ni esquema de Verbo.
-4. Regenerar el módulo, comprobar cobertura canónica completa de COL y PHM,
-   IDs, referencias, HTML, Unicode/griego y muestras de inicio/medio/final.
-5. Crear `VALIDATION.md`; solo después registrar el manifiesto, ejecutar
-   `tools/build_commentary_index.py` y `tools/build_registry_catalog.py`,
-   comprobar carga y realizar el commit lógico.
-
-Resultado provisional anterior a la última corrección (no tomar como final):
-190 entradas y 1.422.231 bytes; faltaba COL 4:1 y la entrada COL 1:15 excedía
-20.000 caracteres. El módulo generado actual debe considerarse provisional y
-regenerarse mediante el importador, no editarse a mano.
+Resultado final: 195 entradas; cobertura completa de los 95 versículos de
+Colosenses y los 25 de Filemón; 50 entradas editoriales en capítulo 0; índices
+livianos por libro; ninguna entrada supera 18.000 caracteres. Las pruebas web
+y móvil confirmaron selector, indicador de disponibilidad y carga exclusiva
+del libro activo. Detalle completo en
+`review/commentaries/jb-lightfoot/VALIDATION.md`.
 
 Regla reafirmada por el usuario: no modificar nada de Verbo para acomodar un
 comentario. El corpus y su conversión deben ajustarse a las convenciones ya

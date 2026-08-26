@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "id": "lightfoot-colossians-philemon",
+  "type": "commentary",
+  "name": "J. B. Lightfoot — Colossians and Philemon",
+  "abbreviation": "Lightfoot",
+  "language": "en",
+  "author": "J. B. Lightfoot (1828–1889)",
+  "description": "Lightfoot's 1875 revised Greek text commentary, with introductions, notes, and dissertations on Colossians and Philemon.",
+  "license": "Public domain edition; Project Gutenberg eBook #50857",
+  "licenseUrl": "https://www.gutenberg.org/policy/license.html",
+  "sourceUrl": "https://www.gutenberg.org/ebooks/50857",
+  "sourceEdition": "London: Macmillan and Co., 1875; Project Gutenberg #50857, updated 2024-10-22",
+  "publicationYear": 1875,
+  "publicDomain": true,
+  "attribution": "J. B. Lightfoot; digitized by Project Gutenberg Distributed Proofreaders.",
+  "notes": "Continuous Greek epistle text, Project Gutenberg navigation, index, page furniture, and license boilerplate are excluded. Exposition, introductions, dissertations, corrections, Greek quotations, and referenced footnotes are retained.",
+  "books": [
+    {
+      "id": "COL",
+      "name": "Colossians",
+      "file": "books/COL.json",
+      "indexFile": "books/COL.index.json"
+    },
+    {
+      "id": "PHM",
+      "name": "Philemon",
+      "file": "books/PHM.json",
+      "indexFile": "books/PHM.index.json"
+    }
+  ]
+}
