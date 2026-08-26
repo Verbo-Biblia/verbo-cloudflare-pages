@@ -153,23 +153,43 @@ completo: `review/commentaries/chrysostom-mateo/PROVENANCE.md` y
 Ver sección 2 (arriba, actualizada) y
 `review/commentaries/john-trapp/PROVENANCE.md` /`VALIDATION.md`.
 
+## 7. John Gill — detenido, sin fuente utilizable localizada
+
+Juan pidió revisar Gill después de Trapp. El único módulo SWORD/e-Sword de
+Gill fácilmente localizable (`gill.conf`, repo `mjdenham/sword-modules`,
+el mismo que circula en e-Sword/SwordSearcher) declara explícitamente:
+
+```
+About: The New John Gill's Exposition... Modernised and adapted for the
+       computer. Editor: Larry Pierce
+       All Rightes Reserved, Larry Pierce, Winterbourne, Ontario
+```
+
+Sin `DistributionLicense=Public Domain` y con "All Rights Reserved"
+explícito del editor de la versión modernizada — bloqueado por la regla
+original de Wave 1 ("si el .conf no confirma claramente dominio público,
+no importar"). No se encontró una transcripción alternativa CC0/dominio
+público de calidad comparable a EEBO-TCP (la que sí existe para Poole y
+Trapp); la fuente serían escaneos crudos del impreso original de
+1809–1810 sin transcripción moderna verificada. Juan indicó explícitamente
+no querer nada que no esté medianamente digitalizado por ahora ("no
+quiero nada que no este medianamente digitalizado por ahora",
+2026-08-26). **Gill queda detenido sin fecha; no reintentar salvo que
+aparezca una transcripción digital verificable y con licencia clara.**
+
 ## Estado real y punto de reanudación (2026-08-26, fin de esta sesión)
 
 Orden de Wave 1: Poole ✅ · Trapp ✅ (55/66) · Lightfoot ✅ · Luther ✅ ·
-Crisóstomo 🔄 (solo Mateo, 1 de 17 libros previstos) · Gill ⏳ no iniciado.
+Crisóstomo 🔄 (solo Mateo, 1 de 17 libros previstos) · Gill ⏸️ detenido
+(sin fuente utilizable, ver sección 7).
 
-Juan pidió explícitamente seguir con **Gill después de Trapp** (no seguir
-de inmediato con los 16 libros restantes de Crisóstomo). Punto de
-reanudación:
+Punto de reanudación, en orden:
 
-1. **Siguiente: John Gill — Exposition of the Old and New Testaments.**
-   Verificar primero el `.conf` SWORD concreto antes de importar nada — si
-   no confirma clara y explícitamente dominio público, no importar (regla
-   original de Wave 1, sin excepciones).
-2. Los 16 libros restantes de Crisóstomo (Juan, Hechos, Romanos, 1–2
+1. Los 16 libros restantes de Crisóstomo (Juan, Hechos, Romanos, 1–2
    Corintios, Gálatas, Efesios, Filipenses, Colosenses, 1–2 Tesalonicenses,
-   1–2 Timoteo, Tito, Filemón, Hebreos) quedan pendientes para después de
-   Gill, mismo patrón dual patristic + patristicByVerse ya establecido y
-   el índice liviano ya disponible.
+   1–2 Timoteo, Tito, Filemón, Hebreos), mismo patrón dual patristic +
+   patristicByVerse ya establecido y el índice liviano ya disponible.
+2. Gill: solo si Juan aporta o autoriza una fuente digital concreta y
+   verificable con licencia clara (ver sección 7).
 3. No tocar arquitectura de Verbo salvo necesidad verificada y documentada
    (como la extensión de `loadLinkedEntries`, quirúrgica y retrocompatible).
