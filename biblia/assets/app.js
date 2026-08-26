@@ -907,7 +907,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(tab!=='historia') els.side.classList.remove('side-panel--history-expanded');
     els.side.classList.toggle('side-panel--atlas-expanded', tab==='mapas');
     const isSheet=window.innerWidth<=760 && SHEET_TABS.includes(tab);
-    els.side.classList.toggle('side-panel--left', ['historia','padres','licencias','historia-notas','costumbres','diccionarios','conversor','extracanonico'].includes(tab));
+    els.side.classList.toggle('side-panel--left', ['historia','padres','licencias','costumbres','diccionarios','conversor','extracanonico'].includes(tab));
     if(isSheet){
       els.side.dataset.sheet='1';  // CSS aplica translateY(105%) inmediatamente
       els.side.offsetHeight;       // fuerza reflow para que el estado inicial esté fijo
@@ -989,7 +989,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Redirección genérica de destino de renderizado: en modo sermón, el
   // segundo panel (ver "Segundo panel del modo sermón" más abajo) comparte
   // las mismas funciones de renderizado que usa #sidePanel (renderPanel para
-  // 'comentario', renderNotes, renderMapsPanel,
+  // 'comentario', renderMapsPanel,
   // renderPredicasPanel) en vez de duplicarlas. sermonPanelTarget apunta a
   // sus nodos mientras ese panel esté abierto; si es null (todo el resto de
   // la app, siempre) estas funciones devuelven los nodos de siempre de
@@ -1088,9 +1088,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(tab==='diccionario') renderLanguagesPanel(focus || activeVerse());
     if(tab==='historia') renderChurchHistoryPanel();
     if(tab==='padres') renderPadresPanel(focus || activeVerse());
-    if(tab==='notas') renderNotes();
     if(tab==='predicas') renderPredicasPanel();
-    if(tab==='historia-notas') renderHistoriaNotasPanel();
     if(tab==='costumbres') renderCostumbresPanel();
     if(tab==='extracanonico') renderExtracanonicoPanel();
     if(tab==='diccionarios') renderDiccionariosPanel();
@@ -1706,11 +1704,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   // sí. Mapas queda fuera deliberadamente: usa el panel ancho normal y
   // reemplaza los demás paneles incluso dentro del modo predicación.
   // Se reutilizan las funciones de renderizado que ya existían mediante
-  // renderPanel('comentario',…), renderNotes y renderPredicasPanel, a través
-  // del redirect panelTitleEl()/
-  // panelToolbarEl()/panelBodyEl() (ver justo antes de renderPanel), en vez
-  // de duplicar esa lógica.
-  const SERMON_SIDE_PANEL_TABS = ['comparar','comentario','notas','predicas','diccionario'];
+  // renderPanel('comentario',…) y renderPredicasPanel, a través del redirect
+  // panelTitleEl()/panelToolbarEl()/panelBodyEl() (ver justo antes de
+  // renderPanel), en vez de duplicar esa lógica. "notas" no forma parte de
+  // este panel: el ícono se intercepta antes (ver els.tabs.forEach) y abre
+  // siempre el popup unificado de notas, global y fuera de este sistema —
+  // así es el mismo componente en modo estudio y en modo predicación.
+  const SERMON_SIDE_PANEL_TABS = ['comparar','comentario','predicas','diccionario'];
   let sermonPanelTab = null; // pestaña mostrada en este panel; null = cerrado
 
   // Sincronización de referencia (libro/capítulo/versículo) con la pestaña
@@ -1727,7 +1727,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   function sermonPanelTitleFor(tab){
     if(tab==='comparar') return t('nav.compararVersiones');
     if(tab==='comentario') return t('comentario.title');
-    if(tab==='notas') return t('notas.title');
     if(tab==='predicas') return t('predicas.title');
     if(tab==='diccionario') return t('nav.diccionario');
     return '';
@@ -1743,7 +1742,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     panelToolbarEl().innerHTML='';
     if(tab==='comparar') renderSermonCompare(activeVerse());
     else if(tab==='comentario') renderPanel('comentario');
-    else if(tab==='notas') renderNotes();
     else if(tab==='predicas') renderPredicasPanel();
     else if(tab==='diccionario') renderPanel('diccionario');
   }
@@ -2341,148 +2339,368 @@ document.addEventListener('DOMContentLoaded', async () => {
     panelBodyEl().querySelectorAll('[data-delete-predica]').forEach(btn=>btn.addEventListener('click', ()=>deletePredicaWithConfirm(btn.dataset.deletePredica)));
   }
 
-  // ── "Notas de Historia" (Tarea 3): notas + marcadores combinados de Historia
-  // de la Iglesia y Padres Apostólicos. El buscador filtra la lista en vivo en
-  // vez de un dropdown de predicción aparte — la lista de un usuario es chica
-  // (sus propias notas), así que filtrar la lista misma da el mismo resultado
-  // práctico con menos UI que mantener. ──
-  let historiaNotasQuery='';
-  let historiaNotasOpenNoteId=null; // id de la nota en vista de detalle (null = lista)
-  function historiaNotasContextoLabel(item){
+  // ── Popup unificado de notas (reemplaza los tres patrones de UI que
+  // convivían: textarea único de "Mis notas", editor embebido de Padres, y
+  // modal "Nota rápida" + panel "Notas de Historia" separados) por un solo
+  // overlay flotante, arrastrable y redimensionable, con seis pestañas.
+  // Mismo componente en modo estudio y en modo predicación: se intercepta el
+  // click del ícono "notas" ANTES de la rama de modo sermón (ver
+  // els.tabs.forEach más abajo), así nunca pasa por openSermonSidePanel — es
+  // un overlay de nivel superior (document.body), no anidado en #panelBody ni
+  // en #sermonComparePanelBody. Reusa VerboBackup.getNota/setNota (Capítulo,
+  // sin cambios de comportamiento) y getNotas/addNota/getNotaById/
+  // updateNotaById/deleteNotaById (el resto de pestañas). Ver
+  // PLAN-POPUP-NOTAS-UNIFICADO.md para el análisis de migración de datos. ──
+  const NP_TABS=[
+    {id:'capitulo', label:'notasPopup.tabCapitulo'},
+    {id:'historia', label:'notasPopup.tabHistoria'},
+    {id:'costumbres', label:'notasPopup.tabCostumbres'},
+    {id:'extracanonico', label:'notasPopup.tabExtracanonico'},
+    {id:'diccionarios', label:'notasPopup.tabDiccionarios'},
+    {id:'idiomas', label:'notasPopup.tabIdiomas'},
+  ];
+  const NP_TIPOS_POR_TAB={
+    historia:['historia','padres'], costumbres:['costumbres'],
+    extracanonico:['extracanonico'], diccionarios:['diccionarios'], idiomas:['idiomas'],
+  };
+  let npEl=null, npHeaderEl=null, npTabsEl=null, npBodyEl=null;
+  let npActiveTab='capitulo', npOpenNoteId=null, npQuery='';
+  let npDrag=null;
+
+  function npBuild(){
+    if(npEl) return;
+    npEl=document.createElement('div');
+    npEl.className='np-popup';
+    npEl.hidden=true;
+    npEl.innerHTML=`
+      <div class="np-popup__header" id="npHeader">
+        <h3 class="np-popup__title">${t('notasPopup.title')}</h3>
+        <button type="button" class="np-popup__close" id="npClose" aria-label="${t('notasPopup.cerrarAria')}">×</button>
+      </div>
+      <div class="np-popup__tabs" id="npTabsBar"></div>
+      <div class="np-popup__body" id="npBodyEl"></div>`;
+    document.body.appendChild(npEl);
+    // Posición/tamaño inicial, distinto en móvil (casi toda la pantalla) que
+    // en escritorio (ventana chica arriba a la derecha) — una sola vez: a
+    // partir de acá, arrastrar/redimensionar reemplaza estos valores con
+    // estilos inline que persisten mientras dure la sesión de navegación
+    // (no hace falta guardarlos en ningún lado para eso).
+    if(window.matchMedia('(max-width: 760px)').matches){
+      Object.assign(npEl.style,{left:'8px',right:'8px',top:'64px',bottom:'8px',width:'auto',height:'auto'});
+    } else {
+      Object.assign(npEl.style,{top:'90px',right:'24px',width:'380px',height:'520px'});
+    }
+    npHeaderEl=npEl.querySelector('#npHeader');
+    npTabsEl=npEl.querySelector('#npTabsBar');
+    npBodyEl=npEl.querySelector('#npBodyEl');
+    npEl.querySelector('#npClose').addEventListener('click', closeNotasPopup);
+    // Arrastre por pointer events (mousedown+touch unificados) — no existe
+    // ningún precedente de drag en el repo, se construye desde cero. El
+    // resize usa la propiedad nativa CSS resize:both (ver notas-popup.css) en
+    // vez de lógica propia: cubre "redimensionable desde al menos una
+    // esquina" sin código adicional que pueda introducir bugs.
+    npHeaderEl.addEventListener('pointerdown', npDragStart);
+    npHeaderEl.addEventListener('pointermove', npDragMove);
+    npHeaderEl.addEventListener('pointerup', npDragEnd);
+    npHeaderEl.addEventListener('pointercancel', npDragEnd);
+  }
+  function npDragStart(e){
+    if(e.target.closest('.np-popup__close')) return;
+    const rect=npEl.getBoundingClientRect();
+    npEl.style.left=rect.left+'px'; npEl.style.top=rect.top+'px';
+    npEl.style.right='auto'; npEl.style.bottom='auto';
+    npDrag={dx:e.clientX-rect.left, dy:e.clientY-rect.top};
+    npHeaderEl.setPointerCapture(e.pointerId);
+  }
+  function npDragMove(e){
+    if(!npDrag) return;
+    const left=Math.min(Math.max(0,e.clientX-npDrag.dx), window.innerWidth-Math.min(120,npEl.offsetWidth));
+    const top=Math.min(Math.max(0,e.clientY-npDrag.dy), window.innerHeight-40);
+    npEl.style.left=left+'px'; npEl.style.top=top+'px';
+  }
+  function npDragEnd(){ npDrag=null; }
+
+  function npRenderTabs(){
+    npTabsEl.innerHTML=NP_TABS.map(tabDef=>`<button type="button" class="np-popup__tab${tabDef.id===npActiveTab?' np-popup__tab--active':''}" data-np-tab="${tabDef.id}">${t(tabDef.label)}</button>`).join('');
+    npTabsEl.querySelectorAll('[data-np-tab]').forEach(btn=>btn.addEventListener('click',()=>{
+      npActiveTab=btn.dataset.npTab; npOpenNoteId=null; npQuery='';
+      npRenderTabs(); npRenderBody();
+    }));
+  }
+
+  function openNotasPopup(){
+    npBuild();
+    npEl.hidden=false;
+    document.querySelectorAll('.tab-rail__btn[data-tab="notas"]').forEach(b=>b.classList.add('tab-rail__btn--active'));
+    npRenderTabs();
+    npRenderBody();
+  }
+  function closeNotasPopup(){
+    if(!npEl) return;
+    npEl.hidden=true;
+    document.querySelectorAll('.tab-rail__btn[data-tab="notas"]').forEach(b=>b.classList.remove('tab-rail__btn--active'));
+  }
+  function toggleNotasPopup(){ (npEl && !npEl.hidden) ? closeNotasPopup() : openNotasPopup(); }
+
+  // ── "Entrada actual" por pestaña: lee el mismo estado interno que ya usan
+  // los paneles de lectura de cada sección (evita el problema que sorteaba
+  // historia-nota-rapida.js leyendo atributos del DOM para esquivar el
+  // aislamiento de IIFE — acá no hace falta, este código vive en la misma
+  // función que ese estado). Usado por el botón "Nueva nota" y para fijar
+  // contexto.obra/workId al crear una nota nueva. ──
+  function npCurrentEntry(tab){
+    if(tab==='historia'){
+      if(activeTab==='historia' && churchHistoryOpenId){
+        const entry=(churchHistoryEntries||[]).find(e=>e.id===churchHistoryOpenId);
+        if(!entry) return null;
+        return { tipo:'historia', ref:churchHistoryOpenId, titulo:entry.title, contexto:{ obra:churchHistoryBookLabel(churchHistoryBookKey(entry)) } };
+      }
+      if(activeTab==='padres' && patristicMode==='docs' && patristicOpenDoc && patristicOpenSection!=null && patristicDocData){
+        const section=(patristicDocData.sections||[]).find(s=>s.n===patristicOpenSection);
+        if(!section) return null;
+        return { tipo:'padres', ref:`${patristicOpenDoc}-${patristicOpenSection}`, titulo:section.title, contexto:{ obra:patristicDocData.manifest.abbreviation||patristicDocData.manifest.name, capitulo:section.title } };
+      }
+      return null;
+    }
+    if(tab==='costumbres'){
+      if(!costumbresOpenId || !costumbresDocData) return null;
+      const entry=(costumbresDocData.entries||[]).find(e=>e.id===costumbresOpenId);
+      if(!entry) return null;
+      return { tipo:'costumbres', ref:costumbresOpenId, titulo:entry.titulo, contexto:{ obra:costumbresDocData.manifest.abbreviation||costumbresDocData.manifest.name, workId:costumbresOpenWork } };
+    }
+    if(tab==='extracanonico'){
+      if(!extracanonicoOpenId || !extracanonicoDocData) return null;
+      const entry=(extracanonicoDocData.entries||[]).find(e=>e.id===extracanonicoOpenId);
+      if(!entry) return null;
+      return { tipo:'extracanonico', ref:extracanonicoOpenId, titulo:entry.titulo, contexto:{ obra:extracanonicoDocData.manifest.abbreviation||extracanonicoDocData.manifest.name, workId:extracanonicoOpenWork } };
+    }
+    if(tab==='diccionarios'){
+      if(!diccionariosOpenId || !diccionariosDocData) return null;
+      const entry=(diccionariosDocData.entries||[]).find(e=>e.id===diccionariosOpenId);
+      if(!entry) return null;
+      return { tipo:'diccionarios', ref:diccionariosOpenId, titulo:entry.titulo, contexto:{ obra:diccionariosDocData.manifest.abbreviation||diccionariosDocData.manifest.name, workId:diccionariosOpenWork } };
+    }
+    if(tab==='idiomas'){
+      const code=openStrongPopupRoot ? strongPopupEls().code?.textContent : null;
+      if(!code) return null;
+      return { tipo:'idiomas', ref:code, titulo:code, contexto:null };
+    }
+    return null;
+  }
+
+  function npContextoLabel(item){
     const c=item.contexto;
     if(c?.obra && c?.capitulo) return `${c.obra} — ${c.capitulo}`;
-    return item.ubicacion?.tipo==='padres' ? t('padres.title') : t('historia.title');
+    if(c?.obra) return c.obra;
+    const tipo=item.ubicacion?.tipo;
+    if(tipo==='historia') return t('rail.historia');
+    if(tipo==='padres') return t('rail.padres');
+    if(tipo==='costumbres') return t('rail.costumbres');
+    if(tipo==='extracanonico') return t('rail.extracanonico');
+    if(tipo==='diccionarios') return t('rail.diccionarios');
+    if(tipo==='idiomas') return item.ubicacion?.ref||'';
+    return '';
   }
-  function historiaNotasMatches(item, displayTitle, query){
+  function npMatches(item, displayTitle, query){
     if(!query) return true;
-    const haystack=normalizeSearchText(`${displayTitle} ${historiaNotasContextoLabel(item)} ${htmlToPlainText(item.texto||'')}`);
+    const haystack=normalizeSearchText(`${displayTitle} ${npContextoLabel(item)} ${htmlToPlainText(item.texto||'')}`);
     return normalizeSearchText(query).split(/\s+/).filter(Boolean).every(word=>haystack.includes(word));
   }
-  function historiaNotasOpen(tipo, ref){
-    if(tipo==='padres'){
-      const lastDash=ref.lastIndexOf('-');
-      patristicMode='docs'; // la nota/marcador apunta a documento+sección, no al modo "por versículo"
-      patristicOpenDoc=ref.slice(0,lastDash);
-      patristicOpenSection=Number(ref.slice(lastDash+1));
-      patristicDocData=null;
-      openPanel('padres');
-    } else {
-      churchHistoryOpenId=ref;
-      churchHistoryOpenFromShelf=true;
-      openPanel('historia');
-    }
-  }
-  function historiaNotasRowHTML(item, kind){
-    const displayTitle=item.titulo || historiaNotasContextoLabel(item);
-    const snippet=kind==='nota' ? htmlToPlainText(item.texto||'').slice(0,140) : historiaNotasContextoLabel(item);
-    return `<div class="predicas-list__item" data-historia-nota-id="${escapeHTML(item.id)}" data-historia-nota-kind="${kind}" data-historia-nota-tipo="${escapeHTML(item.ubicacion.tipo)}" data-historia-nota-ref="${escapeHTML(item.ubicacion.ref)}">
+  function npRowHTML(item, kind){
+    const displayTitle=item.titulo || npContextoLabel(item);
+    const snippet=kind==='nota' ? htmlToPlainText(item.texto||'').slice(0,140) : npContextoLabel(item);
+    return `<div class="predicas-list__item" data-np-id="${escapeHTML(item.id)}" data-np-kind="${kind}">
       <div class="predicas-list__info">
         <p class="predicas-list__title">${kind==='nota'?'✎':'★'} ${escapeHTML(displayTitle)}</p>
         <span class="predicas-list__date">${escapeHTML(snippet)}</span>
       </div>
       <div class="predicas-list__actions">
-        <button type="button" class="predicas-list__btn" data-historia-nota-open="1">${t('historiaNotas.abrir')}</button>
-        ${kind==='nota'?`<button type="button" class="predicas-list__btn predicas-list__btn--danger" data-historia-nota-delete="1">${t('historiaNotas.eliminarNota')}</button>`:''}
+        <button type="button" class="predicas-list__btn" data-np-open="1">${t('notasPopup.abrir')}</button>
+        ${kind==='nota'?`<button type="button" class="predicas-list__btn predicas-list__btn--danger" data-np-delete="1">${t('notasPopup.eliminarNota')}</button>`:''}
       </div>
     </div>`;
   }
-  // Vista de detalle de una nota guardada (Bug 3: "Abrir" mostraba el
-  // libro/capítulo completo en vez del contenido de la nota). El link "Ver
-  // en contexto" es el único punto que sigue navegando al libro completo,
-  // ahora explícito y opcional en vez de ser el comportamiento por defecto.
-  function historiaNotaDetailHTML(item){
-    const displayTitle=item.titulo || historiaNotasContextoLabel(item);
-    const textoHTML=escapeHTML(item.texto||'').replace(/\n/g,'<br>');
-    return `<button type="button" class="note-card__copy" id="historiaNotaDetailBack">← ${t('historiaNotas.volver')}</button>
-      <article class="dict-entry">
-        <div class="dict-entry__term">${escapeHTML(displayTitle)}</div>
-        <div class="dict-entry__source">${escapeHTML(historiaNotasContextoLabel(item))}</div>
-        <div class="dict-entry__def">${textoHTML}</div>
-        <div class="history-entry-actions">
-          <button type="button" class="note-card__copy" id="historiaNotaDetailCopy">${t('historiaNotas.copiar')}</button>
-          <button type="button" class="note-card__copy" id="historiaNotaDetailContext">${t('historiaNotas.verContexto')}</button>
-        </div>
-      </article>`;
-  }
-  function renderHistoriaNotasBody(){
-    if(historiaNotasOpenNoteId){
-      const item=VerboBackup.getNotaById(historiaNotasOpenNoteId);
-      if(item){
-        els.panelBody.innerHTML=historiaNotaDetailHTML(item);
-        document.getElementById('historiaNotaDetailBack')?.addEventListener('click',()=>{ historiaNotasOpenNoteId=null; renderHistoriaNotasBody(); });
-        document.getElementById('historiaNotaDetailCopy')?.addEventListener('click',()=>{
-          const titulo=item.titulo?`${item.titulo}\n\n`:'';
-          copyToClipboard(`${titulo}${item.texto||''}`);
-        });
-        document.getElementById('historiaNotaDetailContext')?.addEventListener('click',()=>historiaNotasOpen(item.ubicacion.tipo, item.ubicacion.ref));
-        return;
-      }
-      historiaNotasOpenNoteId=null; // la nota ya no existe (borrada en otra pestaña/sesión) — cae a la lista
-    }
-    const notas=VerboBackup.getNotas(['historia','padres']);
-    const marcadores=VerboBackup.getMarcadores().filter(m=>['historia','padres'].includes(m.ubicacion?.tipo));
-    const query=historiaNotasQuery.trim();
-    const notasFiltradas=notas.filter(n=>historiaNotasMatches(n, n.titulo||historiaNotasContextoLabel(n), query));
-    const marcadoresFiltrados=marcadores.filter(m=>historiaNotasMatches(m, historiaNotasContextoLabel(m), query));
-    if(!notas.length && !marcadores.length){ els.panelBody.innerHTML=emptyState('📑',t('historiaNotas.vacio')); return; }
-    if(!notasFiltradas.length && !marcadoresFiltrados.length){ els.panelBody.innerHTML=emptyState('🔎',t('historiaNotas.sinResultados',{query:escapeHTML(query)})); return; }
-    els.panelBody.innerHTML=`
-      ${notasFiltradas.length?`<div class="dictionary-library__count">${escapeHTML(t('historiaNotas.seccionNotas'))} (${notasFiltradas.length})</div><div class="dictionary-library">${notasFiltradas.map(n=>historiaNotasRowHTML(n,'nota')).join('')}</div>`:''}
-      ${marcadoresFiltrados.length?`<div class="dictionary-library__count">${escapeHTML(t('historiaNotas.seccionMarcadores'))} (${marcadoresFiltrados.length})</div><div class="dictionary-library">${marcadoresFiltrados.map(m=>historiaNotasRowHTML(m,'marcador')).join('')}</div>`:''}
-    `;
-    els.panelBody.querySelectorAll('[data-historia-nota-open]').forEach(btn=>{
-      const row=btn.closest('[data-historia-nota-ref]');
-      if(row.dataset.historiaNotaKind==='nota'){
-        btn.addEventListener('click',()=>{ historiaNotasOpenNoteId=row.dataset.historiaNotaId; renderHistoriaNotasBody(); });
+
+  // Navega a la entrada de origen de una nota/marcador y cierra el popup —
+  // mismo mecanismo que historiaNotasOpen() tenía antes para historia/padres,
+  // generalizado a costumbres/extracanónico/diccionarios (que ahora guardan
+  // contexto.workId al crear la nota, justamente para poder recargar la obra
+  // acá) e idiomas (abre el panel de Idiomas y el popup de definición Strong
+  // para ese código).
+  function npOpenContextFor(tab, item){
+    const ref=item.ubicacion.ref;
+    if(tab==='historia'){
+      if(item.ubicacion.tipo==='padres'){
+        const lastDash=ref.lastIndexOf('-');
+        patristicMode='docs';
+        patristicOpenDoc=ref.slice(0,lastDash);
+        patristicOpenSection=Number(ref.slice(lastDash+1));
+        patristicDocData=null;
+        openPanel('padres');
       } else {
-        btn.addEventListener('click',()=>historiaNotasOpen(row.dataset.historiaNotaTipo, row.dataset.historiaNotaRef));
+        churchHistoryOpenId=ref;
+        churchHistoryOpenFromShelf=true;
+        openPanel('historia');
       }
-    });
-    els.panelBody.querySelectorAll('[data-historia-nota-delete]').forEach(btn=>{
-      const row=btn.closest('[data-historia-nota-ref]');
-      btn.addEventListener('click',()=>deleteHistoriaNotaWithConfirm(row.dataset.historiaNotaId));
-    });
-  }
-  function deleteHistoriaNotaWithConfirm(id){
-    if(!window.confirm(t('historiaNotas.eliminarNotaConfirm'))) return;
-    VerboBackup.deleteNotaById(id);
-    renderHistoriaNotasBody();
-  }
-  function renderHistoriaNotasPanel(){
-    els.panelTitle.textContent=t('historiaNotas.title');
-    els.panelToolbar.innerHTML=`<input type="search" class="search-panel-input" id="historiaNotasSearch" placeholder="${t('historiaNotas.buscarPlaceholder')}" autocomplete="off" value="${escapeHTML(historiaNotasQuery)}">`;
-    document.getElementById('historiaNotasSearch')?.addEventListener('input',e=>{ historiaNotasQuery=e.target.value; historiaNotasOpenNoteId=null; renderHistoriaNotasBody(); });
-    renderHistoriaNotasBody();
+    } else if(tab==='costumbres'){
+      costumbresOpenWork=item.contexto?.workId||null; costumbresOpenId=ref; costumbresDocData=null; openPanel('costumbres');
+    } else if(tab==='extracanonico'){
+      extracanonicoOpenWork=item.contexto?.workId||null; extracanonicoOpenId=ref; extracanonicoDocData=null; openPanel('extracanonico');
+    } else if(tab==='diccionarios'){
+      diccionariosOpenWork=item.contexto?.workId||null; diccionariosOpenId=ref; diccionariosDocData=null; openPanel('diccionarios');
+    } else if(tab==='idiomas'){
+      if(sermonMode && window.matchMedia('(min-width: 901px)').matches) openSermonSidePanel('diccionario');
+      else openPanel('diccionario');
+      openStrongPopup(ref);
+    }
+    closeNotasPopup();
   }
 
-  // Control de nota embebido en la vista de lectura de Padres Apostólicos
-  // (ver historiaNotasOpen/renderHistoriaNotasBody arriba, que abre directo a
-  // esta misma vista). Historia de la Iglesia usaba este mismo componente en
-  // modo "solo marcador" hasta que se quitó el botón de marcador (sin uso
-  // real) — Historia ya no lo llama.
-  function historiaNotaControlHTML(tipo, ref){
-    const existing=VerboBackup.getNotaObj(ref, tipo);
-    return `<div class="history-note-control">
-      <details class="history-note-control__details"${existing?.texto?' open':''}>
-        <summary>${t('notas.title')}</summary>
-        <input type="text" class="editor-pane__title-input" id="historiaNotaTitulo" placeholder="${t('historiaNotas.tituloPlaceholder')}" value="${escapeHTML(existing?.titulo||'')}">
-        <textarea id="historiaNotaTexto" class="personal-note-form__area" placeholder="${t('historiaNotas.notaPlaceholder')}">${escapeHTML(existing?.texto||'')}</textarea>
-        <div class="personal-note-form__status" id="historiaNotaStatus">${existing?.texto?t('historiaNotas.guardado'):''}</div>
-      </details>
-    </div>`;
+  // Vista de detalle: siempre editable inline (título+texto, autoguardado
+  // debounce 400ms vía VerboBackup.updateNotaById) — nunca un formulario
+  // aparte que haya que reabrir, a diferencia del modal viejo que solo creaba
+  // notas nuevas y no permitía editar las ya guardadas.
+  function npDetailHTML(item, tab){
+    return `<button type="button" class="note-card__copy" id="npDetailBack">${t('notasPopup.volver')}</button>
+      <div class="np-note-edit">
+        <input type="text" id="npDetailTitulo" class="editor-pane__title-input" placeholder="${t('notasPopup.tituloPlaceholder')}" value="${escapeHTML(item.titulo||'')}">
+        <textarea id="npDetailTexto" class="personal-note-form__area" placeholder="${t('notasPopup.notaPlaceholder')}">${escapeHTML(item.texto||'')}</textarea>
+        <div class="personal-note-form__status" id="npDetailStatus">${item.texto?t('notasPopup.guardado'):''}</div>
+        <div class="history-entry-actions">
+          <button type="button" class="note-card__copy" id="npDetailCopy">${t('notasPopup.copiar')}</button>
+          <button type="button" class="note-card__copy" id="npDetailContext">${t(tab==='idiomas'?'notasPopup.verDefinicion':'notasPopup.verContexto')}</button>
+          <button type="button" class="predicas-list__btn predicas-list__btn--danger" id="npDetailDelete">${t('notasPopup.eliminarNota')}</button>
+        </div>
+      </div>`;
   }
-  function wireHistoriaNotaControl(tipo, ref, contexto){
-    const tituloInput=document.getElementById('historiaNotaTitulo');
-    const textoArea=document.getElementById('historiaNotaTexto');
-    const status=document.getElementById('historiaNotaStatus');
+  function npWireDetail(item, tab){
+    document.getElementById('npDetailBack')?.addEventListener('click',()=>{ npOpenNoteId=null; npRenderBody(); });
+    const tituloInput=document.getElementById('npDetailTitulo');
+    const textoArea=document.getElementById('npDetailTexto');
+    const status=document.getElementById('npDetailStatus');
     let timer;
     const save=()=>{
-      VerboBackup.setNota(ref, textoArea.value, { tipo, titulo: tituloInput.value, contexto });
-      if(status) status.textContent=t('historiaNotas.guardado');
+      VerboBackup.updateNotaById(item.id, textoArea.value, { titulo: tituloInput.value, contexto: item.contexto });
+      if(status) status.textContent=t('notasPopup.guardado');
     };
-    const scheduleSave=()=>{ if(status) status.textContent=t('historiaNotas.escribiendo'); clearTimeout(timer); timer=setTimeout(save,400); };
+    const scheduleSave=()=>{ if(status) status.textContent=t('notasPopup.escribiendo'); clearTimeout(timer); timer=setTimeout(save,400); };
     textoArea?.addEventListener('input',scheduleSave);
     tituloInput?.addEventListener('input',scheduleSave);
+    document.getElementById('npDetailCopy')?.addEventListener('click',()=>{
+      const titulo=tituloInput.value?`${tituloInput.value}\n\n`:'';
+      copyToClipboard(`${titulo}${textoArea.value||''}`);
+    });
+    document.getElementById('npDetailContext')?.addEventListener('click',()=>npOpenContextFor(tab, item));
+    document.getElementById('npDetailDelete')?.addEventListener('click',()=>{
+      if(!window.confirm(t('notasPopup.eliminarNotaConfirm'))) return;
+      VerboBackup.deleteNotaById(item.id);
+      npOpenNoteId=null; npRenderBody();
+    });
+  }
+
+  // "Nueva nota": en las pestañas ancladas a una lectura (historia/padres/
+  // costumbres/extracanónico/diccionarios) solo aparece si hay una entrada
+  // abierta ahora mismo (npCurrentEntry) — igual que antes solo se podía
+  // tomar nota de lo que se estaba leyendo. Idiomas es la excepción a
+  // propósito: es un glosario plano, así que siempre permite escribir el
+  // código Strong a mano (precargado si hay un popup de definición abierto).
+  function npNewNoteHTML(tab){
+    if(tab==='idiomas'){
+      const current=npCurrentEntry(tab);
+      return `<div class="np-new-note">
+        <input type="text" id="npNewCodigo" class="editor-pane__title-input" placeholder="${t('notasPopup.codigoPlaceholder')}" value="${escapeHTML(current?.ref||'')}">
+        <textarea id="npNewTexto" class="personal-note-form__area" placeholder="${t('notasPopup.notaPlaceholder')}"></textarea>
+        <button type="button" class="predicas-list__btn" id="npNewSave">${t('notasPopup.nuevaNota')}</button>
+      </div>`;
+    }
+    if(!npCurrentEntry(tab)) return '';
+    return `<div class="np-new-note"><button type="button" class="predicas-list__btn" id="npNewSave">${t('notasPopup.nuevaNota')}</button></div>`;
+  }
+  function npWireNewNote(tab){
+    document.getElementById('npNewSave')?.addEventListener('click',()=>{
+      if(tab==='idiomas'){
+        const codigo=document.getElementById('npNewCodigo')?.value.trim();
+        const texto=document.getElementById('npNewTexto')?.value||'';
+        if(!codigo) return;
+        const nota=VerboBackup.addNota(codigo, texto, { tipo:'idiomas' });
+        npOpenNoteId=nota.id; npRenderBody();
+        return;
+      }
+      const current=npCurrentEntry(tab);
+      if(!current) return;
+      const nota=VerboBackup.addNota(current.ref, '', { tipo:current.tipo, titulo:current.titulo, contexto:current.contexto });
+      npOpenNoteId=nota.id; npRenderBody();
+    });
+  }
+
+  function npRenderBody(){
+    if(npActiveTab==='capitulo'){ npRenderCapitulo(); return; }
+    if(npOpenNoteId){
+      const item=VerboBackup.getNotaById(npOpenNoteId);
+      if(item){ npBodyEl.innerHTML=npDetailHTML(item, npActiveTab); npWireDetail(item, npActiveTab); return; }
+      npOpenNoteId=null; // borrada en otra pestaña/sesión — cae a la lista
+    }
+    const tipos=NP_TIPOS_POR_TAB[npActiveTab];
+    const query=npQuery.trim();
+    let notas=VerboBackup.getNotas(tipos);
+    const marcadores=npActiveTab==='historia' ? VerboBackup.getMarcadores().filter(m=>tipos.includes(m.ubicacion?.tipo)) : [];
+    // Idiomas: si hay un popup de definición Strong abierto y ya existe una
+    // nota para ese código, se destaca arriba (fuera de la lista normal) para
+    // no perder el acceso rápido "la nota de lo que estoy viendo ahora"
+    // dentro del glosario global — solo mientras no haya una búsqueda activa.
+    let pinnedHTML='';
+    if(npActiveTab==='idiomas' && !query){
+      const code=openStrongPopupRoot ? strongPopupEls().code?.textContent : null;
+      const pinned=code ? notas.find(n=>n.ubicacion.ref===code) : null;
+      if(pinned){
+        notas=notas.filter(n=>n!==pinned);
+        pinnedHTML=`<div class="dictionary-library__count">${escapeHTML(t('notasPopup.notaDeActual'))}</div><div class="dictionary-library">${npRowHTML(pinned,'nota')}</div>`;
+      }
+    }
+    const notasFiltradas=notas.filter(n=>npMatches(n, n.titulo||npContextoLabel(n), query));
+    const marcadoresFiltrados=marcadores.filter(m=>npMatches(m, npContextoLabel(m), query));
+    const hasAny=pinnedHTML || notasFiltradas.length || marcadoresFiltrados.length;
+    npBodyEl.innerHTML=`<input type="search" class="search-panel-input" id="npSearch" placeholder="${t('notasPopup.buscarPlaceholder')}" autocomplete="off" value="${escapeHTML(npQuery)}">${npNewNoteHTML(npActiveTab)}${pinnedHTML}
+      ${!hasAny ? emptyState('📝', query?t('notasPopup.sinResultados',{query:escapeHTML(query)}):t('notasPopup.vacio')) : `
+      ${notasFiltradas.length?`<div class="dictionary-library__count">${escapeHTML(t('notasPopup.seccionNotas'))} (${notasFiltradas.length})</div><div class="dictionary-library">${notasFiltradas.map(n=>npRowHTML(n,'nota')).join('')}</div>`:''}
+      ${marcadoresFiltrados.length?`<div class="dictionary-library__count">${escapeHTML(t('notasPopup.seccionMarcadores'))} (${marcadoresFiltrados.length})</div><div class="dictionary-library">${marcadoresFiltrados.map(m=>npRowHTML(m,'marcador')).join('')}</div>`:''}
+      `}`;
+    document.getElementById('npSearch')?.addEventListener('input',e=>{ npQuery=e.target.value; npRenderBody(); });
+    npWireNewNote(npActiveTab);
+    npBodyEl.querySelectorAll('[data-np-open]').forEach(btn=>{
+      const row=btn.closest('[data-np-id]');
+      if(row.dataset.npKind==='nota'){
+        btn.addEventListener('click',()=>{ npOpenNoteId=row.dataset.npId; npRenderBody(); });
+      } else {
+        const item=marcadores.find(m=>m.id===row.dataset.npId);
+        btn.addEventListener('click',()=>{ if(item) npOpenContextFor(npActiveTab, item); });
+      }
+    });
+    npBodyEl.querySelectorAll('[data-np-delete]').forEach(btn=>{
+      const row=btn.closest('[data-np-id]');
+      btn.addEventListener('click',()=>{
+        if(!window.confirm(t('notasPopup.eliminarNotaConfirm'))) return;
+        VerboBackup.deleteNotaById(row.dataset.npId);
+        npRenderBody();
+      });
+    });
+  }
+
+  // Capítulo (Biblia): sin cambios de comportamiento respecto a "Mis notas"
+  // de antes — una nota por capítulo, mismo autoguardado debounce 400ms
+  // (VerboBackup.getNota/setNota) — solo que ahora vive dentro del popup en
+  // vez de #panelBody, y es el mismo componente en modo estudio y sermón.
+  function npRenderCapitulo(){
+    const key=`${data.meta.bookId}-${data.meta.chapter}`, saved=VerboBackup.getNota(key);
+    npBodyEl.innerHTML=`<label class="personal-note-form__label">${t('notas.label',{ref:`${data.meta.book} ${data.meta.chapter}`})}</label><textarea id="npCapituloArea" class="personal-note-form__area" placeholder="${t('notas.placeholder')}">${saved}</textarea><div class="personal-note-form__status" id="npCapituloStatus">${saved?t('notas.guardado'):''}</div>`;
+    const area=document.getElementById('npCapituloArea');
+    const status=document.getElementById('npCapituloStatus');
+    let timer;
+    area?.addEventListener('input',()=>{
+      if(status) status.textContent=t('notas.escribiendo');
+      clearTimeout(timer);
+      timer=setTimeout(()=>{ VerboBackup.setNota(key, area.value); if(status) status.textContent=t('notas.guardado'); },400);
+    });
   }
 
   // ── Panel lateral "Biblia" del modo sermón (con historial de referencias) ──
@@ -4860,7 +5078,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Nivel 3: leyendo una sección específica. Normalmente patristicDocData ya
     // quedó cargado por el Nivel 2 (el usuario vino navegando el índice), pero
-    // "Notas de Historia" (historiaNotasOpen) salta directo aquí sin pasar por
+    // el popup de notas (npOpenContextFor) salta directo aquí sin pasar por
     // ese paso — hay que poder cargarlo desde cero también.
     if(patristicOpenDoc && patristicOpenSection!=null){
       if(!patristicDocData || patristicDocData.manifest.id!==patristicOpenDoc){
@@ -4999,13 +5217,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       <div class="dict-entry__source" data-patristic-docname="1">${escapeHTML(patristicDocData.manifest.name)}</div>
       ${translationNote}
       <div class="dict-entry__def" data-patristic-body="1">${bodyHtml}</div>
-      ${historiaNotaControlHTML('padres', patristicRef)}
       <nav class="history-entry-nav" aria-label="${t('historia.navegacionLectura')}">
         ${previous?`<button type="button" class="history-entry-nav__button" data-patristic-neighbor="${previous.n}" data-nav-dir="prev">← ${t('padres.anterior')}</button>`:'<span></span>'}
         ${next?`<button type="button" class="history-entry-nav__button" data-patristic-neighbor="${next.n}" data-nav-dir="next">${t('padres.siguiente')} →</button>`:'<span></span>'}
       </nav>
     </article>`;
-    wireHistoriaNotaControl('padres', patristicRef, {obra:patristicDocData.manifest.abbreviation||patristicDocData.manifest.name, capitulo:section.title});
     els.panelBody.querySelectorAll('[data-patristic-neighbor]').forEach(button=>button.addEventListener('click',()=>{
       patristicOpenSection=Number(button.dataset.patristicNeighbor);
       renderPatristicSection();
@@ -6193,14 +6409,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }catch(error){ console.error(error); els.panelBody.innerHTML=emptyState('⚠️','No se pudo abrir esta exégesis.'); }
   }
 
-  function renderNotes(){
-    panelTitleEl().textContent=t('notas.title');
-    const key=`${data.meta.bookId}-${data.meta.chapter}`, saved=VerboBackup.getNota(key);
-    panelBodyEl().innerHTML=`<label class="personal-note-form__label">${t('notas.label',{ref:`${data.meta.book} ${data.meta.chapter}`})}</label><textarea id="personalNoteArea" class="personal-note-form__area" placeholder="${t('notas.placeholder')}">${saved}</textarea><div class="personal-note-form__status" id="noteSaveStatus">${saved?t('notas.guardado'):''}</div>`;
-    const area=document.getElementById('personalNoteArea'), status=document.getElementById('noteSaveStatus'); let timer;
-    area.addEventListener('input',()=>{status.textContent=t('notas.escribiendo');clearTimeout(timer);timer=setTimeout(()=>{VerboBackup.setNota(key,area.value);status.textContent=t('notas.guardado');},400);});
-  }
-
   // Punto de entrada para CUALQUIER clic en un código Strong fuera del panel
   // Biblia Strong (ej. .strongs-tag de la Biblia principal si tiene datos
   // Strong propios como KJV+, o un enlace a.strong dentro de un comentario):
@@ -6331,31 +6539,17 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   els.tabs.forEach(b=>b.addEventListener('click',()=>{
-    // "Notas de Historia" es punto de entrada único: si hay un libro de Historia
-    // o una obra de Padres Apostólicos abierta en lectura, abre el modal de
-    // "Nota rápida" sobre esa entrada en vez de navegar al panel de notas
-    // guardadas — así no hace falta cerrar el libro para tomar una nota. Sin
-    // nada abierto, se comporta igual que cualquier otro botón del riel.
-    // Padres en modo "Por versículo" queda fuera a propósito (no tiene una
-    // "entrada de lectura" equivalente y no se debe tocar ese modo).
-    // Se evalúa ANTES del gate de "armar" de íconos móviles (isMobileTool más
-    // abajo) a propósito: abrir el modal es un overlay, no una navegación que
-    // arriesgue perder el lugar de lectura, así que no debe requerir el doble
-    // toque de confirmación que sí tiene el resto del dock móvil. Antes de
-    // este fix, en el celular el primer toque solo armaba el ícono (sin abrir
-    // nada) y hacía falta un segundo toque — Juan lo reportó como que el
-    // ícono "no funcionaba" (2026-08-06).
-    if(b.dataset.tab==='historia-notas' && window.VerboHistoriaNotaRapida){
-      if(activeTab==='historia' && churchHistoryOpenId){
-        clearMobileToolArm();
-        window.VerboHistoriaNotaRapida.openForCurrentEntry('historia');
-        return;
-      }
-      if(activeTab==='padres' && patristicMode==='docs' && patristicOpenDoc && patristicOpenSection!=null){
-        clearMobileToolArm();
-        window.VerboHistoriaNotaRapida.openForCurrentEntry('padres');
-        return;
-      }
+    // El ícono "notas" es el único punto de entrada al popup unificado de
+    // notas (ver npBuild/openNotasPopup más arriba): se intercepta ANTES del
+    // gate de "armar" de íconos móviles y ANTES de la rama de modo sermón a
+    // propósito — abrir el popup es un overlay global, no una navegación que
+    // arriesgue perder el lugar de lectura ni deba desviarse al segundo panel
+    // de predicación (mismo componente en ambos modos). Mismo razonamiento
+    // que tenía antes el ícono ya retirado de "Notas de Historia".
+    if(b.dataset.tab==='notas'){
+      clearMobileToolArm();
+      toggleNotasPopup();
+      return;
     }
     const isMobileTool = b.classList.contains('mobile-tool-btn') && window.matchMedia('(max-width: 760px)').matches;
     if(isMobileTool){
@@ -6369,7 +6563,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
       clearMobileToolArm();
     }
-    // En modo sermón, Comparar/Comentarios/Notas/Mis prédicas/
+    // En modo sermón, Comparar/Comentarios/Mis prédicas/
     // Diccionario no reemplazan el panel de Biblia: comparten un segundo
     // panel lado a lado (ver .sermon-compare-panel), fuera del sistema de
     // panel único que usa el resto de la app. Ese layout de 3 columnas no se

@@ -206,6 +206,23 @@ window.VerboBackup = (() => {
   function getNotaById(id) {
     return cached.notas.find(n => n.id === id) || null;
   }
+  // Edita una nota ya existente (identificada por id, no por ref+tipo como
+  // setNota) sin crear un registro nuevo -- usado por el popup unificado de
+  // notas para permitir reabrir y corregir cualquier fila de la lista
+  // (incluida la que antes era la nota única embebida de Padres, que ahora es
+  // una fila más). No hace nada si el id no existe (nota borrada en otra
+  // sesión/pestaña mientras se editaba).
+  function updateNotaById(id, texto, { titulo, contexto } = {}) {
+    const nota = cached.notas.find(n => n.id === id);
+    if (!nota) return null;
+    nota.texto = texto;
+    nota.fecha = new Date().toISOString();
+    if (titulo !== undefined) nota.titulo = titulo;
+    if (contexto !== undefined) nota.contexto = contexto;
+    cached.fecha_guardado = new Date().toISOString();
+    persist();
+    return nota;
+  }
   function deleteNotaById(id) {
     const idx = cached.notas.findIndex(n => n.id === id);
     if (idx < 0) return;
@@ -385,7 +402,7 @@ window.VerboBackup = (() => {
     init, getData, saveNow,
     getResaltadosMap, setAllResaltados,
     getNota, setNota, getNotas, getNotaObj, deleteNota,
-    addNota, getNotaById, deleteNotaById,
+    addNota, getNotaById, deleteNotaById, updateNotaById,
     getMarcadores, isMarcado, toggleMarcador, updateMarcadorContexto,
     getPredicas, getPredica, savePredica, deletePredica,
     getPosicionBiblia, setPosicionBiblia,
