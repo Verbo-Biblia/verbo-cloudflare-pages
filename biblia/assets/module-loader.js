@@ -339,11 +339,22 @@ const VerboModules = (() => {
     return resources;
   }
 
-  async function loadLinkedEntries(manifestPath, bookId, chapter) {
+  async function loadLinkedEntries(manifestPath, bookId, chapter, { lightweight = false } = {}) {
     const manifest = await getJSON(manifestPath);
     const bookInfo = manifest.books?.find(book => book.id === bookId);
     if (!bookInfo) return { manifest, entries:[] };
-    const bookData = await getJSON(resolveFromManifest(manifestPath, bookInfo.file));
+    // buildChapterData solo necesita id+reference para calcular el badge de
+    // "cuántos fragmentos hay en este capítulo" (ver sus dos llamadas con
+    // lightweight:true más abajo) — igual que loadCommentaryIndex ya hace
+    // para la lista "commentaries". La mayoría de los módulos patrísticos
+    // son chicos (unos pocos KB) y no declaran indexFile, así que caen al
+    // archivo completo de siempre sin cambiar nada; esto solo importa para
+    // un módulo grande como chrysostom-mateo (2,5MB de books/MAT.json) que
+    // sí lo declara. Los llamados que SÍ necesitan el contenido completo
+    // (renderPatristicByVerse, exégesis) no pasan lightweight y siguen
+    // pidiendo bookInfo.file como siempre.
+    const sourceFile = (lightweight && bookInfo.indexFile) ? bookInfo.indexFile : bookInfo.file;
+    const bookData = await getJSON(resolveFromManifest(manifestPath, sourceFile));
     const entries = (bookData.entries || []).filter(entry => {
       const ref = entry.reference || {};
       const start = Number(ref.chapterStart ?? chapter);
@@ -910,7 +921,7 @@ const VerboModules = (() => {
       // solo indica cuantos articulos distintos hay por verso, el panel Biblioteca ya
       // sabe cargar el detalle via loadLinkedEntries cuando el usuario lo abre.
       Promise.all((registry.library || []).map(async path=>{
-        try { return await loadLinkedEntries(`modules/${path}`,bookId,chapter); }
+        try { return await loadLinkedEntries(`modules/${path}`,bookId,chapter,{lightweight:true}); }
         catch (error) { console.warn(`Biblioteca omitida: modules/${path}`, error); return null; }
       })).then(list => list.filter(Boolean)),
       // Fragmentos patrísticos anclados a versículo (ver FASE 9 en PLAN.md):
@@ -918,7 +929,7 @@ const VerboModules = (() => {
       // hay por verso — el panel Padres Apostólicos (modo "Por versículo") carga
       // el detalle vía loadLinkedEntries cuando el usuario lo abre.
       Promise.all((registry.patristicByVerse || []).map(async path=>{
-        try { return await loadLinkedEntries(`modules/${path}`,bookId,chapter); }
+        try { return await loadLinkedEntries(`modules/${path}`,bookId,chapter,{lightweight:true}); }
         catch (error) { console.warn(`Padre apostólico omitido: modules/${path}`, error); return null; }
       })).then(list => list.filter(Boolean))
     ]);

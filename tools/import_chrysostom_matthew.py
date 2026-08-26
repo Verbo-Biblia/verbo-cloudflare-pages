@@ -389,11 +389,22 @@ def main() -> None:
         "publicationYear": 1888,
         "publicDomain": True,
         "attribution": "Traducción inglesa: Sir George Prevost, revisada por M. B. Riddle. Nicene and Post-Nicene Fathers, ed. Philip Schaff. Digitalización: Christian Classics Ethereal Library (CCEL).",
-        "notes": "Epígrafes de texto bíblico citado (bloques íntegramente en cursiva que preceden a cada homilía) excluidos por redundantes con la Biblia de Verbo; citas integradas en la exposición se conservan. Notas editoriales de NPNF1-10 (críticas textuales, variantes griegas) conservadas al final de cada entrada. 7 homilías (ver PROVENANCE.md) no tienen un final de rango explícito en el encabezado original ni una transición segura a la siguiente homilía; se registran como un solo versículo en vez de inventar un cierre.",
-        "books": [{"id": "MAT", "name": "Mateo", "number": 40, "file": "books/MAT.json"}],
+        "notes": f"Epígrafes de texto bíblico citado (bloques íntegramente en cursiva que preceden a cada homilía) excluidos por redundantes con la Biblia de Verbo; citas integradas en la exposición se conservan. Notas editoriales de NPNF1-10 (críticas textuales, variantes griegas) conservadas al final de cada entrada. {len(open_ended_flags)} homilías (ver PROVENANCE.md) no tienen un final de rango explícito en el encabezado original ni una transición segura a la siguiente homilía; se registran como un solo versículo en vez de inventar un cierre.",
+        "books": [{"id": "MAT", "name": "Mateo", "number": 40, "file": "books/MAT.json", "indexFile": "books/MAT.index.json"}],
     }
     (COMMENTARY_ROOT / "manifest.json").write_text(
         json.dumps(commentary_manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+    # Índice liviano (id+reference, sin content) para que buildChapterData()
+    # calcule el badge por versículo sin bajar los 2,5MB completos — mismo
+    # patrón que tools/build_commentary_index.py usa para "commentaries",
+    # extendido aquí a mano porque ese script solo recorre
+    # registry.commentaries y este módulo vive en patristicByVerse (ver
+    # PROVENANCE.md). Requiere el cambio en loadLinkedEntries()
+    # (assets/module-loader.js) que acepta {lightweight:true}.
+    index_entries = [{"id": e["id"], "reference": e["reference"]} for e in entries]
+    (books_dir / "MAT.index.json").write_text(
+        json.dumps({"entries": index_entries}, ensure_ascii=False) + "\n", encoding="utf-8"
     )
     coverage = {
         "module": "chrysostom-mateo",

@@ -15,13 +15,14 @@
   "publicationYear": 1888,
   "publicDomain": true,
   "attribution": "Traducción inglesa: Sir George Prevost, revisada por M. B. Riddle. Nicene and Post-Nicene Fathers, ed. Philip Schaff. Digitalización: Christian Classics Ethereal Library (CCEL).",
-  "notes": "Epígrafes de texto bíblico citado (bloques íntegramente en cursiva que preceden a cada homilía) excluidos por redundantes con la Biblia de Verbo; citas integradas en la exposición se conservan. Notas editoriales de NPNF1-10 (críticas textuales, variantes griegas) conservadas al final de cada entrada. 7 homilías (ver PROVENANCE.md) no tienen un final de rango explícito en el encabezado original ni una transición segura a la siguiente homilía; se registran como un solo versículo en vez de inventar un cierre.",
+  "notes": "Epígrafes de texto bíblico citado (bloques íntegramente en cursiva que preceden a cada homilía) excluidos por redundantes con la Biblia de Verbo; citas integradas en la exposición se conservan. Notas editoriales de NPNF1-10 (críticas textuales, variantes griegas) conservadas al final de cada entrada. 2 homilías (ver PROVENANCE.md) no tienen un final de rango explícito en el encabezado original ni una transición segura a la siguiente homilía; se registran como un solo versículo en vez de inventar un cierre.",
   "books": [
     {
       "id": "MAT",
       "name": "Mateo",
       "number": 40,
-      "file": "books/MAT.json"
+      "file": "books/MAT.json",
+      "indexFile": "books/MAT.index.json"
     }
   ]
 }

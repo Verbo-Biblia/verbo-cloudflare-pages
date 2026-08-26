@@ -119,39 +119,47 @@ SHA-256 documentados, y genera:
 No modifica esquema, loader, cliente, Worker, caché ni sistema de
 traducción.
 
-## Limitación de rendimiento conocida, sin resolver (para decisión de Juan)
+## Limitación de rendimiento — resuelta (2026-08-26, mismo día)
 
-`biblia/modules/commentaries/chrysostom-mateo/books/MAT.json` pesa **2,57
-MB** — grande para el patrón de "comentarios" (aunque no atípico ahí: Calvin
-sobre Jeremías pesa 4,8 MB, Matthew Henry sobre Mateo 2,7 MB), pero **muy**
-atípico para `patristicByVerse`: los 11 módulos patrísticos existentes
-pesan unos pocos KB cada uno.
+`biblia/modules/commentaries/chrysostom-mateo/books/MAT.json` pesa 2,57 MB
+— grande para "comentarios" (no atípico ahí: Calvin sobre Jeremías pesa
+4,8 MB), pero muy atípico para `patristicByVerse`, donde los 11 módulos
+existentes pesan unos pocos KB. Se detectó que `loadLinkedEntries()` en
+`assets/module-loader.js` (compartida con "Biblioteca") siempre descargaba
+el archivo **completo** del libro solo para calcular el badge "cuántos
+fragmentos hay en este capítulo" — sin el equivalente liviano que
+`loadCommentaryIndex()` ya da a `registry.commentaries`.
 
-El motivo por el que **no se dividió** este módulo en varios (a diferencia
-del lado `patristic`) es que no serviría de nada con el mecanismo actual:
-`loadLinkedEntries()` en `assets/module-loader.js` (usado tanto por
-`patristicByVerse` como por `library`) siempre descarga el archivo
-**completo** del libro declarado en el manifest — no existe ahí un
-equivalente al `loadCommentaryIndex()` liviano que sí tienen los módulos de
-`registry.json → commentaries`. Registrar el mismo contenido partido en 6
-módulos habría significado que **los 6** se descargan igual en cualquier
-capítulo de Mateo (cada uno declara el libro "MAT"), sumando el mismo total
-de bytes, sin ahorro real — solo más archivos que mantener.
+Juan pidió usar el criterio propio ("lo que consideres más inteligente").
+Se optó por extender el mecanismo en vez de solo documentarlo, de forma
+retrocompatible y quirúrgica:
 
-En la práctica esto significa: **cualquier capítulo de Mateo** (28 de 1189
-capítulos de toda la Biblia, ~2,4%) dispara una descarga de 2,57 MB la
-primera vez que se abre en la sesión (después queda en caché HTTP del
-navegador mientras dure la sesión). Ningún otro libro ni comentario se ve
-afectado — `loadLinkedEntries` corta antes de pedir el archivo cuando el
-libro pedido no está en el manifest del módulo.
+- `loadLinkedEntries(manifestPath, bookId, chapter, {lightweight})` — nuevo
+  cuarto parámetro opcional, `false` por defecto. Con `lightweight:true` Y
+  el libro declarando `indexFile`, pide ese archivo en vez del completo.
+  Sin `indexFile` (los 11 módulos patrísticos existentes, todos los de
+  `library`), el comportamiento es idéntico al de antes — no se tocó nada
+  para ellos.
+- Los dos llamados de `buildChapterData()` que solo cuentan fragmentos para
+  el badge (uno para `library`, otro para `patristicByVerse`) ahora pasan
+  `{lightweight:true}`.
+- Los dos llamados que sí necesitan el contenido completo para mostrarlo
+  (`renderPatristicByVerse` en el panel "Padres Apostólicos → Por
+  versículo", y el panel de Exégesis) **no** pasan el flag — siguen pidiendo
+  el archivo completo como siempre, porque lo necesitan.
+- `chrysostom-mateo/books/MAT.index.json` (11,7 KB: solo `id`+`reference`
+  de las 86 entradas, sin `content`) generado por el propio
+  `tools/import_chrysostom_matthew.py` y declarado en el manifest
+  (`books[0].indexFile`).
 
-No se tocó `loadLinkedEntries` para agregarle un modo liviano tipo índice
-porque (a) es una función compartida con "Biblioteca" y cualquier cambio
-exige analizar el impacto ahí también, y (b) la instrucción explícita fue no
-tocar el mecanismo común salvo que fuera imprescindible. Si Juan quiere
-seguir agregando más libros de Crisóstomo (quedan 16: Juan, Hechos, Romanos,
-1-2 Corintios, Gálatas-Filemón, Hebreos — todos con perfil de tamaño
-similar), este costo se acumula por libro (no en total: cada libro solo
-paga su propio costo al abrirse), y en algún punto sí conviene invertir en
-un `loadLinkedEntries` con índice liviano antes de seguir. Queda como
-recomendación pendiente, no ejecutada.
+Resultado verificado en navegador real: abrir cualquier capítulo de Mateo
+ahora pide manifest.json (4KB) + MAT.index.json (11,7KB) — no los 2,57MB —
+y los badges por versículo muestran los mismos conteos que antes del
+cambio. Abrir "Por versículo → Crisóstomo" sigue pidiendo el archivo
+completo correctamente, con el contenido real de cada homilía.
+
+No se tocó ningún módulo existente de `patristicByVerse` ni `library`; sin
+`indexFile` en su manifest, tanto antes como después de este cambio piden
+exactamente el mismo archivo de siempre. Este mecanismo queda disponible
+para los próximos 16 libros de Crisóstomo — cada uno debería generar su
+propio `.index.json` igual que este.
