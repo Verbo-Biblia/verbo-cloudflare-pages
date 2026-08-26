@@ -174,12 +174,25 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   .about-verbo {
     padding: clamp(2.5rem, 6vw, 4rem) clamp(1rem, 5vw, 4rem);
   }
-  .about-verbo h2 {
+  .about-details summary {
     font-family: 'Fraunces', serif;
     font-size: 1.4rem;
     color: var(--parchment);
-    margin-bottom: 1.5rem;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
   }
+  .about-details summary::-webkit-details-marker { display: none; }
+  .about-details summary::before {
+    content: "▸";
+    color: var(--gold);
+    font-size: 1rem;
+    transition: transform 0.15s ease;
+  }
+  .about-details[open] summary::before { transform: rotate(90deg); }
+  .about-details[open] summary { margin-bottom: 1.5rem; }
   .about-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -542,8 +555,9 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   </nav>
 </main>
 
-<section class="about-verbo" aria-label="Qué incluye Verbo">
-  <h2 data-i18n="portal.aboutHeading">Qué incluye Verbo hoy</h2>
+<section class="about-verbo" aria-label="Qué ofrece Verbo">
+  <details class="about-details">
+  <summary data-i18n="portal.aboutHeading">Qué ofrece Verbo</summary>
   <div class="about-grid">
     <p><strong data-i18n="portal.aboutBibliaLabel">Biblia de estudio.</strong> <span data-i18n="portal.aboutBibliaText">Ocho ediciones bíblicas en español e inglés, incluyendo Biblia Verbo (edición propia) y ediciones con números Strong para trabajar con los idiomas originales. Once comentarios verso a verso de referencia —Matthew Henry, Jamieson-Fausset-Brown, Keil-Delitzsch, Calvin, entre otros— además de historia de la iglesia, los Padres Apostólicos, literatura extracanónica (1 Enoc, Jubileos, Asunción de Moisés) con su contexto histórico explicado, costumbres bíblicas, referencias cruzadas, y un conversor de pesas, medidas y monedas. Todo con un sistema de notas unificado para organizar tu estudio.</span></p>
     <p><strong data-i18n="portal.aboutBuscadorLabel">Buscador semántico bilingüe.</strong> <span data-i18n="portal.aboutBuscadorText">Encuentra pasajes por idea, no solo por palabra exacta —en español e inglés, funcionando directo en tu navegador.</span></p>
@@ -554,6 +568,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
     <p><strong data-i18n="portal.aboutAndroidLabel">App para Android.</strong> <span data-i18n="portal.aboutAndroidText">Verbo también está disponible como app en Google Play, gratis, sin anuncios ni compras dentro de la app.</span></p>
   </div>
   <p class="about-closing" data-i18n="portal.aboutClosing">Todo sincronizable entre dispositivos sin necesidad de contraseñas, y sin ningún costo. Verbo sigue creciendo: nuevos comentarios, obras y herramientas se agregan de forma constante.</p>
+  </details>
 </section>
 
 <section class="more-verbo" id="mas-de-verbo">
