@@ -907,7 +907,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(tab!=='historia') els.side.classList.remove('side-panel--history-expanded');
     els.side.classList.toggle('side-panel--atlas-expanded', tab==='mapas');
     const isSheet=window.innerWidth<=760 && SHEET_TABS.includes(tab);
-    els.side.classList.toggle('side-panel--left', ['historia','padres','licencias','historia-notas','costumbres','diccionarios','conversor'].includes(tab));
+    els.side.classList.toggle('side-panel--left', ['historia','padres','licencias','historia-notas','costumbres','diccionarios','conversor','extracanonico'].includes(tab));
     if(isSheet){
       els.side.dataset.sheet='1';  // CSS aplica translateY(105%) inmediatamente
       els.side.offsetHeight;       // fuerza reflow para que el estado inicial esté fijo
