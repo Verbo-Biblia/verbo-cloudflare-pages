@@ -172,25 +172,32 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
 
   /* ---------- ABOUT VERBO (qué incluye) ---------- */
   .about-verbo {
-    padding: clamp(2.5rem, 6vw, 4rem) clamp(1.5rem, 5vw, 4rem);
-    max-width: 760px;
-    margin: 0 auto;
+    padding: clamp(2.5rem, 6vw, 4rem) clamp(1rem, 5vw, 4rem);
   }
   .about-verbo h2 {
     font-family: 'Fraunces', serif;
     font-size: 1.4rem;
     color: var(--parchment);
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.75rem 2.5rem;
   }
   .about-verbo p {
     color: var(--text-muted);
     font-size: 0.92rem;
     line-height: 1.7;
-    margin-bottom: 1rem;
+    margin: 0;
   }
   .about-verbo p strong {
     color: var(--parchment);
     font-weight: 600;
+  }
+  .about-closing {
+    margin-top: 2rem;
+    max-width: 70ch;
   }
 
   /* ---------- SECTIONS GRID ---------- */
@@ -537,14 +544,16 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
 
 <section class="about-verbo" aria-label="Qué incluye Verbo">
   <h2 data-i18n="portal.aboutHeading">Qué incluye Verbo hoy</h2>
-  <p><strong data-i18n="portal.aboutBibliaLabel">Biblia de estudio.</strong> <span data-i18n="portal.aboutBibliaText">Ocho ediciones bíblicas en español e inglés, incluyendo Biblia Verbo (edición propia) y ediciones con números Strong para trabajar con los idiomas originales. Once comentarios verso a verso de referencia —Matthew Henry, Jamieson-Fausset-Brown, Keil-Delitzsch, Calvin, entre otros— además de historia de la iglesia, los Padres Apostólicos, literatura extracanónica (1 Enoc, Jubileos, Asunción de Moisés) con su contexto histórico explicado, costumbres bíblicas, referencias cruzadas, y un conversor de pesas, medidas y monedas. Todo con un sistema de notas unificado para organizar tu estudio.</span></p>
-  <p><strong data-i18n="portal.aboutBuscadorLabel">Buscador semántico bilingüe.</strong> <span data-i18n="portal.aboutBuscadorText">Encuentra pasajes por idea, no solo por palabra exacta —en español e inglés, funcionando directo en tu navegador.</span></p>
-  <p><strong data-i18n="portal.aboutLibreriaLabel">Librería.</strong> <span data-i18n="portal.aboutLibreriaText">Más de cien obras clásicas de la fe cristiana para lectura completa: tratados de Chapel Library, los Padres Apostólicos, y clásicos como El progreso del peregrino.</span></p>
-  <p><strong data-i18n="portal.aboutRecursosLabel">Recursos para predicar y enseñar.</strong> <span data-i18n="portal.aboutRecursosText">Editor de sermones con comparación de versiones y exportación a Word; casi cien artículos, reflexiones y devocionales; currículos completos de escuela dominical para niños y preadolescentes; sesenta sermones históricos de Spurgeon, Wesley, Edwards y otros.</span></p>
-  <p><strong data-i18n="portal.aboutProyectorLabel">Proyector Verbo.</strong> <span data-i18n="portal.aboutProyectorText">Pantalla de proyección gratuita para canciones y pasajes bíblicos durante el culto, con control remoto desde el celular.</span></p>
-  <p><strong data-i18n="portal.aboutIglesiaLabel">Iglesia.</strong> <span data-i18n="portal.aboutIglesiaText">Comparte anuncios y actualizaciones con tu congregación mediante un enlace de invitación, sin necesidad de redes sociales.</span></p>
-  <p><strong data-i18n="portal.aboutAndroidLabel">App para Android.</strong> <span data-i18n="portal.aboutAndroidText">Verbo también está disponible como app en Google Play, gratis, sin anuncios ni compras dentro de la app.</span></p>
-  <p data-i18n="portal.aboutClosing">Todo sincronizable entre dispositivos sin necesidad de contraseñas, y sin ningún costo. Verbo sigue creciendo: nuevos comentarios, obras y herramientas se agregan de forma constante.</p>
+  <div class="about-grid">
+    <p><strong data-i18n="portal.aboutBibliaLabel">Biblia de estudio.</strong> <span data-i18n="portal.aboutBibliaText">Ocho ediciones bíblicas en español e inglés, incluyendo Biblia Verbo (edición propia) y ediciones con números Strong para trabajar con los idiomas originales. Once comentarios verso a verso de referencia —Matthew Henry, Jamieson-Fausset-Brown, Keil-Delitzsch, Calvin, entre otros— además de historia de la iglesia, los Padres Apostólicos, literatura extracanónica (1 Enoc, Jubileos, Asunción de Moisés) con su contexto histórico explicado, costumbres bíblicas, referencias cruzadas, y un conversor de pesas, medidas y monedas. Todo con un sistema de notas unificado para organizar tu estudio.</span></p>
+    <p><strong data-i18n="portal.aboutBuscadorLabel">Buscador semántico bilingüe.</strong> <span data-i18n="portal.aboutBuscadorText">Encuentra pasajes por idea, no solo por palabra exacta —en español e inglés, funcionando directo en tu navegador.</span></p>
+    <p><strong data-i18n="portal.aboutLibreriaLabel">Librería.</strong> <span data-i18n="portal.aboutLibreriaText">Más de cien obras clásicas de la fe cristiana para lectura completa: tratados de Chapel Library, los Padres Apostólicos, y clásicos como El progreso del peregrino.</span></p>
+    <p><strong data-i18n="portal.aboutRecursosLabel">Recursos para predicar y enseñar.</strong> <span data-i18n="portal.aboutRecursosText">Editor de sermones con comparación de versiones y exportación a Word; casi cien artículos, reflexiones y devocionales; currículos completos de escuela dominical para niños y preadolescentes; sesenta sermones históricos de Spurgeon, Wesley, Edwards y otros.</span></p>
+    <p><strong data-i18n="portal.aboutProyectorLabel">Proyector Verbo.</strong> <span data-i18n="portal.aboutProyectorText">Pantalla de proyección gratuita para canciones y pasajes bíblicos durante el culto, con control remoto desde el celular.</span></p>
+    <p><strong data-i18n="portal.aboutIglesiaLabel">Iglesia.</strong> <span data-i18n="portal.aboutIglesiaText">Comparte anuncios y actualizaciones con tu congregación mediante un enlace de invitación, sin necesidad de redes sociales.</span></p>
+    <p><strong data-i18n="portal.aboutAndroidLabel">App para Android.</strong> <span data-i18n="portal.aboutAndroidText">Verbo también está disponible como app en Google Play, gratis, sin anuncios ni compras dentro de la app.</span></p>
+  </div>
+  <p class="about-closing" data-i18n="portal.aboutClosing">Todo sincronizable entre dispositivos sin necesidad de contraseñas, y sin ningún costo. Verbo sigue creciendo: nuevos comentarios, obras y herramientas se agregan de forma constante.</p>
 </section>
 
 <section class="more-verbo" id="mas-de-verbo">
