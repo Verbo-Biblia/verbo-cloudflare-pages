@@ -18,7 +18,7 @@
   max-height: calc(100vh - 16px);
   resize: both;
   overflow: auto;
-  background: var(--paper-raised);
+  background: color-mix(in srgb, var(--paper-raised) 88%, var(--ink) 12%);
   border: 1px solid var(--rule-strong);
   border-radius: 10px;
   box-shadow: 0 12px 40px rgba(0, 0, 0, .35);

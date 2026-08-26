@@ -464,6 +464,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       VerboBackup.setPosicionBiblia(currentBook, currentChapter, currentVersion);
       gospelOpenChapter=null;
       if (activeTab) renderPanel(activeTab);
+      npRefreshIfOpen(); // la pestaña Capítulo del popup de notas debe reflejar el nuevo capítulo
       window.scrollTo({top:0, behavior:'smooth'});
       if(restoreVerse){
         requestAnimationFrame(()=>els.list.querySelector(`[data-verse-n="${restoreVerse}"]`)?.scrollIntoView({block:'center'}));
@@ -2441,6 +2442,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.querySelectorAll('.tab-rail__btn[data-tab="notas"]').forEach(b=>b.classList.remove('tab-rail__btn--active'));
   }
   function toggleNotasPopup(){ (npEl && !npEl.hidden) ? closeNotasPopup() : openNotasPopup(); }
+  function isNotasPopupOpen(){ return !!(npEl && !npEl.hidden); }
+  // Refresca el contenido del popup si está abierto -- necesario porque el
+  // popup es un overlay independiente que no pasa por openPanel/renderPanel
+  // al navegar (cambiar de capítulo, abrir otra entrada de Costumbres/
+  // Extracanónico/Diccionarios/Historia/Padres, abrir/cerrar el popup de
+  // Strong): sin este gancho, "Nueva nota" quedaba invisible o la nota de
+  // Capítulo mostraba el capítulo viejo hasta cerrar y reabrir el popup a
+  // mano (reportado por Juan, 2026-08-26).
+  function npRefreshIfOpen(){ if(isNotasPopupOpen()) npRenderBody(); }
 
   // ── "Entrada actual" por pestaña: lee el mismo estado interno que ya usan
   // los paneles de lectura de cada sección (evita el problema que sorteaba
@@ -4177,6 +4187,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function renderChurchHistoryEntry(id){
+    npRefreshIfOpen(); // sincroniza la pestaña Historia/Padres del popup si ya estaba abierto
     const entry=churchHistoryEntries.find(e=>e.id===id);
     if(!entry){ churchHistoryOpenId=null; els.panelBody.innerHTML=emptyState('⚠️',t('historia.entradaNoEncontrada')); return; }
     const sourceKey=churchHistoryBookKey(entry);
@@ -4588,6 +4599,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     p.root.hidden=false;
     strongPopupHistory=[];
     await renderStrongPopupEntry(code);
+    npRefreshIfOpen(); // la pestaña Idiomas del popup de notas destaca el código recién abierto
   }
 
   // Navega el popup YA ABIERTO a otro código (clic en un chip de "Palabras
@@ -4599,6 +4611,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const currentCode=strongPopupEls().code.textContent;
     if(currentCode && currentCode!==code) strongPopupHistory.push(currentCode);
     await renderStrongPopupEntry(code);
+    npRefreshIfOpen();
   }
 
   async function goBackStrongPopup(){
@@ -4679,6 +4692,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     openStrongPopupRoot.classList.remove('strong-def-popup--shake');
     openStrongPopupRoot=null;
     strongPopupHistory=[];
+    npRefreshIfOpen();
   }
 
 
@@ -5184,6 +5198,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function renderPatristicSection(){
+    npRefreshIfOpen(); // sincroniza la pestaña Historia/Padres del popup si ya estaba abierto
     const sections=patristicDocData.sections;
     const idx=sections.findIndex(s=>s.n===patristicOpenSection);
     const section=sections[idx];
@@ -5548,6 +5563,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function renderCostumbresEntry(){
+    npRefreshIfOpen(); // sincroniza la pestaña Costumbres del popup si ya estaba abierto
     const entry=(costumbresDocData.entries||[]).find(e=>e.id===costumbresOpenId);
     if(!entry){ costumbresOpenId=null; els.panelBody.innerHTML=emptyState('⚠️',t('costumbres.entradaNoEncontrada')); return; }
     const entries=costumbresDocData.entries||[];
@@ -5801,6 +5817,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function renderExtracanonicoEntry(){
+    npRefreshIfOpen(); // sincroniza la pestaña Extracanónico del popup si ya estaba abierto
     const entry=(extracanonicoDocData.entries||[]).find(e=>e.id===extracanonicoOpenId);
     if(!entry){ extracanonicoOpenId=null; els.panelBody.innerHTML=emptyState('⚠️',t('extracanonico.entradaNoEncontrada')); return; }
     const entries=extracanonicoDocData.entries||[];
@@ -6181,6 +6198,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function renderDiccionariosEntry(){
+    npRefreshIfOpen(); // sincroniza la pestaña Diccionarios del popup si ya estaba abierto
     const entry=(diccionariosDocData.entries||[]).find(e=>e.id===diccionariosOpenId);
     if(!entry){ diccionariosOpenId=null; els.panelBody.innerHTML=emptyState('⚠️',t('diccionarios.entradaNoEncontrada')); return; }
     const entries=diccionariosDocData.entries||[];
