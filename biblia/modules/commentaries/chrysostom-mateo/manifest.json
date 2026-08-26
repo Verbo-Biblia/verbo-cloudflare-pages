@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 2,
+  "id": "chrysostom-mateo",
+  "type": "commentary",
+  "name": "Juan Crisóstomo — Homilías sobre Mateo",
+  "abbreviation": "Crisóstomo",
+  "language": "en",
+  "author": "Juan Crisóstomo (c. 349–407)",
+  "translator": "Sir George Prevost, revisado por M. B. Riddle, NPNF1-10 (1888)",
+  "description": "Las 86 homilías de Crisóstomo sobre el Evangelio de Mateo, ancladas verso a verso. Una homilía = una entrada; el rango de cada una se toma del encabezado impreso original y, cuando este no da un final explícito, de la transición a la siguiente homilía.",
+  "license": "Dominio público — Nicene and Post-Nicene Fathers, Series I, Vol. X (1888)",
+  "licenseUrl": "https://ccel.org/ccel/schaff/npnf110",
+  "sourceUrl": "https://ccel.org/ccel/schaff/npnf110.xml",
+  "sourceEdition": "Christian Literature Publishing Co., New York, 1886/1888; CCEL ThML/XML, versión 3.0",
+  "publicationYear": 1888,
+  "publicDomain": true,
+  "attribution": "Traducción inglesa: Sir George Prevost, revisada por M. B. Riddle. Nicene and Post-Nicene Fathers, ed. Philip Schaff. Digitalización: Christian Classics Ethereal Library (CCEL).",
+  "notes": "Epígrafes de texto bíblico citado (bloques íntegramente en cursiva que preceden a cada homilía) excluidos por redundantes con la Biblia de Verbo; citas integradas en la exposición se conservan. Notas editoriales de NPNF1-10 (críticas textuales, variantes griegas) conservadas al final de cada entrada. 7 homilías (ver PROVENANCE.md) no tienen un final de rango explícito en el encabezado original ni una transición segura a la siguiente homilía; se registran como un solo versículo en vez de inventar un cierre.",
+  "books": [
+    {
+      "id": "MAT",
+      "name": "Mateo",
+      "number": 40,
+      "file": "books/MAT.json"
+    }
+  ]
+}

@@ -110,5 +110,50 @@ existentes; si no es posible con fidelidad, detener y documentar.
   citas integradas en la exposición.
 - Validación, tamaños, muestras y pruebas de interfaz:
   `review/commentaries/martin-luther-galatians/VALIDATION.md`.
-- Próximo recurso: Juan Crisóstomo, homilías bíblicas NPNF, conservando una
-  homilía como una entrada y sin modificar la arquitectura de Verbo.
+
+## 5. Juan Crisóstomo — Homilías sobre Mateo: completado (1 de 17 libros)
+
+Corrección de arquitectura de Juan a mitad de tarea: Crisóstomo es Padre de
+la Iglesia, va en `biblia/modules/patristic/` (lectura completa, 6 volúmenes
+por tamaño) + sincronizado en `patristicByVerse` (nunca en la lista plana
+`commentaries`) — mismo patrón que Ignacio, Policarpo, Ireneo, etc. Detalle
+completo: `review/commentaries/chrysostom-mateo/PROVENANCE.md` y
+`VALIDATION.md`.
+
+- Fuente: CCEL NPNF1-10, ThML/XML, SHA-256
+  `e110c98b1f444147bf7baf79e46e56ae6c6a1f0b2983e6fc52f2356fac7f858f`.
+- 86 homilías, 28 capítulos de Mateo cubiertos, 2 sin cierre de rango seguro
+  (documentadas, no inventadas).
+- Módulos: `biblia/modules/patristic/chrysostom-mateo-1..6/` (lectura
+  completa) + `biblia/modules/commentaries/chrysostom-mateo/` (por
+  versículo, solo en `patristicByVerse`).
+- Importador: `tools/import_chrysostom_matthew.py` (reutilizable para los
+  próximos libros de Crisóstomo, con ajustes por volumen).
+- Probado en navegador real (Chrome vía Playwright): badges por versículo,
+  estante, buscador, apertura de homilía y traducción EN→ES bajo demanda,
+  todo sin cambios de código ni errores de consola.
+- **Limitación de rendimiento conocida, no resuelta**: el archivo
+  `commentaries/chrysostom-mateo/books/MAT.json` pesa 2,5 MB porque
+  `loadLinkedEntries()` (compartida con "Biblioteca") no tiene un modo
+  índice liviano como sí tiene la lista `commentaries` — se descarga entero
+  la primera vez que se abre cualquier capítulo de Mateo en la sesión. No se
+  tocó esa función compartida sin decisión de Juan. Ver PROVENANCE.md,
+  sección final, para la recomendación completa.
+
+## Punto exacto de reanudación (Crisóstomo)
+
+Quedan 16 libros de Crisóstomo por el orden ya fijado: Juan, Hechos,
+Romanos, 1–2 Corintios, Gálatas, Efesios, Filipenses, Colosenses,
+1–2 Tesalonicenses, 1–2 Timoteo, Tito, Filemón, Hebreos. Antes de seguir
+con Juan (el siguiente, NPNF1-14), decidir con Juan (usuario) si vale la
+pena invertir en un modo índice liviano para `patristicByVerse` — cada
+libro adicional de Crisóstomo va a repetir el mismo perfil de tamaño
+(homilías largas, ~2-4 MB por libro completo), y ese costo se paga por
+libro, no se acumula entre libros no visitados, pero 17 libros es mucho
+para no revisarlo antes de seguir.
+
+Después de Crisóstomo (los 17 libros o los que se decida completar), sigue
+John Gill — Exposition of the Old and New Testaments, verificando primero
+el `.conf` SWORD concreto antes de importar (ver instrucciones originales
+de Wave 1: si el `.conf` no confirma clara y explícitamente dominio público,
+no importar).
