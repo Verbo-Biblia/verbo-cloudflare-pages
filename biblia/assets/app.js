@@ -58,6 +58,31 @@ document.addEventListener('DOMContentLoaded', async () => {
     sermonResizeHandle2: document.getElementById('sermonResizeHandle2')
   };
 
+  // Estado del popup unificado de notas (ver npBuild/openNotasPopup más
+  // abajo). Declarado acá arriba, ANTES de la carga inicial de la Biblia
+  // (loadPassage más abajo llama a npRefreshIfOpen): app.js entero corre
+  // dentro de un único callback de DOMContentLoaded, así que un `let`/`const`
+  // declarado más abajo en el archivo todavía no está inicializado (temporal
+  // dead zone) la primera vez que loadPassage corre en el arranque -- eso
+  // rompía la carga inicial de la Biblia con un ReferenceError (reportado por
+  // Juan, 2026-08-26: "la biblia principal no carga" / "al recargar
+  // desaparece"). Sacarlo de acá arriba lo evita de raíz.
+  const NP_TABS=[
+    {id:'capitulo', label:'notasPopup.tabCapitulo'},
+    {id:'historia', label:'notasPopup.tabHistoria'},
+    {id:'costumbres', label:'notasPopup.tabCostumbres'},
+    {id:'extracanonico', label:'notasPopup.tabExtracanonico'},
+    {id:'diccionarios', label:'notasPopup.tabDiccionarios'},
+    {id:'idiomas', label:'notasPopup.tabIdiomas'},
+  ];
+  const NP_TIPOS_POR_TAB={
+    historia:['historia','padres'], costumbres:['costumbres'],
+    extracanonico:['extracanonico'], diccionarios:['diccionarios'], idiomas:['idiomas'],
+  };
+  let npEl=null, npHeaderEl=null, npTabsEl=null, npBodyEl=null;
+  let npActiveTab='capitulo', npOpenNoteId=null, npQuery='';
+  let npDrag=null;
+
   const backupData = await VerboBackup.init();
 
   // Contenedor común para avisos discretos apilables (ver .app-banner-stack
@@ -2352,21 +2377,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   // sin cambios de comportamiento) y getNotas/addNota/getNotaById/
   // updateNotaById/deleteNotaById (el resto de pestañas). Ver
   // PLAN-POPUP-NOTAS-UNIFICADO.md para el análisis de migración de datos. ──
-  const NP_TABS=[
-    {id:'capitulo', label:'notasPopup.tabCapitulo'},
-    {id:'historia', label:'notasPopup.tabHistoria'},
-    {id:'costumbres', label:'notasPopup.tabCostumbres'},
-    {id:'extracanonico', label:'notasPopup.tabExtracanonico'},
-    {id:'diccionarios', label:'notasPopup.tabDiccionarios'},
-    {id:'idiomas', label:'notasPopup.tabIdiomas'},
-  ];
-  const NP_TIPOS_POR_TAB={
-    historia:['historia','padres'], costumbres:['costumbres'],
-    extracanonico:['extracanonico'], diccionarios:['diccionarios'], idiomas:['idiomas'],
-  };
-  let npEl=null, npHeaderEl=null, npTabsEl=null, npBodyEl=null;
-  let npActiveTab='capitulo', npOpenNoteId=null, npQuery='';
-  let npDrag=null;
+  // Estado y constantes declarados arriba del todo (ver bloque cerca de
+  // "els" al inicio del archivo) -- NP_TABS/NP_TIPOS_POR_TAB/npEl/etc.
 
   function npBuild(){
     if(npEl) return;
@@ -2623,7 +2635,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         <button type="button" class="predicas-list__btn" id="npNewSave">${t('notasPopup.nuevaNota')}</button>
       </div>`;
     }
-    if(!npCurrentEntry(tab)) return '';
+    if(!npCurrentEntry(tab)) return `<p class="np-new-note-hint">${t('notasPopup.abreParaNota')}</p>`;
     return `<div class="np-new-note"><button type="button" class="predicas-list__btn" id="npNewSave">${t('notasPopup.nuevaNota')}</button></div>`;
   }
   function npWireNewNote(tab){

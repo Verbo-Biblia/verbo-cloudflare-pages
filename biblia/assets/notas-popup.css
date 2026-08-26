@@ -102,6 +102,12 @@
   gap: 8px;
   margin: 10px 0;
 }
+.np-new-note-hint {
+  margin: 10px 0;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  font-style: italic;
+}
 .np-note-edit {
   display: flex;
   flex-direction: column;
