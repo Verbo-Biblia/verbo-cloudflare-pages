@@ -97,3 +97,18 @@ del libro activo. Detalle completo en
 Regla reafirmada por el usuario: no modificar nada de Verbo para acomodar un
 comentario. El corpus y su conversión deben ajustarse a las convenciones ya
 existentes; si no es posible con fidelidad, detener y documentar.
+
+## 4. Martin Luther — completado
+
+- Módulo: `luther-galatians-graebner`.
+- Fuente: Project Gutenberg #1549, traducción inglesa abreviada de Theodore
+  Graebner; 565.453 bytes; SHA-256
+  `49d6b0fe3e3b1bcf79edef1371b80cd3c2d3d24cf5f2503272b950a2e7ba73e7`.
+- Cobertura: los 149 versículos de Gálatas 1–6.
+- Entradas: 231; dos corresponden a prefacio/introducción en capítulo 0.
+- Se eliminaron las cabeceras separables que reproducían el texto base, no las
+  citas integradas en la exposición.
+- Validación, tamaños, muestras y pruebas de interfaz:
+  `review/commentaries/martin-luther-galatians/VALIDATION.md`.
+- Próximo recurso: Juan Crisóstomo, homilías bíblicas NPNF, conservando una
+  homilía como una entrada y sin modificar la arquitectura de Verbo.

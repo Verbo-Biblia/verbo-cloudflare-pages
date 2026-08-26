@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 2,
+  "id": "luther-galatians-graebner",
+  "type": "commentary",
+  "name": "Martin Luther — Commentary on Galatians (Graebner Abridged)",
+  "abbreviation": "Luther (Galatians)",
+  "language": "en",
+  "author": "Martin Luther (1483–1546)",
+  "description": "Luther's Galatians commentary in Theodore Graebner's explicitly abridged English translation.",
+  "license": "Public domain edition; Project Gutenberg eBook #1549",
+  "licenseUrl": "https://www.gutenberg.org/policy/license.html",
+  "sourceUrl": "https://www.gutenberg.org/ebooks/1549",
+  "sourceEdition": "A new abridged translation by Theodore Graebner; Zondervan edition (1939; later printings); Project Gutenberg #1549, updated 2024-02-17",
+  "translator": "Theodore Graebner (1876–1950), abridged English translation",
+  "publicationYear": 1939,
+  "publicDomain": true,
+  "attribution": "Martin Luther; abridged English translation by Theodore Graebner; digitized by Project Gutenberg/Project Wittenberg.",
+  "notes": "This is the abridged Graebner translation, not the complete commentary. Separable KJV-style base-text headings, Gutenberg navigation, and license boilerplate are excluded; quotations integral to the exposition are retained.",
+  "books": [
+    {
+      "id": "GAL",
+      "name": "Galatians",
+      "file": "books/GAL.json",
+      "indexFile": "books/GAL.index.json"
+    }
+  ]
+}
