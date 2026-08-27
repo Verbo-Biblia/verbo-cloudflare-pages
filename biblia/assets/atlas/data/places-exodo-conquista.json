@@ -2,13 +2,13 @@
   "places": {
     "rameses": {
       "name": {
-        "es": "Ramesés / Zoán",
-        "en": "Rameses / Zoan"
+        "es": "Ramesés",
+        "en": "Rameses"
       },
       "type": "site",
       "desc": {
-        "es": "Punto de partida tradicionalmente propuesto para el éxodo en esta cartografía.",
-        "en": "Punto de partida tradicionalmente propuesto para el éxodo en esta cartografía."
+        "es": "Punto de partida del éxodo según Éxodo 12:37. Su identificación arqueológica exacta sigue siendo debatida; no se equipara aquí con Zoán.",
+        "en": "Starting point of the exodus according to Exodus 12:37. Its exact archaeological identification remains debated; it is not equated here with Zoan."
       },
       "mapPosition": [
         345,
@@ -20,7 +20,10 @@
       ],
       "mapPositionSource": "runtime-corrected",
       "mediaKey": "egypt",
-      "mediaScope": "regional"
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "Exodus 12:37"
+      ]
     },
     "sucot": {
       "name": {
@@ -98,8 +101,8 @@
       },
       "type": "site",
       "desc": {
-        "es": "Lugar mencionado en el contexto del cruce del mar (Éxodo 14).",
-        "en": "Lugar mencionado en el contexto del cruce del mar (Éxodo 14)."
+        "es": "Referencia geográfica frente al campamento junto a Pi-hahirot; no fue una estación posterior del viaje (Éxodo 14:2).",
+        "en": "Geographic reference opposite the camp by Pi-hahiroth; it was not a later station on the journey (Exodus 14:2)."
       },
       "mapPosition": [
         395,
@@ -511,8 +514,8 @@
       },
       "type": "site",
       "desc": {
-        "es": "Ciudad fortificada del sur de Canaán.",
-        "en": "Ciudad fortificada del sur de Canaán."
+        "es": "Ciudad fortificada del sur de Canaán conquistada durante la campaña meridional de Josué. El sitio se identifica ampliamente con Tel Laquis, donde se conservan restos de sus fortificaciones.",
+        "en": "Fortified city in southern Canaan conquered during Joshua's southern campaign. The site is widely identified with Tel Lachish, where remains of its fortifications survive."
       },
       "mapPosition": [
         690,
@@ -520,7 +523,10 @@
       ],
       "mapPositionSource": "master-svg",
       "mediaKey": "lachish",
-      "mediaScope": "regional"
+      "mediaScope": "exact",
+      "scriptureRefs": [
+        "Joshua 10:31–32"
+      ]
     },
     "gaza": {
       "name": {
@@ -634,15 +640,14 @@
         "en": "From Egypt to Sinai"
       },
       "desc": {
-        "es": "Ruta basada en las estaciones representadas en el mapa. Varias ubicaciones se muestran con signo de interrogación porque su identificación es discutida.",
-        "en": "Route based on the stations represented on the map. Several locations carry question marks because their identification is debated."
+        "es": "Ruta basada en las estaciones representadas en el mapa. Baal-zefón se conserva como referencia frente al campamento de Pi-hahirot, no como una parada sucesiva. Varias ubicaciones se muestran con signo de interrogación porque su identificación es discutida.",
+        "en": "Route based on the stations represented on the map. Baal-zephon is retained as a landmark opposite the camp at Pi-hahiroth, not as a successive stop. Several locations carry question marks because their identification is debated."
       },
       "stops": [
         "rameses",
         "sucot",
         "etam",
         "pi-hahirot",
-        "baal-zefon",
         "mara",
         "elim",
         "dofca",
@@ -711,8 +716,8 @@
       },
       "stops": [
         "hesbon",
-        "jerico",
-        "gilgal"
+        "gilgal",
+        "jerico"
       ],
       "scriptureRefs": [
         "Joshua 1–6"

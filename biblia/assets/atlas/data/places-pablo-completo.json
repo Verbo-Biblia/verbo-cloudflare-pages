@@ -614,16 +614,16 @@
       },
       "type": "port",
       "desc": {
-        "es": "Pablo se despidió aquí de los ancianos de Éfeso (Hechos 20:17-38).",
-        "en": "Pablo se despidió aquí de los ancianos de Éfeso (Hechos 20:17-38)."
+        "es": "Importante puerto de la costa occidental de Asia Menor. Pablo hizo llamar aquí a los ancianos de Éfeso y les pronunció su discurso de despedida antes de continuar hacia Jerusalén (Hechos 20:15–38).",
+        "en": "Important port on the western coast of Asia Minor. Paul summoned the Ephesian elders here and delivered his farewell address before continuing toward Jerusalem (Acts 20:15–38)."
       },
       "mapPosition": [
         482,
         300
       ],
       "mapPositionSource": "master-svg",
-      "mediaKey": "western-anatolia",
-      "mediaScope": "regional",
+      "mediaKey": "miletus",
+      "mediaScope": "exact",
       "scriptureRefs": [
         "Acts 20:17-38"
       ]
@@ -1192,8 +1192,8 @@
         "en": "Second Missionary Journey (Acts 15–18)"
       },
       "desc": {
-        "es": "Incluye Macedonia, Atenas, Corinto y el regreso por Éfeso. Los tramos son esquemáticos.",
-        "en": "Includes Macedonia, Athens, Corinth, and the return via Ephesus. Segments are schematic."
+        "es": "Incluye Macedonia, Atenas, Corinto y el regreso por Éfeso. Tarso representa el paso inferido por Cilicia (Hechos 15:41), y Jerusalén la interpretación tradicional de «subió y saludó a la iglesia» (Hechos 18:22); ninguna de las dos ciudades se nombra expresamente en esos tramos. Las líneas son esquemáticas.",
+        "en": "Includes Macedonia, Athens, Corinth, and the return via Ephesus. Tarsus represents the inferred passage through Cilicia (Acts 15:41), and Jerusalem the traditional interpretation of 'went up and greeted the church' (Acts 18:22); neither city is explicitly named in those legs. Lines are schematic."
       },
       "stops": [
         "antioquia-siria",
@@ -1228,8 +1228,8 @@
         "en": "Third Missionary Journey (Acts 18–21)"
       },
       "desc": {
-        "es": "Destaca el prolongado ministerio en Éfeso y el regreso por Macedonia, Grecia y Mileto.",
-        "en": "Highlights the extended ministry in Ephesus and the return through Macedonia, Greece, and Miletus."
+        "es": "Destaca el prolongado ministerio en Éfeso y el regreso por Macedonia, Grecia y Mileto. Tarso, Derbe y Listra representan de forma aproximada el paso por Galacia y Frigia de Hechos 18:23; el texto no nombra esas ciudades en este viaje. Filipos, Tesalónica, Berea y Corinto son una reconstrucción plausible de los tramos llamados Macedonia y Grecia, no una lista explícita de Hechos 20.",
+        "en": "Highlights the extended ministry in Ephesus and the return through Macedonia, Greece, and Miletus. Tarsus, Derbe, and Lystra approximately represent the passage through Galatia and Phrygia in Acts 18:23; the text does not name those cities on this journey. Philippi, Thessalonica, Berea, and Corinth are a plausible reconstruction of the legs called Macedonia and Greece, not an explicit list in Acts 20."
       },
       "stops": [
         "antioquia-siria",
@@ -1423,12 +1423,12 @@
       "mode": "sites",
       "color": "#3c5a78",
       "label": {
-        "es": "Iglesias y centros del ministerio paulino",
-        "en": "Churches and Centers of Pauline Ministry"
+        "es": "Comunidades y centros vinculados con Pablo",
+        "en": "Communities and Centers Connected with Paul"
       },
       "desc": {
-        "es": "Selección de comunidades y centros relacionados con el ministerio de Pablo y sus cartas.",
-        "en": "Selection of communities and centers connected with Paul’s ministry and letters."
+        "es": "Selección de comunidades y centros relacionados con el ministerio o las cartas de Pablo. Laodicea pertenece a su red epistolar, pero Colosenses 2:1 indica que muchos allí no lo habían visto personalmente.",
+        "en": "Selection of communities and centers connected with Paul's ministry or letters. Laodicea belongs to his epistolary network, but Colossians 2:1 indicates that many there had not seen him personally."
       },
       "stops": [
         "antioquia-siria",
@@ -1442,7 +1442,8 @@
         "roma"
       ],
       "scriptureRefs": [
-        "Acts 13–21"
+        "Acts 13–21",
+        "Colossians 2:1"
       ]
     },
     "saulo-primeros-movimientos": {

@@ -17,7 +17,8 @@ REGISTRY = DATA / "maps-registry.json"
 MEDIA = DATA / "place-media.json"
 BOOKS = {
     "Genesis", "Exodus", "Numbers", "Joshua", "Judges", "1 Kings", "2 Kings",
-    "Isaiah", "Matthew", "Mark", "Luke", "John", "Acts", "Romans", "Revelation",
+    "2 Samuel", "Isaiah", "Matthew", "Mark", "Luke", "John", "Acts", "Romans",
+    "Colossians", "Revelation",
 }
 REF_RE = re.compile(r"^(?P<book>(?:[12] )?[A-Za-z]+)(?:\s|–)(?:\d|[A-Za-z])")
 

@@ -214,8 +214,8 @@
       ],
       "type": "city",
       "desc": {
-        "es": "Antigua capital de Egipto. Representa el centro del poder egipcio durante la estadía de Abram (Génesis 12:10-20) y, más tarde, de José y su familia.",
-        "en": "Ancient capital of Egypt. Represents the center of Egyptian power during Abram's stay (Genesis 12:10-20) and later, Joseph and his family's."
+        "es": "Antigua capital de Egipto, llamada Nof en textos bíblicos posteriores. La Biblia no sitúa en Menfis la estadía de Abram ni la residencia de José y su familia.",
+        "en": "Ancient capital of Egypt, called Noph in later biblical texts. The Bible does not locate Abram's stay or the residence of Joseph and his family in Memphis."
       },
       "mapPosition": [
         151,
@@ -225,7 +225,32 @@
       "mediaKey": "memphis",
       "mediaScope": "exact",
       "scriptureRefs": [
-        "Genesis 12:10-20"
+        "Isaiah 19:13"
+      ]
+    },
+    "egipto-abram": {
+      "name": {
+        "es": "Egipto (lugar no especificado)",
+        "en": "Egypt (unspecified location)"
+      },
+      "coords": [
+        31.25,
+        29.85
+      ],
+      "type": "region",
+      "desc": {
+        "es": "Representación regional de la estadía de Abram en Egipto. Génesis 12:10–20 no identifica una ciudad concreta; la posición del pin no atribuye el episodio a Menfis.",
+        "en": "Regional representation of Abram's stay in Egypt. Genesis 12:10–20 does not identify a specific city; the pin position does not assign the episode to Memphis."
+      },
+      "mapPosition": [
+        151,
+        598
+      ],
+      "mapPositionSource": "regional-representation",
+      "mediaKey": "egypt",
+      "mediaScope": "regional",
+      "scriptureRefs": [
+        "Genesis 12:10–20"
       ]
     },
     "gosen": {
@@ -370,10 +395,13 @@
       },
       "stops": [
         "betel",
-        "menfis",
-        "betel",
+        "egipto-abram",
         "hebron"
       ],
+      "desc": {
+        "es": "Génesis no identifica la ciudad egipcia donde estuvo Abram; por eso el recorrido representa Egipto sin asignarle el pin específico de Menfis.",
+        "en": "Genesis does not identify the Egyptian city where Abram stayed, so this view represents Egypt without assigning the specific Memphis pin to him."
+      },
       "scriptureRefs": [
         "Genesis 12:10–13:18"
       ]
@@ -387,9 +415,12 @@
       "stops": [
         "hebron",
         "beerseba",
-        "gosen",
-        "menfis"
+        "gosen"
       ],
+      "desc": {
+        "es": "Gosén es la región egipcia que Génesis identifica para el establecimiento de la familia de Jacob; el relato no la sitúa en Menfis.",
+        "en": "Goshen is the Egyptian region Genesis identifies for the settlement of Jacob's family; the account does not locate it in Memphis."
+      },
       "scriptureRefs": [
         "Genesis 37–50"
       ]

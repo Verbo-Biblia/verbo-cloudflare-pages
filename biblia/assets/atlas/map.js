@@ -803,8 +803,8 @@
 
   const BOOK_NAMES_ES = {
     Genesis: "Génesis", Exodus: "Éxodo", Numbers: "Números", Joshua: "Josué", Judges: "Jueces",
-    "1 Kings": "1 Reyes", "2 Kings": "2 Reyes", Isaiah: "Isaías", Matthew: "Mateo", Mark: "Marcos",
-    Luke: "Lucas", John: "Juan", Acts: "Hechos", Romans: "Romanos", Revelation: "Apocalipsis",
+    "1 Kings": "1 Reyes", "2 Kings": "2 Reyes", "2 Samuel": "2 Samuel", Isaiah: "Isaías", Matthew: "Mateo", Mark: "Marcos",
+    Luke: "Lucas", John: "Juan", Acts: "Hechos", Romans: "Romanos", Colossians: "Colosenses", Revelation: "Apocalipsis",
   };
   const BOOK_NAMES_EN = Object.fromEntries(Object.entries(BOOK_NAMES_ES).map(([en, es]) => [es, en]));
 
@@ -827,7 +827,7 @@
 
   function extractScriptureRefs(text) {
     if (!text) return [];
-    const rx = /\b(?:Genesis|Exodus|Numbers|Joshua|Judges|1 Kings|2 Kings|Isaiah|Matthew|Mark|Luke|John|Acts|Romans|Revelation|Génesis|Éxodo|Números|Josué|Jueces|1 Reyes|2 Reyes|Isaías|Mateo|Marcos|Lucas|Juan|Hechos|Romanos|Apocalipsis)\s+\d+(?::\d+(?:[–-]\d+)?)?(?:[–-]\d+(?::\d+)?)?/gi;
+    const rx = /\b(?:Genesis|Exodus|Numbers|Joshua|Judges|1 Kings|2 Kings|2 Samuel|Isaiah|Matthew|Mark|Luke|John|Acts|Romans|Colossians|Revelation|Génesis|Éxodo|Números|Josué|Jueces|1 Reyes|2 Reyes|2 Samuel|Isaías|Mateo|Marcos|Lucas|Juan|Hechos|Romanos|Colosenses|Apocalipsis)\s+\d+(?::\d+(?:[–-]\d+)?)?(?:[–-]\d+(?::\d+)?)?/gi;
     return text.match(rx) || [];
   }
 
