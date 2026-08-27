@@ -54,7 +54,8 @@
     "commentaries/theology-of-work/manifest.json",
     "commentaries/bengel-gnomon/manifest.json",
     "commentaries/expositors-greek-testament/manifest.json",
-    "commentaries/spurgeon-treasury-of-david/manifest.json"
+    "commentaries/spurgeon-treasury-of-david/manifest.json",
+    "commentaries/ryle-expository-thoughts/manifest.json"
   ],
   "dictionaries": [
     "dictionaries/strong-verbo/manifest.json"
@@ -7239,6 +7240,53 @@
               "id": "PSA",
               "name": "Salmos",
               "file": "books/PSA.json"
+            }
+          ]
+        }
+      },
+      {
+        "path": "modules/commentaries/ryle-expository-thoughts/manifest.json",
+        "manifest": {
+          "schemaVersion": 2,
+          "id": "ryle-expository-thoughts",
+          "type": "commentary",
+          "name": "Expository Thoughts on the Gospels",
+          "abbreviation": "Ryle",
+          "language": "en",
+          "author": "J. C. Ryle",
+          "description": "Bishop J. C. Ryle's classic devotional and doctrinal commentary on Matthew, Mark, Luke, and John, organized by pericope (natural passage units, not verse-by-verse) for family and private reading.",
+          "license": "Public Domain",
+          "licenseUrl": "",
+          "sourceUrl": "https://ccel.org/ccel/ryle/matthew",
+          "sourceEdition": "Matthew: R. Carter & Brothers, 1860 (CCEL transcription). Mark: R. Carter & Brothers. Luke (2 vols.) and John (3 vols.): R. Carter & Brothers / William Hunt, 1856-1879",
+          "publicationYear": 1879,
+          "publicDomain": true,
+          "attribution": "J. C. Ryle (1816-1900). Every entry is Ryle's own writing -- unlike Spurgeon's Treasury of David elsewhere in this collection, this work is not a compiled multi-author anthology.",
+          "notes": "Matthew is CCEL's own clean, human-transcribed text (Rights: Public Domain, stated on the source page). Mark, Luke, and John have no CCEL or Project Gutenberg edition, so raw archive.org OCR of the original 7-volume set is used instead (all confirmed NOT_IN_COPYRIGHT in archive.org's own scanning metadata). Luke's own two original-set volumes are dark on archive.org (no OCR available); Google Books scans of the SAME original edition (Ipswich: William Hunt) substitute for those two volumes only, confirmed independently NOT_IN_COPYRIGHT and confirmed by direct inspection to cover the identical, contiguous chapter ranges (1-10, then 11-24) with no gap or overlap. A 1986/1987 Banner of Truth reprint of Luke was found and rejected: it is access-restricted on archive.org itself, the same 'a modern reprint's own edition can carry separate rights even where the underlying text is PD' caution already applied elsewhere in this wave. Each pericope (Ryle's own natural passage division, e.g. 'Luke 15:11-32') is imported as ONE entry, never split to verse level -- matching how Ryle himself structured the work. Each entry also folds in that pericope's own secondary 'Notes' subsection (brief word/phrase glosses, still entirely Ryle's own writing) where present, rather than creating a second, confusingly-duplicate entry with the identical reference. OCR anomalies (out-of-range verse numbers, a handful of backwards verse ranges) were corrected where an evidence-based single-digit fix was unambiguous, and excluded from publication -- never guessed -- otherwise; see ANOMALIES.json.",
+          "books": [
+            {
+              "id": "MAT",
+              "name": "Mateo",
+              "file": "books/MAT.json",
+              "indexFile": "books/MAT.index.json"
+            },
+            {
+              "id": "MRK",
+              "name": "Marcos",
+              "file": "books/MRK.json",
+              "indexFile": "books/MRK.index.json"
+            },
+            {
+              "id": "LUK",
+              "name": "Lucas",
+              "file": "books/LUK.json",
+              "indexFile": "books/LUK.index.json"
+            },
+            {
+              "id": "JHN",
+              "name": "Juan",
+              "file": "books/JHN.json",
+              "indexFile": "books/JHN.index.json"
             }
           ]
         }

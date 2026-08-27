@@ -1,0 +1,72 @@
+[
+  {
+    "kind": "verse-out-of-range-unresolved-excluded",
+    "where": "LUK 1:84-38",
+    "detail": "verse 84 exceeds real max of 80; candidates=[4, 34, 54, 64], no unambiguous correction -- EXCLUDED from publication"
+  },
+  {
+    "kind": "verse-range-backwards-excluded",
+    "where": "LUK 1:67-66",
+    "detail": "corrected range 67-66 is still backwards -- EXCLUDED from publication"
+  },
+  {
+    "kind": "notes-subsection-orphaned",
+    "where": "LUK 1:1-7",
+    "detail": "a 'Notes.' subsection heading was found but didn't match the immediately preceding pericope entry -- dropped rather than merged into the wrong one"
+  },
+  {
+    "kind": "verse-out-of-range-unresolved-excluded",
+    "where": "LUK 9:87-45",
+    "detail": "verse 87 exceeds real max of 62; candidates=[7, 37, 57], no unambiguous correction -- EXCLUDED from publication"
+  },
+  {
+    "kind": "implausible-chapter-heading",
+    "where": "LUK near 9",
+    "detail": "heading roman 'XIX' parsed as 19, not plausible from chapter 9 (real last chapter 24) -- kept as chapter 9"
+  },
+  {
+    "kind": "verse-range-backwards-excluded",
+    "where": "LUK 9:61-56",
+    "detail": "corrected range 61-56 is still backwards -- EXCLUDED from publication"
+  },
+  {
+    "kind": "verse-out-of-range-unresolved-excluded",
+    "where": "LUK 9:67-62",
+    "detail": "verse 67 exceeds real max of 62; candidates=[57, 61, 62], no unambiguous correction -- EXCLUDED from publication"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit",
+    "where": "LUK 12:49-63",
+    "detail": "verse 63 -> 53 (only candidate fitting real max of 59)"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit",
+    "where": "LUK 12:64-59",
+    "detail": "verse 64 -> 54 (only candidate fitting real max of 59)"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit",
+    "where": "LUK 13:31-36",
+    "detail": "verse 36 -> 35 (only candidate fitting real max of 35)"
+  },
+  {
+    "kind": "verse-out-of-range-unresolved-excluded",
+    "where": "LUK 17:26-87",
+    "detail": "verse 87 exceeds real max of 37; candidates=[7, 37], no unambiguous correction -- EXCLUDED from publication"
+  },
+  {
+    "kind": "verse-out-of-range-unresolved-excluded",
+    "where": "LUK 22:47-163",
+    "detail": "verse 163 exceeds real max of 71; candidates=none, no unambiguous correction -- EXCLUDED from publication"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit",
+    "where": "LUK 24:60-63",
+    "detail": "verse 60 -> 50 (only candidate fitting real max of 53)"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit",
+    "where": "LUK 24:60-63",
+    "detail": "verse 63 -> 53 (only candidate fitting real max of 53)"
+  }
+]
