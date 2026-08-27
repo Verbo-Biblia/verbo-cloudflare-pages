@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 2,
+  "id": "bengel-gnomon",
+  "type": "commentary",
+  "name": "Bengel's Gnomon of the New Testament",
+  "abbreviation": "Bengel",
+  "language": "en",
+  "author": "Johann Albrecht Bengel (1687-1752)",
+  "description": "Terse, philologically precise exegetical notes on the Greek New Testament, first published in Latin in 1742. This English translation, edited by Rev. Andrew R. Fausset, was published in 5 volumes by T. & T. Clark, Edinburgh.",
+  "license": "Public domain",
+  "licenseUrl": "https://www.google.com/policies/faq/",
+  "sourceUrl": "https://archive.org/details/cu31924092350515",
+  "publicationYear": 1877,
+  "publicDomain": true,
+  "attribution": "Johann Albrecht Bengel; translated by Rev. James Bandinel, Rev. Andrew R. Fausset, Rev. James Bryce, and Rev. William Fletcher; edited by Rev. Andrew R. Fausset. Digitized from the Cornell University Library copy via archive.org (\"no known copyright restrictions in the United States on the use of the text\").",
+  "notes": "PARTIAL COVERAGE by explicit editorial decision (2026-08-27): only Matthew, Mark, Romans, 1 Corinthians, and 2 Corinthians are published -- these fully validated with zero unresolved reference anomalies after evidence-based auto-correction. Luke, John, Acts, and the remaining epistles/Revelation are held back pending further OCR-quality work -- see PROVENANCE.md and ANOMALIES.json for the specific unresolved cases. Every entry carries the verse's REAL, verified Greek text (from Verbo's own STEPBible-derived original-languages data) as a reference line ahead of Bengel's own historical (sometimes OCR-imperfect) quoted text, which is preserved unaltered.",
+  "books": [
+    {
+      "id": "MAT",
+      "name": "Matthew",
+      "file": "books/MAT.json",
+      "indexFile": "books/MAT.index.json"
+    },
+    {
+      "id": "MRK",
+      "name": "Mark",
+      "file": "books/MRK.json",
+      "indexFile": "books/MRK.index.json"
+    },
+    {
+      "id": "ROM",
+      "name": "Romans",
+      "file": "books/ROM.json",
+      "indexFile": "books/ROM.index.json"
+    },
+    {
+      "id": "1CO",
+      "name": "1 Corinthians",
+      "file": "books/1CO.json",
+      "indexFile": "books/1CO.index.json"
+    },
+    {
+      "id": "2CO",
+      "name": "2 Corinthians",
+      "file": "books/2CO.json",
+      "indexFile": "books/2CO.index.json"
+    }
+  ]
+}
