@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 2,
+  "id": "expositors-greek-testament",
+  "type": "commentary",
+  "name": "The Expositor's Greek Testament",
+  "abbreviation": "EGT",
+  "language": "en",
+  "author": "Various (ed. W. Robertson Nicoll)",
+  "description": "Collective philological and exegetical commentary on the Greek New Testament. Partial coverage: Volume 1 only (the four Gospels) -- see the books list.",
+  "license": "Public domain",
+  "licenseUrl": "https://www.google.com/policies/faq/",
+  "sourceUrl": "https://archive.org/details/expositorsgreekt01nicouoft",
+  "sourceEdition": "1897, George H. Doran Company, New York -- University of Toronto Library scan (Volume 1 of 5)",
+  "publicationYear": 1897,
+  "publicDomain": true,
+  "attribution": "General editor: Rev. W. Robertson Nicoll, M.A., LL.D. Volume 1 contributors: Rev. Alexander Balmain Bruce, D.D. (Matthew, Mark, Luke -- \"The Synoptic Gospels\"); Rev. Marcus Dods, D.D. (John).",
+  "notes": "PARTIAL COVERAGE by explicit editorial decision (2026-08-27): only Volume 1 (Matthew, Mark, Luke, John) is published, from a planned 5-volume, ~20-contributor work covering the whole NT. Volumes 2-5 (Acts through Revelation) are held back pending further work -- see review/commentaries/expositors-greek-testament/PENDING.md. Per Juan's explicit instruction, Greek is preserved EXACTLY as this 1897 scan's OCR rendered it, without any 'corrected' reference text alongside it (unlike this Wave's Bengel and Lightfoot imports) -- EGT is a work of textual criticism that discusses variant Greek readings by design, so showing a 'standard' text next to its own argument risks misrepresenting that argument as an error. The volume's own continuous printed Greek NT text (separate from the verse-by-verse analytical notes) is excluded, matching the same convention already used for Lightfoot's Colossians/Philemon -- Verbo already provides Greek NT text elsewhere. This is a collective work: each Gospel's author field names its actual contributing scholar (Bruce or Dods), with Nicoll credited only as general editor in this manifest's own author/attribution fields, never attributed as if he wrote the exegesis himself.",
+  "books": [
+    {
+      "id": "MAT",
+      "name": "Matthew",
+      "file": "books/MAT.json",
+      "indexFile": "books/MAT.index.json"
+    },
+    {
+      "id": "MRK",
+      "name": "Mark",
+      "file": "books/MRK.json",
+      "indexFile": "books/MRK.index.json"
+    },
+    {
+      "id": "LUK",
+      "name": "Luke",
+      "file": "books/LUK.json",
+      "indexFile": "books/LUK.index.json"
+    },
+    {
+      "id": "JHN",
+      "name": "John",
+      "file": "books/JHN.json",
+      "indexFile": "books/JHN.index.json"
+    }
+  ]
+}
