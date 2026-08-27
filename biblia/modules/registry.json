@@ -53,7 +53,8 @@
     "commentaries/trapp-commentary/manifest.json",
     "commentaries/theology-of-work/manifest.json",
     "commentaries/bengel-gnomon/manifest.json",
-    "commentaries/expositors-greek-testament/manifest.json"
+    "commentaries/expositors-greek-testament/manifest.json",
+    "commentaries/spurgeon-treasury-of-david/manifest.json"
   ],
   "dictionaries": [
     "dictionaries/strong-verbo/manifest.json"
@@ -7209,6 +7210,35 @@
               "name": "John",
               "file": "books/JHN.json",
               "indexFile": "books/JHN.index.json"
+            }
+          ]
+        }
+      },
+      {
+        "path": "modules/commentaries/spurgeon-treasury-of-david/manifest.json",
+        "manifest": {
+          "schemaVersion": 2,
+          "id": "spurgeon-treasury-of-david",
+          "type": "commentary",
+          "name": "Treasury of David",
+          "abbreviation": "ToD",
+          "language": "en",
+          "author": "C. H. Spurgeon",
+          "description": "Spurgeon's classic seven-volume commentary on the Psalms: his own verse-by-verse exposition, a compiled anthology of other authors' comments on each verse (\"Explanatory Notes and Quaint Sayings\"), and homiletical outlines (\"Hints to the Village Preacher\").",
+          "license": "Public Domain",
+          "licenseUrl": "",
+          "sourceUrl": "https://archive.org/details/treasuryofdavid0001chsp",
+          "sourceEdition": "Passmore & Alabaster / Marshall Brothers, 7 volumes, 1869-1885",
+          "publicationYear": 1885,
+          "publicDomain": true,
+          "chapterSplit": true,
+          "attribution": "C. H. Spurgeon (1834-1892); the \"Explanatory Notes and Quaint Sayings\" sections compile brief comments from many other authors, each individually credited within the text (never Spurgeon), exactly as printed.",
+          "notes": "Imported from archive.org OCR of the 7-volume edition (not CCEL, whose own edition of this specific work is page-scan images only, with no transcription at all -- worse than OCR, unusable; not archive.spurgeon.org, whose clean HTML transcription states no license and actively markets a commercial print edition, the same unclear-rights concern that excluded biblehub/BibleSupport pages elsewhere in this wave). Each Psalm's THREE structurally distinct sections are imported as separately-attributed entries so Spurgeon's own words are never blurred with his quotations of others: 'Exposition' (his own continuous verse-by-verse commentary, one whole-Psalm-range entry per Psalm, since the source has no safe per-verse boundary marker inside this continuous prose), 'Explanatory Notes and Quaint Sayings' (compiled extracts from other authors, imported per verse, author field 'Various authors, compiled by C. H. Spurgeon', each extract's own '--Author, Year' attribution preserved verbatim from the source), and 'Hints to the Village Preacher' (Spurgeon's own homiletical outline points, per verse). Psalm 119's unique 22-stanza acrostic structure uses different section-heading conventions per octet that this importer does not yet parse; its opening whole-Psalm framing and its Hints section (contributed by C. A. Davis of Bradford, as the source itself credits) are included, but its per-octet Exposition and Notes are not yet separated out -- see PENDING.md. A small number of individual notes (20 of ~4,030) had a verse-number OCR corruption with no unambiguous single-digit correction and were excluded from publication rather than shipped with a wrong reference; another 6 Psalms' Exposition entries were dropped for the same reason (a missed section-boundary marker, confirmed by direct inspection to risk absorbing quoted material) -- all logged in ANOMALIES.json.",
+          "books": [
+            {
+              "id": "PSA",
+              "name": "Salmos",
+              "file": "books/PSA.json"
             }
           ]
         }

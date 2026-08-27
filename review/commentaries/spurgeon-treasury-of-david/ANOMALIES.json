@@ -1,0 +1,322 @@
+[
+  {
+    "kind": "verse-out-of-range-unresolved-excluded",
+    "where": "Psalm 1",
+    "detail": "verse 8 exceeds Psalm 1's real max of 6; candidates=[3, 5, 6], no unambiguous correction -- EXCLUDED from publication rather than shipped with a wrong reference"
+  },
+  {
+    "kind": "verse-out-of-range-unresolved-excluded",
+    "where": "Psalm 1",
+    "detail": "verse 8 exceeds Psalm 1's real max of 6; candidates=[3, 5, 6], no unambiguous correction -- EXCLUDED from publication rather than shipped with a wrong reference"
+  },
+  {
+    "kind": "verse-out-of-range-unresolved-excluded",
+    "where": "Psalm 1",
+    "detail": "verse 8 exceeds Psalm 1's real max of 6; candidates=[3, 5, 6], no unambiguous correction -- EXCLUDED from publication rather than shipped with a wrong reference"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit-sequence",
+    "where": "Psalm 4",
+    "detail": "verse 9 -> 8 (candidates [3, 8] fit Psalm 4's max of 8; only 8 continues the notes' own non-decreasing verse order from the last confirmed verse 8)"
+  },
+  {
+    "kind": "verse-out-of-range-unresolved-excluded",
+    "where": "Psalm 4",
+    "detail": "verse 83 exceeds Psalm 4's real max of 8; candidates=[3, 8], no unambiguous correction -- EXCLUDED from publication rather than shipped with a wrong reference"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit-sequence",
+    "where": "Psalm 6",
+    "detail": "verse 83 -> 8 (candidates [3, 8] fit Psalm 6's max of 10; only 8 continues the notes' own non-decreasing verse order from the last confirmed verse 8)"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit",
+    "where": "Psalm 8",
+    "detail": "verse 38 -> 3 (only candidate fitting Psalm 8's real max of 9)"
+  },
+  {
+    "kind": "verse-out-of-range-unresolved-excluded",
+    "where": "Psalm 11",
+    "detail": "verse 8 exceeds Psalm 11's real max of 7; candidates=[3, 5, 6], no unambiguous correction -- EXCLUDED from publication rather than shipped with a wrong reference"
+  },
+  {
+    "kind": "verse-out-of-range-unresolved-excluded",
+    "where": "Psalm 14",
+    "detail": "verse 8 exceeds Psalm 14's real max of 7; candidates=[3, 5, 6], no unambiguous correction -- EXCLUDED from publication rather than shipped with a wrong reference"
+  },
+  {
+    "kind": "verse-out-of-range-unresolved-excluded",
+    "where": "Psalm 15",
+    "detail": "verse 8 exceeds Psalm 15's real max of 5; candidates=[3, 5], no unambiguous correction -- EXCLUDED from publication rather than shipped with a wrong reference"
+  },
+  {
+    "kind": "verse-out-of-range-unresolved-excluded",
+    "where": "Psalm 17",
+    "detail": "verse 18 exceeds Psalm 17's real max of 15; candidates=[1, 10, 13, 15], no unambiguous correction -- EXCLUDED from publication rather than shipped with a wrong reference"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit-sequence",
+    "where": "Psalm 18",
+    "detail": "verse 86 -> 36 (candidates [6, 8, 36] fit Psalm 18's max of 50; only 36 continues the notes' own non-decreasing verse order from the last confirmed verse 35)"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit-sequence",
+    "where": "Psalm 19",
+    "detail": "verse 18 -> 13 (candidates [1, 10, 13] fit Psalm 19's max of 14; only 13 continues the notes' own non-decreasing verse order from the last confirmed verse 13)"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit",
+    "where": "Psalm 19",
+    "detail": "verse 138 -> 13 (only candidate fitting Psalm 19's real max of 14)"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit",
+    "where": "Psalm 31",
+    "detail": "verse 138 -> 13 (only candidate fitting Psalm 31's real max of 24)"
+  },
+  {
+    "kind": "verse-out-of-range-unresolved-excluded",
+    "where": "Psalm 37",
+    "detail": "verse 83 exceeds Psalm 37's real max of 40; candidates=[3, 8, 33], no unambiguous correction -- EXCLUDED from publication rather than shipped with a wrong reference"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit",
+    "where": "Psalm 41",
+    "detail": "verse 138 -> 13 (only candidate fitting Psalm 41's real max of 13)"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit",
+    "where": "Psalm 45",
+    "detail": "verse 138 -> 13 (only candidate fitting Psalm 45's real max of 17)"
+  },
+  {
+    "kind": "verse-out-of-range-unresolved-excluded",
+    "where": "Psalm 45",
+    "detail": "verse 18 exceeds Psalm 45's real max of 17; candidates=[1, 10, 13, 15, 16], no unambiguous correction -- EXCLUDED from publication rather than shipped with a wrong reference"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit",
+    "where": "Psalm 50",
+    "detail": "verse 138 -> 13 (only candidate fitting Psalm 50's real max of 23)"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit",
+    "where": "Psalm 51",
+    "detail": "verse 38 -> 3 (only candidate fitting Psalm 51's real max of 19)"
+  },
+  {
+    "kind": "section-marker-missed",
+    "where": "Vol 3",
+    "detail": "expected notes but saw hints at char 255877 -- reconciled by treating the missing section as empty for that Psalm; that Psalm's Exposition entry is dropped rather than risk it absorbing quoted material (see PENDING.md)"
+  },
+  {
+    "kind": "exposition-dropped-contaminated",
+    "where": "Psalm 57",
+    "detail": "Exposition entry excluded: a missed section marker means this span cannot be trusted not to contain quoted material from another author (see PENDING.md)"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit",
+    "where": "Psalm 74",
+    "detail": "verse 138 -> 13 (only candidate fitting Psalm 74's real max of 23)"
+  },
+  {
+    "kind": "verse-out-of-range-unresolved-excluded",
+    "where": "Psalm 78",
+    "detail": "verse 82 exceeds Psalm 78's real max of 72; candidates=[2, 8, 32, 52, 62], no unambiguous correction -- EXCLUDED from publication rather than shipped with a wrong reference"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit",
+    "where": "Psalm 78",
+    "detail": "verse 832 -> 32 (only candidate fitting Psalm 78's real max of 72)"
+  },
+  {
+    "kind": "verse-out-of-range-unresolved-excluded",
+    "where": "Psalm 78",
+    "detail": "verse 85 exceeds Psalm 78's real max of 72; candidates=[5, 8, 35, 55, 65], no unambiguous correction -- EXCLUDED from publication rather than shipped with a wrong reference"
+  },
+  {
+    "kind": "section-marker-missed",
+    "where": "Vol 4",
+    "detail": "expected notes but saw hints at char 1583138 -- reconciled by treating the missing section as empty for that Psalm; that Psalm's Exposition entry is dropped rather than risk it absorbing quoted material (see PENDING.md)"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit-sequence",
+    "where": "Psalm 81",
+    "detail": "verse 83 -> 8 (candidates [3, 8] fit Psalm 81's max of 16; only 8 continues the notes' own non-decreasing verse order from the last confirmed verse 8)"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit",
+    "where": "Psalm 83",
+    "detail": "verse 138 -> 13 (only candidate fitting Psalm 83's real max of 18)"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit",
+    "where": "Psalm 85",
+    "detail": "verse 138 -> 13 (only candidate fitting Psalm 85's real max of 13)"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit-sequence",
+    "where": "Psalm 85",
+    "detail": "verse 18 -> 13 (candidates [1, 10, 13] fit Psalm 85's max of 13; only 13 continues the notes' own non-decreasing verse order from the last confirmed verse 12)"
+  },
+  {
+    "kind": "verse-out-of-range-unresolved-excluded",
+    "where": "Psalm 89",
+    "detail": "verse 80 exceeds Psalm 89's real max of 52; candidates=[8, 30, 50], no unambiguous correction -- EXCLUDED from publication rather than shipped with a wrong reference"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit",
+    "where": "Psalm 89",
+    "detail": "verse 353 -> 35 (only candidate fitting Psalm 89's real max of 52)"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit-sequence",
+    "where": "Psalm 89",
+    "detail": "verse 88 -> 38 (candidates [8, 38] fit Psalm 89's max of 52; only 38 continues the notes' own non-decreasing verse order from the last confirmed verse 37)"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit-sequence",
+    "where": "Psalm 89",
+    "detail": "verse 89 -> 39 (candidates [8, 9, 39] fit Psalm 89's max of 52; only 39 continues the notes' own non-decreasing verse order from the last confirmed verse 38)"
+  },
+  {
+    "kind": "verse-out-of-range-unresolved-excluded",
+    "where": "Psalm 90",
+    "detail": "verse 18 exceeds Psalm 90's real max of 17; candidates=[1, 10, 13, 15, 16], no unambiguous correction -- EXCLUDED from publication rather than shipped with a wrong reference"
+  },
+  {
+    "kind": "verse-out-of-range-unresolved-excluded",
+    "where": "Psalm 91",
+    "detail": "verse 18 exceeds Psalm 91's real max of 16; candidates=[1, 10, 13, 15, 16], no unambiguous correction -- EXCLUDED from publication rather than shipped with a wrong reference"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit-sequence",
+    "where": "Psalm 92",
+    "detail": "verse 83 -> 8 (candidates [3, 8] fit Psalm 92's max of 15; only 8 continues the notes' own non-decreasing verse order from the last confirmed verse 8)"
+  },
+  {
+    "kind": "verse-out-of-range-unresolved-excluded",
+    "where": "Psalm 92",
+    "detail": "verse 18 exceeds Psalm 92's real max of 15; candidates=[1, 10, 13, 15], no unambiguous correction -- EXCLUDED from publication rather than shipped with a wrong reference"
+  },
+  {
+    "kind": "verse-out-of-range-unresolved-excluded",
+    "where": "Psalm 92",
+    "detail": "verse 18 exceeds Psalm 92's real max of 15; candidates=[1, 10, 13, 15], no unambiguous correction -- EXCLUDED from publication rather than shipped with a wrong reference"
+  },
+  {
+    "kind": "verse-out-of-range-unresolved-excluded",
+    "where": "Psalm 92",
+    "detail": "verse 18 exceeds Psalm 92's real max of 15; candidates=[1, 10, 13, 15], no unambiguous correction -- EXCLUDED from publication rather than shipped with a wrong reference"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit-sequence",
+    "where": "Psalm 96",
+    "detail": "verse 18 -> 13 (candidates [1, 10, 13] fit Psalm 96's max of 13; only 13 continues the notes' own non-decreasing verse order from the last confirmed verse 13)"
+  },
+  {
+    "kind": "exposition-dropped-contaminated",
+    "where": "Psalm 99",
+    "detail": "Exposition entry excluded: a missed section marker means this span cannot be trusted not to contain quoted material from another author (see PENDING.md)"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit",
+    "where": "Psalm 101",
+    "detail": "verse 38 -> 3 (only candidate fitting Psalm 101's real max of 8)"
+  },
+  {
+    "kind": "section-marker-missed",
+    "where": "Vol 5",
+    "detail": "expected hints but saw notes at char 772230 -- reconciled by treating the missing section as empty for that Psalm; that Psalm's Exposition entry is dropped rather than risk it absorbing quoted material (see PENDING.md)"
+  },
+  {
+    "kind": "section-marker-missed",
+    "where": "Vol 5",
+    "detail": "expected notes but saw hints at char 904209 -- reconciled by treating the missing section as empty for that Psalm; that Psalm's Exposition entry is dropped rather than risk it absorbing quoted material (see PENDING.md)"
+  },
+  {
+    "kind": "section-marker-missed",
+    "where": "Vol 5",
+    "detail": "expected notes but saw hints at char 1014536 -- reconciled by treating the missing section as empty for that Psalm; that Psalm's Exposition entry is dropped rather than risk it absorbing quoted material (see PENDING.md)"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit-sequence",
+    "where": "Psalm 104",
+    "detail": "verse 81 -> 31 (candidates [1, 8, 31] fit Psalm 104's max of 35; only 31 continues the notes' own non-decreasing verse order from the last confirmed verse 30)"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit-sequence",
+    "where": "Psalm 107",
+    "detail": "verse 48 -> 43 (candidates [4, 40, 43] fit Psalm 107's max of 43; only 43 continues the notes' own non-decreasing verse order from the last confirmed verse 43)"
+  },
+  {
+    "kind": "exposition-dropped-contaminated",
+    "where": "Psalm 110",
+    "detail": "Exposition entry excluded: a missed section marker means this span cannot be trusted not to contain quoted material from another author (see PENDING.md)"
+  },
+  {
+    "kind": "verse-out-of-range-unresolved-excluded",
+    "where": "Psalm 110",
+    "detail": "verse 8 exceeds Psalm 110's real max of 7; candidates=[3, 5, 6], no unambiguous correction -- EXCLUDED from publication rather than shipped with a wrong reference"
+  },
+  {
+    "kind": "exposition-dropped-contaminated",
+    "where": "Psalm 111",
+    "detail": "Exposition entry excluded: a missed section marker means this span cannot be trusted not to contain quoted material from another author (see PENDING.md)"
+  },
+  {
+    "kind": "exposition-dropped-contaminated",
+    "where": "Psalm 113",
+    "detail": "Exposition entry excluded: a missed section marker means this span cannot be trusted not to contain quoted material from another author (see PENDING.md)"
+  },
+  {
+    "kind": "section-marker-missed",
+    "where": "Vol 6",
+    "detail": "expected notes but saw hints at char 1432092 -- reconciled by treating the missing section as empty for that Psalm; that Psalm's Exposition entry is dropped rather than risk it absorbing quoted material (see PENDING.md)"
+  },
+  {
+    "kind": "exposition-dropped-contaminated",
+    "where": "Psalm 119",
+    "detail": "Exposition entry excluded: a missed section marker means this span cannot be trusted not to contain quoted material from another author (see PENDING.md)"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit-sequence",
+    "where": "Psalm 119",
+    "detail": "verse 938 -> 93 (candidates [38, 93] fit Psalm 119's max of 176; only 93 continues the notes' own non-decreasing verse order from the last confirmed verse 93)"
+  },
+  {
+    "kind": "verse-out-of-range-unresolved-excluded",
+    "where": "Psalm 119",
+    "detail": "verse 184 exceeds Psalm 119's real max of 176; candidates=[18, 104, 134, 154, 164], no unambiguous correction -- EXCLUDED from publication rather than shipped with a wrong reference"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit",
+    "where": "Psalm 124",
+    "detail": "verse 38 -> 3 (only candidate fitting Psalm 124's real max of 8)"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit",
+    "where": "Psalm 127",
+    "detail": "verse 6 -> 5 (only candidate fitting Psalm 127's real max of 5)"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit",
+    "where": "Psalm 131",
+    "detail": "verse 8 -> 3 (only candidate fitting Psalm 131's real max of 3)"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit",
+    "where": "Psalm 133",
+    "detail": "verse 8 -> 3 (only candidate fitting Psalm 133's real max of 3)"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit",
+    "where": "Psalm 141",
+    "detail": "verse 56 -> 5 (only candidate fitting Psalm 141's real max of 10)"
+  },
+  {
+    "kind": "auto-corrected-ocr-digit",
+    "where": "Psalm 148",
+    "detail": "verse 138 -> 13 (only candidate fitting Psalm 148's real max of 14)"
+  }
+]
