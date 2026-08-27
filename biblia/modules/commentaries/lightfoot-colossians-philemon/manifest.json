@@ -2,20 +2,32 @@
   "schemaVersion": 2,
   "id": "lightfoot-colossians-philemon",
   "type": "commentary",
-  "name": "J. B. Lightfoot — Colossians and Philemon",
+  "name": "J. B. Lightfoot",
   "abbreviation": "Lightfoot",
   "language": "en",
   "author": "J. B. Lightfoot (1828–1889)",
-  "description": "Lightfoot's 1875 revised Greek text commentary, with introductions, notes, and dissertations on Colossians and Philemon.",
-  "license": "Public domain edition; Project Gutenberg eBook #50857",
+  "description": "Lightfoot's revised Greek text commentaries, with introductions, notes, and dissertations. Partial New Testament coverage -- see the books list for which epistles are included.",
+  "license": "Public domain",
   "licenseUrl": "https://www.gutenberg.org/policy/license.html",
   "sourceUrl": "https://www.gutenberg.org/ebooks/50857",
-  "sourceEdition": "London: Macmillan and Co., 1875; Project Gutenberg #50857, updated 2024-10-22",
+  "sourceEdition": "Mixed -- see per-book sourceNote below; each edition is public domain but digitized from a different scan/project.",
   "publicationYear": 1875,
   "publicDomain": true,
-  "attribution": "J. B. Lightfoot; digitized by Project Gutenberg Distributed Proofreaders.",
-  "notes": "Continuous Greek epistle text, Project Gutenberg navigation, index, page furniture, and license boilerplate are excluded. Exposition, introductions, dissertations, corrections, Greek quotations, and referenced footnotes are retained.",
+  "attribution": "J. B. Lightfoot.",
+  "notes": "Colossians and Philemon (Wave 1): Project Gutenberg eBook #50857, a human-proofread (Distributed Proofreaders) transcription of the 1875 Macmillan edition -- clean Greek Unicode throughout. Galatians and Philippians (Wave 2): no Gutenberg edition exists for either (confirmed against gutenberg.org's own search); digitized instead from raw, machine-only OCR of Cornell University Library's archive.org scans (1887/1888 Macmillan editions, \"no known copyright restrictions in the United States\"). That OCR badly garbles Lightfoot's own quoted Greek in many places, so every entry additionally carries the verse's REAL, verified Greek text (from Verbo's own STEPBible-derived original-languages data, looked up by reference) as a reference line ahead of Lightfoot's own historical text, which is preserved unaltered. See review/commentaries/lightfoot-galatians-philippians/PROVENANCE.md for full detail.",
   "books": [
+    {
+      "id": "GAL",
+      "name": "Galatians",
+      "file": "books/GAL.json",
+      "indexFile": "books/GAL.index.json"
+    },
+    {
+      "id": "PHP",
+      "name": "Philippians",
+      "file": "books/PHP.json",
+      "indexFile": "books/PHP.index.json"
+    },
     {
       "id": "COL",
       "name": "Colossians",
