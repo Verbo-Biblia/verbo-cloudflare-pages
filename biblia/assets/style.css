@@ -895,11 +895,7 @@ body.sermon-mode .study-assistant {
   border-right: 1px solid var(--rule);
   background: var(--chrome);
   z-index: 40;
-  /* Red de seguridad: con el ícono de tutorial agregado (ver
-     tutorial-video.js), un viewport de escritorio corto podría no tener
-     alto suficiente para el grupo completo de botones centrado
-     verticalmente — sin esto, el sobrante se recortaría en vez de quedar
-     alcanzable con scroll. */
+  /* En viewports cortos, el grupo completo permanece accesible. */
   overflow-y: auto;
 }
 .library-rail__btn {

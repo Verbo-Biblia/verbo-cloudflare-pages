@@ -26,12 +26,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     strongDefPopupClose: document.getElementById('strongDefPopupClose'),
     close: document.getElementById('panelClose'),
     search: document.getElementById('searchTrigger'),
-    // :not([data-tv-trigger]) excluye los íconos de tutorial en video (ver
-    // tutorial-video.js): comparten la clase visual de los rieles para verse
-    // idénticos, pero no son pestañas — no tienen data-tab, así que si
-    // quedaran aquí el fallback de más abajo (activeTab===b.dataset.tab ?
-    // closePanel() : openPanel(b.dataset.tab)) llamaría a openPanel(undefined).
-    tabs: [...document.querySelectorAll('.tab-rail__btn:not([data-tv-trigger]), .library-rail__btn:not([data-tv-trigger])')],
+    tabs: [...document.querySelectorAll('.tab-rail__btn[data-tab], .library-rail__btn[data-tab]')],
     verseActionBar: document.getElementById('verseActionBar'),
     copyVerseText: document.getElementById('copyVerseText'),
     copyVerseRef: document.getElementById('copyVerseRef'),
@@ -1865,9 +1860,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     els.sermonToggle?.classList.toggle('sermon-mode-toggle--active', sermonMode);
     els.sermonToggle?.setAttribute('aria-pressed', String(sermonMode));
     document.body.classList.toggle('sermon-mode', sermonMode);
-    // Mismo patrón que verbo:uilang-changed (i18n.js) — permite que módulos
-    // aditivos (ver tutorial-video.js, ícono de la barra derecha) reaccionen
-    // al modo sermón sin acoplarse al resto de esta función.
+    // Mismo patrón que verbo:uilang-changed (i18n.js): permite que módulos
+    // aditivos reaccionen al modo sermón sin acoplarse a esta función.
     document.dispatchEvent(new CustomEvent('verbo:sermon-mode-changed', {detail:{sermonMode}}));
     if(els.readingPane) els.readingPane.hidden = sermonMode;
     if(els.editorPane) els.editorPane.hidden = !sermonMode;
