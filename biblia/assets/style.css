@@ -305,6 +305,7 @@ body {
 
 .reading-pane {
   flex: 1;
+  min-width: 0;
   overflow-y: auto;
   padding: 48px 0 120px;
   scroll-behavior: smooth;
@@ -319,6 +320,62 @@ body {
 /* Espacio extra en escritorio para las referencias cruzadas bajo cada versículo */
 @media (min-width: 1024px) {
   .reading-pane__inner { max-width: 720px; }
+}
+
+/* Columna permanente del Asistente de estudio. Su contenido real se conecta
+   en una fase posterior; por ahora solo materializa la geometría desktop. */
+.study-assistant {
+  width: 300px;
+  flex: 0 0 300px;
+  min-height: 0;
+  overflow-y: auto;
+  border-left: 1px solid var(--rule);
+  background: var(--paper);
+}
+
+.study-assistant__placeholder {
+  padding: 22px 20px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--sepia);
+  opacity: 0.65;
+}
+
+body.sermon-mode .study-assistant {
+  display: none;
+}
+
+@media (min-width: 761px) {
+  /* Mantiene la coordenada visual del bloque bíblico previa a la creación de
+     la columna: el margen libre que antes quedaba a la derecha ahora lo ocupa
+     el Asistente, sin reducir el objetivo tipográfico de 640/720px. */
+  .reading-pane__inner {
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  /* Los paneles de herramientas normales quedan fuera del flujo flex. Así
+     cubren temporalmente al Asistente (y, si son anchos, parte de la Biblia)
+     sin recalcular ni desplazar ninguna de las dos columnas base. */
+  body:not(.sermon-mode) #sidePanel {
+    position: absolute;
+    top: 0;
+    right: var(--rail-width);
+    bottom: 0;
+    z-index: 20;
+    box-shadow: -12px 0 28px rgba(71, 46, 35, 0.12);
+  }
+
+  body:not(.sermon-mode) #sidePanel.side-panel--left {
+    right: auto;
+    left: var(--rail-width);
+    order: initial;
+    border-left: 0;
+    border-right: 1px solid var(--rule);
+    box-shadow: 12px 0 28px rgba(71, 46, 35, 0.12);
+  }
 }
 
 /* Marca de app en reading pane — solo móvil */
@@ -2347,6 +2404,8 @@ body[data-theme="rosewood"] {
 .library-rail { order: -2; }
 
 @media (max-width: 760px) {
+  .study-assistant { display: none; }
+
   .library-rail { order: 0; }
   .library-rail__btn { width: 40px; height: 40px; }
   .side-panel--left.side-panel--open {

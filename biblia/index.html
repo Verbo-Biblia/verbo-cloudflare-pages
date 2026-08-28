@@ -23,7 +23,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Verbo">
-<link rel="stylesheet" href="assets/style.css?v=20260825-notas-popup">
+<link rel="stylesheet" href="assets/style.css?v=20260828-study-assistant-layout">
 <link rel="stylesheet" href="assets/notas-popup.css?v=20260826-notas-popup-unify">
 <link rel="stylesheet" href="assets/tutorial-video.css?v=20260821-tutorial-icon-hug-text">
 </head>
@@ -153,6 +153,10 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
       </div>
     </main>
 
+    <aside id="studyAssistant" class="study-assistant" aria-label="Asistente de estudio">
+      <div class="study-assistant__placeholder">Asistente de estudio</div>
+    </aside>
+
     <main class="editor-pane" id="editorPane" hidden>
       <div class="editor-pane__toolbar" id="editorToolbar"></div>
       <div class="editor-pane__actions">
@@ -257,12 +261,6 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
           <path d="M14 3v6h6"/>
           <path d="M9 13h6"/>
           <path d="M9 17h6"/>
-        </svg>
-      </button>
-      <button class="tab-rail__btn tv-trigger tv-trigger--rail" type="button" id="tvBarraDerecha" data-tv-trigger="1" data-video-es="UyjCpHcoSUU" data-video-en="1POjlkSFcfM" data-i18n-attr="title:tutorial.barraDerechaAria,aria-label:tutorial.barraDerechaAria">
-        <svg class="tv-icon" viewBox="0 0 24 24" aria-hidden="true">
-          <circle cx="12" cy="12" r="12" fill="#FF0000"/>
-          <path d="M9.5 7.5v9l8-4.5z" fill="#fff"/>
         </svg>
       </button>
     </nav>
