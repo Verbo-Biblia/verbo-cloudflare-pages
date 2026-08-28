@@ -324,8 +324,13 @@ body {
 
 /* Margen editorial permanente del Asistente de estudio (solo desktop). */
 .study-assistant {
-  width: 360px;
-  flex: 0 0 360px;
+  /* Mismo ancho que los otros paneles (--panel-width, hoy 380px) pero fijo
+     en vez de heredar la variable: --panel-width pasa a 100% entre 761 y
+     860px (para que un panel normal tome toda la pantalla), pero el
+     Asistente solo se oculta por debajo de 760px — si heredara la variable
+     quedaría pidiendo 100% del ancho en ese rango mientras sigue visible. */
+  width: 380px;
+  flex: 0 0 380px;
   min-height: 0;
   overflow-y: auto;
   border-left: 1px solid var(--rule);
