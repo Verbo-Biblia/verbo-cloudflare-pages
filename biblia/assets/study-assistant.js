@@ -174,7 +174,10 @@
     const source=item.fuente||{};
     if(category==='diccionario' && source.entryId){
       const moduleId=source.modulo==='Easton'?'easton-bible-dictionary':source.modulo==='Smith'?'smith-bible-dictionary':'';
-      return moduleId ? {panel:'diccionarios',moduleId,entryId:source.entryId,label:'viewDictionary'} : null;
+      // "Ver en Diccionario →" genérico es ambiguo en cuanto hay más de una
+      // fuente (Easton y Smith conviven en el mismo listado) — el botón debe
+      // decir exactamente a cuál apunta, no solo la etiqueta pequeña aparte.
+      return moduleId ? {panel:'diccionarios',moduleId,entryId:source.entryId,label:'viewDictionarySource',labelVars:{source:moduleLabel(source.modulo)}} : null;
     }
     if(source.modulo==='eusebio-historia-eclesiastica' && source.entradaId){
       return {panel:'historia',moduleId:source.modulo,entryId:source.entradaId,label:'viewHistory'};
@@ -191,7 +194,7 @@
   function navigationButton(item,category){
     const navigation=navigationFor(item,category);
     if(!navigation) return null;
-    const button=element('button',`study-assistant__resource-link study-assistant__resource-link--${navigation.panel}`,t(navigation.label));
+    const button=element('button',`study-assistant__resource-link study-assistant__resource-link--${navigation.panel}`,t(navigation.label,navigation.labelVars));
     button.type='button';
     button.addEventListener('click',()=>window.VerboResourceNavigation?.open(navigation));
     return button;
@@ -305,19 +308,30 @@
   function applyTranslationToMountedNodes(key,translation){
     const root=assistant();
     if(!root) return;
-    root.querySelectorAll('[data-study-translation-key]').forEach(node=>{
-      if(node.dataset.studyTranslationKey===key) node.textContent=translation;
-    });
+    if(translation){
+      root.querySelectorAll('[data-study-translation-key]').forEach(node=>{
+        if(node.dataset.studyTranslationKey===key) node.textContent=translation;
+      });
+    }
+    // Sin traducción: el texto original ya está mostrado desde el primer render,
+    // así que basta con quitar el indicador "Traduciendo…" — nunca debe quedar
+    // pegado esperando algo que ya sabemos que no va a llegar (fase J: fallback
+    // silencioso, sin error global por un recurso individual).
     root.querySelectorAll('[data-study-translation-status]').forEach(node=>{
       if(node.dataset.studyTranslationStatus===key) node.remove();
     });
+  }
+
+  function clearTranslationStatus(batch,generation){
+    if(generation!==requestGeneration) return;
+    for(const item of batch) applyTranslationToMountedNodes(item.key,null);
   }
 
   async function resolveTranslationBatch(batch,generation,targetLanguage){
     batch.forEach(item=>pendingTranslationKeys.add(item.key));
     try{
       const base=await translationWorkerBase();
-      if(!base) return;
+      if(!base){ clearTranslationStatus(batch,generation); return; }
       const response=await fetch(`${base}/translate-study-assistant`,{
         method:'POST',
         headers:{'Content-Type':'application/json'},
@@ -326,16 +340,17 @@
           resources:batch.map(({resourceId,sourceLanguage,sourceHash,text})=>({resourceId,sourceLanguage,sourceHash,text})),
         }),
       });
-      if(!response.ok) return;
+      if(!response.ok){ clearTranslationStatus(batch,generation); return; }
       const payload=await response.json();
       for(const item of batch){
         const translation=payload?.translations?.[item.resourceId]?.translation;
-        if(typeof translation!=='string' || !translation.trim()) continue;
-        translationCache.set(item.key,translation.trim());
-        if(generation===requestGeneration) applyTranslationToMountedNodes(item.key,translation.trim());
+        const trimmed=typeof translation==='string' && translation.trim() ? translation.trim() : null;
+        if(trimmed) translationCache.set(item.key,trimmed);
+        if(generation===requestGeneration) applyTranslationToMountedNodes(item.key,trimmed);
       }
     }catch(error){
       console.warn('No se pudo resolver una traducción del Asistente.',error);
+      clearTranslationStatus(batch,generation);
     }finally{
       batch.forEach(item=>pendingTranslationKeys.delete(item.key));
     }
