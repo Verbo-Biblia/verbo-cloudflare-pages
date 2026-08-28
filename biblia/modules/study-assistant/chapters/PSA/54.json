@@ -4,214 +4,334 @@
   "resources": {
     "costumbres": {},
     "diccionario": {
-      "d-048a0627e8722b42": {
+      "d-12cbcdca3c769cf1": {
         "fuente": {
-          "headword": "Lord",
-          "modulo": "Smith"
-        },
-        "termino": "Lord"
-      },
-      "d-0c60c1062ed86405": {
-        "fuente": {
-          "headword": "Sacrifice",
-          "modulo": "Smith"
-        },
-        "termino": "Sacrifice"
-      },
-      "d-22ab3a42bba95ae9": {
-        "fuente": {
-          "headword": "Lord",
-          "modulo": "Easton"
-        },
-        "termino": "Lord"
-      },
-      "d-23672136ecfc4ccc": {
-        "fuente": {
-          "headword": "David",
-          "modulo": "Smith"
-        },
-        "termino": "David"
-      },
-      "d-28747e13abb424ba": {
-        "fuente": {
-          "headword": "David",
-          "modulo": "Easton"
-        },
-        "termino": "David"
-      },
-      "d-3003545eac997138": {
-        "fuente": {
-          "headword": "Stranger",
-          "modulo": "Smith"
-        },
-        "termino": "Stranger"
-      },
-      "d-3484ba86eac02bac": {
-        "fuente": {
-          "headword": "Selah",
-          "modulo": "Smith"
-        },
-        "termino": "Selah"
-      },
-      "d-35382bc14f3bfd51": {
-        "fuente": {
-          "headword": "Word, The",
-          "modulo": "Easton"
-        },
-        "termino": "Word, The"
-      },
-      "d-4143111de8cc30c9": {
-        "fuente": {
-          "headword": "Selah",
-          "modulo": "Easton"
-        },
-        "termino": "Selah"
-      },
-      "d-4b3b07ca0fbda540": {
-        "fuente": {
-          "headword": "God",
-          "modulo": "Easton"
-        },
-        "termino": "God"
-      },
-      "d-7c243774230583a3": {
-        "fuente": {
-          "headword": "Prayer",
-          "modulo": "Smith"
-        },
-        "termino": "Prayer"
-      },
-      "d-815e23ca53d02b6c": {
-        "fuente": {
-          "headword": "Stranger",
-          "modulo": "Easton"
-        },
-        "termino": "Stranger"
-      },
-      "d-891cf6cf25fdbdc6": {
-        "fuente": {
-          "headword": "God",
-          "modulo": "Smith"
-        },
-        "termino": "God"
-      },
-      "d-9056a4c9628ed9a5": {
-        "fuente": {
-          "headword": "Names",
-          "modulo": "Smith"
-        },
-        "termino": "Names"
-      },
-      "d-bcd68460d6bf1565": {
-        "fuente": {
-          "headword": "Sacrifice",
-          "modulo": "Easton"
-        },
-        "termino": "Sacrifice"
-      },
-      "d-c9aaba0b87721e48": {
-        "fuente": {
-          "headword": "Prayer",
-          "modulo": "Easton"
-        },
-        "termino": "Prayer"
-      },
-      "d-ce7b6ece4ccddb75": {
-        "fuente": {
-          "headword": "Saul",
-          "modulo": "Easton"
-        },
-        "termino": "Saul"
-      },
-      "d-d169caaddca3d37c": {
-        "fuente": {
-          "headword": "Saul",
-          "modulo": "Smith"
-        },
-        "termino": "Saul"
-      },
-      "d-d9d01136378f0f55": {
-        "fuente": {
-          "headword": "Wills",
-          "modulo": "Smith"
-        },
-        "termino": "Wills"
-      },
-      "d-f685aa2ed33ec21b": {
-        "fuente": {
+          "entryId": "easton-2289",
           "headword": "Life",
           "modulo": "Easton"
         },
-        "termino": "Life"
+        "termino": "Life",
+        "traduccion": {
+          "resourceId": "easton-2289",
+          "sourceHash": "52d46ffedcf86c4d0859f4b77883cbe66ed1dd3e7162a72a355dc7a318ce01f4",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-18d8c276fe0f9996": {
+        "fuente": {
+          "entryId": "smith-4386",
+          "headword": "Wills",
+          "modulo": "Smith"
+        },
+        "termino": "Wills",
+        "traduccion": {
+          "resourceId": "smith-4386",
+          "sourceHash": "4db39b9ec9cb2fd913433fa299de2879ccbceb45d1140bb4f5c6fb399d2a2382",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-2436504831772365": {
+        "fuente": {
+          "entryId": "easton-2998",
+          "headword": "Prayer",
+          "modulo": "Easton"
+        },
+        "termino": "Prayer",
+        "traduccion": {
+          "resourceId": "easton-2998",
+          "sourceHash": "6e399f2787a0602f604bd89c19e077a5546c05698b6be5b96baa895cc23a0ec0",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-2f2503205e02009e": {
+        "fuente": {
+          "entryId": "smith-3063",
+          "headword": "Names",
+          "modulo": "Smith"
+        },
+        "termino": "Names",
+        "traduccion": {
+          "resourceId": "smith-3063",
+          "sourceHash": "c3b29e6eef2cc49b7d2456f97333fc3849ac118848b37b4150e8f96738919cdc",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-318a44b1cbff9e9f": {
+        "fuente": {
+          "entryId": "easton-3833",
+          "headword": "Word, The",
+          "modulo": "Easton"
+        },
+        "termino": "Word, The",
+        "traduccion": {
+          "resourceId": "easton-3833",
+          "sourceHash": "623b792f12568c60bd7896ae2d3f72025081bca91fdbd0fc0d7f2f0b4ebbe839",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-3b161d60c8a33525": {
+        "fuente": {
+          "entryId": "easton-2315",
+          "headword": "Lord",
+          "modulo": "Easton"
+        },
+        "termino": "Lord",
+        "traduccion": {
+          "resourceId": "easton-2315",
+          "sourceHash": "022bb5c4cb2a343952c6483218265ad93ddba5af0c27894cf34a0940b6e25d3a",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-45f3e5d3288f588a": {
+        "fuente": {
+          "entryId": "smith-1684",
+          "headword": "God",
+          "modulo": "Smith"
+        },
+        "termino": "God",
+        "traduccion": {
+          "resourceId": "smith-1684",
+          "sourceHash": "9c544d96b0c84c52ace0ae1c9ea1414c153ad9e8ec7dd0c5bd12e828fc74317b",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-4c4cfb0661e73e21": {
+        "fuente": {
+          "entryId": "easton-3265",
+          "headword": "Selah",
+          "modulo": "Easton"
+        },
+        "termino": "Selah",
+        "traduccion": {
+          "resourceId": "easton-3265",
+          "sourceHash": "e8431682bd25185fe0430d817d18b9bdc5b881901f86636e244b7f1b381a5987",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-5f489c4a197b2c2e": {
+        "fuente": {
+          "entryId": "easton-3179",
+          "headword": "Sacrifice",
+          "modulo": "Easton"
+        },
+        "termino": "Sacrifice",
+        "traduccion": {
+          "resourceId": "easton-3179",
+          "sourceHash": "33403d8f77f3caa9aa8f59a1a0290c3e349fe6a5893c3b812340601ac4a0629a",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-6dc7dd1180c86ba1": {
+        "fuente": {
+          "entryId": "easton-3230",
+          "headword": "Saul",
+          "modulo": "Easton"
+        },
+        "termino": "Saul",
+        "traduccion": {
+          "resourceId": "easton-3230",
+          "sourceHash": "b6e03250d9fc9dd6e510a18493feae40a07572bbf818cb0bb0adbb16bced649d",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-8240a4055a6c90bd": {
+        "fuente": {
+          "entryId": "easton-1513",
+          "headword": "God",
+          "modulo": "Easton"
+        },
+        "termino": "God",
+        "traduccion": {
+          "resourceId": "easton-1513",
+          "sourceHash": "9c544d96b0c84c52ace0ae1c9ea1414c153ad9e8ec7dd0c5bd12e828fc74317b",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-a15237c0a074e2d5": {
+        "fuente": {
+          "entryId": "smith-3689",
+          "headword": "Saul",
+          "modulo": "Smith"
+        },
+        "termino": "Saul",
+        "traduccion": {
+          "resourceId": "smith-3689",
+          "sourceHash": "b6e03250d9fc9dd6e510a18493feae40a07572bbf818cb0bb0adbb16bced649d",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-b71a471cc5c36245": {
+        "fuente": {
+          "entryId": "smith-3632",
+          "headword": "Sacrifice",
+          "modulo": "Smith"
+        },
+        "termino": "Sacrifice",
+        "traduccion": {
+          "resourceId": "smith-3632",
+          "sourceHash": "33403d8f77f3caa9aa8f59a1a0290c3e349fe6a5893c3b812340601ac4a0629a",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-cd36f637a89c0cdf": {
+        "fuente": {
+          "entryId": "smith-3716",
+          "headword": "Selah",
+          "modulo": "Smith"
+        },
+        "termino": "Selah",
+        "traduccion": {
+          "resourceId": "smith-3716",
+          "sourceHash": "e8431682bd25185fe0430d817d18b9bdc5b881901f86636e244b7f1b381a5987",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-dce23a9a1139cd14": {
+        "fuente": {
+          "entryId": "easton-3517",
+          "headword": "Stranger",
+          "modulo": "Easton"
+        },
+        "termino": "Stranger",
+        "traduccion": {
+          "resourceId": "easton-3517",
+          "sourceHash": "4fd951916f8e9f1e513baea9d64616192cd45485954fe0c1f36a62c9b2a0db7e",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-e1b7fe78d0cca9aa": {
+        "fuente": {
+          "entryId": "smith-4064",
+          "headword": "Stranger",
+          "modulo": "Smith"
+        },
+        "termino": "Stranger",
+        "traduccion": {
+          "resourceId": "smith-4064",
+          "sourceHash": "4fd951916f8e9f1e513baea9d64616192cd45485954fe0c1f36a62c9b2a0db7e",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-e8343dbedc8e1fd7": {
+        "fuente": {
+          "entryId": "smith-3439",
+          "headword": "Prayer",
+          "modulo": "Smith"
+        },
+        "termino": "Prayer",
+        "traduccion": {
+          "resourceId": "smith-3439",
+          "sourceHash": "6e399f2787a0602f604bd89c19e077a5546c05698b6be5b96baa895cc23a0ec0",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-ec9378a78b48d55c": {
+        "fuente": {
+          "entryId": "smith-2663",
+          "headword": "Lord",
+          "modulo": "Smith"
+        },
+        "termino": "Lord",
+        "traduccion": {
+          "resourceId": "smith-2663",
+          "sourceHash": "022bb5c4cb2a343952c6483218265ad93ddba5af0c27894cf34a0940b6e25d3a",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-f004792912830556": {
+        "fuente": {
+          "entryId": "smith-1128",
+          "headword": "David",
+          "modulo": "Smith"
+        },
+        "termino": "David",
+        "traduccion": {
+          "resourceId": "smith-1128",
+          "sourceHash": "a6b54c20a7b96eeac1a911e6da3124a560fe6dc042ebf270e3676e7095b95652",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-f5cff1b78b3d0d33": {
+        "fuente": {
+          "entryId": "easton-982",
+          "headword": "David",
+          "modulo": "Easton"
+        },
+        "termino": "David",
+        "traduccion": {
+          "resourceId": "easton-982",
+          "sourceHash": "a6b54c20a7b96eeac1a911e6da3124a560fe6dc042ebf270e3676e7095b95652",
+          "sourceLanguage": "en"
+        }
       }
     },
     "historia": {}
   },
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "verses": {
     "1": {
       "costumbres": [],
       "diccionario": [
-        "d-28747e13abb424ba",
-        "d-23672136ecfc4ccc",
-        "d-4b3b07ca0fbda540",
-        "d-891cf6cf25fdbdc6",
-        "d-9056a4c9628ed9a5",
-        "d-ce7b6ece4ccddb75",
-        "d-d169caaddca3d37c"
+        "d-f5cff1b78b3d0d33",
+        "d-f004792912830556",
+        "d-8240a4055a6c90bd",
+        "d-45f3e5d3288f588a",
+        "d-2f2503205e02009e",
+        "d-6dc7dd1180c86ba1",
+        "d-a15237c0a074e2d5"
       ],
       "historia": []
     },
     "2": {
       "costumbres": [],
       "diccionario": [
-        "d-4b3b07ca0fbda540",
-        "d-891cf6cf25fdbdc6",
-        "d-c9aaba0b87721e48",
-        "d-7c243774230583a3",
-        "d-35382bc14f3bfd51"
+        "d-8240a4055a6c90bd",
+        "d-45f3e5d3288f588a",
+        "d-2436504831772365",
+        "d-e8343dbedc8e1fd7",
+        "d-318a44b1cbff9e9f"
       ],
       "historia": []
     },
     "3": {
       "costumbres": [],
       "diccionario": [
-        "d-4b3b07ca0fbda540",
-        "d-891cf6cf25fdbdc6",
-        "d-f685aa2ed33ec21b",
-        "d-4143111de8cc30c9",
-        "d-3484ba86eac02bac",
-        "d-815e23ca53d02b6c",
-        "d-3003545eac997138"
+        "d-8240a4055a6c90bd",
+        "d-45f3e5d3288f588a",
+        "d-12cbcdca3c769cf1",
+        "d-4c4cfb0661e73e21",
+        "d-cd36f637a89c0cdf",
+        "d-dce23a9a1139cd14",
+        "d-e1b7fe78d0cca9aa"
       ],
       "historia": []
     },
     "4": {
       "costumbres": [],
       "diccionario": [
-        "d-4b3b07ca0fbda540",
-        "d-891cf6cf25fdbdc6",
-        "d-22ab3a42bba95ae9",
-        "d-048a0627e8722b42"
+        "d-8240a4055a6c90bd",
+        "d-45f3e5d3288f588a",
+        "d-3b161d60c8a33525",
+        "d-ec9378a78b48d55c"
       ],
       "historia": []
     },
     "5": {
       "costumbres": [],
       "diccionario": [
-        "d-d9d01136378f0f55"
+        "d-18d8c276fe0f9996"
       ],
       "historia": []
     },
     "6": {
       "costumbres": [],
       "diccionario": [
-        "d-22ab3a42bba95ae9",
-        "d-048a0627e8722b42",
-        "d-9056a4c9628ed9a5",
-        "d-bcd68460d6bf1565",
-        "d-0c60c1062ed86405",
-        "d-d9d01136378f0f55"
+        "d-3b161d60c8a33525",
+        "d-ec9378a78b48d55c",
+        "d-2f2503205e02009e",
+        "d-5f489c4a197b2c2e",
+        "d-b71a471cc5c36245",
+        "d-18d8c276fe0f9996"
       ],
       "historia": []
     },

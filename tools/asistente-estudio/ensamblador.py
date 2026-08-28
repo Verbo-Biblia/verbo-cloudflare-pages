@@ -7,6 +7,7 @@ locales y produce JSON estático. No usa Strong, embeddings ni red.
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -20,10 +21,24 @@ import motor_diccionario_bsb_caminoC as diccionario_c  # noqa: E402
 
 FREEMAN_PATH = REPO_ROOT / "biblia/modules/costumbres/freeman-manners-customs/entries.json"
 TUCKER_PATH = REPO_ROOT / "biblia/modules/costumbres/tucker-roman-world/entries.json"
+PATRISTIC_DIR = REPO_ROOT / "biblia/modules/patristic"
 
 
 def load_json(path):
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+_UNSAFE_ID_CHARS = re.compile(r"[^A-Za-z0-9:._-]+")
+
+
+def sanitize_identifier(raw):
+    """Normaliza un ID canónico al alfabeto que exige el Worker de traducción.
+
+    `libroSeccion` conserva el texto original (tildes, espacios, comas) para
+    mostrarlo en la UI; `entradaId` debe quedar restringido a
+    [A-Za-z0-9:._-] porque viaja como resourceId en study-assistant-catalog.json.
+    """
+    return _UNSAFE_ID_CHARS.sub("-", raw).strip("-")
 
 
 def ranges_overlap(a_ch1, a_v1, a_ch2, a_v2, b_ch1, b_v1, b_ch2, b_v2):
@@ -69,6 +84,11 @@ class Assembler:
         self.early_christian = load_json(
             DATA_DIR / "costumbres-amplia-cristiano-subapostolico.json"
         )
+        self.patristic_sections = {}
+        for source in {item["fuente"] for item in self.early_christian["fragmentos"]}:
+            path = PATRISTIC_DIR / source / "sections.json"
+            if path.exists():
+                self.patristic_sections[source] = load_json(path)["sections"]
 
     def dictionary(self, spec):
         result = diccionario_c.query_passage(spec, self.dictionary_entries)
@@ -80,6 +100,7 @@ class Assembler:
                     "fuente": {
                         "modulo": "Easton" if source["diccionario"] == "easton" else "Smith",
                         "headword": entry["headword"],
+                        "entryId": source["id"],
                     },
                 })
         return output
@@ -110,6 +131,7 @@ class Assembler:
                         ) else "book-classification-ot"
                     ),
                     "libroSeccion": f"{book}:{window['origen']}",
+                    "entradaId": sanitize_identifier(f"{book}:{window['origen']}"),
                 },
             })
         return output
@@ -122,6 +144,7 @@ class Assembler:
                 "fuente": {
                     "modulo": "eusebio-historia-eclesiastica",
                     "libroSeccion": entry["libroSeccion"],
+                    "entradaId": entry["eusebioId"],
                 },
             }
             for entry in history_result["resultados"]
@@ -148,6 +171,12 @@ class Assembler:
                     "texto": anchor["razon"],
                     "fuente": {
                         "modulo": "concilios-temas",
+                        "temaId": mapping["temaId"],
+                        "entradaId": (
+                            f"{mapping['temaId']}:{anchor['book']}:"
+                            f"{anchor['chapterStart']}:{anchor['verseStart']}-"
+                            f"{anchor['chapterEnd']}:{anchor['verseEnd']}"
+                        ),
                         "libroSeccion": (
                             f"{theme['nombre']} — {', '.join(theme['concilios'])}"
                         ),
@@ -227,14 +256,45 @@ class Assembler:
         for fragment in self.early_christian["fragmentos"]:
             if fragment["periodo"] not in active_periods:
                 continue
+            section_ids = self._patristic_section_ids(
+                fragment["fuente"], fragment["seccion"]
+            )
             output.append({
                 "texto": fragment["resumen"],
                 "fuente": {
                     "modulo": fragment["fuente"],
-                    "entradaId": f"{fragment['fuente']}:{fragment['seccion']}",
+                    "entradaId": sanitize_identifier(f"{fragment['fuente']}:{fragment['seccion']}"),
+                    "seccionIds": section_ids,
                 },
             })
         return output
+
+    def _patristic_section_ids(self, source, label):
+        """Resuelve etiquetas editoriales contra IDs reales de sections.json."""
+        sections = self.patristic_sections.get(source, [])
+        chapter_match = re.search(
+            r"Cap[ií]tulos?\s+(\d+)(?:\s*[-–—]\s*(\d+))?", label, re.IGNORECASE
+        )
+        if chapter_match:
+            start = int(chapter_match.group(1))
+            end = int(chapter_match.group(2) or start)
+            available = {int(section["n"]) for section in sections}
+            result = [number for number in range(start, end + 1) if number in available]
+            if result:
+                return result
+
+        similarity_match = re.search(r"Similitud\s+(\d+)", label, re.IGNORECASE)
+        if similarity_match:
+            prefix = f"similitud {similarity_match.group(1)}"
+            result = [
+                int(section["n"])
+                for section in sections
+                if str(section.get("section_label", "")).lower().startswith(prefix)
+            ]
+            if result:
+                return result
+
+        raise ValueError(f"No se pudo resolver la sección patrística: {source} / {label}")
 
     def customs(self, spec, windows):
         return self._freeman(spec) + self._tucker(windows) + self._early_christian_customs(windows)

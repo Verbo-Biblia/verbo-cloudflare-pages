@@ -1,3 +1,5 @@
+import studyAssistantCatalogData from './study-assistant-catalog.json' with { type: 'json' };
+
 const API_ROOT = 'https://api.scripture.api.bible';
 const ALLOWED_BIBLES = new Set([
   'e3f420b9665abaeb-01', // LBLA
@@ -117,6 +119,19 @@ function estimateMaxTokens(text) {
 // "Verbo" (nombre de autor de Comentarios Verbo) había quedado cacheada como
 // un preámbulo conversacional que PREAMBLE_PATTERNS no atrapaba entonces.
 const TRANSLATE_CACHE_PREFIX = 'translate:v5';
+const STUDY_TRANSLATE_CACHE_PREFIX = 'study-assistant:v1';
+const STUDY_TRANSLATE_MAX_RESOURCES = 100;
+const STUDY_TRANSLATE_MAX_RESOURCE_CHARS = 4000;
+// 12000, no 20000: con 100 recursos y expansión ES/overhead JSON, un lote de
+// 20000 caracteres puede pedir una salida que excede el tope de 8192 tokens
+// de estimateMaxTokens() y trunca el JSON de Anthropic (todo el lote se
+// perdería). 12000 deja margen para el peor caso (100 recursos cortos).
+const STUDY_TRANSLATE_MAX_TOTAL_CHARS = 12000;
+const STUDY_TRANSLATE_ID_RE = /^[A-Za-z0-9][A-Za-z0-9:._-]{0,199}$/;
+const SHA256_RE = /^[a-f0-9]{64}$/;
+const STUDY_TRANSLATE_LANGUAGES = new Set(['es', 'en']);
+const studyTranslationInflight = new Map();
+const studyAssistantCatalog = studyAssistantCatalogData?.resources || {};
 
 async function translateCacheKey(text, targetLang) {
   return `${TRANSLATE_CACHE_PREFIX}:${targetLang}:${await sha256Hex(text)}`;
@@ -470,6 +485,192 @@ Translate the supplied content and output only the result.`;
 
   await env.SYNC_KV.put(cacheKey, translation);
   return jsonOk({ translation, cached: false }, headers);
+}
+
+function studyTranslationKV(env) {
+  // Para separar esta caché en el futuro basta añadir el binding
+  // STUDY_TRANSLATIONS_KV; el contrato y las claves no cambian.
+  return env.STUDY_TRANSLATIONS_KV || env.SYNC_KV;
+}
+
+function studyTranslationKey(item, targetLanguage) {
+  return `${STUDY_TRANSLATE_CACHE_PREFIX}:${item.sourceLanguage}-${targetLanguage}:${item.resourceId}:${item.sourceHash}`;
+}
+
+function parseStudyCachedValue(raw) {
+  if (typeof raw !== 'string' || !raw) return null;
+  try {
+    const value = JSON.parse(raw);
+    return typeof value?.translation === 'string' && value.translation.trim()
+      ? value.translation.trim()
+      : null;
+  } catch {
+    return null;
+  }
+}
+
+function parseStructuredStudyTranslations(raw, requestedIds) {
+  if (typeof raw !== 'string' || !raw.trim()) return new Map();
+  let parsed;
+  try {
+    parsed = JSON.parse(raw.trim());
+  } catch {
+    return new Map();
+  }
+  const rows = Array.isArray(parsed) ? parsed : parsed?.translations;
+  if (!Array.isArray(rows)) return new Map();
+  const result = new Map();
+  for (const row of rows) {
+    const id = row?.resourceId;
+    const translation = typeof row?.translation === 'string' ? row.translation.trim() : '';
+    if (!requestedIds.has(id) || !translation || result.has(id)) continue;
+    if (looksLikeConversationalPreamble(translation)) continue;
+    result.set(id, translation);
+  }
+  return result;
+}
+
+async function callAnthropicStudyBatch(items, targetLanguage, env) {
+  const targetName = TRANSLATE_TARGET_NAMES[targetLanguage];
+  const systemPrompt = `You translate Bible-study resource previews into ${targetName}.
+Preserve the complete meaning, theological position, historical claims, names, references, and qualifications of every source. Use natural contemporary Latin American Spanish when translating into Spanish. Do not summarize, explain, correct, censor, or add content.
+The user message is a JSON array. Return only valid JSON in this exact form: {"translations":[{"resourceId":"the unchanged input ID","translation":"the translated text"}]}.
+Return exactly one object per input resource. Never translate or alter resourceId. Do not use Markdown fences or any text outside the JSON object.`;
+  const payload = items.map(item => ({ resourceId:item.resourceId, text:item.text }));
+  const requestedIds = new Set(items.map(item => item.resourceId));
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const result = await callAnthropicTranslate(JSON.stringify(payload), systemPrompt, env);
+    if (result.error) {
+      if (attempt === 1) return new Map();
+      continue;
+    }
+    const parsed = parseStructuredStudyTranslations(result.translation, requestedIds);
+    if (parsed.size || attempt === 1) return parsed;
+  }
+  return new Map();
+}
+
+function validateStudyTranslationRequest(body) {
+  const targetLanguage = body?.targetLanguage;
+  const resources = body?.resources;
+  if (!STUDY_TRANSLATE_LANGUAGES.has(targetLanguage)) {
+    return { error:'targetLanguage debe ser "es" o "en"' };
+  }
+  if (!Array.isArray(resources) || resources.length < 1 || resources.length > STUDY_TRANSLATE_MAX_RESOURCES) {
+    return { error:`resources debe contener entre 1 y ${STUDY_TRANSLATE_MAX_RESOURCES} elementos` };
+  }
+  const seen = new Set();
+  let totalChars = 0;
+  const validated = [];
+  for (const resource of resources) {
+    const resourceId = resource?.resourceId;
+    const sourceLanguage = resource?.sourceLanguage;
+    const sourceHash = resource?.sourceHash;
+    const text = resource?.text;
+    if (typeof resourceId !== 'string' || !STUDY_TRANSLATE_ID_RE.test(resourceId)) {
+      return { error:'resourceId inválido' };
+    }
+    if (seen.has(resourceId)) return { error:`resourceId duplicado: ${resourceId}` };
+    seen.add(resourceId);
+    if (!STUDY_TRANSLATE_LANGUAGES.has(sourceLanguage) || sourceLanguage === targetLanguage) {
+      return { error:`Dirección de idioma inválida para ${resourceId}` };
+    }
+    if (typeof sourceHash !== 'string' || !SHA256_RE.test(sourceHash)) {
+      return { error:`sourceHash inválido para ${resourceId}` };
+    }
+    if (typeof text !== 'string' || !text.trim() || text.length > STUDY_TRANSLATE_MAX_RESOURCE_CHARS) {
+      return { error:`Texto inválido o demasiado largo para ${resourceId}` };
+    }
+    totalChars += text.length;
+    if (totalChars > STUDY_TRANSLATE_MAX_TOTAL_CHARS) {
+      return { error:`El lote supera ${STUDY_TRANSLATE_MAX_TOTAL_CHARS} caracteres` };
+    }
+    const allowed = studyAssistantCatalog[resourceId];
+    if (!allowed || allowed.sourceLanguage !== sourceLanguage || allowed.sourceHash !== sourceHash) {
+      return { error:`Recurso no permitido: ${resourceId}` };
+    }
+    validated.push({ resourceId, sourceLanguage, sourceHash, text });
+  }
+  return { targetLanguage, resources:validated };
+}
+
+async function translateStudyMisses(items, targetLanguage, env, kv) {
+  const waiting = new Map();
+  const fresh = [];
+  for (const item of items) {
+    const key = studyTranslationKey(item, targetLanguage);
+    const inflight = studyTranslationInflight.get(key);
+    if (inflight) waiting.set(item.resourceId, inflight);
+    else fresh.push({ ...item, key });
+  }
+
+  if (fresh.length) {
+    const batchPromise = callAnthropicStudyBatch(fresh, targetLanguage, env);
+    for (const item of fresh) {
+      let promise;
+      promise = batchPromise.then(async translations => {
+        const translation = translations.get(item.resourceId) || null;
+        if (!translation) return null;
+        await kv.put(item.key, JSON.stringify({
+          translation,
+          createdAt:new Date().toISOString(),
+        }));
+        return translation;
+      }).finally(() => {
+        if (studyTranslationInflight.get(item.key) === promise) {
+          studyTranslationInflight.delete(item.key);
+        }
+      });
+      studyTranslationInflight.set(item.key, promise);
+      waiting.set(item.resourceId, promise);
+    }
+  }
+
+  const resolved = new Map();
+  await Promise.all([...waiting].map(async ([resourceId, promise]) => {
+    const translation = await promise.catch(() => null);
+    if (translation) resolved.set(resourceId, translation);
+  }));
+  return resolved;
+}
+
+async function handleTranslateStudyAssistant(request, env, headers) {
+  if (request.method !== 'POST') return jsonError('Método no permitido', 405, headers);
+  if (!env.ANTHROPIC_API_KEY) return jsonError('Servicio de traducción no configurado', 500, headers);
+  const kv = studyTranslationKV(env);
+  if (!kv) return jsonError('Caché de traducción no configurada', 500, headers);
+
+  const validation = validateStudyTranslationRequest(await readJson(request));
+  if (validation.error) return jsonError(validation.error, 400, headers);
+  const { targetLanguage, resources } = validation;
+  for (const item of resources) {
+    if (await sha256Hex(item.text) !== item.sourceHash) {
+      return jsonError(`El texto no coincide con sourceHash para ${item.resourceId}`, 400, headers);
+    }
+  }
+
+  const keys = resources.map(item => studyTranslationKey(item, targetLanguage));
+  const cachedValues = await kv.get(keys);
+  const translations = {};
+  const misses = [];
+  resources.forEach((item, index) => {
+    const raw = cachedValues instanceof Map ? cachedValues.get(keys[index]) : null;
+    const translation = parseStudyCachedValue(raw);
+    if (translation) translations[item.resourceId] = { translation, cached:true };
+    else misses.push(item);
+  });
+
+  if (misses.length) {
+    const generated = await translateStudyMisses(misses, targetLanguage, env, kv);
+    for (const item of misses) {
+      const translation = generated.get(item.resourceId);
+      if (translation) translations[item.resourceId] = { translation, cached:false };
+    }
+  }
+  const failed = resources
+    .map(item => item.resourceId)
+    .filter(resourceId => !translations[resourceId]);
+  return jsonOk({ translations, failed }, headers);
 }
 
 // ── /translate-sermon-doc ───────────────────────────────────────────────
@@ -1147,6 +1348,7 @@ export default {
 
     if (url.pathname.startsWith('/v1/sync/')) return handleSync(request, url, env, headers);
     if (url.pathname.startsWith('/v1/iglesia/')) return handleIglesia(request, url, env, headers);
+    if (url.pathname === '/translate-study-assistant') return handleTranslateStudyAssistant(request, env, headers);
     if (url.pathname === '/translate') return handleTranslate(request, env, headers);
     if (url.pathname === '/translate-sermon-doc') return handleTranslateSermonDoc(request, env, headers);
     if (url.pathname === '/proyector/estado') return handleProyectorEstado(request, url, env, headers);

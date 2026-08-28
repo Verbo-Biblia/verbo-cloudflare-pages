@@ -4,149 +4,221 @@
   "resources": {
     "costumbres": {},
     "diccionario": {
-      "d-048a0627e8722b42": {
+      "d-051069082137411a": {
         "fuente": {
-          "headword": "Lord",
-          "modulo": "Smith"
-        },
-        "termino": "Lord"
-      },
-      "d-15b73ae9f09ffdf8": {
-        "fuente": {
-          "headword": "Captive",
-          "modulo": "Smith"
-        },
-        "termino": "Captive"
-      },
-      "d-1999ac7d6443c7fa": {
-        "fuente": {
-          "headword": "Grain",
-          "modulo": "Easton"
-        },
-        "termino": "Grain"
-      },
-      "d-22ab3a42bba95ae9": {
-        "fuente": {
-          "headword": "Lord",
-          "modulo": "Easton"
-        },
-        "termino": "Lord"
-      },
-      "d-2e5aea95ad55bde8": {
-        "fuente": {
+          "entryId": "smith-4035",
           "headword": "Sow",
           "modulo": "Smith"
         },
-        "termino": "Sow"
+        "termino": "Sow",
+        "traduccion": {
+          "resourceId": "smith-4035",
+          "sourceHash": "30948e18fe97465a2b8b4705b158aee8bd59982b729bf41b8dfa84bdac9e7532",
+          "sourceLanguage": "en"
+        }
       },
-      "d-37237ce6ca734b29": {
+      "d-06af6eb2811301b0": {
         "fuente": {
-          "headword": "Zion",
-          "modulo": "Smith"
-        },
-        "termino": "Zion"
-      },
-      "d-873d3564c831acad": {
-        "fuente": {
-          "headword": "Songs",
-          "modulo": "Easton"
-        },
-        "termino": "Songs"
-      },
-      "d-885fcfc236d8ecd8": {
-        "fuente": {
+          "entryId": "smith-876",
           "headword": "Captive",
-          "modulo": "Easton"
-        },
-        "termino": "Captive"
-      },
-      "d-9a7ed38c85f992ea": {
-        "fuente": {
-          "headword": "Zion",
-          "modulo": "Easton"
-        },
-        "termino": "Zion"
-      },
-      "d-d36d190aa35c44de": {
-        "fuente": {
-          "headword": "Bear",
           "modulo": "Smith"
         },
-        "termino": "Bear"
+        "termino": "Captive",
+        "traduccion": {
+          "resourceId": "smith-876",
+          "sourceHash": "48eacaf91130ed866d8a574e41d315bcfb89ec10a7a26d07763b2b9d21fdd4ec",
+          "sourceLanguage": "en"
+        }
       },
-      "d-d9d01136378f0f55": {
+      "d-18d8c276fe0f9996": {
         "fuente": {
+          "entryId": "smith-4386",
           "headword": "Wills",
           "modulo": "Smith"
         },
-        "termino": "Wills"
+        "termino": "Wills",
+        "traduccion": {
+          "resourceId": "smith-4386",
+          "sourceHash": "4db39b9ec9cb2fd913433fa299de2879ccbceb45d1140bb4f5c6fb399d2a2382",
+          "sourceLanguage": "en"
+        }
       },
-      "d-d9e5ce0bacdd841d": {
+      "d-3b161d60c8a33525": {
         "fuente": {
+          "entryId": "easton-2315",
+          "headword": "Lord",
+          "modulo": "Easton"
+        },
+        "termino": "Lord",
+        "traduccion": {
+          "resourceId": "easton-2315",
+          "sourceHash": "022bb5c4cb2a343952c6483218265ad93ddba5af0c27894cf34a0940b6e25d3a",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-4086f4d927c9e6ad": {
+        "fuente": {
+          "entryId": "easton-719",
+          "headword": "Captive",
+          "modulo": "Easton"
+        },
+        "termino": "Captive",
+        "traduccion": {
+          "resourceId": "easton-719",
+          "sourceHash": "48eacaf91130ed866d8a574e41d315bcfb89ec10a7a26d07763b2b9d21fdd4ec",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-54282c08d1fc5a88": {
+        "fuente": {
+          "entryId": "easton-1541",
+          "headword": "Grain",
+          "modulo": "Easton"
+        },
+        "termino": "Grain",
+        "traduccion": {
+          "resourceId": "easton-1541",
+          "sourceHash": "540faafbd76707640d78876db815b322bd6792626d521c13d1e80c7f333e788e",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-94c370f182dc5be7": {
+        "fuente": {
+          "entryId": "easton-3938",
+          "headword": "Zion",
+          "modulo": "Easton"
+        },
+        "termino": "Zion",
+        "traduccion": {
+          "resourceId": "easton-3938",
+          "sourceHash": "4e28c5777c52ec0e987eb3d55604ff5f14b5226976d4b5e2b87440fb09985a1c",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-a0bec41704fe87de": {
+        "fuente": {
+          "entryId": "smith-612",
+          "headword": "Bear",
+          "modulo": "Smith"
+        },
+        "termino": "Bear",
+        "traduccion": {
+          "resourceId": "smith-612",
+          "sourceHash": "8c578ed3e9d5fec6f0f1f46402fdb52e4b6174ae74aef1487b1905d0b666c168",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-ad98db2eeb40f783": {
+        "fuente": {
+          "entryId": "easton-487",
           "headword": "Bear",
           "modulo": "Easton"
         },
-        "termino": "Bear"
+        "termino": "Bear",
+        "traduccion": {
+          "resourceId": "easton-487",
+          "sourceHash": "8c578ed3e9d5fec6f0f1f46402fdb52e4b6174ae74aef1487b1905d0b666c168",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-b5ca22bd73f594bc": {
+        "fuente": {
+          "entryId": "easton-3476",
+          "headword": "Songs",
+          "modulo": "Easton"
+        },
+        "termino": "Songs",
+        "traduccion": {
+          "resourceId": "easton-3476",
+          "sourceHash": "bc6761357960695fa862a32480468c19d4edc42639fd18667e736f41d3082d03",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-eb53a3382a31083a": {
+        "fuente": {
+          "entryId": "smith-4527",
+          "headword": "Zion",
+          "modulo": "Smith"
+        },
+        "termino": "Zion",
+        "traduccion": {
+          "resourceId": "smith-4527",
+          "sourceHash": "4e28c5777c52ec0e987eb3d55604ff5f14b5226976d4b5e2b87440fb09985a1c",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-ec9378a78b48d55c": {
+        "fuente": {
+          "entryId": "smith-2663",
+          "headword": "Lord",
+          "modulo": "Smith"
+        },
+        "termino": "Lord",
+        "traduccion": {
+          "resourceId": "smith-2663",
+          "sourceHash": "022bb5c4cb2a343952c6483218265ad93ddba5af0c27894cf34a0940b6e25d3a",
+          "sourceLanguage": "en"
+        }
       }
     },
     "historia": {}
   },
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "verses": {
     "1": {
       "costumbres": [],
       "diccionario": [
-        "d-885fcfc236d8ecd8",
-        "d-15b73ae9f09ffdf8",
-        "d-22ab3a42bba95ae9",
-        "d-048a0627e8722b42",
-        "d-873d3564c831acad",
-        "d-9a7ed38c85f992ea",
-        "d-37237ce6ca734b29"
+        "d-4086f4d927c9e6ad",
+        "d-06af6eb2811301b0",
+        "d-3b161d60c8a33525",
+        "d-ec9378a78b48d55c",
+        "d-b5ca22bd73f594bc",
+        "d-94c370f182dc5be7",
+        "d-eb53a3382a31083a"
       ],
       "historia": []
     },
     "2": {
       "costumbres": [],
       "diccionario": [
-        "d-22ab3a42bba95ae9",
-        "d-048a0627e8722b42"
+        "d-3b161d60c8a33525",
+        "d-ec9378a78b48d55c"
       ],
       "historia": []
     },
     "3": {
       "costumbres": [],
       "diccionario": [
-        "d-22ab3a42bba95ae9",
-        "d-048a0627e8722b42"
+        "d-3b161d60c8a33525",
+        "d-ec9378a78b48d55c"
       ],
       "historia": []
     },
     "4": {
       "costumbres": [],
       "diccionario": [
-        "d-885fcfc236d8ecd8",
-        "d-15b73ae9f09ffdf8",
-        "d-22ab3a42bba95ae9",
-        "d-048a0627e8722b42"
+        "d-4086f4d927c9e6ad",
+        "d-06af6eb2811301b0",
+        "d-3b161d60c8a33525",
+        "d-ec9378a78b48d55c"
       ],
       "historia": []
     },
     "5": {
       "costumbres": [],
       "diccionario": [
-        "d-2e5aea95ad55bde8",
-        "d-d9d01136378f0f55"
+        "d-051069082137411a",
+        "d-18d8c276fe0f9996"
       ],
       "historia": []
     },
     "6": {
       "costumbres": [],
       "diccionario": [
-        "d-d9e5ce0bacdd841d",
-        "d-d36d190aa35c44de",
-        "d-1999ac7d6443c7fa",
-        "d-d9d01136378f0f55"
+        "d-ad98db2eeb40f783",
+        "d-a0bec41704fe87de",
+        "d-54282c08d1fc5a88",
+        "d-18d8c276fe0f9996"
       ],
       "historia": []
     }

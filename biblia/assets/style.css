@@ -471,6 +471,13 @@ body {
   padding: 5px 0;
 }
 
+.study-assistant__term-main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .study-assistant__term + .study-assistant__term {
   border-top: 1px dotted color-mix(in srgb, var(--rule-strong) 58%, transparent);
 }
@@ -526,13 +533,6 @@ body {
 
 .study-assistant__text--costumbres { -webkit-line-clamp: 4; }
 
-.study-assistant__text--expanded {
-  display: block;
-  overflow: visible;
-  -webkit-line-clamp: initial;
-}
-
-.study-assistant__text-toggle,
 .study-assistant__more {
   border: 0;
   border-bottom: 1px solid color-mix(in srgb, var(--wine) 42%, transparent);
@@ -545,20 +545,46 @@ body {
   padding: 0 0 1px;
 }
 
-.study-assistant__text-toggle { margin-top: 6px; }
-
 .study-assistant__more {
   margin-top: 13px;
   font-style: italic;
 }
 
-.study-assistant__text-toggle:hover,
 .study-assistant__more:hover { color: var(--wine-soft); }
 
-.study-assistant__text-toggle[hidden] { display: none; }
+.study-assistant__translation-status {
+  display: block;
+  margin-top: 4px;
+  color: var(--sepia);
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-style: italic;
+  letter-spacing: .2px;
+}
+
+.study-assistant__resource-link {
+  display: block;
+  margin-top: 7px;
+  padding: 0 0 1px;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 10.5px;
+  line-height: 1.35;
+  text-align: left;
+}
+
+.study-assistant__resource-link--historia { color: var(--wine); }
+.study-assistant__resource-link--costumbres { color: var(--green); }
+.study-assistant__resource-link--diccionarios { color: #2f6595; }
+.study-assistant__resource-link--padres { color: #72508b; }
+
+.study-assistant__resource-link:hover { filter: brightness(.82); }
 
 .study-assistant__section-toggle:focus-visible,
-.study-assistant__text-toggle:focus-visible,
+.study-assistant__resource-link:focus-visible,
 .study-assistant__more:focus-visible {
   outline: 2px solid var(--wine);
   outline-offset: 3px;

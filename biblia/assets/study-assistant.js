@@ -5,11 +5,17 @@
   const PACKAGE_ROOT='modules/study-assistant/chapters';
   const CATEGORIES=['diccionario','historia','costumbres'];
   const INITIAL_LIMITS={diccionario:8,historia:3,costumbres:3};
+  const TRANSLATE_MAX_RESOURCES=100;
+  const TRANSLATE_MAX_RESOURCE_CHARS=4000;
+  const TRANSLATE_MAX_TOTAL_CHARS=12000; // debe coincidir con STUDY_TRANSLATE_MAX_TOTAL_CHARS en worker.js
   const cache=new Map();
+  const translationCache=new Map();
+  const pendingTranslationKeys=new Set();
   let requestGeneration=0;
   let controlSequence=0;
   let currentContext=null;
   let currentResources=null;
+  let translationBasePromise=null;
 
   const assistant=()=>document.getElementById('studyAssistant');
   const t=(key,vars)=>window.VerboI18n?.t(`studyAssistant.${key}`,vars) || key;
@@ -134,11 +140,68 @@
       'clemente-1':'sourceClement',
       'didache':'sourceDidache',
       'hermas-pastor':'sourceHermas',
+      'mathietes-diogneto':'sourceDiognetus',
       'policarpo-filipenses':'sourcePolycarp',
       'freeman-manners-customs':'sourceFreeman',
       'tucker-roman-world':'sourceTucker'
     };
     return labels[module] ? t(labels[module]) : module;
+  }
+
+  const uiLanguage=()=>window.VerboI18n?.getUiLang()==='en'?'en':'es';
+
+  function resourceOriginal(item,category){
+    return category==='diccionario' ? item.termino : item.texto;
+  }
+
+  function translationKey(item,targetLanguage){
+    const metadata=item.traduccion;
+    return metadata
+      ? `${metadata.sourceLanguage}-${targetLanguage}:${metadata.resourceId}:${metadata.sourceHash}`
+      : '';
+  }
+
+  function resourceDisplay(item,category){
+    const original=resourceOriginal(item,category);
+    const metadata=item.traduccion;
+    const targetLanguage=uiLanguage();
+    if(!metadata || metadata.sourceLanguage===targetLanguage) return {text:original,key:'',pending:false};
+    const key=translationKey(item,targetLanguage);
+    return {text:translationCache.get(key)||original,key,pending:!translationCache.has(key)};
+  }
+
+  function navigationFor(item,category){
+    const source=item.fuente||{};
+    if(category==='diccionario' && source.entryId){
+      const moduleId=source.modulo==='Easton'?'easton-bible-dictionary':source.modulo==='Smith'?'smith-bible-dictionary':'';
+      return moduleId ? {panel:'diccionarios',moduleId,entryId:source.entryId,label:'viewDictionary'} : null;
+    }
+    if(source.modulo==='eusebio-historia-eclesiastica' && source.entradaId){
+      return {panel:'historia',moduleId:source.modulo,entryId:source.entradaId,label:'viewHistory'};
+    }
+    if(['freeman-manners-customs','tucker-roman-world'].includes(source.modulo) && source.entradaId){
+      return {panel:'costumbres',moduleId:source.modulo,entryId:source.entradaId,label:'viewCustoms'};
+    }
+    if(Array.isArray(source.seccionIds) && source.seccionIds.length){
+      return {panel:'padres',moduleId:source.modulo,entryId:source.seccionIds[0],label:'viewFathers'};
+    }
+    return null;
+  }
+
+  function navigationButton(item,category){
+    const navigation=navigationFor(item,category);
+    if(!navigation) return null;
+    const button=element('button',`study-assistant__resource-link study-assistant__resource-link--${navigation.panel}`,t(navigation.label));
+    button.type='button';
+    button.addEventListener('click',()=>window.VerboResourceNavigation?.open(navigation));
+    return button;
+  }
+
+  function translationStatus(display){
+    if(!display.pending) return null;
+    const status=element('small','study-assistant__translation-status',t('translating'));
+    status.dataset.studyTranslationStatus=display.key;
+    return status;
   }
 
   function sourceLabel(source){
@@ -160,7 +223,16 @@
 
   function renderTerm(item){
     const entry=element('li','study-assistant__term');
-    entry.appendChild(element('span','study-assistant__term-name',item.termino));
+    const display=resourceDisplay(item,'diccionario');
+    const main=element('div','study-assistant__term-main');
+    const name=element('span','study-assistant__term-name',display.text);
+    if(display.key) name.dataset.studyTranslationKey=display.key;
+    main.appendChild(name);
+    const status=translationStatus(display);
+    if(status) main.appendChild(status);
+    const action=navigationButton(item,'diccionario');
+    if(action) main.appendChild(action);
+    entry.appendChild(main);
     entry.appendChild(element('small','study-assistant__term-source',moduleLabel(item.fuente?.modulo || '')));
     return entry;
   }
@@ -172,30 +244,107 @@
     const type=category==='historia' ? historyTypeLabel(item.tipo) : '';
     if(type) article.appendChild(element('div','study-assistant__type',type));
 
-    const textId=`study-assistant-text-${++controlSequence}`;
-    const paragraph=element('p',`study-assistant__text study-assistant__text--${category}`,item.texto);
-    paragraph.id=textId;
+    const display=resourceDisplay(item,category);
+    const paragraph=element('p',`study-assistant__text study-assistant__text--${category}`,display.text);
+    if(display.key) paragraph.dataset.studyTranslationKey=display.key;
     article.appendChild(paragraph);
-    const toggle=element('button','study-assistant__text-toggle',t('readMore'));
-    toggle.type='button';
-    toggle.hidden=true;
-    toggle.setAttribute('aria-controls',textId);
-    toggle.setAttribute('aria-expanded','false');
-    toggle.addEventListener('click',()=>{
-      const expanded=toggle.getAttribute('aria-expanded')==='true';
-      toggle.setAttribute('aria-expanded',String(!expanded));
-      paragraph.classList.toggle('study-assistant__text--expanded',!expanded);
-      toggle.textContent=expanded ? t('readMore') : t('showLessText');
-    });
-    article.appendChild(toggle);
-    requestAnimationFrame(()=>{
-      const previewHeight=paragraph.getBoundingClientRect().height;
-      paragraph.classList.add('study-assistant__text--expanded');
-      const fullHeight=paragraph.scrollHeight;
-      paragraph.classList.remove('study-assistant__text--expanded');
-      toggle.hidden=fullHeight<=previewHeight+1;
-    });
+    const status=translationStatus(display);
+    if(status) article.appendChild(status);
+    const action=navigationButton(item,category);
+    if(action) article.appendChild(action);
     return article;
+  }
+
+  function translationWorkerBase(){
+    if(!translationBasePromise){
+      translationBasePromise=window.VerboModules.getCatalog()
+        .then(catalog=>String(catalog?.registry?.apiBible?.proxyUrl||'').trim().replace(/\/+$/,''))
+        .catch(()=> '');
+    }
+    return translationBasePromise;
+  }
+
+  function resourcesNeedingTranslation(resources,targetLanguage){
+    const unique=new Map();
+    for(const category of CATEGORIES){
+      for(const item of resources[category]){
+        const metadata=item.traduccion;
+        const text=resourceOriginal(item,category);
+        if(!metadata || metadata.sourceLanguage===targetLanguage || text.length>TRANSLATE_MAX_RESOURCE_CHARS) continue;
+        const key=translationKey(item,targetLanguage);
+        if(translationCache.has(key) || pendingTranslationKeys.has(key)) continue;
+        unique.set(metadata.resourceId,{
+          key,
+          resourceId:metadata.resourceId,
+          sourceLanguage:metadata.sourceLanguage,
+          sourceHash:metadata.sourceHash,
+          text,
+        });
+      }
+    }
+    return [...unique.values()];
+  }
+
+  function translationBatches(items){
+    const batches=[];
+    let batch=[];
+    let chars=0;
+    for(const item of items){
+      if(batch.length && (batch.length>=TRANSLATE_MAX_RESOURCES || chars+item.text.length>TRANSLATE_MAX_TOTAL_CHARS)){
+        batches.push(batch);
+        batch=[];
+        chars=0;
+      }
+      batch.push(item);
+      chars+=item.text.length;
+    }
+    if(batch.length) batches.push(batch);
+    return batches;
+  }
+
+  function applyTranslationToMountedNodes(key,translation){
+    const root=assistant();
+    if(!root) return;
+    root.querySelectorAll('[data-study-translation-key]').forEach(node=>{
+      if(node.dataset.studyTranslationKey===key) node.textContent=translation;
+    });
+    root.querySelectorAll('[data-study-translation-status]').forEach(node=>{
+      if(node.dataset.studyTranslationStatus===key) node.remove();
+    });
+  }
+
+  async function resolveTranslationBatch(batch,generation,targetLanguage){
+    batch.forEach(item=>pendingTranslationKeys.add(item.key));
+    try{
+      const base=await translationWorkerBase();
+      if(!base) return;
+      const response=await fetch(`${base}/translate-study-assistant`,{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          targetLanguage,
+          resources:batch.map(({resourceId,sourceLanguage,sourceHash,text})=>({resourceId,sourceLanguage,sourceHash,text})),
+        }),
+      });
+      if(!response.ok) return;
+      const payload=await response.json();
+      for(const item of batch){
+        const translation=payload?.translations?.[item.resourceId]?.translation;
+        if(typeof translation!=='string' || !translation.trim()) continue;
+        translationCache.set(item.key,translation.trim());
+        if(generation===requestGeneration) applyTranslationToMountedNodes(item.key,translation.trim());
+      }
+    }catch(error){
+      console.warn('No se pudo resolver una traducción del Asistente.',error);
+    }finally{
+      batch.forEach(item=>pendingTranslationKeys.delete(item.key));
+    }
+  }
+
+  function resolveMissingTranslations(resources,generation){
+    const targetLanguage=uiLanguage();
+    const batches=translationBatches(resourcesNeedingTranslation(resources,targetLanguage));
+    batches.forEach(batch=>resolveTranslationBatch(batch,generation,targetLanguage));
   }
 
   function renderSection(category,title,items){
@@ -288,6 +437,7 @@
       if(generation!==requestGeneration) return;
       currentResources=collectResources(packageData,selection.verses);
       renderResults(context,currentResources);
+      resolveMissingTranslations(currentResources,generation);
     }catch(error){
       if(generation!==requestGeneration) return;
       console.error('No se pudo cargar el Asistente de estudio.',error);
@@ -301,7 +451,10 @@
     renderNoSelection();
     document.addEventListener(EVENT_NAME,event=>update(event.detail));
     document.addEventListener('verbo:uilang-changed',()=>{
-      if(currentContext && currentResources) renderResults(currentContext,currentResources);
+      if(currentContext && currentResources){
+        renderResults(currentContext,currentResources);
+        resolveMissingTranslations(currentResources,requestGeneration);
+      }
       else if(currentContext) renderState('loading',t('loading'),currentContext);
       else renderNoSelection();
     });

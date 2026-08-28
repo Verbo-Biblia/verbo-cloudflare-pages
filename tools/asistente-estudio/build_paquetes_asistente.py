@@ -26,6 +26,22 @@ REPO_ROOT = HERE.parents[1]
 BSB_DIR = REPO_ROOT / "biblia/modules/bibles/bsb"
 DEFAULT_OUTPUT = REPO_ROOT / "biblia/modules/study-assistant/chapters"
 CATEGORIES = ("diccionario", "historia", "costumbres")
+SOURCE_LANGUAGES = {
+    "Easton": "en",
+    "Smith": "en",
+    "eusebio-historia-eclesiastica": "en",
+    "freeman-manners-customs": "en",
+    "tucker-roman-world": "en",
+    "book-classification-nt": "es",
+    "book-classification-ot": "es",
+    "concilios-temas": "es",
+    "bernabe": "es",
+    "clemente-1": "es",
+    "didache": "es",
+    "hermas-pastor": "es",
+    "mathietes-diogneto": "es",
+    "policarpo-filipenses": "es",
+}
 PILOTS = (
     ("ROM", 5, 1, 11),
     ("MAT", 2, 1, 12),
@@ -74,16 +90,18 @@ class DictionaryVerseIndex:
             entry = self.entries[entry_index]
             if not find_evidence(entry["titleVariants"], verse_tokens):
                 continue
-            grouped.setdefault(entry["headword"], []).append(entry["diccionario"])
+            grouped.setdefault(entry["headword"], []).append(entry)
 
         output = []
         for headword in sorted(grouped, key=str.lower):
-            for dictionary in grouped[headword]:
+            for entry in grouped[headword]:
+                dictionary = entry["diccionario"]
                 output.append({
                     "termino": headword,
                     "fuente": {
                         "modulo": "Easton" if dictionary == "easton" else "Smith",
                         "headword": headword,
+                        "entryId": entry["id"],
                     },
                 })
         return output
@@ -107,6 +125,31 @@ def intern_resource(resources, category, resource):
         raise RuntimeError(f"Colisión de ID determinista: {identifier}")
     resources[category][identifier] = resource
     return identifier
+
+
+def translation_identity(category, resource):
+    source = resource["fuente"]
+    module = source["modulo"]
+    if category == "diccionario":
+        canonical_id = source["entryId"]
+        text = resource["termino"]
+    else:
+        canonical_id = source.get("entradaId") or source.get("libroSeccion")
+        text = resource["texto"]
+    if not canonical_id or module not in SOURCE_LANGUAGES:
+        raise ValueError(f"Identidad de traducción incompleta: {category} / {source}")
+    resource_id = str(canonical_id)
+    return {
+        "resourceId": resource_id,
+        "sourceLanguage": SOURCE_LANGUAGES[module],
+        "sourceHash": hashlib.sha256(text.encode("utf-8")).hexdigest(),
+    }
+
+
+def with_translation_identity(category, resource):
+    enriched = dict(resource)
+    enriched["traduccion"] = translation_identity(category, resource)
+    return enriched
 
 
 def load_books():
@@ -139,6 +182,7 @@ def build_chapter(assembler, dictionary_index, book, chapter, verse_numbers, ver
         for category in CATEGORIES:
             identifiers = []
             for resource in assembled[category]:
+                resource = with_translation_identity(category, resource)
                 identifier = intern_resource(resources, category, resource)
                 if identifier not in identifiers:
                     identifiers.append(identifier)
@@ -146,7 +190,7 @@ def build_chapter(assembler, dictionary_index, book, chapter, verse_numbers, ver
         verses[str(verse)] = references
 
     return {
-        "schemaVersion": 1,
+        "schemaVersion": 2,
         "book": book,
         "chapter": chapter,
         "resources": {
@@ -172,8 +216,13 @@ def package_union(package, verse_start, verse_end):
 
 
 def normalized_resources(resources):
+    def canonical_resource(item):
+        value = dict(item)
+        value.pop("traduccion", None)
+        return canonical_json(value)
+
     return {
-        category: sorted({canonical_json(item) for item in resources[category]})
+        category: sorted({canonical_resource(item) for item in resources[category]})
         for category in CATEGORIES
     }
 

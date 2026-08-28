@@ -3,1104 +3,1781 @@
   "chapter": 3,
   "resources": {
     "costumbres": {
-      "c-423ea3b000465691": {
+      "c-5021e1cff34ad33d": {
         "fuente": {
           "entradaId": "freeman-374",
           "modulo": "freeman-manners-customs"
         },
-        "texto": "The particular kind of money which was given to these workmen is not here mentioned. It may have been gold and silver; perhaps it was clay; for it is a fact worth mentioning that in Babylonia and in Persia at that very time there were in use certain clay tablets which are suppose…"
+        "texto": "The particular kind of money which was given to these workmen is not here mentioned. It may have been gold and silver; perhaps it was clay; for it is a fact worth mentioning that in Babylonia and in Persia at that very time there were in use certain clay tablets which are suppose…",
+        "traduccion": {
+          "resourceId": "freeman-374",
+          "sourceHash": "8c6eb4d46fd334932a5c822474eb48074fec079ac13e4d91ed44cd612a6d3753",
+          "sourceLanguage": "en"
+        }
       }
     },
     "diccionario": {
-      "d-0401f5ea44a90771": {
+      "d-09530be78890f1b3": {
         "fuente": {
-          "headword": "Law",
-          "modulo": "Smith"
-        },
-        "termino": "Law"
-      },
-      "d-048a0627e8722b42": {
-        "fuente": {
-          "headword": "Lord",
-          "modulo": "Smith"
-        },
-        "termino": "Lord"
-      },
-      "d-05581640e0b8218d": {
-        "fuente": {
-          "headword": "Persia",
-          "modulo": "Smith"
-        },
-        "termino": "Persia"
-      },
-      "d-05a43a4ae9c09f76": {
-        "fuente": {
-          "headword": "Building",
+          "entryId": "easton-2153",
+          "headword": "Kadmiel",
           "modulo": "Easton"
         },
-        "termino": "Building"
+        "termino": "Kadmiel",
+        "traduccion": {
+          "resourceId": "easton-2153",
+          "sourceHash": "eb4cb00298640895438f1c26b5d504de13e3bd74f19977a721d4cef76636744a",
+          "sourceLanguage": "en"
+        }
       },
-      "d-073a88193cd20915": {
+      "d-0c3cd0b320fc813f": {
         "fuente": {
+          "entryId": "smith-2758",
+          "headword": "Man",
+          "modulo": "Smith"
+        },
+        "termino": "Man",
+        "traduccion": {
+          "resourceId": "smith-2758",
+          "sourceHash": "20fe1bd201cd900bdbffeaec0b42e40b51cbf6b37ae5fbeaddd83aab9a221837",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-0c3d2939b664e9a6": {
+        "fuente": {
+          "entryId": "easton-3803",
+          "headword": "Well",
+          "modulo": "Easton"
+        },
+        "termino": "Well",
+        "traduccion": {
+          "resourceId": "easton-3803",
+          "sourceHash": "bdc7e96514483428984b8dc5197479b3cdc3e492a0264b5d6d0cc6987636dcb9",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-0d3bb790c489c4cd": {
+        "fuente": {
+          "entryId": "easton-984",
+          "headword": "Day",
+          "modulo": "Easton"
+        },
+        "termino": "Day",
+        "traduccion": {
+          "resourceId": "easton-984",
+          "sourceHash": "8f2364e11b8be3ff008f32b3dedb54e659362429bcc9e3eb6acb6070de4ffbff",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-0ff5df3caf1ea94b": {
+        "fuente": {
+          "entryId": "easton-2908",
+          "headword": "Persia",
+          "modulo": "Easton"
+        },
+        "termino": "Persia",
+        "traduccion": {
+          "resourceId": "easton-2908",
+          "sourceHash": "f2f6ac3ee1ffc36a3c1eaa5115c4b512e7790a4a734dd32957b520e41d192f32",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-11d40f54e109a727": {
+        "fuente": {
+          "entryId": "smith-885",
           "headword": "Carpenter",
-          "modulo": "Easton"
-        },
-        "termino": "Carpenter"
-      },
-      "d-0c60c1062ed86405": {
-        "fuente": {
-          "headword": "Sacrifice",
           "modulo": "Smith"
         },
-        "termino": "Sacrifice"
+        "termino": "Carpenter",
+        "traduccion": {
+          "resourceId": "smith-885",
+          "sourceHash": "ecd094c866f034241ef8b6ae9e9404cd9652da721c1b65de391e8f6a0a922ddd",
+          "sourceLanguage": "en"
+        }
       },
-      "d-0d41af9ff448e786": {
+      "d-1399ce0167bb0a5b": {
         "fuente": {
-          "headword": "Trumpet",
-          "modulo": "Smith"
-        },
-        "termino": "Trumpet"
-      },
-      "d-0e22b572a423707e": {
-        "fuente": {
-          "headword": "Jeshua",
-          "modulo": "Smith"
-        },
-        "termino": "Jeshua"
-      },
-      "d-0ecd99d3c15f6f44": {
-        "fuente": {
-          "headword": "Feasts",
-          "modulo": "Smith"
-        },
-        "termino": "Feasts"
-      },
-      "d-1088e3f855105d0f": {
-        "fuente": {
-          "headword": "Moon",
-          "modulo": "Smith"
-        },
-        "termino": "Moon"
-      },
-      "d-10c7d5ce2fcf4475": {
-        "fuente": {
-          "headword": "Zerubbabel",
-          "modulo": "Smith"
-        },
-        "termino": "Zerubbabel"
-      },
-      "d-13505d26c7595c28": {
-        "fuente": {
-          "headword": "Cyrus",
-          "modulo": "Easton"
-        },
-        "termino": "Cyrus"
-      },
-      "d-1695cef782f74e49": {
-        "fuente": {
-          "headword": "Offerings",
-          "modulo": "Smith"
-        },
-        "termino": "Offerings"
-      },
-      "d-18374289150c298b": {
-        "fuente": {
-          "headword": "Cymbals",
-          "modulo": "Easton"
-        },
-        "termino": "Cymbals"
-      },
-      "d-19419c8b22e2ce3c": {
-        "fuente": {
-          "headword": "Jerusalem",
-          "modulo": "Easton"
-        },
-        "termino": "Jerusalem"
-      },
-      "d-1a2e99a637ab0dcc": {
-        "fuente": {
-          "headword": "Mason",
-          "modulo": "Easton"
-        },
-        "termino": "Mason"
-      },
-      "d-1b8e0ff94b805c50": {
-        "fuente": {
-          "headword": "Jozadak",
-          "modulo": "Smith"
-        },
-        "termino": "Jozadak"
-      },
-      "d-1eb2bd7f3f1b2982": {
-        "fuente": {
-          "headword": "Kadmiel",
-          "modulo": "Smith"
-        },
-        "termino": "Kadmiel"
-      },
-      "d-2119fa477cb5a30b": {
-        "fuente": {
-          "headword": "Tabernacle",
-          "modulo": "Smith"
-        },
-        "termino": "Tabernacle"
-      },
-      "d-22ab3a42bba95ae9": {
-        "fuente": {
-          "headword": "Lord",
-          "modulo": "Easton"
-        },
-        "termino": "Lord"
-      },
-      "d-23672136ecfc4ccc": {
-        "fuente": {
-          "headword": "David",
-          "modulo": "Smith"
-        },
-        "termino": "David"
-      },
-      "d-257b068f29c868f8": {
-        "fuente": {
-          "headword": "Presents",
-          "modulo": "Smith"
-        },
-        "termino": "Presents"
-      },
-      "d-27d8aba9a83b05e7": {
-        "fuente": {
-          "headword": "Apparel",
-          "modulo": "Easton"
-        },
-        "termino": "Apparel"
-      },
-      "d-28747e13abb424ba": {
-        "fuente": {
-          "headword": "David",
-          "modulo": "Easton"
-        },
-        "termino": "David"
-      },
-      "d-2975bb3743def0ea": {
-        "fuente": {
-          "headword": "Levites",
-          "modulo": "Smith"
-        },
-        "termino": "Levites"
-      },
-      "d-2d053c070cad9b70": {
-        "fuente": {
-          "headword": "Kings",
-          "modulo": "Smith"
-        },
-        "termino": "Kings"
-      },
-      "d-319d1c8e37bf19b0": {
-        "fuente": {
-          "headword": "Asaph",
-          "modulo": "Smith"
-        },
-        "termino": "Asaph"
-      },
-      "d-31bc1a1c7116e505": {
-        "fuente": {
-          "headword": "Persia",
-          "modulo": "Easton"
-        },
-        "termino": "Persia"
-      },
-      "d-32b8907b6a59747b": {
-        "fuente": {
-          "headword": "Zerubbabel",
-          "modulo": "Easton"
-        },
-        "termino": "Zerubbabel"
-      },
-      "d-342f5685f3de4d19": {
-        "fuente": {
-          "headword": "Henadad",
-          "modulo": "Smith"
-        },
-        "termino": "Henadad"
-      },
-      "d-3748a0c8b66a684d": {
-        "fuente": {
-          "headword": "Israelite",
-          "modulo": "Smith"
-        },
-        "termino": "Israelite"
-      },
-      "d-376efeaf432ecabc": {
-        "fuente": {
-          "headword": "Jeshua",
-          "modulo": "Easton"
-        },
-        "termino": "Jeshua"
-      },
-      "d-3c24aabf620f4118": {
-        "fuente": {
-          "headword": "King",
-          "modulo": "Easton"
-        },
-        "termino": "King"
-      },
-      "d-3f62bc74673baa75": {
-        "fuente": {
-          "headword": "Temple",
-          "modulo": "Smith"
-        },
-        "termino": "Temple"
-      },
-      "d-3f8c93f09bf7f51c": {
-        "fuente": {
-          "headword": "Law of Moses",
-          "modulo": "Easton"
-        },
-        "termino": "Law of Moses"
-      },
-      "d-3fe4c47cb5459afc": {
-        "fuente": {
+          "entryId": "easton-655",
           "headword": "Brother",
           "modulo": "Easton"
         },
-        "termino": "Brother"
+        "termino": "Brother",
+        "traduccion": {
+          "resourceId": "easton-655",
+          "sourceHash": "88489947456611b014e1492f0d2b73c5aaefd66f3f77d99308d071f4cd4397a7",
+          "sourceLanguage": "en"
+        }
       },
-      "d-446aaf729d3d76b4": {
+      "d-16a602b89d433d01": {
         "fuente": {
-          "headword": "Well",
-          "modulo": "Smith"
-        },
-        "termino": "Well"
-      },
-      "d-44a7aaa704303946": {
-        "fuente": {
-          "headword": "Asaph, Sons Of",
-          "modulo": "Smith"
-        },
-        "termino": "Asaph, Sons Of"
-      },
-      "d-44cc53639b761187": {
-        "fuente": {
-          "headword": "Month",
-          "modulo": "Easton"
-        },
-        "termino": "Month"
-      },
-      "d-45353d290337065d": {
-        "fuente": {
-          "headword": "Captivity",
-          "modulo": "Easton"
-        },
-        "termino": "Captivity"
-      },
-      "d-4b3b07ca0fbda540": {
-        "fuente": {
-          "headword": "God",
-          "modulo": "Easton"
-        },
-        "termino": "God"
-      },
-      "d-4b4d1d37bcb512b5": {
-        "fuente": {
-          "headword": "House",
-          "modulo": "Smith"
-        },
-        "termino": "House"
-      },
-      "d-4bb763e0adbbab2c": {
-        "fuente": {
-          "headword": "King",
-          "modulo": "Smith"
-        },
-        "termino": "King"
-      },
-      "d-4d7cc0c077559329": {
-        "fuente": {
-          "headword": "Day",
-          "modulo": "Smith"
-        },
-        "termino": "Day"
-      },
-      "d-55a0596546ffe6be": {
-        "fuente": {
-          "headword": "Food",
-          "modulo": "Smith"
-        },
-        "termino": "Food"
-      },
-      "d-55a49ff79addc647": {
-        "fuente": {
-          "headword": "Joppa",
-          "modulo": "Easton"
-        },
-        "termino": "Joppa"
-      },
-      "d-5a5415046338185d": {
-        "fuente": {
-          "headword": "Man",
-          "modulo": "Easton"
-        },
-        "termino": "Man"
-      },
-      "d-5dd9e87a64d78136": {
-        "fuente": {
-          "headword": "Tyre",
-          "modulo": "Smith"
-        },
-        "termino": "Tyre"
-      },
-      "d-6b5aabc3347e5db2": {
-        "fuente": {
-          "headword": "Law Of Moses",
-          "modulo": "Smith"
-        },
-        "termino": "Law Of Moses"
-      },
-      "d-6ba21c09e536860c": {
-        "fuente": {
-          "headword": "Cedar",
-          "modulo": "Smith"
-        },
-        "termino": "Cedar"
-      },
-      "d-719f488a3ae11be3": {
-        "fuente": {
-          "headword": "Man",
-          "modulo": "Smith"
-        },
-        "termino": "Man"
-      },
-      "d-72ca11625665d16d": {
-        "fuente": {
-          "headword": "Israel",
-          "modulo": "Easton"
-        },
-        "termino": "Israel"
-      },
-      "d-756601d8a049c341": {
-        "fuente": {
-          "headword": "Trumpets",
-          "modulo": "Easton"
-        },
-        "termino": "Trumpets"
-      },
-      "d-7bf3614c6fe9fc3c": {
-        "fuente": {
-          "headword": "Cedar",
-          "modulo": "Easton"
-        },
-        "termino": "Cedar"
-      },
-      "d-7c91ed351e8a6fc2": {
-        "fuente": {
-          "headword": "Israel",
-          "modulo": "Smith"
-        },
-        "termino": "Israel"
-      },
-      "d-7e354628adc2cc42": {
-        "fuente": {
-          "headword": "Burnt offering",
-          "modulo": "Easton"
-        },
-        "termino": "Burnt offering"
-      },
-      "d-82d9a45cab1e9479": {
-        "fuente": {
-          "headword": "Moses",
-          "modulo": "Smith"
-        },
-        "termino": "Moses"
-      },
-      "d-8314dd88ccbab7a1": {
-        "fuente": {
-          "headword": "Saw",
-          "modulo": "Smith"
-        },
-        "termino": "Saw"
-      },
-      "d-8621fad7e391d428": {
-        "fuente": {
-          "headword": "Offering",
-          "modulo": "Easton"
-        },
-        "termino": "Offering"
-      },
-      "d-891cf6cf25fdbdc6": {
-        "fuente": {
-          "headword": "God",
-          "modulo": "Smith"
-        },
-        "termino": "God"
-      },
-      "d-8cb9d13ea9c943ce": {
-        "fuente": {
-          "headword": "Shealtiel",
-          "modulo": "Easton"
-        },
-        "termino": "Shealtiel"
-      },
-      "d-8e2e88fd7dea0e3e": {
-        "fuente": {
-          "headword": "Day",
-          "modulo": "Easton"
-        },
-        "termino": "Day"
-      },
-      "d-9083d4bfd0edd698": {
-        "fuente": {
-          "headword": "Sidon",
-          "modulo": "Smith"
-        },
-        "termino": "Sidon"
-      },
-      "d-90884476378bd91d": {
-        "fuente": {
-          "headword": "Altar",
-          "modulo": "Smith"
-        },
-        "termino": "Altar"
-      },
-      "d-9207435b0e775125": {
-        "fuente": {
-          "headword": "Tabernacles, The Feast Of",
-          "modulo": "Smith"
-        },
-        "termino": "Tabernacles, The Feast Of"
-      },
-      "d-921749e7223550b1": {
-        "fuente": {
-          "headword": "Love",
-          "modulo": "Easton"
-        },
-        "termino": "Love"
-      },
-      "d-921b1f10aae58db9": {
-        "fuente": {
-          "headword": "Shealtiel",
-          "modulo": "Smith"
-        },
-        "termino": "Shealtiel"
-      },
-      "d-933293e45fe801fa": {
-        "fuente": {
-          "headword": "Moses",
-          "modulo": "Easton"
-        },
-        "termino": "Moses"
-      },
-      "d-943c50bf7b89549f": {
-        "fuente": {
-          "headword": "Number",
-          "modulo": "Smith"
-        },
-        "termino": "Number"
-      },
-      "d-94d8255da06957ff": {
-        "fuente": {
-          "headword": "Money",
-          "modulo": "Smith"
-        },
-        "termino": "Money"
-      },
-      "d-96af5188db26bd30": {
-        "fuente": {
-          "headword": "Well",
-          "modulo": "Easton"
-        },
-        "termino": "Well"
-      },
-      "d-97d93fdaa43533cd": {
-        "fuente": {
-          "headword": "Altar",
-          "modulo": "Easton"
-        },
-        "termino": "Altar"
-      },
-      "d-9ab18b3507698294": {
-        "fuente": {
-          "headword": "Priest",
-          "modulo": "Smith"
-        },
-        "termino": "Priest"
-      },
-      "d-9cfe3421bda852eb": {
-        "fuente": {
-          "headword": "Brother",
-          "modulo": "Smith"
-        },
-        "termino": "Brother"
-      },
-      "d-a384b8b2f93df264": {
-        "fuente": {
-          "headword": "Kadmiel",
-          "modulo": "Easton"
-        },
-        "termino": "Kadmiel"
-      },
-      "d-aaa5867358cfb78e": {
-        "fuente": {
-          "headword": "Tabernacles, Feast of",
-          "modulo": "Easton"
-        },
-        "termino": "Tabernacles, Feast of"
-      },
-      "d-acddacbc56e883ec": {
-        "fuente": {
-          "headword": "Oil",
-          "modulo": "Easton"
-        },
-        "termino": "Oil"
-      },
-      "d-aea0833d72691d8f": {
-        "fuente": {
-          "headword": "Priest",
-          "modulo": "Easton"
-        },
-        "termino": "Priest"
-      },
-      "d-af93fd4be6dbbf38": {
-        "fuente": {
-          "headword": "Sea",
-          "modulo": "Smith"
-        },
-        "termino": "Sea"
-      },
-      "d-b5e7250595752668": {
-        "fuente": {
-          "headword": "Month",
-          "modulo": "Smith"
-        },
-        "termino": "Month"
-      },
-      "d-b8015c49f1cfa03a": {
-        "fuente": {
-          "headword": "Moon",
-          "modulo": "Easton"
-        },
-        "termino": "Moon"
-      },
-      "d-bcd68460d6bf1565": {
-        "fuente": {
-          "headword": "Sacrifice",
-          "modulo": "Easton"
-        },
-        "termino": "Sacrifice"
-      },
-      "d-be1c3ad5101e7d11": {
-        "fuente": {
+          "entryId": "smith-4024",
           "headword": "Son",
           "modulo": "Smith"
         },
-        "termino": "Son"
+        "termino": "Son",
+        "traduccion": {
+          "resourceId": "smith-4024",
+          "sourceHash": "4e850716074e60fa9dba80a8ff30bd471ca0fc21dce08e6dff34329890791807",
+          "sourceLanguage": "en"
+        }
       },
-      "d-bea5af3c191fb562": {
+      "d-1835247cf821a7db": {
         "fuente": {
-          "headword": "Evening",
+          "entryId": "easton-2110",
+          "headword": "Joppa",
           "modulo": "Easton"
         },
-        "termino": "Evening"
+        "termino": "Joppa",
+        "traduccion": {
+          "resourceId": "easton-2110",
+          "sourceHash": "ac4c4249326fd91bc8b9718432b3bd4350c08b4216e4290877d15dd639bf3c40",
+          "sourceLanguage": "en"
+        }
       },
-      "d-c2727f21240db805": {
+      "d-1a77d6b44666ea19": {
         "fuente": {
-          "headword": "Cyrus",
+          "entryId": "smith-4290",
+          "headword": "Trumpet",
           "modulo": "Smith"
         },
-        "termino": "Cyrus"
+        "termino": "Trumpet",
+        "traduccion": {
+          "resourceId": "smith-4290",
+          "sourceHash": "18367b47f819154edae4a231c41468172a3e6a13730113c8148176ad5c842d92",
+          "sourceLanguage": "en"
+        }
       },
-      "d-c385f85923b5dbdb": {
+      "d-1b6b6c2ea2969560": {
         "fuente": {
-          "headword": "Lebanon",
-          "modulo": "Easton"
-        },
-        "termino": "Lebanon"
-      },
-      "d-c6ae68ec2bb967c3": {
-        "fuente": {
-          "headword": "Feast",
-          "modulo": "Easton"
-        },
-        "termino": "Feast"
-      },
-      "d-cb4f639632f328f8": {
-        "fuente": {
-          "headword": "House",
-          "modulo": "Easton"
-        },
-        "termino": "House"
-      },
-      "d-cc62a1b49ef74a77": {
-        "fuente": {
-          "headword": "Asaph",
-          "modulo": "Easton"
-        },
-        "termino": "Asaph"
-      },
-      "d-cd692794922a8294": {
-        "fuente": {
-          "headword": "Burnt Offering",
+          "entryId": "smith-4378",
+          "headword": "Well",
           "modulo": "Smith"
         },
-        "termino": "Burnt Offering"
+        "termino": "Well",
+        "traduccion": {
+          "resourceId": "smith-4378",
+          "sourceHash": "bdc7e96514483428984b8dc5197479b3cdc3e492a0264b5d6d0cc6987636dcb9",
+          "sourceLanguage": "en"
+        }
       },
-      "d-d32fa4f428a2202c": {
+      "d-1e3c9d564539aa23": {
         "fuente": {
-          "headword": "Carpenter",
-          "modulo": "Smith"
-        },
-        "termino": "Carpenter"
-      },
-      "d-d50fa5720f9b2152": {
-        "fuente": {
-          "headword": "Age",
+          "entryId": "easton-2774",
+          "headword": "Oil",
           "modulo": "Easton"
         },
-        "termino": "Age"
+        "termino": "Oil",
+        "traduccion": {
+          "resourceId": "easton-2774",
+          "sourceHash": "2378bdd2cf4f491cf401e6b215cbb4fdfec6f76b21801d6bcd3cad070abb156c",
+          "sourceLanguage": "en"
+        }
       },
-      "d-d67dd21ced23d9cb": {
+      "d-1ed8644f6594ade7": {
         "fuente": {
-          "headword": "New Moon",
+          "entryId": "smith-2338",
+          "headword": "Jeshua",
           "modulo": "Smith"
         },
-        "termino": "New Moon"
+        "termino": "Jeshua",
+        "traduccion": {
+          "resourceId": "smith-2338",
+          "sourceHash": "7ddf69289c32ba4e90256bec2ac37e33fe2686006bb8df03a174d7a2b7838b50",
+          "sourceLanguage": "en"
+        }
       },
-      "d-d6db8f2c85cc4f69": {
+      "d-23c00e1b0666796d": {
         "fuente": {
+          "entryId": "easton-2190",
+          "headword": "King",
+          "modulo": "Easton"
+        },
+        "termino": "King",
+        "traduccion": {
+          "resourceId": "easton-2190",
+          "sourceHash": "13166b63aaa73022433839e2a56117c9d04bc638877b53f945c06c4f665e159d",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-2921cbfb2d82d0b8": {
+        "fuente": {
+          "entryId": "smith-2598",
+          "headword": "Law",
+          "modulo": "Smith"
+        },
+        "termino": "Law",
+        "traduccion": {
+          "resourceId": "smith-2598",
+          "sourceHash": "b78c1618fd97827f459e04fc52a2c15e08c2c7c59f9d6091f4b2f17eb91634f9",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-2a5b853f608630a4": {
+        "fuente": {
+          "entryId": "smith-4108",
+          "headword": "Tabernacles, The Feast Of",
+          "modulo": "Smith"
+        },
+        "termino": "Tabernacles, The Feast Of",
+        "traduccion": {
+          "resourceId": "smith-4108",
+          "sourceHash": "4bd4e1e5035a90c7e1fc18847fa97b94bb71218a0689a96b28786f8303a61c16",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-2ce65e745e8282a4": {
+        "fuente": {
+          "entryId": "easton-1366",
           "headword": "Food",
           "modulo": "Easton"
         },
-        "termino": "Food"
+        "termino": "Food",
+        "traduccion": {
+          "resourceId": "easton-1366",
+          "sourceHash": "e4eb18069d65aaa901cecb66371155f389643796428e9d54c5f5127c91ab3fdc",
+          "sourceLanguage": "en"
+        }
       },
-      "d-db09b18a3c7f7632": {
+      "d-2e33fbb70d389f3a": {
         "fuente": {
-          "headword": "Sidon",
-          "modulo": "Easton"
-        },
-        "termino": "Sidon"
-      },
-      "d-dbae5807a6b8918f": {
-        "fuente": {
-          "headword": "Money",
-          "modulo": "Easton"
-        },
-        "termino": "Money"
-      },
-      "d-dccdd68efb7eb2d5": {
-        "fuente": {
-          "headword": "Levite",
-          "modulo": "Easton"
-        },
-        "termino": "Levite"
-      },
-      "d-dd6978d3e689ec2d": {
-        "fuente": {
-          "headword": "Tyre",
-          "modulo": "Easton"
-        },
-        "termino": "Tyre"
-      },
-      "d-dd6bda67477e9873": {
-        "fuente": {
-          "headword": "Year",
-          "modulo": "Easton"
-        },
-        "termino": "Year"
-      },
-      "d-de122aadee601274": {
-        "fuente": {
-          "headword": "Tabernacle",
-          "modulo": "Easton"
-        },
-        "termino": "Tabernacle"
-      },
-      "d-df12bd41209f45c5": {
-        "fuente": {
-          "headword": "Drink",
-          "modulo": "Easton"
-        },
-        "termino": "Drink"
-      },
-      "d-e00a2455f66493e4": {
-        "fuente": {
-          "headword": "Temple",
-          "modulo": "Easton"
-        },
-        "termino": "Temple"
-      },
-      "d-e396071c44cb0328": {
-        "fuente": {
-          "headword": "Year",
-          "modulo": "Smith"
-        },
-        "termino": "Year"
-      },
-      "d-e7f7628141dba173": {
-        "fuente": {
+          "entryId": "smith-2611",
           "headword": "Lebanon",
           "modulo": "Smith"
         },
-        "termino": "Lebanon"
+        "termino": "Lebanon",
+        "traduccion": {
+          "resourceId": "smith-2611",
+          "sourceHash": "e34dd616b94ba2545547b9ca26b9b2847593d7161c17245634c155e390208b1f",
+          "sourceLanguage": "en"
+        }
       },
-      "d-e8e99e6308496bdc": {
+      "d-2ef626d24acb43e1": {
         "fuente": {
-          "headword": "Jerusalem",
-          "modulo": "Smith"
-        },
-        "termino": "Jerusalem"
-      },
-      "d-eaf005460f7c8317": {
-        "fuente": {
-          "headword": "Numbers",
-          "modulo": "Smith"
-        },
-        "termino": "Numbers"
-      },
-      "d-ede3a43a7ed513ae": {
-        "fuente": {
-          "headword": "Law",
+          "entryId": "easton-1077",
+          "headword": "Drink",
           "modulo": "Easton"
         },
-        "termino": "Law"
+        "termino": "Drink",
+        "traduccion": {
+          "resourceId": "easton-1077",
+          "sourceHash": "e4a060ef35b7525f217c580b759a12c4e52c2d52d14d522412d56576246aea7d",
+          "sourceLanguage": "en"
+        }
       },
-      "d-f195e6dd0ae8539c": {
+      "d-33064f883d5afb84": {
         "fuente": {
-          "headword": "Moon, New",
+          "entryId": "smith-2113",
+          "headword": "Israel",
           "modulo": "Smith"
         },
-        "termino": "Moon, New"
+        "termino": "Israel",
+        "traduccion": {
+          "resourceId": "smith-2113",
+          "sourceHash": "3552ac0c032467fbf592cb4d10c5c9267800c01e343ad8ca557256d882ae9327",
+          "sourceLanguage": "en"
+        }
       },
-      "d-f9f1a3c031d7e3c1": {
+      "d-3624cba69612ad69": {
         "fuente": {
-          "headword": "Henadad",
+          "entryId": "easton-2260",
+          "headword": "Lebanon",
           "modulo": "Easton"
         },
-        "termino": "Henadad"
+        "termino": "Lebanon",
+        "traduccion": {
+          "resourceId": "easton-2260",
+          "sourceHash": "e34dd616b94ba2545547b9ca26b9b2847593d7161c17245634c155e390208b1f",
+          "sourceLanguage": "en"
+        }
       },
-      "d-fbfc93722491231a": {
+      "d-3b161d60c8a33525": {
         "fuente": {
-          "headword": "Oil",
+          "entryId": "easton-2315",
+          "headword": "Lord",
+          "modulo": "Easton"
+        },
+        "termino": "Lord",
+        "traduccion": {
+          "resourceId": "easton-2315",
+          "sourceHash": "022bb5c4cb2a343952c6483218265ad93ddba5af0c27894cf34a0940b6e25d3a",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-3cf7530a9dafa612": {
+        "fuente": {
+          "entryId": "easton-2770",
+          "headword": "Offering",
+          "modulo": "Easton"
+        },
+        "termino": "Offering",
+        "traduccion": {
+          "resourceId": "easton-2770",
+          "sourceHash": "300e2bef4a7a4cd005043b5f77867b9e560ddca4feb735f47aab3616d731714e",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-3d9f1e3b4eaa826e": {
+        "fuente": {
+          "entryId": "easton-185",
+          "headword": "Altar",
+          "modulo": "Easton"
+        },
+        "termino": "Altar",
+        "traduccion": {
+          "resourceId": "easton-185",
+          "sourceHash": "3301aacea169cfeef19d158ae42097d77a7b05c6630209554107a087e71f2e5b",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-420ea144cf89e5b7": {
+        "fuente": {
+          "entryId": "easton-3321",
+          "headword": "Shealtiel",
+          "modulo": "Easton"
+        },
+        "termino": "Shealtiel",
+        "traduccion": {
+          "resourceId": "easton-3321",
+          "sourceHash": "eb2888e677d58102e7860af812258bc56839894cdab22a67d84362ec5d577766",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-424cbf4acc78fd6f": {
+        "fuente": {
+          "entryId": "easton-1274",
+          "headword": "Evening",
+          "modulo": "Easton"
+        },
+        "termino": "Evening",
+        "traduccion": {
+          "resourceId": "easton-1274",
+          "sourceHash": "458c1fed574354042397e664d6dabe58415c8ab629f052db5723fb42b490d280",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-424da1940dacee95": {
+        "fuente": {
+          "entryId": "easton-954",
+          "headword": "Cyrus",
+          "modulo": "Easton"
+        },
+        "termino": "Cyrus",
+        "traduccion": {
+          "resourceId": "easton-954",
+          "sourceHash": "acd858ab4b8580c8453ec172fcc93145ef12d59030fdb3438c8cb9369523f9b9",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-454066569b948670": {
+        "fuente": {
+          "entryId": "smith-424",
+          "headword": "Asaph",
           "modulo": "Smith"
         },
-        "termino": "Oil"
+        "termino": "Asaph",
+        "traduccion": {
+          "resourceId": "smith-424",
+          "sourceHash": "582ccad3ae85423783ffc5b734fbfad4aa5b35074c65388a3073d5bc163dbf47",
+          "sourceLanguage": "en"
+        }
       },
-      "d-fd23f8c530cf8f4e": {
+      "d-45ec99720bd41127": {
         "fuente": {
+          "entryId": "easton-3113",
           "headword": "Rest",
           "modulo": "Easton"
         },
-        "termino": "Rest"
+        "termino": "Rest",
+        "traduccion": {
+          "resourceId": "easton-3113",
+          "sourceHash": "05863ec2c378927634badbb44e31103dc47f0a0f4df78ae2fcbcc4d915899f5e",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-45f3e5d3288f588a": {
+        "fuente": {
+          "entryId": "smith-1684",
+          "headword": "God",
+          "modulo": "Smith"
+        },
+        "termino": "God",
+        "traduccion": {
+          "resourceId": "smith-1684",
+          "sourceHash": "9c544d96b0c84c52ace0ae1c9ea1414c153ad9e8ec7dd0c5bd12e828fc74317b",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-4683ba2b3ebd2da8": {
+        "fuente": {
+          "entryId": "easton-2278",
+          "headword": "Levite",
+          "modulo": "Easton"
+        },
+        "termino": "Levite",
+        "traduccion": {
+          "resourceId": "easton-2278",
+          "sourceHash": "35acde0c345a364aee66b82edba906f8d77d06fe1f0b2dd52f175ad0eb912781",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-48614eef86bf978d": {
+        "fuente": {
+          "entryId": "smith-232",
+          "headword": "Altar",
+          "modulo": "Smith"
+        },
+        "termino": "Altar",
+        "traduccion": {
+          "resourceId": "smith-232",
+          "sourceHash": "3301aacea169cfeef19d158ae42097d77a7b05c6630209554107a087e71f2e5b",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-48891afda3a7f5a9": {
+        "fuente": {
+          "entryId": "smith-2456",
+          "headword": "Jozadak",
+          "modulo": "Smith"
+        },
+        "termino": "Jozadak",
+        "traduccion": {
+          "resourceId": "smith-2456",
+          "sourceHash": "bd1f5870c01312adde4471ff5758c4843c39468c74c148cd923d54e71f409534",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-4a5ac0233da81826": {
+        "fuente": {
+          "entryId": "easton-2592",
+          "headword": "Month",
+          "modulo": "Easton"
+        },
+        "termino": "Month",
+        "traduccion": {
+          "resourceId": "easton-2592",
+          "sourceHash": "310ca503ef36f177ddbc760463fcaec1edc6eca12bfd590ad7bb244b31e59543",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-4a7ec2ddd800974e": {
+        "fuente": {
+          "entryId": "smith-4302",
+          "headword": "Tyre",
+          "modulo": "Smith"
+        },
+        "termino": "Tyre",
+        "traduccion": {
+          "resourceId": "smith-4302",
+          "sourceHash": "48102cae8af275fb1f8ecf160dd9a4a2425fb981a2a3248310a57a7d64aa3186",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-4c7ed3a3f17b0b02": {
+        "fuente": {
+          "entryId": "easton-330",
+          "headword": "Asaph",
+          "modulo": "Easton"
+        },
+        "termino": "Asaph",
+        "traduccion": {
+          "resourceId": "easton-330",
+          "sourceHash": "582ccad3ae85423783ffc5b734fbfad4aa5b35074c65388a3073d5bc163dbf47",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-4df4430e565b7184": {
+        "fuente": {
+          "entryId": "smith-2008",
+          "headword": "House",
+          "modulo": "Smith"
+        },
+        "termino": "House",
+        "traduccion": {
+          "resourceId": "smith-2008",
+          "sourceHash": "2526c620c18174be05e572dd652ae608cd492325cce3db8976fdc03f5fbd539b",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-4f4eef0213d35d70": {
+        "fuente": {
+          "entryId": "easton-1318",
+          "headword": "Feast",
+          "modulo": "Easton"
+        },
+        "termino": "Feast",
+        "traduccion": {
+          "resourceId": "easton-1318",
+          "sourceHash": "e0c5a33c587dab33233d742930c617233d3a2e3151882952b99a5dd857648bda",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-4f94061eb0002b1f": {
+        "fuente": {
+          "entryId": "easton-3843",
+          "headword": "Year",
+          "modulo": "Easton"
+        },
+        "termino": "Year",
+        "traduccion": {
+          "resourceId": "easton-3843",
+          "sourceHash": "89f6832560dec0b7f8721d1fe3ba0b5036a5d1464ce4339bb16c3e1485bfec34",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-5233bdb91a8473ab": {
+        "fuente": {
+          "entryId": "smith-425",
+          "headword": "Asaph, Sons Of",
+          "modulo": "Smith"
+        },
+        "termino": "Asaph, Sons Of",
+        "traduccion": {
+          "resourceId": "smith-425",
+          "sourceHash": "22d5b587c6918dde1eb425e0b1a7360d4f008befeff8bd8cee9383cef9d619d6",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-543d311452d36393": {
+        "fuente": {
+          "entryId": "easton-3737",
+          "headword": "Tyre",
+          "modulo": "Easton"
+        },
+        "termino": "Tyre",
+        "traduccion": {
+          "resourceId": "easton-3737",
+          "sourceHash": "48102cae8af275fb1f8ecf160dd9a4a2425fb981a2a3248310a57a7d64aa3186",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-5595bbe3438d01fa": {
+        "fuente": {
+          "entryId": "smith-820",
+          "headword": "Brother",
+          "modulo": "Smith"
+        },
+        "termino": "Brother",
+        "traduccion": {
+          "resourceId": "smith-820",
+          "sourceHash": "88489947456611b014e1492f0d2b73c5aaefd66f3f77d99308d071f4cd4397a7",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-5b48b1a1958b1b16": {
+        "fuente": {
+          "entryId": "smith-3322",
+          "headword": "Persia",
+          "modulo": "Smith"
+        },
+        "termino": "Persia",
+        "traduccion": {
+          "resourceId": "smith-3322",
+          "sourceHash": "f2f6ac3ee1ffc36a3c1eaa5115c4b512e7790a4a734dd32957b520e41d192f32",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-5b9cd0db6ad7f7cc": {
+        "fuente": {
+          "entryId": "easton-3001",
+          "headword": "Priest",
+          "modulo": "Easton"
+        },
+        "termino": "Priest",
+        "traduccion": {
+          "resourceId": "easton-3001",
+          "sourceHash": "909a4523837aae515905ec70c82bfb91472f47fc9e1ffe9df3de2453e1b4532a",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-5c9aa6d79665a2a5": {
+        "fuente": {
+          "entryId": "smith-1514",
+          "headword": "Food",
+          "modulo": "Smith"
+        },
+        "termino": "Food",
+        "traduccion": {
+          "resourceId": "smith-1514",
+          "sourceHash": "e4eb18069d65aaa901cecb66371155f389643796428e9d54c5f5127c91ab3fdc",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-5d16ed9c92a0a1c7": {
+        "fuente": {
+          "entryId": "smith-3181",
+          "headword": "Offerings",
+          "modulo": "Smith"
+        },
+        "termino": "Offerings",
+        "traduccion": {
+          "resourceId": "smith-3181",
+          "sourceHash": "75b831e5f4d97ffddd2960ae463d0380641f5aa7d171c134f7d6235dcfcec84e",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-5e27b9d480fd85e8": {
+        "fuente": {
+          "entryId": "smith-2529",
+          "headword": "Kings",
+          "modulo": "Smith"
+        },
+        "termino": "Kings",
+        "traduccion": {
+          "resourceId": "smith-2529",
+          "sourceHash": "b4b994a2450195e097ea22136181a581ddf3914643e707c8e16d4568f207b573",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-5eecf0f072fd22eb": {
+        "fuente": {
+          "entryId": "easton-3914",
+          "headword": "Zerubbabel",
+          "modulo": "Easton"
+        },
+        "termino": "Zerubbabel",
+        "traduccion": {
+          "resourceId": "easton-3914",
+          "sourceHash": "d94cd722f205ce44612ae095c7e8cdbaac351adb441259ff06f6c9e9907721d4",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-5f489c4a197b2c2e": {
+        "fuente": {
+          "entryId": "easton-3179",
+          "headword": "Sacrifice",
+          "modulo": "Easton"
+        },
+        "termino": "Sacrifice",
+        "traduccion": {
+          "resourceId": "easton-3179",
+          "sourceHash": "33403d8f77f3caa9aa8f59a1a0290c3e349fe6a5893c3b812340601ac4a0629a",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-6039e31e6a4a4add": {
+        "fuente": {
+          "entryId": "easton-1742",
+          "headword": "Henadad",
+          "modulo": "Easton"
+        },
+        "termino": "Henadad",
+        "traduccion": {
+          "resourceId": "easton-1742",
+          "sourceHash": "95d0ce7290117327be2f2423966711acb7b65fec42d580ef258e354760b5b5b8",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-61d9b46ca2c8580d": {
+        "fuente": {
+          "entryId": "smith-3440",
+          "headword": "Presents",
+          "modulo": "Smith"
+        },
+        "termino": "Presents",
+        "traduccion": {
+          "resourceId": "smith-3440",
+          "sourceHash": "b82be4e02920abf4bfc589ac1daa5d0a9ed4843b2dbaa6cc163ec39ce4002073",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-62c89fb96be4d05a": {
+        "fuente": {
+          "entryId": "smith-2994",
+          "headword": "Moon",
+          "modulo": "Smith"
+        },
+        "termino": "Moon",
+        "traduccion": {
+          "resourceId": "smith-2994",
+          "sourceHash": "5fc165254f4f817ba6f8b6f80c08b3174c0fea225398b5b84c17c0af975feacf",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-657316b2507b6f31": {
+        "fuente": {
+          "entryId": "smith-2115",
+          "headword": "Israelite",
+          "modulo": "Smith"
+        },
+        "termino": "Israelite",
+        "traduccion": {
+          "resourceId": "smith-2115",
+          "sourceHash": "f275a0fd683ceb7e731e826a343427465fa0a251e1f6454c6abec82e43757aaf",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-65c8b2719b21d4db": {
+        "fuente": {
+          "entryId": "smith-3163",
+          "headword": "Number",
+          "modulo": "Smith"
+        },
+        "termino": "Number",
+        "traduccion": {
+          "resourceId": "smith-3163",
+          "sourceHash": "bd82cf16699be29ec05cbb763199c12f0dced428dde8381dbdd31c1d5dd0e8d4",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-67036aaf16ec630c": {
+        "fuente": {
+          "entryId": "easton-2250",
+          "headword": "Law of Moses",
+          "modulo": "Easton"
+        },
+        "termino": "Law of Moses",
+        "traduccion": {
+          "resourceId": "easton-2250",
+          "sourceHash": "88573aef7633b80524d6b6933ffe3813e60e5eb1633bcf22eefcfbbfc58eda12",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-69c2a81d77699906": {
+        "fuente": {
+          "entryId": "smith-2528",
+          "headword": "King",
+          "modulo": "Smith"
+        },
+        "termino": "King",
+        "traduccion": {
+          "resourceId": "smith-2528",
+          "sourceHash": "13166b63aaa73022433839e2a56117c9d04bc638877b53f945c06c4f665e159d",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-6b524d59a6866da5": {
+        "fuente": {
+          "entryId": "smith-3968",
+          "headword": "Sidon",
+          "modulo": "Smith"
+        },
+        "termino": "Sidon",
+        "traduccion": {
+          "resourceId": "smith-3968",
+          "sourceHash": "02e47edb9aa06c5cdb74c445a57c363c7d780d4450a9fc28db368e8050661b6b",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-709165f6098ff267": {
+        "fuente": {
+          "entryId": "smith-2326",
+          "headword": "Jerusalem",
+          "modulo": "Smith"
+        },
+        "termino": "Jerusalem",
+        "traduccion": {
+          "resourceId": "smith-2326",
+          "sourceHash": "451ebbe3f76682c7de1a795b406384e8b53801a89311bf86fa529e9b9259043b",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-7d295c1ddd88d5e7": {
+        "fuente": {
+          "entryId": "smith-1130",
+          "headword": "Day",
+          "modulo": "Smith"
+        },
+        "termino": "Day",
+        "traduccion": {
+          "resourceId": "smith-1130",
+          "sourceHash": "8f2364e11b8be3ff008f32b3dedb54e659362429bcc9e3eb6acb6070de4ffbff",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-7dc992a3fcf68e97": {
+        "fuente": {
+          "entryId": "easton-1840",
+          "headword": "House",
+          "modulo": "Easton"
+        },
+        "termino": "House",
+        "traduccion": {
+          "resourceId": "easton-1840",
+          "sourceHash": "2526c620c18174be05e572dd652ae608cd492325cce3db8976fdc03f5fbd539b",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-811e10b45cfc013b": {
+        "fuente": {
+          "entryId": "easton-121",
+          "headword": "Age",
+          "modulo": "Easton"
+        },
+        "termino": "Age",
+        "traduccion": {
+          "resourceId": "easton-121",
+          "sourceHash": "39b7370f30a361390476a93a9e57c0654e35aefeda4c0c866aa1fd0dc05cdf19",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-8240a4055a6c90bd": {
+        "fuente": {
+          "entryId": "easton-1513",
+          "headword": "God",
+          "modulo": "Easton"
+        },
+        "termino": "God",
+        "traduccion": {
+          "resourceId": "easton-1513",
+          "sourceHash": "9c544d96b0c84c52ace0ae1c9ea1414c153ad9e8ec7dd0c5bd12e828fc74317b",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-847a18d487aaa10d": {
+        "fuente": {
+          "entryId": "easton-2432",
+          "headword": "Mason",
+          "modulo": "Easton"
+        },
+        "termino": "Mason",
+        "traduccion": {
+          "resourceId": "easton-2432",
+          "sourceHash": "9e00106e1ab0502ff078f66c66b35fa9cc86a41753b5e7b1aea90bc29284eb23",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-866c926ee287aed7": {
+        "fuente": {
+          "entryId": "smith-2631",
+          "headword": "Levites",
+          "modulo": "Smith"
+        },
+        "termino": "Levites",
+        "traduccion": {
+          "resourceId": "smith-2631",
+          "sourceHash": "2736861bcc8962152168fe110457bc681b33210eb1fa85ddacecc548d857a1f0",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-8b13af5e79757a18": {
+        "fuente": {
+          "entryId": "smith-3804",
+          "headword": "Shealtiel",
+          "modulo": "Smith"
+        },
+        "termino": "Shealtiel",
+        "traduccion": {
+          "resourceId": "smith-3804",
+          "sourceHash": "eb2888e677d58102e7860af812258bc56839894cdab22a67d84362ec5d577766",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-8db1d7d9f1600c66": {
+        "fuente": {
+          "entryId": "smith-2487",
+          "headword": "Kadmiel",
+          "modulo": "Smith"
+        },
+        "termino": "Kadmiel",
+        "traduccion": {
+          "resourceId": "smith-2487",
+          "sourceHash": "eb4cb00298640895438f1c26b5d504de13e3bd74f19977a721d4cef76636744a",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-908b7ceda96012b2": {
+        "fuente": {
+          "entryId": "easton-667",
+          "headword": "Burnt offering",
+          "modulo": "Easton"
+        },
+        "termino": "Burnt offering",
+        "traduccion": {
+          "resourceId": "easton-667",
+          "sourceHash": "8cece547b36e34030d44a9c5974036d5db4234cc18bea510ddb46f4d2ebc0d53",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-909bac9d85c760c4": {
+        "fuente": {
+          "entryId": "smith-901",
+          "headword": "Cedar",
+          "modulo": "Smith"
+        },
+        "termino": "Cedar",
+        "traduccion": {
+          "resourceId": "smith-901",
+          "sourceHash": "4529950e3cce03a46b67c9e1164cd14aaf51d864d4b05e942d7f86af604ce75c",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-931dff86d13c5029": {
+        "fuente": {
+          "entryId": "easton-2322",
+          "headword": "Love",
+          "modulo": "Easton"
+        },
+        "termino": "Love",
+        "traduccion": {
+          "resourceId": "easton-2322",
+          "sourceHash": "9f4024faec10ef6d29aa32d7935d94b1a816fd4fe0359fbf12d49d44b5ff33b8",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-9638ccaa53ca31d0": {
+        "fuente": {
+          "entryId": "easton-2398",
+          "headword": "Man",
+          "modulo": "Easton"
+        },
+        "termino": "Man",
+        "traduccion": {
+          "resourceId": "easton-2398",
+          "sourceHash": "20fe1bd201cd900bdbffeaec0b42e40b51cbf6b37ae5fbeaddd83aab9a221837",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-968998750ba09f8a": {
+        "fuente": {
+          "entryId": "easton-659",
+          "headword": "Building",
+          "modulo": "Easton"
+        },
+        "termino": "Building",
+        "traduccion": {
+          "resourceId": "easton-659",
+          "sourceHash": "87c5912f2cefdf9d7d1913611187fa8ab653a89a8d4b65f574812f899834e8b1",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-9e403fcdcd3645ad": {
+        "fuente": {
+          "entryId": "easton-720",
+          "headword": "Captivity",
+          "modulo": "Easton"
+        },
+        "termino": "Captivity",
+        "traduccion": {
+          "resourceId": "easton-720",
+          "sourceHash": "3ac22f86cfe690109ff80df96e3c7841316701b57ef746bacb9db3c4cce22e63",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-9e52bbc4e1386d65": {
+        "fuente": {
+          "entryId": "easton-3727",
+          "headword": "Trumpets",
+          "modulo": "Easton"
+        },
+        "termino": "Trumpets",
+        "traduccion": {
+          "resourceId": "easton-3727",
+          "sourceHash": "5026e5b28377a3343b5841479156574d185be878950c5d594fb040297b5689c9",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-9ecf18342857ab2a": {
+        "fuente": {
+          "entryId": "smith-3184",
+          "headword": "Oil",
+          "modulo": "Smith"
+        },
+        "termino": "Oil",
+        "traduccion": {
+          "resourceId": "smith-3184",
+          "sourceHash": "2378bdd2cf4f491cf401e6b215cbb4fdfec6f76b21801d6bcd3cad070abb156c",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-a0514494e1bb2d34": {
+        "fuente": {
+          "entryId": "smith-2991",
+          "headword": "Money",
+          "modulo": "Smith"
+        },
+        "termino": "Money",
+        "traduccion": {
+          "resourceId": "smith-2991",
+          "sourceHash": "5ccc2e8715d7a17c3110afe37b8561b84b450db8efcf187d90649f212201050f",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-a1605b1a5f6a9087": {
+        "fuente": {
+          "entryId": "smith-2995",
+          "headword": "Moon, New",
+          "modulo": "Smith"
+        },
+        "termino": "Moon, New",
+        "traduccion": {
+          "resourceId": "smith-2995",
+          "sourceHash": "f036413e78d49a37761a39d6942ed179475f774f027d0f6fdd45a094ae7e8bfa",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-a20ad814d2703b62": {
+        "fuente": {
+          "entryId": "easton-3425",
+          "headword": "Sidon",
+          "modulo": "Easton"
+        },
+        "termino": "Sidon",
+        "traduccion": {
+          "resourceId": "easton-3425",
+          "sourceHash": "02e47edb9aa06c5cdb74c445a57c363c7d780d4450a9fc28db368e8050661b6b",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-a4a97c3a15fda975": {
+        "fuente": {
+          "entryId": "smith-4170",
+          "headword": "Temple",
+          "modulo": "Smith"
+        },
+        "termino": "Temple",
+        "traduccion": {
+          "resourceId": "smith-4170",
+          "sourceHash": "67848024a5ed82f510d269198fa65b5bcd14bcf2ddc7637430bc865b8c03dd43",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-a577a0780e8d2397": {
+        "fuente": {
+          "entryId": "smith-3003",
+          "headword": "Moses",
+          "modulo": "Smith"
+        },
+        "termino": "Moses",
+        "traduccion": {
+          "resourceId": "smith-3003",
+          "sourceHash": "b4b140c9d039ca28bdf9ca1b7954efcb323392701020fe1a3087e0ff3f248632",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-a6791dda59ddd981": {
+        "fuente": {
+          "entryId": "easton-745",
+          "headword": "Cedar",
+          "modulo": "Easton"
+        },
+        "termino": "Cedar",
+        "traduccion": {
+          "resourceId": "easton-745",
+          "sourceHash": "4529950e3cce03a46b67c9e1164cd14aaf51d864d4b05e942d7f86af604ce75c",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-aa9f5d99637c10e3": {
+        "fuente": {
+          "entryId": "smith-2993",
+          "headword": "Month",
+          "modulo": "Smith"
+        },
+        "termino": "Month",
+        "traduccion": {
+          "resourceId": "smith-2993",
+          "sourceHash": "310ca503ef36f177ddbc760463fcaec1edc6eca12bfd590ad7bb244b31e59543",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-ad2c2921892531d8": {
+        "fuente": {
+          "entryId": "smith-1484",
+          "headword": "Feasts",
+          "modulo": "Smith"
+        },
+        "termino": "Feasts",
+        "traduccion": {
+          "resourceId": "smith-1484",
+          "sourceHash": "b3caf83cfd351bc695ab1b1a40db368eb14d464c3d326bb0440cb44591399465",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-addfae8f8dab0abb": {
+        "fuente": {
+          "entryId": "easton-2051",
+          "headword": "Jeshua",
+          "modulo": "Easton"
+        },
+        "termino": "Jeshua",
+        "traduccion": {
+          "resourceId": "easton-2051",
+          "sourceHash": "7ddf69289c32ba4e90256bec2ac37e33fe2686006bb8df03a174d7a2b7838b50",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-ae5d3f6e56394cc2": {
+        "fuente": {
+          "entryId": "smith-2599",
+          "headword": "Law Of Moses",
+          "modulo": "Smith"
+        },
+        "termino": "Law Of Moses",
+        "traduccion": {
+          "resourceId": "smith-2599",
+          "sourceHash": "ae7d96f01e4d487eededef9d0119a19a98cfcf65b649e21fb5f6b411daf94ab4",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-af089263bfee30fb": {
+        "fuente": {
+          "entryId": "easton-2602",
+          "headword": "Moses",
+          "modulo": "Easton"
+        },
+        "termino": "Moses",
+        "traduccion": {
+          "resourceId": "easton-2602",
+          "sourceHash": "b4b140c9d039ca28bdf9ca1b7954efcb323392701020fe1a3087e0ff3f248632",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-b018a8c3edad87da": {
+        "fuente": {
+          "entryId": "smith-4107",
+          "headword": "Tabernacle",
+          "modulo": "Smith"
+        },
+        "termino": "Tabernacle",
+        "traduccion": {
+          "resourceId": "smith-4107",
+          "sourceHash": "e5562132c832dcddf31f550f9d63a7aca67e5e0a80f6249a8f1e24fb97c07a10",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-b14520fbcc8494d0": {
+        "fuente": {
+          "entryId": "easton-269",
+          "headword": "Apparel",
+          "modulo": "Easton"
+        },
+        "termino": "Apparel",
+        "traduccion": {
+          "resourceId": "easton-269",
+          "sourceHash": "78d9b7366b7bd815cb6519e25c959214eff88f68e7394a58f61aa73f9374d506",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-b17d4ccd5537ef2a": {
+        "fuente": {
+          "entryId": "easton-3610",
+          "headword": "Temple",
+          "modulo": "Easton"
+        },
+        "termino": "Temple",
+        "traduccion": {
+          "resourceId": "easton-3610",
+          "sourceHash": "67848024a5ed82f510d269198fa65b5bcd14bcf2ddc7637430bc865b8c03dd43",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-b20c4062bd76e3ec": {
+        "fuente": {
+          "entryId": "easton-3560",
+          "headword": "Tabernacles, Feast of",
+          "modulo": "Easton"
+        },
+        "termino": "Tabernacles, Feast of",
+        "traduccion": {
+          "resourceId": "easton-3560",
+          "sourceHash": "7acb7b971a88c30f1319af30f5738ca9920bc973ed9f2dcfef222723a93f511e",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-b3f3824050b98c87": {
+        "fuente": {
+          "entryId": "easton-2249",
+          "headword": "Law",
+          "modulo": "Easton"
+        },
+        "termino": "Law",
+        "traduccion": {
+          "resourceId": "easton-2249",
+          "sourceHash": "b78c1618fd97827f459e04fc52a2c15e08c2c7c59f9d6091f4b2f17eb91634f9",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-b71a471cc5c36245": {
+        "fuente": {
+          "entryId": "smith-3632",
+          "headword": "Sacrifice",
+          "modulo": "Smith"
+        },
+        "termino": "Sacrifice",
+        "traduccion": {
+          "resourceId": "smith-3632",
+          "sourceHash": "33403d8f77f3caa9aa8f59a1a0290c3e349fe6a5893c3b812340601ac4a0629a",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-ba55bfd10f48c9e7": {
+        "fuente": {
+          "entryId": "smith-3442",
+          "headword": "Priest",
+          "modulo": "Smith"
+        },
+        "termino": "Priest",
+        "traduccion": {
+          "resourceId": "smith-3442",
+          "sourceHash": "909a4523837aae515905ec70c82bfb91472f47fc9e1ffe9df3de2453e1b4532a",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-bc1733422dd315b6": {
+        "fuente": {
+          "entryId": "easton-949",
+          "headword": "Cymbals",
+          "modulo": "Easton"
+        },
+        "termino": "Cymbals",
+        "traduccion": {
+          "resourceId": "easton-949",
+          "sourceHash": "f89cc4a8371c36c232c0357ac388a9bcee90f1f017674bdb0c4060480b8508ca",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-c86e7d6a23c67351": {
+        "fuente": {
+          "entryId": "easton-2043",
+          "headword": "Jerusalem",
+          "modulo": "Easton"
+        },
+        "termino": "Jerusalem",
+        "traduccion": {
+          "resourceId": "easton-2043",
+          "sourceHash": "451ebbe3f76682c7de1a795b406384e8b53801a89311bf86fa529e9b9259043b",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-cbfdd3ca925514e3": {
+        "fuente": {
+          "entryId": "smith-3124",
+          "headword": "New Moon",
+          "modulo": "Smith"
+        },
+        "termino": "New Moon",
+        "traduccion": {
+          "resourceId": "smith-3124",
+          "sourceHash": "5226cc87e6b63999bd2f75f9353376def533c2d21144e086fc8369e25923ea36",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-cc25c30ba29ff60f": {
+        "fuente": {
+          "entryId": "smith-1909",
+          "headword": "Henadad",
+          "modulo": "Smith"
+        },
+        "termino": "Henadad",
+        "traduccion": {
+          "resourceId": "smith-1909",
+          "sourceHash": "95d0ce7290117327be2f2423966711acb7b65fec42d580ef258e354760b5b5b8",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-ccaf27302974734e": {
+        "fuente": {
+          "entryId": "smith-4501",
+          "headword": "Zerubbabel",
+          "modulo": "Smith"
+        },
+        "termino": "Zerubbabel",
+        "traduccion": {
+          "resourceId": "smith-4501",
+          "sourceHash": "d94cd722f205ce44612ae095c7e8cdbaac351adb441259ff06f6c9e9907721d4",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-ce06573b020fc15a": {
+        "fuente": {
+          "entryId": "smith-3703",
+          "headword": "Sea",
+          "modulo": "Smith"
+        },
+        "termino": "Sea",
+        "traduccion": {
+          "resourceId": "smith-3703",
+          "sourceHash": "76b3af333dbac074dc755fbde33b8bc05a3306fa3d169762466437fd97740c87",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-cfcf4a4237ef38a8": {
+        "fuente": {
+          "entryId": "easton-2590",
+          "headword": "Money",
+          "modulo": "Easton"
+        },
+        "termino": "Money",
+        "traduccion": {
+          "resourceId": "easton-2590",
+          "sourceHash": "5ccc2e8715d7a17c3110afe37b8561b84b450db8efcf187d90649f212201050f",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-d2f0467efeff7457": {
+        "fuente": {
+          "entryId": "smith-1101",
+          "headword": "Cyrus",
+          "modulo": "Smith"
+        },
+        "termino": "Cyrus",
+        "traduccion": {
+          "resourceId": "smith-1101",
+          "sourceHash": "acd858ab4b8580c8453ec172fcc93145ef12d59030fdb3438c8cb9369523f9b9",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-d62bb99e52ee1ee1": {
+        "fuente": {
+          "entryId": "easton-3559",
+          "headword": "Tabernacle",
+          "modulo": "Easton"
+        },
+        "termino": "Tabernacle",
+        "traduccion": {
+          "resourceId": "easton-3559",
+          "sourceHash": "e5562132c832dcddf31f550f9d63a7aca67e5e0a80f6249a8f1e24fb97c07a10",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-dbca71fd95a9068f": {
+        "fuente": {
+          "entryId": "smith-3164",
+          "headword": "Numbers",
+          "modulo": "Smith"
+        },
+        "termino": "Numbers",
+        "traduccion": {
+          "resourceId": "smith-3164",
+          "sourceHash": "b0640f0fc46040e7139bbbc43e0a75dc914c6cab74f344cee2c597f1d6b476df",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-e03219ff94f8d23a": {
+        "fuente": {
+          "entryId": "easton-1908",
+          "headword": "Israel",
+          "modulo": "Easton"
+        },
+        "termino": "Israel",
+        "traduccion": {
+          "resourceId": "easton-1908",
+          "sourceHash": "3552ac0c032467fbf592cb4d10c5c9267800c01e343ad8ca557256d882ae9327",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-eb57048fc1a1ade3": {
+        "fuente": {
+          "entryId": "easton-727",
+          "headword": "Carpenter",
+          "modulo": "Easton"
+        },
+        "termino": "Carpenter",
+        "traduccion": {
+          "resourceId": "easton-727",
+          "sourceHash": "ecd094c866f034241ef8b6ae9e9404cd9652da721c1b65de391e8f6a0a922ddd",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-ec9378a78b48d55c": {
+        "fuente": {
+          "entryId": "smith-2663",
+          "headword": "Lord",
+          "modulo": "Smith"
+        },
+        "termino": "Lord",
+        "traduccion": {
+          "resourceId": "smith-2663",
+          "sourceHash": "022bb5c4cb2a343952c6483218265ad93ddba5af0c27894cf34a0940b6e25d3a",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-edeeabe407ac3ca8": {
+        "fuente": {
+          "entryId": "smith-3690",
+          "headword": "Saw",
+          "modulo": "Smith"
+        },
+        "termino": "Saw",
+        "traduccion": {
+          "resourceId": "smith-3690",
+          "sourceHash": "08730a746c960b3ab947e61f0436651c731ad532ffedad95f4a75515b39404a8",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-f004792912830556": {
+        "fuente": {
+          "entryId": "smith-1128",
+          "headword": "David",
+          "modulo": "Smith"
+        },
+        "termino": "David",
+        "traduccion": {
+          "resourceId": "smith-1128",
+          "sourceHash": "a6b54c20a7b96eeac1a911e6da3124a560fe6dc042ebf270e3676e7095b95652",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-f3b4297cae2e69d9": {
+        "fuente": {
+          "entryId": "smith-4409",
+          "headword": "Year",
+          "modulo": "Smith"
+        },
+        "termino": "Year",
+        "traduccion": {
+          "resourceId": "smith-4409",
+          "sourceHash": "89f6832560dec0b7f8721d1fe3ba0b5036a5d1464ce4339bb16c3e1485bfec34",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-f523ad5f54600419": {
+        "fuente": {
+          "entryId": "smith-829",
+          "headword": "Burnt Offering",
+          "modulo": "Smith"
+        },
+        "termino": "Burnt Offering",
+        "traduccion": {
+          "resourceId": "smith-829",
+          "sourceHash": "162451733d0debe9bcc7435dcfa41c17eb0c41e62609eda7307da417ad54b1b5",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-f5cff1b78b3d0d33": {
+        "fuente": {
+          "entryId": "easton-982",
+          "headword": "David",
+          "modulo": "Easton"
+        },
+        "termino": "David",
+        "traduccion": {
+          "resourceId": "easton-982",
+          "sourceHash": "a6b54c20a7b96eeac1a911e6da3124a560fe6dc042ebf270e3676e7095b95652",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-f80f05c589c97608": {
+        "fuente": {
+          "entryId": "easton-2593",
+          "headword": "Moon",
+          "modulo": "Easton"
+        },
+        "termino": "Moon",
+        "traduccion": {
+          "resourceId": "easton-2593",
+          "sourceHash": "5fc165254f4f817ba6f8b6f80c08b3174c0fea225398b5b84c17c0af975feacf",
+          "sourceLanguage": "en"
+        }
       }
     },
     "historia": {
-      "h-4e9e43e3c48aedb7": {
+      "h-09e7cf14518bd4e5": {
         "fuente": {
+          "entradaId": "EZR:libro",
           "libroSeccion": "EZR:libro",
           "modulo": "book-classification-ot"
         },
         "texto": "Del decreto de Ciro al regreso de Esdras 'en el séptimo año de Artajerjes'. Sin introducción propia de JFB en el repositorio; Poole sí la tiene.",
-        "tipo": "circunstancia"
+        "tipo": "circunstancia",
+        "traduccion": {
+          "resourceId": "EZR:libro",
+          "sourceHash": "7f0c8af834b6cbb7ca292adcf0fa7a4f4c551bb2eb0bf5ac20daa1a7ecfface7",
+          "sourceLanguage": "es"
+        }
       }
     }
   },
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "verses": {
     "1": {
       "costumbres": [],
       "diccionario": [
-        "d-3748a0c8b66a684d",
-        "d-19419c8b22e2ce3c",
-        "d-e8e99e6308496bdc",
-        "d-5a5415046338185d",
-        "d-719f488a3ae11be3",
-        "d-44cc53639b761187",
-        "d-b5e7250595752668"
+        "d-657316b2507b6f31",
+        "d-c86e7d6a23c67351",
+        "d-709165f6098ff267",
+        "d-9638ccaa53ca31d0",
+        "d-0c3cd0b320fc813f",
+        "d-4a5ac0233da81826",
+        "d-aa9f5d99637c10e3"
       ],
       "historia": [
-        "h-4e9e43e3c48aedb7"
+        "h-09e7cf14518bd4e5"
       ]
     },
     "10": {
       "costumbres": [],
       "diccionario": [
-        "d-27d8aba9a83b05e7",
-        "d-cc62a1b49ef74a77",
-        "d-319d1c8e37bf19b0",
-        "d-44a7aaa704303946",
-        "d-18374289150c298b",
-        "d-28747e13abb424ba",
-        "d-23672136ecfc4ccc",
-        "d-72ca11625665d16d",
-        "d-7c91ed351e8a6fc2",
-        "d-3c24aabf620f4118",
-        "d-4bb763e0adbbab2c",
-        "d-2d053c070cad9b70",
-        "d-dccdd68efb7eb2d5",
-        "d-2975bb3743def0ea",
-        "d-22ab3a42bba95ae9",
-        "d-048a0627e8722b42",
-        "d-aea0833d72691d8f",
-        "d-9ab18b3507698294",
-        "d-e00a2455f66493e4",
-        "d-3f62bc74673baa75",
-        "d-0d41af9ff448e786",
-        "d-756601d8a049c341"
+        "d-b14520fbcc8494d0",
+        "d-4c7ed3a3f17b0b02",
+        "d-454066569b948670",
+        "d-5233bdb91a8473ab",
+        "d-bc1733422dd315b6",
+        "d-f5cff1b78b3d0d33",
+        "d-f004792912830556",
+        "d-e03219ff94f8d23a",
+        "d-33064f883d5afb84",
+        "d-23c00e1b0666796d",
+        "d-69c2a81d77699906",
+        "d-5e27b9d480fd85e8",
+        "d-4683ba2b3ebd2da8",
+        "d-866c926ee287aed7",
+        "d-3b161d60c8a33525",
+        "d-ec9378a78b48d55c",
+        "d-5b9cd0db6ad7f7cc",
+        "d-ba55bfd10f48c9e7",
+        "d-b17d4ccd5537ef2a",
+        "d-a4a97c3a15fda975",
+        "d-1a77d6b44666ea19",
+        "d-9e52bbc4e1386d65"
       ],
       "historia": [
-        "h-4e9e43e3c48aedb7"
+        "h-09e7cf14518bd4e5"
       ]
     },
     "11": {
       "costumbres": [],
       "diccionario": [
-        "d-cb4f639632f328f8",
-        "d-4b4d1d37bcb512b5",
-        "d-72ca11625665d16d",
-        "d-7c91ed351e8a6fc2",
-        "d-22ab3a42bba95ae9",
-        "d-048a0627e8722b42",
-        "d-921749e7223550b1"
+        "d-7dc992a3fcf68e97",
+        "d-4df4430e565b7184",
+        "d-e03219ff94f8d23a",
+        "d-33064f883d5afb84",
+        "d-3b161d60c8a33525",
+        "d-ec9378a78b48d55c",
+        "d-931dff86d13c5029"
       ],
       "historia": [
-        "h-4e9e43e3c48aedb7"
+        "h-09e7cf14518bd4e5"
       ]
     },
     "12": {
       "costumbres": [],
       "diccionario": [
-        "d-dccdd68efb7eb2d5",
-        "d-2975bb3743def0ea",
-        "d-aea0833d72691d8f",
-        "d-9ab18b3507698294",
-        "d-8314dd88ccbab7a1",
-        "d-e00a2455f66493e4",
-        "d-3f62bc74673baa75"
+        "d-4683ba2b3ebd2da8",
+        "d-866c926ee287aed7",
+        "d-5b9cd0db6ad7f7cc",
+        "d-ba55bfd10f48c9e7",
+        "d-edeeabe407ac3ca8",
+        "d-b17d4ccd5537ef2a",
+        "d-a4a97c3a15fda975"
       ],
       "historia": [
-        "h-4e9e43e3c48aedb7"
+        "h-09e7cf14518bd4e5"
       ]
     },
     "13": {
       "costumbres": [],
       "diccionario": [],
       "historia": [
-        "h-4e9e43e3c48aedb7"
+        "h-09e7cf14518bd4e5"
       ]
     },
     "2": {
       "costumbres": [],
       "diccionario": [
-        "d-97d93fdaa43533cd",
-        "d-90884476378bd91d",
-        "d-05a43a4ae9c09f76",
-        "d-7e354628adc2cc42",
-        "d-cd692794922a8294",
-        "d-4b3b07ca0fbda540",
-        "d-891cf6cf25fdbdc6",
-        "d-72ca11625665d16d",
-        "d-7c91ed351e8a6fc2",
-        "d-376efeaf432ecabc",
-        "d-0e22b572a423707e",
-        "d-1b8e0ff94b805c50",
-        "d-ede3a43a7ed513ae",
-        "d-0401f5ea44a90771",
-        "d-3f8c93f09bf7f51c",
-        "d-6b5aabc3347e5db2",
-        "d-5a5415046338185d",
-        "d-719f488a3ae11be3",
-        "d-933293e45fe801fa",
-        "d-82d9a45cab1e9479",
-        "d-8621fad7e391d428",
-        "d-1695cef782f74e49",
-        "d-aea0833d72691d8f",
-        "d-9ab18b3507698294",
-        "d-bcd68460d6bf1565",
-        "d-0c60c1062ed86405",
-        "d-8cb9d13ea9c943ce",
-        "d-921b1f10aae58db9",
-        "d-be1c3ad5101e7d11",
-        "d-32b8907b6a59747b",
-        "d-10c7d5ce2fcf4475"
+        "d-3d9f1e3b4eaa826e",
+        "d-48614eef86bf978d",
+        "d-968998750ba09f8a",
+        "d-908b7ceda96012b2",
+        "d-f523ad5f54600419",
+        "d-8240a4055a6c90bd",
+        "d-45f3e5d3288f588a",
+        "d-e03219ff94f8d23a",
+        "d-33064f883d5afb84",
+        "d-addfae8f8dab0abb",
+        "d-1ed8644f6594ade7",
+        "d-48891afda3a7f5a9",
+        "d-b3f3824050b98c87",
+        "d-2921cbfb2d82d0b8",
+        "d-67036aaf16ec630c",
+        "d-ae5d3f6e56394cc2",
+        "d-9638ccaa53ca31d0",
+        "d-0c3cd0b320fc813f",
+        "d-af089263bfee30fb",
+        "d-a577a0780e8d2397",
+        "d-3cf7530a9dafa612",
+        "d-5d16ed9c92a0a1c7",
+        "d-5b9cd0db6ad7f7cc",
+        "d-ba55bfd10f48c9e7",
+        "d-5f489c4a197b2c2e",
+        "d-b71a471cc5c36245",
+        "d-420ea144cf89e5b7",
+        "d-8b13af5e79757a18",
+        "d-16a602b89d433d01",
+        "d-5eecf0f072fd22eb",
+        "d-ccaf27302974734e"
       ],
       "historia": [
-        "h-4e9e43e3c48aedb7"
+        "h-09e7cf14518bd4e5"
       ]
     },
     "3": {
       "costumbres": [],
       "diccionario": [
-        "d-97d93fdaa43533cd",
-        "d-90884476378bd91d",
-        "d-7e354628adc2cc42",
-        "d-cd692794922a8294",
-        "d-bea5af3c191fb562",
-        "d-22ab3a42bba95ae9",
-        "d-048a0627e8722b42",
-        "d-8621fad7e391d428",
-        "d-1695cef782f74e49",
-        "d-bcd68460d6bf1565",
-        "d-0c60c1062ed86405"
+        "d-3d9f1e3b4eaa826e",
+        "d-48614eef86bf978d",
+        "d-908b7ceda96012b2",
+        "d-f523ad5f54600419",
+        "d-424cbf4acc78fd6f",
+        "d-3b161d60c8a33525",
+        "d-ec9378a78b48d55c",
+        "d-3cf7530a9dafa612",
+        "d-5d16ed9c92a0a1c7",
+        "d-5f489c4a197b2c2e",
+        "d-b71a471cc5c36245"
       ],
       "historia": [
-        "h-4e9e43e3c48aedb7"
+        "h-09e7cf14518bd4e5"
       ]
     },
     "4": {
       "costumbres": [],
       "diccionario": [
-        "d-7e354628adc2cc42",
-        "d-cd692794922a8294",
-        "d-8e2e88fd7dea0e3e",
-        "d-4d7cc0c077559329",
-        "d-c6ae68ec2bb967c3",
-        "d-0ecd99d3c15f6f44",
-        "d-943c50bf7b89549f",
-        "d-eaf005460f7c8317",
-        "d-8621fad7e391d428",
-        "d-1695cef782f74e49",
-        "d-de122aadee601274",
-        "d-2119fa477cb5a30b",
-        "d-aaa5867358cfb78e",
-        "d-9207435b0e775125"
+        "d-908b7ceda96012b2",
+        "d-f523ad5f54600419",
+        "d-0d3bb790c489c4cd",
+        "d-7d295c1ddd88d5e7",
+        "d-4f4eef0213d35d70",
+        "d-ad2c2921892531d8",
+        "d-65c8b2719b21d4db",
+        "d-dbca71fd95a9068f",
+        "d-3cf7530a9dafa612",
+        "d-5d16ed9c92a0a1c7",
+        "d-d62bb99e52ee1ee1",
+        "d-b018a8c3edad87da",
+        "d-b20c4062bd76e3ec",
+        "d-2a5b853f608630a4"
       ],
       "historia": [
-        "h-4e9e43e3c48aedb7"
+        "h-09e7cf14518bd4e5"
       ]
     },
     "5": {
       "costumbres": [],
       "diccionario": [
-        "d-7e354628adc2cc42",
-        "d-cd692794922a8294",
-        "d-c6ae68ec2bb967c3",
-        "d-0ecd99d3c15f6f44",
-        "d-22ab3a42bba95ae9",
-        "d-048a0627e8722b42",
-        "d-b8015c49f1cfa03a",
-        "d-1088e3f855105d0f",
-        "d-f195e6dd0ae8539c",
-        "d-d67dd21ced23d9cb",
-        "d-8621fad7e391d428",
-        "d-1695cef782f74e49",
-        "d-257b068f29c868f8",
-        "d-96af5188db26bd30",
-        "d-446aaf729d3d76b4"
+        "d-908b7ceda96012b2",
+        "d-f523ad5f54600419",
+        "d-4f4eef0213d35d70",
+        "d-ad2c2921892531d8",
+        "d-3b161d60c8a33525",
+        "d-ec9378a78b48d55c",
+        "d-f80f05c589c97608",
+        "d-62c89fb96be4d05a",
+        "d-a1605b1a5f6a9087",
+        "d-cbfdd3ca925514e3",
+        "d-3cf7530a9dafa612",
+        "d-5d16ed9c92a0a1c7",
+        "d-61d9b46ca2c8580d",
+        "d-0c3d2939b664e9a6",
+        "d-1b6b6c2ea2969560"
       ],
       "historia": [
-        "h-4e9e43e3c48aedb7"
+        "h-09e7cf14518bd4e5"
       ]
     },
     "6": {
       "costumbres": [],
       "diccionario": [
-        "d-7e354628adc2cc42",
-        "d-cd692794922a8294",
-        "d-8e2e88fd7dea0e3e",
-        "d-4d7cc0c077559329",
-        "d-3748a0c8b66a684d",
-        "d-22ab3a42bba95ae9",
-        "d-048a0627e8722b42",
-        "d-44cc53639b761187",
-        "d-b5e7250595752668",
-        "d-8621fad7e391d428",
-        "d-1695cef782f74e49",
-        "d-e00a2455f66493e4",
-        "d-3f62bc74673baa75"
+        "d-908b7ceda96012b2",
+        "d-f523ad5f54600419",
+        "d-0d3bb790c489c4cd",
+        "d-7d295c1ddd88d5e7",
+        "d-657316b2507b6f31",
+        "d-3b161d60c8a33525",
+        "d-ec9378a78b48d55c",
+        "d-4a5ac0233da81826",
+        "d-aa9f5d99637c10e3",
+        "d-3cf7530a9dafa612",
+        "d-5d16ed9c92a0a1c7",
+        "d-b17d4ccd5537ef2a",
+        "d-a4a97c3a15fda975"
       ],
       "historia": [
-        "h-4e9e43e3c48aedb7"
+        "h-09e7cf14518bd4e5"
       ]
     },
     "7": {
       "costumbres": [
-        "c-423ea3b000465691"
+        "c-5021e1cff34ad33d"
       ],
       "diccionario": [
-        "d-073a88193cd20915",
-        "d-d32fa4f428a2202c",
-        "d-7bf3614c6fe9fc3c",
-        "d-6ba21c09e536860c",
-        "d-13505d26c7595c28",
-        "d-c2727f21240db805",
-        "d-df12bd41209f45c5",
-        "d-d6db8f2c85cc4f69",
-        "d-55a0596546ffe6be",
-        "d-55a49ff79addc647",
-        "d-3c24aabf620f4118",
-        "d-4bb763e0adbbab2c",
-        "d-2d053c070cad9b70",
-        "d-c385f85923b5dbdb",
-        "d-e7f7628141dba173",
-        "d-1a2e99a637ab0dcc",
-        "d-dbae5807a6b8918f",
-        "d-94d8255da06957ff",
-        "d-acddacbc56e883ec",
-        "d-fbfc93722491231a",
-        "d-31bc1a1c7116e505",
-        "d-05581640e0b8218d",
-        "d-af93fd4be6dbbf38",
-        "d-db09b18a3c7f7632",
-        "d-9083d4bfd0edd698",
-        "d-dd6978d3e689ec2d",
-        "d-5dd9e87a64d78136"
+        "d-eb57048fc1a1ade3",
+        "d-11d40f54e109a727",
+        "d-a6791dda59ddd981",
+        "d-909bac9d85c760c4",
+        "d-424da1940dacee95",
+        "d-d2f0467efeff7457",
+        "d-2ef626d24acb43e1",
+        "d-2ce65e745e8282a4",
+        "d-5c9aa6d79665a2a5",
+        "d-1835247cf821a7db",
+        "d-23c00e1b0666796d",
+        "d-69c2a81d77699906",
+        "d-5e27b9d480fd85e8",
+        "d-3624cba69612ad69",
+        "d-2e33fbb70d389f3a",
+        "d-847a18d487aaa10d",
+        "d-cfcf4a4237ef38a8",
+        "d-a0514494e1bb2d34",
+        "d-1e3c9d564539aa23",
+        "d-9ecf18342857ab2a",
+        "d-0ff5df3caf1ea94b",
+        "d-5b48b1a1958b1b16",
+        "d-ce06573b020fc15a",
+        "d-a20ad814d2703b62",
+        "d-6b524d59a6866da5",
+        "d-543d311452d36393",
+        "d-4a7ec2ddd800974e"
       ],
       "historia": [
-        "h-4e9e43e3c48aedb7"
+        "h-09e7cf14518bd4e5"
       ]
     },
     "8": {
       "costumbres": [],
       "diccionario": [
-        "d-d50fa5720f9b2152",
-        "d-45353d290337065d",
-        "d-4b3b07ca0fbda540",
-        "d-891cf6cf25fdbdc6",
-        "d-cb4f639632f328f8",
-        "d-4b4d1d37bcb512b5",
-        "d-19419c8b22e2ce3c",
-        "d-e8e99e6308496bdc",
-        "d-376efeaf432ecabc",
-        "d-0e22b572a423707e",
-        "d-1b8e0ff94b805c50",
-        "d-dccdd68efb7eb2d5",
-        "d-2975bb3743def0ea",
-        "d-22ab3a42bba95ae9",
-        "d-048a0627e8722b42",
-        "d-44cc53639b761187",
-        "d-b5e7250595752668",
-        "d-aea0833d72691d8f",
-        "d-9ab18b3507698294",
-        "d-fd23f8c530cf8f4e",
-        "d-8cb9d13ea9c943ce",
-        "d-921b1f10aae58db9",
-        "d-be1c3ad5101e7d11",
-        "d-dd6bda67477e9873",
-        "d-e396071c44cb0328",
-        "d-32b8907b6a59747b",
-        "d-10c7d5ce2fcf4475"
+        "d-811e10b45cfc013b",
+        "d-9e403fcdcd3645ad",
+        "d-8240a4055a6c90bd",
+        "d-45f3e5d3288f588a",
+        "d-7dc992a3fcf68e97",
+        "d-4df4430e565b7184",
+        "d-c86e7d6a23c67351",
+        "d-709165f6098ff267",
+        "d-addfae8f8dab0abb",
+        "d-1ed8644f6594ade7",
+        "d-48891afda3a7f5a9",
+        "d-4683ba2b3ebd2da8",
+        "d-866c926ee287aed7",
+        "d-3b161d60c8a33525",
+        "d-ec9378a78b48d55c",
+        "d-4a5ac0233da81826",
+        "d-aa9f5d99637c10e3",
+        "d-5b9cd0db6ad7f7cc",
+        "d-ba55bfd10f48c9e7",
+        "d-45ec99720bd41127",
+        "d-420ea144cf89e5b7",
+        "d-8b13af5e79757a18",
+        "d-16a602b89d433d01",
+        "d-4f94061eb0002b1f",
+        "d-f3b4297cae2e69d9",
+        "d-5eecf0f072fd22eb",
+        "d-ccaf27302974734e"
       ],
       "historia": [
-        "h-4e9e43e3c48aedb7"
+        "h-09e7cf14518bd4e5"
       ]
     },
     "9": {
       "costumbres": [],
       "diccionario": [
-        "d-3fe4c47cb5459afc",
-        "d-9cfe3421bda852eb",
-        "d-4b3b07ca0fbda540",
-        "d-891cf6cf25fdbdc6",
-        "d-f9f1a3c031d7e3c1",
-        "d-342f5685f3de4d19",
-        "d-cb4f639632f328f8",
-        "d-4b4d1d37bcb512b5",
-        "d-376efeaf432ecabc",
-        "d-0e22b572a423707e",
-        "d-a384b8b2f93df264",
-        "d-1eb2bd7f3f1b2982",
-        "d-dccdd68efb7eb2d5",
-        "d-2975bb3743def0ea"
+        "d-1399ce0167bb0a5b",
+        "d-5595bbe3438d01fa",
+        "d-8240a4055a6c90bd",
+        "d-45f3e5d3288f588a",
+        "d-6039e31e6a4a4add",
+        "d-cc25c30ba29ff60f",
+        "d-7dc992a3fcf68e97",
+        "d-4df4430e565b7184",
+        "d-addfae8f8dab0abb",
+        "d-1ed8644f6594ade7",
+        "d-09530be78890f1b3",
+        "d-8db1d7d9f1600c66",
+        "d-4683ba2b3ebd2da8",
+        "d-866c926ee287aed7"
       ],
       "historia": [
-        "h-4e9e43e3c48aedb7"
+        "h-09e7cf14518bd4e5"
       ]
     }
   }

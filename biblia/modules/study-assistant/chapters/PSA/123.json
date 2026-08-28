@@ -3,120 +3,185 @@
   "chapter": 123,
   "resources": {
     "costumbres": {
-      "c-2b68a3682fc181a1": {
+      "c-c00adb8a66ee1498": {
         "fuente": {
           "entradaId": "freeman-451",
           "modulo": "freeman-manners-customs"
         },
-        "texto": "Servants in the East are not always spoken to when orders are given by the master or mistress. The wishes of the latter are made known by signs; hence it becomes necessary for the servants to watch the hand of the master to ascertain when they are wanted and what is required of t…"
+        "texto": "Servants in the East are not always spoken to when orders are given by the master or mistress. The wishes of the latter are made known by signs; hence it becomes necessary for the servants to watch the hand of the master to ascertain when they are wanted and what is required of t…",
+        "traduccion": {
+          "resourceId": "freeman-451",
+          "sourceHash": "e1009a9621a7db6e20c03026696795cc7a839b4d03f947b69b193a6e3ee96907",
+          "sourceLanguage": "en"
+        }
       }
     },
     "diccionario": {
-      "d-048a0627e8722b42": {
+      "d-31a552424b2fe9c3": {
         "fuente": {
-          "headword": "Lord",
-          "modulo": "Smith"
-        },
-        "termino": "Lord"
-      },
-      "d-051fa5d17f9e389d": {
-        "fuente": {
-          "headword": "Servant",
-          "modulo": "Smith"
-        },
-        "termino": "Servant"
-      },
-      "d-22ab3a42bba95ae9": {
-        "fuente": {
-          "headword": "Lord",
-          "modulo": "Easton"
-        },
-        "termino": "Lord"
-      },
-      "d-2324a02b336674f7": {
-        "fuente": {
-          "headword": "Heaven",
-          "modulo": "Smith"
-        },
-        "termino": "Heaven"
-      },
-      "d-4b3b07ca0fbda540": {
-        "fuente": {
-          "headword": "God",
-          "modulo": "Easton"
-        },
-        "termino": "God"
-      },
-      "d-660304b20884c9b9": {
-        "fuente": {
+          "entryId": "easton-1623",
           "headword": "Hand",
           "modulo": "Easton"
         },
-        "termino": "Hand"
+        "termino": "Hand",
+        "traduccion": {
+          "resourceId": "easton-1623",
+          "sourceHash": "fa18c06733fbbf4138ea8591d50949c1ecd653d0fbf13278a3439ee5afa14c49",
+          "sourceLanguage": "en"
+        }
       },
-      "d-873d3564c831acad": {
+      "d-3b161d60c8a33525": {
         "fuente": {
-          "headword": "Songs",
+          "entryId": "easton-2315",
+          "headword": "Lord",
           "modulo": "Easton"
         },
-        "termino": "Songs"
+        "termino": "Lord",
+        "traduccion": {
+          "resourceId": "easton-2315",
+          "sourceHash": "022bb5c4cb2a343952c6483218265ad93ddba5af0c27894cf34a0940b6e25d3a",
+          "sourceLanguage": "en"
+        }
       },
-      "d-891cf6cf25fdbdc6": {
+      "d-45f3e5d3288f588a": {
         "fuente": {
+          "entryId": "smith-1684",
           "headword": "God",
           "modulo": "Smith"
         },
-        "termino": "God"
+        "termino": "God",
+        "traduccion": {
+          "resourceId": "smith-1684",
+          "sourceHash": "9c544d96b0c84c52ace0ae1c9ea1414c153ad9e8ec7dd0c5bd12e828fc74317b",
+          "sourceLanguage": "en"
+        }
       },
-      "d-ab09cfe9d8145599": {
+      "d-6d525284115649f6": {
         "fuente": {
-          "headword": "Heaven",
+          "entryId": "smith-3746",
+          "headword": "Servant",
+          "modulo": "Smith"
+        },
+        "termino": "Servant",
+        "traduccion": {
+          "resourceId": "smith-3746",
+          "sourceHash": "0fb5373afcfec50623c7a6665709176c1621c3a0ff2a094969a7367d8c845623",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-8240a4055a6c90bd": {
+        "fuente": {
+          "entryId": "easton-1513",
+          "headword": "God",
           "modulo": "Easton"
         },
-        "termino": "Heaven"
+        "termino": "God",
+        "traduccion": {
+          "resourceId": "easton-1513",
+          "sourceHash": "9c544d96b0c84c52ace0ae1c9ea1414c153ad9e8ec7dd0c5bd12e828fc74317b",
+          "sourceLanguage": "en"
+        }
       },
-      "d-f828d5599bc1b3cd": {
+      "d-878ed4bc22dc684b": {
         "fuente": {
+          "entryId": "easton-2494",
           "headword": "Mercy",
           "modulo": "Easton"
         },
-        "termino": "Mercy"
+        "termino": "Mercy",
+        "traduccion": {
+          "resourceId": "easton-2494",
+          "sourceHash": "103111bf115232fe7b9bca9e4401d0b07eadafc06f4fef89568f88020de7f2ab",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-af45557b7c374fcd": {
+        "fuente": {
+          "entryId": "smith-1871",
+          "headword": "Heaven",
+          "modulo": "Smith"
+        },
+        "termino": "Heaven",
+        "traduccion": {
+          "resourceId": "smith-1871",
+          "sourceHash": "410fff5208df789f0608dce044e4fe7b1a0a41382386451b282dddbffcfdcd70",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-b5ca22bd73f594bc": {
+        "fuente": {
+          "entryId": "easton-3476",
+          "headword": "Songs",
+          "modulo": "Easton"
+        },
+        "termino": "Songs",
+        "traduccion": {
+          "resourceId": "easton-3476",
+          "sourceHash": "bc6761357960695fa862a32480468c19d4edc42639fd18667e736f41d3082d03",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-d5d3a100934fac46": {
+        "fuente": {
+          "entryId": "easton-1704",
+          "headword": "Heaven",
+          "modulo": "Easton"
+        },
+        "termino": "Heaven",
+        "traduccion": {
+          "resourceId": "easton-1704",
+          "sourceHash": "410fff5208df789f0608dce044e4fe7b1a0a41382386451b282dddbffcfdcd70",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-ec9378a78b48d55c": {
+        "fuente": {
+          "entryId": "smith-2663",
+          "headword": "Lord",
+          "modulo": "Smith"
+        },
+        "termino": "Lord",
+        "traduccion": {
+          "resourceId": "smith-2663",
+          "sourceHash": "022bb5c4cb2a343952c6483218265ad93ddba5af0c27894cf34a0940b6e25d3a",
+          "sourceLanguage": "en"
+        }
       }
     },
     "historia": {}
   },
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "verses": {
     "1": {
       "costumbres": [],
       "diccionario": [
-        "d-ab09cfe9d8145599",
-        "d-2324a02b336674f7",
-        "d-873d3564c831acad"
+        "d-d5d3a100934fac46",
+        "d-af45557b7c374fcd",
+        "d-b5ca22bd73f594bc"
       ],
       "historia": []
     },
     "2": {
       "costumbres": [
-        "c-2b68a3682fc181a1"
+        "c-c00adb8a66ee1498"
       ],
       "diccionario": [
-        "d-4b3b07ca0fbda540",
-        "d-891cf6cf25fdbdc6",
-        "d-660304b20884c9b9",
-        "d-22ab3a42bba95ae9",
-        "d-048a0627e8722b42",
-        "d-f828d5599bc1b3cd",
-        "d-051fa5d17f9e389d"
+        "d-8240a4055a6c90bd",
+        "d-45f3e5d3288f588a",
+        "d-31a552424b2fe9c3",
+        "d-3b161d60c8a33525",
+        "d-ec9378a78b48d55c",
+        "d-878ed4bc22dc684b",
+        "d-6d525284115649f6"
       ],
       "historia": []
     },
     "3": {
       "costumbres": [],
       "diccionario": [
-        "d-22ab3a42bba95ae9",
-        "d-048a0627e8722b42",
-        "d-f828d5599bc1b3cd"
+        "d-3b161d60c8a33525",
+        "d-ec9378a78b48d55c",
+        "d-878ed4bc22dc684b"
       ],
       "historia": []
     },

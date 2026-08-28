@@ -4,160 +4,256 @@
   "resources": {
     "costumbres": {},
     "diccionario": {
-      "d-048a0627e8722b42": {
+      "d-2b8ae2894b3788a4": {
         "fuente": {
-          "headword": "Lord",
-          "modulo": "Smith"
-        },
-        "termino": "Lord"
-      },
-      "d-051fa5d17f9e389d": {
-        "fuente": {
-          "headword": "Servant",
-          "modulo": "Smith"
-        },
-        "termino": "Servant"
-      },
-      "d-22ab3a42bba95ae9": {
-        "fuente": {
-          "headword": "Lord",
-          "modulo": "Easton"
-        },
-        "termino": "Lord"
-      },
-      "d-2324a02b336674f7": {
-        "fuente": {
-          "headword": "Heaven",
-          "modulo": "Smith"
-        },
-        "termino": "Heaven"
-      },
-      "d-2cc5ecf29e4f162f": {
-        "fuente": {
+          "entryId": "smith-1224",
           "headword": "Earth",
           "modulo": "Smith"
         },
-        "termino": "Earth"
+        "termino": "Earth",
+        "traduccion": {
+          "resourceId": "smith-1224",
+          "sourceHash": "b7c9b5ccd3e3ec741ecfa5864b577f5dab1d987bfd3caa4815f1b3f8354a5f16",
+          "sourceLanguage": "en"
+        }
       },
-      "d-37237ce6ca734b29": {
+      "d-31a552424b2fe9c3": {
         "fuente": {
-          "headword": "Zion",
-          "modulo": "Smith"
-        },
-        "termino": "Zion"
-      },
-      "d-4b4d1d37bcb512b5": {
-        "fuente": {
-          "headword": "House",
-          "modulo": "Smith"
-        },
-        "termino": "House"
-      },
-      "d-58d23ab2642d340c": {
-        "fuente": {
-          "headword": "Night",
-          "modulo": "Smith"
-        },
-        "termino": "Night"
-      },
-      "d-660304b20884c9b9": {
-        "fuente": {
+          "entryId": "easton-1623",
           "headword": "Hand",
           "modulo": "Easton"
         },
-        "termino": "Hand"
+        "termino": "Hand",
+        "traduccion": {
+          "resourceId": "easton-1623",
+          "sourceHash": "fa18c06733fbbf4138ea8591d50949c1ecd653d0fbf13278a3439ee5afa14c49",
+          "sourceLanguage": "en"
+        }
       },
-      "d-873d3564c831acad": {
+      "d-3b161d60c8a33525": {
         "fuente": {
-          "headword": "Songs",
+          "entryId": "easton-2315",
+          "headword": "Lord",
           "modulo": "Easton"
         },
-        "termino": "Songs"
+        "termino": "Lord",
+        "traduccion": {
+          "resourceId": "easton-2315",
+          "sourceHash": "022bb5c4cb2a343952c6483218265ad93ddba5af0c27894cf34a0940b6e25d3a",
+          "sourceLanguage": "en"
+        }
       },
-      "d-88c52aa86134bcb3": {
+      "d-4df4430e565b7184": {
         "fuente": {
-          "headword": "Earth",
-          "modulo": "Easton"
+          "entryId": "smith-2008",
+          "headword": "House",
+          "modulo": "Smith"
         },
-        "termino": "Earth"
+        "termino": "House",
+        "traduccion": {
+          "resourceId": "smith-2008",
+          "sourceHash": "2526c620c18174be05e572dd652ae608cd492325cce3db8976fdc03f5fbd539b",
+          "sourceLanguage": "en"
+        }
       },
-      "d-9a7ed38c85f992ea": {
+      "d-63ad762b53c5b909": {
         "fuente": {
-          "headword": "Zion",
-          "modulo": "Easton"
-        },
-        "termino": "Zion"
-      },
-      "d-ab09cfe9d8145599": {
-        "fuente": {
-          "headword": "Heaven",
-          "modulo": "Easton"
-        },
-        "termino": "Heaven"
-      },
-      "d-bce5c1626731eee0": {
-        "fuente": {
-          "headword": "Bless",
-          "modulo": "Easton"
-        },
-        "termino": "Bless"
-      },
-      "d-c3fffd09be8850d8": {
-        "fuente": {
+          "entryId": "easton-3213",
           "headword": "Sanctuary",
           "modulo": "Easton"
         },
-        "termino": "Sanctuary"
+        "termino": "Sanctuary",
+        "traduccion": {
+          "resourceId": "easton-3213",
+          "sourceHash": "275a77faac4972ade3db35d5c72fa0581046da22f90764887ae6c38e8c142606",
+          "sourceLanguage": "en"
+        }
       },
-      "d-cb4f639632f328f8": {
+      "d-65b11856ee678e9e": {
         "fuente": {
+          "entryId": "easton-606",
+          "headword": "Bless",
+          "modulo": "Easton"
+        },
+        "termino": "Bless",
+        "traduccion": {
+          "resourceId": "easton-606",
+          "sourceHash": "3abbd69ed48b2d67b7163fd4283e293f7c8248d7a225dc42896fc84baf98b9b1",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-6d525284115649f6": {
+        "fuente": {
+          "entryId": "smith-3746",
+          "headword": "Servant",
+          "modulo": "Smith"
+        },
+        "termino": "Servant",
+        "traduccion": {
+          "resourceId": "smith-3746",
+          "sourceHash": "0fb5373afcfec50623c7a6665709176c1621c3a0ff2a094969a7367d8c845623",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-7dc992a3fcf68e97": {
+        "fuente": {
+          "entryId": "easton-1840",
           "headword": "House",
           "modulo": "Easton"
         },
-        "termino": "House"
+        "termino": "House",
+        "traduccion": {
+          "resourceId": "easton-1840",
+          "sourceHash": "2526c620c18174be05e572dd652ae608cd492325cce3db8976fdc03f5fbd539b",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-94c370f182dc5be7": {
+        "fuente": {
+          "entryId": "easton-3938",
+          "headword": "Zion",
+          "modulo": "Easton"
+        },
+        "termino": "Zion",
+        "traduccion": {
+          "resourceId": "easton-3938",
+          "sourceHash": "4e28c5777c52ec0e987eb3d55604ff5f14b5226976d4b5e2b87440fb09985a1c",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-970d7445f731b6ca": {
+        "fuente": {
+          "entryId": "smith-3137",
+          "headword": "Night",
+          "modulo": "Smith"
+        },
+        "termino": "Night",
+        "traduccion": {
+          "resourceId": "smith-3137",
+          "sourceHash": "4e9f8db8242b57e72e00bab464a2f4166b694160e621fefd5aae48ea457e373c",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-af45557b7c374fcd": {
+        "fuente": {
+          "entryId": "smith-1871",
+          "headword": "Heaven",
+          "modulo": "Smith"
+        },
+        "termino": "Heaven",
+        "traduccion": {
+          "resourceId": "smith-1871",
+          "sourceHash": "410fff5208df789f0608dce044e4fe7b1a0a41382386451b282dddbffcfdcd70",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-b5ca22bd73f594bc": {
+        "fuente": {
+          "entryId": "easton-3476",
+          "headword": "Songs",
+          "modulo": "Easton"
+        },
+        "termino": "Songs",
+        "traduccion": {
+          "resourceId": "easton-3476",
+          "sourceHash": "bc6761357960695fa862a32480468c19d4edc42639fd18667e736f41d3082d03",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-d5d3a100934fac46": {
+        "fuente": {
+          "entryId": "easton-1704",
+          "headword": "Heaven",
+          "modulo": "Easton"
+        },
+        "termino": "Heaven",
+        "traduccion": {
+          "resourceId": "easton-1704",
+          "sourceHash": "410fff5208df789f0608dce044e4fe7b1a0a41382386451b282dddbffcfdcd70",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-e86665f97bcc5ac3": {
+        "fuente": {
+          "entryId": "easton-1106",
+          "headword": "Earth",
+          "modulo": "Easton"
+        },
+        "termino": "Earth",
+        "traduccion": {
+          "resourceId": "easton-1106",
+          "sourceHash": "b7c9b5ccd3e3ec741ecfa5864b577f5dab1d987bfd3caa4815f1b3f8354a5f16",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-eb53a3382a31083a": {
+        "fuente": {
+          "entryId": "smith-4527",
+          "headword": "Zion",
+          "modulo": "Smith"
+        },
+        "termino": "Zion",
+        "traduccion": {
+          "resourceId": "smith-4527",
+          "sourceHash": "4e28c5777c52ec0e987eb3d55604ff5f14b5226976d4b5e2b87440fb09985a1c",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-ec9378a78b48d55c": {
+        "fuente": {
+          "entryId": "smith-2663",
+          "headword": "Lord",
+          "modulo": "Smith"
+        },
+        "termino": "Lord",
+        "traduccion": {
+          "resourceId": "smith-2663",
+          "sourceHash": "022bb5c4cb2a343952c6483218265ad93ddba5af0c27894cf34a0940b6e25d3a",
+          "sourceLanguage": "en"
+        }
       }
     },
     "historia": {}
   },
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "verses": {
     "1": {
       "costumbres": [],
       "diccionario": [
-        "d-bce5c1626731eee0",
-        "d-cb4f639632f328f8",
-        "d-4b4d1d37bcb512b5",
-        "d-22ab3a42bba95ae9",
-        "d-048a0627e8722b42",
-        "d-58d23ab2642d340c",
-        "d-051fa5d17f9e389d",
-        "d-873d3564c831acad"
+        "d-65b11856ee678e9e",
+        "d-7dc992a3fcf68e97",
+        "d-4df4430e565b7184",
+        "d-3b161d60c8a33525",
+        "d-ec9378a78b48d55c",
+        "d-970d7445f731b6ca",
+        "d-6d525284115649f6",
+        "d-b5ca22bd73f594bc"
       ],
       "historia": []
     },
     "2": {
       "costumbres": [],
       "diccionario": [
-        "d-bce5c1626731eee0",
-        "d-660304b20884c9b9",
-        "d-22ab3a42bba95ae9",
-        "d-048a0627e8722b42",
-        "d-c3fffd09be8850d8"
+        "d-65b11856ee678e9e",
+        "d-31a552424b2fe9c3",
+        "d-3b161d60c8a33525",
+        "d-ec9378a78b48d55c",
+        "d-63ad762b53c5b909"
       ],
       "historia": []
     },
     "3": {
       "costumbres": [],
       "diccionario": [
-        "d-bce5c1626731eee0",
-        "d-88c52aa86134bcb3",
-        "d-2cc5ecf29e4f162f",
-        "d-ab09cfe9d8145599",
-        "d-2324a02b336674f7",
-        "d-22ab3a42bba95ae9",
-        "d-048a0627e8722b42",
-        "d-9a7ed38c85f992ea",
-        "d-37237ce6ca734b29"
+        "d-65b11856ee678e9e",
+        "d-e86665f97bcc5ac3",
+        "d-2b8ae2894b3788a4",
+        "d-d5d3a100934fac46",
+        "d-af45557b7c374fcd",
+        "d-3b161d60c8a33525",
+        "d-ec9378a78b48d55c",
+        "d-94c370f182dc5be7",
+        "d-eb53a3382a31083a"
       ],
       "historia": []
     }

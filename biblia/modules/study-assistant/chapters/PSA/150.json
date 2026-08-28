@@ -3,163 +3,281 @@
   "chapter": 150,
   "resources": {
     "costumbres": {
-      "c-474022546e89d47b": {
-        "fuente": {
-          "entradaId": "freeman-455",
-          "modulo": "freeman-manners-customs"
-        },
-        "texto": "The ugab was one of the most ancient instruments, its invention being ascribed to Jubal (Gen. 4:21). From Job 21:12 and Job 30:31 it appears to have been used on festive occasions. In the text it is spoken of as appropriate for use in the worship of God. Various opinions have bee…"
-      },
-      "c-4b011cb47e30b46a": {
+      "c-12996065e6d18a57": {
         "fuente": {
           "entradaId": "freeman-456",
           "modulo": "freeman-manners-customs"
         },
-        "texto": "The ancient cymbals resembled those in use in our day, consisting of two circular concave plates of brass, or other metal, and producing a clanging sound by being struck against each other. Two kinds are supposed to be mentioned in the text. The “loud cymbals” are thought to have…"
+        "texto": "The ancient cymbals resembled those in use in our day, consisting of two circular concave plates of brass, or other metal, and producing a clanging sound by being struck against each other. Two kinds are supposed to be mentioned in the text. The “loud cymbals” are thought to have…",
+        "traduccion": {
+          "resourceId": "freeman-456",
+          "sourceHash": "f615bc00cd9e5c6c548a6de82d3c196680b06176e13cba0c4d5338da5daa450e",
+          "sourceLanguage": "en"
+        }
+      },
+      "c-1936941b02e952fc": {
+        "fuente": {
+          "entradaId": "freeman-455",
+          "modulo": "freeman-manners-customs"
+        },
+        "texto": "The ugab was one of the most ancient instruments, its invention being ascribed to Jubal (Gen. 4:21). From Job 21:12 and Job 30:31 it appears to have been used on festive occasions. In the text it is spoken of as appropriate for use in the worship of God. Various opinions have bee…",
+        "traduccion": {
+          "resourceId": "freeman-455",
+          "sourceHash": "06e6de1969fccdb2e9bf93ba1216fc8ff0e4b20697401ac6475c40d9a42ee9c9",
+          "sourceLanguage": "en"
+        }
       }
     },
     "diccionario": {
-      "d-048a0627e8722b42": {
+      "d-01798d452f63ee8c": {
         "fuente": {
-          "headword": "Lord",
-          "modulo": "Smith"
-        },
-        "termino": "Lord"
-      },
-      "d-18374289150c298b": {
-        "fuente": {
-          "headword": "Cymbals",
-          "modulo": "Easton"
-        },
-        "termino": "Cymbals"
-      },
-      "d-22458b821d8fabee": {
-        "fuente": {
-          "headword": "Flute",
-          "modulo": "Easton"
-        },
-        "termino": "Flute"
-      },
-      "d-22ab3a42bba95ae9": {
-        "fuente": {
-          "headword": "Lord",
-          "modulo": "Easton"
-        },
-        "termino": "Lord"
-      },
-      "d-22cd07fc87461434": {
-        "fuente": {
-          "headword": "Flute",
-          "modulo": "Smith"
-        },
-        "termino": "Flute"
-      },
-      "d-2324a02b336674f7": {
-        "fuente": {
-          "headword": "Heaven",
-          "modulo": "Smith"
-        },
-        "termino": "Heaven"
-      },
-      "d-2bb8f30f881f3ec5": {
-        "fuente": {
+          "entryId": "easton-1821",
           "headword": "Horn",
-          "modulo": "Smith"
-        },
-        "termino": "Horn"
-      },
-      "d-4b3b07ca0fbda540": {
-        "fuente": {
-          "headword": "God",
           "modulo": "Easton"
         },
-        "termino": "God"
+        "termino": "Horn",
+        "traduccion": {
+          "resourceId": "easton-1821",
+          "sourceHash": "9ebf503462b39881494f5a5c7ffc1e2c93faa3e5b40df0a30c2584227fb01250",
+          "sourceLanguage": "en"
+        }
       },
-      "d-55ac3ca441aedc9a": {
+      "d-0b332f59751c54f7": {
         "fuente": {
-          "headword": "Dance",
-          "modulo": "Easton"
-        },
-        "termino": "Dance"
-      },
-      "d-768fa4bba6b39a80": {
-        "fuente": {
-          "headword": "Harp",
-          "modulo": "Easton"
-        },
-        "termino": "Harp"
-      },
-      "d-7f59d55df242f7f1": {
-        "fuente": {
+          "entryId": "easton-1598",
           "headword": "Hallelujah",
-          "modulo": "Smith"
+          "modulo": "Easton"
         },
-        "termino": "Hallelujah"
+        "termino": "Hallelujah",
+        "traduccion": {
+          "resourceId": "easton-1598",
+          "sourceHash": "912b57e1c3f4cd377d16e8044ab9f664573699c01778ac42e1e3526dea4555f9",
+          "sourceLanguage": "en"
+        }
       },
-      "d-891cf6cf25fdbdc6": {
+      "d-1c2e45a04eb1869e": {
         "fuente": {
-          "headword": "God",
-          "modulo": "Smith"
+          "entryId": "easton-1361",
+          "headword": "Flute",
+          "modulo": "Easton"
         },
-        "termino": "God"
+        "termino": "Flute",
+        "traduccion": {
+          "resourceId": "easton-1361",
+          "sourceHash": "90bd676e9f0637d559ff7ad379c7aea8e76b9af976dd49c3d347199979cf7078",
+          "sourceLanguage": "en"
+        }
       },
-      "d-a27f21ed32adc999": {
+      "d-1f0ba7d56a0d5e47": {
         "fuente": {
+          "entryId": "easton-1649",
+          "headword": "Harp",
+          "modulo": "Easton"
+        },
+        "termino": "Harp",
+        "traduccion": {
+          "resourceId": "easton-1649",
+          "sourceHash": "0f4b5ea260381e67e02d262893aff36547c4610265ba334e3c74f0848179b758",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-3b161d60c8a33525": {
+        "fuente": {
+          "entryId": "easton-2315",
+          "headword": "Lord",
+          "modulo": "Easton"
+        },
+        "termino": "Lord",
+        "traduccion": {
+          "resourceId": "easton-2315",
+          "sourceHash": "022bb5c4cb2a343952c6483218265ad93ddba5af0c27894cf34a0940b6e25d3a",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-408242001e1bd264": {
+        "fuente": {
+          "entryId": "smith-1819",
           "headword": "Harp",
           "modulo": "Smith"
         },
-        "termino": "Harp"
+        "termino": "Harp",
+        "traduccion": {
+          "resourceId": "smith-1819",
+          "sourceHash": "0f4b5ea260381e67e02d262893aff36547c4610265ba334e3c74f0848179b758",
+          "sourceLanguage": "en"
+        }
       },
-      "d-ab09cfe9d8145599": {
+      "d-45f3e5d3288f588a": {
         "fuente": {
-          "headword": "Heaven",
-          "modulo": "Easton"
+          "entryId": "smith-1684",
+          "headword": "God",
+          "modulo": "Smith"
         },
-        "termino": "Heaven"
+        "termino": "God",
+        "traduccion": {
+          "resourceId": "smith-1684",
+          "sourceHash": "9c544d96b0c84c52ace0ae1c9ea1414c153ad9e8ec7dd0c5bd12e828fc74317b",
+          "sourceLanguage": "en"
+        }
       },
-      "d-ba418cbc9f763b06": {
+      "d-63ad762b53c5b909": {
         "fuente": {
-          "headword": "Horn",
-          "modulo": "Easton"
-        },
-        "termino": "Horn"
-      },
-      "d-c3fffd09be8850d8": {
-        "fuente": {
+          "entryId": "easton-3213",
           "headword": "Sanctuary",
           "modulo": "Easton"
         },
-        "termino": "Sanctuary"
+        "termino": "Sanctuary",
+        "traduccion": {
+          "resourceId": "easton-3213",
+          "sourceHash": "275a77faac4972ade3db35d5c72fa0581046da22f90764887ae6c38e8c142606",
+          "sourceLanguage": "en"
+        }
       },
-      "d-c46d8f2c4a8a9ecb": {
+      "d-6c33dedf8ac3ea25": {
         "fuente": {
+          "entryId": "easton-968",
+          "headword": "Dance",
+          "modulo": "Easton"
+        },
+        "termino": "Dance",
+        "traduccion": {
+          "resourceId": "easton-968",
+          "sourceHash": "23d2d73543f9d7d92ac704296e5ee744037f5f4c938e21abf2c17002c4e9ba71",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-8240a4055a6c90bd": {
+        "fuente": {
+          "entryId": "easton-1513",
+          "headword": "God",
+          "modulo": "Easton"
+        },
+        "termino": "God",
+        "traduccion": {
+          "resourceId": "easton-1513",
+          "sourceHash": "9c544d96b0c84c52ace0ae1c9ea1414c153ad9e8ec7dd0c5bd12e828fc74317b",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-8bb76c719646b0ef": {
+        "fuente": {
+          "entryId": "smith-1989",
+          "headword": "Horn",
+          "modulo": "Smith"
+        },
+        "termino": "Horn",
+        "traduccion": {
+          "resourceId": "smith-1989",
+          "sourceHash": "9ebf503462b39881494f5a5c7ffc1e2c93faa3e5b40df0a30c2584227fb01250",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-98d178054088261b": {
+        "fuente": {
+          "entryId": "smith-1511",
+          "headword": "Flute",
+          "modulo": "Smith"
+        },
+        "termino": "Flute",
+        "traduccion": {
+          "resourceId": "smith-1511",
+          "sourceHash": "90bd676e9f0637d559ff7ad379c7aea8e76b9af976dd49c3d347199979cf7078",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-a2cced4711cacb1a": {
+        "fuente": {
+          "entryId": "smith-1759",
+          "headword": "Hallelujah",
+          "modulo": "Smith"
+        },
+        "termino": "Hallelujah",
+        "traduccion": {
+          "resourceId": "smith-1759",
+          "sourceHash": "912b57e1c3f4cd377d16e8044ab9f664573699c01778ac42e1e3526dea4555f9",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-af45557b7c374fcd": {
+        "fuente": {
+          "entryId": "smith-1871",
+          "headword": "Heaven",
+          "modulo": "Smith"
+        },
+        "termino": "Heaven",
+        "traduccion": {
+          "resourceId": "smith-1871",
+          "sourceHash": "410fff5208df789f0608dce044e4fe7b1a0a41382386451b282dddbffcfdcd70",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-bc1733422dd315b6": {
+        "fuente": {
+          "entryId": "easton-949",
+          "headword": "Cymbals",
+          "modulo": "Easton"
+        },
+        "termino": "Cymbals",
+        "traduccion": {
+          "resourceId": "easton-949",
+          "sourceHash": "f89cc4a8371c36c232c0357ac388a9bcee90f1f017674bdb0c4060480b8508ca",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-d5d3a100934fac46": {
+        "fuente": {
+          "entryId": "easton-1704",
+          "headword": "Heaven",
+          "modulo": "Easton"
+        },
+        "termino": "Heaven",
+        "traduccion": {
+          "resourceId": "easton-1704",
+          "sourceHash": "410fff5208df789f0608dce044e4fe7b1a0a41382386451b282dddbffcfdcd70",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-d9ff55c411b10737": {
+        "fuente": {
+          "entryId": "smith-1113",
           "headword": "Dance",
           "modulo": "Smith"
         },
-        "termino": "Dance"
+        "termino": "Dance",
+        "traduccion": {
+          "resourceId": "smith-1113",
+          "sourceHash": "23d2d73543f9d7d92ac704296e5ee744037f5f4c938e21abf2c17002c4e9ba71",
+          "sourceLanguage": "en"
+        }
       },
-      "d-ff1273cc2f0802aa": {
+      "d-ec9378a78b48d55c": {
         "fuente": {
-          "headword": "Hallelujah",
-          "modulo": "Easton"
+          "entryId": "smith-2663",
+          "headword": "Lord",
+          "modulo": "Smith"
         },
-        "termino": "Hallelujah"
+        "termino": "Lord",
+        "traduccion": {
+          "resourceId": "smith-2663",
+          "sourceHash": "022bb5c4cb2a343952c6483218265ad93ddba5af0c27894cf34a0940b6e25d3a",
+          "sourceLanguage": "en"
+        }
       }
     },
     "historia": {}
   },
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "verses": {
     "1": {
       "costumbres": [],
       "diccionario": [
-        "d-4b3b07ca0fbda540",
-        "d-891cf6cf25fdbdc6",
-        "d-ff1273cc2f0802aa",
-        "d-7f59d55df242f7f1",
-        "d-ab09cfe9d8145599",
-        "d-2324a02b336674f7",
-        "d-c3fffd09be8850d8"
+        "d-8240a4055a6c90bd",
+        "d-45f3e5d3288f588a",
+        "d-0b332f59751c54f7",
+        "d-a2cced4711cacb1a",
+        "d-d5d3a100934fac46",
+        "d-af45557b7c374fcd",
+        "d-63ad762b53c5b909"
       ],
       "historia": []
     },
@@ -171,41 +289,41 @@
     "3": {
       "costumbres": [],
       "diccionario": [
-        "d-768fa4bba6b39a80",
-        "d-a27f21ed32adc999",
-        "d-ba418cbc9f763b06",
-        "d-2bb8f30f881f3ec5"
+        "d-1f0ba7d56a0d5e47",
+        "d-408242001e1bd264",
+        "d-01798d452f63ee8c",
+        "d-8bb76c719646b0ef"
       ],
       "historia": []
     },
     "4": {
       "costumbres": [
-        "c-474022546e89d47b"
+        "c-1936941b02e952fc"
       ],
       "diccionario": [
-        "d-55ac3ca441aedc9a",
-        "d-c46d8f2c4a8a9ecb",
-        "d-22458b821d8fabee",
-        "d-22cd07fc87461434"
+        "d-6c33dedf8ac3ea25",
+        "d-d9ff55c411b10737",
+        "d-1c2e45a04eb1869e",
+        "d-98d178054088261b"
       ],
       "historia": []
     },
     "5": {
       "costumbres": [
-        "c-4b011cb47e30b46a"
+        "c-12996065e6d18a57"
       ],
       "diccionario": [
-        "d-18374289150c298b"
+        "d-bc1733422dd315b6"
       ],
       "historia": []
     },
     "6": {
       "costumbres": [],
       "diccionario": [
-        "d-ff1273cc2f0802aa",
-        "d-7f59d55df242f7f1",
-        "d-22ab3a42bba95ae9",
-        "d-048a0627e8722b42"
+        "d-0b332f59751c54f7",
+        "d-a2cced4711cacb1a",
+        "d-3b161d60c8a33525",
+        "d-ec9378a78b48d55c"
       ],
       "historia": []
     }

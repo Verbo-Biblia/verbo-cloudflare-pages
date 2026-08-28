@@ -4,196 +4,310 @@
   "resources": {
     "costumbres": {},
     "diccionario": {
-      "d-048a0627e8722b42": {
+      "d-1f48c9889c952d64": {
         "fuente": {
-          "headword": "Lord",
-          "modulo": "Smith"
-        },
-        "termino": "Lord"
-      },
-      "d-0c8dc1e00d6dad1a": {
-        "fuente": {
-          "headword": "Psalms",
-          "modulo": "Easton"
-        },
-        "termino": "Psalms"
-      },
-      "d-2214917c8ce56445": {
-        "fuente": {
-          "headword": "Sheep",
-          "modulo": "Easton"
-        },
-        "termino": "Sheep"
-      },
-      "d-22ab3a42bba95ae9": {
-        "fuente": {
-          "headword": "Lord",
-          "modulo": "Easton"
-        },
-        "termino": "Lord"
-      },
-      "d-2cc5ecf29e4f162f": {
-        "fuente": {
-          "headword": "Earth",
-          "modulo": "Smith"
-        },
-        "termino": "Earth"
-      },
-      "d-4b3b07ca0fbda540": {
-        "fuente": {
-          "headword": "God",
-          "modulo": "Easton"
-        },
-        "termino": "God"
-      },
-      "d-51e2a84eafccdb17": {
-        "fuente": {
-          "headword": "Court",
-          "modulo": "Smith"
-        },
-        "termino": "Court"
-      },
-      "d-5db8506baa94acfc": {
-        "fuente": {
+          "entryId": "smith-1577",
           "headword": "Gate",
           "modulo": "Smith"
         },
-        "termino": "Gate"
+        "termino": "Gate",
+        "traduccion": {
+          "resourceId": "smith-1577",
+          "sourceHash": "fa77a5252d38a04cd913a3797530c438cf5b349501b7d44d8265e3e949111bf5",
+          "sourceLanguage": "en"
+        }
       },
-      "d-60d9eff873393385": {
+      "d-2b3811e5a29b2771": {
         "fuente": {
+          "entryId": "smith-1608",
           "headword": "Generation",
           "modulo": "Smith"
         },
-        "termino": "Generation"
+        "termino": "Generation",
+        "traduccion": {
+          "resourceId": "smith-1608",
+          "sourceHash": "40536dd8a0e2d0c77825529561e1c5091310fe90a8a94524c7bd9b4c8f1fc091",
+          "sourceLanguage": "en"
+        }
       },
-      "d-82f8ffec332be5b3": {
+      "d-2b8ae2894b3788a4": {
         "fuente": {
-          "headword": "Gate",
-          "modulo": "Easton"
-        },
-        "termino": "Gate"
-      },
-      "d-873d3564c831acad": {
-        "fuente": {
-          "headword": "Songs",
-          "modulo": "Easton"
-        },
-        "termino": "Songs"
-      },
-      "d-88c52aa86134bcb3": {
-        "fuente": {
+          "entryId": "smith-1224",
           "headword": "Earth",
-          "modulo": "Easton"
-        },
-        "termino": "Earth"
-      },
-      "d-891cf6cf25fdbdc6": {
-        "fuente": {
-          "headword": "God",
           "modulo": "Smith"
         },
-        "termino": "God"
+        "termino": "Earth",
+        "traduccion": {
+          "resourceId": "smith-1224",
+          "sourceHash": "b7c9b5ccd3e3ec741ecfa5864b577f5dab1d987bfd3caa4815f1b3f8354a5f16",
+          "sourceLanguage": "en"
+        }
       },
-      "d-9056a4c9628ed9a5": {
+      "d-2f2503205e02009e": {
         "fuente": {
+          "entryId": "smith-3063",
           "headword": "Names",
           "modulo": "Smith"
         },
-        "termino": "Names"
+        "termino": "Names",
+        "traduccion": {
+          "resourceId": "smith-3063",
+          "sourceHash": "c3b29e6eef2cc49b7d2456f97333fc3849ac118848b37b4150e8f96738919cdc",
+          "sourceLanguage": "en"
+        }
       },
-      "d-921749e7223550b1": {
+      "d-3aeb984f93d90a61": {
         "fuente": {
-          "headword": "Love",
+          "entryId": "easton-3013",
+          "headword": "Psalms",
           "modulo": "Easton"
         },
-        "termino": "Love"
+        "termino": "Psalms",
+        "traduccion": {
+          "resourceId": "easton-3013",
+          "sourceHash": "88f6a2cb4d4bb2cc7b1c95f3db9ffa2a187c0ecba0ac2a81ed1e6d23a7fd6e77",
+          "sourceLanguage": "en"
+        }
       },
-      "d-a4c5f0835ebf1f55": {
+      "d-3b161d60c8a33525": {
         "fuente": {
+          "entryId": "easton-2315",
+          "headword": "Lord",
+          "modulo": "Easton"
+        },
+        "termino": "Lord",
+        "traduccion": {
+          "resourceId": "easton-2315",
+          "sourceHash": "022bb5c4cb2a343952c6483218265ad93ddba5af0c27894cf34a0940b6e25d3a",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-44cbf015e9a667a8": {
+        "fuente": {
+          "entryId": "smith-1065",
           "headword": "Court",
-          "modulo": "Easton"
+          "modulo": "Smith"
         },
-        "termino": "Court"
+        "termino": "Court",
+        "traduccion": {
+          "resourceId": "smith-1065",
+          "sourceHash": "60f6a4163e822a857db381667a8ee55819187ea7220f61e84dd6bbcb9b988433",
+          "sourceLanguage": "en"
+        }
       },
-      "d-a6603206eb9a459c": {
+      "d-45f3e5d3288f588a": {
         "fuente": {
-          "headword": "Generation",
-          "modulo": "Easton"
+          "entryId": "smith-1684",
+          "headword": "God",
+          "modulo": "Smith"
         },
-        "termino": "Generation"
+        "termino": "God",
+        "traduccion": {
+          "resourceId": "smith-1684",
+          "sourceHash": "9c544d96b0c84c52ace0ae1c9ea1414c153ad9e8ec7dd0c5bd12e828fc74317b",
+          "sourceLanguage": "en"
+        }
       },
-      "d-bce5c1626731eee0": {
+      "d-65b11856ee678e9e": {
         "fuente": {
+          "entryId": "easton-606",
           "headword": "Bless",
           "modulo": "Easton"
         },
-        "termino": "Bless"
+        "termino": "Bless",
+        "traduccion": {
+          "resourceId": "easton-606",
+          "sourceHash": "3abbd69ed48b2d67b7163fd4283e293f7c8248d7a225dc42896fc84baf98b9b1",
+          "sourceLanguage": "en"
+        }
       },
-      "d-d40eee40f5278e41": {
+      "d-698e5161bee06a73": {
         "fuente": {
+          "entryId": "easton-915",
+          "headword": "Court",
+          "modulo": "Easton"
+        },
+        "termino": "Court",
+        "traduccion": {
+          "resourceId": "easton-915",
+          "sourceHash": "60f6a4163e822a857db381667a8ee55819187ea7220f61e84dd6bbcb9b988433",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-69d91ed690af73bc": {
+        "fuente": {
+          "entryId": "easton-3332",
+          "headword": "Sheep",
+          "modulo": "Easton"
+        },
+        "termino": "Sheep",
+        "traduccion": {
+          "resourceId": "easton-3332",
+          "sourceHash": "8df1b307b69868d7612e9143889ef76aaf232feacf01fe3948695247f1d4f99d",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-8240a4055a6c90bd": {
+        "fuente": {
+          "entryId": "easton-1513",
+          "headword": "God",
+          "modulo": "Easton"
+        },
+        "termino": "God",
+        "traduccion": {
+          "resourceId": "easton-1513",
+          "sourceHash": "9c544d96b0c84c52ace0ae1c9ea1414c153ad9e8ec7dd0c5bd12e828fc74317b",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-931dff86d13c5029": {
+        "fuente": {
+          "entryId": "easton-2322",
+          "headword": "Love",
+          "modulo": "Easton"
+        },
+        "termino": "Love",
+        "traduccion": {
+          "resourceId": "easton-2322",
+          "sourceHash": "9f4024faec10ef6d29aa32d7935d94b1a816fd4fe0359fbf12d49d44b5ff33b8",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-b5ca22bd73f594bc": {
+        "fuente": {
+          "entryId": "easton-3476",
+          "headword": "Songs",
+          "modulo": "Easton"
+        },
+        "termino": "Songs",
+        "traduccion": {
+          "resourceId": "easton-3476",
+          "sourceHash": "bc6761357960695fa862a32480468c19d4edc42639fd18667e736f41d3082d03",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-d11819402c449cd5": {
+        "fuente": {
+          "entryId": "easton-1436",
+          "headword": "Gate",
+          "modulo": "Easton"
+        },
+        "termino": "Gate",
+        "traduccion": {
+          "resourceId": "easton-1436",
+          "sourceHash": "fa77a5252d38a04cd913a3797530c438cf5b349501b7d44d8265e3e949111bf5",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-d8e6c6828fb8d162": {
+        "fuente": {
+          "entryId": "smith-3821",
           "headword": "Sheep",
           "modulo": "Smith"
         },
-        "termino": "Sheep"
+        "termino": "Sheep",
+        "traduccion": {
+          "resourceId": "smith-3821",
+          "sourceHash": "8df1b307b69868d7612e9143889ef76aaf232feacf01fe3948695247f1d4f99d",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-e86665f97bcc5ac3": {
+        "fuente": {
+          "entryId": "easton-1106",
+          "headword": "Earth",
+          "modulo": "Easton"
+        },
+        "termino": "Earth",
+        "traduccion": {
+          "resourceId": "easton-1106",
+          "sourceHash": "b7c9b5ccd3e3ec741ecfa5864b577f5dab1d987bfd3caa4815f1b3f8354a5f16",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-ea05ecb6713361bc": {
+        "fuente": {
+          "entryId": "easton-1456",
+          "headword": "Generation",
+          "modulo": "Easton"
+        },
+        "termino": "Generation",
+        "traduccion": {
+          "resourceId": "easton-1456",
+          "sourceHash": "40536dd8a0e2d0c77825529561e1c5091310fe90a8a94524c7bd9b4c8f1fc091",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-ec9378a78b48d55c": {
+        "fuente": {
+          "entryId": "smith-2663",
+          "headword": "Lord",
+          "modulo": "Smith"
+        },
+        "termino": "Lord",
+        "traduccion": {
+          "resourceId": "smith-2663",
+          "sourceHash": "022bb5c4cb2a343952c6483218265ad93ddba5af0c27894cf34a0940b6e25d3a",
+          "sourceLanguage": "en"
+        }
       }
     },
     "historia": {}
   },
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "verses": {
     "1": {
       "costumbres": [],
       "diccionario": [
-        "d-88c52aa86134bcb3",
-        "d-2cc5ecf29e4f162f",
-        "d-22ab3a42bba95ae9",
-        "d-048a0627e8722b42",
-        "d-0c8dc1e00d6dad1a"
+        "d-e86665f97bcc5ac3",
+        "d-2b8ae2894b3788a4",
+        "d-3b161d60c8a33525",
+        "d-ec9378a78b48d55c",
+        "d-3aeb984f93d90a61"
       ],
       "historia": []
     },
     "2": {
       "costumbres": [],
       "diccionario": [
-        "d-22ab3a42bba95ae9",
-        "d-048a0627e8722b42",
-        "d-873d3564c831acad"
+        "d-3b161d60c8a33525",
+        "d-ec9378a78b48d55c",
+        "d-b5ca22bd73f594bc"
       ],
       "historia": []
     },
     "3": {
       "costumbres": [],
       "diccionario": [
-        "d-4b3b07ca0fbda540",
-        "d-891cf6cf25fdbdc6",
-        "d-22ab3a42bba95ae9",
-        "d-048a0627e8722b42",
-        "d-2214917c8ce56445",
-        "d-d40eee40f5278e41"
+        "d-8240a4055a6c90bd",
+        "d-45f3e5d3288f588a",
+        "d-3b161d60c8a33525",
+        "d-ec9378a78b48d55c",
+        "d-69d91ed690af73bc",
+        "d-d8e6c6828fb8d162"
       ],
       "historia": []
     },
     "4": {
       "costumbres": [],
       "diccionario": [
-        "d-bce5c1626731eee0",
-        "d-a4c5f0835ebf1f55",
-        "d-51e2a84eafccdb17",
-        "d-82f8ffec332be5b3",
-        "d-5db8506baa94acfc",
-        "d-9056a4c9628ed9a5"
+        "d-65b11856ee678e9e",
+        "d-698e5161bee06a73",
+        "d-44cbf015e9a667a8",
+        "d-d11819402c449cd5",
+        "d-1f48c9889c952d64",
+        "d-2f2503205e02009e"
       ],
       "historia": []
     },
     "5": {
       "costumbres": [],
       "diccionario": [
-        "d-a6603206eb9a459c",
-        "d-60d9eff873393385",
-        "d-22ab3a42bba95ae9",
-        "d-048a0627e8722b42",
-        "d-921749e7223550b1"
+        "d-ea05ecb6713361bc",
+        "d-2b3811e5a29b2771",
+        "d-3b161d60c8a33525",
+        "d-ec9378a78b48d55c",
+        "d-931dff86d13c5029"
       ],
       "historia": []
     }

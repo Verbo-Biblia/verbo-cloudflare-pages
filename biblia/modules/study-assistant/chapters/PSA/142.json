@@ -4,135 +4,231 @@
   "resources": {
     "costumbres": {},
     "diccionario": {
-      "d-048a0627e8722b42": {
+      "d-18d8c276fe0f9996": {
         "fuente": {
-          "headword": "Lord",
-          "modulo": "Smith"
-        },
-        "termino": "Lord"
-      },
-      "d-22ab3a42bba95ae9": {
-        "fuente": {
-          "headword": "Lord",
-          "modulo": "Easton"
-        },
-        "termino": "Lord"
-      },
-      "d-23672136ecfc4ccc": {
-        "fuente": {
-          "headword": "David",
-          "modulo": "Smith"
-        },
-        "termino": "David"
-      },
-      "d-259551b206240171": {
-        "fuente": {
-          "headword": "Goodness",
-          "modulo": "Easton"
-        },
-        "termino": "Goodness"
-      },
-      "d-28747e13abb424ba": {
-        "fuente": {
-          "headword": "David",
-          "modulo": "Easton"
-        },
-        "termino": "David"
-      },
-      "d-40d925ca4d8435b7": {
-        "fuente": {
-          "headword": "Prison",
-          "modulo": "Smith"
-        },
-        "termino": "Prison"
-      },
-      "d-4126f4b14d85fbdd": {
-        "fuente": {
-          "headword": "Snare",
-          "modulo": "Easton"
-        },
-        "termino": "Snare"
-      },
-      "d-41879431eda97f54": {
-        "fuente": {
-          "headword": "Cave",
-          "modulo": "Smith"
-        },
-        "termino": "Cave"
-      },
-      "d-7c243774230583a3": {
-        "fuente": {
-          "headword": "Prayer",
-          "modulo": "Smith"
-        },
-        "termino": "Prayer"
-      },
-      "d-814f50961ec452aa": {
-        "fuente": {
-          "headword": "Prison",
-          "modulo": "Easton"
-        },
-        "termino": "Prison"
-      },
-      "d-9056a4c9628ed9a5": {
-        "fuente": {
-          "headword": "Names",
-          "modulo": "Smith"
-        },
-        "termino": "Names"
-      },
-      "d-9625043a161b61d0": {
-        "fuente": {
-          "headword": "Spirit",
-          "modulo": "Easton"
-        },
-        "termino": "Spirit"
-      },
-      "d-c9aaba0b87721e48": {
-        "fuente": {
-          "headword": "Prayer",
-          "modulo": "Easton"
-        },
-        "termino": "Prayer"
-      },
-      "d-d9d01136378f0f55": {
-        "fuente": {
+          "entryId": "smith-4386",
           "headword": "Wills",
           "modulo": "Smith"
         },
-        "termino": "Wills"
+        "termino": "Wills",
+        "traduccion": {
+          "resourceId": "smith-4386",
+          "sourceHash": "4db39b9ec9cb2fd913433fa299de2879ccbceb45d1140bb4f5c6fb399d2a2382",
+          "sourceLanguage": "en"
+        }
       },
-      "d-e97c17f1f34527df": {
+      "d-2436504831772365": {
         "fuente": {
+          "entryId": "easton-2998",
+          "headword": "Prayer",
+          "modulo": "Easton"
+        },
+        "termino": "Prayer",
+        "traduccion": {
+          "resourceId": "easton-2998",
+          "sourceHash": "6e399f2787a0602f604bd89c19e077a5546c05698b6be5b96baa895cc23a0ec0",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-2f2503205e02009e": {
+        "fuente": {
+          "entryId": "smith-3063",
+          "headword": "Names",
+          "modulo": "Smith"
+        },
+        "termino": "Names",
+        "traduccion": {
+          "resourceId": "smith-3063",
+          "sourceHash": "c3b29e6eef2cc49b7d2456f97333fc3849ac118848b37b4150e8f96738919cdc",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-3b161d60c8a33525": {
+        "fuente": {
+          "entryId": "easton-2315",
+          "headword": "Lord",
+          "modulo": "Easton"
+        },
+        "termino": "Lord",
+        "traduccion": {
+          "resourceId": "easton-2315",
+          "sourceHash": "022bb5c4cb2a343952c6483218265ad93ddba5af0c27894cf34a0940b6e25d3a",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-45d3b5beff1f8439": {
+        "fuente": {
+          "entryId": "smith-900",
+          "headword": "Cave",
+          "modulo": "Smith"
+        },
+        "termino": "Cave",
+        "traduccion": {
+          "resourceId": "smith-900",
+          "sourceHash": "9530bfe0e8d8b57314e7243954092b784410633f381d7ea37bffcc8a5f2c33ed",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-4868859ee6fbbd64": {
+        "fuente": {
+          "entryId": "easton-3495",
+          "headword": "Spirit",
+          "modulo": "Easton"
+        },
+        "termino": "Spirit",
+        "traduccion": {
+          "resourceId": "easton-3495",
+          "sourceHash": "57e39463d863391c8e144d815e31d4b80ad3af8cd576001d531c2370566ac607",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-6ed9a71355efd44c": {
+        "fuente": {
+          "entryId": "easton-1527",
+          "headword": "Goodness",
+          "modulo": "Easton"
+        },
+        "termino": "Goodness",
+        "traduccion": {
+          "resourceId": "easton-1527",
+          "sourceHash": "113fb54048f20361424753fe522d779bf3a80a0fbb6871c65556de809b2546ac",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-7d558f1384e83835": {
+        "fuente": {
+          "entryId": "smith-3446",
+          "headword": "Prison",
+          "modulo": "Smith"
+        },
+        "termino": "Prison",
+        "traduccion": {
+          "resourceId": "smith-3446",
+          "sourceHash": "31928208ce519bf0986c2a93a8237f45d72b9555405bb65d50aaf5e321d227b3",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-80fb10f7be4207e4": {
+        "fuente": {
+          "entryId": "easton-744",
           "headword": "Cave",
           "modulo": "Easton"
         },
-        "termino": "Cave"
+        "termino": "Cave",
+        "traduccion": {
+          "resourceId": "easton-744",
+          "sourceHash": "9530bfe0e8d8b57314e7243954092b784410633f381d7ea37bffcc8a5f2c33ed",
+          "sourceLanguage": "en"
+        }
       },
-      "d-f828d5599bc1b3cd": {
+      "d-878ed4bc22dc684b": {
         "fuente": {
+          "entryId": "easton-2494",
           "headword": "Mercy",
           "modulo": "Easton"
         },
-        "termino": "Mercy"
+        "termino": "Mercy",
+        "traduccion": {
+          "resourceId": "easton-2494",
+          "sourceHash": "103111bf115232fe7b9bca9e4401d0b07eadafc06f4fef89568f88020de7f2ab",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-b6265f7f8d791391": {
+        "fuente": {
+          "entryId": "easton-3464",
+          "headword": "Snare",
+          "modulo": "Easton"
+        },
+        "termino": "Snare",
+        "traduccion": {
+          "resourceId": "easton-3464",
+          "sourceHash": "2374a7cc1179d7eebedddc2bc751a3459bd31bba42d781d5b91dc92ecb75a15b",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-e8343dbedc8e1fd7": {
+        "fuente": {
+          "entryId": "smith-3439",
+          "headword": "Prayer",
+          "modulo": "Smith"
+        },
+        "termino": "Prayer",
+        "traduccion": {
+          "resourceId": "smith-3439",
+          "sourceHash": "6e399f2787a0602f604bd89c19e077a5546c05698b6be5b96baa895cc23a0ec0",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-ec9378a78b48d55c": {
+        "fuente": {
+          "entryId": "smith-2663",
+          "headword": "Lord",
+          "modulo": "Smith"
+        },
+        "termino": "Lord",
+        "traduccion": {
+          "resourceId": "smith-2663",
+          "sourceHash": "022bb5c4cb2a343952c6483218265ad93ddba5af0c27894cf34a0940b6e25d3a",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-f004792912830556": {
+        "fuente": {
+          "entryId": "smith-1128",
+          "headword": "David",
+          "modulo": "Smith"
+        },
+        "termino": "David",
+        "traduccion": {
+          "resourceId": "smith-1128",
+          "sourceHash": "a6b54c20a7b96eeac1a911e6da3124a560fe6dc042ebf270e3676e7095b95652",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-f5cff1b78b3d0d33": {
+        "fuente": {
+          "entryId": "easton-982",
+          "headword": "David",
+          "modulo": "Easton"
+        },
+        "termino": "David",
+        "traduccion": {
+          "resourceId": "easton-982",
+          "sourceHash": "a6b54c20a7b96eeac1a911e6da3124a560fe6dc042ebf270e3676e7095b95652",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-fc41d478817db4bf": {
+        "fuente": {
+          "entryId": "easton-3004",
+          "headword": "Prison",
+          "modulo": "Easton"
+        },
+        "termino": "Prison",
+        "traduccion": {
+          "resourceId": "easton-3004",
+          "sourceHash": "31928208ce519bf0986c2a93a8237f45d72b9555405bb65d50aaf5e321d227b3",
+          "sourceLanguage": "en"
+        }
       }
     },
     "historia": {}
   },
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "verses": {
     "1": {
       "costumbres": [],
       "diccionario": [
-        "d-e97c17f1f34527df",
-        "d-41879431eda97f54",
-        "d-28747e13abb424ba",
-        "d-23672136ecfc4ccc",
-        "d-22ab3a42bba95ae9",
-        "d-048a0627e8722b42",
-        "d-f828d5599bc1b3cd",
-        "d-c9aaba0b87721e48",
-        "d-7c243774230583a3"
+        "d-80fb10f7be4207e4",
+        "d-45d3b5beff1f8439",
+        "d-f5cff1b78b3d0d33",
+        "d-f004792912830556",
+        "d-3b161d60c8a33525",
+        "d-ec9378a78b48d55c",
+        "d-878ed4bc22dc684b",
+        "d-2436504831772365",
+        "d-e8343dbedc8e1fd7"
       ],
       "historia": []
     },
@@ -144,8 +240,8 @@
     "3": {
       "costumbres": [],
       "diccionario": [
-        "d-4126f4b14d85fbdd",
-        "d-9625043a161b61d0"
+        "d-b6265f7f8d791391",
+        "d-4868859ee6fbbd64"
       ],
       "historia": []
     },
@@ -157,8 +253,8 @@
     "5": {
       "costumbres": [],
       "diccionario": [
-        "d-22ab3a42bba95ae9",
-        "d-048a0627e8722b42"
+        "d-3b161d60c8a33525",
+        "d-ec9378a78b48d55c"
       ],
       "historia": []
     },
@@ -170,11 +266,11 @@
     "7": {
       "costumbres": [],
       "diccionario": [
-        "d-259551b206240171",
-        "d-9056a4c9628ed9a5",
-        "d-814f50961ec452aa",
-        "d-40d925ca4d8435b7",
-        "d-d9d01136378f0f55"
+        "d-6ed9a71355efd44c",
+        "d-2f2503205e02009e",
+        "d-fc41d478817db4bf",
+        "d-7d558f1384e83835",
+        "d-18d8c276fe0f9996"
       ],
       "historia": []
     }

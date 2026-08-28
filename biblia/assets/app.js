@@ -1037,6 +1037,45 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
+  function openResourceNavigation({panel,moduleId,entryId}={}){
+    if(typeof panel!=='string' || typeof moduleId!=='string' || entryId==null) return false;
+    if(panel==='historia' && moduleId==='eusebio-historia-eclesiastica'){
+      churchHistoryOpenVolume=null;
+      churchHistoryOpenId=String(entryId);
+      churchHistoryOpenFromShelf=true;
+      churchHistorySearchActive=false;
+      openPanel('historia');
+      return true;
+    }
+    if(panel==='costumbres'){
+      costumbresOpenWork=moduleId;
+      costumbresOpenId=String(entryId);
+      costumbresDocData=null;
+      openPanel('costumbres');
+      return true;
+    }
+    if(panel==='diccionarios'){
+      diccionariosOpenWork=moduleId;
+      diccionariosOpenId=String(entryId);
+      diccionariosDocData=null;
+      openPanel('diccionarios');
+      return true;
+    }
+    if(panel==='padres'){
+      const section=Number(entryId);
+      if(!Number.isInteger(section) || section<1) return false;
+      patristicMode='docs';
+      patristicOpenDoc=moduleId;
+      patristicOpenSection=section;
+      patristicDocData=null;
+      openPanel('padres');
+      return true;
+    }
+    return false;
+  }
+
+  window.VerboResourceNavigation=Object.freeze({open:openResourceNavigation});
+
   // ── Drag-to-dismiss para bottom sheet ────────────────────────────────────────
   let sheetDragY=null;
   els.side.addEventListener('touchstart',e=>{

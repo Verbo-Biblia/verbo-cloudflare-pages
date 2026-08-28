@@ -4,62 +4,92 @@
   "resources": {
     "costumbres": {},
     "diccionario": {
-      "d-048a0627e8722b42": {
+      "d-0b332f59751c54f7": {
         "fuente": {
-          "headword": "Lord",
-          "modulo": "Smith"
+          "entryId": "easton-1598",
+          "headword": "Hallelujah",
+          "modulo": "Easton"
         },
-        "termino": "Lord"
+        "termino": "Hallelujah",
+        "traduccion": {
+          "resourceId": "easton-1598",
+          "sourceHash": "912b57e1c3f4cd377d16e8044ab9f664573699c01778ac42e1e3526dea4555f9",
+          "sourceLanguage": "en"
+        }
       },
-      "d-22ab3a42bba95ae9": {
+      "d-3b161d60c8a33525": {
         "fuente": {
+          "entryId": "easton-2315",
           "headword": "Lord",
           "modulo": "Easton"
         },
-        "termino": "Lord"
+        "termino": "Lord",
+        "traduccion": {
+          "resourceId": "easton-2315",
+          "sourceHash": "022bb5c4cb2a343952c6483218265ad93ddba5af0c27894cf34a0940b6e25d3a",
+          "sourceLanguage": "en"
+        }
       },
-      "d-7f59d55df242f7f1": {
+      "d-931dff86d13c5029": {
         "fuente": {
-          "headword": "Hallelujah",
-          "modulo": "Smith"
-        },
-        "termino": "Hallelujah"
-      },
-      "d-921749e7223550b1": {
-        "fuente": {
+          "entryId": "easton-2322",
           "headword": "Love",
           "modulo": "Easton"
         },
-        "termino": "Love"
+        "termino": "Love",
+        "traduccion": {
+          "resourceId": "easton-2322",
+          "sourceHash": "9f4024faec10ef6d29aa32d7935d94b1a816fd4fe0359fbf12d49d44b5ff33b8",
+          "sourceLanguage": "en"
+        }
       },
-      "d-ff1273cc2f0802aa": {
+      "d-a2cced4711cacb1a": {
         "fuente": {
+          "entryId": "smith-1759",
           "headword": "Hallelujah",
-          "modulo": "Easton"
+          "modulo": "Smith"
         },
-        "termino": "Hallelujah"
+        "termino": "Hallelujah",
+        "traduccion": {
+          "resourceId": "smith-1759",
+          "sourceHash": "912b57e1c3f4cd377d16e8044ab9f664573699c01778ac42e1e3526dea4555f9",
+          "sourceLanguage": "en"
+        }
+      },
+      "d-ec9378a78b48d55c": {
+        "fuente": {
+          "entryId": "smith-2663",
+          "headword": "Lord",
+          "modulo": "Smith"
+        },
+        "termino": "Lord",
+        "traduccion": {
+          "resourceId": "smith-2663",
+          "sourceHash": "022bb5c4cb2a343952c6483218265ad93ddba5af0c27894cf34a0940b6e25d3a",
+          "sourceLanguage": "en"
+        }
       }
     },
     "historia": {}
   },
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "verses": {
     "1": {
       "costumbres": [],
       "diccionario": [
-        "d-22ab3a42bba95ae9",
-        "d-048a0627e8722b42"
+        "d-3b161d60c8a33525",
+        "d-ec9378a78b48d55c"
       ],
       "historia": []
     },
     "2": {
       "costumbres": [],
       "diccionario": [
-        "d-ff1273cc2f0802aa",
-        "d-7f59d55df242f7f1",
-        "d-22ab3a42bba95ae9",
-        "d-048a0627e8722b42",
-        "d-921749e7223550b1"
+        "d-0b332f59751c54f7",
+        "d-a2cced4711cacb1a",
+        "d-3b161d60c8a33525",
+        "d-ec9378a78b48d55c",
+        "d-931dff86d13c5029"
       ],
       "historia": []
     }
