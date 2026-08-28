@@ -323,6 +323,53 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const emptyState = (icon, text) => `<div class="panel-empty"><div class="panel-empty__icon">${icon}</div><div class="panel-empty__text">${text}</div></div>`;
   const activeVerse = () => Number(document.querySelector('.verse--active')?.dataset.verseN) || null;
+  const SELECTED_PASSAGE_EVENT = 'verbo:selected-passage-changed';
+  let lastSelectedPassageSignature;
+
+  /* Contrato canónico para consumidores del pasaje seleccionado. `book` es
+     el ID de catalog.books/ModuleLoader (USFM: ROM, MAT, PSA…), que coincide
+     con el identificador de los datos offline del Asistente. La UI actual
+     solo selecciona dentro de un capítulo, pero se conserva el contrato de
+     rango completo que usa el ensamblador de Fase 5. */
+  function getSelectedPassageContext(){
+    // El Asistente pertenece a la Biblia principal y está oculto en modo
+    // sermón; el selector bíblico interno de ese modo mantiene otro estado.
+    if(sermonMode) return null;
+    const explicit = selectedVerseNumbers();
+    const active = activeVerse();
+    const verses = explicit.length ? explicit : (active ? [active] : []);
+    if(!verses.length) return null;
+
+    const ranges=[];
+    let start=verses[0];
+    let end=verses[0];
+    for(let index=1; index<verses.length; index++){
+      const verse=verses[index];
+      if(verse===end+1){ end=verse; continue; }
+      ranges.push({chapterStart:currentChapter,verseStart:start,chapterEnd:currentChapter,verseEnd:end});
+      start=verse;
+      end=verse;
+    }
+    ranges.push({chapterStart:currentChapter,verseStart:start,chapterEnd:currentChapter,verseEnd:end});
+    return {book:currentBook,ranges};
+  }
+
+  function notifySelectedPassageChange(){
+    const context=getSelectedPassageContext();
+    const signature=JSON.stringify(context);
+    if(signature===lastSelectedPassageSignature) return;
+    lastSelectedPassageSignature=signature;
+    document.dispatchEvent(new CustomEvent(SELECTED_PASSAGE_EVENT,{detail:context}));
+  }
+
+  window.VerboPassageSelection=Object.freeze({
+    eventName:SELECTED_PASSAGE_EVENT,
+    getContext:getSelectedPassageContext,
+    getBookLabel:(bookId=currentBook)=>{
+      const spanish=catalog?.books?.find(book=>book.id===bookId)?.name || bookId;
+      return (window.VerboI18n?.getUiLang()==='en' ? NASB_BOOK_NAMES[bookId] : spanish) || spanish;
+    }
+  });
   const hlKey = (book, chapter, n) => `${book}:${chapter}:${n}`;
   const saveHighlights = () => { VerboBackup.setAllResaltados(highlights); };
   const HL_COLORS = ['hl-yellow','hl-green','hl-blue','hl-pink','hl-coral','hl-violet'];
@@ -469,6 +516,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   async function loadPassage({preserveVersion=true, restoreVerse=null}={}) {
     setLoading(true);
     resetXrefMode();
+    selectedVerses.clear();
+    document.querySelectorAll('.verse--active,.verse--selected').forEach(row=>row.classList.remove('verse--active','verse--selected'));
+    updateActionBar();
+    notifySelectedPassageChange();
     try {
       const previous = preserveVersion ? currentVersion : null;
       data = await VerboModules.buildChapterData({bookId: currentBook, chapter: currentChapter, commentaryId: currentCommentary, bibleId: previous || currentVersion});
@@ -483,9 +534,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       compareVersion = compareVersion && availableCompare.some(v => v.id === compareVersion)
         ? compareVersion : preferredCompare;
       populateVersions();
-      selectedVerses.clear();
       renderChapter(restoreVerse);
       updateActionBar();
+      notifySelectedPassageChange();
       VerboBackup.setPosicionBiblia(currentBook, currentChapter, currentVersion);
       gospelOpenChapter=null;
       if (activeTab) renderPanel(activeTab);
@@ -837,6 +888,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(selectedVerses.has(verse.n)) selectedVerses.delete(verse.n); else selectedVerses.add(verse.n);
     row.classList.toggle('verse--selected', selectedVerses.has(verse.n));
     updateActionBar();
+    notifySelectedPassageChange();
     resetXrefMode();
     const firstNote=verse.commentaries?.find(c=>c.commentaryId===currentCommentary)?.noteIds?.[0]||null;
     if (activeTab === 'comentario') renderPanel('comentario', firstNote);
@@ -1821,6 +1873,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(els.editorPane) els.editorPane.hidden = !sermonMode;
     if(sermonMode) await initSermonEditor();
     if(data) renderChapter(activeVerse());
+    notifySelectedPassageChange();
     if(activeTab) renderPanel(activeTab);
   }
 
@@ -2800,6 +2853,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(needsLoad){
       selectedVerses.clear();
       updateActionBar();
+      notifySelectedPassageChange();
       els.panelToolbar.innerHTML=sermonBibleToolbarHtml();
       wireSermonBibleToolbar();
       els.panelBody.innerHTML=emptyState('⌛','Cargando pasaje…');
@@ -2852,6 +2906,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if(selectedVerses.has(v.n)) selectedVerses.delete(v.n); else selectedVerses.add(v.n);
         row.classList.toggle('verse--selected', selectedVerses.has(v.n));
         updateActionBar();
+        notifySelectedPassageChange();
         if(sermonPanelTab==='comparar') renderSermonCompare(v.n);
         else if(sermonPanelTab==='comentario') renderPanel('comentario');
       });
@@ -2907,7 +2962,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     els.book.value=currentBook; await refreshChapters(); els.chapter.value=String(currentChapter); await loadPassage();
     openPanel('buscar');
     const row=document.querySelector(`[data-verse-n="${r.verse}"]`);
-    if(row){ document.querySelectorAll('.verse--active').forEach(x=>x.classList.remove('verse--active')); row.classList.add('verse--active'); row.scrollIntoView({behavior:'smooth',block:'center'}); }
+    if(row){ document.querySelectorAll('.verse--active').forEach(x=>x.classList.remove('verse--active')); row.classList.add('verse--active'); row.scrollIntoView({behavior:'smooth',block:'center'}); notifySelectedPassageChange(); }
   }
 
   // La lista de resultados debe mostrar el texto en la Biblia ACTIVA del
@@ -3272,7 +3327,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     els.book.value=currentBook; await refreshChapters(); els.chapter.value=String(currentChapter);
     await loadPassage();
     const row=document.querySelector(`[data-verse-n="${ref.verse}"]`);
-    if(row){ document.querySelectorAll('.verse--active').forEach(x=>x.classList.remove('verse--active')); row.classList.add('verse--active'); row.scrollIntoView({behavior:'smooth',block:'center'}); }
+    if(row){ document.querySelectorAll('.verse--active').forEach(x=>x.classList.remove('verse--active')); row.classList.add('verse--active'); row.scrollIntoView({behavior:'smooth',block:'center'}); notifySelectedPassageChange(); }
   }
   // Alias en inglés de los mismos libros — solo para reconocer referencias
   // directas escritas en inglés en el buscador (parseSearchReference), no
@@ -6519,6 +6574,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // ── Teclado en desktop ───────────────────────────────────────────────────────
   document.addEventListener('keydown', e => {
     if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA'||e.target.tagName==='SELECT'||e.target.isContentEditable) return;
+    if(e.target.closest?.('#studyAssistant')) return;
     if(e.altKey||e.ctrlKey||e.metaKey) return;
     if(e.key==='ArrowLeft') { e.preventDefault(); moveChapter(-1); }
     else if(e.key==='ArrowRight') { e.preventDefault(); moveChapter(1); }
@@ -6537,7 +6593,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const n=Number(nextRow.dataset.verseN);
         const verse=data?.verses?.find(v=>v.n===n);
         if(verse) selectVerse(nextRow,verse);
-      }
+      } else notifySelectedPassageChange();
     }
     else if(e.key==='Enter') {
       const cur=document.querySelector('.verse--active');
@@ -6630,6 +6686,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     selectedVerses.clear();
     document.querySelectorAll('.verse--selected').forEach(x=>x.classList.remove('verse--selected'));
     updateActionBar();
+    notifySelectedPassageChange();
   });
   document.querySelectorAll('.verse-swatch').forEach(swatch=>{
     swatch.addEventListener('click', ()=>{
@@ -6652,6 +6709,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       selectedVerses.clear();
       document.querySelectorAll('.verse--selected').forEach(x=>x.classList.remove('verse--selected'));
       updateActionBar();
+      notifySelectedPassageChange();
     });
   });
   window.addEventListener('scroll',()=>{ clearTimeout(commentSyncTimer); commentSyncTimer=setTimeout(syncCommentToReading,120); }, {passive:true});

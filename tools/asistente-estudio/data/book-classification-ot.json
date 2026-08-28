@@ -1,0 +1,457 @@
+{
+  "GEN": {
+    "libro": "Génesis",
+    "tipo": "narrativa",
+    "anioInicio": -2091,
+    "anioFin": -1805,
+    "certeza": "disputado",
+    "fuenteReferencia": "Rango dado: era patriarcal, desde el llamado de Abraham (Gn 12) hasta la muerte de José (Gn 50), según cronología bíblica tradicional (estilo Ussher, consistente con el marco usado por JFB/Poole). JFB introducción a Génesis discute la genuinidad/autenticidad del Pentateuco pero no fija años calendáricos.",
+    "notas": "CASO DUDOSO MAYOR — resuelto con 'secciones' (Fase 0, Parte A): ver campo secciones. El rango numérico a nivel de libro (arriba) refleja solo la sección Gn 12-50.",
+    "secciones": [
+      {
+        "rango": "Gn 1-11",
+        "descripcion": "Historia primigenia: creación, caída, diluvio, tabla de las naciones, torre de Babel.",
+        "tipo": "ninguna",
+        "anioInicio": null,
+        "anioFin": null,
+        "certeza": "amplio-consenso",
+        "notas": "Sin fecha históricamente asignable ni consenso de ningún tipo (edad de la tierra, historicidad y cronología del diluvio, etc.). Se trata como 'ninguna': el mensaje teológico (origen, caída, gracia) no depende de fijar una fecha calendárica, igual que Proverbios/Eclesiastés/Cantares."
+      },
+      {
+        "rango": "Gn 12-50",
+        "descripcion": "Ciclo patriarcal: Abraham, Isaac, Jacob, José.",
+        "tipo": "narrativa",
+        "anioInicio": -2091,
+        "anioFin": -1805,
+        "certeza": "disputado",
+        "notas": "Mismo rango ya fijado a nivel de libro."
+      }
+    ]
+  },
+  "EXO": {
+    "libro": "Éxodo",
+    "tipo": "narrativa",
+    "anioInicio": -1446,
+    "anioFin": -1406,
+    "certeza": "disputado",
+    "fuenteReferencia": "Rango 'fecha temprana' del éxodo (basado en 1 Reyes 6:1, cronología tradicional). JFB no tiene introducción propia a Éxodo en el repositorio (empieza directo en Éx 1); Poole tampoco.",
+    "notas": "CASO DUDOSO MAYOR (clásico en erudición del AT): 'fecha temprana' del éxodo (~1446 a.C., aquí usada) vs. 'fecha tardía' (~1260-1250 a.C., basada en correlaciones arqueológicas con Ramsés II). Ambas tienen defensores serios; afecta también a Levítico, Números, Deuteronomio, Josué y el inicio de Jueces."
+  },
+  "LEV": {
+    "libro": "Levítico",
+    "tipo": "narrativa",
+    "anioInicio": -1446,
+    "anioFin": -1446,
+    "certeza": "disputado",
+    "fuenteReferencia": "Dado en el Sinaí, dentro del primer año tras el éxodo (fecha temprana). Sin introducción propia de JFB ni Poole en el repositorio.",
+    "notas": "Mismo caso dudoso de fecha temprana/tardía del éxodo que Éxodo. Nota de tipo: Levítico es casi enteramente instrucción legal/ritual con marco narrativo mínimo ('Jehová habló a Moisés...'); se clasificó como narrativa porque ancla a un momento histórico concreto (el Sinaí), no porque tenga trama narrativa extensa."
+  },
+  "NUM": {
+    "libro": "Números",
+    "tipo": "narrativa",
+    "anioInicio": -1446,
+    "anioFin": -1406,
+    "certeza": "disputado",
+    "fuenteReferencia": "Los 40 años de peregrinación en el desierto, del Sinaí a las llanuras de Moab (fecha temprana). Sin introducción propia de JFB ni Poole en el repositorio.",
+    "notas": "Mismo caso dudoso de fecha temprana/tardía del éxodo."
+  },
+  "DEU": {
+    "libro": "Deuteronomio",
+    "tipo": "narrativa",
+    "anioInicio": -1406,
+    "anioFin": -1406,
+    "certeza": "disputado",
+    "fuenteReferencia": "Discursos de Moisés en las llanuras de Moab, justo antes de entrar a Canaán (fecha temprana). Sin introducción propia de JFB ni Poole en el repositorio.",
+    "notas": "Mismo caso dudoso de fecha temprana/tardía del éxodo."
+  },
+  "JOS": {
+    "libro": "Josué",
+    "tipo": "narrativa",
+    "anioInicio": -1406,
+    "anioFin": -1380,
+    "certeza": "disputado",
+    "fuenteReferencia": "Conquista y reparto inicial de Canaán (fecha temprana). Sin introducción propia de JFB en el repositorio; Poole sí la tiene.",
+    "notas": "Mismo caso dudoso de fecha temprana/tardía del éxodo, extendido a la cronología de la conquista (~1400 a.C. fecha temprana vs. ~1230-1200 a.C. fecha tardía)."
+  },
+  "JDG": {
+    "libro": "Jueces",
+    "tipo": "narrativa",
+    "anioInicio": -1380,
+    "anioFin": -1050,
+    "certeza": "disputado",
+    "fuenteReferencia": "Del fin de la conquista al inicio de la monarquía (Saúl). Sin introducción propia de JFB en el repositorio; Poole sí la tiene y ubica el apéndice final (Jue 19-21) 'en el reinado de Saúl'.",
+    "notas": "Además de la disputa de fecha temprana/tardía del éxodo heredada, el total de años del período de los jueces es en sí disputado por posibles jueces regionales/superpuestos en vez de sucesivos."
+  },
+  "RUT": {
+    "libro": "Rut",
+    "tipo": "narrativa",
+    "anioInicio": -1150,
+    "anioFin": -1100,
+    "certeza": "disputado",
+    "fuenteReferencia": "Ambientada 'en los días en que gobernaban los jueces' (Rt 1:1). Sin introducción propia de JFB en el repositorio; Poole sí la tiene pero sin fecha calendárica precisa.",
+    "notas": "Ubicación general dentro del período de los Jueces no muy disputada, pero el momento exacto dentro de ese período (~300 años) sí lo es."
+  },
+  "1SA": {
+    "libro": "1 Samuel",
+    "tipo": "narrativa",
+    "anioInicio": -1105,
+    "anioFin": -1010,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "Del nacimiento de Samuel a la muerte de Saúl. Sin introducción propia de JFB en el repositorio; Poole sí la tiene.",
+    "notas": ""
+  },
+  "2SA": {
+    "libro": "2 Samuel",
+    "tipo": "narrativa",
+    "anioInicio": -1010,
+    "anioFin": -970,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "Reinado de David. Sin introducción propia de JFB ni Poole en el repositorio (probablemente cubierta en conjunto bajo la introducción de 1 Samuel).",
+    "notas": "Libro sin introducción propia de ninguna de las tres fuentes — fecha basada en cronología general del AT, no en discusión específica de un comentarista del repositorio."
+  },
+  "1KI": {
+    "libro": "1 Reyes",
+    "tipo": "narrativa",
+    "anioInicio": -970,
+    "anioFin": -853,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "De Salomón al reino dividido, hasta cerca del reinado de Ocozías de Israel. Sin introducción propia de JFB en el repositorio; Poole sí la tiene.",
+    "notas": ""
+  },
+  "2KI": {
+    "libro": "2 Reyes",
+    "tipo": "narrativa",
+    "anioInicio": -853,
+    "anioFin": -561,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "Continúa hasta la liberación de Joaquín en Babilonia. Sin introducción propia de JFB ni Poole en el repositorio.",
+    "notas": "Libro sin introducción propia de ninguna de las tres fuentes — fecha basada en cronología general del AT."
+  },
+  "1CH": {
+    "libro": "1 Crónicas",
+    "tipo": "narrativa",
+    "anioInicio": -1010,
+    "anioFin": -970,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "Genealogías (sin fecha asignable) más el reinado de David en paralelo a 2 Samuel. Sin introducción propia de JFB en el repositorio; Poole sí la tiene.",
+    "notas": "CASO DUDOSO — evaluado para 'secciones' en Fase 0, Parte B, y descartado: a diferencia de Génesis/Isaías/Zacarías, no hay una frontera limpia de capítulos entre 'contenido narrado' y 'propósito editorial' dentro de Crónicas. El propósito post-exílico (~450-400 a.C., dirigido a la comunidad restaurada) impregna la SELECCIÓN y el ÉNFASIS de todo el libro entero (qué se narra y qué se omite respecto a Samuel-Reyes: por ejemplo, se omiten casi todos los pecados de David y todo el reino del norte), no una sección identificable aparte. Se mantiene como narrativa de libro completo, con esta nota reforzada como advertencia interpretativa en vez de una sección numérica. Las genealogías iniciales (1 Cr 1-9) se remontan hasta Adán, sin fecha asignable, similar al caso de Génesis 1-11 — pero tampoco se les dio sección propia por ser un caso menor (9 capítulos de listas, no narrativa)."
+  },
+  "2CH": {
+    "libro": "2 Crónicas",
+    "tipo": "narrativa",
+    "anioInicio": -970,
+    "anioFin": -538,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "De Salomón hasta el decreto de Ciro (2 Cr 36:22-23). Sin introducción propia de JFB ni Poole en el repositorio.",
+    "notas": "Mismo caso dudoso de propósito post-exílico que 1 Crónicas, con la misma conclusión: no amerita 'secciones' (ver nota completa en 1CH), se mantiene como nota reforzada. Libro sin introducción propia de ninguna de las tres fuentes."
+  },
+  "EZR": {
+    "libro": "Esdras",
+    "tipo": "narrativa",
+    "anioInicio": -538,
+    "anioFin": -458,
+    "certeza": "disputado",
+    "fuenteReferencia": "Del decreto de Ciro al regreso de Esdras 'en el séptimo año de Artajerjes'. Sin introducción propia de JFB en el repositorio; Poole sí la tiene.",
+    "notas": "CASO DUDOSO: el 'séptimo año de Artajerjes' del regreso de Esdras podría referirse a Artajerjes I (458 a.C., postura mayoritaria, usada aquí) o a Artajerjes II (398 a.C.) — disputa real sobre si Esdras precedió o siguió a Nehemías."
+  },
+  "NEH": {
+    "libro": "Nehemías",
+    "tipo": "narrativa",
+    "anioInicio": -445,
+    "anioFin": -420,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "Gobernación de Nehemías (primer y segundo período), reconstrucción del muro. Sin introducción propia de JFB en el repositorio; Poole sí la tiene.",
+    "notas": ""
+  },
+  "EST": {
+    "libro": "Ester",
+    "tipo": "narrativa",
+    "anioInicio": -483,
+    "anioFin": -473,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "Reinado de Asuero, generalmente identificado con Jerjes I (486-465 a.C.), de la destitución de Vasti a la institución de Purim. Sin introducción propia de JFB en el repositorio; Poole sí la tiene.",
+    "notas": "Cronológicamente los eventos de Ester ocurren ANTES del regreso de Esdras (458 a.C.), aunque el libro aparece después en el orden canónico español."
+  },
+  "JOB": {
+    "libro": "Job",
+    "tipo": "narrativa",
+    "anioInicio": -2100,
+    "anioFin": -1800,
+    "certeza": "disputado",
+    "fuenteReferencia": "JFB introducción a Job la sitúa 'dos edades antes de Moisés, es decir, hacia la época de Isaac', y otra postura citada la ubica 'hacia 1520 a.C., entre los madianitas'.",
+    "notas": "CASO DUDOSO DE TIPO — resuelto con 'posturas' (Fase 0, Parte B): ver campo posturas. Además, la fecha de COMPOSICIÓN del libro (distinta de la época narrada bajo la postura narrativa) es de las más disputadas del AT — algunos la sitúan en tiempos de Moisés, otros mucho después (época salomónica o incluso post-exílica), por el estilo del hebreo.",
+    "posturas": [
+      {
+        "nombre": "narrativa-patriarcal",
+        "descripcion": "Le ocurrió a una persona histórica real en la era patriarcal (marco tradicional de JFB/Poole).",
+        "tipo": "narrativa",
+        "anioInicio": -2100,
+        "anioFin": -1800
+      },
+      {
+        "nombre": "sapiencial-atemporal",
+        "descripcion": "El contenido dominante es el diálogo filosófico sobre el sufrimiento del justo; el marco narrativo patriarcal es un recurso literario, no el foco interpretativo — se leería como Proverbios/Eclesiastés/Cantares, sin necesidad de anclar época.",
+        "tipo": "ninguna",
+        "anioInicio": null,
+        "anioFin": null
+      }
+    ]
+  },
+  "PSA": {
+    "libro": "Salmos",
+    "tipo": "ninguna",
+    "anioInicio": null,
+    "anioFin": null,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "JFB introducción a Salmos discute la compilación del salterio a lo largo de siglos; el título griego 'se hizo doscientos años antes' de Cristo (referencia a la Septuaginta, no a la composición original).",
+    "notas": "CORREGIDO (paso siguiente): se cambió de 'escritura' a 'ninguna'. Salmos es una ANTOLOGÍA de composiciones de épocas muy distintas — desde Moisés (Salmo 90, ~1400 a.C.) y David (~1010-970 a.C.) hasta salmos claramente post-exílicos (p. ej. Salmo 137, sobre el exilio, ~586-538 a.C., o posteriores) — no tiene una única 'época de escritura' aplicable al libro entero, igual que Proverbios/Eclesiastés/Cantares no la tienen por ser de alcance intemporal. A diferencia de esos tres, aquí el motivo no es que el contenido sea 'sabiduría atemporal' sino que es una compilación multi-época sin fecha unificable — el efecto práctico para 'Historia'/'Costumbres' es el mismo: no ancla el LIBRO a una época. Si más adelante se quiere anclar por salmo individual (según encabezado/contenido de cada uno), eso sería un esquema aparte, salmo por salmo, no del libro como unidad."
+  },
+  "PRO": {
+    "libro": "Proverbios",
+    "tipo": "ninguna",
+    "anioInicio": null,
+    "anioFin": null,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "Atribución tradicional mayormente a Salomón (~970-930 a.C.), con una colección adicional de 'los hombres de Ezequías' (Pr 25:1, ~715-686 a.C.) y dichos de Agur y Lemuel de origen incierto.",
+    "notas": "Se clasificó como 'ninguna' porque los proverbios son máximas de sabiduría general, no atadas a una circunstancia histórica que el lector necesite conocer para interpretarlas — a diferencia de un profeta dirigiéndose a una crisis concreta. La época de composición es identificable en términos generales (arriba) pero no es interpretativamente necesaria, que es el criterio del proyecto para esta categoría."
+  },
+  "ECC": {
+    "libro": "Eclesiastés",
+    "tipo": "ninguna",
+    "anioInicio": null,
+    "anioFin": null,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "Atribución tradicional a Salomón en su vejez (~935-930 a.C.).",
+    "notas": "Se clasificó como 'ninguna' por el mismo criterio que Proverbios: reflexión filosófica de alcance universal, cuya interpretación no depende de conocer su contexto histórico preciso. Nota aparte: la autoría/fecha salomónica está fuertemente disputada por la erudición crítica moderna, que por rasgos del hebreo (arameísmos, persianismos) sitúa la composición real mucho después, incluso en época post-exílica (~450-200 a.C.) — esa disputa no afecta la clasificación de tipo aquí adoptada, pero Juan debe saber que existe."
+  },
+  "SNG": {
+    "libro": "Cantar de los Cantares",
+    "tipo": "ninguna",
+    "anioInicio": null,
+    "anioFin": null,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "Atribución tradicional a Salomón (~970-930 a.C.).",
+    "notas": "Se clasificó como 'ninguna': poesía de amor conyugal de alcance atemporal; su interpretación no depende del contexto histórico de composición."
+  },
+  "ISA": {
+    "libro": "Isaías",
+    "tipo": "escritura",
+    "anioInicio": -740,
+    "anioFin": -500,
+    "certeza": "disputado",
+    "fuenteReferencia": "JFB introducción a Isaías: el llamado profético 'se asigna al último año de Uzías, es decir, 754 a.C.' (nota: JFB usa una cronología algo distinta a la moderna), con el ministerio extendiéndose 'de cerca de 760 a 713 a.C.'.",
+    "notas": "CASO DUDOSO MAYOR (la disputa de fecha/autoría más famosa del AT, junto con Daniel) — resuelto con 'posturas' (Fase 0, Parte B): ver campo posturas. Se usó 'posturas' (dos lecturas del libro entero, mutuamente excluyentes) en vez de 'secciones' directas, porque la postura tradicional NIEGA que exista una división de autor/época — a diferencia de Zacarías, donde ambos bandos aceptan la división y solo disputan la fecha. La postura crítica sí usa secciones internamente.",
+    "posturas": [
+      {
+        "nombre": "autor-unico-tradicional",
+        "descripcion": "Todo el libro es del profeta Isaías del siglo VIII a.C., incluyendo profecías predictivas sobre el exilio babilónico y el regreso (postura de JFB/Poole).",
+        "tipo": "escritura",
+        "anioInicio": -740,
+        "anioFin": -680
+      },
+      {
+        "nombre": "composicion-dividida-critica",
+        "descripcion": "El libro combina material de al menos dos o tres autores/épocas distintas, cada una dirigida a una audiencia con una situación histórica diferente.",
+        "tipo": "escritura",
+        "secciones": [
+          {
+            "rango": "Is 1-39 ('Proto-Isaías')",
+            "anioInicio": -740,
+            "anioFin": -680,
+            "descripcion": "Isaías de Jerusalén, crisis asiria."
+          },
+          {
+            "rango": "Is 40-55 ('Deutero-Isaías')",
+            "anioInicio": -550,
+            "anioFin": -539,
+            "descripcion": "Dirigido a los exiliados en Babilonia, anticipando el regreso bajo Ciro."
+          },
+          {
+            "rango": "Is 56-66 ('Trito-Isaías')",
+            "anioInicio": -539,
+            "anioFin": -500,
+            "descripcion": "Época post-exílica, restauración de Jerusalén."
+          }
+        ]
+      }
+    ]
+  },
+  "JER": {
+    "libro": "Jeremías",
+    "tipo": "escritura",
+    "anioInicio": -627,
+    "anioFin": -570,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "JFB: llamado profético en 629 a.C. (año 13 de Josías, cf. Jr 1:2); ministerio continúa tras la caída de Jerusalén hasta el exilio en Egipto.",
+    "notas": ""
+  },
+  "LAM": {
+    "libro": "Lamentaciones",
+    "tipo": "escritura",
+    "anioInicio": -586,
+    "anioFin": -585,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "Tradicionalmente de Jeremías, poco después de la caída de Jerusalén (586 a.C.).",
+    "notas": ""
+  },
+  "EZK": {
+    "libro": "Ezequiel",
+    "tipo": "escritura",
+    "anioInicio": -593,
+    "anioFin": -571,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "JFB introducción a Ezequiel: deportado con Joaquín en 599/598 a.C.; profetiza 'al menos veintidós años, hasta el año veintisiete del cautiverio' — fechas internas explícitas a lo largo del libro, de las más precisas del AT.",
+    "notas": ""
+  },
+  "DAN": {
+    "libro": "Daniel",
+    "tipo": "narrativa",
+    "anioInicio": -605,
+    "anioFin": -536,
+    "certeza": "disputado",
+    "fuenteReferencia": "JFB introducción a Daniel discute extensamente la disputa: desde Nabucodonosor (Dn 1:1, ~605 a.C.) hasta 'el tercer año de Ciro' (Dn 10:1, ~536 a.C.), y refuta explícitamente la postura de que el libro sea 'una falsificación de la época de los Macabeos (170-164 a.C.)'.",
+    "notas": "CASO DUDOSO MAYOR DE TIPO Y FECHA (junto con Isaías, la disputa más significativa del AT) — resuelto con 'posturas' (Fase 0, Parte A): ver campo posturas, sin elegir una.",
+    "posturas": [
+      {
+        "nombre": "tradicional",
+        "descripcion": "Daniel escribió durante/cerca de los eventos narrados, en el exilio babilónico y comienzos del período persa (JFB/Poole, autoría del propio Daniel).",
+        "tipo": "narrativa",
+        "anioInicio": -605,
+        "anioFin": -536
+      },
+      {
+        "nombre": "critica",
+        "descripcion": "El libro es literatura de resistencia compuesta en la crisis macabea, ambientada ficticiamente en el exilio, por la precisión de las profecías sobre Antíoco IV Epífanes (cap. 11) y rasgos lingüísticos (préstamos persas/griegos). Bajo esta postura, la época relevante para 'Historia'/'Costumbres' sería la de Antíoco IV y la revuelta macabea, no la babilónica/persa narrada.",
+        "tipo": "escritura",
+        "anioInicio": -167,
+        "anioFin": -164
+      }
+    ]
+  },
+  "HOS": {
+    "libro": "Oseas",
+    "tipo": "escritura",
+    "anioInicio": -755,
+    "anioFin": -715,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "JFB: ministerio bajo los reyes de Judá desde Uzías hasta 'el comienzo del reinado de Ezequías, 722 a.C.' (encabezado de Os 1:1).",
+    "notas": ""
+  },
+  "JOL": {
+    "libro": "Joel",
+    "tipo": "escritura",
+    "anioInicio": -870,
+    "anioFin": -400,
+    "certeza": "disputado",
+    "fuenteReferencia": "JFB introducción a Joel propone 'los primeros días de Joás, 870-865 a.C.' (postura temprana).",
+    "notas": "CASO DUDOSO MAYOR: postura temprana (JFB, siglo IX a.C., usada como ancla mínima) vs. postura post-exílica (muy extendida en erudición moderna, ~500-400 a.C.), basada en la ausencia de mención al reino del norte o a un rey, el enfoque en el templo/sacerdocio, y la referencia a griegos como comerciantes de esclavos (Jl 3:6), que sugeriría contacto comercial más tardío. El rango dado cubre ambos extremos."
+  },
+  "AMO": {
+    "libro": "Amós",
+    "tipo": "escritura",
+    "anioInicio": -760,
+    "anioFin": -750,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "JFB: 'apunta a la última parte del reinado de Jeroboam [II]', que la fuente sitúa terminando en 784 a.C. (cronología de JFB, ligeramente distinta de la convención moderna ~753 a.C.); 'dos años antes del terremoto'.",
+    "notas": "Se ajustó levemente a la convención cronológica moderna (Jeroboam II ~793-753 a.C.) en vez del esquema interno de JFB, que da fechas algo más altas."
+  },
+  "OBA": {
+    "libro": "Abdías",
+    "tipo": "escritura",
+    "anioInicio": -850,
+    "anioFin": -585,
+    "certeza": "disputado",
+    "fuenteReferencia": "JFB documenta al menos cuatro posturas distintas entre los comentaristas citados: reinado de Joram (~850 a.C.), de Amasías (~800 a.C.), de Joacim (~600s a.C.), o inmediatamente después de la caída de Jerusalén por Nabucodonosor (588 a.C.).",
+    "notas": "CASO DUDOSO MAYOR: es el libro con MÁS incertidumbre de fecha de todo el AT — depende de a cuál 'saqueo de Jerusalén' se refiere (hay varios candidatos en 300+ años de historia). La postura moderna mayoritaria favorece la fecha tardía (tras 586 a.C., participación de Edom en la caída de Jerusalén ante Babilonia), pero la temprana tiene defensores serios."
+  },
+  "MIC": {
+    "libro": "Miqueas",
+    "tipo": "escritura",
+    "anioInicio": -750,
+    "anioFin": -700,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "JFB: 'en los reinados de Jotam, Acaz y Ezequías, es decir, entre 757 y 699 a.C.' (encabezado de Miq 1:1).",
+    "notas": ""
+  },
+  "NAM": {
+    "libro": "Nahúm",
+    "tipo": "escritura",
+    "anioInicio": -663,
+    "anioFin": -612,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "Poole (única fuente disponible en el repositorio para este libro): ubica el trasfondo cerca del reinado de Ezequías. Rango dado según referencias internas: caída de Tebas (663 a.C., mencionada como ya pasada en Nah 3:8-10) y caída de Nínive (612 a.C., profetizada como futura).",
+    "notas": "JFB no tiene introducción a Nahúm en el repositorio — única entre los libros del AT sin ninguna entrada de JFB."
+  },
+  "HAB": {
+    "libro": "Habacuc",
+    "tipo": "escritura",
+    "anioInicio": -609,
+    "anioFin": -605,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "JFB: 'el tiempo parece haber sido alrededor de 610 a.C.'; también menciona el ataque caldeo a Jerusalén 'en el noveno mes del quinto año de Joacim, 605 a.C.'.",
+    "notas": ""
+  },
+  "ZEP": {
+    "libro": "Sofonías",
+    "tipo": "escritura",
+    "anioInicio": -640,
+    "anioFin": -609,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "JFB: 'profetizó en los días de Josías' (Sof 1:1), 'es decir, entre 642 y 611 a.C.' (rango ajustado a las fechas convencionales del reinado de Josías, 640-609 a.C.).",
+    "notas": ""
+  },
+  "HAG": {
+    "libro": "Hageo",
+    "tipo": "escritura",
+    "anioInicio": -520,
+    "anioFin": -520,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "Fechas internas explícitas en todo el libro, segundo año de Darío I (520 a.C.).",
+    "notas": ""
+  },
+  "ZEC": {
+    "libro": "Zacarías",
+    "tipo": "escritura",
+    "anioInicio": -520,
+    "anioFin": -300,
+    "certeza": "disputado",
+    "fuenteReferencia": "JFB: capítulos 1-8 fechados con precisión, 'segundo año del reinado de Darío, 520 a.C.', contemporáneo de Hageo; sobre los capítulos 9-14 la introducción documenta desacuerdo, incluyendo posturas que los sitúan mucho después ('la Septuaginta, trescientos años a.C.' como referencia de un límite superior).",
+    "notas": "CASO DUDOSO — resuelto con 'secciones' (Fase 0, Parte B): ver campo secciones. Se usó 'secciones' (no 'posturas') porque, a diferencia de Isaías, aquí casi todos los comentaristas ACEPTAN que 9-14 es estilísticamente distinto de 1-8 — la disputa es solo de FECHA de esos capítulos, no de si existe la división.",
+    "secciones": [
+      {
+        "rango": "Zac 1-8",
+        "descripcion": "Contemporáneo de Hageo, fechas internas precisas.",
+        "tipo": "escritura",
+        "anioInicio": -520,
+        "anioFin": -518,
+        "certeza": "amplio-consenso"
+      },
+      {
+        "rango": "Zac 9-14 ('Deutero-Zacarías')",
+        "descripcion": "Estilísticamente distinto de 1-8; fecha disputada entre los mismos comentaristas citados por JFB, desde el retorno del exilio hasta la época griega.",
+        "tipo": "escritura",
+        "anioInicio": -520,
+        "anioFin": -300,
+        "certeza": "disputado"
+      }
+    ]
+  },
+  "MAL": {
+    "libro": "Malaquías",
+    "tipo": "escritura",
+    "anioInicio": -460,
+    "anioFin": -420,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "JFB: 'la fecha sería alrededor de 420 a.C.'; ubica el libro en el período de las reformas de Esdras y Nehemías, con referencias que van del año 7 de Artajerjes (457 a.C.) al segundo regreso de Nehemías (no más tarde de 424 a.C.).",
+    "notas": ""
+  },
+  "JON": {
+    "libro": "Jonás",
+    "tipo": "narrativa",
+    "anioInicio": -780,
+    "anioFin": -750,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "JFB: sitúa a Jonás 'en la primera parte del reinado de Joás' inicialmente, pero lo liga después con precisión al reinado de Jeroboam II de Israel (cf. 2 Re 14:25, que nombra a 'Jonás hijo de Amitai' como profeta de esa época).",
+    "notas": "A diferencia de los demás profetas menores, Jonás es un libro NARRATIVO (relata lo que le ocurrió al profeta), por eso se clasificó como narrativa y no escritura. La fecha de COMPOSICIÓN del libro (distinta de la época narrada) es disputada aparte — algunos eruditos modernos lo consideran una parábola didáctica de composición mucho más tardía (post-exílica, ~siglos V-IV a.C.), lo cual no cambia la clasificación de tipo aquí adoptada pero sí podría afectar cómo se lee el género literario."
+  }
+}

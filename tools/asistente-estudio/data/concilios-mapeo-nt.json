@@ -1,0 +1,120 @@
+{
+  "_metadata": {
+    "descripcion": "PROPUESTA (Fase 2, paso 2): para cada uno de los 12 temas doctrinales de concilios-temas.json, pasajes del NT donde esa doctrina se desarrolla como argumento central (no mención de pasada). Basado en conocimiento general de exégesis/teología histórica, no en lectura programática — para revisión de Juan.",
+    "criterioSinAnclaje": "Un tema se marca sinAnclaje:true cuando no se encontró un pasaje donde el argumento se desarrolle en extenso — no se fuerza una conexión débil a partir de una sola palabra o versículo suelto.",
+    "temasAnticipadosSinAnclaje": ["condena-del-origenismo", "veneracion-de-imagenes-iconoclasia", "naturaleza-de-cristo-dos-voluntades-monotelismo", "mesalianismo-gracia-oracion", "inmutabilidad-del-credo-niceno"],
+    "resultadoRealSinAnclaje": ["condena-del-origenismo", "veneracion-de-imagenes-iconoclasia", "mesalianismo-gracia-oracion"],
+    "notaDesviacion": "2 de los 5 temas anticipados como 'sin anclaje' SÍ tuvieron un pasaje real y bien documentado: monotelismo (Getsemaní) e inmutabilidad del credo (Gálatas 1:6-9). Se reporta tal cual salió, sin forzar el resultado anticipado en ninguna dirección."
+  },
+  "mapeo": [
+    {
+      "temaId": "naturaleza-de-cristo-unidad-persona-nestorianismo",
+      "sinAnclaje": false,
+      "pasajesNT": [
+        { "book": "MAT", "chapterStart": 1, "verseStart": 18, "chapterEnd": 1, "verseEnd": 25, "razon": "El ángel a José: el que es concebido es llamado 'Emanuel, Dios con nosotros' — un mismo sujeto es a la vez hijo de María y Dios con nosotros, el núcleo del argumento de la unidad de la persona." },
+        { "book": "LUK", "chapterStart": 1, "verseStart": 26, "chapterEnd": 1, "verseEnd": 56, "razon": "La Anunciación ('el Santo Ser... será llamado Hijo de Dios') y el saludo de Elisabet ('la madre de mi Señor', v.43) son la base textual directa del título Theotokos disputado en Éfeso." },
+        { "book": "GAL", "chapterStart": 4, "verseStart": 4, "chapterEnd": 4, "verseEnd": 7, "razon": "'Dios envió a su Hijo, nacido de mujer' — formulación breve pero central citada en la controversia nestoriana para unir en un mismo sujeto la filiación divina y el nacimiento humano." },
+        { "book": "JHN", "chapterStart": 1, "verseStart": 1, "chapterEnd": 1, "verseEnd": 14, "razon": "'El Verbo era Dios... y el Verbo se hizo carne' — el mismo sujeto (el Verbo) que preexiste como Dios es el que se hace carne, argumento de unidad de persona. Solapa con el tema de la divinidad de Cristo (ver nota de solapamiento)." }
+      ],
+      "notaSolapamiento": "Jn 1:1-14 se solapa con Jn 1:1-18 del tema de plena divinidad (arrianismo) — es el mismo pasaje leído con dos énfasis distintos."
+    },
+    {
+      "temaId": "condena-del-origenismo",
+      "sinAnclaje": true,
+      "pasajesNT": [],
+      "notaAnclajeDebil": "Se consideraron y descartaron por débiles: 1 Co 15:24-28 ('que Dios sea todo en todos') y Col 1:19-20 (reconciliación de 'todas las cosas'), a veces invocados por lecturas universalistas — pero no desarrollan la preexistencia del alma (la tesis origenista central condenada) y su lectura apocatástica es inferencial/disputada, no un argumento explícito del autor bíblico. La preexistencia del alma en sí no tiene ningún pasaje del NT que la argumente — es una importación filosófica helenística ajena al texto."
+    },
+    {
+      "temaId": "veneracion-de-imagenes-iconoclasia",
+      "sinAnclaje": true,
+      "pasajesNT": [],
+      "notaAnclajeDebil": "Se consideraron y descartaron: Col 1:15 y 2 Co 4:4 ('la imagen del Dios invisible/la imagen de Dios') — hablan de Cristo mismo como la imagen teológica de Dios, no de la práctica litúrgica de venerar íconos pintados/esculpidos, que es un desarrollo post-bíblico (ss. IV-VIII). Forzar esa conexión sería equívoco."
+    },
+    {
+      "temaId": "naturaleza-de-cristo-dos-voluntades-monotelismo",
+      "sinAnclaje": false,
+      "pasajesNT": [
+        { "book": "MAT", "chapterStart": 26, "verseStart": 36, "chapterEnd": 26, "verseEnd": 46, "razon": "Getsemaní: 'no sea como yo quiero, sino como tú' — la oración expresa explícitamente una voluntad humana distinta de (aunque sometida a) la voluntad divina/del Padre. Es el texto que Máximo el Confesor y los diotelitas usaron como argumento central contra el monotelismo." },
+        { "book": "MRK", "chapterStart": 14, "verseStart": 32, "chapterEnd": 14, "verseEnd": 42, "razon": "Relato paralelo de Getsemaní, mismo argumento de las dos voluntades." },
+        { "book": "LUK", "chapterStart": 22, "verseStart": 39, "chapterEnd": 22, "verseEnd": 46, "razon": "Relato paralelo de Getsemaní (incluye el ángel que lo fortalece), mismo argumento." }
+      ],
+      "notaDesviacion": "Este tema fue anticipado como posible 'sin anclaje', pero SÍ tiene un anclaje textual fuerte y bien documentado históricamente (Getsemaní)."
+    },
+    {
+      "temaId": "naturaleza-de-cristo-dos-naturalezas-calcedonia",
+      "sinAnclaje": false,
+      "pasajesNT": [
+        { "book": "PHP", "chapterStart": 2, "verseStart": 5, "chapterEnd": 2, "verseEnd": 11, "razon": "Recorre en un mismo himno 'la forma de Dios' y 'la forma de siervo' del mismo sujeto — plantilla textual de las dos naturalezas en una persona. Solapa con el tema de plena divinidad (arrianismo)." },
+        { "book": "HEB", "chapterStart": 2, "verseStart": 14, "chapterEnd": 2, "verseEnd": 18, "razon": "Argumenta que el Hijo participó 'de carne y sangre' y fue 'en todo semejante a sus hermanos' — el desarrollo más extenso del NT sobre la humanidad plena de Cristo, complemento necesario de Heb 1 sobre su divinidad." },
+        { "book": "COL", "chapterStart": 2, "verseStart": 8, "chapterEnd": 2, "verseEnd": 15, "razon": "'En él habita toda la plenitud de la Deidad corporalmente' (v.9) — afirma la Deidad plena unida a un cuerpo real, en el contexto de una advertencia doctrinal extendida." },
+        { "book": "1JN", "chapterStart": 4, "verseStart": 1, "chapterEnd": 4, "verseEnd": 6, "razon": "Prueba para discernir espíritus: confesar 'que Jesucristo ha venido en carne' — defiende la humanidad real de Cristo contra su negación (el error opuesto a Eutiques, pero la misma necesidad de sostener ambas naturalezas reales)." }
+      ],
+      "notaSolapamiento": "Flp 2:5-11 se solapa con el tema de plena divinidad (arrianismo) — mismo pasaje, distinto énfasis (divinidad sola vs. las dos naturalezas juntas)."
+    },
+    {
+      "temaId": "validez-bautismo-y-recepcion-de-herejes",
+      "sinAnclaje": false,
+      "pasajesNT": [
+        { "book": "ACT", "chapterStart": 19, "verseStart": 1, "chapterEnd": 19, "verseEnd": 7, "razon": "Pablo hace bautizar de nuevo (con el bautismo cristiano) a discípulos que solo habían recibido el bautismo de Juan — precedente narrativo real de 're-bautismo' invocado en debates posteriores sobre bautismo incompleto/inválido." },
+        { "book": "1CO", "chapterStart": 1, "verseStart": 10, "chapterEnd": 1, "verseEnd": 17, "razon": "Pablo resta importancia a la identidad del que bautiza frente a la unidad del evangelio — relevante para la pregunta de si la ortodoxia del bautizante afecta la validez del bautismo." },
+        { "book": "EPH", "chapterStart": 4, "verseStart": 1, "chapterEnd": 4, "verseEnd": 6, "razon": "'Un Señor, una fe, un bautismo' — la base doctrinal de que el bautismo no se repite, texto de referencia constante en la disputa sobre el rebautismo de herejes." }
+      ],
+      "notaSolapamiento": null
+    },
+    {
+      "temaId": "naturaleza-de-cristo-divinidad-arrianismo",
+      "sinAnclaje": false,
+      "pasajesNT": [
+        { "book": "JHN", "chapterStart": 1, "verseStart": 1, "chapterEnd": 1, "verseEnd": 18, "razon": "'En el principio era el Verbo, y el Verbo era Dios' — el desarrollo más directo y extenso del NT sobre la preexistencia y divinidad del Verbo, texto central de toda la controversia arriana." },
+        { "book": "PHP", "chapterStart": 2, "verseStart": 5, "chapterEnd": 2, "verseEnd": 11, "razon": "'Existiendo en forma de Dios, no estimó el ser igual a Dios como cosa a que aferrarse' — afirma la igualdad con Dios como punto de partida del himno." },
+        { "book": "COL", "chapterStart": 1, "verseStart": 15, "chapterEnd": 1, "verseEnd": 20, "razon": "'Imagen del Dios invisible... por medio de él fueron creadas todas las cosas' — Cristo como agente y sustentador de la creación, argumento central contra la idea arriana de Cristo como criatura." },
+        { "book": "HEB", "chapterStart": 1, "verseStart": 1, "chapterEnd": 1, "verseEnd": 14, "razon": "El Hijo como 'resplandor de su gloria' superior a los ángeles — desarrollo extenso, con catena de citas del AT, de la divinidad del Hijo." }
+      ],
+      "notaSolapamiento": "Jn 1:1-18 se solapa parcialmente con Jn 1:1-14 (tema nestoriano) y Flp 2:5-11 con el tema de las dos naturalezas (Calcedonia) — mismos textos, distinto énfasis según el tema."
+    },
+    {
+      "temaId": "trinidad-divinidad-espiritu-santo",
+      "sinAnclaje": false,
+      "pasajesNT": [
+        { "book": "JHN", "chapterStart": 14, "verseStart": 15, "chapterEnd": 16, "verseEnd": 15, "razon": "Los discursos del Paráclito: el Espíritu como 'otro Consolador' enviado por el Padre y el Hijo, que enseña y guía a toda verdad; incluye Jn 15:26 ('el cual procede del Padre'), el texto bíblico central de la disputa del Filioque." },
+        { "book": "1CO", "chapterStart": 12, "verseStart": 1, "chapterEnd": 12, "verseEnd": 11, "razon": "'El mismo Espíritu... el mismo Señor... el mismo Dios' (vv.4-6) — fórmula trinitaria dentro de un desarrollo extenso sobre la obra personal y divina del Espíritu en los dones." }
+      ],
+      "notaSolapamiento": null
+    },
+    {
+      "temaId": "autoridad-de-las-escrituras-canon-biblico",
+      "sinAnclaje": false,
+      "pasajesNT": [
+        { "book": "2TI", "chapterStart": 3, "verseStart": 14, "chapterEnd": 3, "verseEnd": 17, "razon": "'Toda la Escritura es inspirada por Dios y útil...' — el texto de referencia del NT sobre el origen e inspiración de la Escritura." },
+        { "book": "2PE", "chapterStart": 1, "verseStart": 19, "chapterEnd": 1, "verseEnd": 21, "razon": "'Los santos hombres de Dios hablaron siendo inspirados por el Espíritu Santo' — desarrollo del origen divino de la profecía escrita." },
+        { "book": "2PE", "chapterStart": 3, "verseStart": 15, "chapterEnd": 3, "verseEnd": 16, "razon": "Pedro llama 'Escrituras' a las cartas de Pablo — evidencia temprana, dentro del propio NT, de conciencia de canon en formación." }
+      ],
+      "notaSolapamiento": null
+    },
+    {
+      "temaId": "pelagianismo-pecado-original-gracia",
+      "sinAnclaje": false,
+      "pasajesNT": [
+        { "book": "ROM", "chapterStart": 5, "verseStart": 12, "chapterEnd": 5, "verseEnd": 21, "razon": "'Por la desobediencia de un hombre los muchos fueron constituidos pecadores' — el texto central del NT sobre el pecado heredado de Adán, eje de toda la controversia pelagiana." },
+        { "book": "EPH", "chapterStart": 2, "verseStart": 1, "chapterEnd": 2, "verseEnd": 10, "razon": "'Estabais muertos en vuestros delitos y pecados... por gracia sois salvos... no por obras' — el desarrollo más extenso del NT sobre la gracia como don, no mérito, citado constantemente en la disputa contra el pelagianismo." },
+        { "book": "ROM", "chapterStart": 3, "verseStart": 9, "chapterEnd": 3, "verseEnd": 20, "razon": "'No hay justo, ni aun uno... todos pecaron' — argumento extenso de la universalidad del pecado, base de la doctrina del pecado original." }
+      ],
+      "notaSolapamiento": null
+    },
+    {
+      "temaId": "mesalianismo-gracia-oracion",
+      "sinAnclaje": true,
+      "pasajesNT": [],
+      "notaAnclajeDebil": "Se consideraron y descartaron: 1 Ts 5:17 ('orad sin cesar', una frase suelta, no un argumento desarrollado) y 2 Ts 3:6-12 (crítica a la ociosidad, tangencial). Las tesis mesalianas específicas — demonio interior desde el nacimiento pese al bautismo, inutilidad de los sacramentos, visión sensible de la Trinidad mediante la oración — no tienen ningún pasaje del NT que las desarrolle como argumento propio."
+    },
+    {
+      "temaId": "inmutabilidad-del-credo-niceno",
+      "sinAnclaje": false,
+      "pasajesNT": [
+        { "book": "GAL", "chapterStart": 1, "verseStart": 6, "chapterEnd": 1, "verseEnd": 9, "razon": "'Aunque nosotros, o un ángel del cielo, os anunciare otro evangelio... sea anatema' — el paralelo neotestamentario más cercano a la prohibición de componer una fe distinta de la recibida, con el mismo lenguaje de anatema." },
+        { "book": "2TI", "chapterStart": 1, "verseStart": 13, "chapterEnd": 1, "verseEnd": 14, "razon": "'Retén la forma de las sanas palabras... guarda el buen depósito' — el tema de custodiar sin alterar lo recibido, desarrollado en las Pastorales." }
+      ],
+      "notaDesviacion": "Este tema fue anticipado como posible 'sin anclaje', pero Gá 1:6-9 ofrece un paralelo textual real y con el mismo lenguaje de anatema que usan los concilios."
+    }
+  ]
+}

@@ -1,0 +1,280 @@
+{
+  "MAT": {
+    "libro": "Mateo",
+    "tipo": "narrativa",
+    "anioInicio": -6,
+    "anioFin": 30,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "Época de los eventos narrados (vida de Jesús), no de composición del libro — consenso general de cronología del NT.",
+    "notas": "Fecha de COMPOSICIÓN del libro (irrelevante aquí según criterio del proyecto) es en sí disputada: la introducción de JFB menciona posturas desde 37-38 d.C. hasta después del 60 d.C.; mayoría moderna ~60-80 d.C."
+  },
+  "MRK": {
+    "libro": "Marcos",
+    "tipo": "narrativa",
+    "anioInicio": -6,
+    "anioFin": 30,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "Época de los eventos narrados (vida de Jesús), no de composición — consenso general de cronología del NT.",
+    "notas": "Fecha de composición (irrelevante aquí) también incierta: Barnes dice 'no se conoce con certeza', sugiere entre 64-68 d.C. pero lo llama probablemente demasiado tardío."
+  },
+  "LUK": {
+    "libro": "Lucas",
+    "tipo": "narrativa",
+    "anioInicio": -6,
+    "anioFin": 30,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "Época de los eventos narrados (vida de Jesús), no de composición — consenso general de cronología del NT.",
+    "notas": "Fecha de composición (irrelevante aquí): Barnes la sitúa ~63 d.C., poco antes o junto con Hechos."
+  },
+  "JHN": {
+    "libro": "Juan",
+    "tipo": "narrativa",
+    "anioInicio": -6,
+    "anioFin": 30,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "Época de los eventos narrados (vida de Jesús, ministerio de ~3 años con varias Pascuas), no de composición — consenso general de cronología del NT.",
+    "notas": "Fecha de composición (irrelevante aquí) es de las más disputadas: JFB cita posturas desde poco después de la ascensión hasta 97 d.C.; consenso moderno ronda 85-95 d.C."
+  },
+  "ACT": {
+    "libro": "Hechos",
+    "tipo": "narrativa",
+    "anioInicio": 30,
+    "anioFin": 62,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "Época de los eventos narrados: desde Pentecostés hasta el final del primer arresto domiciliario de Pablo en Roma (Hch 28:30, 'dos años enteros'). JFB sitúa el fin de la narración ~62 d.C.",
+    "notas": "La fecha de composición del libro coincide aproximadamente con el fin de los eventos narrados en la datación tradicional (JFB, ~62 d.C.), a diferencia de los Evangelios donde composición y narración están muy separadas. Algunos críticos fechan la composición mucho después (80-100+ d.C.), pero eso no afecta el rango de los eventos narrados."
+  },
+  "ROM": {
+    "libro": "Romanos",
+    "tipo": "escritura",
+    "anioInicio": 57,
+    "anioFin": 58,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "JFB introducción a Romanos ('temprana primavera del año 58', al final del tercer viaje de Pablo); Barnes coincide en 'alrededor del año 57' escrita en Corinto.",
+    "notas": ""
+  },
+  "1CO": {
+    "libro": "1 Corintios",
+    "tipo": "escritura",
+    "anioInicio": 56,
+    "anioFin": 57,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "JFB: 'alrededor de Pentecostés, A.D. 57', tercer año de residencia de Pablo en Éfeso; Barnes cita a Pearson/Mill (57) y Lardner (primavera de 56).",
+    "notas": ""
+  },
+  "2CO": {
+    "libro": "2 Corintios",
+    "tipo": "escritura",
+    "anioInicio": 57,
+    "anioFin": 57,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "JFB: escrita en otoño de A.D. 57, después de Pentecostés cuando Pablo dejó Éfeso.",
+    "notas": ""
+  },
+  "GAL": {
+    "libro": "Gálatas",
+    "tipo": "escritura",
+    "anioInicio": 48,
+    "anioFin": 58,
+    "certeza": "disputado",
+    "fuenteReferencia": "JFB introducción a Gálatas cita posturas internas divergentes (A.D. 50, 54-57, o 57-58 según distintos comentaristas allí mencionados: Alford, Pearson, Hug).",
+    "notas": "CASO DUDOSO DE TIPO — resuelto con 'secciones' (Fase 0, Parte B): ver campo secciones. Fecha de composición de la carta (sección doctrinal, Gá 3-6) además disputada por la clásica controversia 'hipótesis del Sur de Galacia' (temprana, ~48-49 d.C., antes del concilio de Jerusalén) vs. 'hipótesis del Norte de Galacia' (tardía, ~53-57 d.C.).",
+    "secciones": [
+      {
+        "rango": "Gá 1-2",
+        "descripcion": "Narrativa autobiográfica: la conversión de Pablo (Hch 9), sus visitas a Jerusalén (Gá 1:18; 2:1) y la confrontación con Pedro en Antioquía (Gá 2:11-14). Ocurrió años antes de escribirse la carta.",
+        "tipo": "narrativa",
+        "anioInicio": 33,
+        "anioFin": 49,
+        "certeza": "disputado",
+        "notas": "El año de la conversión de Pablo (~33-34 d.C.) y el de la segunda visita a Jerusalén (~46-49 d.C., si equivale al concilio de Hch 15) dependen de la misma cronología paulina general que ya es disputada."
+      },
+      {
+        "rango": "Gá 3-6",
+        "descripcion": "Cuerpo doctrinal/aplicado de la carta (justificación por fe, libertad cristiana, exhortación ética). Es el carácter dominante del libro; coincide con el rango a nivel de libro (anioInicio/anioFin arriba).",
+        "tipo": "escritura",
+        "anioInicio": 48,
+        "anioFin": 58,
+        "certeza": "disputado"
+      }
+    ]
+  },
+  "EPH": {
+    "libro": "Efesios",
+    "tipo": "escritura",
+    "anioInicio": 61,
+    "anioFin": 62,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "JFB: 'alrededor de A.D. 62', durante el primer encarcelamiento de Pablo en Roma, que según la misma introducción comenzó en febrero de A.D. 61.",
+    "notas": "Una minoría de eruditos modernos propone un hipotético encarcelamiento en Éfeso (~53-55 d.C.) en vez de Roma; no es la postura de las fuentes del repositorio."
+  },
+  "PHP": {
+    "libro": "Filipenses",
+    "tipo": "escritura",
+    "anioInicio": 61,
+    "anioFin": 62,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "JFB: 'se acuerda generalmente... alrededor de 61 o 62 d.C.'; cita a Hug (fines de 61 / comienzos de 62).",
+    "notas": ""
+  },
+  "COL": {
+    "libro": "Colosenses",
+    "tipo": "escritura",
+    "anioInicio": 61,
+    "anioFin": 62,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "Barnes/JFB: 'alrededor del año 62 d.C.', mismo grupo de cartas de la prisión enviadas junto con Efesios y Filemón (Col 4:7-9).",
+    "notas": ""
+  },
+  "1TH": {
+    "libro": "1 Tesalonicenses",
+    "tipo": "escritura",
+    "anioInicio": 50,
+    "anioFin": 52,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "JFB: 'otoño de A.D. 52', poco después de que Pablo llegó a Corinto.",
+    "notas": "La erudición moderna (basada en la inscripción de Galión, hallada después de la época de JFB) suele fechar Corinto/Pablo ~50-51 d.C., un poco antes que la fecha de JFB. Se amplió el rango a 50-52 para cubrir ambas referencias. Es de las cartas paulinas más tempranas, junto con 2 Tesalonicenses."
+  },
+  "2TH": {
+    "libro": "2 Tesalonicenses",
+    "tipo": "escritura",
+    "anioInicio": 51,
+    "anioFin": 53,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "JFB: escrita durante la estancia de año y medio de Pablo en Corinto (otoño 52 a primavera 54 según su cronología), 'como seis meses después' de la primera epístola.",
+    "notas": "Mismo ajuste que 1 Tesalonicenses por la cronología moderna basada en la inscripción de Galión."
+  },
+  "1TI": {
+    "libro": "1 Timoteo",
+    "tipo": "escritura",
+    "anioInicio": 62,
+    "anioFin": 66,
+    "certeza": "disputado",
+    "fuenteReferencia": "JFB introducción a las Pastorales: escrita 'no mucho después de que Pablo dejó Éfeso hacia Macedonia', suponiendo un segundo período de actividad después del primer encarcelamiento romano (Hch 28); cita a Alford situando las Pastorales cerca del 'año 37 después de la muerte del Señor' (~67 d.C.).",
+    "notas": "CASO DUDOSO: la datación depende de aceptar un segundo encarcelamiento/liberación de Pablo no narrado en Hechos, hipótesis tradicional pero no universalmente aceptada. Buena parte de la erudición crítica moderna considera las Pastorales (1-2 Timoteo, Tito) pseudónimas y las fecha mucho después, hacia fines del s. I o principios del s. II. Esa postura no está representada en JFB/Barnes/Poole (que asumen autoría paulina), así que el rango aquí refleja solo el marco tradicional."
+  },
+  "2TI": {
+    "libro": "2 Timoteo",
+    "tipo": "escritura",
+    "anioInicio": 66,
+    "anioFin": 68,
+    "certeza": "disputado",
+    "fuenteReferencia": "JFB: escrita durante el segundo encarcelamiento de Pablo, poco antes de su muerte; sitúa la última noticia de Timoteo 'hacia fines de A.D. 66 o comienzos de 67' y la muerte de Pablo 'probablemente a fines de A.D. 67 o A.D. 68'.",
+    "notas": "Mismo caso dudoso de fondo que 1 Timoteo (dependencia de un segundo encarcelamiento no narrado en Hechos; disputa de autoría en la erudición crítica)."
+  },
+  "TIT": {
+    "libro": "Tito",
+    "tipo": "escritura",
+    "anioInicio": 62,
+    "anioFin": 66,
+    "certeza": "disputado",
+    "fuenteReferencia": "JFB: posterior al primer encarcelamiento de Pablo en Roma, situando a Tito en Creta 'alrededor de A.D. 67'; cita a otros comentaristas ('alrededor del año 62', o 'año 63 o 64', con 'gran diversidad de opinión').",
+    "notas": "Mismo caso dudoso de fondo que 1-2 Timoteo."
+  },
+  "PHM": {
+    "libro": "Filemón",
+    "tipo": "escritura",
+    "anioInicio": 61,
+    "anioFin": 62,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "JFB: 'al mismo tiempo que la Epístola a los Colosenses..., en Roma, durante el primer encarcelamiento de Pablo, A.D. 61 o 62'.",
+    "notas": "Es de las cartas paulinas con autoría menos cuestionada incluso en la erudición crítica."
+  },
+  "HEB": {
+    "libro": "Hebreos",
+    "tipo": "escritura",
+    "anioInicio": 60,
+    "anioFin": 69,
+    "certeza": "disputado",
+    "fuenteReferencia": "JFB/Barnes/Poole documentan múltiples posturas: Mill (63 d.C.), Basnage (~61 d.C.), Lardner (comienzos de 63 d.C.); otros proponen ~60 d.C. Todas suponen fecha anterior a la destrucción del templo (70 d.C.) porque el libro habla de los sacrificios como vigentes.",
+    "notas": "CASO DUDOSO: tanto la autoría (nunca se nombra al autor en el texto) como la fecha exacta de Hebreos son de los puntos más disputados del NT. El rango dado (60-69 d.C.) es el que cubre las posturas 'pre-70' predominantes entre los comentaristas del repositorio; una minoría de eruditos modernos considera posible una fecha posterior al 70 d.C."
+  },
+  "JAS": {
+    "libro": "Santiago",
+    "tipo": "escritura",
+    "anioInicio": 45,
+    "anioFin": 62,
+    "certeza": "disputado",
+    "fuenteReferencia": "JFB introducción a Santiago documenta dos hipótesis principales entre los comentaristas citados: fecha muy temprana (antes del concilio de Jerusalén) vs. fecha tardía, poco antes del martirio de Santiago (que JFB sitúa alrededor de A.D. 62-69, con inconsistencia interna en la propia fuente sobre el año exacto).",
+    "notas": "CASO DUDOSO: es una de las disputas de fecha más marcadas del NT — algunos eruditos la consideran de los escritos más tempranos del canon (~45 d.C., antes del concilio de Jerusalén, si es de Santiago 'el Justo' antes de esa reunión), otros la sitúan justo antes de la muerte de Santiago. La propia introducción de JFB muestra confusión entre la fecha de muerte de 'Santiago el mayor' (Hch 12, año 44) y la de Santiago 'el Justo' (autor tradicional), lo cual añade a la incertidumbre."
+  },
+  "1PE": {
+    "libro": "1 Pedro",
+    "tipo": "escritura",
+    "anioInicio": 62,
+    "anioFin": 64,
+    "certeza": "disputado",
+    "fuenteReferencia": "JFB: posterior a Romanos (A.D. 58) y a las epístolas de la prisión de Pablo (que terminan ~63 d.C.), pero antes de que arreciara la persecución de Nerón; cruza referencias con Col 4:10 (A.D. 61-63) para la presencia de Marcos.",
+    "notas": "El rango 62-64 refleja la postura tradicional (autoría petrina, como asumen JFB/Barnes/Poole). Una parte de la erudición crítica cuestiona la autoría petrina (por el buen griego literario y las referencias a persecución organizada) y propondría fechas posteriores, hasta fines del s. I. Se marca disputado por esa brecha, aunque no está representada en las fuentes del repositorio."
+  },
+  "2PE": {
+    "libro": "2 Pedro",
+    "tipo": "escritura",
+    "anioInicio": 64,
+    "anioFin": 68,
+    "certeza": "disputado",
+    "fuenteReferencia": "JFB: 'la fecha... sería alrededor de A.D. 68 o 69, un año después de la primera [epístola]'; cita también a Lardner (63-65 d.C.) y Michaelis (64 d.C.).",
+    "notas": "CASO DUDOSO MÁS FUERTE DEL NT: 2 Pedro es el libro cuya autenticidad/autoría es más disputada en todo el canon del NT. La postura tradicional (reflejada en JFB/Barnes/Poole, usada aquí: 64-68 d.C.) asume autoría petrina directa. Gran parte de la erudición crítica moderna la considera pseudónima y la fecha muy posteriormente, entre fines del s. I y mediados del s. II (~90-150 d.C.), en parte porque cita o depende de Judas y parece tratar las cartas de Pablo como un corpus ya reconocido como 'Escritura'. Ese rango extendido no se incluyó en el campo numérico para no perder utilidad práctica, pero Juan debe decidir si prefiere reflejarlo."
+  },
+  "1JN": {
+    "libro": "1 Juan",
+    "tipo": "escritura",
+    "anioInicio": 85,
+    "anioFin": 95,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "JFB: 'escrita en la vejez de Juan, quizás alrededor de A.D. 90'.",
+    "notas": ""
+  },
+  "2JN": {
+    "libro": "2 Juan",
+    "tipo": "escritura",
+    "anioInicio": 85,
+    "anioFin": 95,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "Barnes: sin fecha explícita propia, pero la ubica junto con 1 y 3 Juan, escritas en Éfeso cuando Juan era anciano — mismo marco temporal que 1 Juan.",
+    "notas": ""
+  },
+  "3JN": {
+    "libro": "3 Juan",
+    "tipo": "escritura",
+    "anioInicio": 85,
+    "anioFin": 95,
+    "certeza": "amplio-consenso",
+    "fuenteReferencia": "Barnes: 'opinión común... que fueron escritas en Éfeso, cuando Juan era anciano' (junto con 1 y 2 Juan) — sin fecha propia más precisa en la fuente.",
+    "notas": ""
+  },
+  "JUD": {
+    "libro": "Judas",
+    "tipo": "escritura",
+    "anioInicio": 65,
+    "anioFin": 90,
+    "certeza": "disputado",
+    "fuenteReferencia": "JFB documenta varias posturas entre los comentaristas citados: Mill (~90 d.C.), Dodwell y Cave (71-72 d.C., después de la destrucción de Jerusalén), L'Enfant y Beausobre (70-75 d.C.).",
+    "notas": "Se excluyó del rango la fecha marginal de 132 d.C. (Volkmar, ligada a la revuelta de Bar Kokjeba) que la propia introducción de JFB presenta como una postura minoritaria y poco sostenida."
+  },
+  "REV": {
+    "libro": "Apocalipsis",
+    "tipo": "escritura",
+    "anioInicio": 64,
+    "anioFin": 96,
+    "certeza": "disputado",
+    "fuenteReferencia": "JFB introducción a Apocalipsis expone extensamente ambas posturas: la tradición patrística mayoritaria (Ireneo y otros) sitúa el destierro de Juan bajo Domiciano (~95-96 d.C.); una minoría de testimonios antiguos (versión Siríaca, Eusebio en un pasaje) lo sitúa bajo Nerón (antes del 70 d.C.).",
+    "notas": "CASO DUDOSO DE TIPO Y DE FECHA — resuelto con 'posturas' (Fase 0, Parte B): ver campo posturas. La disputa de FECHA ('neroniana' ~64-68 d.C. vs. 'domicianea' ~95-96 d.C.) es independiente de la disputa de TIPO y afecta a ambas posturas por igual, con implicaciones interpretativas grandes (identidad de la 'bestia', destinatarios de las profecías).",
+    "posturas": [
+      {
+        "nombre": "escritura",
+        "descripcion": "La época relevante es el contexto de composición: culto imperial romano, persecución, y la situación concreta de las 7 iglesias de Asia Menor a las que se dirige directamente (Ap 2-3) y para las que se escribe la profecía.",
+        "tipo": "escritura",
+        "anioInicio": 64,
+        "anioFin": 96
+      },
+      {
+        "nombre": "narrativa",
+        "descripcion": "Apocalipsis narra un evento real y fechable: la experiencia visionaria de Juan en Patmos 'en el día del Señor' (Ap 1:10); el resto del libro sería el contenido de esa visión, análogo a un relato de lo que Juan vio. A diferencia de los Evangelios, evento narrado y composición casi coinciden en el tiempo, por lo que el rango numérico resultante es prácticamente el mismo bajo ambas posturas — la diferencia es de énfasis interpretativo (priorizar el evento de la visión vs. el mensaje aplicado a los lectores), no de época.",
+        "tipo": "narrativa",
+        "anioInicio": 64,
+        "anioFin": 96
+      }
+    ]
+  }
+}

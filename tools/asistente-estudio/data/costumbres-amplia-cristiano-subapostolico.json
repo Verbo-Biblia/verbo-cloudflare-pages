@@ -1,0 +1,177 @@
+{
+  "_metadata": {
+    "descripcion": "PROPUESTA (Fase 3, Parte B; ajustada en el paso siguiente): capa amplia de costumbres cristianas tempranas, extraída de biblia/modules/patristic/. Se excluyó explícitamente doctrina pura y narrativa histórica — solo fragmentos que describen prácticas concretas (culto, ritos, organización). Ahora dividida en DOS bloques de época distintos (ver 'periodos' y el campo 'periodo' de cada fragmento) en vez de una sola ventana nominal. Borrador para revisión de Juan.",
+    "grupo": "cristiano_subapostolico",
+    "periodos": {
+      "subapostolica": {
+        "anioInicio": 90,
+        "anioFin": 150,
+        "descripcion": "Bloque principal: Didaché, 1 Clemente, Policarpo-Filipenses, Bernabé, Hermas. 14 de los 15 fragmentos.",
+        "notaVentana": "Algunas fuentes individuales tienen rango propio que empieza antes de 90 (Didaché 50, Bernabé 70) — no se recortó el dato real para forzar el encaje; se reporta tal cual en cada fragmento."
+      },
+      "post-subapostolica": {
+        "anioInicio": 130,
+        "anioFin": 200,
+        "descripcion": "Bloque separado: solo Epístola a Diogneto (cap. 5). Su rango atestiguado (130-200 d.C., shelf.json) se extiende más allá del bloque subapostólico, así que se le dio ventana y etiqueta propias en vez de forzarlo dentro de 90-150."
+      }
+    },
+    "fuentesRevisadas": ["didache", "clemente-1", "clemente-2", "ignacio-martirio", "policarpo-filipenses", "papias-fragmentos", "bernabe", "hermas-pastor", "mathietes-diogneto"],
+    "fuentesSinContenidoDeCostumbres": {
+      "clemente-2": "Homilía puramente exhortativa/moral (arrepentimiento, juicio, virtud) — sin descripción de práctica concreta alguna.",
+      "ignacio-martirio": "Narrativa pura del viaje y ejecución de Ignacio — es historia de evento, no costumbre, excluida por diseño según el pedido.",
+      "papias-fragmentos": "Tradiciones sobre el origen de los Evangelios y dichos de los apóstoles — no describe prácticas de la iglesia."
+    }
+  },
+  "fragmentos": [
+    {
+      "fuente": "didache",
+      "autorFuente": "La Didaché",
+      "seccion": "Capítulo 7",
+      "tema": "Bautismo",
+      "anioInicio": 50,
+      "anioFin": 120,
+      "periodo": "subapostolica",
+      "resumen": "Método del bautismo: 'en el nombre del Padre, del Hijo y del Espíritu Santo' (Mt 28:19), preferentemente en 'agua viva' (corriente), pero permite agua estancada, tibia, o incluso derramar agua tres veces sobre la cabeza si no hay suficiente cantidad. Exige ayuno previo del bautizado (y si es posible, del bautizante) uno o dos días antes."
+    },
+    {
+      "fuente": "didache",
+      "autorFuente": "La Didaché",
+      "seccion": "Capítulo 8",
+      "tema": "Ayuno y oración",
+      "anioInicio": 50,
+      "anioFin": 120,
+      "periodo": "subapostolica",
+      "resumen": "Instruye a no ayunar 'como los hipócritas' (que ayunan lunes y jueves) sino miércoles y viernes; incluye el Padrenuestro como oración fija tres veces al día."
+    },
+    {
+      "fuente": "didache",
+      "autorFuente": "La Didaché",
+      "seccion": "Capítulos 9-10",
+      "tema": "Eucaristía (Acción de Gracias)",
+      "anioInicio": 50,
+      "anioFin": 120,
+      "periodo": "subapostolica",
+      "resumen": "Oraciones fijas de acción de gracias sobre la copa y el pan, con la imagen del grano disperso reunido en un solo pan como figura de la Iglesia reunida; instrucción de que solo los bautizados participen."
+    },
+    {
+      "fuente": "didache",
+      "autorFuente": "La Didaché",
+      "seccion": "Capítulos 11-13",
+      "tema": "Recepción de apóstoles, profetas y maestros itinerantes",
+      "anioInicio": 50,
+      "anioFin": 120,
+      "periodo": "subapostolica",
+      "resumen": "Criterios prácticos para hospedar y discernir a maestros/profetas itinerantes: cuántos días alojarlos, cuándo desconfiar de quien pide dinero o se queda demasiado tiempo, sustento material de los profetas que se establecen."
+    },
+    {
+      "fuente": "didache",
+      "autorFuente": "La Didaché",
+      "seccion": "Capítulo 14",
+      "tema": "Asamblea del día del Señor",
+      "anioInicio": 50,
+      "anioFin": 120,
+      "periodo": "subapostolica",
+      "resumen": "Reunión 'el día del Señor' para partir el pan y dar gracias, con confesión previa de faltas para que el sacrificio sea 'puro'."
+    },
+    {
+      "fuente": "didache",
+      "autorFuente": "La Didaché",
+      "seccion": "Capítulo 15",
+      "tema": "Obispos y diáconos",
+      "anioInicio": 50,
+      "anioFin": 120,
+      "periodo": "subapostolica",
+      "resumen": "Instrucción de elegir obispos y diáconos 'dignos del Señor', mansos, no amantes del dinero — y no despreciarlos porque ejercen entre ustedes el ministerio de los profetas y maestros."
+    },
+    {
+      "fuente": "clemente-1",
+      "autorFuente": "1 Clemente de Roma",
+      "seccion": "Capítulo 42",
+      "tema": "Orden de los ministros de la Iglesia",
+      "anioInicio": 96,
+      "anioFin": 96,
+      "periodo": "subapostolica",
+      "resumen": "Los apóstoles, tras predicar, 'nombraron a sus primeros frutos... como obispos y diáconos' de los futuros creyentes, siguiendo lo profetizado en Isaías — el testimonio más antiguo fuera del NT sobre el nombramiento formal de ministros por los apóstoles."
+    },
+    {
+      "fuente": "clemente-1",
+      "autorFuente": "1 Clemente de Roma",
+      "seccion": "Capítulo 44",
+      "tema": "Sucesión y ordenanzas apostólicas sobre el oficio ministerial",
+      "anioInicio": 96,
+      "anioFin": 96,
+      "periodo": "subapostolica",
+      "resumen": "Los apóstoles previeron contiendas por el título de obispo y dieron instrucciones de que, a la muerte de los primeros nombrados, otros hombres aprobados les sucedieran en el ministerio — base del principio de sucesión ministerial ordenada."
+    },
+    {
+      "fuente": "clemente-1",
+      "autorFuente": "1 Clemente de Roma",
+      "seccion": "Capítulos 59-61",
+      "tema": "Oración congregacional (incluye oración por los gobernantes)",
+      "anioInicio": 96,
+      "anioFin": 96,
+      "periodo": "subapostolica",
+      "resumen": "Texto completo de una oración litúrgica de la congregación, incluyendo intercesión explícita 'por nuestros gobernantes y gobernadores' para que gobiernen en paz — paralelo directo de la práctica que pide 1 Ti 2:1-2."
+    },
+    {
+      "fuente": "policarpo-filipenses",
+      "autorFuente": "Policarpo de Esmirna",
+      "seccion": "Capítulo 5",
+      "tema": "Deberes de diáconos, jóvenes y vírgenes",
+      "anioInicio": 110,
+      "anioFin": 140,
+      "periodo": "subapostolica",
+      "resumen": "Instrucciones prácticas de conducta para cada grupo dentro de la congregación: diáconos irreprensibles y no calumniadores, jóvenes sujetos a los presbíteros y castos, vírgenes de conciencia intachable."
+    },
+    {
+      "fuente": "policarpo-filipenses",
+      "autorFuente": "Policarpo de Esmirna",
+      "seccion": "Capítulo 6",
+      "tema": "Deberes de los presbíteros",
+      "anioInicio": 110,
+      "anioFin": 140,
+      "periodo": "subapostolica",
+      "resumen": "Los presbíteros deben ser compasivos, visitar a los enfermos, no ser precipitados en el juicio, apartarse de la avaricia — perfil práctico del oficio presbiteral en la congregación."
+    },
+    {
+      "fuente": "policarpo-filipenses",
+      "autorFuente": "Policarpo de Esmirna",
+      "seccion": "Capítulo 7 (parcial)",
+      "tema": "Perseverancia en el ayuno y la oración",
+      "anioInicio": 110,
+      "anioFin": 140,
+      "periodo": "subapostolica",
+      "resumen": "Exhorta a 'perseverar en el ayuno' y la oración como práctica congregacional continua, en el contexto de advertir contra los docetas."
+    },
+    {
+      "fuente": "bernabe",
+      "autorFuente": "Epístola de Bernabé",
+      "seccion": "Capítulo 15",
+      "tema": "El octavo día (por qué los cristianos se reúnen en domingo)",
+      "anioInicio": 70,
+      "anioFin": 135,
+      "periodo": "subapostolica",
+      "resumen": "Argumenta que el verdadero reposo sabático es escatológico, y que los cristianos guardan 'el octavo día... en el cual también Jesús resucitó de entre los muertos' — testimonio temprano de la razón teológica para reunirse en domingo en vez del sábado judío."
+    },
+    {
+      "fuente": "hermas-pastor",
+      "autorFuente": "El Pastor de Hermas",
+      "seccion": "Similitud 5 (Libro III)",
+      "tema": "El verdadero ayuno",
+      "anioInicio": 90,
+      "anioFin": 150,
+      "periodo": "subapostolica",
+      "resumen": "Parábola de la viña: redefine el 'verdadero ayuno' no como mera abstención de comida sino como guardar los mandamientos y dar a los necesitados el dinero que se habría gastado en comida ese día — reinterpretación ética-práctica del ayuno cristiano."
+    },
+    {
+      "fuente": "mathietes-diogneto",
+      "autorFuente": "Epístola a Diogneto",
+      "seccion": "Capítulo 5",
+      "tema": "'Los modales de los cristianos' (vida cotidiana en el mundo)",
+      "anioInicio": 130,
+      "anioFin": 200,
+      "periodo": "post-subapostolica",
+      "resumen": "La descripción más citada de la vida cotidiana cristiana temprana: 'no se distinguen de los demás hombres ni por su país, ni por su lengua, ni por las costumbres... habitan en sus propias patrias, pero como forasteros'. Describe matrimonio, crianza de hijos, mesa común, sin prácticas externas distintivas — la distinción es moral, no ritual visible."
+    }
+  ]
+}

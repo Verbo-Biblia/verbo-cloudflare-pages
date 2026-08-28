@@ -1,0 +1,180 @@
+{
+  "book": "EST",
+  "chapter": 10,
+  "resources": {
+    "costumbres": {},
+    "diccionario": {
+      "d-05581640e0b8218d": {
+        "fuente": {
+          "headword": "Persia",
+          "modulo": "Smith"
+        },
+        "termino": "Persia"
+      },
+      "d-203f495e778c2ede": {
+        "fuente": {
+          "headword": "Book",
+          "modulo": "Easton"
+        },
+        "termino": "Book"
+      },
+      "d-2d053c070cad9b70": {
+        "fuente": {
+          "headword": "Kings",
+          "modulo": "Smith"
+        },
+        "termino": "Kings"
+      },
+      "d-30041d9dc2b35a40": {
+        "fuente": {
+          "headword": "Tribute",
+          "modulo": "Smith"
+        },
+        "termino": "Tribute"
+      },
+      "d-31bc1a1c7116e505": {
+        "fuente": {
+          "headword": "Persia",
+          "modulo": "Easton"
+        },
+        "termino": "Persia"
+      },
+      "d-3870da11529853fd": {
+        "fuente": {
+          "headword": "Mordecai",
+          "modulo": "Smith"
+        },
+        "termino": "Mordecai"
+      },
+      "d-3c24aabf620f4118": {
+        "fuente": {
+          "headword": "King",
+          "modulo": "Easton"
+        },
+        "termino": "King"
+      },
+      "d-4bb763e0adbbab2c": {
+        "fuente": {
+          "headword": "King",
+          "modulo": "Smith"
+        },
+        "termino": "King"
+      },
+      "d-623802ba044aacb2": {
+        "fuente": {
+          "headword": "Tribute",
+          "modulo": "Easton"
+        },
+        "termino": "Tribute"
+      },
+      "d-71c0cdff0eefc6d4": {
+        "fuente": {
+          "headword": "Chronicles",
+          "modulo": "Easton"
+        },
+        "termino": "Chronicles"
+      },
+      "d-9b263197a08ddadc": {
+        "fuente": {
+          "headword": "Mordecai",
+          "modulo": "Easton"
+        },
+        "termino": "Mordecai"
+      },
+      "d-aa3e98fc1aa07c2a": {
+        "fuente": {
+          "headword": "Book",
+          "modulo": "Smith"
+        },
+        "termino": "Book"
+      },
+      "d-b19f0b174be0f53e": {
+        "fuente": {
+          "headword": "Jew",
+          "modulo": "Easton"
+        },
+        "termino": "Jew"
+      },
+      "d-ba75fe67c24885f4": {
+        "fuente": {
+          "headword": "Jew",
+          "modulo": "Smith"
+        },
+        "termino": "Jew"
+      },
+      "d-bea5af3c191fb562": {
+        "fuente": {
+          "headword": "Evening",
+          "modulo": "Easton"
+        },
+        "termino": "Evening"
+      },
+      "d-cdcb09ca694918a0": {
+        "fuente": {
+          "headword": "Media",
+          "modulo": "Easton"
+        },
+        "termino": "Media"
+      }
+    },
+    "historia": {
+      "h-f97fb2bb12b7ae97": {
+        "fuente": {
+          "libroSeccion": "EST:libro",
+          "modulo": "book-classification-ot"
+        },
+        "texto": "Reinado de Asuero, generalmente identificado con Jerjes I (486-465 a.C.), de la destitución de Vasti a la institución de Purim. Sin introducción propia de JFB en el repositorio; Poole sí la tiene.",
+        "tipo": "circunstancia"
+      }
+    }
+  },
+  "schemaVersion": 1,
+  "verses": {
+    "1": {
+      "costumbres": [],
+      "diccionario": [
+        "d-bea5af3c191fb562",
+        "d-3c24aabf620f4118",
+        "d-4bb763e0adbbab2c",
+        "d-2d053c070cad9b70",
+        "d-623802ba044aacb2",
+        "d-30041d9dc2b35a40"
+      ],
+      "historia": [
+        "h-f97fb2bb12b7ae97"
+      ]
+    },
+    "2": {
+      "costumbres": [],
+      "diccionario": [
+        "d-203f495e778c2ede",
+        "d-aa3e98fc1aa07c2a",
+        "d-71c0cdff0eefc6d4",
+        "d-3c24aabf620f4118",
+        "d-4bb763e0adbbab2c",
+        "d-2d053c070cad9b70",
+        "d-cdcb09ca694918a0",
+        "d-31bc1a1c7116e505",
+        "d-05581640e0b8218d"
+      ],
+      "historia": [
+        "h-f97fb2bb12b7ae97"
+      ]
+    },
+    "3": {
+      "costumbres": [],
+      "diccionario": [
+        "d-b19f0b174be0f53e",
+        "d-ba75fe67c24885f4",
+        "d-3c24aabf620f4118",
+        "d-4bb763e0adbbab2c",
+        "d-2d053c070cad9b70",
+        "d-9b263197a08ddadc",
+        "d-3870da11529853fd"
+      ],
+      "historia": [
+        "h-f97fb2bb12b7ae97"
+      ]
+    }
+  }
+}

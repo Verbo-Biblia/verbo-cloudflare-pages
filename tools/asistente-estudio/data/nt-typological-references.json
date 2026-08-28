@@ -1,0 +1,444 @@
+{
+  "_metadata": {
+    "descripcion": "Pasajes del NT donde el texto hace referencia explícita a una persona, evento o época del AT como tipo/figura/ejemplo histórico (no simples citas de Escritura, ya cubiertas por referencias cruzadas TSK). Cruza con book-classification-ot.json cuando el evento cae dentro de un libro/sección ya clasificado.",
+    "cobertura": {
+      "HEB": "exhaustiva",
+      "JUD": "exhaustiva",
+      "epistolas_paulinas": "catálogo amplio, no exhaustivo verso por verso — ver nota de volumen en el informe",
+      "evangelios_hechos_apocalipsis": "solo casos obvios encontrados de paso, no es prioridad de este paso"
+    },
+    "fase": "Fase 0, Parte C — borrador para revisión de Juan, no publicación"
+  },
+  "HEB": [
+    {
+      "pasajeNT": "Heb 3:1-6",
+      "referenciaAT": "Moisés como siervo fiel en la casa de Dios (Nm 12:7), contrastado con Cristo como Hijo",
+      "anioInicio": -1446,
+      "anioFin": -1406,
+      "fuenteEpocaAT": "cruza con EXO/NUM (narrativa, fecha temprana del éxodo)",
+      "nota": "Tipología de oficio: Moisés como administrador vs. Cristo como dueño de la casa."
+    },
+    {
+      "pasajeNT": "Heb 3:7-19; 4:1-11",
+      "referenciaAT": "la generación del desierto que se rebeló y no entró al reposo (Éx 17; Nm 14; 20; cita Sal 95)",
+      "anioInicio": -1446,
+      "anioFin": -1406,
+      "fuenteEpocaAT": "cruza con EXO/NUM",
+      "nota": "Advertencia contra la incredulidad, usando la generación que murió en el desierto como ejemplo negativo."
+    },
+    {
+      "pasajeNT": "Heb 4:8",
+      "referenciaAT": "Josué y la conquista de Canaán (¿dio Josué el reposo definitivo?)",
+      "anioInicio": -1406,
+      "anioFin": -1380,
+      "fuenteEpocaAT": "cruza con JOS",
+      "nota": "Argumento de que el 'reposo' de Josué fue solo parcial/tipológico, apuntando a un reposo mayor."
+    },
+    {
+      "pasajeNT": "Heb 5:6, 10; 6:20; 7:1-10",
+      "referenciaAT": "Melquisedec, rey de Salem, que bendijo a Abraham y recibió sus diezmos (Gn 14:18-20)",
+      "anioInicio": -2091,
+      "anioFin": -1805,
+      "fuenteEpocaAT": "cruza con GEN, sección 'Gn 12-50'",
+      "nota": "El caso de tipología más denso del libro: sacerdocio de Melquisedec (sin genealogía registrada) como figura del sacerdocio eterno de Cristo, superior al levítico."
+    },
+    {
+      "pasajeNT": "Heb 6:13-15",
+      "referenciaAT": "el juramento de Dios a Abraham (Gn 22:16-17, tras el sacrificio de Isaac)",
+      "anioInicio": -2091,
+      "anioFin": -1805,
+      "fuenteEpocaAT": "cruza con GEN, sección 'Gn 12-50'",
+      "nota": "Ejemplo de la fiabilidad de la promesa divina."
+    },
+    {
+      "pasajeNT": "Heb 7:11-28",
+      "referenciaAT": "el sacerdocio aarónico/levítico, instituido en el Sinaí (Éx 28-29; Lv 8-9)",
+      "anioInicio": -1446,
+      "anioFin": -1446,
+      "fuenteEpocaAT": "cruza con EXO/LEV",
+      "nota": "Contraste sistemático entre el sacerdocio levítico (hereditario, mortal, repetido) y el sacerdocio de Cristo 'según el orden de Melquisedec'."
+    },
+    {
+      "pasajeNT": "Heb 8:1-13",
+      "referenciaAT": "el tabernáculo terrenal (Éx 25-40) y la profecía del nuevo pacto (Jr 31:31-34)",
+      "anioInicio": -1446,
+      "anioFin": -1446,
+      "fuenteEpocaAT": "tabernáculo cruza con EXO; nuevo pacto cruza con JER (-627 a -570)",
+      "nota": "Doble referencia: el tabernáculo como 'sombra' del santuario celestial, y Jeremías como testigo de que el primer pacto sería reemplazado."
+    },
+    {
+      "pasajeNT": "Heb 9:1-10",
+      "referenciaAT": "mobiliario del tabernáculo — candelabro, mesa de los panes, arca del pacto, propiciatorio, querubines (Éx 25-27; 37)",
+      "anioInicio": -1446,
+      "anioFin": -1446,
+      "fuenteEpocaAT": "cruza con EXO",
+      "nota": "Descripción detallada usada para argumentar las limitaciones del sistema antiguo."
+    },
+    {
+      "pasajeNT": "Heb 9:11-28",
+      "referenciaAT": "el Día de Expiación (Yom Kipur), el sumo sacerdote entrando al Lugar Santísimo con sangre (Lv 16)",
+      "anioInicio": -1446,
+      "anioFin": -1446,
+      "fuenteEpocaAT": "cruza con LEV",
+      "nota": "Núcleo de la argumentación central de Hebreos: el sacrificio anual repetido vs. el sacrificio único de Cristo."
+    },
+    {
+      "pasajeNT": "Heb 9:15-22",
+      "referenciaAT": "la inauguración del primer pacto, Moisés rociando sangre sobre el libro y el pueblo (Éx 24:3-8)",
+      "anioInicio": -1446,
+      "anioFin": -1446,
+      "fuenteEpocaAT": "cruza con EXO",
+      "nota": ""
+    },
+    {
+      "pasajeNT": "Heb 10:1-18",
+      "referenciaAT": "los sacrificios repetidos bajo la ley (referencia general al sistema sacrificial mosaico, no a un evento puntual)",
+      "anioInicio": -1446,
+      "anioFin": -400,
+      "fuenteEpocaAT": "práctica continua a lo largo de todo el AT, no un solo evento fechable",
+      "nota": "A diferencia de las demás entradas, esto no es un evento puntual sino una práctica sostenida durante siglos — el rango cubre toda la vigencia del sistema levítico."
+    },
+    {
+      "pasajeNT": "Heb 11:4",
+      "referenciaAT": "Abel y su ofrenda (Gn 4:3-5)",
+      "anioInicio": null,
+      "anioFin": null,
+      "fuenteEpocaAT": "cruza con GEN, sección 'Gn 1-11' (sin fecha asignable)",
+      "nota": ""
+    },
+    {
+      "pasajeNT": "Heb 11:5",
+      "referenciaAT": "Enoc, que 'fue traspuesto para no ver muerte' (Gn 5:24)",
+      "anioInicio": null,
+      "anioFin": null,
+      "fuenteEpocaAT": "cruza con GEN, sección 'Gn 1-11' (sin fecha asignable)",
+      "nota": ""
+    },
+    {
+      "pasajeNT": "Heb 11:7",
+      "referenciaAT": "Noé y el diluvio (Gn 6-9)",
+      "anioInicio": null,
+      "anioFin": null,
+      "fuenteEpocaAT": "cruza con GEN, sección 'Gn 1-11' (sin fecha asignable)",
+      "nota": ""
+    },
+    {
+      "pasajeNT": "Heb 11:8-22",
+      "referenciaAT": "Abraham, Sara, Isaac, Jacob y José (todo el ciclo patriarcal, incluyendo la bendición de Isaac a Jacob y Esaú, la bendición de Jacob a los hijos de José, y las instrucciones de José sobre sus huesos)",
+      "anioInicio": -2091,
+      "anioFin": -1805,
+      "fuenteEpocaAT": "cruza con GEN, sección 'Gn 12-50'",
+      "nota": "Bloque más largo del capítulo, cubre todo el ciclo patriarcal en un solo barrido."
+    },
+    {
+      "pasajeNT": "Heb 11:23-28",
+      "referenciaAT": "Moisés, desde su nacimiento hasta la primera Pascua e institución del éxodo",
+      "anioInicio": -1526,
+      "anioFin": -1446,
+      "fuenteEpocaAT": "cruza con EXO",
+      "nota": ""
+    },
+    {
+      "pasajeNT": "Heb 11:29",
+      "referenciaAT": "el paso del Mar Rojo (Éx 14)",
+      "anioInicio": -1446,
+      "anioFin": -1446,
+      "fuenteEpocaAT": "cruza con EXO",
+      "nota": ""
+    },
+    {
+      "pasajeNT": "Heb 11:30-31",
+      "referenciaAT": "la caída de Jericó y Rahab (Jos 2; 6)",
+      "anioInicio": -1406,
+      "anioFin": -1406,
+      "fuenteEpocaAT": "cruza con JOS",
+      "nota": ""
+    },
+    {
+      "pasajeNT": "Heb 11:32-38",
+      "referenciaAT": "Gedeón, Barac, Sansón, Jefté, David, Samuel 'y los profetas' — barrido general, sin detalle",
+      "anioInicio": -1380,
+      "anioFin": -400,
+      "fuenteEpocaAT": "cruza con JDG, 1-2SA, y en general los libros proféticos",
+      "nota": "Verso resumen que abarca ~1000 años en una sola frase; no conviene anclar una sola época — es deliberadamente panorámico."
+    },
+    {
+      "pasajeNT": "Heb 12:16-17",
+      "referenciaAT": "Esaú vendiendo su primogenitura (Gn 25:29-34)",
+      "anioInicio": -2091,
+      "anioFin": -1805,
+      "fuenteEpocaAT": "cruza con GEN, sección 'Gn 12-50'",
+      "nota": ""
+    },
+    {
+      "pasajeNT": "Heb 12:18-21",
+      "referenciaAT": "la teofanía del Sinaí (Éx 19-20)",
+      "anioInicio": -1446,
+      "anioFin": -1446,
+      "fuenteEpocaAT": "cruza con EXO",
+      "nota": ""
+    },
+    {
+      "pasajeNT": "Heb 13:2",
+      "referenciaAT": "'algunos hospedaron ángeles sin saberlo' — alusión a Abraham (Gn 18) y probablemente Lot (Gn 19)",
+      "anioInicio": -2091,
+      "anioFin": -1805,
+      "fuenteEpocaAT": "cruza con GEN, sección 'Gn 12-50'",
+      "nota": ""
+    }
+  ],
+  "JUD": [
+    {
+      "pasajeNT": "Jud 5",
+      "referenciaAT": "el éxodo y la destrucción de los que no creyeron en el desierto",
+      "anioInicio": -1446,
+      "anioFin": -1406,
+      "fuenteEpocaAT": "cruza con EXO/NUM",
+      "nota": ""
+    },
+    {
+      "pasajeNT": "Jud 6",
+      "referenciaAT": "ángeles que no guardaron su dignidad (posible alusión a Gn 6:1-4, 'hijos de Dios')",
+      "anioInicio": null,
+      "anioFin": null,
+      "fuenteEpocaAT": "si es Gn 6, cruza con GEN sección 'Gn 1-11' (sin fecha asignable); evento de naturaleza celestial/pre-histórica",
+      "nota": "Referencia oscura; la identificación con Gn 6 no es unánime entre comentaristas."
+    },
+    {
+      "pasajeNT": "Jud 7",
+      "referenciaAT": "Sodoma y Gomorra (Gn 19)",
+      "anioInicio": -2091,
+      "anioFin": -1805,
+      "fuenteEpocaAT": "cruza con GEN, sección 'Gn 12-50'",
+      "nota": ""
+    },
+    {
+      "pasajeNT": "Jud 9",
+      "referenciaAT": "el arcángel Miguel disputando con el diablo por el cuerpo de Moisés",
+      "anioInicio": -1406,
+      "anioFin": -1406,
+      "fuenteEpocaAT": "ligado a la muerte de Moisés (Dt 34), cruza con DEU",
+      "nota": "Fuente extrabíblica (tradición judía, no en el AT canónico); el evento referido (muerte de Moisés) sí está en Deuteronomio."
+    },
+    {
+      "pasajeNT": "Jud 11a",
+      "referenciaAT": "Caín (Gn 4)",
+      "anioInicio": null,
+      "anioFin": null,
+      "fuenteEpocaAT": "cruza con GEN, sección 'Gn 1-11' (sin fecha asignable)",
+      "nota": ""
+    },
+    {
+      "pasajeNT": "Jud 11b",
+      "referenciaAT": "Balaam (Nm 22-24)",
+      "anioInicio": -1406,
+      "anioFin": -1406,
+      "fuenteEpocaAT": "cruza con NUM",
+      "nota": ""
+    },
+    {
+      "pasajeNT": "Jud 11c",
+      "referenciaAT": "Coré y su rebelión contra Moisés/Aarón (Nm 16)",
+      "anioInicio": -1440,
+      "anioFin": -1440,
+      "fuenteEpocaAT": "cruza con NUM",
+      "nota": ""
+    },
+    {
+      "pasajeNT": "Jud 14-15",
+      "referenciaAT": "cita a 'Enoc, séptimo desde Adán', profetizando el juicio (basado en 1 Enoc, no canónico)",
+      "anioInicio": null,
+      "anioFin": null,
+      "fuenteEpocaAT": "cruza con GEN, sección 'Gn 1-11' (sin fecha asignable)",
+      "nota": "Única cita directa del NT a un libro extracanónico atribuido a un personaje del AT."
+    }
+  ],
+  "ROM": [
+    {
+      "pasajeNT": "Ro 4",
+      "referenciaAT": "Abraham, justificado por la fe (Gn 15:6)",
+      "anioInicio": -2091,
+      "anioFin": -1805,
+      "fuenteEpocaAT": "cruza con GEN, sección 'Gn 12-50'",
+      "nota": ""
+    },
+    {
+      "pasajeNT": "Ro 5:12-21",
+      "referenciaAT": "Adán, comparación Adán/Cristo (entrada del pecado y la muerte por un hombre)",
+      "anioInicio": null,
+      "anioFin": null,
+      "fuenteEpocaAT": "cruza con GEN, sección 'Gn 1-11' (sin fecha asignable)",
+      "nota": "Pieza teológica central de la carta; tipología explícita ('Adán, figura del que había de venir')."
+    },
+    {
+      "pasajeNT": "Ro 9:6-13",
+      "referenciaAT": "Isaac, Jacob y Esaú — elección soberana (Gn 21; 25)",
+      "anioInicio": -2091,
+      "anioFin": -1805,
+      "fuenteEpocaAT": "cruza con GEN, sección 'Gn 12-50'",
+      "nota": ""
+    },
+    {
+      "pasajeNT": "Ro 9:17",
+      "referenciaAT": "el faraón del éxodo, endurecido por Dios (Éx 9:16)",
+      "anioInicio": -1446,
+      "anioFin": -1446,
+      "fuenteEpocaAT": "cruza con EXO",
+      "nota": ""
+    },
+    {
+      "pasajeNT": "Ro 11:2-4",
+      "referenciaAT": "Elías y los 7,000 que no doblaron rodilla ante Baal (1 Re 19:10-18)",
+      "anioInicio": -874,
+      "anioFin": -853,
+      "fuenteEpocaAT": "cruza con 1KI (-970 a -853), dentro del reinado de Acab",
+      "nota": ""
+    }
+  ],
+  "1CO": [
+    {
+      "pasajeNT": "1 Co 10:1-11",
+      "referenciaAT": "la generación del desierto: la nube, el paso del mar, el maná, la roca, la idolatría del becerro de oro, la inmoralidad con Baal-peor, la serpiente ardiente, la queja (Éx 13-17; 32; Nm 21; 25)",
+      "anioInicio": -1446,
+      "anioFin": -1406,
+      "fuenteEpocaAT": "cruza con EXO/NUM",
+      "nota": "Catálogo denso de tipos del éxodo usados explícitamente como advertencia ('estas cosas les acontecieron como ejemplo')."
+    },
+    {
+      "pasajeNT": "1 Co 15:21-22, 45-49",
+      "referenciaAT": "Adán, comparación con Cristo ('el postrer Adán')",
+      "anioInicio": null,
+      "anioFin": null,
+      "fuenteEpocaAT": "cruza con GEN, sección 'Gn 1-11' (sin fecha asignable)",
+      "nota": ""
+    }
+  ],
+  "2CO": [
+    {
+      "pasajeNT": "2 Co 3:7-18",
+      "referenciaAT": "Moisés y el velo sobre su rostro resplandeciente al bajar del Sinaí (Éx 34:29-35)",
+      "anioInicio": -1446,
+      "anioFin": -1446,
+      "fuenteEpocaAT": "cruza con EXO",
+      "nota": "Tipología del velo: gloria pasajera del antiguo pacto vs. gloria permanente del nuevo."
+    },
+    {
+      "pasajeNT": "2 Co 11:3",
+      "referenciaAT": "la serpiente que engañó a Eva (Gn 3)",
+      "anioInicio": null,
+      "anioFin": null,
+      "fuenteEpocaAT": "cruza con GEN, sección 'Gn 1-11' (sin fecha asignable)",
+      "nota": ""
+    }
+  ],
+  "GAL": [
+    {
+      "pasajeNT": "Gá 3:6-9, 16-18",
+      "referenciaAT": "Abraham, la promesa/pacto y 'la simiente' (Gn 12; 15; 22)",
+      "anioInicio": -2091,
+      "anioFin": -1805,
+      "fuenteEpocaAT": "cruza con GEN, sección 'Gn 12-50'",
+      "nota": ""
+    },
+    {
+      "pasajeNT": "Gá 4:21-31",
+      "referenciaAT": "Agar y Sara, alegoría de los dos pactos — el hijo de la esclava vs. el de la libre (Gn 16; 21)",
+      "anioInicio": -2080,
+      "anioFin": -2066,
+      "fuenteEpocaAT": "cruza con GEN, sección 'Gn 12-50'",
+      "nota": "Nótese que Gálatas ya tiene 'secciones' propias por su narrativa autobiográfica en caps. 1-2 (Fase 0 Parte B); esta referencia tipológica de Agar/Sara está en la sección doctrinal (Gá 3-6), es un caso distinto."
+    }
+  ],
+  "1TI": [
+    {
+      "pasajeNT": "1 Ti 2:13-14",
+      "referenciaAT": "Adán y Eva, formados primero, engañada Eva (Gn 2-3)",
+      "anioInicio": null,
+      "anioFin": null,
+      "fuenteEpocaAT": "cruza con GEN, sección 'Gn 1-11' (sin fecha asignable)",
+      "nota": ""
+    }
+  ],
+  "2TI": [
+    {
+      "pasajeNT": "2 Ti 3:8",
+      "referenciaAT": "Janes y Jambres, los magos egipcios que se opusieron a Moisés (nombres no bíblicos, basados en tradición sobre Éx 7:11)",
+      "anioInicio": -1446,
+      "anioFin": -1446,
+      "fuenteEpocaAT": "cruza con EXO",
+      "nota": "Nombres tomados de tradición judía extrabíblica, no aparecen en el texto de Éxodo."
+    }
+  ],
+  "MAT_LUK": [
+    {
+      "pasajeNT": "Mt 12:39-41; Lc 11:29-32",
+      "referenciaAT": "Jonás y los ninivitas (Jon 3) y la reina de Sabá (1 Re 10)",
+      "anioInicio": -970,
+      "anioFin": -750,
+      "fuenteEpocaAT": "Jonás cruza con JON (-780 a -750); reina de Sabá cruza con 1KI, específicamente el reinado de Salomón (~-970 a -930)",
+      "nota": "Doble tipología explícita, presentada por Jesús mismo como 'más que Jonás/Salomón está aquí' — dos épocas distintas del AT en el mismo pasaje."
+    },
+    {
+      "pasajeNT": "Mt 24:37-39; Lc 17:26-27",
+      "referenciaAT": "los días de Noé, el diluvio (Gn 6-9)",
+      "anioInicio": null,
+      "anioFin": null,
+      "fuenteEpocaAT": "cruza con GEN, sección 'Gn 1-11' (sin fecha asignable)",
+      "nota": "Usado como tipo de la venida repentina del día del Señor."
+    }
+  ],
+  "JHN": [
+    {
+      "pasajeNT": "Jn 3:14",
+      "referenciaAT": "la serpiente de bronce levantada por Moisés en el desierto (Nm 21:4-9)",
+      "anioInicio": -1406,
+      "anioFin": -1406,
+      "fuenteEpocaAT": "cruza con NUM",
+      "nota": "Tipología explícita señalada por Jesús mismo como figura de la crucifixión."
+    },
+    {
+      "pasajeNT": "Jn 6:31-33, 49",
+      "referenciaAT": "el maná en el desierto (Éx 16)",
+      "anioInicio": -1446,
+      "anioFin": -1406,
+      "fuenteEpocaAT": "cruza con EXO/NUM",
+      "nota": ""
+    }
+  ],
+  "ACT": [
+    {
+      "pasajeNT": "Hch 7 (discurso de Esteban)",
+      "referenciaAT": "repaso extenso de la historia de Israel: Abraham, José, Moisés, el tabernáculo",
+      "anioInicio": null,
+      "anioFin": null,
+      "fuenteEpocaAT": "abarca GEN (sección patriarcal) a EXO",
+      "nota": "No desglosado verso por verso: es un resumen narrativo histórico completo, no una serie de referencias tipológicas puntuales. Hechos ya tiene su propia época resuelta (narrativa, 30-62 d.C.) como libro; este discurso cae dentro de esa época de composición/narración del libro, aunque su CONTENIDO repasa siglos de historia del AT."
+    }
+  ],
+  "REV": [
+    {
+      "pasajeNT": "Ap 2:14",
+      "referenciaAT": "Balaam (Nm 22-25), en la carta a la iglesia de Pérgamo",
+      "anioInicio": -1406,
+      "anioFin": -1406,
+      "fuenteEpocaAT": "cruza con NUM",
+      "nota": ""
+    },
+    {
+      "pasajeNT": "Ap 2:20",
+      "referenciaAT": "'Jezabel' como nombre tipológico para una falsa profetisa en Tiatira, alusión a la reina Jezabel de Israel (1 Re 16-21)",
+      "anioInicio": -874,
+      "anioFin": -853,
+      "fuenteEpocaAT": "cruza con 1KI, reinado de Acab",
+      "nota": ""
+    },
+    {
+      "pasajeNT": "Ap 11:8",
+      "referenciaAT": "'la gran ciudad que en sentido espiritual se llama Sodoma y Egipto' — doble referencia a Sodoma (Gn 19) y al éxodo de Egipto",
+      "anioInicio": -2091,
+      "anioFin": -1446,
+      "fuenteEpocaAT": "Sodoma cruza con GEN sección 'Gn 12-50' (-2091 a -1805); Egipto/éxodo cruza con EXO (-1446)",
+      "nota": "Referencia doble y simbólica, no histórica en sentido literal — se da como rango amplio cubriendo ambos eventos."
+    }
+  ]
+}

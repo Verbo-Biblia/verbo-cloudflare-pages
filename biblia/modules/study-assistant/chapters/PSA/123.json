@@ -1,0 +1,129 @@
+{
+  "book": "PSA",
+  "chapter": 123,
+  "resources": {
+    "costumbres": {
+      "c-2b68a3682fc181a1": {
+        "fuente": {
+          "entradaId": "freeman-451",
+          "modulo": "freeman-manners-customs"
+        },
+        "texto": "Servants in the East are not always spoken to when orders are given by the master or mistress. The wishes of the latter are made known by signs; hence it becomes necessary for the servants to watch the hand of the master to ascertain when they are wanted and what is required of t…"
+      }
+    },
+    "diccionario": {
+      "d-048a0627e8722b42": {
+        "fuente": {
+          "headword": "Lord",
+          "modulo": "Smith"
+        },
+        "termino": "Lord"
+      },
+      "d-051fa5d17f9e389d": {
+        "fuente": {
+          "headword": "Servant",
+          "modulo": "Smith"
+        },
+        "termino": "Servant"
+      },
+      "d-22ab3a42bba95ae9": {
+        "fuente": {
+          "headword": "Lord",
+          "modulo": "Easton"
+        },
+        "termino": "Lord"
+      },
+      "d-2324a02b336674f7": {
+        "fuente": {
+          "headword": "Heaven",
+          "modulo": "Smith"
+        },
+        "termino": "Heaven"
+      },
+      "d-4b3b07ca0fbda540": {
+        "fuente": {
+          "headword": "God",
+          "modulo": "Easton"
+        },
+        "termino": "God"
+      },
+      "d-660304b20884c9b9": {
+        "fuente": {
+          "headword": "Hand",
+          "modulo": "Easton"
+        },
+        "termino": "Hand"
+      },
+      "d-873d3564c831acad": {
+        "fuente": {
+          "headword": "Songs",
+          "modulo": "Easton"
+        },
+        "termino": "Songs"
+      },
+      "d-891cf6cf25fdbdc6": {
+        "fuente": {
+          "headword": "God",
+          "modulo": "Smith"
+        },
+        "termino": "God"
+      },
+      "d-ab09cfe9d8145599": {
+        "fuente": {
+          "headword": "Heaven",
+          "modulo": "Easton"
+        },
+        "termino": "Heaven"
+      },
+      "d-f828d5599bc1b3cd": {
+        "fuente": {
+          "headword": "Mercy",
+          "modulo": "Easton"
+        },
+        "termino": "Mercy"
+      }
+    },
+    "historia": {}
+  },
+  "schemaVersion": 1,
+  "verses": {
+    "1": {
+      "costumbres": [],
+      "diccionario": [
+        "d-ab09cfe9d8145599",
+        "d-2324a02b336674f7",
+        "d-873d3564c831acad"
+      ],
+      "historia": []
+    },
+    "2": {
+      "costumbres": [
+        "c-2b68a3682fc181a1"
+      ],
+      "diccionario": [
+        "d-4b3b07ca0fbda540",
+        "d-891cf6cf25fdbdc6",
+        "d-660304b20884c9b9",
+        "d-22ab3a42bba95ae9",
+        "d-048a0627e8722b42",
+        "d-f828d5599bc1b3cd",
+        "d-051fa5d17f9e389d"
+      ],
+      "historia": []
+    },
+    "3": {
+      "costumbres": [],
+      "diccionario": [
+        "d-22ab3a42bba95ae9",
+        "d-048a0627e8722b42",
+        "d-f828d5599bc1b3cd"
+      ],
+      "historia": []
+    },
+    "4": {
+      "costumbres": [],
+      "diccionario": [],
+      "historia": []
+    }
+  }
+}

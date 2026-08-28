@@ -322,8 +322,7 @@ body {
   .reading-pane__inner { max-width: 720px; }
 }
 
-/* Columna permanente del Asistente de estudio. Su contenido real se conecta
-   en una fase posterior; por ahora solo materializa la geometría desktop. */
+/* Margen editorial permanente del Asistente de estudio (solo desktop). */
 .study-assistant {
   width: 300px;
   flex: 0 0 300px;
@@ -331,6 +330,8 @@ body {
   overflow-y: auto;
   border-left: 1px solid var(--rule);
   background: var(--paper);
+  scrollbar-width: thin;
+  scrollbar-color: var(--rule-strong) transparent;
 }
 
 .study-assistant__placeholder {
@@ -341,6 +342,226 @@ body {
   text-transform: uppercase;
   color: var(--sepia);
   opacity: 0.65;
+}
+
+.study-assistant__header {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  padding: 17px 19px 14px;
+  border-bottom: 1px solid var(--rule-strong);
+  background: color-mix(in srgb, var(--paper) 94%, var(--paper-raised));
+}
+
+.study-assistant__kicker {
+  color: var(--wine);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 1.35px;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.study-assistant__reference {
+  margin-top: 5px;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.study-assistant__content { min-height: 120px; }
+
+.study-assistant__state {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  padding: 25px 20px;
+  color: var(--sepia);
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.55;
+}
+
+.study-assistant__state p { margin: 0; }
+.study-assistant__state--error { color: var(--wine); font-style: normal; }
+
+.study-assistant__loading-mark {
+  width: 5px;
+  height: 5px;
+  flex: 0 0 5px;
+  border-radius: 50%;
+  background: var(--gold-glow);
+  animation: study-assistant-pulse 1s ease-in-out infinite alternate;
+}
+
+@keyframes study-assistant-pulse {
+  from { opacity: .35; }
+  to { opacity: 1; }
+}
+
+.study-assistant__section {
+  padding: 0 18px 20px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.study-assistant__heading {
+  margin: 0;
+  font: inherit;
+}
+
+.study-assistant__section-toggle {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 8px;
+  padding: 18px 0 13px;
+  border: 0;
+  background: transparent;
+  color: var(--wine);
+  cursor: pointer;
+  text-align: left;
+}
+
+.study-assistant__section-title {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .1px;
+}
+
+.study-assistant__count {
+  min-width: 19px;
+  color: var(--sepia);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  text-align: right;
+}
+
+.study-assistant__chevron {
+  width: 12px;
+  color: var(--sepia);
+  font-size: 12px;
+  line-height: 1;
+  text-align: center;
+}
+
+.study-assistant__section-content[hidden] { display: none; }
+
+.study-assistant__section-toggle:hover .study-assistant__section-title,
+.study-assistant__section-toggle:focus-visible .study-assistant__section-title {
+  color: var(--wine-soft);
+}
+
+.study-assistant__term-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.study-assistant__term {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  padding: 5px 0;
+}
+
+.study-assistant__term + .study-assistant__term {
+  border-top: 1px dotted color-mix(in srgb, var(--rule-strong) 58%, transparent);
+}
+
+.study-assistant__term-name {
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.study-assistant__term-source {
+  flex: 0 0 auto;
+  color: var(--sepia);
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: .2px;
+}
+
+.study-assistant__entry + .study-assistant__entry {
+  margin-top: 16px;
+  padding-top: 15px;
+  border-top: 1px dotted var(--rule-strong);
+}
+
+.study-assistant__entry-source {
+  margin-bottom: 6px;
+  color: var(--wine);
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  font-weight: 500;
+  letter-spacing: .55px;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+.study-assistant__type {
+  margin: -2px 0 5px;
+  color: var(--sepia);
+  font-size: 10px;
+  font-style: italic;
+}
+
+.study-assistant__text {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  color: var(--ink-soft);
+  font-size: 12.5px;
+  line-height: 1.52;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.study-assistant__text--costumbres { -webkit-line-clamp: 4; }
+
+.study-assistant__text--expanded {
+  display: block;
+  overflow: visible;
+  -webkit-line-clamp: initial;
+}
+
+.study-assistant__text-toggle,
+.study-assistant__more {
+  border: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--wine) 42%, transparent);
+  background: transparent;
+  color: var(--wine);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 11px;
+  line-height: 1.35;
+  padding: 0 0 1px;
+}
+
+.study-assistant__text-toggle { margin-top: 6px; }
+
+.study-assistant__more {
+  margin-top: 13px;
+  font-style: italic;
+}
+
+.study-assistant__text-toggle:hover,
+.study-assistant__more:hover { color: var(--wine-soft); }
+
+.study-assistant__text-toggle[hidden] { display: none; }
+
+.study-assistant__section-toggle:focus-visible,
+.study-assistant__text-toggle:focus-visible,
+.study-assistant__more:focus-visible {
+  outline: 2px solid var(--wine);
+  outline-offset: 3px;
 }
 
 body.sermon-mode .study-assistant {

@@ -1,0 +1,790 @@
+{
+  "_metadata": {
+    "descripcion": "PROPUESTA de curación de relevancia (alta/baja) para las 78 entradas únicas de Eusebio que se activan al cruzar contra los 27 libros del NT (Fase 1, Parte C). No es un filtro aplicado — es para revisión de Juan.",
+    "totalEntradas": 78,
+    "totalAlta": 36,
+    "totalBaja": 42
+  },
+  "entradas": [
+    {
+      "eusebioId": "eusebio-he-l1-c1",
+      "libroSeccion": "eusebio-he-l1-c1",
+      "titulo": "Church History, Book I, Chapter I — The Plan of the Work.",
+      "periodo": "Orígenes y persona de Cristo",
+      "anioInicio": 1,
+      "anioFin": 33,
+      "relevancia": "baja",
+      "justificacion": "Es el plan metodológico de Eusebio para su propia obra, no aporta trasfondo histórico del período."
+    },
+    {
+      "eusebioId": "eusebio-he-l1-c10",
+      "libroSeccion": "eusebio-he-l1-c10",
+      "titulo": "Church History, Book I, Chapter X — The High Priests of the Jews under whom Christ taught.",
+      "periodo": "Orígenes y persona de Cristo",
+      "anioInicio": 1,
+      "anioFin": 33,
+      "relevancia": "alta",
+      "justificacion": "Identifica a los sumos sacerdotes bajo los que Cristo enseñó (Anás, Caifás) — trasfondo directo de los Evangelios y Hechos 4."
+    },
+    {
+      "eusebioId": "eusebio-he-l1-c11",
+      "libroSeccion": "eusebio-he-l1-c11",
+      "titulo": "Church History, Book I, Chapter XI — Testimonies in Regard to John the Baptist and Christ.",
+      "periodo": "Orígenes y persona de Cristo",
+      "anioInicio": 1,
+      "anioFin": 33,
+      "relevancia": "alta",
+      "justificacion": "Reúne testimonios extrabíblicos (incl. Josefo) sobre Juan el Bautista y Cristo — corroboración histórica puntual, útil para los relatos de los Evangelios."
+    },
+    {
+      "eusebioId": "eusebio-he-l1-c12",
+      "libroSeccion": "eusebio-he-l1-c12",
+      "titulo": "Church History, Book I, Chapter XII — The Disciples of our Saviour.",
+      "periodo": "Orígenes y persona de Cristo",
+      "anioInicio": 1,
+      "anioFin": 33,
+      "relevancia": "baja",
+      "justificacion": "Listado incidental de discípulos, sin trasfondo cultural o político nuevo."
+    },
+    {
+      "eusebioId": "eusebio-he-l1-c13",
+      "libroSeccion": "eusebio-he-l1-c13",
+      "titulo": "Church History, Book I, Chapter XIII — Narrative concerning the Prince of the Edessenes.",
+      "periodo": "Orígenes y persona de Cristo",
+      "anioInicio": 1,
+      "anioFin": 33,
+      "relevancia": "baja",
+      "justificacion": "La leyenda del rey Abgaro de Edesa es una tradición extracanónica tangencial, no ilumina un pasaje del NT en concreto."
+    },
+    {
+      "eusebioId": "eusebio-he-l1-c2",
+      "libroSeccion": "eusebio-he-l1-c2",
+      "titulo": "Church History, Book I, Chapter II — Summary View of the Pre-existence and Divinity of Our Saviour and Lord Jesus Christ.",
+      "periodo": "Orígenes y persona de Cristo",
+      "anioInicio": 1,
+      "anioFin": 33,
+      "relevancia": "baja",
+      "justificacion": "Tratado teológico sobre la preexistencia/divinidad de Cristo, no trasfondo histórico-cultural puntual."
+    },
+    {
+      "eusebioId": "eusebio-he-l1-c3",
+      "libroSeccion": "eusebio-he-l1-c3",
+      "titulo": "Church History, Book I, Chapter III — The Name Jesus and also the Name Christ were known from the Beginning, and were honored by the Inspired Prophets.",
+      "periodo": "Orígenes y persona de Cristo",
+      "anioInicio": 1,
+      "anioFin": 33,
+      "relevancia": "baja",
+      "justificacion": "Argumento apologético sobre los nombres 'Jesús'/'Cristo', no dato histórico nuevo."
+    },
+    {
+      "eusebioId": "eusebio-he-l1-c4",
+      "libroSeccion": "eusebio-he-l1-c4",
+      "titulo": "Church History, Book I, Chapter IV — The Religion Proclaimed by Him to All Nations Was Neither New Nor Strange.",
+      "periodo": "Orígenes y persona de Cristo",
+      "anioInicio": 1,
+      "anioFin": 33,
+      "relevancia": "baja",
+      "justificacion": "Argumento apologético general ('la religión no era nueva'), sin dato puntual."
+    },
+    {
+      "eusebioId": "eusebio-he-l1-c5",
+      "libroSeccion": "eusebio-he-l1-c5",
+      "titulo": "Church History, Book I, Chapter V — The Time of his Appearance among Men.",
+      "periodo": "Orígenes y persona de Cristo",
+      "anioInicio": 1,
+      "anioFin": 33,
+      "relevancia": "alta",
+      "justificacion": "Ubica cronológicamente el nacimiento de Cristo frente al censo romano — trasfondo político-administrativo directo de Lc 2."
+    },
+    {
+      "eusebioId": "eusebio-he-l1-c6",
+      "libroSeccion": "eusebio-he-l1-c6",
+      "titulo": "Church History, Book I, Chapter VI — About the Time of Christ, in accordance with Prophecy, the Rulers who had governed the Jewish Nation in Regular Succession from the Days of Antiquity came to an End, and Herod, the First Foreigner, Became King.",
+      "periodo": "Orígenes y persona de Cristo",
+      "anioInicio": 1,
+      "anioFin": 33,
+      "relevancia": "alta",
+      "justificacion": "Explica el fin de la sucesión de gobernantes judíos nativos y la llegada de Herodes como el 'primer extranjero' rey — clave para leer las genealogías/profecías mesiánicas de Mt 1-2 y el contexto político de los Evangelios."
+    },
+    {
+      "eusebioId": "eusebio-he-l1-c7",
+      "libroSeccion": "eusebio-he-l1-c7",
+      "titulo": "Church History, Book I, Chapter VII — The Alleged Discrepancy in the Gospels in regard to the Genealogy of Christ.",
+      "periodo": "Orígenes y persona de Cristo",
+      "anioInicio": 1,
+      "anioFin": 33,
+      "relevancia": "alta",
+      "justificacion": "Aborda directamente la aparente discrepancia entre las genealogías de Mateo y Lucas — trasfondo interpretativo puntual y muy citado."
+    },
+    {
+      "eusebioId": "eusebio-he-l1-c8",
+      "libroSeccion": "eusebio-he-l1-c8",
+      "titulo": "Church History, Book I, Chapter VIII — The Cruelty of Herod toward the Infants, and the Manner of his Death.",
+      "periodo": "Orígenes y persona de Cristo",
+      "anioInicio": 1,
+      "anioFin": 33,
+      "relevancia": "alta",
+      "justificacion": "Detalla la crueldad de Herodes y las circunstancias de su muerte — ilumina directamente Mt 2 (matanza de los inocentes, regreso de Egipto)."
+    },
+    {
+      "eusebioId": "eusebio-he-l1-c9",
+      "libroSeccion": "eusebio-he-l1-c9",
+      "titulo": "Church History, Book I, Chapter IX — The Times of Pilate.",
+      "periodo": "Orígenes y persona de Cristo",
+      "anioInicio": 1,
+      "anioFin": 33,
+      "relevancia": "alta",
+      "justificacion": "Contextualiza el gobierno de Poncio Pilato — trasfondo directo de los relatos de la Pasión en los cuatro Evangelios."
+    },
+    {
+      "eusebioId": "eusebio-he-l2-c1",
+      "libroSeccion": "eusebio-he-l2-c1",
+      "titulo": "Church History, Book II, Chapter I — The Course pursued by the Apostles after the Ascension of Christ.",
+      "periodo": "Época apostólica",
+      "anioInicio": 33,
+      "anioFin": 100,
+      "relevancia": "baja",
+      "justificacion": "Resumen general de la misión apostólica tras la ascensión, sin dato puntual más allá de lo que ya narra Hch 1-2."
+    },
+    {
+      "eusebioId": "eusebio-he-l2-c10",
+      "libroSeccion": "eusebio-he-l2-c10",
+      "titulo": "Church History, Book II, Chapter X — Agrippa, who was also called Herod, having persecuted the Apostles, immediately experienced the Divine Vengeance.",
+      "periodo": "Época apostólica",
+      "anioInicio": 33,
+      "anioFin": 100,
+      "relevancia": "alta",
+      "justificacion": "La muerte de Agripa 'comido de gusanos' es el evento narrado en Hch 12:20-23."
+    },
+    {
+      "eusebioId": "eusebio-he-l2-c11",
+      "libroSeccion": "eusebio-he-l2-c11",
+      "titulo": "Church History, Book II, Chapter XI — The Impostor Theudas and his Followers.",
+      "periodo": "Época apostólica",
+      "anioInicio": 33,
+      "anioFin": 100,
+      "relevancia": "alta",
+      "justificacion": "El impostor Teudas es mencionado por nombre en el discurso de Gamaliel, Hch 5:36 — conexión textual directa."
+    },
+    {
+      "eusebioId": "eusebio-he-l2-c12",
+      "libroSeccion": "eusebio-he-l2-c12",
+      "titulo": "Church History, Book II, Chapter XII — Helen, the Queen of the Osrhoenians.",
+      "periodo": "Época apostólica",
+      "anioInicio": 33,
+      "anioFin": 100,
+      "relevancia": "baja",
+      "justificacion": "AJUSTADO por Juan: la reina Helena de Osroene es trasfondo tangencial (conexión con Hch 11:28-30 indirecta, vía una fuente distinta a Eusebio), no una corroboración directa del texto."
+    },
+    {
+      "eusebioId": "eusebio-he-l2-c13",
+      "libroSeccion": "eusebio-he-l2-c13",
+      "titulo": "Church History, Book II, Chapter XIII — Simon Magus.",
+      "periodo": "Época apostólica",
+      "anioInicio": 33,
+      "anioFin": 100,
+      "relevancia": "alta",
+      "justificacion": "Simón el Mago es el personaje de Hch 8:9-24 — conexión textual directa."
+    },
+    {
+      "eusebioId": "eusebio-he-l2-c14",
+      "libroSeccion": "eusebio-he-l2-c14",
+      "titulo": "Church History, Book II, Chapter XIV — The Preaching of the Apostle Peter in Rome.",
+      "periodo": "Época apostólica",
+      "anioInicio": 33,
+      "anioFin": 100,
+      "relevancia": "alta",
+      "justificacion": "La predicación de Pedro en Roma es trasfondo directo para la tradicional ubicación de composición de 1 Pedro ('Babilonia' = Roma, 1 Pe 5:13)."
+    },
+    {
+      "eusebioId": "eusebio-he-l2-c15",
+      "libroSeccion": "eusebio-he-l2-c15",
+      "titulo": "Church History, Book II, Chapter XV — The Gospel according to Mark.",
+      "periodo": "Época apostólica",
+      "anioInicio": 33,
+      "anioFin": 100,
+      "relevancia": "alta",
+      "justificacion": "El origen del Evangelio de Marcos (ligado a la predicación de Pedro) es trasfondo compositivo directo y muy citado del segundo Evangelio."
+    },
+    {
+      "eusebioId": "eusebio-he-l2-c16",
+      "libroSeccion": "eusebio-he-l2-c16",
+      "titulo": "Church History, Book II, Chapter XVI — Mark first proclaimed Christianity to the Inhabitants of Egypt.",
+      "periodo": "Época apostólica",
+      "anioInicio": 33,
+      "anioFin": 100,
+      "relevancia": "baja",
+      "justificacion": "La tradición sobre la misión posterior de Marcos en Egipto es tangencial, sin conexión a un pasaje del NT."
+    },
+    {
+      "eusebioId": "eusebio-he-l2-c17",
+      "libroSeccion": "eusebio-he-l2-c17",
+      "titulo": "Church History, Book II, Chapter XVII — Philo's Account of the Ascetics of Egypt.",
+      "periodo": "Época apostólica",
+      "anioInicio": 33,
+      "anioFin": 100,
+      "relevancia": "baja",
+      "justificacion": "La identificación (histórica y probablemente errónea) de los terapeutas de Filón con monjes cristianos es tangencial y no ilumina el NT."
+    },
+    {
+      "eusebioId": "eusebio-he-l2-c18",
+      "libroSeccion": "eusebio-he-l2-c18",
+      "titulo": "Church History, Book II, Chapter XVIII — The Works of Philo that have come down to us.",
+      "periodo": "Época apostólica",
+      "anioInicio": 33,
+      "anioFin": 100,
+      "relevancia": "baja",
+      "justificacion": "Catálogo bibliográfico de obras de Filón, sin narrativa histórica conectada al NT."
+    },
+    {
+      "eusebioId": "eusebio-he-l2-c19",
+      "libroSeccion": "eusebio-he-l2-c19",
+      "titulo": "Church History, Book II, Chapter XIX — The Calamity which befell the Jews in Jerusalem on the Day of the Passover.",
+      "periodo": "Época apostólica",
+      "anioInicio": 33,
+      "anioFin": 100,
+      "relevancia": "baja",
+      "justificacion": "Incidente de Josefo sobre una matanza en el Templo en Pascua — trasfondo general de la época, sin conexión textual puntual."
+    },
+    {
+      "eusebioId": "eusebio-he-l2-c2",
+      "libroSeccion": "eusebio-he-l2-c2",
+      "titulo": "Church History, Book II, Chapter II — How Tiberius was affected when informed by Pilate concerning Christ.",
+      "periodo": "Época apostólica",
+      "anioInicio": 33,
+      "anioFin": 100,
+      "relevancia": "baja",
+      "justificacion": "La supuesta reacción de Tiberio ante el informe de Pilato es tradición apologética poco fiable, tangencial."
+    },
+    {
+      "eusebioId": "eusebio-he-l2-c20",
+      "libroSeccion": "eusebio-he-l2-c20",
+      "titulo": "Church History, Book II, Chapter XX — The Events which took Place in Jerusalem during the Reign of Nero.",
+      "periodo": "Época apostólica",
+      "anioInicio": 33,
+      "anioFin": 100,
+      "relevancia": "baja",
+      "justificacion": "Relato general de disturbios en Jerusalén bajo Nerón, trasfondo amplio sin anclaje a un pasaje específico."
+    },
+    {
+      "eusebioId": "eusebio-he-l2-c21",
+      "libroSeccion": "eusebio-he-l2-c21",
+      "titulo": "Church History, Book II, Chapter XXI — The Egyptian, who is mentioned also in the Acts of the Apostles.",
+      "periodo": "Época apostólica",
+      "anioInicio": 33,
+      "anioFin": 100,
+      "relevancia": "alta",
+      "justificacion": "'El Egipcio' es mencionado explícitamente por el tribuno romano en Hch 21:38 — conexión textual directa."
+    },
+    {
+      "eusebioId": "eusebio-he-l2-c22",
+      "libroSeccion": "eusebio-he-l2-c22",
+      "titulo": "Church History, Book II, Chapter XXII — Paul having been sent bound from Judea to Rome, made his Defense, and was acquitted of every Charge.",
+      "periodo": "Época apostólica",
+      "anioInicio": 33,
+      "anioFin": 100,
+      "relevancia": "alta",
+      "justificacion": "El primer juicio y liberación de Pablo en Roma es la base tradicional para fechar Efesios/Colosenses/Filipenses/Filemón y para la hipótesis del 'segundo encarcelamiento' detrás de las Pastorales — caso ya señalado como disputado en la clasificación del NT."
+    },
+    {
+      "eusebioId": "eusebio-he-l2-c23",
+      "libroSeccion": "eusebio-he-l2-c23",
+      "titulo": "Church History, Book II, Chapter XXIII — The Martyrdom of James, who was called the Brother of the Lord.",
+      "periodo": "Época apostólica",
+      "anioInicio": 33,
+      "anioFin": 100,
+      "relevancia": "alta",
+      "justificacion": "El martirio de Jacobo 'el hermano del Señor' es directamente relevante para la autoría/fecha de la epístola de Santiago, ya marcada como caso dudoso."
+    },
+    {
+      "eusebioId": "eusebio-he-l2-c24",
+      "libroSeccion": "eusebio-he-l2-c24",
+      "titulo": "Church History, Book II, Chapter XXIV — Annianus the First Bishop of the Church of Alexandria after Mark.",
+      "periodo": "Época apostólica",
+      "anioInicio": 33,
+      "anioFin": 100,
+      "relevancia": "baja",
+      "justificacion": "Lista de sucesión episcopal de Alejandría, sin conexión temática a un pasaje del NT (ejemplo típico de 'baja' según el criterio pedido)."
+    },
+    {
+      "eusebioId": "eusebio-he-l2-c25",
+      "libroSeccion": "eusebio-he-l2-c25",
+      "titulo": "Church History, Book II, Chapter XXV — The Persecution under Nero in which Paul and Peter were honored at Rome with Martyrdom in Behalf of Religion.",
+      "periodo": "Época apostólica",
+      "anioInicio": 33,
+      "anioFin": 100,
+      "relevancia": "alta",
+      "justificacion": "La persecución de Nerón y el martirio de Pablo y Pedro en Roma es trasfondo directo del final de la vida de ambos apóstoles, relevante para 2 Timoteo."
+    },
+    {
+      "eusebioId": "eusebio-he-l2-c26",
+      "libroSeccion": "eusebio-he-l2-c26",
+      "titulo": "Church History, Book II, Chapter XXVI — The Jews, afflicted with Innumerable Evils, commenced the Last War Against the Romans.",
+      "periodo": "Época apostólica",
+      "anioInicio": 33,
+      "anioFin": 100,
+      "relevancia": "alta",
+      "justificacion": "El inicio de la guerra judía contra Roma contextualiza la urgencia escatológica de Hebreos y el cumplimiento de las profecías de Jesús sobre Jerusalén."
+    },
+    {
+      "eusebioId": "eusebio-he-l2-c3",
+      "libroSeccion": "eusebio-he-l2-c3",
+      "titulo": "Church History, Book II, Chapter III — The Doctrine of Christ soon spread throughout All the World.",
+      "periodo": "Época apostólica",
+      "anioInicio": 33,
+      "anioFin": 100,
+      "relevancia": "baja",
+      "justificacion": "Afirmación apologética general sobre la rápida expansión de la fe, sin dato puntual."
+    },
+    {
+      "eusebioId": "eusebio-he-l2-c4",
+      "libroSeccion": "eusebio-he-l2-c4",
+      "titulo": "Church History, Book II, Chapter IV — After the Death of Tiberius, Caius appointed Agrippa King of the Jews, having punished Herod with Perpetual Exile.",
+      "periodo": "Época apostólica",
+      "anioInicio": 33,
+      "anioFin": 100,
+      "relevancia": "alta",
+      "justificacion": "El nombramiento de Herodes Agripa I como rey (tras el destierro de Herodes Antipas) es trasfondo político directo de Hch 12."
+    },
+    {
+      "eusebioId": "eusebio-he-l2-c5",
+      "libroSeccion": "eusebio-he-l2-c5",
+      "titulo": "Church History, Book II, Chapter V — Philo's Embassy to Caius in Behalf of the Jews.",
+      "periodo": "Época apostólica",
+      "anioInicio": 33,
+      "anioFin": 100,
+      "relevancia": "alta",
+      "justificacion": "La embajada de Filón ante Calígula ilustra la tensión judío-romana real del período narrado en Hechos (estatua imperial en el Templo)."
+    },
+    {
+      "eusebioId": "eusebio-he-l2-c6",
+      "libroSeccion": "eusebio-he-l2-c6",
+      "titulo": "Church History, Book II, Chapter VI — The Misfortunes which overwhelmed the Jews after their Presumption against Christ.",
+      "periodo": "Época apostólica",
+      "anioInicio": 33,
+      "anioFin": 100,
+      "relevancia": "baja",
+      "justificacion": "Marco moralizante/teológico ('juicio divino sobre los judíos'), no aporta dato histórico puntual nuevo."
+    },
+    {
+      "eusebioId": "eusebio-he-l2-c7",
+      "libroSeccion": "eusebio-he-l2-c7",
+      "titulo": "Church History, Book II, Chapter VII — Pilate's Suicide.",
+      "periodo": "Época apostólica",
+      "anioInicio": 33,
+      "anioFin": 100,
+      "relevancia": "baja",
+      "justificacion": "El suicidio de Pilato es un dato posterior sobre el personaje; no ilumina la lectura de un pasaje del NT en sí."
+    },
+    {
+      "eusebioId": "eusebio-he-l2-c8",
+      "libroSeccion": "eusebio-he-l2-c8",
+      "titulo": "Church History, Book II, Chapter VIII — The Famine which took Place in the Reign of Claudius.",
+      "periodo": "Época apostólica",
+      "anioInicio": 33,
+      "anioFin": 100,
+      "relevancia": "alta",
+      "justificacion": "La hambruna bajo Claudio es la corroboración histórica directa de la profecía de Agabo en Hch 11:28 — ejemplo de manual de relevancia alta."
+    },
+    {
+      "eusebioId": "eusebio-he-l2-c9",
+      "libroSeccion": "eusebio-he-l2-c9",
+      "titulo": "Church History, Book II, Chapter IX — The Martyrdom of James the Apostle.",
+      "periodo": "Época apostólica",
+      "anioInicio": 33,
+      "anioFin": 100,
+      "relevancia": "alta",
+      "justificacion": "El martirio de Jacobo (hijo de Zebedeo) es exactamente el evento narrado en Hch 12:2."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c1",
+      "libroSeccion": "eusebio-he-l3-c1",
+      "titulo": "Church History, Book III, Chapter I — The Parts of the World in which the Apostles preached Christ.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "alta",
+      "justificacion": "Detalla dónde ministró cada apóstol, incl. Juan en Asia — trasfondo directo del entorno de Apocalipsis y 1-3 Juan (las 7 iglesias de Asia Menor)."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c10",
+      "libroSeccion": "eusebio-he-l3-c10",
+      "titulo": "Church History, Book III, Chapter X — The Manner in which Josephus mentions the Divine Books.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "baja",
+      "justificacion": "Discute el canon del AT según Josefo — trasfondo de historia del canon, tangencial a la interpretación del NT."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c11",
+      "libroSeccion": "eusebio-he-l3-c11",
+      "titulo": "Church History, Book III, Chapter XI — Symeon rules the Church of Jerusalem after James.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "baja",
+      "justificacion": "Sucesión episcopal de Jerusalén (Simeón tras Jacobo), incidental."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c12",
+      "libroSeccion": "eusebio-he-l3-c12",
+      "titulo": "Church History, Book III, Chapter XII — Vespasian commands the Descendants of David to be sought.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "baja",
+      "justificacion": "Anécdota específica pero sin conexión a un pasaje del NT (a diferencia de III.19-20, que sí se conectan con la familia de Judas)."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c13",
+      "libroSeccion": "eusebio-he-l3-c13",
+      "titulo": "Church History, Book III, Chapter XIII — Anencletus, the Second Bishop of Rome.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "baja",
+      "justificacion": "Sucesión episcopal de Roma (Anacleto), incidental."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c14",
+      "libroSeccion": "eusebio-he-l3-c14",
+      "titulo": "Church History, Book III, Chapter XIV — Abilius, the Second Bishop of Alexandria.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "baja",
+      "justificacion": "Sucesión episcopal de Alejandría (Abilio), incidental."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c15",
+      "libroSeccion": "eusebio-he-l3-c15",
+      "titulo": "Church History, Book III, Chapter XV — Clement, the Third Bishop of Rome.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "baja",
+      "justificacion": "Sucesión episcopal de Roma (Clemente); la identificación tradicional con el 'Clemente' de Flp 4:3 es especulativa y no está en este capítulo puntual."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c16",
+      "libroSeccion": "eusebio-he-l3-c16",
+      "titulo": "Church History, Book III, Chapter XVI — The Epistle of Clement.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "baja",
+      "justificacion": "La Epístola de Clemente informa sobre la iglesia de Corinto en la siguiente generación, pero es historia post-NT, no ilumina un pasaje puntual del NT."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c17",
+      "libroSeccion": "eusebio-he-l3-c17",
+      "titulo": "Church History, Book III, Chapter XVII — The Persecution under Domitian.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "alta",
+      "justificacion": "La persecución bajo Domiciano es la base tradicional para la fecha 'domicianea' de Apocalipsis — caso central ya señalado como disputado."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c18",
+      "libroSeccion": "eusebio-he-l3-c18",
+      "titulo": "Church History, Book III, Chapter XVIII — The Apostle John and the Apocalypse.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "alta",
+      "justificacion": "Narra directamente el destierro de Juan en Patmos y la escritura de Apocalipsis — conexión textual directa y central."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c19",
+      "libroSeccion": "eusebio-he-l3-c19",
+      "titulo": "Church History, Book III, Chapter XIX — Domitian commands the Descendants of David to be slain.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "alta",
+      "justificacion": "El temor de Domiciano a los descendientes de David es el antecedente directo de la anécdota sobre los nietos de Judas (III.20)."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c2",
+      "libroSeccion": "eusebio-he-l3-c2",
+      "titulo": "Church History, Book III, Chapter II — The First Ruler of the Church of Rome.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "baja",
+      "justificacion": "Sucesión episcopal de Roma (Lino), sin conexión temática a un pasaje del NT."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c20",
+      "libroSeccion": "eusebio-he-l3-c20",
+      "titulo": "Church History, Book III, Chapter XX — The Relatives of our Saviour.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "alta",
+      "justificacion": "Relata el interrogatorio a los nietos de Judas (el hermano del Señor) ante Domiciano — trasfondo directo sobre la familia y época del autor tradicional de la epístola de Judas."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c21",
+      "libroSeccion": "eusebio-he-l3-c21",
+      "titulo": "Church History, Book III, Chapter XXI — Cerdon becomes the Third Ruler of the Church of Alexandria.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "baja",
+      "justificacion": "Sucesión episcopal de Alejandría (Cerdón), incidental."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c22",
+      "libroSeccion": "eusebio-he-l3-c22",
+      "titulo": "Church History, Book III, Chapter XXII — Ignatius, the Second Bishop of Antioch.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "baja",
+      "justificacion": "Nota de sucesión (Ignacio como segundo obispo de Antioquía); el contenido relevante de Ignacio está en III.36, no aquí."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c23",
+      "libroSeccion": "eusebio-he-l3-c23",
+      "titulo": "Church History, Book III, Chapter XXIII — Narrative Concerning John the Apostle.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "baja",
+      "justificacion": "La anécdota de 'Juan y el ladrón' es edificante pero no ilumina un pasaje específico del NT."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c24",
+      "libroSeccion": "eusebio-he-l3-c24",
+      "titulo": "Church History, Book III, Chapter XXIV — The Order of the Gospels.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "alta",
+      "justificacion": "Expone el orden y la ocasión tradicional de composición de los cuatro Evangelios — trasfondo compositivo directo, muy relevante para todo lector de los Evangelios."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c25",
+      "libroSeccion": "eusebio-he-l3-c25",
+      "titulo": "Church History, Book III, Chapter XXV — The Divine Scriptures that are accepted and those that are not.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "alta",
+      "justificacion": "El famoso catálogo de libros aceptados/disputados de Eusebio — conecta directamente con las disputas de autoría/canonicidad de Santiago, 2 Pedro, Judas, 2-3 Juan y Apocalipsis ya señaladas en la clasificación del NT."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c26",
+      "libroSeccion": "eusebio-he-l3-c26",
+      "titulo": "Church History, Book III, Chapter XXVI — Menander the Sorcerer.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "baja",
+      "justificacion": "Menandro el mago es trasfondo de herejías post-NT, sin conexión a un pasaje específico."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c27",
+      "libroSeccion": "eusebio-he-l3-c27",
+      "titulo": "Church History, Book III, Chapter XXVII — The Heresy of the Ebionites.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "baja",
+      "justificacion": "La herejía ebionita es desarrollo post-NT; trasfondo general de judaizantes, no anclado a un pasaje puntual."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c28",
+      "libroSeccion": "eusebio-he-l3-c28",
+      "titulo": "Church History, Book III, Chapter XXVIII — Cerinthus the Heresiarch.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "alta",
+      "justificacion": "Cerinto es el hereje tradicionalmente identificado como trasfondo polémico de 1 Juan (proto-gnosticismo, negación de la encarnación) — conexión directa."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c29",
+      "libroSeccion": "eusebio-he-l3-c29",
+      "titulo": "Church History, Book III, Chapter XXIX — Nicolaus and the Sect named after him.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "alta",
+      "justificacion": "Los nicolaítas son mencionados explícitamente en Ap 2:6 y 2:15 — conexión textual directa."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c3",
+      "libroSeccion": "eusebio-he-l3-c3",
+      "titulo": "Church History, Book III, Chapter III — The Epistles of the Apostles.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "alta",
+      "justificacion": "Discute qué epístolas apostólicas se consideraban genuinas/disputadas — conecta directamente con las disputas de autoría/canonicidad de Santiago, 2 Pedro, Judas, 2-3 Juan ya señaladas."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c30",
+      "libroSeccion": "eusebio-he-l3-c30",
+      "titulo": "Church History, Book III, Chapter XXX — The Apostles that were Married.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "alta",
+      "justificacion": "Confirma que Pedro estaba casado — trasfondo directo de la mención de la esposa de Pedro en 1 Co 9:5."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c31",
+      "libroSeccion": "eusebio-he-l3-c31",
+      "titulo": "Church History, Book III, Chapter XXXI — The Death of John and Philip.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "baja",
+      "justificacion": "Datos martirológicos generales sobre Juan y Felipe, sin conexión a un pasaje específico."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c32",
+      "libroSeccion": "eusebio-he-l3-c32",
+      "titulo": "Church History, Book III, Chapter XXXII — Symeon, Bishop of Jerusalem, suffers Martyrdom.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "baja",
+      "justificacion": "Martirio de Simeón de Jerusalén, sucesión/martirología incidental."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c33",
+      "libroSeccion": "eusebio-he-l3-c33",
+      "titulo": "Church History, Book III, Chapter XXXIII — Trajan forbids the Christians to be sought after.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "baja",
+      "justificacion": "AJUSTADO por Juan: la política de Trajano es posterior a la ventana de composición de la mayoría de los libros del NT y demasiado general (política imperial amplia, no un dato puntual sobre un pasaje)."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c34",
+      "libroSeccion": "eusebio-he-l3-c34",
+      "titulo": "Church History, Book III, Chapter XXXIV — Evarestus, the Fourth Bishop of the Church of Rome.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "baja",
+      "justificacion": "Sucesión episcopal de Roma (Evaristo), incidental."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c35",
+      "libroSeccion": "eusebio-he-l3-c35",
+      "titulo": "Church History, Book III, Chapter XXXV — Justus, the Third Bishop of Jerusalem.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "baja",
+      "justificacion": "Sucesión episcopal de Jerusalén (Justo), incidental."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c36",
+      "libroSeccion": "eusebio-he-l3-c36",
+      "titulo": "Church History, Book III, Chapter XXXVI — Ignatius and His Epistles.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "baja",
+      "justificacion": "Las epístolas de Ignacio son valiosas para la historia de la iglesia primitiva, pero no explican un pasaje puntual del NT en este capítulo."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c37",
+      "libroSeccion": "eusebio-he-l3-c37",
+      "titulo": "Church History, Book III, Chapter XXXVII — The Evangelists that were still Eminent at that Time.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "baja",
+      "justificacion": "Nota general sobre evangelistas itinerantes de la época, sin dato puntual."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c38",
+      "libroSeccion": "eusebio-he-l3-c38",
+      "titulo": "Church History, Book III, Chapter XXXVIII — The Epistle of Clement and the Writings falsely ascribed to him.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "alta",
+      "justificacion": "Toca la tradición de que Clemente tradujo/mejoró el estilo de Hebreos — conecta directamente con la disputa de autoría de Hebreos ya señalada como caso dudoso."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c39",
+      "libroSeccion": "eusebio-he-l3-c39",
+      "titulo": "Church History, Book III, Chapter XXXIX — The Writings of Papias.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "alta",
+      "justificacion": "Los escritos de Papías son la fuente externa más antigua sobre el origen de Mateo y Marcos (Marcos escribiendo la predicación de Pedro, Mateo compilando dichos en hebreo) — pieza clave para el trasfondo compositivo de los Evangelios."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c4",
+      "libroSeccion": "eusebio-he-l3-c4",
+      "titulo": "Church History, Book III, Chapter IV — The First Successors of the Apostles.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "baja",
+      "justificacion": "Nota general sobre los primeros sucesores de los apóstoles, sin dato puntual."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c5",
+      "libroSeccion": "eusebio-he-l3-c5",
+      "titulo": "Church History, Book III, Chapter V — The Last Siege of the Jews after Christ.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "alta",
+      "justificacion": "El asedio final de Jerusalén (70 d.C.) es trasfondo histórico directo del cumplimiento de las profecías de Jesús y la urgencia de Hebreos."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c6",
+      "libroSeccion": "eusebio-he-l3-c6",
+      "titulo": "Church History, Book III, Chapter VI — The Famine which oppressed them.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "baja",
+      "justificacion": "Detalle adicional (la hambruna durante el asedio) ya cubierto conceptualmente por III.5, sin anclaje textual propio."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c7",
+      "libroSeccion": "eusebio-he-l3-c7",
+      "titulo": "Church History, Book III, Chapter VII — The Predictions of Christ.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "alta",
+      "justificacion": "Conecta explícitamente las profecías de Jesús (Mt 24, Mc 13, Lc 21) con su cumplimiento histórico en la guerra judía — ilumina directamente esos pasajes."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c8",
+      "libroSeccion": "eusebio-he-l3-c8",
+      "titulo": "Church History, Book III, Chapter VIII — The Signs which preceded the War.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "baja",
+      "justificacion": "Los presagios (de Josefo) que precedieron la guerra son de carácter legendario/general, sin anclaje textual puntual."
+    },
+    {
+      "eusebioId": "eusebio-he-l3-c9",
+      "libroSeccion": "eusebio-he-l3-c9",
+      "titulo": "Church History, Book III, Chapter IX — Josephus and the Works which he has left.",
+      "periodo": "Sucesión apostólica",
+      "anioInicio": 68,
+      "anioFin": 117,
+      "relevancia": "baja",
+      "justificacion": "Catálogo bibliográfico de las obras de Josefo, referencia útil pero no narrativa conectada a un pasaje del NT."
+    }
+  ]
+}

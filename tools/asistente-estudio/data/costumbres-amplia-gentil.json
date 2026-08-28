@@ -1,0 +1,45 @@
+{
+  "_metadata": {
+    "descripcion": "PROPUESTA (Fase 3, Parte A): capa amplia de costumbres gentil/romano a partir de tucker-roman-world, con año explícito confirmado por lectura directa del contenido (no solo por el campo 'categoria' del manifest). Borrador para revisión de Juan.",
+    "fuente": "tucker-roman-world (biblia/modules/costumbres/tucker-roman-world)",
+    "grupo": "gentil_romano",
+    "anioInicio": 54,
+    "anioFin": 68,
+    "epoca": "Roma imperial temprana, reinado de Nerón",
+    "evidenciaAnioExplicito": [
+      "Cap. 1 (Extent and Security of the Empire): \"The best means of realising the extent of the Roman Empire in or about the year 64 is to glance at the map.\"",
+      "Cap. 5 se titula literalmente \"NERO THE EMPEROR\".",
+      "Cap. 19 (Roman Religion): \"To undertake to set forth with any definiteness the 'religious ideas of a Roman' of A.D. 64 would be an extremely difficult task.\""
+    ],
+    "cobertura": "Coincide con la ventana de composición de la mayoría de las cartas paulinas (48-68 d.C. según book-classification-nt.json) y con el trasfondo de Hechos, 1 Pedro y las cartas de la prisión. NO cubre el período posterior a Nerón (Domiciano/Trajano, ~81-117 d.C.) — ver README de vacíos, Parte C.",
+    "totalCapitulos": 24,
+    "totalAlta": 19,
+    "totalBaja": 5
+  },
+  "capitulos": [
+    { "capituloNumero": 0, "titulo": "Introduction", "relevancia": "alta", "razon": "Establece explícitamente el marco temporal del libro entero (época de Nerón/Pablo)." },
+    { "capituloNumero": 1, "titulo": "Extent and Security of the Empire", "relevancia": "alta", "razon": "Trasfondo directo de la 'Pax Romana' que permitió los viajes misioneros de Pablo narrados en Hechos." },
+    { "capituloNumero": 2, "titulo": "Travel within the Empire", "relevancia": "alta", "razon": "Ilumina directamente los viajes de Pablo (rutas, barcos, el naufragio de Hch 27)." },
+    { "capituloNumero": 3, "titulo": "A Brief Survey of the Provinces", "relevancia": "alta", "razon": "Describe las mismas provincias nombradas en Hechos y las cartas (Asia, Macedonia, Acaya, etc.)." },
+    { "capituloNumero": 4, "titulo": "The Imperial System: Emperor, Senate, Knights, and People", "relevancia": "alta", "razon": "Trasfondo de 'César', procónsules (Galión, Hch 18) y procuradores (Félix, Festo) que aparecen en Hechos." },
+    { "capituloNumero": 5, "titulo": "Nero the Emperor", "relevancia": "alta", "razon": "El César al que Pablo apela (Hch 25:11); trasfondo de la persecución detrás de 1 Pedro y de la datación de las Pastorales." },
+    { "capituloNumero": 6, "titulo": "Administration and Taxation of the Empire", "relevancia": "alta", "razon": "Trasfondo de los publicanos en los Evangelios y de 'dad a César lo que es de César' (Mt 22:15-22)." },
+    { "capituloNumero": 7, "titulo": "Rome: the Imperial City", "relevancia": "alta", "razon": "Trasfondo directo de Romanos y del encarcelamiento de Pablo en Roma (Efesios, Filipenses, Colosenses, Filemón)." },
+    { "capituloNumero": 8, "titulo": "Streets, Water-Supply, and Building Material", "relevancia": "baja", "razon": "Infraestructura urbana general, sin conexión directa a un pasaje del NT." },
+    { "capituloNumero": 9, "titulo": "The Roman Town House", "relevancia": "alta", "razon": "Las 'iglesias en casa' (Ro 16:5, 1 Co 16:19, Col 4:15, Flm 2) se reunían literalmente en casas de este tipo." },
+    { "capituloNumero": 10, "titulo": "The Country Homestead and Country Seat", "relevancia": "baja", "razon": "Vida rural de la villa romana, poco conectada a las epístolas de trasfondo urbano." },
+    { "capituloNumero": 11, "titulo": "Roman Furniture", "relevancia": "baja", "razon": "Cultura material general, sin anclaje textual específico." },
+    { "capituloNumero": 12, "titulo": "Social Day of a Roman Aristocrat—Morning", "relevancia": "alta", "razon": "Trasfondo de la cultura de patronazgo y vida social que atraviesa las cartas paulinas." },
+    { "capituloNumero": 13, "titulo": "Social Day of a Roman Aristocrat—Afternoon and Dinner", "relevancia": "alta", "razon": "Costumbres de banquete directamente relevantes a 1 Co 11 (la Cena del Señor), los 'primeros asientos' (Lc 14:7-11)." },
+    { "capituloNumero": 14, "titulo": "Life in the Middle and Lower Classes", "relevancia": "alta", "razon": "La mayoría de los primeros cristianos venían de estas clases (1 Co 1:26); trasfondo de la esclavitud (Filemón, Ef 6:5-9, Col 3:22-4:1)." },
+    { "capituloNumero": 15, "titulo": "Holidays and Amusements: Theatre, Circus, Amphitheatre", "relevancia": "alta", "razon": "Trasfondo del motín del teatro de Éfeso (Hch 19:29) y las imágenes de arena/espectáculo que usa Pablo (1 Co 4:9, 15:32)." },
+    { "capituloNumero": 16, "titulo": "The Women: Marriage, the Roman Matron, and Her Dress", "relevancia": "alta", "razon": "Trasfondo directo de 1 Ti 2:9 (vestido, peinado, joyas) y los códigos domésticos (Ef 5, Col 3, 1 Pe 3)." },
+    { "capituloNumero": 17, "titulo": "Children and Education", "relevancia": "alta", "razon": "Trasfondo de los códigos domésticos sobre hijos (Ef 6:1-4, Col 3:20), el 'ayo' (Gá 3:24) y la adopción romana (Ro 8:15, Gá 4:5)." },
+    { "capituloNumero": 18, "titulo": "The Army: Military Service; Public Career", "relevancia": "alta", "razon": "Trasfondo de las metáforas militares de Pablo (Ef 6:10-17, 2 Ti 2:3-4) y los centuriones de los Evangelios/Hechos." },
+    { "capituloNumero": 19, "titulo": "Roman Religion—State and Individual", "relevancia": "alta", "razon": "Trasfondo del culto imperial, el altar 'al dios no conocido' (Hch 17:23), Diana de Éfeso (Hch 19), la carne ofrecida a ídolos (1 Co 8, 10)." },
+    { "capituloNumero": 20, "titulo": "Study and Scientific Knowledge among the Romans", "relevancia": "baja", "razon": "Cultura intelectual general, sin anclaje textual específico más allá de lo genérico." },
+    { "capituloNumero": 21, "titulo": "Philosophy—Stoics and Epicureans", "relevancia": "alta", "razon": "Conexión textual directa: Hch 17:18 nombra explícitamente a filósofos 'epicúreos y estoicos' que debaten con Pablo en Atenas." },
+    { "capituloNumero": 22, "titulo": "The Roman Profusion of Art", "relevancia": "baja", "razon": "Historia del arte romano, sin conexión directa a un pasaje del NT." },
+    { "capituloNumero": 23, "titulo": "The Last Scene of All—Burial and Tombs", "relevancia": "alta", "razon": "Trasfondo de contraste para 1 Ts 4:13-18 ('no os entristezcáis como los demás que no tienen esperanza') frente a las costumbres funerarias romanas." }
+  ]
+}

@@ -1,0 +1,974 @@
+{
+  "book": "ISA",
+  "chapter": 24,
+  "resources": {
+    "costumbres": {
+      "c-4635a6d7ca8b25dc": {
+        "fuente": {
+          "entradaId": "freeman-504",
+          "modulo": "freeman-manners-customs"
+        },
+        "texto": "The Hebrews were directed not to pick their grapes closely, but to leave a few for the poor. See Leviticus 19:10; Deuteronomy 24:21. This merciful provision is referred to by Gideon when he represents “the gleaning of the grapes of Ephraim” as “better than the vintage of Abi-ezer…"
+      },
+      "c-a691a7c4a7399392": {
+        "fuente": {
+          "entradaId": "freeman-505",
+          "modulo": "freeman-manners-customs"
+        },
+        "texto": "Lowth (W.) suggests that there is a reference here “to the custom of kings, who used to confine the chief commanders of their enemies whom they take prisoners and reserve them for some extraordinary day of triumph, and then bring them out to public punishment” (Commentary in loco…"
+      }
+    },
+    "diccionario": {
+      "d-008890ffc316cbf3": {
+        "fuente": {
+          "headword": "Olive-tree",
+          "modulo": "Easton"
+        },
+        "termino": "Olive-tree"
+      },
+      "d-008f67287ff6bfb4": {
+        "fuente": {
+          "headword": "Elder",
+          "modulo": "Easton"
+        },
+        "termino": "Elder"
+      },
+      "d-025b09cff5adf6ce": {
+        "fuente": {
+          "headword": "Host of heaven",
+          "modulo": "Easton"
+        },
+        "termino": "Host of heaven"
+      },
+      "d-03cbe86a98acec2d": {
+        "fuente": {
+          "headword": "Sun",
+          "modulo": "Smith"
+        },
+        "termino": "Sun"
+      },
+      "d-048a0627e8722b42": {
+        "fuente": {
+          "headword": "Lord",
+          "modulo": "Smith"
+        },
+        "termino": "Lord"
+      },
+      "d-051fa5d17f9e389d": {
+        "fuente": {
+          "headword": "Servant",
+          "modulo": "Smith"
+        },
+        "termino": "Servant"
+      },
+      "d-08f9ad5ee6f0b095": {
+        "fuente": {
+          "headword": "Pit",
+          "modulo": "Smith"
+        },
+        "termino": "Pit"
+      },
+      "d-0bf791b8267e3a36": {
+        "fuente": {
+          "headword": "Glorify",
+          "modulo": "Easton"
+        },
+        "termino": "Glorify"
+      },
+      "d-1088e3f855105d0f": {
+        "fuente": {
+          "headword": "Moon",
+          "modulo": "Smith"
+        },
+        "termino": "Moon"
+      },
+      "d-19419c8b22e2ce3c": {
+        "fuente": {
+          "headword": "Jerusalem",
+          "modulo": "Easton"
+        },
+        "termino": "Jerusalem"
+      },
+      "d-203d2e64b5c4b771": {
+        "fuente": {
+          "headword": "Wine",
+          "modulo": "Smith"
+        },
+        "termino": "Wine"
+      },
+      "d-22ab3a42bba95ae9": {
+        "fuente": {
+          "headword": "Lord",
+          "modulo": "Easton"
+        },
+        "termino": "Lord"
+      },
+      "d-2324a02b336674f7": {
+        "fuente": {
+          "headword": "Heaven",
+          "modulo": "Smith"
+        },
+        "termino": "Heaven"
+      },
+      "d-249be0114dc08c00": {
+        "fuente": {
+          "headword": "East",
+          "modulo": "Easton"
+        },
+        "termino": "East"
+      },
+      "d-2cc5ecf29e4f162f": {
+        "fuente": {
+          "headword": "Earth",
+          "modulo": "Smith"
+        },
+        "termino": "Earth"
+      },
+      "d-2d053c070cad9b70": {
+        "fuente": {
+          "headword": "Kings",
+          "modulo": "Smith"
+        },
+        "termino": "Kings"
+      },
+      "d-37237ce6ca734b29": {
+        "fuente": {
+          "headword": "Zion",
+          "modulo": "Smith"
+        },
+        "termino": "Zion"
+      },
+      "d-3b9a4003a4f6d20c": {
+        "fuente": {
+          "headword": "Mourning",
+          "modulo": "Smith"
+        },
+        "termino": "Mourning"
+      },
+      "d-3c24aabf620f4118": {
+        "fuente": {
+          "headword": "King",
+          "modulo": "Easton"
+        },
+        "termino": "King"
+      },
+      "d-3fbf1ea3f2cbb965": {
+        "fuente": {
+          "headword": "Mount",
+          "modulo": "Easton"
+        },
+        "termino": "Mount"
+      },
+      "d-4126f4b14d85fbdd": {
+        "fuente": {
+          "headword": "Snare",
+          "modulo": "Easton"
+        },
+        "termino": "Snare"
+      },
+      "d-44ce758029c49c78": {
+        "fuente": {
+          "headword": "Window",
+          "modulo": "Smith"
+        },
+        "termino": "Window"
+      },
+      "d-4b3b07ca0fbda540": {
+        "fuente": {
+          "headword": "God",
+          "modulo": "Easton"
+        },
+        "termino": "God"
+      },
+      "d-4b4d1d37bcb512b5": {
+        "fuente": {
+          "headword": "House",
+          "modulo": "Smith"
+        },
+        "termino": "House"
+      },
+      "d-4bb763e0adbbab2c": {
+        "fuente": {
+          "headword": "King",
+          "modulo": "Smith"
+        },
+        "termino": "King"
+      },
+      "d-4d7cc0c077559329": {
+        "fuente": {
+          "headword": "Day",
+          "modulo": "Smith"
+        },
+        "termino": "Day"
+      },
+      "d-4edabd7d01efac47": {
+        "fuente": {
+          "headword": "Sun",
+          "modulo": "Easton"
+        },
+        "termino": "Sun"
+      },
+      "d-506c2f62213bb286": {
+        "fuente": {
+          "headword": "Olive",
+          "modulo": "Easton"
+        },
+        "termino": "Olive"
+      },
+      "d-545322aa33cc3898": {
+        "fuente": {
+          "headword": "Cities",
+          "modulo": "Smith"
+        },
+        "termino": "Cities"
+      },
+      "d-57d8dc89bf9ff75c": {
+        "fuente": {
+          "headword": "Covenant",
+          "modulo": "Easton"
+        },
+        "termino": "Covenant"
+      },
+      "d-5db8506baa94acfc": {
+        "fuente": {
+          "headword": "Gate",
+          "modulo": "Smith"
+        },
+        "termino": "Gate"
+      },
+      "d-623f23e74fadeba7": {
+        "fuente": {
+          "headword": "Drink, strong",
+          "modulo": "Easton"
+        },
+        "termino": "Drink, strong"
+      },
+      "d-634d6c4909c9ede8": {
+        "fuente": {
+          "headword": "Wine",
+          "modulo": "Easton"
+        },
+        "termino": "Wine"
+      },
+      "d-6406defabdc8a05e": {
+        "fuente": {
+          "headword": "Exile",
+          "modulo": "Easton"
+        },
+        "termino": "Exile"
+      },
+      "d-669ff56975193960": {
+        "fuente": {
+          "headword": "Vine",
+          "modulo": "Easton"
+        },
+        "termino": "Vine"
+      },
+      "d-67f278f7249462e1": {
+        "fuente": {
+          "headword": "Mount",
+          "modulo": "Smith"
+        },
+        "termino": "Mount"
+      },
+      "d-6b2e64ed18c9f17e": {
+        "fuente": {
+          "headword": "Harvest",
+          "modulo": "Easton"
+        },
+        "termino": "Harvest"
+      },
+      "d-71de0568b019154b": {
+        "fuente": {
+          "headword": "Gleaning",
+          "modulo": "Smith"
+        },
+        "termino": "Gleaning"
+      },
+      "d-72ca11625665d16d": {
+        "fuente": {
+          "headword": "Israel",
+          "modulo": "Easton"
+        },
+        "termino": "Israel"
+      },
+      "d-76208a44f9880792": {
+        "fuente": {
+          "headword": "Grape",
+          "modulo": "Easton"
+        },
+        "termino": "Grape"
+      },
+      "d-768fa4bba6b39a80": {
+        "fuente": {
+          "headword": "Harp",
+          "modulo": "Easton"
+        },
+        "termino": "Harp"
+      },
+      "d-79246f2d06c8f671": {
+        "fuente": {
+          "headword": "Creditor",
+          "modulo": "Smith"
+        },
+        "termino": "Creditor"
+      },
+      "d-7c91ed351e8a6fc2": {
+        "fuente": {
+          "headword": "Israel",
+          "modulo": "Smith"
+        },
+        "termino": "Israel"
+      },
+      "d-7f8eb9ae8d6940f5": {
+        "fuente": {
+          "headword": "Dungeon",
+          "modulo": "Smith"
+        },
+        "termino": "Dungeon"
+      },
+      "d-7ff4f325f479eadf": {
+        "fuente": {
+          "headword": "Vine",
+          "modulo": "Smith"
+        },
+        "termino": "Vine"
+      },
+      "d-80f6bf1a2d3eb61b": {
+        "fuente": {
+          "headword": "City",
+          "modulo": "Easton"
+        },
+        "termino": "City"
+      },
+      "d-82f8ffec332be5b3": {
+        "fuente": {
+          "headword": "Gate",
+          "modulo": "Easton"
+        },
+        "termino": "Gate"
+      },
+      "d-83521a52c948a4ea": {
+        "fuente": {
+          "headword": "East",
+          "modulo": "Smith"
+        },
+        "termino": "East"
+      },
+      "d-88c52aa86134bcb3": {
+        "fuente": {
+          "headword": "Earth",
+          "modulo": "Easton"
+        },
+        "termino": "Earth"
+      },
+      "d-891cf6cf25fdbdc6": {
+        "fuente": {
+          "headword": "God",
+          "modulo": "Smith"
+        },
+        "termino": "God"
+      },
+      "d-8e2e88fd7dea0e3e": {
+        "fuente": {
+          "headword": "Day",
+          "modulo": "Easton"
+        },
+        "termino": "Day"
+      },
+      "d-9056a4c9628ed9a5": {
+        "fuente": {
+          "headword": "Names",
+          "modulo": "Smith"
+        },
+        "termino": "Names"
+      },
+      "d-94e7b99a1a4b244e": {
+        "fuente": {
+          "headword": "Glory",
+          "modulo": "Easton"
+        },
+        "termino": "Glory"
+      },
+      "d-987b27ea86ae16ef": {
+        "fuente": {
+          "headword": "Debtor",
+          "modulo": "Easton"
+        },
+        "termino": "Debtor"
+      },
+      "d-99f76624fa1044c2": {
+        "fuente": {
+          "headword": "Everlasting",
+          "modulo": "Easton"
+        },
+        "termino": "Everlasting"
+      },
+      "d-9a7ed38c85f992ea": {
+        "fuente": {
+          "headword": "Zion",
+          "modulo": "Easton"
+        },
+        "termino": "Zion"
+      },
+      "d-9ab18b3507698294": {
+        "fuente": {
+          "headword": "Priest",
+          "modulo": "Smith"
+        },
+        "termino": "Priest"
+      },
+      "d-9e102fd7b2bc9a27": {
+        "fuente": {
+          "headword": "Sea, The",
+          "modulo": "Easton"
+        },
+        "termino": "Sea, The"
+      },
+      "d-a27f21ed32adc999": {
+        "fuente": {
+          "headword": "Harp",
+          "modulo": "Smith"
+        },
+        "termino": "Harp"
+      },
+      "d-a8c05cf6255f7ce5": {
+        "fuente": {
+          "headword": "Street",
+          "modulo": "Easton"
+        },
+        "termino": "Street"
+      },
+      "d-ab09cfe9d8145599": {
+        "fuente": {
+          "headword": "Heaven",
+          "modulo": "Easton"
+        },
+        "termino": "Heaven"
+      },
+      "d-ad69b07ea5ac6c53": {
+        "fuente": {
+          "headword": "Olive",
+          "modulo": "Smith"
+        },
+        "termino": "Olive"
+      },
+      "d-aea0833d72691d8f": {
+        "fuente": {
+          "headword": "Priest",
+          "modulo": "Easton"
+        },
+        "termino": "Priest"
+      },
+      "d-af93fd4be6dbbf38": {
+        "fuente": {
+          "headword": "Sea",
+          "modulo": "Smith"
+        },
+        "termino": "Sea"
+      },
+      "d-b8015c49f1cfa03a": {
+        "fuente": {
+          "headword": "Moon",
+          "modulo": "Easton"
+        },
+        "termino": "Moon"
+      },
+      "d-c039594373b1608a": {
+        "fuente": {
+          "headword": "Island",
+          "modulo": "Easton"
+        },
+        "termino": "Island"
+      },
+      "d-c0ae4fc8fced7174": {
+        "fuente": {
+          "headword": "Mourn",
+          "modulo": "Easton"
+        },
+        "termino": "Mourn"
+      },
+      "d-c948be67c1765cb9": {
+        "fuente": {
+          "headword": "Curse",
+          "modulo": "Easton"
+        },
+        "termino": "Curse"
+      },
+      "d-cb4f639632f328f8": {
+        "fuente": {
+          "headword": "House",
+          "modulo": "Easton"
+        },
+        "termino": "House"
+      },
+      "d-cc400ff69d7bb1bd": {
+        "fuente": {
+          "headword": "Dungeon",
+          "modulo": "Easton"
+        },
+        "termino": "Dungeon"
+      },
+      "d-ce3455f4f9225c11": {
+        "fuente": {
+          "headword": "Glean",
+          "modulo": "Easton"
+        },
+        "termino": "Glean"
+      },
+      "d-d03eb8c71e5da058": {
+        "fuente": {
+          "headword": "Covenant",
+          "modulo": "Smith"
+        },
+        "termino": "Covenant"
+      },
+      "d-d36d190aa35c44de": {
+        "fuente": {
+          "headword": "Bear",
+          "modulo": "Smith"
+        },
+        "termino": "Bear"
+      },
+      "d-d894961d9b1091cb": {
+        "fuente": {
+          "headword": "Window",
+          "modulo": "Easton"
+        },
+        "termino": "Window"
+      },
+      "d-d9d01136378f0f55": {
+        "fuente": {
+          "headword": "Wills",
+          "modulo": "Smith"
+        },
+        "termino": "Wills"
+      },
+      "d-d9e5ce0bacdd841d": {
+        "fuente": {
+          "headword": "Bear",
+          "modulo": "Easton"
+        },
+        "termino": "Bear"
+      },
+      "d-dec1b5120fc04d5f": {
+        "fuente": {
+          "headword": "Host",
+          "modulo": "Easton"
+        },
+        "termino": "Host"
+      },
+      "d-df12bd41209f45c5": {
+        "fuente": {
+          "headword": "Drink",
+          "modulo": "Easton"
+        },
+        "termino": "Drink"
+      },
+      "d-e37f02118d0fc923": {
+        "fuente": {
+          "headword": "Street",
+          "modulo": "Smith"
+        },
+        "termino": "Street"
+      },
+      "d-e411017d915fbda4": {
+        "fuente": {
+          "headword": "Bitter",
+          "modulo": "Easton"
+        },
+        "termino": "Bitter"
+      },
+      "d-e5974ed497dd3ea2": {
+        "fuente": {
+          "headword": "Grape",
+          "modulo": "Smith"
+        },
+        "termino": "Grape"
+      },
+      "d-e73096f6cb4b321e": {
+        "fuente": {
+          "headword": "Pit",
+          "modulo": "Easton"
+        },
+        "termino": "Pit"
+      },
+      "d-e8e99e6308496bdc": {
+        "fuente": {
+          "headword": "Jerusalem",
+          "modulo": "Smith"
+        },
+        "termino": "Jerusalem"
+      },
+      "d-ec5d69350df68974": {
+        "fuente": {
+          "headword": "Harvest",
+          "modulo": "Smith"
+        },
+        "termino": "Harvest"
+      },
+      "d-ef11ea6eff569190": {
+        "fuente": {
+          "headword": "Debtor",
+          "modulo": "Smith"
+        },
+        "termino": "Debtor"
+      },
+      "d-f3a72389e0af1996": {
+        "fuente": {
+          "headword": "Drink, Strong",
+          "modulo": "Smith"
+        },
+        "termino": "Drink, Strong"
+      },
+      "d-fb7a748450f9396c": {
+        "fuente": {
+          "headword": "Elder",
+          "modulo": "Smith"
+        },
+        "termino": "Elder"
+      }
+    },
+    "historia": {
+      "h-b5732f6f54c4de62": {
+        "fuente": {
+          "libroSeccion": "ISA:postura:autor-unico-tradicional",
+          "modulo": "book-classification-ot"
+        },
+        "texto": "JFB introducción a Isaías: el llamado profético 'se asigna al último año de Uzías, es decir, 754 a.C.' (nota: JFB usa una cronología algo distinta a la moderna), con el ministerio extendiéndose 'de cerca de 760 a 713 a.C.'.",
+        "tipo": "contexto-libro"
+      }
+    }
+  },
+  "schemaVersion": 1,
+  "verses": {
+    "1": {
+      "costumbres": [],
+      "diccionario": [
+        "d-88c52aa86134bcb3",
+        "d-2cc5ecf29e4f162f",
+        "d-22ab3a42bba95ae9",
+        "d-048a0627e8722b42",
+        "d-d9d01136378f0f55"
+      ],
+      "historia": [
+        "h-b5732f6f54c4de62"
+      ]
+    },
+    "10": {
+      "costumbres": [],
+      "diccionario": [
+        "d-545322aa33cc3898",
+        "d-80f6bf1a2d3eb61b",
+        "d-cb4f639632f328f8",
+        "d-4b4d1d37bcb512b5"
+      ],
+      "historia": [
+        "h-b5732f6f54c4de62"
+      ]
+    },
+    "11": {
+      "costumbres": [],
+      "diccionario": [
+        "d-6406defabdc8a05e",
+        "d-a8c05cf6255f7ce5",
+        "d-e37f02118d0fc923",
+        "d-634d6c4909c9ede8",
+        "d-203d2e64b5c4b771"
+      ],
+      "historia": [
+        "h-b5732f6f54c4de62"
+      ]
+    },
+    "12": {
+      "costumbres": [],
+      "diccionario": [
+        "d-545322aa33cc3898",
+        "d-80f6bf1a2d3eb61b",
+        "d-82f8ffec332be5b3",
+        "d-5db8506baa94acfc"
+      ],
+      "historia": [
+        "h-b5732f6f54c4de62"
+      ]
+    },
+    "13": {
+      "costumbres": [
+        "c-4635a6d7ca8b25dc"
+      ],
+      "diccionario": [
+        "d-88c52aa86134bcb3",
+        "d-2cc5ecf29e4f162f",
+        "d-ce3455f4f9225c11",
+        "d-71de0568b019154b",
+        "d-76208a44f9880792",
+        "d-e5974ed497dd3ea2",
+        "d-6b2e64ed18c9f17e",
+        "d-ec5d69350df68974",
+        "d-506c2f62213bb286",
+        "d-ad69b07ea5ac6c53",
+        "d-008890ffc316cbf3",
+        "d-d9d01136378f0f55"
+      ],
+      "historia": [
+        "h-b5732f6f54c4de62"
+      ]
+    },
+    "14": {
+      "costumbres": [],
+      "diccionario": [
+        "d-22ab3a42bba95ae9",
+        "d-048a0627e8722b42"
+      ],
+      "historia": [
+        "h-b5732f6f54c4de62"
+      ]
+    },
+    "15": {
+      "costumbres": [],
+      "diccionario": [
+        "d-249be0114dc08c00",
+        "d-83521a52c948a4ea",
+        "d-0bf791b8267e3a36",
+        "d-4b3b07ca0fbda540",
+        "d-891cf6cf25fdbdc6",
+        "d-c039594373b1608a",
+        "d-72ca11625665d16d",
+        "d-7c91ed351e8a6fc2",
+        "d-22ab3a42bba95ae9",
+        "d-048a0627e8722b42",
+        "d-9056a4c9628ed9a5",
+        "d-af93fd4be6dbbf38",
+        "d-9e102fd7b2bc9a27"
+      ],
+      "historia": [
+        "h-b5732f6f54c4de62"
+      ]
+    },
+    "16": {
+      "costumbres": [],
+      "diccionario": [
+        "d-88c52aa86134bcb3",
+        "d-2cc5ecf29e4f162f",
+        "d-94e7b99a1a4b244e"
+      ],
+      "historia": [
+        "h-b5732f6f54c4de62"
+      ]
+    },
+    "17": {
+      "costumbres": [],
+      "diccionario": [
+        "d-88c52aa86134bcb3",
+        "d-2cc5ecf29e4f162f",
+        "d-e73096f6cb4b321e",
+        "d-08f9ad5ee6f0b095",
+        "d-4126f4b14d85fbdd"
+      ],
+      "historia": [
+        "h-b5732f6f54c4de62"
+      ]
+    },
+    "18": {
+      "costumbres": [],
+      "diccionario": [
+        "d-88c52aa86134bcb3",
+        "d-2cc5ecf29e4f162f",
+        "d-ab09cfe9d8145599",
+        "d-2324a02b336674f7",
+        "d-e73096f6cb4b321e",
+        "d-08f9ad5ee6f0b095",
+        "d-4126f4b14d85fbdd",
+        "d-d9d01136378f0f55",
+        "d-d894961d9b1091cb",
+        "d-44ce758029c49c78"
+      ],
+      "historia": [
+        "h-b5732f6f54c4de62"
+      ]
+    },
+    "19": {
+      "costumbres": [],
+      "diccionario": [
+        "d-88c52aa86134bcb3",
+        "d-2cc5ecf29e4f162f"
+      ],
+      "historia": [
+        "h-b5732f6f54c4de62"
+      ]
+    },
+    "2": {
+      "costumbres": [],
+      "diccionario": [
+        "d-79246f2d06c8f671",
+        "d-987b27ea86ae16ef",
+        "d-ef11ea6eff569190",
+        "d-aea0833d72691d8f",
+        "d-9ab18b3507698294",
+        "d-051fa5d17f9e389d"
+      ],
+      "historia": [
+        "h-b5732f6f54c4de62"
+      ]
+    },
+    "20": {
+      "costumbres": [],
+      "diccionario": [
+        "d-88c52aa86134bcb3",
+        "d-2cc5ecf29e4f162f"
+      ],
+      "historia": [
+        "h-b5732f6f54c4de62"
+      ]
+    },
+    "21": {
+      "costumbres": [],
+      "diccionario": [
+        "d-8e2e88fd7dea0e3e",
+        "d-4d7cc0c077559329",
+        "d-88c52aa86134bcb3",
+        "d-2cc5ecf29e4f162f",
+        "d-ab09cfe9d8145599",
+        "d-2324a02b336674f7",
+        "d-dec1b5120fc04d5f",
+        "d-025b09cff5adf6ce",
+        "d-3c24aabf620f4118",
+        "d-4bb763e0adbbab2c",
+        "d-2d053c070cad9b70",
+        "d-22ab3a42bba95ae9",
+        "d-048a0627e8722b42",
+        "d-d9d01136378f0f55"
+      ],
+      "historia": [
+        "h-b5732f6f54c4de62"
+      ]
+    },
+    "22": {
+      "costumbres": [
+        "c-a691a7c4a7399392"
+      ],
+      "diccionario": [
+        "d-cc400ff69d7bb1bd",
+        "d-7f8eb9ae8d6940f5",
+        "d-e73096f6cb4b321e",
+        "d-08f9ad5ee6f0b095",
+        "d-d9d01136378f0f55"
+      ],
+      "historia": [
+        "h-b5732f6f54c4de62"
+      ]
+    },
+    "23": {
+      "costumbres": [],
+      "diccionario": [
+        "d-008f67287ff6bfb4",
+        "d-fb7a748450f9396c",
+        "d-94e7b99a1a4b244e",
+        "d-dec1b5120fc04d5f",
+        "d-19419c8b22e2ce3c",
+        "d-e8e99e6308496bdc",
+        "d-22ab3a42bba95ae9",
+        "d-048a0627e8722b42",
+        "d-b8015c49f1cfa03a",
+        "d-1088e3f855105d0f",
+        "d-3fbf1ea3f2cbb965",
+        "d-67f278f7249462e1",
+        "d-4edabd7d01efac47",
+        "d-03cbe86a98acec2d",
+        "d-d9d01136378f0f55",
+        "d-9a7ed38c85f992ea",
+        "d-37237ce6ca734b29"
+      ],
+      "historia": [
+        "h-b5732f6f54c4de62"
+      ]
+    },
+    "3": {
+      "costumbres": [],
+      "diccionario": [
+        "d-88c52aa86134bcb3",
+        "d-2cc5ecf29e4f162f",
+        "d-22ab3a42bba95ae9",
+        "d-048a0627e8722b42",
+        "d-d9d01136378f0f55"
+      ],
+      "historia": [
+        "h-b5732f6f54c4de62"
+      ]
+    },
+    "4": {
+      "costumbres": [],
+      "diccionario": [
+        "d-88c52aa86134bcb3",
+        "d-2cc5ecf29e4f162f",
+        "d-c0ae4fc8fced7174",
+        "d-3b9a4003a4f6d20c"
+      ],
+      "historia": [
+        "h-b5732f6f54c4de62"
+      ]
+    },
+    "5": {
+      "costumbres": [],
+      "diccionario": [
+        "d-57d8dc89bf9ff75c",
+        "d-d03eb8c71e5da058",
+        "d-88c52aa86134bcb3",
+        "d-2cc5ecf29e4f162f",
+        "d-99f76624fa1044c2"
+      ],
+      "historia": [
+        "h-b5732f6f54c4de62"
+      ]
+    },
+    "6": {
+      "costumbres": [],
+      "diccionario": [
+        "d-d9e5ce0bacdd841d",
+        "d-d36d190aa35c44de",
+        "d-c948be67c1765cb9",
+        "d-88c52aa86134bcb3",
+        "d-2cc5ecf29e4f162f"
+      ],
+      "historia": [
+        "h-b5732f6f54c4de62"
+      ]
+    },
+    "7": {
+      "costumbres": [],
+      "diccionario": [
+        "d-669ff56975193960",
+        "d-7ff4f325f479eadf",
+        "d-634d6c4909c9ede8",
+        "d-203d2e64b5c4b771"
+      ],
+      "historia": [
+        "h-b5732f6f54c4de62"
+      ]
+    },
+    "8": {
+      "costumbres": [],
+      "diccionario": [
+        "d-768fa4bba6b39a80",
+        "d-a27f21ed32adc999"
+      ],
+      "historia": [
+        "h-b5732f6f54c4de62"
+      ]
+    },
+    "9": {
+      "costumbres": [],
+      "diccionario": [
+        "d-e411017d915fbda4",
+        "d-df12bd41209f45c5",
+        "d-623f23e74fadeba7",
+        "d-f3a72389e0af1996",
+        "d-634d6c4909c9ede8",
+        "d-203d2e64b5c4b771"
+      ],
+      "historia": [
+        "h-b5732f6f54c4de62"
+      ]
+    }
+  }
+}

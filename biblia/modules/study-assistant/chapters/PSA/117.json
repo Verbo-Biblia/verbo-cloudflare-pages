@@ -1,0 +1,67 @@
+{
+  "book": "PSA",
+  "chapter": 117,
+  "resources": {
+    "costumbres": {},
+    "diccionario": {
+      "d-048a0627e8722b42": {
+        "fuente": {
+          "headword": "Lord",
+          "modulo": "Smith"
+        },
+        "termino": "Lord"
+      },
+      "d-22ab3a42bba95ae9": {
+        "fuente": {
+          "headword": "Lord",
+          "modulo": "Easton"
+        },
+        "termino": "Lord"
+      },
+      "d-7f59d55df242f7f1": {
+        "fuente": {
+          "headword": "Hallelujah",
+          "modulo": "Smith"
+        },
+        "termino": "Hallelujah"
+      },
+      "d-921749e7223550b1": {
+        "fuente": {
+          "headword": "Love",
+          "modulo": "Easton"
+        },
+        "termino": "Love"
+      },
+      "d-ff1273cc2f0802aa": {
+        "fuente": {
+          "headword": "Hallelujah",
+          "modulo": "Easton"
+        },
+        "termino": "Hallelujah"
+      }
+    },
+    "historia": {}
+  },
+  "schemaVersion": 1,
+  "verses": {
+    "1": {
+      "costumbres": [],
+      "diccionario": [
+        "d-22ab3a42bba95ae9",
+        "d-048a0627e8722b42"
+      ],
+      "historia": []
+    },
+    "2": {
+      "costumbres": [],
+      "diccionario": [
+        "d-ff1273cc2f0802aa",
+        "d-7f59d55df242f7f1",
+        "d-22ab3a42bba95ae9",
+        "d-048a0627e8722b42",
+        "d-921749e7223550b1"
+      ],
+      "historia": []
+    }
+  }
+}

@@ -1,0 +1,1983 @@
+{
+  "_metadata": {
+    "modelo": "Xenova/paraphrase-multilingual-MiniLM-L12-v2",
+    "umbrales": [
+      0.3,
+      0.4,
+      0.5
+    ],
+    "totalEmbeddingsCalculados": 247,
+    "msTotalEmbeddings": 12844,
+    "msTotalScript": 15647
+  },
+  "resultados": [
+    {
+      "pasaje": {
+        "book": "ROM",
+        "chapterStart": 5,
+        "verseStart": 1,
+        "chapterEnd": 5,
+        "verseEnd": 11
+      },
+      "totalCandidatosOriginal": 30,
+      "candidatos": [
+        {
+          "headword": "Christ",
+          "diccionario": "smith",
+          "id": "smith-979",
+          "similitud": 0.5336924576850877
+        },
+        {
+          "headword": "Lord",
+          "diccionario": "smith",
+          "id": "smith-2663",
+          "similitud": 0.5222588757045024
+        },
+        {
+          "headword": "Grace",
+          "diccionario": "easton",
+          "id": "easton-1538",
+          "similitud": 0.5092946416039877
+        },
+        {
+          "headword": "Holiness",
+          "diccionario": "easton",
+          "id": "easton-1804",
+          "similitud": 0.5031057021083147
+        },
+        {
+          "headword": "Goodness of God",
+          "diccionario": "easton",
+          "id": "easton-1528",
+          "similitud": 0.5004499190305326
+        },
+        {
+          "headword": "Faithful",
+          "diccionario": "easton",
+          "id": "easton-1303",
+          "similitud": 0.47838421634118
+        },
+        {
+          "headword": "Glory",
+          "diccionario": "easton",
+          "id": "easton-1504",
+          "similitud": 0.4579144245367806
+        },
+        {
+          "headword": "Death",
+          "diccionario": "easton",
+          "id": "easton-994",
+          "similitud": 0.4423574335054951
+        },
+        {
+          "headword": "Spirit, Holy",
+          "diccionario": "easton",
+          "id": "easton-3496",
+          "similitud": 0.4389522780572449
+        },
+        {
+          "headword": "Christ",
+          "diccionario": "easton",
+          "id": "easton-818",
+          "similitud": 0.42038601705270645
+        },
+        {
+          "headword": "Blood",
+          "diccionario": "smith",
+          "id": "smith-786",
+          "similitud": 0.393793226784494
+        },
+        {
+          "headword": "Reconcilation",
+          "diccionario": "easton",
+          "id": "easton-3081",
+          "similitud": 0.38643593462885084
+        },
+        {
+          "headword": "By and by",
+          "diccionario": "easton",
+          "id": "easton-674",
+          "similitud": 0.3654061939549544
+        },
+        {
+          "headword": "Hope",
+          "diccionario": "easton",
+          "id": "easton-1813",
+          "similitud": 0.3583068917754906
+        },
+        {
+          "headword": "Spirit",
+          "diccionario": "easton",
+          "id": "easton-3495",
+          "similitud": 0.3582798218290235
+        },
+        {
+          "headword": "Love",
+          "diccionario": "easton",
+          "id": "easton-2322",
+          "similitud": 0.3581272028854298
+        },
+        {
+          "headword": "Jesus",
+          "diccionario": "easton",
+          "id": "easton-2054",
+          "similitud": 0.35281081453880697
+        },
+        {
+          "headword": "Lord",
+          "diccionario": "easton",
+          "id": "easton-2315",
+          "similitud": 0.35059184961103096
+        },
+        {
+          "headword": "God",
+          "diccionario": "easton",
+          "id": "easton-1513",
+          "similitud": 0.3470525565452596
+        },
+        {
+          "headword": "Goodness",
+          "diccionario": "easton",
+          "id": "easton-1527",
+          "similitud": 0.346329669620568
+        },
+        {
+          "headword": "Son of man",
+          "diccionario": "easton",
+          "id": "easton-3478",
+          "similitud": 0.3441314396773584
+        },
+        {
+          "headword": "God",
+          "diccionario": "smith",
+          "id": "smith-1684",
+          "similitud": 0.3386981812983019
+        },
+        {
+          "headword": "Jesus Christ",
+          "diccionario": "smith",
+          "id": "smith-2348",
+          "similitud": 0.33512368716479013
+        },
+        {
+          "headword": "Son of God",
+          "diccionario": "easton",
+          "id": "easton-3477",
+          "similitud": 0.3261603247733894
+        },
+        {
+          "headword": "Life",
+          "diccionario": "easton",
+          "id": "easton-2289",
+          "similitud": 0.3244897080856345
+        },
+        {
+          "headword": "Blood",
+          "diccionario": "easton",
+          "id": "easton-608",
+          "similitud": 0.3225296200044452
+        },
+        {
+          "headword": "Faith",
+          "diccionario": "easton",
+          "id": "easton-1302",
+          "similitud": 0.3147719991560826
+        },
+        {
+          "headword": "Wills",
+          "diccionario": "smith",
+          "id": "smith-4386",
+          "similitud": 0.3139396490879119
+        },
+        {
+          "headword": "Son",
+          "diccionario": "smith",
+          "id": "smith-4024",
+          "similitud": 0.2953921724945825
+        },
+        {
+          "headword": "Jesus",
+          "diccionario": "smith",
+          "id": "smith-2347",
+          "similitud": 0.27647234003312765
+        },
+        {
+          "headword": "Heart",
+          "diccionario": "easton",
+          "id": "easton-1699",
+          "similitud": 0.25872288789830794
+        },
+        {
+          "headword": "Holy of holies",
+          "diccionario": "easton",
+          "id": "easton-1806",
+          "similitud": 0.25225464355369376
+        },
+        {
+          "headword": "Man",
+          "diccionario": "smith",
+          "id": "smith-2758",
+          "similitud": 0.25138597432061116
+        },
+        {
+          "headword": "A",
+          "diccionario": "easton",
+          "id": "easton-1",
+          "similitud": 0.1531616755129022
+        },
+        {
+          "headword": "By",
+          "diccionario": "easton",
+          "id": "easton-673",
+          "similitud": 0.15269011831293983
+        },
+        {
+          "headword": "Man",
+          "diccionario": "easton",
+          "id": "easton-2398",
+          "similitud": 0.15205652291190844
+        },
+        {
+          "headword": "A",
+          "diccionario": "smith",
+          "id": "smith-1",
+          "similitud": 0.11166754722766002
+        }
+      ],
+      "conteoPorUmbral": {
+        "0.3": 28,
+        "0.4": 10,
+        "0.5": 5
+      },
+      "msPasaje": 2136
+    },
+    {
+      "pasaje": {
+        "book": "HEB",
+        "chapterStart": 7,
+        "verseStart": 1,
+        "chapterEnd": 7,
+        "verseEnd": 10
+      },
+      "totalCandidatosOriginal": 34,
+      "candidatos": [
+        {
+          "headword": "Abraham",
+          "diccionario": "easton",
+          "id": "easton-54",
+          "similitud": 0.5446937406381721
+        },
+        {
+          "headword": "Levites",
+          "diccionario": "smith",
+          "id": "smith-2631",
+          "similitud": 0.4993180347742123
+        },
+        {
+          "headword": "Priest",
+          "diccionario": "easton",
+          "id": "easton-3001",
+          "similitud": 0.490508841277981
+        },
+        {
+          "headword": "Abraham",
+          "diccionario": "smith",
+          "id": "smith-61",
+          "similitud": 0.48463887760070923
+        },
+        {
+          "headword": "Melchizedek",
+          "diccionario": "smith",
+          "id": "smith-2854",
+          "similitud": 0.4757187577161982
+        },
+        {
+          "headword": "Son of God",
+          "diccionario": "easton",
+          "id": "easton-3477",
+          "similitud": 0.4671728696149148
+        },
+        {
+          "headword": "God",
+          "diccionario": "smith",
+          "id": "smith-1684",
+          "similitud": 0.46384008395540355
+        },
+        {
+          "headword": "Kings",
+          "diccionario": "smith",
+          "id": "smith-2529",
+          "similitud": 0.46342593084135203
+        },
+        {
+          "headword": "Melchizedek",
+          "diccionario": "easton",
+          "id": "easton-2472",
+          "similitud": 0.4544971059191668
+        },
+        {
+          "headword": "King",
+          "diccionario": "easton",
+          "id": "easton-2190",
+          "similitud": 0.4505900118086771
+        },
+        {
+          "headword": "Levy",
+          "diccionario": "easton",
+          "id": "easton-2280",
+          "similitud": 0.44344277202417426
+        },
+        {
+          "headword": "Father",
+          "diccionario": "easton",
+          "id": "easton-1314",
+          "similitud": 0.4406130495657631
+        },
+        {
+          "headword": "So",
+          "diccionario": "smith",
+          "id": "smith-4010",
+          "similitud": 0.43893478591454294
+        },
+        {
+          "headword": "God",
+          "diccionario": "easton",
+          "id": "easton-1513",
+          "similitud": 0.43734947747149716
+        },
+        {
+          "headword": "Law",
+          "diccionario": "smith",
+          "id": "smith-2598",
+          "similitud": 0.4208600871856085
+        },
+        {
+          "headword": "Father",
+          "diccionario": "smith",
+          "id": "smith-1482",
+          "similitud": 0.4205905714754148
+        },
+        {
+          "headword": "Patriarch",
+          "diccionario": "easton",
+          "id": "easton-2868",
+          "similitud": 0.41600535808991707
+        },
+        {
+          "headword": "High priest",
+          "diccionario": "easton",
+          "id": "easton-1782",
+          "similitud": 0.4119987653557824
+        },
+        {
+          "headword": "Mother",
+          "diccionario": "smith",
+          "id": "smith-3005",
+          "similitud": 0.4118474203251045
+        },
+        {
+          "headword": "Righteousness",
+          "diccionario": "easton",
+          "id": "easton-3131",
+          "similitud": 0.41115422936383894
+        },
+        {
+          "headword": "Levite",
+          "diccionario": "easton",
+          "id": "easton-2278",
+          "similitud": 0.41094246912264526
+        },
+        {
+          "headword": "Bless",
+          "diccionario": "easton",
+          "id": "easton-606",
+          "similitud": 0.4058293078440134
+        },
+        {
+          "headword": "Brother",
+          "diccionario": "smith",
+          "id": "smith-820",
+          "similitud": 0.39936937264289024
+        },
+        {
+          "headword": "Salem",
+          "diccionario": "smith",
+          "id": "smith-3640",
+          "similitud": 0.3936949769207074
+        },
+        {
+          "headword": "Son",
+          "diccionario": "smith",
+          "id": "smith-4024",
+          "similitud": 0.3880365037904725
+        },
+        {
+          "headword": "Collection",
+          "diccionario": "easton",
+          "id": "easton-863",
+          "similitud": 0.3876816757153276
+        },
+        {
+          "headword": "Priest",
+          "diccionario": "smith",
+          "id": "smith-3442",
+          "similitud": 0.38393621191775407
+        },
+        {
+          "headword": "Brother",
+          "diccionario": "easton",
+          "id": "easton-655",
+          "similitud": 0.3757951315687915
+        },
+        {
+          "headword": "Levi",
+          "diccionario": "smith",
+          "id": "smith-2629",
+          "similitud": 0.375276060957765
+        },
+        {
+          "headword": "So",
+          "diccionario": "easton",
+          "id": "easton-3466",
+          "similitud": 0.374151309275048
+        },
+        {
+          "headword": "King",
+          "diccionario": "smith",
+          "id": "smith-2528",
+          "similitud": 0.3530380364391802
+        },
+        {
+          "headword": "Genealogy",
+          "diccionario": "smith",
+          "id": "smith-1606",
+          "similitud": 0.3486265696742389
+        },
+        {
+          "headword": "Salem",
+          "diccionario": "easton",
+          "id": "easton-3188",
+          "similitud": 0.3351627017342019
+        },
+        {
+          "headword": "Levi",
+          "diccionario": "easton",
+          "id": "easton-2275",
+          "similitud": 0.32915895599189915
+        },
+        {
+          "headword": "By and by",
+          "diccionario": "easton",
+          "id": "easton-674",
+          "similitud": 0.32671805527921066
+        },
+        {
+          "headword": "Patriarch",
+          "diccionario": "smith",
+          "id": "smith-3280",
+          "similitud": 0.3252971921007403
+        },
+        {
+          "headword": "Areli",
+          "diccionario": "smith",
+          "id": "smith-378",
+          "similitud": 0.32248197037951887
+        },
+        {
+          "headword": "Life",
+          "diccionario": "easton",
+          "id": "easton-2289",
+          "similitud": 0.3136312371768041
+        },
+        {
+          "headword": "Law",
+          "diccionario": "easton",
+          "id": "easton-2249",
+          "similitud": 0.290291625256569
+        },
+        {
+          "headword": "Day",
+          "diccionario": "easton",
+          "id": "easton-984",
+          "similitud": 0.28566906739673514
+        },
+        {
+          "headword": "A",
+          "diccionario": "easton",
+          "id": "easton-1",
+          "similitud": 0.2771465780402387
+        },
+        {
+          "headword": "On",
+          "diccionario": "easton",
+          "id": "easton-2786",
+          "similitud": 0.2748558135675164
+        },
+        {
+          "headword": "On",
+          "diccionario": "smith",
+          "id": "smith-3196",
+          "similitud": 0.26646044013288156
+        },
+        {
+          "headword": "Day",
+          "diccionario": "smith",
+          "id": "smith-1130",
+          "similitud": 0.25750688674973543
+        },
+        {
+          "headword": "Names",
+          "diccionario": "smith",
+          "id": "smith-3063",
+          "similitud": 0.25543880632712984
+        },
+        {
+          "headword": "Evening",
+          "diccionario": "easton",
+          "id": "easton-1274",
+          "similitud": 0.2389480926924567
+        },
+        {
+          "headword": "By",
+          "diccionario": "easton",
+          "id": "easton-673",
+          "similitud": 0.2131925583355525
+        },
+        {
+          "headword": "End",
+          "diccionario": "easton",
+          "id": "easton-1203",
+          "similitud": 0.2016847791131717
+        },
+        {
+          "headword": "A",
+          "diccionario": "smith",
+          "id": "smith-1",
+          "similitud": 0.13916839632158187
+        }
+      ],
+      "conteoPorUmbral": {
+        "0.3": 38,
+        "0.4": 22,
+        "0.5": 1
+      },
+      "msPasaje": 2129
+    },
+    {
+      "pasaje": {
+        "book": "GEN",
+        "chapterStart": 1,
+        "verseStart": 1,
+        "chapterEnd": 1,
+        "verseEnd": 5
+      },
+      "totalCandidatosOriginal": 18,
+      "candidatos": [
+        {
+          "headword": "Evening",
+          "diccionario": "easton",
+          "id": "easton-1274",
+          "similitud": 0.577576448246235
+        },
+        {
+          "headword": "Light",
+          "diccionario": "easton",
+          "id": "easton-2290",
+          "similitud": 0.5742456017059933
+        },
+        {
+          "headword": "Day",
+          "diccionario": "easton",
+          "id": "easton-984",
+          "similitud": 0.5476826387022158
+        },
+        {
+          "headword": "Darkness",
+          "diccionario": "smith",
+          "id": "smith-1123",
+          "similitud": 0.5399074626519088
+        },
+        {
+          "headword": "Heaven",
+          "diccionario": "easton",
+          "id": "easton-1704",
+          "similitud": 0.5264871764377539
+        },
+        {
+          "headword": "Day",
+          "diccionario": "smith",
+          "id": "smith-1130",
+          "similitud": 0.4946807497784217
+        },
+        {
+          "headword": "God",
+          "diccionario": "easton",
+          "id": "easton-1513",
+          "similitud": 0.4768406733167703
+        },
+        {
+          "headword": "Heaven",
+          "diccionario": "smith",
+          "id": "smith-1871",
+          "similitud": 0.46496773658965024
+        },
+        {
+          "headword": "Create",
+          "diccionario": "smith",
+          "id": "smith-1071",
+          "similitud": 0.43892201359496086
+        },
+        {
+          "headword": "Night",
+          "diccionario": "smith",
+          "id": "smith-3137",
+          "similitud": 0.4194776699450819
+        },
+        {
+          "headword": "Deep",
+          "diccionario": "easton",
+          "id": "easton-1006",
+          "similitud": 0.414605340501733
+        },
+        {
+          "headword": "Earth",
+          "diccionario": "easton",
+          "id": "easton-1106",
+          "similitud": 0.40477754610719224
+        },
+        {
+          "headword": "Earth",
+          "diccionario": "smith",
+          "id": "smith-1224",
+          "similitud": 0.3907800973093948
+        },
+        {
+          "headword": "Call",
+          "diccionario": "easton",
+          "id": "easton-694",
+          "similitud": 0.38919343480716545
+        },
+        {
+          "headword": "God",
+          "diccionario": "smith",
+          "id": "smith-1684",
+          "similitud": 0.37176981867882547
+        },
+        {
+          "headword": "Darkness",
+          "diccionario": "easton",
+          "id": "easton-976",
+          "similitud": 0.36257364481132576
+        },
+        {
+          "headword": "Spirit",
+          "diccionario": "easton",
+          "id": "easton-3495",
+          "similitud": 0.3557379616312176
+        },
+        {
+          "headword": "Goodness of God",
+          "diccionario": "easton",
+          "id": "easton-1528",
+          "similitud": 0.34591758175794973
+        },
+        {
+          "headword": "Calling",
+          "diccionario": "easton",
+          "id": "easton-695",
+          "similitud": 0.2680687979889705
+        },
+        {
+          "headword": "Goodness",
+          "diccionario": "easton",
+          "id": "easton-1527",
+          "similitud": 0.20810511588676556
+        },
+        {
+          "headword": "Saw",
+          "diccionario": "smith",
+          "id": "smith-3690",
+          "similitud": 0.15053154271813507
+        },
+        {
+          "headword": "Water Of Separation",
+          "diccionario": "smith",
+          "id": "smith-4370",
+          "similitud": 0.1403771554658945
+        },
+        {
+          "headword": "Water of separation",
+          "diccionario": "easton",
+          "id": "easton-3793",
+          "similitud": 0.07899414556088408
+        }
+      ],
+      "conteoPorUmbral": {
+        "0.3": 18,
+        "0.4": 12,
+        "0.5": 5
+      },
+      "msPasaje": 695
+    },
+    {
+      "pasaje": {
+        "book": "DAN",
+        "chapterStart": 9,
+        "verseStart": 1,
+        "chapterEnd": 9,
+        "verseEnd": 27
+      },
+      "totalCandidatosOriginal": 120,
+      "candidatos": [
+        {
+          "headword": "Lord",
+          "diccionario": "smith",
+          "id": "smith-2663",
+          "similitud": 0.4152684313579051
+        },
+        {
+          "headword": "Heaven",
+          "diccionario": "smith",
+          "id": "smith-1871",
+          "similitud": 0.3846833279109099
+        },
+        {
+          "headword": "Decrees of God",
+          "diccionario": "easton",
+          "id": "easton-1002",
+          "similitud": 0.381733658482134
+        },
+        {
+          "headword": "Lord",
+          "diccionario": "easton",
+          "id": "easton-2315",
+          "similitud": 0.3558526549598367
+        },
+        {
+          "headword": "Kingdom of God",
+          "diccionario": "easton",
+          "id": "easton-2191",
+          "similitud": 0.34343542930473
+        },
+        {
+          "headword": "Lords Prayer",
+          "diccionario": "smith",
+          "id": "smith-2665",
+          "similitud": 0.33395851048761965
+        },
+        {
+          "headword": "Seven",
+          "diccionario": "smith",
+          "id": "smith-3749",
+          "similitud": 0.3291498643810537
+        },
+        {
+          "headword": "By and by",
+          "diccionario": "easton",
+          "id": "easton-674",
+          "similitud": 0.32806361695943514
+        },
+        {
+          "headword": "Curse",
+          "diccionario": "easton",
+          "id": "easton-941",
+          "similitud": 0.32704796999620467
+        },
+        {
+          "headword": "Seven",
+          "diccionario": "easton",
+          "id": "easton-3293",
+          "similitud": 0.3257681165320013
+        },
+        {
+          "headword": "Sin-offering",
+          "diccionario": "easton",
+          "id": "easton-3446",
+          "similitud": 0.32469396903757275
+        },
+        {
+          "headword": "Holiness",
+          "diccionario": "easton",
+          "id": "easton-1804",
+          "similitud": 0.32389330337784766
+        },
+        {
+          "headword": "Israel, Kingdom Of",
+          "diccionario": "smith",
+          "id": "smith-2114",
+          "similitud": 0.3234229484738705
+        },
+        {
+          "headword": "Prophet",
+          "diccionario": "easton",
+          "id": "easton-3006",
+          "similitud": 0.322702139795022
+        },
+        {
+          "headword": "Jeremiah",
+          "diccionario": "smith",
+          "id": "smith-2309",
+          "similitud": 0.32076033467807585
+        },
+        {
+          "headword": "Sanctuary",
+          "diccionario": "easton",
+          "id": "easton-3213",
+          "similitud": 0.3184340116455533
+        },
+        {
+          "headword": "Prayer",
+          "diccionario": "smith",
+          "id": "smith-3439",
+          "similitud": 0.3149987457933815
+        },
+        {
+          "headword": "Word, The",
+          "diccionario": "easton",
+          "id": "easton-3833",
+          "similitud": 0.3145719677955947
+        },
+        {
+          "headword": "God",
+          "diccionario": "smith",
+          "id": "smith-1684",
+          "similitud": 0.31380348862556234
+        },
+        {
+          "headword": "God",
+          "diccionario": "easton",
+          "id": "easton-1513",
+          "similitud": 0.31323234368778347
+        },
+        {
+          "headword": "Righteousness",
+          "diccionario": "easton",
+          "id": "easton-3131",
+          "similitud": 0.3112272604716256
+        },
+        {
+          "headword": "Jeremiah, Book of",
+          "diccionario": "easton",
+          "id": "easton-2035",
+          "similitud": 0.31045715826239956
+        },
+        {
+          "headword": "Wars of the Lord, The Book of the",
+          "diccionario": "easton",
+          "id": "easton-3787",
+          "similitud": 0.3081671689928532
+        },
+        {
+          "headword": "Messiah",
+          "diccionario": "easton",
+          "id": "easton-2515",
+          "similitud": 0.3080842430494069
+        },
+        {
+          "headword": "Confession",
+          "diccionario": "easton",
+          "id": "easton-881",
+          "similitud": 0.30801086057916455
+        },
+        {
+          "headword": "Israel, Kingdom of",
+          "diccionario": "easton",
+          "id": "easton-1909",
+          "similitud": 0.3053257596142389
+        },
+        {
+          "headword": "Put",
+          "diccionario": "smith",
+          "id": "smith-3474",
+          "similitud": 0.3019065199544481
+        },
+        {
+          "headword": "Prayer",
+          "diccionario": "easton",
+          "id": "easton-2998",
+          "similitud": 0.3016397717642978
+        },
+        {
+          "headword": "Son of God",
+          "diccionario": "easton",
+          "id": "easton-3477",
+          "similitud": 0.3015128253435992
+        },
+        {
+          "headword": "Judah, Kingdom of",
+          "diccionario": "easton",
+          "id": "easton-2126",
+          "similitud": 0.30112787126111634
+        },
+        {
+          "headword": "Everlasting",
+          "diccionario": "easton",
+          "id": "easton-1275",
+          "similitud": 0.2912024072270045
+        },
+        {
+          "headword": "Jeremiah, Book Of",
+          "diccionario": "smith",
+          "id": "smith-2310",
+          "similitud": 0.2897498932643869
+        },
+        {
+          "headword": "Prophet",
+          "diccionario": "smith",
+          "id": "smith-3450",
+          "similitud": 0.2881544405466152
+        },
+        {
+          "headword": "Flood",
+          "diccionario": "smith",
+          "id": "smith-1508",
+          "similitud": 0.2877910496675452
+        },
+        {
+          "headword": "Kings",
+          "diccionario": "smith",
+          "id": "smith-2529",
+          "similitud": 0.2861463773468249
+        },
+        {
+          "headword": "Son",
+          "diccionario": "smith",
+          "id": "smith-4024",
+          "similitud": 0.28088190885859826
+        },
+        {
+          "headword": "By-word",
+          "diccionario": "easton",
+          "id": "easton-676",
+          "similitud": 0.2774050662959157
+        },
+        {
+          "headword": "Israel",
+          "diccionario": "smith",
+          "id": "smith-2113",
+          "similitud": 0.27721365906567896
+        },
+        {
+          "headword": "Oath",
+          "diccionario": "easton",
+          "id": "easton-2759",
+          "similitud": 0.2768864007160846
+        },
+        {
+          "headword": "Offering",
+          "diccionario": "easton",
+          "id": "easton-2770",
+          "similitud": 0.2727082114961405
+        },
+        {
+          "headword": "Judah, Kingdom Of",
+          "diccionario": "smith",
+          "id": "smith-2463",
+          "similitud": 0.272018280341125
+        },
+        {
+          "headword": "Sin",
+          "diccionario": "easton",
+          "id": "easton-3441",
+          "similitud": 0.2709330032479555
+        },
+        {
+          "headword": "Kings, The Books of",
+          "diccionario": "easton",
+          "id": "easton-2194",
+          "similitud": 0.267606722667729
+        },
+        {
+          "headword": "Word of God",
+          "diccionario": "easton",
+          "id": "easton-3832",
+          "similitud": 0.2662049779898839
+        },
+        {
+          "headword": "Abomination Of Desolation",
+          "diccionario": "smith",
+          "id": "smith-60",
+          "similitud": 0.26372743191232767
+        },
+        {
+          "headword": "Daniel",
+          "diccionario": "easton",
+          "id": "easton-969",
+          "similitud": 0.261124105967909
+        },
+        {
+          "headword": "Law",
+          "diccionario": "smith",
+          "id": "smith-2598",
+          "similitud": 0.26065089529926855
+        },
+        {
+          "headword": "Lords Day, The",
+          "diccionario": "smith",
+          "id": "smith-2664",
+          "similitud": 0.2599701151726454
+        },
+        {
+          "headword": "Desolation, Abomination of",
+          "diccionario": "easton",
+          "id": "easton-1020",
+          "similitud": 0.2580728116957373
+        },
+        {
+          "headword": "Cities",
+          "diccionario": "smith",
+          "id": "smith-998",
+          "similitud": 0.2569377409104285
+        },
+        {
+          "headword": "Law Of Moses",
+          "diccionario": "smith",
+          "id": "smith-2599",
+          "similitud": 0.2549746666851518
+        },
+        {
+          "headword": "Jerusalem",
+          "diccionario": "easton",
+          "id": "easton-2043",
+          "similitud": 0.2547895616090061
+        },
+        {
+          "headword": "Messiah",
+          "diccionario": "smith",
+          "id": "smith-2902",
+          "similitud": 0.253862794222283
+        },
+        {
+          "headword": "Year",
+          "diccionario": "easton",
+          "id": "easton-3843",
+          "similitud": 0.2532314302258636
+        },
+        {
+          "headword": "So",
+          "diccionario": "smith",
+          "id": "smith-4010",
+          "similitud": 0.2513358801364644
+        },
+        {
+          "headword": "Jeremiah",
+          "diccionario": "easton",
+          "id": "easton-2034",
+          "similitud": 0.24990184230711487
+        },
+        {
+          "headword": "Atonement, Day of",
+          "diccionario": "easton",
+          "id": "easton-363",
+          "similitud": 0.24747741278148927
+        },
+        {
+          "headword": "Israel",
+          "diccionario": "easton",
+          "id": "easton-1908",
+          "similitud": 0.2438316975878439
+        },
+        {
+          "headword": "Man",
+          "diccionario": "smith",
+          "id": "smith-2758",
+          "similitud": 0.24310349625014074
+        },
+        {
+          "headword": "Son of man",
+          "diccionario": "easton",
+          "id": "easton-3478",
+          "similitud": 0.24058093786751705
+        },
+        {
+          "headword": "Forgiveness of sin",
+          "diccionario": "easton",
+          "id": "easton-1375",
+          "similitud": 0.23460852842898952
+        },
+        {
+          "headword": "Seventy weeks",
+          "diccionario": "easton",
+          "id": "easton-3294",
+          "similitud": 0.23458068709505356
+        },
+        {
+          "headword": "Moses",
+          "diccionario": "smith",
+          "id": "smith-3003",
+          "similitud": 0.23075017408720713
+        },
+        {
+          "headword": "Darius",
+          "diccionario": "smith",
+          "id": "smith-1122",
+          "similitud": 0.2292430784231779
+        },
+        {
+          "headword": "Ashes",
+          "diccionario": "smith",
+          "id": "smith-442",
+          "similitud": 0.22827357028720244
+        },
+        {
+          "headword": "Gabriel",
+          "diccionario": "easton",
+          "id": "easton-1404",
+          "similitud": 0.22820763574375955
+        },
+        {
+          "headword": "Gabriel",
+          "diccionario": "smith",
+          "id": "smith-1537",
+          "similitud": 0.22806135518666712
+        },
+        {
+          "headword": "Heaven",
+          "diccionario": "easton",
+          "id": "easton-1704",
+          "similitud": 0.227760082481515
+        },
+        {
+          "headword": "Judah",
+          "diccionario": "easton",
+          "id": "easton-2125",
+          "similitud": 0.2277446473023063
+        },
+        {
+          "headword": "Atonement, The Day Of",
+          "diccionario": "smith",
+          "id": "smith-487",
+          "similitud": 0.22700888331346025
+        },
+        {
+          "headword": "Book",
+          "diccionario": "easton",
+          "id": "easton-622",
+          "similitud": 0.2239614868495236
+        },
+        {
+          "headword": "Atonement",
+          "diccionario": "easton",
+          "id": "easton-362",
+          "similitud": 0.2220086080499991
+        },
+        {
+          "headword": "Areli",
+          "diccionario": "smith",
+          "id": "smith-378",
+          "similitud": 0.22110843192316637
+        },
+        {
+          "headword": "Jerusalem",
+          "diccionario": "smith",
+          "id": "smith-2326",
+          "similitud": 0.2202120107121346
+        },
+        {
+          "headword": "Sackcloth",
+          "diccionario": "easton",
+          "id": "easton-3178",
+          "similitud": 0.21892808579148346
+        },
+        {
+          "headword": "Destruction",
+          "diccionario": "easton",
+          "id": "easton-1022",
+          "similitud": 0.21891315423665583
+        },
+        {
+          "headword": "Flood",
+          "diccionario": "easton",
+          "id": "easton-1358",
+          "similitud": 0.2185613951107061
+        },
+        {
+          "headword": "Shamed",
+          "diccionario": "smith",
+          "id": "smith-3773",
+          "similitud": 0.21732422953329433
+        },
+        {
+          "headword": "Offerings",
+          "diccionario": "smith",
+          "id": "smith-3181",
+          "similitud": 0.21513651246590335
+        },
+        {
+          "headword": "Moses",
+          "diccionario": "easton",
+          "id": "easton-2602",
+          "similitud": 0.21401600981095933
+        },
+        {
+          "headword": "Week",
+          "diccionario": "easton",
+          "id": "easton-3800",
+          "similitud": 0.2139567183488781
+        },
+        {
+          "headword": "Sin",
+          "diccionario": "smith",
+          "id": "smith-3986",
+          "similitud": 0.2115400326042387
+        },
+        {
+          "headword": "Servant",
+          "diccionario": "smith",
+          "id": "smith-3746",
+          "similitud": 0.21119032342204525
+        },
+        {
+          "headword": "Ash",
+          "diccionario": "easton",
+          "id": "easton-333",
+          "similitud": 0.2084377346053929
+        },
+        {
+          "headword": "Judah",
+          "diccionario": "smith",
+          "id": "smith-2462",
+          "similitud": 0.2057714481823545
+        },
+        {
+          "headword": "Earing",
+          "diccionario": "smith",
+          "id": "smith-1221",
+          "similitud": 0.20386262532219943
+        },
+        {
+          "headword": "Prophecy",
+          "diccionario": "easton",
+          "id": "easton-3005",
+          "similitud": 0.20355532077993008
+        },
+        {
+          "headword": "Temple",
+          "diccionario": "easton",
+          "id": "easton-3610",
+          "similitud": 0.2024639211812072
+        },
+        {
+          "headword": "Father",
+          "diccionario": "easton",
+          "id": "easton-1314",
+          "similitud": 0.20203261777506676
+        },
+        {
+          "headword": "Book",
+          "diccionario": "smith",
+          "id": "smith-797",
+          "similitud": 0.20186710994191207
+        },
+        {
+          "headword": "Love",
+          "diccionario": "easton",
+          "id": "easton-2322",
+          "similitud": 0.20164531957988008
+        },
+        {
+          "headword": "King",
+          "diccionario": "easton",
+          "id": "easton-2190",
+          "similitud": 0.19957161949400926
+        },
+        {
+          "headword": "Daniel",
+          "diccionario": "smith",
+          "id": "smith-1114",
+          "similitud": 0.1987246126992569
+        },
+        {
+          "headword": "Oath",
+          "diccionario": "smith",
+          "id": "smith-3170",
+          "similitud": 0.1982594493380994
+        },
+        {
+          "headword": "City",
+          "diccionario": "easton",
+          "id": "easton-838",
+          "similitud": 0.19825049734426017
+        },
+        {
+          "headword": "Covenant",
+          "diccionario": "easton",
+          "id": "easton-916",
+          "similitud": 0.19774302636263258
+        },
+        {
+          "headword": "Street",
+          "diccionario": "easton",
+          "id": "easton-3520",
+          "similitud": 0.196568288812833
+        },
+        {
+          "headword": "Truth",
+          "diccionario": "easton",
+          "id": "easton-3729",
+          "similitud": 0.19608866499230992
+        },
+        {
+          "headword": "So",
+          "diccionario": "easton",
+          "id": "easton-3466",
+          "similitud": 0.19273659859155573
+        },
+        {
+          "headword": "Week",
+          "diccionario": "smith",
+          "id": "smith-4376",
+          "similitud": 0.18997131166314582
+        },
+        {
+          "headword": "Covenant",
+          "diccionario": "smith",
+          "id": "smith-1066",
+          "similitud": 0.18893457679831574
+        },
+        {
+          "headword": "Law of Moses",
+          "diccionario": "easton",
+          "id": "easton-2250",
+          "similitud": 0.1879949536269747
+        },
+        {
+          "headword": "Earing",
+          "diccionario": "easton",
+          "id": "easton-1103",
+          "similitud": 0.18275489498428804
+        },
+        {
+          "headword": "Seal",
+          "diccionario": "easton",
+          "id": "easton-3246",
+          "similitud": 0.18094492385276173
+        },
+        {
+          "headword": "Abomination",
+          "diccionario": "easton",
+          "id": "easton-53",
+          "similitud": 0.1796553380163256
+        },
+        {
+          "headword": "On",
+          "diccionario": "smith",
+          "id": "smith-3196",
+          "similitud": 0.17847768639692893
+        },
+        {
+          "headword": "Egypt",
+          "diccionario": "easton",
+          "id": "easton-1137",
+          "similitud": 0.1782388906679318
+        },
+        {
+          "headword": "Sin Offering",
+          "diccionario": "smith",
+          "id": "smith-3987",
+          "similitud": 0.17796585736324474
+        },
+        {
+          "headword": "Ashes",
+          "diccionario": "easton",
+          "id": "easton-338",
+          "similitud": 0.1773546975803396
+        },
+        {
+          "headword": "On",
+          "diccionario": "easton",
+          "id": "easton-2786",
+          "similitud": 0.17573134171836327
+        },
+        {
+          "headword": "Destruction, City of",
+          "diccionario": "easton",
+          "id": "easton-1023",
+          "similitud": 0.17422232496445994
+        },
+        {
+          "headword": "Prince",
+          "diccionario": "easton",
+          "id": "easton-3002",
+          "similitud": 0.17373345306650229
+        },
+        {
+          "headword": "Holy place",
+          "diccionario": "easton",
+          "id": "easton-1807",
+          "similitud": 0.17162827658839885
+        },
+        {
+          "headword": "Cutting",
+          "diccionario": "easton",
+          "id": "easton-948",
+          "similitud": 0.17042922326688048
+        },
+        {
+          "headword": "Destroyer",
+          "diccionario": "easton",
+          "id": "easton-1021",
+          "similitud": 0.16891631378388358
+        },
+        {
+          "headword": "Year",
+          "diccionario": "smith",
+          "id": "smith-4409",
+          "similitud": 0.16842781297532394
+        },
+        {
+          "headword": "Open place",
+          "diccionario": "easton",
+          "id": "easton-2794",
+          "similitud": 0.16818646352674385
+        },
+        {
+          "headword": "Hand",
+          "diccionario": "easton",
+          "id": "easton-1623",
+          "similitud": 0.16749720938677135
+        },
+        {
+          "headword": "Vision",
+          "diccionario": "easton",
+          "id": "easton-3776",
+          "similitud": 0.1670387482878925
+        },
+        {
+          "headword": "War",
+          "diccionario": "easton",
+          "id": "easton-3785",
+          "similitud": 0.1669659353772323
+        },
+        {
+          "headword": "Daniel, Book of",
+          "diccionario": "easton",
+          "id": "easton-970",
+          "similitud": 0.16472905050427014
+        },
+        {
+          "headword": "Holy of holies",
+          "diccionario": "easton",
+          "id": "easton-1806",
+          "similitud": 0.1643501648973437
+        },
+        {
+          "headword": "A",
+          "diccionario": "easton",
+          "id": "easton-1",
+          "similitud": 0.1632494768345985
+        },
+        {
+          "headword": "Ash",
+          "diccionario": "smith",
+          "id": "smith-431",
+          "similitud": 0.16258563437293388
+        },
+        {
+          "headword": "Anoint",
+          "diccionario": "easton",
+          "id": "easton-247",
+          "similitud": 0.16207682735424372
+        },
+        {
+          "headword": "Sacrifice",
+          "diccionario": "easton",
+          "id": "easton-3179",
+          "similitud": 0.16168121017597387
+        },
+        {
+          "headword": "Names",
+          "diccionario": "smith",
+          "id": "smith-3063",
+          "similitud": 0.158338201169818
+        },
+        {
+          "headword": "Day",
+          "diccionario": "easton",
+          "id": "easton-984",
+          "similitud": 0.1571191444857722
+        },
+        {
+          "headword": "End",
+          "diccionario": "easton",
+          "id": "easton-1203",
+          "similitud": 0.1566418779412882
+        },
+        {
+          "headword": "Day",
+          "diccionario": "smith",
+          "id": "smith-1130",
+          "similitud": 0.15663955564415563
+        },
+        {
+          "headword": "Man of sin",
+          "diccionario": "easton",
+          "id": "easton-2406",
+          "similitud": 0.15626312273340692
+        },
+        {
+          "headword": "Wills",
+          "diccionario": "smith",
+          "id": "smith-4386",
+          "similitud": 0.15618006353364106
+        },
+        {
+          "headword": "Anointing",
+          "diccionario": "smith",
+          "id": "smith-315",
+          "similitud": 0.15541237128680388
+        },
+        {
+          "headword": "Darius",
+          "diccionario": "easton",
+          "id": "easton-975",
+          "similitud": 0.15512951169242617
+        },
+        {
+          "headword": "Temple",
+          "diccionario": "smith",
+          "id": "smith-4170",
+          "similitud": 0.15319310905980485
+        },
+        {
+          "headword": "Bear",
+          "diccionario": "smith",
+          "id": "smith-612",
+          "similitud": 0.15309267948166794
+        },
+        {
+          "headword": "Egypt",
+          "diccionario": "smith",
+          "id": "smith-1253",
+          "similitud": 0.15079777243452297
+        },
+        {
+          "headword": "Bear",
+          "diccionario": "easton",
+          "id": "easton-487",
+          "similitud": 0.14567357246824672
+        },
+        {
+          "headword": "Man",
+          "diccionario": "easton",
+          "id": "easton-2398",
+          "similitud": 0.1403019561672168
+        },
+        {
+          "headword": "Face",
+          "diccionario": "easton",
+          "id": "easton-1299",
+          "similitud": 0.13912962226121392
+        },
+        {
+          "headword": "A",
+          "diccionario": "smith",
+          "id": "smith-1",
+          "similitud": 0.13832900271287507
+        },
+        {
+          "headword": "Father",
+          "diccionario": "smith",
+          "id": "smith-1482",
+          "similitud": 0.13648669154968787
+        },
+        {
+          "headword": "Evening",
+          "diccionario": "easton",
+          "id": "easton-1274",
+          "similitud": 0.13552163990709673
+        },
+        {
+          "headword": "Daniel, The Book Of",
+          "diccionario": "smith",
+          "id": "smith-1116",
+          "similitud": 0.13470271709019482
+        },
+        {
+          "headword": "Law",
+          "diccionario": "easton",
+          "id": "easton-2249",
+          "similitud": 0.13109436582064957
+        },
+        {
+          "headword": "War",
+          "diccionario": "smith",
+          "id": "smith-4366",
+          "similitud": 0.13081159292046848
+        },
+        {
+          "headword": "Fast",
+          "diccionario": "easton",
+          "id": "easton-1312",
+          "similitud": 0.12472344394308593
+        },
+        {
+          "headword": "Sackcloth",
+          "diccionario": "smith",
+          "id": "smith-3631",
+          "similitud": 0.12102069684679995
+        },
+        {
+          "headword": "By",
+          "diccionario": "easton",
+          "id": "easton-673",
+          "similitud": 0.11780908673232426
+        },
+        {
+          "headword": "Eye",
+          "diccionario": "smith",
+          "id": "smith-1459",
+          "similitud": 0.10375218129428784
+        },
+        {
+          "headword": "Fasts",
+          "diccionario": "smith",
+          "id": "smith-1480",
+          "similitud": 0.10221807315146224
+        },
+        {
+          "headword": "Mede",
+          "diccionario": "easton",
+          "id": "easton-2458",
+          "similitud": 0.10141399128309193
+        },
+        {
+          "headword": "King",
+          "diccionario": "smith",
+          "id": "smith-2528",
+          "similitud": 0.09784395745142095
+        },
+        {
+          "headword": "Covering of the eyes",
+          "diccionario": "easton",
+          "id": "easton-917",
+          "similitud": 0.09775337677619927
+        },
+        {
+          "headword": "Earrings",
+          "diccionario": "smith",
+          "id": "smith-1223",
+          "similitud": 0.09152670867249244
+        },
+        {
+          "headword": "Eye",
+          "diccionario": "easton",
+          "id": "easton-1287",
+          "similitud": 0.08763090759133549
+        },
+        {
+          "headword": "Sacrifice",
+          "diccionario": "smith",
+          "id": "smith-3632",
+          "similitud": 0.07534642977357275
+        },
+        {
+          "headword": "Anger",
+          "diccionario": "easton",
+          "id": "easton-241",
+          "similitud": 0.06738626231721906
+        },
+        {
+          "headword": "Street",
+          "diccionario": "smith",
+          "id": "smith-4067",
+          "similitud": 0.06669046585035496
+        },
+        {
+          "headword": "Earrings",
+          "diccionario": "easton",
+          "id": "easton-1105",
+          "similitud": 0.06275572120441922
+        },
+        {
+          "headword": "Presents",
+          "diccionario": "smith",
+          "id": "smith-3440",
+          "similitud": 0.05631938231478853
+        },
+        {
+          "headword": "Seal",
+          "diccionario": "smith",
+          "id": "smith-3706",
+          "similitud": 0.04849942718830475
+        },
+        {
+          "headword": "Ear",
+          "diccionario": "easton",
+          "id": "easton-1102",
+          "similitud": 0.035886102250030597
+        }
+      ],
+      "conteoPorUmbral": {
+        "0.3": 30,
+        "0.4": 1,
+        "0.5": 0
+      },
+      "msPasaje": 6451
+    },
+    {
+      "pasaje": {
+        "book": "PSA",
+        "chapterStart": 23,
+        "verseStart": 1,
+        "chapterEnd": 23,
+        "verseEnd": 6
+      },
+      "totalCandidatosOriginal": 31,
+      "candidatos": [
+        {
+          "headword": "Lord",
+          "diccionario": "smith",
+          "id": "smith-2663",
+          "similitud": 0.6828928961774139
+        },
+        {
+          "headword": "Psalms",
+          "diccionario": "easton",
+          "id": "easton-3013",
+          "similitud": 0.5217618315476013
+        },
+        {
+          "headword": "Righteousness",
+          "diccionario": "easton",
+          "id": "easton-3131",
+          "similitud": 0.4690249121571035
+        },
+        {
+          "headword": "Mercy",
+          "diccionario": "easton",
+          "id": "easton-2494",
+          "similitud": 0.43491908769070836
+        },
+        {
+          "headword": "Lords Day, The",
+          "diccionario": "smith",
+          "id": "smith-2664",
+          "similitud": 0.4297146110823706
+        },
+        {
+          "headword": "Comforter",
+          "diccionario": "easton",
+          "id": "easton-869",
+          "similitud": 0.41820430785284446
+        },
+        {
+          "headword": "Dwell",
+          "diccionario": "easton",
+          "id": "easton-1098",
+          "similitud": 0.3942859470364797
+        },
+        {
+          "headword": "David",
+          "diccionario": "smith",
+          "id": "smith-1128",
+          "similitud": 0.39056841275581516
+        },
+        {
+          "headword": "Shepherd",
+          "diccionario": "easton",
+          "id": "easton-3353",
+          "similitud": 0.3819916989932178
+        },
+        {
+          "headword": "Death",
+          "diccionario": "easton",
+          "id": "easton-994",
+          "similitud": 0.3766087976220256
+        },
+        {
+          "headword": "Lord",
+          "diccionario": "easton",
+          "id": "easton-2315",
+          "similitud": 0.37632897587116143
+        },
+        {
+          "headword": "Fear of the Lord the",
+          "diccionario": "easton",
+          "id": "easton-1317",
+          "similitud": 0.37398938271313004
+        },
+        {
+          "headword": "Day",
+          "diccionario": "easton",
+          "id": "easton-984",
+          "similitud": 0.34520370341991086
+        },
+        {
+          "headword": "Goodness",
+          "diccionario": "easton",
+          "id": "easton-1527",
+          "similitud": 0.3413605271169589
+        },
+        {
+          "headword": "No",
+          "diccionario": "easton",
+          "id": "easton-2739",
+          "similitud": 0.3412232734439314
+        },
+        {
+          "headword": "Shadow",
+          "diccionario": "easton",
+          "id": "easton-3300",
+          "similitud": 0.333041978349841
+        },
+        {
+          "headword": "Cup",
+          "diccionario": "easton",
+          "id": "easton-938",
+          "similitud": 0.3319102456832153
+        },
+        {
+          "headword": "Comforter",
+          "diccionario": "smith",
+          "id": "smith-1032",
+          "similitud": 0.3309443291343801
+        },
+        {
+          "headword": "Anointing",
+          "diccionario": "smith",
+          "id": "smith-315",
+          "similitud": 0.330679156711306
+        },
+        {
+          "headword": "No",
+          "diccionario": "smith",
+          "id": "smith-3149",
+          "similitud": 0.3287270228524643
+        },
+        {
+          "headword": "Life",
+          "diccionario": "easton",
+          "id": "easton-2289",
+          "similitud": 0.3253609308385287
+        },
+        {
+          "headword": "Lie",
+          "diccionario": "easton",
+          "id": "easton-2287",
+          "similitud": 0.32437066745799925
+        },
+        {
+          "headword": "Evening",
+          "diccionario": "easton",
+          "id": "easton-1274",
+          "similitud": 0.3230430497500755
+        },
+        {
+          "headword": "Areli",
+          "diccionario": "smith",
+          "id": "smith-378",
+          "similitud": 0.3065989502088022
+        },
+        {
+          "headword": "David",
+          "diccionario": "easton",
+          "id": "easton-982",
+          "similitud": 0.29858340516512055
+        },
+        {
+          "headword": "Valley",
+          "diccionario": "easton",
+          "id": "easton-3764",
+          "similitud": 0.2961362305719084
+        },
+        {
+          "headword": "Wills",
+          "diccionario": "smith",
+          "id": "smith-4386",
+          "similitud": 0.2870466164982886
+        },
+        {
+          "headword": "Day",
+          "diccionario": "smith",
+          "id": "smith-1130",
+          "similitud": 0.28241345706698495
+        },
+        {
+          "headword": "Shepherd",
+          "diccionario": "smith",
+          "id": "smith-3854",
+          "similitud": 0.2790805778463219
+        },
+        {
+          "headword": "Anoint",
+          "diccionario": "easton",
+          "id": "easton-247",
+          "similitud": 0.27679795806805035
+        },
+        {
+          "headword": "A",
+          "diccionario": "easton",
+          "id": "easton-1",
+          "similitud": 0.2667834233897251
+        },
+        {
+          "headword": "A",
+          "diccionario": "smith",
+          "id": "smith-1",
+          "similitud": 0.23598662907614268
+        },
+        {
+          "headword": "House",
+          "diccionario": "easton",
+          "id": "easton-1840",
+          "similitud": 0.22318111876856234
+        },
+        {
+          "headword": "Oil",
+          "diccionario": "smith",
+          "id": "smith-3184",
+          "similitud": 0.21242972289126555
+        },
+        {
+          "headword": "Lead",
+          "diccionario": "smith",
+          "id": "smith-2603",
+          "similitud": 0.20150320008218603
+        },
+        {
+          "headword": "Tables",
+          "diccionario": "easton",
+          "id": "easton-3562",
+          "similitud": 0.1868658169398752
+        },
+        {
+          "headword": "Oil",
+          "diccionario": "easton",
+          "id": "easton-2774",
+          "similitud": 0.18630766709908292
+        },
+        {
+          "headword": "Cup",
+          "diccionario": "smith",
+          "id": "smith-1089",
+          "similitud": 0.15654811621051312
+        },
+        {
+          "headword": "House",
+          "diccionario": "smith",
+          "id": "smith-2008",
+          "similitud": 0.11874518977349452
+        },
+        {
+          "headword": "Dwellings",
+          "diccionario": "easton",
+          "id": "easton-1099",
+          "similitud": 0.0953782789942387
+        },
+        {
+          "headword": "Names",
+          "diccionario": "smith",
+          "id": "smith-3063",
+          "similitud": 0.00975379390928529
+        }
+      ],
+      "conteoPorUmbral": {
+        "0.3": 24,
+        "0.4": 6,
+        "0.5": 2
+      },
+      "msPasaje": 1431
+    }
+  ]
+}
