@@ -326,27 +326,39 @@ document.addEventListener('DOMContentLoaded', async () => {
      con el identificador de los datos offline del Asistente. La UI actual
      solo selecciona dentro de un capítulo, pero se conserva el contrato de
      rango completo que usa el ensamblador de Fase 5. */
-  function getSelectedPassageContext(){
-    // El Asistente pertenece a la Biblia principal y está oculto en modo
-    // sermón; el selector bíblico interno de ese modo mantiene otro estado.
-    if(sermonMode) return null;
-    const explicit = selectedVerseNumbers();
-    const active = activeVerse();
-    const verses = explicit.length ? explicit : (active ? [active] : []);
-    if(!verses.length) return null;
-
+  function passageRangesFromVerses(chapter, verses){
     const ranges=[];
     let start=verses[0];
     let end=verses[0];
     for(let index=1; index<verses.length; index++){
       const verse=verses[index];
       if(verse===end+1){ end=verse; continue; }
-      ranges.push({chapterStart:currentChapter,verseStart:start,chapterEnd:currentChapter,verseEnd:end});
+      ranges.push({chapterStart:chapter,verseStart:start,chapterEnd:chapter,verseEnd:end});
       start=verse;
       end=verse;
     }
-    ranges.push({chapterStart:currentChapter,verseStart:start,chapterEnd:currentChapter,verseEnd:end});
-    return {book:currentBook,ranges};
+    ranges.push({chapterStart:chapter,verseStart:start,chapterEnd:chapter,verseEnd:end});
+    return ranges;
+  }
+
+  function getSelectedPassageContext(){
+    // El Asistente ahora también responde en modo sermón, pero contra la
+    // Biblia interna de ese modo (sermonBible: su propio libro/capítulo/
+    // versículo activo) — la Biblia principal queda oculta/congelada ahí,
+    // así que currentBook/currentChapter no aplican (petición de Juan,
+    // 2026-08-28: "debe responder a la biblia de modo predica").
+    if(sermonMode){
+      if(!sermonBible?.data) return null;
+      const explicit = selectedVerseNumbers();
+      const verses = explicit.length ? explicit : (sermonBible.activeVerse ? [sermonBible.activeVerse] : []);
+      if(!verses.length) return null;
+      return {book:sermonBible.book, ranges:passageRangesFromVerses(sermonBible.chapter, verses)};
+    }
+    const explicit = selectedVerseNumbers();
+    const active = activeVerse();
+    const verses = explicit.length ? explicit : (active ? [active] : []);
+    if(!verses.length) return null;
+    return {book:currentBook, ranges:passageRangesFromVerses(currentChapter, verses)};
   }
 
   function notifySelectedPassageChange(){
@@ -1892,7 +1904,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   async function toggleSermonMode(){
     sermonMode = !sermonMode;
-    if(!sermonMode) closeSermonSidePanel(); // no arrastrar el panel abierto a la próxima vez que entre a modo sermón
+    if(!sermonMode){
+      closeSermonSidePanel(); // no arrastrar el panel abierto a la próxima vez que entre a modo sermón
+      // La pestaña "Biblia" de #sidePanel (sermon-biblia) solo tiene sentido
+      // dentro del modo sermón — si queda abierta al salir, se ve un panel
+      // vacío/roto sobre la Biblia principal (petición de Juan, 2026-08-28).
+      if(activeTab==='sermon-biblia') closePanel();
+    }
     selectedVerses.clear();
     document.querySelectorAll('.verse--selected').forEach(x=>x.classList.remove('verse--selected'));
     updateActionBar();
@@ -4069,9 +4087,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   function openChurchHistoryEntryFromTOC(id){
     churchHistoryOpenId=id;
     churchHistoryOpenFromShelf=true;
-    els.side.classList.add('side-panel--history-expanded');
-    els.side.offsetHeight; // fuerza reflow — igual patrón que openPanel() para sheets; sin esto
-                            // el ancho nuevo quedaba diferido hasta la próxima interacción del usuario
+    // Ya no se auto-expande al abrir una entrada — el ancho amplio solo se
+    // activa con el botón "Ampliar lectura" (petición de Juan, 2026-08-28:
+    // con el panel empujando en vez de flotar encima, auto-expandir a
+    // min(62vw,920px) aplastaba la Biblia y el Asistente sin que el usuario
+    // lo pidiera).
     renderChurchHistoryEntry(id);
     els.panelBody.scrollTop=0;
   }
@@ -5531,8 +5551,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
   function openCostumbresEntryFromIndex(id){
     costumbresOpenId=id;
-    els.side.classList.add('side-panel--history-expanded');
-    els.side.offsetHeight; // fuerza reflow, mismo patrón que openChurchHistoryEntryFromTOC
+    // Ver comentario en openChurchHistoryEntryFromTOC: ya no se auto-expande.
     renderCostumbresEntry();
     els.panelBody.scrollTop=0;
   }
@@ -5849,8 +5868,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   function openExtracanonicoEntryFromIndex(id){
     extracanonicoOpenId=id;
-    els.side.classList.add('side-panel--history-expanded');
-    els.side.offsetHeight; // fuerza reflow, mismo patrón que openCostumbresEntryFromIndex
+    // Ver comentario en openChurchHistoryEntryFromTOC: ya no se auto-expande.
     renderExtracanonicoEntry();
     els.panelBody.scrollTop=0;
   }
@@ -6163,8 +6181,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
   function openDiccionariosEntryFromIndex(id){
     diccionariosOpenId=id;
-    els.side.classList.add('side-panel--history-expanded');
-    els.side.offsetHeight; // fuerza reflow, mismo patrón que openChurchHistoryEntryFromTOC
+    // Ver comentario en openChurchHistoryEntryFromTOC: ya no se auto-expande.
     renderDiccionariosEntry();
     els.panelBody.scrollTop=0;
   }

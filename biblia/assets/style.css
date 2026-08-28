@@ -337,6 +337,30 @@ body {
   background: var(--paper);
   scrollbar-width: thin;
   scrollbar-color: var(--rule-strong) transparent;
+  transition: width 0.28s cubic-bezier(0.4, 0, 0.2, 1), flex-basis 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Ocultable con su propio ícono en el tab-rail (#studyAssistantToggle),
+   igual que el resto de los paneles — abierto por defecto. */
+.study-assistant--closed {
+  width: 0;
+  flex: 0 0 0;
+  min-width: 0;
+  border-left: 0;
+  overflow: hidden;
+}
+
+/* En modo sermón, .reading-pane (que normalmente precede al Asistente en el
+   DOM) queda oculto y .editor-pane ocupa su lugar — sin esto el Asistente
+   aparecía a la IZQUIERDA del editor en vez de a la derecha. Se mueve el
+   editor hacia atrás (order:-1) en vez de empujar el Asistente hacia
+   adelante: #sidePanel/#sermonComparePanel/.tab-rail (los siguientes
+   hermanos flex, todos en order:0 por defecto) quedan después del
+   Asistente en el orden del DOM, así que un order positivo en el
+   Asistente lo mandaba MÁS ALLÁ del riel de íconos (fuera de vista) en
+   vez de solo después del editor. */
+body.sermon-mode .editor-pane {
+  order: -1;
 }
 
 .study-assistant__placeholder {
@@ -595,10 +619,6 @@ body {
   outline-offset: 3px;
 }
 
-body.sermon-mode .study-assistant {
-  display: none;
-}
-
 @media (min-width: 761px) {
   /* Mantiene la coordenada visual del bloque bíblico previa a la creación de
      la columna: el margen libre que antes quedaba a la derecha ahora lo ocupa
@@ -608,26 +628,22 @@ body.sermon-mode .study-assistant {
     margin-right: 0;
   }
 
-  /* Los paneles de herramientas normales quedan fuera del flujo flex. Así
-     cubren temporalmente al Asistente (y, si son anchos, parte de la Biblia)
-     sin recalcular ni desplazar ninguna de las dos columnas base. */
-  body:not(.sermon-mode) #sidePanel {
-    position: absolute;
-    top: 0;
-    right: var(--rail-width);
-    bottom: 0;
-    z-index: 20;
-    box-shadow: -12px 0 28px rgba(71, 46, 35, 0.12);
+  /* Con el Asistente cerrado ya no hay columna a la derecha que compensar
+     — centrar el bloque de lectura como antes de que existiera. */
+  .app-body:has(.study-assistant--closed) .reading-pane__inner {
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  body:not(.sermon-mode) #sidePanel.side-panel--left {
-    right: auto;
-    left: var(--rail-width);
-    order: initial;
-    border-left: 0;
-    border-right: 1px solid var(--rule);
-    box-shadow: 12px 0 28px rgba(71, 46, 35, 0.12);
-  }
+  /* PRUEBA (2026-08-28): antes los paneles de herramientas quedaban fuera
+     del flujo flex (position:absolute) y cubrían al Asistente y, si eran
+     anchos, parte de la Biblia, para no recalcular el layout. Ahora
+     participan del flex normal: con paneles abiertos a ambos lados la
+     Biblia se angosta en vez de quedar tapada. Las reglas base ya
+     soportan esto (.side-panel/.side-panel--open miden con
+     --panel-width; .side-panel--left ya tenía order:-1). Si se revierte,
+     restaurar el bloque position:absolute de este commit en el historial.
+  */
 }
 
 /* Marca de app en reading pane — solo móvil */

@@ -460,10 +460,31 @@
     }
   }
 
+  function wireToggle(){
+    const button=document.getElementById('studyAssistantToggle');
+    const root=assistant();
+    if(!button || !root) return;
+    const setOpen=open=>{
+      root.classList.toggle('study-assistant--closed',!open);
+      button.classList.toggle('tab-rail__btn--active',open);
+      button.setAttribute('aria-pressed',String(open));
+    };
+    // Abierto por defecto (comportamiento previo); a partir de ahí se
+    // ocultable con su propio ícono como cualquier otro panel, y se
+    // recuerda la preferencia entre visitas.
+    setOpen(localStorage.getItem('verbo:studyAssistantOpen')!=='0');
+    button.addEventListener('click',()=>{
+      const open=root.classList.contains('study-assistant--closed');
+      setOpen(open);
+      localStorage.setItem('verbo:studyAssistantOpen',open?'1':'0');
+    });
+  }
+
   async function init(){
     if(!assistant()) return;
     if(window.VerboI18n) await window.VerboI18n.ready();
     renderNoSelection();
+    wireToggle();
     document.addEventListener(EVENT_NAME,event=>update(event.detail));
     document.addEventListener('verbo:uilang-changed',()=>{
       if(currentContext && currentResources){

@@ -23,7 +23,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Verbo">
-<link rel="stylesheet" href="assets/style.css?v=20260828-study-assistant-width-380">
+<link rel="stylesheet" href="assets/style.css?v=20260828-study-assistant-toggle">
 <link rel="stylesheet" href="assets/notas-popup.css?v=20260826-notas-popup-unify">
 </head>
 <body>
@@ -203,6 +203,12 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
     </aside>
 
     <nav class="tab-rail">
+      <button class="tab-rail__btn tab-rail__btn--primary tab-rail__btn--active" id="studyAssistantToggle" type="button" aria-pressed="true" data-i18n-attr="title:nav.asistente,aria-label:nav.asistente">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M12 3l1.7 5.3L19 10l-5.3 1.7L12 17l-1.7-5.3L5 10l5.3-1.7L12 3z"/>
+          <path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15z"/>
+        </svg>
+      </button>
       <button class="tab-rail__btn tab-rail__btn--primary" data-tab="sermon-biblia" data-i18n-attr="title:nav.sermonBiblia,aria-label:nav.sermonBiblia">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
           <path d="M12 4.5c-2.2-1.6-5.2-2.2-8.5-2.2v15.4c3.3 0 6.3.6 8.5 2.2 2.2-1.6 5.2-2.2 8.5-2.2V2.3c-3.3 0-6.3.6-8.5 2.2z"/>
@@ -334,7 +340,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   <script src="assets/module-loader.js?v=20260825-extracanonico"></script>
   <script src="assets/atlas-reference-parser.js?v=20260818-atlas-step2"></script>
   <script src="assets/sync.js?v=20260801-sermon-predicas"></script>
-  <script src="assets/app.js?v=20260828-study-assistant-translation"></script>
-  <script src="assets/study-assistant.js?v=20260828-study-assistant-translation-2"></script>
+  <script src="assets/app.js?v=20260828-study-assistant-toggle"></script>
+  <script src="assets/study-assistant.js?v=20260828-study-assistant-toggle"></script>
 </body>
 </html>
