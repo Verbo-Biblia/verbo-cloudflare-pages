@@ -2392,8 +2392,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     npEl.hidden=true;
     npEl.innerHTML=`
       <div class="np-popup__header" id="npHeader">
-        <h3 class="np-popup__title">${t('notasPopup.title')}</h3>
-        <button type="button" class="np-popup__close" id="npClose" aria-label="${t('notasPopup.cerrarAria')}">×</button>
+        <h3 class="np-popup__title" data-i18n="notasPopup.title">${t('notasPopup.title')}</h3>
+        <button type="button" class="np-popup__close" id="npClose" aria-label="${t('notasPopup.cerrarAria')}" data-i18n-attr="aria-label:notasPopup.cerrarAria">×</button>
       </div>
       <div class="np-popup__tabs" id="npTabsBar"></div>
       <div class="np-popup__body" id="npBodyEl"></div>`;
