@@ -469,10 +469,9 @@
       button.classList.toggle('tab-rail__btn--active',open);
       button.setAttribute('aria-pressed',String(open));
     };
-    // Abierto por defecto (comportamiento previo); a partir de ahí se
-    // ocultable con su propio ícono como cualquier otro panel, y se
-    // recuerda la preferencia entre visitas.
-    setOpen(localStorage.getItem('verbo:studyAssistantOpen')!=='0');
+    // Cerrado por defecto; a partir de ahí se ocultable con su propio ícono
+    // como cualquier otro panel, y se recuerda la preferencia entre visitas.
+    setOpen(localStorage.getItem('verbo:studyAssistantOpen')==='1');
     button.addEventListener('click',()=>{
       const open=root.classList.contains('study-assistant--closed');
       setOpen(open);
