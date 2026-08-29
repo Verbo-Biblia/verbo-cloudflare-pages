@@ -509,11 +509,19 @@ function parseStudyCachedValue(raw) {
   }
 }
 
+function stripJsonCodeFence(text) {
+  // El prompt pide "sin fences" pero el modelo a veces envuelve el JSON en
+  // ```json ... ``` de todos modos (visto en producción con Haiku) — quitar
+  // el fence antes de parsear evita que la traducción entera se descarte.
+  const match = text.match(/^```(?:json)?\s*([\s\S]*?)\s*```$/i);
+  return match ? match[1] : text;
+}
+
 function parseStructuredStudyTranslations(raw, requestedIds) {
   if (typeof raw !== 'string' || !raw.trim()) return new Map();
   let parsed;
   try {
-    parsed = JSON.parse(raw.trim());
+    parsed = JSON.parse(stripJsonCodeFence(raw.trim()));
   } catch {
     return new Map();
   }
