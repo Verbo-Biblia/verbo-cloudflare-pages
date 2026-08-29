@@ -229,7 +229,7 @@ window.VerboIglesiaEditor = (() => {
       const ids = categories[pickerCategory] || [];
       const items = ids.map(id => manifest.items.find(it => it.id === id)).filter(Boolean);
       body.innerHTML = `
-        <div class="iglesia-picker-crumb"><button type="button" id="iglesiaPickerBack">← ${escapeHTML(t('iglesia.picker.categorias'))}</button></div>
+        <div class="iglesia-picker-crumb"><button type="button" id="iglesiaPickerBack"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-2px;margin-right:3px"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>${escapeHTML(t('iglesia.picker.categorias'))}</button></div>
         ${renderThumbGrid(items)}`;
       wireThumbClicks(body);
       body.querySelector('#iglesiaPickerBack')?.addEventListener('click', () => { pickerCategory = null; refreshPickerBody(); });

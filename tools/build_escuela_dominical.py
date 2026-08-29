@@ -215,7 +215,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
 
   <header class="static-page__header">
     <a class="static-page__brand" href="{brand_href}">Verbo</a>
-    <a class="static-page__back" href="{back_href}">← {back_label}</a>
+    <a class="static-page__back" href="{back_href}">{back_label}</a>
   </header>
 
   <main class="static-page__main">

@@ -35,6 +35,15 @@
   --assistant-blue-soft: #E5EEF6;
   --assistant-purple: #72508B;
   --assistant-purple-soft: #EEE7F3;
+  /* Comentarios y Referencias cruzadas (mensaje-resumen del Asistente) —
+     no existían categorías propias para ellas antes. Hues nuevos (ámbar
+     ~36°, rosa ~332°) sin choque con teal/verde/azul/morado/vino ya
+     usados; contraste vs. --paper-raised ≈5.6:1 y ≈6.0:1 (AA), mismo
+     rango que los 4 acentos existentes (~4.9-5.9:1). */
+  --assistant-amber: #8A5A17;
+  --assistant-amber-soft: #F5E9D2;
+  --assistant-rose: #9C3F6B;
+  --assistant-rose-soft: #F5E5EE;
   /* Usada por .library-rail__btn (único uso en el archivo) — no estaba
      definida acá, así que esa sombra nunca se pintaba. Mismo triplete de
      color que .theme-option:hover (rgba(58,46,34,...), tono tinta/sepia,
@@ -348,7 +357,20 @@ body {
   overflow-y: auto;
   border-left: 1px solid var(--rule);
   border-top: 3px solid var(--assistant-accent);
-  background: var(--paper-raised);
+  /* Redefine --paper-raised SOLO adentro del Asistente (cascada de custom
+     properties) — más cerca del blanco que el resto del sitio, sin tocar
+     el valor global que usan los demás paneles. Todo lo que ya usa
+     var(--paper-raised) puertas adentro (header, secciones, resumen,
+     back-bar) hereda este valor automáticamente. */
+  --paper-raised: #FFFCF6;
+  /* Se probaron puntos, grano/papel arrugado y renglones de cuaderno como
+     textura de fondo (pedido de Juan 2026-08-29) — los renglones no se
+     pueden alinear de forma confiable con el texto real del panel (varios
+     tamaños de fuente y alturas de línea distintas: resumen, encabezados
+     de sección, entradas con line-clamp, chips inline), así que quedaban
+     atravesando el texto en vez de quedar debajo. Se descarta la textura,
+     queda solo el fondo más claro que el resto del sitio. */
+  background-color: var(--paper-raised);
   scrollbar-width: thin;
   scrollbar-color: var(--rule-strong) transparent;
   transition: width 0.28s cubic-bezier(0.4, 0, 0.2, 1), flex-basis 0.28s cubic-bezier(0.4, 0, 0.2, 1);
@@ -391,9 +413,39 @@ body.sermon-mode .editor-pane {
   position: sticky;
   top: 0;
   z-index: 3;
-  padding: 17px 19px 14px;
+  padding: 17px 40px 14px 19px;
   border-bottom: 1px solid var(--rule-strong);
   background: var(--paper-raised);
+}
+
+.study-assistant__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  padding: 4px;
+  border: 0;
+  background: none;
+  color: var(--sepia);
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.study-assistant__close:hover { color: var(--ink); }
+
+/* Ilustración del header (pedido de Juan 2026-08-29) + título/referencia
+   en fila. El SVG en sí vive en Shadow DOM (ver study-assistant.js
+   buildShell) — acá solo se dimensiona el contenedor. */
+.study-assistant__header-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.study-assistant__header-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
 }
 
 .study-assistant__kicker {
@@ -633,7 +685,7 @@ body.sermon-mode .editor-pane {
 .study-assistant__resource-link {
   display: inline-flex;
   align-items: center;
-  margin-top: 8px;
+  margin-top: 12px;
   padding: 4px 10px;
   border: 0;
   border-radius: 999px;
@@ -653,9 +705,88 @@ body.sermon-mode .editor-pane {
 
 .study-assistant__resource-link:hover { filter: brightness(.92) saturate(1.15); }
 
+/* Mensaje-resumen (VerboStudyMessages): reemplaza las 3 secciones hasta
+   que el usuario toque una categoría clickeable. Mismo tamaño/color de
+   lectura que .study-assistant__text (line 587-596), ya que ahora es el
+   contenido principal del panel al abrir un versículo. */
+.study-assistant__summary-text {
+  margin: 0;
+  padding: 22px 20px;
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* Términos/Historia/Costumbres: mismo patrón de chip-píldora que
+   .study-assistant__resource-link (line 629-654) — fondo suave + texto
+   sólido, así se lee como acción de un vistazo, no como texto plano. */
+.study-assistant__summary-chip {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 1px;
+  padding: 1px 9px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+}
+
+.study-assistant__summary-chip--historia { color: var(--wine); background: color-mix(in srgb, var(--wine) 12%, var(--paper-raised)); }
+.study-assistant__summary-chip--costumbres { color: var(--assistant-green); background: var(--assistant-green-soft); }
+.study-assistant__summary-chip--terminos { color: var(--assistant-blue); background: var(--assistant-blue-soft); }
+
+.study-assistant__summary-chip:hover { filter: brightness(.92) saturate(1.15); }
+
+/* Comentarios y Referencias cruzadas: texto informativo puro, sin acción.
+   A propósito SIN fondo/cursor/hover — la forma de chip de arriba es la
+   que comunica "esto se puede tocar"; acá el color solo identifica la
+   categoría, nunca implica una acción (ver Accesibilidad, pedido de
+   Juan 2026-08-29: el color no puede ser el único indicador). */
+.study-assistant__summary-static { font-weight: 600; }
+.study-assistant__summary-static--comentarios { color: var(--assistant-amber); }
+.study-assistant__summary-static--crossrefs { color: var(--assistant-rose); }
+
+/* Barra sticky sobre una sección expandida, justo debajo del header (que
+   mide ~72px) — fondo opaco a todo el ancho para que el título de la
+   sección quede tapado al scrollear, no atravesado visualmente por un
+   botón flotante sin fondo propio. */
+.study-assistant__back-bar {
+  position: sticky;
+  top: 72px;
+  z-index: 2;
+  padding: 8px 18px;
+  background: var(--paper-raised);
+  border-bottom: 1px solid var(--rule);
+}
+
+/* Botón "volver al resumen" — ícono circular puro, sin texto (aria-label
+   lleva la descripción). Mismo lenguaje visual que el chevron ⌃/⌄ de las
+   secciones, acento propio del panel, nunca color de categoría. */
+.study-assistant__back-to-summary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--assistant-accent-soft);
+  color: var(--assistant-accent);
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.study-assistant__back-to-summary:hover { filter: brightness(.92) saturate(1.15); }
+
 .study-assistant__section-toggle:focus-visible,
 .study-assistant__resource-link:focus-visible,
-.study-assistant__more:focus-visible {
+.study-assistant__more:focus-visible,
+.study-assistant__summary-chip:focus-visible,
+.study-assistant__back-to-summary:focus-visible {
   outline: 2px solid var(--assistant-accent);
   outline-offset: 3px;
 }
@@ -1057,10 +1188,42 @@ body.sermon-mode .editor-pane {
 
 /* El ícono del Asistente se enciende con su propio acento (no el vino de
    los demás paneles) para que se note, aun cerrado, que es una voz
-   distinta dentro del riel. */
+   distinta dentro del riel — el comentario original ya decía esto, pero
+   el CSS solo pintaba teal cuando estaba activo; cerrado caía al vino
+   compartido de .tab-rail__btn--primary y se confundía con "Biblia
+   principal" (modo sermón, ver más abajo). Corregido 2026-08-29: teal
+   suave cerrado, teal sólido abierto — nunca vino. */
+#studyAssistantToggle.tab-rail__btn--primary,
+#studyAssistantToggle.tab-rail__btn--primary:hover {
+  color: var(--assistant-accent);
+  /* Pulso permanente, cerrado o abierto — no solo mientras está activo
+   * (pedido de Juan 2026-08-29). Mismo patrón que "Biblia principal" en
+   * modo sermón, en teal en vez de vino. */
+  animation: study-assistant-toggle-pulse-closed 2.4s ease-in-out infinite;
+}
 #studyAssistantToggle.tab-rail__btn--active,
 #studyAssistantToggle.tab-rail__btn--active:hover {
-  background: var(--assistant-accent);
+  color: var(--paper-raised);
+  animation: study-assistant-toggle-pulse-active 2.4s ease-in-out infinite;
+}
+
+@keyframes study-assistant-toggle-pulse-closed {
+  0%, 100% { background: var(--assistant-accent-soft); }
+  50% { background: color-mix(in srgb, var(--assistant-accent) 30%, var(--assistant-accent-soft)); }
+}
+
+@keyframes study-assistant-toggle-pulse-active {
+  0%, 100% { background: color-mix(in srgb, var(--assistant-accent) 55%, var(--paper-raised)); }
+  50% { background: color-mix(in srgb, var(--assistant-accent) 85%, var(--paper-raised)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #studyAssistantToggle.tab-rail__btn--primary,
+  #studyAssistantToggle.tab-rail__btn--active {
+    animation: none;
+    background: var(--assistant-accent-soft);
+  }
+  #studyAssistantToggle.tab-rail__btn--active { background: var(--assistant-accent); }
 }
 
 .tab-rail__label {
@@ -3412,6 +3575,29 @@ body.sermon-mode .tab-rail__btn[data-tab="sermon-biblia"] { display: flex; }
   box-shadow: 0 0 0 2px var(--gold-glow);
 }
 
+/* Biblia principal del modo sermón: mismo carmín de siempre (--wine-soft,
+   el que ya usaba el estado activo — no --wine, que es más oscuro y NO es
+   el color que Juan recordaba) pero tenue en vez de sólido, con pulso.
+   Pedido de Juan 2026-08-29; escapado por [data-tab="sermon-biblia"] para
+   no afectar a #studyAssistantToggle, que también lleva .tab-rail__btn--primary. */
+.tab-rail__btn--primary[data-tab="sermon-biblia"] {
+  background: color-mix(in srgb, var(--wine-soft) 55%, transparent);
+  animation: sermon-bible-pulse 2.4s ease-in-out infinite;
+}
+.tab-rail__btn--primary[data-tab="sermon-biblia"]:hover,
+.tab-rail__btn--primary[data-tab="sermon-biblia"].tab-rail__btn--active {
+  background: color-mix(in srgb, var(--wine-soft) 55%, transparent);
+}
+
+@keyframes sermon-bible-pulse {
+  0%, 100% { background: color-mix(in srgb, var(--wine-soft) 55%, transparent); }
+  50% { background: color-mix(in srgb, var(--wine-soft) 85%, transparent); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab-rail__btn--primary[data-tab="sermon-biblia"] { animation: none; }
+}
+
 /* ---------- Comparar versiones lado a lado con Biblia en modo sermón ----------
    Segundo panel deslizante, independiente de #sidePanel (que en modo sermón
    muestra "Biblia"). Vive como hermano de #sidePanel dentro de .app-body
@@ -3622,30 +3808,47 @@ body.static-page {
   font-size: 20px;
   text-decoration: none;
 }
-.static-page__back { font-size: 13px; color: var(--sepia); text-decoration: none; }
+/* Ícono de "volver" compartido por TODO el sitio (pedido de Juan
+   2026-08-29): un mismo SVG en vez del glifo unicode "←", que ya no
+   forma parte del texto (ver i18n site.backToVerbo y cada HTML estático)
+   — se pinta acá vía ::before con la técnica mask+currentColor, así que
+   funciona sin tocar el color por página y sin duplicar el SVG en cada
+   archivo. stroke="black" en el data URI es arbitrario: mask solo usa el
+   canal alfa, el color real lo pone --sepia/--wine de abajo. */
+.static-page__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  color: var(--sepia);
+  text-decoration: none;
+}
 .static-page__back:hover { color: var(--wine); }
+.static-page__back::before {
+  content: '';
+  display: inline-block;
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 12H5'/%3E%3Cpath d='M12 19l-7-7 7-7'/%3E%3C/svg%3E") no-repeat center / contain;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 12H5'/%3E%3Cpath d='M12 19l-7-7 7-7'/%3E%3C/svg%3E") no-repeat center / contain;
+}
 @media (max-width: 760px) {
-  /* En móvil el texto ("← Articles and Reflections", "← Índice 8 a 10 años"...)
+  /* En móvil el texto ("Articles and Reflections", "Índice 8 a 10 años"...)
      no cabe bien y se ve recargado. Se colapsa a tamaño 0 (sigue en el árbol
-     de accesibilidad, no es display:none) y se muestra solo una flecha
-     grande vía ::before — suficiente para volver, sin texto. */
+     de accesibilidad, no es display:none) y se muestra solo el ícono, más
+     grande — suficiente para volver, sin texto. */
   .static-page__back {
     /* !important: recursos.css (body.recursos-page .static-page__back, más
        específico) fija su propio font-size y le ganaba a esta regla en las
        páginas de Recursos, dejando el texto visible pese al breakpoint. */
     font-size: 0 !important;
-    display: inline-flex;
-    align-items: center;
     justify-content: center;
     padding: 8px;
     margin: -8px;
   }
-  .static-page__back::before {
-    content: "←";
-    font-size: 22px;
-    font-weight: 600;
-    line-height: 1;
-  }
+  .static-page__back::before { width: 20px; height: 20px; }
 }
 .static-page__main {
   max-width: 640px; margin: 0 auto; padding: 40px 32px 80px;

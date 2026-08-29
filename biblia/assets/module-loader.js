@@ -1139,5 +1139,5 @@ const VerboModules = (() => {
     return { manifest, book, chapter:chapterData, alignment, morphology, linguistic };
   }
 
-  return { getCatalog,getBookInfo,resolveBibleBooks,buildChapterData,loadBible,loadRemoteBible,loadCommentary,loadCommentaryIndex,loadLinkedEntries,loadLinkedArticle,loadChurchHistory,loadChurchHistoryShelf,getDictionaryEntry,loadDictionaryEntries,loadDictionaryIndex,loadGospel,loadPatristic,loadPatristicShelf,loadCostumbres,loadCostumbresShelf,loadExtracanonico,loadExtracanonicoShelf,loadDiccionarios,loadDiccionariosShelf,loadConversorUnidades,loadOriginalLanguage,searchBible,searchRemoteBible,searchSemanticBible,searchSemanticChurchHistory };
+  return { getCatalog,getBookInfo,resolveBibleBooks,buildChapterData,loadBible,loadRemoteBible,loadCommentary,loadCommentaryIndex,loadCrossrefs,loadLinkedEntries,loadLinkedArticle,loadChurchHistory,loadChurchHistoryShelf,getDictionaryEntry,loadDictionaryEntries,loadDictionaryIndex,loadGospel,loadPatristic,loadPatristicShelf,loadCostumbres,loadCostumbresShelf,loadExtracanonico,loadExtracanonicoShelf,loadDiccionarios,loadDiccionariosShelf,loadConversorUnidades,loadOriginalLanguage,searchBible,searchRemoteBible,searchSemanticBible,searchSemanticChurchHistory };
 })();

@@ -253,7 +253,7 @@ def page_html(book, data_url):
 <link rel="stylesheet" href="../assets/reader.css?v=20-mi-biblioteca">
 </head>
 <body class="static-page recursos-page">
-<header class="static-page__header"><a class="static-page__brand" href="../../">Verbo</a><a class="static-page__back" href="../">← Librería</a></header>
+<header class="static-page__header"><a class="static-page__brand" href="../../">Verbo</a><a class="static-page__back" href="../">Librería</a></header>
 <main class="static-page__main"><div class="reader" id="reader-root"></div></main>
 <script>window.__LIBRERIA_BOOK__ = {json.dumps(cfg, ensure_ascii=False, indent=2)};</script>
 <script src="../../biblia/assets/i18n.js?v=20260729-shared-dict2"></script>

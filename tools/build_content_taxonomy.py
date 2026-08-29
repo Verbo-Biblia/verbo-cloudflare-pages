@@ -672,7 +672,7 @@ def page_shell(root_rel, title, description, back_href, back_label, body_html, e
 
   <header class="static-page__header">
     <a class="static-page__brand" href="{root_rel}">Verbo</a>
-    <a class="static-page__back" href="{back_href}">← {back_label}</a>
+    <a class="static-page__back" href="{back_href}">{back_label}</a>
   </header>
 
 {nav_block(root_rel, "libreria")}

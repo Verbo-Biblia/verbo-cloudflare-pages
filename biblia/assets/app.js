@@ -1,6 +1,11 @@
 document.addEventListener('DOMContentLoaded', async () => {
   if (window.VerboI18n) await window.VerboI18n.ready();
   const t = (key, vars) => (window.VerboI18n ? window.VerboI18n.t(key, vars) : key);
+  // Ícono de "volver" compartido por todos los botones note-card__copy que
+  // navegan a un nivel superior (estante/índice/resultados/Atlas/Evangelio),
+  // reemplazando el glifo unicode "←" — pedido de Juan 2026-08-29. No se usa
+  // en los botones "anterior/siguiente" (esos son paginación, no "volver").
+  const BACK_ICON = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-3px;margin-right:3px"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>';
   const els = {
     body: document.body,
     book: document.getElementById('bookSelect'),
@@ -375,7 +380,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     getBookLabel:(bookId=currentBook)=>{
       const spanish=catalog?.books?.find(book=>book.id===bookId)?.name || bookId;
       return (window.VerboI18n?.getUiLang()==='en' ? NASB_BOOK_NAMES[bookId] : spanish) || spanish;
-    }
+    },
+    // Para paneles fuera de este closure (ej. el Asistente de Estudio) que
+    // necesitan navegar a un pasaje puntual sin pasar por el buscador
+    // principal — mismo flujo que openSearchResult, sin abrir ese panel.
+    selectPassage:(bookId,chapter,verse)=>navigateToVerse(bookId,chapter,verse)
   });
   const hlKey = (book, chapter, n) => `${book}:${chapter}:${n}`;
   const saveHighlights = () => { VerboBackup.setAllResaltados(highlights); };
@@ -3008,12 +3017,22 @@ document.addEventListener('DOMContentLoaded', async () => {
   // module-loader.js), pero abrir un resultado NUNCA debe cambiar la Biblia
   // que el usuario está leyendo: solo navega al libro/capítulo/versículo
   // encontrado y lo muestra en `currentVersion`, sea cual sea.
-  async function openSearchResult(r){
-    currentBook=r.bookId; currentChapter=r.chapter;
+  // Cuerpo compartido por openSearchResult y window.VerboPassageSelection.
+  // selectPassage (expuesta para otros paneles, ej. el Asistente de Estudio,
+  // que no pueden tocar currentBook/currentChapter/notifySelectedPassageChange
+  // directamente por ser privados a este closure). `onLoaded` corre justo
+  // después de loadPassage y antes de marcar el versículo activo — mismo
+  // punto donde openSearchResult ya hacía openPanel('buscar').
+  async function navigateToVerse(bookId, chapter, verse, {onLoaded}={}){
+    currentBook=bookId; currentChapter=chapter;
     els.book.value=currentBook; await refreshChapters(); els.chapter.value=String(currentChapter); await loadPassage();
-    openPanel('buscar');
-    const row=document.querySelector(`[data-verse-n="${r.verse}"]`);
+    onLoaded?.();
+    const row=document.querySelector(`[data-verse-n="${verse}"]`);
     if(row){ document.querySelectorAll('.verse--active').forEach(x=>x.classList.remove('verse--active')); row.classList.add('verse--active'); row.scrollIntoView({behavior:'smooth',block:'center'}); notifySelectedPassageChange(); }
+  }
+
+  async function openSearchResult(r){
+    await navigateToVerse(r.bookId, r.chapter, r.verse, {onLoaded:()=>openPanel('buscar')});
   }
 
   // La lista de resultados debe mostrar el texto en la Biblia ACTIVA del
@@ -3952,7 +3971,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     churchHistorySuggestions=churchHistoryEntries.length?churchHistorySuggestionGroups(churchHistoryEntries):{anios:[],temas:[],nombres:[]};
     buildChurchHistoryPredictiveCandidates(churchHistoryEntries);
-    els.panelToolbar.innerHTML=`<button type="button" class="note-card__copy history-back-to-shelf" id="backToChurchHistoryShelfFromSearch">← ${t('historia.volverEstante')}</button>
+    els.panelToolbar.innerHTML=`<button type="button" class="note-card__copy history-back-to-shelf" id="backToChurchHistoryShelfFromSearch">${BACK_ICON}${t('historia.volverEstante')}</button>
     <form class="search-panel-form" id="churchHistorySearchForm">
       <div class="history-search-autocomplete"><input id="churchHistorySearchInput" class="search-panel-input" type="search" placeholder="${t('historia.buscarPlaceholder')}" autocomplete="off" value="${escapeHTML(churchHistoryQuery)}"><div id="churchHistoryPredictions" class="history-predictions"></div></div>
     </form>`;
@@ -4100,7 +4119,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     els.panelToolbar.innerHTML='';
     const shelfMeta=(churchHistoryShelf||[]).find(v=>v.id===volumeId);
     const entries=churchHistoryVolumeEntries(volumeId);
-    const backBtn=`<button type="button" class="note-card__copy" id="backToChurchHistoryShelf">← ${t('historia.volverEstante')}</button>`;
+    const backBtn=`<button type="button" class="note-card__copy" id="backToChurchHistoryShelf">${BACK_ICON}${t('historia.volverEstante')}</button>`;
     if(!entries.length){
       els.panelBody.innerHTML=`${backBtn}${emptyState('⛪',t('historia.sinContenido'))}`;
       document.getElementById('backToChurchHistoryShelf')?.addEventListener('click',churchHistoryBackToShelf);
@@ -4327,7 +4346,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       <div class="dict-entry__source">${escapeHTML(churchHistoryBookLabel(sourceKey))}</div>
       ${metaParts?`<p class="note-card__translation-note">${metaParts}</p>`:''}
       <div class="history-entry-actions">
-        <button class="note-card__copy" id="backToChurchHistoryResults" type="button">← ${churchHistoryOpenFromShelf?t('historia.volverIndice'):t('historia.volverResultados')}</button>
+        <button class="note-card__copy" id="backToChurchHistoryResults" type="button">${BACK_ICON}${churchHistoryOpenFromShelf?t('historia.volverIndice'):t('historia.volverResultados')}</button>
         <button id="churchHistoryExpand" class="history-panel-expand" type="button" aria-pressed="${els.side.classList.contains('side-panel--history-expanded')?'true':'false'}">${els.side.classList.contains('side-panel--history-expanded')?t('historia.vistaCompacta'):t('historia.ampliarLectura')}</button>
       </div>
       <div class="dict-entry__def" data-entry-id="${escapeHTML(entry.id)}">${entry.content||entry.excerpt||''}</div>
@@ -4761,7 +4780,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const showEnglish=contentLang()==='en';
       const sourceName=showEnglish?localizeStrongUiLabels(result.manifest.name):result.manifest.name;
       const previousCode=strongPopupHistory[strongPopupHistory.length-1];
-      const backHtml=previousCode?`<button class="note-card__copy" id="strongPopupBack" type="button">← ${escapeHTML(previousCode)}</button>`:'';
+      const backHtml=previousCode?`<button class="note-card__copy" id="strongPopupBack" type="button">${BACK_ICON}${escapeHTML(previousCode)}</button>`:'';
       p.body.innerHTML=`<article class="dict-entry">${backHtml}<div class="dict-entry__term">${result.code}</div><div class="dict-entry__source">${escapeHTML(sourceName)}</div><button class="note-card__copy" id="copyDictEntry" type="button">${t('diccionario.copiarDiccionario')}</button><div class="dict-entry__def" id="dictionaryEntryBody">${showEnglish?localizeStrongUiLabels(html):`<p class="note-card__translating">${t('diccionario.traduciendoEspanol')}</p>${html}`}</div></article>`;
       p.body.querySelector('#strongPopupBack')?.addEventListener('click', e=>{ e.stopPropagation(); goBackStrongPopup(); });
       const body=p.body.querySelector('#dictionaryEntryBody');
@@ -4885,7 +4904,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   function renderGospelChapter(n, matchBanner=''){
     const chapter=gospelData.chapters.find(c=>c.n===n);
     if(!chapter){ els.panelBody.innerHTML=emptyState('⚠️','No se encontró este capítulo.'); return; }
-    els.panelToolbar.innerHTML=`<button class="note-card__copy" id="backToGospelIndex" type="button">← Índice del Evangelio</button>`;
+    els.panelToolbar.innerHTML=`<button class="note-card__copy" id="backToGospelIndex" type="button">${BACK_ICON}Índice del Evangelio</button>`;
     document.getElementById('backToGospelIndex')?.addEventListener('click',()=>{ gospelOpenChapter=null; renderGospelPanel(); els.panelBody.scrollTop=0; });
 
     const paralelosBlock=chapter.paralelos?`<div class="note-card__title" style="margin-top:18px;">Paralelos íntegros</div><div class="note-card__body">${nl2p(chapter.paralelos)}</div>`:'';
@@ -5023,7 +5042,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const parsed=atlasBibleState.parsed;
     panelTitleEl().textContent=lang==='es'?'Biblia secundaria':'Secondary Bible';
     panelToolbarEl().innerHTML=`<div class="atlas-bible-toolbar">
-      <button class="note-card__copy" id="backToAtlas" type="button">← ${lang==='es'?'Volver al Atlas':'Back to Atlas'}</button>
+      <button class="note-card__copy" id="backToAtlas" type="button">${BACK_ICON}${lang==='es'?'Volver al Atlas':'Back to Atlas'}</button>
       <span class="atlas-bible-toolbar__range">${escapeHTML(parsed.reference)}</span>
       <button class="note-card__copy" id="atlasBiblePrev" type="button" aria-label="${lang==='es'?'Capítulo anterior':'Previous chapter'}">‹</button>
       <button class="note-card__copy" id="atlasBibleNext" type="button" aria-label="${lang==='es'?'Capítulo siguiente':'Next chapter'}">›</button>
@@ -5267,7 +5286,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       return;
     }
     els.side.classList.remove('side-panel--history-expanded');
-    els.panelToolbar.innerHTML=`<button class="note-card__copy" id="backToPatristicDocs" type="button">← ${t('padres.volverColeccion')}</button>`;
+    els.panelToolbar.innerHTML=`<button class="note-card__copy" id="backToPatristicDocs" type="button">${BACK_ICON}${t('padres.volverColeccion')}</button>`;
     document.getElementById('backToPatristicDocs')?.addEventListener('click',()=>{ patristicOpenDoc=null; patristicDocData=null; renderPadresPanel(); els.panelBody.scrollTop=0; });
 
     const statusBanner=patristicDocData.manifest.status?`<div class="gospel-match"><div class="gospel-match__label">${t('padres.estadoLabel')}</div><div style="padding:4px 2px;">${escapeHTML(patristicDocData.manifest.status)}</div></div>`:'';
@@ -5326,7 +5345,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const previous=idx>0?sections[idx-1]:null;
     const next=idx>=0&&idx<sections.length-1?sections[idx+1]:null;
     els.panelToolbar.innerHTML=`
-      <button class="note-card__copy" id="backToPatristicIndex" type="button">← ${t('padres.volverIndice')}</button>
+      <button class="note-card__copy" id="backToPatristicIndex" type="button">${BACK_ICON}${t('padres.volverIndice')}</button>
       <button id="patristicExpand" class="history-panel-expand" type="button" aria-pressed="${els.side.classList.contains('side-panel--history-expanded')?'true':'false'}">${els.side.classList.contains('side-panel--history-expanded')?t('historia.vistaCompacta'):t('historia.ampliarLectura')}</button>`;
     document.getElementById('backToPatristicIndex')?.addEventListener('click',()=>{ els.side.classList.remove('side-panel--history-expanded'); patristicOpenSection=null; renderPadresPanel(); els.panelBody.scrollTop=0; });
     document.getElementById('patristicExpand')?.addEventListener('click',event=>{
@@ -5570,7 +5589,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     if(!costumbresDocData){ els.panelBody.innerHTML=emptyState('⚠️',t('costumbres.errorObra')); return; }
     els.side.classList.remove('side-panel--history-expanded');
-    els.panelToolbar.innerHTML=`<button class="note-card__copy" id="backToCostumbresShelf" type="button">← ${t('costumbres.volverEstante')}</button>`;
+    els.panelToolbar.innerHTML=`<button class="note-card__copy" id="backToCostumbresShelf" type="button">${BACK_ICON}${t('costumbres.volverEstante')}</button>`;
     document.getElementById('backToCostumbresShelf')?.addEventListener('click',costumbresBackToShelf);
 
     const entries=costumbresDocData.entries||[];
@@ -5690,7 +5709,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const previous=idx>0?entries[idx-1]:null;
     const next=idx>=0 && idx<entries.length-1?entries[idx+1]:null;
     els.panelToolbar.innerHTML=`
-      <button class="note-card__copy" id="backToCostumbresIndex" type="button">← ${t('costumbres.volverIndice')}</button>
+      <button class="note-card__copy" id="backToCostumbresIndex" type="button">${BACK_ICON}${t('costumbres.volverIndice')}</button>
       <button id="costumbresExpand" class="history-panel-expand" type="button" aria-pressed="${els.side.classList.contains('side-panel--history-expanded')?'true':'false'}">${els.side.classList.contains('side-panel--history-expanded')?t('historia.vistaCompacta'):t('historia.ampliarLectura')}</button>`;
     document.getElementById('backToCostumbresIndex')?.addEventListener('click',()=>{
       els.side.classList.remove('side-panel--history-expanded');
@@ -5883,7 +5902,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     if(!extracanonicoDocData){ els.panelBody.innerHTML=emptyState('⚠️',t('extracanonico.errorObra')); return; }
     els.side.classList.remove('side-panel--history-expanded');
-    els.panelToolbar.innerHTML=`<button class="note-card__copy" id="backToExtracanonicoShelf" type="button">← ${t('extracanonico.volverEstante')}</button>`;
+    els.panelToolbar.innerHTML=`<button class="note-card__copy" id="backToExtracanonicoShelf" type="button">${BACK_ICON}${t('extracanonico.volverEstante')}</button>`;
     document.getElementById('backToExtracanonicoShelf')?.addEventListener('click',extracanonicoBackToShelf);
 
     const entries=extracanonicoDocData.entries||[];
@@ -5943,7 +5962,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const previous=idx>0?entries[idx-1]:null;
     const next=idx>=0 && idx<entries.length-1?entries[idx+1]:null;
     els.panelToolbar.innerHTML=`
-      <button class="note-card__copy" id="backToExtracanonicoIndex" type="button">← ${t('extracanonico.volverIndice')}</button>
+      <button class="note-card__copy" id="backToExtracanonicoIndex" type="button">${BACK_ICON}${t('extracanonico.volverIndice')}</button>
       <button id="extracanonicoExpand" class="history-panel-expand" type="button" aria-pressed="${els.side.classList.contains('side-panel--history-expanded')?'true':'false'}">${els.side.classList.contains('side-panel--history-expanded')?t('historia.vistaCompacta'):t('historia.ampliarLectura')}</button>`;
     document.getElementById('backToExtracanonicoIndex')?.addEventListener('click',()=>{
       els.side.classList.remove('side-panel--history-expanded');
@@ -6200,7 +6219,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     if(!diccionariosDocData){ els.panelBody.innerHTML=emptyState('⚠️',t('diccionarios.errorObra')); return; }
     els.side.classList.remove('side-panel--history-expanded');
-    els.panelToolbar.innerHTML=`<button class="note-card__copy" id="backToDiccionariosShelf" type="button">← ${t('diccionarios.volverEstante')}</button>`;
+    els.panelToolbar.innerHTML=`<button class="note-card__copy" id="backToDiccionariosShelf" type="button">${BACK_ICON}${t('diccionarios.volverEstante')}</button>`;
     document.getElementById('backToDiccionariosShelf')?.addEventListener('click',diccionariosBackToShelf);
 
     const entries=diccionariosDocData.entries||[];
@@ -6323,7 +6342,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const previous=idx>0?entries[idx-1]:null;
     const next=idx>=0 && idx<entries.length-1?entries[idx+1]:null;
     els.panelToolbar.innerHTML=`
-      <button class="note-card__copy" id="backToDiccionariosIndex" type="button">← ${t('diccionarios.volverIndice')}</button>
+      <button class="note-card__copy" id="backToDiccionariosIndex" type="button">${BACK_ICON}${t('diccionarios.volverIndice')}</button>
       <button id="diccionariosExpand" class="history-panel-expand" type="button" aria-pressed="${els.side.classList.contains('side-panel--history-expanded')?'true':'false'}">${els.side.classList.contains('side-panel--history-expanded')?t('historia.vistaCompacta'):t('historia.ampliarLectura')}</button>`;
     document.getElementById('backToDiccionariosIndex')?.addEventListener('click',()=>{
       els.side.classList.remove('side-panel--history-expanded');

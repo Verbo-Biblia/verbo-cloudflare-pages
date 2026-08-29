@@ -519,7 +519,7 @@ def html_page(item: dict) -> str:
   <header class="static-page__header">
     <a class="static-page__brand" href="../../../">Verbo</a>
     <div class="ui-lang-switcher" id="uiLangSwitcher" role="group" data-i18n-attr="aria-label:header.uiLangAria"><button type="button" class="ui-lang-switcher__btn" data-lang="es">ES</button><button type="button" class="ui-lang-switcher__btn" data-lang="en">EN</button></div>
-    <a class="static-page__back" href="../">← Sermones Históricos</a>
+    <a class="static-page__back" href="../">Sermones Históricos</a>
   </header>
   <main class="static-page__main">
     <article data-author="{html.escape(item['author'])}" data-source-lang="en" data-i18n-strategy="auto" data-title-es="{html.escape(item['title_es'], quote=True)}" data-title-en="{html.escape(item['title_en'], quote=True)}" data-topics="{','.join(item['topics'])}" data-category="{item['category']}" data-subtype="{item['subtype']}" data-date-added="2026-08-13">
