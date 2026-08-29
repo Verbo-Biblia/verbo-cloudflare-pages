@@ -2568,6 +2568,20 @@ body[data-theme="rosewood"] {
   width: min(1120px, calc(100vw - 220px));
 }
 
+/* Bug reportado por Juan (2026-08-28): con el Asistente de Estudio abierto
+   a la vez que Mapas, los 220px reservados arriba solo cubrían el riel de
+   íconos — no los 380px fijos del Asistente, que no participa del cálculo
+   porque no es #sidePanel. La suma se pasaba del ancho de pantalla y el
+   riel de íconos (al final del flex row) quedaba empujado fuera de la
+   vista, con apariencia de haber desaparecido. */
+.app-body:has(.study-assistant:not(.study-assistant--closed)) #sidePanel.side-panel--atlas-expanded.side-panel--open {
+  width: min(1120px, calc(100vw - 600px));
+}
+
+.app-body:has(.study-assistant:not(.study-assistant--closed)) #sidePanel.side-panel--atlas-expanded .side-panel__inner {
+  width: min(1120px, calc(100vw - 600px));
+}
+
 .side-panel--atlas-expanded .side-panel__body {
   display: flex;
   align-items: stretch;
