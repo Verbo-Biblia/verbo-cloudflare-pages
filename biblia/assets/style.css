@@ -334,7 +334,7 @@ body {
   min-height: 0;
   overflow-y: auto;
   border-left: 1px solid var(--rule);
-  background: var(--paper);
+  background: var(--paper-raised);
   scrollbar-width: thin;
   scrollbar-color: var(--rule-strong) transparent;
   transition: width 0.28s cubic-bezier(0.4, 0, 0.2, 1), flex-basis 0.28s cubic-bezier(0.4, 0, 0.2, 1);
@@ -366,7 +366,7 @@ body.sermon-mode .editor-pane {
 .study-assistant__placeholder {
   padding: 22px 20px;
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11.5px;
   letter-spacing: 1px;
   text-transform: uppercase;
   color: var(--sepia);
@@ -379,7 +379,7 @@ body.sermon-mode .editor-pane {
   z-index: 3;
   padding: 17px 19px 14px;
   border-bottom: 1px solid var(--rule-strong);
-  background: color-mix(in srgb, var(--paper) 94%, var(--paper-raised));
+  background: var(--paper-raised);
 }
 
 .study-assistant__kicker {
@@ -396,7 +396,7 @@ body.sermon-mode .editor-pane {
   margin-top: 5px;
   color: var(--ink);
   font-family: var(--font-display);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 1.35;
 }
@@ -409,7 +409,7 @@ body.sermon-mode .editor-pane {
   gap: 9px;
   padding: 25px 20px;
   color: var(--sepia);
-  font-size: 13px;
+  font-size: 15px;
   font-style: italic;
   line-height: 1.55;
 }
@@ -457,7 +457,7 @@ body.sermon-mode .editor-pane {
 
 .study-assistant__section-title {
   font-family: var(--font-display);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: .1px;
 }
@@ -466,7 +466,7 @@ body.sermon-mode .editor-pane {
   min-width: 19px;
   color: var(--sepia);
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 10.5px;
   font-weight: 500;
   text-align: right;
 }
@@ -513,15 +513,15 @@ body.sermon-mode .editor-pane {
 
 .study-assistant__term-name {
   color: var(--ink);
-  font-size: 13px;
-  line-height: 1.35;
+  font-size: 15px;
+  line-height: 1.4;
 }
 
 .study-assistant__term-source {
   flex: 0 0 auto;
   color: var(--sepia);
   font-family: var(--font-mono);
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: .2px;
 }
 
@@ -535,7 +535,7 @@ body.sermon-mode .editor-pane {
   margin-bottom: 6px;
   color: var(--wine);
   font-family: var(--font-mono);
-  font-size: 8.5px;
+  font-size: 10px;
   font-weight: 500;
   letter-spacing: .55px;
   line-height: 1.45;
@@ -545,7 +545,7 @@ body.sermon-mode .editor-pane {
 .study-assistant__type {
   margin: -2px 0 5px;
   color: var(--sepia);
-  font-size: 10px;
+  font-size: 12px;
   font-style: italic;
 }
 
@@ -554,8 +554,8 @@ body.sermon-mode .editor-pane {
   margin: 0;
   overflow: hidden;
   color: var(--ink-soft);
-  font-size: 12.5px;
-  line-height: 1.52;
+  font-size: 15px;
+  line-height: 1.6;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
 }
@@ -569,7 +569,7 @@ body.sermon-mode .editor-pane {
   color: var(--wine);
   cursor: pointer;
   font-family: var(--font-body);
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1.35;
   padding: 0 0 1px;
 }
@@ -586,7 +586,7 @@ body.sermon-mode .editor-pane {
   margin-top: 4px;
   color: var(--sepia);
   font-family: var(--font-mono);
-  font-size: 8px;
+  font-size: 10px;
   font-style: italic;
   letter-spacing: .2px;
 }
@@ -600,7 +600,7 @@ body.sermon-mode .editor-pane {
   background: transparent;
   cursor: pointer;
   font-family: var(--font-body);
-  font-size: 10.5px;
+  font-size: 12.5px;
   line-height: 1.35;
   text-align: left;
 }
