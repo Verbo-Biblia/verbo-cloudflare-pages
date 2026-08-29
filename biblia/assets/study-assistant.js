@@ -469,13 +469,13 @@
       button.classList.toggle('tab-rail__btn--active',open);
       button.setAttribute('aria-pressed',String(open));
     };
-    // Cerrado por defecto; a partir de ahí se ocultable con su propio ícono
-    // como cualquier otro panel, y se recuerda la preferencia entre visitas.
-    setOpen(localStorage.getItem('verbo:studyAssistantOpen')==='1');
+    // Siempre cerrado al cargar, igual que el resto de los paneles (Historia,
+    // Costumbres, Diccionarios...): ninguno de ellos recuerda su estado entre
+    // visitas, viven solo en memoria de la sesión actual.
+    setOpen(false);
     button.addEventListener('click',()=>{
       const open=root.classList.contains('study-assistant--closed');
       setOpen(open);
-      localStorage.setItem('verbo:studyAssistantOpen',open?'1':'0');
     });
   }
 
