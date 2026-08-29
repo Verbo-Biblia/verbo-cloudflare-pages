@@ -22,6 +22,19 @@
   --rule: #E0CDAA;
   --rule-strong: #CBB486;
   --gold-glow: #C89F58;
+
+  /* Acento propio del Asistente de Estudio (petróleo/teal) — a propósito
+     distinto del vino/sepia que domina el resto de la interfaz, para que
+     el panel se lea como una voz aparte ("moderno, con contraste", pedido
+     de Juan 2026-08-28) en vez de fundirse con el resto del cromado. */
+  --assistant-accent: #146B6B;
+  --assistant-accent-soft: #E3F1EF;
+  --assistant-green: #2F7A52;
+  --assistant-green-soft: #E4F1E9;
+  --assistant-blue: #2F6595;
+  --assistant-blue-soft: #E5EEF6;
+  --assistant-purple: #72508B;
+  --assistant-purple-soft: #EEE7F3;
   /* Usada por .library-rail__btn (único uso en el archivo) — no estaba
      definida acá, así que esa sombra nunca se pintaba. Mismo triplete de
      color que .theme-option:hover (rgba(58,46,34,...), tono tinta/sepia,
@@ -334,6 +347,7 @@ body {
   min-height: 0;
   overflow-y: auto;
   border-left: 1px solid var(--rule);
+  border-top: 3px solid var(--assistant-accent);
   background: var(--paper-raised);
   scrollbar-width: thin;
   scrollbar-color: var(--rule-strong) transparent;
@@ -383,10 +397,10 @@ body.sermon-mode .editor-pane {
 }
 
 .study-assistant__kicker {
-  color: var(--wine);
+  color: var(--assistant-accent);
   font-family: var(--font-mono);
-  font-size: 9px;
-  font-weight: 500;
+  font-size: 10px;
+  font-weight: 600;
   letter-spacing: 1.35px;
   line-height: 1.3;
   text-transform: uppercase;
@@ -450,30 +464,51 @@ body.sermon-mode .editor-pane {
   padding: 18px 0 13px;
   border: 0;
   background: transparent;
-  color: var(--wine);
+  color: var(--ink);
   cursor: pointer;
   text-align: left;
 }
 
 .study-assistant__section-title {
+  position: relative;
+  padding-left: 13px;
   font-family: var(--font-display);
   font-size: 16px;
   font-weight: 700;
   letter-spacing: .1px;
 }
 
+/* Marca de color propia del Asistente delante de cada título de sección —
+   el mismo tipo de contraste puntual que ya usan los botones "Ver en..."
+   por categoría, pero visible sin tener que llegar hasta el final de cada
+   recurso. */
+.study-assistant__section-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: var(--assistant-accent);
+}
+
 .study-assistant__count {
-  min-width: 19px;
-  color: var(--sepia);
+  min-width: 22px;
+  padding: 2px 7px;
+  border-radius: 8px;
+  background: var(--assistant-accent-soft);
+  color: var(--assistant-accent);
   font-family: var(--font-mono);
   font-size: 10.5px;
-  font-weight: 500;
-  text-align: right;
+  font-weight: 700;
+  text-align: center;
 }
 
 .study-assistant__chevron {
   width: 12px;
-  color: var(--sepia);
+  color: var(--assistant-accent);
   font-size: 12px;
   line-height: 1;
   text-align: center;
@@ -483,7 +518,7 @@ body.sermon-mode .editor-pane {
 
 .study-assistant__section-toggle:hover .study-assistant__section-title,
 .study-assistant__section-toggle:focus-visible .study-assistant__section-title {
-  color: var(--wine-soft);
+  color: var(--assistant-accent);
 }
 
 .study-assistant__term-list {
@@ -564,9 +599,9 @@ body.sermon-mode .editor-pane {
 
 .study-assistant__more {
   border: 0;
-  border-bottom: 1px solid color-mix(in srgb, var(--wine) 42%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--assistant-accent) 42%, transparent);
   background: transparent;
-  color: var(--wine);
+  color: var(--assistant-accent);
   cursor: pointer;
   font-family: var(--font-body);
   font-size: 13px;
@@ -579,7 +614,7 @@ body.sermon-mode .editor-pane {
   font-style: italic;
 }
 
-.study-assistant__more:hover { color: var(--wine-soft); }
+.study-assistant__more:hover { color: var(--wine); }
 
 .study-assistant__translation-status {
   display: block;
@@ -591,31 +626,37 @@ body.sermon-mode .editor-pane {
   letter-spacing: .2px;
 }
 
+/* Chips en vez de links subrayados: el mismo cambio de "todo tan igual" a
+   contraste puntual que el resto del panel — cada categoría lleva su
+   propio color de fondo suave + texto sólido, así el botón se lee como
+   una acción a un golpe de vista, no como una nota al pie. */
 .study-assistant__resource-link {
-  display: block;
-  margin-top: 7px;
-  padding: 0 0 1px;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 8px;
+  padding: 4px 10px;
   border: 0;
-  border-bottom: 1px solid currentColor;
+  border-radius: 999px;
   background: transparent;
   cursor: pointer;
   font-family: var(--font-body);
   font-size: 12.5px;
+  font-weight: 600;
   line-height: 1.35;
   text-align: left;
 }
 
-.study-assistant__resource-link--historia { color: var(--wine); }
-.study-assistant__resource-link--costumbres { color: var(--green); }
-.study-assistant__resource-link--diccionarios { color: #2f6595; }
-.study-assistant__resource-link--padres { color: #72508b; }
+.study-assistant__resource-link--historia { color: var(--wine); background: color-mix(in srgb, var(--wine) 12%, var(--paper-raised)); }
+.study-assistant__resource-link--costumbres { color: var(--assistant-green); background: var(--assistant-green-soft); }
+.study-assistant__resource-link--diccionarios { color: var(--assistant-blue); background: var(--assistant-blue-soft); }
+.study-assistant__resource-link--padres { color: var(--assistant-purple); background: var(--assistant-purple-soft); }
 
-.study-assistant__resource-link:hover { filter: brightness(.82); }
+.study-assistant__resource-link:hover { filter: brightness(.92) saturate(1.15); }
 
 .study-assistant__section-toggle:focus-visible,
 .study-assistant__resource-link:focus-visible,
 .study-assistant__more:focus-visible {
-  outline: 2px solid var(--wine);
+  outline: 2px solid var(--assistant-accent);
   outline-offset: 3px;
 }
 
@@ -1012,6 +1053,14 @@ body.sermon-mode .editor-pane {
 .tab-rail__btn--active:hover {
   background: var(--wine);
   color: var(--paper-raised);
+}
+
+/* El ícono del Asistente se enciende con su propio acento (no el vino de
+   los demás paneles) para que se note, aun cerrado, que es una voz
+   distinta dentro del riel. */
+#studyAssistantToggle.tab-rail__btn--active,
+#studyAssistantToggle.tab-rail__btn--active:hover {
+  background: var(--assistant-accent);
 }
 
 .tab-rail__label {
