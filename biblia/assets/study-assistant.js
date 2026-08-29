@@ -260,7 +260,7 @@
 
   function translationWorkerBase(){
     if(!translationBasePromise){
-      translationBasePromise=window.VerboModules.getCatalog()
+      translationBasePromise=VerboModules.getCatalog()
         .then(catalog=>String(catalog?.registry?.apiBible?.proxyUrl||'').trim().replace(/\/+$/,''))
         .catch(()=> '');
     }
