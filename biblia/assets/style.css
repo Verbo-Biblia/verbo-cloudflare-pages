@@ -223,6 +223,13 @@ body {
   color: var(--wine);
 }
 
+/* La búsqueda semántica de escritorio vive ahora dentro del Asistente de
+   Estudio. Conservamos el disparador principal únicamente en móvil, donde
+   el Asistente está oculto y sigue siendo la vía disponible para buscar. */
+@media (min-width: 761px) {
+  #searchTrigger { display: none; }
+}
+
 .version-picker {
   display: flex;
   align-items: center;
