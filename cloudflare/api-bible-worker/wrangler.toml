@@ -4,6 +4,14 @@ compatibility_date = "2026-07-04"
 workers_dev = true
 preview_urls = false
 
+# Retiene los console.error/console.warn del worker (p.ej. fallas de
+# /translate-study-assistant) para poder revisarlos después en el
+# dashboard, en vez de depender de tener `wrangler tail` corriendo en el
+# momento exacto en que algo falla. No cambia nada de lo que ve el
+# usuario. Gratis en el plan actual.
+[observability]
+enabled = true
+
 [vars]
 ALLOWED_ORIGINS = "https://verbobiblia.com,https://www.verbobiblia.com,https://juvejona1978.github.io,http://localhost:8000,http://127.0.0.1:8000"
 APP_URL = "https://verbobiblia.com/biblia/"
