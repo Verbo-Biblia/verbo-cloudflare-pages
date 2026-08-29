@@ -246,7 +246,7 @@ def html_page(item: dict) -> str:
       <p class="lesson-nav"><a href="../">Índice</a></p>
     </article>
   </main>
-  <script src="../../../biblia/assets/i18n.js?v=20260729-shared-dict2"></script>
+  <script src="../../../biblia/assets/i18n.js?v=20260829-assistant-search"></script>
   <script src="../../../biblia/assets/site-translate.js?v=20260807-translate-worker"></script>
   <script src="../../../biblia/assets/content-translate.js?v=20260810-source-lang"></script>
   <script src="../../../biblia/assets/site-chrome.js?v=20260810-source-lang"></script>

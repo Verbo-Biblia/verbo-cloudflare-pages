@@ -185,7 +185,7 @@ def page_html(book, count):
 <header class="static-page__header"><a class="static-page__brand" href="../../">Verbo</a><a class="static-page__back" href="../">Librería</a></header>
 <main class="static-page__main"><div class="reader" id="reader-root"></div></main>
 <script>window.__LIBRERIA_BOOK__ = {json.dumps(config, ensure_ascii=False, indent=2)};</script>
-<script src="../../biblia/assets/i18n.js?v=20260813-predicas-traducir"></script>
+<script src="../../biblia/assets/i18n.js?v=20260829-assistant-search"></script>
 <script src="../../biblia/assets/site-translate.js?v=20260811-translate-abandon"></script>
 <script src="../../biblia/assets/site-chrome.js?v=20260729-1"></script>
 <script src="../../biblia/assets/tts-player.js?v=1"></script>
