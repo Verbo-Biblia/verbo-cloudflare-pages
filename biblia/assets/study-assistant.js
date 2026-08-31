@@ -33,10 +33,6 @@
   // así "volver" restaura esa vista.
   let searchResultsState=null;
   const SEARCH_RESULTS_PAGE_SIZE=10;
-  // limit es un parámetro de searchSemanticBible (no algo propio del
-  // Asistente) — mismo valor que ya usa el buscador principal (app.js),
-  // sin razón para cambiarlo.
-  const ASSISTANT_SEARCH_LIMIT=90;
   // Ícono "volver" compartido por renderSingleSection y los dos estados de
   // resultados de búsqueda (resumen de conteo y página) — mismo SVG, misma
   // clase .study-assistant__back-to-summary, solo cambia el aria-label
@@ -246,7 +242,6 @@
     try{
       const results=await VerboModules.searchSemanticBible(trimmed,{
         indexType:'pericopes',
-        limit:ASSISTANT_SEARCH_LIMIT,
         lang:uiLanguage(),
         onProgress:p=>{
           if(generation!==requestGeneration) return;
@@ -813,22 +808,32 @@
     }
   }
 
+  // Elevado fuera de wireToggle() para que el listener de
+  // 'verbo:sermon-mode-changed' en init() también pueda forzar el cierre —
+  // el modo predicación desconecta por completo al Asistente (jerarquía fija
+  // Editor+Biblia+un tercer panel, sin lugar para un cuarto): el ícono ya
+  // queda oculto por CSS (body.sermon-mode #studyAssistantToggle, ver
+  // style.css) mientras sermonMode===true, así que esto solo cubre el caso
+  // de que ya estuviera abierto justo al entrar a ese modo.
+  function setAssistantOpen(open){
+    const root=assistant();
+    const button=document.getElementById('studyAssistantToggle');
+    root?.classList.toggle('study-assistant--closed',!open);
+    button?.classList.toggle('tab-rail__btn--active',open);
+    button?.setAttribute('aria-pressed',String(open));
+  }
+
   function wireToggle(){
     const button=document.getElementById('studyAssistantToggle');
     const root=assistant();
     if(!button || !root) return;
-    const setOpen=open=>{
-      root.classList.toggle('study-assistant--closed',!open);
-      button.classList.toggle('tab-rail__btn--active',open);
-      button.setAttribute('aria-pressed',String(open));
-    };
     // Siempre cerrado al cargar, igual que el resto de los paneles (Historia,
     // Costumbres, Diccionarios...): ninguno de ellos recuerda su estado entre
     // visitas, viven solo en memoria de la sesión actual.
-    setOpen(false);
+    setAssistantOpen(false);
     button.addEventListener('click',()=>{
       const open=root.classList.contains('study-assistant--closed');
-      setOpen(open);
+      setAssistantOpen(open);
     });
   }
 
@@ -838,6 +843,14 @@
     renderNoSelection();
     wireToggle();
     document.addEventListener(EVENT_NAME,event=>update(event.detail));
+    // Mismo evento que ya despacha toggleSermonMode() en app.js para que
+    // módulos aditivos como este reaccionen sin acoplarse a esa función.
+    // Solo cierra al ENTRAR a modo sermón — al salir, el Asistente vuelve a
+    // su comportamiento normal sin que nada lo reabra por su cuenta (mismo
+    // criterio que el resto de los paneles: nunca recuerdan estado).
+    document.addEventListener('verbo:sermon-mode-changed',event=>{
+      if(event.detail?.sermonMode) setAssistantOpen(false);
+    });
     document.addEventListener('verbo:uilang-changed',()=>{
       // El mensaje-resumen depende del idioma; al cambiar, siempre vuelve
       // al resumen (misma lógica que "no persiste sección abierta" ya

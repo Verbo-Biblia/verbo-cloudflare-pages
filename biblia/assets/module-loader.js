@@ -780,7 +780,15 @@ const VerboModules = (() => {
     return adjustment;
   }
 
-  async function searchSemanticBible(query, { indexType='verses', limit=50, lang='es', onProgress=null }={}) {
+  // Sin tope de cantidad: el filtro de relevancia es el umbral de score
+  // (ver abajo, 70% del score máximo de esta consulta), no un límite fijo
+  // de resultados — el diagnóstico de 2026-08-30 confirmó que la cantidad
+  // de perícopas/versículos genuinamente relevantes varía dos órdenes de
+  // magnitud según la amplitud del tema (~40 para una consulta puntual,
+  // 2500+ para un tema amplio como "amor de Dios"), así que un `limit` fijo
+  // (antes 90, pasado por los dos únicos llamadores) recortaba resultados
+  // reales sin relación con su relevancia real.
+  async function searchSemanticBible(query, { indexType='verses', lang='es', onProgress=null }={}) {
     const clean = String(query || '').trim();
     if (clean.length < 2) return [];
     onProgress?.({ stage:'index' });
@@ -806,7 +814,20 @@ const VerboModules = (() => {
       results.push(semanticResultFromRecord(records[recordIndex], score, indexType));
     }
     results.sort((a,b)=>b.score-a.score);
-    return results.slice(0, limit);
+    // Umbral relativo, no cantidad fija: todo resultado con score >= 70%
+    // del score máximo de ESTA consulta particular. results ya está
+    // ordenado descendente, así que basta encontrar el primer índice por
+    // debajo del umbral (findIndex corta apenas lo encuentra, no recorre
+    // el array de nuevo) — si ninguno cae por debajo, se devuelven todos.
+    if (!results.length) return results;
+    // Si el mejor score es negativo, *0.7 lo acerca a cero — un umbral MÁS
+    // estricto que el propio máximo, que lo dejaría afuera y devolvería
+    // vacío aunque exista un resultado (de baja calidad, pero es el mejor
+    // que hay). No visto en las consultas de prueba, pero barato de cubrir.
+    if (results[0].score < 0) return [results[0]];
+    const scoreThreshold = results[0].score * 0.7;
+    const cutoffIndex = results.findIndex(r => r.score < scoreThreshold);
+    return cutoffIndex === -1 ? results : results.slice(0, cutoffIndex);
   }
 
   async function loadChurchHistorySemanticIndex() {

@@ -3561,6 +3561,18 @@ body.sermon-mode .tab-rail__btn[data-tab="predicas"] { display: flex; }
 .tab-rail__btn[data-tab="sermon-biblia"] { display: none; }
 body.sermon-mode .tab-rail__btn[data-tab="sermon-biblia"] { display: flex; }
 
+/* ---------- Asistente de Estudio: inalcanzable en modo predicación ----------
+   El Asistente vive fuera del sistema de paneles del modo sermón (no es una
+   pestaña del slot rotativo ni pasa por openPanel/openSermonSidePanel) — la
+   jerarquía fija de predicación es Editor+Biblia+un tercer panel, sin
+   espacio para un cuarto. Se oculta el ícono con el mismo patrón que
+   predicas/sermon-biblia arriba: display:none quita el botón del layout Y
+   del orden de tabulación, así que ni mouse ni teclado pueden abrirlo. Si ya
+   estaba abierto al entrar a modo sermón, study-assistant.js lo cierra por
+   su cuenta al escuchar 'verbo:sermon-mode-changed' (ver toggleSermonMode
+   en app.js) — este selector no lo fuerza, solo evita que se reabra. */
+body.sermon-mode #studyAssistantToggle { display: none; }
+
 /* Es el ancla del dock en modo sermón: todo lo demás (Comparar/Comentarios/
    Notas/Mapas/Mis prédicas) gira alrededor de lo que esté abierto aquí — ver
    "Segundo panel del modo sermón" en app.js. Va primero en el HTML (arriba
@@ -3632,6 +3644,23 @@ body.sermon-mode .sermon-compare-panel { display: flex; }
    alcance de esta tarea) — se desactiva para no dejar un estado roto. */
 @media (max-width: 900px) {
   .sermon-compare-panel { display: none !important; }
+}
+
+/* Mapas dentro del panel de predicación (2026-08-30): #sermonComparePanelBody
+   reutiliza la clase base .side-panel__body (display:block, ver arriba), no
+   la variante .side-panel--atlas-expanded .side-panel__body que sí es flex
+   — sin esto .atlas-embed (flex:1 1 auto) no tiene de qué altura heredar y
+   el iframe del atlas (height:100%) colapsa. Se replica solo la parte de
+   layout de esa variante, sin sus reglas de ancho/header (esas son del
+   modo "Atlas ocupa el panel único entero" — acá Mapas es una pestaña más,
+   angosta como las otras cuatro del slot rotativo, con el mismo header). */
+#sermonComparePanelBody:has(.atlas-embed) {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  min-height: 0;
+  padding: 12px 18px 16px;
+  overflow: hidden;
 }
 
 /* ---------- Divisores arrastrables entre paneles (modo Predicación) ----------
