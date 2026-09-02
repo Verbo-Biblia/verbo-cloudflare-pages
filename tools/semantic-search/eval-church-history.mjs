@@ -9,6 +9,8 @@ const QUERIES = [
   'la persecución de los cristianos bajo Diocleciano',
   'el concilio de Nicea y la controversia arriana',
   'la conversión de Constantino y la visión de la cruz',
+  'geografía de Canaán y la tierra de Palestina',
+  'los pueblos de Canaán en la época patriarcal',
 ];
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));

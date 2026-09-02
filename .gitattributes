@@ -1,0 +1,4 @@
+# Fuentes históricas preservadas byte por byte. Evita que Git intente
+# normalizar o revisar como texto los OCR, XML y facsímiles auditables.
+data/fuentes-externas/historia-at/**/original/** -text -diff
+data/fuentes-externas/historia-at/**/upstream-derivatives/** -text -diff

@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://verbobiblia.com/schemas/assistant-historical-card.schema.json",
+  "title": "Expediente editorial de una ficha histórica del Asistente",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "methodVersion", "integrationStatus", "id", "passage",
+    "relationType", "title", "assistantText", "assistantStatements",
+    "historicalSource", "claims", "contrastSources", "editorialLimits",
+    "projection", "reviewStatus", "reviewNotes", "reviewHistory"
+  ],
+  "properties": {
+    "schemaVersion": {"const": 2},
+    "methodVersion": {"type": "string", "minLength": 1},
+    "integrationStatus": {"enum": ["STAGING_ONLY", "READY_FOR_PROJECTION", "ACTIVE"]},
+    "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]+$"},
+    "passage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["book", "chapterStart", "verseStart", "chapterEnd", "verseEnd"],
+      "properties": {
+        "book": {"type": "string", "pattern": "^[A-Z0-9]{3}$"},
+        "chapterStart": {"type": "integer", "minimum": 1},
+        "verseStart": {"type": "integer", "minimum": 1},
+        "chapterEnd": {"type": "integer", "minimum": 1},
+        "verseEnd": {"type": "integer", "minimum": 1}
+      }
+    },
+    "relationType": {
+      "enum": ["LITERARY_PARALLEL", "HISTORICAL_CONTEXT", "ARCHAEOLOGICAL_CONTEXT", "TEXTUAL_WITNESS", "AUTHOR_INTERPRETATION"]
+    },
+    "title": {"type": "string", "minLength": 1},
+    "assistantText": {"type": "string", "minLength": 1},
+    "assistantStatements": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["statementId", "text", "claimIds"],
+        "properties": {
+          "statementId": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]+$"},
+          "text": {"type": "string", "minLength": 1},
+          "claimIds": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}}
+        }
+      }
+    },
+    "historicalSource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sourceId", "module", "entryId", "bookSection", "printedPages", "facsimilePages", "ocrLocator", "fragmentIds", "originalSha256"],
+      "properties": {
+        "sourceId": {"type": "string", "minLength": 1},
+        "module": {"type": "string", "minLength": 1},
+        "entryId": {"type": "string", "minLength": 1},
+        "bookSection": {"type": "string", "minLength": 1},
+        "printedPages": {"type": "string", "minLength": 1},
+        "facsimilePages": {"type": "string", "minLength": 1},
+        "ocrLocator": {"type": "string", "minLength": 1},
+        "fragmentIds": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+        "originalSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "unitContentSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "claims": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["claimId", "claim", "primaryType", "secondaryTypes", "evidenceStatus", "evidenceLinks", "requiresModernContrast", "attribution", "caution"],
+        "properties": {
+          "claimId": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]+$"},
+          "claim": {"type": "string", "minLength": 1},
+          "primaryType": {"$ref": "#/$defs/claimType"},
+          "secondaryTypes": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/claimType"}},
+          "evidenceStatus": {"enum": ["FACT_CONFIRMED", "EVIDENCE_CONFIRMED", "INTERPRETATION_WELL_SUPPORTED", "INTERPRETATION_DEBATED", "HYPOTHESIS", "UNKNOWN"]},
+          "evidenceLinks": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+          "requiresModernContrast": {"type": "boolean"},
+          "attribution": {"type": ["string", "null"]},
+          "caution": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "contrastSources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["sourceId", "sourceType", "citation", "responsibleBody", "date", "stableLocator", "accessed", "locationUsed", "role", "claimIds", "licenseNotes"],
+        "properties": {
+          "sourceId": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]+$"},
+          "sourceType": {"enum": ["CUSTODIAN_INSTITUTION", "MUSEUM_CATALOG", "ARCHAEOLOGICAL_CATALOG", "MODERN_TEXT_EDITION", "SPECIALIST_MONOGRAPH", "PEER_REVIEWED_ARTICLE", "UNIVERSITY_PUBLICATION", "OTHER_ACADEMIC"]},
+          "citation": {"type": "string", "minLength": 1},
+          "responsibleBody": {"type": "string", "minLength": 1},
+          "date": {"type": ["string", "null"]},
+          "stableLocator": {"type": "string", "minLength": 1},
+          "accessed": {"type": "string", "format": "date"},
+          "locationUsed": {"type": "string", "minLength": 1},
+          "role": {"enum": ["supports", "qualifies", "disputes", "background_only"]},
+          "claimIds": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}},
+          "licenseNotes": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "editorialLimits": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "projection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["category", "assistantResourceId", "rangeProjection"],
+      "properties": {
+        "category": {"const": "historia"},
+        "assistantResourceId": {"type": "string", "pattern": "^h-[a-f0-9]{16}$"},
+        "rangeProjection": {"const": "INCLUSIVE_OVERLAP"}
+      }
+    },
+    "reviewStatus": {"enum": ["APPROVED", "REVIEW_REQUIRED", "REJECTED"]},
+    "reviewNotes": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "reviewHistory": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["date", "role", "decision", "note"],
+        "properties": {
+          "date": {"type": "string", "format": "date"},
+          "role": {"type": "string", "minLength": 1},
+          "reviewer": {"type": ["string", "null"]},
+          "decision": {"enum": ["APPROVED", "REVIEW_REQUIRED", "REJECTED"]},
+          "note": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "claimType": {
+      "enum": ["ARCHAEOLOGICAL_OBJECT", "ANCIENT_TEXT", "INSCRIPTION", "HISTORICAL_CONTEXT", "LITERARY_PARALLEL", "AUTHOR_INTERPRETATION", "DISPUTED_IDENTIFICATION", "HISTORICAL_RECONSTRUCTION"]
+    }
+  }
+}

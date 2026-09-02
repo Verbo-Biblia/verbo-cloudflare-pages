@@ -37,6 +37,21 @@ npm run eval -- --lang en --question "what does the Bible say about anxiety"
 
 Running both builds back to back on the same machine is CPU/RAM-bound (embedding ~31k Bible verses + ~5.7k six-verse pericopes takes real time on a modest machine); don't run them concurrently on a constrained box.
 
+### Church History on constrained machines
+
+The Church History builder normally verifies text identity and recomputes every
+new or changed record. To append one reviewed source without rebuilding the
+existing corpus, use its stable source ID:
+
+```bash
+ONLY_SOURCE_ID=sayce-patriarchal-palestine REUSE_EXISTING_BY_ID=1 BATCH_SIZE=1 \
+  node build-church-history-index.mjs
+```
+
+This mode retains the vectors already published for every other source and
+embeds only the selected source. It is intended for low-memory machines and
+must not be used when the other sources themselves changed.
+
 ## Indexes
 
 Each `biblia/modules/semantic-search/bible-<id>/` folder has:

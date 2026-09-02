@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "sourceId": "sayce-patriarchal-palestine",
+  "sourceFile": "data/fuentes-externas/historia-at/sayce-patriarchal-palestine/original/pg14405.txt",
+  "sourceSha256": "04c75c37f20cc05cde8cb2002c83583f683ffeb902419bf560ad857b9549a70b",
+  "generatedAt": "2026-09-02",
+  "method": "Encabezados explícitos PREFACE, CHAPTER I–VI e INDEX en la transcripción de Project Gutenberg.",
+  "scope": {
+    "startLine": 29,
+    "endLine": 7367,
+    "gutenbergWrapperExcluded": true
+  },
+  "unitCount": 9,
+  "units": [
+    {
+      "id": "sayce-1895-preface",
+      "ordinal": 1,
+      "unitType": "PREFACE",
+      "title": "Preface",
+      "sourceLineStart": 60,
+      "sourceLineEnd": 231,
+      "contentSha256": "1fbc4f45de8a5b0214f923569a7b8ad25d76ae8b026141a01a37fcc5ca890172",
+      "characters": 10503,
+      "wordsApproximate": 1796
+    },
+    {
+      "id": "sayce-1895-chronology",
+      "ordinal": 2,
+      "unitType": "OTHER",
+      "title": "The Kings of Egypt and Babylonia During the Patriarchal Age",
+      "sourceLineStart": 232,
+      "sourceLineEnd": 471,
+      "contentSha256": "bfab68c0d1995eac7c83fed15b8115308f22fbc6a78436f9147d0c27d75fd609",
+      "characters": 5807,
+      "wordsApproximate": 797
+    },
+    {
+      "id": "sayce-1895-c01",
+      "ordinal": 3,
+      "unitType": "CHAPTER",
+      "title": "Chapter I — The Land",
+      "sourceLineStart": 472,
+      "sourceLineEnd": 931,
+      "contentSha256": "a2af1921df8b1313a45ff9b5ad4d710561e9d1c913ab1b634103486e2b6cd74a",
+      "characters": 27688,
+      "wordsApproximate": 4882
+    },
+    {
+      "id": "sayce-1895-c02",
+      "ordinal": 4,
+      "unitType": "CHAPTER",
+      "title": "Chapter II — The People",
+      "sourceLineStart": 932,
+      "sourceLineEnd": 1391,
+      "contentSha256": "42131cdd66114d65dabfc6bd1289c8ef66663f99ddfca038047950805782b36d",
+      "characters": 28253,
+      "wordsApproximate": 4869
+    },
+    {
+      "id": "sayce-1895-c03",
+      "ordinal": 5,
+      "unitType": "CHAPTER",
+      "title": "Chapter III — The Babylonians in Canaan and the Egyptian Conquest",
+      "sourceLineStart": 1392,
+      "sourceLineEnd": 3956,
+      "contentSha256": "73e602049e069e953458a698d8b9f7e087d740a81d3d788815c96283d5d85553",
+      "characters": 160531,
+      "wordsApproximate": 28032
+    },
+    {
+      "id": "sayce-1895-c04",
+      "ordinal": 6,
+      "unitType": "CHAPTER",
+      "title": "Chapter IV — The Patriarchs",
+      "sourceLineStart": 3957,
+      "sourceLineEnd": 4839,
+      "contentSha256": "645c86eff0bc6028ed2e4b51f630a392df5a6e28dfce20c040dc31b300c9b27c",
+      "characters": 54943,
+      "wordsApproximate": 9738
+    },
+    {
+      "id": "sayce-1895-c05",
+      "ordinal": 7,
+      "unitType": "CHAPTER",
+      "title": "Chapter V — Egyptian Travellers in Canaan",
+      "sourceLineStart": 4840,
+      "sourceLineEnd": 5714,
+      "contentSha256": "dfa201686e9a5029d90725e9d4300030e964d3a9a95e0ac7582ee8695f9d1a06",
+      "characters": 54953,
+      "wordsApproximate": 9782
+    },
+    {
+      "id": "sayce-1895-c06",
+      "ordinal": 8,
+      "unitType": "CHAPTER",
+      "title": "Chapter VI — Canaanitish Culture and Religion",
+      "sourceLineStart": 5715,
+      "sourceLineEnd": 6379,
+      "contentSha256": "6d54ccabfcb99c56abb8e36c65731a23788ef7c2f4d5158a4a67640e0b441dda",
+      "characters": 41440,
+      "wordsApproximate": 7124
+    },
+    {
+      "id": "sayce-1895-index",
+      "ordinal": 9,
+      "unitType": "INDEX",
+      "title": "Index",
+      "sourceLineStart": 6380,
+      "sourceLineEnd": 7367,
+      "contentSha256": "23b9f6a37504b843ca4832a4913eda9d9a0cbda70a2062dad437b52621003306",
+      "characters": 11579,
+      "wordsApproximate": 1988
+    }
+  ],
+  "notes": [
+    "El frontispicio y el marcador del mapa quedan fuera de las unidades; no se autorizó ninguna imagen.",
+    "La tabla de contenido de la página PDF 20 falta en Gutenberg y queda registrada como omisión del derivado, no como unidad de lectura.",
+    "Las nueve unidades están APPROVED para lectura y permanecen como expedientes fuente fuera de biblia/."
+  ]
+}

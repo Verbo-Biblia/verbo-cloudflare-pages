@@ -5,6 +5,8 @@ import { env, pipeline } from '@xenova/transformers';
 
 const MODEL = 'Xenova/paraphrase-multilingual-MiniLM-L12-v2';
 const BATCH_SIZE = Number.parseInt(process.env.BATCH_SIZE || '16', 10);
+const REUSE_EXISTING_BY_ID = process.env.REUSE_EXISTING_BY_ID === '1';
+const ONLY_SOURCE_ID = process.env.ONLY_SOURCE_ID || '';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, '..', '..');
 const bibliaRoot = path.join(repoRoot, 'biblia');
@@ -64,13 +66,57 @@ async function embed(records) {
   return vectors;
 }
 
+async function loadReusableVectors(records) {
+  const metadataPath = path.join(outDir, 'entries.meta.json');
+  try {
+    const previous = JSON.parse(await readFile(metadataPath, 'utf8'));
+    if (previous.model !== MODEL || previous.quantization?.type !== 'int8') return null;
+    const binary = new Int8Array(await readFile(path.join(outDir, previous.vectorFile)));
+    const identity = record => REUSE_EXISTING_BY_ID
+      ? `${record.sourceId}\0${record.id}`
+      : `${record.sourceId}\0${record.id}\0${record.text}`;
+    const byIdentity = new Map(previous.records.map(record => [identity(record), record]));
+    const reusable = records.map(record => {
+      const old = byIdentity.get(identity(record));
+      if (!old || old.length !== previous.dimensions || old.offset + old.length > binary.length) return null;
+      return binary.slice(old.offset, old.offset + old.length);
+    });
+    return { dimensions: previous.dimensions, reusable };
+  } catch {
+    return null;
+  }
+}
+
 async function main() {
-  const records = await loadRecords();
-  const vectors = await embed(records); const dimensions = vectors[0].length;
+  let records = await loadRecords();
+  if (ONLY_SOURCE_ID) {
+    const previous = JSON.parse(await readFile(path.join(outDir, 'entries.meta.json'), 'utf8'));
+    const retained = previous.records
+      .filter(record => record.sourceId !== ONLY_SOURCE_ID)
+      .map(({ offset: _offset, length: _length, ...record }) => record);
+    const selected = records.filter(record => record.sourceId === ONLY_SOURCE_ID);
+    if (!selected.length) throw new Error(`No hay entradas para ONLY_SOURCE_ID=${ONLY_SOURCE_ID}`);
+    records = [...retained, ...selected];
+    console.log(`incremental source: ${ONLY_SOURCE_ID}; retained: ${retained.length}; selected: ${selected.length}`);
+  }
+  const previous = await loadReusableVectors(records);
+  const missingIndexes = records.map((_, index) => index).filter(index => !previous?.reusable[index]);
+  const fresh = missingIndexes.length ? await embed(missingIndexes.map(index => records[index])) : [];
+  const dimensions = previous?.dimensions || fresh[0]?.length;
+  if (!dimensions) throw new Error('No se pudo determinar la dimensión del índice');
   const bytes = new Int8Array(records.length * dimensions);
-  vectors.forEach((vector, row) => vector.forEach((value, dim) => {
-    bytes[row * dimensions + dim] = Math.round(Math.max(-1, Math.min(1, value)) * 127);
-  }));
+  let freshIndex = 0;
+  records.forEach((_, row) => {
+    const reused = previous?.reusable[row];
+    if (reused) {
+      bytes.set(reused, row * dimensions);
+      return;
+    }
+    const vector = fresh[freshIndex++];
+    vector.forEach((value, dim) => {
+      bytes[row * dimensions + dim] = Math.round(Math.max(-1, Math.min(1, value)) * 127);
+    });
+  });
   const metadata = {
     schemaVersion: 1,
     source: 'modules/church-history',
@@ -85,6 +131,7 @@ async function main() {
   await writeFile(path.join(outDir, 'entries.i8.bin'), bytes);
   await writeFile(path.join(outDir, 'entries.meta.json'), JSON.stringify(metadata, null, 2) + '\n');
   console.log(`church-history: ${records.length} records, ${dimensions} dims`);
+  console.log(`vectors reused: ${records.length - missingIndexes.length}; embedded: ${missingIndexes.length}`);
   console.log(`entries.i8.bin: ${(await stat(path.join(outDir, 'entries.i8.bin'))).size.toLocaleString()} bytes`);
 }
 

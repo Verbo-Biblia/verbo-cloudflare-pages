@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://verbobiblia.com/schemas/history-reading-unit.schema.json",
+  "title": "Expediente de una unidad de lectura histórica",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "id", "sourceId", "title", "ordinal", "navigation", "bibliography", "provenance", "structure", "text", "location", "integrity", "textualControl", "readingReviewStatus", "reviewNotes", "reviewHistory"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]+$"},
+    "sourceId": {"type": "string", "minLength": 1},
+    "title": {"type": "string", "minLength": 1},
+    "ordinal": {"type": "integer", "minimum": 1},
+    "navigation": {
+      "type": "object", "additionalProperties": false, "required": ["previousId", "nextId"],
+      "properties": {"previousId": {"type": ["string", "null"]}, "nextId": {"type": ["string", "null"]}}
+    },
+    "bibliography": {
+      "type": "object", "additionalProperties": false,
+      "required": ["author", "workTitle", "edition", "publisher", "place", "year", "language"],
+      "properties": {
+        "author": {"type": "string", "minLength": 1}, "workTitle": {"type": "string", "minLength": 1},
+        "edition": {"type": "string", "minLength": 1}, "publisher": {"type": "string", "minLength": 1},
+        "place": {"type": "string", "minLength": 1}, "year": {"type": "integer", "minimum": 1},
+        "language": {"type": "string", "minLength": 2}
+      }
+    },
+    "provenance": {
+      "type": "object", "additionalProperties": false,
+      "required": ["acquisitionId", "sourceUrl", "legalStatus", "attribution", "imagesAllowed", "originalPreserved"],
+      "properties": {
+        "acquisitionId": {"type": "string", "minLength": 1}, "sourceUrl": {"type": "string", "minLength": 1},
+        "legalStatus": {"enum": ["CLEARED", "CLEARED_TEXT_ONLY", "CITATION_ONLY", "LEGAL_REVIEW_REQUIRED", "REJECTED"]},
+        "attribution": {"type": "string", "minLength": 1}, "imagesAllowed": {"type": "boolean"},
+        "originalPreserved": {"const": true}
+      }
+    },
+    "structure": {
+      "type": "object", "additionalProperties": false, "required": ["unitType", "headings"],
+      "properties": {"unitType": {"enum": ["PREFACE", "CHAPTER", "SECTION", "APPENDIX", "INDEX", "OTHER"]}, "headings": {"type": "array", "items": {"type": "string"}}}
+    },
+    "text": {
+      "type": "object", "additionalProperties": false, "required": ["sourceLanguage", "content", "historicalSourceNotice"],
+      "properties": {"sourceLanguage": {"type": "string", "minLength": 2}, "content": {"type": "string", "minLength": 1}, "historicalSourceNotice": {"type": "string", "minLength": 1}}
+    },
+    "location": {
+      "type": "object", "additionalProperties": false, "required": ["printedPages", "facsimilePages", "ocrLocator"],
+      "properties": {"printedPages": {"type": "string", "minLength": 1}, "facsimilePages": {"type": "string", "minLength": 1}, "ocrLocator": {"type": "string", "minLength": 1}}
+    },
+    "integrity": {
+      "type": "object", "additionalProperties": false, "required": ["originalSha256", "derivativeSha256", "contentSha256"],
+      "properties": {
+        "originalSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "derivativeSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "contentSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "textualControl": {
+      "type": "object", "additionalProperties": false, "required": ["ocrStatus", "verificationScope", "anomalies", "corrections"],
+      "properties": {
+        "ocrStatus": {"enum": ["UNREVIEWED", "REASONABLY_VALIDATED", "FULLY_COLLATED"]},
+        "verificationScope": {"type": "string", "minLength": 1},
+        "anomalies": {"type": "array", "items": {"type": "string"}},
+        "corrections": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["before", "after", "reason", "location"], "properties": {"before": {"type": "string"}, "after": {"type": "string"}, "reason": {"type": "string", "minLength": 1}, "location": {"type": "string", "minLength": 1}}}}
+      }
+    },
+    "readingReviewStatus": {"enum": ["APPROVED", "REVIEW_REQUIRED", "REJECTED"]},
+    "reviewNotes": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "reviewHistory": {"type": "array", "minItems": 1, "items": {"type": "object", "additionalProperties": false, "required": ["date", "role", "decision", "note"], "properties": {"date": {"type": "string", "format": "date"}, "role": {"type": "string", "minLength": 1}, "reviewer": {"type": ["string", "null"]}, "decision": {"enum": ["APPROVED", "REVIEW_REQUIRED", "REJECTED"]}, "note": {"type": "string", "minLength": 1}}}}
+  }
+}

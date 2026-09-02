@@ -19,6 +19,17 @@
 - Buscador semántico (solo Biblia, `tools/semantic-search/`): un índice local por idioma, generado offline y publicado en `biblia/modules/semantic-search/bible-<id>/` — nunca en cada build. Español se indexa desde Biblia Verbo; inglés desde BSB (dominio público, ya local) porque NASB es remota vía API.Bible y no se puede descargar/serializar en bloque para indexar. NASB sigue siendo la Biblia visual predeterminada en inglés — el índice solo encuentra referencias, la app siempre muestra el resultado en la Biblia activa del usuario. Ver `tools/semantic-search/README.md`.
 - No modificar API, secretos, KV, cachés, prompts, Worker ni configuración de Cloudflare cuando la tarea sea exclusivamente editorial.
 
+## Regla para contenido nuevo de Biblia
+
+- Cada contenido nuevo que se pretenda incorporar en `biblia/` debe revisarse antes de integrarlo para determinar cómo se adapta a la aplicación.
+- La revisión debe cubrir las dos superficies complementarias:
+  - Su documento completo de lectura en el panel izquierdo que corresponda (por ejemplo: Historia, Padres, Costumbres y Tradiciones, Comentarios u otro recurso).
+  - Su posible aparición contextual en el Asistente de estudio, mediante fragmentos o resúmenes fieles anclados a versículos, rangos o perícopas y enlazados a la entrada exacta del documento completo.
+- No asumir que registrar un módulo en `biblia/modules/registry.json` lo incorpora automáticamente al Asistente. Deben revisarse también su esquema, IDs estables, idioma, navegación, anclajes bíblicos, relevancia editorial y generación offline de paquetes.
+- Para cada contenido nuevo, presentar primero al usuario una propuesta concreta de adaptación que indique dónde se leerá, si debe aparecer en el Asistente, bajo qué categoría, con qué tipo de anclaje y qué archivos o índices sería necesario generar o modificar.
+- Esperar la aprobación expresa del usuario antes de implementar esa adaptación. No decidir ni ejecutar silenciosamente la integración del contenido nuevo en el panel o en el Asistente.
+- Si el contenido no aporta una relación suficientemente fundada con un pasaje, proponer que permanezca únicamente como documento de lectura. No forzar asociaciones por palabras, fechas o semejanzas generales.
+
 ## Biblia Verbo: norma editorial
 
 - Texto base: Biblia Verbo actual.

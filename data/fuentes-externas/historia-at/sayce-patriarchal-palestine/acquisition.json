@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "sourceId": "sayce-patriarchal-palestine",
+  "title": "Patriarchal Palestine",
+  "author": "Archibald Henry Sayce",
+  "authorBirth": 1845,
+  "authorDeath": 1933,
+  "originalPublicationYear": 1895,
+  "editionUsed": "Primera edición de 1895, ejemplar de University of Michigan digitalizado por Google y preservado en Internet Archive; Project Gutenberg eBook 14405 como transcripción",
+  "editionPublicationYear": 1895,
+  "publisher": "Society for Promoting Christian Knowledge",
+  "sourceRepository": "Project Gutenberg",
+  "sourceRecordUrl": "https://www.gutenberg.org/ebooks/14405",
+  "downloadUrl": "https://www.gutenberg.org/ebooks/14405.txt.utf-8",
+  "retrievedAt": "2026-08-31",
+  "language": "en",
+  "format": "text/plain; charset=utf-8",
+  "files": [
+    {
+      "path": "original/pg14405.txt",
+      "bytes": 423594,
+      "lines": 7718,
+      "words": 72121,
+      "sha256": "04c75c37f20cc05cde8cb2002c83583f683ffeb902419bf560ad857b9549a70b"
+    },
+    {
+      "path": "original/facsimile/patriarchalpale00saycgoog.pdf",
+      "bytes": 9047665,
+      "pages": 295,
+      "sha256": "070c8e550d0479583223e6c7904ca739b58f6d9866fb9bee981327b6095cf13b"
+    },
+    {
+      "path": "upstream-derivatives/patriarchalpale00saycgoog_djvu.txt",
+      "bytes": 434195,
+      "sha256": "a9843b11b7f4fee1def7e7b748bb554e11c8f68fbff2a43fd8cc38cd52fdb31e"
+    },
+    {
+      "path": "upstream-derivatives/patriarchalpale00saycgoog_djvu.xml",
+      "bytes": 3841041,
+      "sha256": "7dc872634eb9f7ecdd32c4badce0c8d2e46770d8fca13b48b3763856c3796b50"
+    },
+    {
+      "path": "upstream-derivatives/patriarchalpale00saycgoog_scandata.xml",
+      "bytes": 88601,
+      "sha256": "cb4d6172e53a4f41d588532171ca5038f6aaed8a28ae4bae68a30fdbe9dc4e85"
+    }
+  ],
+  "sourceStructureObserved": {
+    "preface": true,
+    "chapters": 6,
+    "index": true,
+    "mapPlaceholder": true,
+    "mapImageIncludedInTextFile": false
+  },
+  "integrationStatus": "STAGING_ONLY",
+  "notes": [
+    "El original se conserva con la envoltura y licencia de Project Gutenberg sin modificar.",
+    "El facsímil identifica una edición de 1895 con paginación xiii, [1], [15]–277, [1]; LCCN 05006888 y OCLC 2154634.",
+    "La correspondencia del contenido de Gutenberg con este facsímil fue confirmada para el prefacio y la cronología; el resto requiere cotejo por lotes.",
+    "El prefacio contiene posturas apologéticas y afirmaciones historiográficas de 1895; requiere aviso editorial y contraste moderno.",
+    "No se adquirió la imagen del mapa."
+  ]
+}
