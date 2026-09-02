@@ -1215,21 +1215,6 @@
           "sourceLanguage": "en"
         }
       },
-      "h-9581eb1d71717ccb": {
-        "fuente": {
-          "entradaId": "inmutabilidad-del-credo-niceno:GAL:1:6-1:9",
-          "libroSeccion": "Autoridad e inmutabilidad del Credo de Nicea (prohibición de componer nuevos credos) — Éfeso (431)",
-          "modulo": "concilios-temas",
-          "temaId": "inmutabilidad-del-credo-niceno"
-        },
-        "texto": "'Aunque nosotros, o un ángel del cielo, os anunciare otro evangelio... sea anatema' — el paralelo neotestamentario más cercano a la prohibición de componer una fe distinta de la recibida, con el mismo lenguaje de anatema.",
-        "tipo": "recepcion-doctrinal",
-        "traduccion": {
-          "resourceId": "inmutabilidad-del-credo-niceno:GAL:1:6-1:9",
-          "sourceHash": "6ab793740e7c685c73b499d8b53b31372b9fc369438282246b8f3d5dc9fbc537",
-          "sourceLanguage": "es"
-        }
-      },
       "h-a4cf39cb1f5c17e3": {
         "fuente": {
           "entradaId": "eusebio-he-l1-c11",
@@ -1242,6 +1227,26 @@
           "resourceId": "eusebio-he-l1-c11",
           "sourceHash": "10b9b499febcfb03ccb50ce2686a100a04176765bad77393c0b8384dac551266",
           "sourceLanguage": "en"
+        }
+      },
+      "h-a9b9487459fd4c66": {
+        "fuente": {
+          "entradaId": "npnf214-efeso-094",
+          "entradaIds": [
+            "npnf214-efeso-094",
+            "npnf214-efeso-095"
+          ],
+          "libroSeccion": "Autoridad e inmutabilidad del Credo de Nicea (prohibición de componer nuevos credos) — Éfeso (431)",
+          "modulo": "npnf214-concilios-ecumenicos",
+          "recursoId": "inmutabilidad-del-credo-niceno:GAL:1:6-1:9",
+          "temaId": "inmutabilidad-del-credo-niceno"
+        },
+        "texto": "'Aunque nosotros, o un ángel del cielo, os anunciare otro evangelio... sea anatema' — el paralelo neotestamentario más cercano a la prohibición de componer una fe distinta de la recibida, con el mismo lenguaje de anatema.",
+        "tipo": "recepcion-doctrinal",
+        "traduccion": {
+          "resourceId": "inmutabilidad-del-credo-niceno:GAL:1:6-1:9",
+          "sourceHash": "6ab793740e7c685c73b499d8b53b31372b9fc369438282246b8f3d5dc9fbc537",
+          "sourceLanguage": "es"
         }
       },
       "h-ba2f463246a8fe07": {
@@ -2103,7 +2108,7 @@
         "h-ca072cdd96db6f57",
         "h-887bc5ef19ac46a5",
         "h-c746ece3691edb70",
-        "h-9581eb1d71717ccb"
+        "h-a9b9487459fd4c66"
       ]
     },
     "7": {
@@ -2139,7 +2144,7 @@
         "h-ca072cdd96db6f57",
         "h-887bc5ef19ac46a5",
         "h-c746ece3691edb70",
-        "h-9581eb1d71717ccb"
+        "h-a9b9487459fd4c66"
       ]
     },
     "8": {
@@ -2178,7 +2183,7 @@
         "h-ca072cdd96db6f57",
         "h-887bc5ef19ac46a5",
         "h-c746ece3691edb70",
-        "h-9581eb1d71717ccb"
+        "h-a9b9487459fd4c66"
       ]
     },
     "9": {
@@ -2212,7 +2217,7 @@
         "h-ca072cdd96db6f57",
         "h-887bc5ef19ac46a5",
         "h-c746ece3691edb70",
-        "h-9581eb1d71717ccb"
+        "h-a9b9487459fd4c66"
       ]
     }
   }

@@ -30,11 +30,13 @@ SOURCE_LANGUAGES = {
     "Easton": "en",
     "Smith": "en",
     "eusebio-historia-eclesiastica": "en",
+    "sayce-patriarchal-palestine": "es",
     "freeman-manners-customs": "en",
     "tucker-roman-world": "en",
     "book-classification-nt": "es",
     "book-classification-ot": "es",
     "concilios-temas": "es",
+    "npnf214-concilios-ecumenicos": "es",
     "bernabe": "es",
     "clemente-1": "es",
     "didache": "es",
@@ -134,7 +136,7 @@ def translation_identity(category, resource):
         canonical_id = source["entryId"]
         text = resource["termino"]
     else:
-        canonical_id = source.get("entradaId") or source.get("libroSeccion")
+        canonical_id = source.get("recursoId") or source.get("entradaId") or source.get("libroSeccion")
         text = resource["texto"]
     if not canonical_id or module not in SOURCE_LANGUAGES:
         raise ValueError(f"Identidad de traducción incompleta: {category} / {source}")

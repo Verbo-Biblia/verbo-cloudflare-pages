@@ -1081,6 +1081,35 @@
           "sourceLanguage": "en"
         }
       },
+      "h-1969f511775f11c4": {
+        "fuente": {
+          "entradaId": "npnf214-calcedonia-103",
+          "entradaIds": [
+            "npnf214-calcedonia-103",
+            "npnf214-calcedonia-104",
+            "npnf214-calcedonia-106",
+            "npnf214-calcedonia-107",
+            "npnf214-calcedonia-108",
+            "npnf214-calcedonia-109",
+            "npnf214-calcedonia-110",
+            "npnf214-calcedonia-111",
+            "npnf214-calcedonia-112",
+            "npnf214-calcedonia-113",
+            "npnf214-calcedonia-114"
+          ],
+          "libroSeccion": "Naturaleza de Cristo: dos naturalezas en una persona (controversia eutiquiana/monofisita) — Calcedonia (451)",
+          "modulo": "npnf214-concilios-ecumenicos",
+          "recursoId": "naturaleza-de-cristo-dos-naturalezas-calcedonia:PHP:2:5-2:11",
+          "temaId": "naturaleza-de-cristo-dos-naturalezas-calcedonia"
+        },
+        "texto": "Recorre en un mismo himno 'la forma de Dios' y 'la forma de siervo' del mismo sujeto — plantilla textual de las dos naturalezas en una persona. Solapa con el tema de plena divinidad (arrianismo).",
+        "tipo": "recepcion-doctrinal",
+        "traduccion": {
+          "resourceId": "naturaleza-de-cristo-dos-naturalezas-calcedonia:PHP:2:5-2:11",
+          "sourceHash": "8b9c0100ace89192017bb5f5fdff199b86010c8921d4fdbe860a43abac3bec0d",
+          "sourceLanguage": "es"
+        }
+      },
       "h-19c144f9ad6e8dc7": {
         "fuente": {
           "entradaId": "eusebio-he-l2-c22",
@@ -1107,21 +1136,6 @@
           "resourceId": "eusebio-he-l2-c11",
           "sourceHash": "1a3a37b51bd75b1185949bc9538995e088d70e9d2ad58e56efbfd587e2ab9c72",
           "sourceLanguage": "en"
-        }
-      },
-      "h-2720421baa6ac3b3": {
-        "fuente": {
-          "entradaId": "naturaleza-de-cristo-divinidad-arrianismo:PHP:2:5-2:11",
-          "libroSeccion": "Naturaleza de Cristo: plena divinidad (controversia arriana) — Nicea I (325)",
-          "modulo": "concilios-temas",
-          "temaId": "naturaleza-de-cristo-divinidad-arrianismo"
-        },
-        "texto": "'Existiendo en forma de Dios, no estimó el ser igual a Dios como cosa a que aferrarse' — afirma la igualdad con Dios como punto de partida del himno.",
-        "tipo": "recepcion-doctrinal",
-        "traduccion": {
-          "resourceId": "naturaleza-de-cristo-divinidad-arrianismo:PHP:2:5-2:11",
-          "sourceHash": "fc888457efc1f80f4ed237432961bf20d264564f64294e71fa1fd38453a4764d",
-          "sourceLanguage": "es"
         }
       },
       "h-39d942d54d52b5bb": {
@@ -1208,21 +1222,6 @@
           "sourceLanguage": "en"
         }
       },
-      "h-836ba9c6705aa61d": {
-        "fuente": {
-          "entradaId": "naturaleza-de-cristo-dos-naturalezas-calcedonia:PHP:2:5-2:11",
-          "libroSeccion": "Naturaleza de Cristo: dos naturalezas en una persona (controversia eutiquiana/monofisita) — Calcedonia (451)",
-          "modulo": "concilios-temas",
-          "temaId": "naturaleza-de-cristo-dos-naturalezas-calcedonia"
-        },
-        "texto": "Recorre en un mismo himno 'la forma de Dios' y 'la forma de siervo' del mismo sujeto — plantilla textual de las dos naturalezas en una persona. Solapa con el tema de plena divinidad (arrianismo).",
-        "tipo": "recepcion-doctrinal",
-        "traduccion": {
-          "resourceId": "naturaleza-de-cristo-dos-naturalezas-calcedonia:PHP:2:5-2:11",
-          "sourceHash": "8b9c0100ace89192017bb5f5fdff199b86010c8921d4fdbe860a43abac3bec0d",
-          "sourceLanguage": "es"
-        }
-      },
       "h-887bc5ef19ac46a5": {
         "fuente": {
           "entradaId": "eusebio-he-l2-c25",
@@ -1305,6 +1304,28 @@
           "resourceId": "eusebio-he-l2-c15",
           "sourceHash": "ef1ad06f33bdc75704d2afe7da70eb370b10cd91e9e5674e7abed7392308f390",
           "sourceLanguage": "en"
+        }
+      },
+      "h-edc25f9ac55bf103": {
+        "fuente": {
+          "entradaId": "npnf214-nicea-i-002",
+          "entradaIds": [
+            "npnf214-nicea-i-002",
+            "npnf214-nicea-i-003",
+            "npnf214-nicea-i-004",
+            "npnf214-nicea-i-038"
+          ],
+          "libroSeccion": "Naturaleza de Cristo: plena divinidad (controversia arriana) — Nicea I (325)",
+          "modulo": "npnf214-concilios-ecumenicos",
+          "recursoId": "naturaleza-de-cristo-divinidad-arrianismo:PHP:2:5-2:11",
+          "temaId": "naturaleza-de-cristo-divinidad-arrianismo"
+        },
+        "texto": "'Existiendo en forma de Dios, no estimó el ser igual a Dios como cosa a que aferrarse' — afirma la igualdad con Dios como punto de partida del himno.",
+        "tipo": "recepcion-doctrinal",
+        "traduccion": {
+          "resourceId": "naturaleza-de-cristo-divinidad-arrianismo:PHP:2:5-2:11",
+          "sourceHash": "fc888457efc1f80f4ed237432961bf20d264564f64294e71fa1fd38453a4764d",
+          "sourceLanguage": "es"
         }
       }
     }
@@ -1408,8 +1429,8 @@
         "h-ca072cdd96db6f57",
         "h-887bc5ef19ac46a5",
         "h-c746ece3691edb70",
-        "h-836ba9c6705aa61d",
-        "h-2720421baa6ac3b3"
+        "h-1969f511775f11c4",
+        "h-edc25f9ac55bf103"
       ]
     },
     "11": {
@@ -1464,8 +1485,8 @@
         "h-ca072cdd96db6f57",
         "h-887bc5ef19ac46a5",
         "h-c746ece3691edb70",
-        "h-836ba9c6705aa61d",
-        "h-2720421baa6ac3b3"
+        "h-1969f511775f11c4",
+        "h-edc25f9ac55bf103"
       ]
     },
     "12": {
@@ -2499,8 +2520,8 @@
         "h-ca072cdd96db6f57",
         "h-887bc5ef19ac46a5",
         "h-c746ece3691edb70",
-        "h-836ba9c6705aa61d",
-        "h-2720421baa6ac3b3"
+        "h-1969f511775f11c4",
+        "h-edc25f9ac55bf103"
       ]
     },
     "6": {
@@ -2545,8 +2566,8 @@
         "h-ca072cdd96db6f57",
         "h-887bc5ef19ac46a5",
         "h-c746ece3691edb70",
-        "h-836ba9c6705aa61d",
-        "h-2720421baa6ac3b3"
+        "h-1969f511775f11c4",
+        "h-edc25f9ac55bf103"
       ]
     },
     "7": {
@@ -2590,8 +2611,8 @@
         "h-ca072cdd96db6f57",
         "h-887bc5ef19ac46a5",
         "h-c746ece3691edb70",
-        "h-836ba9c6705aa61d",
-        "h-2720421baa6ac3b3"
+        "h-1969f511775f11c4",
+        "h-edc25f9ac55bf103"
       ]
     },
     "8": {
@@ -2640,8 +2661,8 @@
         "h-ca072cdd96db6f57",
         "h-887bc5ef19ac46a5",
         "h-c746ece3691edb70",
-        "h-836ba9c6705aa61d",
-        "h-2720421baa6ac3b3"
+        "h-1969f511775f11c4",
+        "h-edc25f9ac55bf103"
       ]
     },
     "9": {
@@ -2687,8 +2708,8 @@
         "h-ca072cdd96db6f57",
         "h-887bc5ef19ac46a5",
         "h-c746ece3691edb70",
-        "h-836ba9c6705aa61d",
-        "h-2720421baa6ac3b3"
+        "h-1969f511775f11c4",
+        "h-edc25f9ac55bf103"
       ]
     }
   }

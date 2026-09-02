@@ -1379,21 +1379,6 @@
           "sourceLanguage": "en"
         }
       },
-      "h-59a784a49ccace7a": {
-        "fuente": {
-          "entradaId": "inmutabilidad-del-credo-niceno:2TI:1:13-1:14",
-          "libroSeccion": "Autoridad e inmutabilidad del Credo de Nicea (prohibición de componer nuevos credos) — Éfeso (431)",
-          "modulo": "concilios-temas",
-          "temaId": "inmutabilidad-del-credo-niceno"
-        },
-        "texto": "'Retén la forma de las sanas palabras... guarda el buen depósito' — el tema de custodiar sin alterar lo recibido, desarrollado en las Pastorales.",
-        "tipo": "recepcion-doctrinal",
-        "traduccion": {
-          "resourceId": "inmutabilidad-del-credo-niceno:2TI:1:13-1:14",
-          "sourceHash": "8ecf88b92d6ebca1de30f82edc42da8e4eeb086b0bfc54f0a278274ae17abe12",
-          "sourceLanguage": "es"
-        }
-      },
       "h-616ad0f88ba0acf5": {
         "fuente": {
           "entradaId": "eusebio-he-l3-c39",
@@ -1545,6 +1530,26 @@
         "traduccion": {
           "resourceId": "2TI:libro",
           "sourceHash": "9246930cab0953c93123dbdfbd8b5a5a94ec3b2ebf3a762c3ba85d69acb26ac9",
+          "sourceLanguage": "es"
+        }
+      },
+      "h-bcec7255bb365156": {
+        "fuente": {
+          "entradaId": "npnf214-efeso-094",
+          "entradaIds": [
+            "npnf214-efeso-094",
+            "npnf214-efeso-095"
+          ],
+          "libroSeccion": "Autoridad e inmutabilidad del Credo de Nicea (prohibición de componer nuevos credos) — Éfeso (431)",
+          "modulo": "npnf214-concilios-ecumenicos",
+          "recursoId": "inmutabilidad-del-credo-niceno:2TI:1:13-1:14",
+          "temaId": "inmutabilidad-del-credo-niceno"
+        },
+        "texto": "'Retén la forma de las sanas palabras... guarda el buen depósito' — el tema de custodiar sin alterar lo recibido, desarrollado en las Pastorales.",
+        "tipo": "recepcion-doctrinal",
+        "traduccion": {
+          "resourceId": "inmutabilidad-del-credo-niceno:2TI:1:13-1:14",
+          "sourceHash": "8ecf88b92d6ebca1de30f82edc42da8e4eeb086b0bfc54f0a278274ae17abe12",
           "sourceLanguage": "es"
         }
       },
@@ -1955,7 +1960,7 @@
         "h-2f7e507d75e5d036",
         "h-3a8e8960cdf45d9a",
         "h-616ad0f88ba0acf5",
-        "h-59a784a49ccace7a"
+        "h-bcec7255bb365156"
       ]
     },
     "14": {
@@ -2018,7 +2023,7 @@
         "h-2f7e507d75e5d036",
         "h-3a8e8960cdf45d9a",
         "h-616ad0f88ba0acf5",
-        "h-59a784a49ccace7a"
+        "h-bcec7255bb365156"
       ]
     },
     "15": {

@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "sourceId": "sayce-patriarchal-palestine",
+  "reviewStatus": "APPROVED",
+  "method": "Selección editorial con anclajes explícitos, atribución histórica y contraste moderno institucional.",
+  "contrastSources": [
+    {"id":"met-eastern-mediterranean-2000-1000","institution":"The Metropolitan Museum of Art","title":"The Eastern Mediterranean and Syria, 2000–1000 B.C.","url":"https://www.metmuseum.org/toah/ht/03/wae.html","accessed":"2026-09-02"},
+    {"id":"bm-ea252","institution":"The British Museum","title":"Amarna letter EA 252, ruler Labayu of Shechem to the Egyptian pharaoh","url":"https://www.britishmuseum.org/collection/object/W_1888-1013-74","accessed":"2026-09-02"},
+    {"id":"oracc-saniru","institution":"Open Richly Annotated Cuneiform Corpus, University of Pennsylvania","title":"Royal Inscriptions of Assyria online: Saniru, Mount Saniru","url":"https://oracc.museum.upenn.edu/riao/ria5/cbd/qpn/S.html","accessed":"2026-09-02"}
+  ],
+  "cards": [
+    {
+      "id":"sayce-asst-gen-12-canaan-context",
+      "passage":{"book":"GEN","chapterStart":12,"verseStart":1,"chapterEnd":12,"verseEnd":9},
+      "relationType":"HISTORICAL_CONTEXT",
+      "text":"Como contexto general del mundo de Génesis 12, el Levante del segundo milenio a. C. contenía ciudades-estado cananeas, asentamientos fortificados y redes de intercambio con Egipto y regiones vecinas. Sayce describe la geografía de esta tierra en su capítulo «The Land». Este contexto ayuda a imaginar el escenario regional, pero no fecha el viaje de Abram ni demuestra por sí mismo la historicidad de un episodio concreto.",
+      "sourceEntryId":"sayce-1895-c01","sourceSection":"Chapter I — The Land · pp. 15–34",
+      "claimIds":["met-canaan-city-states","met-canaan-trade","editorial-limit-no-direct-proof"],
+      "contrastSourceIds":["met-eastern-mediterranean-2000-1000"],"reviewStatus":"APPROVED"
+    },
+    {
+      "id":"sayce-asst-jos-10-amarna-context",
+      "passage":{"book":"JOS","chapterStart":10,"verseStart":1,"chapterEnd":10,"verseEnd":5},
+      "relationType":"ARCHAEOLOGICAL_CONTEXT",
+      "text":"Las cartas de Amarna del siglo XIV a. C. muestran que Canaán estaba organizado en ciudades-estado relacionadas con el poder egipcio. Entre ellas hay una carta del gobernante Labayu de Siquem al faraón. Sayce utiliza ese archivo para reconstruir el panorama político anterior a Israel. Las cartas iluminan el tipo de organización regional mencionado en Josué 10, pero no identifican a sus cinco reyes ni prueban esa batalla.",
+      "sourceEntryId":"sayce-1895-c03","sourceSection":"Chapter III — The Babylonians in Canaan and the Egyptian Conquest · pp. 55–165",
+      "claimIds":["bm-ea252-object","met-amarna-city-states","editorial-limit-no-joshua-identification"],
+      "contrastSourceIds":["bm-ea252","met-eastern-mediterranean-2000-1000"],"reviewStatus":"APPROVED"
+    },
+    {
+      "id":"sayce-asst-deu-3-hermon-saniru",
+      "passage":{"book":"DEU","chapterStart":3,"verseStart":8,"chapterEnd":3,"verseEnd":9},
+      "relationType":"TEXTUAL_WITNESS",
+      "text":"Deuteronomio 3:9 conserva varios nombres del Hermón, entre ellos Senir. El corpus de inscripciones reales asirias registra una montaña llamada Saniru. Sayce relaciona ambos nombres en «The Land». La inscripción confirma que Saniru era un topónimo antiguo; la equivalencia exacta con el Senir bíblico debe presentarse como identificación histórica atribuida, no como una demostración independiente del relato.",
+      "sourceEntryId":"sayce-1895-c01","sourceSection":"Chapter I — The Land · pp. 15–34",
+      "claimIds":["oracc-saniru-attestation","sayce-saniru-shenir-identification","editorial-limit-attestation-not-proof"],
+      "contrastSourceIds":["oracc-saniru"],"reviewStatus":"APPROVED"
+    }
+  ]
+}

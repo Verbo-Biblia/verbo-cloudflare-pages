@@ -1617,6 +1617,30 @@
           "sourceHash": "cdd5cb0db54ce748b53593a24db5b372a0ea86d0d6ec7c017df7fbdec2c77bdc",
           "sourceLanguage": "es"
         }
+      },
+      "h-d4a625f4627c747f": {
+        "fuente": {
+          "claimIds": [
+            "oracc-saniru-attestation",
+            "sayce-saniru-shenir-identification",
+            "editorial-limit-attestation-not-proof"
+          ],
+          "contrastSourceIds": [
+            "oracc-saniru"
+          ],
+          "entradaId": "sayce-1895-c01",
+          "fichaId": "sayce-asst-deu-3-hermon-saniru",
+          "libroSeccion": "Chapter I — The Land · pp. 15–34",
+          "modulo": "sayce-patriarchal-palestine",
+          "recursoId": "sayce-asst-deu-3-hermon-saniru"
+        },
+        "texto": "Deuteronomio 3:9 conserva varios nombres del Hermón, entre ellos Senir. El corpus de inscripciones reales asirias registra una montaña llamada Saniru. Sayce relaciona ambos nombres en «The Land». La inscripción confirma que Saniru era un topónimo antiguo; la equivalencia exacta con el Senir bíblico debe presentarse como identificación histórica atribuida, no como una demostración independiente del relato.",
+        "tipo": "textual-witness",
+        "traduccion": {
+          "resourceId": "sayce-asst-deu-3-hermon-saniru",
+          "sourceHash": "ae1a7c37eb31411b848c2ba40f7f9deb29e1606f1a41635d0b1a8d21299042ac",
+          "sourceLanguage": "es"
+        }
       }
     }
   },
@@ -2100,7 +2124,8 @@
         "d-350fbe9215b1a1b8"
       ],
       "historia": [
-        "h-6bf0fea725baa9f6"
+        "h-6bf0fea725baa9f6",
+        "h-d4a625f4627c747f"
       ]
     },
     "9": {
@@ -2116,7 +2141,8 @@
         "d-7f37110aafbcfaee"
       ],
       "historia": [
-        "h-6bf0fea725baa9f6"
+        "h-6bf0fea725baa9f6",
+        "h-d4a625f4627c747f"
       ]
     }
   }

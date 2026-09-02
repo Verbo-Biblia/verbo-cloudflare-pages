@@ -343,7 +343,9 @@
       'book-classification-nt':'sourceBookContext',
       'book-classification-ot':'sourceBookContext',
       'concilios-temas':'sourceCouncils',
+      'npnf214-concilios-ecumenicos':'sourceCouncils',
       'eusebio-historia-eclesiastica':'sourceEusebius',
+      'sayce-patriarchal-palestine':'sourceSayce',
       'bernabe':'sourceBarnabas',
       'clemente-1':'sourceClement',
       'didache':'sourceDidache',
@@ -387,7 +389,7 @@
       // decir exactamente a cuál apunta, no solo la etiqueta pequeña aparte.
       return moduleId ? {panel:'diccionarios',moduleId,entryId:source.entryId,label:'viewDictionarySource',labelVars:{source:moduleLabel(source.modulo)}} : null;
     }
-    if(source.modulo==='eusebio-historia-eclesiastica' && source.entradaId){
+    if(['eusebio-historia-eclesiastica','npnf214-concilios-ecumenicos','sayce-patriarchal-palestine'].includes(source.modulo) && source.entradaId){
       return {panel:'historia',moduleId:source.modulo,entryId:source.entradaId,label:'viewHistory'};
     }
     if(['freeman-manners-customs','tucker-roman-world'].includes(source.modulo) && source.entradaId){
@@ -427,7 +429,10 @@
       'contexto-libro':'typeContext',
       'circunstancia':'typeCircumstance',
       'evento':'typeEvent',
-      'recepcion-doctrinal':'typeReception'
+      'recepcion-doctrinal':'typeReception',
+      'historical-context':'typeHistoricalContext',
+      'archaeological-context':'typeArchaeologicalContext',
+      'textual-witness':'typeTextualWitness'
     };
     return keys[type] ? t(keys[type]) : '';
   }

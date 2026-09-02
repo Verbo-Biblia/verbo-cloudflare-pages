@@ -29,6 +29,7 @@
 - Para cada contenido nuevo, presentar primero al usuario una propuesta concreta de adaptación que indique dónde se leerá, si debe aparecer en el Asistente, bajo qué categoría, con qué tipo de anclaje y qué archivos o índices sería necesario generar o modificar.
 - Esperar la aprobación expresa del usuario antes de implementar esa adaptación. No decidir ni ejecutar silenciosamente la integración del contenido nuevo en el panel o en el Asistente.
 - Si el contenido no aporta una relación suficientemente fundada con un pasaje, proponer que permanezca únicamente como documento de lectura. No forzar asociaciones por palabras, fechas o semejanzas generales.
+- Una adición aprobada no se considera terminada ni se publica hasta completar todas las superficies que su propuesta haya declarado pertinentes: documento íntegro, selección contextual del Asistente, enlaces profundos, traducción, catálogos, índices, invalidación de caché y pruebas de extremo a extremo. Si alguna superficie pertinente queda bloqueada, informar el bloqueo antes de publicar; no presentar una integración parcial como terminada.
 
 ## Biblia Verbo: norma editorial
 

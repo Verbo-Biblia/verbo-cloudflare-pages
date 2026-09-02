@@ -1605,11 +1605,18 @@
       }
     },
     "historia": {
-      "h-031f2e8a02462c4a": {
+      "h-09774a77e39964c6": {
         "fuente": {
-          "entradaId": "naturaleza-de-cristo-divinidad-arrianismo:JHN:1:1-1:18",
+          "entradaId": "npnf214-nicea-i-002",
+          "entradaIds": [
+            "npnf214-nicea-i-002",
+            "npnf214-nicea-i-003",
+            "npnf214-nicea-i-004",
+            "npnf214-nicea-i-038"
+          ],
           "libroSeccion": "Naturaleza de Cristo: plena divinidad (controversia arriana) — Nicea I (325)",
-          "modulo": "concilios-temas",
+          "modulo": "npnf214-concilios-ecumenicos",
+          "recursoId": "naturaleza-de-cristo-divinidad-arrianismo:JHN:1:1-1:18",
           "temaId": "naturaleza-de-cristo-divinidad-arrianismo"
         },
         "texto": "'En el principio era el Verbo, y el Verbo era Dios' — el desarrollo más directo y extenso del NT sobre la preexistencia y divinidad del Verbo, texto central de toda la controversia arriana.",
@@ -1648,21 +1655,6 @@
           "sourceLanguage": "en"
         }
       },
-      "h-663bceab23da99cd": {
-        "fuente": {
-          "entradaId": "naturaleza-de-cristo-unidad-persona-nestorianismo:JHN:1:1-1:14",
-          "libroSeccion": "Naturaleza de Cristo: unidad de la persona y Theotokos (controversia nestoriana, incl. los Tres Capítulos) — Éfeso (431), Calcedonia (451, carta de reunificación), Constantinopla II (553)",
-          "modulo": "concilios-temas",
-          "temaId": "naturaleza-de-cristo-unidad-persona-nestorianismo"
-        },
-        "texto": "'El Verbo era Dios... y el Verbo se hizo carne' — el mismo sujeto (el Verbo) que preexiste como Dios es el que se hace carne, argumento de unidad de persona. Solapa con el tema de la divinidad de Cristo (ver nota de solapamiento).",
-        "tipo": "recepcion-doctrinal",
-        "traduccion": {
-          "resourceId": "naturaleza-de-cristo-unidad-persona-nestorianismo:JHN:1:1-1:14",
-          "sourceHash": "c37f0efcbf2689b91ad9920977ba8e675e8f514c6d8960b9b93ea49bc1f817fe",
-          "sourceLanguage": "es"
-        }
-      },
       "h-71819f77e8050222": {
         "fuente": {
           "entradaId": "eusebio-he-l1-c9",
@@ -1688,6 +1680,73 @@
         "traduccion": {
           "resourceId": "JHN:libro",
           "sourceHash": "475e5b1192f107d62eef1dde8cf9048aafa52ed220a905df3fc0f4ba859851f5",
+          "sourceLanguage": "es"
+        }
+      },
+      "h-94f559a7ac090d6b": {
+        "fuente": {
+          "entradaId": "npnf214-efeso-060",
+          "entradaIds": [
+            "npnf214-efeso-060",
+            "npnf214-efeso-061",
+            "npnf214-efeso-062",
+            "npnf214-efeso-063",
+            "npnf214-efeso-064",
+            "npnf214-efeso-065",
+            "npnf214-efeso-066",
+            "npnf214-efeso-067",
+            "npnf214-efeso-068",
+            "npnf214-efeso-069",
+            "npnf214-efeso-070",
+            "npnf214-efeso-071",
+            "npnf214-efeso-072",
+            "npnf214-efeso-073",
+            "npnf214-efeso-074",
+            "npnf214-efeso-076",
+            "npnf214-efeso-077",
+            "npnf214-efeso-078",
+            "npnf214-efeso-079",
+            "npnf214-efeso-080",
+            "npnf214-efeso-081",
+            "npnf214-efeso-082",
+            "npnf214-efeso-083",
+            "npnf214-efeso-084",
+            "npnf214-efeso-087",
+            "npnf214-efeso-089",
+            "npnf214-efeso-090",
+            "npnf214-efeso-092",
+            "npnf214-efeso-098",
+            "npnf214-calcedonia-105",
+            "npnf214-constantinopla-ii-152",
+            "npnf214-constantinopla-ii-153",
+            "npnf214-constantinopla-ii-154",
+            "npnf214-constantinopla-ii-155",
+            "npnf214-constantinopla-ii-156",
+            "npnf214-constantinopla-ii-157",
+            "npnf214-constantinopla-ii-158",
+            "npnf214-constantinopla-ii-159",
+            "npnf214-constantinopla-ii-160",
+            "npnf214-constantinopla-ii-161",
+            "npnf214-constantinopla-ii-162",
+            "npnf214-constantinopla-ii-163",
+            "npnf214-constantinopla-ii-164",
+            "npnf214-constantinopla-ii-165",
+            "npnf214-constantinopla-ii-166",
+            "npnf214-constantinopla-ii-167",
+            "npnf214-constantinopla-ii-168",
+            "npnf214-constantinopla-ii-194",
+            "npnf214-constantinopla-ii-195"
+          ],
+          "libroSeccion": "Naturaleza de Cristo: unidad de la persona y Theotokos (controversia nestoriana, incl. los Tres Capítulos) — Éfeso (431), Calcedonia (451, carta de reunificación), Constantinopla II (553)",
+          "modulo": "npnf214-concilios-ecumenicos",
+          "recursoId": "naturaleza-de-cristo-unidad-persona-nestorianismo:JHN:1:1-1:14",
+          "temaId": "naturaleza-de-cristo-unidad-persona-nestorianismo"
+        },
+        "texto": "'El Verbo era Dios... y el Verbo se hizo carne' — el mismo sujeto (el Verbo) que preexiste como Dios es el que se hace carne, argumento de unidad de persona. Solapa con el tema de la divinidad de Cristo (ver nota de solapamiento).",
+        "tipo": "recepcion-doctrinal",
+        "traduccion": {
+          "resourceId": "naturaleza-de-cristo-unidad-persona-nestorianismo:JHN:1:1-1:14",
+          "sourceHash": "c37f0efcbf2689b91ad9920977ba8e675e8f514c6d8960b9b93ea49bc1f817fe",
           "sourceLanguage": "es"
         }
       },
@@ -1767,8 +1826,8 @@
         "h-71819f77e8050222",
         "h-3229e65dddd91456",
         "h-a4cf39cb1f5c17e3",
-        "h-663bceab23da99cd",
-        "h-031f2e8a02462c4a"
+        "h-94f559a7ac090d6b",
+        "h-09774a77e39964c6"
       ]
     },
     "10": {
@@ -1783,8 +1842,8 @@
         "h-71819f77e8050222",
         "h-3229e65dddd91456",
         "h-a4cf39cb1f5c17e3",
-        "h-663bceab23da99cd",
-        "h-031f2e8a02462c4a"
+        "h-94f559a7ac090d6b",
+        "h-09774a77e39964c6"
       ]
     },
     "11": {
@@ -1799,8 +1858,8 @@
         "h-71819f77e8050222",
         "h-3229e65dddd91456",
         "h-a4cf39cb1f5c17e3",
-        "h-663bceab23da99cd",
-        "h-031f2e8a02462c4a"
+        "h-94f559a7ac090d6b",
+        "h-09774a77e39964c6"
       ]
     },
     "12": {
@@ -1820,8 +1879,8 @@
         "h-71819f77e8050222",
         "h-3229e65dddd91456",
         "h-a4cf39cb1f5c17e3",
-        "h-663bceab23da99cd",
-        "h-031f2e8a02462c4a"
+        "h-94f559a7ac090d6b",
+        "h-09774a77e39964c6"
       ]
     },
     "13": {
@@ -1845,8 +1904,8 @@
         "h-71819f77e8050222",
         "h-3229e65dddd91456",
         "h-a4cf39cb1f5c17e3",
-        "h-663bceab23da99cd",
-        "h-031f2e8a02462c4a"
+        "h-94f559a7ac090d6b",
+        "h-09774a77e39964c6"
       ]
     },
     "14": {
@@ -1873,8 +1932,8 @@
         "h-71819f77e8050222",
         "h-3229e65dddd91456",
         "h-a4cf39cb1f5c17e3",
-        "h-663bceab23da99cd",
-        "h-031f2e8a02462c4a"
+        "h-94f559a7ac090d6b",
+        "h-09774a77e39964c6"
       ]
     },
     "15": {
@@ -1892,7 +1951,7 @@
         "h-71819f77e8050222",
         "h-3229e65dddd91456",
         "h-a4cf39cb1f5c17e3",
-        "h-031f2e8a02462c4a"
+        "h-09774a77e39964c6"
       ]
     },
     "16": {
@@ -1909,7 +1968,7 @@
         "h-71819f77e8050222",
         "h-3229e65dddd91456",
         "h-a4cf39cb1f5c17e3",
-        "h-031f2e8a02462c4a"
+        "h-09774a77e39964c6"
       ]
     },
     "17": {
@@ -1936,7 +1995,7 @@
         "h-71819f77e8050222",
         "h-3229e65dddd91456",
         "h-a4cf39cb1f5c17e3",
-        "h-031f2e8a02462c4a"
+        "h-09774a77e39964c6"
       ]
     },
     "18": {
@@ -1956,7 +2015,7 @@
         "h-71819f77e8050222",
         "h-3229e65dddd91456",
         "h-a4cf39cb1f5c17e3",
-        "h-031f2e8a02462c4a"
+        "h-09774a77e39964c6"
       ]
     },
     "19": {
@@ -1996,8 +2055,8 @@
         "h-71819f77e8050222",
         "h-3229e65dddd91456",
         "h-a4cf39cb1f5c17e3",
-        "h-663bceab23da99cd",
-        "h-031f2e8a02462c4a"
+        "h-94f559a7ac090d6b",
+        "h-09774a77e39964c6"
       ]
     },
     "20": {
@@ -2213,8 +2272,8 @@
         "h-71819f77e8050222",
         "h-3229e65dddd91456",
         "h-a4cf39cb1f5c17e3",
-        "h-663bceab23da99cd",
-        "h-031f2e8a02462c4a"
+        "h-94f559a7ac090d6b",
+        "h-09774a77e39964c6"
       ]
     },
     "30": {
@@ -2432,8 +2491,8 @@
         "h-71819f77e8050222",
         "h-3229e65dddd91456",
         "h-a4cf39cb1f5c17e3",
-        "h-663bceab23da99cd",
-        "h-031f2e8a02462c4a"
+        "h-94f559a7ac090d6b",
+        "h-09774a77e39964c6"
       ]
     },
     "40": {
@@ -2705,8 +2764,8 @@
         "h-71819f77e8050222",
         "h-3229e65dddd91456",
         "h-a4cf39cb1f5c17e3",
-        "h-663bceab23da99cd",
-        "h-031f2e8a02462c4a"
+        "h-94f559a7ac090d6b",
+        "h-09774a77e39964c6"
       ]
     },
     "50": {
@@ -2775,8 +2834,8 @@
         "h-71819f77e8050222",
         "h-3229e65dddd91456",
         "h-a4cf39cb1f5c17e3",
-        "h-663bceab23da99cd",
-        "h-031f2e8a02462c4a"
+        "h-94f559a7ac090d6b",
+        "h-09774a77e39964c6"
       ]
     },
     "7": {
@@ -2795,8 +2854,8 @@
         "h-71819f77e8050222",
         "h-3229e65dddd91456",
         "h-a4cf39cb1f5c17e3",
-        "h-663bceab23da99cd",
-        "h-031f2e8a02462c4a"
+        "h-94f559a7ac090d6b",
+        "h-09774a77e39964c6"
       ]
     },
     "8": {
@@ -2813,8 +2872,8 @@
         "h-71819f77e8050222",
         "h-3229e65dddd91456",
         "h-a4cf39cb1f5c17e3",
-        "h-663bceab23da99cd",
-        "h-031f2e8a02462c4a"
+        "h-94f559a7ac090d6b",
+        "h-09774a77e39964c6"
       ]
     },
     "9": {
@@ -2831,8 +2890,8 @@
         "h-71819f77e8050222",
         "h-3229e65dddd91456",
         "h-a4cf39cb1f5c17e3",
-        "h-663bceab23da99cd",
-        "h-031f2e8a02462c4a"
+        "h-94f559a7ac090d6b",
+        "h-09774a77e39964c6"
       ]
     }
   }

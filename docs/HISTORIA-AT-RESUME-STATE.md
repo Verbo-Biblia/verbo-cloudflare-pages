@@ -1,7 +1,7 @@
 # Historia AT — cierre de la primera integración
 
 Guardado: 2026-09-02
-Estado: trabajo de Sayce terminado; no hay puerta editorial ni proceso pendiente.
+Estado: integración completa de Sayce terminada; no hay proceso pendiente.
 
 ## Resultado
 
@@ -21,6 +21,13 @@ Estado: trabajo de Sayce terminado; no hay puerta editorial ni proceso pendiente
   máquina con 4 GB de RAM.
 - No se tocaron el Worker, API, secretos, Cloudflare, `.wrangler/` ni el texto
   de ninguna Biblia.
+- Tres fichas contextuales nuevas, investigadas como expedientes separados de
+  la cola automática, están integradas en el Asistente exclusivamente en
+  Génesis 12:1–9, Deuteronomio 3:8–9 y Josué 10:1–5.
+- Cada ficha enlaza al capítulo exacto de Sayce, contiene límites explícitos y
+  registra afirmaciones y fuentes modernas de contraste institucionales.
+- Los 1.189 paquetes del Asistente y su catálogo de traducción fueron
+  regenerados y validados.
 
 ## Decisión independiente sobre el Asistente
 
@@ -30,10 +37,12 @@ argumentos de Sayce, no fichas contextuales modernas independientes. Cuarenta y
 dos ventanas recibieron además una marca de riesgo por identificación o
 equivalencia histórica/toponímica.
 
-No se generaron fichas ni paquetes del Asistente. Esto cumple la regla de no
-forzar asociaciones. Una futura ficha sobre Habiru, Jacob-el, Rephaim u otro
-tema deberá comenzar como expediente nuevo, con afirmaciones atómicas, cotejo
-de los fragmentos usados y contraste moderno competente.
+La cola automática no generó fichas. Las tres fichas finalmente incorporadas
+se investigaron como expedientes nuevos: contexto regional de Canaán para
+Génesis 12:1–9, contexto de ciudades-estado y cartas de Amarna para Josué
+10:1–5, y el testimonio del topónimo asirio Saniru para Deuteronomio 3:8–9.
+Habiru, Jacob-el, Rephaim y las demás identificaciones antiguas permanecen
+fuera del Asistente.
 
 El detalle reproducible está en:
 

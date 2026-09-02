@@ -1060,8 +1060,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   function openResourceNavigation({panel,moduleId,entryId}={}){
     if(typeof panel!=='string' || typeof moduleId!=='string' || entryId==null) return false;
-    if(panel==='historia' && moduleId==='eusebio-historia-eclesiastica'){
-      churchHistoryOpenVolume=null;
+    if(panel==='historia'){
+      churchHistoryOpenVolume=moduleId;
       churchHistoryOpenId=String(entryId);
       churchHistoryOpenFromShelf=true;
       churchHistorySearchActive=false;

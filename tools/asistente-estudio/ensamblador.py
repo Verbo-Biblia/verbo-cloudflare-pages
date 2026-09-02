@@ -22,6 +22,7 @@ import motor_diccionario_bsb_caminoC as diccionario_c  # noqa: E402
 FREEMAN_PATH = REPO_ROOT / "biblia/modules/costumbres/freeman-manners-customs/entries.json"
 TUCKER_PATH = REPO_ROOT / "biblia/modules/costumbres/tucker-roman-world/entries.json"
 PATRISTIC_DIR = REPO_ROOT / "biblia/modules/patristic"
+SAYCE_CARDS_PATH = DATA_DIR / "historia-at-sayce.json"
 
 
 def load_json(path):
@@ -76,6 +77,7 @@ class Assembler:
         self.council_mapping = load_json(DATA_DIR / "concilios-mapeo-nt.json")["mapeo"]
         themes = load_json(DATA_DIR / "concilios-temas.json")["temas"]
         self.council_themes = {theme["id"]: theme for theme in themes}
+        self.sayce_cards = load_json(SAYCE_CARDS_PATH)["cards"]
         self.freeman_entries = load_json(FREEMAN_PATH)["entries"]
         self.tucker_entries = {
             entry["capituloNumero"]: entry for entry in load_json(TUCKER_PATH)["entries"]
@@ -170,18 +172,44 @@ class Assembler:
                     "tipo": "recepcion-doctrinal",
                     "texto": anchor["razon"],
                     "fuente": {
-                        "modulo": "concilios-temas",
+                        "modulo": "npnf214-concilios-ecumenicos",
                         "temaId": mapping["temaId"],
-                        "entradaId": (
+                        "recursoId": (
                             f"{mapping['temaId']}:{anchor['book']}:"
                             f"{anchor['chapterStart']}:{anchor['verseStart']}-"
                             f"{anchor['chapterEnd']}:{anchor['verseEnd']}"
                         ),
+                        "entradaId": theme["entradaIds"][0],
+                        "entradaIds": theme["entradaIds"],
                         "libroSeccion": (
                             f"{theme['nombre']} — {', '.join(theme['concilios'])}"
                         ),
                     },
                 })
+        return output
+
+    def _history_sayce(self, spec):
+        book, cs, vs, ce, ve = spec
+        output = []
+        for card in self.sayce_cards:
+            anchor = card["passage"]
+            if card.get("reviewStatus") != "APPROVED" or anchor["book"] != book:
+                continue
+            if not ranges_overlap(cs, vs, ce, ve, anchor["chapterStart"], anchor["verseStart"], anchor["chapterEnd"], anchor["verseEnd"]):
+                continue
+            output.append({
+                "tipo": card["relationType"].lower().replace("_", "-"),
+                "texto": card["text"],
+                "fuente": {
+                    "modulo": "sayce-patriarchal-palestine",
+                    "entradaId": card["sourceEntryId"],
+                    "libroSeccion": card["sourceSection"],
+                    "fichaId": card["id"],
+                    "recursoId": card["id"],
+                    "claimIds": card["claimIds"],
+                    "contrastSourceIds": card["contrastSourceIds"],
+                },
+            })
         return output
 
     def history(self, spec):
@@ -196,6 +224,7 @@ class Assembler:
             self._history_context(spec, history_result)
             + self._history_eusebio(history_result)
             + self._history_councils(spec)
+            + self._history_sayce(spec)
         ), history_result["ventanas"]
 
     def _freeman(self, spec):
