@@ -1,7 +1,29 @@
 # Historia AT — cierre de la primera integración
 
 Guardado: 2026-09-02
-Estado: integración completa de Sayce terminada; no hay proceso pendiente.
+Estado: pausa solicitada; integración completa publicada y verificada.
+
+## Punto exacto de pausa
+
+- `fd30cd05` publicó la obra completa de Sayce en Historia.
+- `9cced51e` publicó tres fichas estrictamente ancladas en el Asistente y
+  corrigió los enlaces profundos de Concilios.
+- Cloudflare Pages sirve la versión de caché `20260902-sayce-assistant`.
+- Se verificó en producción una ficha de Sayce en cada paquete de Génesis 12,
+  Deuteronomio 3 y Josué 10, y recursos conciliares en Juan 1.
+- Sayce aparece solo en Génesis 12:1–9, Deuteronomio 3:8–9 y Josué 10:1–5.
+- Los 30 recursos conciliares generados apuntan a entradas documentales reales.
+- No hay procesos en ejecución ni cambios productivos pendientes de publicar.
+- Permanecen sin seguimiento, únicamente como staging local, Pinches,
+  H. P. Smith, Maclear y el piloto de Génesis 1–11.
+
+## Próximo inicio
+
+No continuar automáticamente con otra fuente. Cada obra siguiente requiere su
+propuesta concreta y aprobación conforme a `AGENTS.md`. Una vez aprobada, debe
+completarse antes de publicar: lectura, fichas estrictamente ancladas que sean
+pertinentes, enlaces profundos, traducción, paquetes, catálogos, índices y
+pruebas de extremo a extremo.
 
 ## Resultado
 
