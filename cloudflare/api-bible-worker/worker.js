@@ -1013,7 +1013,7 @@ async function handleIglesiaLinkRequest(request, env, headers) {
   const token = crypto.randomUUID();
   await env.SYNC_KV.put(`iglesia-link:${token}`, JSON.stringify({ email, deviceId }), { expirationTtl: IGLESIA_LINK_TTL_SECONDS });
 
-  const appUrl = String(env.APP_URL_IGLESIA || 'https://verbobiblia.com/iglesia/publicador.html').replace(/\/+$/, '');
+  const appUrl = String(env.APP_URL_IGLESIA || 'https://verbobiblia.com/iglesia/publicador').replace(/\/+$/, '');
   const confirmUrl = `${appUrl}?syncToken=${encodeURIComponent(token)}`;
   const template = IGLESIA_EMAIL[lang];
 
