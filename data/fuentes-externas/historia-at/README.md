@@ -27,6 +27,6 @@ Historia y del Asistente; este staging no define un esquema alternativo.
 | ID | Obra | Estado | Integración prevista |
 |---|---|---|---|
 | `sayce-patriarchal-palestine` | A. H. Sayce, *Patriarchal Palestine* | facsímil de 1895 identificado; inventario completo y 9 expedientes `REVIEW_REQUIRED`; prefacio y cronología cotejados inicialmente | `🏛️ Historia` + selección curada para el Asistente |
-| `maclear-class-book-ot-history` | G. F. Maclear, *A Class-Book of Old Testament History* | texto adquirido; análisis inicial pendiente | `🏛️ Historia` + selección curada para el Asistente |
+| `maclear-class-book-ot-history` | G. F. Maclear, *A Class-Book of Old Testament History* | integración de lectura completa aprobada: 74 unidades; evaluación del Asistente cerrada sin fichas publicables | `🏛️ Historia`; sin proyección al Asistente |
 | `pinches-ot-historical-records-1903` | T. G. Pinches, *The Old Testament in the Light of the Historical Records and Legends of Assyria and Babylonia*, 2.ª ed. rev. | facsímil y OCR institucional adquiridos; advertencias documentadas | por decidir tras aprobación; staging únicamente |
 | `hp-smith-ot-history-1903` | H. P. Smith, *Old Testament History* | facsímil y OCR de LOC adquiridos; marco crítico documentado | por decidir tras aprobación; staging únicamente |

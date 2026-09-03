@@ -3857,6 +3857,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         subgroups: churchHistoryGroupByOrder(authorGroup.items, entry=>`${t('historia.toc.libro')} ${entry.libro}`).map(g=>({label:g.key, items:g.items})),
       }));
     }
+    if(volumeId==='maclear-class-book-ot-history'){
+      return churchHistoryGroupByOrder(entries, entry=>{
+        const m=/^maclear-1894-b(\d+)-c\d+$/.exec(entry.id);
+        if(m) return `${t('historia.toc.libro')} ${romanNumeral(Number(m[1]))}`;
+        return entry.id==='maclear-1894-notice' ? 'Preliminares' : 'Material auxiliar';
+      }).map(g=>({label:g.key, items:g.items}));
+    }
     return [{label:'', items:entries}];
   }
   function churchHistorySuggestionGroups(entries){

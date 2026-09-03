@@ -1,0 +1,20 @@
+<svg width="440" height="640" viewBox="0 0 440 640" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">A Class-Book of Old Testament History</title>
+  <desc id="desc">Cubierta tipográfica verde y dorada para la obra de G. F. Maclear.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#19362f"/><stop offset="1" stop-color="#081b17"/></linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ead48b"/><stop offset="1" stop-color="#987522"/></linearGradient>
+  </defs>
+  <rect width="440" height="640" rx="3" fill="url(#bg)"/>
+  <rect x="0" width="25" height="640" fill="#513425"/><path d="M25 0v640" stroke="#d2b45e" stroke-width="3"/>
+  <rect x="51" y="39" width="350" height="562" fill="none" stroke="url(#gold)" stroke-width="2"/>
+  <rect x="61" y="49" width="330" height="542" fill="none" stroke="#b89744" opacity=".65"/>
+  <path d="M94 176h264M94 463h264" stroke="#b89744"/>
+  <text x="226" y="126" text-anchor="middle" fill="#d9bd64" font-family="Georgia,serif" font-size="17" letter-spacing="2">G. F. MACLEAR</text>
+  <text x="226" y="238" text-anchor="middle" fill="#f2e5b6" font-family="Georgia,serif" font-size="23">A CLASS-BOOK OF</text>
+  <text x="226" y="286" text-anchor="middle" fill="#f2e5b6" font-family="Georgia,serif" font-size="29">OLD TESTAMENT</text>
+  <text x="226" y="334" text-anchor="middle" fill="#f2e5b6" font-family="Georgia,serif" font-size="31">HISTORY</text>
+  <g fill="none" stroke="#d0ad4f" stroke-width="2"><path d="M154 390h144M173 402h106"/><path d="M226 366v57M202 382h48"/></g>
+  <text x="226" y="518" text-anchor="middle" fill="#d9bd64" font-family="Georgia,serif" font-size="20">1894</text>
+  <text x="226" y="555" text-anchor="middle" fill="#aa914e" font-family="Georgia,serif" font-size="14" letter-spacing="2">FUENTE HISTÓRICA</text>
+</svg>

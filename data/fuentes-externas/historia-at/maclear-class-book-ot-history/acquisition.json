@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "sourceId": "maclear-class-book-ot-history",
+  "title": "A Class-Book of Old Testament History",
+  "author": "George Frederick Maclear",
+  "authorBirth": 1833,
+  "authorDeath": 1902,
+  "originalPublicationYear": 1865,
+  "editionUsed": "Project Gutenberg eBook 63528, transcripción de la edición Macmillan de 1894",
+  "editionPublicationYear": 1894,
+  "publisher": "Macmillan and Co.",
+  "sourceRepository": "Project Gutenberg",
+  "sourceRecordUrl": "https://www.gutenberg.org/ebooks/63528",
+  "downloadUrl": "https://www.gutenberg.org/ebooks/63528.txt.utf-8",
+  "retrievedAt": "2026-08-31",
+  "language": "en",
+  "format": "text/plain; charset=utf-8",
+  "files": [
+    {
+      "path": "original/pg63528.txt",
+      "bytes": 1093166,
+      "lines": 19706,
+      "words": 175120,
+      "sha256": "063508045ac981ceb4d49192408aa9e845d28b64b1cf37b5ebb633829bc240a4"
+    }
+  ],
+  "sourceStructureObserved": {
+    "synopsis": true,
+    "books": 11,
+    "chapters": 71,
+    "appendix": true,
+    "index": true,
+    "mapsAndIllustrationsRepresentedAsTextPlaceholders": true
+  },
+  "integrationStatus": "STAGING_ONLY",
+  "notes": [
+    "El original se conserva con la envoltura y licencia de Project Gutenberg sin modificar.",
+    "La transcripción declara que estandarizó puntuación y acumuló notas al final; estas intervenciones deben conservarse en la procedencia.",
+    "Las referencias del índice no fueron comprobadas por los transcriptores de Gutenberg.",
+    "Las fechas y reconstrucciones históricas de la obra requieren revisión moderna antes de cualquier síntesis del Asistente."
+  ]
+}

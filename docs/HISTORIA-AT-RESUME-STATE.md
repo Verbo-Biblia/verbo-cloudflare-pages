@@ -1,7 +1,7 @@
-# Historia AT — cierre de la primera integración
+# Historia AT — estado de integraciones cerradas
 
 Guardado: 2026-09-02
-Estado: pausa solicitada; integración completa publicada y verificada.
+Estado: Sayce publicado; Maclear integrado y validado para publicación.
 
 ## Punto exacto de pausa
 
@@ -14,8 +14,10 @@ Estado: pausa solicitada; integración completa publicada y verificada.
 - Sayce aparece solo en Génesis 12:1–9, Deuteronomio 3:8–9 y Josué 10:1–5.
 - Los 30 recursos conciliares generados apuntan a entradas documentales reales.
 - No hay procesos en ejecución ni cambios productivos pendientes de publicar.
-- Permanecen sin seguimiento, únicamente como staging local, Pinches,
-  H. P. Smith, Maclear y el piloto de Génesis 1–11.
+- Maclear quedó incorporado como segunda obra: 74 unidades de lectura y cero
+  fichas del Asistente, decisión cerrada y documentada.
+- Permanecen únicamente como staging local Pinches, H. P. Smith y el piloto de
+  Génesis 1–11.
 
 ## Próximo inicio
 
@@ -86,7 +88,7 @@ ONLY_SOURCE_ID=sayce-patriarchal-palestine REUSE_EXISTING_BY_ID=1 BATCH_SIZE=1 \
 
 ## Límite del cierre
 
-Esta entrega completa la primera obra, Sayce. Los expedientes de Pinches,
-H. P. Smith y Maclear permanecen en staging y no fueron integrados. ISBE no se
-inició. Integrar cualquiera de esas fuentes sería una nueva adaptación y
+Sayce y Maclear están cerrados. Los expedientes de Pinches y H. P. Smith
+permanecen en staging y no fueron integrados. ISBE no se inició. Integrar
+cualquiera de esas fuentes sería una nueva adaptación y
 requeriría su propia propuesta y aprobación conforme a `AGENTS.md`.
