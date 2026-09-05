@@ -31,6 +31,7 @@ SOURCE_LANGUAGES = {
     "Smith": "en",
     "eusebio-historia-eclesiastica": "en",
     "sayce-patriarchal-palestine": "es",
+    "maclear-class-book-ot-history": "es",
     "freeman-manners-customs": "en",
     "tucker-roman-world": "en",
     "book-classification-nt": "es",

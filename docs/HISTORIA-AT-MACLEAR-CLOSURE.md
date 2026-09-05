@@ -1,7 +1,7 @@
 # Historia AT — cierre de Maclear
 
-Fecha: 2026-09-02
-Estado: integración completa y validada
+Fecha: 2026-09-04
+Estado: integración completa y validada localmente; publicación del Asistente por verificar
 
 ## Alcance aprobado y resultado
 
@@ -18,11 +18,11 @@ incluyeron mapas ni ilustraciones.
 
 ## Asistente de estudio
 
-La evaluación quedó cerrada con **cero fichas**. Maclear vuelve a narrar y
-comentar los pasajes bíblicos; sus referencias localizan su exposición, pero
-no aportan evidencia histórica independiente ni contexto moderno adicional.
-No se modificaron ni regeneraron los paquetes del Asistente porque no existe
-ningún recurso nuevo que proyectar. La decisión reproducible se conserva en
+La evaluación quedó cerrada con **17 fichas**. Se incorporaron explicaciones
+valiosas ligadas a acontecimientos, períodos, lugares e instituciones que no
+están inmediatamente visibles en el pasaje, siempre atribuidas a Maclear y con
+límites explícitos para su cronología y reconstrucciones de 1894. Se excluyó la
+mera repetición narrativa. La decisión reproducible se conserva en
 `data/fuentes-externas/historia-at/maclear-class-book-ot-history/editorial/ASSISTANT-REVIEW.md`.
 
 ## Artefactos y validación
@@ -35,10 +35,20 @@ ningún recurso nuevo que proyectar. La decisión reproducible se conserva en
 - Índice semántico de Historia: 1.660 registros, 384 dimensiones y 637.440
   bytes; 74 registros pertenecen a Maclear.
 - Caché: `app.js` usa `20260902-maclear-history` y el Service Worker usa
-  `verbo-biblia-v75-maclear-history`.
+  `verbo-biblia-v76-maclear-assistant`.
 - Navegador local: el cargador confirmó el volumen en el estante, 74 entradas,
   primer y último ID correctos y el aviso editorial visible.
-- No se tocaron Biblia, Worker, API, secretos, KV ni `.wrangler/`.
+- Asistente: 17 fichas bilingües en 53 capítulos, 1.547 apariciones por
+  versículo; 1.189 paquetes completos y catálogo de 7.070 recursos únicos.
+- Enlaces profundos y etiquetas: incorporados en study-assistant.js y en ambos
+  diccionarios de interfaz; versiones `20260904-maclear-assistant`.
+- Prueba local final: 34 casos en Chrome, todas las fichas en ambos idiomas y
+  sus entradas exactas, siete categorías, sin errores JavaScript ni solicitudes
+  de traducción de Maclear al Worker.
+- Regresión: los demás recursos de cada paquete permanecen idénticos a HEAD.
+- Publicación: pendiente de verificar después de subir el commit.
+- No se tocaron Biblia, API, secretos, KV ni `.wrangler/`; el catálogo estático
+  del Worker cambió únicamente como artefacto generado del Asistente.
 
 ## Reproducción
 

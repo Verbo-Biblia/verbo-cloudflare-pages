@@ -346,6 +346,7 @@
       'npnf214-concilios-ecumenicos':'sourceCouncils',
       'eusebio-historia-eclesiastica':'sourceEusebius',
       'sayce-patriarchal-palestine':'sourceSayce',
+      'maclear-class-book-ot-history':'sourceMaclear',
       'bernabe':'sourceBarnabas',
       'clemente-1':'sourceClement',
       'didache':'sourceDidache',
@@ -375,6 +376,8 @@
     const original=resourceOriginal(item,category);
     const metadata=item.traduccion;
     const targetLanguage=uiLanguage();
+    const prepared=item.traducciones?.[targetLanguage];
+    if(prepared) return {text:prepared,key:'',pending:false};
     if(!metadata || metadata.sourceLanguage===targetLanguage) return {text:original,key:'',pending:false};
     const key=translationKey(item,targetLanguage);
     return {text:translationCache.get(key)||original,key,pending:!translationCache.has(key)};
@@ -389,7 +392,7 @@
       // decir exactamente a cuál apunta, no solo la etiqueta pequeña aparte.
       return moduleId ? {panel:'diccionarios',moduleId,entryId:source.entryId,label:'viewDictionarySource',labelVars:{source:moduleLabel(source.modulo)}} : null;
     }
-    if(['eusebio-historia-eclesiastica','npnf214-concilios-ecumenicos','sayce-patriarchal-palestine'].includes(source.modulo) && source.entradaId){
+    if(['eusebio-historia-eclesiastica','npnf214-concilios-ecumenicos','sayce-patriarchal-palestine','maclear-class-book-ot-history'].includes(source.modulo) && source.entradaId){
       return {panel:'historia',moduleId:source.modulo,entryId:source.entradaId,label:'viewHistory'};
     }
     if(['freeman-manners-customs','tucker-roman-world'].includes(source.modulo) && source.entradaId){
@@ -431,6 +434,12 @@
       'evento':'typeEvent',
       'recepcion-doctrinal':'typeReception',
       'historical-context':'typeHistoricalContext',
+      'institutional-context':'typeInstitutionalContext',
+      'chronological-context':'typeChronologicalContext',
+      'legal-context':'typeLegalContext',
+      'geographical-context':'typeGeographicalContext',
+      'political-context':'typePoliticalContext',
+      'imperial-context':'typeImperialContext',
       'archaeological-context':'typeArchaeologicalContext',
       'textual-witness':'typeTextualWitness'
     };
@@ -486,7 +495,7 @@
       for(const item of resources[category]){
         const metadata=item.traduccion;
         const text=resourceOriginal(item,category);
-        if(!metadata || metadata.sourceLanguage===targetLanguage || text.length>TRANSLATE_MAX_RESOURCE_CHARS) continue;
+        if(item.traducciones?.[targetLanguage] || !metadata || metadata.sourceLanguage===targetLanguage || text.length>TRANSLATE_MAX_RESOURCE_CHARS) continue;
         const key=translationKey(item,targetLanguage);
         if(translationCache.has(key) || pendingTranslationKeys.has(key)) continue;
         unique.set(metadata.resourceId,{

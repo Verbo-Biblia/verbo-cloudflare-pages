@@ -968,6 +968,29 @@
       }
     },
     "historia": {
+      "h-5cd08a9eaeac73d6": {
+        "fuente": {
+          "claimIds": [
+            "maclear-attributed-geographical-context"
+          ],
+          "contrastSourceIds": [],
+          "entradaId": "maclear-1894-b06-c03",
+          "fichaId": "maclear-asst-jos-13-land-division",
+          "libroSeccion": "Book 6, Chapter 3 — Battle of Merom and Division of the Land",
+          "modulo": "maclear-class-book-ot-history",
+          "recursoId": "maclear-asst-jos-13-land-division"
+        },
+        "texto": "Maclear ordena los territorios al oeste del Jordán en tres zonas: sur, centro y norte. Vincula sus montañas, llanuras y accesos con la posición de las tribus, y distingue esa distribución de las ciudades asignadas a los levitas entre las demás tribus. Su panorama permite ubicar las listas de Josué 13–21; las delimitaciones y explicaciones geográficas conservan el conocimiento y la nomenclatura de 1894.",
+        "tipo": "geographical-context",
+        "traduccion": {
+          "resourceId": "maclear-asst-jos-13-land-division",
+          "sourceHash": "9b9c095e2becab154eea43eaefea68d9aa6c0dd61aa184da905d740ed2931d74",
+          "sourceLanguage": "es"
+        },
+        "traducciones": {
+          "en": "Maclear organizes the territories west of the Jordan into three regions: south, centre and north. He relates their mountains, plains and routes to the position of the tribes, distinguishing that distribution from the cities assigned to the Levites among the other tribes. His overview helps locate the lists in Joshua 13–21; its boundaries and geographical explanations retain the knowledge and terminology of 1894."
+        }
+      },
       "h-aeb6492b25a5dc94": {
         "fuente": {
           "entradaId": "JOS:libro",
@@ -995,7 +1018,8 @@
         "d-ec9378a78b48d55c"
       ],
       "historia": [
-        "h-aeb6492b25a5dc94"
+        "h-aeb6492b25a5dc94",
+        "h-5cd08a9eaeac73d6"
       ]
     },
     "2": {
@@ -1010,7 +1034,8 @@
         "d-9cac94074091e16e"
       ],
       "historia": [
-        "h-aeb6492b25a5dc94"
+        "h-aeb6492b25a5dc94",
+        "h-5cd08a9eaeac73d6"
       ]
     },
     "3": {
@@ -1022,7 +1047,8 @@
         "d-18d8c276fe0f9996"
       ],
       "historia": [
-        "h-aeb6492b25a5dc94"
+        "h-aeb6492b25a5dc94",
+        "h-5cd08a9eaeac73d6"
       ]
     },
     "4": {
@@ -1036,7 +1062,8 @@
         "d-1f48c9889c952d64"
       ],
       "historia": [
-        "h-aeb6492b25a5dc94"
+        "h-aeb6492b25a5dc94",
+        "h-5cd08a9eaeac73d6"
       ]
     },
     "5": {
@@ -1052,7 +1079,8 @@
         "d-94c17f431d33d7e2"
       ],
       "historia": [
-        "h-aeb6492b25a5dc94"
+        "h-aeb6492b25a5dc94",
+        "h-5cd08a9eaeac73d6"
       ]
     },
     "6": {
@@ -1069,7 +1097,8 @@
         "d-cb74613ad0cea124"
       ],
       "historia": [
-        "h-aeb6492b25a5dc94"
+        "h-aeb6492b25a5dc94",
+        "h-5cd08a9eaeac73d6"
       ]
     },
     "7": {
@@ -1095,7 +1124,8 @@
         "d-0d9dc2094a0eaa98"
       ],
       "historia": [
-        "h-aeb6492b25a5dc94"
+        "h-aeb6492b25a5dc94",
+        "h-5cd08a9eaeac73d6"
       ]
     },
     "8": {
@@ -1129,7 +1159,8 @@
         "d-aa1df7a496a22d96"
       ],
       "historia": [
-        "h-aeb6492b25a5dc94"
+        "h-aeb6492b25a5dc94",
+        "h-5cd08a9eaeac73d6"
       ]
     },
     "9": {
@@ -1146,7 +1177,8 @@
         "d-cb74613ad0cea124"
       ],
       "historia": [
-        "h-aeb6492b25a5dc94"
+        "h-aeb6492b25a5dc94",
+        "h-5cd08a9eaeac73d6"
       ]
     }
   }

@@ -23,6 +23,7 @@ FREEMAN_PATH = REPO_ROOT / "biblia/modules/costumbres/freeman-manners-customs/en
 TUCKER_PATH = REPO_ROOT / "biblia/modules/costumbres/tucker-roman-world/entries.json"
 PATRISTIC_DIR = REPO_ROOT / "biblia/modules/patristic"
 SAYCE_CARDS_PATH = DATA_DIR / "historia-at-sayce.json"
+MACLEAR_CARDS_PATH = DATA_DIR / "historia-at-maclear.json"
 
 
 def load_json(path):
@@ -78,6 +79,7 @@ class Assembler:
         themes = load_json(DATA_DIR / "concilios-temas.json")["temas"]
         self.council_themes = {theme["id"]: theme for theme in themes}
         self.sayce_cards = load_json(SAYCE_CARDS_PATH)["cards"]
+        self.maclear_cards = load_json(MACLEAR_CARDS_PATH)["cards"]
         self.freeman_entries = load_json(FREEMAN_PATH)["entries"]
         self.tucker_entries = {
             entry["capituloNumero"]: entry for entry in load_json(TUCKER_PATH)["entries"]
@@ -212,6 +214,29 @@ class Assembler:
             })
         return output
 
+    def _history_maclear(self, spec):
+        book, cs, vs, ce, ve = spec
+        output = []
+        for card in self.maclear_cards:
+            anchor = card["passage"]
+            if card.get("reviewStatus") != "APPROVED" or anchor["book"] != book:
+                continue
+            if not ranges_overlap(cs, vs, ce, ve, anchor["chapterStart"], anchor["verseStart"], anchor["chapterEnd"], anchor["verseEnd"]):
+                continue
+            output.append({
+                "tipo": card["relationType"].lower().replace("_", "-"),
+                "texto": card["text"],
+                "traducciones": card["translations"],
+                "fuente": {
+                    "modulo": "maclear-class-book-ot-history",
+                    "entradaId": card["sourceEntryId"],
+                    "libroSeccion": card["sourceSection"],
+                    "fichaId": card["id"], "recursoId": card["id"],
+                    "claimIds": card["claimIds"], "contrastSourceIds": card["contrastSourceIds"],
+                },
+            })
+        return output
+
     def history(self, spec):
         history_result = historia_eusebio.consultar_pasaje(
             *spec,
@@ -225,6 +250,7 @@ class Assembler:
             + self._history_eusebio(history_result)
             + self._history_councils(spec)
             + self._history_sayce(spec)
+            + self._history_maclear(spec)
         ), history_result["ventanas"]
 
     def _freeman(self, spec):

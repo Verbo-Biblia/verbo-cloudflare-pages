@@ -1,7 +1,7 @@
 # Historia AT — estado de integraciones cerradas
 
-Guardado: 2026-09-02
-Estado: Sayce publicado; Maclear integrado y validado para publicación.
+Guardado: 2026-09-04
+Estado: Sayce y lectura de Maclear publicados; Asistente de Maclear completo y validado localmente, pendiente de verificar publicación.
 
 ## Punto exacto de pausa
 
@@ -13,9 +13,10 @@ Estado: Sayce publicado; Maclear integrado y validado para publicación.
   Deuteronomio 3 y Josué 10, y recursos conciliares en Juan 1.
 - Sayce aparece solo en Génesis 12:1–9, Deuteronomio 3:8–9 y Josué 10:1–5.
 - Los 30 recursos conciliares generados apuntan a entradas documentales reales.
-- No hay procesos en ejecución ni cambios productivos pendientes de publicar.
-- Maclear quedó incorporado como segunda obra: 74 unidades de lectura y cero
-  fichas del Asistente, decisión cerrada y documentada.
+- Hay cambios de Maclear validados y pendientes de verificar en producción.
+- Maclear quedó incorporado como segunda obra con 74 unidades de lectura. Hay
+  17 fichas contextuales bilingües construidas y validadas en 1.189 paquetes;
+  resta verificar su publicación. Las 34 pruebas locales de navegador pasaron.
 - Permanecen únicamente como staging local Pinches, H. P. Smith y el piloto de
   Génesis 1–11.
 
@@ -88,7 +89,7 @@ ONLY_SOURCE_ID=sayce-patriarchal-palestine REUSE_EXISTING_BY_ID=1 BATCH_SIZE=1 \
 
 ## Límite del cierre
 
-Sayce y Maclear están cerrados. Los expedientes de Pinches y H. P. Smith
+Sayce está cerrado; Maclear está completo localmente y falta verificar su publicación. Los expedientes de Pinches y H. P. Smith
 permanecen en staging y no fueron integrados. ISBE no se inició. Integrar
 cualquiera de esas fuentes sería una nueva adaptación y
 requeriría su propia propuesta y aprobación conforme a `AGENTS.md`.
