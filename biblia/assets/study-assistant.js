@@ -88,6 +88,18 @@
     reference.hidden=!context?.ranges?.length;
     headerText.appendChild(reference);
     headerMain.appendChild(headerText);
+    // PROTOTIPO TEMPORAL de publicidad — placement: hueco libre a la
+    // derecha del título/referencia, antes del botón cerrar (que vive
+    // fuera de headerMain, superpuesto en la esquina). Ver
+    // ../../assets/ad-placeholder.js para desactivar/eliminar.
+    if(window.SHOW_AD_PLACEHOLDERS){
+      const adSlot=element('div','ad-placeholder ad-placeholder--micro');
+      adSlot.setAttribute('aria-hidden','true');
+      adSlot.setAttribute('data-ad-fit','');
+      adSlot.textContent='AD Placeholder';
+      headerMain.setAttribute('data-ad-fit-container','');
+      headerMain.appendChild(adSlot);
+    }
     header.appendChild(headerMain);
     // Campo de búsqueda semántica: vive en el header (no en body), así que
     // sale de acá en los 4 estados de render sin duplicar nada — pedido de

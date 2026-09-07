@@ -25,6 +25,10 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
 <meta name="apple-mobile-web-app-title" content="Verbo">
 <link rel="stylesheet" href="assets/style.css?v=20260830-sermon-mapas-asistente">
 <link rel="stylesheet" href="assets/notas-popup.css?v=20260826-notas-popup-unify">
+<!-- PROTOTIPO TEMPORAL de ubicaciones de publicidad — ver ../assets/ad-placeholder.js para desactivar/eliminar -->
+<link rel="stylesheet" href="../assets/ad-placeholder.css?v=6">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4810728953852074" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -138,6 +142,10 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
       </div>
     </main>
 
+    <!-- PROTOTIPO TEMPORAL de publicidad — placement: márgenes vacíos de la Biblia sin paneles de estudio abiertos -->
+    <div class="ad-placeholder ad-placeholder--reading-margin ad-placeholder--reading-margin-left" aria-hidden="true">AD Placeholder</div>
+    <div class="ad-placeholder ad-placeholder--reading-margin ad-placeholder--reading-margin-right" aria-hidden="true">AD Placeholder</div>
+
     <aside id="studyAssistant" class="study-assistant" aria-label="Asistente de estudio" aria-live="polite" data-i18n-attr="aria-label:studyAssistant.title">
       <div class="study-assistant__placeholder" data-i18n="studyAssistant.selectPassage">Selecciona un versículo o pasaje para explorar recursos relacionados.</div>
     </aside>
@@ -167,8 +175,10 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
     <aside class="side-panel" id="sidePanel">
       <div class="side-panel__inner">
         <div class="sheet-handle" aria-hidden="true"></div>
-        <div class="side-panel__header">
+        <div class="side-panel__header" data-ad-fit-container>
           <span class="side-panel__title" id="panelTitle" data-i18n="panel.defaultTitle">Panel</span>
+          <!-- PROTOTIPO TEMPORAL de publicidad — placement: hueco entre título y botón cerrar (compartido por todos los paneles de estudio) -->
+          <div class="ad-placeholder ad-placeholder--micro" data-ad-fit aria-hidden="true">AD Placeholder</div>
           <button class="side-panel__close" id="panelClose" data-i18n-attr="aria-label:panel.closeAria">✕</button>
         </div>
         <div class="side-panel__toolbar" id="panelToolbar"></div>
@@ -186,8 +196,10 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
     <div class="sermon-resize-handle" id="sermonResizeHandle2" data-i18n-attr="aria-label:panel.resizeAria" role="separator" aria-orientation="vertical" tabindex="-1"></div>
     <aside class="sermon-compare-panel" id="sermonComparePanel">
       <div class="side-panel__inner">
-        <div class="side-panel__header">
+        <div class="side-panel__header" data-ad-fit-container>
           <span class="side-panel__title" id="sermonPanelTitle" data-i18n="nav.compararVersiones">Comparar versiones</span>
+          <!-- PROTOTIPO TEMPORAL de publicidad — placement: hueco entre título y botón cerrar -->
+          <div class="ad-placeholder ad-placeholder--micro" data-ad-fit aria-hidden="true">AD Placeholder</div>
           <button class="side-panel__close" id="sermonComparePanelClose" data-i18n-attr="aria-label:panel.closeAria">✕</button>
         </div>
         <div class="side-panel__toolbar" id="sermonComparePanelToolbar"></div>
@@ -343,5 +355,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   <script src="assets/app.js?v=20260902-maclear-history"></script>
   <script src="assets/study-assistant-messages.js?v=20260829-summary-v6"></script>
   <script src="assets/study-assistant.js?v=20260904-maclear-assistant"></script>
+  <!-- PROTOTIPO TEMPORAL de ubicaciones de publicidad — ver ../assets/ad-placeholder.js -->
+  <script src="../assets/ad-placeholder.js?v=6"></script>
 </body>
 </html>

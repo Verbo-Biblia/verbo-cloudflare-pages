@@ -1,0 +1,274 @@
+/* ============================================================
+   ESPACIOS RESERVADOS para futura publicidad — visualmente invisibles
+   a propósito (aprobado el placement, ya no hace falta el rojo de
+   depuración). Siguen ocupando exactamente el mismo hueco: mismo
+   ancho/alto, mismos breakpoints, mismos fit-checks — lo único que se
+   quitó es el fondo/borde/texto "AD PLACEHOLDER". NO es AdSense, NO
+   hay ningún script publicitario real cargado.
+
+   Para volver a ver los recuadros rojos de depuración: agregar de
+   nuevo background/border/color acá abajo (o pedir que se restauren).
+   Para desactivar todo (colapsar también el espacio reservado): ver
+   assets/ad-placeholder.js (SHOW_AD_PLACEHOLDERS).
+   Para eliminar todo: borrar este archivo, ad-placeholder.js, las
+   etiquetas <link>/<script> de cada página y el marcado con clase
+   "ad-placeholder" (grep -r "ad-placeholder").
+   ============================================================ */
+
+.ad-placeholder {
+  display: none;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  color: transparent;
+  font: 700 10px/1.25 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* OJO especificidad: NO hay un "html[data-ad-preview='on'] .ad-placeholder
+   { display:flex }" genérico a propósito — eso vencería (por especificidad,
+   0,2,1 > 0,1,0) al "display:none" de base de cada variante con gating por
+   viewport (hero/reading-margin/title-row/temas-sidebar/content-margin) y
+   las dejaría visibles SIEMPRE en vez de solo sobre su breakpoint. Cada
+   variante activa su propio "display:flex" más abajo, ya sea sin
+   condición (--micro, controlado por el fit-check en JS) o dentro de su
+   propio @media. */
+
+/* El fit-check en JS (o una media query) puede ocultar un slot puntual
+   aunque el prototipo esté activo — [hidden] siempre gana. */
+html[data-ad-preview="on"] .ad-placeholder[hidden] { display: none; }
+
+/* El Atlas/Mapas expandido colapsa el header del panel a solo el botón
+   de cerrar (sin ancho propio) — ver .side-panel--atlas-expanded en
+   biblia/assets/style.css. Un slot ahí forzaría ese layout. */
+.side-panel--atlas-expanded .ad-placeholder { display: none !important; }
+
+/* ---------- Variantes de tamaño ---------- */
+
+.ad-placeholder--micro {
+  /* 120x50 = tamaño MÍNIMO real que admite AdSense para unidades de
+     tamaño fijo (https://support.google.com/adsense/answer/9185043) —
+     cualquier cosa más chica simplemente no se sirve. Antes tenía
+     92x22px, que nunca hubiera podido mostrar un anuncio real. */
+  flex: 0 0 auto;
+  width: 120px;
+  height: 50px;
+  font-size: 9px;
+  border-radius: 3px;
+  letter-spacing: .02em;
+}
+/* Sin gating por viewport: cabe o no cabe según el ancho REAL del
+   encabezado (título variable), así que lo decide el fit-check en JS
+   (ad-placeholder.js), no una media query — ver [hidden] más arriba. */
+html[data-ad-preview="on"] .ad-placeholder--micro { display: flex; }
+
+.ad-placeholder--horizontal {
+  width: 100%;
+  min-height: 60px;
+}
+
+.ad-placeholder--sidebar {
+  width: 100%;
+  min-height: 250px;
+}
+
+.ad-placeholder--margin {
+  width: 140px;
+  height: 320px;
+}
+
+/* ============================================================
+   PLACEMENT — /biblia/: encabezado de panel de estudio compartido.
+   #sidePanel y #sermonComparePanel reutilizan la misma clase
+   ".side-panel__header" (title + botón cerrar en flex space-between)
+   para TODOS los paneles: Comentario, Comparar versiones, Idiomas/
+   Diccionario, Notas, Mapas, Predicas, Historia, Padres, Costumbres,
+   Diccionarios, Literatura Extracanónica, Conversor — un solo slot
+   cubre los dos elementos y por lo tanto todos esos paneles, tanto en
+   escritorio (panel angosto lateral) como en móvil (panel a pantalla
+   completa: hueco grande entre título corto y "✕").
+   El ancho disponible varía con cada título (algunos son largos, p.ej.
+   "Literatura Extracanónica"), así que el slot lleva data-ad-fit y se
+   oculta vía JS (ad-placeholder.js) cuando no cabe con margen seguro.
+   ============================================================ */
+.side-panel__header > .ad-placeholder--micro {
+  margin: 0 14px;
+}
+
+/* ============================================================
+   PLACEMENT — /biblia/: encabezado del Asistente de estudio.
+   Solo desktop: el Asistente se oculta por completo ≤760px (ver
+   ".study-assistant { display:none }" en biblia/assets/style.css),
+   así que este slot nunca compite con el layout móvil.
+   Insertado por biblia/assets/study-assistant.js (buildShell) porque
+   ese header se reconstruye por completo en cada render.
+   ============================================================ */
+.study-assistant__header-main > .ad-placeholder--micro {
+  margin-left: auto;
+  margin-right: 12px;
+}
+
+/* ============================================================
+   PLACEMENT — /biblia/: márgenes vacíos de la columna de lectura
+   cuando NO hay paneles de estudio abiertos (Asistente cerrado, sin
+   panel lateral, fuera del modo sermón). position:fixed = no participa
+   del layout flex de .app-body: cero riesgo de angostar o mover el
+   texto. Solo aparece con viewport ancho, cuando ese margen realmente
+   existe y es lo bastante grande.
+   ============================================================ */
+.ad-placeholder--reading-margin {
+  display: none;
+  position: fixed;
+  top: 130px;
+  bottom: 24px;
+  width: 140px;
+  z-index: 4; /* debajo de .tab-rail (5) y .library-rail (40) */
+}
+.ad-placeholder--reading-margin-left { left: calc(var(--rail-width, 56px) + 18px); }
+.ad-placeholder--reading-margin-right { right: calc(var(--rail-width, 56px) + 18px); }
+
+@media (min-width: 1320px) {
+  /* Importante: cada :not() de abajo debe quedar PEGADO (sin espacio) al
+     selector "body" — un espacio lo convertiría en combinador descendiente
+     (otro elemento distinto), rompiendo la condición por completo. */
+  html[data-ad-preview="on"] body:not(.sermon-mode):not(:has(#sidePanel.side-panel--left.side-panel--open)) .ad-placeholder--reading-margin-left {
+    display: flex;
+  }
+  html[data-ad-preview="on"] body:not(.sermon-mode):not(:has(.study-assistant:not(.study-assistant--closed))):not(:has(#sidePanel.side-panel--open:not(.side-panel--left))):not(:has(.sermon-compare-panel--open)) .ad-placeholder--reading-margin-right {
+    display: flex;
+  }
+}
+
+/* ============================================================
+   PLACEMENT — Home (index.html): esquina superior derecha del hero.
+   .hero ya es position:relative en el CSS original — se ancla ahí
+   sin tocar esa regla. z-index 2 = por encima de .hero::before/::after
+   (textura + degradado, ambos position:absolute sin z-index propio).
+   ============================================================ */
+.ad-placeholder--hero {
+  display: none;
+  position: absolute;
+  top: clamp(1.6rem, 4vh, 3.5rem);
+  right: clamp(1rem, 5vw, 4rem);
+  z-index: 2;
+  width: 300px;
+  height: 90px;
+}
+@media (min-width: 1180px) {
+  html[data-ad-preview="on"] .ad-placeholder--hero { display: flex; }
+}
+
+/* ============================================================
+   PLACEMENT — /libreria/ y /recursos/devocionales/: fila del título
+   ("Librería" / "Devocionales") en móvil. Técnica de flotante: el
+   placeholder es hermano ANTERIOR del <h1> (no lo envuelve, no cambia
+   ningún selector existente que dependa de "> h1") y flota a la
+   derecha; el título ocupa el espacio restante a su izquierda en la
+   misma línea. clear:right en el siguiente hermano evita que el
+   párrafo de abajo (r-lede) quede empujado si el título llega a
+   partirse en dos líneas.
+   120x50 = tamaño mínimo real de AdSense (antes 88x24, inválido). A
+   ese tamaño "Devocionales" (12 caracteres) puede no dejar suficiente
+   ancho en los teléfonos más angostos (~320-360px) y forzar que el
+   título se parta en 2 líneas — el fit-check en JS (ad-placeholder.js)
+   detecta ese wrap real (mide la altura del <h1> ya renderizado) y
+   oculta el slot si pasó, en vez de forzar la superposición.
+   ============================================================ */
+.ad-placeholder--title-row {
+  display: none;
+  float: right;
+  width: 120px;
+  height: 50px;
+  margin: 2px 0 8px 12px;
+  font-size: 9px;
+}
+/* OJO: el hermano INMEDIATO del flotante es el propio <h1> (va justo
+   antes en el HTML) — aplicarle clear:right A ÉL lo empujaría debajo
+   del anuncio en vez de dejarlo fluir a su izquierda, que es todo el
+   punto de la técnica. El clear va DESPUÉS del <h1>.
+   Con "+" (hermano inmediato) apuntaba solo a <p class="r-lede">, pero
+   ese párrafo está oculto en móvil (display:none junto con .r-eyebrow y
+   .r-section-label — ver recursos.css) y un clear en un elemento oculto
+   no hace nada: el float seguía "sangrando" hacia abajo y comprimía la
+   barra "Agregados recientemente". Con "~" (cualquier hermano
+   posterior) se le aplica clear:right a TODOS los que siguen al <h1> —
+   inofensivo en los ocultos, y así sí llega al primero que de verdad
+   se renderiza (r-libreria-toprow en Librería, r-content-group en
+   Devocionales), sin depender de la estructura exacta de cada página. */
+.ad-placeholder--title-row ~ h1 ~ * { clear: right; }
+@media (max-width: 760px) {
+  html[data-ad-preview="on"] .ad-placeholder--title-row { display: flex; }
+}
+
+/* ============================================================
+   PLACEMENT — /libreria/ y /recursos/devocionales/: EXPERIMENTAL,
+   banner in-feed después de la 3ra fila de tarjetas (2 columnas en
+   móvil = después del 6to ítem). Pedido explícito de Juan pese a que
+   choca con la regla del brief ("no publicidad entre tarjetas") — solo
+   para comparar cómo se ve. 320x50 = el banner horizontal más chico
+   real de AdSense (los "core sizes": 300x250, 336x280, 728x90, 300x600,
+   320x100, 320x50, 160x600 — ver comentario de .ad-placeholder--micro).
+   grid-column:1/-1 lo hace ocupar el ancho completo de las 2 columnas,
+   como una fila propia dentro del mismo CSS Grid — el resto de las
+   tarjetas sigue acomodándose después automáticamente.
+   Solo en el breakpoint de 2 columnas (≤760px): en 3-4 columnas
+   (tablet/desktop) "después del 6to ítem" ya no cae en un límite de
+   fila real, así que se oculta ahí en vez de aparecer en medio de una
+   fila a mitad de camino.
+   ============================================================ */
+.ad-placeholder--infeed {
+  display: none;
+  grid-column: 1 / -1;
+  width: 100%;
+  height: 50px;
+  margin: 4px 0;
+}
+@media (max-width: 760px) {
+  html[data-ad-preview="on"] .ad-placeholder--infeed { display: flex; }
+}
+
+/* ============================================================
+   PLACEMENT — /recursos/articulos-y-reflexiones/: sidebar derecha
+   "Temas" (.r-discovery-temas, columna de 200px del layout de 3 zonas
+   compartido con Librería/Devocionales/Sermones históricos). Se coloca
+   debajo de los filtros existentes, dentro del espacio vertical libre
+   que queda bajo la lista de temas — nunca entre las tarjetas de
+   artículos, que viven en la columna central (.r-discovery-centro).
+   Oculto en el breakpoint donde esa columna deja de ser sidebar
+   (≤900px: .r-discovery pasa a 1 columna apilada) para no insertar una
+   franja nueva en medio del flujo móvil.
+   ============================================================ */
+.ad-placeholder--temas-sidebar {
+  display: none;
+  width: 100%;
+  min-height: 260px;
+  margin-top: 18px;
+}
+@media (min-width: 901px) {
+  html[data-ad-preview="on"] .ad-placeholder--temas-sidebar { display: flex; }
+}
+
+/* ============================================================
+   PLACEMENT — /recursos/ (Escuela Dominical): única página de
+   "recursos-index" que NO usa el grid .r-discovery (se queda en
+   max-width 900px, ver comentario en recursos/assets/recursos.css) —
+   por eso conserva grandes márgenes laterales reales en escritorio.
+   Misma técnica fixed que en /biblia/, pero sin rieles que esquivar.
+   ============================================================ */
+.ad-placeholder--content-margin {
+  display: none;
+  position: fixed;
+  top: 160px;
+  width: 140px;
+  height: 320px;
+  z-index: 1;
+}
+.ad-placeholder--content-margin-left { left: 24px; }
+.ad-placeholder--content-margin-right { right: 24px; }
+@media (min-width: 1300px) {
+  html[data-ad-preview="on"] .ad-placeholder--content-margin { display: flex; }
+}

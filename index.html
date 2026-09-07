@@ -24,6 +24,8 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="biblia/assets/tutorial-video.css?v=20260821-tutorial-videos">
+<!-- PROTOTIPO TEMPORAL de ubicaciones de publicidad — ver assets/ad-placeholder.js para desactivar/eliminar -->
+<link rel="stylesheet" href="assets/ad-placeholder.css?v=6">
 <style>
   /* Portada con un solo look fijo — a propósito NO cambia con el tema de
      lectura elegido en Ajustes. Estilo Presonus Studio One: gris grafito
@@ -448,6 +450,8 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
     .hero::before { transform: scale(1.08); }
   }
 </style>
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4810728953852074" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -469,6 +473,8 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
 </header>
 
 <main class="hero" id="inicio">
+  <!-- PROTOTIPO TEMPORAL de publicidad — placement: esquina superior derecha del hero -->
+  <div class="ad-placeholder ad-placeholder--hero" aria-hidden="true">AD Placeholder</div>
   <div class="hero-inner">
     <span class="eyebrow" data-i18n="portal.heroEyebrow">Estudio · Formación · Lectura</span>
     <h1><span data-i18n="portal.heroHeading">Una biblioteca bíblica completa,</span> <em data-i18n="portal.heroHeadingEm">en un solo lugar.</em></h1>
@@ -671,5 +677,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   });
 })();
 </script>
+<!-- PROTOTIPO TEMPORAL de ubicaciones de publicidad — ver assets/ad-placeholder.js -->
+<script src="assets/ad-placeholder.js?v=6"></script>
 </body>
 </html>
