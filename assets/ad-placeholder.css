@@ -1,10 +1,9 @@
 /* ============================================================
-   ESPACIOS RESERVADOS para futura publicidad — visualmente invisibles
-   a propósito (aprobado el placement, ya no hace falta el rojo de
-   depuración). Siguen ocupando exactamente el mismo hueco: mismo
-   ancho/alto, mismos breakpoints, mismos fit-checks — lo único que se
-   quitó es el fondo/borde/texto "AD PLACEHOLDER". NO es AdSense, NO
-   hay ningún script publicitario real cargado.
+   ESPACIOS reservados que ahora alojan anuncios reales de AdSense
+   (ver el <ins class="adsbygoogle"> dentro de cada ".ad-placeholder"
+   en el HTML de cada página). Mismo ancho/alto, mismos breakpoints,
+   mismos fit-checks que el prototipo original — solo cambió el
+   contenido de "AD PLACEHOLDER" de texto a un anuncio servido.
 
    Para volver a ver los recuadros rojos de depuración: agregar de
    nuevo background/border/color acá abajo (o pedir que se restauren).
@@ -224,7 +223,10 @@ html[data-ad-preview="on"] .ad-placeholder--micro { display: flex; }
   display: none;
   grid-column: 1 / -1;
   width: 100%;
-  height: 50px;
+  /* Sin height fija: es un anuncio in-feed real (data-ad-format="fluid"),
+     y Google advierte que un contenedor de altura fija puede distorsionar
+     este formato — se deja que la tarjeta nativa fije su propia altura. */
+  min-height: 50px;
   margin: 4px 0;
 }
 @media (max-width: 760px) {

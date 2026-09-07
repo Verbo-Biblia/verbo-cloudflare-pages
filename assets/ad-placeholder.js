@@ -1,7 +1,8 @@
 /* ============================================================
- * PROTOTIPO VISUAL TEMPORAL — placeholders de futuras ubicaciones de
- * publicidad. NO carga AdSense ni ningún script publicitario real,
- * NO envía datos a ningún servicio externo.
+ * Fit-check de los espacios de publicidad — decide si cada slot cabe
+ * (ver MIN_MICRO_GAP/fitTitleFloats/positionInfeedAds abajo). Los
+ * <ins class="adsbygoogle"> reales viven en el HTML de cada página;
+ * este script solo muestra/oculta el hueco según el espacio disponible.
  *
  * Para DESACTIVAR todos los placeholders del sitio: cambiar la
  * constante SHOW_AD_PLACEHOLDERS de abajo a `false`.

@@ -93,12 +93,15 @@
     // fuera de headerMain, superpuesto en la esquina). Ver
     // ../../assets/ad-placeholder.js para desactivar/eliminar.
     if(window.SHOW_AD_PLACEHOLDERS){
-      const adSlot=element('div','ad-placeholder ad-placeholder--micro');
-      adSlot.setAttribute('aria-hidden','true');
+      const adSlot=element('ins','ad-placeholder ad-placeholder--micro adsbygoogle');
       adSlot.setAttribute('data-ad-fit','');
-      adSlot.textContent='AD Placeholder';
+      adSlot.setAttribute('data-ad-client','ca-pub-4810728953852074');
+      adSlot.setAttribute('data-ad-slot','1334537006');
+      adSlot.setAttribute('data-ad-format','auto');
+      adSlot.setAttribute('data-full-width-responsive','false');
       headerMain.setAttribute('data-ad-fit-container','');
       headerMain.appendChild(adSlot);
+      (window.adsbygoogle=window.adsbygoogle||[]).push({});
     }
     header.appendChild(headerMain);
     // Campo de búsqueda semántica: vive en el header (no en body), así que
