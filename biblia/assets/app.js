@@ -6654,7 +6654,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   // ── Teclado en desktop ───────────────────────────────────────────────────────
   document.addEventListener('keydown', e => {
     if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA'||e.target.tagName==='SELECT'||e.target.isContentEditable) return;
-    if(e.target.closest?.('#studyAssistant')) return;
     if(e.altKey||e.ctrlKey||e.metaKey) return;
     if(e.key==='ArrowLeft') { e.preventDefault(); moveChapter(-1); }
     else if(e.key==='ArrowRight') { e.preventDefault(); moveChapter(1); }
