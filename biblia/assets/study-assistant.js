@@ -97,8 +97,6 @@
       adSlot.setAttribute('data-ad-fit','');
       adSlot.setAttribute('data-ad-client','ca-pub-4810728953852074');
       adSlot.setAttribute('data-ad-slot','1334537006');
-      adSlot.setAttribute('data-ad-format','auto');
-      adSlot.setAttribute('data-full-width-responsive','false');
       headerMain.setAttribute('data-ad-fit-container','');
       headerMain.appendChild(adSlot);
       (window.adsbygoogle=window.adsbygoogle||[]).push({});
