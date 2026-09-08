@@ -19,7 +19,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
 <link rel="canonical" href="https://verbobiblia.com/">
 <link rel="icon" type="image/png" sizes="192x192" href="biblia/assets/icons/icon-192.png">
 <link rel="apple-touch-icon" href="biblia/assets/icons/icon-192.png">
-<meta name="theme-color" content="#1C1D1E">
+<meta name="theme-color" content="#F1E3C8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -27,15 +27,14 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
 <!-- PROTOTIPO TEMPORAL de ubicaciones de publicidad — ver assets/ad-placeholder.js para desactivar/eliminar -->
 <link rel="stylesheet" href="assets/ad-placeholder.css?v=6">
 <style>
-  /* Portada con un solo look fijo — a propósito NO cambia con el tema de
-     lectura elegido en Ajustes. Estilo Presonus Studio One: gris grafito
-     casi negro (calibrado contra el icono real de la app) + un solo
-     acento cian vívido. */
+  /* Portada con la misma paleta papel/tinta/vino del resto del sitio
+     (ver biblia/assets/style.css :root), en vez del look oscuro grafito+cian
+     que tenía antes. */
   :root {
-    --ink: #1C1D1E; --ink-deep: #131414; --ink-rgb: 28,29,30;
-    --gold: #22C7FE; --gold-dim: #1A96C0;
-    --parchment: #ECECEC; --parchment-dim: #C7C7C7;
-    --text-on-ink: #E4E4E4; --text-muted: #9A9A9A;
+    --paper: #F1E3C8; --paper-raised: #FFF8EA; --paper-deep: #E6D3AC; --paper-rgb: 241,227,200;
+    --ink: #3A2A1D; --ink-soft: #6B5540; --ink-rgb: 58,42,29;
+    --wine: #7A2B30; --wine-soft: #A84D55; --wine-rgb: 122,43,48;
+    --rule: #E0CDAA; --rule-strong: #CBB486; --gold-glow: #C89F58;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -50,8 +49,8 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
     overflow-x: hidden;
   }
   body {
-    background: var(--ink);
-    color: var(--text-on-ink);
+    background: var(--paper);
+    color: var(--ink);
     font-family: 'IBM Plex Sans', sans-serif;
     line-height: 1.5;
   }
@@ -61,7 +60,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   a { color: inherit; text-decoration: none; }
 
   :focus-visible {
-    outline: 2px solid var(--gold);
+    outline: 2px solid var(--wine);
     outline-offset: 3px;
   }
 
@@ -75,10 +74,10 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
     justify-content: space-between;
     min-height: 66px;
     padding: 0.85rem clamp(1rem, 5vw, 4rem);
-    background: rgba(var(--ink-rgb), 0.55);
-    backdrop-filter: blur(16px) saturate(140%);
-    -webkit-backdrop-filter: blur(16px) saturate(140%);
-    border-bottom: 1px solid rgba(34, 199, 254, 0.18);
+    background: rgba(var(--paper-rgb), 0.82);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
   }
 
   .wordmark {
@@ -89,7 +88,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   }
 
   .wordmark span {
-    color: var(--gold);
+    color: var(--wine);
     font-weight: 400;
     font-size: 0.95rem;
     font-family: 'IBM Plex Mono', monospace;
@@ -107,29 +106,6 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
     overflow: hidden;
   }
 
-  /* La ilustración original permanece como una textura ambiental discreta. */
-  .hero::before {
-    content: "";
-    position: absolute;
-    inset: -20%;
-    background: url('assets/fondo.png') center / cover no-repeat;
-    opacity: 0.86;
-    transform: translate3d(var(--hero-parallax-x, 0px), calc(var(--hero-parallax, 0px) + var(--hero-parallax-y, 0px)), 0) scale(1.08);
-    will-change: transform;
-    pointer-events: none;
-    transition: transform 0.25s ease-out;
-  }
-
-  .hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(100deg, rgba(var(--ink-rgb),0.62) 0%, rgba(var(--ink-rgb),0.3) 46%, rgba(var(--ink-rgb),0.1) 100%),
-      linear-gradient(0deg, rgba(var(--ink-rgb),0.55) 0%, transparent 42%);
-    pointer-events: none;
-  }
-
   .hero-inner {
     position: relative;
     z-index: 1;
@@ -139,7 +115,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   .eyebrow {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.8rem;
-    color: var(--gold);
+    color: var(--ink-soft);
     letter-spacing: 0.12em;
     text-transform: uppercase;
     display: block;
@@ -154,20 +130,20 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
 
   .hero h1 em {
     font-style: italic;
-    color: var(--gold);
+    color: var(--wine);
   }
 
   .hero-rule {
     width: 2.5rem;
     height: 2px;
-    background: var(--gold);
+    background: var(--wine);
     margin-top: 1rem;
   }
 
   .hero-subtitle {
     margin-top: 1.1rem;
     max-width: 46ch;
-    color: var(--text-muted);
+    color: var(--ink-soft);
     font-size: clamp(0.85rem, 1.4vw, 0.98rem);
     line-height: 1.6;
   }
@@ -179,7 +155,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   .about-details summary {
     font-family: 'Fraunces', serif;
     font-size: 1.4rem;
-    color: var(--parchment);
+    color: var(--ink);
     cursor: pointer;
     list-style: none;
     display: flex;
@@ -189,7 +165,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   .about-details summary::-webkit-details-marker { display: none; }
   .about-details summary::before {
     content: "▸";
-    color: var(--gold);
+    color: var(--ink-soft);
     font-size: 1rem;
     transition: transform 0.15s ease;
   }
@@ -201,13 +177,13 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
     gap: 1.75rem 2.5rem;
   }
   .about-verbo p {
-    color: var(--text-muted);
+    color: var(--ink-soft);
     font-size: 0.92rem;
     line-height: 1.7;
     margin: 0;
   }
   .about-verbo p strong {
-    color: var(--parchment);
+    color: var(--ink);
     font-weight: 600;
   }
   .about-closing {
@@ -229,11 +205,9 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
 
   .card {
     position: relative;
-    background: linear-gradient(155deg, rgba(var(--ink-rgb),0.45) 0%, rgba(var(--ink-rgb),0.2) 100%);
-    backdrop-filter: blur(18px) saturate(160%);
-    -webkit-backdrop-filter: blur(18px) saturate(160%);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 14px;
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
     min-height: clamp(132px, 18vh, 174px);
     padding: clamp(1rem, 2vw, 1.5rem);
     display: flex;
@@ -241,30 +215,24 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
     align-items: flex-start;
     justify-content: space-between;
     gap: 0.75rem;
-    box-shadow: 0 18px 40px rgba(4, 8, 15, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-    transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    transition: border-color 0.15s ease, background 0.15s ease;
   }
 
   .card:hover {
-    transform: translateY(-3px);
-    border-color: rgba(34, 199, 254, 0.45);
-    background: linear-gradient(155deg, rgba(var(--ink-rgb),0.62) 0%, rgba(var(--ink-rgb),0.34) 100%);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .card:hover { transform: none; }
+    border-color: var(--wine-soft);
+    background: color-mix(in srgb, var(--paper-raised) 92%, var(--wine) 8%);
   }
 
   .card-icon {
     width: clamp(32px, 3vw, 40px);
     height: clamp(32px, 3vw, 40px);
-    color: var(--gold);
+    color: var(--wine);
     flex-shrink: 0;
   }
 
   .card h3 {
     font-size: clamp(1.05rem, 1.7vw, 1.35rem);
-    color: var(--parchment);
+    color: var(--ink);
   }
 
   /* ---------- MÁS DE VERBO ---------- */
@@ -272,9 +240,6 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   .contact-card-wrap {
     position: relative;
     padding: clamp(3rem, 6vw, 5rem) clamp(1rem, 5vw, 4rem);
-    background:
-      radial-gradient(60% 90% at 12% 0%, rgba(34,199,254,0.1) 0%, transparent 60%),
-      radial-gradient(50% 80% at 100% 100%, rgba(34,199,254,0.06) 0%, transparent 65%);
   }
 
   .more-head {
@@ -284,11 +249,11 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
     gap: 1rem;
     padding-bottom: 1rem;
     margin-bottom: 1.25rem;
-    border-bottom: 1px solid rgba(34, 199, 254, 0.15);
+    border-bottom: 1px solid var(--rule);
   }
   .more-head h2 { font-size: 1.6rem; }
   .more-head span {
-    color: var(--text-muted);
+    color: var(--ink-soft);
     font: 0.75rem 'IBM Plex Mono', monospace;
   }
   .more-grid {
@@ -302,28 +267,25 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
     flex-direction: column;
     gap: 0.5rem;
     padding: 1.1rem 1.3rem;
-    background: linear-gradient(155deg, rgba(var(--ink-rgb),0.24) 0%, rgba(var(--ink-rgb),0.08) 100%);
-    backdrop-filter: blur(22px) saturate(180%);
-    -webkit-backdrop-filter: blur(22px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    transition: transform 0.15s ease, border-color 0.15s ease;
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    transition: border-color 0.15s ease;
   }
   .more-card:hover {
-    transform: translateY(-2px);
-    border-color: rgba(34, 199, 254, 0.4);
+    border-color: var(--wine-soft);
   }
   .more-card-kicker {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.7rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--ink-soft);
   }
   .more-card-title {
     font-family: 'Fraunces', serif;
     font-size: 1rem;
-    color: var(--parchment);
+    color: var(--ink);
     line-height: 1.35;
   }
   .contact-card-wrap {
@@ -334,25 +296,23 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
     max-width: 520px;
     margin: 0 auto;
     padding: 1.2rem 1.4rem;
-    border: 1px solid rgba(34, 199, 254, 0.2);
+    border: 1px solid var(--rule);
     border-radius: 12px;
     text-align: center;
-    color: var(--parchment);
-    background: rgba(var(--ink-rgb), 0.2);
-    backdrop-filter: blur(20px) saturate(170%);
-    -webkit-backdrop-filter: blur(20px) saturate(170%);
+    color: var(--ink);
+    background: var(--paper-raised);
   }
   .contact-card:hover {
-    border-color: rgba(34, 199, 254, 0.55);
-    color: var(--gold);
+    border-color: var(--wine);
+    color: var(--wine);
   }
 
   /* ---------- QUOTE STRIP ---------- */
   .quote-strip {
     padding: 4rem clamp(1.5rem, 5vw, 4rem);
-    background: var(--ink-deep);
-    border-top: 1px solid rgba(34, 199, 254, 0.1);
-    border-bottom: 1px solid rgba(34, 199, 254, 0.1);
+    background: var(--paper-deep);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
     text-align: center;
   }
 
@@ -360,7 +320,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
     font-family: 'Fraunces', serif;
     font-style: italic;
     font-size: clamp(1.2rem, 2.4vw, 1.6rem);
-    color: var(--parchment-dim);
+    color: var(--ink-soft);
     max-width: 42ch;
     margin: 0 auto 0.75rem;
     line-height: 1.4;
@@ -369,7 +329,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   .quote-strip cite {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.8rem;
-    color: var(--gold-dim);
+    color: var(--wine-soft);
     font-style: normal;
   }
 
@@ -381,21 +341,21 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 1rem;
-    color: var(--text-muted);
+    color: var(--ink-soft);
     font-size: 0.85rem;
   }
 
-  footer a:hover { color: var(--gold); }
+  footer a:hover { color: var(--wine); }
 
   .footer-social { display: flex; gap: 1rem; align-items: center; }
-  .footer-social a { color: var(--text-muted); display: inline-flex; }
-  .footer-social a:hover { color: var(--gold); }
+  .footer-social a { color: var(--ink-soft); display: inline-flex; }
+  .footer-social a:hover { color: var(--wine); }
   .footer-social svg { width: 20px; height: 20px; }
 
   /* ---------- Selector de idioma de interfaz ---------- */
   .ui-lang-switcher {
     display: inline-flex;
-    border: 1px solid rgba(34, 199, 254, 0.3);
+    border: 1px solid var(--rule-strong);
     border-radius: 4px;
     overflow: hidden;
     margin-right: 0.75rem;
@@ -403,16 +363,16 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   .ui-lang-switcher__btn {
     border: 0;
     background: transparent;
-    color: var(--text-muted);
+    color: var(--ink-soft);
     font-family: 'IBM Plex Mono', monospace;
     font-size: 0.75rem;
     letter-spacing: 0.04em;
     padding: 0.4rem 0.65rem;
     cursor: pointer;
   }
-  .ui-lang-switcher__btn + .ui-lang-switcher__btn { border-left: 1px solid rgba(34, 199, 254, 0.3); }
-  .ui-lang-switcher__btn:hover { color: var(--parchment); }
-  .ui-lang-switcher__btn.is-active { background: var(--gold); color: var(--ink-deep); }
+  .ui-lang-switcher__btn + .ui-lang-switcher__btn { border-left: 1px solid var(--rule-strong); }
+  .ui-lang-switcher__btn:hover { color: var(--ink); }
+  .ui-lang-switcher__btn.is-active { background: var(--wine); color: var(--paper-raised); }
 
   @media (max-width: 620px) {
     header { min-height: 60px; padding: 0.65rem 1rem; }
@@ -423,10 +383,6 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
       gap: clamp(1.2rem, 3.5vh, 1.8rem);
       padding-top: clamp(1.5rem, 4vh, 2.4rem);
       padding-bottom: 1.25rem;
-    }
-    .hero::before {
-      background-position: 58% center;
-      opacity: 0.77;
     }
     .hero-inner { text-align: center; }
     .hero h1 { margin-inline: auto; font-size: clamp(1.2rem, 6vw, 1.59rem); }
@@ -447,7 +403,6 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .hero::before { transform: scale(1.08); }
   }
 </style>
 <!-- Google AdSense -->
@@ -620,51 +575,6 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
 <script src="biblia/assets/site-chrome.js?v=20260729-1"></script>
 <script src="biblia/assets/tutorial-video.js?v=20260821-tutorial-videos"></script>
 <script>
-(() => {
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  let ticking = false;
-  const updateParallax = () => {
-    document.documentElement.style.setProperty('--hero-parallax', `${Math.min(scrollY * 0.2, 64)}px`);
-    ticking = false;
-  };
-  addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(updateParallax);
-      ticking = true;
-    }
-  }, { passive: true });
-
-  // Parallax activo: la ilustración del hero responde a la posición del
-  // mouse (además del scroll), dando sensación de profundidad. Rango
-  // deliberadamente pequeño (±14px) para que se sienta vivo sin marear.
-  const hero = document.querySelector('.hero');
-  if (hero && matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    let mouseTicking = false;
-    let targetX = 0, targetY = 0;
-    const RANGE_X = 14, RANGE_Y = 10;
-    const applyMouseParallax = () => {
-      document.documentElement.style.setProperty('--hero-parallax-x', `${targetX}px`);
-      document.documentElement.style.setProperty('--hero-parallax-y', `${targetY}px`);
-      mouseTicking = false;
-    };
-    hero.addEventListener('mousemove', (e) => {
-      const rect = hero.getBoundingClientRect();
-      const relX = (e.clientX - rect.left) / rect.width - 0.5;
-      const relY = (e.clientY - rect.top) / rect.height - 0.5;
-      targetX = relX * -RANGE_X;
-      targetY = relY * -RANGE_Y;
-      if (!mouseTicking) {
-        requestAnimationFrame(applyMouseParallax);
-        mouseTicking = true;
-      }
-    }, { passive: true });
-    hero.addEventListener('mouseleave', () => {
-      targetX = 0; targetY = 0;
-      requestAnimationFrame(applyMouseParallax);
-    }, { passive: true });
-  }
-})();
-
 // Proyector Verbo: en escritorio abre el panel de control; en móvil, el
 // control remoto (control.html nunca es responsive a propósito, ver
 // proyector/remoto.html). Mismo chequeo de ancho que ya usa el sitio
