@@ -1,31 +1,30 @@
 /* ============================================================
    Verbo — Recursos: piel visual propia (Escuela Dominical,
-   Artículos y Reflexiones). Azul claro + dorado, en línea con
-   la portada (index.html raíz), pero más luminoso.
+   Artículos y Reflexiones). Navy/teal + dorado — tema Verbo
+   Desktop, en línea con la portada (index.html raíz).
    Se aplica sobre .static-page vía la clase adicional
    body.recursos-page — no toca Misión / Sobre el fundador.
-   ============================================================ */
-
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+   La tipografía Inter ya la carga biblia/assets/style.css,
+   cargado antes que este archivo en cada página que lo usa. */
 
 body.recursos-page {
-  --r-sky-top: #F1F5FB;
-  --r-sky-bot: #DCE6F3;
+  --r-sky-top: #EAF5FA;
+  --r-sky-bot: #D8E5EB;
   --r-paper: #FFFFFF;
-  --r-ink: #0B1424;
-  --r-ink-soft: #3C4A64;
-  --r-gold: #93701F;
+  --r-ink: #082842;
+  --r-ink-soft: #516A79;
+  --r-gold: #8A6A1F;
   --r-gold-bright: #B08A2E;
-  --r-rule: #B9CBE0;
-  --r-rule-strong: #93AECC;
-  --r-shadow: 16, 25, 46;
+  --r-rule: #D8E5EB;
+  --r-rule-strong: #8FC6D8;
+  --r-shadow: 8, 40, 66;
 
   background:
-    radial-gradient(1100px 520px at 12% -8%, rgba(176, 138, 46, .10), transparent 60%),
+    radial-gradient(1100px 520px at 12% -8%, rgba(230, 184, 95, .10), transparent 60%),
     linear-gradient(175deg, var(--r-sky-top) 0%, var(--r-sky-bot) 78%);
   background-attachment: fixed;
   color: var(--r-ink);
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 body.recursos-page .static-page__header {
@@ -34,11 +33,11 @@ body.recursos-page .static-page__header {
   border-bottom-color: var(--r-rule);
 }
 body.recursos-page .static-page__brand {
-  font-family: 'Fraunces', serif;
+  font-family: Georgia, 'Times New Roman', serif;
   color: var(--r-gold-bright);
 }
 body.recursos-page .static-page__back {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   font-size: 12.5px;
   color: var(--r-ink-soft);
 }
@@ -62,7 +61,7 @@ body.recursos-page .quick-nav a {
   border-radius: 999px;
   background: rgba(255, 255, 255, .55);
   text-decoration: none;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   font-size: 12px;
   letter-spacing: .03em;
   color: var(--r-ink-soft);
@@ -75,7 +74,7 @@ body.recursos-page .quick-nav a:hover {
 }
 body.recursos-page .quick-nav a.is-current {
   border-color: var(--r-gold-bright);
-  background: rgba(176, 138, 46, .13);
+  background: rgba(230, 184, 95, .13);
   color: var(--r-ink);
 }
 body.recursos-page .quick-nav svg {
@@ -110,7 +109,7 @@ body.recursos-page.recursos-index .static-page__main {
 
 body.recursos-page .static-page__main .lesson-badge,
 body.recursos-page .static-page__main .article-badge {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   font-size: 11.5px;
   letter-spacing: .08em;
   text-transform: uppercase;
@@ -120,7 +119,7 @@ body.recursos-page .static-page__main .i18n-manual-note {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: rgba(176, 138, 46, .08);
+  background: rgba(230, 184, 95, .08);
   border: 1px solid var(--r-rule-strong);
   border-radius: 4px;
   padding: 10px 14px;
@@ -130,14 +129,14 @@ body.recursos-page .static-page__main .i18n-manual-note {
 }
 body.recursos-page .static-page__main .i18n-manual-note[hidden] { display: none; }
 body.recursos-page .static-page__main article h1 {
-  font-family: 'Fraunces', serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-weight: 600;
   color: var(--r-ink);
   font-size: clamp(1.6rem, 3.4vw, 2.2rem);
   line-height: 1.22;
 }
 body.recursos-page .static-page__main article h2 {
-  font-family: 'Fraunces', serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-weight: 600;
   color: var(--r-ink);
   font-size: 1.28rem;
@@ -152,7 +151,7 @@ body.recursos-page .historical-editorial-subtitle {
   font-style: italic;
 }
 body.recursos-page .historical-editorial-subtitle span {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   font-size: .75rem;
   font-style: normal;
   letter-spacing: .03em;
@@ -213,7 +212,7 @@ body.recursos-page .article-textsize {
   margin: 0 0 14px;
 }
 body.recursos-page .article-textsize-btn {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   font-size: 13px;
   font-weight: 600;
   line-height: 1;
@@ -256,7 +255,7 @@ body.recursos-page .article-attribution {
   padding-top: 16px;
   border-top: 1px solid var(--r-rule);
   color: var(--r-ink-soft);
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   font-size: 12px;
   line-height: 1.65;
 }
@@ -275,8 +274,8 @@ body.recursos-page .static-page__main article td {
   text-align: left;
 }
 body.recursos-page .static-page__main article th {
-  background: rgba(176, 138, 46, .08);
-  font-family: 'IBM Plex Mono', monospace;
+  background: rgba(230, 184, 95, .08);
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   font-size: .78rem;
   letter-spacing: .03em;
   text-transform: uppercase;
@@ -284,7 +283,7 @@ body.recursos-page .static-page__main article th {
 }
 
 body.recursos-page .lesson-nav {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   font-size: 12.5px;
   color: var(--r-ink-soft);
 }
@@ -293,7 +292,7 @@ body.recursos-page .lesson-nav a:hover { color: var(--r-gold); }
 
 /* ---------- índice: eyebrow + título + intro ---------- */
 body.recursos-page .r-eyebrow {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   font-size: 11.5px;
   letter-spacing: .12em;
   text-transform: uppercase;
@@ -302,7 +301,7 @@ body.recursos-page .r-eyebrow {
   margin-bottom: 14px;
 }
 body.recursos-page .recursos-index h1 {
-  font-family: 'Fraunces', serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-weight: 600;
   font-size: clamp(2rem, 4.4vw, 2.6rem);
   line-height: 1.16;
@@ -325,7 +324,7 @@ body.recursos-page .r-section-label {
 }
 body.recursos-page .r-section-label h2 {
   font-size: 1rem;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   font-weight: 500;
   letter-spacing: .04em;
   text-transform: uppercase;
@@ -333,7 +332,7 @@ body.recursos-page .r-section-label h2 {
   margin: 0;
 }
 body.recursos-page .r-section-count {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   font-size: .85rem;
   color: var(--r-ink-soft);
   opacity: .7;
@@ -367,7 +366,7 @@ body.recursos-page .r-card:hover {
   box-shadow: 0 20px 34px -22px rgba(var(--r-shadow), .45);
 }
 body.recursos-page .r-card-eyebrow {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   font-size: 11px;
   color: var(--r-gold);
   letter-spacing: .06em;
@@ -375,7 +374,7 @@ body.recursos-page .r-card-eyebrow {
   display: block;
 }
 body.recursos-page .r-card h3 {
-  font-family: 'Fraunces', serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-weight: 600;
   font-size: 1.28rem;
   margin: 0 0 10px;
@@ -391,7 +390,7 @@ body.recursos-page .r-card-foot {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   font-size: 11.5px;
 }
 body.recursos-page .r-pill {
@@ -418,12 +417,12 @@ body.recursos-page .r-article-row {
 body.recursos-page .r-article-row:first-child { padding-top: 4px; }
 body.recursos-page .r-article-row:hover .r-article-row-title { color: var(--r-gold); }
 body.recursos-page .r-article-row-title {
-  font-family: 'Fraunces', serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-size: 1.06rem;
   transition: color .15s ease;
 }
 body.recursos-page .r-article-row-date {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   font-size: 11.5px;
   color: var(--r-ink-soft);
   white-space: nowrap;
@@ -445,7 +444,7 @@ body.recursos-page .r-filter-group {
   gap: 6px;
 }
 body.recursos-page .r-filter-group-label {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   font-size: 10.5px;
   letter-spacing: .06em;
   text-transform: uppercase;
@@ -453,7 +452,7 @@ body.recursos-page .r-filter-group-label {
   margin-right: 2px;
 }
 body.recursos-page .r-filter-pill {
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   font-size: 12.5px;
   color: var(--r-ink-soft);
   background: rgba(255, 255, 255, .6);
@@ -466,11 +465,11 @@ body.recursos-page .r-filter-pill {
 body.recursos-page .r-filter-pill:hover { border-color: var(--r-gold); color: var(--r-ink); }
 body.recursos-page .r-filter-pill.is-active {
   border-color: var(--r-gold-bright);
-  background: rgba(176, 138, 46, .15);
+  background: rgba(230, 184, 95, .15);
   color: var(--r-ink);
 }
 body.recursos-page .r-filter-select {
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   font-size: 12.5px;
   color: var(--r-ink);
   background: rgba(255, 255, 255, .6);
@@ -495,7 +494,7 @@ body.recursos-page .r-tag {
   display: inline-flex;
   align-items: center;
   gap: 3px;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   font-size: 10.5px;
   letter-spacing: .03em;
   padding: 2px 8px;
@@ -620,7 +619,7 @@ body.recursos-page .article-cover-icon {
 body.recursos-page .article-cover-kicker {
   position: relative;
   z-index: 1;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   font-size: 8.8px;
   line-height: 1.4;
   letter-spacing: .09em;
@@ -632,7 +631,7 @@ body.recursos-page .r-article-grid .r-article-row-title {
   position: relative;
   z-index: 1;
   display: block;
-  font-family: 'Fraunces', serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-size: clamp(.96rem, 1.2vw, 1.08rem);
   font-weight: 600;
   line-height: 1.22;
@@ -653,7 +652,7 @@ body.recursos-page .article-cover-rule {
 body.recursos-page .article-cover-author {
   position: relative;
   z-index: 1;
-  font-family: 'Fraunces', serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-size: .72rem;
   font-style: italic;
   line-height: 1.35;
@@ -665,7 +664,7 @@ body.recursos-page .article-card-meta {
   justify-content: space-between;
   gap: 10px;
   padding: 11px 2px 0;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   font-size: 10.5px;
   color: var(--r-ink-soft);
 }
@@ -720,7 +719,7 @@ body.recursos-page .book-cover-lang {
   position: absolute;
   top: 8px;
   right: 8px;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   font-size: 9.5px;
   letter-spacing: .04em;
   padding: 2px 7px;
@@ -795,7 +794,7 @@ body.recursos-page .r-sermon-row:focus-visible { outline: 2px solid var(--r-gold
 body.recursos-page .sermon-cover-kicker {
   position: relative;
   z-index: 1;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   font-size: 8.8px;
   line-height: 1.4;
   letter-spacing: .14em;
@@ -818,7 +817,7 @@ body.recursos-page .sermon-cover-rule {
 body.recursos-page .sermon-cover-author {
   position: relative;
   z-index: 1;
-  font-family: 'Fraunces', serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-size: .72rem;
   font-style: italic;
   line-height: 1.35;
@@ -977,7 +976,7 @@ body.recursos-page .r-discovery-centro { grid-column: 2; grid-row: 1 / span 2; m
 body.recursos-page .r-discovery-temas { grid-column: 3; grid-row: 1 / span 2; }
 
 body.recursos-page .r-discovery-heading {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   font-size: 11px;
   letter-spacing: .06em;
   text-transform: uppercase;

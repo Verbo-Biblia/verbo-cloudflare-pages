@@ -1,10 +1,10 @@
-/* Versión standalone del panel de Ajustes (Tema, Sincronizar dispositivos,
+/* Versión standalone del panel de Ajustes (Sincronizar dispositivos,
    Exportar/Importar) para /ajustes/index.html — página propia fuera de la
-   SPA de Biblia. Misma lógica que renderAjustes()/applyTheme() en
-   biblia/assets/app.js, reescrita sin las dependencias del lector (catálogo
-   de Biblias, panel lateral, etc.). Comparte los mismos scripts de datos
-   (backup.js, sync.js) y por lo tanto el mismo IndexedDB/localStorage que
-   /biblia/ — abrir esta página no crea una copia separada de los datos. */
+   SPA de Biblia. Misma lógica que renderAjustes() en biblia/assets/app.js,
+   reescrita sin las dependencias del lector (catálogo de Biblias, panel
+   lateral, etc.). Comparte los mismos scripts de datos (backup.js, sync.js)
+   y por lo tanto el mismo IndexedDB/localStorage que /biblia/ — abrir esta
+   página no crea una copia separada de los datos. */
 (function () {
   'use strict';
 
@@ -14,17 +14,6 @@
 
     const panel = document.getElementById('ajustesPanel');
     if (!panel) return;
-
-    const themes = [
-      { id: 'paper', sample: '#F1E3C8' },
-      { id: 'cream', sample: '#F5E7C8' },
-      { id: 'sage', sample: '#DDE8D1' },
-      { id: 'mist', sample: '#DDEAF1' },
-      { id: 'pearl', sample: '#ECE9E2' },
-      { id: 'sand', sample: '#F1DCD6' },
-      { id: 'mint', sample: '#D8F3EA' },
-      { id: 'rosewood', sample: '#F2D7DF' }
-    ];
 
     const escapeHTML = value => String(value ?? '').replace(/[&<>'"]/g, ch => ({
       '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
@@ -38,13 +27,6 @@
       clearTimeout(el._timer);
       el._timer = setTimeout(() => el.classList.remove('verbo-toast--show'), duration);
     };
-
-    function applyTheme(themeId) {
-      const safeTheme = themes.some(th => th.id === themeId) ? themeId : 'paper';
-      document.body.dataset.theme = safeTheme;
-      localStorage.setItem('verbo:theme', safeTheme);
-    }
-    applyTheme(localStorage.getItem('verbo:theme') || 'paper');
 
     await window.VerboBackup?.init?.();
 
@@ -84,19 +66,8 @@
     }
 
     function renderAjustes() {
-      const currentTheme = document.body.dataset.theme || 'paper';
       panel.innerHTML = `
         ${renderSyncSection()}
-        <div class="ajustes-section">
-          <h3>${t('ajustes.temaTitle')}</h3>
-          <p>${t('ajustes.temaDescripcion')}</p>
-          <div class="theme-options">
-            ${themes.map(th => `<button class="theme-option${th.id === currentTheme ? ' theme-option--active' : ''}" type="button" data-theme="${th.id}">
-              <span class="theme-option__sample" style="background:${th.sample}"></span>
-              <span class="theme-option__label">${escapeHTML(t('ajustes.temas.' + th.id))}</span>
-            </button>`).join('')}
-          </div>
-        </div>
         <div class="ajustes-section">
           <h3>${t('ajustes.exportTitle')}</h3>
           <p>${t('ajustes.exportDescripcion')}</p>
@@ -107,10 +78,6 @@
           </div>
         </div>`;
 
-      panel.querySelectorAll('.theme-option').forEach(btn => btn.addEventListener('click', () => {
-        applyTheme(btn.dataset.theme);
-        renderAjustes();
-      }));
       document.getElementById('ajustesExportBtn')?.addEventListener('click', () => {
         window.VerboBackup?.exportDownload();
         toast(t('toast.descargando'));

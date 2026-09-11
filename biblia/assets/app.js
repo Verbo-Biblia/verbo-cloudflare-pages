@@ -310,17 +310,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   const posicionBiblia = VerboBackup.getPosicionBiblia();
   let currentBook = sharedBook || posicionBiblia?.libro || 'ROM';
   let currentChapter = sharedChapter > 0 ? sharedChapter : (Number(posicionBiblia?.capitulo) || 7);
-  const themes = [
-    { id:'paper', sample:'#F1E3C8' },
-    { id:'cream', sample:'#F5E7C8' },
-    { id:'sage', sample:'#DDE8D1' },
-    { id:'mist', sample:'#DDEAF1' },
-    { id:'pearl', sample:'#ECE9E2' },
-    { id:'sand', sample:'#F1DCD6' },
-    { id:'mint', sample:'#D8F3EA' },
-    { id:'rosewood', sample:'#F2D7DF' }
-  ];
-
   const emptyState = (icon, text) => `<div class="panel-empty"><div class="panel-empty__icon">${icon}</div><div class="panel-empty__text">${text}</div></div>`;
   const activeVerse = () => Number(document.querySelector('.verse--active')?.dataset.verseN) || null;
   const SELECTED_PASSAGE_EVENT = 'verbo:selected-passage-changed';
@@ -457,8 +446,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     el.textContent=message; el.classList.add('verbo-toast--show');
     clearTimeout(el._timer); el._timer=setTimeout(()=>el.classList.remove('verbo-toast--show'),duration);
   };
-
-  applyTheme(localStorage.getItem('verbo:theme') || 'paper');
 
   try {
     catalog = await VerboModules.getCatalog();
@@ -3170,12 +3157,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  function applyTheme(themeId){
-    const safeTheme = themes.some(t => t.id === themeId) ? themeId : 'paper';
-    document.body.dataset.theme = safeTheme;
-    localStorage.setItem('verbo:theme', safeTheme);
-  }
-
   let syncPending = false;
   let syncBusy = false;
 
@@ -3207,20 +3188,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   function renderAjustes(){
     els.panelTitle.textContent=t('ajustes.titulo');
     els.panelToolbar.innerHTML='';
-    const currentTheme = document.body.dataset.theme || 'paper';
     els.panelBody.innerHTML=`
       <section class="ajustes-panel">
         ${renderSyncSection()}
-        <div class="ajustes-section">
-          <h3>${t('ajustes.temaTitle')}</h3>
-          <p>${t('ajustes.temaDescripcion')}</p>
-          <div class="theme-options">
-            ${themes.map(th=>`<button class="theme-option${th.id===currentTheme?' theme-option--active':''}" type="button" data-theme="${th.id}">
-              <span class="theme-option__sample" style="background:${th.sample}"></span>
-              <span class="theme-option__label">${escapeHTML(t('ajustes.temas.' + th.id))}</span>
-            </button>`).join('')}
-          </div>
-        </div>
         <div class="ajustes-section">
           <h3>${t('ajustes.exportTitle')}</h3>
           <p>${t('ajustes.exportDescripcion')}</p>
@@ -3231,10 +3201,6 @@ document.addEventListener('DOMContentLoaded', async () => {
           </div>
         </div>
       </section>`;
-    els.panelBody.querySelectorAll('.theme-option').forEach(btn=>btn.addEventListener('click',()=>{
-      applyTheme(btn.dataset.theme);
-      renderAjustes();
-    }));
     document.getElementById('ajustesExportBtn')?.addEventListener('click', ()=>{
       VerboBackup.exportDownload();
       toast(t('toast.descargando'));
