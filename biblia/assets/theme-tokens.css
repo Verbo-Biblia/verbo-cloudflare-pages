@@ -1,0 +1,20 @@
+/* Fuente única de la paleta de color del sitio (tema Verbo Desktop:
+   navy/teal/gold sobre blanco). Sin selectores de elemento ni layout —
+   solo variables — para poder cargarse en páginas fuera de la SPA de
+   Biblia (ver verbo-desktop/index.html) sin arrastrar reglas de app-shell
+   como el `overflow:hidden` de html,body en biblia/assets/style.css.
+   Ese archivo importa este mismo :root (ver su @import), así que este es
+   el único lugar donde estos valores se definen. */
+:root {
+  --paper: #F5F9FB;
+  --paper-raised: #FFFFFF;
+  --chrome: #FFFFFF;
+  --ink: #102534;
+  --ink-soft: #516A79;
+  --sepia: #7E919C;
+  --wine: #16657D;
+  --wine-soft: #8FC6D8;
+  --rule: #D8E5EB;
+  --rule-strong: #B9CDD8;
+  --gold-glow: #E6B85F;
+}

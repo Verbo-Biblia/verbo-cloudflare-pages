@@ -9,20 +9,13 @@
    tipografía general — ver AGENTS.md para el contexto vigente del proyecto
    directamente (vive fuera del SPA de Biblia y depende de tokens --r-* que aquí no existen). */
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+/* Paleta de color: fuente única en theme-tokens.css (--paper/--ink/--wine/...),
+   compartida con verbo-desktop/, que la carga aparte porque no puede sumar
+   el resto de este archivo (rompería su scroll: más abajo html,body llevan
+   overflow:hidden, pensado para el app-shell de la SPA, no para una landing). */
+@import url('theme-tokens.css');
 
 :root {
-  --paper: #F5F9FB;
-  --paper-raised: #FFFFFF;
-  --chrome: #FFFFFF;
-  --ink: #102534;
-  --ink-soft: #516A79;
-  --sepia: #7E919C;
-  --wine: #16657D;
-  --wine-soft: #8FC6D8;
-  --rule: #D8E5EB;
-  --rule-strong: #B9CDD8;
-  --gold-glow: #E6B85F;
-
   /* Usada por .library-rail__btn (único uso en el archivo) — no estaba
      definida acá, así que esa sombra nunca se pintaba. Mismo tinte navy
      que el resto de las sombras del tema Desktop (rgba(8,40,66,...)), con

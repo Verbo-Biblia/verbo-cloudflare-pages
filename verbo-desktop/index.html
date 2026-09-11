@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Verbo Desktop: estudio bíblico nativo para Linux, macOS y Windows." />
+  <meta property="og:title" content="Verbo Desktop">
+  <meta property="og:description" content="Verbo Desktop: estudio bíblico nativo para Linux, macOS y Windows.">
+  <meta property="og:url" content="https://verbobiblia.com/verbo-desktop/">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://verbobiblia.com/verbo-desktop/">
+  <link rel="icon" type="image/png" sizes="192x192" href="../biblia/assets/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="../biblia/assets/icons/icon-192.png">
+  <meta name="theme-color" content="#16657D">
+  <title>Verbo Desktop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../biblia/assets/theme-tokens.css?v=20260910-tema-desktop">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="back-to-verbo" href="/" aria-label="Volver a Verbo">← Verbo</a>
+    <a class="brand" href="#top" aria-label="Verbo Desktop">
+      <img src="assets/verbo-icon.png" alt="" />
+      <span>Verbo Desktop</span>
+    </a>
+    <nav class="topnav" aria-label="Primary">
+      <a href="#linux" data-i18n="navLinux">Linux</a>
+      <a href="#ecosystem" data-i18n="navModules">Módulos</a>
+      <a href="#modes" data-i18n="navModes">Modos</a>
+      <a href="#library" data-i18n="navLibrary">Biblioteca</a>
+    </nav>
+    <div class="langswitch" aria-label="Language">
+      <button data-lang="es" class="active">ES</button>
+      <button data-lang="en">EN</button>
+      <button data-lang="pt">PT</button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero section-shell">
+      <div class="hero-copy reveal">
+        <span class="eyebrow" data-i18n="heroEyebrow">VERBO DESKTOP</span>
+        <h1 data-i18n="heroTitle">Tus módulos ya no pertenecen a un sistema operativo.</h1>
+        <p class="hero-lead" data-i18n="heroLead">Verbo reúne módulos compatibles de e-Sword, MySword y Verbo en una sola aplicación de escritorio para Linux, macOS y Windows.</p>
+        <div class="platform-row" aria-label="Platforms">
+          <span class="platform linux"><span class="platform-icon">🐧</span>Linux</span>
+          <span class="platform apple"><span class="platform-icon">●</span>macOS</span>
+          <span class="platform windows"><span class="windows-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Windows</span>
+        </div>
+        <div class="hero-actions">
+          <a href="#downloads" class="btn btn-primary" data-download-link="primary" data-i18n="download">Descargar Verbo</a>
+          <a href="#modes" class="btn btn-ghost" data-i18n="discover">Ver cómo funciona</a>
+        </div>
+        <p class="microcopy" data-i18n="heroMicro">Linux primero. También disponible para macOS y Windows.</p>
+      </div>
+
+      <div class="hero-visual reveal delay-1" aria-label="Verbo Desktop screenshot">
+        <div class="ambient-orb orb-a"></div>
+        <div class="ambient-orb orb-b"></div>
+        <div class="screen-wrap">
+          <div class="screen-top"><span></span><span></span><span></span></div>
+          <img src="assets/modo-estudio.png" alt="Verbo Desktop study interface" />
+        </div>
+        <div class="module-chip-row" aria-label="Módulos compatibles">
+          <div class="floating-chip module-chip esword">e-Sword</div>
+          <div class="floating-chip module-chip mysword">MySword</div>
+          <div class="floating-chip module-chip verbo"><img src="assets/verbo-icon.png" alt="" />Verbo</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="linux" class="linux-feature band-dark">
+      <div class="section-shell linux-grid">
+        <div class="linux-copy reveal">
+          <div class="kicker-row"><span class="tux">🐧</span><span class="eyebrow" data-i18n="linuxEyebrow">LINUX NATIVO</span></div>
+          <h2 data-i18n="linuxTitle">Linux ya tenía software bíblico. Ahora puede tener la biblioteca.</h2>
+          <p data-i18n="linuxBody">Importa módulos compatibles procedentes de ecosistemas de Windows y Android y utilízalos directamente en Verbo, sin tener que ejecutar la aplicación dentro de Windows.</p>
+          <div class="fact-grid">
+            <article><strong data-i18n="linuxFact1Title">Nativo</strong><span data-i18n="linuxFact1Text">Pensado para ejecutarse directamente en Linux.</span></article>
+            <article><strong data-i18n="linuxFact2Title">Tu colección</strong><span data-i18n="linuxFact2Text">Aprovecha módulos compatibles que ya utilizabas.</span></article>
+            <article><strong data-i18n="linuxFact3Title">Un solo entorno</strong><span data-i18n="linuxFact3Text">Estudio, enseñanza y biblioteca en la misma aplicación.</span></article>
+          </div>
+        </div>
+        <div class="linux-visual reveal delay-1">
+          <div class="desktop-frame linux-desktop">
+            <div class="desktop-top"><span>●</span><span>Verbo Desktop</span><span>◌ ◌ ◌</span></div>
+            <div class="desktop-body">
+              <aside class="dock">
+                <span>⌘</span><span>⌂</span><span class="verbo-mini"><img src="assets/verbo-icon.png" alt="" /></span><span>▣</span><span>⚙</span>
+              </aside>
+              <div class="wallpaper"></div>
+              <img class="app-shot" src="assets/modo-estudio.png" alt="Verbo Desktop running on Linux" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ecosystem" class="ecosystem section-shell">
+      <header class="section-heading reveal">
+        <span class="eyebrow" data-i18n="ecoEyebrow">UNA BIBLIOTECA, VARIOS ECOSISTEMAS</span>
+        <h2 data-i18n="ecoTitle">Lo que antes vivía separado puede reunirse en Verbo.</h2>
+        <p data-i18n="ecoBody">El texto vive en la web; la imagen solo explica el flujo. Así la página puede cambiar de idioma sin duplicar gráficos.</p>
+      </header>
+      <div class="ecosystem-diagram reveal delay-1">
+        <div class="source-stack">
+          <div class="source-card"><span class="source-icon windows-mark"><i></i><i></i><i></i><i></i></span><strong>e-Sword</strong><small>Windows</small></div>
+          <div class="source-card"><span class="android-icon">●</span><strong>MySword</strong><small>Android</small></div>
+          <div class="source-card"><img src="assets/verbo-icon.png" alt="" /><strong>Verbo</strong><small>Modules</small></div>
+        </div>
+        <div class="flow-arrow" aria-hidden="true">→</div>
+        <div class="verbo-core"><img src="assets/verbo-icon.png" alt="" /><span>Verbo Desktop</span></div>
+        <div class="flow-arrow" aria-hidden="true">→</div>
+        <div class="target-stack">
+          <div class="target-card"><span>🐧</span><strong>Linux</strong></div>
+          <div class="target-card"><span class="apple-dot">●</span><strong>macOS</strong></div>
+          <div class="target-card"><span class="windows-mark"><i></i><i></i><i></i><i></i></span><strong>Windows</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="platform-showcase band-soft">
+      <div class="section-shell">
+        <div class="showcase-intro reveal">
+          <span class="eyebrow" data-i18n="platformEyebrow">TRES PLATAFORMAS</span>
+          <h2 data-i18n="platformTitle">Una experiencia de escritorio real.</h2>
+        </div>
+        <div class="platform-cards">
+          <article class="platform-card featured reveal">
+            <div class="card-os"><span>🐧</span><strong>Linux</strong></div>
+            <div class="device-shell"><img src="assets/biblioteca.png" alt="Verbo library interface" /></div>
+            <p data-i18n="platformLinux">La prioridad del lanzamiento: una biblioteca bíblica amplia en un entorno Linux nativo.</p>
+          </article>
+          <article class="platform-card reveal delay-1">
+            <div class="card-os"><span class="apple-dot">●</span><strong>macOS</strong></div>
+            <div class="device-shell mac"><img src="assets/modo-preparacion.png" alt="Verbo teaching preparation interface" /></div>
+            <p data-i18n="platformMac">Importa tus recursos y trabaja en Verbo directamente desde tu Mac.</p>
+          </article>
+          <article class="platform-card reveal delay-2">
+            <div class="card-os"><span class="windows-mark"><i></i><i></i><i></i><i></i></span><strong>Windows</strong></div>
+            <div class="device-shell"><img src="assets/modo-estudio.png" alt="Verbo study interface" /></div>
+            <p data-i18n="platformWindows">Una nueva alternativa para reunir recursos, estudio y preparación en un solo entorno.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="modes" class="modes section-shell">
+      <header class="section-heading reveal">
+        <span class="eyebrow" data-i18n="modesEyebrow">TRES FORMAS DE TRABAJAR</span>
+        <h2 data-i18n="modesTitle">Estudia. Prepara. Lee.</h2>
+        <p data-i18n="modesBody">Verbo no es solo un importador. La aplicación cambia de espacio según lo que necesitas hacer.</p>
+      </header>
+      <div class="mode-grid">
+        <article class="mode-card reveal">
+          <div class="mode-image"><img src="assets/modo-estudio.png" alt="Modo Estudio" /></div>
+          <div class="mode-copy"><span class="mode-number">01</span><h3 data-i18n="studyTitle">Modo Estudio</h3><p data-i18n="studyText">Biblia, referencias cruzadas, idiomas bíblicos, Strong y recursos alrededor del texto.</p></div>
+        </article>
+        <article class="mode-card reverse reveal delay-1">
+          <div class="mode-image"><img src="assets/modo-preparacion.png" alt="Modo Preparación de enseñanza" /></div>
+          <div class="mode-copy"><span class="mode-number">02</span><h3 data-i18n="teachTitle">Preparación de enseñanza</h3><p data-i18n="teachText">Editor, Biblia y herramientas de estudio trabajando juntos para bosquejos, clases y predicaciones.</p></div>
+        </article>
+        <article class="mode-card reveal delay-2">
+          <div class="mode-image"><img src="assets/biblioteca.png" alt="Modo Biblioteca" /></div>
+          <div class="mode-copy"><span class="mode-number">03</span><h3 data-i18n="libraryTitle">Modo Biblioteca</h3><p data-i18n="libraryText">Lee y organiza libros, historia, devocionales y otros recursos en una biblioteca visual.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="tools band-dark">
+      <div class="section-shell">
+        <header class="section-heading light reveal">
+          <span class="eyebrow" data-i18n="toolsEyebrow">HERRAMIENTAS DE ESTUDIO</span>
+          <h2 data-i18n="toolsTitle">Mucho más que abrir una Biblia.</h2>
+          <p data-i18n="toolsBody">Recursos visuales, lingüísticos, históricos y personales permanecen cerca del texto.</p>
+        </header>
+        <div class="tool-gallery">
+          <figure class="tool-feature reveal"><img src="assets/mapas.png" alt="Biblical maps in Verbo" /><figcaption><strong data-i18n="mapsTitle">Mapas bíblicos</strong><span data-i18n="mapsText">Historia y geografía en ventanas de consulta.</span></figcaption></figure>
+          <figure class="tool-feature reveal delay-1"><img src="assets/notas-strong.png" alt="Notes and Strong dictionary in Verbo" /><figcaption><strong data-i18n="strongTitle">Strong y notas</strong><span data-i18n="strongText">Idiomas bíblicos, diccionarios y tus propias notas.</span></figcaption></figure>
+          <figure class="tool-feature reveal delay-2"><img src="assets/costumbres.png" alt="Customs and traditions resource in Verbo" /><figcaption><strong data-i18n="customsTitle">Costumbres y tradiciones</strong><span data-i18n="customsText">Contexto cultural disponible mientras estudias.</span></figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="library" class="library section-shell">
+      <div class="library-grid">
+        <div class="library-copy reveal">
+          <span class="eyebrow" data-i18n="libraryEyebrow">TU BIBLIOTECA PERSONAL</span>
+          <h2 data-i18n="librarySectionTitle">De los Padres Apostólicos a tus próximos recursos.</h2>
+          <p data-i18n="librarySectionBody">Verbo también es un espacio de lectura. Libros, historia, devocionales, Padres Apostólicos y otros recursos pueden convivir con tu estudio bíblico.</p>
+          <ul>
+            <li data-i18n="libItem1">Padres Apostólicos</li>
+            <li data-i18n="libItem2">Historia y contexto</li>
+            <li data-i18n="libItem3">Devocionales y libros</li>
+            <li data-i18n="libItem4">Recursos importados por el usuario</li>
+          </ul>
+        </div>
+        <div class="library-collage reveal delay-1">
+          <img class="collage-main" src="assets/biblioteca.png" alt="Verbo library" />
+          <img class="collage-side" src="assets/padres.png" alt="Apostolic Fathers in Verbo" />
+          <img class="collage-mini" src="assets/conversor.png" alt="Biblical measure converter" />
+        </div>
+      </div>
+    </section>
+
+    <section id="downloads" class="download-band">
+      <div class="section-shell download-inner reveal">
+        <img src="assets/verbo-icon.png" alt="" />
+        <div><span class="eyebrow" data-i18n="downloadEyebrow">VERBO DESKTOP</span><h2 data-i18n="downloadTitle">Tu biblioteca. Tu sistema. Tu espacio de estudio.</h2><p data-i18n="downloadBody">Disponible para Linux, macOS y Windows. Los enlaces de descarga se conectarán a los paquetes finales en la integración.</p></div>
+        <div class="download-actions">
+          <a href="#" data-download-linux class="btn btn-primary">Linux</a>
+          <a href="#" data-download-mac class="btn btn-secondary">macOS</a>
+          <a href="#" data-download-windows class="btn btn-secondary">Windows</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="section-shell footer-inner"><span>© <span id="year"></span> Verbo</span><span data-i18n="footer">Estudio bíblico de escritorio.</span></div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
