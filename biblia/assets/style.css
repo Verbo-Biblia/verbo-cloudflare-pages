@@ -2827,6 +2827,7 @@ mark.predica-search-hit { background: var(--wine-soft); color: #fff; border-radi
   body.sermon-print-mode * {
     visibility: hidden;
   }
+  html.sermon-print-mode,
   body.sermon-print-mode.sermon-print-mode,
   body.sermon-print-mode .app-body,
   body.sermon-print-mode .editor-pane {

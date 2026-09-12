@@ -2144,8 +2144,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(!sermonEditor) return;
     const previousTitle = document.title;
     document.title = sermonDocTitle();
+    document.documentElement.classList.add('sermon-print-mode');
     document.body.classList.add('sermon-print-mode');
     const cleanup = ()=>{
+      document.documentElement.classList.remove('sermon-print-mode');
       document.body.classList.remove('sermon-print-mode');
       document.title = previousTitle;
       window.removeEventListener('afterprint', cleanup);
@@ -2156,6 +2158,41 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   els.editorPane?.querySelector('#exportWordBtn')?.addEventListener('click', exportSermonToWord);
   els.editorPane?.querySelector('#exportPdfBtn')?.addEventListener('click', exportSermonToPDF);
+
+  // ── Importar un documento Word (.docx) al bosquejo — convertido a HTML en
+  // el navegador con mammoth.js (sin backend), igual que el resto de este
+  // bloque. Sirve también para .docx exportados desde Google Docs, que usan
+  // el mismo formato de archivo.
+  async function importSermonFromWord(file){
+    if(!sermonEditor || !file) return;
+    const btn = document.getElementById('importWordBtn');
+    const originalLabel = btn?.textContent;
+    if(btn){ btn.disabled = true; btn.textContent = t('predicas.importandoBtn'); }
+    try{
+      if(!window.mammoth) await loadScriptOnce('https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js');
+      const arrayBuffer = await file.arrayBuffer();
+      const result = await window.mammoth.convertToHtml({ arrayBuffer });
+      if(!result.value.trim()) throw new Error('empty-document');
+      sermonEditor.insertContent(result.value);
+      sermonEditorContent = sermonEditor.getContent();
+      sermonDirty = true;
+      toast(t('predicas.importarWordExitoToast'));
+    }catch(error){
+      console.error('[sermon] no se pudo importar el documento Word', error);
+      toast(t('predicas.importarWordErrorToast'));
+    } finally {
+      if(btn){ btn.disabled = false; btn.textContent = originalLabel; }
+    }
+  }
+  {
+    const importWordInput = document.getElementById('importWordInput');
+    els.editorPane?.querySelector('#importWordBtn')?.addEventListener('click', ()=> importWordInput?.click());
+    importWordInput?.addEventListener('change', async ()=>{
+      const file = importWordInput.files?.[0];
+      if(file) await importSermonFromWord(file);
+      importWordInput.value = '';
+    });
+  }
 
   // ── Índice de encabezados de la prédica actual — desplegable para saltar
   // dentro de un bosquejo largo sin depender del Ctrl+F del navegador, que no
