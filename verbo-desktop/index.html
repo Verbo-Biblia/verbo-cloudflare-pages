@@ -12,7 +12,7 @@
   <link rel="canonical" href="https://verbobiblia.com/verbo-desktop/">
   <link rel="icon" type="image/png" sizes="192x192" href="../biblia/assets/icons/icon-192.png">
   <link rel="apple-touch-icon" href="../biblia/assets/icons/icon-192.png">
-  <meta name="theme-color" content="#16657D">
+  <meta name="theme-color" content="#0B2A56">
   <title>Verbo Desktop</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,8 +48,8 @@
         <p class="hero-lead" data-i18n="heroLead">Verbo reúne módulos compatibles de e-Sword, MySword y Verbo en una sola aplicación de escritorio para Linux, macOS y Windows.</p>
         <div class="platform-row" aria-label="Platforms">
           <span class="platform linux"><span class="platform-icon">🐧</span>Linux</span>
-          <span class="platform apple"><span class="platform-icon">●</span>macOS</span>
-          <span class="platform windows"><span class="windows-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Windows</span>
+          <span class="platform apple"><span class="platform-icon">●</span>macOS <em class="soon-tag" data-i18n="soon">Próximamente</em></span>
+          <span class="platform windows"><span class="windows-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Windows <em class="soon-tag" data-i18n="soon">Próximamente</em></span>
         </div>
         <div class="hero-actions">
           <a href="#downloads" class="btn btn-primary" data-download-link="primary" data-i18n="download">Descargar Verbo</a>
@@ -136,12 +136,12 @@
             <p data-i18n="platformLinux">La prioridad del lanzamiento: una biblioteca bíblica amplia en un entorno Linux nativo.</p>
           </article>
           <article class="platform-card reveal delay-1">
-            <div class="card-os"><span class="apple-dot">●</span><strong>macOS</strong></div>
+            <div class="card-os"><span class="apple-dot">●</span><strong>macOS</strong><em class="soon-tag" data-i18n="soon">Próximamente</em></div>
             <div class="device-shell mac"><img src="assets/modo-preparacion.png" alt="Verbo teaching preparation interface" /></div>
             <p data-i18n="platformMac">Importa tus recursos y trabaja en Verbo directamente desde tu Mac.</p>
           </article>
           <article class="platform-card reveal delay-2">
-            <div class="card-os"><span class="windows-mark"><i></i><i></i><i></i><i></i></span><strong>Windows</strong></div>
+            <div class="card-os"><span class="windows-mark"><i></i><i></i><i></i><i></i></span><strong>Windows</strong><em class="soon-tag" data-i18n="soon">Próximamente</em></div>
             <div class="device-shell"><img src="assets/modo-estudio.png" alt="Verbo study interface" /></div>
             <p data-i18n="platformWindows">Una nueva alternativa para reunir recursos, estudio y preparación en un solo entorno.</p>
           </article>
@@ -210,12 +210,18 @@
     <section id="downloads" class="download-band">
       <div class="section-shell download-inner reveal">
         <img src="assets/verbo-icon.png" alt="" />
-        <div><span class="eyebrow" data-i18n="downloadEyebrow">VERBO DESKTOP</span><h2 data-i18n="downloadTitle">Tu biblioteca. Tu sistema. Tu espacio de estudio.</h2><p data-i18n="downloadBody">Disponible para Linux, macOS y Windows. Los enlaces de descarga se conectarán a los paquetes finales en la integración.</p></div>
+        <div><span class="eyebrow" data-i18n="downloadEyebrow">VERBO DESKTOP</span><h2 data-i18n="downloadTitle">Tu biblioteca. Tu sistema. Tu espacio de estudio.</h2><p data-i18n="downloadBody">Paquetes de Linux disponibles (.deb y .rpm, versión de desarrollo). macOS y Windows llegarán próximamente.</p></div>
         <div class="download-actions">
-          <a href="#" data-download-linux class="btn btn-primary">Linux</a>
-          <a href="#" data-download-mac class="btn btn-secondary">macOS</a>
-          <a href="#" data-download-windows class="btn btn-secondary">Windows</a>
+          <a href="https://mega.nz/file/OkJyGCLR#l9pe63XuQME7DV7HKYEFX9G2F2eqqqh03liIagnHqO4" target="_blank" rel="noopener noreferrer" data-download-linux class="btn btn-primary">Linux (.deb)</a>
+          <a href="https://mega.nz/file/qpBSHawL#EkxQ6Ur3aSxD-9lOig3A4JcDue-mEkNUbORG52rU8qU" target="_blank" rel="noopener noreferrer" data-download-linux-rpm class="btn btn-secondary">Linux (.rpm)</a>
+          <a href="#" data-download-mac class="btn btn-secondary is-soon" aria-disabled="true">macOS <em class="soon-tag" data-i18n="soon">Próximamente</em></a>
+          <a href="#" data-download-windows class="btn btn-secondary is-soon" aria-disabled="true">Windows <em class="soon-tag" data-i18n="soon">Próximamente</em></a>
         </div>
+        <form class="report-form" id="reportForm">
+          <p class="report-form__label" data-i18n="reportLabel">¿Encontraste un error? Cuéntanoslo.</p>
+          <textarea id="reportText" data-i18n-placeholder="reportPlaceholder" placeholder="Describe brevemente el problema que encontraste..." rows="3" required></textarea>
+          <button type="submit" class="btn btn-secondary" data-i18n="reportSend">Enviar reporte</button>
+        </form>
       </div>
     </section>
   </main>

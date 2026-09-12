@@ -19,7 +19,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
 <link rel="canonical" href="https://verbobiblia.com/">
 <link rel="icon" type="image/png" sizes="192x192" href="biblia/assets/icons/icon-192.png">
 <link rel="apple-touch-icon" href="biblia/assets/icons/icon-192.png">
-<meta name="theme-color" content="#F5F9FB">
+<meta name="theme-color" content="#FBF1DE">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
@@ -30,10 +30,10 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   /* Portada con la misma paleta del tema Verbo Desktop del resto del sitio
      (ver biblia/assets/style.css :root). */
   :root {
-    --paper: #F5F9FB; --paper-raised: #FFFFFF; --paper-deep: #E3F1F6; --paper-rgb: 245,249,251;
-    --ink: #102534; --ink-soft: #516A79; --ink-rgb: 16,37,52;
-    --wine: #16657D; --wine-soft: #8FC6D8; --wine-rgb: 22,101,125;
-    --rule: #D8E5EB; --rule-strong: #B9CDD8; --gold-glow: #E6B85F;
+    --paper: #FBF1DE; --paper-raised: #FFFBF2; --paper-deep: #EDDFC4; --paper-rgb: 251,241,222;
+    --ink: #0A1B33; --ink-soft: #4C5E78; --ink-rgb: 10,27,51;
+    --wine: #0B2A56; --wine-soft: #4C6B99; --wine-rgb: 11,42,86;
+    --rule: #E9DCC2; --rule-strong: #D8C49A; --gold-glow: #C8862E;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -204,8 +204,8 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
 
   .card {
     position: relative;
-    background: var(--paper-raised);
-    border: 1px solid var(--rule);
+    background: var(--wine);
+    border: 1px solid var(--wine);
     border-radius: 12px;
     min-height: clamp(132px, 18vh, 174px);
     padding: clamp(1rem, 2vw, 1.5rem);
@@ -214,24 +214,25 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
     align-items: flex-start;
     justify-content: space-between;
     gap: 0.75rem;
-    transition: border-color 0.15s ease, background 0.15s ease;
+    box-shadow: 0 10px 26px rgba(16, 37, 52, .12);
+    transition: background 0.15s ease, box-shadow 0.15s ease;
   }
 
   .card:hover {
-    border-color: var(--wine-soft);
-    background: color-mix(in srgb, var(--paper-raised) 92%, var(--wine) 8%);
+    background: #071f42;
+    box-shadow: 0 14px 32px rgba(16, 37, 52, .2);
   }
 
   .card-icon {
     width: clamp(32px, 3vw, 40px);
     height: clamp(32px, 3vw, 40px);
-    color: var(--wine);
+    color: #fff;
     flex-shrink: 0;
   }
 
   .card h3 {
     font-size: clamp(1.05rem, 1.7vw, 1.35rem);
-    color: var(--ink);
+    color: #fff;
   }
 
   /* ---------- Tarjeta "Verbo Desktop" — primera del grid, prominente y
@@ -256,6 +257,10 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   .card--desktop .card-icon {
     width: clamp(36px, 3.4vw, 46px);
     height: clamp(36px, 3.4vw, 46px);
+    color: var(--wine);
+  }
+  .card--desktop h3 {
+    color: var(--ink);
   }
   .card--desktop-body {
     display: flex;

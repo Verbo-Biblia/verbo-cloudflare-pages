@@ -18,10 +18,10 @@
 :root {
   /* Usada por .library-rail__btn (único uso en el archivo) — no estaba
      definida acá, así que esa sombra nunca se pintaba. Mismo tinte navy
-     que el resto de las sombras del tema Desktop (rgba(8,40,66,...)), con
+     que el resto de las sombras del tema Desktop (rgba(11,42,86,...)), con
      blur/opacidad ajustados para un botón chico de 44px que la necesita
      siempre visible, no solo en hover. */
-  --shadow-soft: 0 2px 6px rgba(8, 40, 66, .16);
+  --shadow-soft: 0 2px 6px rgba(11,42,86, .16);
 
   --font-display: Georgia, 'Times New Roman', serif;
   --font-body: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -276,7 +276,7 @@ body {
 
 .version-picker__option:hover,
 .version-picker__option--active {
-  background: var(--paper-tint, #EEF6FA);
+  background: var(--paper-tint, #F3E8CD);
 }
 
 .version-picker__option-full {
@@ -347,7 +347,7 @@ body {
   flex-shrink: 0;
   border: none;
   background: none;
-  color: var(--wine, #16657D);
+  color: var(--wine, #0B2A56);
   /* Opacidad de reposo más alta y padding generoso: en touch no existe
      :hover, así que el botón más usado de la app (cambiar de capítulo) no
      puede depender de un hover para verse ni para tener un área táctil
@@ -489,7 +489,7 @@ body {
 .original-token-detail__linguistic li b { font-family:Georgia,'Times New Roman',serif; font-size:1rem; }
 .original-token-detail__linguistic li small { grid-column:2; color:var(--muted); }
 .original-token-detail__linguistic > small { display:block; color:var(--muted); line-height:1.45; overflow-wrap:anywhere; }
-.original-status { display:inline-block; margin:3px 3px 0; border-radius:999px; padding:2px 6px; background:rgba(22,101,125,.09); font:9px var(--font-mono); }
+.original-status { display:inline-block; margin:3px 3px 0; border-radius:999px; padding:2px 6px; background:rgba(11,42,86,.09); font:9px var(--font-mono); }
 .original-status--reviewed { color:#35623b; background:rgba(53,98,59,.11); }
 .original-status--ambiguous,.original-status--unresolved { color:#8A6A1F; background:rgba(230,184,95,.18); }
 .interlinear-source { display:grid; gap:2px; margin-bottom:14px; padding:10px; border:1px solid var(--line); border-radius:9px; }
@@ -1329,7 +1329,7 @@ body {
   padding: 8px 10px;
   border-left: 3px solid var(--wine-soft);
   background: color-mix(in srgb, var(--wine-soft) 7%, transparent);
-  color: var(--text-muted, #516A79);
+  color: var(--text-muted, #4C5E78);
   font-size: 12px;
   font-style: italic;
 }
@@ -1546,11 +1546,11 @@ button:focus-visible,
 }
 
 /* Strong y diccionario */
-.strongs-tag{margin-left:.18rem;padding:.05rem .25rem;border:0;border-radius:.3rem;background:rgba(198,155,60,.13);color:var(--wine,#16657D);font-size:.62em;font-weight:700;vertical-align:super;cursor:pointer;line-height:1.15}
-.strongs-tag:hover,.strongs-tag:focus{background:rgba(198,155,60,.26);outline:1px solid rgba(22,101,125,.25)}
+.strongs-tag{margin-left:.18rem;padding:.05rem .25rem;border:0;border-radius:.3rem;background:rgba(198,155,60,.13);color:var(--wine,#0B2A56);font-size:.62em;font-weight:700;vertical-align:super;cursor:pointer;line-height:1.15}
+.strongs-tag:hover,.strongs-tag:focus{background:rgba(198,155,60,.26);outline:1px solid rgba(11,42,86,.25)}
 .dict-entry__source{margin:.15rem 0 1rem;color:#806f62;font-size:.85rem}
 .dict-entry__def p{margin:.75rem 0;line-height:1.62}
-.dict-entry__def a{color:var(--wine,#16657D);font-weight:650;text-decoration:none}
+.dict-entry__def a{color:var(--wine,#0B2A56);font-weight:650;text-decoration:none}
 .word-segment{display:inline}
 
 /* Búsqueda */
@@ -1558,11 +1558,11 @@ button:focus-visible,
 .search-panel-form { display:grid; grid-template-columns:minmax(0,1fr) auto auto; gap:8px; width:100%; }
 .search-panel-input,.search-panel-select,.search-panel-button { border:1px solid rgba(126,145,156,.25); border-radius:6px; padding:9px 10px; font:inherit; background:#FFFFFF; }
 .search-panel-input:focus,.search-panel-select:focus { outline:2px solid rgba(198,155,60,.22); border-color:#8A6A1F; }
-.search-panel-button { background:#16657D; color:#fff; cursor:pointer; border-color:#16657D; }
-.search-summary { padding:4px 2px 12px; font-size:.82rem; color:#516A79; }
+.search-panel-button { background:#0B2A56; color:#fff; cursor:pointer; border-color:#0B2A56; }
+.search-summary { padding:4px 2px 12px; font-size:.82rem; color:#4C5E78; }
 .search-result { width:100%; display:block; text-align:left; padding:12px 8px; border:0; border-bottom:1px solid rgba(126,145,156,.13); background:transparent; cursor:pointer; }
 .search-result:hover { background:rgba(198,155,60,.07); }
-.search-result__ref { display:block; font-weight:700; color:#16657D; margin-bottom:5px; }
+.search-result__ref { display:block; font-weight:700; color:#0B2A56; margin-bottom:5px; }
 .search-result__text { display:block; color:#3f382f; line-height:1.5; }
 @media (max-width:760px){ .search-panel-form{grid-template-columns:1fr}.search-panel-button{width:100%} .search-trigger{display:flex} }
 
@@ -1651,7 +1651,7 @@ button:focus-visible,
   align-items: baseline;
   flex-wrap: wrap;
 }
-.search-summary strong { color: var(--wine,#16657D); }
+.search-summary strong { color: var(--wine,#0B2A56); }
 .search-pagination {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -1666,12 +1666,12 @@ button:focus-visible,
   padding: 9px 12px;
   font: inherit;
   background: #FFFFFF;
-  color: var(--wine,#16657D);
+  color: var(--wine,#0B2A56);
   cursor: pointer;
 }
 .search-page-button:last-child { justify-self: end; }
 .search-page-button:disabled { opacity: .42; cursor: default; }
-.search-page-status { font-size: .82rem; color: #516A79; white-space: nowrap; }
+.search-page-status { font-size: .82rem; color: #4C5E78; white-space: nowrap; }
 @media (max-width:760px) {
   .search-panel-form {
     grid-template-columns: 1fr;
@@ -1700,8 +1700,8 @@ button:focus-visible,
   background: rgba(255,253,248,.94);
   backdrop-filter: blur(18px) saturate(1.6);
   -webkit-backdrop-filter: blur(18px) saturate(1.6);
-  border: 1px solid rgba(22,101,125,.14);
-  box-shadow: 0 8px 32px rgba(8,40,66,.22), 0 1px 3px rgba(8,40,66,.1);
+  border: 1px solid rgba(11,42,86,.14);
+  box-shadow: 0 8px 32px rgba(11,42,86,.22), 0 1px 3px rgba(11,42,86,.1);
   white-space: nowrap;
   transform: scale(var(--verse-action-scale));
   transform-origin: center bottom;
@@ -1722,7 +1722,7 @@ button:focus-visible,
 }
 .verse-action-bar__sep {
   width: 1px; height: 20px;
-  background: rgba(22,101,125,.16);
+  background: rgba(11,42,86,.16);
   flex-shrink: 0;
   margin: 0 2px;
 }
@@ -1749,18 +1749,18 @@ button:focus-visible,
   font-size: 10px; line-height: 1;
   display: flex; align-items: center; justify-content: center;
 }
-.verse-swatch--erase:hover { border-color: rgba(22,101,125,.5); color: var(--wine,#16657D); }
+.verse-swatch--erase:hover { border-color: rgba(11,42,86,.5); color: var(--wine,#0B2A56); }
 .verse-action-btn {
   border: none;
   background: none;
-  color: var(--wine,#16657D);
+  color: var(--wine,#0B2A56);
   font: 600 .8rem/1 inherit;
   padding: 5px 8px;
   border-radius: 7px;
   cursor: pointer;
   transition: background .14s;
 }
-.verse-action-btn:hover { background: rgba(22,101,125,.09); }
+.verse-action-btn:hover { background: rgba(11,42,86,.09); }
 .verse-action-btn--secondary { font-weight: 500; opacity: .8; }
 .verse-action-btn--icon {
   display: inline-flex;
@@ -1791,8 +1791,8 @@ button:focus-visible,
   transition: background .14s, color .14s;
   display: flex; align-items: center; justify-content: center;
 }
-.verse-action-bar__close:hover { background: rgba(22,101,125,.09); color: var(--wine,#16657D); }
-.verse--selected { box-shadow: inset 3px 0 0 var(--wine,#16657D); }
+.verse-action-bar__close:hover { background: rgba(11,42,86,.09); color: var(--wine,#0B2A56); }
+.verse--selected { box-shadow: inset 3px 0 0 var(--wine,#0B2A56); }
 .verse.hl-yellow { background: rgba(254,240,138,.38); }
 .verse.hl-green  { background: rgba(134,239,172,.38); }
 .verse.hl-blue   { background: rgba(147,197,253,.38); }
@@ -1801,10 +1801,10 @@ button:focus-visible,
 .verse.hl-violet { background: rgba(216,180,254,.38); }
 .mini-copy-button,
 .note-card__copy {
-  border: 1px solid rgba(22,101,125,.2);
+  border: 1px solid rgba(11,42,86,.2);
   border-radius: 999px;
   padding: 7px 11px;
-  background: var(--wine,#16657D);
+  background: var(--wine,#0B2A56);
   color: #fff;
   font: inherit;
   font-size: .82rem;
@@ -1812,7 +1812,7 @@ button:focus-visible,
 }
 .note-card__copy {
   background: transparent;
-  color: var(--wine,#16657D);
+  color: var(--wine,#0B2A56);
   margin: 8px 0 12px;
   padding: 6px 10px;
 }
@@ -2038,7 +2038,7 @@ button:focus-visible,
   padding: 8px 10px;
   border-left: 3px solid var(--wine-soft);
   background: color-mix(in srgb, var(--wine-soft) 7%, transparent);
-  color: var(--text-muted, #516A79);
+  color: var(--text-muted, #4C5E78);
   font-size: 12px;
   font-style: italic;
 }
@@ -2075,7 +2075,7 @@ button:focus-visible,
   border-radius: 14px;
   overflow: hidden;
   background: var(--paper);
-  box-shadow: 0 8px 28px rgba(8, 40, 66, .12);
+  box-shadow: 0 8px 28px rgba(11,42,86, .12);
 }
 
 /* El Atlas ya contiene el único encabezado visible. Conservamos el botón de
@@ -2215,7 +2215,7 @@ button:focus-visible,
     left: var(--rail-width);
     width: min(88vw, var(--panel-width));
     z-index: 35;
-    box-shadow: 24px 0 60px rgba(8, 40, 66, .14);
+    box-shadow: 24px 0 60px rgba(11,42,86, .14);
   }
   .side-panel--left.side-panel--open .side-panel__inner {
     width: min(88vw, var(--panel-width));
@@ -2436,12 +2436,12 @@ button:focus-visible,
 .license-page__intro { display:flex; gap:14px; align-items:flex-start; padding:4px 0 18px; border-bottom:1px solid rgba(126,145,156,.18); margin-bottom:14px; }
 .license-page__intro h2 { margin:0 0 7px; font-family:Georgia,serif; font-size:1.18rem; color:var(--ink); }
 .license-page__intro p { margin:0; line-height:1.55; color:var(--muted); }
-.license-page__seal { flex:0 0 42px; height:42px; border:1px solid rgba(22,101,125,.45); border-radius:50%; display:grid; place-items:center; font-family:Georgia,serif; font-weight:700; color:#16657D; background:rgba(22,101,125,.06); }
+.license-page__seal { flex:0 0 42px; height:42px; border:1px solid rgba(11,42,86,.45); border-radius:50%; display:grid; place-items:center; font-family:Georgia,serif; font-weight:700; color:#0B2A56; background:rgba(11,42,86,.06); }
 .license-card { padding:14px 0; border-bottom:1px solid rgba(126,145,156,.15); }
 .license-card h3 { margin:0 0 7px; font-size:.98rem; color:var(--ink); }
 .license-card p { margin:0 0 8px; line-height:1.56; color:var(--muted); }
-.license-card a { color:#16657D; text-decoration:none; border-bottom:1px solid rgba(22,101,125,.28); font-size:.9rem; }
-.license-card a:hover { border-bottom-color:#16657D; }
+.license-card a { color:#0B2A56; text-decoration:none; border-bottom:1px solid rgba(11,42,86,.28); font-size:.9rem; }
+.license-card a:hover { border-bottom-color:#0B2A56; }
 .license-card__links { display:flex; flex-wrap:wrap; gap:12px; }
 .license-card--notice { margin-top:14px; padding:14px; border:1px solid rgba(198,155,60,.22); border-radius:8px; background:rgba(198,155,60,.06); }
 .license-page__footer { margin:18px 0 0; font-size:.86rem; line-height:1.5; color:var(--muted); font-style:italic; }
@@ -2459,7 +2459,7 @@ button:focus-visible,
 /* Diccionario Strong Verbo */
 .lexicon-entry-head{display:flex;gap:.75rem;align-items:flex-start;padding-bottom:.65rem;border-bottom:1px solid var(--border,#ddd)}
 .lexicon-entry-head h3{margin:0;font-size:1.28rem}
-.lexicon-code{display:inline-flex;align-items:center;justify-content:center;min-width:4.4rem;padding:.3rem .55rem;border-radius:999px;background:var(--accent-soft,#E3F1F6);font-weight:800;letter-spacing:.03em}
+.lexicon-code{display:inline-flex;align-items:center;justify-content:center;min-width:4.4rem;padding:.3rem .55rem;border-radius:999px;background:var(--accent-soft,#EDDFC4);font-weight:800;letter-spacing:.03em}
 .lexicon-pronunciation,.lexicon-transliteration{margin:.2rem 0 0;font-size:.9rem;opacity:.8}
 .lexicon-section{margin-top:.85rem}
 .lexicon-section h4{margin:0 0 .25rem;font-size:.9rem;text-transform:uppercase;letter-spacing:.04em;opacity:.72}
@@ -2539,8 +2539,8 @@ button:focus-visible,
 }
 
 .sermon-mode-toggle--active {
-  border-color: var(--wine, #16657D);
-  color: var(--wine, #16657D);
+  border-color: var(--wine, #0B2A56);
+  color: var(--wine, #0B2A56);
   background: var(--gold-glow, rgba(230,184,95,.16));
 }
 
