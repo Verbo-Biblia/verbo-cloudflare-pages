@@ -24,3 +24,56 @@
     });
   });
 })();
+
+/* Enlaces externos cuando el sitio corre embebido en la app Android
+   (sección Libros, dentro de un <iframe>). La app carga la primera página
+   con "?verboEmbed=app" en la URL; aquí lo guardamos en window.name porque
+   sobrevive a la navegación interna dentro del mismo iframe (a diferencia
+   de la query string, que se pierde en cuanto el usuario hace clic a otra
+   página). Con eso marcado, cualquier <a> a un dominio distinto de este
+   mismo host se cancela y se le pide a la app (vía postMessage) que lo
+   abra con el navegador del sistema en vez de navegar el iframe fuera del
+   sitio. Los enlaces al mismo dominio no se tocan — deben seguir
+   navegando el iframe con normalidad. No tiene ningún efecto fuera de la
+   app: en una visita normal por navegador esto queda completamente
+   inactivo. */
+(function(){
+  'use strict';
+  if (window.top === window.self) return; // no estamos en un iframe, no aplica
+
+  try {
+    if (new URLSearchParams(location.search).get('verboEmbed') === 'app') {
+      window.name = 'verboEmbedApp';
+    }
+  } catch (e) { /* URLSearchParams no disponible: ignorar */ }
+
+  if (window.name !== 'verboEmbedApp') return;
+
+  document.addEventListener('click', (event) => {
+    const anchor = event.target.closest && event.target.closest('a[href]');
+    if (!anchor) return;
+    const href = anchor.getAttribute('href') || '';
+    if (!href || /^(#|javascript:|mailto:|tel:)/i.test(href)) return;
+
+    let target;
+    try {
+      target = new URL(href, location.href);
+    } catch (e) {
+      return; // href no parseable, dejar que el navegador decida
+    }
+
+    if (target.hostname === location.hostname) {
+      // Mismo sitio: si abría en pestaña nueva, forzar que navegue el
+      // propio iframe en vez de una pestaña nueva que el WebView no
+      // puede mostrar.
+      if (anchor.target && anchor.target !== '_self') {
+        event.preventDefault();
+        location.href = target.href;
+      }
+      return;
+    }
+
+    event.preventDefault();
+    window.parent.postMessage({ type: 'verbo:open-external', url: target.href }, '*');
+  }, true);
+})();
