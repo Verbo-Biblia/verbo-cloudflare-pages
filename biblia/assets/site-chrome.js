@@ -58,7 +58,7 @@
   // sección que abrió la app. La flecha que vuelve del libro al índice de su sección se
   // queda, para no dejar a nadie sin salida. En la web normal no aplica.
   function ocultarSalidas() {
-    document.querySelectorAll('.static-page__brand, .app-header__brand, .static-page__back, .app-header__portal-back, .quick-nav a').forEach((a) => {
+    document.querySelectorAll('.static-page__brand, .app-header__brand, .static-page__back, .app-header__portal-back, .quick-nav a, a[href*="mi-biblioteca"]').forEach((a) => {
       let destino;
       try {
         destino = new URL(a.getAttribute('href') || '', location.href);
@@ -66,7 +66,9 @@
         return;
       }
       const esLogo = a.matches('.static-page__brand, .app-header__brand');
-      if (esLogo || destino.hostname !== location.hostname || !destino.pathname.startsWith(seccion)) {
+      // "Mi biblioteca" de la web tampoco: dentro de la app vive en la app.
+      const esMiBiblioteca = destino.pathname.startsWith('/libreria/mi-biblioteca');
+      if (esLogo || esMiBiblioteca || destino.hostname !== location.hostname || !destino.pathname.startsWith(seccion)) {
         a.style.display = 'none';
       }
     });

@@ -20,6 +20,56 @@
 
   var TIPO = "libreria-libro";
 
+  // ---- Dentro de la app Android: Mi biblioteca vive en la APP ----
+  // (Nueva App Android, src/libros/biblioteca.ts). Guardar el libro y el
+  // marcador de capítulo se le avisan por postMessage y la app los guarda
+  // como enlaces (y los respalda en el Google Drive del usuario); aquí no
+  // se toca VerboBackup. site-chrome.js (cargado antes) deja marcado
+  // window.name al abrir la primera página dentro de la app.
+  var libroActual = window.__LIBRERIA_BOOK__;
+  var enApp = window.top !== window.self && String(window.name).split("|")[0] === "verboEmbedApp";
+  if (enApp && libroActual && libroActual.id) {
+    var ORIGEN_APP = "https://localhost";
+    var estado = { guardado: false, marcador: null };
+    var avisar = function (extra) {
+      var msg = { type: "verbo:biblioteca-libro", id: libroActual.id, titulo: libroActual.title || "", url: location.pathname + location.hash };
+      for (var k in extra) msg[k] = extra[k];
+      window.parent.postMessage(msg, ORIGEN_APP);
+    };
+    var listo = new Promise(function (resolve) {
+      window.addEventListener("message", function (e) {
+        if (e.source !== window.parent || e.origin !== ORIGEN_APP) return;
+        var d = e.data;
+        if (!d || d.type !== "verbo:biblioteca-estado" || d.id !== libroActual.id) return;
+        estado = { guardado: !!d.guardado, marcador: typeof d.marcador === "number" ? d.marcador : null };
+        resolve();
+      });
+      window.parent.postMessage({ type: "verbo:biblioteca-pedir", id: libroActual.id }, ORIGEN_APP);
+      setTimeout(resolve, 1500); // app vieja o sin respuesta: se sigue sin datos
+    });
+    // Cada cambio de capítulo actualiza el enlace de "seguir leyendo".
+    window.addEventListener("hashchange", function () { avisar({}); });
+
+    window.VerboMiBiblioteca = {
+      enApp: true,
+      ready: function () { return listo; },
+      has: function () { return estado.guardado; },
+      add: function () { estado.guardado = true; avisar({ guardado: true }); },
+      remove: function () { estado.guardado = false; avisar({ guardado: false }); },
+      toggle: function () { estado.guardado = !estado.guardado; avisar({ guardado: estado.guardado }); return estado.guardado; },
+      touchOpened: function () { avisar({}); },
+      sortedIds: function () { return []; },
+      // bookmark del lector ({ chapter } desde 0) o null.
+      marcador: function (id, bookmark) {
+        estado.marcador = bookmark ? bookmark.chapter + 1 : null;
+        avisar({ marcador: estado.marcador });
+      },
+      // Capítulo marcado según la app (desde 1), o null.
+      marcadorGuardado: function () { return estado.marcador; }
+    };
+    return;
+  }
+
   function backupReady() {
     return window.VerboBackup ? window.VerboBackup.init() : Promise.resolve(null);
   }

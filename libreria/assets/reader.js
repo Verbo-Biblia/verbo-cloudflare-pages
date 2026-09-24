@@ -982,6 +982,9 @@
         bookmark = { chapter: current, ts: Date.now() };
       }
       saveJSON(BM_KEY, bookmark);
+      // Dentro de la app Android el marcador se guarda también en la app
+      // (Mi biblioteca de la app, ver mi-biblioteca.js).
+      if (window.VerboMiBiblioteca && window.VerboMiBiblioteca.marcador) window.VerboMiBiblioteca.marcador(cfg.id, bookmark);
       var t = window.VerboI18n ? window.VerboI18n.t : function (k) { return k; };
       ui.bmBtn.classList.toggle("is-active", !!bookmark);
       ui.bmBtn.textContent = bookmark ? t("reader.marked") : t("reader.markChapter");
@@ -997,6 +1000,16 @@
     // recién cuando mibibReady confirma que ya se puede consultar sin
     // arriesgar un falso "no guardado" (ver mibibReady más arriba).
     mibibReady.then(function () {
+      // App Android en un teléfono nuevo: el marcador vuelve desde la copia
+      // de la app aunque este WebView no lo tenga guardado.
+      var mApp = window.VerboMiBiblioteca && window.VerboMiBiblioteca.marcadorGuardado ? window.VerboMiBiblioteca.marcadorGuardado() : null;
+      if (mApp && !bookmark && mApp <= chapters.length) {
+        bookmark = { chapter: mApp - 1, ts: Date.now() };
+        saveJSON(BM_KEY, bookmark);
+        var tr = window.VerboI18n ? window.VerboI18n.t : function (k) { return k; };
+        ui.bmBtn.classList.toggle("is-active", bookmark.chapter === current);
+        ui.bmBtn.textContent = bookmark.chapter === current ? tr("reader.marked") : tr("reader.markChapter");
+      }
       if (isSavedToMiBiblioteca()) touchMiBibliotecaOpened();
       updateSaveBookUI(ui);
       maybeShowSaveGlow(ui);
