@@ -54,11 +54,11 @@
   const seccion = window.name.split('|')[1] || '/';
 
   // Dentro de la app se ocultan el logo "Verbo" del encabezado (lleva a la
-  // portada) y las flechas de volver que saldrían de la sección que abrió
-  // la app. La flecha que vuelve del libro al índice de su sección se
+  // portada) y las flechas de volver y accesos rápidos que saldrían de la
+  // sección que abrió la app. La flecha que vuelve del libro al índice de su sección se
   // queda, para no dejar a nadie sin salida. En la web normal no aplica.
   function ocultarSalidas() {
-    document.querySelectorAll('.static-page__brand, .app-header__brand, .static-page__back, .app-header__portal-back').forEach((a) => {
+    document.querySelectorAll('.static-page__brand, .app-header__brand, .static-page__back, .app-header__portal-back, .quick-nav a').forEach((a) => {
       let destino;
       try {
         destino = new URL(a.getAttribute('href') || '', location.href);
