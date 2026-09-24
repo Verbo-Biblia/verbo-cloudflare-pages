@@ -41,13 +41,38 @@
   'use strict';
   if (window.top === window.self) return; // no estamos en un iframe, no aplica
 
+  // window.name = "verboEmbedApp|<carpeta de la sección>": la sección es la
+  // carpeta de la primera página que abrió la app (/libreria/,
+  // /recursos/devocionales/...), ver ocultarSalidas() más abajo.
   try {
     if (new URLSearchParams(location.search).get('verboEmbed') === 'app') {
-      window.name = 'verboEmbedApp';
+      window.name = 'verboEmbedApp|' + location.pathname.replace(/[^/]*$/, '');
     }
   } catch (e) { /* URLSearchParams no disponible: ignorar */ }
 
-  if (window.name !== 'verboEmbedApp') return;
+  if (window.name.split('|')[0] !== 'verboEmbedApp') return;
+  const seccion = window.name.split('|')[1] || '/';
+
+  // Dentro de la app se ocultan el logo "Verbo" del encabezado (lleva a la
+  // portada) y las flechas de volver que saldrían de la sección que abrió
+  // la app. La flecha que vuelve del libro al índice de su sección se
+  // queda, para no dejar a nadie sin salida. En la web normal no aplica.
+  function ocultarSalidas() {
+    document.querySelectorAll('.static-page__brand, .app-header__brand, .static-page__back, .app-header__portal-back').forEach((a) => {
+      let destino;
+      try {
+        destino = new URL(a.getAttribute('href') || '', location.href);
+      } catch (e) {
+        return;
+      }
+      const esLogo = a.matches('.static-page__brand, .app-header__brand');
+      if (esLogo || destino.hostname !== location.hostname || !destino.pathname.startsWith(seccion)) {
+        a.style.display = 'none';
+      }
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', ocultarSalidas);
+  else ocultarSalidas();
 
   document.addEventListener('click', (event) => {
     const anchor = event.target.closest && event.target.closest('a[href]');
