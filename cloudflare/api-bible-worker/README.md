@@ -6,7 +6,9 @@ Este Worker cumple tres funciones:
    capítulos y buscar en LBLA, NTV y NASB 2020.
 2. Sincroniza `verbo-datos` (notas, marcadores, subrayados) entre dispositivos
    vía email + magic link, sin cuentas ni contraseñas. Ver
-   `biblia/assets/sync.js` para el cliente.
+   `biblia/assets/sync.js` para el cliente. La app Android usa una variante
+   con login nativo de Google en vez de magic link — ver
+   "Login nativo con Google" más abajo.
 3. Traduce texto EN↔ES vía `POST /translate`, como reemplazo del endpoint no
    oficial de Google Translate (`translate.googleapis.com`). Ver detalle abajo.
 
@@ -74,3 +76,41 @@ enviar el correo, y luego solo se conserva un hash SHA-256 del email como
 identificador — nunca el email en texto plano en el blob de datos. Es
 sincronización ligera para notas de estudio bíblico, no autenticación
 robusta: no usarla para datos sensibles.
+
+## Login nativo con Google (app Android) — `POST /v1/sync/google-auth`
+
+Alternativa a "correo + magic link" para la app Android: el cliente hace el
+login con Credential Manager (plugin `@capawesome/capacitor-google-sign-in`),
+recibe un `idToken` de Google, y lo manda a este endpoint. El Worker lo
+verifica contra las claves públicas de Google (vía `jose`, JWKS — sin llamar
+a `/tokeninfo`, que Google desaconseja en producción por throttling) y crea
+una sesión idéntica a la de `link-confirm`: mismo `emailHash`, mismo blob de
+datos. **No toca nada del flujo de magic link/Resend** — ambos caminos
+conviven y llegan al mismo dato si el email coincide.
+
+Body: `{ "idToken": "<jwt de Google>" }`. Responde igual que `link-confirm`:
+`{ "sessionToken": "...", "emailMasked": "..." }`.
+
+**PENDIENTE — falta crear `GOOGLE_WEB_CLIENT_ID` (Juan):**
+
+1. En Google Cloud Console, crea un proyecto propio de Verbo (si no existe
+   uno ya para esto) y dentro de él, en "Credenciales", un **OAuth Client ID
+   tipo "Web application"** — sí, "Web", aunque el login sea desde la app
+   Android; Credential Manager lo exige así. Ese es el valor que va aquí.
+2. Desde esta carpeta: `npx wrangler secret put GOOGLE_WEB_CLIENT_ID` y pega
+   el Client ID (termina en `.apps.googleusercontent.com`).
+3. El mismo valor va también del lado de la app Android — ver
+   `Nueva App Android/` (variable `GOOGLE_WEB_CLIENT_ID` en su propia
+   config, pendiente de completar ahí también).
+4. Vuelve a desplegar: `npx wrangler deploy`.
+
+Hasta que se complete el secret, el endpoint responde
+`500 GOOGLE_WEB_CLIENT_ID no está configurada` — falla explícito, no
+silencioso.
+
+Además necesitarás un **OAuth Client ID tipo "Android"** por cada
+certificado de firma (uno para el keystore de debug, otro para el de
+producción) — ese no se pega en el Worker, es configuración del lado de
+Google Cloud Console que Credential Manager valida directo contra Google,
+sin pasar por aquí. Ver el reporte de investigación de PASO 0 para el
+detalle de cuáles SHA-1 usar.

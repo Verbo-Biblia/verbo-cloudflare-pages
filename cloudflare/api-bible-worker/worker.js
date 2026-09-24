@@ -1,4 +1,5 @@
 import studyAssistantCatalogData from './study-assistant-catalog.json' with { type: 'json' };
+import { createRemoteJWKSet, jwtVerify } from 'jose';
 
 const API_ROOT = 'https://api.scripture.api.bible';
 const ALLOWED_BIBLES = new Set([
@@ -9,6 +10,14 @@ const ALLOWED_BIBLES = new Set([
 
 const LINK_TTL_SECONDS = 30 * 60; // 30 minutos, expiración del magic link
 const SESSION_TTL_SECONDS = 60 * 60 * 24 * 365; // 1 año, sesión de dispositivo vinculado
+
+// Login nativo con Google (app Android) — alternativa a magic link/Resend,
+// misma sesión/blob de siempre (ver handleGoogleAuth). createRemoteJWKSet
+// cachea las claves públicas de Google en memoria del isolate respetando
+// sus headers de caché: verificar un idToken no hace ninguna llamada de
+// red a Google en el caso común, así que no consume cuota. Se crea una
+// sola vez a nivel de módulo para reutilizar ese caché entre requests.
+const GOOGLE_JWKS = createRemoteJWKSet(new URL('https://www.googleapis.com/oauth2/v3/certs'));
 
 const SYNC_EMAIL = {
   es: {
@@ -865,6 +874,48 @@ async function handleLinkConfirm(request, env, headers) {
   return jsonOk({ sessionToken, emailMasked: maskEmail(email) }, headers);
 }
 
+// Verifica un ID token de Google (JWT) contra las claves públicas de
+// Google vía JWKS — sin llamar al endpoint /tokeninfo (Google desaconseja
+// usarlo en producción por throttling). Lanza si el token es inválido,
+// expiró, o no fue emitido para GOOGLE_WEB_CLIENT_ID. Devuelve el payload
+// verificado (incluye email, email_verified, etc.).
+async function verifyGoogleIdToken(idToken, webClientId) {
+  const { payload } = await jwtVerify(idToken, GOOGLE_JWKS, {
+    issuer: ['https://accounts.google.com', 'accounts.google.com'],
+    audience: webClientId,
+  });
+  return payload;
+}
+
+// Login nativo con Google (app Android) — misma sesión/blob que ya
+// produce handleLinkConfirm, solo que sin pasar por el magic link de
+// Resend: el cliente ya hizo el login con Credential Manager y nos manda
+// el idToken que Google le dio, aquí solo lo verificamos y confirmamos el
+// email. handleLinkRequest/handleLinkConfirm (web/desktop) no se tocan.
+async function handleGoogleAuth(request, env, headers) {
+  if (!env.SYNC_KV) return jsonError('Sincronización no está configurada', 500, headers);
+  if (!env.GOOGLE_WEB_CLIENT_ID) return jsonError('GOOGLE_WEB_CLIENT_ID no está configurada', 500, headers);
+
+  const body = await readJson(request);
+  const idToken = String(body?.idToken || '').trim();
+  if (!idToken) return jsonError('Falta idToken', 400, headers);
+
+  let payload;
+  try {
+    payload = await verifyGoogleIdToken(idToken, env.GOOGLE_WEB_CLIENT_ID);
+  } catch (error) {
+    return jsonError('Token de Google inválido', 401, headers);
+  }
+  if (!payload.email_verified) return jsonError('Correo de Google no verificado', 401, headers);
+
+  const email = String(payload.email).trim().toLowerCase();
+  const emailHash = await sha256Hex(email);
+  const sessionToken = crypto.randomUUID();
+  await env.SYNC_KV.put(`session:${sessionToken}`, JSON.stringify({ emailHash }), { expirationTtl: SESSION_TTL_SECONDS });
+
+  return jsonOk({ sessionToken, emailMasked: maskEmail(email) }, headers);
+}
+
 async function requireSession(request, env, headers) {
   const token = bearerToken(request);
   if (!token) return { error: jsonError('Falta la sesión de sincronización', 401, headers) };
@@ -933,6 +984,7 @@ async function handleUnlink(request, env, headers) {
 async function handleSync(request, url, env, headers) {
   if (url.pathname === '/v1/sync/link-request' && request.method === 'POST') return handleLinkRequest(request, env, headers);
   if (url.pathname === '/v1/sync/link-confirm' && request.method === 'POST') return handleLinkConfirm(request, env, headers);
+  if (url.pathname === '/v1/sync/google-auth' && request.method === 'POST') return handleGoogleAuth(request, env, headers);
   if (url.pathname === '/v1/sync/unlink' && request.method === 'POST') return handleUnlink(request, env, headers);
   if (url.pathname === '/v1/sync/data' && request.method === 'GET') return handleDataGet(request, env, headers);
   if (url.pathname === '/v1/sync/data' && request.method === 'PUT') return handleDataPut(request, env, headers);
@@ -1345,6 +1397,51 @@ async function handleProyectorEstado(request, url, env, headers) {
   return jsonError('Método no permitido', 405, headers);
 }
 
+// Reclamos de derechos de autor / contenido desde la app Android (pantalla
+// Módulos -> "Enviar reclamo"). Solo texto libre; se reenvía por Resend a
+// RECLAMOS_TO (por defecto soporte@verbobiblia.com). Límite por IP con la
+// Cache API (no KV: evita gastar escrituras de KV, ver incidente de cuota).
+const RECLAMOS_POR_HORA = 5;
+
+function escaparHtmlReclamo(texto) {
+  return texto.replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[c]);
+}
+
+async function handleReclamo(request, env, headers) {
+  if (request.method !== 'POST') return jsonError('Método no permitido', 405, headers);
+  if (!env.RESEND_API_KEY) return jsonError('RESEND_API_KEY no está configurada', 500, headers);
+  const body = await readJson(request);
+  const mensaje = String(body?.mensaje || '').trim();
+  if (mensaje.length < 10) return jsonError('Escribe tu reclamo (mínimo 10 caracteres).', 400, headers);
+  if (mensaje.length > 4000) return jsonError('El reclamo es demasiado largo (máximo 4000 caracteres).', 400, headers);
+
+  const ip = request.headers.get('CF-Connecting-IP') || 'desconocida';
+  const cache = caches.default;
+  const clave = new Request(`https://reclamos.verbo.internal/${encodeURIComponent(ip)}`);
+  const previo = await cache.match(clave);
+  const usados = previo ? Number(await previo.text()) || 0 : 0;
+  if (usados >= RECLAMOS_POR_HORA) return jsonError('Demasiados envíos. Intenta más tarde.', 429, headers);
+  await cache.put(clave, new Response(String(usados + 1), { headers:{ 'Cache-Control':'max-age=3600' } }));
+
+  const resendResponse = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${env.RESEND_API_KEY}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      from: env.RESEND_FROM || 'Verbo <no-reply@verbobiblia.com>',
+      to: [env.RECLAMOS_TO || 'soporte@verbobiblia.com'],
+      subject: 'Reclamo desde Verbo Android',
+      html: `<p><b>Reclamo recibido desde la app Android</b></p>`
+        + `<pre style="white-space:pre-wrap;font-family:inherit">${escaparHtmlReclamo(mensaje)}</pre>`
+        + `<p style="color:#888;font-size:12px">${new Date().toISOString()}</p>`
+    })
+  });
+  if (!resendResponse.ok) return jsonError('No se pudo enviar el reclamo. Intenta más tarde.', 502, headers);
+  return jsonOk({ ok:true }, headers);
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -1354,12 +1451,23 @@ export default {
     if (request.method === 'OPTIONS') return new Response(null, { status:204, headers });
     if (!headers['Access-Control-Allow-Origin']) return jsonError('Origen no autorizado', 403, headers);
 
-    if (url.pathname.startsWith('/v1/sync/')) return handleSync(request, url, env, headers);
-    if (url.pathname.startsWith('/v1/iglesia/')) return handleIglesia(request, url, env, headers);
-    if (url.pathname === '/translate-study-assistant') return handleTranslateStudyAssistant(request, env, headers);
-    if (url.pathname === '/translate') return handleTranslate(request, env, headers);
-    if (url.pathname === '/translate-sermon-doc') return handleTranslateSermonDoc(request, env, headers);
-    if (url.pathname === '/proyector/estado') return handleProyectorEstado(request, url, env, headers);
-    return handleApiBible(request, url, env, headers);
+    // Cualquier excepción no controlada en las rutas de abajo (bug, cuota de
+    // KV agotada, timeout de un fetch externo, etc.) cae aquí. Sin este
+    // try/catch, Cloudflare devuelve su propio 500 genérico SIN los headers
+    // CORS de arriba, y el navegador lo reporta como bloqueo de CORS en vez
+    // de mostrar el error real — ver incidente de KV put() limit exceeded.
+    try {
+      if (url.pathname.startsWith('/v1/sync/')) return await handleSync(request, url, env, headers);
+      if (url.pathname.startsWith('/v1/iglesia/')) return await handleIglesia(request, url, env, headers);
+      if (url.pathname === '/translate-study-assistant') return await handleTranslateStudyAssistant(request, env, headers);
+      if (url.pathname === '/translate') return await handleTranslate(request, env, headers);
+      if (url.pathname === '/translate-sermon-doc') return await handleTranslateSermonDoc(request, env, headers);
+      if (url.pathname === '/proyector/estado') return await handleProyectorEstado(request, url, env, headers);
+      if (url.pathname === '/v1/reclamos') return await handleReclamo(request, env, headers);
+      return await handleApiBible(request, url, env, headers);
+    } catch (error) {
+      console.error(error);
+      return jsonError('Error interno del servidor', 500, headers);
+    }
   }
 };

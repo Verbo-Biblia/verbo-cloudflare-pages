@@ -1,0 +1,10 @@
+{
+  "name": "verbo-api-bible-worker",
+  "version": "1.0.0",
+  "description": "Worker de Verbo: proxy API.Bible, sincronizacion de dispositivos y traduccion",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "jose": "^6.2.12"
+  }
+}
