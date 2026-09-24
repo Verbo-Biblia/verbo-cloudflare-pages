@@ -64,6 +64,8 @@
   // sección que abrió la app. La flecha que vuelve del libro al índice de su sección se
   // queda, para no dejar a nadie sin salida. En la web normal no aplica.
   function ocultarSalidas() {
+    // Idioma: dentro de la app sale del teléfono (i18n.js), sin botón ES/EN.
+    document.querySelectorAll('#uiLangSwitcher').forEach((el) => { el.style.display = 'none'; });
     document.querySelectorAll('.static-page__brand, .app-header__brand, .static-page__back, .app-header__portal-back, .quick-nav a, a[href*="mi-biblioteca"]').forEach((a) => {
       let destino;
       try {

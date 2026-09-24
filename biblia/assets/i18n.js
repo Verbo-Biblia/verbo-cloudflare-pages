@@ -27,8 +27,17 @@
   // Biblia por defecto (ver getDetectedLang/isFirstVisit). A partir de acá,
   // toda visita futura ya tiene un valor guardado — "detección automática" y
   // "elección manual" usan la misma clave; sólo cambia quién la escribió.
-  let uiLang = localStorage.getItem(UI_LANG_KEY);
-  const firstVisit = !uiLang;
+  // Dentro de la app Android (iframe con ?verboEmbed=app, o window.name
+  // "verboEmbedApp|..." puesto por site-chrome.js en la primera página) el
+  // idioma sale del teléfono, sin selector: español si el teléfono está en
+  // español, inglés en cualquier otro caso. No se guarda, así no pisa la
+  // preferencia de la web normal.
+  const enApp = window.top !== window.self && (
+    /[?&]verboEmbed=app(&|$)/.test(location.search) || String(window.name).split('|')[0] === 'verboEmbedApp'
+  );
+  const phoneLang = String(navigator.language || 'es').slice(0,2).toLowerCase() === 'es' ? 'es' : 'en';
+  let uiLang = enApp ? phoneLang : localStorage.getItem(UI_LANG_KEY);
+  const firstVisit = !enApp && !uiLang;
   if(!uiLang){
     uiLang = detectBrowserLang();
     localStorage.setItem(UI_LANG_KEY, uiLang);
