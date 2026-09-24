@@ -45,8 +45,14 @@
   // carpeta de la primera página que abrió la app (/libreria/,
   // /recursos/devocionales/...), ver ocultarSalidas() más abajo.
   try {
-    if (new URLSearchParams(location.search).get('verboEmbed') === 'app') {
-      window.name = 'verboEmbedApp|' + location.pathname.replace(/[^/]*$/, '');
+    const params = new URLSearchParams(location.search);
+    if (params.get('verboEmbed') === 'app') {
+      // La app puede indicar la sección (?verboSeccion=/libreria/) cuando
+      // abre directo un libro desde su "Mi biblioteca"; si no, es la
+      // carpeta de esta primera página.
+      const indicada = params.get('verboSeccion') || '';
+      const seccion = /^\/[a-z0-9/-]*\/$/.test(indicada) ? indicada : location.pathname.replace(/[^/]*$/, '');
+      window.name = 'verboEmbedApp|' + seccion;
     }
   } catch (e) { /* URLSearchParams no disponible: ignorar */ }
 
