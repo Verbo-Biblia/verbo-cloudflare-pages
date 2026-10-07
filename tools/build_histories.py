@@ -111,7 +111,9 @@ def build():
     import re
     text=re.sub(r'<url>\s*<loc>https://verbobiblia.com/historias/[^<]*</loc>.*?</url>','',text,flags=re.S)
     entries=''.join(f'  <url>\n    <loc>{BASE}{p}</loc>\n    <lastmod>{DATE}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>{priority}</priority>\n  </url>\n' for p,priority in [('/historias/','0.8')]+[('/historias/'+a['slug']+'/','0.6') for a in articles])
-    text=text.replace('</urlset>',entries+'</urlset>');sitemap.write_text(text)
+    text=text.replace('</urlset>',entries+'</urlset>')
+    text='\n'.join(line.rstrip() for line in text.splitlines() if line.strip())+'\n'
+    sitemap.write_text(text)
     print(f'Generadas {len(articles)} historias, índice y entradas de sitemap.')
 
 if __name__=='__main__':build()
