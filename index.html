@@ -608,6 +608,55 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   @media(max-width:900px) { .desktop-feature { padding: 28px; gap: 24px; } }
   @media(max-width:700px) { .desktop-feature { width: calc(100% - 40px); grid-template-columns: 1fr; padding: 26px; margin-top: 30px; } .desktop-copy h2 { font-size: 34px; } .desktop-preview { margin-top: 8px; } .desktop-download-link { margin-left: 0; display: block; } }
 
+
+  .hero-products { display: grid; gap: 18px; }
+  .hero-product { display: block; border: 1px solid var(--rule-strong); border-radius: 16px; overflow: hidden; background: var(--paper-raised); transition: border-color .2s; }
+  .hero-product:hover { border-color: var(--wine-soft); }
+  .hero-product-label { display: flex; justify-content: space-between; padding: 12px 16px; font-weight: 700; font-size: 13px; color: var(--wine); }
+  .hero-products .hero-product img { width: 100%; height: 185px; object-fit: contain; background: var(--wine); border-radius: 0; box-shadow: none; }
+  .hero-product-caption { display: block; padding: 10px 16px; font-size: 11px; color: var(--ink-soft); }
+  @media(max-width:700px) { .hero-products { gap: 16px; } .hero-products .hero-product img { height: auto; aspect-ratio: 16/9; } }
+
+
+  .hero-layout { grid-template-columns: 1fr; gap: 36px; }
+  .hero-inner { max-width: 800px; margin-inline: auto; text-align: center; }
+  .hero h1 { font-size: clamp(38px,4.7vw,60px); }
+  .hero-subtitle { max-width: 64ch; margin-inline: auto; }
+  .hero-actions { justify-content: center; }
+  .hero-products { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; max-width: none; }
+  .hero-product { display: flex; flex-direction: column; border-radius: 20px; }
+  .hero-product-intro { padding: 24px 28px; }
+  .hero-product-intro .eyebrow { font-size: 10px; margin-bottom: 10px; }
+  .hero-product h2 { font-size: 32px; line-height: 1.1; }
+  .hero-products .hero-product img { height: auto; aspect-ratio: 3/2; object-fit: contain; }
+  .hero-product-body { display: flex; flex-direction: column; flex: 1; align-items: start; padding: 24px 28px; }
+  .hero-product-body p { font-size: 14px; color: var(--ink-soft); line-height: 1.65; }
+  .hero-product-caption { padding: 16px 0 20px; }
+  .hero-product-body .portal-button { margin-top: auto; }
+  @media(max-width:700px) {
+    .hero-inner { text-align: center; }
+    .hero-products { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+    .hero-product { border-radius: 14px; }
+    .hero-product-intro { padding: 16px 12px; }
+    .hero-product-intro .eyebrow { font-size: 8px; letter-spacing: .07em; min-height: 24px; }
+    .hero-product h2 { font-size: clamp(19px,5vw,25px); }
+    .hero-products .hero-product img { aspect-ratio: 3/2; height: auto; }
+    .hero-product-body { padding: 16px 12px; }
+    .hero-product-body p { font-size: 12px; }
+    .hero-product-caption { font-size: 10px; line-height: 1.5; }
+    .hero-product-body .portal-button { width: 100%; padding: 10px 6px; font-size: 11px; text-align: center; }
+  }
+
+
+  .card--histories { grid-column: 1/-1; min-height: 150px; display: grid; grid-template-columns: 38px 1fr auto; align-items: center; gap: 24px; background: var(--wine); border-color: var(--wine); padding: 30px; }
+  .card--histories:hover { background: var(--wine); border-color: var(--wine-soft); }
+  .card--histories .card-icon { color: var(--paper); margin: 0; }
+  .card--histories h3 { color: var(--paper-raised); font-size: 30px; margin: 8px 0; }
+  .card--histories .resource-description { color: var(--paper-deep); max-width: 72ch; font-size: 13px; }
+  .histories-card-kicker { font-size: 9px; letter-spacing: .12em; color: var(--rule-strong); }
+  .histories-card-link { color: var(--paper); font-size: 12px; font-weight: 650; white-space: nowrap; }
+  @media(max-width:700px) { .card--histories { grid-template-columns: 1fr; gap: 14px; padding: 24px; } .card--histories h3 { font-size: 27px; } .card--histories .card-icon { display:none; } }
+
 </style>
 </head>
 <body>
@@ -638,14 +687,22 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
     <h1><span data-i18n="portal.heroHeading">Una biblioteca bíblica completa,</span> <em data-i18n="portal.heroHeadingEm">en un solo lugar.</em></h1>
     <div class="hero-rule"></div>
     <p class="hero-subtitle" data-i18n="portal.heroSubtitle">Biblia de estudio con comentarios, diccionarios e idiomas originales. Más de 100 obras de la fe cristiana. Todo gratuito, sin cuentas de pago.</p>
-    <div class="hero-actions"><a class="portal-button portal-button--primary" href="/verbo-desktop/" data-i18n="portal.desktopCta">Conocer Verbo Desktop</a><a class="portal-button portal-button--secondary" href="https://play.google.com/store/apps/details?id=com.verbobiblia.app" target="_blank" rel="noopener noreferrer" data-i18n="portal.mobileCta">Descargar en Google Play</a><a class="portal-button portal-button--secondary" href="#secciones" data-i18n="portal.heroExplore">Explorar los recursos <span aria-hidden="true">↗</span></a></div>
+    <div class="hero-actions"><a class="portal-button portal-button--secondary" href="#secciones" data-i18n="portal.heroExplore">Explorar los recursos</a></div>
     <p class="hero-note" data-i18n="portal.mobileFree">Gratis, sin anuncios ni compras dentro de la app.</p>
   </div>
 
-    <figure class="hero-visual">
-      <img src="assets/android/verbo-android-hero.webp" width="1536" height="1024" fetchpriority="high" alt="Presentación de Verbo para Android con lectura bíblica y gestión de módulos" data-i18n-attr="alt:portal.mobileImageAlt">
-      <figcaption><span class="hero-status-dot" aria-hidden="true"></span><span data-i18n="portal.heroVisualCaption">Disponible en Android · Muy pronto en iOS</span></figcaption>
-    </figure>
+    <div class="hero-visual hero-products">
+      <article class="hero-product">
+        <div class="hero-product-intro"><span class="eyebrow" data-i18n="portal.desktopEyebrow">VERBO EN TU COMPUTADORA</span><h2>Verbo Desktop</h2></div>
+        <img src="verbo-desktop/assets/modo-estudio.png" width="1440" height="900" fetchpriority="high" alt="Interfaz de estudio de Verbo Desktop" data-i18n-attr="alt:portal.desktopImageAlt">
+        <div class="hero-product-body"><p data-i18n="portal.desktopCardBody">Estudia en una pantalla amplia y reúne tus módulos de e-Sword, MySword y Verbo.</p><span class="hero-product-caption" data-i18n="portal.desktopHeroPlatforms">Linux · macOS y Windows próximamente</span><a class="portal-button portal-button--primary" href="/verbo-desktop/" data-i18n="portal.desktopCta">Conocer Verbo Desktop</a></div>
+      </article>
+      <article class="hero-product">
+        <div class="hero-product-intro"><span class="eyebrow" data-i18n="portal.mobileEyebrow">VERBO PARA ANDROID</span><h2>Verbo Android</h2></div>
+        <img src="assets/android/verbo-android-hero.webp" width="1536" height="1024" alt="Presentación de Verbo para Android con lectura bíblica y gestión de módulos" data-i18n-attr="alt:portal.mobileImageAlt">
+        <div class="hero-product-body"><p data-i18n="portal.androidCardBody">Lee desde tu celular y descarga módulos directamente desde la app.</p><span class="hero-product-caption" data-i18n="portal.heroVisualCaption">Disponible en Android · Muy pronto en iOS</span><a class="portal-button portal-button--primary" href="https://play.google.com/store/apps/details?id=com.verbobiblia.app" target="_blank" rel="noopener noreferrer" data-i18n="portal.mobileCta">Descargar en Google Play</a></div>
+      </article>
+    </div>
   </div>
   <div class="hero-facts"><span data-i18n="portal.factFree">Acceso gratuito</span><span data-i18n="portal.factLibrary">Más de 100 obras clásicas</span><span data-i18n="portal.factLanguages">Recursos en español e inglés</span></div>
 </section>
@@ -665,6 +722,12 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
 
   <nav class="sections" id="secciones" aria-label="Secciones principales">
   <div class="card-grid">
+    <a class="card card--histories" href="/historias/">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M5 3h14v18H5zM8 7h8M8 11h8M8 15h5"/></svg>
+      <div><span class="histories-card-kicker" data-i18n="portal.historiesEyebrow">NUEVA COLECCIÓN · CINCO SIGLOS DE FE</span><h3 data-i18n="portal.historiesTitle">Historias de siervos de Cristo</h3><p class="resource-description" data-i18n="portal.historiesBody">Billy Graham, Corrie ten Boom, los Elliot y más: 18 vidas reales, con contexto, reflexión bíblica y fuentes para seguir leyendo.</p></div>
+      <span class="histories-card-link" data-i18n="portal.historiesCta">Explorar las historias →</span>
+    </a>
+
 
     <!-- Biblia -->
     <a class="card" href="/biblia/" hidden>
@@ -825,7 +888,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   </div>
 </footer>
 
-<script src="biblia/assets/i18n.js?v=20261006-desktop-feature"></script>
+<script src="biblia/assets/i18n.js?v=20261006-historias-platforms"></script>
 <script src="biblia/assets/site-translate.js?v=20260811-translate-abandon"></script>
 <script src="biblia/assets/site-chrome.js?v=20260924-app-idioma"></script>
 <script src="biblia/assets/tutorial-video.js?v=20260821-tutorial-videos"></script>
