@@ -657,6 +657,11 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   .histories-card-link { color: var(--paper); font-size: 12px; font-weight: 650; white-space: nowrap; }
   @media(max-width:700px) { .card--histories { grid-template-columns: 1fr; gap: 14px; padding: 24px; } .card--histories h3 { font-size: 27px; } .card--histories .card-icon { display:none; } }
 
+  .card--histories { grid-template-columns: 240px 1fr auto; padding: 0 30px 0 0; gap: 28px; overflow: hidden; }
+  .histories-card-image { display: block; width: 100%; height: 100%; min-height: 240px; object-fit: cover; }
+  .card--histories > div { padding-block: 28px; }
+  @media(max-width:900px) { .card--histories { grid-template-columns: 180px 1fr; padding-right: 24px; gap: 0 24px; } .histories-card-image { grid-row: 1/3; } .card--histories > div { padding-bottom: 12px; } .histories-card-link { padding-bottom: 28px; } }
+  @media(max-width:700px) { .card--histories { grid-template-columns: 1fr; padding: 0; gap: 0; } .histories-card-image { grid-row: auto; min-height: 0; height: auto; aspect-ratio: 2/1; } .card--histories > div { padding: 24px 24px 12px; } .histories-card-link { padding: 0 24px 24px; } }
 </style>
 </head>
 <body>
@@ -723,7 +728,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   <nav class="sections" id="secciones" aria-label="Secciones principales">
   <div class="card-grid">
     <a class="card card--histories" href="/historias/">
-      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M5 3h14v18H5zM8 7h8M8 11h8M8 15h5"/></svg>
+      <img class="histories-card-image" src="/historias/assets/images/estudio-biblico.webp" alt="" width="1200" height="800" loading="lazy" decoding="async">
       <div><span class="histories-card-kicker" data-i18n="portal.historiesEyebrow">NUEVA COLECCIÓN · CINCO SIGLOS DE FE</span><h3 data-i18n="portal.historiesTitle">Historias de siervos de Cristo</h3><p class="resource-description" data-i18n="portal.historiesBody">Billy Graham, Corrie ten Boom, los Elliot y más: 18 vidas reales, con contexto, reflexión bíblica y fuentes para seguir leyendo.</p></div>
       <span class="histories-card-link" data-i18n="portal.historiesCta">Explorar las historias →</span>
     </a>

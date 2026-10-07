@@ -15,7 +15,23 @@ DESCRIPTION = 'Historias reales de cristianos de los últimos cinco siglos: Bill
 def esc(v): return html.escape(str(v), quote=True)
 def ld(value): return json.dumps(value, ensure_ascii=False).replace('<','\\u003c')
 
-def shell(title, description, path, body, schemas, script=False):
+ART = {
+    'estudio-biblico': 'Una Biblia abierta sobre un escritorio junto a una ventana',
+    'palabra-impresa': 'Una prensa de imprenta antigua, libros y hojas sobre una mesa',
+    'puertas-abiertas': 'Una puerta abierta hacia una mesa preparada para recibir al prójimo',
+    'caminos-de-servicio': 'Un bolso de viaje, un mapa y una brújula junto a una ventana',
+}
+
+def artwork(a):
+    slug=a['slug']
+    if slug in {'william-tyndale','casiodoro-de-reina','john-bunyan'}:return 'palabra-impresa'
+    if slug in {'corrie-ten-boom','william-wilberforce','george-muller','amy-carmichael','dietrich-bonhoeffer','pandita-ramabai','charles-spurgeon'}:return 'puertas-abiertas'
+    if slug in {'jim-elliot','elisabeth-elliot','william-carey','hudson-taylor','samuel-morris'}:return 'caminos-de-servicio'
+    return 'estudio-biblico'
+
+def art_url(key):return '/historias/assets/images/'+key+'.webp'
+
+def shell(title, description, path, body, schemas, script=False, art='estudio-biblico'):
     return f'''<!DOCTYPE html>
 <html lang="es">
 <head>
@@ -29,10 +45,13 @@ def shell(title, description, path, body, schemas, script=False):
 <meta property="og:url" content="{BASE}{path}">
 <meta property="og:type" content="{'website' if path == '/historias/' else 'article'}">
 <meta property="og:locale" content="es_ES">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="{BASE}{art_url(art)}">
+<meta property="og:image:alt" content="Ilustración temática: {esc(ART[art])}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="{BASE}{art_url(art)}">
 <meta name="theme-color" content="#FBF1DE">
 <link rel="icon" href="/biblia/assets/icons/icon-192.png">
-<link rel="stylesheet" href="/historias/assets/historias.css?v=20261006-historias">
+<link rel="stylesheet" href="/historias/assets/historias.css?v=20261006-ilustraciones">
 <script type="application/ld+json">{ld({'@context':'https://schema.org','@graph':schemas})}</script>
 </head>
 <body>
@@ -51,9 +70,9 @@ def breadcrumb(name=None,url=None):
     return {'@type':'BreadcrumbList','itemListElement':entries}
 
 def card(a):
-    initials=''.join(p[0] for p in a['name'].split()[:2])
+    art=artwork(a)
     searchable=' '.join([a['name'],a['title'],a['description'],a['place'],a['topic']])
-    return f'''<a class="story-card" href="/historias/{esc(a['slug'])}/" data-story data-century="{a['century']}" data-search="{esc(searchable)}"><div class="story-cover"><span class="cover-century">SIGLO {roman(a['century'])}</span><span class="cover-initials" aria-hidden="true">{esc(initials)}</span><span class="cover-name">{esc(a['name'])}</span><span class="cover-years">{esc(a['years'])}</span></div><div class="story-card-body"><span class="kicker">{esc(a['topic'])}</span><h3>{esc(a['title'])}</h3><p>{esc(a['description'])}</p><span class="read-link">Leer historia <span aria-hidden="true">↗</span></span></div></a>'''
+    return f'''<a class="story-card" href="/historias/{esc(a['slug'])}/" data-story data-century="{a['century']}" data-search="{esc(searchable)}"><div class="story-cover"><img class="story-cover-image" src="{art_url(art)}" alt="" width="1200" height="800" loading="lazy" decoding="async"><span class="cover-century">SIGLO {roman(a['century'])}</span><span class="cover-name">{esc(a['name'])}</span><span class="cover-years">{esc(a['years'])}</span></div><div class="story-card-body"><span class="kicker">{esc(a['topic'])}</span><h3>{esc(a['title'])}</h3><p>{esc(a['description'])}</p><span class="read-link">Leer historia <span aria-hidden="true">↗</span></span></div></a>'''
 
 def roman(c):return {16:'XVI',17:'XVII',18:'XVIII',19:'XIX',20:'XX'}[c]
 
@@ -84,6 +103,7 @@ def build():
 <nav class="breadcrumbs" aria-label="Ruta de navegación"><a href="/">Inicio</a><span aria-hidden="true">/</span><a href="/historias/">Historias</a><span aria-hidden="true">/</span><span>{esc(a['name'])}</span></nav>
 <article>
 <header class="article-heading"><span class="kicker">{esc(a['topic'])} · Siglo {roman(a['century'])}</span><h1>{esc(a['title'])}</h1><p class="lede">{esc(a['description'])}</p><p class="article-details">{esc(a['name'])} · {esc(a['years'])} · {esc(a['place'])}</p><p class="article-byline">Por Verbo · Revisión documental: <time datetime="{DATE}">6 de octubre de 2026</time> · {max(2,round(words/180))} min de lectura</p></header>
+<figure class="article-illustration"><img src="{art_url(artwork(a))}" alt="Ilustración temática: {esc(ART[artwork(a)])}" width="1200" height="800" decoding="async"><figcaption>Ilustración temática generada con IA para Verbo. No representa a {esc(a["name"])} ni una escena histórica documentada.</figcaption></figure>
 <nav class="article-toc" aria-label="En esta historia"><strong>En esta historia</strong>{toc}<a href="#reflexion">Para reflexionar a la luz de la Biblia</a><a href="#fuentes">Bibliografía y fuentes</a></nav>
 <div class="article-reading">{''.join(chapters)}
 <section class="reflection" aria-labelledby="reflexion"><span class="kicker">REFLEXIÓN DE VERBO</span><h2 id="reflexion">Para reflexionar a la luz de la Biblia</h2><a class="passage-link" href="{esc(bible)}">Leer {esc(passage[0])} en la Biblia →</a>{reflection}</section>
@@ -92,13 +112,14 @@ def build():
 </article>
 <aside class="related" aria-labelledby="related-title"><span class="kicker">SIGUE LEYENDO</span><h2 id="related-title">Otras vidas, otras formas de servir.</h2><div>{rel}</div><a class="all-stories" href="/historias/">Volver a todas las historias →</a></aside>
 </main>'''
-        schema={'@type':'Article','@id':BASE+path+'#article','headline':a['title'],'description':a['description'],'inLanguage':'es','url':BASE+path,'mainEntityOfPage':BASE+path,'datePublished':DATE,'dateModified':DATE,'author':org,'publisher':org,'articleSection':NAME,'about':{'@type':'Person','name':a['name']},'wordCount':words,'citation':[src['url'] for src in a['sources']]}
+        schema={'@type':'Article','@id':BASE+path+'#article','headline':a['title'],'description':a['description'],'inLanguage':'es','url':BASE+path,'mainEntityOfPage':BASE+path,'datePublished':DATE,'dateModified':DATE,'author':org,'publisher':org,'articleSection':NAME,'about':{'@type':'Person','name':a['name']},'wordCount':words,'image':BASE+art_url(artwork(a)),'citation':[src['url'] for src in a['sources']]}
         target=OUT/a['slug'];target.mkdir(exist_ok=True)
-        (target/'index.html').write_text(shell(a['title'],a['description'],path,body,[schema,breadcrumb(a['name'],BASE+path)]))
+        (target/'index.html').write_text(shell(a['title'],a['description'],path,body,[schema,breadcrumb(a['name'],BASE+path)],art=artwork(a)))
     sorted_articles=sorted(articles,key=lambda a:(a['century'],a['slug']))
     centuries=''.join(f'<option value="{c}">Siglo {roman(c)}</option>' for c in range(16,21))
     body=f'''<main id="contenido" class="collection-shell">
 <section class="collection-hero"><div><span class="kicker">VERBO · CRÓNICAS DEL CRISTIANISMO MODERNO</span><h1>Historias de<br><em>siervos de Cristo.</em></h1><p class="lede">Vidas reales. Fe puesta en práctica. Cinco siglos de personas que anunciaron el evangelio, abrieron sus hogares y sirvieron al prójimo.</p><p class="intro-detail">Desde la traducción de la Biblia hasta la misión y el cuidado de los vulnerables: relatos con contexto histórico, reflexión bíblica y fuentes para seguir leyendo.</p><a class="button" href="#historias">Explorar las 18 historias <span aria-hidden="true">↓</span></a></div><aside class="timeline" aria-label="Un recorrido por cinco siglos"><span class="timeline-label">FE QUE DEJÓ HUELLAS</span><ol><li><span>1526</span><a href="william-tyndale/">Tyndale y la Biblia en inglés</a></li><li><span>1678</span><a href="john-bunyan/">Bunyan y el peregrino</a></li><li><span>1807</span><a href="william-wilberforce/">La lucha contra la trata</a></li><li><span>1944</span><a href="corrie-ten-boom/">La casa de los ten Boom</a></li><li><span>1958</span><a href="elisabeth-elliot/">Elisabeth Elliot en Ecuador</a></li></ol><p>La historia de la iglesia también se cuenta en el servicio cotidiano.</p></aside></section>
+<figure class="collection-illustration"><img src="{art_url('estudio-biblico')}" alt="Ilustración temática: {esc(ART['estudio-biblico'])}" width="1200" height="800" loading="lazy" decoding="async"><figcaption>Ilustraciones temáticas creadas con IA para Verbo; no son fotografías ni reproducciones de escenas históricas.</figcaption></figure>
 <div class="collection-principle"><span>18 relatos</span><span>Siglos XVI–XX</span><span>Bibliografía en cada artículo</span></div>
 <section class="featured-reading" aria-labelledby="featured-title"><div><span class="kicker">POR DÓNDE EMPEZAR</span><h2 id="featured-title">Cuatro vidas que invitan a mirar más de cerca.</h2></div><nav aria-label="Historias destacadas"><a href="billy-graham/"><span>01</span>Billy Graham <small>El anuncio de Jesucristo</small></a><a href="corrie-ten-boom/"><span>02</span>Corrie ten Boom <small>Un hogar frente a la persecución</small></a><a href="jim-elliot/"><span>03</span>Jim Elliot <small>Misión y memoria en Ecuador</small></a><a href="elisabeth-elliot/"><span>04</span>Elisabeth Elliot <small>El servicio después de la pérdida</small></a></nav></section>
 <section id="historias" aria-labelledby="collection-title"><div class="collection-heading"><div><span class="kicker">LA COLECCIÓN</span><h2 id="collection-title">Historias para leer con calma.</h2></div><p>Elige una vida, un siglo o un tema.</p></div><div class="story-filters"><label>Buscar una historia<input id="story-search" type="search" placeholder="Nombre, país o tema…" autocomplete="off"></label><label>Recorrer por siglo<select id="story-century"><option value="all">Todos los siglos</option>{centuries}</select></label><button id="story-reset" type="button">Ver todas</button></div><p id="story-count" class="story-count" role="status" aria-live="polite">18 historias disponibles</p><div class="story-grid">{''.join(card(a) for a in sorted_articles)}</div><p id="story-empty" class="story-empty" hidden>No encontramos historias con esa búsqueda. Prueba otro nombre o siglo.</p></section>

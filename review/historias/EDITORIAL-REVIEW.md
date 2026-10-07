@@ -10,7 +10,7 @@ Se consultaron las fuentes enlazadas y se redactaron síntesis propias. Las fuen
 
 ## Derechos y atribución
 
-No se incorporaron fotografías históricas, cartas, facsímiles, letras de himnos ni capítulos de libros. Las cubiertas se producen con tipografía y CSS propios. La bibliografía identifica autores o instituciones y enlaza sus documentos; el acceso público a una fuente no se interpreta como permiso para reproducirla. La colección no implica respaldo institucional de sus fuentes.
+No se incorporaron fotografías históricas, cartas, facsímiles, letras de himnos ni capítulos de libros. Las cubiertas usan tipografía propia e ilustraciones temáticas generadas con IA, documentadas en `historias/assets/images/README.md`; no son retratos ni escenas históricas documentadas. La bibliografía identifica autores o instituciones y enlaza sus documentos; el acceso público a una fuente no se interpreta como permiso para reproducirla. La colección no implica respaldo institucional de sus fuentes.
 
 ## Entradas y casos sensibles
 
@@ -161,3 +161,7 @@ Las dos fuentes son institucionales, no corroboraciones independientes. Fecha na
 ## Generación y validación
 
 Ejecutar `python3 tools/build_histories.py` después de editar `historias/data/articles.json`. La generación es offline y actualiza las páginas y el sitemap. Comprobados: JSON, referencias de fuentes, 18 rutas HTTP, anclas de citas, buscador sin dependencia de acentos, filtro por siglo y ausencia de desbordamientos a 320, 390 y 1280 píxeles. Las tarjetas Desktop y Android mantienen la misma fila en esos tamaños.
+
+## Ilustraciones — 6 de octubre de 2026
+
+Se incorporaron cuatro imágenes temáticas originales manteniendo crema, azul y dorado. Se revisó como contexto la documentación de `/home/juan/Verbo/Nueva App Android/docs/`. Las ocho tarjetas anteriores de la portada se compararon con Git y permanecen idénticas; no se editaron páginas de librería, devocionales, artículos o prédicas históricas, ni código de las aplicaciones. Verificados carga y decodificación de imágenes, recortes en móvil y escritorio, metadatos Open Graph y navegación de las 18 historias.
