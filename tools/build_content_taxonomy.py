@@ -664,9 +664,9 @@ def page_shell(root_rel, title, description, back_href, back_label, body_html, e
 <link rel="manifest" href="{root_rel}biblia/manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="{root_rel}biblia/assets/icons/icon-192.png">
 <link rel="apple-touch-icon" href="{root_rel}biblia/assets/icons/icon-192.png">
-<meta name="theme-color" content="#7f2d35">
-<link rel="stylesheet" href="{root_rel}biblia/assets/style.css?v=20260730">
-<link rel="stylesheet" href="{root_rel}recursos/assets/recursos.css?v=20260813-compact-catalog-headings">
+<meta name="theme-color" content="#0a2037">
+<link rel="stylesheet" href="{root_rel}biblia/assets/style.css?v=20261007-paleta-portada">
+<link rel="stylesheet" href="{root_rel}recursos/assets/recursos.css?v=20261007-paleta-portada">
 {extra_head}</head>
 <body class="{body_class}">
 

@@ -7,15 +7,15 @@
    biblia/assets/style.css. Ese archivo importa este mismo :root (ver su
    @import), así que este es el único lugar donde estos valores se definen. */
 :root {
-  --paper: #FBF1DE;
-  --paper-raised: #FFFBF2;
-  --chrome: #FFFBF2;
-  --ink: #0A1B33;
-  --ink-soft: #4C5E78;
+  --paper: #faf5eb;
+  --paper-raised: #fffaf2;
+  --chrome: #fffaf2;
+  --ink: #0a2037;
+  --ink-soft: #586574;
   --sepia: #7C8CA1;
-  --wine: #0B2A56;
-  --wine-soft: #4C6B99;
-  --rule: #E9DCC2;
-  --rule-strong: #D8C49A;
-  --gold-glow: #C8862E;
+  --wine: #0a2037;
+  --wine-soft: #526b84;
+  --rule: #dfd6c7;
+  --rule-strong: #cdbb9e;
+  --gold-glow: #98703c;
 }

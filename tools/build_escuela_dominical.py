@@ -16,10 +16,10 @@ SRC = ROOT / "Archivos Verbo" / "centrobiblicouf-extraido"
 OUT = ROOT / "recursos" / "escuela-dominical"
 IMG_DIR = OUT / "assets" / "img"
 
-CSS_HREF_FROM_LESSON = "../../../../biblia/assets/style.css?v=20260726-escuela-dominical"
-CSS_HREF_FROM_AGE_INDEX = "../../../biblia/assets/style.css?v=20260726-escuela-dominical"
-CSS_HREF_FROM_ED_INDEX = "../../biblia/assets/style.css?v=20260726-escuela-dominical"
-CSS_HREF_FROM_RECURSOS_INDEX = "../biblia/assets/style.css?v=20260726-escuela-dominical"
+CSS_HREF_FROM_LESSON = "../../../../biblia/assets/style.css?v=20261007-paleta-portada"
+CSS_HREF_FROM_AGE_INDEX = "../../../biblia/assets/style.css?v=20261007-paleta-portada"
+CSS_HREF_FROM_ED_INDEX = "../../biblia/assets/style.css?v=20261007-paleta-portada"
+CSS_HREF_FROM_RECURSOS_INDEX = "../biblia/assets/style.css?v=20261007-paleta-portada"
 
 MANIFEST_FROM_LESSON = "../../../../biblia/manifest.webmanifest"
 MANIFEST_FROM_AGE_INDEX = "../../../biblia/manifest.webmanifest"
@@ -208,7 +208,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
 <link rel="manifest" href="{manifest}">
 <link rel="icon" type="image/png" sizes="192x192" href="{icon}">
 <link rel="apple-touch-icon" href="{icon}">
-<meta name="theme-color" content="#7f2d35">
+<meta name="theme-color" content="#0a2037">
 <link rel="stylesheet" href="{css}">
 </head>
 <body class="static-page">

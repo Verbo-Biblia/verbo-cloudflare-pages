@@ -8,16 +8,16 @@
    cargado antes que este archivo en cada página que lo usa. */
 
 body.recursos-page {
-  --r-sky-top: #EAF5FA;
-  --r-sky-bot: #D8E5EB;
-  --r-paper: #FFFFFF;
-  --r-ink: #082842;
-  --r-ink-soft: #516A79;
-  --r-gold: #8A6A1F;
-  --r-gold-bright: #B08A2E;
-  --r-rule: #D8E5EB;
-  --r-rule-strong: #8FC6D8;
-  --r-shadow: 8, 40, 66;
+  --r-sky-top: #faf5eb;
+  --r-sky-bot: #e9dfcd;
+  --r-paper: #fffaf2;
+  --r-ink: #0a2037;
+  --r-ink-soft: #586574;
+  --r-gold: #98703c;
+  --r-gold-bright: #98703c;
+  --r-rule: #dfd6c7;
+  --r-rule-strong: #cdbb9e;
+  --r-shadow: 10, 32, 55;
 
   background:
     radial-gradient(1100px 520px at 12% -8%, rgba(230, 184, 95, .10), transparent 60%),

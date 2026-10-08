@@ -49,9 +49,9 @@ def shell(title, description, path, body, schemas, script=False, art='estudio-bi
 <meta property="og:image:alt" content="Ilustración temática: {esc(ART[art])}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="{BASE}{art_url(art)}">
-<meta name="theme-color" content="#FBF1DE">
+<meta name="theme-color" content="#0a2037">
 <link rel="icon" href="/biblia/assets/icons/icon-192.png">
-<link rel="stylesheet" href="/historias/assets/historias.css?v=20261006-ilustraciones">
+<link rel="stylesheet" href="/historias/assets/historias.css?v=20261007-paleta-portada">
 <script type="application/ld+json">{ld({'@context':'https://schema.org','@graph':schemas})}</script>
 </head>
 <body>

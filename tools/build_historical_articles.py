@@ -216,9 +216,9 @@ def html_page(item: dict) -> str:
 <link rel="canonical" href="https://verbobiblia.com/recursos/articulos-y-reflexiones/{item['id']}/">
 <link rel="manifest" href="../../../biblia/manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="../../../biblia/assets/icons/icon-192.png">
-<meta name="theme-color" content="#7f2d35">
-<link rel="stylesheet" href="../../../biblia/assets/style.css?v=20260730-rail-center">
-<link rel="stylesheet" href="../../../recursos/assets/recursos.css?v=20260813-compact-catalog-headings">
+<meta name="theme-color" content="#0a2037">
+<link rel="stylesheet" href="../../../biblia/assets/style.css?v=20261007-paleta-portada">
+<link rel="stylesheet" href="../../../recursos/assets/recursos.css?v=20261007-paleta-portada">
 </head>
 <body class="static-page recursos-page">
   <header class="static-page__header">

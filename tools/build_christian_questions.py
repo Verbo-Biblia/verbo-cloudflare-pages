@@ -26,9 +26,9 @@ def shell(title, description, path, body, graphs, index=False, image_path='/hist
 <meta property="og:title" content="{esc(title)} | Verbo"><meta property="og:description" content="{esc(description)}">
 <meta property="og:url" content="{BASE}{path}"><meta property="og:type" content="{'website' if index else 'article'}"><meta property="og:locale" content="es_ES">
 <meta property="og:image" content="{BASE}{image_path}"><meta property="og:image:alt" content="{esc(image_alt)}">
-<meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#FBF1DE">
+<meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#0a2037">
 <link rel="icon" href="/biblia/assets/icons/icon-192.png">
-<link rel="stylesheet" href="/preguntas-cristianas/assets/questions.css?v=20261007">
+<link rel="stylesheet" href="/preguntas-cristianas/assets/questions.css?v=20261007-paleta-portada">
 <script type="application/ld+json">{schema({'@context':'https://schema.org','@graph':graphs})}</script>
 </head><body>
 <a class="skip-link" href="#contenido">Ir al contenido</a>
