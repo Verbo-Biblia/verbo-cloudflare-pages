@@ -9,10 +9,10 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   location.replace(`https://${location.host}${location.pathname}${location.search}${location.hash}`);
 }
 </script>
-<title>Verbo — Biblia de estudio, comentarios y biblioteca bíblica gratis en español</title>
-<meta name="description" content="Verbo es una biblioteca bíblica digital gratuita en español: Biblia de estudio con comentarios, diccionarios, historia de la iglesia e idiomas originales; más de 100 obras clásicas en la Librería; buscador semántico bilingüe; y recursos para predicar y enseñar. Sin cuentas de pago, sin muro de suscripción.">
-<meta property="og:title" content="Verbo — Biblia de estudio, comentarios y biblioteca bíblica gratis en español">
-<meta property="og:description" content="Verbo es una biblioteca bíblica digital gratuita en español: Biblia de estudio con comentarios, diccionarios, historia de la iglesia e idiomas originales; más de 100 obras clásicas en la Librería; buscador semántico bilingüe; y recursos para predicar y enseñar. Sin cuentas de pago, sin muro de suscripción.">
+<title>Verbo — Preguntas cristianas, devocionales y biblioteca bíblica gratis</title>
+<meta name="description" content="Respuestas bíblicas sobre salvación, oración, IA, matrimonio y fin de los tiempos. Lee devocionales y explora la biblioteca gratuita de Verbo y sus recursos para estudiar.">
+<meta property="og:title" content="Verbo — Preguntas cristianas, devocionales y biblioteca bíblica gratis">
+<meta property="og:description" content="Respuestas bíblicas sobre salvación, oración, IA, matrimonio y fin de los tiempos. Lee devocionales y explora la biblioteca gratuita de Verbo y sus recursos para estudiar.">
 <meta property="og:url" content="https://verbobiblia.com/">
 <meta property="og:locale" content="es_ES">
 <meta property="og:type" content="website">
@@ -663,12 +663,16 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   @media(max-width:900px) { .card--histories { grid-template-columns: 180px 1fr; padding-right: 24px; gap: 0 24px; } .histories-card-image { grid-row: 1/3; } .card--histories > div { padding-bottom: 12px; } .histories-card-link { padding-bottom: 28px; } }
   @media(max-width:700px) { .card--histories { grid-template-columns: 1fr; padding: 0; gap: 0; } .histories-card-image { grid-row: auto; min-height: 0; height: auto; aspect-ratio: 2/1; } .card--histories > div { padding: 24px 24px 12px; } .histories-card-link { padding: 0 24px 24px; } }
 </style>
+<link rel="stylesheet" href="/preguntas-cristianas/assets/home-questions.css?v=20261007">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Verbo", "url": "https://verbobiblia.com/", "description": "Respuestas bíblicas sobre salvación, oración, IA, matrimonio y fin de los tiempos. Lee devocionales y explora la biblioteca gratuita de Verbo y sus recursos para estudiar.", "inLanguage": ["es", "en"]}</script>
 </head>
 <body>
+<a class="home-skip" href="#inicio">Ir al contenido</a>
 
 <header>
   <div class="wordmark">Verbo<span data-i18n="portal.tagline">biblioteca bíblica digital</span></div>
   <div style="display:flex;align-items:center;">
+    <a class="home-questions-link" href="/preguntas-cristianas/" data-i18n="portal.questionsNav">Preguntas de hoy</a>
     <a class="android-header-link" href="#android" data-i18n="portal.mobileLink">App Android</a>
     <button type="button" class="tv-trigger tv-trigger--portal" id="tvPrimerosPasos" data-video-es="vBED8tPJXE0" data-video-en="UD3ijz2DJRs" data-i18n-attr="aria-label:tutorial.primerosPasosAria,title:tutorial.primerosPasosAria">
       <svg class="tv-icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -688,28 +692,39 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
 <section class="hero" id="inicio">
   <div class="hero-layout">
   <div class="hero-inner">
-    <span class="eyebrow" data-i18n="portal.heroEyebrow">Estudio · Formación · Lectura</span>
-    <h1><span data-i18n="portal.heroHeading">Una biblioteca bíblica completa,</span> <em data-i18n="portal.heroHeadingEm">en un solo lugar.</em></h1>
+    <h1 data-i18n="portal.heroHeading">La Palabra para hoy.</h1>
     <div class="hero-rule"></div>
-    <p class="hero-subtitle" data-i18n="portal.heroSubtitle">Biblia de estudio con comentarios, diccionarios e idiomas originales. Más de 100 obras de la fe cristiana. Todo gratuito, sin cuentas de pago.</p>
-    <div class="hero-actions"><a class="portal-button portal-button--secondary" href="#secciones" data-i18n="portal.heroExplore">Explorar los recursos</a></div>
-    <p class="hero-note" data-i18n="portal.mobileFree">Gratis, sin anuncios ni compras dentro de la app.</p>
+    <p class="hero-subtitle" data-i18n="portal.heroSubtitle">Preguntas, devocionales y libros para crecer en la fe. Gratis.</p>
+    <div class="hero-actions"><a class="portal-button portal-button--primary" href="/preguntas-cristianas/" data-i18n="portal.questionsCta">Leer respuestas →</a><a class="portal-button portal-button--secondary" href="#secciones" data-i18n="portal.heroExplore">Biblioteca →</a></div>
   </div>
 
-    <div class="hero-visual hero-products">
+    <aside class="hero-question-board" aria-label="Preguntas para empezar hoy">
+      <span class="eyebrow" data-i18n="portal.questionsBoard">PARA EMPEZAR HOY</span>
+      <a class="hero-question-main" href="/preguntas-cristianas/musica-cristiana-inteligencia-artificial/">
+        <span data-i18n="portal.questionsTech">Fe y tecnología</span><h2 data-i18n="portal.questionsAi">¿Es pecado escuchar música cristiana creada con IA?</h2>
+        <strong data-i18n="portal.questionsRead">Leer la respuesta →</strong>
+      </a>
+      <a class="hero-question-small" href="/preguntas-cristianas/soy-salvo-si-sigo-pecando/"><span data-i18n="portal.questionsSalvation">¿Soy salvo si sigo pecando?</span><span aria-hidden="true">↗</span></a>
+      <a class="hero-question-small" href="/preguntas-cristianas/guerras-senales-fin-tiempos/"><span data-i18n="portal.questionsEnd">¿Las guerras anuncian el fin?</span><span aria-hidden="true">↗</span></a>
+    </aside>
+  </div>
+</section>
+<section class="today-section" id="preguntas-de-hoy" aria-labelledby="today-title"><div class="today-heading"><div><span class="eyebrow" data-i18n="portal.questionsEyebrow">PREGUNTAS Y RESPUESTAS</span><h2 id="today-title" data-i18n="portal.questionsHeading">El cristiano hoy</h2></div><a href="/preguntas-cristianas/" data-i18n="portal.questionsAll">Explorar las diez preguntas →</a></div><div class="today-grid"><a class="today-card" href="/preguntas-cristianas/por-que-dios-no-responde-oraciones/"><span data-i18n="portal.questionsPrayerTopic">Oración y vida diaria</span><h3 data-i18n="portal.questionsPrayer">¿Por qué Dios no responde mis oraciones?</h3><p data-i18n="portal.questionsPrayerBody">Cuando oras y no ves la respuesta que esperabas: cómo acercarte al Padre, permanecer en Cristo y caminar sin fórmulas ni culpa.</p><strong data-i18n="portal.questionsRead">Leer la respuesta →</strong></a>
+<a class="today-card" href="/preguntas-cristianas/ansiedad-falta-de-fe-cristiano/"><span data-i18n="portal.questionsAnxietyTopic">Fe en medio de la fragilidad</span><h3 data-i18n="portal.questionsAnxiety">¿Tener ansiedad significa que me falta fe?</h3><p data-i18n="portal.questionsAnxietyBody">Una mirada pastoral al temor y al agotamiento: el creyente puede acercarse a Dios sin esconder su fragilidad ni caminar solo.</p><strong data-i18n="portal.questionsRead">Leer la respuesta →</strong></a>
+<a class="today-card" href="/preguntas-cristianas/matrimonio-cristiano-crisis/"><span data-i18n="portal.questionsMarriageTopic">Matrimonio y relaciones</span><h3 data-i18n="portal.questionsMarriage">¿Cómo salvar un matrimonio en crisis?</h3><p data-i18n="portal.questionsMarriageBody">Una orientación cristiana para escuchar, reconocer el daño y buscar ayuda en una crisis matrimonial, sin reducir todo a frases o culpa.</p><strong data-i18n="portal.questionsRead">Leer la respuesta →</strong></a>
+</div></section>
+<section class="platform-showcase" aria-labelledby="platform-title"><h2 id="platform-title" data-i18n="portal.questionsPlatforms">Tu biblioteca también te acompaña.</h2>    <div class="hero-visual hero-products">
       <article class="hero-product">
         <div class="hero-product-intro"><span class="eyebrow" data-i18n="portal.desktopEyebrow">VERBO EN TU COMPUTADORA</span><h2>Verbo Desktop</h2></div>
-        <img src="verbo-desktop/assets/modo-estudio.png" width="1440" height="900" fetchpriority="high" alt="Interfaz de estudio de Verbo Desktop" data-i18n-attr="alt:portal.desktopImageAlt">
+        <img src="verbo-desktop/assets/modo-estudio.png" width="1440" height="900" loading="lazy" alt="Interfaz de estudio de Verbo Desktop" data-i18n-attr="alt:portal.desktopImageAlt">
         <div class="hero-product-body"><p data-i18n="portal.desktopCardBody">Estudia en una pantalla amplia y reúne tus módulos de e-Sword, MySword y Verbo.</p><span class="hero-product-caption" data-i18n="portal.desktopHeroPlatforms">Linux · macOS y Windows próximamente</span><a class="portal-button portal-button--primary" href="/verbo-desktop/" data-i18n="portal.desktopCta">Conocer Verbo Desktop</a></div>
       </article>
       <article class="hero-product">
         <div class="hero-product-intro"><span class="eyebrow" data-i18n="portal.mobileEyebrow">VERBO PARA ANDROID</span><h2>Verbo Android</h2></div>
-        <img src="assets/android/verbo-android-hero.webp" width="1536" height="1024" alt="Presentación de Verbo para Android con lectura bíblica y gestión de módulos" data-i18n-attr="alt:portal.mobileImageAlt">
+        <img src="assets/android/verbo-android-hero.webp" width="1536" height="1024" loading="lazy" alt="Presentación de Verbo para Android con lectura bíblica y gestión de módulos" data-i18n-attr="alt:portal.mobileImageAlt">
         <div class="hero-product-body"><p data-i18n="portal.androidCardBody">Lee desde tu celular y descarga módulos directamente desde la app.</p><span class="hero-product-caption" data-i18n="portal.heroVisualCaption">Disponible en Android · Muy pronto en iOS</span><a class="portal-button portal-button--primary" href="https://play.google.com/store/apps/details?id=com.verbobiblia.app" target="_blank" rel="noopener noreferrer" data-i18n="portal.mobileCta">Descargar en Google Play</a></div>
       </article>
     </div>
-  </div>
-  <div class="hero-facts"><span data-i18n="portal.factFree">Acceso gratuito</span><span data-i18n="portal.factLibrary">Más de 100 obras clásicas</span><span data-i18n="portal.factLanguages">Recursos en español e inglés</span></div>
 </section>
 <section class="desktop-feature" id="desktop" aria-labelledby="desktop-title">
   <div class="desktop-copy">
@@ -893,7 +908,7 @@ if (location.protocol === 'http:' && /^(www\.)?verbobiblia\.com$/i.test(location
   </div>
 </footer>
 
-<script src="biblia/assets/i18n.js?v=20261006-historias-platforms"></script>
+<script src="biblia/assets/i18n.js?v=20261007-preguntas-hoy"></script>
 <script src="biblia/assets/site-translate.js?v=20260811-translate-abandon"></script>
 <script src="biblia/assets/site-chrome.js?v=20260924-app-idioma"></script>
 <script src="biblia/assets/tutorial-video.js?v=20260821-tutorial-videos"></script>
