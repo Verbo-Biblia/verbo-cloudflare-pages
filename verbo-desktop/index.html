@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Verbo Desktop: estudio bíblico nativo para Linux, macOS y Windows." />
+  <meta name="description" content="Verbo Desktop: estudio bíblico nativo para Linux, con paquetes .deb y .rpm disponibles. macOS y Windows próximamente." />
   <meta property="og:title" content="Verbo Desktop">
-  <meta property="og:description" content="Verbo Desktop: estudio bíblico nativo para Linux, macOS y Windows.">
+  <meta property="og:description" content="Verbo Desktop: estudio bíblico nativo para Linux, con paquetes .deb y .rpm disponibles. macOS y Windows próximamente.">
   <meta property="og:url" content="https://verbobiblia.com/verbo-desktop/">
   <meta property="og:locale" content="es_ES">
   <meta property="og:type" content="website">
@@ -13,7 +13,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="../biblia/assets/icons/icon-192.png">
   <link rel="apple-touch-icon" href="../biblia/assets/icons/icon-192.png">
   <meta name="theme-color" content="#0a2037">
-  <title>Verbo Desktop</title>
+  <title>Verbo Desktop para Linux | Estudio bíblico gratuito</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -22,12 +22,12 @@
 </head>
 <body>
   <header class="topbar">
-    <a class="back-to-verbo" href="/" aria-label="Volver a Verbo">← Verbo</a>
+    <a class="back-to-verbo" href="/software/" aria-label="Ver todo el software de Verbo">← Software</a>
     <a class="brand" href="#top" aria-label="Verbo Desktop">
       <img src="assets/verbo-icon.png" alt="" />
       <span>Verbo Desktop</span>
     </a>
-    <nav class="topnav" aria-label="Primary">
+    <nav class="topnav" aria-label="Navegación de Verbo Desktop">
       <a href="#linux" data-i18n="navLinux">Linux</a>
       <a href="#ecosystem" data-i18n="navModules">Módulos</a>
       <a href="#modes" data-i18n="navModes">Modos</a>
@@ -56,7 +56,7 @@
           <a href="#downloads" class="btn btn-primary" data-download-link="primary" data-i18n="download">Descargar Verbo</a>
           <a href="#modes" class="btn btn-ghost" data-i18n="discover">Ver cómo funciona</a>
         </div>
-        <p class="microcopy" data-i18n="heroMicro">Linux primero. También disponible para macOS y Windows.</p>
+        <p class="microcopy" data-i18n="heroMicro">Linux disponible ahora. macOS y Windows llegarán próximamente.</p>
       </div>
 
       <div class="hero-visual reveal delay-1" aria-label="Verbo Desktop screenshot">
@@ -328,8 +328,8 @@
         <div class="download-actions">
           <a href="https://mega.nz/file/yoBkGTjT#qyFO5qLJ5VK32gc_sSPHBa3MYe8j1fkkGV_NJ_CKLfc" target="_blank" rel="noopener noreferrer" data-download-linux class="btn btn-primary">Linux (.deb)</a>
           <a href="https://mega.nz/file/PogimQTY#TgfH42m6n9Ip-cAowHs4RlZ4WyqGmfOquwzLFuYkqjA" target="_blank" rel="noopener noreferrer" data-download-linux-rpm class="btn btn-secondary">Linux (.rpm)</a>
-          <a href="#" data-download-mac class="btn btn-secondary is-soon" aria-disabled="true">macOS <em class="soon-tag" data-i18n="soon">Próximamente</em></a>
-          <a href="#" data-download-windows class="btn btn-secondary is-soon" aria-disabled="true">Windows <em class="soon-tag" data-i18n="soon">Próximamente</em></a>
+          <span data-download-mac class="btn btn-secondary is-soon">macOS <em class="soon-tag" data-i18n="soon">Próximamente</em></span>
+          <span data-download-windows class="btn btn-secondary is-soon">Windows <em class="soon-tag" data-i18n="soon">Próximamente</em></span>
         </div>
         <form class="report-form" id="reportForm">
           <p class="report-form__label" data-i18n="reportLabel">¿Encontraste un error? Cuéntanoslo.</p>

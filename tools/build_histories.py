@@ -56,7 +56,7 @@ def shell(title, description, path, body, schemas, script=False, art='estudio-bi
 </head>
 <body>
 <a class="skip-link" href="#contenido">Ir al contenido</a>
-<header class="site-header"><a class="brand" href="/">Verbo<span>biblioteca bíblica digital</span></a><nav aria-label="Navegación principal"><a href="/">Inicio</a><a href="/verbo-desktop/">Desktop</a><a href="/recursos/">Recursos</a><a href="/historias/" aria-current="{'page' if path == '/historias/' else 'true'}">Historias</a></nav></header>
+<header class="site-header"><a class="brand" href="/">Verbo<span>biblioteca bíblica digital</span></a><nav aria-label="Navegación principal"><a href="/">Inicio</a><a href="/software/">Software</a><a href="/recursos/">Recursos</a><a href="/historias/" aria-current="{'page' if path == '/historias/' else 'true'}">Historias</a></nav></header>
 {body}
 <footer class="site-footer"><p>Verbo · Para estudiar, servir y recordar.</p><nav aria-label="Información"><a href="/historias/">Todas las historias</a><a href="/acerca/">Acerca de Verbo</a><a href="/licencias/">Fuentes y licencias</a></nav></footer>
 {'<script src="/historias/assets/historias.js?v=20261006-historias" defer></script>' if script else ''}

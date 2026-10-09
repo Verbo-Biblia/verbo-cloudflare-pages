@@ -32,7 +32,7 @@ def shell(title, description, path, body, graphs, index=False, image_path='/hist
 <script type="application/ld+json">{schema({'@context':'https://schema.org','@graph':graphs})}</script>
 </head><body>
 <a class="skip-link" href="#contenido">Ir al contenido</a>
-<header class="q-header"><a class="q-brand" href="/">Verbo<span>biblioteca bíblica digital</span></a><nav aria-label="Navegación principal"><a href="/">Inicio</a><a href="/preguntas-cristianas/" aria-current="{'page' if index else 'true'}">Preguntas de hoy</a><a href="/libreria/">Librería</a><a href="/verbo-desktop/">Desktop</a></nav></header>
+<header class="q-header"><a class="q-brand" href="/">Verbo<span>biblioteca bíblica digital</span></a><nav aria-label="Navegación principal"><a href="/">Inicio</a><a href="/preguntas-cristianas/" aria-current="{'page' if index else 'true'}">Preguntas de hoy</a><a href="/libreria/">Librería</a><a href="/software/">Software</a></nav></header>
 {body}
 <footer class="q-footer"><p>Verbo · La Palabra para la vida de hoy.</p><nav aria-label="Más de Verbo"><a href="/preguntas-cristianas/">Todas las preguntas</a><a href="/recursos/devocionales/">Devocionales</a><a href="/acerca/">Acerca de Verbo</a></nav></footer>
 {'<script src="/preguntas-cristianas/assets/questions.js?v=20261007" defer></script>' if index else ''}
