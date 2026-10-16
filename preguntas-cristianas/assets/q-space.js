@@ -51,6 +51,24 @@
   section.append(stage);
   anchor.after(section);
 
+  /* Un enlace interno (#...) que cruza el escenario salta directo: con scroll
+     suave atravesaba el viaje entero y todos los títulos parpadeaban. */
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a || a.hash.length < 2) return;
+    const dest = document.getElementById(decodeURIComponent(a.hash.slice(1)));
+    if (!dest) return;
+    const top = section.getBoundingClientRect().top + scrollY;
+    const bottom = top + section.offsetHeight;
+    const y = dest.getBoundingClientRect().top + scrollY;
+    if ((scrollY < bottom - innerHeight && y >= bottom - 1) || (scrollY > top && y <= top)) {
+      e.preventDefault();
+      const pad = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+      scrollTo({ top: y - pad, behavior: 'instant' });
+      history.pushState(null, '', a.hash);
+    }
+  });
+
   const START = -700;
   const travelTotal = (cards.length - 1) * GAP + 1000;
   const range = () => ({ top: section.getBoundingClientRect().top + scrollY, len: section.offsetHeight - innerHeight });
