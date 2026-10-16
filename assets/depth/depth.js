@@ -22,6 +22,16 @@
   root.classList.add('depth-on');
   if (embedded) root.classList.add('depth-lite');
   const all = sel => (sel ? [...document.querySelectorAll(sel)] : []);
+  /* Algunas páginas (recursos, artículos) hacen scroll dentro de <body> con
+     html{overflow:hidden}; ahí window no recibe eventos de scroll ni mueve
+     scrollY. Estas ayudas sirven para los dos casos. */
+  const bodyScroller = () => {
+    const b = document.body;
+    return b && b.scrollHeight > b.clientHeight + 1 && /(auto|scroll)/.test(getComputedStyle(b).overflowY) ? b : null;
+  };
+  const pos = () => { const b = bodyScroller(); return b ? b.scrollTop : scrollY; };
+  const maxScroll = () => { const b = bodyScroller(); return b ? b.scrollHeight - b.clientHeight : root.scrollHeight - innerHeight; };
+  const onScroll = fn => document.addEventListener('scroll', fn, { passive: true, capture: true });
   all(opts.enter).forEach(el => el.classList.add('depth-enter'));
   all(opts.through).forEach(el => el.classList.add('depth-through'));
   all(opts.fly).forEach(el => el.classList.add('depth-fly'));
@@ -39,7 +49,7 @@
         el.style.setProperty('--depth-p', p.toFixed(4));
       }
     };
-    addEventListener('scroll', () => { if (!pending) pending = requestAnimationFrame(scrub); }, { passive: true });
+    onScroll(() => { if (!pending) pending = requestAnimationFrame(scrub); });
     addEventListener('resize', scrub, { passive: true });
     scrub();
   }
@@ -104,15 +114,15 @@
       draw();
       raf = Math.abs(target - travel) > 0.0004 ? requestAnimationFrame(frame) : 0;
     }
-    function onScroll() {
-      target = scrollY / 2600;
+    function onSkyScroll() {
+      target = pos() / 2600;
       if (!raf) raf = requestAnimationFrame(frame);
     }
     resize();
-    target = travel = scrollY / 2600;
+    target = travel = pos() / 2600;
     draw();
     addEventListener('resize', () => { resize(); draw(); }, { passive: true });
-    addEventListener('scroll', onScroll, { passive: true });
+    onScroll(onSkyScroll);
   }
 
   /* ---------- Línea de lectura ---------- */
@@ -124,10 +134,10 @@
     let pending = 0;
     const update = () => {
       pending = 0;
-      const max = root.scrollHeight - innerHeight;
-      bar.style.transform = `scaleX(${max > 0 ? Math.min(1, scrollY / max) : 0})`;
+      const max = maxScroll();
+      bar.style.transform = `scaleX(${max > 0 ? Math.min(1, pos() / max) : 0})`;
     };
-    addEventListener('scroll', () => { if (!pending) pending = requestAnimationFrame(update); }, { passive: true });
+    onScroll(() => { if (!pending) pending = requestAnimationFrame(update); });
     update();
   }
 

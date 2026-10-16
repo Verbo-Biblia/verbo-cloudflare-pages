@@ -112,3 +112,40 @@
     window.parent.postMessage({ type: 'verbo:open-external', url: target.href }, '*');
   }, true);
 })();
+
+/* Capa de profundidad (3D) para todas las páginas que cargan este script:
+   recursos, librería, devocionales, sermones, artículos, lecciones y páginas
+   institucionales. La portada, Historias y Preguntas ya traen depth.js con su
+   propia configuración y se saltean. Fuera: la app bíblica, el proyector, el
+   studio y ajustes. Dentro de la app Android depth.js corre en modo liviano
+   solo; con "reducir movimiento" no hace nada. Ver /assets/depth/depth.js. */
+(function(){
+  'use strict';
+  if (document.querySelector('script[src*="/assets/depth/depth.js"]')) return;
+  if (/^\/(biblia|proyector|studio|ajustes)\//.test(location.pathname)) return;
+  const V = '20261015-3d3';
+  const list = document.querySelector('.r-card, .r-article-row, .r-book-row, .r-sermon-row');
+  const article = !list && document.querySelector('main article');
+  const config = list ? {
+    enter: '.r-discovery-heading, .r-section-label, .r-card, .r-article-row, .r-book-row',
+    tilt: '.r-card, .sermon-cover, .book-cover',
+    sky: '0.6'
+  } : article ? {
+    /* Para leer: sin animar el texto, solo luz tenue y línea de lectura. */
+    enter: '.lesson-nav, .quick-nav',
+    progress: '',
+    sky: '0.3'
+  } : {
+    enter: 'main > section, .static-page__main > section',
+    sky: '0.5'
+  };
+  const css = document.createElement('link');
+  css.rel = 'stylesheet';
+  css.href = `/assets/depth/depth.css?v=${V}`;
+  document.head.append(css);
+  const js = document.createElement('script');
+  js.src = `/assets/depth/depth.js?v=${V}`;
+  Object.entries(config).forEach(([k, v]) => { js.dataset[k] = v; });
+  if (document.body) document.body.append(js);
+  else document.addEventListener('DOMContentLoaded', () => document.body.append(js));
+})();

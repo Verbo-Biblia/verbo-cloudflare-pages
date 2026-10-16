@@ -187,7 +187,7 @@ def page_html(book, count):
 <script>window.__LIBRERIA_BOOK__ = {json.dumps(config, ensure_ascii=False, indent=2)};</script>
 <script src="../../biblia/assets/i18n.js?v=20260829-assistant-search"></script>
 <script src="../../biblia/assets/site-translate.js?v=20260811-translate-abandon"></script>
-<script src="../../biblia/assets/site-chrome.js?v=20260729-1"></script>
+<script src="../../biblia/assets/site-chrome.js?v=20261015-3d"></script>
 <script src="../../biblia/assets/tts-player.js?v=1"></script>
 <script src="../../biblia/assets/backup.js?v=20260823-no-bump-reapertura"></script>
 <script src="../../biblia/assets/sync.js?v=20260823-libreria-marcador"></script>

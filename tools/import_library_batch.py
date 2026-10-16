@@ -258,7 +258,7 @@ def page_html(book, data_url):
 <script>window.__LIBRERIA_BOOK__ = {json.dumps(cfg, ensure_ascii=False, indent=2)};</script>
 <script src="../../biblia/assets/i18n.js?v=20260829-assistant-search"></script>
 <script src="../../biblia/assets/site-translate.js?v=20260729-2"></script>
-<script src="../../biblia/assets/site-chrome.js?v=20260729-1"></script>
+<script src="../../biblia/assets/site-chrome.js?v=20261015-3d"></script>
 <script src="../../biblia/assets/backup.js?v=20260823-no-bump-reapertura"></script>
 <script src="../../biblia/assets/sync.js?v=20260823-libreria-marcador"></script>
 <script src="../assets/mi-biblioteca.js?v=2-backup-sync"></script>
