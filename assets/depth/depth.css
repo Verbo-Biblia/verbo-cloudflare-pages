@@ -1,0 +1,42 @@
+/* Capa de profundidad de Verbo — mejora progresiva, compartida por todo el sitio.
+   Solo se activa con la clase .depth-on en <html> (la pone depth.js). Sin JS,
+   o con "reducir movimiento" el sitio queda exactamente como antes. Dentro
+   de la app Android corre en modo liviano (.depth-lite). Regla de diseño: el movimiento sigue al scroll, nunca
+   tapa el texto y todo lo legible queda sobre fondo opaco. */
+
+.depth-sky{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;opacity:0;transition:opacity 1.2s ease}
+.depth-on .depth-sky{opacity:1}
+
+/* Luz de lectura: una línea dorada que avanza con el artículo. */
+.depth-progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:50;pointer-events:none;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,#d6ae7000,#d6ae70 40%,#f3dcb0);box-shadow:0 0 12px #d6ae70aa}
+
+/* Inclinación 3D al pasar el mouse (solo con mouse fino, nunca en táctil). */
+.depth-on .depth-tilt{transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s;will-change:transform}
+.depth-on .depth-tilt.is-tilting{transition:transform .08s linear,box-shadow .3s;box-shadow:0 30px 60px -28px #0a203766}
+.depth-on .depth-tilt .depth-glare{position:absolute;inset:0;pointer-events:none;border-radius:inherit;opacity:0;transition:opacity .4s;background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),#fff7e480,transparent 55%);mix-blend-mode:soft-light;z-index:3}
+.depth-on .depth-tilt.is-tilting .depth-glare{opacity:1}
+
+/* Entrada en perspectiva: los bloques llegan desde el fondo mientras haces scroll.
+   Usa scroll-driven animations; donde no existen, el bloque simplemente está. */
+@supports (animation-timeline: view()){
+  .depth-on .depth-enter{animation:depth-enter linear both;animation-timeline:view();animation-range:entry 0% entry 85%;transform-origin:50% 100%}
+  .depth-on .depth-enter.reveal.pending{opacity:1;transform:none}
+}
+@keyframes depth-enter{
+  from{opacity:0;transform:perspective(1400px) translate3d(0,70px,-180px) rotateX(16deg)}
+  to{opacity:1}
+}
+
+/* Héroes que se atraviesan y luz en la que se entra: depth.js pone --depth-p
+   (0 arriba, 1 cuando la sección salió de pantalla) mientras haces scroll. */
+.depth-on .depth-through{transform:perspective(1200px) translate3d(0,calc(var(--depth-p,0) * -50px),calc(var(--depth-p,0) * -280px)) rotateX(calc(var(--depth-p,0) * -9deg));opacity:calc(1 - var(--depth-p,0) * .9);transform-origin:50% 0}
+.depth-on .depth-fly{scale:calc(1 + var(--depth-p,0) * .45);filter:brightness(calc(1 + var(--depth-p,0) * .35)) saturate(calc(1 + var(--depth-p,0) * .15))}
+
+/* App Android: entradas más cortas, sin profundidad extrema. */
+@keyframes depth-enter-lite{from{opacity:0;transform:perspective(1400px) translate3d(0,40px,-80px) rotateX(10deg)}to{opacity:1}}
+@supports (animation-timeline: view()){.depth-lite .depth-enter{animation-name:depth-enter-lite}}
+
+@media (prefers-reduced-motion:reduce){
+  .depth-sky,.depth-progress{display:none}
+  .depth-on .depth-enter{animation:none}
+}

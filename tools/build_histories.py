@@ -52,6 +52,7 @@ def shell(title, description, path, body, schemas, script=False, art='estudio-bi
 <meta name="theme-color" content="#0a2037">
 <link rel="icon" href="/biblia/assets/icons/icon-192.png">
 <link rel="stylesheet" href="/historias/assets/historias.css?v=20261007-paleta-portada">
+<link rel="stylesheet" href="/assets/depth/depth.css?v=20261015-3d">{'\n<link rel="stylesheet" href="/historias/assets/journey.css?v=20261015-3d">' if path == '/historias/' else ''}
 <script type="application/ld+json">{ld({'@context':'https://schema.org','@graph':schemas})}</script>
 </head>
 <body>
@@ -60,6 +61,7 @@ def shell(title, description, path, body, schemas, script=False, art='estudio-bi
 {body}
 <footer class="site-footer"><p>Verbo · Para estudiar, servir y recordar.</p><nav aria-label="Información"><a href="/historias/">Todas las historias</a><a href="/acerca/">Acerca de Verbo</a><a href="/licencias/">Fuentes y licencias</a></nav></footer>
 {'<script src="/historias/assets/historias.js?v=20261006-historias" defer></script>' if script else ''}
+{'<script src="/assets/depth/depth.js?v=20261015-3d" defer data-enter=".featured-reading,.collection-heading,.story-filters,.story-card" data-through=".collection-hero" data-tilt=".story-card,.featured-reading nav a" data-sky="0.7"></script><script src="/historias/assets/journey.js?v=20261015-3d" defer></script>' if path == '/historias/' else '<script src="/assets/depth/depth.js?v=20261015-3d" defer data-progress data-enter=".article-illustration,.reflection,.related,.sources" data-sky="0.35"></script>'}
 </body>
 </html>
 '''
