@@ -16,6 +16,7 @@
   const esc = s => s.replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[ch]);
 
   const section = el('section', 'q-space');
+  section.id = 'recorrido-preguntas';
   section.setAttribute('aria-hidden', 'true');
   section.style.setProperty('--count', cards.length);
   const stage = el('div', 'q-space-stage');
@@ -51,9 +52,22 @@
   section.append(stage);
   anchor.after(section);
 
+  // La llamada de la portada entra en la primera pregunta del recorrido.
+  // Sin este escenario (sin JS o con movimiento reducido), conserva la lista como destino.
+  const explore = anchor.querySelector('a[href="#preguntas"]');
+  if (explore) {
+    explore.href = '#recorrido-preguntas';
+    explore.addEventListener('click', e => {
+      e.preventDefault();
+      scrollTo({ top: scrollForStop(0), behavior: 'smooth' });
+      history.pushState(null, '', explore.hash);
+    });
+  }
+
   /* Un enlace interno (#...) que cruza el escenario salta directo: con scroll
      suave atravesaba el viaje entero y todos los títulos parpadeaban. */
   document.addEventListener('click', e => {
+    if (e.defaultPrevented) return;
     const a = e.target.closest('a[href^="#"]');
     if (!a || a.hash.length < 2) return;
     const dest = document.getElementById(decodeURIComponent(a.hash.slice(1)));

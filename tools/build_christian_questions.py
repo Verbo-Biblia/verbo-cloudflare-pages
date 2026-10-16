@@ -37,7 +37,7 @@ def shell(title, description, path, body, graphs, index=False, image_path='/hist
 {body}
 <footer class="q-footer"><p>Verbo · La Palabra para la vida de hoy.</p><nav aria-label="Más de Verbo"><a href="/preguntas-cristianas/">Todas las preguntas</a><a href="/recursos/devocionales/">Devocionales</a><a href="/acerca/">Acerca de Verbo</a></nav></footer>
 {'<script src="/preguntas-cristianas/assets/questions.js?v=20261007" defer></script>' if index else ''}
-{'<script src="/assets/depth/depth.js?v=20261015-3d3" defer data-enter=".q-list-heading,.q-controls,.q-card" data-through=".q-intro" data-tilt=".q-card" data-sky="0.7"></script><script src="/preguntas-cristianas/assets/q-space.js?v=20261015-3d2" defer></script>' if index else '<script src="/assets/depth/depth.js?v=20261015-3d3" defer data-progress data-enter=".q-related,.q-sources" data-sky="0.35"></script>'}
+{'<script src="/assets/depth/depth.js?v=20261015-3d3" defer data-enter=".q-list-heading,.q-controls,.q-card" data-through=".q-intro" data-tilt=".q-card" data-sky="0.7"></script><script src="/preguntas-cristianas/assets/q-space.js?v=20261015-entrada-recorrido" defer></script>' if index else '<script src="/assets/depth/depth.js?v=20261015-3d3" defer data-progress data-enter=".q-related,.q-sources" data-sky="0.35"></script>'}
 </body></html>
 '''
 
