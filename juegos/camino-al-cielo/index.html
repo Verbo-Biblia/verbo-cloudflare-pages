@@ -51,6 +51,11 @@ button:hover{filter:brightness(1.05);transform:translateY(-1px)}button:active{tr
 #stick::after{content:'▲\A\A\A▼';white-space:pre;line-height:1.05;font-size:14px}
 #knob{position:absolute;left:50%;top:50%;width:66px;height:66px;margin:-33px 0 0 -33px;border-radius:50%;background:linear-gradient(#fff6c9,#dcecff);border:3px solid #fff;box-shadow:0 3px 8px #2f4f7a55;transition:transform .08s}
 #stick.activo #knob{transition:none}
+/* En celular (y pantallas angostas) el inicio, el versículo, los ajustes y el final ocupan toda la pantalla, no solo la franja del juego. */
+body.tactil #menu,body.tactil #settings,body.tactil #intro{position:fixed;inset:0;z-index:30;padding:16px}
+body.tactil .menuCard small[data-t=controls]{display:none}body.tactil #settings{background:#d6ecfff2}body.tactil #intro{background:#cfe6ffee}
+body.tactil:not(.jugando) #volver{position:fixed;top:8px;left:12px;z-index:31;background:#fffbeacc;padding:4px 10px;border-radius:12px}
+@media(max-width:760px){#menu,#settings,#intro{position:fixed;inset:0;z-index:30;padding:16px}#settings{background:#d6ecfff2}#intro{background:#cfe6ffee}}
 #pausa,#girar{display:none}
 body.tactil.jugando{padding:0;overflow:hidden;background:#bfe3ff}
 body.tactil.jugando #volver,body.tactil.jugando .side{display:none}
