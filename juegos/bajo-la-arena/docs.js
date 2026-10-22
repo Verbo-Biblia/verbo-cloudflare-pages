@@ -158,9 +158,17 @@ export function docSvg(doc, fit = 'meet') {
 
   if (doc.kind === 'croquis') {
     const grid = Array.from({ length: 21 }, (_, index) => `<line class="grid" x1="${index * 20}" x2="${index * 20}" y1="0" y2="300"/><line class="grid" x1="0" x2="400" y1="${index * 20}" y2="${index * 20}"/>`).join('');
-    const rooms = (doc.rooms || []).map(([label, x, y, w, h]) => `<rect class="room" x="${x}" y="${y}" width="${w}" height="${h}"/><text class="mono room-label" x="${x + 6}" y="${y + 16}">${escapeHtml(label)}</text>`).join('');
-    const marks = (doc.marks || []).map(([mark, x, y]) => `<circle class="mark" cx="${x}" cy="${y}" r="10"/><text class="mono mark-text" x="${x}" y="${y + 4}" text-anchor="middle">${escapeHtml(mark)}</text>`).join('');
-    const legend = (doc.marks || []).map(([mark, , , label], index) => `<text class="mono small" x="${24 + index * 120}" y="288"><tspan class="mark-label">${escapeHtml(mark)}</tspan> ${escapeHtml(label || '')}</text>`).join('');
+    // Con leyenda de dos renglones el dibujo se comprime en vertical para no pisarla (y queda debajo del título).
+    const stackedLegend = (doc.marks || []).length > 2 || (doc.marks || []).some(([, , , label]) => (label || '').length > 12);
+    const bottom = Math.max(0, ...(doc.rooms || []).map(([, , y, , h]) => y + h), ...(doc.marks || []).map(([, , y]) => y + 10));
+    const k = stackedLegend && bottom > 256 ? (256 - 36) / (bottom - 36) : 1;
+    const fy = (y) => 36 + (y - 36) * k;
+    const rooms = (doc.rooms || []).map(([label, x, y0, w, h0]) => [label, x, fy(y0), w, h0 * k]).map(([label, x, y, w, h]) => `<rect class="room" x="${x}" y="${y}" width="${w}" height="${h}"/><text class="mono room-label" x="${x + 6}" y="${y + 16}">${escapeHtml(label)}</text>`).join('');
+    const marks = (doc.marks || []).map(([mark, x, y0]) => [mark, x, fy(y0)]).map(([mark, x, y]) => `<circle class="mark" cx="${x}" cy="${y}" r="10"/><text class="mono mark-text" x="${x}" y="${y + 4}" text-anchor="middle">${escapeHtml(mark)}</text>`).join('');
+    // Leyenda: en una línea si caben (hasta 2 marcas cortas); si no, en dos columnas abajo (máximo dos renglones con 4 marcas).
+    const marksList = doc.marks || [];
+    const stacked = stackedLegend;
+    const legend = marksList.map(([mark, , , label], index) => `<text class="mono small" x="${stacked ? 24 + (index % 2) * 190 : 24 + index * 120}" y="${stacked ? 288 - (Math.ceil(marksList.length / 2) - 1 - Math.floor(index / 2)) * 14 : 288}"><tspan class="mark-label">${escapeHtml(mark)}</tspan> ${escapeHtml(label || '')}</text>`).join('');
     return `${open('croquis')}
       <rect class="paper" width="400" height="300"/>
       ${grid}
