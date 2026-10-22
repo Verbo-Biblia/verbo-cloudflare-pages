@@ -1,7 +1,20 @@
 # Maclear y el Asistente — estado para reanudar
 
 Guardado: 2026-09-04
-Estado: `VALIDATED_PENDING_PUBLICATION`
+Estado: `BLOCKED_GITHUB_AUTH`
+
+## Bloqueo de publicación — 2026-09-04
+
+La integración completa está en el commit local `7a8f0774`. El intento de
+`git push origin main` falló por falta de autenticación; `gh auth status`
+confirmó que la credencial guardada no es válida. No se publicó ni se inició
+un despliegue de Cloudflare. Se requiere reautenticar GitHub mediante
+`gh auth login -h github.com` y, si hace falta, `gh auth setup-git`.
+
+Después: subir main, comprobar el despliegue y ejecutar la prueba de navegador
+con BASE_URL=https://verbobiblia.com. No reconstruir los paquetes: ya están
+completos y validados. Esta nota de bloqueo está guardada en el árbol de
+trabajo después del commit.
 
 ## Reanudación y validación — 2026-09-04
 
