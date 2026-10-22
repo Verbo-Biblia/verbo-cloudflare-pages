@@ -108,3 +108,7 @@ def build():
 
 if __name__=='__main__':
     build()
+
+    # Restaurar el pie común tras generar páginas públicas.
+    from pie_comun import apply as apply_common_footer
+    apply_common_footer()

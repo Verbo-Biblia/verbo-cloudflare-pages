@@ -1,0 +1,13 @@
+/* Superficie de papel y profundidad suave, compartida sin animar la lectura. */
+footer.verbo-pie{display:block;box-sizing:border-box;width:100%;max-width:none;margin:64px 0 0;padding:42px 24px!important;border:0;border-top:1px solid #dfd6c7;background:linear-gradient(145deg,#faf5eb,#eee3d1);color:#0a2037;box-shadow:inset 0 1px #fff,0 -14px 40px -30px #0a203755;font:14px/1.65 Inter,system-ui,sans-serif;text-align:left}
+.verbo-pie .verbo-pie__interior{display:grid;grid-template-columns:1.5fr 1fr 1.2fr .7fr;gap:32px;max-width:1240px;margin:0 auto}
+.verbo-pie .verbo-pie__marca>a{display:inline-block;font:bold 30px Georgia,serif;letter-spacing:-1px}
+.verbo-pie .verbo-pie__marca p{margin:12px 0 0;font:14px/1.65 Inter,system-ui,sans-serif;color:#586574;max-width:240px}
+.verbo-pie nav.verbo-pie__grupo{display:flex;flex-direction:column;align-items:flex-start;gap:9px;margin:0;padding:0}
+.verbo-pie .verbo-pie__grupo h2{margin:0 0 7px;font:700 12px/1.5 Inter,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#0a2037;white-space:normal}
+.verbo-pie a{display:block;color:#0a2037;text-decoration:none;font-size:14px}
+.verbo-pie a:hover{text-decoration:underline;text-underline-offset:4px}
+.verbo-pie a:focus-visible{outline:3px solid #98703c;outline-offset:4px;border-radius:2px}
+.verbo-pie[hidden]{display:none!important}
+@media(max-width:850px){.verbo-pie .verbo-pie__interior{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){footer.verbo-pie{padding:32px 24px!important}.verbo-pie .verbo-pie__interior{grid-template-columns:1fr;gap:28px}}

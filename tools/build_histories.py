@@ -147,4 +147,9 @@ def build():
     sitemap.write_text(text)
     print(f'Generadas {len(articles)} historias, índice y entradas de sitemap.')
 
-if __name__=='__main__':build()
+if __name__=='__main__':
+    build()
+
+    # Restaurar el pie común tras generar páginas públicas.
+    from pie_comun import apply as apply_common_footer
+    apply_common_footer()

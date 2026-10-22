@@ -413,3 +413,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+    # Restaurar el pie común tras generar páginas públicas.
+    from pie_comun import apply as apply_common_footer
+    apply_common_footer()

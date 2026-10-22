@@ -2,13 +2,15 @@
 
 ## Proyecto y alcance
 
-- Este es el repositorio activo de Verbo: `/home/juan/Verbo/verbo-cloudflare-pages`.
+- Este es el repositorio activo de Verbo: `/home/juan/Verbo/Sitio-Web-verbobiblia`.
 - El sitio público es `verbobiblia.com` y se despliega mediante Cloudflare Pages desde este repositorio.
 - La aplicación bíblica está en `biblia/`; las rutas y archivos antiguos que la situaban en la raíz ya no son válidos.
 - No trabajar en repositorios anteriores salvo como referencia histórica o editorial. Todo cambio real pertenece a este proyecto.
 - Conservar los cambios ajenos presentes en el árbol y no tocar `.wrangler/`.
 
 ## Arquitectura y publicación
+
+- Después de cualquier build que genere o reescriba páginas públicas, ejecutar `python3 tools/pie_comun.py`. El sitemap y sus índices antecesores definen su alcance; el pie se reemplaza de forma idempotente. Mantener las exclusiones de la app bíblica, proyector, review, docs y studio, y ocultar el pie en el modo iframe de Android mediante `ocultarSalidas()` en `site-chrome.js`.
 
 - `biblia/modules/registry.json` registra módulos y recursos de la aplicación.
 - `biblia/modules/bibles/` contiene las Biblias locales; Biblia Verbo está en `rv-verbo`.
