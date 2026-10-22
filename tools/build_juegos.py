@@ -9,10 +9,12 @@ def tarjeta(g):
  img=f'<a href="{g["url"]}" tabindex="-1"><img src="{g["imagen"]}" data-shot-es="{g["imagen"]}" data-shot-en="{g.get("imagen_en",g["imagen"])}" alt="{html.escape(g["nombre"],quote=True)}" loading="lazy"></a>'
  botones=''.join(f'<a class="button" href="{b["url"]}">'+tr(g['id']+'_'+b['id'],b['es'],b['en'],'span')+'</a>' for b in g.get('botones',[]))
  return '<article class="tile">'+img+'<h2><a href="'+g['url']+'">'+html.escape(g['nombre'])+'</a></h2>'+tr(g['id']+'Game',g['descripcion'],g['description_en'])+'<div class="tags">'+botones+'</div></article>'
-# Tarjetas de ancho limitado: un grupo con un solo juego no ocupa toda la pantalla.
-cuerpo='<style>.juegos-grupo .grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),480px))}.juegos-grupo .tile img{display:block;margin-bottom:6px}.juegos-grupo .tags .button{margin-top:6px}</style>'+tr('gamesTitle','Juegos cristianos','Christian games','h1')+tr('gamesLead','Juegos gratis para toda la familia, en la web y en Android. Descubre historias, conversa sobre las respuestas y aprende a tu ritmo. En la web no necesitas instalar nada.','Free games for the whole family, on the web and Android. Discover stories, discuss answers and learn at your own pace. On the web there is nothing to install.')
+# Los grupos van lado a lado en pantallas anchas y uno debajo del otro en el celular.
+cuerpo='<style>.juegos-grupos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:32px;align-items:start}.juegos-grupo{padding-bottom:0}.juegos-grupo .grid{grid-template-columns:1fr}.juegos-grupo .tile img{display:block;margin-bottom:6px}.juegos-grupo .tags .button{margin-top:6px}</style>'+tr('gamesTitle','Juegos cristianos','Christian games','h1')+tr('gamesLead','Juegos gratis para toda la familia, en la web y en Android. Descubre historias, conversa sobre las respuestas y aprende a tu ritmo. En la web no necesitas instalar nada.','Free games for the whole family, on the web and Android. Discover stories, discuss answers and learn at your own pace. On the web there is nothing to install.')
+cuerpo+='<div class="juegos-grupos">'
 for clave,es,en,lead_es,lead_en in GRUPOS:
  juegos=[g for g in catalog if g['grupo']==clave]
  if juegos: cuerpo+=f'<section class="intro juegos-grupo" id="{clave}">'+tr('games_'+clave,es,en,'h2')+tr('games_'+clave+'Lead',lead_es,lead_en)+'<div class="grid">'+''.join(map(tarjeta,juegos))+'</div></section>'
+cuerpo+='</div>'
 page('juegos','Juegos cristianos gratis','Juegos cristianos gratis para niños y para no tan niños, en la web y en Android.',cuerpo)
 save()
