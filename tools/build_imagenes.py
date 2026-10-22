@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Build offline: --todas includes unreviewed images for local preview only."""
+import sys
 import argparse,json,re,shutil,unicodedata
 from pathlib import Path
 from collections import Counter
@@ -22,8 +23,19 @@ def card(x):
  return '<article class="tile"><a class="tile-link" href="'+x['url']+'"><img src="'+x['thumb']+'" srcset="'+x['thumb']+' 480w, '+x['medium']+' 640w" sizes="(max-width:600px) 100vw, (max-width:1000px) 50vw, 33vw" width="640" height="360" loading="lazy" alt="'+e(x['titulo'],quote=True)+'" data-es="'+e(x['titulo'],quote=True)+'" data-en="'+e(x['title_en'],quote=True)+'"><div class="tile-caption">'+bi(x['titulo'],x['title_en'],'h2')+'<small>'+e(x['cita'])+'</small></div></a><a class="quick-download" download="'+slug(x['titulo'])+'.jpg" href="'+x['original']+'" aria-label="Descargar / Download">↓</a></article>'
 def mosaic(rows):
  return '<div class="grid">'+''.join(card(x)+('<!-- verbo:anuncio:banco-entre-filas -->' if (i+1)%12==0 else '') for i,x in enumerate(rows))+'</div>'
-def citation(x):
- return '/biblia/?book='+{'Mateo':'MAT','Marcos':'MRK','Lucas':'LUK','Juan':'JHN','Hechos':'ACT','Apocalipsis':'REV','Génesis':'GEN','Éxodo':'EXO'}.get(x['libro'],slug(x['libro']))+'&chapter='+str(x['capitulo'])+'&verse='+str(x['versiculos']).split('-')[0]
+RVG=Path(__file__).resolve().parent.parent/'biblia/modules/bibles/rvg-2004'
+RVG_IDS={b['name']:b['id'] for b in json.loads((RVG/'manifest.json').read_text())['books']}
+RVG_BOOKS={}
+def verse_text(x,limit=6):
+ # Texto RVG 2004 del pasaje, sin enlazar al lector bíblico (retirado de la web).
+ try:
+  book=RVG_BOOKS.setdefault(x['libro'],json.loads((RVG/'books'/(RVG_IDS[x['libro']]+'.json')).read_text()))
+  chapter=book['chapters'][str(x['capitulo'])];a,_,b=str(x['versiculos']).partition('-');a=int(a);b=int(b or a)
+ except (KeyError,ValueError):return ''
+ verses=[(n,chapter[str(n)]['text']) for n in range(a,min(b,a+limit-1)+1) if str(n) in chapter]
+ if not verses:return ''
+ more=' …' if b>a+limit-1 else ''
+ return '<blockquote class="verse-text" lang="es">'+' '.join('<sup>'+str(n)+'</sup> '+e(s) for n,s in verses)+more+'<footer>Reina-Valera Gómez 2004</footer></blockquote>'
 def build():
  ap=argparse.ArgumentParser();ap.add_argument('--todas',action='store_true');ap.add_argument('--banco',type=Path,default=Path.home()/'Verbo/Banco-Imagenes');args=ap.parse_args()
  state=json.loads((args.banco/'estado.json').read_text());records=[]
@@ -54,11 +66,11 @@ def build():
  items.sort(key=lambda x: (canonical.index(x['libro']) if x['libro'] in canonical else 99,int(x['capitulo']),int(str(x['versiculos']).split('-')[0]),x['id']))
  def write(route,title,desc,body,schema=None):
   page(route,title,desc,body,schema)
-  p=R/route/'index.html';s=p.read_text();s=s.replace('</head>','<link rel="stylesheet" href="/imagenes/banco.css?v=20261021"></head>').replace('<body>','<body class="image-bank">').replace('<script src="/assets/depth/depth.js" defer data-tilt=".tile" data-enter=".tile,.intro" data-sky="0.5"></script>','');s=s.replace('</head>','<meta name="keywords" content="imágenes bíblicas gratis, fondos cristianos, wallpaper cristiano, fondos de pantalla cristianos para celular, fondos para proyector de iglesia, ilustraciones bíblicas, free Bible images, Christian wallpaper, Christian backgrounds, church projector backgrounds, Bible illustrations, Bible stock photos">'+('<meta name="robots" content="noindex,nofollow">' if args.todas else '')+'</head>');p.write_text(s)
+  p=R/route/'index.html';s=p.read_text();s=s.replace('</head>','<link rel="stylesheet" href="/imagenes/banco.css?v=20261022"></head>').replace('<body>','<body class="image-bank">').replace('<script src="/assets/depth/depth.js" defer data-tilt=".tile" data-enter=".tile,.intro" data-sky="0.5"></script>','');s=s.replace('</head>','<meta name="keywords" content="imágenes bíblicas gratis, fondos cristianos, wallpaper cristiano, fondos de pantalla cristianos para celular, fondos para proyector de iglesia, ilustraciones bíblicas, free Bible images, Christian wallpaper, Christian backgrounds, church projector backgrounds, Bible illustrations, Bible stock photos">'+('<meta name="robots" content="noindex,nofollow">' if args.todas else '')+'</head>');p.write_text(s)
  license=bi(LICENSE_ES,LICENSE_EN,'p',id='licencia')
  for x in items:
   approved=x['estado']=='aprobada';notice=bi('Imagen generada con IA y revisada por Verbo' if approved else 'Vista previa local: imagen generada con IA, pendiente de revisión por Verbo.','AI-generated image reviewed by Verbo' if approved else 'Local preview: AI-generated image awaiting review by Verbo.','p',**{'class':'notice'})
-  body='<a class="back-link" href="/imagenes/">← '+bi('Banco de imágenes','Image library','span')+'</a><div class="image-layout"><div class="image-stage"><button class="open-viewer" aria-label="Abrir imagen a pantalla completa / Open full screen"><img src="'+x['original']+'" width="1600" height="900" alt="'+e(x['titulo'],quote=True)+'" data-es="'+e(x['titulo'],quote=True)+'" data-en="'+e(x['title_en'],quote=True)+'"><span>⛶ '+bi('Ampliar imagen','Enlarge image','span')+'</span></button>'+notice+'</div><aside class="image-info">'+bi('ILUSTRACIONES DE LA BIBLIA','BIBLE ILLUSTRATIONS','p',**{'class':'eyebrow'})+bi(x['titulo'],x['title_en'],'h1')+'<a class="passage" href="'+citation(x)+'">'+bi(x['cita'],x['cita'].replace(x['libro'],BOOKS.get(x['libro'],x['libro'])),'span')+' ↗</a>'
+  body='<a class="back-link" href="/imagenes/">← '+bi('Banco de imágenes','Image library','span')+'</a><div class="image-layout"><div class="image-stage"><button class="open-viewer" aria-label="Abrir imagen a pantalla completa / Open full screen"><img src="'+x['original']+'" width="1600" height="900" alt="'+e(x['titulo'],quote=True)+'" data-es="'+e(x['titulo'],quote=True)+'" data-en="'+e(x['title_en'],quote=True)+'"><span>⛶ '+bi('Ampliar imagen','Enlarge image','span')+'</span></button>'+notice+'</div><aside class="image-info">'+bi('ILUSTRACIONES DE LA BIBLIA','BIBLE ILLUSTRATIONS','p',**{'class':'eyebrow'})+bi(x['titulo'],x['title_en'],'h1')+'<p class="passage">'+bi(x['cita'],x['cita'].replace(x['libro'],BOOKS.get(x['libro'],x['libro'])),'span')+'</p>'+verse_text(x)
   if x['paralelos']:body+=bi('También en: '+' · '.join(x['paralelos']),'Also in: '+' · '.join(x['paralelos']),'p',**{'class':'parallel'})
   body+=bi(x['descripcion'],x['description_en'])+'<div class="tags">'+''.join('<a href="/imagenes/temas/'+slug(t)+'/">'+bi(t,TAGS.get(t,t),'span')+'</a>' for t in x['tags'])+'</div><div class="download-panel">'+bi('Descarga gratuita','Free download','h2')+'<a class="button download" download="'+slug(x['titulo'])+'-16x9.jpg" href="'+x['original']+'"><span>'+bi('Original · 16:9','Original · 16:9','strong')+'<small>'+x['resolution']+' · '+x['weight']+'</small></span><span>↓</span></a><a class="button download secondary" download="'+slug(x['titulo'])+'-9x16.jpg" href="'+x['vertical']+'">'+bi('Vertical · 9:16 para celular','Vertical · 9:16 for phones','span')+'<span>↓</span></a>'+bi('El recorte vertical puede omitir elementos de la escena.','The vertical crop may omit elements of the scene.','p',**{'class':'fine'})+'</div><div class="license-note">'+bi('✓ Uso libre, también comercial','✓ Free for commercial use','strong')+license+'</div><button class="share-link" type="button">'+bi('Copiar enlace / compartir','Copy link / share','span')+'</button><p id="share-status" role="status" aria-live="polite"></p></aside></div>'
   index=items.index(x);body+='<nav class="image-navigation" aria-label="Orden bíblico / Biblical order">'
@@ -87,7 +99,19 @@ def build():
  write('imagenes','Imágenes bíblicas gratis · Free Bible images', 'Imágenes bíblicas gratis, fondos cristianos y wallpapers para celular. Free Bible images, Christian wallpaper and church projector backgrounds.',body)
  (out/'indice.json').write_text(json.dumps(items,ensure_ascii=False,separators=(',',':'))+'\n')
  save();generated=sorted(str(p.relative_to(R)) for p in out.rglob('*') if p.is_file() and p not in before);(out/'generated.json').write_text(json.dumps(generated,indent=2)+'\n');print(f'Banco: {len(items)} imágenes; {len(collections)} colecciones; vista previa={args.todas}')
+def sync_sitemap():
+ # Las páginas del banco entran y salen del sitemap con cada compilación (pie_comun lo usa como lista pública).
+ import datetime
+ sm=R/'sitemap.xml';t=sm.read_text();base='https://verbobiblia.com/'
+ def keep(m):
+  u=m.group(1);return '' if u.startswith(base+'imagenes/') and not (R/u[len(base):]/'index.html').exists() else m.group(0)
+ t=re.sub(r'  <url>\n    <loc>(.*?)</loc>\n(?:    .*\n)*?  </url>\n',keep,t);have=set(re.findall(r'<loc>(.*?)</loc>',t));today=datetime.date.today().isoformat();add=''
+ for q in sorted((R/'imagenes').rglob('index.html')):
+  u=base+str(q.parent.relative_to(R))+'/'
+  if u not in have:add+=f'  <url>\n    <loc>{u}</loc>\n    <lastmod>{today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>{"0.6" if len(q.parent.relative_to(R).parts)>2 else "0.7"}</priority>\n  </url>\n'
+ sm.write_text(t.replace('</urlset>',add+'</urlset>'))
 if __name__=='__main__':
  build()
+ if '--todas' not in sys.argv:sync_sitemap()
  from pie_comun import apply
  apply()

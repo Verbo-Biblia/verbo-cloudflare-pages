@@ -28,6 +28,6 @@ with tempfile.TemporaryDirectory() as tmp:
  with Image.open(root/item['medium'].lstrip('/')) as image: assert image.width<=640
  html=(root/'imagenes/mateo/test-one/index.html').read_text()
  assert 'Paralelos: —' not in html and 'class="lightbox"' in html
- assert 'book=MAT' in html and 'download="prueba-16x9.jpg"' in html
+ assert 'verse-text' in html and 'href="/biblia/' not in html and 'download="prueba-16x9.jpg"' in html
  assert 'verbo:anuncio:imagen-lectura' in html
  print('Generador: aprobación, vista previa y limpieza verificadas.')
