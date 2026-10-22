@@ -114,3 +114,18 @@ canvas.mini.premio { width: 150px; height: 210px; box-shadow: 0 0 40px rgba(255,
 #pPueblo, #pMapa { isolation: isolate; overflow: hidden; }
 
 .punto:hover i { box-shadow: 0 0 0 6px rgba(255,215,106,.35), 0 2px 8px rgba(0,0,0,.7); }
+
+/* Teléfono acostado (poca altura): la portada cabe entera y la ficha del lugar se lee sin perder el botón Jugar. */
+@media (max-height: 520px) {
+  #pInicio { overflow: auto; }
+  .portada { margin-top: 0; gap: 6px; padding: 10px 16px; }
+  .portada h1 { font-size: clamp(1.8em, 6vh + 1em, 2.6em); }
+  .portada .sub { font-size: 1em; }
+  .portada .botones { gap: 6px; margin-top: 8px; width: min(300px, 70vw); }
+  .portada .botones > * { padding-top: 6px; padding-bottom: 6px; font-size: .95em; }
+  .ficha { top: 58px; bottom: 10px; padding: 12px; gap: 5px; font-size: .9em; }
+  .ficha .lamina { aspect-ratio: auto; height: 28vh; flex-shrink: 0; }
+  .ficha h3 { font-size: 1.2em; }
+  /* Jugar siempre a la vista, pegado abajo aunque el texto necesite desplazarse. */
+  .ficha #fJugar { position: sticky; bottom: 0; box-shadow: 0 -10px 14px var(--panel); flex-shrink: 0; }
+}
