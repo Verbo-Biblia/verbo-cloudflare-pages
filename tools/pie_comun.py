@@ -27,8 +27,8 @@ LINKS = {
 }
 
 # El lector bíblico (/biblia/) no se ofrece en la web: se quitan sus accesos y las citas
-# muestran el texto de la Reina-Valera Gómez 2004 en la misma página.
-RVG = ROOT / 'biblia/modules/bibles/rvg-2004'
+# muestran el texto de la Biblia Verbo en la misma página.
+RVG = ROOT / 'biblia/modules/bibles/rv-verbo'
 BIBLE_LINK = r'<a\b[^>]*href="(?:\.\./)*/?biblia/(?:\?[^"]*|index\.html)?"[^>]*>.*?</a>'
 _books = {}
 
@@ -39,11 +39,12 @@ def rvg_passage(href, label):
         verses = [int(v) for v in query['verse'][0].split(',') if v.isdigit()]
         if book not in _books:
             _books[book] = json.loads((RVG / 'books' / f'{book}.json').read_text(encoding='utf-8'))['chapters']
-        lines = [f'<sup>{n}</sup> {html.escape(_books[book][chapter][str(n)]["text"])}' for n in verses]
+        verse = lambda v: v['text'] if isinstance(v, dict) else v
+        lines = [f'<sup>{n}</sup> {html.escape(verse(_books[book][chapter][str(n)]))}' for n in verses]
     except (KeyError, IndexError, ValueError, OSError):
         return f'<p class="verbo-cita">{label}</p>'
     return (f'<blockquote class="verbo-cita" lang="es"><p>{" ".join(lines)}</p>'
-            f'<footer>{label} · Reina-Valera Gómez 2004</footer></blockquote>')
+            f'<footer>{label} · Biblia Verbo</footer></blockquote>')
 
 def without_bible_links(text):
     def replace(match):

@@ -23,19 +23,19 @@ def card(x):
  return '<article class="tile"><a class="tile-link" href="'+x['url']+'"><img src="'+x['thumb']+'" srcset="'+x['thumb']+' 480w, '+x['medium']+' 640w" sizes="(max-width:600px) 100vw, (max-width:1000px) 50vw, 33vw" width="640" height="360" loading="lazy" alt="'+e(x['titulo'],quote=True)+'" data-es="'+e(x['titulo'],quote=True)+'" data-en="'+e(x['title_en'],quote=True)+'"><div class="tile-caption">'+bi(x['titulo'],x['title_en'],'h2')+'<small>'+e(x['cita'])+'</small></div></a><a class="quick-download" download="'+slug(x['titulo'])+'.jpg" href="'+x['original']+'" aria-label="Descargar / Download">↓</a></article>'
 def mosaic(rows):
  return '<div class="grid">'+''.join(card(x)+('<!-- verbo:anuncio:banco-entre-filas -->' if (i+1)%12==0 else '') for i,x in enumerate(rows))+'</div>'
-RVG=Path(__file__).resolve().parent.parent/'biblia/modules/bibles/rvg-2004'
+RVG=Path(__file__).resolve().parent.parent/'biblia/modules/bibles/rv-verbo'
 RVG_IDS={b['name']:b['id'] for b in json.loads((RVG/'manifest.json').read_text())['books']}
 RVG_BOOKS={}
 def verse_text(x,limit=6):
- # Texto RVG 2004 del pasaje, sin enlazar al lector bíblico (retirado de la web).
+ # Texto Biblia Verbo del pasaje, sin enlazar al lector bíblico (retirado de la web).
  try:
   book=RVG_BOOKS.setdefault(x['libro'],json.loads((RVG/'books'/(RVG_IDS[x['libro']]+'.json')).read_text()))
   chapter=book['chapters'][str(x['capitulo'])];a,_,b=str(x['versiculos']).partition('-');a=int(a);b=int(b or a)
  except (KeyError,ValueError):return ''
- verses=[(n,chapter[str(n)]['text']) for n in range(a,min(b,a+limit-1)+1) if str(n) in chapter]
+ verses=[(n,chapter[str(n)]['text'] if isinstance(chapter[str(n)],dict) else chapter[str(n)]) for n in range(a,min(b,a+limit-1)+1) if str(n) in chapter]
  if not verses:return ''
  more=' …' if b>a+limit-1 else ''
- return '<blockquote class="verse-text" lang="es">'+' '.join('<sup>'+str(n)+'</sup> '+e(s) for n,s in verses)+more+'<footer>Reina-Valera Gómez 2004</footer></blockquote>'
+ return '<blockquote class="verse-text" lang="es">'+' '.join('<sup>'+str(n)+'</sup> '+e(s) for n,s in verses)+more+'<footer>Biblia Verbo</footer></blockquote>'
 def build():
  ap=argparse.ArgumentParser();ap.add_argument('--todas',action='store_true');ap.add_argument('--banco',type=Path,default=Path.home()/'Verbo/Banco-Imagenes');args=ap.parse_args()
  import fcntl
