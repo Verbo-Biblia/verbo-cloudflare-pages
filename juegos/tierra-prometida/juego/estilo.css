@@ -119,3 +119,9 @@ label select { flex: 1; max-width: 62%; }
 #reglas [data-idioma][hidden] { display: none; }
 /* ①②③ salen de una fuente de respaldo muy alta: que no estiren la línea. */
 #reglas .num { display: inline-block; height: 1em; line-height: 1; vertical-align: -0.1em; overflow: visible; }
+
+/* Pista de la primera partida en el teléfono: sobre la mano, con una flecha que late hacia las cartas. */
+#pistaMano { position: absolute; left: 50%; bottom: 23%; transform: translateX(-50%); max-width: min(440px, calc(100vw - 260px)); background: var(--panel); border: 1px solid var(--oro); border-radius: 12px; padding: 8px 14px; text-align: center; font-size: .9em; z-index: 7; pointer-events: none; opacity: 0; transition: opacity .3s; white-space: pre-line; }
+#pistaMano.visible { opacity: 1; }
+#pistaMano::after { content: '👇'; position: absolute; left: 50%; bottom: -30px; transform: translateX(-50%); font-size: 24px; animation: pistaLate 1s ease-in-out infinite; }
+@keyframes pistaLate { 50% { transform: translate(-50%, 6px); } }

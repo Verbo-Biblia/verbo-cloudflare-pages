@@ -20,7 +20,10 @@ const leer = (k, d) => { try { return localStorage.getItem('baseCartas.' + k) ||
 
 let tema = null, tablero = null, st = null;
 let rivalPers = 'equilibrada';
-let modo = null;          // null | { tipo: 'carta', uid, objetivos } | { tipo: 'ataque', uid, objetivos }
+let modo = null;          // null | { tipo: 'carta', uid, objetivos } | { tipo: 'ataque', uid, objetivos } | { tipo: 'ver', uid }
+// En pantallas táctiles no hay «pasar el mouse»: el primer toque a una carta de la mano la muestra grande y el segundo la juega.
+const esTactil = window.matchMedia('(pointer: coarse)').matches;
+const PISTA_TACTIL = 'baseCartas:pistaTactil';
 let ocupado = false;      // la máquina está jugando o hay una animación que esperar
 let temporizador = null;
 
@@ -120,7 +123,8 @@ async function empezarPartida(opciones) {
   if (tablero) tablero.destruir();
   tablero = new Tablero($('#mesa'), tema);
   tablero.alClic = clic;
-  tablero.alHover = mostrarVista;
+  // Mientras una carta está a la vista por un toque, el dedo no la cambia: solo el siguiente toque.
+  tablero.alHover = h => { if (modo?.tipo !== 'ver') mostrarVista(h); };
   st = nuevaPartida({
     mazos: [opciones.mazo, listaMazo(MAZOS[PERSONALIDADES[rivalPers].mazo])],
     nombres: [t('tu'), tema.nombreRival(rivalPers)],
@@ -212,6 +216,23 @@ function coincide(objetivos, h) {
 function clic(h) {
   if (!st || ocupado || st.turno !== 0 || st.ganador !== null) return;
 
+  // Táctil: segundo toque sobre la carta que está a la vista → se juega; cualquier otro toque la suelta.
+  let confirmada = false;
+  if (modo?.tipo === 'ver') {
+    confirmada = h?.tipo === 'mano' && h.uid === modo.uid;
+    modo = null; aviso(''); mostrarVista(null); resaltarEstado();
+    if (!confirmada && !(h?.tipo === 'mano' && h.j === 0)) return;
+  }
+  if (esTactil && !confirmada && h?.tipo === 'mano' && h.j === 0 && st.fase === 'preparacion' && !modo) {
+    const c = st.jugadores[0].mano.find(x => x.uid === h.uid);
+    modo = { tipo: 'ver', uid: h.uid };
+    mostrarVista(h);
+    tablero.resaltar({ seleccion: h.uid });
+    aviso(puedeJugar(st, 0, h.uid) ? t('tocaJugar', nombreCarta(c.id)) : motivoNoJugable(c));
+    ocultarPista(true);
+    return;
+  }
+
   // Efectos y maldiciones sin objetivo: el segundo toque sobre la misma carta la usa.
   if (modo?.tipo === 'confirmar') {
     const misma = h?.tipo === 'mano' && h.uid === modo.uid;
@@ -243,7 +264,7 @@ function clic(h) {
     const objs = objetivosDeCarta(st, 0, c.id);
     const d = CARTAS[c.id];
     const unSoloUso = d.tipo === 'efecto' || d.tipo === 'maldicion';
-    if (!objs && unSoloUso) {
+    if (!objs && unSoloUso && !confirmada) {
       modo = { tipo: 'confirmar', uid: h.uid };
       aviso(t('tocaOtraVez', nombreCarta(c.id), textoReglas(d, tema.terminos), esDiferida(c.id) ? t('prepararla') : t('usarla')));
       tablero.resaltar({ seleccion: h.uid });
@@ -429,6 +450,19 @@ function botonSugerido() {
   return $('#btnFin');
 }
 
+// Primera partida en el teléfono: una flecha sobre la mano explica los dos toques. Se quita al primer toque a una carta.
+function pistaTactil() {
+  if (!esTactil || !st || st.turno !== 0 || st.fase !== 'preparacion' || ocupado) { ocultarPista(); return; }
+  let vista = false; try { vista = localStorage.getItem(PISTA_TACTIL) === '1'; } catch {}
+  if (vista) return;
+  $('#pistaMano').textContent = t('pistaTactil');
+  $('#pistaMano').classList.add('visible');
+}
+function ocultarPista(listo = false) {
+  $('#pistaMano').classList.remove('visible');
+  if (listo) try { localStorage.setItem(PISTA_TACTIL, '1'); } catch {}
+}
+
 function guiar(mio) {
   const g = $('#guia');
   for (const b of [$('#btnAtaque'), $('#btnFin')]) b.classList.remove('sugerido');
@@ -445,6 +479,7 @@ function guiar(mio) {
   } else texto = t('guiaAtaqueHecho');
   g.textContent = texto;
   botonSugerido()?.classList.add('sugerido');
+  pistaTactil();
 }
 
 let avisoT = null;
@@ -524,7 +559,6 @@ iniciar();
 
 // En celulares: pantalla completa y orientación horizontal fija (Android). iPhone no deja fijarla: ahí queda el
 // aviso «Gira el teléfono». Se pide con un toque, porque los navegadores solo lo permiten tras una acción del usuario.
-const esTactil = window.matchMedia('(pointer: coarse)').matches;
 async function ponerHorizontal() {
   try {
     if (!document.fullscreenElement) await document.documentElement.requestFullscreen?.({ navigationUI: 'hide' });

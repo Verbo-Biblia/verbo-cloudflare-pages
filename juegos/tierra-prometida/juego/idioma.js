@@ -54,6 +54,8 @@ const TEXTOS = {
     arenaAyuda: m => `Sin territorio en juego. Ganas 5 ${m} si vences y 1 si pierdes.`, llevas: (a, b) => `Llevas ${a} victorias en ${b} partidas.`,
     conquistaPie: 'Conquista',
     // Mesa
+    tocaJugar: c => `${c}: tócala otra vez para jugarla, o toca fuera para elegir otra.`,
+    pistaTactil: 'Toca una carta para verla en grande.\nTócala otra vez para jugarla. Si tocas fuera, eliges otra.',
     tu: 'Tú', tuTurno: 'Tu turno', turnoDe: n => `Turno de ${art(n)}`, preparacion: 'Tu turno · Preparación', atacando: 'Tu turno · Atacando…',
     ataqueHecho: 'Tu turno · Ataque hecho', turnoDeRival: n => `Turno de ${art(n)}…`, alAtaque: '⚔ Al ataque', terminarTurno: 'Terminar turno',
     guiaJugables: 'Juega las cartas que brillan en dorado.', guiaAtacar: c => `Toca a tus ${c} con brillo verde y elige a quién atacan.`,
@@ -111,6 +113,8 @@ const TEXTOS = {
     porDescubrir: n => `${n} still to discover…`, sinCronicas: 'No chronicles yet.', sinTitulo: 'Untitled',
     arenaAyuda: m => `No territory at stake. You win 5 ${m} if you win and 1 if you lose.`, llevas: (a, b) => `${a} wins in ${b} battles so far.`,
     conquistaPie: 'Conquest',
+    tocaJugar: c => `${c}: tap it again to play it, or tap elsewhere to choose another.`,
+    pistaTactil: 'Tap a card to see it up close.\nTap it again to play it. Tap elsewhere to choose another.',
     tu: 'You', tuTurno: 'Your turn', turnoDe: n => `${pos(n)} turn`, preparacion: 'Your turn · Preparation', atacando: 'Your turn · Attacking…',
     ataqueHecho: 'Your turn · Attack done', turnoDeRival: n => `${pos(n)} turn…`, alAtaque: '⚔ Attack!', terminarTurno: 'End turn',
     guiaJugables: 'Play the cards that glow gold.', guiaAtacar: c => `Tap your ${c} that glow green and choose whom they attack.`,
