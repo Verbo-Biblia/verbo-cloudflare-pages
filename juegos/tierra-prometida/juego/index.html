@@ -23,18 +23,19 @@
 
 <section id="reglas" class="oculto">
   <div class="caja texto">
-    <button id="cerrarReglas" class="x" title="Cerrar">✕</button>
+    <button id="cerrarReglas" class="x" title="✕">✕</button>
+    <div data-idioma="es">
     <h2>Cómo se juega</h2>
     <p><b>Objetivo:</b> derribar la fortaleza del rival. Tiene 20 de vida (♜). Si llega a 0, ganas.</p>
     <p><b>Recursos (◆):</b> son lo que gastas para jugar cartas. Cada carta tiene su precio en el círculo dorado de arriba a la izquierda. Todos salen de los <b>recolectores</b> (cartas verdes). Lo que no gastas se guarda para el siguiente turno.</p>
     <p><b>Recolectores:</b> son <b>gratis</b> y puedes jugar <b>uno por turno</b>. Producen sus ◆ en cuanto entran y luego al inicio de cada turno tuyo.</p>
-    <p><b>Ejemplo:</b> empiezas con 0 ◆ (quien va segundo recibe 1 ◆ y 1 carta extra). Juegas un Recolector: te da 1 ◆ y con eso pagas un Recluta (cuesta 1). Al turno siguiente tu Recolector produce otra vez, juegas otro Recolector y ya tienes 2 ◆. Cuantos más recolectores tengas, más ◆ recibes cada turno.</p>
+    <p><b>Ejemplo:</b> empiezas con 0 ◆ (quien va segundo recibe 1 ◆ y 1 carta extra). Juegas un Recolector: te da 1 ◆ y con eso pagas un <i data-carta="U01">Recluta</i> (cuesta 1). Al turno siguiente tu Recolector produce otra vez, juegas otro Recolector y ya tienes 2 ◆. Cuantos más recolectores tengas, más ◆ recibes cada turno.</p>
     <p><b>¿Cuántas cartas puedo jugar por turno?</b> Todas las que quieras, mientras te alcancen los ◆ y haya espacio en la mesa (solo los recolectores están limitados a uno por turno): 6 trabajadores en la aldea, 5 combatientes en el frente y 3 estructuras.</p>
     <p><b>Cartas:</b> robas <b>2 cartas</b> al inicio de cada turno (quien empieza no roba en su primer turno). El mazo tiene 40 cartas; si se acaba, tu fortaleza recibe 2 de daño cada vez que tendrías que robar.</p>
     <p><b>Muralla (▦):</b> los <b>constructores</b> (cartas cafés) le suman bloques a tu muralla al entrar y al inicio de cada turno. Mientras tu muralla tenga al menos un bloque, el rival no puede tocar tu aldea, tus estructuras ni tu fortaleza: primero tiene que derribarla.</p>
     <p><b>Tu turno, en dos pasos:</b></p>
     <p>1. <b>Prepara.</b> Juega cartas: las que brillan en dorado son las que te alcanzan con tus recursos. Elige también a quién ataca cada combatiente: toca uno con brillo verde y luego su objetivo (en rojo).</p>
-    <p><b>El plan:</b> todo lo que preparas contra el rival queda numerado (①, ②, ③…) en el orden en que lo preparas, y <b>así se resuelve</b>. Por ejemplo: ① <i>Derrumbe</i> tira la muralla y ② tu Soldado ya puede apuntar a la fortaleza. Toca algo del plan para quitarlo (una carta vuelve a tu mano con su costo); si lo vuelves a poner, queda al final.</p>
+    <p><b>El plan:</b> todo lo que preparas contra el rival queda numerado (<span class="num">①</span>, <span class="num">②</span>, <span class="num">③</span>…) en el orden en que lo preparas, y <b>así se resuelve</b>. Por ejemplo: <span class="num">①</span> <i data-carta="F09">Derrumbe</i> tira la muralla y <span class="num">②</span> tu <i data-carta="U02">Soldado</i> ya puede apuntar a la fortaleza. Toca algo del plan para quitarlo (una carta vuelve a tu mano con su costo); si lo vuelves a poner, queda al final.</p>
     <p>2. <b>Al ataque.</b> El plan se resuelve paso a paso, en el orden de sus números. Al final pulsa <i>Terminar turno</i>.</p>
     <p><b>Combate:</b> cuando dos combatientes pelean, los dos se hacen daño. El daño no se cura solo. Un combatiente recién jugado espera un turno antes de atacar.</p>
     <p><b>Habilidades especiales:</b> algunos combatientes tienen una habilidad escrita en su carta que les cambia las reglas:</p>
@@ -47,11 +48,42 @@
       <li><b>Sanador:</b> al inicio de cada turno cura 2 de vida a tu carta más herida.</li>
     </ul>
     <p><b>Efectos</b> (cartas azules) y <b>maldiciones</b> (cartas negras) son <b>de un solo uso</b>. Toca la carta una vez para leer qué hace y otra vez para jugarla; si necesita objetivo, te lo pide.</p>
-    <p><b>Regla de oro:</b> todo lo que va <b>contra el rival</b> espera a <i>Al ataque</i>: tus combatientes, los efectos de daño (<i>Golpe</i>, <i>Golpe fuerte</i>, <i>Oleada</i>, <i>Derrumbe</i>) y todas las maldiciones. Quedan preparados en la zona de efectos con un rayo (azul o morado). Lo que <b>te ayuda a ti</b> (<i>Curación</i>, <i>Escudo</i>, <i>Impulso</i>, <i>Reservas</i>, <i>Planear</i>) actúa al instante. Si el objetivo de algo ya cayó cuando le toca, se pierde.</p>
+    <p><b>Regla de oro:</b> todo lo que va <b>contra el rival</b> espera a <i>Al ataque</i>: tus combatientes, los efectos de daño (<i data-carta="F01">Golpe</i>, <i data-carta="F02">Golpe fuerte</i>, <i data-carta="F07">Oleada</i>, <i data-carta="F09">Derrumbe</i>) y todas las maldiciones. Quedan preparados en la zona de efectos con un rayo (azul o morado). Lo que <b>te ayuda a ti</b> (<i data-carta="F03">Curación</i>, <i data-carta="F08">Escudo</i>, <i data-carta="F04">Impulso</i>, <i data-carta="F05">Reservas</i>, <i data-carta="F06">Planear</i>) actúa al instante. Si el objetivo de algo ya cayó cuando le toca, se pierde.</p>
     <p><b>Maldiciones:</b> caen sobre el rival por varios turnos. La muralla no las detiene.</p>
-    <p><b>Torre</b> (estructura): defiende. El primer combatiente rival que te ataca en cada turno recibe 1 de daño antes de golpear.</p>
+    <p><b data-carta="E01">Torre</b> (estructura): defiende. El primer combatiente rival que te ataca en cada turno recibe 1 de daño antes de golpear.</p>
     <p><b>Campaña:</b> conquista las mazmorras del mapa ganando sus partidas. Si pierdes 3 seguidas, el enemigo recupera tu última conquista (se reconquista con una sola partida). Con las monedas compras cartas en la tienda y armas tus mazos en el taller.</p>
     <p class="sub">Teclado: Espacio o Enter pulsan el botón que late · 1 a 9 tocan una carta de tu mano · Esc o clic derecho cancelan una selección.</p>
+  </div>
+    <div data-idioma="en" hidden>
+    <h2>How to play</h2>
+    <p><b>Goal:</b> bring down the rival fortress. It has 20 health (♜). If it reaches 0, you win.</p>
+    <p><b>Resources (◆):</b> what you spend to play cards. Each card shows its price in the gold circle at the top left. They all come from your <b>gatherers</b> (green cards). Whatever you don't spend is saved for the next turn.</p>
+    <p><b>Gatherers:</b> they are <b>free</b> and you can play <b>one per turn</b>. They produce their ◆ as soon as they enter and then at the start of each of your turns.</p>
+    <p><b>Example:</b> you start with 0 ◆ (whoever goes second gets 1 ◆ and 1 extra card). You play a Gatherer: it gives you 1 ◆ and with it you pay for one <i data-carta="U01">Recruit</i> (cost 1). Next turn your Gatherer produces again, you play another Gatherer and now you have 2 ◆. The more gatherers you have, the more ◆ you get each turn.</p>
+    <p><b>How many cards can I play per turn?</b> As many as you like, as long as you have enough ◆ and there is room on the table (only gatherers are limited to one per turn): 6 workers in the village, 5 fighters on the front and 3 structures.</p>
+    <p><b>Cards:</b> you draw <b>2 cards</b> at the start of each turn (whoever starts doesn't draw on their first turn). The deck has 40 cards; if it runs out, your fortress takes 2 damage every time you would draw.</p>
+    <p><b>Wall (▦):</b> <b>builders</b> (brown cards) add blocks to your wall when they enter and at the start of each turn. While your wall has at least one block, the rival cannot touch your village, your structures or your fortress: first they must bring it down.</p>
+    <p><b>Your turn, in two steps:</b></p>
+    <p>1. <b>Prepare.</b> Play cards: the ones that glow gold are the ones you can afford. Also choose whom each fighter attacks: tap one that glows green and then its target (in red).</p>
+    <p><b>The plan:</b> everything you prepare against the rival is numbered (<span class="num">①</span>, <span class="num">②</span>, <span class="num">③</span>…) in the order you prepare it, and <b>that is the order it resolves</b>. For example: <span class="num">①</span> <i data-carta="F09">Collapse</i> knocks down the wall and <span class="num">②</span> your <i data-carta="U02">Soldier</i> can now aim at the fortress. Tap something in the plan to remove it (a card returns to your hand with its cost); if you add it again, it goes last.</p>
+    <p>2. <b>Attack!</b> The plan resolves step by step, in the order of its numbers. Then press <i>End turn</i>.</p>
+    <p><b>Combat:</b> when two fighters clash, both deal damage. Damage doesn't heal on its own. A newly played fighter waits one turn before attacking.</p>
+    <p><b>Special abilities:</b> some fighters have an ability written on their card that changes the rules for them:</p>
+    <ul>
+      <li><b>Swift:</b> can attack the same turn you play it, without waiting.</li>
+      <li><b>Guard:</b> protects the others. While it stands, the rival must attack it first. They cannot attack anyone else until they bring it down.</li>
+      <li><b>Raider:</b> jumps over the wall to raid the village and structures. To reach the fortress, the wall must be at 0.</li>
+      <li><b>Ranged:</b> attacks from afar: deals damage without taking any back.</li>
+      <li><b>Siege:</b> deals double damage to the wall and to buildings.</li>
+      <li><b>Healer:</b> at the start of each turn heals 2 health to your most wounded card.</li>
+    </ul>
+    <p><b>Effects</b> (blue cards) and <b>curses</b> (black cards) are <b>single use</b>. Tap the card once to read what it does and again to play it; if it needs a target, it asks you.</p>
+    <p><b>Golden rule:</b> everything <b>against the rival</b> waits for <i>Attack!</i>: your fighters, damage effects (<i data-carta="F01">Strike</i>, <i data-carta="F02">Heavy strike</i>, <i data-carta="F07">Wave</i>, <i data-carta="F09">Collapse</i>) and all curses. They stay prepared in the effects zone with a beam (blue or purple). What <b>helps you</b> (<i data-carta="F03">Healing</i>, <i data-carta="F08">Shield</i>, <i data-carta="F04">Boost</i>, <i data-carta="F05">Reserves</i>, <i data-carta="F06">Planning</i>) acts at once. If the target of something has already fallen when its turn comes, it is lost.</p>
+    <p><b>Curses:</b> they fall on the whole rival for several turns. The wall does not stop them.</p>
+    <p><b data-carta="E01">Tower</b> (structure): defends. The first rival fighter that attacks you each turn takes 1 damage before striking.</p>
+    <p><b>Campaign:</b> conquer the dungeons on the map by winning their battles. If you lose 3 in a row, the enemy takes back your last conquest (you reconquer it with a single battle). With your coins you buy cards in the shop and build your decks in the workshop.</p>
+    <p class="sub">Keyboard: Space or Enter press the glowing button · 1 to 9 tap a card in your hand · Esc or right click cancel a selection.</p>
+  </div>
   </div>
 </section>
 
@@ -64,8 +96,8 @@
   <div id="controles">
     <div id="estadoTurno"></div>
     <div id="guia"></div>
-    <button id="btnAtaque">⚔ Al ataque</button>
-    <button id="btnFin">Terminar turno</button>
+    <button id="btnAtaque" data-t="alAtaque">⚔ Al ataque</button>
+    <button id="btnFin" data-t="terminarTurno">Terminar turno</button>
   </div>
   <div id="vista"><canvas id="vistaCanvas"></canvas></div>
   <div id="aviso"></div>
@@ -78,15 +110,15 @@
     <h1 id="finalTitulo"></h1>
     <p id="finalTexto"></p>
     <div class="fila">
-      <button id="btnOtra" class="grande">Continuar</button>
+      <button id="btnOtra" class="grande" data-t="continuar">Continuar</button>
     </div>
   </div>
 </section>
 
 <div id="girar">
   <div class="girar-icono">📱↻</div>
-  <p>Gira el teléfono para jugar en horizontal</p>
-  <button id="btnHorizontal">Pantalla completa</button>
+  <p data-t="girar">Gira el teléfono para jugar en horizontal</p>
+  <button id="btnHorizontal" data-t="pantallaCompleta">Pantalla completa</button>
 </div>
 
 <script type="module" src="main.js"></script>

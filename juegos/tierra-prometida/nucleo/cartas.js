@@ -93,8 +93,54 @@ export const TERMINOS_BASE = {
   veloz: 'Veloz', guardia: 'Guardia', incursor: 'Incursor', distancia: 'Distancia', asedio: 'Asedio', sanador: 'Sanador',
 };
 
+export const TERMINOS_BASE_EN = {
+  recurso: 'resource', recursos: 'resources',
+  muralla: 'wall', fortaleza: 'fortress', aldea: 'village', frente: 'front',
+  estructura: 'structure', estructuras: 'structures', efectos: 'effects',
+  trabajador: 'worker', trabajadores: 'workers',
+  combatiente: 'fighter', combatientes: 'fighters',
+  recolector: 'Gatherer', constructor: 'Builder', combatienteTipo: 'Fighter',
+  estructuraTipo: 'Structure', efecto: 'Effect', maldicion: 'Curse',
+  veloz: 'Swift', guardia: 'Guard', incursor: 'Raider', distancia: 'Ranged', asedio: 'Siege', sanador: 'Healer',
+};
+
+// Idioma del texto de reglas (lo fija la pantalla al arrancar; las reglas en sí no dependen del idioma).
+let idiomaReglas = 'es';
+export function fijarIdiomaReglas(l) { idiomaReglas = l === 'en' ? 'en' : 'es'; }
+export const terminosBase = () => idiomaReglas === 'en' ? TERMINOS_BASE_EN : TERMINOS_BASE;
+
+function textoReglasEn(def, T) {
+  const p = [];
+  const e = def.efecto || {};
+  const turnos = d => d === 1 ? 'this turn' : `${d} turns`;
+  if (def.tipo === 'recolector') p.push(`Free, one per turn. Produces ${def.prod} ${def.prod === 1 ? T.recurso : T.recursos} when it enters and at the start of each turn.`);
+  if (def.tipo === 'constructor') p.push(`Adds ${def.constr} to the ${T.muralla} when it enters and at the start of each turn.`);
+  if (def.claves && def.claves.length) p.push(def.claves.map(k => T[k]).join(', ') + '.');
+  switch (e.accion) {
+    case 'muralla': p.push(`On entry: +${e.n} to the ${T.muralla}.`); break;
+    case 'torre': p.push(`Defends: the first rival ${T.combatiente} that attacks you each turn takes ${e.n} damage before striking.`); break;
+    case 'almacen': p.push(`+${e.n} ${T.recurso} at the start of your turn.`); break;
+    case 'cuartel': p.push(`Your ${T.combatientes} enter ready to attack.`); break;
+    case 'taller': p.push(`Each ${T.constructor.toLowerCase()} adds +${e.n} to the ${T.muralla}.`); break;
+    case 'daño': p.push(`${e.n} damage to a rival unit.`); break;
+    case 'curar': p.push(`Heals ${e.n} to one of your units.`); break;
+    case 'refuerzo': p.push(`+${e.n} attack to one of your ${T.combatientes} for ${turnos(def.dur)}.`); break;
+    case 'recursos': p.push(`+${e.n} ${T.recursos} now.`); break;
+    case 'robar': p.push(`Draw ${e.n} cards.`); break;
+    case 'dañoTodos': p.push(`${e.n} damage to each rival ${T.combatiente}.`); break;
+    case 'escudo': p.push(`+${e.n} health to one of your units.`); break;
+    case 'derribar': p.push(`Removes ${e.n} blocks from the rival ${T.muralla}.`); break;
+    case 'sequia': p.push(`The rival produces ${e.n} ${T.recurso} less per turn for ${turnos(def.dur)}.`); break;
+    case 'peste': p.push(`${e.n} damage to each rival ${T.trabajador} at the start of their turn, for ${turnos(def.dur)}.`); break;
+    case 'debilidad': p.push(`Rival ${T.combatientes} have -${e.n} attack for ${turnos(def.dur)}.`); break;
+    case 'asedioMuralla': p.push(`The rival ${T.muralla} loses ${e.n} blocks at the start of their turn, for ${turnos(def.dur)}.`); break;
+  }
+  return p.join(' ');
+}
+
 // Texto de reglas generado a partir de los valores fijos: nunca contradice la mecánica.
-export function textoReglas(def, t = TERMINOS_BASE) {
+export function textoReglas(def, t = {}) {
+  if (idiomaReglas === 'en') return textoReglasEn(def, { ...TERMINOS_BASE_EN, ...t });
   const T = { ...TERMINOS_BASE, ...t };
   const p = [];
   const e = def.efecto || {};
@@ -124,8 +170,8 @@ export function textoReglas(def, t = TERMINOS_BASE) {
   return p.join(' ');
 }
 
-export function nombreTipo(tipo, t = TERMINOS_BASE) {
-  const T = { ...TERMINOS_BASE, ...t };
+export function nombreTipo(tipo, t = {}) {
+  const T = { ...terminosBase(), ...t };
   return { recolector: T.recolector, constructor: T.constructor, combatiente: T.combatienteTipo,
     estructura: T.estructuraTipo, efecto: T.efecto, maldicion: T.maldicion }[tipo];
 }

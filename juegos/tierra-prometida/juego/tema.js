@@ -1,6 +1,7 @@
 // Carga una temática: textos, términos, fondos e imágenes de las cartas.
 
-import { CARTAS, TERMINOS_BASE } from '../nucleo/cartas.js';
+import { CARTAS, TERMINOS_BASE, TERMINOS_BASE_EN, fijarIdiomaReglas } from '../nucleo/cartas.js';
+import { idioma } from './idioma.js';
 
 export const RAIZ = new URL('../', import.meta.url).href;
 
@@ -19,9 +20,29 @@ export async function listaTemas() {
   catch { return ['generica']; }
 }
 
+// Combina la traducción sobre el original: objetos campo a campo, listas por posición, textos reemplazados.
+function combinar(base, extra) {
+  if (Array.isArray(base) && Array.isArray(extra)) return base.map((v, i) => i < extra.length ? combinar(v, extra[i]) : v);
+  if (base && extra && typeof base === 'object' && typeof extra === 'object' && !Array.isArray(base)) {
+    const r = { ...base };
+    for (const [k, v] of Object.entries(extra)) r[k] = k in base ? combinar(base[k], v) : v;
+    return r;
+  }
+  return extra ?? base;
+}
+
 export async function cargarTema(id) {
   const base = `${RAIZ}tematicas/${id}/`;
-  const datos = await (await fetch(base + 'tema.json', { cache: 'no-store' })).json();
+  let datos = await (await fetch(base + 'tema.json', { cache: 'no-store' })).json();
+  // En inglés: tema.en.json (solo los textos traducidos) se combina sobre el tema en español.
+  const lang = idioma();
+  fijarIdiomaReglas(lang);
+  if (lang === 'en') {
+    try {
+      const r = await fetch(base + 'tema.en.json', { cache: 'no-store' });
+      if (r.ok) datos = combinar(datos, await r.json());
+    } catch {}
+  }
   const imagenes = {}, imagenesRival = {}, imagenesNacion = {};
   await Promise.all(Object.keys(CARTAS).map(async cid => {
     const c = datos.cartas?.[cid] || {};
@@ -44,7 +65,8 @@ export async function cargarTema(id) {
     id, datos, base, imagenes, imagenesRival, fondos,
     rivalActual: null, // personalidad del rival de la partida en curso (la pone main.js)
     cargarNacion,
-    terminos: { ...TERMINOS_BASE, ...(datos.terminos || {}) },
+    idioma: lang,
+    terminos: { ...(lang === 'en' ? TERMINOS_BASE_EN : TERMINOS_BASE), ...(datos.terminos || {}) },
     // j = 1: la carta en manos del rival puede tener otro nombre, imagen y ambientación (cartas[id].rival).
     info: (cid, j = 0) => {
       const c = datos.cartas?.[cid] || { nombre: cid };

@@ -11,6 +11,7 @@ import {
 import { dibujarCarta } from './carta-dibujo.js';
 import { sonar, sonidoActivo, alternarSonido } from './sonido.js';
 import { musica, musicaDeTema, alCambiarSonido } from './musica.js';
+import { t, idioma, cambiarIdioma } from './idioma.js';
 
 const $ = s => document.querySelector(s);
 const FONDOS = new URL('./fondos/', import.meta.url).href;
@@ -36,26 +37,28 @@ function cargarProgreso() {
 
 const M = () => tema.datos.mundo || {};
 const pantalla = (k, def) => M().pantallas?.[k] || def;
-const moneda = () => pantalla('moneda', 'monedas');
+const moneda = () => pantalla('moneda', t('moneda'));
 // «1 siclo», «5 siclos»: singular simple quitando la -s final del término de la temática.
 const monedasTexto = n => `${n} ${n === 1 ? moneda().replace(/s$/, '') : moneda()}`;
 const nombreCarta = id => tema.info(id).nombre || id;
-const nombreMazmorra = id => id === 'pueblo' ? pantalla('pueblo', 'El pueblo') : (M().mazmorras?.[id]?.nombre || id.toUpperCase());
+const nombreMazmorra = id => id === 'pueblo' ? pantalla('pueblo', t('pueblo')) : (M().mazmorras?.[id]?.nombre || id.toUpperCase());
 const textoMazmorra = (id, k) => M().mazmorras?.[id]?.[k] || '';
+// El mazo de fábrica se guarda como «Mazo inicial»; en inglés se muestra traducido.
+const nombreMazo = n => n === 'Mazo inicial' && idioma() === 'en' ? 'Starter deck' : n;
 const escapar = t => String(t ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const parrafos = t => escapar(t).split(/\n+/).filter(Boolean).map(p => `<p>${p}</p>`).join('');
 
 // Fondo fijo con respaldo: si la imagen todavía no existe, se ve el fondo provisional de la pantalla (--provisional en mundo.css).
 // Una temática puede traer su propio fondo para cualquier pantalla (tema.json → fondos.<nombre>).
 // Comillas simples: el resultado también se usa dentro de atributos style="…" del HTML.
-const fondo = nombre => `url('${tema.fondos?.[nombre] || `${FONDOS}${nombre}.png`}'), var(--provisional)`;
+const fondo = nombre => `url('${tema.fondos?.[nombre] || `${FONDOS}${nombre}.webp`}'), var(--provisional)`;
 
 const REGLA = {
-  rivalMuralla: n => `El rival empieza con ${n} de muralla.`,
-  rivalFortaleza: n => `La fortaleza rival tiene ${n} de vida.`,
-  rivalRecursos: n => `El rival empieza con ${n} recursos extra.`,
-  manoCorta: n => `Empiezas con solo ${n} cartas.`,
-  resistir: n => `Ganas si resistes ${n} turnos.`,
+  rivalMuralla: n => idioma() === 'en' ? `The rival starts with ${n} wall blocks.` : `El rival empieza con ${n} de muralla.`,
+  rivalFortaleza: n => idioma() === 'en' ? `The rival fortress has ${n} health.` : `La fortaleza rival tiene ${n} de vida.`,
+  rivalRecursos: n => idioma() === 'en' ? `The rival starts with ${n} extra resources.` : `El rival empieza con ${n} recursos extra.`,
+  manoCorta: n => idioma() === 'en' ? `You start with only ${n} cards.` : `Empiezas con solo ${n} cartas.`,
+  resistir: n => idioma() === 'en' ? `You win if you hold out for ${n} turns.` : `Ganas si resistes ${n} turnos.`,
 };
 
 const MUSICA_PANTALLA = { pInicio: 'inicio', pPueblo: 'pueblo', pMapa: 'mapa', pTaller: 'tienda', pTienda: 'tienda',
@@ -77,7 +80,7 @@ function miniCarta(id, actual = null) {
 
 function barraSuperior(titulo, volver = 'pueblo') {
   return `<div class="barra">
-    <button class="volver" data-volver="${volver}">← ${volver === 'inicio' ? 'Inicio' : escapar(pantalla(volver, volver === 'mapa' ? 'Mapa' : 'El pueblo'))}</button>
+    <button class="volver" data-volver="${volver}">← ${volver === 'inicio' ? t('inicio') : escapar(pantalla(volver, volver === 'mapa' ? t('mapa') : t('pueblo')))}</button>
     <h2>${escapar(titulo)}</h2>
     <span class="monedas" title="${escapar(moneda())}">◉ ${prog.monedas} ${escapar(moneda())}</span>
   </div>`;
@@ -85,6 +88,17 @@ function barraSuperior(titulo, volver = 'pueblo') {
 
 function conectarVolver(el) {
   for (const b of el.querySelectorAll('[data-volver]')) b.onclick = () => ir(b.dataset.volver);
+}
+
+// Los avisos de revisarMazo() vienen en español; en inglés se traducen por patrón.
+function traducirProblema(p) {
+  if (idioma() !== 'en') return p;
+  let m;
+  if ((m = p.match(/El mazo tiene (\d+) cartas; deben ser (\d+)/))) return `The deck has ${m[1]} cards; it must have ${m[2]}.`;
+  if ((m = p.match(/^(.+): máximo (\d+) copias/))) return `${m[1]}: up to ${m[2]} copies.`;
+  if ((m = p.match(/^(.+): tienes (\d+)/))) return `${m[1]}: you have ${m[2]}.`;
+  if ((m = p.match(/Solo (\d+) recolectores/))) return `Only ${m[1]} gatherers: 8 or more are recommended.`;
+  return p;
 }
 
 // ---------- navegación ----------
@@ -107,24 +121,28 @@ function verInicio() {
       <h1>${escapar(tema.datos.titulo)}</h1>
       <p class="sub">${escapar(tema.datos.subtitulo || '')}</p>
       <div class="botones">
-        ${hay ? '<button class="grande" id="iContinuar">Continuar</button>' : ''}
-        <button class="${hay ? '' : 'grande'}" id="iNueva">${hay ? 'Nueva partida' : 'Comenzar'}</button>
-        <button id="iReglas">Cómo se juega</button>
-        <button id="iSonido">${sonidoActivo() ? '🔊 Sonido activado' : '🔇 Sonido apagado'}</button>
-        ${local ? '<a class="boton" href="../creador/">Creador</a>' : ''}
+        ${hay ? `<button class="grande" id="iContinuar">${t('continuar')}</button>` : ''}
+        <button class="${hay ? '' : 'grande'}" id="iNueva">${hay ? t('nuevaPartida') : t('comenzar')}</button>
+        <button id="iReglas">${t('comoSeJuega')}</button>
+        <button id="iIdioma">${t('otroIdioma')}</button>
+        <button id="iSonido">${sonidoActivo() ? t('sonidoSi') : t('sonidoNo')}</button>
+        ${local ? `<a class="boton" href="../creador/">${t('creador')}</a>` : ''}
+        ${local ? '' : `<a class="boton" href="/juegos/">${t('volverJuegos')}</a>`}
       </div>
-      ${temas.length > 1 ? `<label class="tema">Temática <select id="iTema">${temas.map(t => `<option ${t === tema.id ? 'selected' : ''}>${t}</option>`).join('')}</select></label>` : ''}
+      ${temas.length > 1 ? `<label class="tema">${t('tematica')} <select id="iTema">${temas.map(t => `<option ${t === tema.id ? 'selected' : ''}>${t}</option>`).join('')}</select></label>` : ''}
     </div>`;
   if (hay) $('#iContinuar').onclick = () => { prog = cargarProgreso(); completarProgreso(); ir('pueblo'); };
   let confirmar = false;
   $('#iNueva').onclick = () => {
-    if (hay && !confirmar) { confirmar = true; $('#iNueva').textContent = '¿Seguro? Se borra el progreso guardado'; return; }
+    if (hay && !confirmar) { confirmar = true; $('#iNueva').textContent = t('seguroBorrar'); return; }
     prog = nuevoProgreso();
     guardarProgreso();
     narrativa({ fondo: 'narrativa_camino', titulo: tema.datos.titulo, texto: tema.datos.narrativa?.intro || '', alSeguir: () => ir('pueblo') });
   };
   $('#iReglas').onclick = () => $('#reglas').classList.remove('oculto');
-  $('#iSonido').onclick = () => { $('#iSonido').textContent = alternarSonido() ? '🔊 Sonido activado' : '🔇 Sonido apagado'; alCambiarSonido(); sonar('seleccion'); };
+  $('#iSonido').onclick = () => { $('#iSonido').textContent = alternarSonido() ? t('sonidoSi') : t('sonidoNo'); alCambiarSonido(); sonar('seleccion'); };
+  // Cambiar de idioma recarga la página: así todo (temática, reglas, cartas) sale en el idioma nuevo.
+  $('#iIdioma').onclick = () => { cambiarIdioma(idioma() === 'en' ? 'es' : 'en'); location.reload(); };
   // Los navegadores no dejan sonar música sin un primer toque: arranca con el primero.
   document.addEventListener('pointerdown', () => musica('inicio'), { once: true });
   const sel = $('#iTema');
@@ -141,21 +159,21 @@ function completarProgreso() {
 // ---------- pueblo ----------
 
 const LUGARES_PUEBLO = [
-  { id: 'taller', def: 'Taller de mazos', x: 3, y: 30, w: 21, h: 55 },
-  { id: 'tienda', def: 'Tienda', x: 26, y: 40, w: 18, h: 48 },
-  { id: 'arena', def: 'Arena', x: 42, y: 12, w: 19, h: 33 },
-  { id: 'cronista', def: 'Casa del cronista', x: 56, y: 35, w: 20, h: 50 },
-  { id: 'mapa', def: 'Puerta al mapa', clave: 'puerta', x: 78, y: 20, w: 20, h: 68 },
+  { id: 'taller', x: 3, y: 30, w: 21, h: 55 },
+  { id: 'tienda', x: 26, y: 40, w: 18, h: 48 },
+  { id: 'arena', x: 42, y: 12, w: 19, h: 33 },
+  { id: 'cronista', x: 56, y: 35, w: 20, h: 50 },
+  { id: 'mapa', clave: 'puerta', x: 78, y: 20, w: 20, h: 68 },
 ];
 
 function verPueblo() {
   const el = $('#pPueblo');
-  el.innerHTML = `${barraSuperior(pantalla('pueblo', 'El pueblo'), 'inicio')}
+  el.innerHTML = `${barraSuperior(pantalla('pueblo', t('pueblo')), 'inicio')}
     <div class="lienzo-fondo" style="background-image:${fondo('pueblo')}"></div>
     <div class="lienzo" style="background-image:${fondo('pueblo')}">
       ${LUGARES_PUEBLO.map(l => `<button class="lugar" data-ir="${l.id}" style="left:${l.x}%;top:${l.y}%;width:${l.w}%;height:${l.h}%">
-        <span>${escapar(pantalla(l.clave || l.id, l.def))}</span></button>`).join('')}
-      <div class="pie-pueblo">${escapar(pantalla('campaña', 'Campaña'))}: ${prog.conquistadas.length - 1}/10 · ${escapar(prog.mazos[prog.mazoActivo]?.nombre || '')}</div>
+        <span>${escapar(pantalla(l.clave || l.id, t(l.clave || l.id)))}</span></button>`).join('')}
+      <div class="pie-pueblo">${escapar(pantalla('campaña', t('campana')))}: ${prog.conquistadas.length - 1}/10 · ${escapar(nombreMazo(prog.mazos[prog.mazoActivo]?.nombre || ''))}</div>
     </div>`;
   conectarVolver(el);
   for (const b of el.querySelectorAll('[data-ir]')) b.onclick = () => { sonar('seleccion'); ir(b.dataset.ir); };
@@ -173,7 +191,7 @@ function verMapa(seleccion = null) {
     return `<line x1="${A.x}" y1="${A.y}" x2="${B.x}" y2="${B.y}" class="${abierto ? 'abierto' : ''}"/>`;
   }).join('');
   const racha = prog.racha || 0;
-  el.innerHTML = `${barraSuperior(pantalla('mapa', 'Mapa'))}
+  el.innerHTML = `${barraSuperior(pantalla('mapa', t('mapa')))}
     <div class="lienzo-fondo" style="background-image:${fondo('mapa')}"></div>
     <div class="lienzo mapa" style="background-image:${fondo('mapa')}">
       <svg viewBox="0 0 100 100" preserveAspectRatio="none">${lineas}</svg>
@@ -183,7 +201,7 @@ function verMapa(seleccion = null) {
         return `<button class="punto ${e} ${id === 'pueblo' ? 'casa' : ''}" data-id="${id}" style="left:${m.x}%;top:${m.y}%" title="${escapar(nombreMazmorra(id))}">
           <i></i><span>${escapar(nombreMazmorra(id))}</span>${avance}</button>`;
       }).join('')}
-      ${racha && DERROTA.rachaParaPerderTerritorio ? `<div class="racha">Derrotas seguidas: ${racha}/${DERROTA.rachaParaPerderTerritorio}</div>` : ''}
+      ${racha && DERROTA.rachaParaPerderTerritorio ? `<div class="racha">${t('racha', racha, DERROTA.rachaParaPerderTerritorio)}</div>` : ''}
     </div>
     <aside id="ficha" class="ficha oculto"></aside>`;
   conectarVolver(el);
@@ -200,11 +218,11 @@ function fichaMazmorra(id) {
   const e = recuperar ? 'recuperar' : estadoMazmorra(prog, id);
   const pt = siguientePartida(prog, id);
   const estados = {
-    conquistada: 'Conquistada', bloqueada: 'Todavía no hay camino hasta aquí.',
-    disponible: `Partida ${(pt?.indice || 0) + 1} de ${m.partidas.length}`,
-    recuperar: 'El enemigo la recuperó: reconquístala con una sola partida.',
+    conquistada: t('estadoConquistada'), bloqueada: t('estadoBloqueada'),
+    disponible: t('estadoDisponible', (pt?.indice || 0) + 1, m.partidas.length),
+    recuperar: t('estadoRecuperar'),
   };
-  const titulo = M().actos?.[m.acto]?.titulo || `Acto ${m.acto}`;
+  const titulo = M().actos?.[m.acto]?.titulo || t('acto', m.acto);
   f.innerHTML = `
     <button class="x" id="fCerrar" title="Cerrar">✕</button>
     <div class="lamina" style="background-image:${fondo('lugar_' + id.slice(1))}"></div>
@@ -213,10 +231,10 @@ function fichaMazmorra(id) {
     ${parrafos(textoMazmorra(id, 'descripcion'))}
     <p class="estado ${e}">${escapar(estados[e])}</p>
     ${(e === 'disponible' || e === 'recuperar') && pt ? `
-      <p>Rival: <b>${escapar(tema.nombreRival(pt.rival))}</b></p>
+      <p>${t('rival')}: <b>${escapar(tema.nombreRival(pt.rival))}</b></p>
       ${pt.regla ? `<p class="regla">${escapar(REGLA[pt.regla](pt.valor))}</p>` : ''}
-      ${!prog.premiados.includes(id) ? `<p class="premio">Premio al conquistarla: <b>${escapar(nombreCarta(premioDe(id)))}</b> y ${m.monedas} ${escapar(moneda())}</p>` : ''}
-      <button class="grande" id="fJugar">Jugar</button>` : ''}`;
+      ${!prog.premiados.includes(id) ? `<p class="premio">${t('premioConquista', escapar(nombreCarta(premioDe(id))), escapar(monedasTexto(m.monedas)))}</p>` : ''}
+      <button class="grande" id="fJugar">${t('jugar')}</button>` : ''}`;
   f.classList.remove('oculto');
   $('#fCerrar').onclick = () => f.classList.add('oculto');
   const b = $('#fJugar');
@@ -229,7 +247,7 @@ function entrarMazmorra(id) {
   const m = MAZMORRAS[id];
   const pt = siguientePartida(prog, id);
   const problemas = revisarMazo(prog, prog.mazos[prog.mazoActivo].receta).filter(p => !p.includes('recomiendan'));
-  if (problemas.length) { narrativa({ titulo: 'Tu mazo no está listo', texto: problemas.join('\n') + '\nArréglalo en el taller de mazos.', alSeguir: () => ir('taller') }); return; }
+  if (problemas.length) { narrativa({ titulo: t('mazoNoListo'), texto: problemas.map(traducirProblema).join('\n') + '\n' + t('arreglaloTaller'), alSeguir: () => ir('taller') }); return; }
   prog.actosVistos ||= [];
   const pasos = [];
   if (!prog.actosVistos.includes(m.acto)) {
@@ -238,13 +256,13 @@ function entrarMazmorra(id) {
     const a = M().actos?.[m.acto] || {};
     // Cada parte con su imagen: la temática puede traer acto_1, acto_2…; si no, tres escenas fijas distintas.
     const fondoActo = tema.fondos?.[`acto_${m.acto}`] ? `acto_${m.acto}` : ['narrativa_consejo', 'narrativa_batalla', 'narrativa_campamento'][(m.acto - 1) % 3];
-    pasos.push({ fondo: fondoActo, titulo: a.titulo || `Acto ${m.acto}`, texto: a.texto || '' });
+    pasos.push({ fondo: fondoActo, titulo: a.titulo || t('acto', m.acto), texto: a.texto || '' });
   }
   const antes = pt.recuperar ? '' : M().mazmorras?.[id]?.partidas?.[pt.indice]?.antes;
   pasos.push({
     fondo: 'lugar_' + id.slice(1), titulo: nombreMazmorra(id),
-    subtitulo: pt.recuperar ? 'Reconquista' : `Partida ${pt.indice + 1} de ${pt.total}`,
-    texto: [antes, pt.regla ? REGLA[pt.regla](pt.valor) : ''].filter(Boolean).join('\n'), boton: 'A la batalla',
+    subtitulo: pt.recuperar ? t('reconquista') : t('partidaDe', pt.indice + 1, pt.total),
+    texto: [antes, pt.regla ? REGLA[pt.regla](pt.valor) : ''].filter(Boolean).join('\n'), boton: t('alaBatalla'),
   });
   encadenar(pasos, () => jugarPartida({
     mazo: mazoActivo(prog), rival: pt.rival, regla: pt.regla ? { [pt.regla]: pt.valor } : {},
@@ -255,39 +273,39 @@ function entrarMazmorra(id) {
 function despuesDeMazmorra(id, pt, gano) {
   const r = resultadoCampaña(prog, id, gano);
   guardarProgreso();
-  const t = M().mazmorras?.[id] || {};
+  const tx = M().mazmorras?.[id] || {};
   const pasos = [];
-  if (r.tipo === 'avance') pasos.push({ fondo: 'narrativa_victoria', titulo: '¡Victoria!', texto: [t.partidas?.[pt.indice]?.despues, `Faltan ${r.faltan} ${r.faltan === 1 ? 'partida' : 'partidas'} para conquistar ${nombreMazmorra(id)}.`].filter(Boolean).join('\n'), monedas: r.monedas });
+  if (r.tipo === 'avance') pasos.push({ fondo: 'narrativa_victoria', titulo: t('victoria'), texto: [tx.partidas?.[pt.indice]?.despues, t('faltan', r.faltan, nombreMazmorra(id))].filter(Boolean).join('\n'), monedas: r.monedas });
   if (r.tipo === 'conquista' || r.tipo === 'reconquista') {
     pasos.push({
-      fondo: 'narrativa_victoria', titulo: r.tipo === 'conquista' ? '¡Conquista!' : '¡Reconquista!',
-      texto: [r.tipo === 'conquista' ? t.partidas?.[pt.indice]?.despues : '', t.conquista].filter(Boolean).join('\n'),
+      fondo: 'narrativa_victoria', titulo: r.tipo === 'conquista' ? t('conquista') : t('reconquistaTitulo'),
+      texto: [r.tipo === 'conquista' ? tx.partidas?.[pt.indice]?.despues : '', tx.conquista].filter(Boolean).join('\n'),
       monedas: r.monedas, carta: r.premio || null,
-      nota: r.tienda?.length ? `Nuevas cartas en la tienda: ${r.tienda.map(nombreCarta).join(', ')}.` : '',
+      nota: r.tienda?.length ? t('nuevasEnTienda', r.tienda.map(nombreCarta).join(', ')) : '',
     });
   }
   if (r.tipo === 'derrota') {
     const falta = DERROTA.rachaParaPerderTerritorio - (prog.racha || 0);
     pasos.push({
-      fondo: 'narrativa_derrota', titulo: 'Derrota', monedas: r.monedas,
+      fondo: 'narrativa_derrota', titulo: t('derrota'), monedas: r.monedas,
       texto: r.perdida
-        ? [M().mazmorras?.[r.perdida]?.perdida || `El enemigo recuperó ${nombreMazmorra(r.perdida)}.`, 'Puedes reconquistarla con una sola partida.'].join('\n')
+        ? [M().mazmorras?.[r.perdida]?.perdida || t('recupero', nombreMazmorra(r.perdida)), t('reconquistaUna')].join('\n')
         : (prog.conquistadas.length > 1 && DERROTA.rachaParaPerderTerritorio
-          ? `Cuidado: ${falta === 1 ? 'una derrota más seguida' : `${falta} derrotas más seguidas`} y el enemigo recuperará ${nombreMazmorra(prog.conquistadas.at(-1))}.`
-          : 'Reúne fuerzas e inténtalo otra vez.'),
+          ? t('cuidado', falta, nombreMazmorra(prog.conquistadas.at(-1)))
+          : t('reunefuerzas')),
     });
   }
   if (r.campañaGanada && r.tipo === 'conquista' && id === 'm10') {
-    pasos.push({ fondo: 'narrativa_victoria', titulo: tema.datos.titulo, texto: [M().final?.victoria, M().final?.creditos, 'Toda la tienda está abierta.'].filter(Boolean).join('\n') });
+    pasos.push({ fondo: 'narrativa_victoria', titulo: tema.datos.titulo, texto: [M().final?.victoria, M().final?.creditos, t('tiendaAbierta')].filter(Boolean).join('\n') });
   }
   const abiertas = cronicasAbiertas(prog, M().cronicas).filter(c => c.desbloquea === id);
-  if (r.primeraVez && abiertas.length) pasos.push({ fondo: 'cronista', titulo: pantalla('cronista', 'Casa del cronista'), texto: `Nueva crónica: ${abiertas.map(c => c.titulo).join(', ')}.` });
+  if (r.primeraVez && abiertas.length) pasos.push({ fondo: 'cronista', titulo: pantalla('cronista', t('cronista')), texto: t('nuevaCronica', abiertas.map(c => c.titulo).join(', ')) });
   encadenar(pasos, () => ir('mazmorra', id));
 }
 
 // ---------- ventanas de narrativa ----------
 
-function narrativa({ fondo: f = 'narrativa_camino', titulo = '', subtitulo = '', texto = '', boton = 'Continuar', monedas = 0, carta = null, nota = '', alSeguir }) {
+function narrativa({ fondo: f = 'narrativa_camino', titulo = '', subtitulo = '', texto = '', boton = t('continuar'), monedas = 0, carta = null, nota = '', alSeguir }) {
   const el = $('#pNarrativa');
   el.style.backgroundImage = `linear-gradient(rgba(10,6,3,0) 35%, rgba(10,6,3,.92) 75%), ${fondo(f)}`;
   el.innerHTML = `<div class="relato">
@@ -299,7 +317,7 @@ function narrativa({ fondo: f = 'narrativa_camino', titulo = '', subtitulo = '',
       ${nota ? `<p class="nota">${escapar(nota)}</p>` : ''}
       <button class="grande" id="nSeguir">${escapar(boton)}</button>
     </div>`;
-  if (carta) { const c = miniCarta(carta); c.classList.add('premio'); el.querySelector('.botin').append('Premio:', c); sonar('premio'); }
+  if (carta) { const c = miniCarta(carta); c.classList.add('premio'); el.querySelector('.botin').append(t('premio'), c); sonar('premio'); }
   if (monedas) sonar('monedas');
   $('#nSeguir').onclick = () => { sonar('confirmar'); alSeguir(); };
   mostrar('pNarrativa');
@@ -324,22 +342,22 @@ function verTaller() {
   const total = Object.values(receta).reduce((s, n) => s + n, 0);
   const problemas = revisarMazo(prog, receta);
   el.style.backgroundImage = `linear-gradient(90deg, rgba(10,6,3,.55), rgba(10,6,3,.92) 55%), ${fondo('taller')}`;
-  el.innerHTML = `${barraSuperior(pantalla('taller', 'Taller de mazos'))}
+  el.innerHTML = `${barraSuperior(pantalla('taller', t('taller')))}
     <div class="taller">
       <div class="coleccion">
-        <p class="nota">Toca una carta para agregarla al mazo. Tienes ${Object.values(prog.coleccion).reduce((s, n) => s + n, 0)} cartas.</p>
+        <p class="nota">${t('tallerAyuda', Object.values(prog.coleccion).reduce((s, n) => s + n, 0))}</p>
         ${TIPOS.map(tipo => `<h3>${escapar(nombreTipo(tipo, tema.terminos))}</h3><div class="rejilla" data-tipo="${tipo}"></div>`).join('')}
       </div>
       <div class="mazo">
         <div class="fila">
-          <select id="tMazos">${prog.mazos.map((m, i) => `<option value="${i}" ${i === prog.mazoActivo ? 'selected' : ''}>${escapar(m.nombre)}</option>`).join('')}</select>
-          <button id="tNuevo" title="Copia del mazo actual">+ Copiar</button>
-          ${prog.mazos.length > 1 ? '<button id="tBorrar">Borrar</button>' : ''}
+          <select id="tMazos">${prog.mazos.map((m, i) => `<option value="${i}" ${i === prog.mazoActivo ? 'selected' : ''}>${escapar(nombreMazo(m.nombre))}</option>`).join('')}</select>
+          <button id="tNuevo">${t('copiar')}</button>
+          ${prog.mazos.length > 1 ? `<button id="tBorrar">${t('borrar')}</button>` : ''}
         </div>
-        <label>Nombre <input id="tNombre" maxlength="30" value="${escapar(mazo.nombre)}"></label>
-        <p class="cuenta ${total === LIMITES.mazo ? 'ok' : ''}">${total} / ${LIMITES.mazo} cartas</p>
-        ${problemas.length ? `<ul class="problemas">${problemas.map(p => `<li>${escapar(p.replace(/\b([A-Z]\d\d)\b/g, id => nombreCarta(id)))}</li>`).join('')}</ul>` : '<p class="ok">Mazo listo. Es el que usarás en la campaña y en la arena.</p>'}
-        <p class="nota">Toca una carta de la lista para quitarla.</p>
+        <label>${t('nombre')} <input id="tNombre" maxlength="30" value="${escapar(nombreMazo(mazo.nombre))}"></label>
+        <p class="cuenta ${total === LIMITES.mazo ? 'ok' : ''}">${t('cartasMazo', total, LIMITES.mazo)}</p>
+        ${problemas.length ? `<ul class="problemas">${problemas.map(p => `<li>${escapar(traducirProblema(p).replace(/\b([A-Z]\d\d)\b/g, id => nombreCarta(id)))}</li>`).join('')}</ul>` : `<p class="ok">${t('mazoListo')}</p>`}
+        <p class="nota">${t('tocaQuitar')}</p>
         <ul class="lista">${Object.entries(receta).sort((a, b) => CARTAS[a[0]].costo - CARTAS[b[0]].costo).map(([id, n]) =>
           `<li data-id="${id}"><span class="costo">${CARTAS[id].costo}</span> ${escapar(nombreCarta(id))} <b>×${n}</b></li>`).join('')}</ul>
       </div>
@@ -363,12 +381,12 @@ function verTaller() {
   };
   $('#tMazos').onchange = e => { prog.mazoActivo = Number(e.target.value); guardarProgreso(); verTaller(); };
   $('#tNombre').onchange = e => { mazo.nombre = e.target.value.trim() || 'Mazo'; guardarProgreso(); verTaller(); };
-  $('#tNuevo').onclick = () => { prog.mazos.push({ nombre: `${mazo.nombre} (copia)`, receta: { ...receta } }); prog.mazoActivo = prog.mazos.length - 1; guardarProgreso(); verTaller(); };
+  $('#tNuevo').onclick = () => { prog.mazos.push({ nombre: t('copiaDe', mazo.nombre), receta: { ...receta } }); prog.mazoActivo = prog.mazos.length - 1; guardarProgreso(); verTaller(); };
   const borrarB = $('#tBorrar');
   if (borrarB) {
     let seguro = false;
     borrarB.onclick = () => {
-      if (!seguro) { seguro = true; borrarB.textContent = '¿Seguro?'; return; }
+      if (!seguro) { seguro = true; borrarB.textContent = t('seguro'); return; }
       prog.mazos.splice(prog.mazoActivo, 1); prog.mazoActivo = 0; guardarProgreso(); verTaller();
     };
   }
@@ -381,18 +399,18 @@ function verTienda() {
   const el = $('#pTienda');
   const ofertas = tienda(prog).sort((a, b) => a.precio - b.precio);
   el.style.backgroundImage = `linear-gradient(rgba(10,6,3,.55), rgba(10,6,3,.85)), ${fondo('tienda')}`;
-  el.innerHTML = `${barraSuperior(pantalla('tienda', 'Tienda'))}
-    <p class="nota centro">Cartas sueltas, sin sorpresas. Cada mazmorra conquistada trae cartas nuevas. Máximo ${LIMITES.copias} copias de cada una.</p>
+  el.innerHTML = `${barraSuperior(pantalla('tienda', t('tienda')))}
+    <p class="nota centro">${t('tiendaAyuda', LIMITES.copias)}</p>
     <div class="vitrina"></div>`;
   conectarVolver(el);
   const v = el.querySelector('.vitrina');
-  if (!ofertas.length) v.innerHTML = '<p class="nota">No hay nada nuevo por ahora. Conquista mazmorras para traer más cartas.</p>';
+  if (!ofertas.length) v.innerHTML = `<p class="nota">${t('tiendaVacia')}</p>`;
   for (const o of ofertas) {
     const caja = document.createElement('div');
     caja.className = 'oferta';
     caja.append(miniCarta(o.id));
     const alcanza = prog.monedas >= o.precio;
-    caja.insertAdjacentHTML('beforeend', `<p>Tienes ${o.tengo}/${LIMITES.copias}</p><button ${alcanza ? '' : 'disabled'}>◉ ${o.precio}</button>`);
+    caja.insertAdjacentHTML('beforeend', `<p>${t('tienes', o.tengo, LIMITES.copias)}</p><button ${alcanza ? '' : 'disabled'}>◉ ${o.precio}</button>`);
     caja.querySelector('button').onclick = () => { if (comprar(prog, o.id)) { sonar('monedas'); guardarProgreso(); verTienda(); } };
     v.append(caja);
   }
@@ -407,11 +425,11 @@ function verCronista(indice = 0) {
   const abiertas = cronicasAbiertas(prog, todas);
   const sel = abiertas[indice];
   el.style.backgroundImage = `linear-gradient(90deg, rgba(10,6,3,.92) 45%, rgba(10,6,3,.4)), ${fondo('cronista')}`;
-  el.innerHTML = `${barraSuperior(pantalla('cronista', 'Casa del cronista'))}
+  el.innerHTML = `${barraSuperior(pantalla('cronista', t('cronista')))}
     <div class="cronicas">
-      <ul>${abiertas.map((c, i) => `<li class="${i === indice ? 'sel' : ''}" data-i="${i}">${escapar(c.titulo || 'Sin título')}</li>`).join('')}
-        ${todas.length > abiertas.length ? `<li class="cerrada">${todas.length - abiertas.length} por descubrir…</li>` : ''}</ul>
-      <article>${sel ? `<h3>${escapar(sel.titulo)}</h3>${parrafos(sel.texto)}` : '<p class="nota">Todavía no hay crónicas.</p>'}</article>
+      <ul>${abiertas.map((c, i) => `<li class="${i === indice ? 'sel' : ''}" data-i="${i}">${escapar(c.titulo || t('sinTitulo'))}</li>`).join('')}
+        ${todas.length > abiertas.length ? `<li class="cerrada">${t('porDescubrir', todas.length - abiertas.length)}</li>` : ''}</ul>
+      <article>${sel ? `<h3>${escapar(sel.titulo)}</h3>${parrafos(sel.texto)}` : `<p class="nota">${t('sinCronicas')}</p>`}</article>
     </div>`;
   conectarVolver(el);
   for (const li of el.querySelectorAll('li[data-i]')) li.onclick = () => { sonar('pagina'); verCronista(Number(li.dataset.i)); };
@@ -424,21 +442,21 @@ function verArena() {
   const el = $('#pArena');
   el.style.backgroundImage = `linear-gradient(rgba(10,6,3,.45), rgba(10,6,3,.85)), ${fondo('arena')}`;
   const e = prog.escaramuzas || { ganadas: 0, jugadas: 0 };
-  el.innerHTML = `${barraSuperior(pantalla('arena', 'Arena'))}
+  el.innerHTML = `${barraSuperior(pantalla('arena', t('arena')))}
     <div class="caja arena">
-      <h2>${escapar(pantalla('escaramuza', 'Partida rápida'))}</h2>
-      <p class="nota">Sin territorio en juego. Ganas 5 ${escapar(moneda())} si vences y 1 si pierdes.</p>
-      <label>Rival <select id="aRival">${Object.keys(PERSONALIDADES).map(p => `<option value="${p}">${escapar(tema.nombreRival(p))}</option>`).join('')}</select></label>
-      <label>Tu mazo <select id="aMazo">${prog.mazos.map((m, i) => `<option value="${i}" ${i === prog.mazoActivo ? 'selected' : ''}>${escapar(m.nombre)}</option>`).join('')}</select></label>
-      <p class="nota">Llevas ${e.ganadas} victorias en ${e.jugadas} partidas.</p>
+      <h2>${escapar(pantalla('escaramuza', t('escaramuza')))}</h2>
+      <p class="nota">${t('arenaAyuda', escapar(moneda()))}</p>
+      <label>${t('rival')} <select id="aRival">${Object.keys(PERSONALIDADES).map(p => `<option value="${p}">${escapar(tema.nombreRival(p))}</option>`).join('')}</select></label>
+      <label>${t('tuMazo')} <select id="aMazo">${prog.mazos.map((m, i) => `<option value="${i}" ${i === prog.mazoActivo ? 'selected' : ''}>${escapar(nombreMazo(m.nombre))}</option>`).join('')}</select></label>
+      <p class="nota">${t('llevas', e.ganadas, e.jugadas)}</p>
       <p class="problemas" id="aProblemas"></p>
-      <button class="grande" id="aJugar">Jugar</button>
+      <button class="grande" id="aJugar">${t('jugar')}</button>
     </div>`;
   conectarVolver(el);
   $('#aJugar').onclick = () => {
     const i = Number($('#aMazo').value);
     const problemas = revisarMazo(prog, prog.mazos[i].receta).filter(p => !p.includes('recomiendan'));
-    if (problemas.length) { $('#aProblemas').textContent = problemas.join(' '); return; }
+    if (problemas.length) { $('#aProblemas').textContent = problemas.map(traducirProblema).join(' '); return; }
     prog.mazoActivo = i; guardarProgreso();
     const rival = $('#aRival').value;
     jugarPartida({
@@ -446,7 +464,7 @@ function verArena() {
       alTerminar: gano => {
         const r = resultadoEscaramuza(prog, gano);
         guardarProgreso();
-        narrativa({ fondo: 'arena', titulo: gano ? '¡Victoria!' : 'Derrota', monedas: r.monedas, alSeguir: () => ir('arena') });
+        narrativa({ fondo: 'arena', titulo: gano ? t('victoria') : t('derrota'), monedas: r.monedas, alSeguir: () => ir('arena') });
       },
     });
   };

@@ -1,0 +1,1041 @@
+{
+ "titulo": "Promised Land",
+ "subtitulo": "A card game about the conquest of Canaan",
+ "terminos": {
+  "recurso": "provision",
+  "recursos": "provisions",
+  "aldea": "camp",
+  "trabajador": "worker",
+  "trabajadores": "workers",
+  "recolector": "Field worker",
+  "constructor": "Builder",
+  "combatienteTipo": "Warrior",
+  "combatiente": "warrior",
+  "combatientes": "warriors",
+  "efecto": "Tactic",
+  "maldicion": "Affliction",
+  "muralla": "wall",
+  "fortaleza": "fortress",
+  "frente": "front",
+  "estructura": "structure",
+  "estructuras": "structures",
+  "efectos": "effects",
+  "estructuraTipo": "Structure",
+  "veloz": "Swift",
+  "guardia": "Guard",
+  "incursor": "Raider",
+  "distancia": "Ranged",
+  "asedio": "Siege",
+  "sanador": "Healer"
+ },
+ "narrativa": {
+  "intro": "Moses is dead. God tells Joshua to cross the Jordan with all the people into the land he promised them (Joshua 1:2). Guard the camp, raise your walls, and advance step by step.",
+  "victoria": "The battle is yours.",
+  "derrota": "Not today. Gather your strength and try again."
+ },
+ "rivales": {
+  "equilibrada": "The Canaanites",
+  "constructora": "The Jebusites",
+  "agresiva": "The Amorites",
+  "saqueadora": "The Amalekites"
+ },
+ "cartas": {
+  "R01": {
+   "nombre": "Sower",
+   "ambientacion": "That year they ate the fruit of the land of Canaan. (Joshua 5:12)",
+   "rival": {
+    "nombre": "Canaanite Farmer",
+    "por": {
+     "equilibrada": {
+      "nombre": "Canaanite Sower"
+     },
+     "constructora": {
+      "nombre": "Jebusite Sower"
+     },
+     "agresiva": {
+      "nombre": "Amorite Sower"
+     },
+     "saqueadora": {
+      "nombre": "Amalekite Sower"
+     }
+    }
+   }
+  },
+  "R02": {
+   "nombre": "Shepherd",
+   "ambientacion": "Flocks and herds went out with the people. (Exodus 12:38)",
+   "rival": {
+    "nombre": "Canaanite Shepherd",
+    "por": {
+     "equilibrada": {
+      "nombre": "Canaanite Shepherd"
+     },
+     "constructora": {
+      "nombre": "Jebusite Shepherd"
+     },
+     "agresiva": {
+      "nombre": "Amorite Shepherd"
+     },
+     "saqueadora": {
+      "nombre": "Amalekite Shepherd"
+     }
+    }
+   }
+  },
+  "R03": {
+   "nombre": "Gleaner",
+   "ambientacion": "What is left after the harvest is for the poor and the stranger. (Leviticus 19:9-10)",
+   "rival": {
+    "nombre": "Canaanite Gatherer",
+    "por": {
+     "equilibrada": {
+      "nombre": "Canaanite Gatherer"
+     },
+     "constructora": {
+      "nombre": "Jebusite Gatherer"
+     },
+     "agresiva": {
+      "nombre": "Amorite Gatherer"
+     },
+     "saqueadora": {
+      "nombre": "Amalekite Gatherer"
+     }
+    }
+   }
+  },
+  "K01": {
+   "nombre": "Mason",
+   "ambientacion": "Unless God builds the house, the builders work in vain. (Psalm 127:1)",
+   "rival": {
+    "nombre": "Canaanite Mason",
+    "por": {
+     "equilibrada": {
+      "nombre": "Canaanite Mason"
+     },
+     "constructora": {
+      "nombre": "Jebusite Mason"
+     },
+     "agresiva": {
+      "nombre": "Amorite Mason"
+     },
+     "saqueadora": {
+      "nombre": "Amalekite Mason"
+     }
+    }
+   }
+  },
+  "K02": {
+   "nombre": "Bezalel",
+   "ambientacion": "Filled with the Spirit of God, with wisdom and every skill. (Exodus 31:3)",
+   "rival": {
+    "nombre": "Canaanite Architect",
+    "por": {
+     "equilibrada": {
+      "nombre": "Canaanite Architect"
+     },
+     "constructora": {
+      "nombre": "Jebusite Architect"
+     },
+     "agresiva": {
+      "nombre": "Amorite Architect"
+     },
+     "saqueadora": {
+      "nombre": "Amalekite Architect"
+     }
+    }
+   }
+  },
+  "K03": {
+   "nombre": "Repairer of the Breach",
+   "ambientacion": "You will be called the repairer of the breach. (Isaiah 58:12)",
+   "rival": {
+    "nombre": "Wall Repairer",
+    "por": {
+     "equilibrada": {
+      "nombre": "Canaanite Wall Repairer"
+     },
+     "constructora": {
+      "nombre": "Jebusite Wall Repairer"
+     },
+     "agresiva": {
+      "nombre": "Amorite Wall Repairer"
+     },
+     "saqueadora": {
+      "nombre": "Amalekite Wall Repairer"
+     }
+    }
+   }
+  },
+  "U01": {
+   "nombre": "Armor-bearer",
+   "ambientacion": "Do what is in your heart; I am with you. (1 Samuel 14:7)",
+   "rival": {
+    "nombre": "Canaanite Recruit",
+    "por": {
+     "equilibrada": {
+      "nombre": "Canaanite Recruit"
+     },
+     "constructora": {
+      "nombre": "Jebusite Recruit"
+     },
+     "agresiva": {
+      "nombre": "Amorite Recruit"
+     },
+     "saqueadora": {
+      "nombre": "Amalekite Recruit"
+     }
+    }
+   }
+  },
+  "U02": {
+   "nombre": "Soldier of Israel",
+   "ambientacion": "The brave men will cross over armed ahead of their brothers. (Joshua 1:14)",
+   "rival": {
+    "nombre": "Canaanite Soldier",
+    "por": {
+     "equilibrada": {
+      "nombre": "Canaanite Soldier"
+     },
+     "constructora": {
+      "nombre": "Jebusite Soldier"
+     },
+     "agresiva": {
+      "nombre": "Amorite Soldier"
+     },
+     "saqueadora": {
+      "nombre": "Amalekite Soldier"
+     }
+    }
+   }
+  },
+  "U03": {
+   "nombre": "Sentry",
+   "ambientacion": "The watchman sounds the alarm when he sees the sword coming. (Ezekiel 33:6)",
+   "rival": {
+    "nombre": "Canaanite Sentry",
+    "por": {
+     "equilibrada": {
+      "nombre": "Canaanite Sentry"
+     },
+     "constructora": {
+      "nombre": "Jebusite Sentry"
+     },
+     "agresiva": {
+      "nombre": "Amorite Sentry"
+     },
+     "saqueadora": {
+      "nombre": "Amalekite Sentry"
+     }
+    }
+   }
+  },
+  "U04": {
+   "nombre": "Benjamite Slinger",
+   "ambientacion": "They could sling a stone at a hair and not miss. (Judges 20:16)",
+   "rival": {
+    "nombre": "Amorite Archer",
+    "por": {
+     "equilibrada": {
+      "nombre": "Canaanite Archer"
+     },
+     "constructora": {
+      "nombre": "Jebusite Archer"
+     },
+     "agresiva": {
+      "nombre": "Amorite Archer"
+     },
+     "saqueadora": {
+      "nombre": "Amalekite Archer"
+     }
+    }
+   }
+  },
+  "U05": {
+   "nombre": "Swift Messenger",
+   "ambientacion": "Gibeon sent word to Joshua: “Come quickly!” (Joshua 10:6)",
+   "rival": {
+    "nombre": "War Chariot",
+    "por": {
+     "equilibrada": {
+      "nombre": "War Chariot"
+     },
+     "constructora": {
+      "nombre": "War Chariot"
+     },
+     "agresiva": {
+      "nombre": "War Chariot"
+     },
+     "saqueadora": {
+      "nombre": "Camel Rider"
+     }
+    }
+   }
+  },
+  "U06": {
+   "nombre": "The Two Spies",
+   "ambientacion": "“Go, look over the land, and Jericho.” (Joshua 2:1)",
+   "rival": {
+    "nombre": "Canaanite Spy",
+    "por": {
+     "equilibrada": {
+      "nombre": "Canaanite Spy"
+     },
+     "constructora": {
+      "nombre": "Jebusite Spy"
+     },
+     "agresiva": {
+      "nombre": "Amorite Spy"
+     },
+     "saqueadora": {
+      "nombre": "Amalekite Spy"
+     }
+    }
+   }
+  },
+  "U07": {
+   "nombre": "Caleb",
+   "ambientacion": "As strong at eighty-five as he was at forty. (Joshua 14:10-11)",
+   "rival": {
+    "nombre": "Canaanite Champion",
+    "por": {
+     "equilibrada": {
+      "nombre": "Canaanite Champion"
+     },
+     "constructora": {
+      "nombre": "Jebusite Champion"
+     },
+     "agresiva": {
+      "nombre": "Amorite Champion"
+     },
+     "saqueadora": {
+      "nombre": "Amalekite Champion"
+     }
+    }
+   }
+  },
+  "U08": {
+   "nombre": "Joshua",
+   "ambientacion": "As I was with Moses, so I will be with you. (Joshua 1:5)",
+   "rival": {
+    "nombre": "Anakite Giant",
+    "por": {
+     "equilibrada": {
+      "nombre": "Anakite Giant"
+     },
+     "constructora": {
+      "nombre": "Anakite Giant"
+     },
+     "agresiva": {
+      "nombre": "Amorite Giant"
+     },
+     "saqueadora": {
+      "nombre": "Amalekite Chieftain"
+     }
+    }
+   }
+  },
+  "U09": {
+   "nombre": "Eleazar the Priest",
+   "ambientacion": "The priest who divided the land together with Joshua. (Joshua 14:1)",
+   "rival": {
+    "nombre": "Canaanite Healer",
+    "por": {
+     "equilibrada": {
+      "nombre": "Canaanite Healer"
+     },
+     "constructora": {
+      "nombre": "Jebusite Healer"
+     },
+     "agresiva": {
+      "nombre": "Amorite Healer"
+     },
+     "saqueadora": {
+      "nombre": "Amalekite Healer"
+     }
+    }
+   }
+  },
+  "U10": {
+   "nombre": "Battering Ram",
+   "ambientacion": "Against the shut gates of the cities of Canaan.",
+   "rival": {
+    "nombre": "Canaanite Battering Ram",
+    "por": {
+     "equilibrada": {
+      "nombre": "Battering Ram"
+     },
+     "constructora": {
+      "nombre": "Battering Ram"
+     },
+     "agresiva": {
+      "nombre": "Battering Ram"
+     },
+     "saqueadora": {
+      "nombre": "Battering Ram"
+     }
+    }
+   }
+  },
+  "U11": {
+   "nombre": "Phinehas",
+   "ambientacion": "Zealous for his God, he defended the people. (Numbers 25:11)",
+   "rival": {
+    "nombre": "King's Guard",
+    "por": {
+     "equilibrada": {
+      "nombre": "Canaanite King's Guard"
+     },
+     "constructora": {
+      "nombre": "Jebusite King's Guard"
+     },
+     "agresiva": {
+      "nombre": "Amorite King's Guard"
+     },
+     "saqueadora": {
+      "nombre": "Amalekite King's Guard"
+     }
+    }
+   }
+  },
+  "U12": {
+   "nombre": "Othniel",
+   "ambientacion": "He took Kiriath-sepher and won Achsah as his wife. (Joshua 15:17)",
+   "rival": {
+    "nombre": "Amalekite Raider",
+    "por": {
+     "equilibrada": {
+      "nombre": "Canaanite Raider"
+     },
+     "constructora": {
+      "nombre": "Jebusite Raider"
+     },
+     "agresiva": {
+      "nombre": "Amorite Raider"
+     },
+     "saqueadora": {
+      "nombre": "Amalekite Raider"
+     }
+    }
+   }
+  },
+  "E01": {
+   "nombre": "Watchtower",
+   "ambientacion": "Post a watchman to report what he sees. (Isaiah 21:6)",
+   "rival": {
+    "nombre": "Canaanite Tower",
+    "por": {
+     "equilibrada": {
+      "nombre": "Canaanite Tower"
+     },
+     "constructora": {
+      "nombre": "Jebusite Tower"
+     },
+     "agresiva": {
+      "nombre": "Amorite Tower"
+     },
+     "saqueadora": {
+      "nombre": "Amalekite Tower"
+     }
+    }
+   }
+  },
+  "E02": {
+   "nombre": "Granary",
+   "ambientacion": "Joseph stored up grain like the sand of the sea. (Genesis 41:49)",
+   "rival": {
+    "nombre": "Canaanite Granary",
+    "por": {
+     "equilibrada": {
+      "nombre": "Canaanite Granary"
+     },
+     "constructora": {
+      "nombre": "Jebusite Granary"
+     },
+     "agresiva": {
+      "nombre": "Amorite Granary"
+     },
+     "saqueadora": {
+      "nombre": "Amalekite Granary"
+     }
+    }
+   }
+  },
+  "E03": {
+   "nombre": "Camp at Gilgal",
+   "ambientacion": "There they set up the twelve stones taken from the Jordan. (Joshua 4:20)",
+   "rival": {
+    "nombre": "Canaanite Barracks",
+    "por": {
+     "equilibrada": {
+      "nombre": "Canaanite Barracks"
+     },
+     "constructora": {
+      "nombre": "Jebusite Barracks"
+     },
+     "agresiva": {
+      "nombre": "Amorite Barracks"
+     },
+     "saqueadora": {
+      "nombre": "Amalekite Barracks"
+     }
+    }
+   }
+  },
+  "E04": {
+   "nombre": "Carpenter's Workshop",
+   "ambientacion": "Acacia wood for the work. (Exodus 25:10)",
+   "rival": {
+    "nombre": "Canaanite Forge",
+    "por": {
+     "equilibrada": {
+      "nombre": "Canaanite Forge"
+     },
+     "constructora": {
+      "nombre": "Jebusite Forge"
+     },
+     "agresiva": {
+      "nombre": "Amorite Forge"
+     },
+     "saqueadora": {
+      "nombre": "Amalekite Forge"
+     }
+    }
+   }
+  },
+  "F01": {
+   "nombre": "Sling Stone",
+   "ambientacion": "One stone was enough against the giant. (1 Samuel 17:49)",
+   "rival": {
+    "nombre": "Sling Stone",
+    "por": {
+     "equilibrada": {
+      "nombre": "Sling Stone"
+     },
+     "constructora": {
+      "nombre": "Sling Stone"
+     },
+     "agresiva": {
+      "nombre": "Sling Stone"
+     },
+     "saqueadora": {
+      "nombre": "Sling Stone"
+     }
+    }
+   }
+  },
+  "F02": {
+   "nombre": "True Arrow",
+   "ambientacion": "The arrow of the LORD's victory. (2 Kings 13:17)",
+   "rival": {
+    "nombre": "True Arrow",
+    "por": {
+     "equilibrada": {
+      "nombre": "True Arrow"
+     },
+     "constructora": {
+      "nombre": "True Arrow"
+     },
+     "agresiva": {
+      "nombre": "True Arrow"
+     },
+     "saqueadora": {
+      "nombre": "True Arrow"
+     }
+    }
+   }
+  },
+  "F03": {
+   "nombre": "Balm of Gilead",
+   "ambientacion": "Is there no balm in Gilead? (Jeremiah 8:22)",
+   "rival": {
+    "nombre": "Balm",
+    "por": {
+     "equilibrada": {
+      "nombre": "Balm"
+     },
+     "constructora": {
+      "nombre": "Balm"
+     },
+     "agresiva": {
+      "nombre": "Balm"
+     },
+     "saqueadora": {
+      "nombre": "Balm"
+     }
+    }
+   }
+  },
+  "F04": {
+   "nombre": "Be Strong and Courageous",
+   "ambientacion": "Do not be afraid or discouraged: God will be with you. (Joshua 1:9)",
+   "rival": {
+    "nombre": "War Cry",
+    "por": {
+     "equilibrada": {
+      "nombre": "War Cry"
+     },
+     "constructora": {
+      "nombre": "War Cry"
+     },
+     "agresiva": {
+      "nombre": "War Cry"
+     },
+     "saqueadora": {
+      "nombre": "War Cry"
+     }
+    }
+   }
+  },
+  "F05": {
+   "nombre": "Fruit of the Land",
+   "ambientacion": "The manna stopped when they ate the fruit of the land. (Joshua 5:12)",
+   "rival": {
+    "nombre": "Plunder",
+    "por": {
+     "equilibrada": {
+      "nombre": "Plunder"
+     },
+     "constructora": {
+      "nombre": "Plunder"
+     },
+     "agresiva": {
+      "nombre": "Plunder"
+     },
+     "saqueadora": {
+      "nombre": "Plunder"
+     }
+    }
+   }
+  },
+  "F06": {
+   "nombre": "Rahab's Help",
+   "ambientacion": "Rahab hid the spies under the stalks of flax. (Joshua 2:6)",
+   "rival": {
+    "nombre": "Council of Kings",
+    "por": {
+     "equilibrada": {
+      "nombre": "Council of Kings"
+     },
+     "constructora": {
+      "nombre": "Council of Kings"
+     },
+     "agresiva": {
+      "nombre": "Council of Kings"
+     },
+     "saqueadora": {
+      "nombre": "Council of Kings"
+     }
+    }
+   }
+  },
+  "F07": {
+   "nombre": "Hail from Heaven",
+   "ambientacion": "More died from the hail than by the sword. (Joshua 10:11)",
+   "rival": {
+    "nombre": "Rain of Arrows",
+    "por": {
+     "equilibrada": {
+      "nombre": "Rain of Arrows"
+     },
+     "constructora": {
+      "nombre": "Rain of Arrows"
+     },
+     "agresiva": {
+      "nombre": "Rain of Arrows"
+     },
+     "saqueadora": {
+      "nombre": "Rain of Arrows"
+     }
+    }
+   }
+  },
+  "F08": {
+   "nombre": "Shield Wall",
+   "ambientacion": "God is a shield to those who trust in him. (Proverbs 30:5)",
+   "rival": {
+    "nombre": "Shield Wall",
+    "por": {
+     "equilibrada": {
+      "nombre": "Shield Wall"
+     },
+     "constructora": {
+      "nombre": "Shield Wall"
+     },
+     "agresiva": {
+      "nombre": "Shield Wall"
+     },
+     "saqueadora": {
+      "nombre": "Shield Wall"
+     }
+    }
+   }
+  },
+  "F09": {
+   "nombre": "Trumpets of Jericho",
+   "ambientacion": "The trumpets sounded, the people shouted, and the wall fell. (Joshua 6:20)",
+   "rival": {
+    "nombre": "Sappers",
+    "por": {
+     "equilibrada": {
+      "nombre": "Sappers"
+     },
+     "constructora": {
+      "nombre": "Sappers"
+     },
+     "agresiva": {
+      "nombre": "Sappers"
+     },
+     "saqueadora": {
+      "nombre": "Sappers"
+     }
+    }
+   }
+  },
+  "M01": {
+   "nombre": "Drought",
+   "ambientacion": "There will be no rain or dew in these years. (1 Kings 17:1)",
+   "rival": {
+    "nombre": "Drought",
+    "por": {
+     "equilibrada": {
+      "nombre": "Drought"
+     },
+     "constructora": {
+      "nombre": "Drought"
+     },
+     "agresiva": {
+      "nombre": "Drought"
+     },
+     "saqueadora": {
+      "nombre": "Drought"
+     }
+    }
+   }
+  },
+  "M02": {
+   "nombre": "Hornets",
+   "ambientacion": "God will send hornets against them. (Deuteronomy 7:20)",
+   "rival": {
+    "nombre": "Locusts",
+    "por": {
+     "equilibrada": {
+      "nombre": "Locusts"
+     },
+     "constructora": {
+      "nombre": "Locusts"
+     },
+     "agresiva": {
+      "nombre": "Locusts"
+     },
+     "saqueadora": {
+      "nombre": "Locusts"
+     }
+    }
+   }
+  },
+  "M03": {
+   "nombre": "Fear in the Enemy",
+   "ambientacion": "The hearts of the people of the land melted. (Joshua 2:11)",
+   "rival": {
+    "nombre": "Grumbling",
+    "por": {
+     "equilibrada": {
+      "nombre": "Grumbling"
+     },
+     "constructora": {
+      "nombre": "Grumbling"
+     },
+     "agresiva": {
+      "nombre": "Grumbling"
+     },
+     "saqueadora": {
+      "nombre": "Grumbling"
+     }
+    }
+   }
+  },
+  "M04": {
+   "nombre": "Woodworm",
+   "ambientacion": "Where moth and rust destroy. (Matthew 6:19)",
+   "rival": {
+    "nombre": "Woodworm",
+    "por": {
+     "equilibrada": {
+      "nombre": "Woodworm"
+     },
+     "constructora": {
+      "nombre": "Woodworm"
+     },
+     "agresiva": {
+      "nombre": "Woodworm"
+     },
+     "saqueadora": {
+      "nombre": "Woodworm"
+     }
+    }
+   }
+  }
+ },
+ "mundo": {
+  "pantallas": {
+   "pueblo": "The Camp of Israel",
+   "taller": "Command Tent",
+   "tienda": "Market",
+   "cronista": "Scribe's House",
+   "arena": "Training Ground",
+   "mapa": "Map of Canaan",
+   "puerta": "Leave the camp",
+   "moneda": "shekels",
+   "campaña": "Conquest",
+   "escaramuza": "Practice battle"
+  },
+  "actos": {
+   "1": {
+    "titulo": "Part One: Crossing the Jordan",
+    "texto": "Forty years in the wilderness are behind them. The Jordan stands between the people and the promised land (Joshua 1-4)."
+   },
+   "2": {
+    "titulo": "Part Two: Jericho, Ai, and the South",
+    "texto": "The cities of Canaan hear what God has done and join forces against Israel (Joshua 6-10)."
+   },
+   "3": {
+    "titulo": "Part Three: The North and Zion",
+    "texto": "The northern kings come out with many chariots and horses (Joshua 11). And one fortress will stand for many years, until the days of David."
+   }
+  },
+  "mazmorras": {
+   "m01": {
+    "nombre": "The Plains of Moab",
+    "descripcion": "The people camp across the Jordan from Jericho (Numbers 22:1).",
+    "partidas": [
+     {
+      "antes": "Before crossing the Jordan, the camp must be made safe on the plains of Moab (Numbers 33:49).",
+      "despues": "The camp is safe. Now we can look toward the Jordan."
+     }
+    ],
+    "conquista": "The plains of Moab are yours.",
+    "perdida": "The enemy took back the plains of Moab."
+   },
+   "m02": {
+    "nombre": "The Camp at Shittim",
+    "descripcion": "The last camp before the crossing. The spies set out from here (Joshua 2:1).",
+    "partidas": [
+     {
+      "antes": "From Shittim, Joshua sends two spies to look over the land (Joshua 2:1).",
+      "despues": "The spies return with good news: the people of the land are afraid of Israel (Joshua 2:24)."
+     },
+     {
+      "antes": "The Amalekites prowl around the camp looking for plunder.",
+      "despues": "The camp is ready to cross the Jordan."
+     }
+    ],
+    "conquista": "The camp at Shittim is yours.",
+    "perdida": "The enemy took back the camp at Shittim."
+   },
+   "m03": {
+    "nombre": "The Jordan Crossing",
+    "descripcion": "The river is flooding: it is harvest time (Joshua 3:15).",
+    "partidas": [
+     {
+      "antes": "The Jordan is flooding. Secure the riverbank before crossing (Joshua 3:15).",
+      "despues": "When the priests carried the ark into the river, the waters stopped (Joshua 3:16)."
+     },
+     {
+      "antes": "The Canaanites are waiting on the other side.",
+      "despues": "Twelve stones stand at Gilgal to remember the crossing (Joshua 4:20)."
+     }
+    ],
+    "conquista": "The Jordan crossing is yours.",
+    "perdida": "The enemy took back the Jordan crossing."
+   },
+   "m04": {
+    "nombre": "Jericho",
+    "descripcion": "The city was shut up tight; no one went in or out (Joshua 6:1).",
+    "partidas": [
+     {
+      "antes": "Jericho is shut tight. The people march around the city once each day (Joshua 6:3).",
+      "despues": "For six days they marched around the city and went back to camp (Joshua 6:14)."
+     },
+     {
+      "antes": "On the seventh day, seven times around. When the trumpets sound, all the people will shout (Joshua 6:15-16).",
+      "despues": "The wall fell down (Joshua 6:20). Rahab and her family were saved (Joshua 6:25)."
+     }
+    ],
+    "conquista": "Jericho has fallen.",
+    "perdida": "The enemy took back Jericho."
+   },
+   "m05": {
+    "nombre": "Ai",
+    "descripcion": "A small city on a hill, where Israel learned a hard lesson (Joshua 7-8).",
+    "partidas": [
+     {
+      "antes": "Before going up to Ai, the sin must be removed from the camp: Achan took what was forbidden (Joshua 7).",
+      "despues": "The camp is clean. Now, on to Ai (Joshua 8:1)."
+     },
+     {
+      "antes": "Joshua sets an ambush behind the city (Joshua 8:2).",
+      "despues": "The men of Ai chased Israel and left the city open (Joshua 8:17)."
+     },
+     {
+      "antes": "Joshua holds out his spear toward Ai: it is the signal (Joshua 8:18).",
+      "despues": "Ai was taken. On Mount Ebal the law was read before all the people (Joshua 8:30-35)."
+     }
+    ],
+    "conquista": "Ai is yours.",
+    "perdida": "The enemy took back Ai."
+   },
+   "m06": {
+    "nombre": "Gibeon and the Valley of Aijalon",
+    "descripcion": "Five kings attack Gibeon, which made a treaty with Israel (Joshua 9-10).",
+    "partidas": [
+     {
+      "antes": "Five Amorite kings attack Gibeon, Israel's ally (Joshua 10:5).",
+      "despues": "Joshua marched all night from Gilgal and took them by surprise (Joshua 10:9)."
+     },
+     {
+      "antes": "The battle drags on. Joshua prays for the sun to stand still over Gibeon (Joshua 10:12).",
+      "despues": "The sun stood still for almost a whole day. There was never a day like it (Joshua 10:13-14)."
+     }
+    ],
+    "conquista": "Gibeon and the Valley of Aijalon are yours.",
+    "perdida": "The enemy took back Gibeon and the Valley of Aijalon."
+   },
+   "m07": {
+    "nombre": "The Descent of Beth-horon",
+    "descripcion": "The road where the Amorites fled (Joshua 10:10-11).",
+    "partidas": [
+     {
+      "antes": "The Amorites flee down the road of Beth-horon (Joshua 10:10).",
+      "despues": "Large stones fell from the sky on those who fled (Joshua 10:11)."
+     },
+     {
+      "antes": "Chase the enemy along the road to Beth-horon.",
+      "despues": "The enemy scatters along the road."
+     },
+     {
+      "antes": "The last Amorites dig in at the pass.",
+      "despues": "The pass is clear."
+     }
+    ],
+    "conquista": "The descent of Beth-horon is yours.",
+    "perdida": "The enemy took back the descent of Beth-horon."
+   },
+   "m08": {
+    "nombre": "The Cave at Makkedah",
+    "descripcion": "The cave where the five kings hid (Joshua 10:16).",
+    "partidas": [
+     {
+      "antes": "The five kings hide in a cave at Makkedah (Joshua 10:16).",
+      "despues": "Joshua orders large stones rolled over the mouth of the cave (Joshua 10:18)."
+     },
+     {
+      "antes": "The kings' soldiers try to reach their cities (Joshua 10:19).",
+      "despues": "Only a few escaped (Joshua 10:20)."
+     },
+     {
+      "antes": "The kings are brought out of the cave (Joshua 10:22).",
+      "despues": "Joshua encouraged the people: do not be afraid or discouraged; be strong and courageous (Joshua 10:25)."
+     }
+    ],
+    "conquista": "The cave at Makkedah is yours.",
+    "perdida": "The enemy took back the cave at Makkedah."
+   },
+   "m09": {
+    "nombre": "Hazor",
+    "descripcion": "The head of all the northern kingdoms (Joshua 11:10).",
+    "partidas": [
+     {
+      "antes": "Jabin, king of Hazor, gathers the northern kings with many chariots and horses (Joshua 11:1-4).",
+      "despues": "The northern army falls back."
+     },
+     {
+      "antes": "By the waters of Merom, God tells Joshua not to be afraid (Joshua 11:6).",
+      "despues": "Israel came upon them suddenly (Joshua 11:7)."
+     },
+     {
+      "antes": "Hazor was the head of all these kingdoms (Joshua 11:10).",
+      "despues": "Hazor was taken."
+     }
+    ],
+    "conquista": "Hazor is yours.",
+    "perdida": "The enemy took back Hazor."
+   },
+   "m10": {
+    "nombre": "The Fortress of Zion",
+    "descripcion": "The Jebusite fortress, which fell in the days of David (2 Samuel 5:6-7).",
+    "partidas": [
+     {
+      "antes": "The Jebusites stayed in Jerusalem: Judah could not drive them out (Joshua 15:63).",
+      "despues": "The years go by; the fortress still stands."
+     },
+     {
+      "antes": "Long afterward, King David marches against the Jebusite fortress (2 Samuel 5:6).",
+      "despues": "The Jebusites trust in their walls."
+     },
+     {
+      "antes": "The Jebusites mock: they think the fortress will never fall (2 Samuel 5:6).",
+      "despues": "David captured the fortress of Zion, which is the City of David (2 Samuel 5:7)."
+     }
+    ],
+    "conquista": "The fortress of Zion is yours.",
+    "perdida": "The enemy took back the fortress of Zion."
+   }
+  },
+  "final": {
+   "victoria": "So God gave Israel all the land he had sworn to give their fathers; not one of his promises failed (Joshua 21:43-45).",
+   "creditos": "A Verbo project."
+  },
+  "cronicas": [
+   {
+    "titulo": "Forty Years in the Wilderness",
+    "texto": "Before reaching Canaan, the people wandered forty years in the wilderness. Moses died within sight of the land, and Joshua took command with a promise: “As I was with Moses, so I will be with you” (Joshua 1:5).",
+    "desbloquea": "pueblo"
+   },
+   {
+    "titulo": "The Spies and Rahab",
+    "texto": "Joshua sent two spies to Jericho. Rahab hid them on her roof and helped them escape down the city wall with a rope. They promised to save her family if she tied a scarlet cord in her window (Joshua 2).",
+    "desbloquea": "m02"
+   },
+   {
+    "titulo": "Crossing the Jordan",
+    "texto": "When the priests carrying the ark stepped into the water, the river stopped and the people crossed on dry ground. They set up twelve stones at Gilgal as a memorial, so that when children asked, their parents would tell what God had done (Joshua 3-4).",
+    "desbloquea": "m03"
+   },
+   {
+    "titulo": "The Walls of Jericho",
+    "texto": "For six days they marched around the city once. On the seventh day, seven times. The trumpets sounded, the people shouted, and the wall fell. The victory came not from Israel's strength, but from obeying God (Joshua 6).",
+    "desbloquea": "m04"
+   },
+   {
+    "titulo": "Achan and the Lesson of Ai",
+    "texto": "Achan took what was forbidden and hid it in his tent. Because of this, Israel was beaten by a small city. After the sin was removed, they went back and took Ai with an ambush (Joshua 7-8).",
+    "desbloquea": "m05"
+   },
+   {
+    "titulo": "The Trick of the Gibeonites",
+    "texto": "The people of Gibeon pretended to come from far away, with dry bread and cracked wineskins, and made a treaty with Israel without Joshua asking God. Even so, Israel kept its word and defended them (Joshua 9-10).",
+    "desbloquea": "m06"
+   },
+   {
+    "titulo": "The Day the Sun Stood Still",
+    "texto": "In the battle for Gibeon, Joshua spoke to God in front of Israel, and the sun stood still in the middle of the sky for almost a whole day (Joshua 10:12-14).",
+    "desbloquea": "m07"
+   },
+   {
+    "titulo": "Caleb, Faithful at Eighty-Five",
+    "texto": "Forty-five years earlier, Caleb had been one of the two faithful spies. At eighty-five he said he was as strong as he had been back then, and he asked for the hill country of Hebron (Joshua 14:6-14).",
+    "desbloquea": "m08"
+   },
+   {
+    "titulo": "Hazor, Head of the Kingdoms",
+    "texto": "The northern kings gathered at the waters of Merom with an army as numerous as the sand on the seashore. God told Joshua not to be afraid, and Joshua defeated them (Joshua 11).",
+    "desbloquea": "m09"
+   },
+   {
+    "titulo": "“As for Me and My House, We Will Serve the LORD”",
+    "texto": "When he was old, Joshua gathered all Israel at Shechem and reminded them of everything God had done. He asked them to choose whom they would serve, and declared that he and his house would serve the LORD (Joshua 24:14-15).",
+    "desbloquea": "m10"
+   }
+  ]
+ }
+}

@@ -114,3 +114,8 @@ label select { flex: 1; max-width: 62%; }
   #vista.visible { transform: translate(-50%, -50%) scale(1); }
   #vistaCanvas { height: min(300px, 82vh) !important; }
 }
+/* El texto de «Cómo se juega» va dentro de un bloque por idioma: mismo espaciado que si fuera hijo directo. */
+#reglas [data-idioma] { display: flex; flex-direction: column; gap: 8px; }
+#reglas [data-idioma][hidden] { display: none; }
+/* ①②③ salen de una fuente de respaldo muy alta: que no estiren la línea. */
+#reglas .num { display: inline-block; height: 1em; line-height: 1; vertical-align: -0.1em; overflow: visible; }

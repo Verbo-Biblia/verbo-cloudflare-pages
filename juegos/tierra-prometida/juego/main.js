@@ -1,4 +1,4 @@
-import { CARTAS, MAZOS, listaMazo, textoReglas } from '../nucleo/cartas.js';
+import { CARTAS, MAZOS, listaMazo, textoReglas, TERMINOS_BASE, TERMINOS_BASE_EN } from '../nucleo/cartas.js';
 import {
   nuevaPartida, jugarCarta, esDiferida, pasarAtaque, declararAtaque, cancelarPlan, enPlan, objetivosPlaneados, resolverSiguiente, terminarTurno,
   puedeJugar, objetivosDeCarta, objetivosDeAtaque, atacantesListos, buscarUnidad, ataqueDe, def,
@@ -8,6 +8,7 @@ import { cargarTema, listaTemas } from './tema.js';
 import { Tablero } from './tablero.js';
 import { dibujarCarta } from './carta-dibujo.js';
 import { ICONOS } from './iconos.js';
+import { t, idioma } from './idioma.js';
 import { iniciarMundo, ir, ocultarMundo } from './mundo.js';
 import { sonar, sonarEventos, sonidoActivo, alternarSonido } from './sonido.js';
 import { musica, cierre, alCambiarSonido } from './musica.js';
@@ -34,34 +35,42 @@ async function aplicarTema(id) {
   adaptarReglas();
 }
 
-// «Cómo se juega» está escrito con los términos genéricos; aquí se cambian por los de la temática
-// (por ejemplo, recolectores → obreros del campo, aldea → campamento).
+// «Cómo se juega» está escrito con los términos genéricos de cada idioma; aquí se muestra el bloque del idioma
+// actual, se ponen los nombres de cartas de la temática y se cambian los términos (recolectores → obreros del campo…).
 let reglasOriginales = null;
 function adaptarReglas() {
+  const lang = idioma();
+  for (const el of document.querySelectorAll('[data-t]')) el.textContent = t(el.dataset.t);
   const caja = $('#reglas .caja');
   reglasOriginales ??= caja.innerHTML;
-  const T = tema.terminos;
-  const minus = t => t.charAt(0).toLowerCase() + t.slice(1);
-  const plural = t => /[aeiouáéó]$/i.test(t) ? t + 's' : t.replace(/ón$/, 'ones') + (/ones$/.test(t) ? '' : /[^s]$/.test(t) ? 'es' : '');
-  const pluralFrase = t => { const [p, ...r] = t.split(' '); return [plural(p), ...r].join(' '); };
+  const molde = document.createElement('div');
+  molde.innerHTML = reglasOriginales;
+  for (const b of molde.querySelectorAll('[data-idioma]')) b.hidden = b.dataset.idioma !== lang;
+  for (const c of molde.querySelectorAll('[data-carta]')) c.textContent = tema.info(c.dataset.carta).nombre || c.textContent;
+  const T = tema.terminos, B = lang === 'en' ? TERMINOS_BASE_EN : TERMINOS_BASE;
+  const minus = x => x.charAt(0).toLowerCase() + x.slice(1);
+  const plural = lang === 'en'
+    ? x => x.replace(/(\w+)$/, w => /s$/.test(w) ? w : /y$/.test(w) ? w.slice(0, -1) + 'ies' : w + 's')
+    : x => { const [p0, ...r] = x.split(' '); const p1 = /[aeiouáéó]$/i.test(p0) ? p0 + 's' : /ón$/.test(p0) ? p0.replace(/ón$/, 'ones') : /s$/.test(p0) ? p0 : p0 + 'es'; return [p1, ...r].join(' '); };
   const cambios = [
-    ['recolectores', pluralFrase(minus(T.recolector))], ['recolector', minus(T.recolector)],
-    ['trabajadores', T.trabajadores], ['combatientes', T.combatientes], ['combatiente', T.combatiente],
-    ['estructuras', T.estructuras], ['estructura', T.estructura], ['aldea', T.aldea], ['fortaleza', T.fortaleza],
-    ['muralla', T.muralla], ['frente', T.frente], ['recursos', T.recursos],
-    ['efectos', pluralFrase(minus(T.efecto))], ['maldiciones', pluralFrase(minus(T.maldicion))],
+    [plural(minus(B.recolector)), plural(minus(T.recolector))], [minus(B.recolector), minus(T.recolector)],
+    [B.trabajadores, T.trabajadores], [B.combatientes, T.combatientes], [B.combatiente, T.combatiente],
+    [B.estructuras, T.estructuras], [B.estructura, T.estructura], [B.aldea, T.aldea], [B.fortaleza, T.fortaleza],
+    [B.muralla, T.muralla], [B.frente, T.frente], [B.recursos, T.recursos],
+    [plural(minus(B.efecto)), plural(minus(T.efecto))], [plural(minus(B.maldicion)), plural(minus(T.maldicion))],
   ];
-  let html = reglasOriginales;
-  // Artículos que dependen del género del término (la aldea → el campamento) y nombres de cartas del ejemplo.
-  const art = t => /a$/i.test(t.split(' ')[0]) ? 'la' : 'el';
-  html = html.replace(/\bla aldea\b/g, `${art(T.aldea)} ${T.aldea}`).replace(/\bLa aldea\b/g, `${art(T.aldea).replace(/^./, c => c.toUpperCase())} ${T.aldea}`)
-    .replace(/\bla muralla\b/g, `${art(T.muralla)} ${T.muralla}`).replace(/\bla fortaleza\b/g, `${art(T.fortaleza)} ${T.fortaleza}`)
-    .replace(/\bde el\b/g, 'del').replace(/\ba el\b/g, 'al')
-    .replace(/\bun Recluta\b/g, `un ${tema.info('U01').nombre}`);
+  let html = molde.innerHTML;
+  if (lang === 'es') {
+    // Artículos que dependen del género del término (la aldea → el campamento).
+    const art = x => /a$/i.test(x.split(' ')[0]) ? 'la' : 'el';
+    html = html.replace(/\bla aldea\b/g, `${art(T.aldea)} ${T.aldea}`).replace(/\bla muralla\b/g, `${art(T.muralla)} ${T.muralla}`)
+      .replace(/\bla fortaleza\b/g, `${art(T.fortaleza)} ${T.fortaleza}`).replace(/\bde el\b/g, 'del').replace(/\ba el\b/g, 'al');
+  }
   for (const [de, a] of cambios) {
-    if (!a || a === de) continue;
+    if (!a || !de || a === de) continue;
     // Solo texto visible (no dentro de etiquetas); respeta la mayúscula inicial.
-    html = html.replace(new RegExp(`(?<=>[^<]*)\\b(${de}|${de.charAt(0).toUpperCase() + de.slice(1)})\\b`, 'g'),
+    const mayus = de.charAt(0).toUpperCase() + de.slice(1);
+    html = html.replace(new RegExp(`(?<=>[^<]*)\\b(${de}|${mayus})\\b`, 'g'),
       m => m[0] === m[0].toUpperCase() ? a.charAt(0).toUpperCase() + a.slice(1) : a);
   }
   caja.innerHTML = html;
@@ -114,7 +123,7 @@ async function empezarPartida(opciones) {
   tablero.alHover = mostrarVista;
   st = nuevaPartida({
     mazos: [opciones.mazo, listaMazo(MAZOS[PERSONALIDADES[rivalPers].mazo])],
-    nombres: ['Tú', tema.nombreRival(rivalPers)],
+    nombres: [t('tu'), tema.nombreRival(rivalPers)],
     empieza: Math.random() < 0.5 ? 0 : 1,
     regla: opciones.regla || {},
   });
@@ -172,7 +181,7 @@ function resolverJugador(terminarAlFinal) {
     }
     ocupado = false;
     if (terminarAlFinal) { terminarTurno(st); procesar(); }
-    else { actualizarHUD(); resaltarEstado(); aviso('Ataque terminado. Pulsa «Terminar turno».'); }
+    else { actualizarHUD(); resaltarEstado(); aviso(t('ataqueTerminado')); }
   };
   paso();
 }
@@ -236,28 +245,28 @@ function clic(h) {
     const unSoloUso = d.tipo === 'efecto' || d.tipo === 'maldicion';
     if (!objs && unSoloUso) {
       modo = { tipo: 'confirmar', uid: h.uid };
-      aviso(`${nombreCarta(c.id)}: ${textoReglas(d, tema.terminos)} Toca la carta otra vez para ${esDiferida(c.id) ? 'prepararla (se dispara al pulsar «Al ataque»)' : 'usarla'}.`);
+      aviso(t('tocaOtraVez', nombreCarta(c.id), textoReglas(d, tema.terminos), esDiferida(c.id) ? t('prepararla') : t('usarla')));
       tablero.resaltar({ seleccion: h.uid });
       return;
     }
     if (!objs) { jugarCarta(st, 0, h.uid); procesar(); return; }
     modo = { tipo: 'carta', uid: h.uid, objetivos: objs };
-    aviso(`${nombreCarta(c.id)}: elige el objetivo (toca fuera para cancelar).`);
+    aviso(t('objetivoCarta', nombreCarta(c.id)));
     tablero.resaltar({ objetivos: objs, seleccion: h.uid });
     return;
   }
   if (st.fase === 'preparacion' && h.tipo === 'efecto' && h.j === 0 && enPlan(st, h.uid)) {
     cancelarPlan(st, h.uid);
-    aviso(`${nombreCarta(h.id)} vuelve a tu mano y recuperas su costo.`);
+    aviso(t('vuelveMano', nombreCarta(h.id)));
     procesar();
     return;
   }
   if (st.fase === 'preparacion' && h.tipo === 'unidad' && h.j === 0 && def(h.id).tipo === 'combatiente') {
-    if (enPlan(st, h.uid)) { cancelarPlan(st, h.uid); aviso('Ataque quitado del plan. Si lo vuelves a marcar, queda al final.'); procesar(); return; }
+    if (enPlan(st, h.uid)) { cancelarPlan(st, h.uid); aviso(t('ataqueQuitado')); procesar(); return; }
     const objs = objetivosPlaneados(st, 0, h.uid);
-    if (!objs.length) { aviso('Este combatiente todavía no puede atacar (los recién jugados esperan un turno).'); return; }
+    if (!objs.length) { aviso(t('noPuedeAtacar')); return; }
     modo = { tipo: 'ataque', uid: h.uid, objetivos: objs.map(o => ({ ...o, j: 1 })) };
-    aviso(`${nombreCarta(h.id)}: elige a quién atacará. El ataque ocurre al pulsar «Al ataque».`);
+    aviso(t('eligeAtaque', nombreCarta(h.id)));
     tablero.resaltar({ objetivos: modo.objetivos, seleccion: h.uid });
   }
 }
@@ -266,12 +275,12 @@ function motivoNoJugable(c) {
   const d = CARTAS[c.id];
   const p = st.jugadores[0];
   const T = tema.terminos;
-  if (d.tipo === 'recolector' && p.recolectoresJugados >= 1 && p.aldea.length < 6) return `Solo puedes jugar un ${T.recolector.toLowerCase()} por turno.`;
-  if (d.costo > p.recursos) return `Te faltan ${d.costo - p.recursos} ${T.recursos}.`;
-  if (d.tipo === 'combatiente' && p.frente.length >= 5) return `Tu ${T.frente} está lleno.`;
-  if ((d.tipo === 'recolector' || d.tipo === 'constructor') && p.aldea.length >= 6) return `Tu ${T.aldea} está llena.`;
-  if (d.tipo === 'estructura' && p.estructuras.length >= 3) return `No caben más ${T.estructuras}.`;
-  return 'No hay un objetivo válido para esta carta.';
+  if (d.tipo === 'recolector' && p.recolectoresJugados >= 1 && p.aldea.length < 6) return t('unRecolector', T.recolector.toLowerCase());
+  if (d.costo > p.recursos) return t('faltanRecursos', d.costo - p.recursos, T.recursos);
+  if (d.tipo === 'combatiente' && p.frente.length >= 5) return t('frenteLleno', T.frente);
+  if ((d.tipo === 'recolector' || d.tipo === 'constructor') && p.aldea.length >= 6) return t('aldeaLlena', T.aldea);
+  if (d.tipo === 'estructura' && p.estructuras.length >= 3) return t('sinEspacio', T.estructuras);
+  return t('sinObjetivo');
 }
 
 function resaltarEstado() {
@@ -290,7 +299,7 @@ function alAtaque() {
   if (ocupado || st?.turno !== 0 || st.fase !== 'preparacion') return;
   modo = null; aviso('');
   if (pasarAtaque(st)) {
-    if (!st.cola.length) aviso('Nadie ataca este turno. Pulsa «Terminar turno».');
+    if (!st.cola.length) aviso(t('nadieAtaca'));
     procesar();
     resolverJugador(false);
   }
@@ -314,35 +323,34 @@ const dueño = (id, jAfectado) => CARTAS[id].tipo === 'maldicion' ? 1 - jAfectad
 
 function registrar(e) {
   const quien = j => st.jugadores[j].nombre;
-  // El jugador es «tú»: sus frases van en segunda persona; las del rival, con su nombre en tercera.
-  const dice = (j, tu, el) => j === 0 ? tu : `${quien(j)} ${el}`;
-  const nomUid = uid => { const g = tablero.cartas.get(uid); return g ? nombreCarta(g.userData.id, g.userData.j) : 'la unidad'; };
+  const nomUid = uid => { const g = tablero.cartas.get(uid); return g ? nombreCarta(g.userData.id, g.userData.j) : t('laUnidad'); };
   const T = tema.terminos;
-  let t = '';
+  // El jugador es «tú»: sus frases van en segunda persona; las del rival, con su nombre en tercera.
+  let txt = '';
   switch (e.tipo) {
-    case 'turno': t = `<b>— ${e.j === 0 ? 'Tu turno' : `Turno de ${quien(e.j)}`} —</b>`; break;
-    case 'juega': t = `${dice(e.j, 'Juegas', 'juega')} <i>${nombreCarta(e.id, e.j)}</i>.`; break;
+    case 'turno': txt = `<b>— ${e.j === 0 ? t('tuTurno') : t('turnoDe', quien(e.j))} —</b>`; break;
+    case 'juega': txt = e.j === 0 ? t('rJuegas', nombreCarta(e.id, e.j)) : t('rJuega', quien(e.j), nombreCarta(e.id, e.j)); break;
     case 'ataca': {
       const o = e.objetivo;
-      const blanco = o.tipo === 'muralla' ? `la ${T.muralla}` : o.tipo === 'fortaleza' ? `la ${T.fortaleza}` : `<i>${nomUid(o.uid)}</i>`;
-      t = `<i>${nomUid(e.uid)}</i> ataca a ${blanco}.`;
+      const blanco = o.tipo === 'muralla' ? t('laMuralla', T.muralla) : o.tipo === 'fortaleza' ? t('laFortaleza', T.fortaleza) : `<i>${nomUid(o.uid)}</i>`;
+      txt = t('rAtaca', nomUid(e.uid), blanco);
       break;
     }
-    case 'muere': t = `<i>${nombreCarta(e.id, e.j)}</i> cae.`; break;
-    case 'prepara': t = `${dice(e.j, 'Preparas', 'prepara')} <i>${nomUid(e.uid)}</i>.`; break;
-    case 'dispara': t = `Se dispara <i>${nombreCarta(e.id, e.j)}</i>.`; break;
-    case 'devuelve': t = `<i>${nombreCarta(e.id, e.j)}</i> vuelve a la mano.`; break;
-    case 'disparo': t = `Una torre dispara a <i>${nomUid(e.uid)}</i>.`; break;
-    case 'sinObjetivo': t = `<i>${nomUid(e.uid)}</i> se pierde: su objetivo ya no está.`; break;
-    case 'maldicion': t = `${dice(e.j, 'Sufres', 'sufre')} <i>${nombreCarta(e.id, 1 - e.j)}</i>.`; break;
-    case 'mazoVacio': t = e.j === 0 ? `No te quedan cartas: tu ${T.fortaleza} recibe 2 de daño.` : `${quien(e.j)} no tiene cartas: su ${T.fortaleza} recibe 2 de daño.`; break;
-    case 'quema': t = `${dice(e.j, 'Tienes la mano llena y pierdes', 'tiene la mano llena y pierde')} <i>${nombreCarta(e.id, e.j)}</i>.`; break;
-    case 'vence': t = `Termina <i>${nombreCarta(e.id, dueño(e.id, e.j))}</i> sobre ${e.j === 0 ? 'ti' : quien(e.j)}.`; break;
+    case 'muere': txt = t('rCae', nombreCarta(e.id, e.j)); break;
+    case 'prepara': txt = e.j === 0 ? t('rPreparas', nomUid(e.uid)) : t('rPrepara', quien(e.j), nomUid(e.uid)); break;
+    case 'dispara': txt = t('rDispara', nombreCarta(e.id, e.j)); break;
+    case 'devuelve': txt = t('rDevuelve', nombreCarta(e.id, e.j)); break;
+    case 'disparo': txt = t('rDisparoTorre', nomUid(e.uid)); break;
+    case 'sinObjetivo': txt = t('rPierde', nomUid(e.uid)); break;
+    case 'maldicion': txt = e.j === 0 ? t('rSufres', nombreCarta(e.id, 1 - e.j)) : t('rSufre', quien(e.j), nombreCarta(e.id, 1 - e.j)); break;
+    case 'mazoVacio': txt = e.j === 0 ? t('rMazoVacioTu', T.fortaleza) : t('rMazoVacio', quien(e.j), T.fortaleza); break;
+    case 'quema': txt = e.j === 0 ? t('rQuemaTu', nombreCarta(e.id, e.j)) : t('rQuema', quien(e.j), nombreCarta(e.id, e.j)); break;
+    case 'vence': txt = t('rVence', nombreCarta(e.id, dueño(e.id, e.j)), e.j === 0 ? t('ti') : quien(e.j)); break;
   }
-  if (!t) return;
+  if (!txt) return;
   const r = $('#registro');
   const p = document.createElement('p');
-  p.innerHTML = t;
+  p.innerHTML = txt;
   r.appendChild(p);
   while (r.children.length > 9) r.firstChild.remove();
 }
@@ -364,8 +372,8 @@ function hudJugador(el, j) {
       ${dato('fortaleza', Math.max(0, p.fortaleza), cap(T.fortaleza), p.fortaleza <= 6 ? 'peligro' : '')}
       ${dato('recurso', p.recursos, cap(T.recursos), 'rec')}
       ${dato('muralla', p.muralla, cap(T.muralla))}
-      ${dato('mano', p.mano.length, 'Mano')}
-      ${dato('mazo', p.mazo.length, 'Mazo')}
+      ${dato('mano', p.mano.length, t('mano'))}
+      ${dato('mazo', p.mazo.length, t('mazoHud'))}
     </div>
     <div class="efectos">${efectos}</div>`;
 }
@@ -379,19 +387,19 @@ function pintarPlan() {
   if (!lista.length) return;
   const T = tema.terminos;
   const nom = uid => { const g = tablero.cartas.get(uid); return g ? nombreCarta(g.userData.id, g.userData.j) : '—'; };
-  const blanco = o => !o ? '' : o.tipo === 'muralla' ? `la ${T.muralla}` : o.tipo === 'fortaleza' ? `la ${T.fortaleza}` : nom(o.uid);
-  el.innerHTML = '<b>Plan de ataque</b>' + lista.map((x, i) => {
+  const blanco = o => !o ? '' : o.tipo === 'muralla' ? t('laMuralla', T.muralla) : o.tipo === 'fortaleza' ? t('laFortaleza', T.fortaleza) : nom(o.uid);
+  el.innerHTML = `<b>${t('planTitulo')}</b>` + lista.map((x, i) => {
     let destino = '';
     if (x.tipo === 'atacar') destino = blanco(x.objetivo);
     else {
       const m = st.jugadores[0].mesaEfectos.find(y => y.uid === x.uid);
       const acc = m ? CARTAS[m.id].efecto.accion : '';
       destino = m?.objetivo ? blanco(m.objetivo)
-        : acc === 'derribar' || acc === 'asedioMuralla' ? `la ${T.muralla} rival`
-        : acc === 'dañoTodos' || acc === 'debilidad' ? `el ${T.frente} rival` : 'el rival';
+        : acc === 'derribar' || acc === 'asedioMuralla' ? t('muralla_rival', T.muralla)
+        : acc === 'dañoTodos' || acc === 'debilidad' ? t('frente_rival', T.frente) : t('elRival');
     }
     return `<p class="${x.tipo}"><span>${NUMEROS[i] || i + 1}</span> ${nom(x.uid)} → ${destino}</p>`;
-  }).join('') + '<small>Toca algo del plan para quitarlo.</small>';
+  }).join('') + `<small>${t('planQuitar')}</small>`;
 }
 
 function actualizarHUD() {
@@ -401,8 +409,8 @@ function actualizarHUD() {
   hudJugador($('#hudYo'), 0);
   const mio = st.turno === 0 && st.ganador === null;
   $('#estadoTurno').textContent = st.ganador !== null ? '' : mio
-    ? (st.fase === 'preparacion' ? 'Tu turno · Preparación' : ocupado ? 'Tu turno · Atacando…' : 'Tu turno · Ataque hecho')
-    : `Turno de ${st.jugadores[1].nombre}…`;
+    ? (st.fase === 'preparacion' ? t('preparacion') : ocupado ? t('atacando') : t('ataqueHecho'))
+    : t('turnoDeRival', st.jugadores[1].nombre);
   $('#btnAtaque').disabled = !(mio && st.fase === 'preparacion' && !ocupado);
   $('#btnFin').disabled = !mio || ocupado;
   guiar(mio);
@@ -430,11 +438,11 @@ function guiar(mio) {
   if (st.fase === 'preparacion') {
     const jugables = st.jugadores[0].mano.some(c => puedeJugar(st, 0, c.uid));
     const libres = atacantesListos(st, 0).some(u => !enPlan(st, u.uid));
-    if (jugables) texto = 'Juega las cartas que brillan en dorado.';
-    else if (libres) texto = `Toca a tus ${T.combatientes} con brillo verde y elige a quién atacan.`;
-    else if (st.plan.length) texto = 'Todo listo: pulsa «Al ataque».';
-    else texto = 'No queda nada por hacer: termina el turno.';
-  } else texto = 'Ataque hecho: termina el turno.';
+    if (jugables) texto = t('guiaJugables');
+    else if (libres) texto = t('guiaAtacar', T.combatientes);
+    else if (st.plan.length) texto = t('guiaListo');
+    else texto = t('guiaNada');
+  } else texto = t('guiaAtaqueHecho');
   g.textContent = texto;
   botonSugerido()?.classList.add('sugerido');
 }
@@ -471,7 +479,7 @@ function mostrarVista(h) {
 function mostrarFinal() {
   const gane = st.ganador === 0;
   cierre(gane);
-  $('#finalTitulo').textContent = gane ? '¡Victoria!' : 'Derrota';
+  $('#finalTitulo').textContent = gane ? t('victoria') : t('derrota');
   $('#finalTexto').textContent = gane ? tema.datos.narrativa?.victoria || '' : tema.datos.narrativa?.derrota || '';
   $('#final').classList.remove('oculto');
 }

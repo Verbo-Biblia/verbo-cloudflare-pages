@@ -2,6 +2,7 @@
 // El marco, el color y los valores salen de la definición fija; la temática solo pone nombre, imagen y ambientación.
 
 import { COLOR_TIPO, textoReglas, nombreTipo } from '../nucleo/cartas.js';
+import { idioma } from './idioma.js';
 
 export const ANCHO = 400, ALTO = 560;
 export const ARTE = { x: 24, y: 72, w: 352, h: 264 }; // 4:3
@@ -156,7 +157,9 @@ export function dibujarCarta(canvas, def, info = {}, imagen = null, terminos = {
   if (def.dur || unSoloUso) {
     ctx.textAlign = 'right';
     ctx.font = `italic 16px ${FUENTE}`;
-    ctx.fillText(def.dur ? `un uso · ${def.dur} ${def.dur === 1 ? 'turno' : 'turnos'}` : 'un solo uso', ANCHO - 38, yt + 21);
+    const en = idioma() === 'en';
+    const turnos = def.dur === 1 ? (en ? 'turn' : 'turno') : (en ? 'turns' : 'turnos');
+    ctx.fillText(def.dur ? `${en ? 'one use' : 'un uso'} · ${def.dur} ${turnos}` : (en ? 'single use' : 'un solo uso'), ANCHO - 38, yt + 21);
     ctx.textAlign = 'left';
   }
 
