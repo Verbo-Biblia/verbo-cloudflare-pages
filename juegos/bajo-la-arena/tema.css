@@ -1,0 +1,46 @@
+/* Bajo la arena: el motor de expedientes con aire de expedición. Tienda de campaña al atardecer en vez de oficina
+   de noche, letras de aventura y sin efectos de VHS. Solo cambia variables y detalles de la base. */
+
+@font-face { font-family: 'Cinzel'; src: url('assets/fuentes/Cinzel.ttf') format('truetype'); font-weight: 400 900; font-display: swap; }
+@font-face { font-family: 'Alegreya'; src: url('assets/fuentes/Alegreya.ttf') format('truetype'); font-weight: 400 900; font-display: swap; }
+
+:root {
+  --desk-0: #24170d;
+  --desk-1: #33210f;
+  --desk-2: #452d16;
+  --desk-line: #6b4a26;
+  --on-desk: #f7ead0;
+  --on-desk-dim: #dcc79f;
+  --paper: #f7eed9;
+  --paper-2: #efe1c0;
+  --manila: #d9b56f;
+  --manila-dark: #b38a45;
+  --board: #9a7a52;
+  --rust: #c0582c;
+  --rust-deep: #96401c;
+  --amber: #f2c46a;
+  --olive: #4f8a7a;
+  --font-serif: 'Alegreya', 'Source Serif 4', Georgia, serif;
+}
+
+body { font-size: 17px; }
+
+/* Portada: sin ruido ni reloj de VHS; título grande con letras de aventura. */
+.vhs-noise, .vhs-osd, .vhs-date { display: none !important; }
+.title-name { font-family: 'Cinzel', serif; font-weight: 800; letter-spacing: .04em; color: #ffe2a0; text-shadow: 0 4px 24px #000c, 0 0 2px #000; text-transform: none; }
+.title-sub { font-family: var(--font-serif); font-style: italic; font-size: clamp(16px, 2vw, 22px); color: #fff3d6; text-shadow: 0 2px 10px #000; }
+.title-warning { color: #ffe2a0; text-shadow: 0 1px 6px #000; }
+.title-screen::before, .title-screen::after { display: none; }
+
+/* Títulos con la misma letra en el campamento y en el expediente. */
+.home-intro h1, .case-sheet h1, .sheet h2 { font-family: 'Cinzel', serif; font-weight: 700; letter-spacing: .01em; }
+.brand-name { font-family: 'Cinzel', serif; font-weight: 700; }
+
+/* El sello del hallazgo, en verde turquesa de excavación en vez de rojo de culpable. */
+.guilty-stamp { color: #1f7a6a; border-color: #1f7a6a; }
+
+/* Teléfono acostado: la pregunta del caso tiene que verse entera; los datos de lugar, año y libro se ocultan
+   (los cuenta la recompensa al resolverlo). */
+@media (max-height: 520px) {
+  .case-sheet .case-meta { display: none; }
+}

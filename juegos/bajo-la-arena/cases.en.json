@@ -1,0 +1,3125 @@
+{
+ "game": {
+  "title": "Beneath the Sand",
+  "subtitle": "Files of biblical archaeology",
+  "textos": {
+   "escenaMesa": "Camp",
+   "escenaExpediente": "File",
+   "escenaPizarra": "Notebook",
+   "mesaCabecera": "Expedition camp",
+   "mesaTitulo": "What the sand kept.",
+   "mesaIntro": "Each folder is a real find from biblical archaeology. Open it, examine the clues, take them to your notebook and put the stamp on the answer.",
+   "abrir": "Start the expedition",
+   "aviso": "Real discoveries · The expedition team is fictional",
+   "fechaVhs": "",
+   "progreso": "Threads",
+   "irPizarra": "Go to the notebook",
+   "enPizarra": "In notebook",
+   "pistaExaminar": "Tap a clue to see it · «Take» moves it to your notebook",
+   "pizarraVacia": "Your notebook is empty.",
+   "clavaDesde": "Take clues from the file",
+   "notaInicial": "Join clues with threads if it helps you think. When you know the answer, take the discovery stamp and tap it. Double-tap a clue to look closer.",
+   "notaReinicio": "Join clues with threads if it helps you think. When you know the answer, take the discovery stamp and tap it.",
+   "clavar": "Take",
+   "clavarPizarra": "Take to notebook",
+   "quitarPizarra": "Remove from notebook",
+   "volverMesa": "Back to camp",
+   "sello": "Discovery stamp",
+   "selloTitulo": "Tap it, then tap the answer",
+   "marcaSello": "Found it!",
+   "casoCerrado": "Solved",
+   "casoCerradoTitulo": "Already solved: tap «Restart» to play it again",
+   "selloEnMano": "The stamp is in your hand: tap the clue that answers the question. Tap the stamp again to put it away.",
+   "sinCandidatos": "First take to your notebook the picture clues you think answer the question.",
+   "soloPersonas": "The stamp goes on a picture clue, not on a paper.",
+   "selloPuesto": "Stamp placed! Checking your answer…",
+   "hiloTendido": "Thread tied. When you know the answer, use the discovery stamp.",
+   "progresoRecuperado": "Your notebook is as you left it. When you know the answer, use the discovery stamp.",
+   "errorCabecera": "Not yet · File {0}",
+   "errorTitulo": "{0} is not the answer",
+   "errorPorDefecto": "That clue does not fit with everything else.",
+   "errorAmable": "Try again: you lose nothing.",
+   "resueltoCabecera": "Discovery made!",
+   "coleccion": "My museum",
+   "archivoPersonal": "My museum",
+   "materialDesbloqueado": "Discoveries made",
+   "guardadoColeccion": "Saved in your museum · {0}",
+   "resueltoNota": "Solved! You will find it in your museum. Tap «Restart» to play it again.",
+   "casoResueltoNota": "Solved! Tap «Restart» to play it again.",
+   "coleccionVacia": "Your museum is still empty.",
+   "coleccionVaciaPista": "Solve a file to bring in the first piece.",
+   "hojaServicio": "Your explorer notebook",
+   "merito": "★",
+   "medallaMerito": "Explorer medal",
+   "sinMedallas": "No medals yet",
+   "sellosFaltan": "Stars: {0} · {1} more for the next medal",
+   "sellosBarra": "Stars: {0} of {1} for the next medal",
+   "masSello": "+1 star",
+   "menosSello": "−1 star",
+   "sinSellos": "No stars to lose",
+   "rango": "Rank",
+   "ascenso": "New rank",
+   "rangos": [
+    "Apprentice",
+    "Dig helper",
+    "Explorer",
+    "Expert explorer",
+    "Archaeologist",
+    "Chief archaeologist",
+    "Great archaeologist"
+   ],
+   "resumenPila": "{0} clues",
+   "estadoAbierto": "To discover",
+   "estadoResuelto": "Discovered",
+   "estadoConfidencial": "To discover",
+   "pruebaN": "PIECE {0}",
+   "examen": "Clue · {0}",
+   "resueltos": "Discovered",
+   "secciones": {
+    "persona": "People",
+    "lugares": "Places",
+    "objetos": "Objects",
+    "documentos": "Papers",
+    "galeria": "Photos"
+   },
+   "salirJuego": "Quit"
+  }
+ },
+ "cases": [
+  {
+   "code": "BA-01",
+   "title": "The Scrolls in the Cave",
+   "summary": "A shepherd hears something break inside a cave by the Dead Sea.",
+   "brief": "A young shepherd threw a stone into a cave and heard something made of clay break. Inside there were very old scrolls. Now we need to know what container they were kept in.",
+   "objective": "What container were the scrolls kept in?",
+   "meta": [
+    [
+     "Place",
+     "Qumran, by the Dead Sea"
+    ],
+    [
+     "Year",
+     "1947"
+    ],
+    [
+     "Bible book",
+     "Isaiah"
+    ]
+   ],
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "PLACE",
+     "title": "The Qumran hills",
+     "description": "Brown rocky hills by the Dead Sea, full of caves."
+    },
+    {
+     "id": "persona1",
+     "type": "PERSON",
+     "title": "The young shepherd",
+     "description": "A Bedouin shepherd was looking for a lost goat among the rocks."
+    },
+    {
+     "id": "lugar2",
+     "type": "PLACE",
+     "title": "The cave entrance",
+     "description": "A small hole in the rock, barely big enough for a person."
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJECT",
+     "title": "Round pot",
+     "description": "A short, round clay pot with one handle. It has no lid."
+    },
+    {
+     "id": "objeto2",
+     "type": "OBJECT",
+     "title": "Woven basket",
+     "description": "A basket made of palm leaves, open at the top."
+    },
+    {
+     "id": "objeto3",
+     "type": "OBJECT",
+     "title": "Tall jar",
+     "description": "A tall, narrow clay jar, like a tube, with a lid that looks like an upside-down bowl."
+    },
+    {
+     "id": "objeto4",
+     "type": "OBJECT",
+     "title": "An open scroll",
+     "description": "A leather scroll with columns of ancient letters. It is the book of Isaiah."
+    },
+    {
+     "id": "nota1",
+     "type": "NOTEBOOK",
+     "title": "Elena's notebook",
+     "description": "What the shepherd told about the cave.",
+     "section": "documentos",
+     "doc": {
+      "kind": "nota",
+      "header": "Qumran · day 1",
+      "body": "The shepherd Muhammad edh-Dhib was looking for a goat. He threw a stone into the cave and heard clay break. Inside were tall jars, and some had lids. The scrolls were inside them!",
+      "footer": "Professor Elena Márquez"
+     }
+    },
+    {
+     "id": "carta1",
+     "type": "LETTER",
+     "title": "Message from Tomás",
+     "description": "Tomás saw a jar at the museum just like the ones in the cave.",
+     "section": "documentos",
+     "doc": {
+      "kind": "carta",
+      "body": "Professor: at the museum I saw a jar from the cave. It is tall and narrow, like a tube. On top it has a lid that looks like an upside-down bowl. That kept the dust out!",
+      "footer": "Tomás",
+      "stamp": "MUSEUM"
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "RECORD",
+     "title": "Museum record",
+     "description": "Facts about the container that held the scrolls.",
+     "section": "documentos",
+     "doc": {
+      "kind": "documento",
+      "header": "Container from Cave 1",
+      "fields": [
+       [
+        "Material",
+        "Fired clay"
+       ],
+       [
+        "Shape",
+        "Tall and narrow"
+       ],
+       [
+        "Lid",
+        "Yes, like a bowl"
+       ],
+       [
+        "Place",
+        "Cave 1, Qumran"
+       ]
+      ],
+      "body": "It held leather scrolls, some of them wrapped in linen cloth.",
+      "stamp": "CHECKED"
+     }
+    },
+    {
+     "id": "noticia1",
+     "type": "NEWS",
+     "title": "The news",
+     "description": "The world hears about the find.",
+     "section": "documentos",
+     "doc": {
+      "kind": "periodico",
+      "header": "The Morning Daily",
+      "date": "April 1948",
+      "section": "Science",
+      "headline": "Very old scrolls found by the Dead Sea",
+      "body": "Some shepherds found scrolls in a cave. One of them has the whole book of Isaiah and is much older than any copy known until now."
+     }
+    }
+   ],
+   "wrongAccusation": "Look again at Elena's notebook and Tomás's message: what was the container like, and what did it have on top?",
+   "reward": {
+    "title": "The Dead Sea Scrolls",
+    "collection": "FIND 01",
+    "copy": "Between 1946 and 1947, a young Bedouin shepherd, Muhammad edh-Dhib, found clay jars with very old scrolls in a cave at Qumran. Later, many more scrolls turned up in other caves nearby. The most famous is the Great Isaiah Scroll: the whole book, copied by hand more than two thousand years ago, about seven meters long. Its text is almost the same as the one we read today. Isaiah 53 tells of the Servant who suffers for others. Today the scroll is kept at the Shrine of the Book, in the Israel Museum, Jerusalem."
+   }
+  },
+  {
+   "code": "BA-02",
+   "title": "The Letters in the Tunnel",
+   "summary": "A boy finds letters carved into the wall of a tunnel full of water.",
+   "brief": "In 1880, a boy was walking through an ancient tunnel in Jerusalem, with water up to his knees. On the wall he saw letters carved into the rock. Now we need to know what story those letters tell.",
+   "objective": "What scene does the tunnel inscription tell?",
+   "meta": [
+    [
+     "Place",
+     "Jerusalem, City of David"
+    ],
+    [
+     "Year",
+     "1880"
+    ],
+    [
+     "Bible book",
+     "2 Kings and 2 Chronicles"
+    ]
+   ],
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "PLACE",
+     "title": "The City of David",
+     "description": "The oldest part of Jerusalem, on a hill."
+    },
+    {
+     "id": "lugar2",
+     "type": "PLACE",
+     "title": "Inside the tunnel",
+     "description": "A narrow passage cut into the rock, with water running along the floor."
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJECT",
+     "title": "The inscription",
+     "description": "Six lines of ancient Hebrew letters carved into a smooth stone."
+    },
+    {
+     "id": "galeria1",
+     "type": "PHOTOGRAPH",
+     "title": "Scene A",
+     "description": "Drawing: one stonecutter digging alone inside a tunnel."
+    },
+    {
+     "id": "galeria2",
+     "type": "PHOTOGRAPH",
+     "title": "Scene B",
+     "description": "Drawing: two groups building a wall outdoors, under the sun."
+    },
+    {
+     "id": "galeria3",
+     "type": "PHOTOGRAPH",
+     "title": "Scene C",
+     "description": "Drawing: two groups with pickaxes digging inside the rock, each toward the other."
+    },
+    {
+     "id": "galeria4",
+     "type": "PHOTOGRAPH",
+     "title": "Scene D",
+     "description": "Drawing: some women filling water jars at a spring."
+    },
+    {
+     "id": "nota1",
+     "type": "NOTEBOOK",
+     "title": "Elena's notebook",
+     "description": "What the letters say, in simple words.",
+     "section": "documentos",
+     "doc": {
+      "kind": "nota",
+      "header": "Siloam · what the stone says",
+      "body": "Two groups of stonecutters dug with pickaxes, each toward the other. When they were almost there, they heard each other's voices through the rock. They met, and the water flowed from the spring to the pool.",
+      "footer": "Professor Elena Márquez"
+     }
+    },
+    {
+     "id": "carta1",
+     "type": "LETTER",
+     "title": "Message from Lía",
+     "description": "Lía and Tomás walked through the tunnel with flashlights.",
+     "section": "documentos",
+     "doc": {
+      "kind": "carta",
+      "body": "Professor: we walked the tunnel with flashlights. It is all rock, above us and on the sides. At one spot, the pickaxe marks change direction. That's where the two groups met!",
+      "footer": "Lía",
+      "stamp": "JERUSALEM"
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "RECORD",
+     "title": "Museum record",
+     "description": "Facts about the Siloam inscription.",
+     "section": "documentos",
+     "doc": {
+      "kind": "documento",
+      "header": "Siloam inscription",
+      "fields": [
+       [
+        "Found",
+        "1880"
+       ],
+       [
+        "Place",
+        "Tunnel wall"
+       ],
+       [
+        "Script",
+        "Ancient Hebrew"
+       ],
+       [
+        "Today",
+        "Istanbul Museum"
+       ]
+      ],
+      "body": "It tells how two teams with pickaxes dug inside the rock and met.",
+      "stamp": "CHECKED"
+     }
+    },
+    {
+     "id": "mapa1",
+     "type": "MAP",
+     "title": "Tunnel sketch",
+     "description": "The tunnel runs from the Gihon Spring to the Pool of Siloam.",
+     "section": "documentos",
+     "doc": {
+      "kind": "croquis",
+      "header": "Hezekiah's Tunnel",
+      "rooms": [
+       [
+        "CITY OF DAVID",
+        110,
+        50,
+        200,
+        80
+       ],
+       [
+        "SPRING",
+        310,
+        140,
+        80,
+        50
+       ],
+       [
+        "TUNNEL",
+        100,
+        160,
+        210,
+        40
+       ],
+       [
+        "POOL",
+        20,
+        190,
+        80,
+        50
+       ]
+      ],
+      "marks": [
+       [
+        "A",
+        350,
+        170,
+        "spring"
+       ],
+       [
+        "X",
+        118,
+        188,
+        "letters"
+       ],
+       [
+        "B",
+        60,
+        222,
+        "pool"
+       ]
+      ]
+     }
+    }
+   ],
+   "wrongAccusation": "Read Elena's notebook again: how many groups were there, what did they use, and where were they?",
+   "reward": {
+    "title": "Hezekiah's Tunnel",
+    "collection": "FIND 02",
+    "copy": "In 1880, a boy exploring a tunnel in Jerusalem found an inscription on the wall. It tells how two groups dug through the rock from both ends until they met, to bring water from the Gihon Spring to the Pool of Siloam. The tunnel is more than five hundred meters long. Many experts think it is the work of King Hezekiah: 2 Kings 20:20 and 2 Chronicles 32:30 tell how he brought water into the city through a channel. Years later, the stone was cut out of the wall. Today it is in the Istanbul Archaeology Museum."
+   }
+  },
+  {
+   "code": "BA-03",
+   "title": "The Broken Stone of Moab",
+   "summary": "A black stone full of letters breaks into pieces, but its words are saved.",
+   "brief": "In 1868, a black stone with many letters turned up in Dibon. Soon after, someone broke it into pieces. Even so, its words were not lost. Now we need to know what saved them.",
+   "objective": "What saved the words of the stone when it was broken?",
+   "meta": [
+    [
+     "Place",
+     "Dibon, in Moab (today Jordan)"
+    ],
+    [
+     "Year",
+     "1868"
+    ],
+    [
+     "Bible book",
+     "2 Kings"
+    ]
+   ],
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "PLACE",
+     "title": "The land of Dibon",
+     "description": "Dry hills east of the Dead Sea, where the Moabites lived."
+    },
+    {
+     "id": "persona1",
+     "type": "PERSON",
+     "title": "The traveler",
+     "description": "A European missionary traveled the region on horseback with a guide."
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJECT",
+     "title": "Piece of black stone",
+     "description": "A piece of hard black stone with carved letters."
+    },
+    {
+     "id": "objeto2",
+     "type": "OBJECT",
+     "title": "Clay tablet",
+     "description": "A clay tablet with wedge-shaped marks."
+    },
+    {
+     "id": "objeto3",
+     "type": "OBJECT",
+     "title": "Parchment scroll",
+     "description": "A whole scroll, with letters written in black ink."
+    },
+    {
+     "id": "objeto4",
+     "type": "OBJECT",
+     "title": "Sheets of grey paper",
+     "description": "Grey paper torn into several pieces. The letters stand out in relief, with no ink."
+    },
+    {
+     "id": "galeria1",
+     "type": "PHOTOGRAPH",
+     "title": "The stone put back together",
+     "description": "The stone rebuilt, with lighter parts where pieces were missing."
+    },
+    {
+     "id": "nota1",
+     "type": "NOTEBOOK",
+     "title": "Elena's notebook",
+     "description": "How to copy carved letters without writing.",
+     "section": "documentos",
+     "doc": {
+      "kind": "nota",
+      "header": "Dibon · the squeeze",
+      "body": "The scholar Charles Clermont-Ganneau sent a helper to copy the stone. He pressed wet paper against the letters. When it dries, the paper keeps their shape, with no ink. This is called a squeeze.",
+      "footer": "Professor Elena Márquez"
+     }
+    },
+    {
+     "id": "carta1",
+     "type": "LETTER",
+     "title": "Message from Tomás",
+     "description": "Tomás saw the squeeze in a museum.",
+     "section": "documentos",
+     "doc": {
+      "kind": "carta",
+      "body": "Professor: I saw the squeeze! It is grey paper, torn into several pieces, because it was pulled off the stone while still wet. It has no ink, but the letters stand out in relief.",
+      "footer": "Tomás",
+      "stamp": "PARIS"
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "RECORD",
+     "title": "Museum record",
+     "description": "Facts about the squeeze of the stone.",
+     "section": "documentos",
+     "doc": {
+      "kind": "documento",
+      "header": "Squeeze of the Mesha Stone",
+      "fields": [
+       [
+        "Material",
+        "Paper"
+       ],
+       [
+        "Condition",
+        "Torn into pieces"
+       ],
+       [
+        "Letters",
+        "In relief, no ink"
+       ],
+       [
+        "Today",
+        "Louvre Museum"
+       ]
+      ],
+      "body": "It was made before the stone was broken. It helped to read the lost parts.",
+      "stamp": "CHECKED"
+     }
+    },
+    {
+     "id": "noticia1",
+     "type": "NEWS",
+     "title": "The news",
+     "description": "The stone breaks into pieces.",
+     "section": "documentos",
+     "doc": {
+      "kind": "periodico",
+      "header": "The Morning Daily",
+      "date": "1870",
+      "section": "Science",
+      "headline": "Ancient stone broken in Moab",
+      "body": "It was heated and then soaked with cold water until it cracked. Several pieces have already been gathered. Luckily, a copy of its letters had been made before."
+     }
+    }
+   ],
+   "wrongAccusation": "Look again at Elena's notebook: what material was the copy made of, and what did its letters look like?",
+   "reward": {
+    "title": "The Mesha Stone",
+    "collection": "FIND 03",
+    "copy": "In 1868, the missionary Frederick Klein saw a black stone with 34 lines of letters in Dibon, in today's Jordan. Mesha, king of Moab, had it carved about 2,800 years ago. It says that Omri, king of Israel, had ruled over Moab, and that Mesha broke free. Before the stone was broken, a paper squeeze was made, and with it and the pieces that were gathered, the stone was put back together. In 2 Kings 3 the Bible also speaks of Mesha, king of Moab, who raised sheep and stopped paying tribute to Israel. Today it is in the Louvre Museum, in Paris."
+   }
+  },
+  {
+   "code": "BA-04",
+   "title": "The House of David",
+   "summary": "A stone with letters turns up hidden among the other stones of Tel Dan.",
+   "brief": "In 1993, in the ruins of Tel Dan, a woman on the team saw letters on a dark stone. That stone names the \"house of David\". Now we need to know where in the ancient city it turned up.",
+   "objective": "Where in Tel Dan did the stone turn up?",
+   "meta": [
+    [
+     "Place",
+     "Tel Dan, northern Israel"
+    ],
+    [
+     "Year",
+     "1993"
+    ],
+    [
+     "Bible book",
+     "2 Samuel"
+    ]
+   ],
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "PLACE",
+     "title": "Tel Dan",
+     "description": "A green hill with ancient ruins, in northern Israel."
+    },
+    {
+     "id": "persona1",
+     "type": "PERSON",
+     "title": "The surveyor",
+     "description": "Gila Cook measured the ruins to draw the team's plans."
+    },
+    {
+     "id": "lugar2",
+     "type": "PLACE",
+     "title": "The stream",
+     "description": "Fresh water running among trees. There are no walls nearby."
+    },
+    {
+     "id": "lugar3",
+     "type": "PLACE",
+     "title": "The city entrance",
+     "description": "An ancient city gate, with a plaza and a low stone wall."
+    },
+    {
+     "id": "lugar4",
+     "type": "PLACE",
+     "title": "The great platform",
+     "description": "A tall, square stone platform with steps."
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJECT",
+     "title": "The stone with letters",
+     "description": "A piece of dark basalt with carved letters. Its edges are missing."
+    },
+    {
+     "id": "galeria1",
+     "type": "PHOTOGRAPH",
+     "title": "The dig",
+     "description": "Avraham Biran's team worked at Tel Dan for many summers."
+    },
+    {
+     "id": "nota1",
+     "type": "NOTEBOOK",
+     "title": "Elena's notebook",
+     "description": "How the stone turned up.",
+     "section": "documentos",
+     "doc": {
+      "kind": "nota",
+      "header": "Tel Dan · July 1993",
+      "body": "Gila Cook, from Avraham Biran's team, saw letters on a dark stone. It was set in a low wall, next to the city gate. Someone had used it as just another stone!",
+      "footer": "Professor Elena Márquez"
+     }
+    },
+    {
+     "id": "carta1",
+     "type": "LETTER",
+     "title": "Message from Lía",
+     "description": "Lía toured the ruins with the guide.",
+     "section": "documentos",
+     "doc": {
+      "kind": "carta",
+      "body": "Professor: the guide told us the stone was broken and was used to build a wall. We saw it: it is right next to the city entrance, facing a little plaza.",
+      "footer": "Lía",
+      "stamp": "TEL DAN"
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "RECORD",
+     "title": "Museum record",
+     "description": "Facts about the Tel Dan stele.",
+     "section": "documentos",
+     "doc": {
+      "kind": "documento",
+      "header": "Tel Dan Stele",
+      "fields": [
+       [
+        "Material",
+        "Basalt"
+       ],
+       [
+        "Found",
+        "1993"
+       ],
+       [
+        "Place",
+        "Wall by the gate"
+       ],
+       [
+        "Today",
+        "Israel Museum"
+       ]
+      ],
+      "body": "Written in Aramaic. It names a king of Israel and the house of David.",
+      "stamp": "CHECKED"
+     }
+    },
+    {
+     "id": "mapa1",
+     "type": "MAP",
+     "title": "Plan of Tel Dan",
+     "description": "Where each part of the ancient city is.",
+     "section": "documentos",
+     "doc": {
+      "kind": "croquis",
+      "header": "Tel Dan",
+      "rooms": [
+       [
+        "STREAM",
+        30,
+        50,
+        120,
+        70
+       ],
+       [
+        "PLATFORM",
+        240,
+        50,
+        130,
+        90
+       ],
+       [
+        "GATE",
+        30,
+        170,
+        90,
+        80
+       ],
+       [
+        "PLAZA",
+        130,
+        170,
+        130,
+        80
+       ]
+      ],
+      "marks": [
+       [
+        "X",
+        245,
+        230,
+        "the stone"
+       ]
+      ]
+     }
+    }
+   ],
+   "wrongAccusation": "Read Elena's notebook again and look at the plan: which part of the city was the wall next to?",
+   "reward": {
+    "title": "The Tel Dan Stele",
+    "collection": "FIND 04",
+    "copy": "In July 1993, at Tel Dan in northern Israel, Gila Cook, from archaeologist Avraham Biran's team, saw letters on a basalt stone set in a wall next to the city gate. It was part of a stele written in Aramaic about 2,800 years ago. The next year, two more pieces turned up. The stone speaks of a king of Israel and of the \"house of David\". It was a great find: David's name outside the Bible. In 2 Samuel 7, God promises David that his house, his family of kings, will last. Today it is in the Israel Museum, Jerusalem."
+   }
+  },
+  {
+   "code": "BA-05",
+   "title": "The Boat in the Mud",
+   "summary": "A very old wooden boat turns up on the shore of the Sea of Galilee.",
+   "brief": "In 1986 there was very little rain and the water of the Sea of Galilee went down. Two fisherman brothers saw an ancient boat in the mud. Its wood was so soft that it could break. Now we need to know how they took it to the museum.",
+   "objective": "How did they take the boat to the museum without breaking it?",
+   "meta": [
+    [
+     "Place",
+     "Sea of Galilee, near Ginosar"
+    ],
+    [
+     "Year",
+     "1986"
+    ],
+    [
+     "Bible book",
+     "Mark"
+    ]
+   ],
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "PLACE",
+     "title": "The dry shore",
+     "description": "The lake's water went down and uncovered a lot of mud."
+    },
+    {
+     "id": "persona1",
+     "type": "PERSON",
+     "title": "The fisherman brothers",
+     "description": "Moshe and Yuval Lufan were walking along the shore and saw something in the mud."
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJECT",
+     "title": "The boat in the mud",
+     "description": "It is about 8 meters long. Its wooden planks have many patches."
+    },
+    {
+     "id": "galeria1",
+     "type": "PHOTOGRAPH",
+     "title": "Photo A",
+     "description": "A crane lifts the uncovered wooden boat onto a truck."
+    },
+    {
+     "id": "galeria2",
+     "type": "PHOTOGRAPH",
+     "title": "Photo B",
+     "description": "A bundle covered in white foam floats across the lake, pulled by a boat."
+    },
+    {
+     "id": "galeria3",
+     "type": "PHOTOGRAPH",
+     "title": "Photo C",
+     "description": "The wooden boat floats with nothing covering it."
+    },
+    {
+     "id": "galeria4",
+     "type": "PHOTOGRAPH",
+     "title": "Photo D",
+     "description": "Several people carry loose wooden planks on their shoulders."
+    },
+    {
+     "id": "lugar2",
+     "type": "PLACE",
+     "title": "The museum",
+     "description": "Today the boat rests in a hall of the Ginosar museum."
+    },
+    {
+     "id": "nota1",
+     "type": "NOTEBOOK",
+     "title": "Elena's notebook",
+     "description": "The problem with wet wood.",
+     "section": "documentos",
+     "doc": {
+      "kind": "nota",
+      "header": "Ginosar · February 1986",
+      "body": "The wood spent centuries under water. It is as soft as wet bread: if they lift it like this, it breaks. That's why they covered it all in white foam, like a cocoon.",
+      "footer": "Professor Elena Márquez"
+     }
+    },
+    {
+     "id": "carta1",
+     "type": "LETTER",
+     "title": "Message from Tomás",
+     "description": "Tomás saw photos of the move.",
+     "section": "documentos",
+     "doc": {
+      "kind": "carta",
+      "body": "Professor: they didn't put it on any truck! The boat, wrapped in foam, went floating across the lake, like a giant toy boat.",
+      "footer": "Tomás",
+      "stamp": "GINOSAR"
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "RECORD",
+     "title": "Museum record",
+     "description": "Facts about the Galilee Boat.",
+     "section": "documentos",
+     "doc": {
+      "kind": "documento",
+      "header": "Galilee Boat",
+      "fields": [
+       [
+        "Length",
+        "About 8 meters"
+       ],
+       [
+        "Found",
+        "January 1986"
+       ],
+       [
+        "By",
+        "Moshe and Yuval Lufan"
+       ],
+       [
+        "Today",
+        "Yigal Allon Museum"
+       ]
+      ],
+      "body": "Made mostly of cedar and oak, with many patches. It is from the time of Jesus.",
+      "stamp": "CHECKED"
+     }
+    },
+    {
+     "id": "noticia1",
+     "type": "NEWS",
+     "title": "The news",
+     "description": "The boat's journey.",
+     "section": "documentos",
+     "doc": {
+      "kind": "periodico",
+      "header": "The Morning Daily",
+      "date": "February 1986",
+      "section": "Science",
+      "headline": "Ancient boat travels across the lake",
+      "body": "Covered in white foam, the boat floated across the water to Ginosar. There it was placed in a pool so its wood would not dry out too fast."
+     }
+    }
+   ],
+   "wrongAccusation": "Read Elena's notebook and the news again: what did they cover it with, and how did it travel?",
+   "reward": {
+    "title": "The Galilee Boat",
+    "collection": "FIND 05",
+    "copy": "In January 1986 there was very little rain and the Sea of Galilee dropped a lot. The brothers Moshe and Yuval Lufan, fishermen from Ginosar, saw the shape of a wooden boat in the mud. It is about eight meters long and comes from the time of Jesus. No one knows who used it, but it shows what fishing boats were like back then. Mark 4 tells how Jesus and his disciples were crossing the lake in a boat when a great storm came, and he calmed the wind and the waves. Today the boat is at the Yigal Allon Museum, in Ginosar."
+   }
+  },
+  {
+   "code": "BA-06",
+   "title": "The hidden steps",
+   "summary": "Workers fix a pipe and the digger hits ancient stone.",
+   "brief": "In 2004, in Jerusalem, some workers were digging to fix a water pipe. Something very old appeared under the ground. The team has pictures of four places with water: only one is the Pool of Siloam from the time of Jesus.",
+   "objective": "Which of these places is the Pool of Siloam from the time of Jesus?",
+   "meta": [
+    [
+     "Place",
+     "City of David, Jerusalem"
+    ],
+    [
+     "Year",
+     "2004"
+    ],
+    [
+     "Bible book",
+     "John 9"
+    ]
+   ],
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "PLACE",
+     "title": "The city hillside",
+     "description": "Southern part of the City of David, the oldest area of Jerusalem."
+    },
+    {
+     "id": "galeria1",
+     "type": "PHOTOGRAPH",
+     "title": "The digger stops",
+     "description": "Year 2004: a small digger opens a trench for a water pipe."
+    },
+    {
+     "id": "lugar2",
+     "type": "PLACE",
+     "title": "The water tunnel",
+     "description": "Narrow tunnel cut into the rock. Water runs along the floor. It has no steps."
+    },
+    {
+     "id": "lugar3",
+     "type": "PLACE",
+     "title": "The small pool",
+     "description": "Small pool, surrounded by tall walls, with pieces of broken columns. It was made centuries after Jesus."
+    },
+    {
+     "id": "nota1",
+     "type": "NOTEBOOK",
+     "title": "Elena's notebook",
+     "description": "What the Gospel says and what we know about the pool.",
+     "doc": {
+      "kind": "nota",
+      "header": "Professor Elena's notebook",
+      "body": "The Pool of Siloam from the time of Jesus was large and open to the sky. On its sides it had wide stone steps, one below the other, going down to the water.",
+      "footer": "E. Márquez"
+     }
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJECT",
+     "title": "Coins in the plaster",
+     "description": "Ancient coins that were in the plaster of the steps. They help to tell how old the steps are."
+    },
+    {
+     "id": "lugar4",
+     "type": "PLACE",
+     "title": "Steps under the ground",
+     "description": "A large open place with long, wide stone steps, one below the other."
+    },
+    {
+     "id": "carta1",
+     "type": "LETTER",
+     "title": "Tomás's letter",
+     "description": "Tomás visited the place of the find.",
+     "doc": {
+      "kind": "carta",
+      "body": "Professor: today we went down to see what they found in 2004. The workers stopped the digger and called the archaeologists Eli Shukron and Ronny Reich. It is a huge place with no roof, with wide stone steps, lots of them, one after another!",
+      "footer": "Tomás",
+      "stamp": "Jerusalem"
+     }
+    },
+    {
+     "id": "lugar5",
+     "type": "PLACE",
+     "title": "The round well",
+     "description": "Deep round well, with a rope and a bucket. It has no steps."
+    },
+    {
+     "id": "ficha1",
+     "type": "RECORD",
+     "title": "Pool record",
+     "description": "Facts about the 2004 find.",
+     "doc": {
+      "kind": "documento",
+      "header": "Record · Pool of Siloam",
+      "fields": [
+       [
+        "Found",
+        "2004"
+       ],
+       [
+        "By",
+        "Eli Shukron and Ronny Reich"
+       ],
+       [
+        "Shape",
+        "Large, with wide steps"
+       ],
+       [
+        "Water",
+        "Came through Hezekiah's Tunnel"
+       ]
+      ],
+      "body": "In the plaster of the steps there were coins from about a hundred years before Jesus. That is how we know the pool already existed in his time.",
+      "stamp": "Checked"
+     }
+    },
+    {
+     "id": "noticia1",
+     "type": "NEWS",
+     "title": "The news",
+     "description": "A newspaper tells about the find.",
+     "doc": {
+      "kind": "periodico",
+      "header": "World News",
+      "date": "2004",
+      "section": "Discoveries",
+      "headline": "Pool where a blind man came back seeing is found",
+      "body": "Under the ground of Jerusalem a large, open-air pool with wide stone steps has appeared. According to the Gospel of John, Jesus sent a blind man to wash in the Pool of Siloam."
+     }
+    }
+   ],
+   "wrongAccusation": "Read Elena's notebook again: what did the pool have on its sides to go down to the water? Was it small or large? Look for the place that has both.",
+   "reward": {
+    "title": "The Pool of Siloam",
+    "collection": "FIND 06",
+    "copy": "In 2004, workers fixing a pipe in Jerusalem found stone steps. The archaeologists Eli Shukron and Ronny Reich saw that they belonged to the Pool of Siloam from the time of Jesus. The coins in the plaster helped to tell how old it was. John 9 tells how Jesus put mud on the eyes of a man who had been born blind and sent him to wash in the Pool of Siloam; the man came back able to see. Today you can see the steps in the City of David. Much of the pool is still under the ground."
+   }
+  },
+  {
+   "code": "BA-07",
+   "title": "The five porches",
+   "summary": "A pool with five porches: how could it have five?",
+   "brief": "The Gospel of John tells about a pool in Jerusalem called Bethesda, with five porches. For a long time nobody knew what it looked like. Its remains appeared next to the Church of Saint Anne, and now the team has four models.",
+   "objective": "Which model shows what the Pool of Bethesda was like?",
+   "meta": [
+    [
+     "Place",
+     "Next to the Church of Saint Anne, Jerusalem"
+    ],
+    [
+     "Excavations",
+     "Since the late 1800s"
+    ],
+    [
+     "Bible book",
+     "John 5"
+    ]
+   ],
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "PLACE",
+     "title": "The ruins by Saint Anne",
+     "description": "Very deep stone remains, next to a pale stone church in Jerusalem."
+    },
+    {
+     "id": "nota1",
+     "type": "NOTEBOOK",
+     "title": "Elena's notebook",
+     "description": "What a porch is and how many the pool had.",
+     "doc": {
+      "kind": "nota",
+      "header": "Professor Elena's notebook",
+      "body": "A porch is a walkway with a roof, held up by a row of columns. John 5 says the Pool of Bethesda had five porches. On the right model you must count five rows of columns.",
+      "footer": "E. Márquez"
+     }
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJECT",
+     "title": "Model A",
+     "description": "Just one round pool. It has no columns."
+    },
+    {
+     "id": "galeria1",
+     "type": "PHOTOGRAPH",
+     "title": "The wall in the middle",
+     "description": "Among the ruins you can see a thick rock wall that separates two pools."
+    },
+    {
+     "id": "objeto2",
+     "type": "OBJECT",
+     "title": "Model B",
+     "description": "Just one square pool, with rows of columns on its four sides. Four rows in all."
+    },
+    {
+     "id": "objeto3",
+     "type": "OBJECT",
+     "title": "Model C",
+     "description": "Two pools, side by side, separated by a wall. Rows of columns on the four sides and one more on top of the middle wall."
+    },
+    {
+     "id": "objeto4",
+     "type": "OBJECT",
+     "title": "Model D",
+     "description": "Two pools separated by a wall, but with columns on only one side."
+    },
+    {
+     "id": "carta1",
+     "type": "LETTER",
+     "title": "Lía's letter",
+     "description": "Lía went down to see the ruins.",
+     "doc": {
+      "kind": "carta",
+      "body": "Professor: today I went down with Tomás to see the ruins. It is not just one pool! There are two pools, side by side, with a thick wall in the middle. The guide says there were columns on the four sides and also on top of the middle wall.",
+      "footer": "Lía",
+      "stamp": "Jerusalem"
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "RECORD",
+     "title": "Pool record",
+     "description": "What the archaeologists found.",
+     "doc": {
+      "kind": "documento",
+      "header": "Record · Pool of Bethesda",
+      "fields": [
+       [
+        "Place",
+        "Near the Sheep Gate"
+       ],
+       [
+        "Shape",
+        "Two pools separated by a wall"
+       ],
+       [
+        "Porches",
+        "Four around and one on the wall"
+       ],
+       [
+        "Today",
+        "Next to the Church of Saint Anne"
+       ]
+      ],
+      "body": "The excavations began in the late 1800s. Many experts think this explains the five porches that John 5 talks about.",
+      "stamp": "Checked"
+     }
+    },
+    {
+     "id": "mapa1",
+     "type": "MAP",
+     "title": "Sketch of the pools",
+     "description": "Tomás's drawing seen from above.",
+     "doc": {
+      "kind": "croquis",
+      "header": "Tomás's sketch · seen from above",
+      "rooms": [
+       [
+        "NORTH POOL",
+        100,
+        40,
+        200,
+        100
+       ],
+       [
+        "WALL",
+        100,
+        140,
+        200,
+        20
+       ],
+       [
+        "SOUTH POOL",
+        100,
+        160,
+        200,
+        100
+       ]
+      ],
+      "marks": [
+       [
+        "1",
+        200,
+        25,
+        "top porch"
+       ],
+       [
+        "2",
+        200,
+        280,
+        "bottom porch"
+       ],
+       [
+        "3",
+        80,
+        150,
+        "left porch"
+       ],
+       [
+        "4",
+        320,
+        150,
+        "right porch"
+       ],
+       [
+        "5",
+        200,
+        150,
+        "porch on the wall"
+       ]
+      ]
+     }
+    },
+    {
+     "id": "lugar2",
+     "type": "PLACE",
+     "title": "The city gate",
+     "description": "A gate in the wall of the old city, a few steps from the ruins."
+    }
+   ],
+   "wrongAccusation": "Look at Lía's letter: how many pools were there? Then count the rows of columns on each model, as Elena's notebook says.",
+   "reward": {
+    "title": "The Pool of Bethesda",
+    "collection": "FIND 07",
+    "copy": "John 5 tells that in Jerusalem, near the Sheep Gate, there was a pool called Bethesda with five porches. There Jesus healed a man who had been ill for thirty-eight years: he told him to get up, pick up his mat and walk. For centuries nobody knew well what it looked like. Since the late 1800s, next to the Church of Saint Anne, archaeologists have uncovered two large pools separated by a wall. Today you can visit its ruins in the old city of Jerusalem."
+   }
+  },
+  {
+   "code": "BA-08",
+   "title": "The theater stone",
+   "summary": "A stone used as a step held a famous name.",
+   "brief": "In 1961, an Italian team was digging in the Roman theater of Caesarea, by the sea. On a stairway of the theater there was a stone with Latin letters. The team has pictures of four ancient objects: only one is that stone.",
+   "objective": "Which is the stone that names Pontius Pilate?",
+   "meta": [
+    [
+     "Place",
+     "Caesarea, by the Mediterranean Sea"
+    ],
+    [
+     "Year",
+     "1961"
+    ],
+    [
+     "Bible book",
+     "Matthew 27"
+    ]
+   ],
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "PLACE",
+     "title": "The theater by the sea",
+     "description": "Roman theater of Caesarea, with stone seats facing the sea."
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJECT",
+     "title": "Rounded black stone",
+     "description": "Black stone with a rounded top. It has ancient letters carved on it."
+    },
+    {
+     "id": "nota1",
+     "type": "NOTEBOOK",
+     "title": "Elena's notebook",
+     "description": "What the stone we are looking for is like.",
+     "doc": {
+      "kind": "nota",
+      "header": "Professor Elena's notebook",
+      "body": "Pilate's stone is a block of pale stone, shaped like a rectangle. It has Latin letters carved in rows. Its left side is broken: a piece is missing.",
+      "footer": "E. Márquez"
+     }
+    },
+    {
+     "id": "galeria1",
+     "type": "PHOTOGRAPH",
+     "title": "The theater steps",
+     "description": "Here, in 1961, a stone used as a step was found."
+    },
+    {
+     "id": "objeto2",
+     "type": "OBJECT",
+     "title": "Piece of a column",
+     "description": "Piece of a marble column, round like a drum."
+    },
+    {
+     "id": "carta1",
+     "type": "LETTER",
+     "title": "Telegram from 1961",
+     "description": "Message sent from Caesarea.",
+     "doc": {
+      "kind": "carta",
+      "body": "ITALIAN TEAM OF ANTONIO FROVA FINDS STONE WITH LATIN LETTERS ON THEATER STAIRWAY. LEFT SIDE BROKEN. IT NAMES PONTIUS PILATE.",
+      "footer": "Reporter in Caesarea",
+      "stamp": "TELEGRAM · 1961"
+     }
+    },
+    {
+     "id": "objeto3",
+     "type": "OBJECT",
+     "title": "Pale block with letters",
+     "description": "Rectangular block of pale stone. Latin letters in rows. A piece of its left side is missing."
+    },
+    {
+     "id": "objeto4",
+     "type": "OBJECT",
+     "title": "Clay tablet",
+     "description": "Small clay tablet, with wedge-shaped marks. It fits in one hand."
+    },
+    {
+     "id": "ficha1",
+     "type": "RECORD",
+     "title": "Museum record",
+     "description": "Facts about the stone.",
+     "doc": {
+      "kind": "documento",
+      "header": "Record · Pilate Stone",
+      "fields": [
+       [
+        "Material",
+        "Pale limestone"
+       ],
+       [
+        "Language",
+        "Latin"
+       ],
+       [
+        "Found",
+        "1961, theater of Caesarea"
+       ],
+       [
+        "Today",
+        "Israel Museum, Jerusalem"
+       ]
+      ],
+      "body": "The letters name Pontius Pilate, prefect of Judea, and a building in honor of the emperor Tiberius. Part of the text was lost with the broken piece.",
+      "stamp": "Museum"
+     }
+    },
+    {
+     "id": "noticia1",
+     "type": "NEWS",
+     "title": "The news",
+     "description": "A newspaper tells about the find.",
+     "doc": {
+      "kind": "periodico",
+      "header": "World News",
+      "date": "1961",
+      "section": "Discoveries",
+      "headline": "A theater stone names Pilate",
+      "body": "Italian archaeologists found in Caesarea a block of pale stone with Latin letters. It is a stone from his own time with the name of the governor who judged Jesus."
+     }
+    },
+    {
+     "id": "lugar2",
+     "type": "PLACE",
+     "title": "The aqueduct",
+     "description": "Roman water channel on arches, on the beach of Caesarea."
+    }
+   ],
+   "wrongAccusation": "Read Elena's notebook and the telegram again: what color was the stone, what shape was it, and which side was broken?",
+   "reward": {
+    "title": "The Pilate Stone",
+    "collection": "FIND 08",
+    "copy": "In 1961, the Italian team of Antonio Frova was digging in the Roman theater of Caesarea. On a stairway they found a block of pale stone that had been used as a step. Its Latin letters name Pontius Pilate, prefect of Judea, and a building in honor of the emperor Tiberius. Matthew 27 tells how Jesus was brought before the governor Pilate, who questioned him and judged him. The original stone is in the Israel Museum, in Jerusalem. There is a copy in Caesarea."
+   }
+  },
+  {
+   "code": "BA-09",
+   "title": "The box with the flowers",
+   "summary": "A park, a hidden cave and several stone boxes.",
+   "brief": "In 1990, some workers were building a road in a park south of Jerusalem. The ground caved in and an ancient cave with several stone boxes appeared. One of them has a name that appears in the Gospels.",
+   "objective": "Which is the box with the name of Caiaphas?",
+   "meta": [
+    [
+     "Place",
+     "Peace Forest, south of Jerusalem"
+    ],
+    [
+     "Year",
+     "1990"
+    ],
+    [
+     "Bible book",
+     "John 18"
+    ]
+   ],
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "PLACE",
+     "title": "The pine park",
+     "description": "Park with pine trees south of Jerusalem. The ground caved in here."
+    },
+    {
+     "id": "galeria1",
+     "type": "PHOTOGRAPH",
+     "title": "The cave entrance",
+     "description": "A cave cut into the rock, with a small opening to go in."
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJECT",
+     "title": "Plain box",
+     "description": "Pale stone box, with no decoration at all."
+    },
+    {
+     "id": "nota1",
+     "type": "NOTEBOOK",
+     "title": "Elena's notebook",
+     "description": "What an ossuary is and what Caiaphas's one is like.",
+     "doc": {
+      "kind": "nota",
+      "header": "Professor Elena's notebook",
+      "body": "An ossuary is a stone box where families kept the bones of their dead. Caiaphas's box is the most beautiful one in the cave: on one side it has two large circles full of carved flowers.",
+      "footer": "E. Márquez"
+     }
+    },
+    {
+     "id": "objeto2",
+     "type": "OBJECT",
+     "title": "One-circle box",
+     "description": "Stone box with just one circle of flowers carved on the front."
+    },
+    {
+     "id": "objeto3",
+     "type": "OBJECT",
+     "title": "Two-circle box",
+     "description": "Stone box decorated with two large circles full of flowers. On another side it has scratched letters."
+    },
+    {
+     "id": "objeto4",
+     "type": "OBJECT",
+     "title": "Zigzag box",
+     "description": "Stone box with carved zigzag lines. It has no circles or flowers."
+    },
+    {
+     "id": "carta1",
+     "type": "LETTER",
+     "title": "Tomás's letter",
+     "description": "Tomás saw the box at the museum.",
+     "doc": {
+      "kind": "carta",
+      "body": "Professor: at the museum we saw Caiaphas's box. It has two huge circles full of flowers! And on another side there are scratched letters, as if made with a nail. They say «Joseph, son of Caiaphas».",
+      "footer": "Tomás",
+      "stamp": "Jerusalem"
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "RECORD",
+     "title": "Museum record",
+     "description": "Facts about the box.",
+     "doc": {
+      "kind": "documento",
+      "header": "Record · Caiaphas Ossuary",
+      "fields": [
+       [
+        "Found",
+        "1990, Peace Forest"
+       ],
+       [
+        "Material",
+        "Limestone"
+       ],
+       [
+        "Decoration",
+        "Two circles with flowers"
+       ],
+       [
+        "Today",
+        "Israel Museum, Jerusalem"
+       ]
+      ],
+      "body": "The letters, in Aramaic, say «Joseph, son of Caiaphas». The historian Josephus called the high priest Joseph Caiaphas.",
+      "stamp": "Museum"
+     }
+    },
+    {
+     "id": "noticia1",
+     "type": "NEWS",
+     "title": "The news",
+     "description": "A newspaper tells about the find.",
+     "doc": {
+      "kind": "periodico",
+      "header": "World News",
+      "date": "Special edition",
+      "section": "Discoveries",
+      "headline": "Ancient cave kept the name of Caiaphas",
+      "body": "Workers building a road discovered a cave with stone boxes. The most decorated one, with two circles of flowers, has scratched letters with the name of Caiaphas."
+     }
+    },
+    {
+     "id": "lugar2",
+     "type": "PLACE",
+     "title": "The museum hall",
+     "description": "Hall of the Israel Museum where the box is shown today."
+    }
+   ],
+   "wrongAccusation": "Read Elena's notebook and Tomás's letter again: how many circles of flowers did the box have? What else did it have on another side?",
+   "reward": {
+    "title": "The Caiaphas Ossuary",
+    "collection": "FIND 09",
+    "copy": "In 1990, in the Peace Forest, south of Jerusalem, an ancient cave with several ossuaries was opened by accident. The archaeologist Zvi Greenhut studied it. On the most decorated box someone had scratched «Joseph, son of Caiaphas». Many experts think it belonged to the family of the high priest Caiaphas. John 18 tells how Jesus was brought before Caiaphas, who was high priest that year. Today the box is in the Israel Museum, in Jerusalem."
+   }
+  },
+  {
+   "code": "BA-10",
+   "title": "The clay barrel",
+   "summary": "A king of Persia wrote down that peoples could go back home.",
+   "brief": "In 1879, Hormuzd Rassam was digging in the ruins of Babylon, in today's Iraq. In the earth appeared a clay object covered in wedge-shaped writing: the Cyrus Cylinder. The team has pictures of four clay objects.",
+   "objective": "Which of these clay objects is the Cyrus Cylinder?",
+   "meta": [
+    [
+     "Place",
+     "Babylon, in today's Iraq"
+    ],
+    [
+     "Year",
+     "1879"
+    ],
+    [
+     "Bible book",
+     "Ezra 1"
+    ]
+   ],
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "PLACE",
+     "title": "The ruins of Babylon",
+     "description": "Mounds of earth and bricks by the Euphrates River."
+    },
+    {
+     "id": "galeria1",
+     "type": "PHOTOGRAPH",
+     "title": "The 1879 dig",
+     "description": "Workers with baskets and shovels take earth out of the ruins."
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJECT",
+     "title": "Flat tablet",
+     "description": "Flat, rectangular clay tablet with wedge writing. It fits in the palm of your hand."
+    },
+    {
+     "id": "nota1",
+     "type": "NOTEBOOK",
+     "title": "Elena's notebook",
+     "description": "What the Cyrus Cylinder is like.",
+     "doc": {
+      "kind": "nota",
+      "header": "Professor Elena's notebook",
+      "body": "The Cyrus Cylinder is shaped like a barrel: it is round, long and lies on its side. It is covered in wedge-shaped writing. It has cracks because it was broken.",
+      "footer": "E. Márquez"
+     }
+    },
+    {
+     "id": "objeto2",
+     "type": "OBJECT",
+     "title": "Standing prism",
+     "description": "Clay standing upright, with six flat faces, like a giant pencil. Wedge writing."
+    },
+    {
+     "id": "objeto3",
+     "type": "OBJECT",
+     "title": "Jar with handles",
+     "description": "Round clay jar with two handles. Smooth, with no writing at all."
+    },
+    {
+     "id": "objeto4",
+     "type": "OBJECT",
+     "title": "Clay barrel",
+     "description": "Barrel-shaped clay object, lying on its side. Covered in wedge writing, with cracks."
+    },
+    {
+     "id": "carta1",
+     "type": "LETTER",
+     "title": "Lía's letter",
+     "description": "Lía went to the museum in London.",
+     "doc": {
+      "kind": "carta",
+      "body": "Professor: I am at the British Museum, in London. I saw the Cyrus Cylinder! It looks like a clay barrel lying down. It is full of tiny wedges and it has cracks all over.",
+      "footer": "Lía",
+      "stamp": "London"
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "RECORD",
+     "title": "Museum record",
+     "description": "Facts about the cylinder.",
+     "doc": {
+      "kind": "documento",
+      "header": "Record · Cyrus Cylinder",
+      "fields": [
+       [
+        "Found",
+        "1879, Babylon"
+       ],
+       [
+        "By",
+        "Hormuzd Rassam"
+       ],
+       [
+        "Shape",
+        "Clay barrel"
+       ],
+       [
+        "Today",
+        "British Museum, London"
+       ]
+      ],
+      "body": "It is written in Akkadian, in wedge-shaped writing. Cyrus, king of Persia, tells that he took Babylon and let peoples who had been carried far away go back to their lands.",
+      "stamp": "Museum"
+     }
+    },
+    {
+     "id": "mapa1",
+     "type": "MAP",
+     "title": "The way back",
+     "description": "Lía's simple map.",
+     "doc": {
+      "kind": "croquis",
+      "header": "Lía's map · from Babylon to Jerusalem",
+      "rooms": [
+       [
+        "JERUSALEM",
+        30,
+        120,
+        100,
+        40
+       ],
+       [
+        "DESERT",
+        150,
+        110,
+        110,
+        60
+       ],
+       [
+        "BABYLON",
+        280,
+        170,
+        100,
+        40
+       ]
+      ],
+      "marks": [
+       [
+        "1",
+        330,
+        160,
+        "Babylon: the cylinder was found here"
+       ],
+       [
+        "2",
+        80,
+        110,
+        "Jerusalem: where the Jews went back"
+       ]
+      ]
+     }
+    },
+    {
+     "id": "lugar2",
+     "type": "PLACE",
+     "title": "The London museum",
+     "description": "Hall of the British Museum where the cylinder is today."
+    }
+   ],
+   "wrongAccusation": "Read Elena's notebook and Lía's letter again: what shape was the cylinder? Was it standing up or lying down? Did it have writing?",
+   "reward": {
+    "title": "The Cyrus Cylinder",
+    "collection": "FIND 10",
+    "copy": "In 1879, Hormuzd Rassam found in Babylon a clay cylinder written by order of Cyrus, king of Persia, after he took the city in 539 BC. The text tells that Cyrus let peoples who had been carried far away go back to their lands. It does not name the Jews, but it shows the same way of acting that Ezra 1 describes: Cyrus allowed the Jews to go back to Jerusalem to rebuild the temple. Today the cylinder is in the British Museum, in London."
+   }
+  },
+  {
+   "code": "BA-11",
+   "title": "The Six-Sided Prism",
+   "summary": "A king of Assyria wrote his own version of the story of King Hezekiah.",
+   "brief": "In a museum, three clay objects from Assyria lost their labels. One of them is the prism of King Sennacherib, which talks about Hezekiah, king of Judah. Read the clues and find it.",
+   "objective": "Which of the three clay objects is Sennacherib's prism?",
+   "meta": [
+    [
+     "Place",
+     "Nineveh, near Mosul (Iraq)"
+    ],
+    [
+     "Year",
+     "1830"
+    ],
+    [
+     "Bible book",
+     "2 Kings 18 and 19"
+    ]
+   ],
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "PLACE",
+     "title": "The hills of Nineveh",
+     "description": "Earth mounds by the Tigris River. Underneath were the palaces of the kings of Assyria."
+    },
+    {
+     "id": "lugar2",
+     "type": "PLACE",
+     "title": "The museum room",
+     "description": "Three display cases with no labels. Each one holds a clay object with wedge-shaped writing."
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJECT",
+     "title": "Object A: the barrel",
+     "description": "Round like a barrel lying on its side. It has no flat faces. About 20 cm long."
+    },
+    {
+     "id": "objeto2",
+     "type": "OBJECT",
+     "title": "Object B: the tablet",
+     "description": "Flat and small: it fits in the palm of your hand. It only has two sides, front and back."
+    },
+    {
+     "id": "objeto3",
+     "type": "OBJECT",
+     "title": "Object C: the column",
+     "description": "It stands upright. It has six flat faces, all full of wedge-shaped writing. It is 38 cm tall."
+    },
+    {
+     "id": "persona1",
+     "type": "PERSON",
+     "title": "An Assyrian scribe",
+     "description": "Scribes marked soft clay with a pointed reed. Then they baked it so it would last."
+    },
+    {
+     "id": "galeria1",
+     "type": "PHOTOGRAPH",
+     "title": "The camp of 1830",
+     "description": "European travelers camped next to the ruins to look for ancient objects."
+    },
+    {
+     "id": "nota1",
+     "type": "NOTEBOOK",
+     "title": "The professor's notebook",
+     "description": "What we know about the prism.",
+     "doc": {
+      "kind": "nota",
+      "header": "Field notebook · Elena Márquez",
+      "body": "Sennacherib's prism is not round and not flat. It stands upright like a column and has six flat faces. Every face is covered in wedge-shaped writing.",
+      "footer": "Check the three display cases."
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "RECORD",
+     "title": "Museum record",
+     "description": "The label that fell off a display case.",
+     "doc": {
+      "kind": "documento",
+      "header": "Museum · Object record",
+      "fields": [
+       [
+        "Object",
+        "Prism of King Sennacherib"
+       ],
+       [
+        "Material",
+        "Baked clay"
+       ],
+       [
+        "Shape",
+        "Six-sided column"
+       ],
+       [
+        "Height",
+        "38 cm"
+       ]
+      ],
+      "body": "It tells about the wars of the king of Assyria. It mentions Hezekiah, king of Judah.",
+      "stamp": "Assyria"
+     }
+    },
+    {
+     "id": "carta1",
+     "type": "LETTER",
+     "title": "Tomás's letter",
+     "description": "Tomás measured the objects.",
+     "doc": {
+      "kind": "carta",
+      "body": "Professor: I measured the three objects. The barrel is about 20 cm and lies on its side. The tablet is so small it fits in my hand. Only one stands upright, and it is taller than my 30 cm ruler.",
+      "footer": "Tomás",
+      "stamp": "Room 3"
+     }
+    },
+    {
+     "id": "noticia1",
+     "type": "NEWS",
+     "title": "Old news",
+     "description": "What the text on the prism says.",
+     "doc": {
+      "kind": "periodico",
+      "header": "The Excavation Daily",
+      "date": "Special edition",
+      "section": "History",
+      "headline": "A king of Assyria talks about Hezekiah",
+      "body": "The text says Sennacherib took many cities of Judah and shut King Hezekiah up in Jerusalem. But it does not say he took Jerusalem."
+     }
+    }
+   ],
+   "wrongAccusation": "Not that one. Count the flat faces of each object and compare them with the professor's notebook.",
+   "reward": {
+    "title": "Sennacherib's Prism",
+    "collection": "FIND 11",
+    "copy": "Sennacherib, king of Assyria, had his wars written on clay prisms. In 1830, the British colonel Robert Taylor obtained one in the ruins of Nineveh, near today's Mosul, in Iraq. The text says that in 701 BC the king took 46 cities of Judah and shut Hezekiah up in Jerusalem \"like a bird in a cage.\" But it does not say he entered Jerusalem. 2 Kings 18 and 19 tell how Hezekiah prayed to God and Sennacherib went back to his land without taking the city. Today this prism is in the British Museum in London."
+   }
+  },
+  {
+   "code": "BA-12",
+   "title": "The Black Stone of Nimrud",
+   "summary": "A king of Israel appears on a black stone from Assyria.",
+   "brief": "The black obelisk of King Shalmaneser III has many carved pictures. One of them shows Jehu, king of Israel, or a messenger sent by him. Tomás and Lía took photos of four pictures, but they mixed them up.",
+   "objective": "Which of the four carved pictures shows Jehu, king of Israel?",
+   "meta": [
+    [
+     "Place",
+     "Nimrud (Iraq)"
+    ],
+    [
+     "Year",
+     "1846"
+    ],
+    [
+     "Bible book",
+     "2 Kings 9 and 10"
+    ]
+   ],
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "PLACE",
+     "title": "The hill of Nimrud",
+     "description": "A big mound by the Tigris River. Kalhu, a city of the kings of Assyria, stood there."
+    },
+    {
+     "id": "galeria1",
+     "type": "PHOTOGRAPH",
+     "title": "The whole obelisk",
+     "description": "A black stone almost two meters tall, with four sides and a stepped top. It has rows of carved pictures."
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJECT",
+     "title": "Picture 1: the camels",
+     "description": "Men bring two-humped camels to the king."
+    },
+    {
+     "id": "objeto2",
+     "type": "OBJECT",
+     "title": "Picture 2: the lion",
+     "description": "A lion leaps on a deer among trees. There is no king."
+    },
+    {
+     "id": "objeto3",
+     "type": "OBJECT",
+     "title": "Picture 3: the kneeling man",
+     "description": "A man kneels with his forehead on the ground in front of the king. Behind the king, a servant holds a parasol."
+    },
+    {
+     "id": "objeto4",
+     "type": "OBJECT",
+     "title": "Picture 4: the elephant",
+     "description": "An elephant and some monkeys walk in a line."
+    },
+    {
+     "id": "persona1",
+     "type": "PERSON",
+     "title": "A digger in 1846",
+     "description": "Workers dug long trenches to find the buried palaces."
+    },
+    {
+     "id": "nota1",
+     "type": "NOTEBOOK",
+     "title": "The professor's notebook",
+     "description": "How to recognize Jehu's picture.",
+     "doc": {
+      "kind": "nota",
+      "header": "Field notebook · Elena Márquez",
+      "body": "In Jehu's picture, a man bows down until his forehead touches the ground, in front of King Shalmaneser. That was how people showed respect to a king. Behind the king there is a servant with a parasol.",
+      "footer": "Look for the kneeling man."
+     }
+    },
+    {
+     "id": "carta1",
+     "type": "LETTER",
+     "title": "Lía's letter",
+     "description": "Lía describes what she saw.",
+     "doc": {
+      "kind": "carta",
+      "body": "Professor: on the stone I saw animals: camels, a lion, and an elephant with monkeys. In those pictures nobody is kneeling. But in one, someone is! A man has his forehead pressed to the ground in front of the king.",
+      "footer": "Lía",
+      "stamp": "Museum"
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "RECORD",
+     "title": "Museum record",
+     "description": "Facts about the obelisk.",
+     "doc": {
+      "kind": "documento",
+      "header": "Museum · Object record",
+      "fields": [
+       [
+        "Object",
+        "Black Obelisk of Shalmaneser III"
+       ],
+       [
+        "Material",
+        "Black limestone"
+       ],
+       [
+        "Height",
+        "Almost 2 meters"
+       ],
+       [
+        "Found",
+        "Nimrud, 1846"
+       ]
+      ],
+      "body": "It shows peoples bringing gifts to the king. The text next to the kneeling man names Jehu.",
+      "stamp": "Assyria"
+     }
+    },
+    {
+     "id": "noticia1",
+     "type": "NEWS",
+     "title": "News from 1846",
+     "description": "Layard's discovery.",
+     "doc": {
+      "kind": "periodico",
+      "header": "The Excavation Daily",
+      "date": "1846",
+      "section": "Finds",
+      "headline": "A black stone comes out of the ground at Nimrud",
+      "body": "The explorer Austen Henry Layard found a black obelisk full of carved pictures. Later, people learned that one of them mentions Jehu, king of Israel."
+     }
+    }
+   ],
+   "wrongAccusation": "That picture is not the one. Read the professor's notebook again: what is the man in front of the king doing?",
+   "reward": {
+    "title": "The Black Obelisk",
+    "collection": "FIND 12",
+    "copy": "In 1846, the explorer Austen Henry Layard found a black stone almost two meters tall at Nimrud, Iraq. It is the obelisk of King Shalmaneser III of Assyria. Its carved pictures show peoples bringing him gifts. In one, a man bows to the ground, and the text names Jehu. It may be Jehu himself or a messenger sent by him. It is one of the oldest known pictures of an Israelite. Jehu's story is told in 2 Kings 9 and 10. Today the obelisk is in the British Museum in London."
+   }
+  },
+  {
+   "code": "BA-13",
+   "title": "Messages at the Gate",
+   "summary": "Soldiers of Judah wrote messages to each other while the army of Babylon was coming.",
+   "brief": "At the gate of the city of Lachish, letters from about 2,600 years ago were found. But they were not written on paper. Lía put three ancient objects on the table, and only one is like the Lachish letters.",
+   "objective": "Which of the three objects is like the Lachish letters?",
+   "meta": [
+    [
+     "Place",
+     "Lachish (Israel)"
+    ],
+    [
+     "Year",
+     "1935"
+    ],
+    [
+     "Bible book",
+     "Jeremiah 34:7"
+    ]
+   ],
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "PLACE",
+     "title": "The hill of Lachish",
+     "description": "A tall hill among green fields. On top stood a walled city of Judah."
+    },
+    {
+     "id": "lugar2",
+     "type": "PLACE",
+     "title": "The city gate",
+     "description": "Remains of the great gate with its guard rooms. The letters turned up there, among ashes."
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJECT",
+     "title": "Object A: clay tablet",
+     "description": "Flat clay with wedge-shaped marks pressed into it. It has no ink."
+    },
+    {
+     "id": "objeto2",
+     "type": "OBJECT",
+     "title": "Object B: piece of a jar",
+     "description": "A curved piece of a broken jar, with letters written in black ink."
+    },
+    {
+     "id": "objeto3",
+     "type": "OBJECT",
+     "title": "Object C: papyrus roll",
+     "description": "Rolled-up sheets made from a plant. It is soft and it bends."
+    },
+    {
+     "id": "persona1",
+     "type": "PERSON",
+     "title": "A soldier of Judah",
+     "description": "Soldiers at the lookout posts sent messages to Lachish."
+    },
+    {
+     "id": "galeria1",
+     "type": "PHOTOGRAPH",
+     "title": "Fires on the hills",
+     "description": "Cities sent warnings to each other with fires lit on high places."
+    },
+    {
+     "id": "nota1",
+     "type": "NOTEBOOK",
+     "title": "The professor's notebook",
+     "description": "What the Lachish letters were like.",
+     "doc": {
+      "kind": "nota",
+      "header": "Field notebook · Elena Márquez",
+      "body": "The Lachish letters are not made of paper or papyrus. They are pieces of broken jars. Papyrus was expensive, but clay pieces were everywhere. People wrote on them with black ink.",
+      "footer": "Compare with the three objects."
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "RECORD",
+     "title": "Museum record",
+     "description": "Facts about letter number 4.",
+     "doc": {
+      "kind": "documento",
+      "header": "Museum · Object record",
+      "fields": [
+       [
+        "Object",
+        "Lachish letter no. 4"
+       ],
+       [
+        "Material",
+        "Piece of a clay jar"
+       ],
+       [
+        "Writing",
+        "Black ink, ancient Hebrew"
+       ],
+       [
+        "Found",
+        "Gate of Lachish, 1935"
+       ]
+      ],
+      "body": "The soldier says he is watching for the fire signals of Lachish and can no longer see those of Azekah.",
+      "stamp": "Judah"
+     }
+    },
+    {
+     "id": "carta1",
+     "type": "LETTER",
+     "title": "Lía's letter",
+     "description": "Lía touched the three objects.",
+     "doc": {
+      "kind": "carta",
+      "body": "Professor: the tablet has marks pressed in, but no ink at all. The roll is made of plant sheets and it bends. The piece of jar is hard and curved, and it has letters in black ink.",
+      "footer": "Lía",
+      "stamp": "Work table"
+     }
+    },
+    {
+     "id": "mapa1",
+     "type": "MAP",
+     "title": "Cities of Judah",
+     "description": "Lachish, Azekah and Jerusalem.",
+     "doc": {
+      "kind": "croquis",
+      "header": "Judah, about 2,600 years ago",
+      "rooms": [
+       [
+        "JERUSALEM",
+        260,
+        60,
+        110,
+        50
+       ],
+       [
+        "AZEKAH",
+        140,
+        110,
+        90,
+        40
+       ],
+       [
+        "LACHISH",
+        60,
+        200,
+        100,
+        50
+       ]
+      ],
+      "marks": [
+       [
+        "X",
+        110,
+        225,
+        "Gate of Lachish: the letters were here"
+       ],
+       [
+        "!",
+        185,
+        130,
+        "Azekah: its fire could no longer be seen"
+       ]
+      ]
+     }
+    }
+   ],
+   "wrongAccusation": "That object is not it. Look at the professor's notebook: what did the soldiers write on, and with what?",
+   "reward": {
+    "title": "The Lachish Letters",
+    "collection": "FIND 13",
+    "copy": "In 1935, James Leslie Starkey's expedition found several letters at the gate of Lachish, written in ink on pieces of jars. They are about 2,600 years old, from the time when the army of Babylon was attacking Judah. In one, a soldier says he is watching for the fire signals of Lachish and can no longer see those of Azekah. Jeremiah 34:7 tells that at that time only three walled cities were still standing: Jerusalem, Lachish and Azekah. Today the letters are kept in the British Museum in London and in the Israel Museum in Jerusalem."
+   }
+  },
+  {
+   "code": "BA-14",
+   "title": "The Rolled-Up Blessing",
+   "summary": "Two tiny objects held the oldest Bible text known today.",
+   "brief": "In a cave in Jerusalem, people found jewelry, jars and other small objects. Among them was something that held a blessing from the Bible. Tomás left three objects on the table: only one is the one you are looking for.",
+   "objective": "Which of the three objects had the blessing written on it?",
+   "meta": [
+    [
+     "Place",
+     "Ketef Hinnom, Jerusalem"
+    ],
+    [
+     "Year",
+     "1979"
+    ],
+    [
+     "Bible book",
+     "Numbers 6:24-26"
+    ]
+   ],
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "PLACE",
+     "title": "The slope of Ketef Hinnom",
+     "description": "A rocky slope by the Hinnom Valley, next to the old city of Jerusalem."
+    },
+    {
+     "id": "lugar2",
+     "type": "PLACE",
+     "title": "Inside the cave",
+     "description": "A cave cut into the rock, with stone benches. Under one bench there was a hollow full of objects."
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJECT",
+     "title": "Object A: the bracelet",
+     "description": "An open bronze ring, greenish in color. It was worn on the wrist."
+    },
+    {
+     "id": "objeto2",
+     "type": "OBJECT",
+     "title": "Object B: the little tube",
+     "description": "A little silver tube, gray and shiny, rolled up very tight. It is smaller than your little finger."
+    },
+    {
+     "id": "objeto3",
+     "type": "OBJECT",
+     "title": "Object C: the lamp",
+     "description": "A reddish clay lamp for oil. It has a pinched edge for the wick."
+    },
+    {
+     "id": "persona1",
+     "type": "PERSON",
+     "title": "A young volunteer",
+     "description": "In 1979, children and teenagers helped. One of them, 13 years old, found the hollow with the objects."
+    },
+    {
+     "id": "galeria1",
+     "type": "PHOTOGRAPH",
+     "title": "In the laboratory",
+     "description": "Unrolling the little tubes without breaking them took about three years."
+    },
+    {
+     "id": "nota1",
+     "type": "NOTEBOOK",
+     "title": "The professor's notebook",
+     "description": "What held the blessing.",
+     "doc": {
+      "kind": "nota",
+      "header": "Field notebook · Elena Márquez",
+      "body": "The blessing was not on clay or bronze. It was scratched into a thin sheet of silver, rolled up like a little tube smaller than a finger. It was a very small amulet.",
+      "footer": "Look for the gray, shiny metal."
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "RECORD",
+     "title": "Museum record",
+     "description": "Facts about the little scrolls.",
+     "doc": {
+      "kind": "documento",
+      "header": "Museum · Object record",
+      "fields": [
+       [
+        "Object",
+        "Ketef Hinnom scrolls"
+       ],
+       [
+        "Material",
+        "Silver"
+       ],
+       [
+        "Shape",
+        "Thin sheet rolled like a tube"
+       ],
+       [
+        "Age",
+        "About 2,600 years"
+       ]
+      ],
+      "body": "They have very fine letters scratched on them. They say a blessing like the one in Numbers 6.",
+      "stamp": "Jerusalem"
+     }
+    },
+    {
+     "id": "carta1",
+     "type": "LETTER",
+     "title": "Tomás's letter",
+     "description": "Tomás checked the three objects.",
+     "doc": {
+      "kind": "carta",
+      "body": "Professor: the bracelet is bronze and it is green. The lamp is clay. Only one is silver: it is a rolled-up little tube, so small I almost lost it.",
+      "footer": "Tomás",
+      "stamp": "Laboratory"
+     }
+    },
+    {
+     "id": "noticia1",
+     "type": "NEWS",
+     "title": "The news",
+     "description": "What the little scrolls said.",
+     "doc": {
+      "kind": "periodico",
+      "header": "The Excavation Daily",
+      "date": "1980s",
+      "section": "Finds",
+      "headline": "The oldest blessing is read",
+      "body": "At last, the writing on the little scrolls could be read. It asks the Lord to bless, keep and give peace. They are about 400 years older than the Dead Sea Scrolls."
+     }
+    }
+   ],
+   "wrongAccusation": "Not that one. Notice what material each object is made of and read the professor's notebook again.",
+   "reward": {
+    "title": "The Silver Scrolls",
+    "collection": "FIND 14",
+    "copy": "In 1979, the archaeologist Gabriel Barkay was digging in some caves at Ketef Hinnom, next to Jerusalem. A 13-year-old volunteer found a hollow full of objects, and among them were two little silver scrolls. Opening them without breaking them took about three years. They have a blessing scratched on them very much like the one in Numbers 6:24-26, which asks the Lord to bless, keep and give peace to his people. They are about 2,600 years old: the oldest Bible text known today. Today they are in the Israel Museum in Jerusalem."
+   }
+  },
+  {
+   "code": "BA-15",
+   "title": "The Name Hidden in Ur",
+   "summary": "Some clay cylinders named King Belshazzar from the book of Daniel.",
+   "brief": "In 1854, clay cylinders of King Nabonidus turned up in the ancient city of Ur. They name his son Belshazzar, the king of the feast in Daniel 5. But which building were they hidden in?",
+   "objective": "In which of the three buildings of Ur were the cylinders hidden?",
+   "meta": [
+    [
+     "Place",
+     "Ur (Iraq)"
+    ],
+    [
+     "Year",
+     "1854"
+    ],
+    [
+     "Bible book",
+     "Daniel 5"
+    ]
+   ],
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "PLACE",
+     "title": "The ruins of Ur",
+     "description": "A dry plain in southern Iraq. Ur, a very old city, stood there."
+    },
+    {
+     "id": "lugar2",
+     "type": "PLACE",
+     "title": "Building A: the house with a courtyard",
+     "description": "A low house with only one floor and a courtyard in the middle."
+    },
+    {
+     "id": "lugar3",
+     "type": "PLACE",
+     "title": "Building B: the stepped tower",
+     "description": "A huge brick tower with levels like steps and four corners. It is the ziggurat, the tallest thing in Ur."
+    },
+    {
+     "id": "lugar4",
+     "type": "PLACE",
+     "title": "Building C: the underground tomb",
+     "description": "A deep pit dug into the ground, with a room at the bottom. It does not rise above the ground."
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJECT",
+     "title": "A cylinder of Nabonidus",
+     "description": "Baked clay shaped like a small barrel, covered in wedge-shaped writing."
+    },
+    {
+     "id": "galeria1",
+     "type": "PHOTOGRAPH",
+     "title": "Digging in 1854",
+     "description": "The workers removed bricks from the corners of the tallest building."
+    },
+    {
+     "id": "galeria2",
+     "type": "PHOTOGRAPH",
+     "title": "Belshazzar's feast",
+     "description": "In Daniel 5, King Belshazzar throws a great feast in Babylon."
+    },
+    {
+     "id": "nota1",
+     "type": "NOTEBOOK",
+     "title": "The professor's notebook",
+     "description": "Where these cylinders were kept.",
+     "doc": {
+      "kind": "nota",
+      "header": "Field notebook · Elena Márquez",
+      "body": "Nabonidus repaired the stepped tower of Ur, the ziggurat. He hid the cylinders in its four corners, tucked between the bricks. They were not in houses or tombs.",
+      "footer": "Look for the building with steps."
+     }
+    },
+    {
+     "id": "carta1",
+     "type": "LETTER",
+     "title": "Lía's letter",
+     "description": "Lía climbed up to see the buildings.",
+     "doc": {
+      "kind": "carta",
+      "body": "Professor: the house with a courtyard is low, just one floor. The tomb is underground. Only one building has steps, and it is super tall. From the top you can see the whole plain!",
+      "footer": "Lía",
+      "stamp": "Ur"
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "RECORD",
+     "title": "Museum record",
+     "description": "Facts about one cylinder.",
+     "doc": {
+      "kind": "documento",
+      "header": "Museum · Object record",
+      "fields": [
+       [
+        "Object",
+        "Cylinder of Nabonidus"
+       ],
+       [
+        "Material",
+        "Baked clay"
+       ],
+       [
+        "Found",
+        "Corners of the ziggurat of Ur, 1854"
+       ],
+       [
+        "Names",
+        "Belshazzar, the king's eldest son"
+       ]
+      ],
+      "body": "Nabonidus asks his god for a long life for himself and for his eldest son, Belshazzar.",
+      "stamp": "Babylon"
+     }
+    },
+    {
+     "id": "mapa1",
+     "type": "MAP",
+     "title": "Map of Ur",
+     "description": "The three buildings.",
+     "doc": {
+      "kind": "croquis",
+      "header": "Ur · simple map",
+      "rooms": [
+       [
+        "HOUSES",
+        40,
+        190,
+        120,
+        80
+       ],
+       [
+        "STEPPED TOWER",
+        170,
+        50,
+        130,
+        110
+       ],
+       [
+        "TOMBS",
+        260,
+        200,
+        110,
+        70
+       ]
+      ],
+      "marks": [
+       [
+        "X",
+        175,
+        55,
+        "Corner with a cylinder"
+       ],
+       [
+        "X",
+        295,
+        55,
+        "Corner with a cylinder"
+       ],
+       [
+        "X",
+        175,
+        155,
+        "Corner with a cylinder"
+       ],
+       [
+        "X",
+        295,
+        155,
+        "Corner with a cylinder"
+       ]
+      ]
+     }
+    }
+   ],
+   "wrongAccusation": "That building is not it. Look at the map and the notebook: where were the four corners with the cylinders?",
+   "reward": {
+    "title": "The Cylinders of Nabonidus",
+    "collection": "FIND 15",
+    "copy": "In 1854, Taylor, a British official in Basra, dug into the ziggurat of Ur, in southern Iraq. In the corners of the tower he found clay cylinders of King Nabonidus of Babylon. In them, the king asks for a long life for himself and for his eldest son, Belshazzar. For a long time, Belshazzar's name was known only from the Bible. Daniel 5 tells about his great feast and the hand that wrote on the wall. Today one of these cylinders is in the British Museum in London."
+   }
+  },
+  {
+   "code": "BA-16",
+   "title": "King Hezekiah's seal",
+   "summary": "A lump of clay the size of a fingernail kept the name of a king.",
+   "brief": "At a dig by the walls of Jerusalem, volunteers wash and sift the soil from an ancient garbage dump. Among pebbles and broken pottery, several pieces with pictures turned up. One of them carries the mark of King Hezekiah's seal.",
+   "objective": "Which of the pieces is the mark of King Hezekiah's seal?",
+   "meta": [
+    [
+     "Place",
+     "The Ophel, Jerusalem"
+    ],
+    [
+     "Year",
+     "2015"
+    ],
+    [
+     "Bible book",
+     "2 Kings 18"
+    ]
+   ],
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "PLACE",
+     "title": "The Ophel",
+     "description": "Dig area at the foot of Jerusalem's southern walls."
+    },
+    {
+     "id": "persona1",
+     "type": "PERSON",
+     "title": "Volunteer at the sieve",
+     "description": "She washes the soil with water over a fine mesh so nothing small gets lost."
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJECT",
+     "title": "Piece with a lion",
+     "description": "A small lump of clay. It shows a walking lion."
+    },
+    {
+     "id": "objeto2",
+     "type": "OBJECT",
+     "title": "Jar handle with a winged sun",
+     "description": "A big handle from a reddish clay jar. It shows a sun with wings."
+    },
+    {
+     "id": "objeto3",
+     "type": "OBJECT",
+     "title": "Piece with a winged sun",
+     "description": "A small, dark lump of clay. It shows a sun with two wings."
+    },
+    {
+     "id": "galeria1",
+     "type": "PHOTO",
+     "title": "What stayed in the mesh",
+     "description": "Pebbles, broken pottery and tiny bones from the ancient dump."
+    },
+    {
+     "id": "galeria2",
+     "type": "PHOTO",
+     "title": "In the lab",
+     "description": "An archaeologist looks at the small pieces through a big magnifier."
+    },
+    {
+     "id": "nota1",
+     "type": "NOTEBOOK",
+     "title": "Lía's notebook",
+     "description": "What Professor Elena explained to Lía.",
+     "doc": {
+      "header": "Lía's notebook",
+      "body": "Professor Elena says the king's mark is not on a jar. It is a loose lump of clay, as small as my fingernail. And the picture is a sun with two wings, not an animal.",
+      "footer": "Lía, age 9"
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "RECORD",
+     "title": "Lab record",
+     "description": "Details of the piece with the king's name.",
+     "doc": {
+      "header": "Dig laboratory",
+      "fields": [
+       [
+        "Material",
+        "Dark clay"
+       ],
+       [
+        "Size",
+        "Like a fingernail, about 1 cm"
+       ],
+       [
+        "Picture",
+        "Sun with two wings"
+       ],
+       [
+        "Letters",
+        "Ancient Hebrew"
+       ]
+      ],
+      "body": "A loose lump of clay. On the back it has marks from the string that tied a document. The letters say: \"Belonging to Hezekiah, son of Ahaz, king of Judah\".",
+      "stamp": "CHECKED"
+     }
+    },
+    {
+     "id": "carta1",
+     "type": "LETTER",
+     "title": "The professor's letter",
+     "description": "Elena explains what these lumps were for.",
+     "doc": {
+      "body": "Dear Tomás and Lía: almost three thousand years ago, documents were rolled up and tied with a string. A lump of soft clay went on top, and the seal was pressed into it. That way nobody could open it without it showing. Look for the small lump with the two-winged sun.",
+      "footer": "Professor Elena Márquez",
+      "stamp": "JERUSALEM"
+     }
+    },
+    {
+     "id": "noticia1",
+     "type": "NEWS",
+     "title": "News from 2015",
+     "description": "The announcement of the find.",
+     "doc": {
+      "header": "Jerusalem Daily",
+      "date": "December 2015",
+      "section": "Archaeology",
+      "headline": "Mark of King Hezekiah's seal found",
+      "body": "Archaeologist Eilat Mazar's team found the piece while sifting soil from an ancient dump near a royal building. It is a small lump of clay with a winged sun and the king's name."
+     }
+    }
+   ],
+   "wrongAccusation": "Look at Lía's notebook again: the king's mark is a loose lump, as small as a fingernail, and its picture is not an animal. Which piece matches both?",
+   "reward": {
+    "title": "The mark of King Hezekiah's seal",
+    "collection": "FIND 16",
+    "copy": "In the Ophel area, by the southern walls of Jerusalem, archaeologist Eilat Mazar's team sifted the soil of an ancient dump. Out came a lump of clay about one centimeter wide, announced in 2015. It shows a sun with two wings and ancient Hebrew letters: \"Belonging to Hezekiah, son of Ahaz, king of Judah\". 2 Kings 18 tells how Hezekiah, son of Ahaz, trusted God like few other kings. It is the first seal mark of a king of Israel or Judah found in an archaeological dig. Today it is studied by archaeologists of the Hebrew University of Jerusalem."
+   }
+  },
+  {
+   "code": "BA-17",
+   "title": "The name on the floor of Corinth",
+   "summary": "A man named Erastus paid for a stone floor and left his name written in it.",
+   "brief": "In the ancient city of Corinth, in Greece, there are many stones with letters. One of them carries the name of Erastus, a man who paid for the floor of a plaza. You have to find which one it is.",
+   "objective": "Which of the stones has the name of Erastus?",
+   "meta": [
+    [
+     "Place",
+     "Corinth, Greece"
+    ],
+    [
+     "Year",
+     "1929"
+    ],
+    [
+     "Bible book",
+     "Romans 16:23"
+    ]
+   ],
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "PLACE",
+     "title": "Ruins of Corinth",
+     "description": "Ancient columns and, behind them, a tall rocky mountain."
+    },
+    {
+     "id": "lugar2",
+     "type": "PLACE",
+     "title": "The theater plaza",
+     "description": "A plaza next to the ancient theater, with a floor of big stone slabs."
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJECT",
+     "title": "Column with letters",
+     "description": "A piece of marble column, standing up. It has carved letters."
+    },
+    {
+     "id": "objeto2",
+     "type": "OBJECT",
+     "title": "Mosaic floor",
+     "description": "A floor made of small colored stones that form flowers. It has no letters."
+    },
+    {
+     "id": "objeto3",
+     "type": "OBJECT",
+     "title": "Stamped tile",
+     "description": "A small red clay roof tile. It has stamped letters."
+    },
+    {
+     "id": "objeto4",
+     "type": "OBJECT",
+     "title": "Floor slab",
+     "description": "A big, flat gray stone slab in the ground. Its letters are empty holes."
+    },
+    {
+     "id": "persona1",
+     "type": "PERSON",
+     "title": "Site guide",
+     "description": "She points at the floor of the plaza."
+    },
+    {
+     "id": "nota1",
+     "type": "NOTEBOOK",
+     "title": "Tomás's notebook",
+     "description": "What Tomás wrote down at the plaza.",
+     "doc": {
+      "header": "Tomás's notebook",
+      "body": "Erastus's stone is not standing up: it is part of the floor, flat and big. And its letters are empty. The guide says they used to be filled with metal.",
+      "footer": "Tomás, age 11"
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "RECORD",
+     "title": "Inscription record",
+     "description": "What the stone says and what it is made of.",
+     "doc": {
+      "header": "Corinth site record",
+      "fields": [
+       [
+        "Material",
+        "Gray limestone"
+       ],
+       [
+        "Shape",
+        "Flat floor slab"
+       ],
+       [
+        "Language",
+        "Latin"
+       ],
+       [
+        "Found",
+        "1929"
+       ]
+      ],
+      "body": "It says that Erastus, in return for his post as aedile, laid this floor with his own money. The letters were bronze and someone took them. Today only the holes are left.",
+      "stamp": "RECORDED"
+     }
+    },
+    {
+     "id": "carta1",
+     "type": "LETTER",
+     "title": "The professor's letter",
+     "description": "Elena explains what an aedile was.",
+     "doc": {
+      "body": "Dear Tomás and Lía: an aedile looked after the city's streets, markets and buildings. It was an important job. Erastus wanted to say thank you by paying for the floor of a plaza next to the theater. Look for the floor slab with empty letters.",
+      "footer": "Professor Elena Márquez",
+      "stamp": "CORINTH"
+     }
+    },
+    {
+     "id": "mapa1",
+     "type": "MAP",
+     "title": "Sketch of the area",
+     "description": "Where Erastus's stone is.",
+     "doc": {
+      "header": "Corinth: theater area",
+      "rooms": [
+       [
+        "THEATER",
+        40,
+        40,
+        160,
+        120
+       ],
+       [
+        "PLAZA",
+        220,
+        60,
+        140,
+        140
+       ],
+       [
+        "ROAD",
+        40,
+        200,
+        320,
+        50
+       ]
+      ],
+      "marks": [
+       [
+        "X",
+        290,
+        130,
+        "Erastus's slab, in the plaza floor"
+       ]
+      ]
+     }
+    }
+   ],
+   "wrongAccusation": "Read Tomás's notebook again: Erastus's stone is part of the floor and its letters are empty, with no metal. Which stone lies in the ground and has hollow letters?",
+   "reward": {
+    "title": "The Erastus inscription",
+    "collection": "FIND 17",
+    "copy": "In 1929, archaeologists from the American School of Classical Studies at Athens found a limestone slab in Corinth, in a plaza next to the theater. It has a sentence in Latin: Erastus, in return for his post as aedile, laid this floor with his own money. The letters were bronze and were lost. In Romans 16:23, Paul, writing from Corinth, sends greetings from an Erastus who was the city treasurer. Many scholars think he could be the same man, though not all are sure. The slab is still in its place in Corinth today."
+   }
+  },
+  {
+   "code": "BA-18",
+   "title": "The emperor's letter",
+   "summary": "A Roman emperor wrote a letter in stone that names Paul's judge.",
+   "brief": "At Delphi, in Greece, there was a great sanctuary with many written stones. A letter from Emperor Claudius mentions Gallio, the governor who heard Paul in Corinth. You have to find which stone holds that letter.",
+   "objective": "Which of the pieces holds the emperor's letter that names Gallio?",
+   "meta": [
+    [
+     "Place",
+     "Delphi, Greece"
+    ],
+    [
+     "Date of the letter",
+     "AD 52"
+    ],
+    [
+     "Bible book",
+     "Acts 18:12-17"
+    ]
+   ],
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "PLACE",
+     "title": "Delphi",
+     "description": "Ruins of a sanctuary on a mountain slope."
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJECT",
+     "title": "Whole stone",
+     "description": "A tall, whole stone with no breaks. It has carved letters."
+    },
+    {
+     "id": "objeto2",
+     "type": "OBJECT",
+     "title": "Bronze plaque",
+     "description": "A greenish metal plaque. It has engraved letters."
+    },
+    {
+     "id": "objeto3",
+     "type": "OBJECT",
+     "title": "Stone pieces put together",
+     "description": "Several pieces of broken stone, placed together. They have rows of carved letters."
+    },
+    {
+     "id": "objeto4",
+     "type": "OBJECT",
+     "title": "Rebuilt vase",
+     "description": "Pieces of a clay vase, glued together. It has painted figures."
+    },
+    {
+     "id": "galeria1",
+     "type": "PHOTO",
+     "title": "An old dig",
+     "description": "Workers more than a hundred years ago lift stones at Delphi."
+    },
+    {
+     "id": "persona1",
+     "type": "PERSON",
+     "title": "Museum conservator",
+     "description": "She joins pieces of broken stone very carefully."
+    },
+    {
+     "id": "nota1",
+     "type": "NOTEBOOK",
+     "title": "Lía's notebook",
+     "description": "What Lía learned at the museum.",
+     "doc": {
+      "header": "Lía's notebook",
+      "body": "The emperor's letter is carved in stone, not in metal. But the stone broke into several pieces. At the museum they put them together, like a puzzle.",
+      "footer": "Lía, age 9"
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "RECORD",
+     "title": "Museum record",
+     "description": "Details of Claudius's letter.",
+     "doc": {
+      "header": "Delphi Archaeological Museum",
+      "fields": [
+       [
+        "Material",
+        "Stone"
+       ],
+       [
+        "Condition",
+        "Several pieces joined"
+       ],
+       [
+        "Language",
+        "Greek"
+       ],
+       [
+        "Date",
+        "AD 52"
+       ]
+      ],
+      "body": "A letter from Emperor Claudius to the city of Delphi. It names Gallio, his friend, as proconsul. Parts are missing, but Gallio's name can be recognized.",
+      "stamp": "CATALOGED"
+     }
+    },
+    {
+     "id": "carta1",
+     "type": "LETTER",
+     "title": "The professor's letter",
+     "description": "Elena explains why the stone matters.",
+     "doc": {
+      "body": "Dear Tomás and Lía: Claudius's letter tells us in which year Gallio was governor. That way we know roughly when Paul was in Corinth. Look for the stone broken into pieces, with rows of carved letters.",
+      "footer": "Professor Elena Márquez",
+      "stamp": "DELPHI"
+     }
+    }
+   ],
+   "wrongAccusation": "Check Lía's notebook: the letter is carved in stone, and the stone broke into pieces. Which piece is stone, is broken and has letters?",
+   "reward": {
+    "title": "The Gallio inscription",
+    "collection": "FIND 18",
+    "copy": "At Delphi, in Greece, French archaeologists found pieces of a stone with a letter from Emperor Claudius. It was first published in 1905. The letter is from AD 52 and names Gallio, his friend, as proconsul. Acts 18:12-17 tells how, when Gallio governed the region of Achaia, Paul was brought before him in Corinth, and Gallio refused to judge him. Thanks to this stone we can know, roughly, in which years Paul was in Corinth. Today the pieces are in the Delphi Archaeological Museum."
+   }
+  },
+  {
+   "code": "BA-19",
+   "title": "The months of the fields",
+   "summary": "A small written stone tells what was done in the fields each month of the year.",
+   "brief": "On the hill of Gezer, a tablet turned up that tells the farm work month by month: harvesting, sowing, pruning. But there are several written pieces on the camp table. You have to find which one is the tablet of the months.",
+   "objective": "Which of the pieces is the tablet of the farming months?",
+   "meta": [
+    [
+     "Place",
+     "Gezer, Israel"
+    ],
+    [
+     "Year",
+     "1908"
+    ],
+    [
+     "Bible book",
+     "Ecclesiastes 3:1"
+    ]
+   ],
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "PLACE",
+     "title": "The hill of Gezer",
+     "description": "An ancient hill surrounded by wheat fields and olive trees."
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJECT",
+     "title": "Big stone with letters",
+     "description": "A tall stone, almost as big as a person. It has carved letters."
+    },
+    {
+     "id": "objeto2",
+     "type": "OBJECT",
+     "title": "Clay tablet",
+     "description": "A brown clay tablet. It has little wedge-shaped marks."
+    },
+    {
+     "id": "objeto3",
+     "type": "OBJECT",
+     "title": "Written pottery piece",
+     "description": "A piece of a reddish clay pot. The letters are painted in black ink."
+    },
+    {
+     "id": "objeto4",
+     "type": "OBJECT",
+     "title": "White stone tablet",
+     "description": "A small white stone tablet, the size of a hand. The letters are scratched."
+    },
+    {
+     "id": "galeria1",
+     "type": "PHOTO",
+     "title": "Barley harvest",
+     "description": "This is how barley was harvested in spring, with sickles."
+    },
+    {
+     "id": "galeria2",
+     "type": "PHOTO",
+     "title": "Olive harvest",
+     "description": "In autumn, olives were gathered from the trees."
+    },
+    {
+     "id": "nota1",
+     "type": "NOTEBOOK",
+     "title": "Tomás's notebook",
+     "description": "What Tomás wrote about the tablet.",
+     "doc": {
+      "header": "Tomás's notebook",
+      "body": "The Gezer tablet is small, like the palm of my hand. It is made of soft white stone, not clay. The letters were scratched with a point, not painted with ink.",
+      "footer": "Tomás, age 11"
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "RECORD",
+     "title": "Museum record",
+     "description": "Details of the Gezer tablet.",
+     "doc": {
+      "header": "Istanbul Archaeology Museums",
+      "fields": [
+       [
+        "Material",
+        "Soft white limestone"
+       ],
+       [
+        "Size",
+        "About 11 by 7 cm"
+       ],
+       [
+        "Writing",
+        "Scratched letters, ancient alphabet"
+       ],
+       [
+        "Found",
+        "1908, Gezer"
+       ]
+      ],
+      "body": "It is about three thousand years old. It is one of the oldest inscriptions found in Israel.",
+      "stamp": "CATALOGED"
+     }
+    },
+    {
+     "id": "carta1",
+     "type": "LETTER",
+     "title": "The professor's letter",
+     "description": "Elena explains what the tablet says.",
+     "doc": {
+      "body": "Dear Tomás and Lía: the tablet names the jobs of the year. Two months of olive harvest, two of sowing, two of late sowing, one of cutting flax, one of barley harvest, one of the great harvest, two of pruning vines and one of summer fruit.",
+      "footer": "Professor Elena Márquez",
+      "stamp": "GEZER"
+     }
+    },
+    {
+     "id": "noticia1",
+     "type": "NEWS",
+     "title": "News from 1908",
+     "description": "A newspaper reports the find.",
+     "doc": {
+      "header": "News from the East",
+      "date": "1908",
+      "section": "Discoveries",
+      "headline": "A small stone with the farmers' calendar",
+      "body": "Irish archaeologist Robert Macalister, who is digging the hill of Gezer, found a small tablet of white stone. Its scratched letters name the months of work in the fields."
+     }
+    }
+   ],
+   "wrongAccusation": "Read Tomás's notebook again: the tablet is small, made of white stone, and its letters are scratched, not painted. Which piece matches all of that?",
+   "reward": {
+    "title": "The Gezer calendar",
+    "collection": "FIND 19",
+    "copy": "In 1908, archaeologist Robert Macalister was digging the hill of Gezer when he found a tablet of soft limestone, about 11 by 7 centimeters. It is about three thousand years old, and its scratched letters name the farm jobs: gathering olives, sowing, cutting flax, harvesting barley, pruning vines and picking summer fruit. It reminds us of Ecclesiastes 3, which says everything has its moment, including a time to plant. Today the tablet is in the Istanbul Archaeology Museums, in Turkey."
+   }
+  },
+  {
+   "code": "BA-20",
+   "title": "King Jehoiachin's oil",
+   "summary": "In Babylon, someone wrote down how much oil was given to a king of Judah.",
+   "brief": "Jehoiachin, king of Judah, was taken as a prisoner to Babylon. In some storerooms near the city's great gate, food lists with his name turned up. You have to find which of the pieces is one of those lists.",
+   "objective": "Which of the pieces is the oil list for King Jehoiachin?",
+   "meta": [
+    [
+     "Place",
+     "Babylon, in today's Iraq"
+    ],
+    [
+     "Dig",
+     "1899 to 1917"
+    ],
+    [
+     "Bible book",
+     "2 Kings 25:27-30"
+    ]
+   ],
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "PLACE",
+     "title": "Ruins of Babylon",
+     "description": "Brick walls by the Euphrates River."
+    },
+    {
+     "id": "lugar2",
+     "type": "PLACE",
+     "title": "The vaulted storerooms",
+     "description": "Rooms with curved ceilings, near the city's great gate."
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJECT",
+     "title": "Brick with a lion",
+     "description": "A big, shiny blue brick with a yellow lion."
+    },
+    {
+     "id": "objeto2",
+     "type": "OBJECT",
+     "title": "Clay cylinder",
+     "description": "A round, barrel-shaped piece covered with little marks."
+    },
+    {
+     "id": "objeto3",
+     "type": "OBJECT",
+     "title": "Flat tablet",
+     "description": "A small, flat clay tablet. It has little wedge-shaped marks."
+    },
+    {
+     "id": "objeto4",
+     "type": "OBJECT",
+     "title": "Ivory plaque",
+     "description": "A cream-colored ivory plaque carved with flowers. It has no letters."
+    },
+    {
+     "id": "galeria1",
+     "type": "PHOTO",
+     "title": "The scribe",
+     "description": "A scribe presses a point into soft clay to write."
+    },
+    {
+     "id": "galeria2",
+     "type": "PHOTO",
+     "title": "Sharing out the oil",
+     "description": "Workers pour oil from big jars."
+    },
+    {
+     "id": "nota1",
+     "type": "NOTEBOOK",
+     "title": "Lía's notebook",
+     "description": "What Lía wrote down at the museum.",
+     "doc": {
+      "header": "Lía's notebook",
+      "body": "The oil list is a small, flat tablet that fits in one hand. It is made of clay and has little marks like wedges. It is not round like a barrel.",
+      "footer": "Lía, age 9"
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "RECORD",
+     "title": "Museum record",
+     "description": "Details of the ration tablets.",
+     "doc": {
+      "header": "Museum of the Ancient Near East, Berlin",
+      "fields": [
+       [
+        "Material",
+        "Clay"
+       ],
+       [
+        "Shape",
+        "Small, flat tablet"
+       ],
+       [
+        "Writing",
+        "Cuneiform (wedge marks)"
+       ],
+       [
+        "Found in",
+        "Storerooms of Babylon"
+       ]
+      ],
+      "body": "An oil list for \"Jehoiachin, king of the land of Judah\" and for his five sons. It also names other people from Judah.",
+      "stamp": "CATALOGED"
+     }
+    },
+    {
+     "id": "carta1",
+     "type": "LETTER",
+     "title": "The professor's letter",
+     "description": "Elena tells how the tablets were found.",
+     "doc": {
+      "body": "Dear Tomás and Lía: a German team led by Robert Koldewey dug at Babylon for many years. Hundreds of clay tablets came out of the storerooms. Years later, Ernst Weidner read some of them and found Jehoiachin's name. Look for the flat tablet with wedge marks.",
+      "footer": "Professor Elena Márquez",
+      "stamp": "BERLIN"
+     }
+    }
+   ],
+   "wrongAccusation": "Look at Lía's notebook again: the list is small and flat, made of clay, with little wedge marks. Which piece matches all of that and is not shaped like a barrel?",
+   "reward": {
+    "title": "King Jehoiachin's ration tablets",
+    "collection": "FIND 20",
+    "copy": "Between 1899 and 1917, a German team led by Robert Koldewey dug at Babylon. In some storerooms near the Ishtar Gate, many clay tablets came out. In 1939, Ernst Weidner showed that some were oil lists for \"Jehoiachin, king of Judah\", and for his five sons. The Bible tells that Jehoiachin was taken as a prisoner to Babylon, and 2 Kings 25:27-30 says that, years later, the king of Babylon released him from prison and gave him food every day for the rest of his life. Today the tablets are in the Museum of the Ancient Near East in Berlin."
+   }
+  }
+ ]
+}

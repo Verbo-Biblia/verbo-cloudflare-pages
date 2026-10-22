@@ -1,0 +1,3625 @@
+{
+ "game": {
+  "title": "Bajo la arena",
+  "subtitle": "Expedientes de la arqueología bíblica",
+  "amable": true,
+  "volverA": "/juegos/",
+  "textos": {
+   "escenaMesa": "Campamento",
+   "escenaExpediente": "Expediente",
+   "escenaPizarra": "Cuaderno",
+   "mesaCabecera": "Campamento de la expedición",
+   "mesaTitulo": "Lo que la arena guardó.",
+   "mesaIntro": "Cada carpeta es un hallazgo real de la arqueología bíblica. Ábrela, examina las pistas, llévalas a tu cuaderno y pon el sello sobre la respuesta.",
+   "abrir": "Empezar la expedición",
+   "aviso": "Hallazgos reales · El equipo de la expedición es inventado",
+   "fechaVhs": "",
+   "progreso": "Hilos",
+   "irPizarra": "Ir al cuaderno",
+   "enPizarra": "En el cuaderno",
+   "pistaExaminar": "Toca una pista para verla · «Llevar» la pasa a tu cuaderno",
+   "pizarraVacia": "Tu cuaderno está vacío.",
+   "clavaDesde": "Lleva pistas desde el expediente",
+   "notaInicial": "Une pistas con hilos si te ayuda a pensar. Cuando sepas la respuesta, toma el sello del hallazgo y tócala. Toca dos veces una pista para verla de cerca.",
+   "notaReinicio": "Une pistas con hilos si te ayuda a pensar. Cuando sepas la respuesta, toma el sello del hallazgo y tócala.",
+   "clavar": "Llevar",
+   "clavarPizarra": "Llevar al cuaderno",
+   "quitarPizarra": "Quitar del cuaderno",
+   "volverMesa": "Volver al campamento",
+   "sello": "Sello del hallazgo",
+   "selloTitulo": "Tócalo y luego toca la respuesta",
+   "marcaSello": "¡Hallazgo!",
+   "casoCerrado": "Resuelto",
+   "casoCerradoTitulo": "Ya lo resolviste: toca «Reiniciar» para jugarlo otra vez",
+   "selloEnMano": "Tienes el sello en la mano: toca la pista que responde la pregunta. Toca otra vez el sello para guardarlo.",
+   "sinCandidatos": "Primero lleva a tu cuaderno las pistas con imagen que creas que responden la pregunta.",
+   "soloPersonas": "El sello va sobre una pista con imagen, no sobre un papel.",
+   "selloPuesto": "¡Sello puesto! Revisando tu respuesta…",
+   "hiloTendido": "Hilo puesto. Cuando sepas la respuesta, usa el sello del hallazgo.",
+   "progresoRecuperado": "Tu cuaderno está como lo dejaste. Cuando sepas la respuesta, usa el sello del hallazgo.",
+   "errorCabecera": "Todavía no · Expediente {0}",
+   "errorTitulo": "{0} no es la respuesta",
+   "errorPorDefecto": "Esa pista no encaja con todo lo demás.",
+   "errorAmable": "Inténtalo de nuevo: no pierdes nada.",
+   "resueltoCabecera": "¡Hallazgo descubierto!",
+   "coleccion": "Mi museo",
+   "archivoPersonal": "Mi museo",
+   "materialDesbloqueado": "Hallazgos descubiertos",
+   "guardadoColeccion": "Guardado en tu museo · {0}",
+   "resueltoNota": "¡Resuelto! Lo encuentras en tu museo. Toca «Reiniciar» para jugarlo otra vez.",
+   "casoResueltoNota": "¡Resuelto! Toca «Reiniciar» para jugarlo otra vez.",
+   "coleccionVacia": "Tu museo todavía está vacío.",
+   "coleccionVaciaPista": "Resuelve un expediente para traer la primera pieza.",
+   "hojaServicio": "Tu cuaderno de explorador",
+   "merito": "★",
+   "medallaMerito": "Medalla de explorador",
+   "sinMedallas": "Todavía sin medallas",
+   "sellosFaltan": "Estrellas: {0} · faltan {1} para la próxima medalla",
+   "sellosBarra": "Estrellas: {0} de {1} para la próxima medalla",
+   "masSello": "+1 estrella",
+   "menosSello": "−1 estrella",
+   "sinSellos": "Sin estrellas que perder",
+   "rango": "Rango",
+   "ascenso": "Nuevo rango",
+   "rangos": [
+    "Aprendiz",
+    "Ayudante de excavación",
+    "Explorador",
+    "Explorador experto",
+    "Arqueólogo",
+    "Arqueólogo jefe",
+    "Gran arqueólogo"
+   ],
+   "resumenPila": "{0} pistas",
+   "estadoAbierto": "Por descubrir",
+   "estadoResuelto": "Descubierto",
+   "estadoConfidencial": "Por descubrir",
+   "pruebaN": "PIEZA {0}",
+   "examen": "Pista · {0}",
+   "resueltos": "Descubiertos",
+   "secciones": {
+    "persona": "Personas",
+    "lugares": "Lugares",
+    "objetos": "Objetos",
+    "documentos": "Papeles",
+    "galeria": "Fotos"
+   },
+   "salirJuego": "Salir"
+  }
+ },
+ "cases": [
+  {
+   "code": "BA-01",
+   "title": "Los rollos de la cueva",
+   "summary": "Un pastor oye algo romperse dentro de una cueva junto al mar Muerto.",
+   "brief": "Un joven pastor lanzó una piedra dentro de una cueva y oyó que algo de barro se rompía. Adentro había rollos muy antiguos. Falta saber en qué recipiente estaban guardados.",
+   "objective": "¿En qué recipiente estaban guardados los rollos?",
+   "meta": [
+    [
+     "Lugar",
+     "Qumrán, junto al mar Muerto"
+    ],
+    [
+     "Año",
+     "1947"
+    ],
+    [
+     "Libro de la Biblia",
+     "Isaías"
+    ]
+   ],
+   "cover": "lugar1",
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "LUGAR",
+     "title": "Los cerros de Qumrán",
+     "description": "Cerros de roca café junto al mar Muerto, llenos de cuevas.",
+     "imagePrompt": "Wide view of dry tan limestone cliffs above the shore of the Dead Sea, several dark cave openings high in the rock face, hazy blue water in the distance, bright desert morning light, no people"
+    },
+    {
+     "id": "persona1",
+     "type": "PERSONA",
+     "title": "El joven pastor",
+     "description": "Un pastor beduino buscaba una cabra perdida entre las rocas.",
+     "imagePrompt": "Young Bedouin shepherd of the 1940s seen from behind, wearing a long plain robe and a head cloth, holding a wooden staff, climbing rocky desert slopes while looking for a goat, a few goats on the rocks ahead, warm afternoon light"
+    },
+    {
+     "id": "lugar2",
+     "type": "LUGAR",
+     "title": "La entrada de la cueva",
+     "description": "Un hueco pequeño en la roca, apenas del tamaño de una persona.",
+     "imagePrompt": "Small dark opening of a cave in a pale limestone cliff, rough rock edges, loose stones on the ground in front, harsh desert sunlight with deep shadow inside, no people"
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJETO",
+     "title": "Vasija redonda",
+     "description": "Vasija de barro baja y panzona, con un asa. No tiene tapa.",
+     "imagePrompt": "Ancient short round-bellied clay jug with one curved handle and an open mouth with no lid, plain reddish-brown fired clay, standing alone on a neutral background, soft studio light, square framing"
+    },
+    {
+     "id": "objeto2",
+     "type": "OBJETO",
+     "title": "Canasta tejida",
+     "description": "Canasta de hojas de palmera, abierta por arriba.",
+     "imagePrompt": "Ancient open woven basket made of dried palm leaves, round and wide with no lid, light straw color, standing alone on a neutral background, soft studio light, square framing"
+    },
+    {
+     "id": "objeto3",
+     "type": "OBJETO",
+     "title": "Jarra alta",
+     "description": "Jarra de barro alta y delgada, como un tubo, con una tapa que parece un tazón al revés.",
+     "imagePrompt": "Ancient tall narrow cylindrical clay jar from Qumran with a separate bowl-shaped lid sitting on top, plain pale beige fired clay, small chips on the rim, standing alone on a neutral background, soft studio light, square framing"
+    },
+    {
+     "id": "objeto4",
+     "type": "OBJETO",
+     "title": "Un rollo abierto",
+     "description": "Rollo de cuero con columnas de letras antiguas. Es el libro de Isaías.",
+     "imagePrompt": "Long ancient leather scroll partly unrolled on a table, light brown parchment with neat columns of faded dark ink writing, worn and slightly torn edges, soft museum light, square framing"
+    },
+    {
+     "id": "nota1",
+     "type": "CUADERNO",
+     "title": "Cuaderno de Elena",
+     "description": "Lo que contó el pastor sobre la cueva.",
+     "section": "documentos",
+     "doc": {
+      "kind": "nota",
+      "header": "Qumrán · día 1",
+      "body": "El pastor Muhammad edh-Dhib buscaba una cabra. Lanzó una piedra a la cueva y oyó romperse barro. Adentro había jarras altas, y algunas tenían tapa. ¡Los rollos estaban dentro!",
+      "footer": "Profesora Elena Márquez"
+     }
+    },
+    {
+     "id": "carta1",
+     "type": "CARTA",
+     "title": "Mensaje de Tomás",
+     "description": "Tomás vio en el museo una jarra igual a las de la cueva.",
+     "section": "documentos",
+     "doc": {
+      "kind": "carta",
+      "body": "Profe: en el museo vi una jarra de la cueva. Es alta y delgada, como un tubo. Arriba tiene una tapa que parece un tazón puesto al revés. ¡Así no entraba el polvo!",
+      "footer": "Tomás",
+      "stamp": "MUSEO"
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "FICHA",
+     "title": "Ficha del museo",
+     "description": "Datos del recipiente donde estaban los rollos.",
+     "section": "documentos",
+     "doc": {
+      "kind": "documento",
+      "header": "Recipiente de la cueva 1",
+      "fields": [
+       [
+        "Material",
+        "Barro cocido"
+       ],
+       [
+        "Forma",
+        "Alta y delgada"
+       ],
+       [
+        "Tapa",
+        "Sí, como un tazón"
+       ],
+       [
+        "Lugar",
+        "Cueva 1, Qumrán"
+       ]
+      ],
+      "body": "Guardaba rollos de cuero, algunos envueltos en tela de lino.",
+      "stamp": "REVISADO"
+     }
+    },
+    {
+     "id": "noticia1",
+     "type": "NOTICIA",
+     "title": "La noticia",
+     "description": "El mundo se entera del hallazgo.",
+     "section": "documentos",
+     "doc": {
+      "kind": "periodico",
+      "header": "Diario de la Mañana",
+      "date": "Abril de 1948",
+      "section": "Ciencia",
+      "headline": "Hallan rollos muy antiguos junto al mar Muerto",
+      "body": "Unos pastores encontraron rollos en una cueva. Uno de ellos tiene el libro completo de Isaías y es mucho más antiguo que todas las copias conocidas hasta ahora."
+     }
+    }
+   ],
+   "answer": "objeto3",
+   "wrongAccusation": "Mira otra vez el cuaderno de Elena y el mensaje de Tomás: ¿cómo era el recipiente y qué tenía arriba?",
+   "reward": {
+    "title": "Los rollos del mar Muerto",
+    "collection": "HALLAZGO 01",
+    "copy": "Entre 1946 y 1947, un joven pastor beduino, Muhammad edh-Dhib, encontró en una cueva de Qumrán jarras de barro con rollos muy antiguos. Después aparecieron muchos más rollos en otras cuevas cercanas. El más famoso es el Gran Rollo de Isaías: el libro completo, copiado a mano hace más de dos mil años, de unos siete metros de largo. Su texto es casi igual al que leemos hoy. En Isaías 53 se habla del Siervo que sufre por los demás. Hoy el rollo se guarda en el Santuario del Libro, en el Museo de Israel, en Jerusalén.",
+    "assets": [
+     "recompensa1",
+     "recompensa2",
+     "recompensa3",
+     "recompensa4"
+    ],
+    "imagePrompts": [
+     "Very long ancient leather scroll fully unrolled inside a long glass museum case, many columns of faded ink writing, dim warm museum lighting, no people",
+     "White dome shaped like the lid of an ancient jar, beside a tall black basalt wall, under a clear blue sky in Jerusalem, reflecting pool around the dome, no people",
+     "Rocky cliff spur near the Dead Sea with several dark round cave openings carved in pale marl rock, golden late afternoon light, no people",
+     "Tall ancient clay jar with a bowl-shaped lid, with a rolled leather scroll wrapped in linen cloth lying beside it on a museum stand, soft spotlight, dark background"
+    ]
+   }
+  },
+  {
+   "code": "BA-02",
+   "title": "Las letras del túnel",
+   "summary": "Un muchacho encuentra letras talladas en la pared de un túnel con agua.",
+   "brief": "En 1880, un muchacho caminaba por un túnel antiguo de Jerusalén, con agua hasta las rodillas. En la pared vio letras talladas en la roca. Falta saber qué historia cuentan esas letras.",
+   "objective": "¿Qué escena cuenta la inscripción del túnel?",
+   "meta": [
+    [
+     "Lugar",
+     "Jerusalén, Ciudad de David"
+    ],
+    [
+     "Año",
+     "1880"
+    ],
+    [
+     "Libro de la Biblia",
+     "2 Reyes y 2 Crónicas"
+    ]
+   ],
+   "cover": "lugar1",
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "LUGAR",
+     "title": "La Ciudad de David",
+     "description": "La parte más antigua de Jerusalén, sobre una colina.",
+     "imagePrompt": "Wide view of an ancient stone hillside neighborhood south of the old city walls of Jerusalem, terraced slopes with old stone ruins and olive trees, a valley below, soft morning light, no people"
+    },
+    {
+     "id": "lugar2",
+     "type": "LUGAR",
+     "title": "Dentro del túnel",
+     "description": "Un pasillo estrecho cavado en la roca, con agua que corre por el suelo.",
+     "imagePrompt": "Narrow winding tunnel cut through solid pale rock, knee-deep clear water flowing along the floor, chisel marks on the walls, lit only by the warm glow of a small oil lamp, no people"
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJETO",
+     "title": "La inscripción",
+     "description": "Seis renglones de letras hebreas antiguas tallados en una piedra lisa.",
+     "imagePrompt": "Smooth rectangular panel of pale limestone with six lines of small carved ancient letters, worn and cracked, set against a dark background, soft side light showing the carving, square framing"
+    },
+    {
+     "id": "galeria1",
+     "type": "FOTOGRAFÍA",
+     "title": "Escena A",
+     "description": "Dibujo: un solo picapedrero cava solo dentro de un túnel.",
+     "imagePrompt": "Ancient Israelite stonecutter seen from behind, alone inside a dark narrow rock tunnel, swinging an iron pickaxe at the rock face, simple tunic, small oil lamp on a ledge, rock chips on the floor"
+    },
+    {
+     "id": "galeria2",
+     "type": "FOTOGRAFÍA",
+     "title": "Escena B",
+     "description": "Dibujo: dos grupos levantan una muralla al aire libre, bajo el sol.",
+     "imagePrompt": "Two groups of ancient workers in simple tunics building a tall stone city wall outdoors under a bright sun, stacking large cut stones, blue sky, seen from a middle distance, faces turned to their work"
+    },
+    {
+     "id": "galeria3",
+     "type": "FOTOGRAFÍA",
+     "title": "Escena C",
+     "description": "Dibujo: dos grupos con picos cavan dentro de la roca, cada uno hacia el otro.",
+     "imagePrompt": "Cutaway view of solid rock with a dark tunnel being dug from both ends, two small teams of ancient stonecutters with iron pickaxes and oil lamps working toward each other, only a thin wall of rock left between them, seen from the side at a distance"
+    },
+    {
+     "id": "galeria4",
+     "type": "FOTOGRAFÍA",
+     "title": "Escena D",
+     "description": "Dibujo: unas mujeres llenan cántaros de agua en una fuente.",
+     "imagePrompt": "Ancient women in long robes and head coverings filling clay water jars at a stone spring, seen from behind and in profile, sunny courtyard, water pouring into a small pool"
+    },
+    {
+     "id": "nota1",
+     "type": "CUADERNO",
+     "title": "Cuaderno de Elena",
+     "description": "Lo que dicen las letras, en palabras sencillas.",
+     "section": "documentos",
+     "doc": {
+      "kind": "nota",
+      "header": "Siloé · lo que dice la piedra",
+      "body": "Dos grupos de picapedreros cavaban con picos, cada uno hacia el otro. Cuando faltaba poco, se oyeron sus voces a través de la roca. Se encontraron, y el agua corrió de la fuente al estanque.",
+      "footer": "Profesora Elena Márquez"
+     }
+    },
+    {
+     "id": "carta1",
+     "type": "CARTA",
+     "title": "Mensaje de Lía",
+     "description": "Lía y Tomás recorrieron el túnel con linternas.",
+     "section": "documentos",
+     "doc": {
+      "kind": "carta",
+      "body": "Profe: caminamos el túnel con linternas. Todo es roca, por arriba y por los lados. En un punto, las marcas de los picos cambian de dirección. ¡Ahí se encontraron los dos grupos!",
+      "footer": "Lía",
+      "stamp": "JERUSALÉN"
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "FICHA",
+     "title": "Ficha del museo",
+     "description": "Datos de la inscripción de Siloé.",
+     "section": "documentos",
+     "doc": {
+      "kind": "documento",
+      "header": "Inscripción de Siloé",
+      "fields": [
+       [
+        "Hallada",
+        "1880"
+       ],
+       [
+        "Lugar",
+        "Pared del túnel"
+       ],
+       [
+        "Escritura",
+        "Hebreo antiguo"
+       ],
+       [
+        "Hoy",
+        "Museo de Estambul"
+       ]
+      ],
+      "body": "Cuenta cómo dos equipos con picos cavaron dentro de la roca y se encontraron.",
+      "stamp": "REVISADO"
+     }
+    },
+    {
+     "id": "mapa1",
+     "type": "MAPA",
+     "title": "Croquis del túnel",
+     "description": "El túnel va de la fuente de Gihón al estanque de Siloé.",
+     "section": "documentos",
+     "doc": {
+      "kind": "croquis",
+      "header": "Túnel de Ezequías",
+      "rooms": [
+       [
+        "CIUDAD DE DAVID",
+        110,
+        50,
+        200,
+        80
+       ],
+       [
+        "FUENTE",
+        310,
+        140,
+        80,
+        50
+       ],
+       [
+        "TÚNEL",
+        100,
+        160,
+        210,
+        40
+       ],
+       [
+        "ESTANQUE",
+        20,
+        190,
+        80,
+        50
+       ]
+      ],
+      "marks": [
+       [
+        "A",
+        350,
+        170,
+        "fuente"
+       ],
+       [
+        "X",
+        118,
+        188,
+        "letras"
+       ],
+       [
+        "B",
+        60,
+        222,
+        "estanque"
+       ]
+      ]
+     }
+    }
+   ],
+   "answer": "galeria3",
+   "wrongAccusation": "Lee otra vez el cuaderno de Elena: ¿cuántos grupos había, qué usaban y dónde estaban?",
+   "reward": {
+    "title": "El túnel de Ezequías",
+    "collection": "HALLAZGO 02",
+    "copy": "En 1880, un muchacho que exploraba un túnel de Jerusalén encontró una inscripción en la pared. Cuenta cómo dos grupos cavaron la roca desde los dos extremos hasta encontrarse, para llevar el agua de la fuente de Gihón al estanque de Siloé. El túnel mide más de quinientos metros. Muchos expertos piensan que es la obra del rey Ezequías: en 2 Reyes 20:20 y en 2 Crónicas 32:30 se cuenta que él llevó el agua a la ciudad por un conducto. Años después, la piedra se cortó de la pared. Hoy está en el Museo de Arqueología de Estambul.",
+    "assets": [
+     "recompensa1",
+     "recompensa2",
+     "recompensa3",
+     "recompensa4"
+    ],
+    "imagePrompts": [
+     "Inside a narrow ancient rock tunnel with clear water flowing along the floor, curving out of sight, lit by warm lamplight, pickaxe marks on the walls, no people",
+     "Ancient stone pool with steps leading down to the water, surrounded by old stone walls, soft sunlight, no people",
+     "Close view of a pale limestone panel with six lines of carved ancient letters, worn surface, displayed in a museum case with soft light",
+     "Natural spring flowing from a cave mouth at the foot of a rocky hill, water running into a stone channel, morning light, no people"
+    ]
+   }
+  },
+  {
+   "code": "BA-03",
+   "title": "La piedra rota de Moab",
+   "summary": "Una piedra negra llena de letras se parte en pedazos, pero sus palabras se salvan.",
+   "brief": "En 1868 apareció en Dibón una piedra negra con muchas letras. Poco después, alguien la rompió en pedazos. Aun así, sus palabras no se perdieron. Falta saber qué las salvó.",
+   "objective": "¿Qué salvó las palabras de la piedra cuando la rompieron?",
+   "meta": [
+    [
+     "Lugar",
+     "Dibón, en Moab (hoy Jordania)"
+    ],
+    [
+     "Año",
+     "1868"
+    ],
+    [
+     "Libro de la Biblia",
+     "2 Reyes"
+    ]
+   ],
+   "cover": "lugar1",
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "LUGAR",
+     "title": "Las tierras de Dibón",
+     "description": "Lomas secas al este del mar Muerto, donde vivían los moabitas.",
+     "imagePrompt": "Wide view of dry rolling hills east of the Dead Sea in the 1860s, brown grass and scattered stones, a few dark goat-hair Bedouin tents in the distance, clear sky, late afternoon light"
+    },
+    {
+     "id": "persona1",
+     "type": "PERSONA",
+     "title": "El viajero",
+     "description": "Un misionero europeo recorría la región a caballo con un guía.",
+     "imagePrompt": "Nineteenth-century European traveler in a light coat and wide hat riding a horse, seen from behind, following a Bedouin guide on foot in a long robe and head cloth, dry hills ahead, warm afternoon light"
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJETO",
+     "title": "Trozo de piedra negra",
+     "description": "Un pedazo de piedra negra y dura, con letras talladas.",
+     "imagePrompt": "Broken fragment of black basalt stone with a few rows of small carved ancient letters on its flat face, rough broken edges, on a neutral background, soft side light, square framing"
+    },
+    {
+     "id": "objeto2",
+     "type": "OBJETO",
+     "title": "Tablilla de barro",
+     "description": "Una tablilla de barro con marcas en forma de cuña.",
+     "imagePrompt": "Small ancient tan clay tablet covered with rows of tiny wedge-shaped marks, slightly rounded edges, on a neutral background, soft light, square framing"
+    },
+    {
+     "id": "objeto3",
+     "type": "OBJETO",
+     "title": "Rollo de pergamino",
+     "description": "Un rollo entero, con letras escritas con tinta negra.",
+     "imagePrompt": "Whole rolled parchment scroll partly opened, cream colored, with lines of dark ink handwriting, intact edges, on a neutral background, soft light, square framing"
+    },
+    {
+     "id": "objeto4",
+     "type": "OBJETO",
+     "title": "Hojas de papel gris",
+     "description": "Papel gris roto en varios pedazos. Las letras se ven marcadas en relieve, sin tinta.",
+     "imagePrompt": "Old sheet of thick grey paper torn into several pieces laid together like a puzzle, the paper pressed into shapes so rows of letters appear as raised and sunken relief with no ink at all, on a dark table, low side light making the relief visible, square framing"
+    },
+    {
+     "id": "galeria1",
+     "type": "FOTOGRAFÍA",
+     "title": "La piedra armada",
+     "description": "La piedra de nuevo armada, con partes más claras donde faltaban trozos.",
+     "imagePrompt": "Tall black basalt stone slab with a rounded top standing in a museum, covered with rows of carved ancient letters, several lighter patched areas where missing pieces were filled in, soft museum lighting, no people"
+    },
+    {
+     "id": "nota1",
+     "type": "CUADERNO",
+     "title": "Cuaderno de Elena",
+     "description": "Cómo se copian letras talladas sin escribir.",
+     "section": "documentos",
+     "doc": {
+      "kind": "nota",
+      "header": "Dibón · el calco",
+      "body": "El sabio Charles Clermont-Ganneau mandó a un ayudante a copiar la piedra. Apretó papel mojado contra las letras. Al secarse, el papel guarda su forma, sin tinta. Eso se llama calco.",
+      "footer": "Profesora Elena Márquez"
+     }
+    },
+    {
+     "id": "carta1",
+     "type": "CARTA",
+     "title": "Mensaje de Tomás",
+     "description": "Tomás vio el calco en un museo.",
+     "section": "documentos",
+     "doc": {
+      "kind": "carta",
+      "body": "Profe: ¡vi el calco! Es papel gris, roto en varios pedazos, porque lo quitaron de la piedra todavía mojado. No tiene tinta, pero las letras quedaron marcadas en relieve.",
+      "footer": "Tomás",
+      "stamp": "PARÍS"
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "FICHA",
+     "title": "Ficha del museo",
+     "description": "Datos del calco de la piedra.",
+     "section": "documentos",
+     "doc": {
+      "kind": "documento",
+      "header": "Calco de la piedra de Mesa",
+      "fields": [
+       [
+        "Material",
+        "Papel"
+       ],
+       [
+        "Estado",
+        "Roto en pedazos"
+       ],
+       [
+        "Letras",
+        "En relieve, sin tinta"
+       ],
+       [
+        "Hoy",
+        "Museo del Louvre"
+       ]
+      ],
+      "body": "Se hizo antes de que rompieran la piedra. Ayudó a leer las partes perdidas.",
+      "stamp": "REVISADO"
+     }
+    },
+    {
+     "id": "noticia1",
+     "type": "NOTICIA",
+     "title": "La noticia",
+     "description": "La piedra se rompe en pedazos.",
+     "section": "documentos",
+     "doc": {
+      "kind": "periodico",
+      "header": "Diario de la Mañana",
+      "date": "1870",
+      "section": "Ciencia",
+      "headline": "Se rompe una piedra antigua en Moab",
+      "body": "La calentaron y le echaron agua fría hasta partirla. Ya se recogieron varios trozos. Por suerte, antes se había hecho una copia de sus letras."
+     }
+    }
+   ],
+   "answer": "objeto4",
+   "wrongAccusation": "Mira otra vez el cuaderno de Elena: ¿de qué material era la copia y cómo se veían sus letras?",
+   "reward": {
+    "title": "La piedra de Mesa",
+    "collection": "HALLAZGO 03",
+    "copy": "En 1868, el misionero Frederick Klein vio en Dibón, en la actual Jordania, una piedra negra con 34 renglones de letras. La mandó tallar Mesa, rey de Moab, hace unos 2800 años. Cuenta que Omri, rey de Israel, había dominado Moab, y que Mesa se liberó. Antes de que rompieran la piedra, se hizo un calco de papel, y con él y los trozos recogidos se pudo armar de nuevo. En 2 Reyes 3 la Biblia también habla de Mesa, rey de Moab, que criaba ovejas y dejó de pagar tributo a Israel. Hoy está en el Museo del Louvre, en París.",
+    "assets": [
+     "recompensa1",
+     "recompensa2",
+     "recompensa3",
+     "recompensa4"
+    ],
+    "imagePrompts": [
+     "Black basalt stone slab with a rounded top and rows of carved ancient letters, standing in a quiet museum gallery, soft spotlight, no people",
+     "Flock of sheep grazing on dry rolling hills east of the Dead Sea, a young shepherd seen from behind in a simple ancient robe, golden evening light",
+     "Close view of carved ancient letters on dark basalt, with a lighter filled-in patch where a piece was missing, low side light",
+     "Wide view of the ruins of an ancient hilltop town in dry Jordanian hills, low stone walls and scattered blocks, clear sky, no people"
+    ]
+   }
+  },
+  {
+   "code": "BA-04",
+   "title": "La casa de David",
+   "summary": "Una piedra con letras aparece escondida entre las demás piedras de Tel Dan.",
+   "brief": "En 1993, en las ruinas de Tel Dan, una mujer del equipo vio letras en una piedra oscura. Esa piedra nombra a la «casa de David». Falta saber en qué lugar de la ciudad antigua apareció.",
+   "objective": "¿En qué lugar de Tel Dan apareció la piedra?",
+   "meta": [
+    [
+     "Lugar",
+     "Tel Dan, norte de Israel"
+    ],
+    [
+     "Año",
+     "1993"
+    ],
+    [
+     "Libro de la Biblia",
+     "2 Samuel"
+    ]
+   ],
+   "cover": "lugar1",
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "LUGAR",
+     "title": "Tel Dan",
+     "description": "Una colina verde con ruinas antiguas, al norte de Israel.",
+     "imagePrompt": "Wide view of a green tree-covered ancient mound in northern Israel, distant snowy mountain on the horizon, lush fields around, soft morning light, no people"
+    },
+    {
+     "id": "persona1",
+     "type": "PERSONA",
+     "title": "La topógrafa",
+     "description": "Gila Cook medía las ruinas para dibujar los planos del equipo.",
+     "imagePrompt": "Woman archaeologist surveyor in 1990s field clothes and a sun hat, seen from behind, looking through a surveying instrument on a tripod among excavated stone ruins, warm late afternoon light"
+    },
+    {
+     "id": "lugar2",
+     "type": "LUGAR",
+     "title": "El arroyo",
+     "description": "Agua fresca que corre entre árboles. No hay muros cerca.",
+     "imagePrompt": "Clear spring stream flowing over smooth stones under tall shady trees, green ferns along the banks, dappled sunlight, no walls or ruins, no people"
+    },
+    {
+     "id": "lugar3",
+     "type": "LUGAR",
+     "title": "La entrada de la ciudad",
+     "description": "Una puerta antigua de la ciudad, con una plaza y un muro bajo de piedras.",
+     "imagePrompt": "Excavated ruins of an ancient Iron Age city gate made of large dark basalt and limestone blocks, a passage between two stone towers, a small paved plaza in front edged by a low rough stone wall, sunny day, no people"
+    },
+    {
+     "id": "lugar4",
+     "type": "LUGAR",
+     "title": "La gran plataforma",
+     "description": "Una plataforma alta y cuadrada de piedras, con escalones.",
+     "imagePrompt": "Large square raised platform of neatly cut ashlar stones with a wide stairway on one side, set among trees on an ancient mound, partly reconstructed outline, sunny day, no people"
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJETO",
+     "title": "La piedra con letras",
+     "description": "Un trozo de basalto oscuro con letras talladas. Le faltan los bordes.",
+     "imagePrompt": "Irregular broken fragment of dark grey basalt with rows of small carved ancient letters, rough broken edges on all sides, on a neutral background, soft side light, square framing"
+    },
+    {
+     "id": "galeria1",
+     "type": "FOTOGRAFÍA",
+     "title": "La excavación",
+     "description": "El equipo de Avraham Biran trabajó en Tel Dan muchos veranos.",
+     "imagePrompt": "Archaeologists in 1990s field clothes and hats seen from behind and in profile, kneeling and brushing soil from old stone walls in an excavation trench, buckets and trowels nearby, bright summer light"
+    },
+    {
+     "id": "nota1",
+     "type": "CUADERNO",
+     "title": "Cuaderno de Elena",
+     "description": "Cómo apareció la piedra.",
+     "section": "documentos",
+     "doc": {
+      "kind": "nota",
+      "header": "Tel Dan · julio de 1993",
+      "body": "Gila Cook, del equipo de Avraham Biran, vio letras en una piedra oscura. Estaba metida en un muro bajo, junto a la puerta de la ciudad. ¡Alguien la usó como una piedra más!",
+      "footer": "Profesora Elena Márquez"
+     }
+    },
+    {
+     "id": "carta1",
+     "type": "CARTA",
+     "title": "Mensaje de Lía",
+     "description": "Lía recorrió las ruinas con la guía.",
+     "section": "documentos",
+     "doc": {
+      "kind": "carta",
+      "body": "Profe: la guía nos explicó que la piedra estaba rota y que la usaron para construir un muro. Lo vimos: está al lado de la entrada de la ciudad, frente a una placita.",
+      "footer": "Lía",
+      "stamp": "TEL DAN"
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "FICHA",
+     "title": "Ficha del museo",
+     "description": "Datos de la estela de Tel Dan.",
+     "section": "documentos",
+     "doc": {
+      "kind": "documento",
+      "header": "Estela de Tel Dan",
+      "fields": [
+       [
+        "Material",
+        "Basalto"
+       ],
+       [
+        "Hallada",
+        "1993"
+       ],
+       [
+        "Lugar",
+        "Muro junto a la puerta"
+       ],
+       [
+        "Hoy",
+        "Museo de Israel"
+       ]
+      ],
+      "body": "Escrita en arameo. Nombra a un rey de Israel y a la casa de David.",
+      "stamp": "REVISADO"
+     }
+    },
+    {
+     "id": "mapa1",
+     "type": "MAPA",
+     "title": "Plano de Tel Dan",
+     "description": "Dónde está cada parte de la ciudad antigua.",
+     "section": "documentos",
+     "doc": {
+      "kind": "croquis",
+      "header": "Tel Dan",
+      "rooms": [
+       [
+        "ARROYO",
+        30,
+        50,
+        120,
+        70
+       ],
+       [
+        "PLATAFORMA",
+        240,
+        50,
+        130,
+        90
+       ],
+       [
+        "PUERTA",
+        30,
+        170,
+        90,
+        80
+       ],
+       [
+        "PLAZA",
+        130,
+        170,
+        130,
+        80
+       ]
+      ],
+      "marks": [
+       [
+        "X",
+        245,
+        230,
+        "la piedra"
+       ]
+      ]
+     }
+    }
+   ],
+   "answer": "lugar3",
+   "wrongAccusation": "Lee otra vez el cuaderno de Elena y mira el plano: ¿junto a qué parte de la ciudad estaba el muro?",
+   "reward": {
+    "title": "La estela de Tel Dan",
+    "collection": "HALLAZGO 04",
+    "copy": "En julio de 1993, en Tel Dan, al norte de Israel, Gila Cook, del equipo del arqueólogo Avraham Biran, vio letras en una piedra de basalto metida en un muro, junto a la puerta de la ciudad. Era parte de una estela escrita en arameo hace unos 2800 años. Al año siguiente aparecieron dos trozos más. La piedra habla de un rey de Israel y de la «casa de David». Fue un gran hallazgo: el nombre de David fuera de la Biblia. En 2 Samuel 7, Dios le promete a David que su casa, su familia de reyes, permanecerá. Hoy está en el Museo de Israel, en Jerusalén.",
+    "assets": [
+     "recompensa1",
+     "recompensa2",
+     "recompensa3",
+     "recompensa4"
+    ],
+    "imagePrompts": [
+     "Broken dark basalt stone fragment with rows of carved ancient letters displayed upright in a museum case, soft spotlight, dark background, no people",
+     "Ancient stone city gate ruins at sunset, a paved plaza in front edged by low stone walls, warm golden light, no people",
+     "Close view of small carved ancient letters on dark basalt, with tiny dots between the words, low side light",
+     "Green mound covered with trees beside a clear stream in northern Israel, ancient stone ruins peeking through the foliage, morning mist, no people"
+    ]
+   }
+  },
+  {
+   "code": "BA-05",
+   "title": "La barca en el barro",
+   "summary": "Una barca de madera muy antigua aparece en la orilla del mar de Galilea.",
+   "brief": "En 1986 llovió muy poco y el agua del mar de Galilea bajó. Dos hermanos pescadores vieron una barca antigua en el barro. Su madera estaba tan blanda que podía romperse. Falta saber cómo la llevaron al museo.",
+   "objective": "¿Cómo llevaron la barca hasta el museo sin que se rompiera?",
+   "meta": [
+    [
+     "Lugar",
+     "Mar de Galilea, cerca de Ginosar"
+    ],
+    [
+     "Año",
+     "1986"
+    ],
+    [
+     "Libro de la Biblia",
+     "Marcos"
+    ]
+   ],
+   "cover": "lugar1",
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "LUGAR",
+     "title": "La orilla seca",
+     "description": "El agua del lago bajó y dejó a la vista mucho barro.",
+     "imagePrompt": "Wide view of the shore of the Sea of Galilee during a drought in the 1980s, the water far back from its usual edge, wide band of cracked grey mud and reeds, hills across the lake, soft winter light, no people"
+    },
+    {
+     "id": "persona1",
+     "type": "PERSONA",
+     "title": "Los hermanos pescadores",
+     "description": "Moshe y Yuval Lufan caminaban por la orilla y vieron algo en el barro.",
+     "imagePrompt": "Two brothers in 1980s casual work clothes and rubber boots seen from behind, walking across wet mud on a lake shore, one pointing down at dark wooden shapes in the mud, overcast light"
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJETO",
+     "title": "La barca en el barro",
+     "description": "Mide unos 8 metros. Sus tablas de madera tienen muchos remiendos.",
+     "imagePrompt": "Outline of an ancient wooden fishing boat hull lying in wet dark mud, seen from above, curved dark brown planks and ribs with many patches, water puddles around it, overcast light, square framing"
+    },
+    {
+     "id": "galeria1",
+     "type": "FOTOGRAFÍA",
+     "title": "Foto A",
+     "description": "Una grúa levanta la barca de madera sin cubrir y la sube a un camión.",
+     "imagePrompt": "1980s construction crane lifting a bare dark wooden boat hull with ropes toward a flatbed truck on a muddy lake shore, workers at a distance seen from behind, overcast sky"
+    },
+    {
+     "id": "galeria2",
+     "type": "FOTOGRAFÍA",
+     "title": "Foto B",
+     "description": "Un bulto cubierto de espuma blanca flota por el lago, jalado por un bote.",
+     "imagePrompt": "Long boat-shaped bundle completely covered in thick white foam floating on the calm water of the Sea of Galilee, pulled slowly by a small motorboat, a few people in the water beside it seen from behind, hills in the background, soft light"
+    },
+    {
+     "id": "galeria3",
+     "type": "FOTOGRAFÍA",
+     "title": "Foto C",
+     "description": "La barca de madera flota sin nada que la cubra.",
+     "imagePrompt": "Bare ancient dark wooden boat hull with exposed planks and ribs floating low in calm lake water, nothing covering it, hills in the background, soft light, no people"
+    },
+    {
+     "id": "galeria4",
+     "type": "FOTOGRAFÍA",
+     "title": "Foto D",
+     "description": "Varias personas cargan tablas sueltas de madera en los hombros.",
+     "imagePrompt": "Several people in 1980s work clothes seen from behind, carrying loose dark wooden planks on their shoulders along a muddy lake shore, overcast light"
+    },
+    {
+     "id": "lugar2",
+     "type": "LUGAR",
+     "title": "El museo",
+     "description": "Hoy la barca descansa en una sala del museo de Ginosar.",
+     "imagePrompt": "Ancient wooden fishing boat hull resting on a metal support frame in a bright modern museum hall, large windows, clean floor, no people"
+    },
+    {
+     "id": "nota1",
+     "type": "CUADERNO",
+     "title": "Cuaderno de Elena",
+     "description": "El problema de la madera mojada.",
+     "section": "documentos",
+     "doc": {
+      "kind": "nota",
+      "header": "Ginosar · febrero de 1986",
+      "body": "La madera pasó siglos bajo el agua. Está blanda como pan mojado: si la levantan así, se rompe. Por eso la cubrieron toda con espuma blanca, como un capullo.",
+      "footer": "Profesora Elena Márquez"
+     }
+    },
+    {
+     "id": "carta1",
+     "type": "CARTA",
+     "title": "Mensaje de Tomás",
+     "description": "Tomás vio fotos del traslado.",
+     "section": "documentos",
+     "doc": {
+      "kind": "carta",
+      "body": "Profe: ¡no la subieron a ningún camión! La barca, envuelta en espuma, se fue flotando por el lago, como un barco de juguete gigante.",
+      "footer": "Tomás",
+      "stamp": "GINOSAR"
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "FICHA",
+     "title": "Ficha del museo",
+     "description": "Datos de la barca de Galilea.",
+     "section": "documentos",
+     "doc": {
+      "kind": "documento",
+      "header": "Barca de Galilea",
+      "fields": [
+       [
+        "Largo",
+        "Unos 8 metros"
+       ],
+       [
+        "Hallada",
+        "Enero de 1986"
+       ],
+       [
+        "Por",
+        "Moshe y Yuval Lufan"
+       ],
+       [
+        "Hoy",
+        "Museo Yigal Alon"
+       ]
+      ],
+      "body": "Hecha sobre todo de cedro y roble, con muchos remiendos. Es del tiempo de Jesús.",
+      "stamp": "REVISADO"
+     }
+    },
+    {
+     "id": "noticia1",
+     "type": "NOTICIA",
+     "title": "La noticia",
+     "description": "El viaje de la barca.",
+     "section": "documentos",
+     "doc": {
+      "kind": "periodico",
+      "header": "Diario de la Mañana",
+      "date": "Febrero de 1986",
+      "section": "Ciencia",
+      "headline": "Una barca antigua viaja por el lago",
+      "body": "Cubierta con espuma blanca, la barca salió flotando por el agua hasta Ginosar. Allí la pusieron en una piscina para que su madera no se secara de golpe."
+     }
+    }
+   ],
+   "answer": "galeria2",
+   "wrongAccusation": "Lee otra vez el cuaderno de Elena y la noticia: ¿con qué la cubrieron y por dónde viajó?",
+   "reward": {
+    "title": "La barca de Galilea",
+    "collection": "HALLAZGO 05",
+    "copy": "En enero de 1986 llovió muy poco y el mar de Galilea bajó mucho. Los hermanos Moshe y Yuval Lufan, pescadores de Ginosar, vieron en el barro la forma de una barca de madera. Mide unos ocho metros y es del tiempo de Jesús. No se sabe quién la usó, pero muestra cómo eran las barcas de los pescadores de esa época. En Marcos 4 se cuenta que Jesús y sus discípulos cruzaban el lago en una barca cuando llegó una gran tormenta, y él calmó el viento y las olas. Hoy la barca está en el Museo Yigal Alon, en Ginosar.",
+    "assets": [
+     "recompensa1",
+     "recompensa2",
+     "recompensa3",
+     "recompensa4"
+    ],
+    "imagePrompts": [
+     "Ancient wooden fishing boat hull displayed in a bright museum hall, dark brown planks and ribs with many patches, soft daylight from large windows, no people",
+     "Small first-century wooden fishing boat with a single square sail on the Sea of Galilee under dark storm clouds, choppy waves, seen from a distance, figures small and indistinct",
+     "Calm Sea of Galilee at sunrise, smooth water reflecting pink and gold sky, gentle hills on the far shore, no people",
+     "Close view of old dark wooden boat planks joined with small wooden pegs, many patches and repairs, soft side light"
+    ]
+   }
+  },
+  {
+   "code": "BA-06",
+   "title": "Los escalones escondidos",
+   "summary": "Unos obreros arreglan una tubería y la máquina choca con piedra antigua.",
+   "brief": "En 2004, en Jerusalén, unos obreros cavaban para arreglar una tubería de agua. Bajo la tierra apareció algo muy antiguo. El equipo tiene fotos de cuatro lugares con agua: solo uno es el estanque de Siloé del tiempo de Jesús.",
+   "objective": "¿Cuál de estos lugares es el estanque de Siloé del tiempo de Jesús?",
+   "meta": [
+    [
+     "Lugar",
+     "Ciudad de David, Jerusalén"
+    ],
+    [
+     "Año",
+     "2004"
+    ],
+    [
+     "Libro de la Biblia",
+     "Juan 9"
+    ]
+   ],
+   "cover": "lugar1",
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "LUGAR",
+     "title": "La ladera de la ciudad",
+     "description": "Parte sur de la Ciudad de David, la zona más antigua de Jerusalén.",
+     "imagePrompt": "Wide view of a rocky hillside sloping down into a valley south of the old city of Jerusalem, pale stone houses on the slope, olive trees, dusty paths, a small fenced excavation far below, soft morning light"
+    },
+    {
+     "id": "galeria1",
+     "type": "FOTOGRAFÍA",
+     "title": "La máquina se detiene",
+     "description": "Año 2004: una pequeña excavadora abre una zanja para una tubería de agua.",
+     "imagePrompt": "Small yellow excavator digging a narrow trench in dusty ground beside old stone walls, new water pipes lying next to the trench, two workers in hard hats seen from behind looking down into the hole, afternoon light"
+    },
+    {
+     "id": "lugar2",
+     "type": "LUGAR",
+     "title": "El túnel de agua",
+     "description": "Túnel angosto tallado en la roca. El agua corre por el suelo. No tiene escalones.",
+     "imagePrompt": "Very narrow ancient tunnel carved through pale rock, shallow clear water flowing along the floor, rough chisel marks on the walls, warm glow of a flashlight, no steps, no people"
+    },
+    {
+     "id": "lugar3",
+     "type": "LUGAR",
+     "title": "El estanque pequeño",
+     "description": "Estanque pequeño, rodeado de muros altos, con trozos de columnas rotas. Se hizo siglos después de Jesús.",
+     "imagePrompt": "Small rectangular pool of greenish water enclosed by tall old stone walls, several broken stone column stumps standing in and around the water, shaded and narrow space, no wide steps, no people"
+    },
+    {
+     "id": "nota1",
+     "type": "CUADERNO",
+     "title": "Cuaderno de Elena",
+     "description": "Lo que dice el Evangelio y lo que se sabe del estanque.",
+     "section": "documentos",
+     "doc": {
+      "kind": "nota",
+      "header": "Cuaderno de la profesora Elena",
+      "body": "El estanque de Siloé del tiempo de Jesús era grande y al aire libre. Por los lados tenía escalones anchos de piedra, uno debajo de otro, que bajaban hasta el agua.",
+      "footer": "E. Márquez"
+     }
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJETO",
+     "title": "Monedas en el yeso",
+     "description": "Monedas antiguas que estaban en el yeso de los escalones. Ayudan a saber su edad.",
+     "imagePrompt": "Three small corroded ancient bronze coins resting on a gloved palm, crumbs of white plaster around them, worn faint designs, close-up, soft daylight"
+    },
+    {
+     "id": "lugar4",
+     "type": "LUGAR",
+     "title": "Escalones bajo la tierra",
+     "description": "Lugar grande y abierto, con escalones largos y anchos de piedra, uno debajo de otro.",
+     "imagePrompt": "Large open-air excavation revealing many long wide ancient stone steps descending in tiers toward a low area with a little water, steps stretching across the whole side, dirt slope above, sunny day, two archaeologists far away seen from behind brushing a step"
+    },
+    {
+     "id": "carta1",
+     "type": "CARTA",
+     "title": "Carta de Tomás",
+     "description": "Tomás visitó el lugar del hallazgo.",
+     "section": "documentos",
+     "doc": {
+      "kind": "carta",
+      "body": "Profe: hoy bajamos a ver lo que encontraron en 2004. Los obreros pararon la máquina y llamaron a los arqueólogos Eli Shukron y Ronny Reich. ¡Es un lugar enorme, sin techo, con escalones anchos de piedra, muchos, uno tras otro!",
+      "footer": "Tomás",
+      "stamp": "Jerusalén"
+     }
+    },
+    {
+     "id": "lugar5",
+     "type": "LUGAR",
+     "title": "El pozo redondo",
+     "description": "Pozo redondo y hondo, con cuerda y balde. No tiene escalones.",
+     "imagePrompt": "Old round stone well with a low circular rim, a rope and a wooden bucket hanging over it, dry ground and a few stones around, no steps, no people, midday light"
+    },
+    {
+     "id": "ficha1",
+     "type": "FICHA",
+     "title": "Ficha del estanque",
+     "description": "Datos del hallazgo de 2004.",
+     "section": "documentos",
+     "doc": {
+      "kind": "documento",
+      "header": "Ficha · Estanque de Siloé",
+      "fields": [
+       [
+        "Hallado",
+        "2004"
+       ],
+       [
+        "Por",
+        "Eli Shukron y Ronny Reich"
+       ],
+       [
+        "Forma",
+        "Grande, con escalones anchos"
+       ],
+       [
+        "Agua",
+        "Llegaba por el túnel de Ezequías"
+       ]
+      ],
+      "body": "En el yeso de los escalones había monedas de unos cien años antes de Jesús. Así se sabe que el estanque ya existía en su tiempo.",
+      "stamp": "Revisado"
+     }
+    },
+    {
+     "id": "noticia1",
+     "type": "NOTICIA",
+     "title": "La noticia",
+     "description": "Un periódico cuenta el hallazgo.",
+     "section": "documentos",
+     "doc": {
+      "kind": "periodico",
+      "header": "Noticias del Mundo",
+      "date": "2004",
+      "section": "Descubrimientos",
+      "headline": "Hallan el estanque donde un ciego volvió a ver",
+      "body": "Bajo la tierra de Jerusalén apareció un estanque grande, al aire libre, con escalones anchos de piedra. Según el Evangelio de Juan, Jesús envió a un hombre ciego a lavarse en el estanque de Siloé."
+     }
+    }
+   ],
+   "answer": "lugar4",
+   "wrongAccusation": "Vuelve a leer el cuaderno de Elena: ¿qué tenía el estanque por los lados para bajar al agua? ¿Era pequeño o grande? Busca el lugar que tenga las dos cosas.",
+   "reward": {
+    "title": "El estanque de Siloé",
+    "collection": "HALLAZGO 06",
+    "copy": "En 2004, unos obreros que arreglaban una tubería en Jerusalén encontraron escalones de piedra. Los arqueólogos Eli Shukron y Ronny Reich vieron que eran del estanque de Siloé del tiempo de Jesús. Las monedas del yeso ayudaron a saber su edad. En Juan 9 se cuenta que Jesús puso lodo en los ojos de un hombre que había nacido ciego y lo envió a lavarse en el estanque de Siloé; el hombre regresó viendo. Hoy puedes ver los escalones en la Ciudad de David. Gran parte del estanque sigue bajo la tierra.",
+    "assets": [
+     "recompensa1",
+     "recompensa2",
+     "recompensa3",
+     "recompensa4"
+    ],
+    "imagePrompts": [
+     "Long wide ancient stone steps of a large open pool descending in tiers, warm late afternoon sunlight, visitors far away seen from behind walking along a path",
+     "First-century Jerusalem scene: a large open-air stone pool with wide steps on its sides, people in simple tunics and head coverings walking down the steps carrying clay jars, seen from a distance",
+     "Close-up of clear water flowing out of a dark rock-cut channel into a stone basin, sunlight on ripples",
+     "Archaeologist seen from behind kneeling on a wide ancient stone step, brushing dust away with a soft brush, tools and a bucket beside her"
+    ]
+   }
+  },
+  {
+   "code": "BA-07",
+   "title": "Los cinco pórticos",
+   "summary": "Un estanque con cinco pórticos: ¿cómo podía tener cinco?",
+   "brief": "El Evangelio de Juan habla de un estanque en Jerusalén llamado Betesda, con cinco pórticos. Durante mucho tiempo nadie sabía cómo era. Junto a la iglesia de Santa Ana aparecieron sus restos, y ahora el equipo tiene cuatro maquetas.",
+   "objective": "¿Cuál maqueta muestra cómo era el estanque de Betesda?",
+   "meta": [
+    [
+     "Lugar",
+     "Junto a la iglesia de Santa Ana, Jerusalén"
+    ],
+    [
+     "Excavaciones",
+     "Desde fines del siglo XIX"
+    ],
+    [
+     "Libro de la Biblia",
+     "Juan 5"
+    ]
+   ],
+   "cover": "lugar1",
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "LUGAR",
+     "title": "Las ruinas junto a Santa Ana",
+     "description": "Restos de piedra muy hondos, al lado de una iglesia de piedra clara en Jerusalén.",
+     "imagePrompt": "Deep excavated ruins of ancient stone basins, arches and wall fragments far below ground level, a simple pale stone medieval church with a plain facade beside them, cypress trees, bright sunlight, visitors seen from behind at a railing"
+    },
+    {
+     "id": "nota1",
+     "type": "CUADERNO",
+     "title": "Cuaderno de Elena",
+     "description": "Qué es un pórtico y cuántos tenía el estanque.",
+     "section": "documentos",
+     "doc": {
+      "kind": "nota",
+      "header": "Cuaderno de la profesora Elena",
+      "body": "Un pórtico es un pasillo con techo, sostenido por una fila de columnas. Juan 5 dice que el estanque de Betesda tenía cinco pórticos. En la maqueta buena hay que contar cinco filas de columnas.",
+      "footer": "E. Márquez"
+     }
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJETO",
+     "title": "Maqueta A",
+     "description": "Un solo estanque redondo. No tiene columnas.",
+     "imagePrompt": "Tabletop architectural scale model of a single round pool with blue water and a plain stone rim, no columns at all, on a wooden table, top-down three-quarter view, soft studio light"
+    },
+    {
+     "id": "galeria1",
+     "type": "FOTOGRAFÍA",
+     "title": "El muro del medio",
+     "description": "Entre las ruinas se ve un muro grueso de roca que separa dos estanques.",
+     "imagePrompt": "Excavation view of a thick ancient rock wall running between two deep empty stone basins, one basin on each side, weathered stone blocks, an archaeologist seen from behind standing on the wall for scale, daylight"
+    },
+    {
+     "id": "objeto2",
+     "type": "OBJETO",
+     "title": "Maqueta B",
+     "description": "Un solo estanque cuadrado, con filas de columnas en sus cuatro lados. Cuatro filas en total.",
+     "imagePrompt": "Tabletop architectural scale model of a single square pool with blue water, a covered walkway with one row of small white columns along each of its four sides, nothing across the middle, on a wooden table, three-quarter view, soft studio light"
+    },
+    {
+     "id": "objeto3",
+     "type": "OBJETO",
+     "title": "Maqueta C",
+     "description": "Dos estanques, uno al lado del otro, separados por un muro. Filas de columnas en los cuatro lados y una más sobre el muro del medio.",
+     "imagePrompt": "Tabletop architectural scale model of two rectangular pools with blue water side by side, separated by a central wall, covered walkways with rows of small white columns along all four outer sides and one more row of columns running along the top of the central wall, on a wooden table, three-quarter view, soft studio light"
+    },
+    {
+     "id": "objeto4",
+     "type": "OBJETO",
+     "title": "Maqueta D",
+     "description": "Dos estanques separados por un muro, pero con columnas solo en un lado.",
+     "imagePrompt": "Tabletop architectural scale model of two rectangular pools with blue water side by side, separated by a central wall, a single row of small white columns along only one outer side, the other sides plain, on a wooden table, three-quarter view, soft studio light"
+    },
+    {
+     "id": "carta1",
+     "type": "CARTA",
+     "title": "Carta de Lía",
+     "description": "Lía bajó a ver las ruinas.",
+     "section": "documentos",
+     "doc": {
+      "kind": "carta",
+      "body": "Profe: hoy bajé con Tomás a ver las ruinas. ¡No es un solo estanque! Son dos estanques, uno al lado del otro, con un muro grueso en el medio. El guía dice que había columnas en los cuatro lados y también sobre el muro del centro.",
+      "footer": "Lía",
+      "stamp": "Jerusalén"
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "FICHA",
+     "title": "Ficha del estanque",
+     "description": "Lo que encontraron los arqueólogos.",
+     "section": "documentos",
+     "doc": {
+      "kind": "documento",
+      "header": "Ficha · Estanque de Betesda",
+      "fields": [
+       [
+        "Lugar",
+        "Cerca de la puerta de las Ovejas"
+       ],
+       [
+        "Forma",
+        "Dos estanques separados por un muro"
+       ],
+       [
+        "Pórticos",
+        "Cuatro alrededor y uno sobre el muro"
+       ],
+       [
+        "Hoy",
+        "Junto a la iglesia de Santa Ana"
+       ]
+      ],
+      "body": "Las excavaciones empezaron a fines del siglo XIX. Muchos expertos piensan que así se explican los cinco pórticos de los que habla Juan 5.",
+      "stamp": "Revisado"
+     }
+    },
+    {
+     "id": "mapa1",
+     "type": "MAPA",
+     "title": "Croquis de los estanques",
+     "description": "Dibujo de Tomás visto desde arriba.",
+     "section": "documentos",
+     "doc": {
+      "kind": "croquis",
+      "header": "Croquis de Tomás · visto desde arriba",
+      "rooms": [
+       [
+        "ESTANQUE NORTE",
+        100,
+        40,
+        200,
+        100
+       ],
+       [
+        "MURO",
+        100,
+        140,
+        200,
+        20
+       ],
+       [
+        "ESTANQUE SUR",
+        100,
+        160,
+        200,
+        100
+       ]
+      ],
+      "marks": [
+       [
+        "1",
+        200,
+        25,
+        "pórtico de arriba"
+       ],
+       [
+        "2",
+        200,
+        280,
+        "pórtico de abajo"
+       ],
+       [
+        "3",
+        80,
+        150,
+        "pórtico de la izquierda"
+       ],
+       [
+        "4",
+        320,
+        150,
+        "pórtico de la derecha"
+       ],
+       [
+        "5",
+        200,
+        150,
+        "pórtico sobre el muro"
+       ]
+      ]
+     }
+    },
+    {
+     "id": "lugar2",
+     "type": "LUGAR",
+     "title": "La puerta de la ciudad",
+     "description": "Puerta de la muralla de la ciudad vieja, a pocos pasos de las ruinas.",
+     "imagePrompt": "Old stone city gate with a tall pointed archway set in a thick ancient wall of large pale blocks, a narrow street passing through, people walking away from the camera, morning light, no signs"
+    }
+   ],
+   "answer": "objeto3",
+   "wrongAccusation": "Mira la carta de Lía: ¿cuántos estanques había? Luego cuenta las filas de columnas de cada maqueta, como dice el cuaderno de Elena.",
+   "reward": {
+    "title": "El estanque de Betesda",
+    "collection": "HALLAZGO 07",
+    "copy": "Juan 5 cuenta que en Jerusalén, cerca de la puerta de las Ovejas, había un estanque llamado Betesda con cinco pórticos. Allí Jesús sanó a un hombre que llevaba treinta y ocho años enfermo: le dijo que se levantara, tomara su camilla y caminara. Durante siglos nadie sabía bien cómo era. Desde fines del siglo XIX, junto a la iglesia de Santa Ana, los arqueólogos sacaron a la luz dos grandes estanques separados por un muro. Hoy puedes visitar sus ruinas en la ciudad vieja de Jerusalén.",
+    "assets": [
+     "recompensa1",
+     "recompensa2",
+     "recompensa3",
+     "recompensa4"
+    ],
+    "imagePrompts": [
+     "First-century Jerusalem scene: two large stone pools side by side divided by a wide wall, covered colonnades along all sides and across the middle, people in simple tunics resting in the shade, seen from a distance",
+     "Ancient stone ruins of deep basins and arches seen from above, warm afternoon light, a few visitors seen from behind on a walkway",
+     "A simple woven sleeping mat rolled up and tied with cord, lying on old stone pavement in sunlight",
+     "Close-up of weathered limestone column fragments lying on the ground among ruins, small plants growing between the stones"
+    ]
+   }
+  },
+  {
+   "code": "BA-08",
+   "title": "La piedra del teatro",
+   "summary": "Una piedra usada como escalón guardaba un nombre famoso.",
+   "brief": "En 1961, un equipo italiano excavaba el teatro romano de Cesarea, junto al mar. En una escalera del teatro había una piedra con letras latinas. El equipo tiene fotos de cuatro objetos antiguos: solo uno es esa piedra.",
+   "objective": "¿Cuál es la piedra que nombra a Poncio Pilato?",
+   "meta": [
+    [
+     "Lugar",
+     "Cesarea, junto al mar Mediterráneo"
+    ],
+    [
+     "Año",
+     "1961"
+    ],
+    [
+     "Libro de la Biblia",
+     "Mateo 27"
+    ]
+   ],
+   "cover": "lugar1",
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "LUGAR",
+     "title": "El teatro junto al mar",
+     "description": "Teatro romano de Cesarea, con gradas de piedra frente al mar.",
+     "imagePrompt": "Ancient Roman theater with a half-circle of pale stone seating rows facing the blue Mediterranean Sea, sandy ruins around it, bright sunny day, a few visitors seen from behind far away"
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJETO",
+     "title": "Piedra negra redondeada",
+     "description": "Piedra negra con la parte de arriba redonda. Tiene letras antiguas grabadas.",
+     "imagePrompt": "Tall dark black basalt stone slab with a rounded top, covered with rows of faint carved ancient letters, standing on a museum plinth against a plain background, soft light"
+    },
+    {
+     "id": "nota1",
+     "type": "CUADERNO",
+     "title": "Cuaderno de Elena",
+     "description": "Cómo es la piedra que buscamos.",
+     "section": "documentos",
+     "doc": {
+      "kind": "nota",
+      "header": "Cuaderno de la profesora Elena",
+      "body": "La piedra de Pilato es un bloque de piedra clara, con forma de rectángulo. Tiene letras latinas grabadas en filas. Su lado izquierdo está roto: le falta un pedazo.",
+      "footer": "E. Márquez"
+     }
+    },
+    {
+     "id": "galeria1",
+     "type": "FOTOGRAFÍA",
+     "title": "Los escalones del teatro",
+     "description": "Aquí, en 1961, apareció una piedra usada como escalón.",
+     "imagePrompt": "Worn ancient stone steps of a Roman theater climbing between seating rows, sand and small weeds in the cracks, an archaeologist in 1960s clothes seen from behind kneeling with a brush, warm sunlight"
+    },
+    {
+     "id": "objeto2",
+     "type": "OBJETO",
+     "title": "Trozo de columna",
+     "description": "Trozo de columna de mármol, redondo como un tambor.",
+     "imagePrompt": "Short round drum-shaped section of a white marble column lying on its side on sand, smooth curved surface, no writing, ruins in the soft background, sunlight"
+    },
+    {
+     "id": "carta1",
+     "type": "CARTA",
+     "title": "Telegrama de 1961",
+     "description": "Aviso enviado desde Cesarea.",
+     "section": "documentos",
+     "doc": {
+      "kind": "carta",
+      "body": "EQUIPO ITALIANO DE ANTONIO FROVA HALLA EN ESCALERA DEL TEATRO PIEDRA CON LETRAS LATINAS. LADO IZQUIERDO ROTO. NOMBRA A PONCIO PILATO.",
+      "footer": "Corresponsal en Cesarea",
+      "stamp": "TELEGRAMA · 1961"
+     }
+    },
+    {
+     "id": "objeto3",
+     "type": "OBJETO",
+     "title": "Bloque claro con letras",
+     "description": "Bloque rectangular de piedra clara. Letras latinas en filas. Le falta un pedazo del lado izquierdo.",
+     "imagePrompt": "Rectangular block of pale cream limestone, about as tall as a child's waist, with a few rows of faint worn carved Roman capital letters, the whole left side broken and chipped away, standing on a museum plinth against a plain background, soft light"
+    },
+    {
+     "id": "objeto4",
+     "type": "OBJETO",
+     "title": "Tablilla de barro",
+     "description": "Tablilla pequeña de barro, con marcas en forma de cuña. Cabe en una mano.",
+     "imagePrompt": "Small flat brown clay tablet covered in tiny wedge-shaped marks, resting in an open hand, close-up, plain background, soft light"
+    },
+    {
+     "id": "ficha1",
+     "type": "FICHA",
+     "title": "Ficha del museo",
+     "description": "Datos de la piedra.",
+     "section": "documentos",
+     "doc": {
+      "kind": "documento",
+      "header": "Ficha · Piedra de Pilato",
+      "fields": [
+       [
+        "Material",
+        "Piedra caliza clara"
+       ],
+       [
+        "Idioma",
+        "Latín"
+       ],
+       [
+        "Hallada",
+        "1961, teatro de Cesarea"
+       ],
+       [
+        "Hoy",
+        "Museo de Israel, Jerusalén"
+       ]
+      ],
+      "body": "Las letras nombran a Poncio Pilato, prefecto de Judea, y un edificio en honor del emperador Tiberio. Parte del texto se perdió con el pedazo roto.",
+      "stamp": "Museo"
+     }
+    },
+    {
+     "id": "noticia1",
+     "type": "NOTICIA",
+     "title": "La noticia",
+     "description": "Un periódico cuenta el hallazgo.",
+     "section": "documentos",
+     "doc": {
+      "kind": "periodico",
+      "header": "Noticias del Mundo",
+      "date": "1961",
+      "section": "Descubrimientos",
+      "headline": "Una piedra del teatro nombra a Pilato",
+      "body": "Arqueólogos italianos encontraron en Cesarea un bloque de piedra clara con letras latinas. Es una piedra de su propio tiempo con el nombre del gobernador que juzgó a Jesús."
+     }
+    },
+    {
+     "id": "lugar2",
+     "type": "LUGAR",
+     "title": "El acueducto",
+     "description": "Canal romano de agua sobre arcos, en la playa de Cesarea.",
+     "imagePrompt": "Long ancient Roman aqueduct of stone arches running along a sandy beach beside the sea, waves on the shore, late afternoon golden light, no people"
+    }
+   ],
+   "answer": "objeto3",
+   "wrongAccusation": "Lee otra vez el cuaderno de Elena y el telegrama: ¿de qué color era la piedra, qué forma tenía y qué lado estaba roto?",
+   "reward": {
+    "title": "La piedra de Pilato",
+    "collection": "HALLAZGO 08",
+    "copy": "En 1961, el equipo italiano de Antonio Frova excavaba el teatro romano de Cesarea. En una escalera encontró un bloque de piedra clara que se había usado como escalón. Sus letras latinas nombran a Poncio Pilato, prefecto de Judea, y un edificio en honor del emperador Tiberio. Mateo 27 cuenta que Jesús fue llevado ante el gobernador Pilato, quien lo interrogó y lo juzgó. La piedra original está en el Museo de Israel, en Jerusalén. En Cesarea hay una copia.",
+    "assets": [
+     "recompensa1",
+     "recompensa2",
+     "recompensa3",
+     "recompensa4"
+    ],
+    "imagePrompts": [
+     "Pale limestone block with faint worn carved Roman letters and a broken left side, displayed in a quiet museum hall, visitors seen from behind looking at it",
+     "Ancient Roman harbor city by the sea at sunset, stone theater and buildings near the shore, seen from a distance",
+     "Close-up of weathered carved Roman capital letters on pale stone, too worn to read, raking sunlight",
+     "Archaeologists in 1960s clothes seen from behind carefully lifting a pale stone block with ropes and a wooden frame in an ancient theater"
+    ]
+   }
+  },
+  {
+   "code": "BA-09",
+   "title": "La caja de las flores",
+   "summary": "Un parque, una cueva escondida y varias cajas de piedra.",
+   "brief": "En 1990, unos trabajadores hacían un camino en un parque al sur de Jerusalén. El suelo se hundió y apareció una cueva antigua con varias cajas de piedra. Una de ellas lleva un nombre que aparece en los Evangelios.",
+   "objective": "¿Cuál es la caja con el nombre de Caifás?",
+   "meta": [
+    [
+     "Lugar",
+     "Bosque de la Paz, al sur de Jerusalén"
+    ],
+    [
+     "Año",
+     "1990"
+    ],
+    [
+     "Libro de la Biblia",
+     "Juan 18"
+    ]
+   ],
+   "cover": "lugar1",
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "LUGAR",
+     "title": "El parque de los pinos",
+     "description": "Parque con pinos al sur de Jerusalén. Aquí se hundió el suelo.",
+     "imagePrompt": "Hillside park with pine trees and rocky ground on the southern edge of Jerusalem, a new dirt road being built with a small work vehicle parked far away, view of pale stone city buildings in the distance, clear morning light"
+    },
+    {
+     "id": "galeria1",
+     "type": "FOTOGRAFÍA",
+     "title": "La entrada de la cueva",
+     "description": "Una cueva tallada en la roca, con un hueco pequeño para entrar.",
+     "imagePrompt": "Small dark square opening of an ancient rock-cut cave in a pale limestone hillside among pine needles and stones, an archaeologist seen from behind crouching with a lamp at the entrance, daylight"
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJETO",
+     "title": "Caja lisa",
+     "description": "Caja de piedra clara, sin ningún adorno.",
+     "imagePrompt": "Plain rectangular limestone box with a flat lid, smooth pale surface with no decoration and no carving, on a museum plinth against a plain background, soft light"
+    },
+    {
+     "id": "nota1",
+     "type": "CUADERNO",
+     "title": "Cuaderno de Elena",
+     "description": "Qué es un osario y cómo es el de Caifás.",
+     "section": "documentos",
+     "doc": {
+      "kind": "nota",
+      "header": "Cuaderno de la profesora Elena",
+      "body": "Un osario es una caja de piedra donde las familias guardaban los huesos de sus difuntos. La caja de Caifás es la más bonita de la cueva: en un lado tiene dos grandes círculos llenos de flores talladas.",
+      "footer": "E. Márquez"
+     }
+    },
+    {
+     "id": "objeto2",
+     "type": "OBJETO",
+     "title": "Caja de un círculo",
+     "description": "Caja de piedra con un solo círculo de flores tallado en el frente.",
+     "imagePrompt": "Rectangular limestone box with a lid, the front carved with one single circle containing a flower pattern in the center, the rest of the front plain, on a museum plinth against a plain background, soft light"
+    },
+    {
+     "id": "objeto3",
+     "type": "OBJETO",
+     "title": "Caja de dos círculos",
+     "description": "Caja de piedra adornada con dos grandes círculos llenos de flores. En otro lado tiene letras rayadas.",
+     "imagePrompt": "Ornate rectangular limestone box with a lid, the front richly carved with two large circles side by side, each filled with smaller rosette flowers, a carved border around them, faint thin scratched letters visible on the short side, on a museum plinth against a plain background, soft light"
+    },
+    {
+     "id": "objeto4",
+     "type": "OBJETO",
+     "title": "Caja de zigzag",
+     "description": "Caja de piedra con líneas en zigzag talladas. No tiene círculos ni flores.",
+     "imagePrompt": "Rectangular limestone box with a lid, the front carved only with simple zigzag lines in horizontal bands, no circles and no flowers, on a museum plinth against a plain background, soft light"
+    },
+    {
+     "id": "carta1",
+     "type": "CARTA",
+     "title": "Carta de Tomás",
+     "description": "Tomás vio la caja en el museo.",
+     "section": "documentos",
+     "doc": {
+      "kind": "carta",
+      "body": "Profe: en el museo vimos la caja de Caifás. ¡Tiene dos círculos enormes llenos de flores! Y en otro lado hay letras rayadas, como hechas con un clavo. Dicen «José, hijo de Caifás».",
+      "footer": "Tomás",
+      "stamp": "Jerusalén"
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "FICHA",
+     "title": "Ficha del museo",
+     "description": "Datos de la caja.",
+     "section": "documentos",
+     "doc": {
+      "kind": "documento",
+      "header": "Ficha · Osario de Caifás",
+      "fields": [
+       [
+        "Hallada",
+        "1990, Bosque de la Paz"
+       ],
+       [
+        "Material",
+        "Piedra caliza"
+       ],
+       [
+        "Adorno",
+        "Dos círculos con flores"
+       ],
+       [
+        "Hoy",
+        "Museo de Israel, Jerusalén"
+       ]
+      ],
+      "body": "Las letras, en arameo, dicen «José, hijo de Caifás». El historiador Josefo llamó al sumo sacerdote José Caifás.",
+      "stamp": "Museo"
+     }
+    },
+    {
+     "id": "noticia1",
+     "type": "NOTICIA",
+     "title": "La noticia",
+     "description": "Un periódico cuenta el hallazgo.",
+     "section": "documentos",
+     "doc": {
+      "kind": "periodico",
+      "header": "Noticias del Mundo",
+      "date": "Edición especial",
+      "section": "Descubrimientos",
+      "headline": "Una cueva antigua guardaba el nombre de Caifás",
+      "body": "Trabajadores que hacían un camino descubrieron una cueva con cajas de piedra. La más adornada, con dos círculos de flores, tiene letras rayadas con el nombre de Caifás."
+     }
+    },
+    {
+     "id": "lugar2",
+     "type": "LUGAR",
+     "title": "La sala del museo",
+     "description": "Sala del Museo de Israel donde hoy se muestra la caja.",
+     "imagePrompt": "Quiet modern museum hall with soft spotlights on ancient stone objects in glass cases, a family seen from behind looking at a display, polished floor"
+    }
+   ],
+   "answer": "objeto3",
+   "wrongAccusation": "Lee otra vez el cuaderno de Elena y la carta de Tomás: ¿cuántos círculos de flores tenía la caja? ¿Qué más tenía en otro lado?",
+   "reward": {
+    "title": "El osario de Caifás",
+    "collection": "HALLAZGO 09",
+    "copy": "En 1990, en el Bosque de la Paz, al sur de Jerusalén, se abrió por accidente una cueva antigua con varios osarios. El arqueólogo Zvi Greenhut la estudió. En la caja más adornada alguien rayó «José, hijo de Caifás». Muchos expertos piensan que era de la familia del sumo sacerdote Caifás. En Juan 18 se cuenta que Jesús fue llevado ante Caifás, que era el sumo sacerdote ese año. Hoy la caja está en el Museo de Israel, en Jerusalén.",
+    "assets": [
+     "recompensa1",
+     "recompensa2",
+     "recompensa3",
+     "recompensa4"
+    ],
+    "imagePrompts": [
+     "Ornate limestone box carved with two large circles of rosette flowers, displayed in a glass case in a quiet museum, soft spotlight, visitors seen from behind",
+     "Close-up of a carved stone rosette flower pattern on pale limestone, fine chisel work, raking light",
+     "Inside an ancient rock-cut cave with small niches carved in the walls, lamp light, an archaeologist seen from behind taking notes",
+     "First-century Jerusalem at dusk, pale stone houses and courtyards on a hill, warm lamp light in a few windows, seen from a distance"
+    ]
+   }
+  },
+  {
+   "code": "BA-10",
+   "title": "El barril de barro",
+   "summary": "Un rey de Persia dejó escrito que los pueblos podían volver a casa.",
+   "brief": "En 1879, Hormuzd Rassam excavaba en las ruinas de Babilonia, en el actual Irak. Entre la tierra apareció un objeto de barro cubierto de escritura en forma de cuñas: el cilindro de Ciro. El equipo tiene fotos de cuatro objetos de barro.",
+   "objective": "¿Cuál de estos objetos de barro es el cilindro de Ciro?",
+   "meta": [
+    [
+     "Lugar",
+     "Babilonia, en el actual Irak"
+    ],
+    [
+     "Año",
+     "1879"
+    ],
+    [
+     "Libro de la Biblia",
+     "Esdras 1"
+    ]
+   ],
+   "cover": "lugar1",
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "LUGAR",
+     "title": "Las ruinas de Babilonia",
+     "description": "Montículos de tierra y ladrillos junto al río Éufrates.",
+     "imagePrompt": "Wide view of low dusty mounds of earth and crumbling mud-brick ruins in a flat desert plain beside a slow river lined with palm trees, hazy golden light, no people"
+    },
+    {
+     "id": "galeria1",
+     "type": "FOTOGRAFÍA",
+     "title": "La excavación de 1879",
+     "description": "Trabajadores con cestas y palas sacan tierra de las ruinas.",
+     "imagePrompt": "Nineteenth-century excavation in Mesopotamia: local workers in long robes and head cloths seen from behind carrying woven baskets of earth up a dusty mound, wooden shovels, mud-brick walls exposed, bright sun"
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJETO",
+     "title": "Tablilla plana",
+     "description": "Tablilla de barro plana y rectangular, con escritura de cuñas. Cabe en la palma de la mano.",
+     "imagePrompt": "Small flat rectangular clay tablet covered with tiny wedge-shaped marks, lying flat on a museum stand against a plain background, soft light"
+    },
+    {
+     "id": "nota1",
+     "type": "CUADERNO",
+     "title": "Cuaderno de Elena",
+     "description": "Cómo es el cilindro de Ciro.",
+     "section": "documentos",
+     "doc": {
+      "kind": "nota",
+      "header": "Cuaderno de la profesora Elena",
+      "body": "El cilindro de Ciro tiene forma de barril: es redondo, alargado y está acostado de lado. Está cubierto de escritura en forma de cuñas. Tiene grietas porque estaba roto.",
+      "footer": "E. Márquez"
+     }
+    },
+    {
+     "id": "objeto2",
+     "type": "OBJETO",
+     "title": "Prisma de pie",
+     "description": "Barro de pie, con seis caras planas, como un lápiz gigante. Escritura de cuñas.",
+     "imagePrompt": "Tall upright six-sided clay prism with flat faces and sharp edges, each face covered in tiny wedge-shaped marks, standing on a museum plinth against a plain background, soft light"
+    },
+    {
+     "id": "objeto3",
+     "type": "OBJETO",
+     "title": "Vasija con asas",
+     "description": "Vasija redonda de barro, con dos asas. Lisa, sin ninguna escritura.",
+     "imagePrompt": "Round ancient clay jar with two small handles, smooth plain surface with no writing or marks, standing on a museum plinth against a plain background, soft light"
+    },
+    {
+     "id": "objeto4",
+     "type": "OBJETO",
+     "title": "Barril de barro",
+     "description": "Objeto de barro con forma de barril, acostado de lado. Cubierto de escritura de cuñas, con grietas.",
+     "imagePrompt": "Barrel-shaped clay cylinder lying on its side on a museum stand, rounded and longer than it is wide, its whole surface covered in rows of tiny wedge-shaped marks, visible cracks and a few missing chips, plain background, soft light"
+    },
+    {
+     "id": "carta1",
+     "type": "CARTA",
+     "title": "Carta de Lía",
+     "description": "Lía fue al museo de Londres.",
+     "section": "documentos",
+     "doc": {
+      "kind": "carta",
+      "body": "Profe: estoy en el Museo Británico, en Londres. ¡Vi el cilindro de Ciro! Parece un barril de barro acostado. Está lleno de cuñas diminutas y tiene grietas por todos lados.",
+      "footer": "Lía",
+      "stamp": "Londres"
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "FICHA",
+     "title": "Ficha del museo",
+     "description": "Datos del cilindro.",
+     "section": "documentos",
+     "doc": {
+      "kind": "documento",
+      "header": "Ficha · Cilindro de Ciro",
+      "fields": [
+       [
+        "Hallado",
+        "1879, Babilonia"
+       ],
+       [
+        "Por",
+        "Hormuzd Rassam"
+       ],
+       [
+        "Forma",
+        "Barril de barro"
+       ],
+       [
+        "Hoy",
+        "Museo Británico, Londres"
+       ]
+      ],
+      "body": "Está escrito en acadio, con escritura de cuñas. Ciro, rey de Persia, cuenta que tomó Babilonia y que dejó volver a su tierra a pueblos que habían sido llevados lejos.",
+      "stamp": "Museo"
+     }
+    },
+    {
+     "id": "mapa1",
+     "type": "MAPA",
+     "title": "El camino de regreso",
+     "description": "Mapa sencillo de Lía.",
+     "section": "documentos",
+     "doc": {
+      "kind": "croquis",
+      "header": "Mapa de Lía · de Babilonia a Jerusalén",
+      "rooms": [
+       [
+        "JERUSALÉN",
+        30,
+        120,
+        100,
+        40
+       ],
+       [
+        "DESIERTO",
+        150,
+        110,
+        110,
+        60
+       ],
+       [
+        "BABILONIA",
+        280,
+        170,
+        100,
+        40
+       ]
+      ],
+      "marks": [
+       [
+        "1",
+        330,
+        160,
+        "Babilonia: aquí se halló el cilindro"
+       ],
+       [
+        "2",
+        80,
+        110,
+        "Jerusalén: adonde volvieron los judíos"
+       ]
+      ]
+     }
+    },
+    {
+     "id": "lugar2",
+     "type": "LUGAR",
+     "title": "El museo de Londres",
+     "description": "Sala del Museo Británico donde hoy está el cilindro.",
+     "imagePrompt": "Grand museum gallery with tall ceilings and glass display cases holding ancient clay objects, soft lighting, a few visitors seen from behind looking at one case"
+    }
+   ],
+   "answer": "objeto4",
+   "wrongAccusation": "Lee otra vez el cuaderno de Elena y la carta de Lía: ¿qué forma tenía el cilindro? ¿Estaba de pie o acostado? ¿Tenía escritura?",
+   "reward": {
+    "title": "El cilindro de Ciro",
+    "collection": "HALLAZGO 10",
+    "copy": "En 1879, Hormuzd Rassam encontró en Babilonia un cilindro de barro escrito por orden de Ciro, rey de Persia, después de tomar la ciudad en el año 539 antes de Cristo. El texto cuenta que Ciro dejó que pueblos llevados lejos volvieran a sus tierras. No nombra a los judíos, pero muestra la misma forma de actuar que describe Esdras 1: Ciro permitió a los judíos volver a Jerusalén para reconstruir el templo. Hoy el cilindro está en el Museo Británico, en Londres.",
+    "assets": [
+     "recompensa1",
+     "recompensa2",
+     "recompensa3",
+     "recompensa4"
+    ],
+    "imagePrompts": [
+     "Barrel-shaped cracked clay cylinder covered in tiny wedge-shaped marks, displayed in a glass case in a quiet museum, soft spotlight, visitors seen from behind",
+     "Ancient caravan of families with donkeys and carts loaded with bundles crossing a desert road at sunrise, people in simple ancient robes seen from behind and from a distance",
+     "Close-up of rows of tiny wedge-shaped marks pressed into baked clay, raking light",
+     "Ancient Jerusalem hill with workers in simple robes seen from a distance laying large stone blocks to rebuild walls, morning light"
+    ]
+   }
+  },
+  {
+   "code": "BA-11",
+   "title": "El prisma de seis caras",
+   "summary": "Un rey de Asiria escribió su versión de la historia del rey Ezequías.",
+   "brief": "En un museo, tres objetos de barro de Asiria perdieron sus etiquetas. Uno de ellos es el prisma del rey Senaquerib, que habla de Ezequías, rey de Judá. Lee las pistas y encuéntralo.",
+   "objective": "¿Cuál de los tres objetos de barro es el prisma de Senaquerib?",
+   "meta": [
+    [
+     "Lugar",
+     "Nínive, junto a Mosul (Irak)"
+    ],
+    [
+     "Año",
+     "1830"
+    ],
+    [
+     "Libro de la Biblia",
+     "2 Reyes 18 y 19"
+    ]
+   ],
+   "cover": "lugar1",
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "LUGAR",
+     "title": "Las colinas de Nínive",
+     "description": "Lomas de tierra junto al río Tigris. Debajo estaban los palacios de los reyes de Asiria.",
+     "imagePrompt": "Wide view of low grassy earth mounds of an ancient buried city beside a broad river, Mesopotamian plain at golden afternoon light, a few scattered mudbrick fragments on the ground, horizontal landscape"
+    },
+    {
+     "id": "lugar2",
+     "type": "LUGAR",
+     "title": "La sala del museo",
+     "description": "Tres vitrinas sin etiqueta. Cada una guarda un objeto de barro con escritura en forma de cuña.",
+     "imagePrompt": "Quiet museum gallery with three empty-labelled glass display cases on wooden pedestals, warm spotlights, stone floor, soft shadows, no visible text, horizontal view"
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJETO",
+     "title": "Objeto A: el barril",
+     "description": "Redondo como un barril acostado. No tiene caras planas. Mide unos 20 cm.",
+     "imagePrompt": "Ancient baked clay cylinder shaped like a small barrel lying on its side, rounded surface with no flat faces, covered in tiny wedge-shaped cuneiform marks, light tan clay, plain dark background, square close-up"
+    },
+    {
+     "id": "objeto2",
+     "type": "OBJETO",
+     "title": "Objeto B: la tablilla",
+     "description": "Plana y pequeña: cabe en la palma de la mano. Solo tiene dos lados, el de adelante y el de atrás.",
+     "imagePrompt": "Small flat rectangular clay tablet lying flat, fits in a palm, rounded edges, rows of tiny wedge-shaped cuneiform impressions, brown clay, plain dark background, square close-up"
+    },
+    {
+     "id": "objeto3",
+     "type": "OBJETO",
+     "title": "Objeto C: la columna",
+     "description": "Está de pie. Tiene seis caras planas, todas llenas de escritura en forma de cuña. Mide 38 cm de alto.",
+     "imagePrompt": "Tall six-sided baked clay prism standing upright, hexagonal column with flat faces, every face densely covered in small wedge-shaped cuneiform signs in neat rows, reddish-tan clay, plain dark background, square close-up"
+    },
+    {
+     "id": "persona1",
+     "type": "PERSONA",
+     "title": "Un escriba de Asiria",
+     "description": "Los escribas marcaban el barro blando con una caña en punta. Luego lo cocían para que durara.",
+     "imagePrompt": "Ancient Assyrian scribe seen from the side, curled dark beard, long fringed robe, seated, pressing a reed stylus into soft clay, hands busy, looking down at his work, warm lamplight, vertical portrait"
+    },
+    {
+     "id": "galeria1",
+     "type": "FOTOGRAFÍA",
+     "title": "El campamento de 1830",
+     "description": "Viajeros europeos acampaban junto a las ruinas para buscar objetos antiguos.",
+     "imagePrompt": "Nineteenth-century travelers' camp of canvas tents near large earth mounds by a river, horses tethered, men in period clothing seen from behind examining finds on a crate, early morning light, horizontal scene"
+    },
+    {
+     "id": "nota1",
+     "type": "CUADERNO",
+     "title": "Cuaderno de la profesora",
+     "description": "Lo que sabemos del prisma.",
+     "section": "documentos",
+     "doc": {
+      "kind": "nota",
+      "header": "Cuaderno de campo · Elena Márquez",
+      "body": "El prisma de Senaquerib no es redondo ni plano. Está de pie como una columna y tiene seis caras planas. Cada cara está cubierta de escritura en forma de cuña.",
+      "footer": "Revisar las tres vitrinas."
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "FICHA",
+     "title": "Ficha del museo",
+     "description": "La etiqueta que se cayó de una vitrina.",
+     "section": "documentos",
+     "doc": {
+      "kind": "documento",
+      "header": "Museo · Ficha de objeto",
+      "fields": [
+       [
+        "Objeto",
+        "Prisma del rey Senaquerib"
+       ],
+       [
+        "Material",
+        "Barro cocido"
+       ],
+       [
+        "Forma",
+        "Columna de seis caras"
+       ],
+       [
+        "Alto",
+        "38 cm"
+       ]
+      ],
+      "body": "Cuenta las guerras del rey de Asiria. Habla de Ezequías, rey de Judá.",
+      "stamp": "Asiria"
+     }
+    },
+    {
+     "id": "carta1",
+     "type": "CARTA",
+     "title": "Carta de Tomás",
+     "description": "Tomás midió los objetos.",
+     "section": "documentos",
+     "doc": {
+      "kind": "carta",
+      "body": "Profesora: medí los tres objetos. El barril mide unos 20 cm y está acostado. La tablilla es tan chica que cabe en mi mano. Solo uno está de pie y es más alto que mi regla de 30 cm.",
+      "footer": "Tomás",
+      "stamp": "Sala 3"
+     }
+    },
+    {
+     "id": "noticia1",
+     "type": "NOTICIA",
+     "title": "Noticia antigua",
+     "description": "Lo que dice el texto del prisma.",
+     "section": "documentos",
+     "doc": {
+      "kind": "periodico",
+      "header": "Diario de las Excavaciones",
+      "date": "Edición especial",
+      "section": "Historia",
+      "headline": "Un rey de Asiria habla de Ezequías",
+      "body": "El texto cuenta que Senaquerib tomó muchas ciudades de Judá y encerró al rey Ezequías en Jerusalén. Pero no dice que haya tomado Jerusalén."
+     }
+    }
+   ],
+   "answer": "objeto3",
+   "wrongAccusation": "Ese no es. Cuenta las caras planas de cada objeto y compáralas con el cuaderno de la profesora.",
+   "reward": {
+    "title": "El prisma de Senaquerib",
+    "collection": "HALLAZGO 11",
+    "copy": "Senaquerib, rey de Asiria, mandó escribir sus guerras en prismas de barro. En 1830, el coronel británico Robert Taylor consiguió uno en las ruinas de Nínive, junto a la actual Mosul, en Irak. El texto cuenta que en el año 701 antes de Cristo el rey tomó 46 ciudades de Judá y encerró a Ezequías en Jerusalén «como a un pájaro en una jaula». Pero no dice que entrara en Jerusalén. En 2 Reyes 18 y 19 se cuenta que Ezequías oró a Dios y que Senaquerib volvió a su tierra sin tomar la ciudad. Hoy este prisma está en el Museo Británico de Londres.",
+    "assets": [
+     "recompensa1",
+     "recompensa2",
+     "recompensa3",
+     "recompensa4"
+    ],
+    "imagePrompts": [
+     "Close-up of a tall six-sided reddish clay prism covered in dense wedge-shaped cuneiform signs, standing in a softly lit museum case, square view",
+     "Ancient walled hilltop city of Jerusalem in the Iron Age seen from a distance, stone walls and flat-roofed houses, quiet evening light, no people",
+     "Small bird sitting inside a simple woven reed cage on a stone ledge, warm light, gentle and calm mood",
+     "Assyrian army tents and chariots camped on a dusty plain far from a walled city on a hill, seen from far away, no fighting, dawn light"
+    ]
+   }
+  },
+  {
+   "code": "BA-12",
+   "title": "La piedra negra de Nimrud",
+   "summary": "En una piedra negra de Asiria aparece un rey de Israel.",
+   "brief": "El obelisco negro del rey Salmanasar III tiene muchos cuadros tallados. En uno de ellos aparece Jehú, rey de Israel, o un enviado suyo. Tomás y Lía tomaron fotos de cuatro cuadros, pero las mezclaron.",
+   "objective": "¿Cuál de los cuatro cuadros tallados muestra a Jehú, rey de Israel?",
+   "meta": [
+    [
+     "Lugar",
+     "Nimrud (Irak)"
+    ],
+    [
+     "Año",
+     "1846"
+    ],
+    [
+     "Libro de la Biblia",
+     "2 Reyes 9 y 10"
+    ]
+   ],
+   "cover": "lugar1",
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "LUGAR",
+     "title": "La colina de Nimrud",
+     "description": "Una gran loma junto al río Tigris. Allí estuvo Kalhu, una ciudad de los reyes de Asiria.",
+     "imagePrompt": "Large flat-topped earth mound of an ancient city beside the Tigris river, dry Mesopotamian plain, scattered mudbrick and stone fragments, warm afternoon light, horizontal landscape"
+    },
+    {
+     "id": "galeria1",
+     "type": "FOTOGRAFÍA",
+     "title": "El obelisco completo",
+     "description": "Piedra negra de casi dos metros, con cuatro lados y la punta en escalones. Tiene filas de cuadros tallados.",
+     "imagePrompt": "Tall black limestone obelisk about two meters high with four sides and a stepped top, rows of small carved relief panels on each side with bands of carved ancient cuneiform between them, standing in a softly lit museum hall, horizontal view"
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJETO",
+     "title": "Cuadro 1: los camellos",
+     "description": "Hombres traen camellos de dos jorobas al rey.",
+     "imagePrompt": "Carved relief panel in black stone showing two-humped camels led by walking men in tunics, ancient Assyrian carving style, shallow carving, square close-up, no legible text"
+    },
+    {
+     "id": "objeto2",
+     "type": "OBJETO",
+     "title": "Cuadro 2: el león",
+     "description": "Un león salta sobre un ciervo entre árboles. No hay ningún rey.",
+     "imagePrompt": "Carved relief panel in black stone showing a lion leaping onto a deer among stylized trees, no people, ancient Assyrian carving style, square close-up, no legible text"
+    },
+    {
+     "id": "objeto3",
+     "type": "OBJETO",
+     "title": "Cuadro 3: el hombre de rodillas",
+     "description": "Un hombre está de rodillas con la frente en el suelo, frente al rey. Detrás del rey, un sirviente sostiene una sombrilla.",
+     "imagePrompt": "Carved relief panel in black stone showing a bearded king standing and holding a bowl, a servant behind him holding a parasol, and in front of the king a man kneeling with his forehead touching the ground, ancient Assyrian carving style, square close-up, no legible text"
+    },
+    {
+     "id": "objeto4",
+     "type": "OBJETO",
+     "title": "Cuadro 4: el elefante",
+     "description": "Un elefante y unos monos caminan en fila.",
+     "imagePrompt": "Carved relief panel in black stone showing an elephant and several small monkeys walking in a line, ancient Assyrian carving style, square close-up, no legible text"
+    },
+    {
+     "id": "persona1",
+     "type": "PERSONA",
+     "title": "Un excavador de 1846",
+     "description": "Los trabajadores cavaban zanjas largas para encontrar los palacios enterrados.",
+     "imagePrompt": "Nineteenth-century excavation worker seen from behind in a long tunic and head cloth, digging with a pick in a deep trench of packed earth, wicker basket nearby, dusty sunlight, vertical portrait"
+    },
+    {
+     "id": "nota1",
+     "type": "CUADERNO",
+     "title": "Cuaderno de la profesora",
+     "description": "Cómo reconocer el cuadro de Jehú.",
+     "section": "documentos",
+     "doc": {
+      "kind": "nota",
+      "header": "Cuaderno de campo · Elena Márquez",
+      "body": "En el cuadro de Jehú, un hombre se inclina hasta tocar el suelo con la frente, delante del rey Salmanasar. Así se mostraba respeto a un rey. Detrás del rey hay un sirviente con sombrilla.",
+      "footer": "Buscar al hombre de rodillas."
+     }
+    },
+    {
+     "id": "carta1",
+     "type": "CARTA",
+     "title": "Carta de Lía",
+     "description": "Lía describe lo que vio.",
+     "section": "documentos",
+     "doc": {
+      "kind": "carta",
+      "body": "Profesora: en la piedra vi animales: camellos, un león y un elefante con monos. En esos cuadros nadie está de rodillas. ¡Pero en uno sí! Un hombre tiene la frente pegada al suelo frente al rey.",
+      "footer": "Lía",
+      "stamp": "Museo"
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "FICHA",
+     "title": "Ficha del museo",
+     "description": "Datos del obelisco.",
+     "section": "documentos",
+     "doc": {
+      "kind": "documento",
+      "header": "Museo · Ficha de objeto",
+      "fields": [
+       [
+        "Objeto",
+        "Obelisco negro de Salmanasar III"
+       ],
+       [
+        "Material",
+        "Piedra caliza negra"
+       ],
+       [
+        "Alto",
+        "Casi 2 metros"
+       ],
+       [
+        "Hallado",
+        "Nimrud, 1846"
+       ]
+      ],
+      "body": "Muestra a pueblos que traen regalos al rey. El texto junto al hombre arrodillado nombra a Jehú.",
+      "stamp": "Asiria"
+     }
+    },
+    {
+     "id": "noticia1",
+     "type": "NOTICIA",
+     "title": "Noticia de 1846",
+     "description": "El descubrimiento de Layard.",
+     "section": "documentos",
+     "doc": {
+      "kind": "periodico",
+      "header": "Diario de las Excavaciones",
+      "date": "1846",
+      "section": "Hallazgos",
+      "headline": "Una piedra negra sale de la tierra en Nimrud",
+      "body": "El explorador Austen Henry Layard encontró un obelisco negro lleno de cuadros tallados. Más tarde se supo que uno de ellos menciona a Jehú, rey de Israel."
+     }
+    }
+   ],
+   "answer": "objeto3",
+   "wrongAccusation": "Ese cuadro no es. Lee otra vez el cuaderno de la profesora: ¿qué hace el hombre delante del rey?",
+   "reward": {
+    "title": "El obelisco negro",
+    "collection": "HALLAZGO 12",
+    "copy": "En 1846, el explorador Austen Henry Layard encontró en Nimrud, Irak, una piedra negra de casi dos metros. Es el obelisco del rey Salmanasar III de Asiria. Sus cuadros tallados muestran pueblos que le traen regalos. En uno, un hombre se inclina hasta el suelo, y el texto nombra a Jehú. Puede ser el mismo Jehú o un enviado suyo. Es una de las imágenes más antiguas que se conocen de un israelita. La historia de Jehú se cuenta en 2 Reyes 9 y 10. Hoy el obelisco está en el Museo Británico de Londres.",
+    "assets": [
+     "recompensa1",
+     "recompensa2",
+     "recompensa3",
+     "recompensa4"
+    ],
+    "imagePrompts": [
+     "Tall black stone obelisk with a stepped top and rows of carved relief panels, standing in a quiet museum hall under warm spotlights, square view",
+     "Close-up of a carved black stone relief of a man kneeling with his forehead on the ground before a standing king holding a bowl, a servant with a parasol behind the king",
+     "Nineteenth-century excavators seen from behind using ropes and wooden rollers to move a large dark stone monument out of a trench, dusty golden light",
+     "Ancient Israelite chariot with two horses crossing a dry valley in the distance, Iron Age landscape, calm morning light, small figures far away"
+    ]
+   }
+  },
+  {
+   "code": "BA-13",
+   "title": "Mensajes en la puerta",
+   "summary": "Unos soldados de Judá se escribían mensajes mientras llegaba el ejército de Babilonia.",
+   "brief": "En la puerta de la ciudad de Laquis se encontraron cartas de hace unos 2600 años. Pero no estaban escritas en papel. Lía puso tres objetos antiguos sobre la mesa y solo uno es como las cartas de Laquis.",
+   "objective": "¿Cuál de los tres objetos es como las cartas de Laquis?",
+   "meta": [
+    [
+     "Lugar",
+     "Laquis (Israel)"
+    ],
+    [
+     "Año",
+     "1935"
+    ],
+    [
+     "Libro de la Biblia",
+     "Jeremías 34:7"
+    ]
+   ],
+   "cover": "lugar1",
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "LUGAR",
+     "title": "La colina de Laquis",
+     "description": "Una colina alta entre campos verdes. Arriba estuvo una ciudad con murallas de Judá.",
+     "imagePrompt": "Large flat-topped ancient city mound rising above green fields and olive trees in the Judean lowlands, remains of stone walls on the slopes, soft morning light, horizontal landscape"
+    },
+    {
+     "id": "lugar2",
+     "type": "LUGAR",
+     "title": "La puerta de la ciudad",
+     "description": "Restos de la gran puerta con sus cuartos de guardia. Allí aparecieron las cartas, entre cenizas.",
+     "imagePrompt": "Excavated remains of an ancient stone city gate with small side guard rooms, thick walls of large stones, dark ash layer visible in the soil, bright daylight, no people, horizontal view"
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJETO",
+     "title": "Objeto A: tablilla de barro",
+     "description": "Barro plano con marcas apretadas en forma de cuña. No tiene tinta.",
+     "imagePrompt": "Small flat rectangular clay tablet with rows of pressed wedge-shaped cuneiform marks, no ink, light brown clay, plain dark background, square close-up"
+    },
+    {
+     "id": "objeto2",
+     "type": "OBJETO",
+     "title": "Objeto B: pedazo de vasija",
+     "description": "Un trozo curvo de una vasija rota, con letras escritas en tinta negra.",
+     "imagePrompt": "Curved broken piece of an ancient reddish clay jar, irregular edges, a few lines of faded black ink writing in ancient Hebrew style letters, illegible, plain dark background, square close-up"
+    },
+    {
+     "id": "objeto3",
+     "type": "OBJETO",
+     "title": "Objeto C: rollo de papiro",
+     "description": "Hojas de planta enrolladas. Es suave y se dobla.",
+     "imagePrompt": "Rolled ancient papyrus scroll, pale yellow plant fiber sheet partly unrolled, faint illegible ink lines, plain dark background, square close-up"
+    },
+    {
+     "id": "persona1",
+     "type": "PERSONA",
+     "title": "Un soldado de Judá",
+     "description": "Los soldados de los puestos de vigilancia enviaban mensajes a Laquis.",
+     "imagePrompt": "Iron Age Judean soldier seen from behind standing on a hilltop at dusk, simple tunic and head cloth, holding a spear, looking toward distant hills where a small signal fire burns, vertical portrait"
+    },
+    {
+     "id": "galeria1",
+     "type": "FOTOGRAFÍA",
+     "title": "Fuegos en las colinas",
+     "description": "Las ciudades se avisaban con fuegos encendidos en lo alto.",
+     "imagePrompt": "Dusk view over rolling hills of ancient Judah with a small signal fire glowing on a distant hilltop and another hill dark, deep blue sky, horizontal scene, no people visible"
+    },
+    {
+     "id": "nota1",
+     "type": "CUADERNO",
+     "title": "Cuaderno de la profesora",
+     "description": "Cómo eran las cartas de Laquis.",
+     "section": "documentos",
+     "doc": {
+      "kind": "nota",
+      "header": "Cuaderno de campo · Elena Márquez",
+      "body": "Las cartas de Laquis no son de papel ni de papiro. Son pedazos de vasijas rotas. El papiro era caro, pero los trozos de barro sobraban. Escribían encima con tinta negra.",
+      "footer": "Comparar con los tres objetos."
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "FICHA",
+     "title": "Ficha del museo",
+     "description": "Datos de la carta número 4.",
+     "section": "documentos",
+     "doc": {
+      "kind": "documento",
+      "header": "Museo · Ficha de objeto",
+      "fields": [
+       [
+        "Objeto",
+        "Carta de Laquis n.º 4"
+       ],
+       [
+        "Material",
+        "Pedazo de vasija de barro"
+       ],
+       [
+        "Escritura",
+        "Tinta negra, hebreo antiguo"
+       ],
+       [
+        "Hallada",
+        "Puerta de Laquis, 1935"
+       ]
+      ],
+      "body": "El soldado dice que vigila las señales de fuego de Laquis y que ya no ve las de Azeca.",
+      "stamp": "Judá"
+     }
+    },
+    {
+     "id": "carta1",
+     "type": "CARTA",
+     "title": "Carta de Lía",
+     "description": "Lía tocó los tres objetos.",
+     "section": "documentos",
+     "doc": {
+      "kind": "carta",
+      "body": "Profesora: la tablilla tiene marcas hundidas, pero nada de tinta. El rollo es de hojas de planta y se dobla. El pedazo de vasija es duro y curvo, y tiene letras de tinta negra.",
+      "footer": "Lía",
+      "stamp": "Mesa de trabajo"
+     }
+    },
+    {
+     "id": "mapa1",
+     "type": "MAPA",
+     "title": "Ciudades de Judá",
+     "description": "Laquis, Azeca y Jerusalén.",
+     "section": "documentos",
+     "doc": {
+      "kind": "croquis",
+      "header": "Judá, hace unos 2600 años",
+      "rooms": [
+       [
+        "JERUSALÉN",
+        260,
+        60,
+        110,
+        50
+       ],
+       [
+        "AZECA",
+        140,
+        110,
+        90,
+        40
+       ],
+       [
+        "LAQUIS",
+        60,
+        200,
+        100,
+        50
+       ]
+      ],
+      "marks": [
+       [
+        "X",
+        110,
+        225,
+        "Puerta de Laquis: aquí estaban las cartas"
+       ],
+       [
+        "!",
+        185,
+        130,
+        "Azeca: su fuego ya no se veía"
+       ]
+      ]
+     }
+    }
+   ],
+   "answer": "objeto2",
+   "wrongAccusation": "Ese objeto no es. Mira el cuaderno de la profesora: ¿sobre qué escribían los soldados y con qué?",
+   "reward": {
+    "title": "Las cartas de Laquis",
+    "collection": "HALLAZGO 13",
+    "copy": "En 1935, la expedición de James Leslie Starkey encontró en la puerta de Laquis varias cartas escritas con tinta sobre pedazos de vasijas. Son de hace unos 2600 años, cuando el ejército de Babilonia atacaba Judá. En una, un soldado dice que vigila las señales de fuego de Laquis y que ya no ve las de Azeca. En Jeremías 34:7 se cuenta que en ese tiempo solo quedaban en pie tres ciudades con murallas: Jerusalén, Laquis y Azeca. Hoy las cartas se guardan en el Museo Británico de Londres y en el Museo de Israel, en Jerusalén.",
+    "assets": [
+     "recompensa1",
+     "recompensa2",
+     "recompensa3",
+     "recompensa4"
+    ],
+    "imagePrompts": [
+     "Several broken reddish pottery pieces with faded black ink writing arranged on dark cloth in a museum case, soft light, illegible ancient letters, square view",
+     "Hand of an ancient scribe writing with a reed pen and black ink on a curved pottery piece, seen from above, warm lamplight",
+     "Ancient walled hill city of Lachish at dusk with a small fire burning on its tower, rolling hills around, seen from far away",
+     "1930s archaeologists seen from behind brushing soil in an excavated stone gateway, wooden sieves and baskets, bright sunlight"
+    ]
+   }
+  },
+  {
+   "code": "BA-14",
+   "title": "La bendición enrollada",
+   "summary": "Dos objetos diminutos guardaban el texto bíblico más antiguo que se conoce.",
+   "brief": "En una cueva de Jerusalén se encontraron joyas, vasijas y otros objetos pequeños. Entre ellos había algo que guardaba una bendición de la Biblia. Tomás dejó tres objetos en la mesa: solo uno es el que buscas.",
+   "objective": "¿En cuál de los tres objetos estaba escrita la bendición?",
+   "meta": [
+    [
+     "Lugar",
+     "Ketef Hinom, Jerusalén"
+    ],
+    [
+     "Año",
+     "1979"
+    ],
+    [
+     "Libro de la Biblia",
+     "Números 6:24-26"
+    ]
+   ],
+   "cover": "lugar1",
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "LUGAR",
+     "title": "La ladera de Ketef Hinom",
+     "description": "Una ladera de roca junto al valle de Hinom, al lado de la ciudad vieja de Jerusalén.",
+     "imagePrompt": "Rocky limestone hillside with dark openings of ancient rock-cut tombs above a dry valley, old city walls of Jerusalem in the distance, olive trees, soft afternoon light, horizontal landscape"
+    },
+    {
+     "id": "lugar2",
+     "type": "LUGAR",
+     "title": "Dentro de la cueva",
+     "description": "Una cueva tallada en la roca, con bancos de piedra. Debajo de un banco había un hueco lleno de objetos.",
+     "imagePrompt": "Interior of an ancient rock-cut burial cave with carved stone benches along the walls, a small dark pit under one bench, lantern light, no people, horizontal view"
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJETO",
+     "title": "Objeto A: el brazalete",
+     "description": "Un aro abierto de bronce, de color verdoso. Se ponía en la muñeca.",
+     "imagePrompt": "Ancient open bronze bracelet with green patina, simple round band with a small gap, lying on dark cloth, square close-up"
+    },
+    {
+     "id": "objeto2",
+     "type": "OBJETO",
+     "title": "Objeto B: el tubito",
+     "description": "Un tubito de plata, gris y brillante, enrollado muy apretado. Es más pequeño que tu dedo meñique.",
+     "imagePrompt": "Tiny tightly rolled silver sheet forming a small tube smaller than a little finger, grey shiny metal with dark tarnish, lying on dark cloth beside a fingertip for scale, square close-up"
+    },
+    {
+     "id": "objeto3",
+     "type": "OBJETO",
+     "title": "Objeto C: la lámpara",
+     "description": "Una lámpara de barro rojizo para poner aceite. Tiene un borde doblado para la mecha.",
+     "imagePrompt": "Ancient reddish clay oil lamp shaped like a shallow saucer with one pinched spout for the wick, plain surface, lying on dark cloth, square close-up"
+    },
+    {
+     "id": "persona1",
+     "type": "PERSONA",
+     "title": "Un joven voluntario",
+     "description": "En 1979 ayudaban niños y jóvenes. Uno de ellos, de 13 años, encontró el hueco con los objetos.",
+     "imagePrompt": "Thirteen-year-old boy volunteer seen from behind in a late 1970s t-shirt, kneeling in a rock-cut cave and brushing dust from the floor with a small brush, flashlight beam, vertical portrait"
+    },
+    {
+     "id": "galeria1",
+     "type": "FOTOGRAFÍA",
+     "title": "En el laboratorio",
+     "description": "Desenrollar los tubitos sin romperlos tomó unos tres años.",
+     "imagePrompt": "Museum conservation laboratory around 1980, a conservator seen from behind working under a magnifying lamp with fine tweezers on a tiny thin metal sheet, glass dishes and tools on the table, horizontal scene"
+    },
+    {
+     "id": "nota1",
+     "type": "CUADERNO",
+     "title": "Cuaderno de la profesora",
+     "description": "Lo que guardaba la bendición.",
+     "section": "documentos",
+     "doc": {
+      "kind": "nota",
+      "header": "Cuaderno de campo · Elena Márquez",
+      "body": "La bendición no estaba en barro ni en bronce. Estaba grabada en una hojita de plata, enrollada como un tubito más pequeño que un dedo. Era un amuleto muy pequeño.",
+      "footer": "Buscar el metal gris y brillante."
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "FICHA",
+     "title": "Ficha del museo",
+     "description": "Datos de los rollitos.",
+     "section": "documentos",
+     "doc": {
+      "kind": "documento",
+      "header": "Museo · Ficha de objeto",
+      "fields": [
+       [
+        "Objeto",
+        "Rollitos de Ketef Hinom"
+       ],
+       [
+        "Material",
+        "Plata"
+       ],
+       [
+        "Forma",
+        "Hojita enrollada como tubo"
+       ],
+       [
+        "Edad",
+        "Unos 2600 años"
+       ]
+      ],
+      "body": "Tienen letras muy finas grabadas. Dicen una bendición parecida a la de Números 6.",
+      "stamp": "Jerusalén"
+     }
+    },
+    {
+     "id": "carta1",
+     "type": "CARTA",
+     "title": "Carta de Tomás",
+     "description": "Tomás revisó los tres objetos.",
+     "section": "documentos",
+     "doc": {
+      "kind": "carta",
+      "body": "Profesora: el brazalete es de bronce y está verde. La lámpara es de barro. Solo hay uno de plata: es un tubito enrollado, tan chico que casi se me pierde.",
+      "footer": "Tomás",
+      "stamp": "Laboratorio"
+     }
+    },
+    {
+     "id": "noticia1",
+     "type": "NOTICIA",
+     "title": "La noticia",
+     "description": "Lo que decían los rollitos.",
+     "section": "documentos",
+     "doc": {
+      "kind": "periodico",
+      "header": "Diario de las Excavaciones",
+      "date": "Años 80",
+      "section": "Hallazgos",
+      "headline": "Leen la bendición más antigua",
+      "body": "Al fin se pudo leer lo escrito en los rollitos. Piden que el Señor bendiga, cuide y dé paz. Son unos 400 años más antiguos que los rollos del mar Muerto."
+     }
+    }
+   ],
+   "answer": "objeto2",
+   "wrongAccusation": "Ese no es. Fíjate de qué material es cada objeto y vuelve a leer el cuaderno de la profesora.",
+   "reward": {
+    "title": "Los rollitos de plata",
+    "collection": "HALLAZGO 14",
+    "copy": "En 1979, el arqueólogo Gabriel Barkay excavaba unas cuevas en Ketef Hinom, junto a Jerusalén. Un voluntario de 13 años encontró un hueco lleno de objetos, y entre ellos había dos rollitos de plata. Abrirlos sin romperlos tomó unos tres años. Tienen grabada una bendición muy parecida a la de Números 6:24-26, donde se pide que el Señor bendiga, cuide y dé paz a su pueblo. Tienen unos 2600 años: es el texto de la Biblia más antiguo que se conoce. Hoy están en el Museo de Israel, en Jerusalén.",
+    "assets": [
+     "recompensa1",
+     "recompensa2",
+     "recompensa3",
+     "recompensa4"
+    ],
+    "imagePrompts": [
+     "Two tiny rolled silver tubes and one partly unrolled thin silver strip with faint scratched ancient letters, illegible, on dark velvet in a museum case, square view",
+     "Ancient tiny rolled silver amulet resting on a carved stone burial bench inside a cave, warm lantern light, close-up",
+     "Hinnom Valley below Jerusalem at sunset with rocky slopes and old stone walls above, peaceful view",
+     "Hands of a conservator using fine tweezers to open a very thin silver sheet under a magnifying lamp, close-up"
+    ]
+   }
+  },
+  {
+   "code": "BA-15",
+   "title": "El nombre escondido en Ur",
+   "summary": "Unos cilindros de barro nombraron al rey Belsasar del libro de Daniel.",
+   "brief": "En 1854 aparecieron en la antigua ciudad de Ur unos cilindros de barro del rey Nabonido. En ellos se nombra a su hijo Belsasar, el rey del banquete en Daniel 5. Pero ¿en qué edificio estaban escondidos?",
+   "objective": "¿En cuál de los tres edificios de Ur estaban escondidos los cilindros?",
+   "meta": [
+    [
+     "Lugar",
+     "Ur (Irak)"
+    ],
+    [
+     "Año",
+     "1854"
+    ],
+    [
+     "Libro de la Biblia",
+     "Daniel 5"
+    ]
+   ],
+   "cover": "lugar1",
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "LUGAR",
+     "title": "Las ruinas de Ur",
+     "description": "Una llanura seca en el sur de Irak. Allí estuvo Ur, una ciudad muy antigua.",
+     "imagePrompt": "Wide view of a dry flat desert plain in southern Mesopotamia with low eroded mudbrick ruins of an ancient city, pale sky, soft morning haze, horizontal landscape"
+    },
+    {
+     "id": "lugar2",
+     "type": "LUGAR",
+     "title": "Edificio A: la casa con patio",
+     "description": "Una casa baja de un solo piso, con un patio en el centro.",
+     "imagePrompt": "Ancient Mesopotamian one-story mudbrick house with flat roof built around a small open central courtyard, low walls, warm sunlight, no people, horizontal view"
+    },
+    {
+     "id": "lugar3",
+     "type": "LUGAR",
+     "title": "Edificio B: la torre escalonada",
+     "description": "Una torre enorme de ladrillos, con pisos en escalones y cuatro esquinas. Es el zigurat, lo más alto de Ur.",
+     "imagePrompt": "Massive ancient Mesopotamian ziggurat, a stepped temple tower of mudbricks with several stacked levels, four sharp corners and long front stairways, desert around it, golden light, horizontal view"
+    },
+    {
+     "id": "lugar4",
+     "type": "LUGAR",
+     "title": "Edificio C: la tumba bajo tierra",
+     "description": "Un pozo hondo excavado en el suelo, con una cámara abajo. No sobresale de la tierra.",
+     "imagePrompt": "Deep rectangular excavated pit in desert ground with a small stone burial chamber at the bottom, earthen ramp leading down, flat ground around it, bright daylight, no people, horizontal view"
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJETO",
+     "title": "Un cilindro de Nabonido",
+     "description": "Barro cocido en forma de barril pequeño, cubierto de escritura en forma de cuña.",
+     "imagePrompt": "Small barrel-shaped baked clay cylinder lying on its side, covered in dense rows of tiny wedge-shaped cuneiform signs, light tan clay, plain dark background, square close-up"
+    },
+    {
+     "id": "galeria1",
+     "type": "FOTOGRAFÍA",
+     "title": "Excavando en 1854",
+     "description": "Los obreros quitaron ladrillos de las esquinas del edificio más alto.",
+     "imagePrompt": "Mid-nineteenth-century workers seen from behind removing old mudbricks from the high corner of a huge stepped brick tower, wooden ladder and baskets, dusty sunlight, horizontal scene"
+    },
+    {
+     "id": "galeria2",
+     "type": "FOTOGRAFÍA",
+     "title": "El banquete de Belsasar",
+     "description": "En Daniel 5, el rey Belsasar da una gran fiesta en Babilonia.",
+     "imagePrompt": "Grand ancient Babylonian banquet hall at night with long tables, oil lamps and tall plastered walls, guests seen from behind and at a distance, warm golden glow, horizontal scene, no legible writing"
+    },
+    {
+     "id": "nota1",
+     "type": "CUADERNO",
+     "title": "Cuaderno de la profesora",
+     "description": "Dónde se guardaban estos cilindros.",
+     "section": "documentos",
+     "doc": {
+      "kind": "nota",
+      "header": "Cuaderno de campo · Elena Márquez",
+      "body": "Nabonido arregló la torre escalonada de Ur, el zigurat. Escondió los cilindros en sus cuatro esquinas, metidos entre los ladrillos. No estaban en casas ni en tumbas.",
+      "footer": "Buscar el edificio con escalones."
+     }
+    },
+    {
+     "id": "carta1",
+     "type": "CARTA",
+     "title": "Carta de Lía",
+     "description": "Lía subió a ver los edificios.",
+     "section": "documentos",
+     "doc": {
+      "kind": "carta",
+      "body": "Profesora: la casa con patio es bajita, de un piso. La tumba está bajo tierra. Solo un edificio tiene escalones y es altísimo. ¡Desde arriba se ve toda la llanura!",
+      "footer": "Lía",
+      "stamp": "Ur"
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "FICHA",
+     "title": "Ficha del museo",
+     "description": "Datos de un cilindro.",
+     "section": "documentos",
+     "doc": {
+      "kind": "documento",
+      "header": "Museo · Ficha de objeto",
+      "fields": [
+       [
+        "Objeto",
+        "Cilindro de Nabonido"
+       ],
+       [
+        "Material",
+        "Barro cocido"
+       ],
+       [
+        "Hallado",
+        "Esquinas del zigurat de Ur, 1854"
+       ],
+       [
+        "Nombra a",
+        "Belsasar, hijo mayor del rey"
+       ]
+      ],
+      "body": "Nabonido pide a su dios larga vida para él y para su hijo mayor, Belsasar.",
+      "stamp": "Babilonia"
+     }
+    },
+    {
+     "id": "mapa1",
+     "type": "MAPA",
+     "title": "Plano de Ur",
+     "description": "Los tres edificios.",
+     "section": "documentos",
+     "doc": {
+      "kind": "croquis",
+      "header": "Ur · plano sencillo",
+      "rooms": [
+       [
+        "CASAS",
+        40,
+        190,
+        120,
+        80
+       ],
+       [
+        "TORRE ESCALONADA",
+        170,
+        50,
+        130,
+        110
+       ],
+       [
+        "TUMBAS",
+        260,
+        200,
+        110,
+        70
+       ]
+      ],
+      "marks": [
+       [
+        "X",
+        175,
+        55,
+        "Esquina con cilindro"
+       ],
+       [
+        "X",
+        295,
+        55,
+        "Esquina con cilindro"
+       ],
+       [
+        "X",
+        175,
+        155,
+        "Esquina con cilindro"
+       ],
+       [
+        "X",
+        295,
+        155,
+        "Esquina con cilindro"
+       ]
+      ]
+     }
+    }
+   ],
+   "answer": "lugar3",
+   "wrongAccusation": "Ese edificio no es. Mira el plano y el cuaderno: ¿dónde estaban las cuatro esquinas con los cilindros?",
+   "reward": {
+    "title": "Los cilindros de Nabonido",
+    "collection": "HALLAZGO 15",
+    "copy": "En 1854, Taylor, un representante británico en Basora, excavó el zigurat de Ur, en el sur de Irak. En las esquinas de la torre encontró cilindros de barro del rey Nabonido de Babilonia. En ellos el rey pide larga vida para él y para su hijo mayor, Belsasar. Por mucho tiempo, el nombre de Belsasar solo se conocía por la Biblia. En Daniel 5 se cuenta su gran banquete y la mano que escribió en la pared. Hoy uno de estos cilindros está en el Museo Británico de Londres.",
+    "assets": [
+     "recompensa1",
+     "recompensa2",
+     "recompensa3",
+     "recompensa4"
+    ],
+    "imagePrompts": [
+     "Small barrel-shaped clay cylinder covered in wedge-shaped cuneiform signs resting in a softly lit museum case, square view",
+     "Restored ancient ziggurat of Ur at sunset, stepped mudbrick tower with long stairways, desert plain around it",
+     "Mysterious glowing light on a tall plastered palace wall in an ancient Babylonian hall at night, oil lamps flickering, no legible writing",
+     "Mid-nineteenth-century explorer's camp at the foot of a huge ruined brick tower in the desert, tents and crates, evening light"
+    ]
+   }
+  },
+  {
+   "code": "BA-16",
+   "title": "El sello del rey Ezequías",
+   "summary": "Una bolita de barro del tamaño de una uña guardaba el nombre de un rey.",
+   "brief": "En una excavación junto a los muros de Jerusalén, los voluntarios lavan y cuelan la tierra de un antiguo basurero. Entre piedritas y cerámica rota aparecieron varias piezas con dibujos. Una de ellas lleva la marca del sello del rey Ezequías.",
+   "objective": "¿Cuál de las piezas es la marca del sello del rey Ezequías?",
+   "meta": [
+    [
+     "Lugar",
+     "El Ofel, Jerusalén"
+    ],
+    [
+     "Año",
+     "2015"
+    ],
+    [
+     "Libro de la Biblia",
+     "2 Reyes 18"
+    ]
+   ],
+   "cover": "lugar1",
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "LUGAR",
+     "title": "El Ofel",
+     "description": "Zona de excavación al pie de las murallas del sur de Jerusalén.",
+     "imagePrompt": "Wide view of an archaeological excavation at the foot of tall ancient pale limestone city walls, layers of old stone foundations, dusty paths, wooden planks, buckets and sieves, warm morning sunlight, clear blue sky"
+    },
+    {
+     "id": "persona1",
+     "type": "PERSONA",
+     "title": "Voluntaria en el cedazo",
+     "description": "Lava la tierra con agua sobre una malla fina para no perder nada pequeño.",
+     "imagePrompt": "A young woman volunteer seen from the side, wearing a sun hat and work gloves, spraying water with a hose over a wooden-framed mesh sieve full of wet soil and small pebbles, focused on her hands, outdoor dig site, soft daylight"
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJETO",
+     "title": "Pieza con león",
+     "description": "Bolita de barro pequeña. Tiene un león caminando.",
+     "imagePrompt": "Close-up of a tiny round lump of dark brown fired clay, the size of a fingernail, stamped with a small walking lion figure in relief, resting on a white tray next to a centimeter scale bar without numbers, even studio light"
+    },
+    {
+     "id": "objeto2",
+     "type": "OBJETO",
+     "title": "Asa de jarra con sol alado",
+     "description": "Asa grande de una jarra de barro rojizo. Tiene un sol con alas.",
+     "imagePrompt": "Close-up of a large broken reddish clay jar handle, thick and curved, as big as a hand, with a stamped winged sun disk symbol in an oval, resting on a white tray, even studio light"
+    },
+    {
+     "id": "objeto3",
+     "type": "OBJETO",
+     "title": "Pieza con sol alado",
+     "description": "Bolita de barro pequeña y oscura. Tiene un sol con dos alas.",
+     "imagePrompt": "Close-up of a tiny oval lump of dark brown clay, the size of a fingernail, stamped with a small sun disk with two spread wings in relief, framed by tiny carved ancient letters above and below, resting on a white tray next to a centimeter scale bar without numbers, even studio light"
+    },
+    {
+     "id": "galeria1",
+     "type": "FOTOGRAFÍA",
+     "title": "Lo que quedó en la malla",
+     "description": "Piedritas, cerámica rota y huesitos que salieron del basurero antiguo.",
+     "imagePrompt": "Top-down view of a wet wire mesh sieve holding small pebbles, broken pottery pieces and tiny bones, droplets of water shining, a gloved hand picking up a small clay piece with tweezers, daylight"
+    },
+    {
+     "id": "galeria2",
+     "type": "FOTOGRAFÍA",
+     "title": "En el laboratorio",
+     "description": "Una arqueóloga mira las piezas pequeñas con una lupa grande.",
+     "imagePrompt": "An archaeologist seen from behind and slightly to the side, looking through a large desk magnifying lamp at tiny clay pieces on a white tray, small brushes and labeled plastic bags without legible text on the table, calm laboratory light"
+    },
+    {
+     "id": "nota1",
+     "type": "CUADERNO",
+     "title": "Cuaderno de Lía",
+     "description": "Lo que la profesora Elena le explicó a Lía.",
+     "section": "documentos",
+     "doc": {
+      "kind": "nota",
+      "header": "Cuaderno de Lía",
+      "body": "La profesora Elena dice que la marca del rey no está en una jarra. Es una bolita de barro suelta, tan pequeña como mi uña. Y el dibujo es un sol con dos alas, no un animal.",
+      "footer": "Lía, 9 años"
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "FICHA",
+     "title": "Ficha de laboratorio",
+     "description": "Datos de la pieza que lleva el nombre del rey.",
+     "section": "documentos",
+     "doc": {
+      "kind": "documento",
+      "header": "Laboratorio de la excavación",
+      "fields": [
+       [
+        "Material",
+        "Barro oscuro"
+       ],
+       [
+        "Tamaño",
+        "Como una uña, cerca de 1 cm"
+       ],
+       [
+        "Dibujo",
+        "Sol con dos alas"
+       ],
+       [
+        "Letras",
+        "Hebreo antiguo"
+       ]
+      ],
+      "body": "Bolita de barro suelta. Por detrás tiene marcas del cordel con que se ató un documento. Las letras dicen: «De Ezequías, hijo de Acaz, rey de Judá».",
+      "stamp": "REVISADO"
+     }
+    },
+    {
+     "id": "carta1",
+     "type": "CARTA",
+     "title": "Carta de la profesora",
+     "description": "Elena explica para qué servían estas bolitas.",
+     "section": "documentos",
+     "doc": {
+      "kind": "carta",
+      "body": "Queridos Tomás y Lía: hace casi tres mil años, los documentos se enrollaban y se ataban con un cordel. Encima se ponía una bolita de barro blando y se apretaba el sello. Así nadie lo abría sin que se notara. Busquen la bolita pequeña con el sol de dos alas.",
+      "footer": "Profesora Elena Márquez",
+      "stamp": "JERUSALÉN"
+     }
+    },
+    {
+     "id": "noticia1",
+     "type": "NOTICIA",
+     "title": "Noticia de 2015",
+     "description": "El anuncio del hallazgo.",
+     "section": "documentos",
+     "doc": {
+      "kind": "periodico",
+      "header": "Diario de Jerusalén",
+      "date": "Diciembre de 2015",
+      "section": "Arqueología",
+      "headline": "Hallan la marca del sello del rey Ezequías",
+      "body": "El equipo de la arqueóloga Eilat Mazar encontró la pieza al colar la tierra de un basurero antiguo, cerca de un edificio real. Es una bolita de barro pequeña con un sol alado y el nombre del rey."
+     }
+    }
+   ],
+   "answer": "objeto3",
+   "wrongAccusation": "Mira otra vez el cuaderno de Lía: la marca del rey es una bolita suelta, pequeña como una uña, y su dibujo no es un animal. ¿Cuál pieza cumple las dos cosas?",
+   "reward": {
+    "title": "La marca del sello del rey Ezequías",
+    "collection": "HALLAZGO 16",
+    "copy": "En la zona del Ofel, junto a las murallas del sur de Jerusalén, el equipo de la arqueóloga Eilat Mazar coló la tierra de un basurero antiguo. Allí salió una bolita de barro de cerca de un centímetro, que se anunció en 2015. Tiene un sol con dos alas y unas letras en hebreo antiguo: «De Ezequías, hijo de Acaz, rey de Judá». En 2 Reyes 18 se cuenta que Ezequías, hijo de Acaz, confió en Dios como pocos reyes. Es la primera marca de un sello de un rey de Israel o Judá hallada en una excavación. Hoy la estudian los arqueólogos de la Universidad Hebrea de Jerusalén.",
+    "assets": [
+     "recompensa1",
+     "recompensa2",
+     "recompensa3",
+     "recompensa4"
+    ],
+    "imagePrompts": [
+     "Macro close-up of a tiny dark brown clay seal impression showing a winged sun disk with downturned wings and small carved ancient letters, resting on a fingertip of a gloved hand, soft light",
+     "Ancient papyrus document rolled up and tied with a thin cord, sealed with a small lump of dark clay pressed with a seal, on a wooden table in an Iron Age room lit by an oil lamp",
+     "Panoramic view of the southern walls of ancient Jerusalem at golden hour, excavated stone foundations in the foreground, olive trees, hills in the distance",
+     "Children's hands, seen from above, holding a magnifying glass over a small clay piece on a white tray, notebook and pencil beside it, warm afternoon light"
+    ]
+   }
+  },
+  {
+   "code": "BA-17",
+   "title": "El nombre en el suelo de Corinto",
+   "summary": "Un hombre llamado Erasto pagó un piso de piedra y dejó su nombre escrito en él.",
+   "brief": "En la antigua ciudad de Corinto, en Grecia, hay muchas piedras con letras. Una de ellas lleva el nombre de Erasto, un hombre que pagó el piso de una plaza. Tienes que encontrar cuál es.",
+   "objective": "¿Cuál de las piedras tiene el nombre de Erasto?",
+   "meta": [
+    [
+     "Lugar",
+     "Corinto, Grecia"
+    ],
+    [
+     "Año",
+     "1929"
+    ],
+    [
+     "Libro de la Biblia",
+     "Romanos 16:23"
+    ]
+   ],
+   "cover": "lugar1",
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "LUGAR",
+     "title": "Ruinas de Corinto",
+     "description": "Columnas antiguas y, al fondo, una montaña alta y rocosa.",
+     "imagePrompt": "Wide view of ancient Greek city ruins with a row of tall weathered stone columns, scattered marble blocks and dry grass, a tall rocky mountain rising in the background, bright Mediterranean sunlight, blue sky"
+    },
+    {
+     "id": "lugar2",
+     "type": "LUGAR",
+     "title": "La plaza del teatro",
+     "description": "Plaza junto al teatro antiguo, con un piso de grandes losas de piedra.",
+     "imagePrompt": "Wide view of an ancient Roman paved plaza made of large flat gray limestone slabs, next to the curved stone seating rows of a ruined ancient theater, grass growing between the stones, afternoon sunlight"
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJETO",
+     "title": "Columna con letras",
+     "description": "Pedazo de columna de mármol, de pie. Tiene letras talladas.",
+     "imagePrompt": "A standing broken white marble column drum, upright on the ground, with faint carved ancient Latin-style letters around its side, ruins in the background, bright daylight"
+    },
+    {
+     "id": "objeto2",
+     "type": "OBJETO",
+     "title": "Piso de mosaico",
+     "description": "Piso hecho de piedritas de colores que forman flores. No tiene letras.",
+     "imagePrompt": "Top-down view of an ancient Roman floor mosaic made of small colored stone tiles forming flowers and swirling vines, red, black and cream colors, no letters, partly covered by dust, daylight"
+    },
+    {
+     "id": "objeto3",
+     "type": "OBJETO",
+     "title": "Teja con marca",
+     "description": "Teja pequeña de barro rojo. Tiene letras estampadas.",
+     "imagePrompt": "Close-up of a small broken red clay roof tile resting on dirt, with a small stamped rectangle of faint ancient letters, hand-sized, bright daylight"
+    },
+    {
+     "id": "objeto4",
+     "type": "OBJETO",
+     "title": "Losa del piso",
+     "description": "Losa grande y plana de piedra gris, en el suelo. Sus letras son huecos vacíos.",
+     "imagePrompt": "Top-down view of a large flat gray limestone paving slab set into an ancient stone floor, with a single long row of large hollow empty letter-shaped grooves cut into its surface, no metal inside, faint weathered shapes not readable, grass at the edges, bright daylight"
+    },
+    {
+     "id": "persona1",
+     "type": "PERSONA",
+     "title": "Guía del sitio",
+     "description": "Señala el piso de la plaza con la mano.",
+     "imagePrompt": "A middle-aged woman tour guide seen from behind, wearing a sun hat and light clothes, pointing with her hand toward large stone floor slabs of an ancient plaza, ruins around her, sunny day"
+    },
+    {
+     "id": "nota1",
+     "type": "CUADERNO",
+     "title": "Cuaderno de Tomás",
+     "description": "Lo que Tomás anotó en la plaza.",
+     "section": "documentos",
+     "doc": {
+      "kind": "nota",
+      "header": "Cuaderno de Tomás",
+      "body": "La piedra de Erasto no está de pie: es parte del piso, plana y grande. Y sus letras están vacías. La guía dice que antes estaban rellenas de metal.",
+      "footer": "Tomás, 11 años"
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "FICHA",
+     "title": "Ficha de la inscripción",
+     "description": "Lo que dice la piedra y de qué está hecha.",
+     "section": "documentos",
+     "doc": {
+      "kind": "documento",
+      "header": "Ficha del sitio de Corinto",
+      "fields": [
+       [
+        "Material",
+        "Piedra caliza gris"
+       ],
+       [
+        "Forma",
+        "Losa plana del suelo"
+       ],
+       [
+        "Idioma",
+        "Latín"
+       ],
+       [
+        "Hallada",
+        "1929"
+       ]
+      ],
+      "body": "Dice que Erasto, a cambio de su cargo de edil, puso este piso con su propio dinero. Las letras eran de bronce y alguien se las llevó. Hoy solo quedan los huecos.",
+      "stamp": "REGISTRADO"
+     }
+    },
+    {
+     "id": "carta1",
+     "type": "CARTA",
+     "title": "Carta de la profesora",
+     "description": "Elena cuenta qué era un edil.",
+     "section": "documentos",
+     "doc": {
+      "kind": "carta",
+      "body": "Queridos Tomás y Lía: un edil cuidaba las calles, los mercados y los edificios de la ciudad. Era un cargo importante. Erasto quiso dar las gracias pagando el piso de una plaza junto al teatro. Busquen la losa del suelo con letras vacías.",
+      "footer": "Profesora Elena Márquez",
+      "stamp": "CORINTO"
+     }
+    },
+    {
+     "id": "mapa1",
+     "type": "MAPA",
+     "title": "Croquis de la zona",
+     "description": "Dónde está la piedra de Erasto.",
+     "section": "documentos",
+     "doc": {
+      "kind": "croquis",
+      "header": "Corinto: zona del teatro",
+      "rooms": [
+       [
+        "TEATRO",
+        40,
+        40,
+        160,
+        120
+       ],
+       [
+        "PLAZA",
+        220,
+        60,
+        140,
+        140
+       ],
+       [
+        "CAMINO",
+        40,
+        200,
+        320,
+        50
+       ]
+      ],
+      "marks": [
+       [
+        "X",
+        290,
+        130,
+        "Losa de Erasto, en el piso de la plaza"
+       ]
+      ]
+     }
+    }
+   ],
+   "answer": "objeto4",
+   "wrongAccusation": "Lee otra vez el cuaderno de Tomás: la piedra de Erasto es parte del piso y sus letras están vacías, sin metal. ¿Cuál piedra está en el suelo y tiene letras huecas?",
+   "reward": {
+    "title": "La inscripción de Erasto",
+    "collection": "HALLAZGO 17",
+    "copy": "En 1929, arqueólogos de la Escuela Americana de Estudios Clásicos de Atenas hallaron en Corinto una losa de piedra caliza en una plaza junto al teatro. Tiene una frase en latín: Erasto, a cambio de su cargo de edil, puso este piso con su propio dinero. Las letras eran de bronce y se perdieron. En Romanos 16:23, Pablo, que escribía desde Corinto, manda saludos de un Erasto que era tesorero de la ciudad. Muchos estudiosos creen que podría ser el mismo hombre, aunque no todos están seguros. La losa sigue hoy en su lugar, en Corinto.",
+    "assets": [
+     "recompensa1",
+     "recompensa2",
+     "recompensa3",
+     "recompensa4"
+    ],
+    "imagePrompts": [
+     "Close-up at a low angle of a long gray limestone paving slab with deep empty letter-shaped grooves, faint and unreadable, warm late afternoon light casting shadows inside the grooves",
+     "A Roman-era craftsman seen from behind, kneeling on a stone pavement and fitting bronze letter shapes into grooves cut in a limestone slab, tools beside him, first-century clothing, daylight",
+     "Ancient Corinth at sunset, ruined temple columns in the foreground and a large rocky mountain behind, golden sky",
+     "A first-century man seen from behind, writing with a reed pen on a papyrus sheet at a wooden table, an oil lamp burning, a window showing a Greek city"
+    ]
+   }
+  },
+  {
+   "code": "BA-18",
+   "title": "La carta del emperador",
+   "summary": "Un emperador romano escribió una carta en piedra que nombra al juez de Pablo.",
+   "brief": "En Delfos, en Grecia, había un gran santuario con muchas piedras escritas. Una carta del emperador Claudio menciona a Galión, el gobernador que escuchó a Pablo en Corinto. Tienes que encontrar en qué piedra está esa carta.",
+   "objective": "¿Cuál de las piezas guarda la carta del emperador que nombra a Galión?",
+   "meta": [
+    [
+     "Lugar",
+     "Delfos, Grecia"
+    ],
+    [
+     "Fecha de la carta",
+     "Año 52 d. C."
+    ],
+    [
+     "Libro de la Biblia",
+     "Hechos 18:12-17"
+    ]
+   ],
+   "cover": "lugar1",
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "LUGAR",
+     "title": "Delfos",
+     "description": "Ruinas de un santuario en la ladera de una montaña.",
+     "imagePrompt": "Wide view of ancient Greek sanctuary ruins on a steep mountain slope, remains of a temple with a few standing columns, stone terraces, olive trees and a deep valley below, morning light, blue sky"
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJETO",
+     "title": "Piedra entera",
+     "description": "Piedra alta y entera, sin roturas. Tiene letras talladas.",
+     "imagePrompt": "A tall complete rectangular stone slab with no cracks or missing parts, standing in a museum, covered with rows of faint carved ancient Greek-style letters, soft museum lighting"
+    },
+    {
+     "id": "objeto2",
+     "type": "OBJETO",
+     "title": "Placa de bronce",
+     "description": "Placa de metal verdoso. Tiene letras grabadas.",
+     "imagePrompt": "A rectangular ancient bronze plaque with green patina, engraved with rows of faint ancient letters, lying on a dark cloth in a museum case, soft lighting"
+    },
+    {
+     "id": "objeto3",
+     "type": "OBJETO",
+     "title": "Pedazos de piedra unidos",
+     "description": "Varios pedazos de piedra rota, puestos juntos. Tienen filas de letras talladas.",
+     "imagePrompt": "Several broken pale stone fragments of different shapes fitted together on a museum wall panel like a puzzle, with gaps between them, each fragment covered with rows of faint carved ancient Greek-style letters, soft museum lighting"
+    },
+    {
+     "id": "objeto4",
+     "type": "OBJETO",
+     "title": "Vasija armada",
+     "description": "Pedazos de una vasija de barro, pegados. Tiene figuras pintadas.",
+     "imagePrompt": "An ancient Greek clay vase reassembled from broken pieces with visible cracks, orange clay with black painted figures of dancers, no letters, standing in a museum case, soft lighting"
+    },
+    {
+     "id": "galeria1",
+     "type": "FOTOGRAFÍA",
+     "title": "Excavación antigua",
+     "description": "Trabajadores de hace más de cien años levantan piedras en Delfos.",
+     "imagePrompt": "Late nineteenth-century archaeological excavation scene at a Greek mountain sanctuary, workers in period clothing and caps seen from behind lifting stone blocks with ropes and wooden levers, mules and baskets, sepia-like daylight"
+    },
+    {
+     "id": "persona1",
+     "type": "PERSONA",
+     "title": "Restauradora del museo",
+     "description": "Une pedazos de piedra rota con mucho cuidado.",
+     "imagePrompt": "A museum conservator seen from the side, wearing a lab coat and gloves, carefully placing a broken stone fragment next to others on a padded table, brushes and tools nearby, calm workshop light"
+    },
+    {
+     "id": "nota1",
+     "type": "CUADERNO",
+     "title": "Cuaderno de Lía",
+     "description": "Lo que Lía aprendió en el museo.",
+     "section": "documentos",
+     "doc": {
+      "kind": "nota",
+      "header": "Cuaderno de Lía",
+      "body": "La carta del emperador está tallada en piedra, no en metal. Pero la piedra se rompió en varios pedazos. En el museo los pusieron juntos, como un rompecabezas.",
+      "footer": "Lía, 9 años"
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "FICHA",
+     "title": "Ficha del museo",
+     "description": "Datos de la carta de Claudio.",
+     "section": "documentos",
+     "doc": {
+      "kind": "documento",
+      "header": "Museo Arqueológico de Delfos",
+      "fields": [
+       [
+        "Material",
+        "Piedra"
+       ],
+       [
+        "Estado",
+        "Varios pedazos unidos"
+       ],
+       [
+        "Idioma",
+        "Griego"
+       ],
+       [
+        "Fecha",
+        "Año 52 d. C."
+       ]
+      ],
+      "body": "Carta del emperador Claudio a la ciudad de Delfos. Nombra a Galión, su amigo, como procónsul. Faltan partes, pero el nombre de Galión se puede reconocer.",
+      "stamp": "CATALOGADO"
+     }
+    },
+    {
+     "id": "carta1",
+     "type": "CARTA",
+     "title": "Carta de la profesora",
+     "description": "Elena explica por qué la piedra es importante.",
+     "section": "documentos",
+     "doc": {
+      "kind": "carta",
+      "body": "Queridos Tomás y Lía: la carta de Claudio dice en qué año Galión gobernaba. Así sabemos más o menos cuándo estuvo Pablo en Corinto. Busquen la piedra rota en pedazos, con filas de letras talladas.",
+      "footer": "Profesora Elena Márquez",
+      "stamp": "DELFOS"
+     }
+    }
+   ],
+   "answer": "objeto3",
+   "wrongAccusation": "Revisa el cuaderno de Lía: la carta está tallada en piedra y la piedra se rompió en pedazos. ¿Cuál pieza es de piedra, está rota y tiene letras?",
+   "reward": {
+    "title": "La inscripción de Galión",
+    "collection": "HALLAZGO 18",
+    "copy": "En Delfos, Grecia, arqueólogos franceses hallaron pedazos de una piedra con una carta del emperador Claudio. Se publicó por primera vez en 1905. La carta es del año 52 d. C. y nombra a Galión, su amigo, como procónsul. En Hechos 18:12-17 se cuenta que, cuando Galión gobernaba la región de Acaya, llevaron a Pablo ante él en Corinto, y Galión no quiso juzgarlo. Gracias a esta piedra se puede saber, más o menos, en qué años estuvo Pablo en Corinto. Hoy los pedazos están en el Museo Arqueológico de Delfos.",
+    "assets": [
+     "recompensa1",
+     "recompensa2",
+     "recompensa3",
+     "recompensa4"
+    ],
+    "imagePrompts": [
+     "Close-up of broken stone fragments fitted together on a museum panel, rows of faint carved ancient letters, gaps between pieces, warm spotlight",
+     "A Roman governor's judgment seat on a raised stone platform in a first-century Greek city forum, empty, columns and shops around, bright daylight",
+     "The ruins of the sanctuary of Delphi seen from above at sunset, temple columns and a stone theater on the mountain slope, valley full of olive trees",
+     "A first-century stonemason seen from behind, carving letters into a stone block with a chisel and mallet, dust in the sunlight"
+    ]
+   }
+  },
+  {
+   "code": "BA-19",
+   "title": "Los meses del campo",
+   "summary": "Una piedrita escrita cuenta qué se hacía en el campo cada mes del año.",
+   "brief": "En la colina de Gézer apareció una tablilla que cuenta el trabajo del campo mes por mes: cosechar, sembrar, podar. Pero en la mesa del campamento hay varias piezas escritas. Tienes que encontrar cuál es la tablilla de los meses.",
+   "objective": "¿Cuál de las piezas es la tablilla de los meses del campo?",
+   "meta": [
+    [
+     "Lugar",
+     "Gézer, Israel"
+    ],
+    [
+     "Año",
+     "1908"
+    ],
+    [
+     "Libro de la Biblia",
+     "Eclesiastés 3:1"
+    ]
+   ],
+   "cover": "lugar1",
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "LUGAR",
+     "title": "La colina de Gézer",
+     "description": "Colina antigua rodeada de campos de trigo y olivos.",
+     "imagePrompt": "Wide view of a low rounded ancient hill mound covered with dry grass and stone ruins, surrounded by golden wheat fields and rows of olive trees, gentle hills in the distance, warm morning light"
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJETO",
+     "title": "Piedra grande con letras",
+     "description": "Piedra alta, casi tan grande como una persona. Tiene letras talladas.",
+     "imagePrompt": "A tall dark basalt stone slab with a rounded top, almost as tall as a person, carved with many rows of faint ancient letters, standing in a museum hall, soft lighting"
+    },
+    {
+     "id": "objeto2",
+     "type": "OBJETO",
+     "title": "Tablilla de barro",
+     "description": "Tablilla de barro café. Tiene marquitas con forma de cuña.",
+     "imagePrompt": "Close-up of a small rectangular brown clay tablet covered with tiny wedge-shaped cuneiform marks pressed into the clay, on a dark cloth, soft studio light"
+    },
+    {
+     "id": "objeto3",
+     "type": "OBJETO",
+     "title": "Pedazo de vasija escrito",
+     "description": "Pedazo de vasija de barro rojizo. Las letras están pintadas con tinta negra.",
+     "imagePrompt": "Close-up of a curved broken piece of reddish pottery with faint lines of black ink writing painted on its surface, on a white tray, soft studio light"
+    },
+    {
+     "id": "objeto4",
+     "type": "OBJETO",
+     "title": "Tablilla de piedra blanca",
+     "description": "Tablilla pequeña de piedra blanca, del tamaño de una mano. Las letras están rayadas.",
+     "imagePrompt": "Close-up of a small flat pale cream-white soft limestone tablet, the size of a palm, slightly broken at one corner, with several lines of faint thin scratched ancient letters, a child's hand nearby for scale, soft studio light"
+    },
+    {
+     "id": "galeria1",
+     "type": "FOTOGRAFÍA",
+     "title": "Cosecha de cebada",
+     "description": "Así se cosechaba la cebada en primavera, con hoces.",
+     "imagePrompt": "Iron Age farmers in simple long tunics seen from behind and from the side, cutting golden barley with curved sickles and tying sheaves, a hill in the background, bright spring sunlight"
+    },
+    {
+     "id": "galeria2",
+     "type": "FOTOGRAFÍA",
+     "title": "Cosecha de olivas",
+     "description": "En otoño se recogían las olivas de los árboles.",
+     "imagePrompt": "Iron Age farmers in simple tunics seen from behind, shaking olive tree branches with long sticks while olives fall onto cloths spread on the ground, baskets nearby, autumn afternoon light"
+    },
+    {
+     "id": "nota1",
+     "type": "CUADERNO",
+     "title": "Cuaderno de Tomás",
+     "description": "Lo que Tomás anotó sobre la tablilla.",
+     "section": "documentos",
+     "doc": {
+      "kind": "nota",
+      "header": "Cuaderno de Tomás",
+      "body": "La tablilla de Gézer es pequeña, como la palma de mi mano. Es de piedra blanca y blanda, no de barro. Las letras se rayaron con una punta, no se pintaron con tinta.",
+      "footer": "Tomás, 11 años"
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "FICHA",
+     "title": "Ficha del museo",
+     "description": "Datos de la tablilla de Gézer.",
+     "section": "documentos",
+     "doc": {
+      "kind": "documento",
+      "header": "Museos de Arqueología de Estambul",
+      "fields": [
+       [
+        "Material",
+        "Piedra caliza blanda, blanca"
+       ],
+       [
+        "Tamaño",
+        "Unos 11 por 7 cm"
+       ],
+       [
+        "Escritura",
+        "Letras rayadas, alfabeto antiguo"
+       ],
+       [
+        "Hallada",
+        "1908, Gézer"
+       ]
+      ],
+      "body": "Tiene unos tres mil años. Es una de las inscripciones más antiguas halladas en Israel.",
+      "stamp": "CATALOGADO"
+     }
+    },
+    {
+     "id": "carta1",
+     "type": "CARTA",
+     "title": "Carta de la profesora",
+     "description": "Elena cuenta qué dice la tablilla.",
+     "section": "documentos",
+     "doc": {
+      "kind": "carta",
+      "body": "Queridos Tomás y Lía: la tablilla nombra los trabajos del año. Dos meses de cosecha de olivas, dos de siembra, dos de siembra tardía, uno de cortar el lino, uno de cosechar la cebada, uno de la gran cosecha, dos de podar las vides y uno de la fruta del verano.",
+      "footer": "Profesora Elena Márquez",
+      "stamp": "GÉZER"
+     }
+    },
+    {
+     "id": "noticia1",
+     "type": "NOTICIA",
+     "title": "Noticia de 1908",
+     "description": "Un periódico cuenta el hallazgo.",
+     "section": "documentos",
+     "doc": {
+      "kind": "periodico",
+      "header": "Noticias de Oriente",
+      "date": "1908",
+      "section": "Hallazgos",
+      "headline": "Una piedrita con el calendario de los campesinos",
+      "body": "El arqueólogo irlandés Robert Macalister, que excava la colina de Gézer, encontró una tablilla pequeña de piedra blanca. Sus letras rayadas nombran los meses del trabajo en el campo."
+     }
+    }
+   ],
+   "answer": "objeto4",
+   "wrongAccusation": "Lee de nuevo el cuaderno de Tomás: la tablilla es pequeña, de piedra blanca, y sus letras están rayadas, no pintadas. ¿Cuál pieza cumple todo eso?",
+   "reward": {
+    "title": "El calendario de Gézer",
+    "collection": "HALLAZGO 19",
+    "copy": "En 1908, el arqueólogo Robert Macalister excavaba la colina de Gézer cuando encontró una tablilla de piedra caliza blanda, de unos 11 por 7 centímetros. Tiene unos tres mil años y sus letras rayadas nombran los trabajos del campo: cosechar olivas, sembrar, cortar el lino, cosechar la cebada, podar las vides y recoger la fruta del verano. Nos recuerda Eclesiastés 3, donde se dice que todo tiene su momento, también el de plantar. Hoy la tablilla está en los Museos de Arqueología de Estambul, en Turquía.",
+    "assets": [
+     "recompensa1",
+     "recompensa2",
+     "recompensa3",
+     "recompensa4"
+    ],
+    "imagePrompts": [
+     "Close-up of a small pale soft limestone tablet with thin scratched ancient letters in several lines, resting on dark velvet, warm museum spotlight",
+     "Iron Age farmer seen from behind, sowing seeds by hand from a cloth bag over a freshly plowed brown field, a wooden plow and ox in the distance, early winter light",
+     "Iron Age family seen from the side, picking ripe figs and grapes into woven baskets in a vineyard at the end of summer, golden light",
+     "Wide view of fields around an ancient hill in four bands showing green sprouts, golden barley, olive trees and grape vines, soft light"
+    ]
+   }
+  },
+  {
+   "code": "BA-20",
+   "title": "El aceite del rey Joaquín",
+   "summary": "En Babilonia, alguien anotó cuánto aceite le daban a un rey de Judá.",
+   "brief": "Joaquín, rey de Judá, fue llevado preso a Babilonia. En unos almacenes cerca de la gran puerta de la ciudad aparecieron listas de comida con su nombre. Tienes que encontrar cuál de las piezas es una de esas listas.",
+   "objective": "¿Cuál de las piezas es la lista del aceite para el rey Joaquín?",
+   "meta": [
+    [
+     "Lugar",
+     "Babilonia, en el actual Irak"
+    ],
+    [
+     "Excavación",
+     "1899 a 1917"
+    ],
+    [
+     "Libro de la Biblia",
+     "2 Reyes 25:27-30"
+    ]
+   ],
+   "cover": "lugar1",
+   "evidence": [
+    {
+     "id": "lugar1",
+     "type": "LUGAR",
+     "title": "Ruinas de Babilonia",
+     "description": "Muros de ladrillo junto al río Éufrates.",
+     "imagePrompt": "Wide view of ancient mudbrick ruins of a large city on a flat plain beside a wide river lined with palm trees, crumbling walls and mounds of earth, hot hazy sunlight"
+    },
+    {
+     "id": "lugar2",
+     "type": "LUGAR",
+     "title": "Los almacenes de bóvedas",
+     "description": "Cuartos con techos curvos, cerca de la gran puerta de la ciudad.",
+     "imagePrompt": "Ruins of a row of narrow ancient mudbrick storerooms with curved vaulted ceilings, partly collapsed, dusty floor with a few large clay jars, light coming from openings above"
+    },
+    {
+     "id": "objeto1",
+     "type": "OBJETO",
+     "title": "Ladrillo con león",
+     "description": "Ladrillo grande y brillante, de color azul, con un león amarillo.",
+     "imagePrompt": "Close-up of a large ancient glazed brick panel, bright deep blue background with a raised yellow and white striding lion, shiny glaze, museum lighting"
+    },
+    {
+     "id": "objeto2",
+     "type": "OBJETO",
+     "title": "Cilindro de barro",
+     "description": "Pieza redonda con forma de barril, cubierta de marquitas.",
+     "imagePrompt": "Close-up of an ancient barrel-shaped clay cylinder lying on its side, light brown, covered with tiny wedge-shaped cuneiform marks, on a dark cloth, soft museum light"
+    },
+    {
+     "id": "objeto3",
+     "type": "OBJETO",
+     "title": "Tablilla plana",
+     "description": "Tablilla de barro, plana y pequeña. Tiene marquitas con forma de cuña.",
+     "imagePrompt": "Close-up of a small flat rectangular brown clay tablet, palm-sized, slightly chipped at the edges, covered with rows of tiny wedge-shaped cuneiform marks pressed into the clay, held flat on a white tray, soft museum light"
+    },
+    {
+     "id": "objeto4",
+     "type": "OBJETO",
+     "title": "Placa de marfil",
+     "description": "Placa de marfil color crema, tallada con flores. No tiene letras.",
+     "imagePrompt": "Close-up of a small ancient cream-colored ivory plaque carved with palm leaves and lotus flowers, no letters, on a dark cloth, soft museum light"
+    },
+    {
+     "id": "galeria1",
+     "type": "FOTOGRAFÍA",
+     "title": "El escriba",
+     "description": "Un escriba aprieta una punta en el barro blando para escribir.",
+     "imagePrompt": "An ancient Babylonian scribe seen from the side, wearing a fringed wool robe, pressing a reed stylus into a small soft clay tablet held in his palm, baskets of tablets nearby, warm light in a mudbrick room"
+    },
+    {
+     "id": "galeria2",
+     "type": "FOTOGRAFÍA",
+     "title": "Reparto del aceite",
+     "description": "Unos trabajadores sirven aceite de jarras grandes.",
+     "imagePrompt": "Ancient Babylonian storeroom workers seen from behind, pouring oil from large clay jars into smaller jugs, a vaulted mudbrick ceiling above, warm lamplight"
+    },
+    {
+     "id": "nota1",
+     "type": "CUADERNO",
+     "title": "Cuaderno de Lía",
+     "description": "Lo que Lía anotó en el museo.",
+     "section": "documentos",
+     "doc": {
+      "kind": "nota",
+      "header": "Cuaderno de Lía",
+      "body": "La lista del aceite es una tablilla plana y pequeña, cabe en una mano. Es de barro y tiene marquitas como cuñas. No es redonda como un barril.",
+      "footer": "Lía, 9 años"
+     }
+    },
+    {
+     "id": "ficha1",
+     "type": "FICHA",
+     "title": "Ficha del museo",
+     "description": "Datos de las tablillas de las raciones.",
+     "section": "documentos",
+     "doc": {
+      "kind": "documento",
+      "header": "Museo de Oriente Próximo, Berlín",
+      "fields": [
+       [
+        "Material",
+        "Barro"
+       ],
+       [
+        "Forma",
+        "Tablilla plana, pequeña"
+       ],
+       [
+        "Escritura",
+        "Cuneiforme (marcas de cuña)"
+       ],
+       [
+        "Hallada en",
+        "Almacenes de Babilonia"
+       ]
+      ],
+      "body": "Lista de aceite para «Joaquín, rey de la tierra de Judá» y para sus cinco hijos. También nombra a otras personas de Judá.",
+      "stamp": "CATALOGADO"
+     }
+    },
+    {
+     "id": "carta1",
+     "type": "CARTA",
+     "title": "Carta de la profesora",
+     "description": "Elena cuenta cómo se encontraron las tablillas.",
+     "section": "documentos",
+     "doc": {
+      "kind": "carta",
+      "body": "Queridos Tomás y Lía: un equipo alemán dirigido por Robert Koldewey excavó Babilonia por muchos años. En los almacenes salieron cientos de tablillas de barro. Años después, Ernst Weidner leyó algunas y halló el nombre de Joaquín. Busquen la tablilla plana con marcas de cuña.",
+      "footer": "Profesora Elena Márquez",
+      "stamp": "BERLÍN"
+     }
+    }
+   ],
+   "answer": "objeto3",
+   "wrongAccusation": "Mira otra vez el cuaderno de Lía: la lista es plana y pequeña, de barro y con marquitas de cuña. ¿Cuál pieza cumple todo eso y no tiene forma de barril?",
+   "reward": {
+    "title": "Las tablillas de las raciones del rey Joaquín",
+    "collection": "HALLAZGO 20",
+    "copy": "Entre 1899 y 1917, un equipo alemán dirigido por Robert Koldewey excavó Babilonia. En unos almacenes cerca de la puerta de Istar salieron muchas tablillas de barro. En 1939, Ernst Weidner publicó que algunas eran listas de aceite para «Joaquín, rey de Judá», y para sus cinco hijos. La Biblia cuenta que Joaquín fue llevado preso a Babilonia, y en 2 Reyes 25:27-30 se dice que, años después, el rey de Babilonia lo sacó de la cárcel y le dio comida cada día por el resto de su vida. Hoy las tablillas están en el Museo de Oriente Próximo de Berlín.",
+    "assets": [
+     "recompensa1",
+     "recompensa2",
+     "recompensa3",
+     "recompensa4"
+    ],
+    "imagePrompts": [
+     "Close-up of a small flat brown clay tablet covered with rows of tiny wedge-shaped cuneiform marks, lit by a warm museum spotlight on dark velvet",
+     "A reconstructed ancient city gate covered with bright blue glazed bricks and rows of yellow bulls and dragons in relief, seen from a low angle, no people facing the camera",
+     "A man in simple ancient Judean robes seen from behind, sitting at a long table in a Babylonian palace hall with bread, fruit and a jug of oil before him, warm lamplight",
+     "Ancient Babylon at sunset seen from across the Euphrates river, mudbrick walls and a tall stepped temple tower in the distance, palm trees"
+    ]
+   }
+  }
+ ]
+}

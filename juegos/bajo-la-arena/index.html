@@ -1,0 +1,146 @@
+<!doctype html>
+<!-- verbo:sin-pie -->
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0f0c0a">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title></title>
+  <link rel="stylesheet" href="assets/fuentes/fuentes.css">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Estilo propio del juego (colores, fondos, tipografía): lo pone cada juego en su carpeta. -->
+  <link rel="stylesheet" href="tema.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <button id="brand-btn" class="brand" data-t-title="volverInicio"><span class="brand-mark">✦</span><span class="brand-name"></span></button>
+      <nav class="scene-tabs">
+        <button class="scene-tab active" data-go="home"><span>01</span><b data-t="escenaMesa">Mesa</b></button>
+        <button class="scene-tab" data-go="case" disabled><span>02</span><b data-t="escenaExpediente">Expediente</b></button>
+        <button class="scene-tab" data-go="board" disabled><span>03</span><b data-t="escenaPizarra">Pizarra</b></button>
+      </nav>
+      <div class="top-actions">
+        <div class="progress-box hidden" id="progress-box">
+          <span class="label" data-t="progreso">Hilos</span>
+          <strong id="progress-count">0</strong>
+        </div>
+        <button id="sound-btn" class="quiet-btn">Sonido: sí</button>
+        <button id="collection-btn" class="quiet-btn"><b data-t="coleccion">Colección</b> <span id="collection-count" class="count-badge">0</span></button>
+        <button id="exit-btn" class="quiet-btn" data-t="salir">Salir</button>
+      </div>
+    </header>
+
+    <main>
+      <!-- 01 · Mesa de investigación: la pila de expedientes -->
+      <section id="home-view" class="view active-view">
+        <div class="home-intro">
+          <p class="eyebrow" data-t="mesaCabecera">Mesa de investigación · Otoño de 1994</p>
+          <h1 data-t="mesaTitulo">Los expedientes que nadie cerró.</h1>
+          <p class="lede" data-t="mesaIntro">Cada carpeta guarda fotografías, cintas y papeles sin ordenar. Abre una, reconstruye el hilo y archiva lo que encuentres.</p>
+          <p class="home-stats"><span class="label" data-t="resueltos">Resueltos</span><strong id="home-count">0 / 0</strong></p>
+          <div id="reputation" class="reputation" data-t-aria="reputacion"></div>
+          <nav id="pile-nav" class="pile-nav hidden" data-t-aria="recorrer">
+            <button id="pile-prev" class="quiet-btn" data-pile="-1" data-t-aria="anteriores">‹</button>
+            <span class="label"><b data-t="carpetas">Carpetas</b> <strong id="pile-range"></strong></span>
+            <button id="pile-next" class="quiet-btn" data-pile="1" data-t-aria="siguientes">›</button>
+          </nav>
+        </div>
+        <div id="case-pile" class="case-pile" data-t-aria="pila"></div>
+      </section>
+
+      <!-- 02 · Expediente abierto: solo el caso elegido -->
+      <section id="case-view" class="view">
+        <aside class="case-sheet">
+          <span class="stamp" id="case-stamp">Confidencial</span>
+          <p class="label case-code"><b data-t="expediente">Expediente</b> <span id="file-number"></span></p>
+          <h1 id="case-title"></h1>
+          <p id="case-subject" class="case-subject"></p>
+          <p id="case-brief" class="case-brief"></p>
+          <dl id="case-meta" class="case-meta"></dl>
+          <div class="case-block"><span class="label" data-t="objetivo">Objetivo</span><p id="case-objective"></p></div>
+          <button id="board-btn" class="primary-btn"><b data-t="irPizarra">Ir a la pizarra</b> <span aria-hidden="true">→</span></button>
+        </aside>
+        <section class="evidence-zone">
+          <div class="section-bar">
+            <nav id="section-tabs" class="section-tabs" role="tablist" data-t-aria="seccionesExp"></nav>
+            <span class="pin-status"><span class="label" data-t="enPizarra">En pizarra</span> <strong id="pin-count">0 / 20</strong></span>
+          </div>
+          <p id="case-hint" class="hint" data-t="pistaExaminar">Toca para examinar · «Clavar» la lleva a la pizarra</p>
+          <div id="evidence-grid" class="evidence-grid"></div>
+        </section>
+      </section>
+
+      <!-- 03 · Pizarra de conexiones -->
+      <section id="board-view" class="view">
+        <div class="board-wrap"><svg id="connections" aria-hidden="true"></svg><div id="board-cards" class="board-cards"></div>
+          <div id="board-empty" class="board-empty"><p data-t="pizarraVacia">La pizarra está vacía.</p><button class="quiet-btn" data-go="case" data-t="clavaDesde">Clava pruebas desde el expediente</button></div></div>
+        <div class="board-footer">
+          <p id="board-note" class="board-note" data-t="notaInicial">Une pruebas con hilos para ordenar tus ideas. Cuando lo tengas claro, pon el sello de culpable sobre una persona. Toca dos veces una ficha para verla de cerca.</p>
+          <span id="connection-count" class="label">0 hilos</span>
+          <button id="reset-btn" class="quiet-btn" data-t="reiniciar">Reiniciar</button>
+          <button id="solve-btn" class="primary-btn" disabled data-t="unir">Unir pruebas</button>
+          <button id="stamp-btn" class="stamp-btn" aria-pressed="false" data-t-title="selloTitulo" data-t="sello">Sello de culpable</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <section id="title-screen" class="title-screen" aria-label="Portada">
+    <div class="vhs-noise" aria-hidden="true"></div>
+    <div class="vhs-osd" aria-hidden="true"><span>▶ PLAY</span><span id="osd-time">SP 0:00:00</span></div>
+    <div class="title-center">
+      <img id="title-logo" class="title-logo hidden" alt="">
+      <h1 id="title-name" class="title-name"></h1>
+      <p id="title-sub" class="title-sub"></p>
+      <nav class="title-menu">
+        <button id="start-btn" class="primary-btn" data-t="abrir">Abrir el archivo</button>
+        <button id="title-collection" class="quiet-btn" data-t="coleccion">Colección</button>
+        <button id="lang-btn" class="quiet-btn" data-t="otroIdioma">🌐 English</button>
+        <a id="back-site" class="quiet-btn hidden" data-t="volverJuegos" href="/juegos/">← Juegos de Verbo</a>
+        <button id="quit-btn" class="quiet-btn" data-t="salirJuego">Salir del juego</button>
+      </nav>
+      <p id="quit-note" class="title-sub hidden" data-t="puedesCerrar">Puedes cerrar esta ventana.</p>
+    </div>
+    <div class="vhs-date" aria-hidden="true" data-t="fechaVhs">OCT 14 1994 · 23:40</div>
+    <p class="title-warning" data-t="aviso">Ficción para adultos · 18+</p>
+  </section>
+
+  <div id="collection-modal" class="modal-backdrop hidden">
+    <div class="sheet sheet-wide" role="dialog" aria-modal="true" aria-labelledby="collection-title">
+      <button class="modal-close" aria-label="Cerrar">×</button>
+      <p class="eyebrow" data-t="archivoPersonal">Archivo personal</p>
+      <h2 id="collection-title" data-t="materialDesbloqueado">Material desbloqueado</h2>
+      <div id="collection-grid" class="collection-grid sheet-scroll"></div>
+    </div>
+  </div>
+
+  <div id="media-modal" class="modal-backdrop hidden">
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="media-title">
+      <button class="modal-close" aria-label="Cerrar">×</button>
+      <p class="eyebrow" id="media-eyebrow"></p>
+      <h2 id="media-title"></h2>
+      <p id="media-subject" class="case-subject"></p>
+      <p id="media-copy" class="sheet-intro"></p>
+      <div id="media-row" class="media-row"></div>
+      <div class="modal-meta"><span id="media-meta" class="label"></span><button id="media-pin" class="secondary-btn hidden" data-pin="" data-t="clavarPizarra">Clavar en la pizarra</button><button id="media-action" class="primary-btn hidden" data-t="volverMesa">Volver a la mesa</button></div>
+    </div>
+  </div>
+
+  <div id="doc-zoom" class="doc-zoom hidden" role="dialog" aria-modal="true" data-t-aria="docAmpliado">
+    <div id="doc-zoom-scroll" class="doc-zoom-scroll"><div id="doc-zoom-page" class="doc-zoom-page"></div></div>
+    <div class="doc-zoom-bar">
+      <button class="quiet-btn" data-zoom="-1" data-t-aria="alejar">−</button>
+      <button class="quiet-btn" data-zoom="0" data-t="ajustar">Ajustar</button>
+      <button class="quiet-btn" data-zoom="1" data-t-aria="acercar">+</button>
+      <button class="quiet-btn doc-zoom-close" data-t-aria="cerrar">✕</button>
+    </div>
+    <p class="doc-zoom-hint" data-t="zoomPista">Pellizca o toca dos veces para ampliar · arrastra para moverte</p>
+  </div>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>
