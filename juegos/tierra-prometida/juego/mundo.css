@@ -129,3 +129,12 @@ canvas.mini.premio { width: 150px; height: 210px; box-shadow: 0 0 40px rgba(255,
   /* Jugar siempre a la vista, pegado abajo aunque el texto necesite desplazarse. */
   .ficha #fJugar { position: sticky; bottom: 0; box-shadow: 0 -10px 14px var(--panel); flex-shrink: 0; }
 }
+
+/* Toques en el mapa: los letreros se pisan en pantallas chicas. El lugar que se puede jugar queda encima,
+   los letreros de lugares bloqueados no atrapan el dedo y cada círculo tiene un área de toque más amplia. */
+.punto { z-index: 1; }
+.punto.conquistada, .punto.casa { z-index: 2; }
+.punto.disponible, .punto.recuperar { z-index: 3; }
+.punto.bloqueada span { pointer-events: none; }
+.punto i { position: relative; }
+.punto i::after { content: ''; position: absolute; inset: -12px; border-radius: 50%; }
