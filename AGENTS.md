@@ -11,6 +11,7 @@
 ## Arquitectura y publicación
 
 - Después de cualquier build que genere o reescriba páginas públicas, ejecutar `python3 tools/pie_comun.py`. El sitemap y sus índices antecesores definen su alcance; el pie se reemplaza de forma idempotente. Mantener las exclusiones de la app bíblica, proyector, review, docs y studio, y ocultar el pie en el modo iframe de Android mediante `ocultarSalidas()` en `site-chrome.js`.
+- Los libros de la Librería listados en `tools/libros_estaticos.py` llevan el texto completo en su HTML (dentro de `#reader-root`, para buscadores y AdSense); `reader.js` lo usa en vez de pedir el JSON. Si cambia el `sections.json` de uno de ellos o se regenera su página, ejecutar `python3 tools/libros_estaticos.py` (idempotente) y comprobar con `python3 tools/test_libros_estaticos.py`.
 
 - `biblia/modules/registry.json` registra módulos y recursos de la aplicación.
 - `biblia/modules/bibles/` contiene las Biblias locales; Biblia Verbo está en `rv-verbo`.

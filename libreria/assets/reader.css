@@ -852,3 +852,26 @@ body.recursos-page .r-book-meta {
   font-size: 10.5px;
   color: var(--r-ink-soft);
 }
+
+/* ---------- texto completo estático (tools/libros_estaticos.py) ----------
+   Lo que se ve antes de que reader.js arme el lector (o sin JavaScript):
+   mismo aspecto que .reader-chapter-title y .reader-para. reader.js lo
+   reemplaza por el lector normal apenas arranca. */
+body.recursos-page .reader-static-chapter + .reader-static-chapter {
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid var(--r-rule);
+}
+body.recursos-page .reader-static h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  color: var(--r-ink);
+  font-size: 1.3rem;
+  margin: 0 0 22px;
+}
+body.recursos-page .reader-static p {
+  font-size: var(--reading-font-size, 1.05rem);
+  line-height: 1.8;
+  color: var(--r-ink);
+  margin: 0 0 20px;
+}

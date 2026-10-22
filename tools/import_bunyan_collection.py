@@ -148,6 +148,8 @@ def pdf_text(path: Path) -> str:
 
 
 def page_html(book, count):
+    # La página nace con #reader-root vacío. Si el libro está en tools/libros_estaticos.py
+    # (texto completo en el HTML), ejecutar después: python3 tools/libros_estaticos.py
     lang = book["lang"]
     title = book["title"]
     slug = book["id"]
@@ -179,7 +181,7 @@ def page_html(book, count):
 <meta name="theme-color" content="#7f2d35">
 <link rel="stylesheet" href="../../biblia/assets/style.css?v=20260811-back-arrow-hitbox">
 <link rel="stylesheet" href="../../recursos/assets/recursos.css?v=20260813-compact-catalog-headings">
-<link rel="stylesheet" href="../assets/reader.css?v=20-mi-biblioteca">
+<link rel="stylesheet" href="../assets/reader.css?v=20261022-libros-estaticos">
 </head>
 <body class="static-page recursos-page">
 <header class="static-page__header"><a class="static-page__brand" href="../../">Verbo</a><a class="static-page__back" href="../">Librería</a></header>
@@ -192,7 +194,7 @@ def page_html(book, count):
 <script src="../../biblia/assets/backup.js?v=20260823-no-bump-reapertura"></script>
 <script src="../../biblia/assets/sync.js?v=20260823-libreria-marcador"></script>
 <script src="../assets/mi-biblioteca.js?v=2-backup-sync"></script>
-<script src="../assets/reader.js?v=25-mi-biblioteca"></script>
+<script src="../assets/reader.js?v=20261022-libros-estaticos"></script>
 </body></html>'''
 
 

@@ -938,8 +938,27 @@
     ui.content.addEventListener("touchcancel", function () { endPinch({ touches: [] }); }, { passive: true });
   }
 
-  function init(raw) {
-    chapters = normalize(raw);
+  // Libros con el texto completo ya escrito en el HTML (tools/libros_estaticos.py):
+  // se arman los capítulos desde ese bloque en vez de pedir el JSON. El texto
+  // de cada capítulo son sus <p> unidos por un espacio; splitIntoParagraphs()
+  // los vuelve a separar exactamente igual (lo verifica el script), así los
+  // resaltados guardados ("capítulo:párrafo" + offsets) siguen coincidiendo.
+  function readStaticChapters() {
+    var block = root.querySelector("[data-reader-static]");
+    if (!block) return null;
+    var list = Array.prototype.map.call(block.querySelectorAll("section[data-n]"), function (sec) {
+      var h = sec.querySelector("h2");
+      return {
+        n: sec.getAttribute("data-n"),
+        title: h ? h.textContent : "",
+        text: Array.prototype.map.call(sec.querySelectorAll("p"), function (p) { return p.textContent; }).join(" ")
+      };
+    });
+    return list.length ? list : null;
+  }
+
+  function init(raw, ready) {
+    chapters = ready || normalize(raw);
     if (!chapters.length) {
       root.innerHTML = '<p class="reader-hint">No se pudo cargar el contenido de este libro.</p>';
       return;
@@ -1025,12 +1044,14 @@
     }
   }
 
-  root.innerHTML = '<p class="reader-hint">Cargando…</p>';
-  var contentPromise = cfg.bibleManifestUrl
+  var staticChapters = readStaticChapters();
+  if (!staticChapters) root.innerHTML = '<p class="reader-hint">Cargando…</p>';
+  var contentPromise = staticChapters ? Promise.resolve(null)
+    : cfg.bibleManifestUrl
     ? loadBibleContent(cfg.bibleManifestUrl)
     : fetch(cfg.dataUrl).then(function (r) { return r.json(); });
   contentPromise
-    .then(init)
+    .then(function (raw) { init(raw, staticChapters); })
     .catch(function () {
       root.innerHTML = '<p class="reader-hint">No se pudo cargar el contenido de este libro.</p>';
     });
