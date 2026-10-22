@@ -1,6 +1,6 @@
-# Secciones preparadas, todavía sin conectar
+# Secciones Apps, Juegos, Imágenes y Software ampliado
 
-Rama: `secciones-nuevas`. No agregar enlaces desde portada, menú, pie ni sitemap hasta autorizar su conexión.
+Publicadas el 2026-10-22 (commit c6bb341c): unidas a main, con pie común y sitemap (1112 URL). Al añadir imágenes aprobadas: `python3 tools/build_imagenes.py`, agregar las páginas nuevas al sitemap y hacer push.
 
 ## Apps y juegos
 
