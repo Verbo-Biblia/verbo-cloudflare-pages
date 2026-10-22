@@ -54,8 +54,11 @@ CFG_RE = re.compile(r"window\.__LIBRERIA_BOOK__\s*=\s*(\{.*?\});\s*</script>", r
 # Equivalentes exactos de JavaScript: \s y String.prototype.trim usan este
 # conjunto (no el de str.isspace de Python), y $ sin bandera m es solo el
 # final del texto (\Z, no el $ de Python, que acepta un \n final).
-JS_WS = "\t\n\v\f\r    -     　﻿"
-SENTENCE_RE = re.compile(r"[^.!?]+[.!?]+(?=[" + JS_WS + r"]|\Z)|[^.!?]+\Z")
+# Python no admite lookbehind de largo variable: se miran los 4 caracteres
+# previos a cada tramo de espacios, igual que reader.js.
+JS_WS = "\t\n\v\f\r \u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff"
+WS_RUN_RE = re.compile(r"[" + JS_WS + r"]+")
+SENTENCE_END_RE = re.compile(r"[.!?][»”’\"')\]]{0,3}\Z")
 TRIM_RE = re.compile(r"^[" + JS_WS + r"]+|[" + JS_WS + r"]+\Z")
 
 
@@ -80,7 +83,13 @@ def split_into_paragraphs(text: str) -> list[str]:
     """splitIntoParagraphs de reader.js (rama de prosa, no la de Biblia)."""
     if not text:
         return []
-    sentences = SENTENCE_RE.findall(text) or [text]
+    # Corte sin pérdida: en el espacio que sigue a . ! ? (+ hasta 3 cierres).
+    sentences, last = [], 0
+    for m in WS_RUN_RE.finditer(text):
+        if SENTENCE_END_RE.search(text[max(0, m.start() - 4):m.start()]):
+            sentences.append(text[last:m.start()])
+            last = m.end()
+    sentences.append(text[last:])
     paras, buf = [], ""
     for sentence in sentences:
         s = js_trim(sentence)

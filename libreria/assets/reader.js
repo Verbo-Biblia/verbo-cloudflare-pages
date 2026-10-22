@@ -319,7 +319,20 @@
     // (uno por línea, en vez de reflow por oraciones) — así se lee como
     // texto bíblico normal, no como prosa corrida.
     if (cfg.bibleManifestUrl) return text.split(/\n{2,}/).map(function (s) { return s.trim(); }).filter(Boolean);
-    var sentences = text.match(/[^.!?]+[.!?]+(?=\s|$)|[^.!?]+$/g) || [text];
+    // Oraciones sin perder texto: se corta en el espacio que sigue a . ! ?
+    // (con hasta 3 cierres detrás: » ” ’ " ' ) ]). La expresión anterior
+    // descartaba oraciones como «¿Quién?» o "Sí." seguidas de espacio. Sin
+    // lookbehind (/(?<=…)/) para no romper el lector en Safari < 16.4. Donde
+    // la expresión anterior no perdía nada, los párrafos salen idénticos.
+    var sentences = [];
+    var wsRe = /\s+/g, last = 0, m;
+    while ((m = wsRe.exec(text))) {
+      if (/[.!?][»”’"')\]]{0,3}$/.test(text.slice(Math.max(0, m.index - 4), m.index))) {
+        sentences.push(text.slice(last, m.index));
+        last = m.index + m[0].length;
+      }
+    }
+    sentences.push(text.slice(last));
     var paras = [];
     var buf = "";
     for (var i = 0; i < sentences.length; i++) {

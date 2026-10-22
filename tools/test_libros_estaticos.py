@@ -4,7 +4,9 @@
 Uso: python3 tools/test_libros_estaticos.py [--chrome] [slug ...]
 
 1. splitIntoParagraphs de Python == el de reader.js (se extrae la función del
-   archivo y se ejecuta con node) para cada capítulo y para casos límite.
+   archivo y se ejecuta con node) para casos límite y para cada capítulo de
+   todos los libros de la Librería, sin perder texto y sin cambiar los párrafos
+   de los capítulos donde la división anterior no perdía nada.
 2. El bloque estático de cada página, leído como lo haría el navegador
    (textContent de cada <p> unido por un espacio), se re-divide en JS en los
    mismos párrafos: los resaltados guardados siguen coincidiendo.
@@ -33,10 +35,82 @@ READER_JS = ROOT / "libreria/assets/reader.js"
 
 EDGE_CASES = [
     "", "   ", "...", "Hola.", "Hola.\n", "Uno. Dos.\nTres", "Fin sin punto\n",
-    "Emoji 🌐 " * 60 + "fin.", "a b. c﻿d. e\u0085f. g\x1fh.",
+    "Emoji \U0001f310 " * 60 + "fin.", "a\u00a0b. c\ufeffd. e\u0085f. g\x1fh. i.\u2028j",
     '"¿Quién?" dijo. "Yo." Luego... nada! Otra vez?' * 12,
     ("Oración larga con texto. " * 20) + "\n\nOtra parte.\n\n\nY más",
+    "Le dijo: «¿Quién eres?» Y él: «Yo soy.»\nLuego (así fue.) se fue [sic.] lejos.",
+    "Cita “final.” Otra ’cosa.’ y \"doble.\" y 'simple.' fin",
+    "Cuatro cierres.»”’) aquí. Tres.»”) allá ?! ¿sí? ¡no!  \n  \t",
+    ".» al inicio. ) solo ? ok",
+    ("«¿Por qué?» " * 40) + "fin",
 ]
+
+# El splitIntoParagraphs anterior (expresión /[^.!?]+[.!?]+(?=\s|$)|[^.!?]+$/g),
+# solo como referencia para comprobar que donde no perdía texto el nuevo da
+# exactamente los mismos párrafos (los resaltados guardados siguen alineados).
+OLD_SENTENCE_RE = re.compile(r"[^.!?]+[.!?]+(?=[" + le.JS_WS + r"]|\Z)|[^.!?]+\Z")
+NON_WS_RE = re.compile(r"[" + le.JS_WS + r"]+")
+
+
+def old_split(text: str) -> list[str]:
+    if not text:
+        return []
+    paras, buf = [], ""
+    for sentence in OLD_SENTENCE_RE.findall(text) or [text]:
+        s = le.js_trim(sentence)
+        if not s:
+            continue
+        buf = buf + " " + s if buf else s
+        if le.js_len(buf) >= 320:
+            paras.append(buf)
+            buf = ""
+    if buf:
+        paras.append(buf)
+    return paras or [text]
+
+
+def visible(text_or_paras) -> str:
+    if isinstance(text_or_paras, list):
+        text_or_paras = "".join(text_or_paras)
+    return NON_WS_RE.sub("", text_or_paras)
+
+
+def all_books() -> list[str]:
+    slugs = []
+    for page in sorted(le.LIBRERIA.glob("*/index.html")):
+        try:
+            le.book_config(page)
+        except ValueError:
+            continue  # Biblias (bibleManifestUrl) y Mi biblioteca
+        slugs.append(page.parent.name)
+    return slugs
+
+
+def check_all_books() -> None:
+    """Para los libros de toda la Librería: Python == JS, sin pérdida, y sin
+    cambios donde el algoritmo anterior no perdía nada."""
+    total = changed = old_lossy = 0
+    books = all_books()
+    for slug in books:
+        page = le.LIBRERIA / slug / "index.html"
+        cfg = le.book_config(page)
+        data = json.loads((page.parent / cfg["dataUrl"]).resolve().read_text(encoding="utf-8"))
+        chapters = le.normalize(data, cfg)
+        js = js_split([ch["text"] for ch in chapters])
+        for ch, js_paras in zip(chapters, js):
+            total += 1
+            new = le.split_into_paragraphs(ch["text"])
+            where = f"{slug} cap {ch['n']}"
+            assert new == js_paras, f"{where}: Python != JS"
+            assert visible(new) == visible(ch["text"]), f"{where}: se pierde texto"
+            old = old_split(ch["text"])
+            if visible(old) == visible(ch["text"]):
+                assert new == old, f"{where}: cambió un capítulo que antes no perdía texto"
+            else:
+                old_lossy += 1
+                changed += new != old
+    print(f"toda la Librería: {len(books)} libros, {total} capítulos; sin pérdida de texto; "
+          f"{old_lossy} capítulos perdían texto antes ({changed} cambian de párrafos); el resto idéntico")
 
 
 def js_split(texts: list[str]) -> list[list[str]]:
@@ -159,8 +233,10 @@ def main(argv: list[str]) -> int:
     edge = js_split(EDGE_CASES)
     for text, js in zip(EDGE_CASES, edge):
         assert le.split_into_paragraphs(text) == js, f"caso límite {text[:30]!r}: Python != JS"
+        assert visible(js) == visible(text), f"caso límite {text[:30]!r}: se pierde texto"
         assert js_split([" ".join(js)])[0] == js or not text.strip(), f"caso límite {text[:30]!r}: re-división"
     print(f"casos límite: {len(EDGE_CASES)} OK")
+    check_all_books()
     html_books = [s for s in slugs if le.book_config(le.LIBRERIA / s / "index.html").get("htmlSource")]
     if not html_books:
         print("htmlSource: ningún libro de la lista lo usa, se omite")

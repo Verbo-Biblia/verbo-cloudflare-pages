@@ -194,7 +194,7 @@ def page_html(book, count):
 <script src="../../biblia/assets/backup.js?v=20260823-no-bump-reapertura"></script>
 <script src="../../biblia/assets/sync.js?v=20260823-libreria-marcador"></script>
 <script src="../assets/mi-biblioteca.js?v=2-backup-sync"></script>
-<script src="../assets/reader.js?v=20261022-libros-estaticos"></script>
+<script src="../assets/reader.js?v=20261022-oraciones-sin-perdida"></script>
 </body></html>'''
 
 
