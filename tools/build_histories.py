@@ -54,7 +54,7 @@ def shell(title, description, path, body, schemas, script=False, art='estudio-bi
 <meta name="theme-color" content="#0a2037">
 <link rel="icon" href="/biblia/assets/icons/icon-192.png">
 <link rel="stylesheet" href="/historias/assets/historias.css?v=20261007-paleta-portada">
-<link rel="stylesheet" href="/assets/depth/depth.css?v=20261015-3d">{'\n<link rel="stylesheet" href="/historias/assets/journey.css?v=20261015-3d">' if path == '/historias/' else ''}
+<link rel="stylesheet" href="/assets/depth/depth.css?v=20261015-3d">{'\n<link rel="stylesheet" href="/historias/assets/journey.css?v=20261022-clic">' if path == '/historias/' else ''}
 <script type="application/ld+json">{ld({'@context':'https://schema.org','@graph':schemas})}</script>
 </head>
 <body>

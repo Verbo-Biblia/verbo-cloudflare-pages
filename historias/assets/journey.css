@@ -3,7 +3,7 @@
    y la colección se lee como siempre. */
 .journey{position:relative;margin:40px calc(50% - 50vw) 0;height:calc(var(--gates,5) * 95vh + 100vh)}
 .journey-stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;perspective:900px;perspective-origin:50% 45%;background:radial-gradient(ellipse at 50% 42%,#173a5c 0%,#0a2037 45%,#050f1c 100%);color:#f5ecdc;isolation:isolate}
-.journey-world{position:absolute;inset:0;transform-style:preserve-3d}
+.journey-world{position:absolute;inset:0;transform-style:preserve-3d;pointer-events:none}
 .journey-world>*{position:absolute;left:50%;top:50%;will-change:transform,opacity}
 .journey-dust{width:260vw;height:260vh;pointer-events:none;background-image:radial-gradient(circle,#f3dcb0 0 1px,transparent 1.6px),radial-gradient(circle,#d6ae70aa 0 1px,transparent 1.4px);background-size:140px 140px,90px 90px;background-position:0 0,45px 70px;opacity:.5}
 .journey-numeral{font:400 clamp(160px,30vw,420px)/1 Georgia,serif;letter-spacing:-.06em;color:transparent;-webkit-text-stroke:1px #d6ae7055;user-select:none}

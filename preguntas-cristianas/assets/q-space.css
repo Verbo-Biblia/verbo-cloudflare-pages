@@ -3,7 +3,7 @@
    no existe y la lista se lee como siempre. */
 .q-space{position:relative;margin:56px calc(50% - 50vw) 0;height:calc(var(--count,10) * 60vh + 100vh)}
 .q-space-stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;perspective:1000px;perspective-origin:50% 46%;background:radial-gradient(ellipse at 50% 40%,#183c5e 0%,#0a2037 48%,#050f1c 100%);color:#f5ecdc;isolation:isolate}
-.q-space-world{position:absolute;inset:0;transform-style:preserve-3d}
+.q-space-world{position:absolute;inset:0;transform-style:preserve-3d;pointer-events:none}
 .q-space-world>*{position:absolute;left:50%;top:50%;will-change:transform,opacity}
 .q-space-dust{width:260vw;height:260vh;pointer-events:none;background-image:radial-gradient(circle,#f3dcb0 0 1px,transparent 1.6px),radial-gradient(circle,#d6ae70aa 0 1px,transparent 1.4px);background-size:150px 150px,95px 95px;background-position:0 0,40px 75px}
 .q-space-card{width:min(760px,86vw);text-align:center}

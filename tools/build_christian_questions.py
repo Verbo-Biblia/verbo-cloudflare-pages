@@ -29,7 +29,7 @@ def shell(title, description, path, body, graphs, index=False, image_path='/hist
 <meta property="og:image" content="{BASE}{image_path}"><meta property="og:image:alt" content="{esc(image_alt)}">
 <meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#0a2037">
 <link rel="icon" href="/biblia/assets/icons/icon-192.png">
-<link rel="stylesheet" href="/preguntas-cristianas/assets/questions.css?v=20261007-paleta-portada"><link rel="stylesheet" href="/assets/depth/depth.css?v=20261015-3d">{'<link rel="stylesheet" href="/preguntas-cristianas/assets/q-space.css?v=20261015-3d">' if index else ''}
+<link rel="stylesheet" href="/preguntas-cristianas/assets/questions.css?v=20261007-paleta-portada"><link rel="stylesheet" href="/assets/depth/depth.css?v=20261015-3d">{'<link rel="stylesheet" href="/preguntas-cristianas/assets/q-space.css?v=20261022-clic">' if index else ''}
 <script type="application/ld+json">{schema({'@context':'https://schema.org','@graph':graphs})}</script>
 </head><body>
 <a class="skip-link" href="#contenido">Ir al contenido</a>
