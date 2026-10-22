@@ -47,8 +47,12 @@ def public_pages():
             if index.is_file():
                 pages.add(index)
     # Los índices de redirección y las páginas no indexables no son destinos públicos.
-    return sorted(p for p in pages if not re.search(
-        r"<meta\b[^>]*(?:noindex|http-equiv=[\"']refresh)", p.read_text(encoding="utf-8"), re.I))
+    pages = {p for p in pages if not re.search(
+        r"<meta\b[^>]*(?:noindex|http-equiv=[\"']refresh)", p.read_text(encoding="utf-8"), re.I)}
+    # Previews deliberately stay out of the sitemap, but still need the common footer.
+    for section in ('apps', 'juegos', 'imagenes'):
+        pages.update((ROOT / section).rglob('index.html'))
+    return sorted(pages)
 
 def footer(home=False):
     parts = [START, '<footer class="verbo-pie" aria-label="Verbo">',
@@ -70,6 +74,7 @@ def apply():
     pages = public_pages()
     for path in pages:
         original = text = path.read_text(encoding='utf-8')
+        asset_version = '20261021-secciones' if path.relative_to(ROOT).parts[0] in {'apps', 'juegos', 'imagenes'} else VERSION
         if START in text:
             text = re.sub(r'\n?' + re.escape(START) + r'.*?' + re.escape(END) + r'\n?', '\n', text, flags=re.S)
         elif path == ROOT / 'index.html':
@@ -81,9 +86,9 @@ def apply():
         for asset in ('i18n', 'site-chrome'):
             pattern = rf'(<script\b[^>]*src=["\'][^"\']*biblia/assets/{asset}\.js)(?:\?[^"\']*)?'
             if re.search(pattern, text):
-                text = re.sub(pattern, rf'\g<1>?v={VERSION}', text)
+                text = re.sub(pattern, rf'\g<1>?v={asset_version}', text)
             else:
-                text = text.replace('</body>', f'<script src="/biblia/assets/{asset}.js?v={VERSION}"></script>\n</body>')
+                text = text.replace('</body>', f'<script src="/biblia/assets/{asset}.js?v={asset_version}"></script>\n</body>')
         text = re.sub(r'\s*</body>', '\n' + footer(path == ROOT / 'index.html') + '\n</body>', text)
         if text != original:
             path.write_text(text, encoding='utf-8')
