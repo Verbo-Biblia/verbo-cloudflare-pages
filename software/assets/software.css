@@ -123,3 +123,13 @@
 @media(prefers-reduced-motion:reduce) {
   .software-page * { scroll-behavior:auto!important; transition:none!important; }
 }
+
+/* Installation instructions stay readable on small screens. */
+.software-details { padding-block: 56px; }
+.software-details h2 { font-size: clamp(26px, 3vw, 40px); margin: 24px 0 18px; }
+.software-details p { max-width: 82ch; margin: 16px 0; }
+.software-details li { margin-block: 9px; overflow-wrap: anywhere; }
+.software-details a { text-decoration: underline; text-underline-offset: 3px; }
+.software-details pre { max-width: 100%; overflow-x: auto; padding: 22px; border: 1px solid var(--line); border-radius: 16px; background: #091d34; color: #faf5eb; font-size: 13px; }
+.software-details code { overflow-wrap: anywhere; }
+.langswitch button.is-active { background: var(--teal); color: white; }

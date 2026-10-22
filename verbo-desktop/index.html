@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Verbo Desktop: estudio bíblico nativo para Linux, con paquetes .deb y .rpm disponibles. macOS y Windows próximamente." />
-  <meta property="og:title" content="Verbo Desktop">
-  <meta property="og:description" content="Verbo Desktop: estudio bíblico nativo para Linux, con paquetes .deb y .rpm disponibles. macOS y Windows próximamente.">
+  <meta name="description" content="Verbo Desktop: estudio bíblico gratuito para Linux, módulos compatibles de e-Sword y MySword, biblioteca y preparación de enseñanzas. Requisitos, firma y privacidad." data-i18n-attr="content:softwareExtra.desktopMeta">
+  <meta property="og:title" content="Verbo Desktop para Linux | Estudio bíblico gratuito" data-i18n-attr="content:softwareExtra.desktopTitle">
+  <meta property="og:description" content="Verbo Desktop: estudio bíblico gratuito para Linux, módulos compatibles de e-Sword y MySword, biblioteca y preparación de enseñanzas. Requisitos, firma y privacidad." data-i18n-attr="content:softwareExtra.desktopMeta">
   <meta property="og:url" content="https://verbobiblia.com/verbo-desktop/">
   <meta property="og:locale" content="es_ES">
   <meta property="og:type" content="website">
@@ -13,12 +13,14 @@
   <link rel="icon" type="image/png" sizes="192x192" href="../biblia/assets/icons/icon-192.png">
   <link rel="apple-touch-icon" href="../biblia/assets/icons/icon-192.png">
   <meta name="theme-color" content="#0a2037">
-  <title>Verbo Desktop para Linux | Estudio bíblico gratuito</title>
+  <title data-i18n="softwareExtra.desktopTitle">Verbo Desktop para Linux | Estudio bíblico gratuito</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../biblia/assets/theme-tokens.css?v=20261007-paleta-portada">
   <link rel="stylesheet" href="styles.css?v=20261007-paleta-portada" />
+<link rel="stylesheet" href="/software/assets/software.css?v=20261021-software">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Verbo Desktop", "operatingSystem": "Linux", "applicationCategory": "EducationalApplication", "softwareVersion": "0.9.0-dev", "url": "https://verbobiblia.com/verbo-desktop/", "inLanguage": ["es", "en"], "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "screenshot": "https://verbobiblia.com/software/assets/desktop-estudio-1600.webp", "description": "Verbo Desktop: estudio bíblico gratuito para Linux, módulos compatibles de e-Sword y MySword, biblioteca y preparación de enseñanzas. Requisitos, firma y privacidad."}</script>
 <link rel="stylesheet" href="/assets/pie/pie.css?v=20261021-pie">
 </head>
 <body>
@@ -29,35 +31,34 @@
       <span>Verbo Desktop</span>
     </a>
     <nav class="topnav" aria-label="Navegación de Verbo Desktop">
-      <a href="#linux" data-i18n="navLinux">Linux</a>
-      <a href="#ecosystem" data-i18n="navModules">Módulos</a>
-      <a href="#modes" data-i18n="navModes">Modos</a>
-      <a href="#library" data-i18n="navLibrary">Biblioteca</a>
-      <a href="#padres-modulos" data-i18n="navFathers">Padres Apostólicos</a>
+      <a href="#linux" data-i18n="desktop.navLinux">Linux</a>
+      <a href="#ecosystem" data-i18n="desktop.navModules">Módulos</a>
+      <a href="#modes" data-i18n="desktop.navModes">Modos</a>
+      <a href="#library" data-i18n="desktop.navLibrary">Biblioteca</a>
+      <a href="#padres-modulos" data-i18n="desktop.navFathers">Padres Apostólicos</a>
     </nav>
-    <div class="langswitch" aria-label="Language">
-      <button data-lang="es" class="active">ES</button>
+    <div id="uiLangSwitcher" class="langswitch" aria-label="Language">
+      <button data-lang="es">ES</button>
       <button data-lang="en">EN</button>
-      <button data-lang="pt">PT</button>
     </div>
   </header>
 
   <main id="top">
     <section class="hero section-shell">
       <div class="hero-copy reveal">
-        <span class="eyebrow" data-i18n="heroEyebrow">VERBO DESKTOP</span>
-        <h1 data-i18n="heroTitle">Tus módulos ya no pertenecen a un sistema operativo.</h1>
-        <p class="hero-lead" data-i18n="heroLead">Verbo reúne módulos compatibles de e-Sword, MySword y Verbo en una sola aplicación de escritorio para Linux, macOS y Windows.</p>
+        <span class="eyebrow" data-i18n="desktop.heroEyebrow">VERBO DESKTOP</span>
+        <h1 data-i18n="desktop.heroTitle">Lee, estudia y prepara tus enseñanzas en Linux.</h1>
+        <p class="hero-lead" data-i18n="desktop.heroLead">Verbo Desktop reúne la Biblia, tus módulos compatibles de e-Sword y MySword y herramientas de preparación en una aplicación gratuita para Linux.</p>
         <div class="platform-row" aria-label="Platforms">
           <span class="platform linux"><span class="platform-icon">🐧</span>Linux</span>
-          <span class="platform apple"><span class="platform-icon">●</span>macOS <em class="soon-tag" data-i18n="soon">Próximamente</em></span>
-          <span class="platform windows"><span class="windows-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Windows <em class="soon-tag" data-i18n="soon">Próximamente</em></span>
+          <span class="platform apple"><span class="platform-icon">●</span>macOS <em class="soon-tag" data-i18n="desktop.soon">Próximamente</em></span>
+          <span class="platform windows"><span class="windows-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Windows <em class="soon-tag" data-i18n="desktop.soon">Próximamente</em></span>
         </div>
         <div class="hero-actions">
-          <a href="#downloads" class="btn btn-primary" data-download-link="primary" data-i18n="download">Descargar Verbo</a>
-          <a href="#modes" class="btn btn-ghost" data-i18n="discover">Ver cómo funciona</a>
+          <a href="#downloads" class="btn btn-primary" data-download-link="primary" data-i18n="desktop.download">Descargar Verbo</a>
+          <a href="#modes" class="btn btn-ghost" data-i18n="desktop.discover">Ver cómo funciona</a>
         </div>
-        <p class="microcopy" data-i18n="heroMicro">Linux disponible ahora. macOS y Windows llegarán próximamente.</p>
+        <p class="microcopy" data-i18n="desktop.heroMicro">Linux disponible ahora. macOS y Windows llegarán próximamente.</p>
       </div>
 
       <div class="hero-visual reveal delay-1" aria-label="Verbo Desktop screenshot">
@@ -65,7 +66,7 @@
         <div class="ambient-orb orb-b"></div>
         <div class="screen-wrap">
           <div class="screen-top"><span></span><span></span><span></span></div>
-          <img src="assets/modo-estudio.png" alt="Verbo Desktop study interface" />
+          <img src="assets/modo-estudio.png" alt="Interfaz de estudio de Verbo Desktop" data-i18n-attr="alt:softwareExtra.desktopAlt0" />
         </div>
         <div class="module-chip-row" aria-label="Módulos compatibles">
           <div class="floating-chip module-chip esword">e-Sword</div>
@@ -78,13 +79,13 @@
     <section id="linux" class="linux-feature band-dark">
       <div class="section-shell linux-grid">
         <div class="linux-copy reveal">
-          <div class="kicker-row"><span class="tux">🐧</span><span class="eyebrow" data-i18n="linuxEyebrow">LINUX NATIVO</span></div>
-          <h2 data-i18n="linuxTitle">Linux ya tenía software bíblico. Ahora puede tener la biblioteca.</h2>
-          <p data-i18n="linuxBody">Importa módulos compatibles procedentes de ecosistemas de Windows y Android y utilízalos directamente en Verbo, sin tener que ejecutar la aplicación dentro de Windows.</p>
+          <div class="kicker-row"><span class="tux">🐧</span><span class="eyebrow" data-i18n="desktop.linuxEyebrow">LINUX NATIVO</span></div>
+          <h2 data-i18n="desktop.linuxTitle">Linux ya tenía software bíblico. Ahora puede tener la biblioteca.</h2>
+          <p data-i18n="desktop.linuxBody">Importa módulos compatibles procedentes de ecosistemas de Windows y Android y utilízalos directamente en Verbo, sin tener que ejecutar la aplicación dentro de Windows.</p>
           <div class="fact-grid">
-            <article><strong data-i18n="linuxFact1Title">Nativo</strong><span data-i18n="linuxFact1Text">Pensado para ejecutarse directamente en Linux.</span></article>
-            <article><strong data-i18n="linuxFact2Title">Tu colección</strong><span data-i18n="linuxFact2Text">Aprovecha módulos compatibles que ya utilizabas.</span></article>
-            <article><strong data-i18n="linuxFact3Title">Un solo entorno</strong><span data-i18n="linuxFact3Text">Estudio, enseñanza y biblioteca en la misma aplicación.</span></article>
+            <article><strong data-i18n="desktop.linuxFact1Title">Nativo</strong><span data-i18n="desktop.linuxFact1Text">Pensado para ejecutarse directamente en Linux.</span></article>
+            <article><strong data-i18n="desktop.linuxFact2Title">Tu colección</strong><span data-i18n="desktop.linuxFact2Text">Aprovecha módulos compatibles que ya utilizabas.</span></article>
+            <article><strong data-i18n="desktop.linuxFact3Title">Un solo entorno</strong><span data-i18n="desktop.linuxFact3Text">Estudio, enseñanza y biblioteca en la misma aplicación.</span></article>
           </div>
         </div>
         <div class="linux-visual reveal delay-1">
@@ -95,7 +96,7 @@
                 <span>⌘</span><span>⌂</span><span class="verbo-mini"><img src="assets/verbo-icon.png" alt="" /></span><span>▣</span><span>⚙</span>
               </aside>
               <div class="wallpaper"></div>
-              <img class="app-shot" src="assets/modo-estudio.png" alt="Verbo Desktop running on Linux" />
+              <img class="app-shot" src="assets/modo-estudio.png" alt="Verbo Desktop en Linux" data-i18n-attr="alt:softwareExtra.desktopAlt1" />
             </div>
           </div>
         </div>
@@ -104,9 +105,9 @@
 
     <section id="ecosystem" class="ecosystem section-shell">
       <header class="section-heading reveal">
-        <span class="eyebrow" data-i18n="ecoEyebrow">UNA BIBLIOTECA, VARIOS ECOSISTEMAS</span>
-        <h2 data-i18n="ecoTitle">Lo que antes vivía separado puede reunirse en Verbo.</h2>
-        <p data-i18n="ecoBody">El texto vive en la web; la imagen solo explica el flujo. Así la página puede cambiar de idioma sin duplicar gráficos.</p>
+        <span class="eyebrow" data-i18n="desktop.ecoEyebrow">UNA BIBLIOTECA, VARIOS ECOSISTEMAS</span>
+        <h2 data-i18n="desktop.ecoTitle">Lo que antes vivía separado puede reunirse en Verbo.</h2>
+        <p data-i18n="desktop.ecoBody">El texto vive en la web; la imagen solo explica el flujo. Así la página puede cambiar de idioma sin duplicar gráficos.</p>
       </header>
       <div class="ecosystem-diagram reveal delay-1">
         <div class="source-stack">
@@ -128,24 +129,24 @@
     <section class="platform-showcase band-soft">
       <div class="section-shell">
         <div class="showcase-intro reveal">
-          <span class="eyebrow" data-i18n="platformEyebrow">TRES PLATAFORMAS</span>
-          <h2 data-i18n="platformTitle">Una experiencia de escritorio real.</h2>
+          <span class="eyebrow" data-i18n="desktop.platformEyebrow">TRES PLATAFORMAS</span>
+          <h2 data-i18n="desktop.platformTitle">Una experiencia de escritorio real.</h2>
         </div>
         <div class="platform-cards">
           <article class="platform-card featured reveal">
             <div class="card-os"><span>🐧</span><strong>Linux</strong></div>
-            <div class="device-shell"><img src="assets/biblioteca.png" alt="Verbo library interface" /></div>
-            <p data-i18n="platformLinux">La prioridad del lanzamiento: una biblioteca bíblica amplia en un entorno Linux nativo.</p>
+            <div class="device-shell"><img src="assets/biblioteca.png" alt="Biblioteca de Verbo" data-i18n-attr="alt:softwareExtra.desktopAlt2" /></div>
+            <p data-i18n="desktop.platformLinux">La prioridad del lanzamiento: una biblioteca bíblica amplia en un entorno Linux nativo.</p>
           </article>
           <article class="platform-card reveal delay-1">
-            <div class="card-os"><span class="apple-dot">●</span><strong>macOS</strong><em class="soon-tag" data-i18n="soon">Próximamente</em></div>
-            <div class="device-shell mac"><img src="assets/modo-preparacion.png" alt="Verbo teaching preparation interface" /></div>
-            <p data-i18n="platformMac">Importa tus recursos y trabaja en Verbo directamente desde tu Mac.</p>
+            <div class="card-os"><span class="apple-dot">●</span><strong>macOS</strong><em class="soon-tag" data-i18n="desktop.soon">Próximamente</em></div>
+            <div class="device-shell mac"><img src="assets/modo-preparacion.png" alt="Preparación de enseñanzas en Verbo" data-i18n-attr="alt:softwareExtra.desktopAlt3" /></div>
+            <p data-i18n="desktop.platformMac">Importa tus recursos y trabaja en Verbo directamente desde tu Mac.</p>
           </article>
           <article class="platform-card reveal delay-2">
-            <div class="card-os"><span class="windows-mark"><i></i><i></i><i></i><i></i></span><strong>Windows</strong><em class="soon-tag" data-i18n="soon">Próximamente</em></div>
-            <div class="device-shell"><img src="assets/modo-estudio.png" alt="Verbo study interface" /></div>
-            <p data-i18n="platformWindows">Una nueva alternativa para reunir recursos, estudio y preparación en un solo entorno.</p>
+            <div class="card-os"><span class="windows-mark"><i></i><i></i><i></i><i></i></span><strong>Windows</strong><em class="soon-tag" data-i18n="desktop.soon">Próximamente</em></div>
+            <div class="device-shell"><img src="assets/modo-estudio.png" alt="Interfaz de estudio de Verbo" data-i18n-attr="alt:softwareExtra.desktopAlt4" /></div>
+            <p data-i18n="desktop.platformWindows">Una nueva alternativa para reunir recursos, estudio y preparación en un solo entorno.</p>
           </article>
         </div>
       </div>
@@ -153,22 +154,22 @@
 
     <section id="modes" class="modes section-shell">
       <header class="section-heading reveal">
-        <span class="eyebrow" data-i18n="modesEyebrow">TRES FORMAS DE TRABAJAR</span>
-        <h2 data-i18n="modesTitle">Estudia. Prepara. Lee.</h2>
-        <p data-i18n="modesBody">Verbo no es solo un importador. La aplicación cambia de espacio según lo que necesitas hacer.</p>
+        <span class="eyebrow" data-i18n="desktop.modesEyebrow">TRES FORMAS DE TRABAJAR</span>
+        <h2 data-i18n="desktop.modesTitle">Estudia. Prepara. Lee.</h2>
+        <p data-i18n="desktop.modesBody">Verbo no es solo un importador. La aplicación cambia de espacio según lo que necesitas hacer.</p>
       </header>
       <div class="mode-grid">
         <article class="mode-card reveal">
-          <div class="mode-image"><img src="assets/modo-estudio.png" alt="Modo Estudio" /></div>
-          <div class="mode-copy"><span class="mode-number">01</span><h3 data-i18n="studyTitle">Modo Estudio</h3><p data-i18n="studyText">Biblia, referencias cruzadas, idiomas bíblicos, Strong y recursos alrededor del texto.</p></div>
+          <div class="mode-image"><img src="assets/modo-estudio.png" alt="Modo Estudio" data-i18n-attr="alt:softwareExtra.desktopAlt5" /></div>
+          <div class="mode-copy"><span class="mode-number">01</span><h3 data-i18n="desktop.studyTitle">Modo Estudio</h3><p data-i18n="desktop.studyText">Biblia, referencias cruzadas, idiomas bíblicos, Strong y recursos alrededor del texto.</p></div>
         </article>
         <article class="mode-card reverse reveal delay-1">
-          <div class="mode-image"><img src="assets/modo-preparacion.png" alt="Modo Preparación de enseñanza" /></div>
-          <div class="mode-copy"><span class="mode-number">02</span><h3 data-i18n="teachTitle">Preparación de enseñanza</h3><p data-i18n="teachText">Editor, Biblia y herramientas de estudio trabajando juntos para bosquejos, clases y predicaciones.</p></div>
+          <div class="mode-image"><img src="assets/modo-preparacion.png" alt="Modo Preparación de enseñanza" data-i18n-attr="alt:softwareExtra.desktopAlt6" /></div>
+          <div class="mode-copy"><span class="mode-number">02</span><h3 data-i18n="desktop.teachTitle">Preparación de enseñanza</h3><p data-i18n="desktop.teachText">Editor, Biblia y herramientas de estudio trabajando juntos para bosquejos, clases y predicaciones.</p></div>
         </article>
         <article class="mode-card reveal delay-2">
-          <div class="mode-image"><img src="assets/biblioteca.png" alt="Modo Biblioteca" /></div>
-          <div class="mode-copy"><span class="mode-number">03</span><h3 data-i18n="libraryTitle">Modo Biblioteca</h3><p data-i18n="libraryText">Lee y organiza libros, historia, devocionales y otros recursos en una biblioteca visual.</p></div>
+          <div class="mode-image"><img src="assets/biblioteca.png" alt="Modo Biblioteca" data-i18n-attr="alt:softwareExtra.desktopAlt7" /></div>
+          <div class="mode-copy"><span class="mode-number">03</span><h3 data-i18n="desktop.libraryTitle">Modo Biblioteca</h3><p data-i18n="desktop.libraryText">Lee y organiza libros, historia, devocionales y otros recursos en una biblioteca visual.</p></div>
         </article>
       </div>
     </section>
@@ -176,14 +177,14 @@
     <section class="tools band-dark">
       <div class="section-shell">
         <header class="section-heading light reveal">
-          <span class="eyebrow" data-i18n="toolsEyebrow">HERRAMIENTAS DE ESTUDIO</span>
-          <h2 data-i18n="toolsTitle">Mucho más que abrir una Biblia.</h2>
-          <p data-i18n="toolsBody">Recursos visuales, lingüísticos, históricos y personales permanecen cerca del texto.</p>
+          <span class="eyebrow" data-i18n="desktop.toolsEyebrow">HERRAMIENTAS DE ESTUDIO</span>
+          <h2 data-i18n="desktop.toolsTitle">Mucho más que abrir una Biblia.</h2>
+          <p data-i18n="desktop.toolsBody">Recursos visuales, lingüísticos, históricos y personales permanecen cerca del texto.</p>
         </header>
         <div class="tool-gallery">
-          <figure class="tool-feature reveal"><img src="assets/mapas.png" alt="Biblical maps in Verbo" /><figcaption><strong data-i18n="mapsTitle">Mapas bíblicos</strong><span data-i18n="mapsText">Historia y geografía en ventanas de consulta.</span></figcaption></figure>
-          <figure class="tool-feature reveal delay-1"><img src="assets/notas-strong.png" alt="Notes and Strong dictionary in Verbo" /><figcaption><strong data-i18n="strongTitle">Strong y notas</strong><span data-i18n="strongText">Idiomas bíblicos, diccionarios y tus propias notas.</span></figcaption></figure>
-          <figure class="tool-feature reveal delay-2"><img src="assets/costumbres.png" alt="Customs and traditions resource in Verbo" /><figcaption><strong data-i18n="customsTitle">Costumbres y tradiciones</strong><span data-i18n="customsText">Contexto cultural disponible mientras estudias.</span></figcaption></figure>
+          <figure class="tool-feature reveal"><img src="assets/mapas.png" alt="Mapas bíblicos en Verbo" data-i18n-attr="alt:softwareExtra.desktopAlt8" /><figcaption><strong data-i18n="desktop.mapsTitle">Mapas bíblicos</strong><span data-i18n="desktop.mapsText">Historia y geografía en ventanas de consulta.</span></figcaption></figure>
+          <figure class="tool-feature reveal delay-1"><img src="assets/notas-strong.png" alt="Notas y diccionario Strong en Verbo" data-i18n-attr="alt:softwareExtra.desktopAlt9" /><figcaption><strong data-i18n="desktop.strongTitle">Strong y notas</strong><span data-i18n="desktop.strongText">Idiomas bíblicos, diccionarios y tus propias notas.</span></figcaption></figure>
+          <figure class="tool-feature reveal delay-2"><img src="assets/costumbres.png" alt="Costumbres y tradiciones en Verbo" data-i18n-attr="alt:softwareExtra.desktopAlt10" /><figcaption><strong data-i18n="desktop.customsTitle">Costumbres y tradiciones</strong><span data-i18n="desktop.customsText">Contexto cultural disponible mientras estudias.</span></figcaption></figure>
         </div>
       </div>
     </section>
@@ -191,20 +192,20 @@
     <section id="library" class="library section-shell">
       <div class="library-grid">
         <div class="library-copy reveal">
-          <span class="eyebrow" data-i18n="libraryEyebrow">TU BIBLIOTECA PERSONAL</span>
-          <h2 data-i18n="librarySectionTitle">De los Padres Apostólicos a tus próximos recursos.</h2>
-          <p data-i18n="librarySectionBody">Verbo también es un espacio de lectura. Libros, historia, devocionales, Padres Apostólicos y otros recursos pueden convivir con tu estudio bíblico.</p>
+          <span class="eyebrow" data-i18n="desktop.libraryEyebrow">TU BIBLIOTECA PERSONAL</span>
+          <h2 data-i18n="desktop.librarySectionTitle">De los Padres Apostólicos a tus próximos recursos.</h2>
+          <p data-i18n="desktop.librarySectionBody">Verbo también es un espacio de lectura. Libros, historia, devocionales, Padres Apostólicos y otros recursos pueden convivir con tu estudio bíblico.</p>
           <ul>
-            <li data-i18n="libItem1">Padres Apostólicos</li>
-            <li data-i18n="libItem2">Historia y contexto</li>
-            <li data-i18n="libItem3">Devocionales y libros</li>
-            <li data-i18n="libItem4">Recursos importados por el usuario</li>
+            <li data-i18n="desktop.libItem1">Padres Apostólicos</li>
+            <li data-i18n="desktop.libItem2">Historia y contexto</li>
+            <li data-i18n="desktop.libItem3">Devocionales y libros</li>
+            <li data-i18n="desktop.libItem4">Recursos importados por el usuario</li>
           </ul>
         </div>
         <div class="library-collage reveal delay-1">
-          <img class="collage-main" src="assets/biblioteca.png" alt="Verbo library" />
-          <img class="collage-side" src="assets/padres.png" alt="Apostolic Fathers in Verbo" />
-          <img class="collage-mini" src="assets/conversor.png" alt="Biblical measure converter" />
+          <img class="collage-main" src="assets/biblioteca.png" alt="Biblioteca de Verbo" data-i18n-attr="alt:softwareExtra.desktopAlt11" />
+          <img class="collage-side" src="assets/padres.png" alt="Padres Apostólicos en Verbo" data-i18n-attr="alt:softwareExtra.desktopAlt12" />
+          <img class="collage-mini" src="assets/conversor.png" alt="Conversor de medidas bíblicas" data-i18n-attr="alt:softwareExtra.desktopAlt13" />
         </div>
       </div>
     </section>
@@ -213,141 +214,156 @@
     <section id="padres-modulos" class="padres-modules band-soft">
       <div class="section-shell">
         <header class="section-heading reveal">
-          <span class="eyebrow" data-i18n="padresEyebrow">TUS PRIMEROS MÓDULOS</span>
-          <h2 data-i18n="padresTitle">Descarga tus primeros módulos de los Padres Apostólicos en español</h2>
-          <p data-i18n="padresBody">Nueve obras, una por autor, traducidas por Verbo y listas para importar.</p>
+          <span class="eyebrow" data-i18n="desktop.padresEyebrow">TUS PRIMEROS MÓDULOS</span>
+          <h2 data-i18n="desktop.padresTitle">Descarga tus primeros módulos de los Padres Apostólicos en español</h2>
+          <p data-i18n="desktop.padresBody">Nueve obras, una por autor, traducidas por Verbo y listas para importar.</p>
         </header>
         <div class="padres-grid">
           <article class="padres-card reveal">
             <img class="padres-cover" src="descargas/padres-apostolicos/covers/ireneo.svg" alt="" loading="lazy">
             <div class="padres-card-body">
-              <span class="padres-period" data-i18n="padresIreneoPeriod">Año ~180 d.C.</span>
-              <h3 data-i18n="padresIreneoTitle">Ireneo de Lyon — Contra las Herejías</h3>
-              <p data-i18n="padresIreneoDesc"></p>
+              <span class="padres-period" data-i18n="desktop.padresIreneoPeriod">Año ~180 d.C.</span>
+              <h3 data-i18n="desktop.padresIreneoTitle">Ireneo de Lyon — Contra las Herejías</h3>
+              <p data-i18n="desktop.padresIreneoDesc"></p>
               <div class="padres-card-actions">
-                <a href="descargas/padres-apostolicos/ireneo.zip" class="btn btn-primary padres-zip-link" data-i18n="padresZipBtn">Descargar .zip</a>
+                <a href="descargas/padres-apostolicos/ireneo.zip" class="btn btn-primary padres-zip-link" data-i18n="desktop.padresZipBtn">Descargar .zip</a>
               </div>
             </div>
           </article>
           <article class="padres-card reveal">
             <img class="padres-cover" src="descargas/padres-apostolicos/covers/clemente.svg" alt="" loading="lazy">
             <div class="padres-card-body">
-              <span class="padres-period" data-i18n="padresClementePeriod">Años 96–140 d.C.</span>
-              <h3 data-i18n="padresClementeTitle">Clemente de Roma — 1 y 2 Clemente</h3>
-              <p data-i18n="padresClementeDesc"></p>
+              <span class="padres-period" data-i18n="desktop.padresClementePeriod">Años 96–140 d.C.</span>
+              <h3 data-i18n="desktop.padresClementeTitle">Clemente de Roma — 1 y 2 Clemente</h3>
+              <p data-i18n="desktop.padresClementeDesc"></p>
               <div class="padres-card-actions">
-                <a href="descargas/padres-apostolicos/clemente.zip" class="btn btn-primary padres-zip-link" data-i18n="padresZipBtn">Descargar .zip</a>
+                <a href="descargas/padres-apostolicos/clemente.zip" class="btn btn-primary padres-zip-link" data-i18n="desktop.padresZipBtn">Descargar .zip</a>
               </div>
             </div>
           </article>
           <article class="padres-card reveal">
             <img class="padres-cover" src="descargas/padres-apostolicos/covers/policarpo.svg" alt="" loading="lazy">
             <div class="padres-card-body">
-              <span class="padres-period" data-i18n="padresPolicarpoPeriod">Años 110–160 d.C.</span>
-              <h3 data-i18n="padresPolicarpoTitle">Policarpo de Esmirna — A los Filipenses y su Martirio</h3>
-              <p data-i18n="padresPolicarpoDesc"></p>
+              <span class="padres-period" data-i18n="desktop.padresPolicarpoPeriod">Años 110–160 d.C.</span>
+              <h3 data-i18n="desktop.padresPolicarpoTitle">Policarpo de Esmirna — A los Filipenses y su Martirio</h3>
+              <p data-i18n="desktop.padresPolicarpoDesc"></p>
               <div class="padres-card-actions">
-                <a href="descargas/padres-apostolicos/policarpo.zip" class="btn btn-primary padres-zip-link" data-i18n="padresZipBtn">Descargar .zip</a>
+                <a href="descargas/padres-apostolicos/policarpo.zip" class="btn btn-primary padres-zip-link" data-i18n="desktop.padresZipBtn">Descargar .zip</a>
               </div>
             </div>
           </article>
           <article class="padres-card reveal">
             <img class="padres-cover" src="descargas/padres-apostolicos/covers/ignacio.svg" alt="" loading="lazy">
             <div class="padres-card-body">
-              <span class="padres-period" data-i18n="padresIgnacioPeriod">Año ~108 d.C.</span>
-              <h3 data-i18n="padresIgnacioTitle">Ignacio de Antioquía — El Martirio</h3>
-              <p data-i18n="padresIgnacioDesc"></p>
+              <span class="padres-period" data-i18n="desktop.padresIgnacioPeriod">Año ~108 d.C.</span>
+              <h3 data-i18n="desktop.padresIgnacioTitle">Ignacio de Antioquía — El Martirio</h3>
+              <p data-i18n="desktop.padresIgnacioDesc"></p>
               <div class="padres-card-actions">
-                <a href="descargas/padres-apostolicos/ignacio.zip" class="btn btn-primary padres-zip-link" data-i18n="padresZipBtn">Descargar .zip</a>
+                <a href="descargas/padres-apostolicos/ignacio.zip" class="btn btn-primary padres-zip-link" data-i18n="desktop.padresZipBtn">Descargar .zip</a>
               </div>
             </div>
           </article>
           <article class="padres-card reveal">
             <img class="padres-cover" src="descargas/padres-apostolicos/covers/didache.svg" alt="" loading="lazy">
             <div class="padres-card-body">
-              <span class="padres-period" data-i18n="padresDidachePeriod">Años 50–120 d.C.</span>
-              <h3 data-i18n="padresDidacheTitle">La Didaché — Enseñanza de los Doce Apóstoles</h3>
-              <p data-i18n="padresDidacheDesc"></p>
+              <span class="padres-period" data-i18n="desktop.padresDidachePeriod">Años 50–120 d.C.</span>
+              <h3 data-i18n="desktop.padresDidacheTitle">La Didaché — Enseñanza de los Doce Apóstoles</h3>
+              <p data-i18n="desktop.padresDidacheDesc"></p>
               <div class="padres-card-actions">
-                <a href="descargas/padres-apostolicos/didache.zip" class="btn btn-primary padres-zip-link" data-i18n="padresZipBtn">Descargar .zip</a>
+                <a href="descargas/padres-apostolicos/didache.zip" class="btn btn-primary padres-zip-link" data-i18n="desktop.padresZipBtn">Descargar .zip</a>
               </div>
             </div>
           </article>
           <article class="padres-card reveal">
             <img class="padres-cover" src="descargas/padres-apostolicos/covers/bernabe.svg" alt="" loading="lazy">
             <div class="padres-card-body">
-              <span class="padres-period" data-i18n="padresBernabePeriod">Años 70–135 d.C.</span>
-              <h3 data-i18n="padresBernabeTitle">Epístola de Bernabé</h3>
-              <p data-i18n="padresBernabeDesc"></p>
+              <span class="padres-period" data-i18n="desktop.padresBernabePeriod">Años 70–135 d.C.</span>
+              <h3 data-i18n="desktop.padresBernabeTitle">Epístola de Bernabé</h3>
+              <p data-i18n="desktop.padresBernabeDesc"></p>
               <div class="padres-card-actions">
-                <a href="descargas/padres-apostolicos/bernabe.zip" class="btn btn-primary padres-zip-link" data-i18n="padresZipBtn">Descargar .zip</a>
+                <a href="descargas/padres-apostolicos/bernabe.zip" class="btn btn-primary padres-zip-link" data-i18n="desktop.padresZipBtn">Descargar .zip</a>
               </div>
             </div>
           </article>
           <article class="padres-card reveal">
             <img class="padres-cover" src="descargas/padres-apostolicos/covers/diogneto.svg" alt="" loading="lazy">
             <div class="padres-card-body">
-              <span class="padres-period" data-i18n="padresDiognetoPeriod">Años 130–200 d.C.</span>
-              <h3 data-i18n="padresDiognetoTitle">Epístola a Diogneto (Mathietes)</h3>
-              <p data-i18n="padresDiognetoDesc"></p>
+              <span class="padres-period" data-i18n="desktop.padresDiognetoPeriod">Años 130–200 d.C.</span>
+              <h3 data-i18n="desktop.padresDiognetoTitle">Epístola a Diogneto (Mathietes)</h3>
+              <p data-i18n="desktop.padresDiognetoDesc"></p>
               <div class="padres-card-actions">
-                <a href="descargas/padres-apostolicos/diogneto.zip" class="btn btn-primary padres-zip-link" data-i18n="padresZipBtn">Descargar .zip</a>
+                <a href="descargas/padres-apostolicos/diogneto.zip" class="btn btn-primary padres-zip-link" data-i18n="desktop.padresZipBtn">Descargar .zip</a>
               </div>
             </div>
           </article>
           <article class="padres-card reveal">
             <img class="padres-cover" src="descargas/padres-apostolicos/covers/hermas.svg" alt="" loading="lazy">
             <div class="padres-card-body">
-              <span class="padres-period" data-i18n="padresHermasPeriod">Años 90–150 d.C.</span>
-              <h3 data-i18n="padresHermasTitle">El Pastor de Hermas</h3>
-              <p data-i18n="padresHermasDesc"></p>
+              <span class="padres-period" data-i18n="desktop.padresHermasPeriod">Años 90–150 d.C.</span>
+              <h3 data-i18n="desktop.padresHermasTitle">El Pastor de Hermas</h3>
+              <p data-i18n="desktop.padresHermasDesc"></p>
               <div class="padres-card-actions">
-                <a href="descargas/padres-apostolicos/hermas.zip" class="btn btn-primary padres-zip-link" data-i18n="padresZipBtn">Descargar .zip</a>
+                <a href="descargas/padres-apostolicos/hermas.zip" class="btn btn-primary padres-zip-link" data-i18n="desktop.padresZipBtn">Descargar .zip</a>
               </div>
             </div>
           </article>
           <article class="padres-card reveal">
             <img class="padres-cover" src="descargas/padres-apostolicos/covers/papias.svg" alt="" loading="lazy">
             <div class="padres-card-body">
-              <span class="padres-period" data-i18n="padresPapiasPeriod">Años 110–140 d.C.</span>
-              <h3 data-i18n="padresPapiasTitle">Fragmentos de Papías de Hierápolis</h3>
-              <p data-i18n="padresPapiasDesc"></p>
+              <span class="padres-period" data-i18n="desktop.padresPapiasPeriod">Años 110–140 d.C.</span>
+              <h3 data-i18n="desktop.padresPapiasTitle">Fragmentos de Papías de Hierápolis</h3>
+              <p data-i18n="desktop.padresPapiasDesc"></p>
               <div class="padres-card-actions">
-                <a href="descargas/padres-apostolicos/papias.zip" class="btn btn-primary padres-zip-link" data-i18n="padresZipBtn">Descargar .zip</a>
+                <a href="descargas/padres-apostolicos/papias.zip" class="btn btn-primary padres-zip-link" data-i18n="desktop.padresZipBtn">Descargar .zip</a>
               </div>
             </div>
           </article>
         </div>
-        <p class="padres-no-app"><a href="#downloads" data-i18n="padresNoApp">¿No tenés la app? Descargala más abajo.</a></p>
+        <p class="padres-no-app"><a href="#downloads" data-i18n="desktop.padresNoApp">¿No tenés la app? Descargala más abajo.</a></p>
       </div>
     </section>
 
     <section id="downloads" class="download-band">
       <div class="section-shell download-inner reveal">
         <img src="assets/verbo-icon.png" alt="" />
-        <div><span class="eyebrow" data-i18n="downloadEyebrow">VERBO DESKTOP</span><h2 data-i18n="downloadTitle">Tu biblioteca. Tu sistema. Tu espacio de estudio.</h2><p data-i18n="downloadBody">Paquetes de Linux disponibles (.deb y .rpm, versión de desarrollo). macOS y Windows llegarán próximamente.</p></div>
+        <div><span class="eyebrow" data-i18n="desktop.downloadEyebrow">VERBO DESKTOP</span><h2 data-i18n="desktop.downloadTitle">Tu biblioteca. Tu sistema. Tu espacio de estudio.</h2><p data-i18n="desktop.downloadBody">Paquetes de Linux disponibles (.deb y .rpm, versión de desarrollo). macOS y Windows llegarán próximamente.</p></div>
         <div class="download-actions">
           <a href="https://mega.nz/file/m0wUlbBT#1MqSm2cVgJviBgHDS5QpB1X3yKEdgWGQGVbmVAHfsmU" target="_blank" rel="noopener noreferrer" data-download-linux class="btn btn-primary">Linux (.deb)</a>
           <a href="https://mega.nz/file/3oBShZ6a#wtx8QUfYrwWbDHbxzZ86wryNfh0YCT8vcnSq3ITxqxA" target="_blank" rel="noopener noreferrer" data-download-linux-rpm class="btn btn-secondary">Linux (.rpm)</a>
-          <span data-download-mac class="btn btn-secondary is-soon">macOS <em class="soon-tag" data-i18n="soon">Próximamente</em></span>
-          <span data-download-windows class="btn btn-secondary is-soon">Windows <em class="soon-tag" data-i18n="soon">Próximamente</em></span>
+          <span data-download-mac class="btn btn-secondary is-soon">macOS <em class="soon-tag" data-i18n="desktop.soon">Próximamente</em></span>
+          <span data-download-windows class="btn btn-secondary is-soon">Windows <em class="soon-tag" data-i18n="desktop.soon">Próximamente</em></span>
         </div>
         <form class="report-form" id="reportForm">
-          <p class="report-form__label" data-i18n="reportLabel">¿Encontraste un error? Cuéntanoslo.</p>
-          <textarea id="reportText" data-i18n-placeholder="reportPlaceholder" placeholder="Describe brevemente el problema que encontraste..." rows="3" required></textarea>
-          <button type="submit" class="btn btn-secondary" data-i18n="reportSend">Enviar reporte</button>
+          <p class="report-form__label" data-i18n="desktop.reportLabel">¿Encontraste un error? Cuéntanoslo.</p>
+          <textarea id="reportText" data-i18n-attr="placeholder:desktop.reportPlaceholder" placeholder="Describe brevemente el problema que encontraste..." rows="3" required></textarea>
+          <button type="submit" class="btn btn-secondary" data-i18n="desktop.reportSend">Enviar reporte</button>
         </form>
       </div>
     </section>
-  </main>
+  <section class="product section-shell software-details" id="requisitos"><h2 data-i18n="softwareExtra.desktopRequirements">Requisitos y estado de la versión</h2><p data-i18n="softwareExtra.desktopSystem">Linux de 64 bits (amd64/x86_64). El .deb requiere glibc 2.36 o posterior, por ejemplo Linux Mint 22. El .rpm está preparado para openSUSE Tumbleweed. No se garantiza compatibilidad con otras distribuciones.</p><p data-i18n="softwareExtra.desktopVersion">La entrega local firmada es 0.9.0-dev (9 de octubre de 2026). Mint se comprobó en un entorno de compilación compatible, no en una máquina Mint real. No se han establecido mínimos de RAM o espacio libre.</p></section>
+<section class="product section-shell software-details" id="privacidad"><h2 data-i18n="softwareExtra.privacyTitle">Privacidad y tus recursos</h2><p data-i18n="softwareExtra.privacyBody">La biblioteca, las notas y los ajustes se guardan en el equipo; en Linux los datos de la aplicación están en ~/.local/share/verbo-desktop. Los recursos locales pueden consultarse sin conexión. Descargar módulos, abrir enlaces o usar fuentes remotas requiere internet y comunica con sus proveedores.</p><p data-i18n="softwareExtra.privacyReport">El formulario de reporte de esta página abre tu cliente de correo con el texto que escribas; tú decides si lo envías. La página guarda tu elección de idioma en el navegador. Cada Biblia o módulo conserva sus propios permisos de uso.</p><a href="/privacidad/" data-i18n="pie.privacidad">Política de privacidad</a></section>
+<section class="product section-shell software-details" id="verificar"><h2 data-i18n="softwareExtra.desktopVerifyTitle">Descarga firmada: verificar antes de instalar</h2><p data-i18n="softwareExtra.desktopVerifyNote">El RPM lleva firma integrada; el DEB usa una firma .asc separada que el instalador gráfico no comprueba. Descarga la clave, la firma y el manifiesto de la misma entrega. Si el nombre, la versión o la verificación no coinciden, no instales el archivo.</p><p data-i18n="softwareExtra.desktopMirror">Los botones de descarga conservan los enlaces existentes de MEGA. No se ha comprobado que esos archivos correspondan a la entrega local 0.9.0-dev: los archivos de verificación siguientes sirven únicamente para los nombres exactos indicados.</p><ul><li><a href="/software/descargas/verbo-desktop-public.key" download>verbo-desktop-public.key</a></li><li><a href="/software/descargas/verbo-desktop_0.9.0~dev1_amd64.deb.asc" download>verbo-desktop_0.9.0~dev1_amd64.deb.asc</a></li><li><a href="/software/descargas/SHA256SUMS" download>SHA256SUMS</a></li><li><a href="/software/descargas/SHA256SUMS.asc" download>SHA256SUMS.asc</a></li></ul><p>GPG: <code>736AA0E9E097E9640A371274C61F1C969BD3DAA7</code></p><p data-i18n="softwareExtra.desktopFingerprint">Compara la huella completa de la clave antes de confiar en ella. Una firma correcta acredita el origen del paquete; no garantiza compatibilidad con tu equipo.</p><pre><code>gpg --show-keys --with-fingerprint verbo-desktop-public.key
+gpg --import verbo-desktop-public.key
+gpg --output SHA256SUMS.verificado --decrypt SHA256SUMS.asc
+sha256sum --ignore-missing -c SHA256SUMS.verificado
+
+# DEB
+gpg --verify verbo-desktop_0.9.0~dev1_amd64.deb.asc verbo-desktop_0.9.0~dev1_amd64.deb
+sudo apt install ./verbo-desktop_0.9.0~dev1_amd64.deb
+
+# RPM
+sudo rpm --import verbo-desktop-public.key
+rpm -K verbo-desktop-0.9.0~dev1-1.x86_64.rpm
+sudo zypper install ./verbo-desktop-0.9.0~dev1-1.x86_64.rpm</code></pre></section>
+</main>
 
   <footer>
-    <div class="section-shell footer-inner"><span>© <span id="year"></span> Verbo</span><span data-i18n="footer">Estudio bíblico de escritorio.</span></div>
+    <div class="section-shell footer-inner"><span>© <span id="year"></span> Verbo</span><span data-i18n="desktop.footer">Estudio bíblico de escritorio.</span></div>
   </footer>
 
-  <script src="app.js"></script>
-<script src="/biblia/assets/i18n.js?v=20261021-pie"></script>
-<script src="/biblia/assets/site-chrome.js?v=20261021-pie"></script>
+  <script src="app.js?v=20261021-software"></script>
+<script src="/biblia/assets/i18n.js?v=20261021-software"></script>
+<script src="/biblia/assets/site-chrome.js?v=20261021-software"></script>
 <!-- verbo:pie -->
 <footer class="verbo-pie" aria-label="Verbo">
   <div class="verbo-pie__interior">

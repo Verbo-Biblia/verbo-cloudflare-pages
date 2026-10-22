@@ -74,7 +74,7 @@ def apply():
     pages = public_pages()
     for path in pages:
         original = text = path.read_text(encoding='utf-8')
-        asset_version = '20261021-secciones' if path.relative_to(ROOT).parts[0] in {'apps', 'juegos', 'imagenes'} else VERSION
+        asset_version = '20261021-software' if path.relative_to(ROOT).parts[0] in {'software', 'verbo-desktop'} else '20261021-secciones' if path.relative_to(ROOT).parts[0] in {'apps', 'juegos', 'imagenes'} else VERSION
         if START in text:
             text = re.sub(r'\n?' + re.escape(START) + r'.*?' + re.escape(END) + r'\n?', '\n', text, flags=re.S)
         elif path == ROOT / 'index.html':

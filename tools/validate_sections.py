@@ -16,14 +16,20 @@ class Check(HTMLParser):
   if 'id'in a:
    if a['id']in self.ids:errors.append(f'{self.path}: duplicate ID {a["id"]}')
    self.ids.add(a['id'])
-  if 'data-i18n'in a:
+  keys=([a['data-i18n']] if 'data-i18n' in a else [])
+  keys += [pair.split(':',1)[1].strip() for pair in a.get('data-i18n-attr','').split(',') if ':' in pair]
+  for translation_key in keys:
    for lang,d in DICTS.items():
     try:
-     for key in a['data-i18n'].split('.'):d=d[key]
-    except (KeyError,TypeError):errors.append(f'{self.path}: missing {lang} key {a["data-i18n"]}')
+     for key in translation_key.split('.'):d=d[key]
+    except (KeyError,TypeError):errors.append(f'{self.path}: missing {lang} key {translation_key}')
+  if 'srcset' in a:self.links.extend(item.strip().split()[0] for item in a['srcset'].split(',') if item.strip())
   for attr in ['href','src']:
    if attr in a:self.links.append(a[attr])
   if tag=='script' and a.get('type')=='application/ld+json':self.schema=True;self.payload=''
+ def handle_startendtag(self,tag,attrs):
+  self.handle_starttag(tag,attrs)
+  if tag not in VOID:self.handle_endtag(tag)
  def handle_endtag(self,tag):
   if not self.stack or self.stack[-1]!=tag:errors.append(f'{self.path}: mismatched </{tag}> after {self.stack[-3:]}')
   else:self.stack.pop()
@@ -33,15 +39,21 @@ class Check(HTMLParser):
    self.schema=False
  def handle_data(self,data):
   if self.schema:self.payload+=data
-files=[p for section in ['apps','juegos','imagenes'] for p in (ROOT/section).rglob('*.html')]
+files=[p for section in ['apps','juegos','imagenes','software','verbo-desktop'] for p in (ROOT/section).rglob('*.html')]
 for path in files:
  text=path.read_text();c=Check(path.relative_to(ROOT));c.feed(text)
  if c.stack:errors.append(f'{path}: unclosed {c.stack}')
  for link in c.links:
   u=urlsplit(link)
-  if u.scheme or u.netloc or not u.path:continue
+  if u.scheme or u.netloc:continue
+  if not u.path:
+   if u.fragment and unquote(u.fragment) not in c.ids:errors.append(f'{path.relative_to(ROOT)}: missing anchor {link}')
+   continue
   p=ROOT/unquote(u.path).lstrip('/') if u.path.startswith('/') else path.parent/unquote(u.path)
   if p.is_dir():p=p/'index.html'
+  if u.fragment and p.is_file() and p.suffix=='.html':
+   target=Check(p.relative_to(ROOT));target.feed(p.read_text())
+   if unquote(u.fragment) not in target.ids:errors.append(f'{path.relative_to(ROOT)}: missing anchor {link}')
   if not p.exists():errors.append(f'{path.relative_to(ROOT)}: missing {link}')
  if '<!-- verbo:pie -->'not in text:errors.append(f'{path}: missing common footer')
  if not re.search(r'<meta[^>]+name=["\']viewport',text):errors.append(f'{path}: missing viewport')

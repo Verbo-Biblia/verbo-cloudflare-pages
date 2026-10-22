@@ -19,10 +19,11 @@ a cada pantalla. Cada captura enlaza a su versión de 1600 píxeles.
 `lumbrera.svg` es el icono original de la aplicación, copiado desde
 `datos/iconos/hicolor/scalable/apps/com.verbobiblia.Lumbrera.svg`.
 
-Los instaladores se distribuyen exclusivamente desde MEGA mediante los dos
-links proporcionados por el autor. No se alojan builds locales en el sitio.
-La descarga `.deb` corresponde a Linux Mint 22+ y la `.rpm` a openSUSE
-Tumbleweed / Leap 16.
+La página sirve ahora los paquetes locales firmados 1.0.1 de
+`~/Verbo/Instaladores-Linux/` desde `/software/descargas/`, junto a su clave,
+firma separada del DEB y manifiesto SHA-256 firmado. Cada paquete pesa menos
+de 25 MiB. La licencia del programa sigue pendiente; la página lo declara.
+Las capturas también están disponibles en `~/Verbo/Capturas-Lumbrera/`.
 
 Las funciones y requisitos se verificaron contra `importar.py`,
 `importar_biblia.py`, `configuracion.py`, `editor.py`, `letras_web.py`,

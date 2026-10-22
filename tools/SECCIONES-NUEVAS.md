@@ -10,6 +10,17 @@ Rama: `secciones-nuevas`. No agregar enlaces desde portada, menú, pie ni sitema
 - `/juegos/` se construye desde `juegos/catalogo.json`: `python3 tools/build_juegos.py` y `python3 tools/pie_comun.py`.
 - `/juegos/preguntas-biblicas/` conserva las 100 preguntas del archivo fuente. El juego es en español, como indica su tarjeta; no usa dependencias externas. Referencias y explicaciones conservadas sin reinterpretación editorial.
 
+## Software ampliado
+
+- `/software/`: programas de escritorio Linux; bloque de Apps (Verbo Biblia y La Senda) y Juegos.
+- `/verbo-desktop/`: conserva ruta, contenido, capturas y anclajes existentes. Usa el selector común ES/EN en lugar de su controlador separado; requisitos, privacidad y verificación de paquetes añadidos.
+- `/software/lumbrera/`: funciones, capturas existentes, requisitos, pruebas pendientes y licencia todavía por definir (`LicenseRef-Verbo` no significa código abierto).
+- Fuentes: `~/Verbo/App-Escritorio-Linux/packaging/linux/README.md`, código local, `~/Verbo/App-Lumbrera-Proyector/ESTADO.md` y los LEEME de `~/Verbo/Instaladores-Linux/`.
+- `/software/descargas/`: Lumbrera 1.0.1 DEB/RPM (cada uno menor de 25 MiB), clave pública compartida, firmas DEB y manifiestos firmados de ambos programas. Los manifiestos `.asc` son documentos con firma en claro, no firmas separadas: `gpg --output SUMAS.verificado --decrypt ARCHIVO.asc`, seguido de `sha256sum --ignore-missing -c SUMAS.verificado`. No comprobar un manifiesto sin autenticar.
+- Desktop local: 0.9.0-dev, compilación del 9 de octubre. Sus paquetes superan 25 MiB y se mantienen los enlaces externos MEGA ya existentes. **Pendiente antes de publicar: confirmar que MEGA entrega exactamente esos paquetes firmados**, comparando nombres y SHA-256. La página advierte que esta correspondencia aún no está comprobada. No se inventaron enlaces ni se cambiaron los paquetes remotos.
+- Verificados offline: firmas GPG de ambos DEB y ambos manifiestos, coincidencia del texto autenticado con el manifiesto y SHA-256 de los cuatro paquetes originales; copias web idénticas. El validador incluye ahora Software y Desktop, anclajes internos y etiquetas HTML autocerradas.
+- No se agregaron conexiones desde portada, menú, pie o sitemap; no se publicó ni se cambió Cloudflare. El pie común conserva sus enlaces anteriores.
+
 ## Banco
 
 Requiere Python 3 y Pillow. Fuentes predeterminadas: `~/Verbo/Banco-Imagenes/catalogo/*.json`, `estado.json` y `web/<libro>/<id>.jpg`.
