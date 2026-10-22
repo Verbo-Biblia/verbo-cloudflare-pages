@@ -1,4 +1,44 @@
 [
- {"id":"senda","nombre":"La Senda · Android","url":"/apps/la-senda/","descripcion":"Preguntas bíblicas para aprender jugando en tu teléfono.","description_en":"Bible questions to learn through play on your phone."},
- {"id":"preguntas100","nombre":"100 preguntas bíblicas · Web","url":"/juegos/preguntas-biblicas/","descripcion":"Recorre la Biblia con 100 preguntas, explicaciones y referencias. Juego en español.","description_en":"Explore the Bible with 100 questions, explanations and references. Game in Spanish."}
+ {
+  "id": "caminoCielo",
+  "grupo": "ninos",
+  "nombre": "Camino al Cielo",
+  "url": "/juegos/camino-al-cielo/",
+  "imagen": "/juegos/camino-al-cielo/portada.webp",
+  "imagen_en": "/juegos/camino-al-cielo/portada-en.webp",
+  "descripcion": "Ayuda a Cristian a subir hasta la Patria Celestial atrapando las nubecitas del fruto del Espíritu y esquivando las nubes malvadas. 10 niveles, en español e inglés.",
+  "description_en": "Help Christian climb to his Heavenly Home by catching the little clouds of the fruit of the Spirit and dodging the wicked clouds. 10 levels, in Spanish and English.",
+  "botones": [
+   {
+    "id": "jugar",
+    "url": "/juegos/camino-al-cielo/",
+    "es": "Jugar en la web",
+    "en": "Play on the web"
+   }
+  ]
+ },
+ {
+  "id": "laSenda",
+  "grupo": "grandes",
+  "nombre": "La Senda",
+  "url": "/juegos/la-senda/",
+  "imagen": "/juegos/la-senda/portada.webp",
+  "imagen_en": "/juegos/la-senda/portada-en.webp",
+  "descripcion": "278 preguntas bíblicas en tres niveles (Fácil, Difícil y Teólogo), con explicaciones y citas. En español e inglés.",
+  "description_en": "278 Bible questions in three levels (Easy, Hard and Theologian), with explanations and references. In Spanish and English.",
+  "botones": [
+   {
+    "id": "jugar",
+    "url": "/juegos/la-senda/",
+    "es": "Jugar en la web",
+    "en": "Play on the web"
+   },
+   {
+    "id": "android",
+    "url": "/apps/la-senda/",
+    "es": "Descargar para Android",
+    "en": "Get it on Android"
+   }
+  ]
+ }
 ]

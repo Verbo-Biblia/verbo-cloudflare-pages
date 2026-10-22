@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#06101d">
+<title>La Senda · preguntas bíblicas gratis | Verbo</title><!-- verbo:la-senda-web --><!-- verbo:sin-pie --><meta name="description" content="La Senda: juego gratis de preguntas bíblicas en español e inglés. Tres niveles (Fácil, Difícil y Teólogo) con 278 preguntas, explicaciones y citas. Sin instalar nada."><link rel="canonical" href="https://verbobiblia.com/juegos/la-senda/"><meta property="og:title" content="La Senda · Preguntas bíblicas"><meta property="og:description" content="Juego gratis de preguntas bíblicas con la Escritura abierta."><meta property="og:image" content="https://verbobiblia.com/juegos/la-senda/portada.webp"><meta property="og:type" content="website"><style>#verboVolver{position:fixed;top:6px;left:8px;z-index:50;font:600 12px system-ui,sans-serif;color:#f0c75e;text-decoration:none;opacity:.8}#verboVolver:hover{opacity:1}</style>
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body><a id="verboVolver" href="/juegos/" aria-label="Juegos de Verbo / Verbo games">← Verbo</a>
+<div id="app">
+
+  <!-- ═════════ INICIO ═════════ -->
+  <section class="screen active" id="home">
+    <div class="home-top">
+      <div class="logo" aria-hidden="true">
+        <svg viewBox="26 26 56 56"><path d="M54 30v26M45 38h18" stroke-width="5.5"/><path d="M30 62c8-4 16-4 24 2c8-6 16-6 24-2v14c-8-4-16-4-24 2c-8-6-16-6-24-2z" stroke-width="4"/><path d="M54 64v14" stroke-width="3.4"/></svg>
+      </div>
+      <div class="top-actions">
+      <div class="lang" id="langToggle" role="group" aria-label="Idioma / Language"><button data-lang="es">ES</button><button data-lang="en">EN</button></div>
+      <button class="icon-btn" id="openSettings" aria-label="Ajustes">
+        <svg viewBox="0 0 24 24"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></svg>
+      </button>
+      </div>
+    </div>
+    <h1 class="brand">La Senda</h1>
+    <p class="tagline" data-i18n="tagline"></p>
+
+    <div class="stats" id="homeStats"></div>
+
+    <h2 class="label" data-i18n="chooseMode"></h2>
+    <div class="modes">
+      <button class="mode" data-mode="facil">
+        <span class="mode-ico easy">
+          <svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5v-15Z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/></svg>
+        </span>
+        <span class="mode-txt">
+          <strong data-i18n="easyTitle"></strong>
+          <small data-i18n="easySub"></small>
+        </span>
+        <span class="mode-count" id="countFacil"></span>
+      </button>
+      <button class="mode" data-mode="dificil">
+        <span class="mode-ico hard">
+          <svg viewBox="0 0 24 24"><path d="M12 2 3 7v6c0 5 3.8 8.7 9 10 5.2-1.3 9-5 9-10V7l-9-5Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>
+        </span>
+        <span class="mode-txt">
+          <strong data-i18n="hardTitle"></strong>
+          <small data-i18n="hardSub"></small>
+        </span>
+        <span class="mode-count" id="countDificil"></span>
+      </button>
+      <button class="mode" data-mode="teologo">
+        <span class="mode-ico theo">
+          <svg viewBox="0 0 24 24"><path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="M6 10.5V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-5.5"/><path d="M22 8v6"/></svg>
+        </span>
+        <span class="mode-txt">
+          <strong data-i18n="theoTitle"></strong>
+          <small data-i18n="theoSub"></small>
+        </span>
+        <span class="mode-count" id="countTeologo"></span>
+      </button>
+      <button class="mode" data-mode="mixto">
+        <span class="mode-ico mix">
+          <svg viewBox="0 0 24 24"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
+        </span>
+        <span class="mode-txt">
+          <strong data-i18n="mixTitle"></strong>
+          <small data-i18n="mixSub"></small>
+        </span>
+        <span class="mode-count" id="countMixto"></span>
+      </button>
+    </div>
+
+    <h2 class="label" data-i18n="perGame"></h2>
+    <div class="seg" id="roundSize">
+      <button data-n="10">10</button>
+      <button data-n="20">20</button>
+      <button data-n="0" data-i18n="all"></button>
+    </div>
+
+    <p class="foot" data-i18n="foot"></p>
+  </section>
+
+  <!-- ═════════ JUEGO ═════════ -->
+  <section class="screen" id="game">
+    <header class="bar">
+      <button class="icon-btn" id="quit" aria-label="Salir">
+        <svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="bar-mid">
+        <div class="counter" id="counter"></div>
+        <div class="track"><div id="progress"></div></div>
+      </div>
+      <div class="pill" id="scorePill">0</div>
+    </header>
+
+    <div class="scroll" id="gameScroll">
+      <div class="qhead">
+        <span class="chip" id="section"></span>
+        <span class="streak" id="streak"></span>
+      </div>
+      <h1 class="question" id="question"></h1>
+      <div class="refline" id="refline"></div>
+      <div class="answers" id="answers"></div>
+
+      <div class="feedback" id="feedback">
+        <div class="result" id="result"></div>
+        <div class="correct-answer" id="correctAnswer"></div>
+        <p class="explain" id="explanation"></p>
+        <figure class="quote">
+          <figcaption id="quoteRef"></figcaption>
+          <blockquote id="quoteText"></blockquote>
+        </figure>
+        <div class="refs-title" data-i18n="readContext"></div>
+        <div class="refs" id="refs"></div>
+      </div>
+    </div>
+
+    <div class="dock" id="dock">
+      <button class="primary" id="next"></button>
+    </div>
+  </section>
+
+  <!-- ═════════ RESULTADOS ═════════ -->
+  <section class="screen" id="results">
+    <div class="scroll">
+      <div class="ring-wrap">
+        <svg class="ring" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="52" class="ring-bg"/>
+          <circle cx="60" cy="60" r="52" class="ring-fg" id="ringFg"/>
+        </svg>
+        <div class="ring-txt"><strong id="pct"></strong><span id="frac"></span></div>
+      </div>
+      <h1 class="res-title" id="resTitle"></h1>
+      <p class="res-sub" id="resSub"></p>
+      <div class="stats" id="resStats"></div>
+      <div class="review" id="review"></div>
+    </div>
+    <div class="dock two">
+      <button class="secondary" id="toHome" data-i18n="home"></button>
+      <button class="primary" id="again" data-i18n="again"></button>
+    </div>
+  </section>
+</div>
+
+<!-- Hoja inferior: texto bíblico -->
+<div class="sheet" id="sheet" aria-hidden="true">
+  <div class="sheet-box" role="dialog">
+    <div class="grip"></div>
+    <h2 id="sheetTitle"></h2>
+    <p id="sheetText"></p>
+    <p class="sheet-note" data-i18n="paraphrased"></p>
+    <button class="primary" id="sheetClose" data-i18n="close"></button>
+  </div>
+</div>
+
+<!-- Diálogo -->
+<div class="sheet" id="dialog" aria-hidden="true">
+  <div class="sheet-box" role="alertdialog">
+    <div class="grip"></div>
+    <h2 id="dialogTitle"></h2>
+    <p id="dialogText"></p>
+    <div class="dock-inline">
+      <button class="secondary" id="dialogNo"></button>
+      <button class="primary" id="dialogYes"></button>
+    </div>
+  </div>
+</div>
+
+<!-- Ajustes -->
+<div class="sheet" id="settings" aria-hidden="true">
+  <div class="sheet-box" role="dialog">
+    <div class="grip"></div>
+    <h2 data-i18n="settings"></h2>
+    <label class="row"><span data-i18n="music"></span><input type="checkbox" id="optMusic" class="switch"></label>
+    <label class="row"><span data-i18n="sound"></span><input type="checkbox" id="optSound" class="switch"></label>
+    <label class="row"><span data-i18n="haptic"></span><input type="checkbox" id="optHaptic" class="switch"></label>
+    <div class="row"><span data-i18n="fontSize"></span>
+      <div class="seg small" id="optFont"><button data-f="0">A</button><button data-f="1">A+</button><button data-f="2">A++</button></div>
+    </div>
+    <button class="secondary wide" id="resetProgress" data-i18n="reset"></button>
+    <button class="primary" id="settingsClose" data-i18n="done"></button>
+  </div>
+</div>
+
+<script src="data/facil.js"></script>
+<script src="data/dificil.js"></script>
+<script src="data/teologo.js"></script>
+<script src="data/easy.en.js"></script>
+<script src="data/hard.en.js"></script>
+<script src="data/theologian.en.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

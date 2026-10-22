@@ -1,0 +1,2 @@
+// Generado por herramientas/limites_nino.py: [x, y, ancho, alto] visibles de cada pose.
+window.CIELO_NINO_LIMITES = {"normal": [429, 114, 432, 1045], "walk": [252, 97, 733, 1046], "run1": [257, 42, 786, 1152], "run2": [350, 45, 657, 1157], "run3": [283, 58, 726, 1144], "run4": [373, 44, 519, 1157], "climb1": [412, 59, 458, 1116], "climb2": [363, 56, 491, 1132], "jump": [347, 105, 639, 1009], "grab": [362, 91, 599, 1052], "hit": [323, 121, 667, 1031], "final": [279, 87, 717, 1060]};

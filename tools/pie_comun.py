@@ -86,7 +86,8 @@ def public_pages():
     # Previews deliberately stay out of the sitemap, but still need the common footer.
     for section in ('apps', 'juegos', 'imagenes'):
         pages.update((ROOT / section).rglob('index.html'))
-    return sorted(pages)
+    # Los juegos con interfaz propia (marca <!-- verbo:sin-pie -->) no llevan pie ni los scripts del sitio.
+    return sorted(p for p in pages if 'verbo:sin-pie' not in p.read_text(encoding='utf-8'))
 
 def footer(home=False):
     parts = [START, '<footer class="verbo-pie" aria-label="Verbo">',

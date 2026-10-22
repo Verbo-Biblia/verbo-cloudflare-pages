@@ -1,0 +1,28 @@
+// Diez niveles de subida hasta la Patria Celestial. Cada uno abre con un versículo:
+// español Reina-Valera 1909 (dominio público, ortografía actualizada) e inglés King James (dominio público).
+// "background" sin extensión; "fallback" se usa mientras falte la imagen.
+window.CIELO_NIVELES = [
+  {"id": "amanecer", "name": {"es": "Playa del Amanecer", "en": "Dawn Beach"}, "background": "assets/escenario/costa_fondo_ia", "music": 0, "foliage": "palms", "objects": ["caseta", "rocas"],
+   "verse": {"es": "Jehová es mi pastor; nada me faltará.", "en": "The LORD is my shepherd; I shall not want.", "ref": {"es": "Salmo 23:1", "en": "Psalm 23:1"}}},
+  {"id": "esperanza", "name": {"es": "Arrecife de la Esperanza", "en": "Reef of Hope"}, "background": "assets/escenario/fondos/playa_coral", "music": 1, "foliage": "palms", "objects": ["caseta", "rocas"],
+   "verse": {"es": "Todo lo puedo en Cristo que me fortalece.", "en": "I can do all things through Christ which strengtheneth me.", "ref": {"es": "Filipenses 4:13", "en": "Philippians 4:13"}}},
+  {"id": "aldea", "name": {"es": "Aldea de la Paz", "en": "Village of Peace"}, "background": "assets/escenario/fondos/pueblo_palapas", "music": 2, "foliage": "palms", "objects": ["caseta", "rocas"],
+   "verse": {"es": "Fíate de Jehová de todo tu corazón, y no estribes en tu prudencia.", "en": "Trust in the LORD with all thine heart; and lean not unto thine own understanding.", "ref": {"es": "Proverbios 3:5", "en": "Proverbs 3:5"}}},
+  {"id": "gozo", "name": {"es": "Bosque del Gozo", "en": "Forest of Joy"}, "background": "assets/escenario/fondos/bosque_tropical", "music": 3, "foliage": "forest", "objects": ["arbol", "rocas"],
+   "verse": {"es": "Mas el fruto del Espíritu es: caridad, gozo, paz, tolerancia, benignidad, bondad, fe, mansedumbre, templanza.", "en": "But the fruit of the Spirit is love, joy, peace, longsuffering, gentleness, goodness, faith, meekness, temperance.", "ref": {"es": "Gálatas 5:22-23", "en": "Galatians 5:22-23"}}},
+  {"id": "paciencia", "name": {"es": "Manglar de la Paciencia", "en": "Mangrove of Patience"}, "background": "assets/escenario/fondos/manglar", "music": 4, "foliage": "forest", "objects": ["arbol", "rocas"],
+   "verse": {"es": "Antes sed los unos con los otros benignos, misericordiosos, perdonándoos los unos a los otros, como también Dios os perdonó en Cristo.", "en": "And be ye kind one to another, tenderhearted, forgiving one another, even as God for Christ's sake hath forgiven you.", "ref": {"es": "Efesios 4:32", "en": "Ephesians 4:32"}}},
+  {"id": "agua_viva", "name": {"es": "Cascada de Agua Viva", "en": "Living Water Falls"}, "background": "assets/escenario/fondos/cascada", "music": 5, "foliage": "forest", "objects": ["arbol", "rocas"],
+   "verse": {"es": "Mira que te mando que te esfuerces y seas valiente: no temas ni desmayes, porque Jehová tu Dios será contigo en donde quiera que fueres.", "en": "Be strong and of a good courage; be not afraid, neither be thou dismayed: for the LORD thy God is with thee whithersoever thou goest.", "ref": {"es": "Josué 1:9", "en": "Joshua 1:9"}}},
+  {"id": "pescadores", "name": {"es": "Muelle de los Pescadores", "en": "Fishers' Pier"}, "background": "assets/escenario/fondos/muelle", "music": 0, "foliage": "palms", "objects": ["barca", "caseta"],
+   "verse": {"es": "Es pues la fe la sustancia de las cosas que se esperan, la demostración de las cosas que no se ven.", "en": "Now faith is the substance of things hoped for, the evidence of things not seen.", "ref": {"es": "Hebreos 11:1", "en": "Hebrews 11:1"}}},
+  {"id": "huerto", "name": {"es": "Huerto de la Bondad", "en": "Garden of Goodness"}, "background": "assets/escenario/fondos/cocal", "music": 1, "foliage": "palms", "objects": ["caseta", "rocas"],
+   "verse": {"es": "Y ahora permanecen la fe, la esperanza, y la caridad, estas tres: empero la mayor de ellas es la caridad.", "en": "And now abideth faith, hope, charity, these three; but the greatest of these is charity.", "ref": {"es": "1 Corintios 13:13", "en": "1 Corinthians 13:13"}}},
+  {"id": "estrellas", "name": {"es": "Valle de las Estrellas", "en": "Valley of Stars"}, "background": "assets/escenario/fondos/bosque_luna", "music": 3, "foliage": "forest", "objects": ["arbol", "rocas"],
+   "verse": {"es": "Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en él cree, no se pierda, mas tenga vida eterna.", "en": "For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life.", "ref": {"es": "Juan 3:16", "en": "John 3:16"}}},
+  {"id": "patria", "name": {"es": "Patria Celestial", "en": "Heavenly Home"}, "background": "assets/cielo/patria_celestial", "fallback": "assets/escenario/fondos/fiesta", "music": 5, "foliage": "clouds", "objects": ["rocas"],
+   "verse": {"es": "En la casa de mi Padre muchas moradas hay: de otra manera os lo hubiera dicho: voy, pues, a preparar lugar para vosotros.", "en": "In my Father's house are many mansions: if it were not so, I would have told you. I go to prepare a place for you.", "ref": {"es": "Juan 14:2", "en": "John 14:2"}}}
+];
+
+// Al llegar a la Patria Celestial.
+window.CIELO_FINAL = {"es": "Y limpiará Dios toda lágrima de los ojos de ellos; y la muerte no será más; y no habrá más llanto, ni clamor, ni dolor: porque las primeras cosas son pasadas.", "en": "And God shall wipe away all tears from their eyes; and there shall be no more death, neither sorrow, nor crying, neither shall there be any more pain: for the former things are passed away.", "ref": {"es": "Apocalipsis 21:4", "en": "Revelation 21:4"}};

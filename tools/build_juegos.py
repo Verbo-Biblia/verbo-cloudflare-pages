@@ -1,9 +1,18 @@
 #!/usr/bin/env python3
+# Genera /juegos/ desde juegos/catalogo.json, en dos grupos: «Para niños» y «Para no tan niños».
 from section_builder import R,tr,page,save
-import json
+import json,html
 catalog=json.loads((R/'juegos/catalogo.json').read_text())
-cards=[]
-for g in catalog:
- cards.append('<article class="tile"><h2><a href="'+g['url']+'">'+g['nombre']+'</a></h2>'+tr(g['id']+'Game',g['descripcion'],g['description_en'])+'</article>')
-page('juegos','Juegos cristianos gratis','Juegos bíblicos gratis para toda la familia, en la web y Android.',tr('gamesTitle','Juegos cristianos','Christian games','h1')+tr('gamesLead','Juegos gratis para toda la familia, en la web y en Android. Descubre historias, conversa sobre las respuestas y aprende a tu ritmo. En el juego web no necesitas instalar nada.','Free games for the whole family, on the web and Android. Discover stories, discuss answers and learn at your own pace. The web game requires no installation.')+'<div class="grid">'+''.join(cards)+'</div>')
+GRUPOS=[('ninos','Para niños','For kids','Aventuras sencillas y alegres para aprender de la fe jugando.','Simple, joyful adventures to learn about faith through play.'),
+        ('grandes','Para no tan niños','For older kids and grown-ups','Retos para repasar lo que sabes de la Biblia y conversar en familia.','Challenges to review what you know about the Bible and talk as a family.')]
+def tarjeta(g):
+ img=f'<a href="{g["url"]}" tabindex="-1"><img src="{g["imagen"]}" data-shot-es="{g["imagen"]}" data-shot-en="{g.get("imagen_en",g["imagen"])}" alt="{html.escape(g["nombre"],quote=True)}" loading="lazy"></a>'
+ botones=''.join(f'<a class="button" href="{b["url"]}">'+tr(g['id']+'_'+b['id'],b['es'],b['en'],'span')+'</a>' for b in g.get('botones',[]))
+ return '<article class="tile">'+img+'<h2><a href="'+g['url']+'">'+html.escape(g['nombre'])+'</a></h2>'+tr(g['id']+'Game',g['descripcion'],g['description_en'])+'<div class="tags">'+botones+'</div></article>'
+# Tarjetas de ancho limitado: un grupo con un solo juego no ocupa toda la pantalla.
+cuerpo='<style>.juegos-grupo .grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),480px))}.juegos-grupo .tile img{display:block;margin-bottom:6px}.juegos-grupo .tags .button{margin-top:6px}</style>'+tr('gamesTitle','Juegos cristianos','Christian games','h1')+tr('gamesLead','Juegos gratis para toda la familia, en la web y en Android. Descubre historias, conversa sobre las respuestas y aprende a tu ritmo. En la web no necesitas instalar nada.','Free games for the whole family, on the web and Android. Discover stories, discuss answers and learn at your own pace. On the web there is nothing to install.')
+for clave,es,en,lead_es,lead_en in GRUPOS:
+ juegos=[g for g in catalog if g['grupo']==clave]
+ if juegos: cuerpo+=f'<section class="intro juegos-grupo" id="{clave}">'+tr('games_'+clave,es,en,'h2')+tr('games_'+clave+'Lead',lead_es,lead_en)+'<div class="grid">'+''.join(map(tarjeta,juegos))+'</div></section>'
+page('juegos','Juegos cristianos gratis','Juegos cristianos gratis para niños y para no tan niños, en la web y en Android.',cuerpo)
 save()
