@@ -8,7 +8,7 @@ const TEMAS = {
   inicio: ['tema_alderium.mp3'],
   pueblo: ['tema_ciudad_central.mp3'],
   mapa: ['tema_mapa_mundial.mp3'],
-  partida: ['tema_duelo.mp3', 'tema_constructor.mp3'],
+  partida: ['tema_duelo.mp3'], // música de batalla (Juan, 2026-10-22)
   tienda: ['tema_taberna.mp3'],
   relato: ['tema_lugar.mp3'],
 };
