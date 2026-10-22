@@ -1,0 +1,88 @@
+:root {
+  --papel: #efe4c8;
+  --tinta: #1f1710;
+  --oro: #c9a33b;
+  --fondo: #120d0a;
+  --panel: rgba(22, 15, 9, 0.82);
+  --borde: rgba(201, 163, 59, 0.45);
+  --fuente: 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; overflow: hidden; background: var(--fondo); color: var(--papel); font-family: var(--fuente); }
+.oculto { display: none !important; }
+button, .boton, select {
+  font: inherit; color: var(--papel); background: #3a2717; border: 1px solid var(--borde);
+  border-radius: 8px; padding: 0.55em 1.1em; cursor: pointer; text-decoration: none; display: inline-block;
+}
+button:hover:not(:disabled), .boton:hover { background: #5a3d24; }
+button:disabled { opacity: 0.4; cursor: default; }
+button.grande { font-size: 1.3em; background: #7a5a1c; border-color: var(--oro); }
+button.grande:hover { background: #9b7424; }
+.x { position: absolute; top: 12px; right: 12px; width: 42px; height: 42px; padding: 0; font-size: 20px; border-radius: 50%; z-index: 20; }
+
+/* menú, reglas y final */
+#menu, #reglas, #final {
+  position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 30;
+  background: radial-gradient(ellipse at center, #3a2717 0%, #120d0a 75%); background-size: cover; background-position: center;
+}
+#reglas, #final { background: rgba(10, 6, 3, 0.78); }
+.caja { position: relative; background: var(--panel); border: 1px solid var(--borde); border-radius: 16px; padding: 28px 32px; width: min(460px, calc(100vw - 32px)); text-align: center; display: flex; flex-direction: column; gap: 12px; }
+.caja.texto { text-align: left; width: min(640px, calc(100vw - 32px)); max-height: 90vh; overflow: auto; }
+.caja h1 { margin: 0; font-size: 2.4em; color: #f3dd9a; letter-spacing: 0.02em; }
+.caja h2 { margin: 0 0 6px; color: #f3dd9a; }
+.sub { opacity: 0.7; margin: 0; }
+label { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+label select { flex: 1; max-width: 62%; }
+.fila { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+/* juego */
+#juego, #mesa { position: fixed; inset: 0; }
+.hud { position: absolute; left: 12px; background: var(--panel); border: 1px solid var(--borde); border-radius: 14px; padding: 8px 12px 10px; min-width: 220px; box-shadow: 0 6px 24px rgba(0,0,0,.5); z-index: 5; pointer-events: none; }
+.hud.arriba { top: 12px; }
+.hud.abajo { bottom: 12px; }
+.hud .nombre { font-weight: bold; color: #f3dd9a; font-size: 1.1em; }
+.hud .valores { display: flex; gap: 6px; margin-top: 6px; }
+.hud .dato { display: grid; grid-template-columns: auto auto; grid-template-rows: auto auto; align-items: center; column-gap: 6px; background: rgba(0,0,0,.35); border-radius: 10px; padding: 5px 9px 4px; }
+.hud .ico { grid-row: 1; width: 30px; height: 30px; display: block; }
+.hud .ico svg { width: 100%; height: 100%; display: block; }
+.hud .dato b { grid-row: 1; font-size: 1.55em; line-height: 1; }
+.hud .dato small { grid-column: 1 / -1; font-size: .68em; opacity: .7; text-align: center; letter-spacing: .02em; }
+.hud .dato.peligro b { color: #ff8a7a; }
+.hud .rec { color: #ffd76a; }
+.hud .efectos { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.chip { font-size: 0.8em; background: #2f5f9b; border-radius: 10px; padding: 1px 8px; }
+.chip.mala { background: #4a2a5e; }
+#registro { position: absolute; right: 16px; top: 66px; width: 300px; display: flex; flex-direction: column; align-items: flex-end; font-size: 0.85em; z-index: 4; pointer-events: none; opacity: 0.9; }
+#registro p { margin: 2px 0; text-align: right; background: rgba(15, 10, 6, 0.6); padding: 2px 8px; border-radius: 6px; }
+#controles { position: absolute; right: 16px; bottom: 16px; display: flex; flex-direction: column; gap: 10px; align-items: stretch; z-index: 5; width: 190px; }
+#estadoTurno { text-align: center; background: var(--panel); border-radius: 10px; padding: 6px; border: 1px solid var(--borde); min-height: 2.2em; }
+#btnAtaque { background: #8a2a22; border-color: #e0705a; font-size: 1.1em; }
+#btnAtaque:hover:not(:disabled) { background: #a8352b; }
+#vista { position: absolute; left: 16px; top: 126px; transform: scale(0.96); transform-origin: top left; opacity: 0; transition: 0.15s; pointer-events: none; z-index: 6; }
+#vista.visible { opacity: 1; transform: scale(1); }
+#vistaCanvas { height: 400px; width: auto; aspect-ratio: 400 / 560; display: block; border-radius: 16px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7); }
+#aviso { position: absolute; left: 50%; top: 14px; transform: translateX(-50%); background: var(--panel); border: 1px solid var(--oro); border-radius: 10px; padding: 8px 18px; opacity: 0; transition: opacity 0.2s; pointer-events: none; z-index: 8; max-width: calc(100vw - 32px); text-align: center; }
+#aviso.visible { opacity: 1; }
+
+@media (max-width: 800px) {
+  #registro { display: none; }
+  .hud { min-width: 0; font-size: 0.75em; padding: 6px 8px; }
+  .hud .ico { width: 22px; height: 22px; }
+  #controles { top: auto; bottom: 12px; right: 12px; transform: none; width: 150px; }
+  #vista { left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0.96); }
+  #vista.visible { transform: translate(-50%, -50%) scale(1); }
+  #vistaCanvas { width: 200px; height: 280px; }
+}
+#reglas ul { margin: 0 0 8px; padding-left: 20px; } #reglas li { margin: 4px 0; }
+.caja.texto { gap: 8px; } .caja.texto p { margin: 0; }
+#plan { position: absolute; right: 16px; bottom: 205px; width: 260px; background: var(--panel); border: 1px solid var(--oro); border-radius: 12px; padding: 8px 12px; z-index: 5; pointer-events: none; }
+#plan b { color: #f3dd9a; }
+#plan p { margin: 4px 0; font-size: .9em; }
+#plan p span { font-size: 1.25em; margin-right: 4px; }
+#plan p.atacar span { color: #ff9a3a; }
+#plan p.efecto span { color: #7cb8ff; }
+#plan small { opacity: .6; font-size: .75em; }
+
+#guia { font-size: .85em; text-align: center; color: #ffe7a6; min-height: 1.2em; text-shadow: 0 1px 4px #000; }
+#controles button.sugerido { animation: sugerido 1.1s ease-in-out infinite; border-color: #ffd76a; }
+@keyframes sugerido { 50% { box-shadow: 0 0 0 6px rgba(255, 215, 106, .35), 0 0 24px rgba(255, 215, 106, .45); } }

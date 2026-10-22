@@ -1,0 +1,1267 @@
+{
+  "id": "cristiana",
+  "titulo": "Tierra Prometida",
+  "subtitulo": "Un juego de cartas sobre la conquista de Canaán",
+  "terminos": {
+    "recurso": "provisión",
+    "recursos": "provisiones",
+    "aldea": "campamento",
+    "trabajador": "obrero",
+    "trabajadores": "obreros",
+    "recolector": "Obrero del campo",
+    "constructor": "Constructor",
+    "combatienteTipo": "Guerrero",
+    "combatiente": "guerrero",
+    "combatientes": "guerreros",
+    "efecto": "Táctica",
+    "maldicion": "Aflicción"
+  },
+  "narrativa": {
+    "intro": "Moisés ha muerto. Dios le dice a Josué que pase el Jordán con todo el pueblo hacia la tierra que les prometió (Josué 1:2). Cuida el campamento, levanta tus muros y avanza paso a paso.",
+    "victoria": "La batalla es tuya.",
+    "derrota": "Hoy no se pudo. Reúne fuerzas y vuelve a intentarlo."
+  },
+  "fondos": {
+    "mesa": "imagenes/fondos/mesa.webp",
+    "menu": "",
+    "inicio": "imagenes/fondo-inicio.webp",
+    "narrativa_camino": "imagenes/fondos/narrativa_camino.webp",
+    "narrativa_consejo": "imagenes/fondos/narrativa_consejo.webp",
+    "arena": "imagenes/fondos/arena.webp",
+    "cronista": "imagenes/fondos/cronista.webp",
+    "lugar_02": "imagenes/fondos/lugar_02.webp",
+    "lugar_03": "imagenes/fondos/lugar_03.webp",
+    "lugar_04": "imagenes/fondos/lugar_04.webp",
+    "lugar_05": "imagenes/fondos/lugar_05.webp",
+    "lugar_06": "imagenes/fondos/lugar_06.webp",
+    "lugar_07": "imagenes/fondos/lugar_07.webp",
+    "lugar_08": "imagenes/fondos/lugar_08.webp",
+    "lugar_09": "imagenes/fondos/lugar_09.webp",
+    "lugar_10": "imagenes/fondos/lugar_10.webp",
+    "narrativa_batalla": "imagenes/fondos/narrativa_batalla.webp",
+    "narrativa_campamento": "imagenes/fondos/narrativa_campamento.webp",
+    "narrativa_derrota": "imagenes/fondos/narrativa_derrota.webp",
+    "narrativa_victoria": "imagenes/fondos/narrativa_victoria.webp",
+    "taller": "imagenes/fondos/taller.webp",
+    "tienda": "imagenes/fondos/tienda.webp",
+    "mesaCosturas": false,
+    "pueblo": "imagenes/fondos/pueblo.webp",
+    "mapa": "imagenes/fondos/mapa.webp",
+    "lugar_01": "imagenes/fondos/lugar_01.webp"
+  },
+  "rivales": {
+    "equilibrada": "Los cananeos",
+    "constructora": "Los jebuseos",
+    "agresiva": "Los amorreos",
+    "saqueadora": "Los amalecitas"
+  },
+  "cartas": {
+    "R01": {
+      "nombre": "Sembrador",
+      "imagen": "imagenes/cartas/R01.webp",
+      "ambientacion": "Aquel año comieron del fruto de la tierra de Canaán. (Josué 5:12)",
+      "rival": {
+        "nombre": "Campesino cananeo",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Sembrador cananeo",
+            "imagen": "imagenes/cartas/R01_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Sembrador jebuseo",
+            "imagen": "imagenes/cartas/R01_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Sembrador amorreo",
+            "imagen": "imagenes/cartas/R01_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Sembrador amalecita",
+            "imagen": "imagenes/cartas/R01_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "R02": {
+      "nombre": "Pastor",
+      "imagen": "imagenes/cartas/R02.webp",
+      "ambientacion": "Con el pueblo salieron también ovejas y vacas. (Éxodo 12:38)",
+      "rival": {
+        "nombre": "Pastor cananeo",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Pastor cananeo",
+            "imagen": "imagenes/cartas/R02_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Pastor jebuseo",
+            "imagen": "imagenes/cartas/R02_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Pastor amorreo",
+            "imagen": "imagenes/cartas/R02_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Pastor amalecita",
+            "imagen": "imagenes/cartas/R02_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "R03": {
+      "nombre": "Espigadora",
+      "imagen": "imagenes/cartas/R03.webp",
+      "ambientacion": "Lo que queda tras la siega es para el pobre y el extranjero. (Levítico 19:9-10)",
+      "rival": {
+        "nombre": "Recolectora cananea",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Recolectora cananea",
+            "imagen": "imagenes/cartas/R03_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Recolectora jebusea",
+            "imagen": "imagenes/cartas/R03_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Recolectora amorrea",
+            "imagen": "imagenes/cartas/R03_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Recolectora amalecita",
+            "imagen": "imagenes/cartas/R03_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "K01": {
+      "nombre": "Albañil",
+      "imagen": "imagenes/cartas/K01.webp",
+      "ambientacion": "Si Dios no edifica la casa, en vano trabajan los que la edifican. (Salmo 127:1)",
+      "rival": {
+        "nombre": "Albañil cananeo",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Albañil cananeo",
+            "imagen": "imagenes/cartas/K01_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Albañil jebuseo",
+            "imagen": "imagenes/cartas/K01_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Albañil amorreo",
+            "imagen": "imagenes/cartas/K01_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Albañil amalecita",
+            "imagen": "imagenes/cartas/K01_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "K02": {
+      "nombre": "Bezaleel",
+      "imagen": "imagenes/cartas/K02.webp",
+      "ambientacion": "Lleno del Espíritu de Dios, en sabiduría y en todo arte. (Éxodo 31:3)",
+      "rival": {
+        "nombre": "Arquitecto cananeo",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Arquitecto cananeo",
+            "imagen": "imagenes/cartas/K02_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Arquitecto jebuseo",
+            "imagen": "imagenes/cartas/K02_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Arquitecto amorreo",
+            "imagen": "imagenes/cartas/K02_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Arquitecto amalecita",
+            "imagen": "imagenes/cartas/K02_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "K03": {
+      "nombre": "Reparador de brechas",
+      "imagen": "imagenes/cartas/K03.webp",
+      "ambientacion": "Serás llamado reparador de portillos. (Isaías 58:12)",
+      "rival": {
+        "nombre": "Reparador de muros",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Reparador de muros cananeo",
+            "imagen": "imagenes/cartas/K03_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Reparador de muros jebuseo",
+            "imagen": "imagenes/cartas/K03_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Reparador de muros amorreo",
+            "imagen": "imagenes/cartas/K03_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Reparador de muros amalecita",
+            "imagen": "imagenes/cartas/K03_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "U01": {
+      "nombre": "Escudero",
+      "imagen": "imagenes/cartas/U01.webp",
+      "ambientacion": "Haz lo que tengas en tu corazón; aquí estoy contigo. (1 Samuel 14:7)",
+      "rival": {
+        "nombre": "Recluta cananeo",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Recluta cananeo",
+            "imagen": "imagenes/cartas/U01_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Recluta jebuseo",
+            "imagen": "imagenes/cartas/U01_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Recluta amorreo",
+            "imagen": "imagenes/cartas/U01_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Recluta amalecita",
+            "imagen": "imagenes/cartas/U01_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "U02": {
+      "nombre": "Soldado de Israel",
+      "imagen": "imagenes/cartas/U02.webp",
+      "ambientacion": "Los valientes pasarán armados delante de sus hermanos. (Josué 1:14)",
+      "rival": {
+        "nombre": "Soldado cananeo",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Soldado cananeo",
+            "imagen": "imagenes/cartas/U02_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Soldado jebuseo",
+            "imagen": "imagenes/cartas/U02_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Soldado amorreo",
+            "imagen": "imagenes/cartas/U02_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Soldado amalecita",
+            "imagen": "imagenes/cartas/U02_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "U03": {
+      "nombre": "Centinela",
+      "imagen": "imagenes/cartas/U03.webp",
+      "ambientacion": "El atalaya da aviso cuando ve venir la espada. (Ezequiel 33:6)",
+      "rival": {
+        "nombre": "Centinela cananeo",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Centinela cananeo",
+            "imagen": "imagenes/cartas/U03_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Centinela jebuseo",
+            "imagen": "imagenes/cartas/U03_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Centinela amorreo",
+            "imagen": "imagenes/cartas/U03_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Centinela amalecita",
+            "imagen": "imagenes/cartas/U03_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "U04": {
+      "nombre": "Hondero benjamita",
+      "imagen": "imagenes/cartas/U04.webp",
+      "ambientacion": "Tiraban con la honda a un cabello, y no erraban. (Jueces 20:16)",
+      "rival": {
+        "nombre": "Arquero amorreo",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Arquero cananeo",
+            "imagen": "imagenes/cartas/U04_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Arquero jebuseo",
+            "imagen": "imagenes/cartas/U04_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Arquero amorreo",
+            "imagen": "imagenes/cartas/U04_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Arquero amalecita",
+            "imagen": "imagenes/cartas/U04_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "U05": {
+      "nombre": "Mensajero veloz",
+      "imagen": "imagenes/cartas/U05.webp",
+      "ambientacion": "Gabaón envió a pedir ayuda a Josué: «Ven pronto». (Josué 10:6)",
+      "rival": {
+        "nombre": "Carro de guerra",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Carro de guerra",
+            "imagen": "imagenes/cartas/U05_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Carro de guerra",
+            "imagen": "imagenes/cartas/U05_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Carro de guerra",
+            "imagen": "imagenes/cartas/U05_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Jinete en camello",
+            "imagen": "imagenes/cartas/U05_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "U06": {
+      "nombre": "Los dos espías",
+      "imagen": "imagenes/cartas/U06.webp",
+      "ambientacion": "«Vayan, reconozcan la tierra y a Jericó». (Josué 2:1)",
+      "rival": {
+        "nombre": "Espía cananeo",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Espía cananeo",
+            "imagen": "imagenes/cartas/U06_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Espía jebuseo",
+            "imagen": "imagenes/cartas/U06_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Espía amorreo",
+            "imagen": "imagenes/cartas/U06_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Espía amalecita",
+            "imagen": "imagenes/cartas/U06_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "U07": {
+      "nombre": "Caleb",
+      "imagen": "imagenes/cartas/U07.webp",
+      "ambientacion": "Tan fuerte a los ochenta y cinco como a los cuarenta. (Josué 14:10-11)",
+      "rival": {
+        "nombre": "Campeón cananeo",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Campeón cananeo",
+            "imagen": "imagenes/cartas/U07_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Campeón jebuseo",
+            "imagen": "imagenes/cartas/U07_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Campeón amorreo",
+            "imagen": "imagenes/cartas/U07_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Campeón amalecita",
+            "imagen": "imagenes/cartas/U07_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "U08": {
+      "nombre": "Josué",
+      "imagen": "imagenes/cartas/U08.webp",
+      "ambientacion": "Como estuve con Moisés, estaré contigo. (Josué 1:5)",
+      "rival": {
+        "nombre": "Gigante anaceo",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Gigante anaceo",
+            "imagen": "imagenes/cartas/U08_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Gigante anaceo",
+            "imagen": "imagenes/cartas/U08_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Gigante amorreo",
+            "imagen": "imagenes/cartas/U08_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Gran jefe amalecita",
+            "imagen": "imagenes/cartas/U08_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "U09": {
+      "nombre": "Eleazar el sacerdote",
+      "imagen": "imagenes/cartas/U09.webp",
+      "ambientacion": "El sacerdote que repartió la tierra junto a Josué. (Josué 14:1)",
+      "rival": {
+        "nombre": "Curandero cananeo",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Curandero cananeo",
+            "imagen": "imagenes/cartas/U09_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Curandero jebuseo",
+            "imagen": "imagenes/cartas/U09_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Curandero amorreo",
+            "imagen": "imagenes/cartas/U09_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Curandero amalecita",
+            "imagen": "imagenes/cartas/U09_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "U10": {
+      "nombre": "Ariete",
+      "imagen": "imagenes/cartas/U10.webp",
+      "ambientacion": "Contra las puertas cerradas de las ciudades de Canaán.",
+      "rival": {
+        "nombre": "Ariete cananeo",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Ariete",
+            "imagen": "imagenes/cartas/U10_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Ariete",
+            "imagen": "imagenes/cartas/U10_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Ariete",
+            "imagen": "imagenes/cartas/U10_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Ariete",
+            "imagen": "imagenes/cartas/U10_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "U11": {
+      "nombre": "Fineas",
+      "imagen": "imagenes/cartas/U11.webp",
+      "ambientacion": "Celoso por su Dios, defendió a la congregación. (Números 25:11)",
+      "rival": {
+        "nombre": "Guardia del rey",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Guardia del rey cananeo",
+            "imagen": "imagenes/cartas/U11_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Guardia del rey jebuseo",
+            "imagen": "imagenes/cartas/U11_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Guardia del rey amorreo",
+            "imagen": "imagenes/cartas/U11_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Guardia del rey amalecita",
+            "imagen": "imagenes/cartas/U11_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "U12": {
+      "nombre": "Otoniel",
+      "imagen": "imagenes/cartas/U12.webp",
+      "ambientacion": "Tomó Quiriat-sefer y recibió a Acsa por esposa. (Josué 15:17)",
+      "rival": {
+        "nombre": "Saqueador amalecita",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Saqueador cananeo",
+            "imagen": "imagenes/cartas/U12_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Saqueador jebuseo",
+            "imagen": "imagenes/cartas/U12_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Saqueador amorreo",
+            "imagen": "imagenes/cartas/U12_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Saqueador amalecita",
+            "imagen": "imagenes/cartas/U12_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "E01": {
+      "nombre": "Atalaya",
+      "imagen": "imagenes/cartas/E01.webp",
+      "ambientacion": "Pon atalaya que avise lo que vea. (Isaías 21:6)",
+      "rival": {
+        "nombre": "Torre cananea",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Torre cananea",
+            "imagen": "imagenes/cartas/E01_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Torre jebusea",
+            "imagen": "imagenes/cartas/E01_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Torre amorrea",
+            "imagen": "imagenes/cartas/E01_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Torre amalecita",
+            "imagen": "imagenes/cartas/E01_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "E02": {
+      "nombre": "Granero",
+      "imagen": "imagenes/cartas/E02.webp",
+      "ambientacion": "José juntó trigo como la arena del mar. (Génesis 41:49)",
+      "rival": {
+        "nombre": "Granero cananeo",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Granero cananeo",
+            "imagen": "imagenes/cartas/E02_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Granero jebuseo",
+            "imagen": "imagenes/cartas/E02_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Granero amorreo",
+            "imagen": "imagenes/cartas/E02_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Granero amalecita",
+            "imagen": "imagenes/cartas/E02_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "E03": {
+      "nombre": "Campamento de Gilgal",
+      "imagen": "imagenes/cartas/E03.webp",
+      "ambientacion": "Allí levantaron las doce piedras sacadas del Jordán. (Josué 4:20)",
+      "rival": {
+        "nombre": "Cuartel cananeo",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Cuartel cananeo",
+            "imagen": "imagenes/cartas/E03_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Cuartel jebuseo",
+            "imagen": "imagenes/cartas/E03_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Cuartel amorreo",
+            "imagen": "imagenes/cartas/E03_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Cuartel amalecita",
+            "imagen": "imagenes/cartas/E03_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "E04": {
+      "nombre": "Taller del carpintero",
+      "imagen": "imagenes/cartas/E04.webp",
+      "ambientacion": "Madera de acacia para la obra. (Éxodo 25:10)",
+      "rival": {
+        "nombre": "Fragua cananea",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Fragua cananea",
+            "imagen": "imagenes/cartas/E04_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Fragua jebusea",
+            "imagen": "imagenes/cartas/E04_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Fragua amorrea",
+            "imagen": "imagenes/cartas/E04_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Fragua amalecita",
+            "imagen": "imagenes/cartas/E04_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "F01": {
+      "nombre": "Piedra de honda",
+      "imagen": "imagenes/cartas/F01.webp",
+      "ambientacion": "Una sola piedra bastó contra el gigante. (1 Samuel 17:49)",
+      "rival": {
+        "nombre": "Piedra de honda",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Piedra de honda",
+            "imagen": "imagenes/cartas/F01_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Piedra de honda",
+            "imagen": "imagenes/cartas/F01_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Piedra de honda",
+            "imagen": "imagenes/cartas/F01_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Piedra de honda",
+            "imagen": "imagenes/cartas/F01_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "F02": {
+      "nombre": "Flecha certera",
+      "imagen": "imagenes/cartas/F02.webp",
+      "ambientacion": "Saeta de salvación de Jehová. (2 Reyes 13:17)",
+      "rival": {
+        "nombre": "Flecha certera",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Flecha certera",
+            "imagen": "imagenes/cartas/F02_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Flecha certera",
+            "imagen": "imagenes/cartas/F02_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Flecha certera",
+            "imagen": "imagenes/cartas/F02_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Flecha certera",
+            "imagen": "imagenes/cartas/F02_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "F03": {
+      "nombre": "Bálsamo de Galaad",
+      "imagen": "imagenes/cartas/F03.webp",
+      "ambientacion": "¿No hay bálsamo en Galaad? (Jeremías 8:22)",
+      "rival": {
+        "nombre": "Bálsamo",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Bálsamo",
+            "imagen": "imagenes/cartas/F03_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Bálsamo",
+            "imagen": "imagenes/cartas/F03_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Bálsamo",
+            "imagen": "imagenes/cartas/F03_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Bálsamo",
+            "imagen": "imagenes/cartas/F03_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "F04": {
+      "nombre": "Esfuérzate y sé valiente",
+      "imagen": "imagenes/cartas/F04.webp",
+      "ambientacion": "No temas ni desmayes: Dios estará contigo. (Josué 1:9)",
+      "rival": {
+        "nombre": "Grito de guerra",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Grito de guerra",
+            "imagen": "imagenes/cartas/F04_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Grito de guerra",
+            "imagen": "imagenes/cartas/F04_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Grito de guerra",
+            "imagen": "imagenes/cartas/F04_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Grito de guerra",
+            "imagen": "imagenes/cartas/F04_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "F05": {
+      "nombre": "Fruto de la tierra",
+      "imagen": "imagenes/cartas/F05.webp",
+      "ambientacion": "El maná cesó cuando comieron del fruto de la tierra. (Josué 5:12)",
+      "rival": {
+        "nombre": "Botín",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Botín",
+            "imagen": "imagenes/cartas/F05_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Botín",
+            "imagen": "imagenes/cartas/F05_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Botín",
+            "imagen": "imagenes/cartas/F05_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Botín",
+            "imagen": "imagenes/cartas/F05_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "F06": {
+      "nombre": "La ayuda de Rahab",
+      "imagen": "imagenes/cartas/F06.webp",
+      "ambientacion": "Rahab escondió a los espías bajo los manojos de lino. (Josué 2:6)",
+      "rival": {
+        "nombre": "Consejo de los reyes",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Consejo de los reyes",
+            "imagen": "imagenes/cartas/F06_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Consejo de los reyes",
+            "imagen": "imagenes/cartas/F06_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Consejo de los reyes",
+            "imagen": "imagenes/cartas/F06_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Consejo de los reyes",
+            "imagen": "imagenes/cartas/F06_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "F07": {
+      "nombre": "Granizo del cielo",
+      "imagen": "imagenes/cartas/F07.webp",
+      "ambientacion": "Murieron más por el granizo que por la espada. (Josué 10:11)",
+      "rival": {
+        "nombre": "Lluvia de flechas",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Lluvia de flechas",
+            "imagen": "imagenes/cartas/F07_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Lluvia de flechas",
+            "imagen": "imagenes/cartas/F07_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Lluvia de flechas",
+            "imagen": "imagenes/cartas/F07_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Lluvia de flechas",
+            "imagen": "imagenes/cartas/F07_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "F08": {
+      "nombre": "Muro de escudos",
+      "imagen": "imagenes/cartas/F08.webp",
+      "ambientacion": "Dios es escudo a los que en él esperan. (Proverbios 30:5)",
+      "rival": {
+        "nombre": "Muro de escudos",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Muro de escudos",
+            "imagen": "imagenes/cartas/F08_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Muro de escudos",
+            "imagen": "imagenes/cartas/F08_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Muro de escudos",
+            "imagen": "imagenes/cartas/F08_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Muro de escudos",
+            "imagen": "imagenes/cartas/F08_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "F09": {
+      "nombre": "Trompetas de Jericó",
+      "imagen": "imagenes/cartas/F09.webp",
+      "ambientacion": "Sonaron las trompetas, el pueblo gritó y el muro cayó. (Josué 6:20)",
+      "rival": {
+        "nombre": "Zapadores",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Zapadores",
+            "imagen": "imagenes/cartas/F09_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Zapadores",
+            "imagen": "imagenes/cartas/F09_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Zapadores",
+            "imagen": "imagenes/cartas/F09_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Zapadores",
+            "imagen": "imagenes/cartas/F09_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "M01": {
+      "nombre": "Sequía",
+      "imagen": "imagenes/cartas/M01.webp",
+      "ambientacion": "No habrá lluvia ni rocío en estos años. (1 Reyes 17:1)",
+      "rival": {
+        "nombre": "Sequía",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Sequía",
+            "imagen": "imagenes/cartas/M01_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Sequía",
+            "imagen": "imagenes/cartas/M01_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Sequía",
+            "imagen": "imagenes/cartas/M01_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Sequía",
+            "imagen": "imagenes/cartas/M01_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "M02": {
+      "nombre": "Avispas",
+      "imagen": "imagenes/cartas/M02.webp",
+      "ambientacion": "Dios enviará avispas contra ellos. (Deuteronomio 7:20)",
+      "rival": {
+        "nombre": "Langosta",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Langosta",
+            "imagen": "imagenes/cartas/M02_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Langosta",
+            "imagen": "imagenes/cartas/M02_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Langosta",
+            "imagen": "imagenes/cartas/M02_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Langosta",
+            "imagen": "imagenes/cartas/M02_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "M03": {
+      "nombre": "Temor en el enemigo",
+      "imagen": "imagenes/cartas/M03.webp",
+      "ambientacion": "Desfalleció el corazón de los habitantes de la tierra. (Josué 2:11)",
+      "rival": {
+        "nombre": "Murmuración",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Murmuración",
+            "imagen": "imagenes/cartas/M03_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Murmuración",
+            "imagen": "imagenes/cartas/M03_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Murmuración",
+            "imagen": "imagenes/cartas/M03_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Murmuración",
+            "imagen": "imagenes/cartas/M03_saqueadora.webp"
+          }
+        }
+      }
+    },
+    "M04": {
+      "nombre": "Carcoma",
+      "imagen": "imagenes/cartas/M04.webp",
+      "ambientacion": "Donde la polilla y el orín corrompen. (Mateo 6:19)",
+      "rival": {
+        "nombre": "Carcoma",
+        "ambientacion": "",
+        "por": {
+          "equilibrada": {
+            "nombre": "Carcoma",
+            "imagen": "imagenes/cartas/M04_equilibrada.webp"
+          },
+          "constructora": {
+            "nombre": "Carcoma",
+            "imagen": "imagenes/cartas/M04_constructora.webp"
+          },
+          "agresiva": {
+            "nombre": "Carcoma",
+            "imagen": "imagenes/cartas/M04_agresiva.webp"
+          },
+          "saqueadora": {
+            "nombre": "Carcoma",
+            "imagen": "imagenes/cartas/M04_saqueadora.webp"
+          }
+        }
+      }
+    }
+  },
+  "mundo": {
+    "pantallas": {
+      "pueblo": "El campamento de Israel",
+      "taller": "Tienda de mando",
+      "tienda": "Mercado",
+      "cronista": "Casa del escriba",
+      "arena": "Campo de prácticas",
+      "mapa": "Mapa de Canaán",
+      "puerta": "Salida del campamento",
+      "moneda": "siclos",
+      "campaña": "Conquista",
+      "escaramuza": "Combate de práctica"
+    },
+    "actos": {
+      "1": {
+        "titulo": "Primera parte: Cruzar el Jordán",
+        "texto": "Cuarenta años en el desierto quedaron atrás. El Jordán separa al pueblo de la tierra prometida (Josué 1-4)."
+      },
+      "2": {
+        "titulo": "Segunda parte: Jericó, Hai y el sur",
+        "texto": "Las ciudades de Canaán oyen lo que Dios ha hecho y se unen contra Israel (Josué 6-10)."
+      },
+      "3": {
+        "titulo": "Tercera parte: El norte y Sion",
+        "texto": "Los reyes del norte salen con muchos carros y caballos (Josué 11). Y una fortaleza quedará en pie por muchos años, hasta los días de David."
+      }
+    },
+    "mazmorras": {
+      "m01": {
+        "nombre": "Las llanuras de Moab",
+        "descripcion": "El pueblo acampa frente a Jericó, al otro lado del Jordán (Números 22:1).",
+        "partidas": [
+          {
+            "antes": "Antes de cruzar el Jordán, el campamento debe quedar seguro en las llanuras de Moab (Números 33:49).",
+            "despues": "El campamento quedó seguro. Ya se puede mirar hacia el Jordán."
+          }
+        ],
+        "conquista": "Las llanuras de Moab ya es tuya.",
+        "perdida": "El enemigo recuperó las llanuras de Moab."
+      },
+      "m02": {
+        "nombre": "El campamento de Sitim",
+        "descripcion": "El último campamento antes de cruzar. De aquí salen los espías (Josué 2:1).",
+        "partidas": [
+          {
+            "antes": "Desde Sitim, Josué envía dos espías a reconocer la tierra (Josué 2:1).",
+            "despues": "Los espías vuelven con buenas noticias: los habitantes de la tierra tienen miedo de Israel (Josué 2:24)."
+          },
+          {
+            "antes": "Los amalecitas rondan el campamento buscando botín.",
+            "despues": "El campamento está listo para cruzar el Jordán."
+          }
+        ],
+        "conquista": "El campamento de Sitim ya es tuya.",
+        "perdida": "El enemigo recuperó el campamento de Sitim."
+      },
+      "m03": {
+        "nombre": "El vado del Jordán",
+        "descripcion": "El río va crecido: es tiempo de la siega (Josué 3:15).",
+        "partidas": [
+          {
+            "antes": "El Jordán va crecido. Asegura la orilla antes de cruzar (Josué 3:15).",
+            "despues": "Cuando los sacerdotes entraron al río con el arca, las aguas se detuvieron (Josué 3:16)."
+          },
+          {
+            "antes": "Del otro lado esperan los cananeos.",
+            "despues": "Doce piedras quedan en Gilgal como memorial del paso (Josué 4:20)."
+          }
+        ],
+        "conquista": "El vado del Jordán ya es tuya.",
+        "perdida": "El enemigo recuperó el vado del Jordán."
+      },
+      "m04": {
+        "nombre": "Jericó",
+        "descripcion": "La ciudad estaba cerrada; nadie entraba ni salía (Josué 6:1).",
+        "partidas": [
+          {
+            "antes": "Jericó está cerrada. El pueblo rodea la ciudad una vez cada día (Josué 6:3).",
+            "despues": "Seis días rodearon la ciudad, y volvieron al campamento (Josué 6:14)."
+          },
+          {
+            "antes": "El séptimo día, siete vueltas. Cuando suenen las trompetas, todo el pueblo gritará (Josué 6:15-16).",
+            "despues": "El muro se derrumbó (Josué 6:20). Rahab y su familia fueron salvadas (Josué 6:25)."
+          }
+        ],
+        "conquista": "Jericó cayó.",
+        "perdida": "El enemigo recuperó Jericó."
+      },
+      "m05": {
+        "nombre": "Hai",
+        "descripcion": "Una ciudad pequeña en la colina, donde Israel aprendió una lección dura (Josué 7-8).",
+        "partidas": [
+          {
+            "antes": "Antes de subir a Hai, hay que quitar el pecado del campamento: Acán tomó lo prohibido (Josué 7).",
+            "despues": "El campamento quedó limpio. Ahora sí, a Hai (Josué 8:1)."
+          },
+          {
+            "antes": "Josué prepara una emboscada detrás de la ciudad (Josué 8:2).",
+            "despues": "Los de Hai salieron tras Israel y dejaron la ciudad abierta (Josué 8:17)."
+          },
+          {
+            "antes": "Josué extiende la lanza hacia Hai: es la señal (Josué 8:18).",
+            "despues": "Hai fue tomada. En el monte Ebal se leyó la ley ante todo el pueblo (Josué 8:30-35)."
+          }
+        ],
+        "conquista": "Hai ya es tuya.",
+        "perdida": "El enemigo recuperó Hai."
+      },
+      "m06": {
+        "nombre": "Gabaón y el valle de Ajalón",
+        "descripcion": "Cinco reyes atacan a Gabaón, que hizo pacto con Israel (Josué 9-10).",
+        "partidas": [
+          {
+            "antes": "Cinco reyes amorreos atacan Gabaón, aliada de Israel (Josué 10:5).",
+            "despues": "Josué subió desde Gilgal toda la noche y los tomó por sorpresa (Josué 10:9)."
+          },
+          {
+            "antes": "La batalla se alarga. Josué ora para que el sol se detenga sobre Gabaón (Josué 10:12).",
+            "despues": "El sol se detuvo casi un día entero. Nunca hubo un día como aquel (Josué 10:13-14)."
+          }
+        ],
+        "conquista": "Gabaón y el valle de Ajalón ya es tuya.",
+        "perdida": "El enemigo recuperó Gabaón y el valle de Ajalón."
+      },
+      "m07": {
+        "nombre": "La bajada de Bet-horón",
+        "descripcion": "El camino por donde huyeron los amorreos (Josué 10:10-11).",
+        "partidas": [
+          {
+            "antes": "Los amorreos huyen por la bajada de Bet-horón (Josué 10:10).",
+            "despues": "Grandes piedras cayeron del cielo sobre los que huían (Josué 10:11)."
+          },
+          {
+            "antes": "Sigue al enemigo por el camino de Bet-horón.",
+            "despues": "El enemigo se dispersa por el camino."
+          },
+          {
+            "antes": "Los últimos amorreos se hacen fuertes en el paso.",
+            "despues": "El paso quedó libre."
+          }
+        ],
+        "conquista": "La bajada de Bet-horón ya es tuya.",
+        "perdida": "El enemigo recuperó la bajada de Bet-horón."
+      },
+      "m08": {
+        "nombre": "La cueva de Maceda",
+        "descripcion": "La cueva donde se escondieron los cinco reyes (Josué 10:16).",
+        "partidas": [
+          {
+            "antes": "Los cinco reyes se esconden en una cueva en Maceda (Josué 10:16).",
+            "despues": "Josué manda tapar la entrada de la cueva con grandes piedras (Josué 10:18)."
+          },
+          {
+            "antes": "Los soldados de los reyes intentan llegar a sus ciudades (Josué 10:19).",
+            "despues": "Pocos lograron escapar (Josué 10:20)."
+          },
+          {
+            "antes": "Los reyes son sacados de la cueva (Josué 10:22).",
+            "despues": "Josué animó al pueblo: no teman ni desmayen, esfuércense y sean valientes (Josué 10:25)."
+          }
+        ],
+        "conquista": "La cueva de Maceda ya es tuya.",
+        "perdida": "El enemigo recuperó la cueva de Maceda."
+      },
+      "m09": {
+        "nombre": "Hazor",
+        "descripcion": "La cabeza de todos los reinos del norte (Josué 11:10).",
+        "partidas": [
+          {
+            "antes": "Jabín, rey de Hazor, reúne a los reyes del norte con muchos carros y caballos (Josué 11:1-4).",
+            "despues": "El ejército del norte retrocede."
+          },
+          {
+            "antes": "Junto a las aguas de Merom, Dios le dice a Josué que no tenga temor (Josué 11:6).",
+            "despues": "Israel cayó sobre ellos de repente (Josué 11:7)."
+          },
+          {
+            "antes": "Hazor era la cabeza de todos estos reinos (Josué 11:10).",
+            "despues": "Hazor fue tomada."
+          }
+        ],
+        "conquista": "Hazor ya es tuya.",
+        "perdida": "El enemigo recuperó Hazor."
+      },
+      "m10": {
+        "nombre": "La fortaleza de Sion",
+        "descripcion": "La fortaleza de los jebuseos, que cayó en los días de David (2 Samuel 5:6-7).",
+        "partidas": [
+          {
+            "antes": "Los jebuseos siguieron en Jerusalén: Judá no pudo echarlos (Josué 15:63).",
+            "despues": "Pasan los años; la fortaleza sigue en pie."
+          },
+          {
+            "antes": "Mucho después, el rey David sube contra la fortaleza de los jebuseos (2 Samuel 5:6).",
+            "despues": "Los jebuseos confían en sus muros."
+          },
+          {
+            "antes": "Los jebuseos se burlan: creen que la fortaleza no caerá (2 Samuel 5:6).",
+            "despues": "David tomó la fortaleza de Sion, que es la ciudad de David (2 Samuel 5:7)."
+          }
+        ],
+        "conquista": "La fortaleza de Sion ya es tuya.",
+        "perdida": "El enemigo recuperó la fortaleza de Sion."
+      }
+    },
+    "final": {
+      "victoria": "Así dio Dios a Israel toda la tierra que había jurado dar a sus padres; ninguna de sus promesas faltó (Josué 21:43-45).",
+      "creditos": "Un proyecto de Verbo."
+    },
+    "cronicas": [
+      {
+        "titulo": "Cuarenta años en el desierto",
+        "texto": "Antes de llegar a Canaán, el pueblo anduvo cuarenta años por el desierto. Moisés murió a la vista de la tierra, y Josué recibió el mando con una promesa: «Como fui con Moisés, seré contigo» (Josué 1:5).",
+        "desbloquea": "pueblo"
+      },
+      {
+        "titulo": "Los espías y Rahab",
+        "texto": "Josué envió dos espías a Jericó. Rahab los escondió en el terrado de su casa y los ayudó a escapar por la muralla con una cuerda. Ellos le prometieron salvar a su familia si ataba un cordón de grana en la ventana (Josué 2).",
+        "desbloquea": "m02"
+      },
+      {
+        "titulo": "El paso del Jordán",
+        "texto": "Cuando los sacerdotes que llevaban el arca pisaron el agua, el río se detuvo y el pueblo cruzó en seco. Levantaron doce piedras como memorial en Gilgal, para que los hijos preguntaran y los padres contaran lo que Dios hizo (Josué 3-4).",
+        "desbloquea": "m03"
+      },
+      {
+        "titulo": "Los muros de Jericó",
+        "texto": "Durante seis días rodearon la ciudad una vez. El séptimo, siete veces. Sonaron las trompetas, el pueblo gritó y el muro cayó. La victoria no fue por la fuerza de Israel, sino por obedecer a Dios (Josué 6).",
+        "desbloquea": "m04"
+      },
+      {
+        "titulo": "Acán y la lección de Hai",
+        "texto": "Acán tomó lo que estaba prohibido y lo escondió en su tienda. Por eso Israel cayó ante una ciudad pequeña. Después de quitar el pecado, volvieron y tomaron Hai con una emboscada (Josué 7-8).",
+        "desbloquea": "m05"
+      },
+      {
+        "titulo": "El engaño de los gabaonitas",
+        "texto": "Los de Gabaón fingieron venir de lejos, con panes secos y odres rotos, e hicieron pacto con Israel sin que Josué consultara a Dios. Aun así, Israel cumplió su palabra y los defendió (Josué 9-10).",
+        "desbloquea": "m06"
+      },
+      {
+        "titulo": "El día que el sol se detuvo",
+        "texto": "En la batalla por Gabaón, Josué habló a Dios delante de Israel, y el sol se detuvo en medio del cielo casi un día entero (Josué 10:12-14).",
+        "desbloquea": "m07"
+      },
+      {
+        "titulo": "Caleb, fiel a los ochenta y cinco",
+        "texto": "Caleb había sido uno de los dos espías fieles cuarenta y cinco años antes. A los ochenta y cinco años dijo que tenía la misma fuerza que entonces, y pidió el monte de Hebrón (Josué 14:6-14).",
+        "desbloquea": "m08"
+      },
+      {
+        "titulo": "Hazor, cabeza de los reinos",
+        "texto": "Los reyes del norte se juntaron en las aguas de Merom con un ejército tan numeroso como la arena del mar. Dios le dijo a Josué que no tuviera temor, y Josué los venció (Josué 11).",
+        "desbloquea": "m09"
+      },
+      {
+        "titulo": "«Yo y mi casa serviremos a Jehová»",
+        "texto": "Ya anciano, Josué reunió a todo Israel en Siquem y les recordó todo lo que Dios había hecho. Les pidió que escogieran a quién servir, y declaró que él y su casa servirían a Jehová (Josué 24:14-15).",
+        "desbloquea": "m10"
+      }
+    ]
+  }
+}

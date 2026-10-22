@@ -1,0 +1,116 @@
+/* Pantallas del mundo. Los fondos reales son juego/fondos/<nombre>.png; --provisional se ve mientras no existan. */
+#mundo, .pantalla { position: fixed; inset: 0; }
+.pantalla {
+  background-size: cover; background-position: center; overflow: auto;
+  --provisional: radial-gradient(ellipse at 50% 30%, #5a3d24 0%, #22150b 80%);
+  background-image: var(--provisional);
+}
+#pInicio { --provisional: linear-gradient(180deg, #2a3a55 0%, #7a5a3a 55%, #2a1d10 100%); display: flex; align-items: center; justify-content: center; }
+#pMapa { --provisional: linear-gradient(45deg, #4a6b3a 0%, #6b7a4a 40%, #6b6050 65%, #3a3a44 100%); }
+#pPueblo { --provisional: linear-gradient(180deg, #8ab0c8 0%, #c8b48a 45%, #7a6a52 46%, #4a3a2a 100%); }
+#pNarrativa { --provisional: linear-gradient(180deg, #3a4a5a, #1a120b); display: flex; align-items: flex-end; justify-content: center; }
+
+.barra { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 16px; padding: 10px 16px; background: linear-gradient(rgba(15,10,6,.92), rgba(15,10,6,.6)); }
+.barra h2 { margin: 0; flex: 1; color: #f3dd9a; font-size: 1.4em; }
+.barra .monedas { font-size: 1.15em; color: #ffd76a; white-space: nowrap; }
+
+/* inicio */
+.portada { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 14px; margin-top: -8vh; padding: 16px; }
+.portada h1 { font-size: clamp(2.4em, 7vw, 4.6em); margin: 0; color: #f6e2a8; text-shadow: 0 4px 24px rgba(0,0,0,.8), 0 0 2px #000; letter-spacing: .02em; }
+.portada .sub { font-size: 1.2em; opacity: .85; text-shadow: 0 2px 8px #000; }
+.portada .botones { display: flex; flex-direction: column; gap: 10px; width: min(320px, 80vw); margin-top: 20px; }
+.portada .tema { color: #efe4c8; text-shadow: 0 1px 4px #000; gap: 8px; }
+
+/* lienzos 16:9 (pueblo y mapa): los lugares se ubican en % igual que en la imagen */
+.lienzo { position: relative; width: min(100vw, calc((100vh - 64px) * 16 / 9)); aspect-ratio: 16 / 9; margin: 0 auto; background-size: cover; background-position: center; background-image: var(--provisional); }
+.lugar { position: absolute; background: transparent !important; border: 2px solid transparent; border-radius: 14px; padding: 0; display: flex; align-items: flex-end; justify-content: center; transition: .15s; }
+.lugar span { background: rgba(20,13,8,.85); border: 1px solid var(--oro); border-radius: 10px; padding: 6px 14px; margin-bottom: 10%; font-size: clamp(.8em, 1.4vw, 1.15em); color: #f3dd9a; }
+.lugar:hover { border-color: rgba(255,215,106,.7); background: rgba(255,215,106,.08) !important; box-shadow: 0 0 30px rgba(255,200,90,.25) inset; }
+.pie-pueblo { position: absolute; left: 50%; bottom: 3%; transform: translateX(-50%); background: rgba(20,13,8,.8); border-radius: 10px; padding: 6px 16px; white-space: nowrap; }
+
+/* mapa */
+.mapa svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.mapa line { stroke: rgba(40,25,10,.55); stroke-width: .35; stroke-dasharray: .9 .7; vector-effect: non-scaling-stroke; stroke-width: 3px; }
+.mapa line.abierto { stroke: rgba(255,215,106,.85); }
+.punto { position: absolute; transform: translate(-50%, -50%); background: none !important; border: 0; padding: 0; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; }
+.punto i { width: 26px; height: 26px; border-radius: 50%; border: 3px solid #f3dd9a; background: #6b6f74; box-shadow: 0 2px 8px rgba(0,0,0,.7); }
+.punto span { background: rgba(20,13,8,.85); border-radius: 8px; padding: 2px 8px; font-size: .85em; white-space: nowrap; }
+.punto small { position: absolute; top: -6px; right: -18px; background: #2f5f9b; border-radius: 8px; padding: 0 5px; font-size: .75em; }
+.punto.conquistada i { background: #2d6a8a; border-color: #ffd76a; }
+.punto.casa i { background: #2d6a8a; width: 32px; height: 32px; }
+.punto.disponible i { background: #c9a33b; animation: latido 1.2s ease-in-out infinite; }
+.punto.recuperar i { background: #a8322b; animation: latido 1s ease-in-out infinite; }
+.punto.bloqueada i { opacity: .6; }
+.punto.bloqueada span { color: #cfc4ad; }
+.punto.bloqueada i { background: #3a3a3a; border-color: #8a8070; }
+@keyframes latido { 50% { box-shadow: 0 0 0 10px rgba(255,215,106,.25), 0 2px 8px rgba(0,0,0,.7); transform: scale(1.12); } }
+.racha { position: absolute; left: 2%; top: 3%; background: rgba(120,30,20,.85); border-radius: 10px; padding: 6px 12px; }
+.ficha { position: fixed; right: 16px; top: 70px; bottom: 16px; width: min(380px, calc(100vw - 32px)); overflow: auto; background: var(--panel); border: 1px solid var(--oro); border-radius: 14px; padding: 16px; z-index: 8; display: flex; flex-direction: column; gap: 8px; }
+.ficha .x { position: absolute; top: 8px; right: 8px; width: 34px; height: 34px; }
+.ficha .lamina { width: 100%; aspect-ratio: 16 / 9; border-radius: 10px; background-size: cover; background-position: center; --provisional: linear-gradient(135deg, #4a5a3a, #2a2018); background-image: var(--provisional); }
+.ficha h3 { margin: 0; color: #f3dd9a; font-size: 1.4em; }
+.ficha p { margin: 0; }
+.ficha .acto { opacity: .7; font-size: .85em; text-transform: uppercase; letter-spacing: .08em; }
+.ficha .estado.recuperar { color: #ff9a8a; }
+.ficha .regla { color: #ffcf8a; }
+.ficha .premio { color: #9fe0a8; }
+
+/* narrativa */
+.relato { width: min(760px, calc(100vw - 32px)); margin-bottom: 6vh; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; text-shadow: 0 2px 6px #000; }
+.relato h2 { font-size: 2.2em; margin: 0; color: #f6e2a8; }
+.relato p { margin: 0; font-size: 1.15em; line-height: 1.5; }
+.relato .acto { opacity: .75; text-transform: uppercase; letter-spacing: .1em; font-size: .9em; }
+.relato .ganancia { color: #ffd76a; font-size: 1.3em; }
+.relato .nota { color: #9fe0a8; }
+.relato .botin { display: flex; align-items: center; gap: 10px; }
+canvas.mini { width: 110px; height: 154px; border-radius: 8px; display: block; }
+canvas.mini.premio { width: 150px; height: 210px; box-shadow: 0 0 40px rgba(255,215,106,.5); }
+
+/* taller */
+.taller { display: grid; grid-template-columns: 1fr 340px; gap: 16px; padding: 0 16px 16px; }
+.taller h3 { color: #f3dd9a; margin: 12px 0 6px; }
+.taller .rejilla { display: flex; flex-wrap: wrap; gap: 8px; }
+.carta-col { position: relative; cursor: pointer; }
+.carta-col span { position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,.8); border-radius: 8px; padding: 0 8px; font-size: .85em; }
+.carta-col.agotada { opacity: .45; cursor: default; }
+.carta-col:not(.agotada):hover canvas { outline: 3px solid #ffd76a; }
+.mazo { background: var(--panel); border: 1px solid var(--borde); border-radius: 12px; padding: 12px; align-self: start; position: sticky; top: 70px; display: flex; flex-direction: column; gap: 8px; max-height: calc(100vh - 90px); overflow: auto; }
+.mazo .cuenta { font-size: 1.3em; margin: 0; color: #ff9a8a; }
+.mazo .cuenta.ok, .mazo .ok { color: #9fe0a8; }
+.mazo .problemas { color: #ffb08a; margin: 0; padding-left: 18px; font-size: .9em; }
+.mazo .lista { list-style: none; margin: 0; padding: 0; }
+.mazo .lista li { padding: 4px 6px; border-radius: 6px; cursor: pointer; display: flex; gap: 8px; align-items: center; }
+.mazo .lista li:hover { background: rgba(255,120,90,.15); }
+.mazo .lista b { margin-left: auto; }
+.mazo .costo { background: #c9a33b; color: #2a1d05; border-radius: 50%; width: 22px; height: 22px; display: inline-grid; place-items: center; font-weight: bold; font-size: .85em; }
+@media (max-width: 800px) { .taller { grid-template-columns: 1fr; } .mazo { position: static; } }
+
+/* tienda */
+.centro { text-align: center; }
+.vitrina { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; padding: 8px 16px 24px; }
+.oferta { background: var(--panel); border: 1px solid var(--borde); border-radius: 12px; padding: 8px; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.oferta canvas.mini { width: 150px; height: 210px; }
+.oferta p { margin: 0; font-size: .85em; opacity: .8; }
+.oferta button { width: 100%; color: #ffd76a; }
+
+/* cronista */
+.cronicas { display: grid; grid-template-columns: 260px 1fr; gap: 20px; padding: 8px 24px 24px; max-width: 1100px; }
+.cronicas ul { list-style: none; padding: 0; margin: 0; }
+.cronicas li { padding: 8px 12px; border-radius: 8px; cursor: pointer; }
+.cronicas li.sel { background: rgba(201,163,59,.25); color: #f3dd9a; }
+.cronicas li.cerrada { opacity: .5; cursor: default; font-style: italic; }
+.cronicas article { background: rgba(239,228,200,.92); color: #2a1d10; border-radius: 10px; padding: 18px 24px; line-height: 1.6; min-height: 200px; }
+.cronicas article h3 { margin-top: 0; }
+@media (max-width: 800px) { .cronicas { grid-template-columns: 1fr; } }
+
+/* arena */
+.arena { margin: 6vh auto 0; text-align: left; }
+.arena h2 { color: #f3dd9a; margin: 0; text-align: center; }
+.nota { font-size: .9em; opacity: .75; }
+
+/* Las franjas a los lados del lienzo 16:9 muestran la misma imagen, desenfocada y oscura. */
+.pantalla:has(> .lienzo) { position: fixed; }
+.lienzo-fondo { position: absolute; inset: 0; background-size: cover; background-position: center; filter: blur(18px) brightness(.45); transform: scale(1.1); z-index: -1; }
+#pPueblo, #pMapa { isolation: isolate; overflow: hidden; }
+
+.punto:hover i { box-shadow: 0 0 0 6px rgba(255,215,106,.35), 0 2px 8px rgba(0,0,0,.7); }

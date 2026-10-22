@@ -1,0 +1,88 @@
+<!doctype html>
+<!-- verbo:sin-pie -->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Base de cartas</title>
+<link rel="stylesheet" href="estilo.css">
+<link rel="stylesheet" href="mundo.css">
+</head>
+<body>
+
+<div id="mundo" class="oculto">
+  <section id="pInicio" class="pantalla"></section>
+  <section id="pPueblo" class="pantalla oculto"></section>
+  <section id="pMapa" class="pantalla oculto"></section>
+  <section id="pNarrativa" class="pantalla oculto"></section>
+  <section id="pTaller" class="pantalla oculto"></section>
+  <section id="pTienda" class="pantalla oculto"></section>
+  <section id="pCronista" class="pantalla oculto"></section>
+  <section id="pArena" class="pantalla oculto"></section>
+</div>
+
+<section id="reglas" class="oculto">
+  <div class="caja texto">
+    <button id="cerrarReglas" class="x" title="Cerrar">✕</button>
+    <h2>Cómo se juega</h2>
+    <p><b>Objetivo:</b> derribar la fortaleza del rival. Tiene 20 de vida (♜). Si llega a 0, ganas.</p>
+    <p><b>Recursos (◆):</b> son lo que gastas para jugar cartas. Cada carta tiene su precio en el círculo dorado de arriba a la izquierda. Todos salen de los <b>recolectores</b> (cartas verdes). Lo que no gastas se guarda para el siguiente turno.</p>
+    <p><b>Recolectores:</b> son <b>gratis</b> y puedes jugar <b>uno por turno</b>. Producen sus ◆ en cuanto entran y luego al inicio de cada turno tuyo.</p>
+    <p><b>Ejemplo:</b> empiezas con 0 ◆ (quien va segundo recibe 1 ◆ y 1 carta extra). Juegas un Recolector: te da 1 ◆ y con eso pagas un Recluta (cuesta 1). Al turno siguiente tu Recolector produce otra vez, juegas otro Recolector y ya tienes 2 ◆. Cuantos más recolectores tengas, más ◆ recibes cada turno.</p>
+    <p><b>¿Cuántas cartas puedo jugar por turno?</b> Todas las que quieras, mientras te alcancen los ◆ y haya espacio en la mesa (solo los recolectores están limitados a uno por turno): 6 trabajadores en la aldea, 5 combatientes en el frente y 3 estructuras.</p>
+    <p><b>Cartas:</b> robas <b>2 cartas</b> al inicio de cada turno (quien empieza no roba en su primer turno). El mazo tiene 40 cartas; si se acaba, tu fortaleza recibe 2 de daño cada vez que tendrías que robar.</p>
+    <p><b>Muralla (▦):</b> los <b>constructores</b> (cartas cafés) le suman bloques a tu muralla al entrar y al inicio de cada turno. Mientras tu muralla tenga al menos un bloque, el rival no puede tocar tu aldea, tus estructuras ni tu fortaleza: primero tiene que derribarla.</p>
+    <p><b>Tu turno, en dos pasos:</b></p>
+    <p>1. <b>Prepara.</b> Juega cartas: las que brillan en dorado son las que te alcanzan con tus recursos. Elige también a quién ataca cada combatiente: toca uno con brillo verde y luego su objetivo (en rojo).</p>
+    <p><b>El plan:</b> todo lo que preparas contra el rival queda numerado (①, ②, ③…) en el orden en que lo preparas, y <b>así se resuelve</b>. Por ejemplo: ① <i>Derrumbe</i> tira la muralla y ② tu Soldado ya puede apuntar a la fortaleza. Toca algo del plan para quitarlo (una carta vuelve a tu mano con su costo); si lo vuelves a poner, queda al final.</p>
+    <p>2. <b>Al ataque.</b> El plan se resuelve paso a paso, en el orden de sus números. Al final pulsa <i>Terminar turno</i>.</p>
+    <p><b>Combate:</b> cuando dos combatientes pelean, los dos se hacen daño. El daño no se cura solo. Un combatiente recién jugado espera un turno antes de atacar.</p>
+    <p><b>Habilidades especiales:</b> algunos combatientes tienen una habilidad escrita en su carta que les cambia las reglas:</p>
+    <ul>
+      <li><b>Veloz:</b> puede atacar el mismo turno en que lo juegas, sin esperar.</li>
+      <li><b>Guardia:</b> protege a los demás. Mientras esté en pie, el rival tiene que atacarlo a él primero. No puede atacar a nadie más hasta derribarlo.</li>
+      <li><b>Incursor:</b> salta la muralla para saquear la aldea y las estructuras. Para llegar a la fortaleza, la muralla tiene que estar en 0.</li>
+      <li><b>Distancia:</b> ataca desde lejos: hace daño sin recibirlo de vuelta.</li>
+      <li><b>Asedio:</b> le hace el doble de daño a la muralla y a los edificios.</li>
+      <li><b>Sanador:</b> al inicio de cada turno cura 2 de vida a tu carta más herida.</li>
+    </ul>
+    <p><b>Efectos</b> (cartas azules) y <b>maldiciones</b> (cartas negras) son <b>de un solo uso</b>. Toca la carta una vez para leer qué hace y otra vez para jugarla; si necesita objetivo, te lo pide.</p>
+    <p><b>Regla de oro:</b> todo lo que va <b>contra el rival</b> espera a <i>Al ataque</i>: tus combatientes, los efectos de daño (<i>Golpe</i>, <i>Golpe fuerte</i>, <i>Oleada</i>, <i>Derrumbe</i>) y todas las maldiciones. Quedan preparados en la zona de efectos con un rayo (azul o morado). Lo que <b>te ayuda a ti</b> (<i>Curación</i>, <i>Escudo</i>, <i>Impulso</i>, <i>Reservas</i>, <i>Planear</i>) actúa al instante. Si el objetivo de algo ya cayó cuando le toca, se pierde.</p>
+    <p><b>Maldiciones:</b> caen sobre el rival por varios turnos. La muralla no las detiene.</p>
+    <p><b>Torre</b> (estructura): defiende. El primer combatiente rival que te ataca en cada turno recibe 1 de daño antes de golpear.</p>
+    <p><b>Campaña:</b> conquista las mazmorras del mapa ganando sus partidas. Si pierdes 3 seguidas, el enemigo recupera tu última conquista (se reconquista con una sola partida). Con las monedas compras cartas en la tienda y armas tus mazos en el taller.</p>
+    <p class="sub">Teclado: Espacio o Enter pulsan el botón que late · 1 a 9 tocan una carta de tu mano · Esc o clic derecho cancelan una selección.</p>
+  </div>
+</section>
+
+<section id="juego" class="oculto">
+  <div id="mesa"></div>
+  <div id="hudRival" class="hud arriba"></div>
+  <div id="hudYo" class="hud abajo"></div>
+  <div id="registro"></div>
+  <div id="plan" class="oculto"></div>
+  <div id="controles">
+    <div id="estadoTurno"></div>
+    <div id="guia"></div>
+    <button id="btnAtaque">⚔ Al ataque</button>
+    <button id="btnFin">Terminar turno</button>
+  </div>
+  <div id="vista"><canvas id="vistaCanvas"></canvas></div>
+  <div id="aviso"></div>
+  <button id="cerrar" class="x" title="Volver al menú (Esc)">✕</button>
+  <button id="sonido" class="x" title="Sonido" style="right: 62px"></button>
+</section>
+
+<section id="final" class="oculto">
+  <div class="caja">
+    <h1 id="finalTitulo"></h1>
+    <p id="finalTexto"></p>
+    <div class="fila">
+      <button id="btnOtra" class="grande">Continuar</button>
+    </div>
+  </div>
+</section>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>
