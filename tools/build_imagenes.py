@@ -41,7 +41,7 @@ def build():
   ids.add(ident)
   if status not in (['aprobada','generada'] if args.todas else ['aprobada']):continue
   if not re.fullmatch('[a-z0-9-]+',ident):raise ValueError('Unsafe ID')
-  source=args.banco/'web'/book/(ident+'.jpg')
+  jpg=state.get(ident,{}).get('jpg');source=args.banco/jpg if jpg else args.banco/'web'/book/(ident+'.jpg')
   if not source.is_file():print('Sin JPG, omitida:',ident);continue
   base=f'/imagenes/{book}/{ident}';dest=R/base.lstrip('/');dest.parent.mkdir(parents=True,exist_ok=True)
   shutil.copyfile(source,str(dest)+'.jpg')
