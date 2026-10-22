@@ -10,12 +10,13 @@ import xml.etree.ElementTree as ET
 from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '20261021-pie'
+VERSION = '20261022-pie'
 START, END = '<!-- verbo:pie -->', '<!-- /verbo:pie -->'
 LINKS = {
     'secciones': [('inicio', '/', 'Inicio'), ('recursos', '/recursos/', 'Recursos'),
         ('libreria', '/libreria/', 'Librería'), ('historias', '/historias/', 'Historias'),
-        ('preguntas', '/preguntas-cristianas/', 'Preguntas cristianas'), ('software', '/software/', 'Software')],
+        ('preguntas', '/preguntas-cristianas/', 'Preguntas cristianas'), ('software', '/software/', 'Software'),
+        ('apps', '/apps/', 'Apps'), ('juegos', '/juegos/', 'Juegos'), ('imagenes', '/imagenes/', 'Imágenes bíblicas')],
     'confianza': [('acerca', '/acerca/', 'Conoce Verbo'), ('mision', '/mision/', 'Misión'),
         ('fundador', '/sobre-el-fundador/', 'Sobre el fundador'), ('privacidad', '/privacidad/', 'Política de privacidad'),
         ('licencias', '/licencias/', 'Licencias'), ('contacto', '/contacto/', 'Contacto')],

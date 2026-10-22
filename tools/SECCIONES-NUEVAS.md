@@ -64,3 +64,11 @@ Validación estática: estructura HTML, IDs, enlaces/recursos locales, claves i1
 Revisar imágenes y prosa inglesa; reconstruir solo aprobadas; agregar accesos a `/apps/`, `/juegos/` y `/imagenes/` en portada/menú/pie y agregar al sitemap únicamente páginas listas. Esta tarea no cambia la configuración de Cloudflare ni publica.
 
 Los commits solicitados quedaron bloqueados por permisos: el índice de este worktree está en `/home/juan/Verbo/Sitio-Web-verbobiblia/.git/worktrees/Sitio-Web-verbobiblia-secciones/`, fuera de la zona permitida. No se cambió la rama ni se hizo push.
+
+## Pulido del banco · 2026-10-21
+
+- Diseño propio en `imagenes/banco.css`, sobre papel crema y azul Verbo. Mosaico 16:9, búsqueda protagonista, sugerencias bilingües, filtros y colecciones con portada.
+- El generador añade `-media.jpg` (hasta 640 px), `srcset`, resolución/peso del original, nombres de descarga legibles, navegación bíblica y fichas con panel lateral. Visor modal con rueda, doble clic, pellizco, arrastre, teclado y restauración de foco.
+- Compilación final sin `--todas`: 164 aprobadas y 386 colecciones. Se ejecutó el pie común; se retiraron sus reescrituras ajenas al alcance sobre páginas previamente limpias.
+- Validaciones estáticas y funcionales de esta guía superadas.
+- **Revisión visual pendiente, no se declara terminado:** `python3 -m http.server 8782` falla al crear el socket (`Operation not permitted`). Chrome headless con perfil en `/tmp` también falla en `setsockopt: Operation not permitted`. No hay capturas finales válidas ni comprobación de gestos en dispositivo real. Verificar portada, ficha y colección a 1400 y 420 px en un entorno que permita Chrome y servidor local.

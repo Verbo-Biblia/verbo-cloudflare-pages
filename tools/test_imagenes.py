@@ -23,4 +23,11 @@ with tempfile.TemporaryDirectory() as tmp:
  b.build()
  assert len(json.loads((root/'imagenes/indice.json').read_text()))==1
  assert 'noindex' not in (root/'imagenes/mateo/test-one/index.html').read_text()
+ item=json.loads((root/'imagenes/indice.json').read_text())[0]
+ assert item['estado']=='aprobada' and item['medium'].endswith('-media.jpg')
+ with Image.open(root/item['medium'].lstrip('/')) as image: assert image.width<=640
+ html=(root/'imagenes/mateo/test-one/index.html').read_text()
+ assert 'Paralelos: —' not in html and 'class="lightbox"' in html
+ assert 'book=MAT' in html and 'download="prueba-16x9.jpg"' in html
+ assert 'verbo:anuncio:imagen-lectura' in html
  print('Generador: aprobación, vista previa y limpieza verificadas.')

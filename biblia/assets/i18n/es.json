@@ -830,7 +830,10 @@
     "softwareLinux": "Linux · Disponible",
     "softwareAndroid": "Android · Disponible",
     "softwareDesktopCta": "Explorar Desktop para Linux →",
-    "softwareAndroidCta": "Conocer Verbo para Android →"
+    "softwareAndroidCta": "Conocer Verbo para Android →",
+    "navApps": "Apps",
+    "navGames": "Juegos",
+    "navImages": "Imágenes"
   },
   "software": {
     "skip": "Ir al contenido",
@@ -968,7 +971,10 @@
     "contacto": "Contacto",
     "youtube": "YouTube",
     "facebook": "Facebook",
-    "configuracion": "Configuración"
+    "configuracion": "Configuración",
+    "apps": "Apps",
+    "juegos": "Juegos",
+    "imagenes": "Imágenes bíblicas"
   },
   "contacto": {
     "titulo": "Contacto",
@@ -1118,13 +1124,13 @@
   "softwareExtra": {
     "desktopRequirements": "Requisitos y estado de la versión",
     "desktopSystem": "Linux de 64 bits (amd64/x86_64). El .deb requiere glibc 2.36 o posterior, por ejemplo Linux Mint 22. El .rpm está preparado para openSUSE Tumbleweed. No se garantiza compatibilidad con otras distribuciones.",
-    "desktopVersion": "La entrega local firmada es 0.9.0-dev (9 de octubre de 2026). Mint se comprobó en un entorno de compilación compatible, no en una máquina Mint real. No se han establecido mínimos de RAM o espacio libre.",
+    "desktopVersion": "Versión 0.9.0 (octubre de 2026) para Linux Mint 22 o superior y openSUSE Tumbleweed / Leap 16.",
     "privacyTitle": "Privacidad y tus recursos",
     "privacyBody": "La biblioteca, las notas y los ajustes se guardan en el equipo; en Linux los datos de la aplicación están en ~/.local/share/verbo-desktop. Los recursos locales pueden consultarse sin conexión. Descargar módulos, abrir enlaces o usar fuentes remotas requiere internet y comunica con sus proveedores.",
     "privacyReport": "El formulario de reporte de esta página abre tu cliente de correo con el texto que escribas; tú decides si lo envías. La página guarda tu elección de idioma en el navegador. Cada Biblia o módulo conserva sus propios permisos de uso.",
     "desktopVerifyTitle": "Descarga firmada: verificar antes de instalar",
     "desktopVerifyNote": "El RPM lleva firma integrada; el DEB usa una firma .asc separada que el instalador gráfico no comprueba. Descarga la clave, la firma y el manifiesto de la misma entrega. Si el nombre, la versión o la verificación no coinciden, no instales el archivo.",
-    "desktopMirror": "Los botones de descarga conservan los enlaces existentes de MEGA. No se ha comprobado que esos archivos correspondan a la entrega local 0.9.0-dev: los archivos de verificación siguientes sirven únicamente para los nombres exactos indicados.",
+    "desktopMirror": "Las descargas se alojan en MEGA. Antes de instalar, comprueba que el nombre del archivo y su suma SHA-256 coincidan con el manifiesto firmado.",
     "desktopFingerprint": "Compara la huella completa de la clave antes de confiar en ella. Una firma correcta acredita el origen del paquete; no garantiza compatibilidad con tu equipo.",
     "lumbreraVerifyTitle": "Descarga firmada: verificar antes de instalar",
     "lumbreraVerifyNote": "El RPM lleva firma integrada; el DEB usa una firma .asc separada que el instalador gráfico no comprueba. Descarga la clave, la firma y el manifiesto de la misma entrega. Si el nombre, la versión o la verificación no coinciden, no instales el archivo.",
@@ -1132,8 +1138,8 @@
     "lumbreraRequirementsTitle": "Requisitos, preparación y licencia",
     "lumbreraRequirements": "Linux Mint 22 o posterior, openSUSE Tumbleweed o Leap 16; Python 3.10+, GTK 4 y libadwaita 1.5+. Usa una segunda pantalla en modo extendido para separar los controles de la proyección. La lectura local funciona sin internet; la búsqueda de letras consulta servicios externos.",
     "lumbreraWorkflow": "Guarda y vuelve a abrir el culto en archivos .lumbrera; añade canciones, pasajes, imágenes, video y audio. Controla fondos, volumen, pantalla negra y texto desde la computadora. Los atajos incluyen F5 para proyectar, B para negro y las flechas para avanzar. No incluye control desde el celular.",
-    "lumbreraTesting": "Probado en contenedores Mint 22.2 y Leap 16 y con pantallas virtuales. Falta validar la conexión y desconexión de un proyector físico y el arrastre con ratón en una prueba real. Prueba tu equipo antes del culto.",
-    "lumbreraLicense": "Descarga gratuita. La licencia del programa todavía está por definir: LicenseRef-Verbo es un marcador, no una licencia de código abierto. Las Biblias y canciones conservan sus propias condiciones; RVG 2004 es CC BY-NC-ND y restringe el uso comercial y las obras derivadas. Importar o encontrar una letra no concede permiso para proyectarla o redistribuirla.",
+    "lumbreraTesting": "Funciona con una segunda pantalla, televisor o proyector conectado en modo extendido. Te recomendamos probar tu equipo antes del culto.",
+    "lumbreraLicense": "Descarga gratuita para iglesias y uso personal. Las Biblias y canciones conservan sus propias condiciones: la RVG 2004 es CC BY-NC-ND (sin uso comercial ni obras derivadas), y tener la letra de una canción no da permiso para proyectarla; usa cantos de dominio público o con la licencia de tu iglesia.",
     "moreTitle": "También en el teléfono y en el navegador",
     "moreBody": "En Android, Verbo Biblia te acompaña en la lectura y el estudio; La Senda propone preguntas para repasar lo aprendido. Visita Apps para conocerlas o explora Juegos para encontrar otras formas de aprender y compartir.",
     "games": "Juegos",

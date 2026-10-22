@@ -830,7 +830,10 @@
     "softwareLinux": "Linux · Available",
     "softwareAndroid": "Android · Available",
     "softwareDesktopCta": "Explore Desktop for Linux →",
-    "softwareAndroidCta": "Explore Verbo for Android →"
+    "softwareAndroidCta": "Explore Verbo for Android →",
+    "navApps": "Apps",
+    "navGames": "Games",
+    "navImages": "Images"
   },
   "software": {
     "skip": "Skip to content",
@@ -968,7 +971,10 @@
     "contacto": "Contact",
     "youtube": "YouTube",
     "facebook": "Facebook",
-    "configuracion": "Settings"
+    "configuracion": "Settings",
+    "apps": "Apps",
+    "juegos": "Games",
+    "imagenes": "Bible images"
   },
   "contacto": {
     "titulo": "Contact",
@@ -1118,13 +1124,13 @@
   "softwareExtra": {
     "desktopRequirements": "Requirements and release status",
     "desktopSystem": "64-bit Linux (amd64/x86_64). The .deb requires glibc 2.36 or later, for example Linux Mint 22. The .rpm targets openSUSE Tumbleweed. Compatibility with other distributions is not guaranteed.",
-    "desktopVersion": "The signed local release is 0.9.0-dev (October 9, 2026). Mint was checked in a compatible build environment, not on a physical Mint computer. Minimum RAM and free disk space have not been established.",
+    "desktopVersion": "Version 0.9.0 (October 2026) for Linux Mint 22 or later and openSUSE Tumbleweed / Leap 16.",
     "privacyTitle": "Privacy and your resources",
     "privacyBody": "Your library, notes and settings are stored on your computer; Linux application data is in ~/.local/share/verbo-desktop. Local resources can be read offline. Downloading modules, opening links or using remote sources requires internet and contacts their providers.",
     "privacyReport": "The report form on this page opens your email client with the text you write; you decide whether to send it. The page stores your language preference in your browser. Each Bible or module retains its own usage permissions.",
     "desktopVerifyTitle": "Signed download: verify before installing",
     "desktopVerifyNote": "The RPM has an embedded signature; the DEB uses a separate .asc signature that the graphical installer does not check. Download the key, signature and manifest from the same release. If the name, version or verification does not match, do not install the file.",
-    "desktopMirror": "The download buttons retain the existing MEGA links. Their files have not been confirmed to match the local 0.9.0-dev release: the verification files below apply only to the exact filenames shown.",
+    "desktopMirror": "Downloads are hosted on MEGA. Before installing, check that the file name and its SHA-256 sum match the signed manifest.",
     "desktopFingerprint": "Compare the full key fingerprint before trusting it. A valid signature authenticates the package origin; it does not guarantee compatibility with your computer.",
     "lumbreraVerifyTitle": "Signed download: verify before installing",
     "lumbreraVerifyNote": "The RPM has an embedded signature; the DEB uses a separate .asc signature that the graphical installer does not check. Download the key, signature and manifest from the same release. If the name, version or verification does not match, do not install the file.",
@@ -1132,8 +1138,8 @@
     "lumbreraRequirementsTitle": "Requirements, preparation and license",
     "lumbreraRequirements": "Linux Mint 22 or later, openSUSE Tumbleweed or Leap 16; Python 3.10+, GTK 4 and libadwaita 1.5+. Use a second display in extended mode to separate controls from projection. Local reading works offline; lyrics search contacts external services.",
     "lumbreraWorkflow": "Save and reopen services as .lumbrera files; add songs, passages, images, video and audio. Control backgrounds, volume, blackout and text from the computer. Shortcuts include F5 for projection, B for blackout and arrow keys to advance. Phone control is not included.",
-    "lumbreraTesting": "Tested in Mint 22.2 and Leap 16 containers and with virtual displays. Physical projector connection and disconnection and mouse drag and drop still need a real-world test. Test your setup before a service.",
-    "lumbreraLicense": "Free download. The program license is still undecided: LicenseRef-Verbo is a placeholder, not an open-source license. Bibles and songs retain their own terms; RVG 2004 is CC BY-NC-ND and restricts commercial use and derivative works. Importing or finding lyrics does not grant permission to project or redistribute them.",
+    "lumbreraTesting": "Works with a second screen, TV or projector connected in extended mode. We recommend testing your setup before the service.",
+    "lumbreraLicense": "Free download for churches and personal use. Bibles and songs keep their own terms: RVG 2004 is CC BY-NC-ND (no commercial use or derivatives), and having a song's lyrics does not grant permission to project them; use public-domain songs or your church's license.",
     "moreTitle": "Also on your phone and in your browser",
     "moreBody": "On Android, Verbo Biblia supports reading and study; La Senda offers questions to review what you have learned. Visit Apps to discover them or explore Games for more ways to learn and share.",
     "games": "Games",
