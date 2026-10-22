@@ -38,7 +38,10 @@ def verse_text(x,limit=6):
  return '<blockquote class="verse-text" lang="es">'+' '.join('<sup>'+str(n)+'</sup> '+e(s) for n,s in verses)+more+'<footer>Reina-Valera Gómez 2004</footer></blockquote>'
 def build():
  ap=argparse.ArgumentParser();ap.add_argument('--todas',action='store_true');ap.add_argument('--banco',type=Path,default=Path.home()/'Verbo/Banco-Imagenes');args=ap.parse_args()
- state=json.loads((args.banco/'estado.json').read_text());records=[]
+ import fcntl
+ with open(args.banco/'.estado.lock','a') as lock:
+  fcntl.flock(lock,fcntl.LOCK_SH);state=json.loads((args.banco/'estado.json').read_text())
+ records=[]
  for f in sorted((args.banco/'catalogo').glob('*.json')):records.extend(json.loads(f.read_text()))
  out=R/'imagenes';out.mkdir(exist_ok=True)
  old=json.loads((out/'generated.json').read_text()) if (out/'generated.json').exists() else []
