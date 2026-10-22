@@ -7,10 +7,12 @@ No recorre archivos editoriales, lectores privados ni directorios de la app.
 from pathlib import Path
 import re
 import xml.etree.ElementTree as ET
-from urllib.parse import unquote, urlsplit
+from urllib.parse import parse_qs, unquote, urlsplit
+import html
+import json
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '20261022-pie'
+VERSION = '20261022-pie2'
 START, END = '<!-- verbo:pie -->', '<!-- /verbo:pie -->'
 LINKS = {
     'secciones': [('inicio', '/', 'Inicio'), ('recursos', '/recursos/', 'Recursos'),
@@ -23,6 +25,36 @@ LINKS = {
     'redes': [('youtube', 'https://youtube.com/@verbobiblia', 'YouTube'),
         ('facebook', 'https://www.facebook.com/share/193dcJJ87v/', 'Facebook')],
 }
+
+# El lector bíblico (/biblia/) no se ofrece en la web: se quitan sus accesos y las citas
+# muestran el texto de la Reina-Valera Gómez 2004 en la misma página.
+RVG = ROOT / 'biblia/modules/bibles/rvg-2004'
+BIBLE_LINK = r'<a\b[^>]*href="(?:\.\./)*/?biblia/(?:\?[^"]*|index\.html)?"[^>]*>.*?</a>'
+_books = {}
+
+def rvg_passage(href, label):
+    query = parse_qs(urlsplit(html.unescape(href)).query)
+    try:
+        book, chapter = query['book'][0], query['chapter'][0]
+        verses = [int(v) for v in query['verse'][0].split(',') if v.isdigit()]
+        if book not in _books:
+            _books[book] = json.loads((RVG / 'books' / f'{book}.json').read_text(encoding='utf-8'))['chapters']
+        lines = [f'<sup>{n}</sup> {html.escape(_books[book][chapter][str(n)]["text"])}' for n in verses]
+    except (KeyError, IndexError, ValueError, OSError):
+        return f'<p class="verbo-cita">{label}</p>'
+    return (f'<blockquote class="verbo-cita" lang="es"><p>{" ".join(lines)}</p>'
+            f'<footer>{label} · Reina-Valera Gómez 2004</footer></blockquote>')
+
+def without_bible_links(text):
+    def replace(match):
+        anchor = match.group(0)
+        if 'passage-link' not in anchor:
+            return ''
+        href = re.search(r'href="([^"]*)"', anchor).group(1)
+        label = re.sub(r'<[^>]+>', '', anchor)
+        label = re.sub(r'^\s*Leer\s+|\s+en la Biblia\s*→?\s*$', '', label).strip()
+        return rvg_passage(href, label)
+    return re.sub(BIBLE_LINK, replace, text, flags=re.S)
 
 def public_pages():
     pages = set()
@@ -80,6 +112,7 @@ def apply():
             text = re.sub(r'\n?' + re.escape(START) + r'.*?' + re.escape(END) + r'\n?', '\n', text, flags=re.S)
         elif path == ROOT / 'index.html':
             text = re.sub(r'<footer\b[^>]*>.*?</footer>', '', text, count=1, flags=re.S)
+        text = without_bible_links(text)
         css = f'<link rel="stylesheet" href="/assets/pie/pie.css?v={VERSION}">'
         text = re.sub(r'<link\b[^>]*href=["\'][^"\']*/assets/pie/pie\.css[^"\']*["\'][^>]*>\n?', '', text)
         text = text.replace('</head>', css + '\n</head>')
