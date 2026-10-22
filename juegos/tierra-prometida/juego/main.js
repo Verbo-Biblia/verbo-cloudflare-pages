@@ -458,7 +458,7 @@ function mostrarVista(h) {
   }
   dibujarCarta($('#vistaCanvas'), CARTAS[h.id], tema.info(h.id, h.j), tema.imagen(h.id, h.j), tema.terminos, actual);
   // Justo en medio, entre el panel del rival y el tuyo.
-  if (window.innerWidth > 800) {
+  if (window.innerWidth > 800 && window.innerHeight > 520) {
     const arriba = $('#hudRival').getBoundingClientRect().bottom, abajo = $('#hudYo').getBoundingClientRect().top;
     const alto = Math.min(560, abajo - arriba - 24);
     const c = $('#vistaCanvas');
@@ -513,6 +513,18 @@ window.addEventListener('keydown', e => {
 window.addEventListener('contextmenu', e => { if (modo) { e.preventDefault(); modo = null; aviso(''); resaltarEstado(); } });
 
 iniciar();
+
+// En celulares: pantalla completa y orientación horizontal fija (Android). iPhone no deja fijarla: ahí queda el
+// aviso «Gira el teléfono». Se pide con un toque, porque los navegadores solo lo permiten tras una acción del usuario.
+const esTactil = window.matchMedia('(pointer: coarse)').matches;
+async function ponerHorizontal() {
+  try {
+    if (!document.fullscreenElement) await document.documentElement.requestFullscreen?.({ navigationUI: 'hide' });
+    await screen.orientation?.lock?.('landscape');
+  } catch {}
+}
+if (esTactil) document.addEventListener('pointerdown', ponerHorizontal, { once: true });
+$('#btnHorizontal').onclick = ponerHorizontal;
 
 // Acceso para pruebas automáticas (pruebas/pantalla.mjs).
 window.baseCartas = { get st() { return st; }, get tablero() { return tablero; }, empezar: partidaDePrueba, empezarPartida, terminarYVolver, alAtaque, finTurno, clic };

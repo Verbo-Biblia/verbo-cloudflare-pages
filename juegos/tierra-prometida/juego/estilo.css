@@ -86,3 +86,31 @@ label select { flex: 1; max-width: 62%; }
 #guia { font-size: .85em; text-align: center; color: #ffe7a6; min-height: 1.2em; text-shadow: 0 1px 4px #000; }
 #controles button.sugerido { animation: sugerido 1.1s ease-in-out infinite; border-color: #ffd76a; }
 @keyframes sugerido { 50% { box-shadow: 0 0 0 6px rgba(255, 215, 106, .35), 0 0 24px rgba(255, 215, 106, .45); } }
+
+/* Celular en vertical: pedir que lo gire (el juego es horizontal). */
+#girar { display: none; position: fixed; inset: 0; z-index: 100; background: #120d0a; color: var(--papel); flex-direction: column; align-items: center; justify-content: center; gap: 18px; text-align: center; padding: 24px; }
+#girar p { font-size: 1.3em; margin: 0; }
+.girar-icono { font-size: 64px; animation: girar 2s ease-in-out infinite; }
+@keyframes girar { 0%, 30% { transform: rotate(0); } 60%, 100% { transform: rotate(90deg); } }
+@media (orientation: portrait) and (max-width: 900px) { #girar { display: flex; } }
+
+/* Celular en horizontal (pantalla baja): paneles y botones compactos para que se vean la mesa y la mano. */
+@media (max-height: 520px) {
+  .hud { font-size: 0.55em; padding: 4px 8px 5px; min-width: 0; left: 6px; border-radius: 10px; }
+  .hud.arriba { top: 6px; } .hud.abajo { bottom: 6px; }
+  .hud .valores { gap: 3px; margin-top: 2px; }
+  .hud .dato { padding: 2px 5px; }
+  .hud .ico { width: 16px; height: 16px; }
+  .hud .dato small { display: none; }
+  .hud .efectos { margin-top: 2px; }
+  #registro, #guia, #estadoTurno { display: none; }
+  #controles { top: auto; bottom: 6px; right: 6px; transform: none; width: 112px; gap: 5px; }
+  #controles button { padding: 0.35em 0.4em; font-size: 0.8em; }
+  #plan { bottom: 82px; right: 6px; width: 190px; font-size: 0.75em; padding: 5px 8px; }
+  .x { width: 32px; height: 32px; font-size: 15px; top: 6px; right: 6px; }
+  #sonido { right: 44px !important; }
+  #aviso { font-size: 0.8em; top: 6px; padding: 4px 10px; max-width: 60vw; }
+  #vista { left: 50%; top: 50% !important; transform: translate(-50%, -50%) scale(0.96); }
+  #vista.visible { transform: translate(-50%, -50%) scale(1); }
+  #vistaCanvas { height: min(300px, 82vh) !important; }
+}
