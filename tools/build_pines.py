@@ -92,6 +92,30 @@ def main():
  for l,nombre in (('es','pines.csv'),('en','pines-en.csv')):
   with open(carpeta/nombre,'w',newline='',encoding='utf-8') as f:
    w=csv.writer(f);w.writerow(['Title','Media URL','Pinterest board','Thumbnail','Description','Link','Publish date','Keywords']);w.writerows(filas[l])
- print(f'Pines: {len(libros)} imágenes y {len(cat)} juegos; CSV en docs/pinterest/.')
+ rss(filas)
+ print(f'Pines: {len(libros)} imágenes y {len(cat)} juegos; CSV en docs/pinterest/ y RSS en imagenes/pines/rss/.')
+
+def rss(filas):
+ """Un feed RSS por tablero: Pinterest («Crear Pines en lote» › conectar un RSS) los publica de a poco."""
+ from html import escape as e
+ from email.utils import formatdate
+ import unicodedata
+ slug=lambda s:re.sub(r'[^a-z0-9]+','-',unicodedata.normalize('NFD',s).encode('ascii','ignore').decode().lower()).strip('-')
+ for l in ('es','en'):
+  carpeta=R/'imagenes/pines/rss'/l;carpeta.mkdir(parents=True,exist_ok=True)
+  por={}
+  for f in filas[l]:por.setdefault(f[2],[]).append(f)
+  indice=[]
+  for tablero,items in por.items():
+   cuerpo=''.join(f'<item><title>{e(ti)}</title><link>{e(link)}</link><guid isPermaLink="false">{e(media)}</guid>'
+    f'<description>{e(desc)}</description><pubDate>{formatdate(1761200000+i*3600,usegmt=True)}</pubDate>'
+    f'<enclosure url="{e(media)}" type="image/jpeg" length="{(R/media.replace(BASE+"/","")).stat().st_size}"/>'
+    f'<media:content url="{e(media)}" medium="image" type="image/jpeg" width="1000" height="1500"/></item>\n'
+    for i,(ti,media,_,_,desc,link,_,_) in enumerate(items))
+   nombre=slug(tablero)+'.xml'
+   (carpeta/nombre).write_text('<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel>'
+    f'<title>{e(tablero)} · Verbo</title><link>{BASE}/imagenes/</link><description>{e(tablero)}: verbobiblia.com</description><language>{"es" if l=="es" else "en"}</language>\n'+cuerpo+'</channel></rss>\n')
+   indice.append((tablero,len(items),f'{BASE}/imagenes/pines/rss/{l}/{nombre}'))
+  (R/'docs/pinterest'/f'rss-{l}.txt').write_text(''.join(f'{t}\t{n}\t{u}\n' for t,n,u in sorted(indice,key=lambda x:-x[1])))
 
 if __name__=='__main__':main()
