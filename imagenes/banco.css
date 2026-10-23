@@ -3,3 +3,51 @@
 @media(min-width:1001px){.image-bank .grid{grid-auto-flow:row}}
 .image-bank .tags a{min-height:36px;display:inline-flex;align-items:center}
 .image-bank .filter-row button{min-height:44px}
+/* Fase 1C: contexto, tarjeta con versículo, Pinterest, cruces con juegos y textos, colecciones y guías */
+.scene-context{color:var(--ink)!important;font-size:15.5px;line-height:1.7}
+.share-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+.image-bank .card-open{background:#98703c}
+.image-bank .card-open:hover{background:#7a5a2f}
+.pin-link{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:5px;border:1px solid var(--line);font-size:14px;font-weight:600}
+.pin-link:hover{border-color:#bd081c;color:#bd081c}
+.license-line{display:inline-block;margin:0 auto 18px;padding:8px 16px;border-radius:999px;background:#e7f0e9;color:#1f4d38!important;font-weight:600;font-size:14px;border:1px solid #c5dccd}
+.cross{display:grid;gap:18px;align-items:center;margin:34px 0;padding:22px;border-radius:12px;background:#081b30;color:#f6efe0}
+.cross p{color:#a9b6c6!important}.cross .eyebrow{color:#e2b55c!important}
+.cross h2{color:#f6efe0;font-size:28px!important;margin:6px 0 8px}
+.cross__img img{width:100%;height:auto;border-radius:10px;display:block}
+.image-bank .cross .button{background:#e2b55c;color:#081b30;font-weight:800;min-height:48px;display:inline-flex;align-items:center;border-radius:12px}
+.image-bank .cross .button:hover{background:#f3d28f}
+.cross .text-more{color:#f3d28f;font-weight:700;margin-left:10px;text-decoration:underline}
+.cross ul{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:8px}
+.cross li a{display:block;padding:12px 14px;border-radius:10px;background:#0f2a47;color:#f6efe0;font-weight:600}
+.cross li a:hover{background:#163a5f}
+.cross li small{display:block;color:#e2b55c;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.cross--read{grid-template-columns:1fr}
+@media(min-width:760px){.cross--game{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr)}}
+dialog.verse-card{width:min(560px,calc(100vw - 24px));max-height:calc(100vh - 24px);border:0;border-radius:14px;padding:16px;background:var(--paper);color:var(--ink)}
+dialog.verse-card::backdrop{background:rgba(5,12,25,.75)}
+.verse-card__head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.verse-card__head h2{font-size:24px!important;margin:0}
+.image-bank .verse-card__head button{background:transparent;color:var(--ink);font-size:20px;min-width:44px;min-height:44px;padding:0}
+.verse-card canvas{display:block;width:100%;height:auto;max-height:58vh;object-fit:contain;margin:12px 0;border-radius:8px;background:#081b30}
+.verse-card__formatos,.verse-card__acciones{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.image-bank .verse-card__formatos button{background:transparent;color:var(--ink);border:1px solid var(--line);min-height:44px}
+.image-bank .verse-card__formatos button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.image-bank .verse-card__acciones button{min-height:48px}
+.verse-card__acciones a{display:inline-flex;align-items:center;min-height:48px;padding:0 16px;border-radius:5px;background:#1f7a4d;color:#fff!important;font-weight:700}
+.collection-intro{max-width:760px;margin:0 auto 10px;text-align:left}
+.collection-intro p{color:var(--ink)!important;font-size:16px}
+.guide{max-width:780px;margin:0 auto}
+.guide h2{font-size:28px!important;margin-top:34px}
+.guide p,.guide li{color:var(--ink)!important;font-size:16px;line-height:1.75}
+.guide figure{margin:24px 0;padding:16px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.guide figure svg{display:block;width:100%;height:auto}
+.guide figcaption{font-size:13px;color:var(--muted);margin-top:8px}
+.guide .related-links{display:flex;flex-wrap:wrap;gap:8px;padding:0;list-style:none}
+.guide .related-links a{display:inline-block;padding:8px 14px;border-radius:999px;border:1px solid var(--line);font-weight:600}
+@media(prefers-reduced-motion:reduce){.image-bank *{transition:none!important}}
+.guides-grid .collection-card{padding:22px;background:#fff;border:1px solid var(--line);border-radius:10px}
+.guides-grid .collection-card h3{margin:0 0 8px;font-size:22px}
+.guides-grid .collection-card span{color:var(--muted);font-size:14px}
+.bank-more{text-align:center;margin:22px 0 0;font-weight:700}
+.bank-more a{text-decoration:underline;text-underline-offset:3px}
