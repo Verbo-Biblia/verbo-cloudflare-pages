@@ -82,7 +82,7 @@ const ANIMALES = [
 const DIRS = [[-1, 0], [0, 1], [1, 0], [0, -1]];
 const CLAVE_AVANCE = 'mini:arca:avance';
 const VIDAS = 3, PISTAS = 3, GOMAS = 2;
-const VELOCIDAD = 22; // casillas por segundo
+const VELOCIDAD = 70; // casillas por segundo (Juan: «que salgan más rápido»)
 
 const $ = s => document.querySelector(s);
 const SVG = 'http://www.w3.org/2000/svg';
@@ -380,12 +380,12 @@ function chocar(f, { pasos, otra }) {
 function animar(f, tramos, alTerminar) {
   f.moviendo = true;
   const [a, b] = tramos.shift();
-  const dur = Math.max(110, Math.abs(b - a) / VELOCIDAD * 1000);
+  const dur = Math.min(380, Math.max(90, Math.abs(b - a) / VELOCIDAD * 1000));
   const t0 = performance.now();
   const largo = f.celdas.length;
   const paso = ahora => {
     const u = Math.min(1, (ahora - t0) / dur);
-    const e = b > a ? u * u : 1 - (1 - u) * (1 - u);
+    const e = b > a ? u * (0.6 + 0.4 * u) : 1 - (1 - u) * (1 - u);
     ponerForma(f.g, puntosEn(f.via, largo, a + (b - a) * e), f.dir);
     if (u < 1) return requestAnimationFrame(paso);
     if (tramos.length) return animar(f, tramos, alTerminar);
