@@ -1,0 +1,9 @@
+/* Panes y Peces: letras y colores de los mini juegos de Verbo (Cinzel + Alegreya, arena y cuero). */
+@font-face { font-family: 'Cinzel'; src: url('fuentes/Cinzel.ttf') format('truetype'); font-weight: 400 900; font-display: swap; }
+@font-face { font-family: 'Alegreya'; src: url('fuentes/Alegreya.ttf') format('truetype'); font-weight: 400 900; font-display: swap; }
+:root {
+  --letra: 'Alegreya', Georgia, serif;
+  --titulo: 'Cinzel', Georgia, serif;
+  --capa: #e8cf96;
+  --capa-borde: #b48a44;
+}

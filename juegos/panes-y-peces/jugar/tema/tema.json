@@ -1,0 +1,375 @@
+{
+ "id": "panes-y-peces",
+ "titulo": {
+  "es": "Panes y Peces",
+  "en": "Loaves and Fishes"
+ },
+ "sobretitulo": {
+  "es": "Combina 3 bíblico",
+  "en": "Bible match 3"
+ },
+ "subtitulo": {
+  "es": "Junta, combina y multiplica",
+  "en": "Match, combine and multiply"
+ },
+ "portada": "tema/portada-fondo.webp",
+ "volverA": "/juegos/",
+ "piezas": [
+  {
+   "img": "tema/piezas/pan.svg",
+   "nombre": {
+    "es": "pan",
+    "en": "loaf"
+   },
+   "plural": {
+    "es": "panes",
+    "en": "loaves"
+   }
+  },
+  {
+   "img": "tema/piezas/pez.svg",
+   "nombre": {
+    "es": "pez",
+    "en": "fish"
+   },
+   "plural": {
+    "es": "peces",
+    "en": "fish"
+   }
+  },
+  {
+   "img": "tema/piezas/cantaro.svg",
+   "nombre": {
+    "es": "cántaro",
+    "en": "jar"
+   },
+   "plural": {
+    "es": "cántaros",
+    "en": "jars"
+   }
+  },
+  {
+   "img": "tema/piezas/uvas.svg",
+   "nombre": {
+    "es": "racimo de uvas",
+    "en": "bunch of grapes"
+   },
+   "plural": {
+    "es": "racimos de uvas",
+    "en": "bunches of grapes"
+   }
+  },
+  {
+   "img": "tema/piezas/lampara.svg",
+   "nombre": {
+    "es": "lámpara",
+    "en": "lamp"
+   },
+   "plural": {
+    "es": "lámparas",
+    "en": "lamps"
+   }
+  },
+  {
+   "img": "tema/piezas/olivo.svg",
+   "nombre": {
+    "es": "rama de olivo",
+    "en": "olive branch"
+   },
+   "plural": {
+    "es": "ramas de olivo",
+    "en": "olive branches"
+   }
+  }
+ ],
+ "estrella": {
+  "img": "tema/piezas/rollo.svg",
+  "nombre": {
+   "es": "rollo de la Palabra",
+   "en": "scroll of the Word"
+  }
+ },
+ "cesta": {
+  "img": "tema/piezas/cesta.svg",
+  "nombre": {
+   "es": "canasta",
+   "en": "basket"
+  },
+  "plural": {
+   "es": "canastas",
+   "en": "baskets"
+  }
+ },
+ "bloque": {
+  "img": "tema/piezas/piedra.svg",
+  "nombre": {
+   "es": "piedra",
+   "en": "stone"
+  },
+  "plural": {
+   "es": "piedras",
+   "en": "stones"
+  }
+ },
+ "capa": {
+  "nombre": {
+   "es": "arena",
+   "en": "sand"
+  }
+ },
+ "fondos": [
+  "tema/fondos/fondo_01_galilea.webp",
+  "tema/fondos/fondo_02_mercado.webp",
+  "tema/fondos/fondo_03_vina.webp",
+  "tema/fondos/fondo_04_patio.webp",
+  "tema/fondos/fondo_05_noche.webp",
+  "tema/fondos/fondo_06_colinas.webp"
+ ],
+ "zonas": [
+  {
+   "es": "Orillas de Galilea",
+   "en": "Shores of Galilee"
+  },
+  {
+   "es": "El mercado",
+   "en": "The market"
+  },
+  {
+   "es": "La viña",
+   "en": "The vineyard"
+  },
+  {
+   "es": "El patio de piedra",
+   "en": "The stone courtyard"
+  },
+  {
+   "es": "Noche en el campamento",
+   "en": "Night at the camp"
+  },
+  {
+   "es": "Las colinas",
+   "en": "The hills"
+  }
+ ],
+ "musica": {
+  "menu": "tema/musica/menu.mp3",
+  "partida": "tema/musica/partida.mp3",
+  "final": "tema/musica/final.mp3"
+ },
+ "textos": {
+  "es": {
+   "ayuda": "Desliza una pieza hacia su vecina para formar filas de 3 o más iguales. Con 4 iguales sale una pieza que barre su fila o columna; en L o T, una que estalla; con 5, el rollo de la Palabra.",
+   "premio": "¡Sobró, como las doce canastas!"
+  },
+  "en": {
+   "ayuda": "Slide a piece toward its neighbor to line up 3 or more of a kind. Match 4 for a piece that sweeps its row or column; an L or T makes one that bursts; 5 makes the scroll of the Word.",
+   "premio": "Leftovers, like the twelve baskets!"
+  }
+ },
+ "versiculos": [
+  {
+   "texto": {
+    "es": "Aquí hay un muchacho que tiene cinco panes de cebada y dos pececillos; pero, ¿qué es esto entre tantos?",
+    "en": "Here is a boy with five barley loaves and two small fish. But what difference will these make among so many?"
+   },
+   "cita": {
+    "es": "Juan 6:9",
+    "en": "John 6:9"
+   }
+  },
+  {
+   "texto": {
+    "es": "Entonces Jesús tomó los panes, y dando gracias, los repartió a los que estaban sentados; y de la misma manera, los pececillos, todo lo que quisieron.",
+    "en": "Then Jesus took the loaves and the fish, gave thanks, and distributed to those who were seated as much as they wanted."
+   },
+   "cita": {
+    "es": "Juan 6:11",
+    "en": "John 6:11"
+   }
+  },
+  {
+   "texto": {
+    "es": "Cuando quedaron saciados, les dijo a sus discípulos: Recojan los pedazos que sobraron, para que no se pierda nada.",
+    "en": "And when everyone was full, He said to His disciples, Gather the pieces that are left over, so that nothing will be wasted."
+   },
+   "cita": {
+    "es": "Juan 6:12",
+    "en": "John 6:12"
+   }
+  },
+  {
+   "texto": {
+    "es": "Los recogieron, y llenaron doce canastas con los pedazos de los cinco panes de cebada que sobraron a los que habían comido.",
+    "en": "So they collected them and filled twelve baskets with the pieces of the five barley loaves left over by those who had eaten."
+   },
+   "cita": {
+    "es": "Juan 6:13",
+    "en": "John 6:13"
+   }
+  },
+  {
+   "texto": {
+    "es": "Jesús les dijo: Yo soy el pan de vida; el que viene a mí nunca tendrá hambre, y el que cree en mí nunca tendrá sed.",
+    "en": "Jesus answered, I am the bread of life. Whoever comes to Me will never hunger, and whoever believes in Me will never thirst."
+   },
+   "cita": {
+    "es": "Juan 6:35",
+    "en": "John 6:35"
+   }
+  },
+  {
+   "texto": {
+    "es": "Pero Jesús respondió: Escrito está: No solo de pan vivirá el hombre, sino de toda palabra que sale de la boca de Dios.",
+    "en": "But Jesus answered, It is written: ‘Man shall not live on bread alone, but on every word that comes from the mouth of God.’"
+   },
+   "cita": {
+    "es": "Mateo 4:4",
+    "en": "Matthew 4:4"
+   }
+  },
+  {
+   "texto": {
+    "es": "Y les dijo: Vengan en pos de mí, y los haré pescadores de hombres.",
+    "en": "Come, follow Me, Jesus said, and I will make you fishers of men."
+   },
+   "cita": {
+    "es": "Mateo 4:19",
+    "en": "Matthew 4:19"
+   }
+  },
+  {
+   "texto": {
+    "es": "Él les dijo: Echen la red al lado derecho de la barca, y encontrarán. La echaron entonces, y ya no podían sacarla, por la gran cantidad de peces.",
+    "en": "He told them, Cast the net on the right side of the boat, and you will find some. So they cast it there, and they were unable to haul it in because of the great number of fish."
+   },
+   "cita": {
+    "es": "Juan 21:6",
+    "en": "John 21:6"
+   }
+  },
+  {
+   "texto": {
+    "es": "Tu palabra es una lámpara para mis pies y una luz para mi camino.",
+    "en": "Your word is a lamp to my feet and a light to my path."
+   },
+   "cita": {
+    "es": "Salmo 119:105",
+    "en": "Psalm 119:105"
+   }
+  },
+  {
+   "texto": {
+    "es": "De nuevo Jesús les habló, diciendo: Yo soy la luz del mundo; el que me sigue no andará en tinieblas, sino que tendrá la luz de la vida.",
+    "en": "Once again, Jesus spoke to the people and said, I am the light of the world. Whoever follows Me will never walk in the darkness, but will have the light of life."
+   },
+   "cita": {
+    "es": "Juan 8:12",
+    "en": "John 8:12"
+   }
+  },
+  {
+   "texto": {
+    "es": "Yo soy la vid, ustedes son las ramas. El que permanece en mí, y yo en él, ese lleva mucho fruto; porque separados de mí nada pueden hacer.",
+    "en": "I am the vine and you are the branches. The one who remains in Me, and I in him, will bear much fruit. For apart from Me you can do nothing."
+   },
+   "cita": {
+    "es": "Juan 15:5",
+    "en": "John 15:5"
+   }
+  },
+  {
+   "texto": {
+    "es": "Pero el que beba del agua que yo le daré, nunca más tendrá sed; el agua que yo le daré se convertirá en él en una fuente de agua que salta para vida eterna.",
+    "en": "But whoever drinks the water I give him will never thirst. Indeed, the water I give him will become in him a fount of water springing up to eternal life."
+   },
+   "cita": {
+    "es": "Juan 4:14",
+    "en": "John 4:14"
+   }
+  },
+  {
+   "texto": {
+    "es": "Jesús les dijo: Llenen las tinajas de agua. Y las llenaron hasta el borde.",
+    "en": "Jesus told the servants, Fill the jars with water. So they filled them to the brim."
+   },
+   "cita": {
+    "es": "Juan 2:7",
+    "en": "John 2:7"
+   }
+  },
+  {
+   "texto": {
+    "es": "Pero yo soy como un olivo verde en la casa de Dios; confío en la misericordia de Dios eternamente y para siempre.",
+    "en": "But I am like an olive tree flourishing in the house of God; I trust in the loving devotion of God forever and ever."
+   },
+   "cita": {
+    "es": "Salmo 52:8",
+    "en": "Psalm 52:8"
+   }
+  },
+  {
+   "texto": {
+    "es": "Al atardecer, la paloma regresó con una hoja fresca de olivo en el pico. Así supo Noé que las aguas se habían retirado de la tierra.",
+    "en": "And behold, the dove returned to him in the evening with a freshly plucked olive leaf in her beak. So Noah knew that the waters had receded from the earth."
+   },
+   "cita": {
+    "es": "Génesis 8:11",
+    "en": "Genesis 8:11"
+   }
+  },
+  {
+   "texto": {
+    "es": "La hierba se seca y las flores caen, pero la palabra de nuestro Dios permanece para siempre».",
+    "en": "The grass withers and the flowers fall, but the word of our God stands forever."
+   },
+   "cita": {
+    "es": "Isaías 40:8",
+    "en": "Isaiah 40:8"
+   }
+  },
+  {
+   "texto": {
+    "es": "Danos cada día nuestro pan cotidiano.",
+    "en": "Give us each day our daily bread."
+   },
+   "cita": {
+    "es": "Lucas 11:3",
+    "en": "Luke 11:3"
+   }
+  },
+  {
+   "texto": {
+    "es": "Bienaventurados los que tienen hambre y sed de justicia, porque ellos serán saciados.",
+    "en": "Blessed are those who hunger and thirst for righteousness, for they will be filled."
+   },
+   "cita": {
+    "es": "Mateo 5:6",
+    "en": "Matthew 5:6"
+   }
+  },
+  {
+   "texto": {
+    "es": "Preparas una mesa delante de mí en presencia de mis enemigos; unges mi cabeza con aceite y mi copa rebosa.",
+    "en": "You prepare a table before me in the presence of my enemies. You anoint my head with oil; my cup overflows."
+   },
+   "cita": {
+    "es": "Salmo 23:5",
+    "en": "Psalm 23:5"
+   }
+  },
+  {
+   "texto": {
+    "es": "De la misma manera, brille la luz de ustedes delante de los hombres, para que vean sus buenas obras y glorifiquen a su Padre que está en los cielos.",
+    "en": "In the same way, let your light shine before men, that they may see your good deeds and glorify your Father in heaven."
+   },
+   "cita": {
+    "es": "Mateo 5:16",
+    "en": "Matthew 5:16"
+   }
+  }
+ ],
+ "descripcion": {
+  "es": "Juego de combinar 3 para niños y familias: panes, peces, cántaros, uvas, lámparas y ramas de olivo. Niveles sin fin, con un versículo en cada uno. En español e inglés.",
+  "en": "A match-3 game for kids and families: loaves, fish, jars, grapes, lamps and olive branches. Endless levels, with a Bible verse in each one. In English and Spanish."
+ }
+}

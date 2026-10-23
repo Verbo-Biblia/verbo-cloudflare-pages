@@ -1,0 +1,82 @@
+<!doctype html>
+<!-- verbo:sin-pie -->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Panes y Peces · Junta, combina y multiplica</title>
+<meta name="description" content="Juego de combinar 3 para niños y familias: panes, peces, cántaros, uvas, lámparas y ramas de olivo. Niveles sin fin, con un versículo en cada uno. En español e inglés.">
+<meta name="theme-color" content="#24170d">
+<link rel="stylesheet" href="estilo.css?v=6015c9ff">
+<link rel="stylesheet" href="tema/tema.css?v=6015c9ff">
+</head>
+<body>
+
+<!-- Menú inicial -->
+<section id="inicio" class="pantalla activa">
+  <a class="salir-sitio" id="salir-sitio" href="../" hidden data-t="masJuegos">← Más juegos</a>
+  <div class="inicio-caja">
+    <p class="sobre" id="sobretitulo"></p>
+    <h1 id="titulo"></h1>
+    <p class="sub" id="subtitulo"></p>
+    <div class="vitrina" id="vitrina" aria-hidden="true"></div>
+    <div class="inicio-botones">
+      <button class="boton grande" id="btn-jugar" type="button"></button>
+      <button class="boton secundario" id="btn-mapa" type="button" data-t="niveles">Niveles</button>
+    </div>
+    <p class="progreso" id="progreso"></p>
+    <div class="pie">
+      <button class="icono" id="btn-idioma" type="button">EN</button>
+      <button class="icono" data-musica type="button" data-t-aria="musica">🎵</button>
+      <button class="icono" data-sonido type="button" data-t-aria="sonido">🔊</button>
+    </div>
+  </div>
+</section>
+
+<!-- Mapa de niveles (sin fin: se agregan más al bajar) -->
+<section id="mapa" class="pantalla">
+  <header class="barra">
+    <button class="icono" id="btn-mapa-volver" type="button" data-t-aria="menu">←</button>
+    <h2 data-t="elegirNivel">Elige un nivel</h2>
+    <span class="estrellas-total" id="estrellas-total"></span>
+  </header>
+  <div class="camino" id="camino"></div>
+</section>
+
+<!-- Partida -->
+<section id="partida" class="pantalla">
+  <div class="fondo-nivel" id="fondo-nivel"></div>
+  <header class="hud">
+    <button class="icono" id="btn-salir" type="button" data-t-aria="salir">←</button>
+    <div class="hud-centro">
+      <div class="hud-nivel" id="hud-nivel"></div>
+      <div class="hud-objetivos" id="hud-objetivos"></div>
+    </div>
+    <div class="hud-movs"><b id="hud-movs">0</b><small data-t="movs">movimientos</small></div>
+  </header>
+  <div class="hud-puntos">
+    <div class="barra-puntos"><i id="barra-puntos"></i><span class="marca m2"></span><span class="marca m3"></span></div>
+    <b id="hud-puntos">0</b>
+  </div>
+  <div class="zona-tablero" id="zona-tablero">
+    <div class="tablero" id="tablero">
+      <div class="capa-casillas" id="casillas"></div>
+      <div class="capa-piezas" id="piezas"></div>
+      <div class="capa-efectos" id="efectos"></div>
+    </div>
+    <div class="cartel" id="cartel" hidden></div>
+  </div>
+  <div class="hud-pie">
+    <button class="icono" data-musica type="button" data-t-aria="musica">🎵</button>
+    <button class="icono" data-sonido type="button" data-t-aria="sonido">🔊</button>
+  </div>
+</section>
+
+<!-- Ventanas: antes del nivel, ganar, perder, salir -->
+<div class="velo" id="velo" hidden>
+  <div class="ventana" id="ventana" role="dialog" aria-modal="true"></div>
+</div>
+
+<script type="module" src="juego.js?v=6015c9ff"></script>
+</body>
+</html>
