@@ -44,3 +44,6 @@ body.leyendo #menu { display: none; }
     text-align: center; color: #dcc79f; font-size: 15px; pointer-events: none;
   }
 }
+
+/* Música apagada: el botón se ve tachado y tenue. */
+[data-musica].apagado { opacity: .45; text-decoration: line-through; }

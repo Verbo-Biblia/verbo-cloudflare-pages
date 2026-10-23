@@ -1,15 +1,18 @@
 // Modo jugar: muestra la historia como la verá el lector.
 // Orden en cada escena: 1) globos y efectos puestos a mano (uno por clic), 2) el guion (líneas y elecciones),
 // 3) la salida de la escena (seguir, decisión o fin).
-import { W, H } from './estado.js?v=9cd2360b';
-import { pintarFondo, pintarElementos, actualizarNodo } from './render.js?v=9cd2360b';
-import { nombreDe } from './personajes.js?v=9cd2360b';
-import { globoDeLinea } from './dialogo.js?v=9cd2360b';
+import { W, H } from './estado.js?v=a86f051c';
+import { pintarFondo, pintarElementos, actualizarNodo } from './render.js?v=a86f051c';
+import { nombreDe } from './personajes.js?v=a86f051c';
+import { globoDeLinea } from './dialogo.js?v=a86f051c';
 
 const $ = s => document.querySelector(s);
 let historia, actual, historial, pendientes, alSalir;
 let pila, eligiendo, escribiendo;
 let raiz, esc, capaFondo, capaEl, capaDialogo, caja, nombre, texto, opciones, fin, seguir;
+// Quien usa el lector puede enterarse de lo que pasa (para música y efectos): 'escena', 'acierto', 'repite', 'fin', 'salir'.
+let aviso = () => {};
+export function alPasar(fn) { aviso = fn; }
 
 function ajustar() {
   const k = Math.min(innerWidth / W, innerHeight / H);
@@ -64,6 +67,7 @@ function mostrar(id) {
   const s = escena(id);
   if (!s) return terminar();
   actual = s;
+  aviso('escena');
   pararEscritura();
   pintarFondo(capaFondo, s);
   capaEl.innerHTML = '';
@@ -236,6 +240,7 @@ function elegir(i) {
 function preguntar(p) {
   mostrarOpciones(p.pregunta, p.opciones.map(o => o.texto), i => {
     const o = p.opciones[i];
+    aviso(o.destino === 'repetir' ? 'repite' : 'acierto');
     pila.push({ pasos: o.lineas, i: 0, despues: o.destino || 'seguir', eleccion: p });
     avanzar();
   });
@@ -263,6 +268,7 @@ function terminar() {
   opciones.classList.remove('visible');
   eligiendo = null;
   fin.classList.add('visible');
+  aviso('fin');
 }
 
 function atras() {
@@ -280,5 +286,6 @@ function salir() {
   raiz.classList.remove('activo');
   capaEl.innerHTML = '';
   capaDialogo.innerHTML = '';
+  aviso('salir');
   alSalir?.();
 }
