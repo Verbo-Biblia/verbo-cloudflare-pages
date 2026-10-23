@@ -504,7 +504,14 @@ function fijarZoom(z, cx, cy) {
   zona.scrollTop = py * k - (cy - caja.top);
 }
 
+// Olvida los dedos anotados. Si un dedo se levantó sin que llegara su «pointerup» (se apagó la pantalla, salió una
+// notificación, el navegador canceló el toque), quedaba anotado para siempre: cada toque nuevo contaba como segundo
+// dedo de un pellizco y las flechas dejaban de responder.
+function soltarTodo() { dedos.clear(); gesto = null; }
+
 function alBajar(e) {
+  // El dedo «principal» es el primero que toca la pantalla: si llega uno, no hay otros apoyados.
+  if (e.isPrimary) soltarTodo();
   try { $('#zona').setPointerCapture(e.pointerId); } catch { /* algunos navegadores no lo permiten */ }
   dedos.set(e.pointerId, { x: e.clientX, y: e.clientY });
   const zona = $('#zona');
@@ -527,7 +534,9 @@ function alMover(e) {
     return;
   }
   const dx = e.clientX - gesto.x, dy = e.clientY - gesto.y;
-  if (gesto.tipo === 'toque' && Math.hypot(dx, dy) > 10) gesto.tipo = 'arrastre';
+  // Sin zoom no hay nada que arrastrar: se tolera más movimiento del dedo antes de dejar de contarlo como toque.
+  const tolerancia = zona.scrollWidth > zona.clientWidth || zona.scrollHeight > zona.clientHeight ? 10 : 24;
+  if (gesto.tipo === 'toque' && Math.hypot(dx, dy) > tolerancia) gesto.tipo = 'arrastre';
   if (gesto.tipo === 'arrastre') { zona.scrollLeft = gesto.sl - dx; zona.scrollTop = gesto.st - dy; }
 }
 
@@ -572,7 +581,12 @@ async function iniciar() {
   zona.addEventListener('pointerdown', alBajar);
   zona.addEventListener('pointermove', alMover);
   zona.addEventListener('pointerup', alSubir);
-  zona.addEventListener('pointercancel', e => { dedos.delete(e.pointerId); if (!dedos.size) gesto = null; });
+  const perderDedo = e => { dedos.delete(e.pointerId); if (!dedos.size) gesto = null; };
+  zona.addEventListener('pointercancel', perderDedo);
+  zona.addEventListener('lostpointercapture', perderDedo);
+  // Al bloquear el teléfono o cambiar de app no llegan los «pointerup» de los dedos que estaban apoyados.
+  document.addEventListener('visibilitychange', soltarTodo);
+  addEventListener('blur', soltarTodo);
   zona.addEventListener('wheel', alRueda, { passive: false });
   $('#btn-pista').addEventListener('click', pista);
   $('#btn-goma').addEventListener('click', goma);
