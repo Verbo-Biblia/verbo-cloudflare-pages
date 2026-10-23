@@ -66,7 +66,7 @@ def public_pages():
         if url.hostname != 'verbobiblia.com':
             continue
         route = unquote(url.path).lstrip('/')
-        if route.split('/')[0] in {'biblia', 'proyector', 'review', 'docs', 'studio'}:
+        if route.split('/')[0] in {'biblia', 'review', 'docs', 'studio'}:
             continue
         path = ROOT / route
         if path.is_dir():

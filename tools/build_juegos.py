@@ -9,7 +9,8 @@ def tarjeta(g):
  nombre_en=g.get('nombre_en',g['nombre'])
  for l,v in (('es',g['nombre']),('en',nombre_en)): D[l].setdefault('sections',{})[g['id']+'Name']=v
  img=f'<a href="{g["url"]}" tabindex="-1"><img src="{g["imagen"]}" data-shot-es="{g["imagen"]}" data-shot-en="{g.get("imagen_en",g["imagen"])}" alt="{html.escape(g["nombre"],quote=True)}" data-i18n-attr="alt:sections.{g["id"]}Name" loading="lazy"></a>'
- botones=''.join(f'<a class="button" href="{b["url"]}">'+tr(g['id']+'_'+b['id'],b['es'],b['en'],'span')+'</a>' for b in g.get('botones',[]))
+ ext=lambda u:u.startswith('http')
+ botones=''.join(f'<a class="button" href="{b["url"]}"'+(' target="_blank" rel="noopener"' if ext(b['url']) else '')+'>'+tr(g['id']+'_'+b['id'],b['es'],b['en'],'span')+('<span aria-hidden="true"> ↗</span>' if ext(b['url']) else '')+'</a>' for b in g.get('botones',[]))
  return '<article class="tile">'+img+'<h2><a href="'+g['url']+'">'+tr(g['id']+'Name',g['nombre'],nombre_en,'span')+'</a></h2>'+tr(g['id']+'Game',g['descripcion'],g['description_en'])+'<div class="tags">'+botones+'</div></article>'
 # Tarjetas lado a lado, de igual altura, botones abajo y sin la inclinación 3D (desalineaba las tarjetas).
 estilo='<style>.juegos .grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,380px),1fr));align-items:stretch}.juegos .tile{display:flex;flex-direction:column;transform:none!important}.juegos .tile img{display:block;margin-bottom:6px}.juegos .tile h2{margin:18px 0 8px}.juegos .tile>p{margin:0 0 18px}.juegos .tile .tags{margin-top:auto}.juegos .tags .button{margin-top:6px}</style>'
@@ -21,5 +22,7 @@ for l in D:
 page('juegos','Juegos cristianos gratis','Juegos cristianos gratis para toda la familia, en la web y en Android.',cuerpo)
 # El título de la pestaña también cambia de idioma (i18n.js traduce cualquier elemento con data-i18n, incluido <title>).
 for l,v in (('es','Juegos cristianos gratis | Verbo'),('en','Free Christian games | Verbo')): D[l].setdefault('sections',{})['gamesDocTitle']=v
-f=R/'juegos/index.html'; f.write_text(f.read_text().replace('<title>','<title data-i18n="sections.gamesDocTitle">',1))
+# Vista previa al compartir: portada del juego destacado en 1200×630.
+og='<meta property="og:type" content="website"><meta property="og:site_name" content="Verbo"><meta property="og:locale" content="es_419"><meta property="og:locale:alternate" content="en_US"><meta property="og:title" content="Juegos cristianos gratis | Verbo"><meta property="og:description" content="Juegos cristianos gratis para toda la familia, en la web y en Android."><meta property="og:url" content="https://verbobiblia.com/juegos/"><meta property="og:image" content="https://verbobiblia.com/juegos/el-mensajero/og.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">'
+f=R/'juegos/index.html'; f.write_text(f.read_text().replace('<title>','<title data-i18n="sections.gamesDocTitle">',1).replace('</head>',og+'</head>',1))
 save()

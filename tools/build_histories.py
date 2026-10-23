@@ -46,7 +46,7 @@ def shell(title, description, path, body, schemas, script=False, art='estudio-bi
 <meta property="og:description" content="{esc(description)}">
 <meta property="og:url" content="{BASE}{path}">
 <meta property="og:type" content="{'website' if path == '/historias/' else 'article'}">
-<meta property="og:locale" content="es_ES">
+<meta property="og:locale" content="es_419"><meta property="og:locale:alternate" content="en_US">
 <meta property="og:image" content="{BASE}{art_url(art)}">
 <meta property="og:image:alt" content="Ilustración temática: {esc(ART[art])}">
 <meta name="twitter:card" content="summary_large_image">
@@ -76,7 +76,7 @@ def breadcrumb(name=None,url=None):
 def card(a):
     art=artwork(a)
     searchable=' '.join([a['name'],a['title'],a['description'],a['place'],a['topic']])
-    return f'''<a class="story-card" href="/historias/{esc(a['slug'])}/" data-story data-century="{a['century']}" data-search="{esc(searchable)}"><div class="story-cover"><img class="story-cover-image" src="{art_url(art)}" alt="" width="1200" height="800" loading="lazy" decoding="async"><span class="cover-century">SIGLO {roman(a['century'])}</span><span class="cover-name">{esc(a['name'])}</span><span class="cover-years">{esc(a['years'])}</span></div><div class="story-card-body"><span class="kicker">{esc(a['topic'])}</span><h3>{esc(a['title'])}</h3><p>{esc(a['description'])}</p><span class="read-link">Leer historia <span aria-hidden="true">↗</span></span></div></a>'''
+    return f'''<a class="story-card" href="/historias/{esc(a['slug'])}/" data-story data-century="{a['century']}" data-search="{esc(searchable)}"><div class="story-cover"><img class="story-cover-image" src="{art_url(art)}" alt="" width="1200" height="800" loading="lazy" decoding="async"><span class="cover-century">SIGLO {roman(a['century'])}</span><span class="cover-name">{esc(a['name'])}</span><span class="cover-years">{esc(a['years'])}</span></div><div class="story-card-body"><span class="kicker">{esc(a['topic'])}</span><h3>{esc(a['title'])}</h3><p>{esc(a['description'])}</p><span class="read-link">Leer historia</span></div></a>'''
 
 def roman(c):return {16:'XVI',17:'XVII',18:'XVIII',19:'XIX',20:'XX'}[c]
 

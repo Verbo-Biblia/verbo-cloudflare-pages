@@ -121,13 +121,13 @@
 /* Capa de profundidad (3D) para todas las páginas que cargan este script:
    recursos, librería, devocionales, sermones, artículos, lecciones y páginas
    institucionales. La portada, Historias y Preguntas ya traen depth.js con su
-   propia configuración y se saltean. Fuera: la app bíblica, el proyector, el
+   propia configuración y se saltean. Fuera: la app bíblica, el
    studio y ajustes. Dentro de la app Android depth.js corre en modo liviano
    solo; con "reducir movimiento" no hace nada. Ver /assets/depth/depth.js. */
 (function(){
   'use strict';
   if (document.querySelector('script[src*="/assets/depth/depth.js"]')) return;
-  if (/^\/(biblia|proyector|studio|ajustes)\//.test(location.pathname)) return;
+  if (/^\/(biblia|studio|ajustes)\//.test(location.pathname)) return;
   const V = '20261015-3d3';
   const list = document.querySelector('.r-card, .r-article-row, .r-book-row, .r-sermon-row');
   const article = !list && document.querySelector('main article');

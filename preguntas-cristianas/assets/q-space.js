@@ -29,7 +29,7 @@
     const box = el('div', 'q-space-card',
       `<small>${esc(card.dataset.topic || '')}</small><strong>${esc(card.querySelector('h2')?.textContent.trim() || '')}</strong>` +
       `<p>${esc(card.querySelector('p')?.textContent.trim() || '')}</p>`);
-    const link = el('a', '', 'Leer la respuesta <span>↗</span>');
+    const link = el('a', '', 'Leer la respuesta');
     link.href = card.getAttribute('href'); link.tabIndex = -1;
     box.append(link);
     world.append(num, box);

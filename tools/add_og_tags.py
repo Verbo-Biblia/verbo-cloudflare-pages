@@ -30,7 +30,7 @@ CANON_RE = re.compile(r'(<link\s+rel="canonical"\s+href=")([^"]+)("\s*>)')
 OG_PRESENT_RE = re.compile(r'property="og:title"')
 REDIRECT_STUB_RE = re.compile(r'http-equiv="refresh"', re.IGNORECASE)
 
-LOCALE_BY_LANG = {"es": "es_ES", "en": "en_US"}
+LOCALE_BY_LANG = {"es": "es_419", "en": "en_US"}
 
 
 def attr_escape(text):
@@ -100,6 +100,7 @@ def process(path: Path, stats: dict):
         f'<meta property="og:description" content="{attr_escape(description)}">\n'
         f'<meta property="og:url" content="{url}">\n'
         f'<meta property="og:locale" content="{locale}">\n'
+        f'<meta property="og:locale:alternate" content="{"en_US" if locale == "es_419" else "es_419"}">\n'
         f'<meta property="og:type" content="article">'
     )
 

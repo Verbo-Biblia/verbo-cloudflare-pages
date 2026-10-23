@@ -34,9 +34,4 @@
     schedule();
   });
   schedule();
-  document.getElementById('card-proyector')?.addEventListener('click', e => {
-    if (matchMedia('(max-width:760px)').matches) {
-      e.preventDefault(); location.href = '/proyector/remoto.html';
-    }
-  });
 })();

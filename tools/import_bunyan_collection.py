@@ -153,7 +153,7 @@ def page_html(book, count):
     lang = book["lang"]
     title = book["title"]
     slug = book["id"]
-    locale = "es_ES" if lang == "es" else "en_US"
+    locale = "es_419" if lang == "es" else "en_US"
     description = (
         f"{title}, por John Bunyan, en el lector de Verbo."
         if lang == "es" else f"{title}, by John Bunyan, in Verbo's library reader."
@@ -174,7 +174,7 @@ def page_html(book, count):
 <meta property="og:title" content="{html.escape(title)} | Librería | Verbo">
 <meta property="og:description" content="{html.escape(description)}">
 <meta property="og:url" content="https://verbobiblia.com/libreria/{slug}/">
-<meta property="og:locale" content="{locale}"><meta property="og:type" content="article">
+<meta property="og:locale" content="{locale}"><meta property="og:locale:alternate" content="{'en_US' if locale == 'es_419' else 'es_419'}"><meta property="og:type" content="article">
 <link rel="canonical" href="https://verbobiblia.com/libreria/{slug}/">
 <link rel="manifest" href="../../biblia/manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="../../biblia/assets/icons/icon-192.png">

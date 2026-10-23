@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'preguntas-cristianas'
 BASE = 'https://verbobiblia.com'
 DATE = '2026-10-07'
-NAME = 'El cristiano hoy · Preguntas y respuestas'
+NAME = 'Preguntas cristianas'
 
 def esc(value):
     return html.escape(str(value), quote=True)
@@ -25,7 +25,7 @@ def shell(title, description, path, body, graphs, index=False, image_path='/hist
 <title>{esc(title)} | Verbo</title><meta name="description" content="{esc(description)}">
 <link rel="canonical" href="{BASE}{path}">
 <meta property="og:title" content="{esc(title)} | Verbo"><meta property="og:description" content="{esc(description)}">
-<meta property="og:url" content="{BASE}{path}"><meta property="og:type" content="{'website' if index else 'article'}"><meta property="og:locale" content="es_ES">
+<meta property="og:url" content="{BASE}{path}"><meta property="og:type" content="{'website' if index else 'article'}"><meta property="og:locale" content="es_419"><meta property="og:locale:alternate" content="en_US">
 <meta property="og:image" content="{BASE}{image_path}"><meta property="og:image:alt" content="{esc(image_alt)}">
 <meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#0a2037">
 <link rel="icon" href="/biblia/assets/icons/icon-192.png">
@@ -33,7 +33,7 @@ def shell(title, description, path, body, graphs, index=False, image_path='/hist
 <script type="application/ld+json">{schema({'@context':'https://schema.org','@graph':graphs})}</script>
 </head><body>
 <a class="skip-link" href="#contenido">Ir al contenido</a>
-<header class="q-header"><a class="q-brand" href="/">Verbo<span>biblioteca bíblica digital</span></a><nav aria-label="Navegación principal"><a href="/">Inicio</a><a href="/preguntas-cristianas/" aria-current="{'page' if index else 'true'}">Preguntas de hoy</a><a href="/libreria/">Librería</a><a href="/software/">Software</a></nav></header>
+<header class="q-header"><a class="q-brand" href="/">Verbo<span>biblioteca bíblica digital</span></a><nav aria-label="Navegación principal"><a href="/">Inicio</a><a href="/preguntas-cristianas/" aria-current="{'page' if index else 'true'}">Preguntas cristianas</a><a href="/libreria/">Librería</a><a href="/software/">Software</a></nav></header>
 {body}
 <footer class="q-footer"><p>Verbo · La Palabra para la vida de hoy.</p><nav aria-label="Más de Verbo"><a href="/preguntas-cristianas/">Todas las preguntas</a><a href="/recursos/devocionales/">Devocionales</a><a href="/acerca/">Acerca de Verbo</a></nav></footer>
 {'<script src="/preguntas-cristianas/assets/questions.js?v=20261007" defer></script>' if index else ''}
@@ -42,7 +42,7 @@ def shell(title, description, path, body, graphs, index=False, image_path='/hist
 '''
 
 def card(a, number):
-    return f'''<a class="q-card" href="/preguntas-cristianas/{esc(a['slug'])}/" data-question data-topic="{esc(a['topic'])}" data-search="{esc(a['title']+' '+a['description']+' '+a['topic'])}"><span class="q-card-top"><span>{esc(a['topic'])}</span><span class="q-number">{number:02}</span></span><h2>{esc(a['title'])}</h2><p>{esc(a['description'])}</p><span class="q-read">Leer la respuesta <span aria-hidden="true">↗</span></span></a>'''
+    return f'''<a class="q-card" href="/preguntas-cristianas/{esc(a['slug'])}/" data-question data-topic="{esc(a['topic'])}" data-search="{esc(a['title']+' '+a['description']+' '+a['topic'])}"><span class="q-card-top"><span>{esc(a['topic'])}</span><span class="q-number">{number:02}</span></span><h2>{esc(a['title'])}</h2><p>{esc(a['description'])}</p><span class="q-read">Leer la respuesta</span></a>'''
 
 def breadcrumbs(a=None):
     items=[{'@type':'ListItem','position':1,'name':'Verbo','item':BASE+'/'},{'@type':'ListItem','position':2,'name':NAME,'item':BASE+'/preguntas-cristianas/'}]
@@ -80,7 +80,7 @@ def build():
             image_path='/preguntas-cristianas/assets/images/musica-ia-biblia.webp'
             image_alt='Biblia abierta, auriculares y una computadora con una onda musical sobre una mesa iluminada'
             illustration=f'<figure class="q-illustration"><img src="{image_path}" alt="{image_alt}" width="1200" height="800" loading="lazy" decoding="async"><figcaption>La tecnología como herramienta; la Palabra como criterio. Ilustración creada con IA para Verbo.</figcaption></figure>'
-        body=f'''<main id="contenido" class="q-article-shell"><nav class="q-breadcrumb" aria-label="Ruta"><a href="/">Inicio</a><span aria-hidden="true">/</span><a href="/preguntas-cristianas/">El cristiano hoy</a></nav>
+        body=f'''<main id="contenido" class="q-article-shell"><nav class="q-breadcrumb" aria-label="Ruta"><a href="/">Inicio</a><span aria-hidden="true">/</span><a href="/preguntas-cristianas/">Preguntas cristianas</a></nav>
 <article><header class="q-article-heading"><span class="q-kicker">{esc(a['topic'])}</span><h1>{esc(a['title'])}</h1><p class="q-lede">{esc(a['description'])}</p><p class="q-meta">Redacción de Verbo · <time datetime="{article_date}">{date_label}</time> · {max(2,round(words/180))} min de lectura</p></header>
 <div class="q-answer"><span class="q-kicker">La respuesta breve</span><p>{esc(a['answer'])}</p></div>
 {illustration}<div class="q-reading-layout"><aside><nav class="q-toc" aria-label="En este artículo"><strong>En esta respuesta</strong>{toc}<a href="#para-profundizar">Para profundizar</a></nav></aside><div class="q-reading">{sections}
