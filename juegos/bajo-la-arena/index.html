@@ -1,146 +1,36 @@
-<!doctype html>
-<!-- verbo:sin-pie -->
-<html lang="es">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#0f0c0a">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title></title>
-  <link rel="stylesheet" href="assets/fuentes/fuentes.css">
-  <link rel="stylesheet" href="styles.css">
-  <!-- Estilo propio del juego (colores, fondos, tipografía): lo pone cada juego en su carpeta. -->
-  <link rel="stylesheet" href="tema.css">
-</head>
-<body>
-  <div class="app">
-    <header class="topbar">
-      <button id="brand-btn" class="brand" data-t-title="volverInicio"><span class="brand-mark">✦</span><span class="brand-name"></span></button>
-      <nav class="scene-tabs">
-        <button class="scene-tab active" data-go="home"><span>01</span><b data-t="escenaMesa">Mesa</b></button>
-        <button class="scene-tab" data-go="case" disabled><span>02</span><b data-t="escenaExpediente">Expediente</b></button>
-        <button class="scene-tab" data-go="board" disabled><span>03</span><b data-t="escenaPizarra">Pizarra</b></button>
-      </nav>
-      <div class="top-actions">
-        <div class="progress-box hidden" id="progress-box">
-          <span class="label" data-t="progreso">Hilos</span>
-          <strong id="progress-count">0</strong>
-        </div>
-        <button id="sound-btn" class="quiet-btn">Sonido: sí</button>
-        <button id="collection-btn" class="quiet-btn"><b data-t="coleccion">Colección</b> <span id="collection-count" class="count-badge">0</span></button>
-        <button id="exit-btn" class="quiet-btn" data-t="salir">Salir</button>
-      </div>
-    </header>
-
-    <main>
-      <!-- 01 · Mesa de investigación: la pila de expedientes -->
-      <section id="home-view" class="view active-view">
-        <div class="home-intro">
-          <p class="eyebrow" data-t="mesaCabecera">Mesa de investigación · Otoño de 1994</p>
-          <h1 data-t="mesaTitulo">Los expedientes que nadie cerró.</h1>
-          <p class="lede" data-t="mesaIntro">Cada carpeta guarda fotografías, cintas y papeles sin ordenar. Abre una, reconstruye el hilo y archiva lo que encuentres.</p>
-          <p class="home-stats"><span class="label" data-t="resueltos">Resueltos</span><strong id="home-count">0 / 0</strong></p>
-          <div id="reputation" class="reputation" data-t-aria="reputacion"></div>
-          <nav id="pile-nav" class="pile-nav hidden" data-t-aria="recorrer">
-            <button id="pile-prev" class="quiet-btn" data-pile="-1" data-t-aria="anteriores">‹</button>
-            <span class="label"><b data-t="carpetas">Carpetas</b> <strong id="pile-range"></strong></span>
-            <button id="pile-next" class="quiet-btn" data-pile="1" data-t-aria="siguientes">›</button>
-          </nav>
-        </div>
-        <div id="case-pile" class="case-pile" data-t-aria="pila"></div>
-      </section>
-
-      <!-- 02 · Expediente abierto: solo el caso elegido -->
-      <section id="case-view" class="view">
-        <aside class="case-sheet">
-          <span class="stamp" id="case-stamp">Confidencial</span>
-          <p class="label case-code"><b data-t="expediente">Expediente</b> <span id="file-number"></span></p>
-          <h1 id="case-title"></h1>
-          <p id="case-subject" class="case-subject"></p>
-          <p id="case-brief" class="case-brief"></p>
-          <dl id="case-meta" class="case-meta"></dl>
-          <div class="case-block"><span class="label" data-t="objetivo">Objetivo</span><p id="case-objective"></p></div>
-          <button id="board-btn" class="primary-btn"><b data-t="irPizarra">Ir a la pizarra</b> <span aria-hidden="true">→</span></button>
-        </aside>
-        <section class="evidence-zone">
-          <div class="section-bar">
-            <nav id="section-tabs" class="section-tabs" role="tablist" data-t-aria="seccionesExp"></nav>
-            <span class="pin-status"><span class="label" data-t="enPizarra">En pizarra</span> <strong id="pin-count">0 / 20</strong></span>
-          </div>
-          <p id="case-hint" class="hint" data-t="pistaExaminar">Toca para examinar · «Clavar» la lleva a la pizarra</p>
-          <div id="evidence-grid" class="evidence-grid"></div>
-        </section>
-      </section>
-
-      <!-- 03 · Pizarra de conexiones -->
-      <section id="board-view" class="view">
-        <div class="board-wrap"><svg id="connections" aria-hidden="true"></svg><div id="board-cards" class="board-cards"></div>
-          <div id="board-empty" class="board-empty"><p data-t="pizarraVacia">La pizarra está vacía.</p><button class="quiet-btn" data-go="case" data-t="clavaDesde">Clava pruebas desde el expediente</button></div></div>
-        <div class="board-footer">
-          <p id="board-note" class="board-note" data-t="notaInicial">Une pruebas con hilos para ordenar tus ideas. Cuando lo tengas claro, pon el sello de culpable sobre una persona. Toca dos veces una ficha para verla de cerca.</p>
-          <span id="connection-count" class="label">0 hilos</span>
-          <button id="reset-btn" class="quiet-btn" data-t="reiniciar">Reiniciar</button>
-          <button id="solve-btn" class="primary-btn" disabled data-t="unir">Unir pruebas</button>
-          <button id="stamp-btn" class="stamp-btn" aria-pressed="false" data-t-title="selloTitulo" data-t="sello">Sello de culpable</button>
-        </div>
-      </section>
-    </main>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title data-es="Bajo la arena: juego cristiano gratis | Verbo" data-en="Beneath the Sand: free Christian game | Verbo">Bajo la arena: juego cristiano gratis | Verbo</title><meta name="description" content="Juego de investigación para niños: 20 hallazgos reales de la arqueología bíblica, de los rollos del mar Muerto a la piedra de Pilato. Examina las pistas, llévalas a tu cuaderno y descubre la respuesta. En español e inglés."><link rel="canonical" href="https://verbobiblia.com/juegos/bajo-la-arena/"><meta name="theme-color" content="#081b30"><meta name="google-adsense-account" content="ca-pub-4810728953852074"><meta name="verbo-publico" content="infantil"><meta property="og:type" content="website"><meta property="og:site_name" content="Verbo"><meta property="og:locale" content="es_419"><meta property="og:locale:alternate" content="en_US"><meta property="og:title" content="Bajo la arena: juego cristiano gratis | Verbo"><meta property="og:description" content="Juego de investigación para niños: 20 hallazgos reales de la arqueología bíblica, de los rollos del mar Muerto a la piedra de Pilato. Examina las pistas, llévalas a tu cuaderno y descubre la respuesta. En español e inglés."><meta property="og:url" content="https://verbobiblia.com/juegos/bajo-la-arena/"><meta property="og:image" content="https://verbobiblia.com/juegos/bajo-la-arena/og.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://verbobiblia.com/juegos/bajo-la-arena/og.jpg"><link rel="icon" type="image/png" sizes="192x192" href="/biblia/assets/icons/icon-192.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Nunito:wght@700;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="/assets/portal/portal.css?v=20261023-portal"><script type="application/ld+json">{"@context": "https://schema.org", "@type": "VideoGame", "name": "Bajo la arena", "alternateName": "Beneath the Sand", "description": "Resuelve 20 casos con hallazgos reales de la arqueología bíblica.", "genre": "Investigación", "inLanguage": ["es", "en"], "gamePlatform": "Web browser", "applicationCategory": "Game", "operatingSystem": "Web browser", "image": "https://verbobiblia.com/juegos/bajo-la-arena/og.jpg", "url": "https://verbobiblia.com/juegos/bajo-la-arena/", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@type": "Organization", "name": "Verbo", "url": "https://verbobiblia.com/"}, "datePublished": "2026-10-22", "playMode": "SinglePlayer", "typicalAgeRange": "6-12"}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://verbobiblia.com/"}, {"@type": "ListItem", "position": 2, "name": "Juegos", "item": "https://verbobiblia.com/juegos/"}, {"@type": "ListItem", "position": 3, "name": "Niños", "item": "https://verbobiblia.com/juegos/ninos/"}, {"@type": "ListItem", "position": 4, "name": "Bajo la arena", "item": "https://verbobiblia.com"}]}</script><link rel="stylesheet" href="/assets/pie/pie.css?v=20261022-pie2">
+</head><body class="portal" data-publico="infantil"><a class="skip" href="#contenido" data-i18n="home.skip">Ir al contenido</a><header class="portal-bar"><a class="portal-bar__marca" href="/">Verbo</a><nav class="portal-nav" aria-label="Principal" data-es-aria-label="Principal" data-en-aria-label="Main"><a href="/juegos/" class="siempre" aria-current="page" data-i18n="home.navGames">Juegos</a><a href="/imagenes/" class="" data-i18n="home.navImages">Imágenes</a><a href="/preguntas-cristianas/" class="" data-i18n="home.navQuestions">Preguntas cristianas</a><a href="/historias/" class="" data-i18n="home.navHistories">Historias</a><a href="/software/" class="" data-i18n="home.navSoftware">Software</a><a href="/apps/" class="" data-i18n="home.navApps">Apps</a></nav><div id="uiLangSwitcher" aria-label="Idioma" data-es-aria-label="Idioma" data-en-aria-label="Language"><button data-lang="es" type="button">ES</button><button data-lang="en" type="button">EN</button></div></header><main id="contenido"><nav class="v-migas portal-wrap" aria-label="Ruta" data-es-aria-label="Ruta" data-en-aria-label="Breadcrumb"><ol><li><a href="/"><span data-es="Inicio" data-en="Home">Inicio</span></a></li><li><a href="/juegos/"><span data-es="Juegos" data-en="Games">Juegos</span></a></li><li><a href="/juegos/ninos/"><span data-es="Niños" data-en="Kids">Niños</span></a></li><li><span data-es="Bajo la arena" data-en="Beneath the Sand" aria-current="page">Bajo la arena</span></li></ol></nav><div class="v-ficha__cabeza portal-wrap" data-cat="ninos"><div><p data-es="INVESTIGACIÓN" data-en="INVESTIGATION" class="v-sub">INVESTIGACIÓN</p><h1 data-es="Bajo la arena" data-en="Beneath the Sand">Bajo la arena</h1><p data-es="Juego de investigación para niños: 20 hallazgos reales de la arqueología bíblica, de los rollos del mar Muerto a la piedra de Pilato. Examina las pistas, llévalas a tu cuaderno y descubre la respuesta. En español e inglés." data-en="An investigation game for kids: 20 real discoveries of biblical archaeology, from the Dead Sea Scrolls to the Pilate Stone. Examine the clues, take them to your notebook and find the answer. In English and Spanish." class="v-hero__lema">Juego de investigación para niños: 20 hallazgos reales de la arqueología bíblica, de los rollos del mar Muerto a la piedra de Pilato. Examina las pistas, llévalas a tu cuaderno y descubre la respuesta. En español e inglés.</p><ul class="v-chips"><li data-es="Niños" data-en="Kids" class="v-chip v-chip--cat">Niños</li><li data-es="📱 Celular" data-en="📱 Phone" class="v-chip">📱 Celular</li><li class="v-chip">⏱ 10 min</li><li class="v-chip">ES/EN</li></ul><div class="v-botones" style="margin-top:18px"><a class="v-boton v-boton--jugar grande" href="/juegos/bajo-la-arena/jugar/">▶ <span data-es="Jugar" data-en="Play">Jugar</span></a></div></div><a class="v-ficha__portada" href="/juegos/bajo-la-arena/jugar/" tabindex="-1" aria-hidden="true"><img src="/juegos/bajo-la-arena/portada.webp" data-shot-es="/juegos/bajo-la-arena/portada.webp" data-shot-en="/juegos/bajo-la-arena/portada-en.webp" width="1280" height="720" alt="" fetchpriority="high"></a></div><div class="portal-wrap v-ficha"><section class="v-seccion v-texto"><h2 data-es="La Biblia y la arqueología" data-en="The Bible and archaeology">La Biblia y la arqueología</h2><p data-es="La Biblia cuenta historias que ocurrieron en lugares reales: ciudades, estanques, caminos y palacios. La arqueología estudia lo que quedó de esos lugares bajo la tierra, y muchas veces sus hallazgos ayudan a entender mejor el contexto de los relatos bíblicos." data-en="The Bible tells stories that happened in real places: cities, pools, roads and palaces. Archaeology studies what was left of those places underground, and its finds often help us understand the setting of the Bible stories better.">La Biblia cuenta historias que ocurrieron en lugares reales: ciudades, estanques, caminos y palacios. La arqueología estudia lo que quedó de esos lugares bajo la tierra, y muchas veces sus hallazgos ayudan a entender mejor el contexto de los relatos bíblicos.</p><p data-es="Bajo la arena presenta 20 de esos hallazgos. Por ejemplo, los rollos del mar Muerto, encontrados desde 1947 en cuevas cerca de Qumrán, incluyen un rollo completo de Isaías copiado más de cien años antes de Cristo. El túnel de Ezequías, que todavía lleva agua en Jerusalén, recuerda la obra que mencionan 2 Reyes 20:20 y 2 Crónicas 32:30. En Cesarea apareció en 1961 una piedra con el nombre de Poncio Pilato, el gobernador que juzgó a Jesús. Y en Jerusalén se excavó en 2004 el estanque de Siloé, donde Jesús envió a lavarse al hombre que había nacido ciego (Juan 9:7)." data-en="Beneath the Sand presents 20 of those finds. For example, the Dead Sea Scrolls, found from 1947 onward in caves near Qumran, include a complete scroll of Isaiah copied more than a century before Christ. Hezekiah’s Tunnel, which still carries water in Jerusalem, recalls the work mentioned in 2 Kings 20:20 and 2 Chronicles 32:30. In Caesarea, a stone bearing the name of Pontius Pilate, the governor who tried Jesus, was found in 1961. And in Jerusalem the Pool of Siloam was excavated in 2004, where Jesus sent the man born blind to wash (John 9:7).">Bajo la arena presenta 20 de esos hallazgos. Por ejemplo, los rollos del mar Muerto, encontrados desde 1947 en cuevas cerca de Qumrán, incluyen un rollo completo de Isaías copiado más de cien años antes de Cristo. El túnel de Ezequías, que todavía lleva agua en Jerusalén, recuerda la obra que mencionan 2 Reyes 20:20 y 2 Crónicas 32:30. En Cesarea apareció en 1961 una piedra con el nombre de Poncio Pilato, el gobernador que juzgó a Jesús. Y en Jerusalén se excavó en 2004 el estanque de Siloé, donde Jesús envió a lavarse al hombre que había nacido ciego (Juan 9:7).</p><p data-es="La fe cristiana no depende de lo que encuentre una excavación: descansa en Dios y en su Palabra. Pero estos objetos nos recuerdan que la Biblia habla de personas y lugares concretos, y despiertan las ganas de leer los pasajes donde aparecen. Los hallazgos del juego son reales; el equipo de la expedición que te acompaña es inventado." data-en="Christian faith does not depend on what a dig finds: it rests on God and his Word. But these objects remind us that the Bible speaks of real people and places, and they make us want to read the passages where they appear. The finds in the game are real; the expedition team that goes with you is made up.">La fe cristiana no depende de lo que encuentre una excavación: descansa en Dios y en su Palabra. Pero estos objetos nos recuerdan que la Biblia habla de personas y lugares concretos, y despiertan las ganas de leer los pasajes donde aparecen. Los hallazgos del juego son reales; el equipo de la expedición que te acompaña es inventado.</p><blockquote class="v-cita"><p data-es="Ve, lávate en el estanque de Siloé (que significa Enviado). Él fue, se lavó, y volvió viendo." data-en="Go, wash in the Pool of Siloam (which means “Sent”). So the man went and washed, and came back seeing.">Ve, lávate en el estanque de Siloé (que significa Enviado). Él fue, se lavó, y volvió viendo.</p><footer><span data-es="Juan 9:7 · Biblia Verbo" data-en="John 9:7 · Berean Standard Bible">Juan 9:7 · Biblia Verbo</span></footer></blockquote></section><section class="v-seccion"><h2 data-es="Cómo se juega" data-en="How to play">Cómo se juega</h2><p data-es="Cada carpeta es un caso: un hallazgo real de la arqueología bíblica. Examina las pistas, lleva a tu cuaderno las que sirven, únelas y pon el sello sobre la respuesta. Equivocarse no cuesta nada: puedes volver a intentarlo. Cada caso resuelto suma a tu museo y a tus medallas de explorador." data-en="Each folder is a case: a real find of biblical archaeology. Examine the clues, take the useful ones to your notebook, connect them and stamp the answer. Mistakes cost nothing: you can try again. Every solved case adds to your museum and your explorer medals.">Cada carpeta es un caso: un hallazgo real de la arqueología bíblica. Examina las pistas, lleva a tu cuaderno las que sirven, únelas y pon el sello sobre la respuesta. Equivocarse no cuesta nada: puedes volver a intentarlo. Cada caso resuelto suma a tu museo y a tus medallas de explorador.</p><div class="v-controles"><section><h3 data-es="⌨ Con teclado y ratón" data-en="⌨ Keyboard and mouse">⌨ Con teclado y ratón</h3><ul><li data-es="Clic para examinar una pista y «Llevar» para pasarla al cuaderno" data-en="Click to examine a clue and “Take” to move it to the notebook">Clic para examinar una pista y «Llevar» para pasarla al cuaderno</li><li data-es="← →: pasar las carpetas · Enter: abrir" data-en="← →: flip through the folders · Enter: open">← →: pasar las carpetas · Enter: abrir</li><li data-es="Esc: cerrar" data-en="Esc: close">Esc: cerrar</li></ul></section><section><h3 data-es="👆 En pantalla táctil" data-en="👆 Touch screen">👆 En pantalla táctil</h3><ul><li data-es="Toca para examinar y «Llevar» para pasar la pista al cuaderno" data-en="Tap to examine and “Take” to move the clue to the notebook">Toca para examinar y «Llevar» para pasar la pista al cuaderno</li><li data-es="Doble toque para ver de cerca; pellizca para ampliar los documentos" data-en="Double-tap for a closer look; pinch to zoom documents">Doble toque para ver de cerca; pellizca para ampliar los documentos</li><li data-es="Arrastra para moverte por el tablero" data-en="Drag to move around the board">Arrastra para moverte por el tablero</li></ul></section></div></section><section class="v-seccion v-texto"><h2 data-es="Para conversar en familia" data-en="To talk about as a family">Para conversar en familia</h2><ol class="v-preguntas"><li data-es="¿Qué hallazgo te sorprendió más? Busquen juntos el pasaje bíblico con el que se relaciona." data-en="Which find surprised you most? Look up together the Bible passage it relates to.">¿Qué hallazgo te sorprendió más? Busquen juntos el pasaje bíblico con el que se relaciona.</li><li data-es="¿Por qué creen que Dios quiso que su Palabra contara historias de lugares y personas reales?" data-en="Why do you think God wanted his Word to tell stories about real places and people?">¿Por qué creen que Dios quiso que su Palabra contara historias de lugares y personas reales?</li><li data-es="Nuestra fe descansa en Dios, no en las excavaciones. ¿Qué te ayuda a confiar en lo que dice la Biblia?" data-en="Our faith rests on God, not on digs. What helps you trust what the Bible says?">Nuestra fe descansa en Dios, no en las excavaciones. ¿Qué te ayuda a confiar en lo que dice la Biblia?</li></ol></section><section class="v-seccion"><div class="v-seccion__cabeza"><h2 data-es="Imágenes de esta historia" data-en="Images from this story">Imágenes de esta historia</h2><a href="/imagenes/mateo/"><span data-es="Ver más" data-en="See more">Ver más</span></a></div><ul class="v-imagenes v-imagenes--4"><li><a href="/imagenes/mateo/mt-01-20-sueno-jose/"><picture><source type="image/webp" srcset="/imagenes/mateo/mt-01-20-sueno-jose-mini.webp"><img src="/imagenes/mateo/mt-01-20-sueno-jose-mini.jpg" width="480" height="270" loading="lazy" alt="El ángel habla a José en sueños" data-es="El ángel habla a José en sueños" data-en="The angel speaks to Joseph in a dream"></picture></a></li><li><a href="/imagenes/mateo/mt-13-24-trigo-cizana/"><picture><source type="image/webp" srcset="/imagenes/mateo/mt-13-24-trigo-cizana-mini.webp"><img src="/imagenes/mateo/mt-13-24-trigo-cizana-mini.jpg" width="480" height="270" loading="lazy" alt="El trigo y la cizaña crecen juntos" data-es="El trigo y la cizaña crecen juntos" data-en="Wheat and weeds grow together"></picture></a></li><li><a href="/imagenes/juan/jn-19-38-sepultura/"><picture><source type="image/webp" srcset="/imagenes/juan/jn-19-38-sepultura-mini.webp"><img src="/imagenes/juan/jn-19-38-sepultura-mini.jpg" width="480" height="270" loading="lazy" alt="José y Nicodemo sepultan a Jesús" data-es="José y Nicodemo sepultan a Jesús" data-en="Joseph and Nicodemus bury Jesus"></picture></a></li><li><a href="/imagenes/romanos/ro-08-38-nada-nos-separa-del-amor-de-dios/"><picture><source type="image/webp" srcset="/imagenes/romanos/ro-08-38-nada-nos-separa-del-amor-de-dios-mini.webp"><img src="/imagenes/romanos/ro-08-38-nada-nos-separa-del-amor-de-dios-mini.jpg" width="480" height="270" loading="lazy" alt="Nada nos separa del amor de Dios" data-es="Nada nos separa del amor de Dios" data-en="Nothing separates us from God&#x27;s love"></picture></a></li></ul></section><section class="v-seccion"><div class="v-seccion__cabeza"><h2 data-es="Más juegos" data-en="More games">Más juegos</h2><a href="/juegos/"><span data-es="Ver todos" data-en="See all">Ver todos</span></a></div><ul class="v-rejilla"><li data-cat="ninos" data-buscar="Camino al Cielo Road to Heaven Gálatas"><article class="v-juego" data-cat="ninos" data-publicado="2026-10-22"><div class="v-juego__portada"><span data-es="Nuevo" data-en="New" class="v-insignia v-insignia--nuevo">Nuevo</span><img src="/juegos/camino-al-cielo/portada.webp" data-shot-es="/juegos/camino-al-cielo/portada.webp" data-shot-en="/juegos/camino-al-cielo/portada-en.webp" width="1280" height="720" alt="" loading="lazy"></div><div class="v-juego__cuerpo"><h3><a href="/juegos/camino-al-cielo/"><span data-es="Camino al Cielo" data-en="Road to Heaven">Camino al Cielo</span></a></h3><p data-es="Sube al cielo atrapando el fruto del Espíritu y esquivando las nubes malvadas." data-en="Climb to heaven catching the fruit of the Spirit and dodging the wicked clouds.">Sube al cielo atrapando el fruto del Espíritu y esquivando las nubes malvadas.</p><ul class="v-chips"><li data-es="Niños" data-en="Kids" class="v-chip v-chip--cat">Niños</li><li data-es="📱 Celular" data-en="📱 Phone" class="v-chip">📱 Celular</li><li class="v-chip">⏱ 10 min</li><li class="v-chip">ES/EN</li></ul></div></article></li><li data-cat="ninos" data-buscar="Héroes de la fe Heroes of Faith"><article class="v-juego" data-cat="ninos" data-publicado="2026-10-23"><div class="v-juego__portada"><span data-es="Nuevo" data-en="New" class="v-insignia v-insignia--nuevo">Nuevo</span><img src="/juegos/heroes-de-la-fe/portada.webp" data-shot-es="/juegos/heroes-de-la-fe/portada.webp" data-shot-en="/juegos/heroes-de-la-fe/portada-en.webp" width="1280" height="720" alt="" loading="lazy"></div><div class="v-juego__cuerpo"><h3><a href="/juegos/heroes-de-la-fe/"><span data-es="Héroes de la fe" data-en="Heroes of Faith">Héroes de la fe</span></a></h3><p data-es="Novelas gráficas sobre Müller, Amy Carmichael, Billy Graham y Nicky Cruz." data-en="Graphic novels about Müller, Amy Carmichael, Billy Graham and Nicky Cruz.">Novelas gráficas sobre Müller, Amy Carmichael, Billy Graham y Nicky Cruz.</p><ul class="v-chips"><li data-es="Niños" data-en="Kids" class="v-chip v-chip--cat">Niños</li><li data-es="📱 Celular" data-en="📱 Phone" class="v-chip">📱 Celular</li><li class="v-chip">⏱ 10 min</li><li class="v-chip">ES/EN</li></ul></div></article></li><li data-cat="familia" data-buscar="El mensajero The Messenger Hechos"><article class="v-juego" data-cat="familia" data-publicado="2026-10-23"><div class="v-juego__portada"><span data-es="Nuevo" data-en="New" class="v-insignia v-insignia--nuevo">Nuevo</span><span data-es="Destacado" data-en="Featured" class="v-insignia v-insignia--destacado">Destacado</span><img src="/juegos/el-mensajero/portada.webp" data-shot-es="/juegos/el-mensajero/portada.webp" data-shot-en="/juegos/el-mensajero/portada-en.webp" width="1280" height="720" alt="" loading="lazy"></div><div class="v-juego__cuerpo"><h3><a href="/juegos/el-mensajero/"><span data-es="El mensajero" data-en="The Messenger">El mensajero</span></a></h3><p data-es="Plataformas y sigilo en 3D por el libro de Hechos." data-en="3D platforming and stealth through the book of Acts.">Plataformas y sigilo en 3D por el libro de Hechos.</p><ul class="v-chips"><li data-es="Familia" data-en="Family" class="v-chip v-chip--cat">Familia</li><li data-es="📱 Celular" data-en="📱 Phone" class="v-chip">📱 Celular</li><li class="v-chip">⏱ 15 min</li><li class="v-chip">ES/EN</li></ul></div></article></li><li data-cat="pequenos" data-buscar="Pares de la arena Pairs in the Sand Isaías 2 Reyes Juan Mateo Hechos Daniel Esdras Romanos"><article class="v-juego" data-cat="pequenos" data-publicado="2026-10-22"><div class="v-juego__portada"><span data-es="Nuevo" data-en="New" class="v-insignia v-insignia--nuevo">Nuevo</span><img src="/juegos/pares-de-la-arena/portada.webp" data-shot-es="/juegos/pares-de-la-arena/portada.webp" data-shot-en="/juegos/pares-de-la-arena/portada-en.webp" width="1280" height="720" alt="" loading="lazy"></div><div class="v-juego__cuerpo"><h3><a href="/juegos/pares-de-la-arena/"><span data-es="Pares de la arena" data-en="Pairs in the Sand">Pares de la arena</span></a></h3><p data-es="Memoria con hallazgos bíblicos por 15 sitios de excavación." data-en="A memory game with Bible finds across 15 dig sites.">Memoria con hallazgos bíblicos por 15 sitios de excavación.</p><ul class="v-chips"><li data-es="Pequeños" data-en="Little ones" class="v-chip v-chip--cat">Pequeños</li><li data-es="📱 Celular" data-en="📱 Phone" class="v-chip">📱 Celular</li><li class="v-chip">⏱ 5 min</li><li class="v-chip">ES/EN</li></ul></div></article></li></ul></section></div></main><script src="/biblia/assets/i18n.js?v=20261021-secciones"></script><script src="/biblia/assets/site-chrome.js?v=20261021-secciones"></script><script src="/assets/secciones/secciones.js?v=20261023-portal" defer></script><script src="/assets/portal/portal.js?v=20261023-portal" defer></script>
+<!-- verbo:pie -->
+<footer class="verbo-pie" aria-label="Verbo">
+  <div class="verbo-pie__interior">
+    <div class="verbo-pie__marca"><a href="/" data-i18n="pie.marca">Verbo</a><p data-i18n="pie.frase">Una biblioteca abierta. Una fe que se vive.</p></div>
+    <nav class="verbo-pie__grupo" aria-labelledby="pie-secciones">
+      <h2 id="pie-secciones" data-i18n="pie.secciones">Secciones</h2>
+      <a href="/" data-i18n="pie.inicio">Inicio</a>
+      <a href="/recursos/" data-i18n="pie.recursos">Recursos</a>
+      <a href="/libreria/" data-i18n="pie.libreria">Librería</a>
+      <a href="/historias/" data-i18n="pie.historias">Historias</a>
+      <a href="/preguntas-cristianas/" data-i18n="pie.preguntas">Preguntas cristianas</a>
+      <a href="/software/" data-i18n="pie.software">Software</a>
+      <a href="/apps/" data-i18n="pie.apps">Apps</a>
+      <a href="/juegos/" data-i18n="pie.juegos">Juegos</a>
+      <a href="/imagenes/" data-i18n="pie.imagenes">Imágenes bíblicas</a>
+    </nav>
+    <nav class="verbo-pie__grupo" aria-labelledby="pie-confianza">
+      <h2 id="pie-confianza" data-i18n="pie.confianza">Confianza</h2>
+      <a href="/acerca/" data-i18n="pie.acerca">Conoce Verbo</a>
+      <a href="/mision/" data-i18n="pie.mision">Misión</a>
+      <a href="/sobre-el-fundador/" data-i18n="pie.fundador">Sobre el fundador</a>
+      <a href="/privacidad/" data-i18n="pie.privacidad">Política de privacidad</a>
+      <a href="/licencias/" data-i18n="pie.licencias">Licencias</a>
+      <a href="/contacto/" data-i18n="pie.contacto">Contacto</a>
+    </nav>
+    <nav class="verbo-pie__grupo" aria-labelledby="pie-redes">
+      <h2 id="pie-redes" data-i18n="pie.redes">Redes</h2>
+      <a href="https://youtube.com/@verbobiblia" data-i18n="pie.youtube">YouTube</a>
+      <a href="https://www.facebook.com/share/193dcJJ87v/" data-i18n="pie.facebook">Facebook</a>
+    </nav>
   </div>
-
-  <section id="title-screen" class="title-screen" aria-label="Portada">
-    <div class="vhs-noise" aria-hidden="true"></div>
-    <div class="vhs-osd" aria-hidden="true"><span>▶ PLAY</span><span id="osd-time">SP 0:00:00</span></div>
-    <div class="title-center">
-      <img id="title-logo" class="title-logo hidden" alt="">
-      <h1 id="title-name" class="title-name"></h1>
-      <p id="title-sub" class="title-sub"></p>
-      <nav class="title-menu">
-        <button id="start-btn" class="primary-btn" data-t="abrir">Abrir el archivo</button>
-        <button id="title-collection" class="quiet-btn" data-t="coleccion">Colección</button>
-        <button id="lang-btn" class="quiet-btn" data-t="otroIdioma">🌐 English</button>
-        <a id="back-site" class="quiet-btn hidden" data-t="volverJuegos" href="/juegos/">← Juegos de Verbo</a>
-        <button id="quit-btn" class="quiet-btn" data-t="salirJuego">Salir del juego</button>
-      </nav>
-      <p id="quit-note" class="title-sub hidden" data-t="puedesCerrar">Puedes cerrar esta ventana.</p>
-    </div>
-    <div class="vhs-date" aria-hidden="true" data-t="fechaVhs">OCT 14 1994 · 23:40</div>
-    <p class="title-warning" data-t="aviso">Ficción para adultos · 18+</p>
-  </section>
-
-  <div id="collection-modal" class="modal-backdrop hidden">
-    <div class="sheet sheet-wide" role="dialog" aria-modal="true" aria-labelledby="collection-title">
-      <button class="modal-close" aria-label="Cerrar">×</button>
-      <p class="eyebrow" data-t="archivoPersonal">Archivo personal</p>
-      <h2 id="collection-title" data-t="materialDesbloqueado">Material desbloqueado</h2>
-      <div id="collection-grid" class="collection-grid sheet-scroll"></div>
-    </div>
-  </div>
-
-  <div id="media-modal" class="modal-backdrop hidden">
-    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="media-title">
-      <button class="modal-close" aria-label="Cerrar">×</button>
-      <p class="eyebrow" id="media-eyebrow"></p>
-      <h2 id="media-title"></h2>
-      <p id="media-subject" class="case-subject"></p>
-      <p id="media-copy" class="sheet-intro"></p>
-      <div id="media-row" class="media-row"></div>
-      <div class="modal-meta"><span id="media-meta" class="label"></span><button id="media-pin" class="secondary-btn hidden" data-pin="" data-t="clavarPizarra">Clavar en la pizarra</button><button id="media-action" class="primary-btn hidden" data-t="volverMesa">Volver a la mesa</button></div>
-    </div>
-  </div>
-
-  <div id="doc-zoom" class="doc-zoom hidden" role="dialog" aria-modal="true" data-t-aria="docAmpliado">
-    <div id="doc-zoom-scroll" class="doc-zoom-scroll"><div id="doc-zoom-page" class="doc-zoom-page"></div></div>
-    <div class="doc-zoom-bar">
-      <button class="quiet-btn" data-zoom="-1" data-t-aria="alejar">−</button>
-      <button class="quiet-btn" data-zoom="0" data-t="ajustar">Ajustar</button>
-      <button class="quiet-btn" data-zoom="1" data-t-aria="acercar">+</button>
-      <button class="quiet-btn doc-zoom-close" data-t-aria="cerrar">✕</button>
-    </div>
-    <p class="doc-zoom-hint" data-t="zoomPista">Pellizca o toca dos veces para ampliar · arrastra para moverte</p>
-  </div>
-
-  <script src="app.js" type="module"></script>
-</body>
-</html>
+</footer>
+<!-- /verbo:pie -->
+</body></html>

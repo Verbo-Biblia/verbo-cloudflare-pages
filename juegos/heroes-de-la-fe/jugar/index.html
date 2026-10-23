@@ -1,0 +1,68 @@
+<!doctype html>
+<!-- verbo:sin-pie -->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Héroes de la fe · Novelas gráficas | Verbo</title>
+<meta name="description" content="Novelas gráficas para niños y familias sobre vidas reales de fe: George Müller, Amy Carmichael, Billy Graham y Nicky Cruz. En español e inglés.">
+<meta name="theme-color" content="#24170d">
+<link rel="canonical" href="https://verbobiblia.com/juegos/heroes-de-la-fe/">
+<link rel="icon" href="icono.svg">
+<link rel="stylesheet" href="comun/base.css">
+<link rel="stylesheet" href="estilos.css?v=6e2b4187">
+<link rel="stylesheet" href="heroes.css?v=6e2b4187">
+</head>
+<body>
+
+<!-- Menú: elegir historia -->
+<section id="menu">
+  <a class="salir-sitio" href="/juegos/" data-t="masJuegos">← Más juegos</a>
+  <div class="menu-caja">
+    <p class="sobre" data-t="sobretitulo">Novelas gráficas</p>
+    <h1 data-t="titulo">Héroes de la fe</h1>
+    <p class="sub" data-t="subtitulo">Vidas reales que confiaron en Dios</p>
+    <div class="historias" id="historias"></div>
+    <p class="como" data-t="como"></p>
+    <div class="pie">
+      <button class="icono" id="btn-idioma" type="button">EN</button>
+      <button class="icono" data-musica type="button" data-t-aria="musica">🎵</button>
+      <button class="icono" data-sonido type="button" data-t-aria="sonido">🔊</button>
+    </div>
+  </div>
+</section>
+
+<!-- Lector -->
+<section id="jugador">
+  <div id="j-marco">
+    <div id="j-escenario">
+      <div class="capa-fondo"></div>
+      <div class="capa-el"></div>
+      <div class="j-dialogo"></div>
+      <div class="j-caja"><div class="j-nombre"></div><div class="j-texto"></div></div>
+      <div class="j-opciones"></div>
+      <div class="j-fin">
+        <div class="j-fin-caja">
+          <h2 data-t="fin">Fin</h2>
+          <div class="j-fin-botones">
+            <button data-j="reiniciar" class="primario" data-t="otraVez">↺ Leer otra vez</button>
+            <button data-j="salir" data-t="otraHistoria">Otra historia</button>
+          </div>
+        </div>
+      </div>
+      <div class="j-seguir">▶</div>
+    </div>
+  </div>
+  <div class="j-barra">
+    <button data-j="atras" data-t="atras">◀ Atrás</button>
+    <button data-j="reiniciar" data-t="reiniciar">↺ Reiniciar</button>
+    <button data-musica type="button" data-t-aria="musica">🎵</button>
+    <button data-sonido type="button" data-t-aria="sonido">🔊</button>
+    <button data-j="salir" data-t="salir">✕ Salir</button>
+  </div>
+  <p class="girar" data-t="girar">Gira el teléfono para leer más grande</p>
+</section>
+
+<script type="module" src="js/inicio.js?v=6e2b4187"></script>
+</body>
+</html>

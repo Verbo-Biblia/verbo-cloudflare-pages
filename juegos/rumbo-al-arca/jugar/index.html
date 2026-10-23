@@ -1,0 +1,106 @@
+<!doctype html>
+<!-- verbo:sin-pie -->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Rumbo al arca · Puzle de flechas bíblico | Verbo</title>
+<meta name="description" content="Puzle de flechas gratis para niños y familias: saca las flechas del tablero y lleva a los animales al arca de Noé, de dos en dos. 15 niveles, en español e inglés.">
+<meta name="theme-color" content="#24170d">
+<link rel="canonical" href="https://verbobiblia.com/juegos/rumbo-al-arca/">
+<link rel="stylesheet" href="comun/base.css">
+<link rel="stylesheet" href="arca.css?v=1e43318a">
+</head>
+<body>
+
+<!-- Menú inicial -->
+<section id="inicio" class="pantalla activa">
+  <a class="salir-sitio" href="/juegos/" data-t="masJuegos">← Más juegos</a>
+  <div class="inicio-caja">
+    <p class="sobre" data-t="sobretitulo">Puzle de flechas</p>
+    <h1 data-t="titulo">Rumbo al arca</h1>
+    <p class="sub" data-t="subtitulo">Los animales de dos en dos</p>
+    <div class="muestra" id="muestra" aria-hidden="true"></div>
+    <p class="como" data-t="como"></p>
+    <div class="inicio-botones">
+      <button class="boton grande" id="btn-jugar" type="button" data-t="jugar">Jugar</button>
+      <button class="boton secundario" id="btn-ver-niveles" type="button" data-t="niveles">Niveles</button>
+    </div>
+    <p class="progreso" id="progreso"></p>
+    <div class="pie">
+      <button class="icono" id="btn-idioma" type="button">EN</button>
+      <button class="icono" data-musica type="button" data-t-aria="musica">🎵</button>
+      <button class="icono" data-sonido type="button" data-t-aria="sonido">🔊</button>
+    </div>
+  </div>
+</section>
+
+<!-- Elegir nivel -->
+<section id="niveles" class="pantalla">
+  <header class="barra">
+    <button class="icono" id="btn-niveles-volver" type="button" data-t-aria="menu">←</button>
+    <h2 data-t="elegirNivel">Elige un nivel</h2>
+    <span class="estrellas-total" id="estrellas-total"></span>
+  </header>
+  <div class="niveles-rejilla" id="rejilla"></div>
+</section>
+
+<!-- Partida -->
+<section id="partida" class="pantalla">
+  <header class="barra-juego">
+    <div class="bj-izq">
+      <b id="m-nivel">Nivel 1</b>
+      <span class="corazones" id="corazones" aria-live="polite"></span>
+    </div>
+    <div class="bj-centro" data-t-aria="flechas"><span class="ic-flechas" aria-hidden="true">⤴</span> <b id="m-flechas">0</b></div>
+    <div class="bj-der">
+      <button class="icono" id="btn-reiniciar" type="button" data-t-aria="reiniciar">↺</button>
+      <button class="icono" id="btn-ajustes" type="button" data-t-aria="ajustes">⚙</button>
+    </div>
+  </header>
+  <div class="progreso-barra"><i id="barra"></i></div>
+  <div class="ajustes" id="ajustes" hidden>
+    <button class="icono" data-musica type="button" data-t-aria="musica">🎵</button>
+    <button class="icono" data-sonido type="button" data-t-aria="sonido">🔊</button>
+    <button class="boton secundario" id="btn-salir" type="button" data-t="salir">Salir a los niveles</button>
+    <a class="boton secundario" href="/juegos/" data-t="masJuegos">← Más juegos</a>
+  </div>
+  <div class="zona-tablero" id="zona">
+    <svg id="tablero" class="tablero" xmlns="http://www.w3.org/2000/svg"></svg>
+  </div>
+  <footer class="barra-abajo">
+    <button class="herramienta" id="btn-goma" type="button" data-t-aria="goma"><span aria-hidden="true">🧽</span><i id="m-gomas">2</i></button>
+    <label class="zoom"><span aria-hidden="true">🔍</span><input id="zoom" type="range" min="1" max="4" step="0.05" value="1" data-t-aria="zoom"></label>
+    <button class="herramienta" id="btn-pista" type="button" data-t-aria="pista"><span aria-hidden="true">💡</span><i id="m-pistas">3</i></button>
+  </footer>
+  <div id="aviso" class="aviso" aria-live="polite"></div>
+  <div class="velo" id="sin-vidas" hidden>
+    <div class="velo-caja">
+      <h2 data-t="sinVidas">Te quedaste sin corazones</h2>
+      <p data-t="sinVidasTexto">No pasa nada: mira bien hacia dónde apunta cada flecha y vuelve a intentarlo.</p>
+      <button class="boton grande" id="btn-reintentar" type="button" data-t="reintentar">Intentar de nuevo</button>
+      <button class="boton secundario" id="btn-velo-niveles" type="button" data-t="niveles">Niveles</button>
+    </div>
+  </div>
+</section>
+
+<!-- Final del nivel -->
+<section id="final" class="pantalla">
+  <div class="final-caja">
+    <p class="sobre" id="f-nivel"></p>
+    <h2 id="f-titulo"></h2>
+    <img class="f-animal" id="f-animal" alt="">
+    <p class="cita" id="f-cita"></p>
+    <div class="estrellas" id="estrellas"></div>
+    <p class="resumen" id="resumen"></p>
+    <div class="final-botones">
+      <button class="boton grande" id="btn-siguiente" type="button" data-t="siguiente">Siguiente nivel</button>
+      <button class="boton secundario" id="btn-otra" type="button" data-t="repetir">Repetir</button>
+      <button class="boton secundario" id="btn-a-niveles" type="button" data-t="niveles">Niveles</button>
+    </div>
+  </div>
+</section>
+
+<script type="module" src="arca.js?v=toques2"></script>
+</body>
+</html>

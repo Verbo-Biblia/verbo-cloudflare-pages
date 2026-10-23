@@ -1,154 +1,437 @@
-[
- {
-  "id": "caminoCielo",
-  "grupo": "ninos",
-  "nombre": "Camino al Cielo",
-  "url": "/juegos/camino-al-cielo/",
-  "imagen": "/juegos/camino-al-cielo/portada.webp",
-  "imagen_en": "/juegos/camino-al-cielo/portada-en.webp",
-  "descripcion": "Ayuda a Cristian a subir hasta la Patria Celestial atrapando las nubecitas del fruto del Espíritu y esquivando las nubes malvadas. 10 niveles, en español e inglés.",
-  "description_en": "Help Christian climb to his Heavenly Home by catching the little clouds of the fruit of the Spirit and dodging the wicked clouds. 10 levels, in Spanish and English.",
-  "botones": [
-   {
-    "id": "jugar",
-    "url": "/juegos/camino-al-cielo/",
-    "es": "Jugar en la web",
-    "en": "Play on the web"
-   }
-  ],
-  "nombre_en": "Road to Heaven"
- },
- {
-  "id": "laSenda",
-  "grupo": "grandes",
-  "nombre": "La Senda",
-  "url": "/juegos/la-senda/",
-  "imagen": "/juegos/la-senda/portada.webp",
-  "imagen_en": "/juegos/la-senda/portada-en.webp",
-  "descripcion": "278 preguntas bíblicas en tres niveles (Fácil, Difícil y Teólogo), con explicaciones y citas. En español e inglés.",
-  "description_en": "278 Bible questions in three levels (Easy, Hard and Theologian), with explanations and references. In Spanish and English.",
-  "botones": [
-   {
-    "id": "jugar",
-    "url": "/juegos/la-senda/",
-    "es": "Jugar en la web",
-    "en": "Play on the web"
+{
+ "_leeme": "Fuente única del portal de juegos. Ver juegos/LEEME.md. Después de editar: python3 tools/build_juegos.py && python3 tools/pie_comun.py",
+ "categorias": {
+  "pequenos": {
+   "es": "Pequeños",
+   "en": "Little ones",
+   "infantil": true,
+   "edades": "3-6",
+   "lema": {
+    "es": "Toques simples, sin necesidad de leer",
+    "en": "Simple taps, no reading needed"
    },
-   {
-    "id": "android",
-    "url": "https://play.google.com/store/apps/details?id=app.lasenda.preguntasbiblicas",
-    "es": "Descargar para Android",
-    "en": "Get it on Android"
+   "h1": {
+    "es": "Juegos cristianos para los más pequeños",
+    "en": "Christian games for little ones"
+   },
+   "title": {
+    "es": "Juegos cristianos para los más pequeños",
+    "en": "Christian games for little ones"
+   },
+   "desc": {
+    "es": "Juegos cristianos gratis para niños pequeños: toques simples, colores y animales del arca, sin necesidad de leer. En el navegador, sin instalar.",
+    "en": "Free Christian games for young children: simple taps, colors and the animals of the ark, no reading needed. In the browser, nothing to install."
+   },
+   "texto": {
+    "es": [
+     "Juegos tranquilos para los más chiquitos de la casa: se juegan con un toque, casi no tienen texto y no castigan los errores. Son una buena forma de abrir la conversación sobre una historia bíblica mientras juegan a su lado."
+    ],
+    "en": [
+     "Calm games for the youngest ones at home: they are played with a tap, have almost no text and do not punish mistakes. They are a good way to start talking about a Bible story while you play alongside them."
+    ]
    }
-  ],
-  "nombre_en": "La Senda"
+  },
+  "ninos": {
+   "es": "Niños",
+   "en": "Kids",
+   "infantil": true,
+   "edades": "6-12",
+   "lema": {
+    "es": "Aventuras, misterios y vidas de fe",
+    "en": "Adventures, mysteries and lives of faith"
+   },
+   "h1": {
+    "es": "Juegos cristianos para niños",
+    "en": "Christian games for kids"
+   },
+   "title": {
+    "es": "Juegos cristianos para niños gratis",
+    "en": "Free Christian games for kids"
+   },
+   "desc": {
+    "es": "Juegos cristianos gratis para niños: aventuras, investigación de la arqueología bíblica y novelas gráficas sobre vidas reales de fe. En español e inglés.",
+    "en": "Free Christian games for kids: adventures, biblical archaeology investigations and graphic novels about real lives of faith. In English and Spanish."
+   },
+   "texto": {
+    "es": [
+     "Juegos para niños que ya leen: suben hacia el cielo con el fruto del Espíritu, investigan hallazgos reales de la arqueología bíblica y conocen a creyentes que confiaron en Dios. Cada uno trae sus citas bíblicas para seguir leyendo después de jugar."
+    ],
+    "en": [
+     "Games for kids who already read: they climb toward heaven with the fruit of the Spirit, investigate real finds of biblical archaeology and meet believers who trusted God. Each one includes Bible references to keep reading after playing."
+    ]
+   }
+  },
+  "familia": {
+   "es": "Familia",
+   "en": "Family",
+   "infantil": false,
+   "lema": {
+    "es": "Para jugar juntos y conversar",
+    "en": "To play together and talk"
+   },
+   "h1": {
+    "es": "Juegos cristianos para jugar en familia",
+    "en": "Christian games to play as a family"
+   },
+   "title": {
+    "es": "Juegos cristianos para jugar en familia",
+    "en": "Christian games to play as a family"
+   },
+   "desc": {
+    "es": "Juegos cristianos gratis para toda la familia: preguntas bíblicas y aventuras por el libro de Hechos para jugar juntos y conversar. Sin instalar.",
+    "en": "Free Christian games for the whole family: Bible questions and adventures through the book of Acts to play together and talk about. Nothing to install."
+   },
+   "texto": {
+    "es": [
+     "Juegos para compartir entre grandes y chicos: preguntas bíblicas para responder en grupo y aventuras que recorren la historia de la iglesia primitiva. Cada página trae preguntas para conversar en familia después de jugar."
+    ],
+    "en": [
+     "Games for grown-ups and kids to share: Bible questions to answer as a group and adventures through the story of the early church. Each page includes questions to talk about as a family after playing."
+    ]
+   }
+  },
+  "desafio": {
+   "es": "Desafío",
+   "en": "Challenge",
+   "infantil": false,
+   "lema": {
+    "es": "Estrategia y dificultad alta",
+    "en": "Strategy and high difficulty"
+   },
+   "h1": {
+    "es": "Juegos cristianos de estrategia y desafío",
+    "en": "Christian strategy and challenge games"
+   },
+   "title": {
+    "es": "Juegos cristianos de estrategia",
+    "en": "Christian strategy games"
+   },
+   "desc": {
+    "es": "Juegos cristianos gratis de estrategia y dificultad alta, como el juego de cartas Tierra Prometida sobre la conquista de Canaán. En el navegador.",
+    "en": "Free Christian strategy games with high difficulty, like the Promised Land card game about the conquest of Canaan. In the browser."
+   },
+   "texto": {
+    "es": [
+     "Juegos para quienes buscan pensar cada jugada: estrategia por turnos, cartas y campañas largas basadas en la historia bíblica. Son para jóvenes y adultos, o para niños grandes que disfrutan de un reto."
+    ],
+    "en": [
+     "Games for players who like to think through every move: turn-based strategy, cards and long campaigns based on Bible history. They are for teens and adults, or older kids who enjoy a challenge."
+    ]
+   }
+  }
  },
- {
-  "id": "tierraPrometida",
-  "nombre": "Tierra Prometida",
-  "nombre_en": "Promised Land",
-  "url": "/juegos/tierra-prometida/",
-  "imagen": "/juegos/tierra-prometida/portada.webp",
-  "imagen_en": "/juegos/tierra-prometida/portada-en.webp",
-  "descripcion": "Juego de cartas de estrategia sobre la conquista de Canaán (Josué): cuida tu campamento, levanta muros, guía a Josué, Caleb y los valientes de Israel, y avanza de Jericó a Hazor. Campaña de 10 lugares con su historia y citas bíblicas. En español e inglés.",
-  "description_en": "A strategy card game about the conquest of Canaan (Joshua): guard your camp, build walls, lead Joshua, Caleb and the valiant men of Israel from Jericho to Hazor. A 10-place campaign with its story and Bible references. In English and Spanish.",
-  "botones": [
-   {
-    "id": "jugar",
-    "url": "/juegos/tierra-prometida/",
-    "es": "Jugar en la web",
-    "en": "Play on the web"
-   }
-  ]
+ "generos": {
+  "plataformas": {
+   "es": "Plataformas",
+   "en": "Platformer"
+  },
+  "preguntas": {
+   "es": "Preguntas bíblicas",
+   "en": "Bible quiz"
+  },
+  "cartas": {
+   "es": "Cartas y estrategia",
+   "en": "Card strategy"
+  },
+  "investigacion": {
+   "es": "Investigación",
+   "en": "Investigation"
+  },
+  "memoria": {
+   "es": "Memoria",
+   "en": "Memory"
+  },
+  "puzle": {
+   "es": "Puzle",
+   "en": "Puzzle"
+  },
+  "novela-grafica": {
+   "es": "Novela gráfica",
+   "en": "Graphic novel"
+  }
  },
- {
-  "id": "bajoLaArena",
-  "nombre": "Bajo la arena",
-  "nombre_en": "Beneath the Sand",
-  "url": "/juegos/bajo-la-arena/",
-  "imagen": "/juegos/bajo-la-arena/portada.webp",
-  "imagen_en": "/juegos/bajo-la-arena/portada-en.webp",
-  "descripcion": "Juego de investigación para niños: 20 hallazgos reales de la arqueología bíblica, de los rollos del mar Muerto a la piedra de Pilato. Examina las pistas, llévalas a tu cuaderno y descubre la respuesta. En español e inglés.",
-  "description_en": "An investigation game for kids: 20 real discoveries of biblical archaeology, from the Dead Sea Scrolls to the Pilate Stone. Examine the clues, take them to your notebook and find the answer. In English and Spanish.",
-  "botones": [
-   {
-    "id": "jugar",
-    "url": "/juegos/bajo-la-arena/",
-    "es": "Jugar en la web",
-    "en": "Play on the web"
-   }
-  ]
- },
- {
-  "id": "paresDeLaArena",
-  "nombre": "Pares de la arena",
-  "nombre_en": "Pairs in the Sand",
-  "url": "/juegos/pares-de-la-arena/",
-  "imagen": "/juegos/pares-de-la-arena/portada.webp",
-  "imagen_en": "/juegos/pares-de-la-arena/portada-en.webp",
-  "descripcion": "Juego de memoria para niños y familias: 15 niveles por sitios de excavación, de las cuevas de Qumrán a las puertas de Babilonia. Encuentra los pares de hallazgos reales de la arqueología bíblica. En español e inglés.",
-  "description_en": "A memory game for kids and families: 15 levels through excavation sites, from the caves of Qumran to the gates of Babylon. Match the pairs of real discoveries of biblical archaeology. In English and Spanish.",
-  "botones": [
-   {
-    "id": "jugar",
-    "url": "/juegos/pares-de-la-arena/",
-    "es": "Jugar en la web",
-    "en": "Play on the web"
-   }
-  ]
- },
- {
-  "id": "rumboAlArca",
-  "nombre": "Rumbo al arca",
-  "nombre_en": "Into the Ark",
-  "url": "/juegos/rumbo-al-arca/",
-  "imagen": "/juegos/rumbo-al-arca/portada.webp",
-  "imagen_en": "/juegos/rumbo-al-arca/portada-en.webp",
-  "descripcion": "Puzle de flechas para niños y familias: saca las flechas una por una, sin que choquen, y lleva a cada pareja de animales al arca de Noé. 15 niveles, de las ovejas a la paloma con la rama de olivo. En español e inglés.",
-  "description_en": "An arrow puzzle for kids and families: clear the arrows one by one without bumping, and bring each pair of animals into Noah’s ark. 15 levels, from the sheep to the dove with the olive leaf. In English and Spanish.",
-  "botones": [
-   {
-    "id": "jugar",
-    "url": "/juegos/rumbo-al-arca/",
-    "es": "Jugar en la web",
-    "en": "Play on the web"
-   }
-  ]
- },
- {
-  "id": "elMensajero",
-  "nombre": "El mensajero",
-  "nombre_en": "The Messenger",
-  "url": "/juegos/el-mensajero/",
-  "imagen": "/juegos/el-mensajero/portada.webp",
-  "imagen_en": "/juegos/el-mensajero/portada-en.webp",
-  "descripcion": "Plataformas y sigilo en 3D: Eliab, un joven mensajero (personaje inventado para el juego), lleva cartas entre las iglesias del libro de Hechos. Sube por los techos, cruza túneles y puertos, y escóndete de los soldados sin pelear. 6 misiones con su historia y citas bíblicas. En español e inglés.",
-  "description_en": "3D platforming and stealth: Eliab, a young messenger (a character made up for the game), carries letters between the churches of the book of Acts. Climb across rooftops, cross tunnels and harbors, and hide from the soldiers without fighting. 6 missions with their story and Bible references. In English and Spanish.",
-  "botones": [
-   {
-    "id": "jugar",
-    "url": "/juegos/el-mensajero/",
-    "es": "Jugar en la web",
-    "en": "Play on the web"
-   }
-  ]
- },
- {
-  "id": "heroesDeLaFe",
-  "nombre": "Héroes de la fe",
-  "nombre_en": "Heroes of Faith",
-  "url": "/juegos/heroes-de-la-fe/",
-  "imagen": "/juegos/heroes-de-la-fe/portada.webp",
-  "imagen_en": "/juegos/heroes-de-la-fe/portada-en.webp",
-  "descripcion": "Novelas gráficas para niños y familias sobre cuatro vidas reales de fe: George Müller, padre de más de 10 000 huérfanos; Amy Carmichael, «Amma» de Dohnavur en la India; Billy Graham, el predicador del mundo, y Nicky Cruz, de líder de pandilla a predicador. Tú eliges qué harías y descubres lo que de verdad pasó. En español e inglés.",
-  "description_en": "Graphic novels for kids and families about four real lives of faith: George Müller, father to more than 10,000 orphans; Amy Carmichael, “Amma” of Dohnavur in India; Billy Graham, preacher to the world, and Nicky Cruz, from gang leader to preacher. You choose what you would do and discover what really happened. In English and Spanish.",
-  "botones": [
-   {
-    "id": "jugar",
-    "url": "/juegos/heroes-de-la-fe/",
-    "es": "Jugar en la web",
-    "en": "Play on the web"
-   }
-  ]
- }
-]
+ "juegos": [
+  {
+   "id": "camino-al-cielo",
+   "titulo": {
+    "es": "Camino al Cielo",
+    "en": "Road to Heaven"
+   },
+   "descripcion": {
+    "es": "Sube al cielo atrapando el fruto del Espíritu y esquivando las nubes malvadas.",
+    "en": "Climb to heaven catching the fruit of the Spirit and dodging the wicked clouds."
+   },
+   "meta_descripcion": {
+    "es": "Ayuda a Cristian a subir hasta la Patria Celestial atrapando las nubecitas del fruto del Espíritu y esquivando las nubes malvadas. 10 niveles, en español e inglés.",
+    "en": "Help Christian climb to his Heavenly Home by catching the little clouds of the fruit of the Spirit and dodging the wicked clouds. 10 levels, in Spanish and English."
+   },
+   "categoria": "ninos",
+   "infantil": true,
+   "genero": "plataformas",
+   "pasaje": "Gálatas",
+   "duracion_min": 10,
+   "movil": true,
+   "idiomas": [
+    "es",
+    "en"
+   ],
+   "portada": "/juegos/camino-al-cielo/portada.webp",
+   "portada_en": "/juegos/camino-al-cielo/portada-en.webp",
+   "og_image": "/juegos/camino-al-cielo/og.jpg",
+   "url_juego": "/juegos/camino-al-cielo/jugar/",
+   "android": null,
+   "publicado": "2026-10-22",
+   "destacado": false,
+   "orden_mas_jugados": 6
+  },
+  {
+   "id": "la-senda",
+   "titulo": {
+    "es": "La Senda",
+    "en": "La Senda"
+   },
+   "descripcion": {
+    "es": "278 preguntas bíblicas en tres niveles, con explicación y cita.",
+    "en": "278 Bible questions on three levels, with explanations and references."
+   },
+   "meta_descripcion": {
+    "es": "278 preguntas bíblicas en tres niveles (Fácil, Difícil y Teólogo), con explicaciones y citas. En español e inglés.",
+    "en": "278 Bible questions in three levels (Easy, Hard and Theologian), with explanations and references. In Spanish and English."
+   },
+   "categoria": "familia",
+   "infantil": false,
+   "genero": "preguntas",
+   "pasaje": null,
+   "duracion_min": 10,
+   "movil": true,
+   "idiomas": [
+    "es",
+    "en"
+   ],
+   "portada": "/juegos/la-senda/portada.webp",
+   "portada_en": "/juegos/la-senda/portada-en.webp",
+   "og_image": "/juegos/la-senda/og.jpg",
+   "url_juego": "/juegos/la-senda/jugar/",
+   "android": "https://play.google.com/store/apps/details?id=app.lasenda.preguntasbiblicas",
+   "publicado": "2026-10-22",
+   "destacado": false,
+   "orden_mas_jugados": 2
+  },
+  {
+   "id": "tierra-prometida",
+   "titulo": {
+    "es": "Tierra Prometida",
+    "en": "Promised Land"
+   },
+   "descripcion": {
+    "es": "Cartas y estrategia por la conquista de Canaán, de Jericó a Hazor.",
+    "en": "Card strategy through the conquest of Canaan, from Jericho to Hazor."
+   },
+   "meta_descripcion": {
+    "es": "Juego de cartas de estrategia sobre la conquista de Canaán (Josué): cuida tu campamento, levanta muros, guía a Josué, Caleb y los valientes de Israel, y avanza de Jericó a Hazor. Campaña de 10 lugares con su historia y citas bíblicas. En español e inglés.",
+    "en": "A strategy card game about the conquest of Canaan (Joshua): guard your camp, build walls, lead Joshua, Caleb and the valiant men of Israel from Jericho to Hazor. A 10-place campaign with its story and Bible references. In English and Spanish."
+   },
+   "categoria": "desafio",
+   "infantil": false,
+   "genero": "cartas",
+   "pasaje": "Josué",
+   "duracion_min": 20,
+   "movil": true,
+   "idiomas": [
+    "es",
+    "en"
+   ],
+   "portada": "/juegos/tierra-prometida/portada.webp",
+   "portada_en": "/juegos/tierra-prometida/portada-en.webp",
+   "og_image": "/juegos/tierra-prometida/og.jpg",
+   "url_juego": "/juegos/tierra-prometida/jugar/",
+   "android": null,
+   "publicado": "2026-10-22",
+   "destacado": false,
+   "orden_mas_jugados": 5
+  },
+  {
+   "id": "bajo-la-arena",
+   "titulo": {
+    "es": "Bajo la arena",
+    "en": "Beneath the Sand"
+   },
+   "descripcion": {
+    "es": "Resuelve 20 casos con hallazgos reales de la arqueología bíblica.",
+    "en": "Solve 20 cases with real finds of biblical archaeology."
+   },
+   "meta_descripcion": {
+    "es": "Juego de investigación para niños: 20 hallazgos reales de la arqueología bíblica, de los rollos del mar Muerto a la piedra de Pilato. Examina las pistas, llévalas a tu cuaderno y descubre la respuesta. En español e inglés.",
+    "en": "An investigation game for kids: 20 real discoveries of biblical archaeology, from the Dead Sea Scrolls to the Pilate Stone. Examine the clues, take them to your notebook and find the answer. In English and Spanish."
+   },
+   "categoria": "ninos",
+   "infantil": true,
+   "genero": "investigacion",
+   "pasaje": [
+    "Isaías",
+    "2 Reyes",
+    "Juan",
+    "Mateo",
+    "Hechos",
+    "Daniel",
+    "Esdras",
+    "Romanos"
+   ],
+   "duracion_min": 10,
+   "movil": true,
+   "idiomas": [
+    "es",
+    "en"
+   ],
+   "portada": "/juegos/bajo-la-arena/portada.webp",
+   "portada_en": "/juegos/bajo-la-arena/portada-en.webp",
+   "og_image": "/juegos/bajo-la-arena/og.jpg",
+   "url_juego": "/juegos/bajo-la-arena/jugar/",
+   "android": null,
+   "publicado": "2026-10-22",
+   "destacado": false,
+   "orden_mas_jugados": 4
+  },
+  {
+   "id": "pares-de-la-arena",
+   "titulo": {
+    "es": "Pares de la arena",
+    "en": "Pairs in the Sand"
+   },
+   "descripcion": {
+    "es": "Memoria con hallazgos bíblicos por 15 sitios de excavación.",
+    "en": "A memory game with Bible finds across 15 dig sites."
+   },
+   "meta_descripcion": {
+    "es": "Juego de memoria para niños y familias: 15 niveles por sitios de excavación, de las cuevas de Qumrán a las puertas de Babilonia. Encuentra los pares de hallazgos reales de la arqueología bíblica. En español e inglés.",
+    "en": "A memory game for kids and families: 15 levels through excavation sites, from the caves of Qumran to the gates of Babylon. Match the pairs of real discoveries of biblical archaeology. In English and Spanish."
+   },
+   "categoria": "pequenos",
+   "infantil": true,
+   "genero": "memoria",
+   "pasaje": [
+    "Isaías",
+    "2 Reyes",
+    "Juan",
+    "Mateo",
+    "Hechos",
+    "Daniel",
+    "Esdras",
+    "Romanos"
+   ],
+   "duracion_min": 5,
+   "movil": true,
+   "idiomas": [
+    "es",
+    "en"
+   ],
+   "portada": "/juegos/pares-de-la-arena/portada.webp",
+   "portada_en": "/juegos/pares-de-la-arena/portada-en.webp",
+   "og_image": "/juegos/pares-de-la-arena/og.jpg",
+   "url_juego": "/juegos/pares-de-la-arena/jugar/",
+   "android": null,
+   "publicado": "2026-10-22",
+   "destacado": false,
+   "orden_mas_jugados": 7
+  },
+  {
+   "id": "rumbo-al-arca",
+   "titulo": {
+    "es": "Rumbo al arca",
+    "en": "Into the Ark"
+   },
+   "descripcion": {
+    "es": "Despeja las flechas y lleva a cada pareja de animales al arca.",
+    "en": "Clear the arrows and bring each pair of animals to the ark."
+   },
+   "meta_descripcion": {
+    "es": "Puzle de flechas para niños y familias: saca las flechas una por una, sin que choquen, y lleva a cada pareja de animales al arca de Noé. 15 niveles, de las ovejas a la paloma con la rama de olivo. En español e inglés.",
+    "en": "An arrow puzzle for kids and families: clear the arrows one by one without bumping, and bring each pair of animals into Noah’s ark. 15 levels, from the sheep to the dove with the olive leaf. In English and Spanish."
+   },
+   "categoria": "pequenos",
+   "infantil": true,
+   "genero": "puzle",
+   "pasaje": "Génesis",
+   "duracion_min": 5,
+   "movil": true,
+   "idiomas": [
+    "es",
+    "en"
+   ],
+   "portada": "/juegos/rumbo-al-arca/portada.webp",
+   "portada_en": "/juegos/rumbo-al-arca/portada-en.webp",
+   "og_image": "/juegos/rumbo-al-arca/og.jpg",
+   "url_juego": "/juegos/rumbo-al-arca/jugar/",
+   "android": null,
+   "publicado": "2026-10-22",
+   "destacado": false,
+   "orden_mas_jugados": 3
+  },
+  {
+   "id": "el-mensajero",
+   "titulo": {
+    "es": "El mensajero",
+    "en": "The Messenger"
+   },
+   "descripcion": {
+    "es": "Plataformas y sigilo en 3D por el libro de Hechos.",
+    "en": "3D platforming and stealth through the book of Acts."
+   },
+   "meta_descripcion": {
+    "es": "Plataformas y sigilo en 3D: Eliab, un joven mensajero (personaje inventado para el juego), lleva cartas entre las iglesias del libro de Hechos. Sube por los techos, cruza túneles y puertos, y escóndete de los soldados sin pelear. 6 misiones con su historia y citas bíblicas. En español e inglés.",
+    "en": "3D platforming and stealth: Eliab, a young messenger (a character made up for the game), carries letters between the churches of the book of Acts. Climb across rooftops, cross tunnels and harbors, and hide from the soldiers without fighting. 6 missions with their story and Bible references. In English and Spanish."
+   },
+   "categoria": "familia",
+   "infantil": false,
+   "genero": "plataformas",
+   "pasaje": "Hechos",
+   "duracion_min": 15,
+   "movil": true,
+   "idiomas": [
+    "es",
+    "en"
+   ],
+   "portada": "/juegos/el-mensajero/portada.webp",
+   "portada_en": "/juegos/el-mensajero/portada-en.webp",
+   "og_image": "/juegos/el-mensajero/og.jpg",
+   "url_juego": "/juegos/el-mensajero/jugar/",
+   "android": null,
+   "publicado": "2026-10-23",
+   "destacado": true,
+   "orden_mas_jugados": 1
+  },
+  {
+   "id": "heroes-de-la-fe",
+   "titulo": {
+    "es": "Héroes de la fe",
+    "en": "Heroes of Faith"
+   },
+   "descripcion": {
+    "es": "Novelas gráficas sobre Müller, Amy Carmichael, Billy Graham y Nicky Cruz.",
+    "en": "Graphic novels about Müller, Amy Carmichael, Billy Graham and Nicky Cruz."
+   },
+   "meta_descripcion": {
+    "es": "Novelas gráficas para niños y familias sobre cuatro vidas reales de fe: George Müller, padre de más de 10 000 huérfanos; Amy Carmichael, «Amma» de Dohnavur en la India; Billy Graham, el predicador del mundo, y Nicky Cruz, de líder de pandilla a predicador. En español e inglés.",
+    "en": "Graphic novels for kids and families about four real lives of faith: George Müller, father to more than 10,000 orphans; Amy Carmichael, “Amma” of Dohnavur in India; Billy Graham, preacher to the world, and Nicky Cruz, from gang leader to preacher. In English and Spanish."
+   },
+   "categoria": "ninos",
+   "infantil": true,
+   "genero": "novela-grafica",
+   "pasaje": null,
+   "duracion_min": 10,
+   "movil": true,
+   "idiomas": [
+    "es",
+    "en"
+   ],
+   "portada": "/juegos/heroes-de-la-fe/portada.webp",
+   "portada_en": "/juegos/heroes-de-la-fe/portada-en.webp",
+   "og_image": "/juegos/heroes-de-la-fe/og.jpg",
+   "url_juego": "/juegos/heroes-de-la-fe/jugar/",
+   "android": null,
+   "publicado": "2026-10-23",
+   "destacado": false,
+   "orden_mas_jugados": 8
+  }
+ ]
+}

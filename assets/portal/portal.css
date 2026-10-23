@@ -1,0 +1,182 @@
+/* Portal de juegos de Verbo: tokens de color y componentes (tarjeta, botón Jugar, insignias, filas y cuadrículas).
+   Lo cargan la portada, /juegos/ y sus páginas, y los bloques cruzados del banco de imágenes. Mobile-first. */
+:root{
+  --v-noche:#081b30;--v-noche-2:#0f2a47;--v-noche-3:#163a5f;
+  --v-oro:#e2b55c;--v-oro-claro:#f3d28f;--v-crema:#f6efe0;--v-gris:#a9b6c6;
+  --cat-pequenos:#5cc8b8;--cat-ninos:#ff8a5c;--cat-familia:#7bc96f;--cat-desafio:#a98bff;
+  --v-borde:rgba(246,239,224,.14);--v-sombra:0 14px 34px rgba(0,0,0,.35);
+  --v-radio:16px;--v-gutter:16px;
+  --v-sans:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --v-serif:Georgia,"Times New Roman",serif;
+  --v-redonda:Nunito,var(--v-sans);
+}
+.portal{background:var(--v-noche);color:var(--v-crema);font-family:var(--v-sans);line-height:1.6}
+body.portal{margin:0;overflow-x:hidden}
+.portal *,.portal *::before,.portal *::after{box-sizing:border-box}
+.portal a{color:var(--v-oro-claro)}
+.portal :focus-visible{outline:3px solid var(--v-oro-claro);outline-offset:3px}
+.portal img{max-width:100%;height:auto}
+.portal h1,.portal h2,.portal h3{font-family:var(--v-serif);line-height:1.15;color:var(--v-crema);letter-spacing:-.01em}
+.portal-wrap{width:100%;max-width:1320px;margin:0 auto;padding:0 var(--v-gutter)}
+.portal .skip{position:absolute;left:-999px;top:8px;background:var(--v-oro);color:var(--v-noche);padding:10px 16px;border-radius:10px;z-index:50}
+.portal .skip:focus{left:8px}
+
+/* Barra superior con el menú principal; en el celular «Juegos» queda siempre visible */
+.portal-bar{display:flex;align-items:center;gap:12px;min-height:64px;padding:0 var(--v-gutter);border-bottom:1px solid var(--v-borde);background:var(--v-noche)}
+.portal-bar__marca{font-family:var(--v-serif);font-weight:700;font-size:26px;color:var(--v-crema)!important;text-decoration:none;margin-right:auto}
+.portal-nav{display:flex;gap:4px;align-items:center}
+.portal-nav a{display:none;align-items:center;min-height:44px;padding:0 10px;border-radius:999px;color:var(--v-crema);text-decoration:none;font-weight:600;font-size:15px}
+.portal-nav a.siempre{display:inline-flex}
+.portal-nav a[aria-current]{background:var(--v-noche-2);color:var(--v-oro-claro)}
+.portal-nav a:hover{background:var(--v-noche-3)}
+.portal-bar #uiLangSwitcher{display:flex;gap:2px;border:1px solid var(--v-borde);border-radius:999px;padding:3px}
+.portal-bar #uiLangSwitcher button{background:transparent;color:var(--v-gris);border:0;border-radius:999px;min-width:40px;min-height:36px;font-weight:800;font-size:12px;cursor:pointer;padding:0 8px}
+.portal-bar #uiLangSwitcher button.is-active{background:var(--v-oro);color:var(--v-noche)}
+@media(min-width:900px){.portal-nav a{display:inline-flex}.portal-bar{padding:0 max(var(--v-gutter),calc((100vw - 1320px)/2 + var(--v-gutter)))}}
+
+/* Botones */
+.v-boton{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 24px;border-radius:14px;font-weight:800;font-size:17px;text-decoration:none;border:0;cursor:pointer;transition:background .2s,transform .2s,box-shadow .2s}
+.portal .v-boton--jugar,.v-boton--jugar{background:var(--v-oro);color:var(--v-noche);box-shadow:0 10px 26px rgba(226,181,92,.28)}
+.portal .v-boton--jugar:hover{background:var(--v-oro-claro);transform:translateY(-2px)}
+.v-boton--jugar.grande{min-height:58px;font-size:20px;padding:0 34px}
+.portal .v-boton--sec{background:transparent;color:var(--v-crema);border:1px solid var(--v-borde)}
+.portal .v-boton--sec:hover{background:var(--v-noche-3)}
+.v-botones{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+
+/* Chips e insignias */
+.v-chips{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0;padding:0}
+.v-chip{display:inline-flex;align-items:center;gap:4px;min-height:26px;padding:2px 10px;border-radius:999px;background:var(--v-noche-3);color:var(--v-crema);font-size:12.5px;font-weight:700;font-family:var(--v-redonda);white-space:nowrap}
+.v-chip--cat{background:var(--cat,var(--v-oro));color:var(--v-noche)}
+.v-insignia{position:absolute;top:10px;left:10px;z-index:2;padding:4px 10px;border-radius:999px;font-family:var(--v-redonda);font-weight:900;font-size:12px;letter-spacing:.03em;text-transform:uppercase;box-shadow:0 4px 12px rgba(0,0,0,.35)}
+.v-insignia--nuevo{background:var(--v-oro);color:var(--v-noche)}
+.v-insignia--destacado{background:var(--v-crema);color:var(--v-noche)}
+.v-insignia+.v-insignia{left:auto;right:10px}
+[data-cat="pequenos"]{--cat:var(--cat-pequenos)}[data-cat="ninos"]{--cat:var(--cat-ninos)}[data-cat="familia"]{--cat:var(--cat-familia)}[data-cat="desafio"]{--cat:var(--cat-desafio)}
+
+/* Tarjeta de juego: portada 16:10, franja de su categoría, toda clicable */
+.v-juego{position:relative;display:flex;flex-direction:column;background:var(--v-noche-2);border-radius:var(--v-radio);overflow:hidden;border:1px solid var(--v-borde);box-shadow:var(--v-sombra);transition:transform .25s ease,box-shadow .25s ease,background .25s}
+.v-juego:hover,.v-juego:focus-within{transform:translateY(-4px);background:var(--v-noche-3);box-shadow:0 20px 40px rgba(0,0,0,.45)}
+.v-juego__portada{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--v-noche-3);border-bottom:5px solid var(--cat,var(--v-oro))}
+.v-juego__portada img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.v-juego:hover .v-juego__portada img{transform:scale(1.05)}
+.v-juego__cuerpo{display:flex;flex-direction:column;gap:6px;padding:12px 12px 14px;flex:1}
+.v-juego h3{margin:0;font-family:var(--v-redonda);font-weight:900;font-size:17px;line-height:1.2;letter-spacing:0}
+.v-juego h3 a{color:var(--v-crema);text-decoration:none}
+.v-juego h3 a::after{content:"";position:absolute;inset:0;z-index:3}
+.v-juego p{margin:0;color:var(--v-gris);font-size:14px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.v-juego .v-chips{margin-top:auto;padding-top:4px}
+.v-juego .v-chip{font-size:11.5px;min-height:24px;padding:1px 8px}
+
+/* Cuadrículas: 2 columnas en el celular, 3 en tablet, 4-5 en escritorio */
+.v-rejilla{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;list-style:none;margin:0;padding:0}
+@media(min-width:640px){.v-rejilla{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}}
+@media(min-width:1040px){.v-rejilla{grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}}
+@media(min-width:1280px){.v-rejilla--5{grid-template-columns:repeat(5,minmax(0,1fr))}}
+@media(max-width:400px){.v-juego p{display:none}}
+/* Fila con desplazamiento horizontal en el celular; cuadrícula en escritorio */
+.v-fila{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(220px,72%);gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;padding:4px var(--v-gutter) 14px;margin:0 calc(-1 * var(--v-gutter));list-style:none;scrollbar-width:thin;scrollbar-color:var(--v-noche-3) transparent}
+.v-fila>li{scroll-snap-align:start;display:flex}
+.v-fila>li>.v-juego{width:100%}
+@media(min-width:640px){.v-fila{grid-auto-columns:minmax(240px,40%)}}
+@media(min-width:1040px){.v-fila{grid-auto-flow:row;grid-template-columns:repeat(4,minmax(0,1fr));overflow:visible;margin:0;padding:4px 0 0;gap:20px}}
+.v-rejilla>li{display:flex}.v-rejilla>li>.v-juego{width:100%}
+
+/* Secciones */
+.v-seccion{padding:34px 0}
+.v-seccion__cabeza{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:14px}
+.v-seccion__cabeza h2{margin:0;font-size:clamp(1.45rem,4vw,2.1rem)}
+.v-seccion__cabeza a{font-weight:700;white-space:nowrap;min-height:44px;display:inline-flex;align-items:center}
+.v-texto{max-width:72ch;color:var(--v-crema)}
+.v-texto p{margin:0 0 1em}
+.v-sub{color:var(--v-gris)}
+
+/* Hero del portal */
+.v-hero{padding:22px 0 10px;background:radial-gradient(ellipse at 85% 0,rgba(226,181,92,.16),transparent 55%),radial-gradient(ellipse at 0 100%,rgba(169,139,255,.12),transparent 50%)}
+.v-hero__grid{display:grid;gap:20px;align-items:center}
+.v-hero h1{font-size:clamp(2rem,7vw,3.6rem);margin:0 0 10px}
+.v-hero__lema{font-size:clamp(1.05rem,3vw,1.3rem);color:var(--v-gris);margin:0 0 18px}
+.v-destacado{position:relative;display:block;border-radius:22px;overflow:hidden;border:1px solid var(--v-borde);box-shadow:var(--v-sombra);background:var(--v-noche-2)}
+.v-destacado__img{display:block;position:relative;aspect-ratio:16/10;overflow:hidden;border-bottom:5px solid var(--cat,var(--v-oro))}
+.v-destacado__img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.v-destacado:hover .v-destacado__img img{transform:scale(1.04)}
+.v-destacado__info{padding:16px}
+.v-destacado__info h2,.v-destacado__info h3{margin:0 0 6px;font-family:var(--v-redonda);font-weight:900;font-size:clamp(1.35rem,4vw,1.9rem)}
+.v-destacado__info p{margin:0 0 12px;color:var(--v-gris)}
+@media(min-width:900px){.v-hero{padding:46px 0 20px}.v-hero__grid{grid-template-columns:.9fr 1.1fr;gap:44px}}
+
+/* Accesos por categoría */
+.v-categorias{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;list-style:none;margin:0;padding:0}
+@media(min-width:900px){.v-categorias{grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}}
+.v-categoria{display:flex;flex-direction:column;justify-content:flex-end;min-height:120px;padding:16px;border-radius:var(--v-radio);background:linear-gradient(180deg,color-mix(in srgb,var(--cat) 80%,var(--v-noche)) 0%,var(--cat) 60%);color:var(--v-noche)!important;text-decoration:none;box-shadow:var(--v-sombra);transition:transform .25s}
+.v-categoria:hover{transform:translateY(-4px)}
+.v-categoria strong{font-family:var(--v-redonda);font-weight:900;font-size:clamp(1.25rem,4vw,1.6rem);line-height:1.1}
+.v-categoria span{font-size:14px;font-weight:600;line-height:1.35}
+.v-categoria small{font-weight:800;font-size:12px;margin-top:6px}
+
+/* Filtros y buscador */
+.v-filtros{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0 4px}
+.v-filtro{min-height:44px;padding:0 16px;border-radius:999px;border:2px solid var(--cat,var(--v-oro));background:transparent;color:var(--v-crema);font-weight:800;font-family:var(--v-redonda);font-size:15px;cursor:pointer}
+.v-filtro[aria-pressed="true"]{background:var(--cat,var(--v-oro));color:var(--v-noche)}
+.v-buscar{display:flex;align-items:center;flex:1 1 220px;min-height:44px;border-radius:999px;border:1px solid var(--v-borde);background:var(--v-noche-2);padding:0 14px}
+.v-buscar input{flex:1;min-width:0;background:transparent;border:0;color:var(--v-crema);font:inherit;min-height:42px}
+.v-buscar input::placeholder{color:var(--v-gris)}
+.v-buscar input:focus{outline:none}.v-buscar:focus-within{outline:3px solid var(--v-oro-claro);outline-offset:2px}
+.v-vacio{color:var(--v-gris);padding:20px 0}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Ruta de migas */
+.v-migas{font-size:14px;color:var(--v-gris);padding:14px 0 0}
+.v-migas ol{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0;padding:0}
+.v-migas li+li::before{content:"/";margin-right:6px;opacity:.6}
+.v-migas a{color:var(--v-gris)}
+
+/* Página de cada juego */
+.v-ficha__cabeza{display:grid;gap:18px;padding-top:16px;padding-bottom:8px}
+.v-ficha__cabeza h1{font-size:clamp(2rem,7vw,3.4rem);margin:0}
+.v-ficha__portada{position:relative;display:block;border-radius:20px;overflow:hidden;aspect-ratio:16/10;border-bottom:6px solid var(--cat,var(--v-oro));box-shadow:var(--v-sombra)}
+.v-ficha__portada img{width:100%;height:100%;object-fit:cover;display:block}
+@media(min-width:900px){.v-ficha__cabeza{grid-template-columns:1.1fr .9fr;align-items:center;gap:40px;padding-top:30px}}
+.v-ficha h2{font-size:clamp(1.4rem,4vw,1.9rem);margin:0 0 12px}
+.v-ficha__bloques{display:grid;gap:8px}
+@media(min-width:1040px){.v-ficha__bloques{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:40px;align-items:start}}
+.v-cita{margin:14px 0;padding:12px 16px;border-left:4px solid var(--v-oro);background:var(--v-noche-2);border-radius:0 12px 12px 0;font-family:var(--v-serif);font-size:1.05rem}
+.v-cita footer{font-family:var(--v-sans);font-size:13px;color:var(--v-gris);margin-top:6px}
+.v-controles{display:grid;gap:12px}
+.v-controles section{background:var(--v-noche-2);border:1px solid var(--v-borde);border-radius:var(--v-radio);padding:14px 16px}
+.v-controles h3{margin:0 0 6px;font-family:var(--v-redonda);font-size:16px;font-weight:900}
+.v-controles ul,.v-preguntas{margin:0;padding-left:1.2em}
+.v-controles li,.v-preguntas li{margin:4px 0}
+.v-preguntas li{margin:8px 0}
+.v-nota{font-size:14px;color:var(--v-gris)}
+
+/* Franja de imágenes del banco */
+.v-imagenes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;list-style:none;margin:0;padding:0}
+@media(min-width:900px){.v-imagenes{grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}}
+.v-imagenes--4{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(min-width:900px){.v-imagenes--4{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.v-imagenes a{display:block;border-radius:12px;overflow:hidden;aspect-ratio:16/9;background:var(--v-noche-3)}
+.v-imagenes img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.v-imagenes a:hover img{transform:scale(1.06)}
+
+/* Bloque del portal dentro de la portada clara */
+.v-banda{background:var(--v-noche);color:var(--v-crema);padding-bottom:20px}
+
+@media(prefers-reduced-motion:reduce){
+  .v-juego,.v-juego__portada img,.v-destacado__img img,.v-categoria,.v-imagenes img,.v-boton{transition:none!important}
+  .v-juego:hover,.v-juego:focus-within,.v-categoria:hover,.portal .v-boton--jugar:hover{transform:none}
+  .v-juego:hover .v-juego__portada img,.v-destacado:hover .v-destacado__img img,.v-imagenes a:hover img{transform:none}
+  .v-fila{scroll-behavior:auto}
+}
+
+/* Portada: menú en el nuevo orden; en el celular queda «Juegos» a la vista (el resto está en el pie) */
+@media(max-width:600px){.home-nav a{display:none!important}.home-nav a.siempre{display:inline-flex!important}}
+/* El resto de Verbo, más compacto debajo del portal */
+.home-resto .questions,.home-resto .explore,.home-resto .encounter{padding-top:56px;padding-bottom:56px}
+.home-resto .pause{min-height:0}
+.portal .v-seccion>h2,.portal .v-seccion__cabeza h2{font-size:clamp(1.45rem,4vw,2.1rem);margin:0 0 14px;line-height:1.15}
+.portal .v-seccion__cabeza h2{margin:0}
+.portal .v-hero h1{color:var(--v-crema)}
+.portal p{max-width:none}
+@media(min-width:700px){.v-controles{grid-template-columns:1fr 1fr}}
+.v-ficha .v-seccion.v-texto,.v-ficha .v-seccion>p{max-width:76ch}
+@media(min-width:900px){.v-seccion>.v-destacado{display:grid;grid-template-columns:1.25fr 1fr;align-items:center}.v-seccion>.v-destacado .v-destacado__img{border-bottom:0;border-right:6px solid var(--cat,var(--v-oro));height:100%}.v-seccion>.v-destacado .v-destacado__info{padding:28px 32px}}

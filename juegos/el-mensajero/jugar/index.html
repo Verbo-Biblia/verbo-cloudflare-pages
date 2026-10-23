@@ -1,0 +1,139 @@
+<!doctype html>
+<!-- verbo:sin-pie -->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>El mensajero · Caminos de la fe | Verbo</title>
+<meta name="description" content="Juego cristiano de plataformas y sigilo en 3D: lleva una carta por los tejados de Jerusalén la noche en que Pedro fue librado de la cárcel (Hechos 12). Gratis, en español e inglés.">
+<meta name="theme-color" content="#0c1024">
+<link rel="canonical" href="https://verbobiblia.com/juegos/el-mensajero/">
+<link rel="stylesheet" href="comun/base.css">
+<link rel="stylesheet" href="mensajero.css?v=ff246806">
+<script type="importmap">
+{ "imports": { "three": "./lib/three/three.module.min.js", "three/addons/": "./lib/three/addons/" } }
+</script>
+</head>
+<body>
+
+<canvas id="lienzo"></canvas>
+
+<!-- Menú inicial -->
+<section id="inicio" class="pantalla activa">
+  <a class="salir-sitio" href="/juegos/" data-t="masJuegos">← Más juegos</a>
+  <div class="inicio-caja">
+    <p class="sobre" data-t="sobretitulo">Plataformas y sigilo</p>
+    <h1 data-t="titulo">El mensajero</h1>
+    <p class="sub" data-t="subtitulo">Caminos de la fe</p>
+    <p class="capitulo" data-t="capituloMenu"></p>
+    <div class="inicio-botones">
+      <button class="boton grande" id="btn-jugar" type="button" data-t="jugar">Jugar</button>
+      <button class="boton secundario" id="btn-misiones" type="button" data-t="misiones">Misiones</button>
+    </div>
+    <p class="carga" id="carga" aria-live="polite"><span id="carga-texto" data-t="cargando"></span> <b id="carga-por"></b></p>
+    <p class="controles" id="ayuda-controles"></p>
+    <div class="pie">
+      <button class="icono" id="btn-idioma" type="button">EN</button>
+      <button class="icono" data-musica type="button" data-t-aria="musica">🎵</button>
+      <button class="icono" data-sonido type="button" data-t-aria="sonido">🔊</button>
+    </div>
+  </div>
+</section>
+
+<!-- Introducción -->
+<section id="intro" class="pantalla">
+  <div class="tarjeta">
+    <p class="mision-num" id="intro-mision"></p>
+    <div id="intro-textos"></div>
+    <button class="boton grande" id="btn-empezar" type="button" data-t="empezar">Empezar</button>
+  </div>
+</section>
+
+<!-- Lista de misiones -->
+<section id="misiones" class="pantalla">
+  <div class="tarjeta menu ancha">
+    <h2 data-t="misiones">Misiones</h2>
+    <div class="lista-misiones" id="lista-misiones"></div>
+    <button class="boton secundario" id="btn-misiones-volver" type="button" data-t="menu">Menú</button>
+  </div>
+</section>
+
+<!-- Partida: HUD y botones táctiles -->
+<section id="partida" class="pantalla">
+  <header class="hud">
+    <p class="objetivo" id="objetivo"></p>
+    <div class="hud-der">
+      <span class="pergaminos-hud" id="hud-pergaminos" aria-hidden="true"></span>
+      <button class="icono" id="btn-pausa" type="button" data-t-aria="pausa">❚❚</button>
+    </div>
+  </header>
+  <p class="pista" id="pista" aria-live="polite"></p>
+  <p class="aviso" id="aviso"></p>
+  <div class="escondido" id="escondido" aria-hidden="true">◐</div>
+  <div class="agua" id="agua" aria-hidden="true"><span>💧</span><b><i></i></b></div>
+  <p class="girar" data-t="girar"></p>
+  <p class="accion" id="accion"></p>
+  <div id="marcas"></div>
+  <div class="tactil" id="tactil">
+    <div class="t-izq">
+      <button type="button" data-boton="izq" aria-label="izquierda">◀</button>
+      <button type="button" data-boton="abajo" aria-label="agacharse">▼</button>
+      <button type="button" data-boton="der" aria-label="derecha">▶</button>
+    </div>
+    <div class="t-der">
+      <button type="button" data-boton="usar" class="chico" aria-label="usar">✋</button>
+      <button type="button" data-boton="correr" class="chico" aria-label="correr">»</button>
+      <button type="button" data-boton="saltar" class="grande" aria-label="saltar">⤒</button>
+    </div>
+  </div>
+  <div class="velo" id="velo"></div>
+  <div class="ilustracion" id="ilustracion"></div>
+</section>
+
+<!-- Pausa -->
+<section id="pausa" class="pantalla capa">
+  <div class="tarjeta menu">
+    <h2 data-t="pausa">Pausa</h2>
+    <button class="boton grande" id="btn-seguir" type="button" data-t="continuar">Continuar</button>
+    <button class="boton secundario" id="btn-control" type="button" data-t="reiniciar"></button>
+    <button class="boton secundario" id="btn-reiniciar" type="button" data-t="reiniciarNivel"></button>
+    <button class="boton secundario" id="btn-calidad" type="button"></button>
+    <div class="pie">
+      <button class="icono" data-musica type="button" data-t-aria="musica">🎵</button>
+      <button class="icono" data-sonido type="button" data-t-aria="sonido">🔊</button>
+    </div>
+    <p class="controles" id="ayuda-controles-pausa"></p>
+    <button class="boton secundario" id="btn-salir" type="button" data-t="salirMenu"></button>
+  </div>
+</section>
+
+<!-- Escena final: tarjetas de diálogo y de la Escritura -->
+<section id="relato" class="pantalla capa transparente">
+  <div class="dialogo" id="dialogo">
+    <p class="quien" id="d-quien"></p>
+    <p class="texto" id="d-texto"></p>
+    <cite id="d-ref"></cite>
+    <button class="boton" id="btn-siguiente" type="button" data-t="siguiente">Seguir</button>
+  </div>
+</section>
+
+<!-- Capítulo completado -->
+<section id="final" class="pantalla capa">
+  <div class="tarjeta menu">
+    <h2 data-t="completado">Capítulo completado</h2>
+    <p id="f-tiempo"></p>
+    <p id="f-pergaminos"></p>
+    <p id="f-atrapado"></p>
+    <div class="notas" id="f-notas"></div>
+
+    <button class="boton grande" id="btn-siguiente-mision" type="button" data-t="siguienteMision">Siguiente misión</button>
+    <button class="boton secundario" id="btn-otra" type="button" data-t="otraVez">Jugar otra vez</button>
+    <a class="boton secundario" href="/juegos/" data-t="masJuegos">← Más juegos</a>
+  </div>
+</section>
+
+<p class="error" id="error" hidden></p>
+
+<script type="module" src="juego/principal.js?v=ff246806"></script>
+</body>
+</html>

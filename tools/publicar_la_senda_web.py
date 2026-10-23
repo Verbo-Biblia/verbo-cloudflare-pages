@@ -10,7 +10,7 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 R = Path(__file__).resolve().parent.parent
 APP = Path.home() / 'Verbo/Juego-Preguntas-Biblicas/la-senda-app'
-DESTINO = R / 'juegos/la-senda'
+DESTINO = R / 'juegos/la-senda/jugar'
 
 shutil.copytree(APP / 'www', DESTINO, dirs_exist_ok=True)
 pagina = DESTINO / 'index.html'

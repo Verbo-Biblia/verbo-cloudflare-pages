@@ -65,7 +65,7 @@
   // queda, para no dejar a nadie sin salida. En la web normal no aplica.
   function ocultarSalidas() {
     // El pie público incluye salidas de la sección y no pertenece al lector Android.
-    document.querySelectorAll('.verbo-pie, .section-bar').forEach((el) => {
+    document.querySelectorAll('.verbo-pie, .section-bar, .portal-bar').forEach((el) => {
       el.hidden = true;
       el.style.display = 'none';
     });
