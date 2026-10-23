@@ -14,6 +14,10 @@ let desbloqueado = false;
 // Un juego con música propia la pone en su carpeta: carpetaMusica('musica/') (relativo a la página).
 export function carpetaMusica(ruta) { CARPETA = new URL(ruta, location.href).href; }
 
+// Durante un anuncio (/juegos/comun/anuncios.js) la música se pausa y después sigue.
+addEventListener('verboads:inicio', () => actual?.audio.pause());
+addEventListener('verboads:fin', () => { if (actual && musicaActiva()) actual.audio.play().catch(() => {}); });
+
 export function musicaActiva() {
   try { return localStorage.getItem(CLAVE) !== 'no'; } catch { return true; }
 }

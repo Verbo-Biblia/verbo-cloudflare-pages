@@ -17,6 +17,10 @@ const VOLUMEN = 0.35;
 
 let actual = null, claveActual = null, propios = {}, vuelta = 0;
 
+// Durante un anuncio (/juegos/comun/anuncios.js) la música se pausa y después sigue.
+addEventListener('verboads:inicio', () => actual?.pause());
+addEventListener('verboads:fin', () => { if (actual && sonidoActivo()) actual.play().catch(() => {}); });
+
 export function musicaDeTema(tema) {
   propios = {};
   for (const [k, ruta] of Object.entries(tema?.datos?.musica || {})) if (ruta) propios[k] = tema.base + ruta;

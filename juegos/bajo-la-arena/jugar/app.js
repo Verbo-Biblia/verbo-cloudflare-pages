@@ -36,6 +36,14 @@ async function findAudio(folder, name) {
   return null;
 }
 
+// Durante un anuncio (/juegos/comun/anuncios.js) la música se pausa y después sigue.
+let sonandoAntesDelAnuncio = [];
+addEventListener('verboads:inicio', () => {
+  sonandoAntesDelAnuncio = Object.values(music.tracks).filter((tr) => !tr.paused);
+  sonandoAntesDelAnuncio.forEach((tr) => tr.pause());
+});
+addEventListener('verboads:fin', () => { sonandoAntesDelAnuncio.forEach((tr) => tr.play().catch(() => {})); sonandoAntesDelAnuncio = []; });
+
 async function loadAudio() {
   await Promise.all([
     ...sfxNames.map(async (name) => { const src = await findAudio('assets/sfx/', name); if (src) sounds[name] = src; }),
@@ -1087,7 +1095,7 @@ function bindEvents() {
   $('#solve-btn').addEventListener('click', solveHypothesis);
   $('#stamp-btn').addEventListener('click', () => armStamp());
   $('#reset-btn').addEventListener('click', resetCase);
-  $('#media-action').addEventListener('click', () => { closeModals(); showView('home'); });
+  $('#media-action').addEventListener('click', () => { closeModals(); showView('home'); window.VerboAds?.pausa('arena-caso-resuelto', 'next'); });
   $('#collection-btn').addEventListener('click', async () => { await renderCollection(); $('#collection-modal').classList.remove('hidden'); });
   bindBoardDrag();
   bindDocZoom();

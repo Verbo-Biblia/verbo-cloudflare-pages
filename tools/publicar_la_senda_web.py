@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Copia La Senda (la app Android de preguntas bíblicas, que también funciona en el navegador) a /juegos/la-senda/.
+"""Copia La Senda (la app Android de preguntas bíblicas, que también funciona en el navegador) a /juegos/la-senda/jugar/.
+La ficha /juegos/la-senda/ la genera tools/build_juegos.py; las portadas quedan en /juegos/la-senda/.
 Origen: ~/Verbo/Juego-Preguntas-Biblicas/la-senda-app/www. Agrega título, descripción, imagen para redes y el enlace
 de regreso a Juegos, y dibuja las miniaturas de la tarjeta (portada.webp y portada-en.webp).
 Uso (desde la raíz del sitio): python3 tools/publicar_la_senda_web.py  — después, python3 tools/pie_comun.py"""
@@ -11,6 +12,7 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont
 R = Path(__file__).resolve().parent.parent
 APP = Path.home() / 'Verbo/Juego-Preguntas-Biblicas/la-senda-app'
 DESTINO = R / 'juegos/la-senda/jugar'
+FICHA = R / 'juegos/la-senda'
 
 shutil.copytree(APP / 'www', DESTINO, dirs_exist_ok=True)
 pagina = DESTINO / 'index.html'
@@ -29,6 +31,11 @@ if 'verbo:la-senda-web' not in html:
               'color:#f0c75e;text-decoration:none;opacity:.8}#verboVolver:hover{opacity:1}</style>')
     html = html.replace('<title>La Senda</title>', '<title>La Senda · preguntas bíblicas gratis | Verbo</title>' + cabeza, 1)
     html = html.replace('<body>', '<body><a id="verboVolver" href="/juegos/" aria-label="Juegos de Verbo / Verbo games">← Verbo</a>', 1)
+    pagina.write_text(html, encoding='utf-8')
+if 'anuncios-web.js' not in html:
+    # Anuncios de juegos solo en la web (la app Android no lleva AdSense): módulo común + enganche de La Senda.
+    html = html.replace('<script src="js/app.js"></script>', '<script src="js/app.js"></script><script src="/juegos/comun/anuncios.js?v=20261023"></script>'
+                        '<script src="/juegos/la-senda/anuncios-web.js?v=20261023"></script>', 1)
     pagina.write_text(html, encoding='utf-8')
 
 # Miniatura 1280x720: fondo azul noche, ícono y nombre en dorado, y un teléfono con una pregunta real.
@@ -66,7 +73,7 @@ for idioma, (linea1, linea2, dato, captura) in TEXTOS.items():
     d.text((82, 460), linea1, font=ImageFont.truetype(SANS, 40), fill='#f7f3e7')
     d.text((82, 512), linea2, font=ImageFont.truetype(SANS, 40), fill='#f7f3e7')
     d.text((82, 592), dato, font=ImageFont.truetype(SANS, 28), fill='#a9b9ca')
-    lienzo.convert('RGB').save(DESTINO / ('portada.webp' if idioma == 'es' else 'portada-en.webp'), 'WEBP', quality=82)
+    lienzo.convert('RGB').save(FICHA / ('portada.webp' if idioma == 'es' else 'portada-en.webp'), 'WEBP', quality=82)
 
 total = sum(f.stat().st_size for f in DESTINO.rglob('*') if f.is_file())
 print(f'La Senda web en {DESTINO}: {total / 1e6:.1f} MB')

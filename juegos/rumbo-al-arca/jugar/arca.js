@@ -7,6 +7,8 @@
 import { t, idioma, cambiarIdioma, fijarTextos, traducirPagina } from './comun/idioma.js';
 import { sonar, sonidoActivo, fijarSonido, precargar } from './comun/sonido.js';
 import { musica, musicaActiva, fijarMusica, carpetaMusica } from './comun/musica.js';
+// Pausa de anuncio en un corte natural (apagada mientras /juegos/comun/anuncios.js no se active).
+const pausaAnuncio = (nombre, tipo) => window.VerboAds ? VerboAds.pausa(nombre, tipo) : Promise.resolve();
 
 const TEXTOS = {
   es: {
@@ -23,6 +25,7 @@ const TEXTOS = {
     reiniciar: 'Empezar de nuevo', ajustes: 'Ajustes',
     bloqueado: 'Termina el nivel {n} para abrir este',
     sinPistas: 'Ya usaste las pistas de este nivel',
+    pistaAnuncio: 'Sin pistas. Toca otra vez 💡 si quieres ver un anuncio y ganar una pista más',
     sinGomas: 'Ya usaste las gomas de este nivel',
     gomaLista: 'Toca la flecha que quieres borrar',
     sinVidas: 'Te quedaste sin corazones',
@@ -48,6 +51,7 @@ const TEXTOS = {
     reiniciar: 'Start over', ajustes: 'Settings',
     bloqueado: 'Finish level {n} to open this one',
     sinPistas: 'You used the hints for this level',
+    pistaAnuncio: 'No hints left. Tap 💡 again if you want to watch an ad for one more hint',
     sinGomas: 'You used the erasers for this level',
     gomaLista: 'Tap the arrow you want to erase',
     sinVidas: 'You ran out of hearts',
@@ -407,7 +411,13 @@ function animar(f, tramos, alTerminar, velocidad = VELOCIDAD, minimo = 90) {
 
 function pista() {
   if (!estado || estado.terminado) return;
-  if (!estado.pistas) return avisar(t('sinPistas'));
+  if (!estado.pistas) {
+    // Recompensa opcional: solo si el jugador vuelve a tocar 💡 después de leer el aviso.
+    if (!window.VerboAds?.recompensaDisponible()) return avisar(t('sinPistas'));
+    if (!estado.ofrecida) { estado.ofrecida = true; return avisar(t('pistaAnuncio')); }
+    estado.ofrecida = false;
+    return VerboAds.recompensa('arca-pista-extra', () => { estado.pistas++; actualizarMarcador(); pista(); }, () => avisar(t('sinPistas')));
+  }
   // La flecha libre más «al fondo»: la que más ayuda a destrabar.
   const libres = estado.flechas.filter(f => !f.fuera && !f.moviendo && !obstaculo(f));
   if (!libres.length) return;
@@ -594,7 +604,7 @@ async function iniciar() {
   $('#btn-reiniciar').addEventListener('click', () => empezar(estado.i));
   $('#btn-ajustes').addEventListener('click', () => { $('#ajustes').hidden = !$('#ajustes').hidden; sonar('boton', .4); });
   $('#btn-salir').addEventListener('click', () => { estado.terminado = true; pintarNiveles(); });
-  $('#btn-reintentar').addEventListener('click', () => empezar(estado.i));
+  $('#btn-reintentar').addEventListener('click', () => pausaAnuncio('arca-reintentar').then(() => empezar(estado.i)));
   $('#btn-velo-niveles').addEventListener('click', () => pintarNiveles());
   $('#btn-idioma').addEventListener('click', () => {
     cambiarIdioma(idioma() === 'es' ? 'en' : 'es');
@@ -610,9 +620,9 @@ async function iniciar() {
     fijarMusica(!musicaActiva());
     pintarSonido();
   }));
-  $('#btn-siguiente').addEventListener('click', () => empezar(estado.i + 1));
-  $('#btn-otra').addEventListener('click', () => empezar(estado.i));
-  $('#btn-a-niveles').addEventListener('click', () => { sonar('boton', .5); pintarNiveles(); });
+  $('#btn-siguiente').addEventListener('click', () => pausaAnuncio('arca-siguiente-nivel').then(() => empezar(estado.i + 1)));
+  $('#btn-otra').addEventListener('click', () => pausaAnuncio('arca-repetir').then(() => empezar(estado.i)));
+  $('#btn-a-niveles').addEventListener('click', () => { sonar('boton', .5); pausaAnuncio('arca-volver-niveles', 'browse').then(pintarNiveles); });
   addEventListener('resize', acomodar);
   addEventListener('pointerdown', precargar, { once: true });
 }

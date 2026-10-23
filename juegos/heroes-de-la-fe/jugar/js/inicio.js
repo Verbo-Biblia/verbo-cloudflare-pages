@@ -62,7 +62,7 @@ alPasar(que => {
   else if (que === 'acierto') sonar('par', 0.4);
   else if (que === 'repite') sonar('boton', 0.35);
   else if (que === 'fin') { musica('final', false); sonar('premio', 0.45); }
-  else if (que === 'salir') leyendo = null;
+  else if (que === 'salir') { leyendo = null; window.VerboAds?.pausa('heroes-volver-al-menu', 'browse'); }
 });
 
 function pintarSonido() {

@@ -5,6 +5,8 @@ import * as THREE from 'three';
 import { fijarTextos, traducirPagina, t, idioma, cambiarIdioma } from '../comun/idioma.js';
 import { sonidoActivo, fijarSonido, sonar as sonarComun, precargar } from '../comun/sonido.js';
 import { musica, musicaActiva, fijarMusica } from '../comun/musica.js';
+// Pausa de anuncio en un corte natural (apagada mientras /juegos/comun/anuncios.js no se active).
+const pausaAnuncio = (nombre, tipo) => window.VerboAds ? VerboAds.pausa(nombre, tipo) : Promise.resolve();
 import { TEXTOS } from './textos.js?v=ff246806';
 import { entrada, leerEntrada, tomar, conectarTactil, limpiarPulsados, usaTactil, pulsar } from './entrada.js?v=ff246806';
 import { crearEscena, fijarCalidad, aplicarAmbiente, moverCapas, renderizador, escena, camara } from './mundo.js?v=ff246806';
@@ -891,14 +893,14 @@ $('btn-jugar').addEventListener('click', () => {
 });
 $('btn-misiones').addEventListener('click', () => { sonar('boton', 0.5); pintarMisiones(); mostrar('misiones'); });
 $('btn-misiones-volver').addEventListener('click', () => mostrar('inicio'));
-$('btn-siguiente-mision').addEventListener('click', () => irAMision(numMision + 1));
+$('btn-siguiente-mision').addEventListener('click', () => pausaAnuncio('mensajero-siguiente-mision').then(() => irAMision(numMision + 1)));
 $('btn-empezar').addEventListener('click', () => { callarVoz(); sonar('boton', 0.5); reiniciarEscenaFinal(); empezarPartida(); });
 $('btn-pausa').addEventListener('click', pausar);
 $('btn-seguir').addEventListener('click', seguir);
 $('btn-control').addEventListener('click', () => { seguir(); reaparecer(); });
 $('btn-reiniciar').addEventListener('click', () => { seguir(); empezarPartida(); });
-$('btn-salir').addEventListener('click', () => { fase = 'menu'; $('pausa').classList.remove('activa'); mostrar('inicio'); musica('menu'); });
-$('btn-otra').addEventListener('click', () => { reiniciarEscenaFinal(); empezarPartida(); });
+$('btn-salir').addEventListener('click', () => { fase = 'menu'; $('pausa').classList.remove('activa'); mostrar('inicio'); musica('menu'); pausaAnuncio('mensajero-volver-al-menu', 'browse'); });
+$('btn-otra').addEventListener('click', () => pausaAnuncio('mensajero-repetir').then(() => { reiniciarEscenaFinal(); empezarPartida(); }));
 $('btn-calidad').addEventListener('click', () => {
   calidadAlta = !calidadAlta;
   guardar(CLAVE_CALIDAD, calidadAlta ? 'alta' : 'baja');

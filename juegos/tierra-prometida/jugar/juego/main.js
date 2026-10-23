@@ -140,7 +140,9 @@ function terminarYVolver() {
   const fin = partidaActual?.alTerminar;
   cerrarMesa();
   partidaActual = null;
-  if (fin) fin(gano); else ir('pueblo');
+  // Pausa natural al terminar una partida, ya fuera de la mesa (apagada mientras los anuncios no se activen).
+  const seguir = () => { if (fin) fin(gano); else ir('pueblo'); };
+  if (window.VerboAds) VerboAds.pausa('tierra-fin-de-partida', 'next').then(seguir); else seguir();
 }
 
 // ---------- ciclo ----------

@@ -6,6 +6,8 @@
 import { t, idioma, cambiarIdioma, fijarTextos, traducirPagina } from './comun/idioma.js';
 import { sonar, sonidoActivo, fijarSonido, precargar } from './comun/sonido.js';
 import { musica, musicaActiva, fijarMusica } from './comun/musica.js';
+// Pausa de anuncio en un corte natural (apagada mientras /juegos/comun/anuncios.js no se active).
+const pausaAnuncio = (nombre, tipo) => window.VerboAds ? VerboAds.pausa(nombre, tipo) : Promise.resolve();
 
 const TEXTOS = {
   es: {
@@ -372,9 +374,9 @@ async function iniciar() {
     clearInterval(estado.reloj);
     pintarNiveles();
   });
-  $('#btn-siguiente').addEventListener('click', () => empezar(estado.i + 1));
-  $('#btn-otra').addEventListener('click', () => empezar(estado.i));
-  $('#btn-a-niveles').addEventListener('click', () => { sonar('boton', .5); pintarNiveles(); });
+  $('#btn-siguiente').addEventListener('click', () => pausaAnuncio('pares-siguiente-nivel').then(() => empezar(estado.i + 1)));
+  $('#btn-otra').addEventListener('click', () => pausaAnuncio('pares-repetir').then(() => empezar(estado.i)));
+  $('#btn-a-niveles').addEventListener('click', () => { sonar('boton', .5); pausaAnuncio('pares-volver-niveles', 'browse').then(pintarNiveles); });
   addEventListener('resize', acomodar);
   addEventListener('pointerdown', precargar, { once: true });
 }
