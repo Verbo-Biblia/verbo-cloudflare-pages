@@ -491,7 +491,7 @@ function alSubir(e) {
 // ---------- arranque ----------
 
 async function iniciar() {
-  niveles = await (await fetch('niveles.json')).json();
+  niveles = await (await fetch('niveles.json?v=9f6643c9')).json();
   pintarInicio();
   mostrar('inicio');
 
