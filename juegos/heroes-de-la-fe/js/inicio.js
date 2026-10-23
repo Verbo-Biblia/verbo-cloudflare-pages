@@ -4,7 +4,7 @@
 import { t, idioma, cambiarIdioma, fijarTextos, traducirPagina } from '../comun/idioma.js';
 import { sonar, sonidoActivo, fijarSonido, precargar } from '../comun/sonido.js';
 import { musica, musicaActiva, fijarMusica, carpetaMusica } from '../comun/musica.js';
-import { iniciarJugador, jugar, alPasar } from './jugar.js?v=a86f051c';
+import { iniciarJugador, jugar, alPasar } from './jugar.js?v=6e2b4187';
 
 const TEXTOS = {
   es: {
@@ -43,6 +43,12 @@ const HISTORIAS = [
   { id: 'carmichael', portada: 'img/portada_carmichael.webp',
     es: { nombre: 'Amy Carmichael', lema: 'Amma, la madre de Dohnavur', anos: '1867-1951 · India' },
     en: { nombre: 'Amy Carmichael', lema: 'Amma, the mother of Dohnavur', anos: '1867-1951 · India' } },
+  { id: 'graham', portada: 'img/portada_graham.webp',
+    es: { nombre: 'Billy Graham', lema: 'El predicador del mundo', anos: '1918-2018 · Estados Unidos' },
+    en: { nombre: 'Billy Graham', lema: 'Preacher to the world', anos: '1918-2018 · United States' } },
+  { id: 'cruz', portada: 'img/portada_cruz.webp',
+    es: { nombre: 'Nicky Cruz', lema: 'De la pandilla a Jesús', anos: 'Desde 1938 · Puerto Rico y Nueva York' },
+    en: { nombre: 'Nicky Cruz', lema: 'From the gang to Jesus', anos: 'Since 1938 · Puerto Rico and New York' } },
 ];
 
 const $ = s => document.querySelector(s);
@@ -91,7 +97,7 @@ function pintarMenu() {
 async function abrir(h, boton) {
   boton.querySelector('.t-leer').textContent = t('cargando');
   try {
-    const historia = await (await fetch(`historias/${h.id}.${idioma()}.json?v=a86f051c`)).json();
+    const historia = await (await fetch(`historias/${h.id}.${idioma()}.json?v=6e2b4187`)).json();
     traducirPagina($('#jugador'));
     document.body.classList.add('leyendo');
     leyendo = h.id;
