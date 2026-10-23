@@ -2,7 +2,7 @@
 // Los navegadores no dejan sonar nada antes del primer toque: el tema pedido arranca con ese toque.
 // Se puede apagar aparte de los efectos; la elección se recuerda.
 
-const CARPETA = new URL('./musica/', import.meta.url).href;
+let CARPETA = new URL('./musica/', import.meta.url).href;
 const CLAVE = 'mini:musica';
 const VOLUMEN = 0.32;
 const FUNDIDO = 900; // ms
@@ -10,6 +10,9 @@ const FUNDIDO = 900; // ms
 let actual = null;   // { nombre, audio }
 let pedido = null;   // { nombre, repetir }
 let desbloqueado = false;
+
+// Un juego con música propia la pone en su carpeta: carpetaMusica('musica/') (relativo a la página).
+export function carpetaMusica(ruta) { CARPETA = new URL(ruta, location.href).href; }
 
 export function musicaActiva() {
   try { return localStorage.getItem(CLAVE) !== 'no'; } catch { return true; }

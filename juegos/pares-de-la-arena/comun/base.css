@@ -56,3 +56,13 @@ button { font: inherit; color: inherit; }
 }
 
 @media (prefers-reduced-motion: reduce) { * { transition-duration: .01ms !important; animation-duration: .01ms !important; } }
+
+/* Botón claro para volver a la página de juegos de Verbo (arriba a la izquierda del menú). */
+.salir-sitio {
+  position: absolute; z-index: 4; top: max(12px, env(safe-area-inset-top)); left: 12px;
+  display: inline-flex; align-items: center; gap: .35em; min-height: 40px; padding: .3em .95em;
+  border-radius: 20px; border: 1.5px solid var(--oro); background: #1a1008e0; color: var(--oro-claro);
+  font-family: var(--titulo); font-weight: 700; font-size: .9em; text-decoration: none; box-shadow: 0 4px 14px #0008;
+}
+.salir-sitio:hover { filter: brightness(1.15); }
+body #inicio { padding-top: max(64px, calc(env(safe-area-inset-top) + 56px)); }

@@ -9,12 +9,13 @@
 <meta name="theme-color" content="#24170d">
 <link rel="canonical" href="https://verbobiblia.com/juegos/rumbo-al-arca/">
 <link rel="stylesheet" href="comun/base.css">
-<link rel="stylesheet" href="arca.css?v=9f6643c9">
+<link rel="stylesheet" href="arca.css?v=1e43318a">
 </head>
 <body>
 
 <!-- Menú inicial -->
 <section id="inicio" class="pantalla activa">
+  <a class="salir-sitio" href="../" data-t="masJuegos">← Más juegos</a>
   <div class="inicio-caja">
     <p class="sobre" data-t="sobretitulo">Puzle de flechas</p>
     <h1 data-t="titulo">Rumbo al arca</h1>
@@ -27,7 +28,6 @@
     </div>
     <p class="progreso" id="progreso"></p>
     <div class="pie">
-      <a class="icono" href="../" data-t-aria="volver">←</a>
       <button class="icono" id="btn-idioma" type="button">EN</button>
       <button class="icono" data-musica type="button" data-t-aria="musica">🎵</button>
       <button class="icono" data-sonido type="button" data-t-aria="sonido">🔊</button>
@@ -63,13 +63,14 @@
     <button class="icono" data-musica type="button" data-t-aria="musica">🎵</button>
     <button class="icono" data-sonido type="button" data-t-aria="sonido">🔊</button>
     <button class="boton secundario" id="btn-salir" type="button" data-t="salir">Salir a los niveles</button>
+    <a class="boton secundario" href="../" data-t="masJuegos">← Más juegos</a>
   </div>
   <div class="zona-tablero" id="zona">
     <svg id="tablero" class="tablero" xmlns="http://www.w3.org/2000/svg"></svg>
   </div>
   <footer class="barra-abajo">
     <button class="herramienta" id="btn-goma" type="button" data-t-aria="goma"><span aria-hidden="true">🧽</span><i id="m-gomas">2</i></button>
-    <label class="zoom"><span aria-hidden="true">🔍</span><input id="zoom" type="range" min="1" max="3" step="0.05" value="1" data-t-aria="zoom"></label>
+    <label class="zoom"><span aria-hidden="true">🔍</span><input id="zoom" type="range" min="1" max="4" step="0.05" value="1" data-t-aria="zoom"></label>
     <button class="herramienta" id="btn-pista" type="button" data-t-aria="pista"><span aria-hidden="true">💡</span><i id="m-pistas">3</i></button>
   </footer>
   <div id="aviso" class="aviso" aria-live="polite"></div>
@@ -100,6 +101,6 @@
   </div>
 </section>
 
-<script type="module" src="arca.js?v=9f6643c9"></script>
+<script type="module" src="arca.js?v=1e43318a"></script>
 </body>
 </html>

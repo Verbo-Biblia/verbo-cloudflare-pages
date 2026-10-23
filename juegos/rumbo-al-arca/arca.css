@@ -150,16 +150,16 @@ body[data-pantalla="partida"]::before { background: radial-gradient(ellipse at c
   padding: 10px; background: #1d2640f5; border: 1px solid #3a4470; border-radius: 14px; box-shadow: 0 10px 30px #0009; }
 .ajustes .boton { min-height: 44px; font-size: .9em; }
 
-.zona-tablero { flex: 1; min-height: 0; overflow: auto; display: grid; place-items: center; padding: 4px;
+.zona-tablero { flex: 1; min-height: 0; overflow: auto; touch-action: none; display: flex; padding: 4px;
   -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
-.tablero { display: block; margin: auto; touch-action: pan-x pan-y; user-select: none; -webkit-user-select: none; cursor: pointer; }
+.tablero { display: block; flex: none; margin: auto; touch-action: none; user-select: none; -webkit-user-select: none; cursor: pointer; }
 .flecha path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
 .flecha .f-cuerpo { stroke: var(--color); stroke-width: .2; }
 .flecha .f-punta { fill: var(--color); stroke: var(--color); stroke-width: .06; stroke-linejoin: round; }
-.flecha.golpe { animation: golpe .45s; }
-@keyframes golpe { 25% { filter: drop-shadow(0 0 .25px #ff4f7a) brightness(1.6); } }
-.flecha.golpe .f-cuerpo, .flecha.golpe .f-punta { animation: rojo .45s; }
-@keyframes rojo { 25% { stroke: #ff4f7a; fill: #ff4f7a; } }
+.flecha.golpe { animation: golpe .6s; }
+@keyframes golpe { 15%, 45% { filter: drop-shadow(0 0 .3px #ff4f7a) brightness(1.7); } 30% { filter: none; } }
+.flecha.golpe .f-cuerpo, .flecha.golpe .f-punta { animation: rojo .6s; }
+@keyframes rojo { 10%, 60% { stroke: #ff4f7a; fill: #ff4f7a; } }
 .flecha.pista .f-cuerpo { animation: latido 1s infinite; }
 .flecha.pista .f-punta { animation: latido-p 1s infinite; }
 @keyframes latido { 50% { stroke: #fff; stroke-width: .34; } }
@@ -197,3 +197,6 @@ body[data-pantalla="partida"]::before { background: radial-gradient(ellipse at c
 .cita { font-style: italic; color: #fff3d6; max-width: 32em; margin: 0 auto 6px; line-height: 1.4; }
 @media (max-height: 520px) { .f-animal { width: 160px; } .barra-abajo { padding-top: 2px; } .herramienta { width: 44px; height: 44px; } }
 
+
+/* Teléfono: líneas un poco más gruesas para que se vean y se toquen mejor. */
+@media (max-width: 600px) { .flecha .f-cuerpo { stroke-width: .26; } }

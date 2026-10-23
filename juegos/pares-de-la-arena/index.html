@@ -10,12 +10,13 @@
 <link rel="canonical" href="https://verbobiblia.com/juegos/pares-de-la-arena/">
 <link rel="preload" href="arte/reverso.webp" as="image">
 <link rel="stylesheet" href="comun/base.css">
-<link rel="stylesheet" href="pares.css">
+<link rel="stylesheet" href="pares.css?v=1bc8dbc9">
 </head>
 <body>
 
 <!-- Menú inicial -->
 <section id="inicio" class="pantalla activa">
+  <a class="salir-sitio" href="../" data-t="masJuegos">← Más juegos</a>
   <div class="inicio-caja">
     <p class="sobre" data-t="sobretitulo">Juego de memoria</p>
     <h1 data-t="titulo">Pares de la arena</h1>
@@ -28,7 +29,6 @@
     </div>
     <p class="progreso" id="progreso"></p>
     <div class="pie">
-      <a class="icono" href="../" data-t-aria="volver">←</a>
       <button class="icono" id="btn-idioma" type="button">EN</button>
       <button class="icono" data-musica type="button" data-t-aria="musica">🎵</button>
       <button class="icono" data-sonido type="button" data-t-aria="sonido">🔊</button>
@@ -84,6 +84,6 @@
   </div>
 </section>
 
-<script type="module" src="pares.js"></script>
+<script type="module" src="pares.js?v=1bc8dbc9"></script>
 </body>
 </html>

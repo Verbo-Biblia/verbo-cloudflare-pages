@@ -18,7 +18,7 @@ const TEXTOS = {
     progreso: '{n} de 15 parejas en el arca · {e} de 45 estrellas',
     elegirNivel: 'Elige un nivel', nivel: 'Nivel {n}',
     flechas: 'Flechas que quedan',
-    volver: 'Volver a los juegos', menu: 'Volver al menú', salir: 'Salir a los niveles',
+    masJuegos: '← Más juegos', volver: 'Volver a los juegos', menu: 'Volver al menú', salir: 'Salir a los niveles',
     sonido: 'Efectos de sonido', musica: 'Música', pista: 'Pista', goma: 'Goma: borra una flecha', zoom: 'Acercar',
     reiniciar: 'Empezar de nuevo', ajustes: 'Ajustes',
     bloqueado: 'Termina el nivel {n} para abrir este',
@@ -43,7 +43,7 @@ const TEXTOS = {
     progreso: '{n} of 15 pairs in the ark · {e} of 45 stars',
     elegirNivel: 'Choose a level', nivel: 'Level {n}',
     flechas: 'Arrows left',
-    volver: 'Back to the games', menu: 'Back to the menu', salir: 'Back to the levels',
+    masJuegos: '← More games', volver: 'Back to the games', menu: 'Back to the menu', salir: 'Back to the levels',
     sonido: 'Sound effects', musica: 'Music', pista: 'Hint', goma: 'Eraser: removes one arrow', zoom: 'Zoom',
     reiniciar: 'Start over', ajustes: 'Settings',
     bloqueado: 'Finish level {n} to open this one',
@@ -278,12 +278,16 @@ function empezar(i) {
   }
   $('#sin-vidas').hidden = true;
   $('#ajustes').hidden = true;
-  $('#zoom').value = 1;
+  // En el teléfono los tableros grandes empiezan un poco acercados (se ve el centro; se arrastra o pellizca).
+  $('#zoom').value = innerWidth < 600 && n > 40 ? 1.35 : 1;
   traducirPagina($('#partida'));
   $('#m-nivel').textContent = t('nivel', { n: i + 1 });
   actualizarMarcador();
   mostrar('partida');
   acomodar();
+  const zona = $('#zona');
+  zona.scrollLeft = (zona.scrollWidth - zona.clientWidth) / 2;
+  zona.scrollTop = (zona.scrollHeight - zona.clientHeight) / 2;
   sonar('boton', .5);
 }
 
@@ -314,8 +318,11 @@ function obstaculo(f) {
 // La flecha bajo el dedo: la casilla tocada o, si está vacía, la vecina ocupada más cercana.
 function flechaEn(x, y) {
   const { n, ocupado } = estado;
-  let mejor = null, dist = .85;
-  for (let r = Math.floor(y) - 1; r <= Math.floor(y) + 1; r++) for (let c = Math.floor(x) - 1; c <= Math.floor(x) + 1; c++) {
+  // Margen del dedo: al menos ~22 px en pantalla (en el teléfono las casillas son chiquitas).
+  const pxCasilla = $('#tablero').clientWidth / estado.vista.lado;
+  let mejor = null, dist = Math.max(.85, 22 / pxCasilla);
+  const k = Math.ceil(dist);
+  for (let r = Math.floor(y) - k; r <= Math.floor(y) + k; r++) for (let c = Math.floor(x) - k; c <= Math.floor(x) + k; c++) {
     if (r < 0 || c < 0 || r >= n || c >= n || ocupado[r][c] === -1) continue;
     const d = Math.hypot(c + .5 - x, r + .5 - y);
     if (d < dist) { dist = d; mejor = ocupado[r][c]; }
@@ -359,9 +366,11 @@ function borrar(f) {
   setTimeout(() => f.g.remove(), 450);
 }
 
+// El choque va más lento que la salida, para que se vea bien qué flecha la bloqueó.
+const VELOCIDAD_CHOQUE = 14;
 function chocar(f, { pasos, otra }) {
-  const tope = pasos + .3;
-  animar(f, [[0, tope], [tope, 0]], () => {});
+  const tope = pasos + .45;
+  animar(f, [[0, tope], [tope, 0]], () => {}, VELOCIDAD_CHOQUE, 200);
   setTimeout(() => {
     sonar('fallo', .4);
     for (const g of [f.g, estado.flechas[otra].g]) { g.classList.remove('golpe'); void g.getBBox(); g.classList.add('golpe'); }
@@ -373,14 +382,15 @@ function chocar(f, { pasos, otra }) {
       estado.terminado = true;
       setTimeout(() => { traducirPagina($('#sin-vidas')); $('#sin-vidas').hidden = false; }, 700);
     }
-  }, (tope / VELOCIDAD) * 1000);
+    navigator.vibrate?.(70);
+  }, Math.max(200, (tope / VELOCIDAD_CHOQUE) * 1000));
 }
 
 // Mueve una flecha por su vía en tramos [desde, hasta] (en casillas).
-function animar(f, tramos, alTerminar) {
+function animar(f, tramos, alTerminar, velocidad = VELOCIDAD, minimo = 90) {
   f.moviendo = true;
   const [a, b] = tramos.shift();
-  const dur = Math.min(380, Math.max(90, Math.abs(b - a) / VELOCIDAD * 1000));
+  const dur = Math.min(380, Math.max(minimo, Math.abs(b - a) / velocidad * 1000));
   const t0 = performance.now();
   const largo = f.celdas.length;
   const paso = ahora => {
@@ -388,7 +398,7 @@ function animar(f, tramos, alTerminar) {
     const e = b > a ? u * (0.6 + 0.4 * u) : 1 - (1 - u) * (1 - u);
     ponerForma(f.g, puntosEn(f.via, largo, a + (b - a) * e), f.dir);
     if (u < 1) return requestAnimationFrame(paso);
-    if (tramos.length) return animar(f, tramos, alTerminar);
+    if (tramos.length) return animar(f, tramos, alTerminar, velocidad, minimo);
     f.moviendo = false;
     alTerminar();
   };
@@ -476,22 +486,74 @@ function puntoDe(evento) {
   return [q.x, q.y];
 }
 
-// Toque corto = jugar; si el dedo se mueve, es para desplazar el tablero con zoom.
-let toque = null;
-function alBajar(e) { toque = { x: e.clientX, y: e.clientY, t: Date.now() }; }
+// Gestos sobre el tablero: un toque corto juega; un dedo que se mueve arrastra el tablero (con zoom); dos dedos
+// pellizcan para acercar o alejar. Todo a mano (touch-action: none) para que funcione igual en todos los teléfonos.
+const dedos = new Map();
+let gesto = null;
+const ZOOM_MAX = 4;
+
+function fijarZoom(z, cx, cy) {
+  // Acerca manteniendo quieto el punto (cx, cy) de la pantalla.
+  const zona = $('#zona'), caja = zona.getBoundingClientRect();
+  const antes = $('#tablero').clientWidth;
+  const px = zona.scrollLeft + (cx - caja.left), py = zona.scrollTop + (cy - caja.top);
+  $('#zoom').value = Math.min(ZOOM_MAX, Math.max(1, z));
+  acomodar();
+  const k = $('#tablero').clientWidth / antes;
+  zona.scrollLeft = px * k - (cx - caja.left);
+  zona.scrollTop = py * k - (cy - caja.top);
+}
+
+function alBajar(e) {
+  try { $('#zona').setPointerCapture(e.pointerId); } catch { /* algunos navegadores no lo permiten */ }
+  dedos.set(e.pointerId, { x: e.clientX, y: e.clientY });
+  const zona = $('#zona');
+  if (dedos.size === 1) {
+    gesto = { tipo: 'toque', x: e.clientX, y: e.clientY, sl: zona.scrollLeft, st: zona.scrollTop };
+  } else if (dedos.size === 2) {
+    const [p, q] = [...dedos.values()];
+    gesto = { tipo: 'pellizco', d0: Math.hypot(p.x - q.x, p.y - q.y), z0: Number($('#zoom').value) };
+  }
+}
+
+function alMover(e) {
+  if (!dedos.has(e.pointerId) || !gesto) return;
+  dedos.set(e.pointerId, { x: e.clientX, y: e.clientY });
+  const zona = $('#zona');
+  if (gesto.tipo === 'pellizco' && dedos.size >= 2) {
+    const [p, q] = [...dedos.values()];
+    const d = Math.hypot(p.x - q.x, p.y - q.y);
+    fijarZoom(gesto.z0 * d / gesto.d0, (p.x + q.x) / 2, (p.y + q.y) / 2);
+    return;
+  }
+  const dx = e.clientX - gesto.x, dy = e.clientY - gesto.y;
+  if (gesto.tipo === 'toque' && Math.hypot(dx, dy) > 10) gesto.tipo = 'arrastre';
+  if (gesto.tipo === 'arrastre') { zona.scrollLeft = gesto.sl - dx; zona.scrollTop = gesto.st - dy; }
+}
+
 function alSubir(e) {
-  if (!toque) return;
-  const movido = Math.hypot(e.clientX - toque.x, e.clientY - toque.y);
-  toque = null;
-  if (movido > 12) return;
-  const [x, y] = puntoDe(e);
-  tocar(x, y);
+  if (!dedos.has(e.pointerId)) return;
+  dedos.delete(e.pointerId);
+  if (gesto?.tipo === 'toque' && !dedos.size) {
+    const [x, y] = puntoDe(e);
+    tocar(x, y);
+  }
+  // Al soltar un dedo del pellizco no se juega: se espera a que se levanten todos.
+  if (!dedos.size) gesto = null;
+  else if (gesto?.tipo === 'pellizco') gesto = { tipo: 'nada' };
+}
+
+// Rueda del ratón con Ctrl (o el pellizco del panel táctil) también acerca en la PC.
+function alRueda(e) {
+  if (!e.ctrlKey) return;
+  e.preventDefault();
+  fijarZoom(Number($('#zoom').value) * (e.deltaY < 0 ? 1.12 : 1 / 1.12), e.clientX, e.clientY);
 }
 
 // ---------- arranque ----------
 
 async function iniciar() {
-  niveles = await (await fetch('niveles.json?v=9f6643c9')).json();
+  niveles = await (await fetch('niveles.json?v=1e43318a')).json();
   pintarInicio();
   mostrar('inicio');
 
@@ -506,10 +568,12 @@ async function iniciar() {
     sonar('fallo', .3);
     b.classList.remove('sacudir'); void b.offsetWidth; b.classList.add('sacudir');
   });
-  const svg = $('#tablero');
-  svg.addEventListener('pointerdown', alBajar);
-  svg.addEventListener('pointerup', alSubir);
-  svg.addEventListener('pointercancel', () => { toque = null; });
+  const zona = $('#zona');
+  zona.addEventListener('pointerdown', alBajar);
+  zona.addEventListener('pointermove', alMover);
+  zona.addEventListener('pointerup', alSubir);
+  zona.addEventListener('pointercancel', e => { dedos.delete(e.pointerId); if (!dedos.size) gesto = null; });
+  zona.addEventListener('wheel', alRueda, { passive: false });
   $('#btn-pista').addEventListener('click', pista);
   $('#btn-goma').addEventListener('click', goma);
   $('#zoom').addEventListener('input', zoom);
