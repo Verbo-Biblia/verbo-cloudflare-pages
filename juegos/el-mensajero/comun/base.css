@@ -1,0 +1,68 @@
+/* Estilo común de los mini juegos: letras de aventura (Cinzel + Alegreya, las de Bajo la arena), colores de
+   arena y cuero, botones grandes para el dedo. Cada juego agrega lo suyo en su propio CSS. */
+
+@font-face { font-family: 'Cinzel'; src: url('fuentes/Cinzel.ttf') format('truetype'); font-weight: 400 900; font-display: swap; }
+@font-face { font-family: 'Alegreya'; src: url('fuentes/Alegreya.ttf') format('truetype'); font-weight: 400 900; font-display: swap; }
+
+:root {
+  --fondo: #24170d;
+  --fondo-2: #33210f;
+  --cuero: #452d16;
+  --linea: #6b4a26;
+  --texto: #f7ead0;
+  --texto-suave: #dcc79f;
+  --oro: #f2c46a;
+  --oro-claro: #ffe2a0;
+  --terracota: #c0582c;
+  --turquesa: #4fa08e;
+  --papel: #f7eed9;
+  --letra: 'Alegreya', Georgia, serif;
+  --titulo: 'Cinzel', Georgia, serif;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; height: 100%; }
+body {
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: var(--letra);
+  font-size: 18px;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+h1, h2, h3 { font-family: var(--titulo); font-weight: 700; margin: 0; }
+button { font: inherit; color: inherit; }
+
+.boton {
+  display: inline-flex; align-items: center; justify-content: center; gap: .4em;
+  min-height: 48px; padding: .5em 1.3em;
+  border: 2px solid var(--oro); border-radius: 12px;
+  background: linear-gradient(#5a3a1c, #3d2610);
+  color: var(--oro-claro); font-family: var(--titulo); font-weight: 700; font-size: 1.05em; letter-spacing: .02em;
+  cursor: pointer; text-decoration: none;
+  box-shadow: 0 3px 0 #1a0f06, 0 6px 16px #0008;
+  transition: transform .12s, filter .12s;
+}
+.boton:hover { filter: brightness(1.12); }
+.boton:active { transform: translateY(2px); box-shadow: 0 1px 0 #1a0f06, 0 3px 8px #0008; }
+.boton.secundario { border-color: var(--linea); color: var(--texto); background: #2b1b0c; }
+.boton:focus-visible, .icono:focus-visible { outline: 3px solid var(--oro-claro); outline-offset: 3px; }
+
+.icono {
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 1.5px solid var(--linea); background: #2b1b0ccc;
+  display: inline-grid; place-items: center; cursor: pointer; font-size: 20px; text-decoration: none; color: var(--texto);
+}
+
+@media (prefers-reduced-motion: reduce) { * { transition-duration: .01ms !important; animation-duration: .01ms !important; } }
+
+/* Botón claro para volver a la página de juegos de Verbo (arriba a la izquierda del menú). */
+.salir-sitio {
+  position: absolute; z-index: 4; top: max(12px, env(safe-area-inset-top)); left: 12px;
+  display: inline-flex; align-items: center; gap: .35em; min-height: 40px; padding: .3em .95em;
+  border-radius: 20px; border: 1.5px solid var(--oro); background: #1a1008e0; color: var(--oro-claro);
+  font-family: var(--titulo); font-weight: 700; font-size: .9em; text-decoration: none; box-shadow: 0 4px 14px #0008;
+}
+.salir-sitio:hover { filter: brightness(1.15); }
+body #inicio { padding-top: max(64px, calc(env(safe-area-inset-top) + 56px)); }

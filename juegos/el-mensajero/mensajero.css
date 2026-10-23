@@ -1,0 +1,164 @@
+/* El mensajero: el lienzo 3D ocupa toda la pantalla; las pantallas y el HUD van encima. */
+
+html, body { overflow: hidden; background: #0c1024; touch-action: none; user-select: none; -webkit-user-select: none; }
+#lienzo { position: fixed; inset: 0; width: 100vw; height: 100dvh; display: block; }
+
+.pantalla { position: fixed; inset: 0; display: none; z-index: 2; }
+.pantalla.activa { display: block; }
+.pantalla.capa { z-index: 5; background: #06081488; backdrop-filter: blur(3px); display: none; place-items: center; }
+.pantalla.capa.activa { display: flex; overflow-y: auto; }
+.pantalla.capa > .tarjeta { margin: auto; }
+.pantalla.capa.transparente { background: transparent; backdrop-filter: none; pointer-events: none; }
+.pantalla.capa.transparente .dialogo { pointer-events: auto; }
+
+/* ---------- menú inicial */
+#inicio { background: radial-gradient(ellipse at 70% 20%, #2c3566cc, #0c1024ee 70%); display: none; overflow-y: auto; }
+#inicio.activa { display: flex; }
+.inicio-caja { margin: auto; }
+.inicio-caja { text-align: center; max-width: 560px; padding: 20px 18px 28px; }
+.sobre { font-family: var(--titulo); color: var(--oro); letter-spacing: .2em; text-transform: uppercase; font-size: .78em; margin: 0 0 6px; }
+.inicio-caja h1 { font-size: clamp(2.4em, 9vw, 4em); color: var(--oro-claro); text-shadow: 0 4px 24px #000a; line-height: 1; }
+.sub { font-family: var(--titulo); font-size: 1.2em; color: var(--texto); margin: 8px 0 4px; }
+.capitulo { color: var(--texto-suave); font-style: italic; margin: 4px 0 22px; }
+.inicio-botones { display: flex; justify-content: center; gap: 12px; }
+.boton.grande { font-size: 1.25em; min-width: 200px; }
+.boton[disabled] { opacity: .45; pointer-events: none; }
+.carga { color: var(--texto-suave); min-height: 1.4em; font-size: .9em; }
+.controles { color: var(--texto-suave); font-size: .82em; line-height: 1.5; margin: 14px auto 0; max-width: 440px; }
+.pie { display: flex; justify-content: center; gap: 10px; margin-top: 16px; }
+.icono.apagado { opacity: .4; }
+
+/* ---------- tarjetas (intro, pausa, final) */
+#intro { background: #070a18e8; display: none; overflow-y: auto; }
+#intro.activa { display: flex; }
+#intro.con-ilustracion { background: #070a18 center / cover no-repeat; box-shadow: inset 0 0 0 100vmax #070a1870; }
+#intro .tarjeta { margin: auto 16px; }
+@media (min-width: 640px) { #intro .tarjeta { margin: auto; } }
+.tarjeta {
+  max-width: 600px; margin: 16px; padding: 22px 24px; border-radius: 16px;
+  background: linear-gradient(#2a1c10f2, #1b1209f2); border: 1.5px solid var(--linea); box-shadow: 0 10px 40px #000c;
+  line-height: 1.5;
+}
+.tarjeta .lugar { font-family: var(--titulo); color: var(--oro); font-weight: 700; margin-top: 0; }
+blockquote { margin: 14px 0; padding: 10px 14px; border-left: 3px solid var(--oro); background: #0004; border-radius: 0 8px 8px 0; font-style: italic; }
+cite { display: block; font-style: normal; font-size: .85em; color: var(--oro); margin-top: 6px; font-family: var(--titulo); }
+.ficcion { font-size: .82em; color: var(--texto-suave); font-style: italic; }
+.tarjeta .boton.grande { display: flex; margin: 14px auto 0; }
+.tarjeta.menu { text-align: center; display: flex; flex-direction: column; gap: 10px; min-width: min(360px, 90vw); }
+.tarjeta.menu h2 { color: var(--oro-claro); margin-bottom: 4px; }
+.notas { text-align: left; font-size: .88em; display: flex; flex-direction: column; gap: 8px; max-height: 34vh; overflow-y: auto; }
+.notas p { margin: 0; padding: 8px 10px; background: #0003; border-radius: 8px; }
+.notas b { color: var(--oro); font-family: var(--titulo); }
+.proximo { font-size: .85em; color: var(--texto-suave); font-style: italic; }
+
+/* ---------- HUD */
+.hud { position: absolute; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: flex-start;
+  padding: max(10px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) 0 max(12px, env(safe-area-inset-left)); pointer-events: none; }
+.hud > * { pointer-events: auto; }
+.objetivo { margin: 0; padding: 6px 14px; border-radius: 20px; background: #0a0d1ccc; border: 1px solid #ffffff22; font-size: .95em;
+  font-family: var(--titulo); color: var(--oro-claro); max-width: 60vw; }
+.objetivo::before { content: '✉ '; }
+.hud-der { display: flex; gap: 10px; align-items: center; }
+.pergaminos-hud { font-size: .95em; color: var(--oro-claro); text-shadow: 0 2px 6px #000; }
+.pista, .aviso { position: absolute; left: 50%; transform: translateX(-50%); margin: 0; text-align: center; pointer-events: none;
+  padding: 8px 18px; border-radius: 22px; background: #0a0d1cd9; border: 1px solid #f2c46a55; opacity: 0; transition: opacity .35s; max-width: 86vw; }
+.pista { bottom: max(28px, calc(env(safe-area-inset-bottom) + 18px)); }
+.aviso { top: 26%; font-family: var(--titulo); font-size: 1.2em; color: var(--oro-claro); }
+.pista.ver, .aviso.ver { opacity: 1; }
+.aviso.peligro { color: #ffb4a0; border-color: #c0582c; }
+.escondido { position: absolute; top: max(58px, calc(env(safe-area-inset-top) + 50px)); left: max(16px, env(safe-area-inset-left));
+  font-size: 26px; opacity: 0; transition: opacity .25s; color: #b8c6ff; text-shadow: 0 0 10px #4060ff; }
+.escondido.ver { opacity: .9; }
+.accion { position: absolute; transform: translate(-50%, -100%); margin: 0; padding: 4px 12px; border-radius: 14px; white-space: nowrap;
+  background: #0a0d1ce0; border: 1px solid #cfe0ff66; color: #e8f0ff; font-size: .85em; pointer-events: none; display: none; }
+.accion.ver { display: block; }
+body.en-relato .accion { display: none !important; }
+.velo { position: absolute; inset: 0; background: #000; opacity: 0; pointer-events: none; transition: opacity .35s; }
+.velo.ver { opacity: 1; }
+/* ilustración pintada detrás de una tarjeta del relato (p. ej. el ángel saca a Pedro de la cárcel) */
+.ilustracion { position: absolute; inset: 0; background: #000 center / cover no-repeat; opacity: 0; pointer-events: none; transition: opacity .8s; }
+.ilustracion.ver { opacity: 1; }
+
+/* marcas sobre los guardias (? y !) */
+#marcas { position: absolute; inset: 0; pointer-events: none; }
+.marca { position: absolute; transform: translate(-50%, -100%); font-family: var(--titulo); font-weight: 900; font-size: 30px;
+  color: #ffe2a0; text-shadow: 0 0 8px #000, 0 2px 0 #000; }
+.marca.alerta { color: #ff6a4a; font-size: 38px; }
+.marca .medidor { display: block; width: 34px; height: 5px; margin: 2px auto 0; border-radius: 3px; background: #0008; overflow: hidden; }
+.marca .medidor i { display: block; height: 100%; background: #ffcf6a; }
+
+/* ---------- botones táctiles (solo con pantalla táctil) */
+.tactil { position: absolute; left: 0; right: 0; bottom: 0; display: none; justify-content: space-between; align-items: flex-end;
+  padding: 0 max(14px, env(safe-area-inset-right)) max(14px, env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left)); pointer-events: none; }
+body.tactil-activo.jugando .tactil { display: flex; }
+body.tactil-activo .pista { bottom: max(150px, calc(env(safe-area-inset-bottom) + 140px)); }
+.tactil > div { display: flex; gap: 10px; align-items: flex-end; pointer-events: auto; touch-action: none; }
+.tactil button { width: 72px; height: 72px; border-radius: 50%; border: 2px solid #ffffff40; background: #0a0d1c99; color: #fff;
+  font-size: 28px; touch-action: none; -webkit-user-select: none; user-select: none; }
+.tactil button.grande { width: 92px; height: 92px; font-size: 36px; border-color: var(--oro); color: var(--oro-claro); }
+.tactil button.chico { width: 58px; height: 58px; font-size: 24px; margin-bottom: 20px; }
+.tactil button.activo { background: #f2c46a66; border-color: var(--oro-claro); }
+.t-izq button[data-boton="abajo"] { width: 60px; height: 60px; font-size: 22px; }
+@media (max-height: 430px) {
+  .tactil button { width: 62px; height: 62px; }
+  .tactil button.grande { width: 78px; height: 78px; }
+}
+
+/* ---------- diálogo del final */
+.dialogo { position: absolute; left: 50%; bottom: max(20px, env(safe-area-inset-bottom)); transform: translateX(-50%);
+  width: min(720px, 94vw); padding: 16px 20px 14px; border-radius: 14px; background: linear-gradient(#2a1c10f4, #1b1209f4);
+  border: 1.5px solid var(--linea); box-shadow: 0 10px 40px #000c; }
+.dialogo .quien { margin: 0 0 4px; font-family: var(--titulo); color: var(--oro); font-weight: 700; }
+.dialogo .texto { margin: 0; line-height: 1.5; font-size: 1.05em; }
+.dialogo.cita .texto { font-style: italic; }
+.dialogo .boton { float: right; margin-top: 8px; }
+.dialogo cite:empty { display: none; }
+
+.error { position: fixed; z-index: 9; inset: auto 12px 12px; padding: 12px; border-radius: 10px; background: #5a1a10; color: #fff; text-align: center; }
+
+/* durante el relato final no se ven el HUD ni los controles */
+body.en-relato .hud, body.en-relato .pista, body.en-relato .aviso, body.en-relato .tactil, body.en-relato .escondido { display: none !important; }
+
+/* teléfono en vertical: botones más chicos y la acción en columna; se sugiere girarlo */
+@media (orientation: portrait) and (max-width: 600px) {
+  .tactil button { width: 60px; height: 60px; font-size: 24px; }
+  .t-izq { gap: 6px !important; }
+  .t-izq button[data-boton="abajo"] { width: 50px; height: 50px; }
+  .t-der { display: grid !important; grid-template-columns: auto auto; grid-template-areas: "usar correr" "saltar saltar"; gap: 8px !important; justify-items: center; }
+  .t-der [data-boton="usar"] { grid-area: usar; margin: 0; }
+  .t-der [data-boton="correr"] { grid-area: correr; margin: 0; }
+  .t-der [data-boton="saltar"] { grid-area: saltar; width: 80px; height: 80px; }
+  .tactil button.chico { width: 50px; height: 50px; font-size: 20px; }
+  body.tactil-activo .pista { bottom: max(190px, calc(env(safe-area-inset-bottom) + 180px)); }
+  body.jugando .girar { display: block; }
+}
+.girar { display: none; position: absolute; top: max(56px, calc(env(safe-area-inset-top) + 48px)); right: 12px; margin: 0; padding: 4px 10px;
+  border-radius: 14px; background: #0a0d1cb0; font-size: .78em; color: var(--texto-suave); pointer-events: none; }
+/* en horizontal con botones táctiles, la pista va arriba para no tapar a Eliab */
+@media (orientation: landscape) and (max-height: 560px) {
+  body.tactil-activo .pista { bottom: auto; top: max(58px, calc(env(safe-area-inset-top) + 50px)); }
+}
+
+/* lista de misiones */
+#misiones { background: #070a18e8; display: none; overflow-y: auto; }
+#misiones.activa { display: flex; }
+#misiones .tarjeta { margin: auto; }
+.tarjeta.ancha { width: min(680px, 94vw); }
+.lista-misiones { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; text-align: left; }
+.mision { display: grid; grid-template-columns: 34px 1fr; grid-template-rows: auto auto; column-gap: 8px; align-items: center;
+  padding: 10px 12px; border-radius: 12px; border: 1.5px solid var(--linea); background: #2b1b0c; cursor: pointer; min-height: 60px; }
+.mision b { grid-row: 1 / 3; font-family: var(--titulo); font-size: 1.4em; color: var(--oro); text-align: center; }
+.mision span { font-family: var(--titulo); font-size: .92em; color: var(--oro-claro); }
+.mision small { color: var(--texto-suave); font-size: .78em; }
+.mision.hecha { border-color: var(--oro); }
+.mision.hecha b::after { content: ' ✓'; font-size: .6em; }
+.mision[disabled] { opacity: .45; cursor: default; }
+.mision-num { font-family: var(--titulo); color: var(--texto-suave); font-size: .85em; letter-spacing: .08em; margin: 0 0 4px; text-transform: uppercase; }
+/* barra de agua (correr rápido) */
+.agua { position: absolute; top: max(54px, calc(env(safe-area-inset-top) + 46px)); left: max(14px, env(safe-area-inset-left));
+  display: flex; align-items: center; gap: 6px; opacity: 0; transition: opacity .4s; pointer-events: none; }
+.agua.ver { opacity: 1; }
+.agua b { display: block; width: 120px; height: 10px; border-radius: 6px; background: #0a0d1ccc; border: 1px solid #8ad0ff66; overflow: hidden; }
+.agua i { display: block; height: 100%; width: 100%; background: linear-gradient(90deg, #3a8ad0, #8ad0ff); transition: width .15s; }
+.agua.poca i { background: #d06a3a; }
+.escondido { top: max(80px, calc(env(safe-area-inset-top) + 72px)); }
