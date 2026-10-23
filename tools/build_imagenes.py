@@ -84,7 +84,7 @@ def tarjeta_dialogo(x):
   '<canvas width="1080" height="1080"></canvas>'
   '<div class="verse-card__formatos" role="group"'+ba('aria-label','Formato','Format')+'><button type="button" data-formato="1080x1080" aria-pressed="true">'+bi('Cuadrada 1:1','Square 1:1','span')+'</button><button type="button" data-formato="1080x1350" aria-pressed="false">'+bi('Vertical 4:5','Portrait 4:5','span')+'</button></div>'
   '<div class="verse-card__acciones"><button type="button" data-descargar>'+bi('Descargar','Download','span')+' ↓</button><button type="button" data-compartir>'+bi('Compartir','Share','span')+'</button>'
-  '<a data-whatsapp target="_blank" rel="noopener" href="#">WhatsApp<span aria-hidden="true"> ↗</span></a></div>'
+  '<a data-whatsapp target="_blank" rel="noopener" href="https://wa.me/">WhatsApp<span aria-hidden="true"> ↗</span></a></div>'
   +bi('La tarjeta lleva una marca pequeña de verbobiblia.com. La descarga normal de la imagen sigue sin marca.','The card carries a small verbobiblia.com mark. The regular image download has no mark.','p',**{'class':'fine'})+
   '</dialog><script src="/imagenes/tarjeta.js?v=20261023b" defer></script>')
 def cruces(x):
