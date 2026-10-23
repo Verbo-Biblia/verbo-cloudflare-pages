@@ -1,13 +1,13 @@
 // Pantalla de la base «combina 3»: menú, mapa de niveles sin fin, partida animada y ventanas.
 // Todo lo temático (nombres, piezas, fondos, versículos, música) viene de tema/tema.json.
-import { Tablero } from './tablero.js?v=6015c9ff';
-import { nivel as armarNivel } from './niveles.js?v=6015c9ff';
+import { Tablero } from './tablero.js?v=6a08fd71';
+import { nivel as armarNivel } from './niveles.js?v=6a08fd71';
 
 const TEXTOS = {
   es: {
     masJuegos: '← Más juegos', niveles: 'Niveles', elegirNivel: 'Elige un nivel', menu: 'Volver al menú',
     salir: 'Salir al mapa', sonido: 'Efectos de sonido', musica: 'Música', movs: 'movimientos',
-    jugar: 'Jugar', seguir: 'Seguir: nivel {n}', nivel: 'Nivel {n}', progreso: '{n} niveles superados · {e} ★',
+    jugar: 'Jugar', tramo: 'Niveles {a}–{b}', seguir: 'Seguir: nivel {n}', nivel: 'Nivel {n}', progreso: '{n} niveles superados · {e} ★',
     objetivo: 'Para ganar', obPuntos: 'Junta {n} puntos', obRecoger: 'Junta {n} {pieza}',
     obCapas: 'Limpia toda la {capa}', obBloques: 'Rompe todas las {bloque}', obBajar: 'Baja {n} {cesta} hasta el fondo',
     empezar: '¡A jugar!', ganaste: '¡Nivel superado!', perdiste: 'Sin movimientos', faltan: 'Te faltó:',
@@ -19,7 +19,7 @@ const TEXTOS = {
   en: {
     masJuegos: '← More games', niveles: 'Levels', elegirNivel: 'Choose a level', menu: 'Back to the menu',
     salir: 'Back to the map', sonido: 'Sound effects', musica: 'Music', movs: 'moves',
-    jugar: 'Play', seguir: 'Continue: level {n}', nivel: 'Level {n}', progreso: '{n} levels cleared · {e} ★',
+    jugar: 'Play', tramo: 'Levels {a}–{b}', seguir: 'Continue: level {n}', nivel: 'Level {n}', progreso: '{n} levels cleared · {e} ★',
     objetivo: 'To win', obPuntos: 'Score {n} points', obRecoger: 'Collect {n} {pieza}',
     obCapas: 'Clear all the {capa}', obBloques: 'Break all the {bloque}', obBajar: 'Bring {n} {cesta} down to the bottom',
     empezar: 'Let’s play!', ganaste: 'Level cleared!', perdiste: 'Out of moves', faltan: 'Still missing:',
@@ -139,32 +139,44 @@ function pintarMapa() {
   agregarAlMapa(Math.max(30, nivelActual() + 15));
   requestAnimationFrame(() => c.querySelector('.punto.actual')?.scrollIntoView({ block: 'center' }));
 }
+// Cada tramo de 10 niveles es una escena del tema (su fondo y su nombre) con un camino que une los puntos.
+const PASO = 84, CABEZA = 96;
+const xDe = n => 50 + Math.sin(n * 0.85) * 30;
 function agregarAlMapa(hasta) {
   const c = $('#camino'), actual = nivelActual();
-  for (let n = mostrados + 1; n <= hasta; n++) {
-    if ((n - 1) % 10 === 0) {
-      const z = document.createElement('div'); z.className = 'zona-mapa';
-      const fondo = fondoDe(n); if (fondo) z.style.backgroundImage = `url("${fondo}")`;
-      const nombre = tx(tema.zonas?.[Math.floor((n - 1) / 10) % (tema.zonas?.length || 1)]);
-      z.innerHTML = `<span>${nombre || ''}</span>`;
-      c.append(z);
+  hasta = Math.ceil(hasta / 10) * 10;
+  for (let inicio = mostrados + 1; inicio <= hasta; inicio += 10) {
+    const z = Math.floor((inicio - 1) / 10);
+    const tramo = document.createElement('section');
+    tramo.className = 'tramo';
+    tramo.style.height = `${CABEZA + 10 * PASO}px`;
+    const fondo = fondoDe(inicio); if (fondo) tramo.style.setProperty('--fondo-tramo', `url("${fondo}")`);
+    const nombre = tx(tema.zonas?.[z % (tema.zonas?.length || 1)]) || '';
+    const puntos = Array.from({ length: 11 }, (_, i) => [xDe(inicio + i), CABEZA + i * PASO + 33]);
+    const ruta = puntos.map(([x, y], i) => (i ? `L${x} ${y}` : `M${x} ${y}`)).join(' ');
+    tramo.innerHTML = `<h3><small>${t('tramo', { a: inicio, b: inicio + 9 })}</small>${nombre}</h3>
+      <svg class="ruta" viewBox="0 0 100 ${CABEZA + 10 * PASO}" preserveAspectRatio="none" aria-hidden="true">
+      <path d="${ruta}" class="ruta-fondo"/><path d="${ruta}" class="ruta-linea"/></svg>`;
+    for (let i = 0; i < 10; i++) {
+      const n = inicio + i, e = prog.estrellas[n] || 0;
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'punto' + (n === actual ? ' actual' : '') + (n > actual ? ' cerrado' : '') + (e ? ' hecho' : '');
+      b.style.left = `${xDe(n)}%`; b.style.top = `${CABEZA + i * PASO}px`;
+      b.innerHTML = `<b>${n}</b><i>${n > actual ? '🔒' : '★'.repeat(e) + '☆'.repeat(e ? 3 - e : 0)}</i>`;
+      b.disabled = n > actual;
+      b.addEventListener('click', () => { sonar('boton'); antesDelNivel(n); });
+      tramo.append(b);
     }
-    const b = document.createElement('button');
-    b.type = 'button';
-    const e = prog.estrellas[n] || 0;
-    b.className = 'punto' + (n === actual ? ' actual' : '') + (n > actual ? ' cerrado' : '') + (e ? ' hecho' : '');
-    b.style.setProperty('--x', `${50 + Math.sin(n * 0.85) * 32}%`);
-    b.innerHTML = `<b>${n}</b><i>${n > actual ? '🔒' : '★'.repeat(e) + '☆'.repeat(e ? 3 - e : 0)}</i>`;
-    b.disabled = n > actual;
-    b.addEventListener('click', () => { sonar('boton'); antesDelNivel(n); });
-    c.append(b);
+    c.append(tramo);
   }
   mostrados = hasta;
 }
 
+// Un fondo por tramo de 10 niveles (el mismo que se ve en el mapa).
 function fondoDe(n) {
   const f = tema.fondos || [];
-  return f.length ? f[Math.floor((n - 1) / 5) % f.length] : null;
+  return f.length ? f[Math.floor((n - 1) / 10) % f.length] : null;
 }
 
 // ---------- descripción de objetivos ----------
@@ -535,7 +547,7 @@ function preguntarSalir() {
 
 // ---------- arranque ----------
 async function iniciar() {
-  tema = await (await fetch('tema/tema.json?v=6015c9ff', { cache: 'no-cache' })).json();
+  tema = await (await fetch('tema/tema.json?v=6a08fd71', { cache: 'no-cache' })).json();
   lang = elegirIdioma();
   cargarProgreso();
   traducir(); pintarBotonesSonido(); pintarInicio();

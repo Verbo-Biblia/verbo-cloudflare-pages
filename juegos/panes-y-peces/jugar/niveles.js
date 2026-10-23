@@ -1,8 +1,8 @@
 // Niveles sin fin: el nivel n siempre sale igual (semilla = n). Los 20 primeros siguen una curva pensada a mano;
 // del 21 en adelante se mezclan formas y objetivos con dificultad que sube despacio y descansos cada 5.
 // Un tema puede fijar niveles propios en tema.niveles (lista; el índice 0 es el nivel 1) y esos mandan.
-import { azarConSemilla } from './tablero.js?v=6015c9ff';
-import { CALIBRADOS } from './calibrados.js?v=6015c9ff';
+import { azarConSemilla } from './tablero.js?v=6a08fd71';
+import { CALIBRADOS } from './calibrados.js?v=6a08fd71';
 
 // ---------- formas del tablero (true = casilla) ----------
 const FORMAS = {
