@@ -1,0 +1,89 @@
+<!doctype html>
+<!-- verbo:sin-pie -->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pares de la arena · Juego de memoria bíblico | Verbo</title>
+<meta name="description" content="Juego de memoria gratis para niños y familias: 15 niveles para encontrar los pares de hallazgos reales de la arqueología bíblica. En español e inglés.">
+<meta name="theme-color" content="#24170d">
+<link rel="canonical" href="https://verbobiblia.com/juegos/pares-de-la-arena/">
+<link rel="preload" href="arte/reverso.webp" as="image">
+<link rel="stylesheet" href="comun/base.css">
+<link rel="stylesheet" href="pares.css">
+</head>
+<body>
+
+<!-- Menú inicial -->
+<section id="inicio" class="pantalla activa">
+  <div class="inicio-caja">
+    <p class="sobre" data-t="sobretitulo">Juego de memoria</p>
+    <h1 data-t="titulo">Pares de la arena</h1>
+    <p class="sub" data-t="subtitulo">Hallazgos de la arqueología bíblica</p>
+    <div class="abanico" id="abanico" aria-hidden="true"></div>
+    <p class="como" data-t="como"></p>
+    <div class="inicio-botones">
+      <button class="boton grande" id="btn-jugar" type="button" data-t="jugar">Jugar</button>
+      <button class="boton secundario" id="btn-ver-niveles" type="button" data-t="niveles">Niveles</button>
+    </div>
+    <p class="progreso" id="progreso"></p>
+    <div class="pie">
+      <a class="icono" href="../" data-t-aria="volver">←</a>
+      <button class="icono" id="btn-idioma" type="button">EN</button>
+      <button class="icono" data-musica type="button" data-t-aria="musica">🎵</button>
+      <button class="icono" data-sonido type="button" data-t-aria="sonido">🔊</button>
+    </div>
+  </div>
+</section>
+
+<!-- Elegir nivel -->
+<section id="niveles" class="pantalla">
+  <header class="barra">
+    <button class="icono" id="btn-niveles-volver" type="button" data-t-aria="menu">←</button>
+    <h2 data-t="elegirNivel">Elige un nivel</h2>
+    <span class="estrellas-total" id="estrellas-total"></span>
+  </header>
+  <div class="niveles-rejilla" id="rejilla"></div>
+</section>
+
+<!-- Partida -->
+<section id="partida" class="pantalla">
+  <header class="barra">
+    <button class="icono" id="btn-salir" type="button" data-t-aria="salir">←</button>
+    <div class="marcador">
+      <span class="nombre-nivel" id="m-nivel"></span>
+      <span><b id="m-pares">0/6</b> <small data-t="pares">pares</small></span>
+      <span><b id="m-intentos">0</b> <small data-t="intentos">intentos</small></span>
+      <span><b id="m-tiempo">0:00</b></span>
+    </div>
+    <span class="botones-barra">
+      <button class="icono" data-musica type="button" data-t-aria="musica">🎵</button>
+      <button class="icono" data-sonido type="button" data-t-aria="sonido">🔊</button>
+    </span>
+  </header>
+  <div id="mesa" class="mesa"></div>
+  <div id="aviso" class="aviso" aria-live="polite"></div>
+</section>
+
+<!-- Final del nivel -->
+<section id="final" class="pantalla">
+  <div class="final-caja">
+    <p class="sobre" id="f-nivel"></p>
+    <h2 id="f-titulo"></h2>
+    <div class="estrellas" id="estrellas"></div>
+    <p class="resumen" id="resumen"></p>
+    <p class="record" id="record"></p>
+    <div class="final-botones">
+      <button class="boton grande" id="btn-siguiente" type="button" data-t="siguiente">Siguiente nivel</button>
+      <button class="boton secundario" id="btn-otra" type="button" data-t="repetir">Repetir</button>
+      <button class="boton secundario" id="btn-a-niveles" type="button" data-t="niveles">Niveles</button>
+    </div>
+    <h3 data-t="descubriste">Los hallazgos de este nivel</h3>
+    <ul class="hallazgos" id="lista"></ul>
+    <p class="mas"><a id="mas-info" href="#"></a></p>
+  </div>
+</section>
+
+<script type="module" src="pares.js"></script>
+</body>
+</html>
