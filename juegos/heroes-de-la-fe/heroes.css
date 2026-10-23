@@ -1,0 +1,46 @@
+/* Héroes de la fe: el menú con las historias (colores y letras de los mini juegos, comun/base.css) y ajustes del
+   lector de la plantilla de novela gráfica (estilos.css) para la web. */
+
+html, body { background: var(--fondo, #24170d); }
+body { font-family: var(--letra); font-size: 18px; user-select: none; }
+body:not(.leyendo) { overflow-y: auto; }
+
+#menu {
+  min-height: 100%; display: flex; align-items: center; justify-content: center; padding: 16px;
+  padding-top: max(64px, calc(env(safe-area-inset-top) + 56px));
+  background: radial-gradient(circle at 50% 0%, #4a3018 0, #24170d 65%);
+  color: #f7ead0; text-align: center;
+}
+body.leyendo #menu { display: none; }
+.menu-caja { width: min(100%, 900px); }
+.sobre { margin: 0 0 4px; font-family: var(--titulo); font-size: .8em; letter-spacing: .2em; text-transform: uppercase; color: #f2c46a; }
+.menu-caja h1 { font-family: var(--titulo); font-size: clamp(34px, 9vw, 58px); color: #ffe2a0; text-shadow: 0 3px 16px #000; line-height: 1.05; }
+.sub { font-style: italic; font-size: 1.1em; color: #fff3d6; margin: .3em 0 1em; }
+.como { color: #dcc79f; margin: 1.2em auto .6em; max-width: 34em; line-height: 1.4; font-size: .95em; }
+.pie { display: flex; justify-content: center; gap: 14px; margin-top: 10px; }
+.pie .icono { color: #f7ead0; border: 1.5px solid #6b4a26; background: #2b1b0ccc; padding: 0; font-family: var(--titulo); font-size: 15px; }
+
+.historias { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+.tarjeta {
+  display: flex; flex-direction: column; padding: 0; overflow: hidden; text-align: left; white-space: normal;
+  border: 2px solid #6b4a26; border-radius: 16px; background: #2b1b0c; color: #f7ead0; cursor: pointer;
+  box-shadow: 0 6px 18px #0009; transition: transform .15s, border-color .15s;
+}
+.tarjeta:hover, .tarjeta:focus-visible { transform: translateY(-3px); border-color: #f2c46a; background: #2b1b0c; outline: none; }
+.tarjeta img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; background: #1a1008; }
+.t-texto { display: grid; gap: 2px; padding: 12px 16px 14px; }
+.t-texto b { font-family: var(--titulo); font-size: 1.3em; color: #ffe2a0; }
+.t-texto .lema { font-style: italic; font-size: 1em; color: #fff3d6; }
+.t-texto .anos { font-size: .85em; color: #dcc79f; }
+.t-leer { justify-self: end; margin-top: 6px; font-family: var(--titulo); font-weight: 700; color: #f2c46a; }
+
+/* Lector: botones de la barra más visibles en el teléfono y aviso para girar la pantalla en vertical. */
+.j-barra { opacity: .6; top: max(10px, env(safe-area-inset-top)); }
+.j-barra button { font-family: var(--titulo); font-size: 14px; background: #1a1008d0; color: #ffe2a0; border: 1px solid #6b4a26; }
+.girar { display: none; }
+@media (orientation: portrait) and (max-width: 700px) {
+  .girar {
+    display: block; position: absolute; left: 0; right: 0; bottom: max(16px, env(safe-area-inset-bottom)); margin: 0;
+    text-align: center; color: #dcc79f; font-size: 15px; pointer-events: none;
+  }
+}
