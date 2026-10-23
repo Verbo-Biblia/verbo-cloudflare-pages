@@ -148,6 +148,10 @@
   "novela-grafica": {
    "es": "Novela gráfica",
    "en": "Graphic novel"
+  },
+  "idiomas": {
+   "es": "Idiomas",
+   "en": "Languages"
   }
  },
  "juegos": [
@@ -465,6 +469,38 @@
    "publicado": "2026-10-23",
    "destacado": false,
    "orden_mas_jugados": 9
+  },
+  {
+   "id": "efata",
+   "titulo": {
+    "es": "Efatá: inglés con la Biblia",
+    "en": "Efatá: English with the Bible"
+   },
+   "descripcion": {
+    "es": "Aprende inglés básico jugando, con el método de las 850 palabras y la Biblia.",
+    "en": "Learn basic English through play, with the 850-word method and the Bible."
+   },
+   "meta_descripcion": {
+    "es": "Efatá: curso-juego de inglés básico para hispanohablantes con el método de las 850 palabras y frases de la Biblia. Lecciones 1 a 5 gratis en la web; el curso completo, en la app de Android.",
+    "en": "Efatá: a basic English course-game for Spanish speakers with the 850-word method and Bible phrases. Lessons 1 to 5 free on the web; the full course in the Android app."
+   },
+   "categoria": "familia",
+   "infantil": false,
+   "genero": "idiomas",
+   "pasaje": "Marcos",
+   "duracion_min": 15,
+   "movil": true,
+   "idiomas": [
+    "es"
+   ],
+   "portada": "/juegos/efata/portada.webp",
+   "portada_en": "/juegos/efata/portada.webp",
+   "og_image": "/juegos/efata/og.jpg",
+   "url_juego": "/juegos/efata/jugar/",
+   "android": null,
+   "publicado": "2026-10-23",
+   "destacado": false,
+   "orden_mas_jugados": 10
   }
  ]
 }

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108">
+<defs>
+<linearGradient id="cielo" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#24507a"/><stop offset="1" stop-color="#8a5aa8"/></linearGradient>
+<radialGradient id="luz"><stop stop-color="#f2b632" stop-opacity=".24"/><stop offset="1" stop-color="#f2b632" stop-opacity="0"/></radialGradient>
+</defs>
+<path fill="url(#cielo)" d="M0 0H108V108H0Z"/>
+<circle cx="54" cy="94" r="40" fill="url(#luz)"/>
+<circle cx="54" cy="94" r="22" fill="#f2b632" opacity=".16"/>
+<path d="M33 99Q54 112 75 99Q71 116 54 116Q37 116 33 99Z" fill="#d9a441" opacity=".12"/>
+<path d="M41 81Q48 76 57 77" fill="none" stroke="#fffaf0" stroke-width="3" stroke-linecap="round" opacity=".16"/>
+</svg>
