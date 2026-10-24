@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>El retorno al Reino</title>
+<meta name="description" content="RPG cristiano en 3D para el navegador: cruza el Jordán, defiende el rebaño, levanta altares y crece en la fe.">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<!-- verbo:sin-pie -->
+<canvas id="lienzo"></canvas>
+
+<div id="carga" class="pantalla">
+  <div class="caja-carga">
+    <h1>El retorno al Reino</h1>
+    <div class="barra"><div id="carga-barra"></div></div>
+    <p id="carga-texto">Preparando el camino…</p>
+  </div>
+</div>
+
+<div id="aviso" class="pantalla oculto">
+  <div class="tarjeta">
+    <h2>Antes de empezar</h2>
+    <p>Este juego es <strong>ficción</strong>. Quiere darte una experiencia jugable con un contexto cristiano, inspirada en
+      el camino de Israel hacia la tierra prometida como figura de la vida del creyente.</p>
+    <p>Los «dones» del juego son <strong>símbolos</strong>: no enseñamos ni promovemos creer en poderes, magia o
+      hechicería. En el juego nadie es mago ni hechicero.</p>
+    <p>Las citas bíblicas son textuales y llevan su referencia. Los personajes y diálogos del pueblo son inventados.</p>
+    <button id="aviso-ok" class="boton">Entendido</button>
+  </div>
+</div>
+
+<div id="titulo" class="pantalla oculto">
+  <div class="titulo-caja">
+    <h1>El retorno al Reino</h1>
+    <p class="subtitulo">Capítulo 1 · Gilgal</p>
+    <button id="titulo-seguir" class="boton grande oculto">Continuar</button>
+    <button id="titulo-jugar" class="boton grande">Jugar</button>
+  </div>
+</div>
+
+<div id="llamado" class="pantalla oculto">
+  <div class="tarjeta ancha">
+    <h2>Elige tu llamado</h2>
+    <div id="llamados" class="llamados"></div>
+    <div class="figura">
+      <span>Figura:</span>
+      <button class="boton chico activo" data-figura="peregrino">Hombre</button>
+      <button class="boton chico" data-figura="peregrina">Mujer</button>
+    </div>
+    <button id="llamado-ok" class="boton grande">Comenzar el camino</button>
+  </div>
+</div>
+
+<div id="prologo" class="pantalla prologo oculto">
+  <div class="prologo-caja">
+    <p id="prologo-texto" class="prologo-texto"></p>
+    <p id="prologo-cita" class="prologo-cita"></p>
+  </div>
+  <button id="prologo-saltar" class="boton chico saltar">Saltar ▸</button>
+</div>
+
+<div id="hud" class="oculto">
+  <div class="estado">
+    <div class="nivel"><span id="hud-nivel">1</span><small id="hud-etapa">Hijito</small></div>
+    <div class="barras">
+      <div class="barra-vida"><div id="hud-vida"></div><span>Vida</span></div>
+      <div class="barra-fe"><div id="hud-fe"></div><span>Fe</span></div>
+      <div class="barra-crec"><div id="hud-crec"></div></div>
+    </div>
+  </div>
+  <canvas id="minimapa" class="minimapa"></canvas>
+  <div id="mision" class="mision"></div>
+  <div id="dones" class="dones"></div>
+  <div id="indicacion" class="indicacion oculto"></div>
+  <div id="aviso-centro" class="aviso-centro"></div>
+  <div id="dialogo" class="dialogo oculto">
+    <div class="quien" id="dialogo-quien"></div>
+    <div class="texto" id="dialogo-texto"></div>
+    <div class="cita" id="dialogo-cita"></div>
+    <div class="opciones" id="dialogo-opciones"></div>
+    <div class="seguir" id="dialogo-seguir">▼</div>
+  </div>
+  <div id="tactil" class="tactil oculto">
+    <div id="palanca" class="palanca"><div id="palanca-punta"></div></div>
+    <div class="botones-tactiles">
+      <button data-t="atacar" class="bt grande">⚔</button>
+      <button data-t="saltar" class="bt">⤒</button>
+      <button data-t="rodar" class="bt">↻</button>
+      <button data-t="escudo" class="bt">⛨</button>
+      <button data-t="usar" class="bt">✋</button>
+      <button data-t="don1" class="bt don">1</button>
+      <button data-t="don2" class="bt don">2</button>
+      <button data-t="don3" class="bt don">3</button>
+    </div>
+  </div>
+  <button id="boton-pausa" class="boton-pausa" title="Pausa">❚❚</button>
+</div>
+
+<div id="pausa" class="pantalla oculto">
+  <div class="tarjeta">
+    <h2>Pausa</h2>
+    <div class="controles" id="pausa-controles"></div>
+    <label class="opcion">Vista <select id="op-vista"><option value="libre">Tercera persona</option><option value="cenital">Cenital (35°)</option></select></label>
+    <label class="opcion">Calidad <select id="op-calidad"><option value="alta">Alta</option><option value="media">Media</option><option value="baja">Baja</option></select></label>
+    <label class="opcion">Mando: palanca de caminar girada <input id="op-mando-izq" type="checkbox"></label>
+    <label class="opcion">Mando: palanca de cámara girada <input id="op-mando-der" type="checkbox"></label>
+    <label class="opcion">Mando: cámara arriba/abajo invertida <input id="op-mando-inv" type="checkbox"></label>
+    <label class="opcion">Música <input id="op-musica" type="range" min="0" max="1" step="0.05" value="0.5"></label>
+    <label class="opcion">Efectos <input id="op-efectos" type="range" min="0" max="1" step="0.05" value="0.8"></label>
+    <button id="pausa-seguir" class="boton grande">Seguir</button>
+    <button id="pausa-salir" class="boton chico">Guardar y volver al inicio</button>
+  </div>
+</div>
+
+<div id="velo" class="velo"></div>
+<script type="module" src="juego.js"></script>
+</body>
+</html>

@@ -152,9 +152,45 @@
   "idiomas": {
    "es": "Idiomas",
    "en": "Languages"
+  },
+  "rol": {
+   "es": "Rol y aventura",
+   "en": "Role-playing adventure"
   }
  },
  "juegos": [
+  {
+   "id": "retorno-al-reino",
+   "titulo": {
+    "es": "El retorno al Reino",
+    "en": "The Return to the Kingdom"
+   },
+   "descripcion": {
+    "es": "Juego de rol en 3D: cruza el río, ayuda a la gente y levanta altares.",
+    "en": "3D role-playing game: cross the river, help the people and raise altars."
+   },
+   "meta_descripcion": {
+    "es": "Juego de rol cristiano en 3D para toda la familia: la vida cristiana contada como un éxodo. Cruza el río por las doce piedras, ayuda a la gente de Gilgal, defiende el rebaño de los lobos y levanta un altar en cada una de las cuatro tierras, con citas de Josué. Gratis en el navegador, en español.",
+    "en": "Christian 3D role-playing game for the whole family: the Christian life told as an exodus. Cross the river by the twelve stones, help the people of Gilgal, defend the flock from the wolves and raise an altar in each of the four lands, with quotations from Joshua. Free in the browser, in Spanish."
+   },
+   "categoria": "familia",
+   "infantil": false,
+   "genero": "rol",
+   "pasaje": "Josué",
+   "duracion_min": 30,
+   "movil": true,
+   "idiomas": [
+    "es"
+   ],
+   "portada": "/juegos/retorno-al-reino/portada.webp",
+   "portada_en": "/juegos/retorno-al-reino/portada-en.webp",
+   "og_image": "/juegos/retorno-al-reino/og.jpg",
+   "url_juego": "/juegos/retorno-al-reino/jugar/",
+   "android": null,
+   "publicado": "2026-10-24",
+   "destacado": true,
+   "orden_mas_jugados": 1
+  },
   {
    "id": "camino-al-cielo",
    "titulo": {
@@ -186,7 +222,7 @@
    "android": null,
    "publicado": "2026-10-22",
    "destacado": false,
-   "orden_mas_jugados": 6
+   "orden_mas_jugados": 7
   },
   {
    "id": "la-senda",
@@ -219,7 +255,7 @@
    "android": "https://play.google.com/store/apps/details?id=app.lasenda.preguntasbiblicas",
    "publicado": "2026-10-22",
    "destacado": false,
-   "orden_mas_jugados": 2
+   "orden_mas_jugados": 3
   },
   {
    "id": "tierra-prometida",
@@ -252,7 +288,7 @@
    "android": null,
    "publicado": "2026-10-22",
    "destacado": false,
-   "orden_mas_jugados": 5
+   "orden_mas_jugados": 6
   },
   {
    "id": "bajo-la-arena",
@@ -294,7 +330,7 @@
    "android": null,
    "publicado": "2026-10-22",
    "destacado": false,
-   "orden_mas_jugados": 4
+   "orden_mas_jugados": 5
   },
   {
    "id": "pares-de-la-arena",
@@ -336,7 +372,7 @@
    "android": null,
    "publicado": "2026-10-22",
    "destacado": false,
-   "orden_mas_jugados": 7
+   "orden_mas_jugados": 8
   },
   {
    "id": "rumbo-al-arca",
@@ -369,7 +405,7 @@
    "android": null,
    "publicado": "2026-10-22",
    "destacado": false,
-   "orden_mas_jugados": 3
+   "orden_mas_jugados": 4
   },
   {
    "id": "el-mensajero",
@@ -401,8 +437,8 @@
    "url_juego": "/juegos/el-mensajero/jugar/",
    "android": null,
    "publicado": "2026-10-23",
-   "destacado": true,
-   "orden_mas_jugados": 1
+   "destacado": false,
+   "orden_mas_jugados": 2
   },
   {
    "id": "heroes-de-la-fe",
@@ -435,7 +471,7 @@
    "android": null,
    "publicado": "2026-10-23",
    "destacado": false,
-   "orden_mas_jugados": 8
+   "orden_mas_jugados": 9
   },
   {
    "id": "panes-y-peces",
@@ -468,7 +504,7 @@
    "android": null,
    "publicado": "2026-10-23",
    "destacado": false,
-   "orden_mas_jugados": 9
+   "orden_mas_jugados": 10
   },
   {
    "id": "efata",
@@ -500,7 +536,7 @@
    "android": null,
    "publicado": "2026-10-23",
    "destacado": false,
-   "orden_mas_jugados": 10
+   "orden_mas_jugados": 11
   }
  ]
 }
