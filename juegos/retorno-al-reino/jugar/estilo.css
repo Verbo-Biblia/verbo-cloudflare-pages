@@ -150,3 +150,9 @@ body.tactil-activo .dones { display: none; }
   .mision { top: 140px; right: 10px; font-size: 12px; }
   .dialogo .texto { font-size: 16px; }
 }
+
+/* portada: volver a la página de Verbo y elegir idioma */
+.titulo-pie { display: flex; gap: 10px; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 18px; }
+.titulo-pie a.boton { text-decoration: none; }
+.titulo-pie .idiomas { display: inline-flex; gap: 4px; }
+.titulo-pie .idiomas .boton.activo { outline: 2px solid #ffd98a; }
