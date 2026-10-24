@@ -151,8 +151,10 @@ body.tactil-activo .dones { display: none; }
   .dialogo .texto { font-size: 16px; }
 }
 
-/* portada: volver a la página de Verbo y elegir idioma */
-.titulo-pie { display: flex; gap: 10px; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 18px; }
-.titulo-pie a.boton { text-decoration: none; }
-.titulo-pie .idiomas { display: inline-flex; gap: 4px; }
-.titulo-pie .idiomas .boton.activo { outline: 2px solid #ffd98a; }
+/* portada: todos los botones iguales (Continuar, Jugar / Empezar de nuevo, ES · EN, Volver a Verbo), uno debajo del otro */
+.titulo-caja .boton.grande { display: block; box-sizing: border-box; width: min(320px, 82vw); margin: 10px auto 0; text-align: center;
+  text-decoration: none; line-height: 1.25; }
+.titulo-caja .boton.grande.oculto { display: none; }
+.titulo-caja .idiomas { display: flex; gap: 10px; width: min(320px, 82vw); margin: 10px auto 0; }
+.titulo-caja .idiomas .boton.grande { flex: 1; width: auto; margin: 0; opacity: 0.6; }
+.titulo-caja .idiomas .boton.grande.activo { opacity: 1; outline: 2px solid var(--oro-claro); outline-offset: 2px; }
