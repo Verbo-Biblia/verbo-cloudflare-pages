@@ -156,6 +156,10 @@
   "rol": {
    "es": "Rol y aventura",
    "en": "Role-playing adventure"
+  },
+  "estrategia": {
+   "es": "Estrategia en tiempo real",
+   "en": "Real-time strategy"
   }
  },
  "juegos": [
@@ -538,6 +542,39 @@
    "publicado": "2026-10-23",
    "destacado": false,
    "orden_mas_jugados": 11
+  },
+  {
+   "id": "nehemias",
+   "titulo": {
+    "es": "Nehemías: 52 días",
+    "en": "Nehemiah: 52 Days"
+   },
+   "descripcion": {
+    "es": "Reconstruye el muro de Jerusalén con Nehemías antes de que terminen los 52 días.",
+    "en": "Rebuild the wall of Jerusalem with Nehemiah before the 52 days run out."
+   },
+   "meta_descripcion": {
+    "es": "Juego cristiano de estrategia en tiempo real en 3D, al estilo de los clásicos: dirige al pueblo para levantar los 28 tramos del muro de Jerusalén y sus 10 puertas, junta recursos, construye, investiga y resiste 9 invasiones mientras cuidas el ánimo. Basado en Nehemías 1–7, con citas textuales. Gratis, en el navegador, en español e inglés.",
+    "en": "A 3D Christian real-time strategy game in the style of the classics: lead the people to raise the 28 sections of the wall of Jerusalem and its 10 gates, gather resources, build, research and withstand 9 raids while keeping morale up. Based on Nehemiah 1–7, with exact Bible quotations. Free, in the browser, in English and Spanish."
+   },
+   "categoria": "desafio",
+   "infantil": false,
+   "genero": "estrategia",
+   "pasaje": "Nehemías",
+   "duracion_min": 60,
+   "movil": true,
+   "idiomas": [
+    "es",
+    "en"
+   ],
+   "portada": "/juegos/nehemias/portada.webp",
+   "portada_en": "/juegos/nehemias/portada-en.webp",
+   "og_image": "/juegos/nehemias/og.jpg",
+   "url_juego": "/juegos/nehemias/jugar/",
+   "android": null,
+   "publicado": "2026-10-25",
+   "destacado": false,
+   "orden_mas_jugados": 12
   }
  ]
 }

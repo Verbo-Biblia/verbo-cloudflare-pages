@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#14110d">
+<title>Nehemías: 52 días · Verbo</title>
+<meta name="description" content="Estrategia en tiempo real: reconstruye el muro de Jerusalén con Nehemías antes de que terminen los 52 días.">
+<link rel="stylesheet" href="estilo.css?v=6cefe582c0">
+</head>
+<body>
+<!-- verbo:sin-pie -->
+<canvas id="lienzo"></canvas>
+
+<!-- Partida -->
+<div id="hud" hidden>
+  <header id="barra">
+    <div class="recursos">
+      <div class="rec" id="r-comida" data-tip="comida"><i data-icono="comida"></i><b>0</b></div>
+      <div class="rec" id="r-madera" data-tip="madera"><i data-icono="madera"></i><b>0</b></div>
+      <div class="rec" id="r-piedra" data-tip="piedra"><i data-icono="piedra"></i><b>0</b></div>
+      <div class="rec" id="r-pob" data-tip="poblacion_txt"><i data-icono="poblacion"></i><b>0/0</b></div>
+      <div class="rec animo" id="r-animo" data-tip="animo_txt"><i data-icono="animo"></i><span class="barrita"><span></span></span><b>0</b></div>
+    </div>
+    <div class="dia" id="r-dia"><i data-icono="dia"></i><b></b><span class="reloj"><span></span></span></div>
+    <div class="botones-barra">
+      <button id="b-objetivos" data-icono="objetivos" data-tip="objetivos"></button>
+      <button id="b-velocidad" data-tip="velocidad">1×</button>
+      <button id="b-pausa" data-icono="pausa" data-tip="pausa"></button>
+      <button id="b-menu" data-icono="menu" data-tip="menu"></button>
+    </div>
+  </header>
+  <div id="avisos"></div>
+  <div id="objetivos" hidden></div>
+  <div id="recuadro" hidden></div>
+  <div id="pista" hidden></div>
+  <div id="consejo" hidden></div>
+  <div id="brujula" data-tip="brujula"><span class="aguja"></span><b data-br="n"></b><b data-br="e"></b><b data-br="s"></b><b data-br="o"></b></div>
+  <footer id="panel">
+    <div id="mini"><canvas id="minimapa" width="220" height="220"></canvas>
+      <button id="b-ocioso" data-icono="ocioso" data-tip="ocioso"><b></b></button></div>
+    <div id="info"></div>
+    <div id="ordenes"></div>
+  </footer>
+</div>
+
+<!-- Pantallas -->
+<div id="pantallas"></div>
+<div id="tooltip" hidden></div>
+
+<script src="/juegos/comun/anuncios.js?v=20261023"></script><script>VerboAds.init({juego:'nehemias'});</script>
+<script src="/juegos/comun/votos.js"></script>
+<script type="module" src="juego.js?v=6cefe582c0"></script>
+</body>
+</html>
