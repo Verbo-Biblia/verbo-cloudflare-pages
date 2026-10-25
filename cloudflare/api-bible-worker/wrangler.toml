@@ -23,3 +23,9 @@ RESEND_FROM = "Verbo <no-reply@verbobiblia.com>"
 [[kv_namespaces]]
 binding = "SYNC_KV"
 id = "a1a2e2765ff34bc7b3abd1dbd17dfb71"
+
+# «👍 Me gustó» de los juegos (handleVotos). Tabla en votos.sql.
+[[d1_databases]]
+binding = "VOTOS_DB"
+database_name = "verbo-votos"
+database_id = "8496ecbe-f466-42e7-893d-433e109c95d7"

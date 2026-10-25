@@ -14,7 +14,7 @@ from pathlib import Path
 R=Path(__file__).resolve().parents[1]
 BASE='https://verbobiblia.com'
 HOY=datetime.date.today()
-V='20261023-portal'
+V='20261024-votos'
 CATALOGO=json.loads((R/'juegos/catalogo.json').read_text())
 JUEGOS=[g for g in CATALOGO['juegos'] if g.get('visible',True)]
 CATS=CATALOGO['categorias']
@@ -76,7 +76,7 @@ def migas(items):
 def ld_migas(items):
  return {'@context':'https://schema.org','@type':'BreadcrumbList','itemListElement':[{'@type':'ListItem','position':i+1,'name':es,'item':BASE+(u or '')} for i,(u,es,en) in enumerate(items)]}
 
-def pagina(ruta,titulo,desc,cuerpo,schemas,og_img,infantil=False):
+def pagina(ruta,titulo,desc,cuerpo,schemas,og_img,infantil=False,scripts=''):
  """ruta: 'juegos/x/'; titulo y desc: (es,en). Escribe ruta/index.html."""
  te,tn=titulo;de,dn=desc;url=f'{BASE}/{ruta}'
  meta_inf='<meta name="verbo-publico" content="infantil">' if infantil else ''
@@ -95,7 +95,7 @@ def pagina(ruta,titulo,desc,cuerpo,schemas,og_img,infantil=False):
   f'</head><body class="portal"'+(' data-publico="infantil"' if infantil else '')+'><a class="skip" href="#contenido" data-i18n="home.skip">Ir al contenido</a>'+barra()+
   f'<main id="contenido">{cuerpo}</main>'
   '<script src="/biblia/assets/i18n.js?v=20261021-secciones"></script><script src="/biblia/assets/site-chrome.js?v=20261021-secciones"></script>'
-  f'<script src="/assets/secciones/secciones.js?v={V}" defer></script><script src="/assets/portal/portal.js?v={V}" defer></script></body></html>')
+  f'<script src="/assets/secciones/secciones.js?v={V}" defer></script><script src="/assets/portal/portal.js?v={V}" defer></script>{scripts}</body></html>')
  p=R/ruta/'index.html';p.parent.mkdir(parents=True,exist_ok=True);p.write_text(html)
  return ruta
 
@@ -169,7 +169,7 @@ def ficha_pagina(g):
  jugar=f'<a class="v-boton v-boton--jugar grande" href="{g["url_juego"]}">▶ '+bi('Jugar','Play','span')+'</a>'
  if g.get('android'):jugar+=f'<a class="v-boton v-boton--sec" href="{g["android"]}" target="_blank" rel="noopener">'+bi('Descargar para Android','Get it on Android','span')+'<span aria-hidden="true">↗</span></a>'
  cab=(f'<div class="v-ficha__cabeza portal-wrap" data-cat="{g["categoria"]}"><div>'+bi(gen['es'].upper(),gen['en'].upper(),'p',class_='v-sub')+bi(t['es'],t['en'],'h1')+bi(desc['es'],desc['en'],'p',class_='v-hero__lema')+
-  chips(g)+'<div class="v-botones" style="margin-top:18px">'+jugar+'</div></div>'
+  chips(g)+'<div class="v-botones" style="margin-top:18px">'+jugar+f'<div class="v-votos" data-votos-juego="{g["id"]}"></div></div></div>'
   f'<a class="v-ficha__portada" href="{g["url_juego"]}" tabindex="-1" aria-hidden="true"><img src="{portada(g)}" data-shot-es="{portada(g)}" data-shot-en="{portada(g,"en")}" width="1280" height="720" alt="" fetchpriority="high"></a></div>')
  cuerpo=migas(items)+cab+'<div class="portal-wrap v-ficha">'
  if f:
@@ -191,7 +191,7 @@ def ficha_pagina(g):
   'offers':{'@type':'Offer','price':'0','priceCurrency':'USD'},'publisher':{'@type':'Organization','name':'Verbo','url':BASE+'/'},'datePublished':g['publicado'],
   'playMode':'SinglePlayer','typicalAgeRange':c.get('edades')}
  if not juego['typicalAgeRange']:juego.pop('typicalAgeRange')
- pagina(f'juegos/{g["id"]}/',(f'{t["es"]}: juego cristiano gratis | Verbo',f'{t["en"]}: free Christian game | Verbo'),(desc['es'],desc['en']),cuerpo,[juego,ld_migas(items)],g['og_image'],infantil=g.get('infantil',False))
+ pagina(f'juegos/{g["id"]}/',(f'{t["es"]}: juego cristiano gratis | Verbo',f'{t["en"]}: free Christian game | Verbo'),(desc['es'],desc['en']),cuerpo,[juego,ld_migas(items)],g['og_image'],infantil=g.get('infantil',False),scripts=f'<script src="/juegos/comun/votos.js?v={V}" defer></script>')
 
 # ---------- bloque de la portada ----------
 INI,FIN='<!-- verbo:portal-juegos -->','<!-- /verbo:portal-juegos -->'

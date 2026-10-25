@@ -142,3 +142,17 @@ Cuando Google apruebe H5 Games Ads para `ca-pub-4810728953852074`:
 Reglas que el módulo ya respeta: no carga nada dentro de la app Android (iframe `verboEmbedApp`), y **no muestra
 anuncios en los juegos infantiles** mientras `VERBO_H5_INFANTIL = false`, porque la Ad Placement API no documenta
 cómo marcar contenido dirigido a niños (AdSense usa hoy `data-tag-for-age-treatment="1"` solo en bloques `<ins>`).
+
+## «👍 Me gustó» (2026-10-24)
+
+Cada ficha lleva el botón (`juegos/comun/votos.js`, lo pone `build_juegos.py`). Los votos los cuenta el Worker
+`verbo-api-bible` en `/v1/juegos/votos` y se guardan en la base D1 `verbo-votos` (no en KV). Son anónimos: un id al
+azar por navegador. El número se muestra desde 20 votos. Ver los resultados:
+
+```sh
+cd cloudflare/api-bible-worker
+npx wrangler d1 execute verbo-votos --remote --command="SELECT juego, COUNT(*) AS votos FROM votos GROUP BY juego ORDER BY votos DESC"
+```
+
+Para pedirlo al terminar una partida, desde el juego: `window.VerboVotos.boton('<id>')` devuelve el botón listo
+(hay que cargar `/juegos/comun/votos.js`).

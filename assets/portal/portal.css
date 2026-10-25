@@ -42,6 +42,11 @@ body.portal{margin:0;overflow-x:hidden}
 .portal .v-boton--sec{background:transparent;color:var(--v-crema);border:1px solid var(--v-borde)}
 .portal .v-boton--sec:hover{background:var(--v-noche-3)}
 .v-botones{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.v-votos__boton{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 18px;border-radius:14px;background:transparent;color:var(--v-crema);border:1px solid var(--v-borde);font:800 16px var(--v-redonda);cursor:pointer;transition:background .2s,border-color .2s}
+.v-votos__boton:hover{background:var(--v-noche-3)}
+.v-votos__boton[aria-pressed="true"]{border-color:var(--v-oro);color:var(--v-oro-claro)}
+.v-votos__boton:disabled{opacity:.7;cursor:progress}
+.v-votos__n{padding:2px 8px;border-radius:999px;background:var(--v-noche-3);font-size:13px}
 
 /* Chips e insignias */
 .v-chips{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:0;padding:0}

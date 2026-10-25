@@ -1442,6 +1442,48 @@ async function handleReclamo(request, env, headers) {
   return jsonOk({ ok:true }, headers);
 }
 
+// «👍 Me gustó» de los juegos (/juegos/<id>/). Va en D1 y no en SYNC_KV: KV
+// gratis solo permite 1000 escrituras al día y ya las gasta el caché de
+// traducción. Anónimo: el navegador manda un id al azar que guarda en
+// localStorage; aquí se guarda su hash, nunca la IP. La IP solo sirve para
+// limitar envíos por hora, en el Cache API (igual que /v1/reclamos).
+const VOTOS_POR_HORA = 60;
+const VOTOS_JUEGO = /^[a-z0-9-]{2,40}$/;
+const VOTOS_VOTANTE = /^[A-Za-z0-9-]{16,64}$/;
+
+async function votosConteos(env) {
+  const { results } = await env.VOTOS_DB.prepare('SELECT juego, COUNT(*) AS n FROM votos GROUP BY juego').all();
+  return Object.fromEntries(results.map(fila => [fila.juego, fila.n]));
+}
+
+async function handleVotos(request, env, headers) {
+  if (!env.VOTOS_DB) return jsonError('VOTOS_DB no está configurada', 500, headers);
+  if (request.method === 'GET') return jsonOk({ juegos: await votosConteos(env) }, headers);
+  if (request.method !== 'POST') return jsonError('Método no permitido', 405, headers);
+
+  const body = await readJson(request);
+  const juego = String(body?.juego || '');
+  const votante = String(body?.votante || '');
+  if (!VOTOS_JUEGO.test(juego) || !VOTOS_VOTANTE.test(votante)) return jsonError('Voto no válido', 400, headers);
+
+  const ip = request.headers.get('CF-Connecting-IP') || 'desconocida';
+  const cache = caches.default;
+  const clave = new Request(`https://votos.verbo.internal/${encodeURIComponent(ip)}`);
+  const previo = await cache.match(clave);
+  const usados = previo ? Number(await previo.text()) || 0 : 0;
+  if (usados >= VOTOS_POR_HORA) return jsonError('Demasiados votos. Intenta más tarde.', 429, headers);
+  await cache.put(clave, new Response(String(usados + 1), { headers:{ 'Cache-Control':'max-age=3600' } }));
+
+  const hash = await sha256Hex(`votos:${votante}`);
+  if (body.gusta === false) {
+    await env.VOTOS_DB.prepare('DELETE FROM votos WHERE juego = ? AND votante = ?').bind(juego, hash).run();
+  } else {
+    await env.VOTOS_DB.prepare('INSERT OR IGNORE INTO votos (juego, votante, creado) VALUES (?, ?, ?)').bind(juego, hash, Date.now()).run();
+  }
+  const fila = await env.VOTOS_DB.prepare('SELECT COUNT(*) AS n FROM votos WHERE juego = ?').bind(juego).first();
+  return jsonOk({ juego, votos: fila?.n || 0, gusta: body.gusta !== false }, headers);
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -1464,6 +1506,7 @@ export default {
       if (url.pathname === '/translate-sermon-doc') return await handleTranslateSermonDoc(request, env, headers);
       if (url.pathname === '/proyector/estado') return await handleProyectorEstado(request, url, env, headers);
       if (url.pathname === '/v1/reclamos') return await handleReclamo(request, env, headers);
+      if (url.pathname === '/v1/juegos/votos') return await handleVotos(request, env, headers);
       return await handleApiBible(request, url, env, headers);
     } catch (error) {
       console.error(error);
