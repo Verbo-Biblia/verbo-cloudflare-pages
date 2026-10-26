@@ -1,0 +1,196 @@
+{
+ "id": "02-nombres-animales",
+ "numero": 2,
+ "lugar": "eden",
+ "titulo": {"es": "Los nombres de los animales", "en": "Naming the animals"},
+ "tema": {"es": "variables y tipos de datos", "en": "variables and data types"},
+ "versiculo": "gen-2-20",
+ "medalla": {"es": "Nombrador", "en": "Name-giver"},
+ "leccion": {
+  "es": [
+   "Una **variable** es un nombre que guarda un valor: `animal = \"oveja\"`. Aquí `=` no significa «igual»: significa «guarda este valor con este nombre».",
+   "Cada valor tiene un **tipo**: `str` (texto: `\"oveja\"`), `int` (número entero: `4`), `float` (número con decimales, con punto: `1.5`) y `bool` (verdadero o falso: `True` o `False`). `type(x)` te dice el tipo de `x`.",
+   "`print()` puede mostrar varias cosas separadas por comas, y pone un espacio entre ellas: `print(\"Animal:\", animal)` muestra `Animal: oveja`.",
+   "Los nombres de variables no llevan espacios ni empiezan con número. Se acostumbra usar minúsculas y `_`: `numero_de_patas`. Python distingue mayúsculas: `animal` y `Animal` son nombres distintos."
+  ],
+  "en": [
+   "A **variable** is a name that holds a value: `animal = \"sheep\"`. Here `=` doesn't mean “equals”: it means “store this value under this name”.",
+   "Every value has a **type**: `str` (text: `\"sheep\"`), `int` (whole number: `4`), `float` (number with decimals, using a dot: `1.5`) and `bool` (true or false: `True` or `False`). `type(x)` tells you the type of `x`.",
+   "`print()` can show several things separated by commas, and it puts a space between them: `print(\"Animal:\", animal)` shows `Animal: sheep`.",
+   "Variable names have no spaces and don't start with a number. The custom is lowercase with `_`: `number_of_legs`. Python is case-sensitive: `animal` and `Animal` are different names."
+  ]
+ },
+ "ejemplo": {
+  "es": "animal = \"león\"\npatas = 4\nprint(animal, \"tiene\", patas, \"patas\")\nprint(type(animal))\nprint(type(patas))",
+  "en": "animal = \"lion\"\nlegs = 4\nprint(animal, \"has\", legs, \"legs\")\nprint(type(animal))\nprint(type(legs))"
+ },
+ "ejercicios": [
+  {
+   "id": "paloma",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Crea una variable llamada `nombre` que guarde el texto `\"paloma\"`, y luego muéstrala con `print(nombre)`.",
+    "en": "Create a variable called `name` that holds the text `\"dove\"`, then show it with `print(name)`."
+   },
+   "inicial": {"es": "", "en": ""},
+   "pistas": {
+    "es": ["Primero la variable: `nombre = \"...\"`. Después, en otra línea, `print(nombre)`.", "Dentro de `print()` va el nombre de la variable sin comillas."],
+    "en": ["First the variable: `name = \"...\"`. Then, on another line, `print(name)`.", "Inside `print()` goes the variable name, without quotes."]
+   },
+   "solucion": {"es": "nombre = \"paloma\"\nprint(nombre)", "en": "name = \"dove\"\nprint(name)"},
+   "pruebas": {
+    "es": [
+     {"py": "assert nombre == 'paloma'", "msg": {"es": "La variable nombre debe guardar el texto \"paloma\".", "en": "The variable nombre must hold the text \"paloma\"."}},
+     {"salida": "paloma"}
+    ],
+    "en": [
+     {"py": "assert name == 'dove'", "msg": {"es": "La variable name debe guardar el texto \"dove\".", "en": "The variable name must hold the text \"dove\"."}},
+     {"salida": "dove"}
+    ]
+   },
+   "errores_tipicos": {"es": ["nombre = paloma\nprint(nombre)", "nombre = \"paloma\"\nprint(\"nombre\")", "print(\"paloma\")"], "en": ["name = \"dove\"\nprint(\"name\")"]}
+  },
+  {
+   "id": "camello",
+   "tipo": "hueco",
+   "enunciado": {
+    "es": "Completa para que el programa muestre `camello tiene 4 patas`. Ojo: las patas son un número, no un texto.",
+    "en": "Fill in the blanks so the program shows `camel has 4 legs`. Careful: the legs are a number, not text."
+   },
+   "plantilla": {"es": "animal = ___\npatas = ___\nprint(animal, \"tiene\", patas, \"patas\")", "en": "animal = ___\nlegs = ___\nprint(animal, \"has\", legs, \"legs\")"},
+   "pistas": {
+    "es": ["El texto va entre comillas; los números, sin comillas.", "`\"camello\"` en el primer espacio y `4` en el segundo."],
+    "en": ["Text goes in quotes; numbers don't.", "`\"camel\"` in the first blank and `4` in the second."]
+   },
+   "solucion": {"es": "animal = \"camello\"\npatas = 4\nprint(animal, \"tiene\", patas, \"patas\")", "en": "animal = \"camel\"\nlegs = 4\nprint(animal, \"has\", legs, \"legs\")"},
+   "pruebas": {
+    "es": [{"salida": "camello tiene 4 patas"}, {"py": "assert type(patas) is int", "msg": {"es": "patas debe ser un número entero, sin comillas: 4.", "en": "patas must be a whole number, without quotes: 4."}}],
+    "en": [{"salida": "camel has 4 legs"}, {"py": "assert type(legs) is int", "msg": {"es": "legs debe ser un número entero, sin comillas: 4.", "en": "legs must be a whole number, without quotes: 4."}}]
+   },
+   "errores_tipicos": {"es": ["animal = \"camello\"\npatas = \"4\"\nprint(animal, \"tiene\", patas, \"patas\")"], "en": ["animal = \"camel\"\nlegs = \"4\"\nprint(animal, \"has\", legs, \"legs\")"]}
+  },
+  {
+   "id": "cuatro-tipos",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Crea cuatro variables, una de cada tipo:\n- `especie` con el texto `\"oveja\"` (str)\n- `edad` con el número `3` (int)\n- `peso` con `45.5` (float)\n- `es_manso` con `True` (bool)\n\nLuego muestra el tipo de `peso` con `print(type(peso))`.",
+    "en": "Create four variables, one of each type:\n- `species` with the text `\"sheep\"` (str)\n- `age` with the number `3` (int)\n- `weight` with `45.5` (float)\n- `is_gentle` with `True` (bool)\n\nThen show the type of `weight` with `print(type(weight))`."
+   },
+   "inicial": {"es": "especie = \"oveja\"\n", "en": "species = \"sheep\"\n"},
+   "pistas": {
+    "es": ["`True` va con mayúscula inicial y sin comillas.", "Los decimales se escriben con punto: `45.5`, no `45,5`."],
+    "en": ["`True` starts with a capital letter and has no quotes.", "Decimals use a dot: `45.5`."]
+   },
+   "solucion": {
+    "es": "especie = \"oveja\"\nedad = 3\npeso = 45.5\nes_manso = True\nprint(type(peso))",
+    "en": "species = \"sheep\"\nage = 3\nweight = 45.5\nis_gentle = True\nprint(type(weight))"
+   },
+   "pruebas": {
+    "es": [
+     {"py": "assert especie == 'oveja'", "msg": {"es": "especie debe ser el texto \"oveja\".", "en": "especie must be the text \"oveja\"."}},
+     {"py": "assert type(edad) is int and edad == 3", "msg": {"es": "edad debe ser el número entero 3, sin comillas.", "en": "edad must be the whole number 3, without quotes."}},
+     {"py": "assert type(peso) is float and peso == 45.5", "msg": {"es": "peso debe ser 45.5, con punto decimal.", "en": "peso must be 45.5, with a decimal point."}},
+     {"py": "assert es_manso is True", "msg": {"es": "es_manso debe ser True (con T mayúscula y sin comillas).", "en": "es_manso must be True (capital T, no quotes)."}},
+     {"salida": "<class 'float'>"}
+    ],
+    "en": [
+     {"py": "assert species == 'sheep'", "msg": {"es": "species debe ser el texto \"sheep\".", "en": "species must be the text \"sheep\"."}},
+     {"py": "assert type(age) is int and age == 3", "msg": {"es": "age debe ser el número entero 3, sin comillas.", "en": "age must be the whole number 3, without quotes."}},
+     {"py": "assert type(weight) is float and weight == 45.5", "msg": {"es": "weight debe ser 45.5, con punto decimal.", "en": "weight must be 45.5, with a decimal point."}},
+     {"py": "assert is_gentle is True", "msg": {"es": "is_gentle debe ser True (con T mayúscula y sin comillas).", "en": "is_gentle must be True (capital T, no quotes)."}},
+     {"salida": "<class 'float'>"}
+    ]
+   },
+   "errores_tipicos": {
+    "es": ["especie = \"oveja\"\nedad = 3\npeso = 45.5\nes_manso = true\nprint(type(peso))", "especie = \"oveja\"\nedad = \"3\"\npeso = 45.5\nes_manso = True\nprint(type(peso))"],
+    "en": ["species = \"sheep\"\nage = 3\nweight = 45.5\nis_gentle = \"True\"\nprint(type(weight))"]
+   }
+  },
+  {
+   "id": "aguila",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Una variable puede cambiar de valor. Crea `animal = \"sin nombre\"` y muéstrala. Después dale el nombre `\"águila\"` (vuelve a usar `=`) y muéstrala otra vez. El programa debe mostrar:\n```\nsin nombre\náguila\n```",
+    "en": "A variable can change its value. Create `animal = \"no name\"` and show it. Then give it the name `\"eagle\"` (use `=` again) and show it once more. The program must show:\n```\nno name\neagle\n```"
+   },
+   "inicial": {"es": "animal = \"sin nombre\"\nprint(animal)\n", "en": "animal = \"no name\"\nprint(animal)\n"},
+   "pistas": {
+    "es": ["Debajo de lo que ya está, escribe `animal = \"águila\"`.", "Y luego otra vez `print(animal)`."],
+    "en": ["Below what's already there, write `animal = \"eagle\"`.", "Then `print(animal)` again."]
+   },
+   "solucion": {"es": "animal = \"sin nombre\"\nprint(animal)\nanimal = \"águila\"\nprint(animal)", "en": "animal = \"no name\"\nprint(animal)\nanimal = \"eagle\"\nprint(animal)"},
+   "pruebas": {
+    "es": [{"salida": "sin nombre\náguila"}, {"py": "assert animal == 'águila'", "msg": {"es": "Al final, la variable animal debe guardar \"águila\".", "en": "At the end, the variable animal must hold \"águila\"."}}],
+    "en": [{"salida": "no name\neagle"}, {"py": "assert animal == 'eagle'", "msg": {"es": "Al final, la variable animal debe guardar \"eagle\".", "en": "At the end, the variable animal must hold \"eagle\"."}}]
+   },
+   "errores_tipicos": {"es": ["animal = \"sin nombre\"\nprint(animal)\nprint(\"águila\")"], "en": ["animal = \"no name\"\nprint(animal)\nprint(\"eagle\")"]}
+  },
+  {
+   "id": "ficha-gacela",
+   "tipo": "ordenar",
+   "enunciado": {
+    "es": "Ordena las líneas para que el programa muestre:\n```\nNombre: gacela\nPatas: 4\n```\nRecuerda: una variable debe existir antes de usarla.",
+    "en": "Put the lines in order so the program shows:\n```\nName: gazelle\nLegs: 4\n```\nRemember: a variable must exist before you use it."
+   },
+   "lineas": {
+    "es": ["nombre = \"gacela\"", "patas = 4", "print(\"Nombre:\", nombre)", "print(\"Patas:\", patas)"],
+    "en": ["name = \"gazelle\"", "legs = 4", "print(\"Name:\", name)", "print(\"Legs:\", legs)"]
+   },
+   "pistas": {
+    "es": ["Primero se crean las variables; después se muestran.", "Las dos líneas con `=` van arriba."],
+    "en": ["First the variables are created; then they're shown.", "The two lines with `=` go on top."]
+   },
+   "pruebas": {"es": [{"salida": "Nombre: gacela\nPatas: 4"}], "en": [{"salida": "Name: gazelle\nLegs: 4"}]}
+  },
+  {
+   "id": "golondrina",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Este programa da un error. Ejecútalo, lee el mensaje y arréglalo para que muestre `golondrina`.",
+    "en": "This program gives an error. Run it, read the message and fix it so it shows `swallow`."
+   },
+   "inicial": {"es": "ave = \"golondrina\"\nprint(Ave)\n", "en": "bird = \"swallow\"\nprint(Bird)\n"},
+   "pistas": {
+    "es": ["Python distingue mayúsculas y minúsculas.", "La variable se llama `ave`, con minúscula."],
+    "en": ["Python is case-sensitive.", "The variable is called `bird`, in lowercase."]
+   },
+   "solucion": {"es": "ave = \"golondrina\"\nprint(ave)", "en": "bird = \"swallow\"\nprint(bird)"},
+   "pruebas": {"es": [{"salida": "golondrina"}], "en": [{"salida": "swallow"}]},
+   "errores_tipicos": {"es": ["ave = \"golondrina\"\nprint(Ave)"], "en": ["bird = \"swallow\"\nprint(Bird)"]}
+  },
+  {
+   "id": "ficha-buho",
+   "tipo": "escribir",
+   "reto": true,
+   "enunciado": {
+    "es": "**Reto:** haz la ficha de un animal. Crea tres variables: `nombre` (el texto `\"búho\"`), `patas` (el número `2`) y `vuela` (`True`). Muestra la ficha usando las variables:\n```\nAnimal: búho\nPatas: 2\n¿Vuela? True\n```\nEscribe «búho» una sola vez en todo el programa.",
+    "en": "**Challenge:** make an animal card. Create three variables: `name` (the text `\"owl\"`), `legs` (the number `2`) and `flies` (`True`). Show the card using the variables:\n```\nAnimal: owl\nLegs: 2\nFlies? True\n```\nType “owl” only once in the whole program."
+   },
+   "inicial": {"es": "", "en": ""},
+   "pistas": {
+    "es": ["Primero las tres variables; luego tres `print()` con comas: `print(\"Animal:\", nombre)`.", "`vuela = True`, sin comillas."],
+    "en": ["First the three variables; then three `print()` calls with commas: `print(\"Animal:\", name)`.", "`flies = True`, no quotes."]
+   },
+   "solucion": {
+    "es": "nombre = \"búho\"\npatas = 2\nvuela = True\nprint(\"Animal:\", nombre)\nprint(\"Patas:\", patas)\nprint(\"¿Vuela?\", vuela)",
+    "en": "name = \"owl\"\nlegs = 2\nflies = True\nprint(\"Animal:\", name)\nprint(\"Legs:\", legs)\nprint(\"Flies?\", flies)"
+   },
+   "pruebas": {
+    "es": [
+     {"py": "assert nombre == 'búho' and type(patas) is int and patas == 2 and vuela is True", "msg": {"es": "Revisa las tres variables: nombre = \"búho\", patas = 2 y vuela = True.", "en": "Check the three variables: nombre = \"búho\", patas = 2 and vuela = True."}},
+     {"salida": "Animal: búho\nPatas: 2\n¿Vuela? True"},
+     {"py": "assert _codigo.count('búho') == 1", "msg": {"es": "Escribe «búho» una sola vez, en la variable, y usa la variable en print().", "en": "Type «búho» only once, in the variable, and use the variable in print()."}}
+    ],
+    "en": [
+     {"py": "assert name == 'owl' and type(legs) is int and legs == 2 and flies is True", "msg": {"es": "Revisa las tres variables: name = \"owl\", legs = 2 y flies = True.", "en": "Check the three variables: name = \"owl\", legs = 2 and flies = True."}},
+     {"salida": "Animal: owl\nLegs: 2\nFlies? True"},
+     {"py": "assert _codigo.count('owl') == 1", "msg": {"es": "Escribe «owl» una sola vez, en la variable, y usa la variable en print().", "en": "Type “owl” only once, in the variable, and use the variable in print()."}}
+    ]
+   },
+   "errores_tipicos": {
+    "es": ["nombre = \"búho\"\npatas = 2\nvuela = True\nprint(\"Animal: búho\")\nprint(\"Patas:\", patas)\nprint(\"¿Vuela?\", vuela)"],
+    "en": ["name = \"owl\"\nlegs = 2\nflies = True\nprint(\"Animal: owl\")\nprint(\"Legs:\", legs)\nprint(\"Flies?\", flies)"]
+   }
+  }
+ ]
+}

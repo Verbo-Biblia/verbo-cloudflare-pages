@@ -1,0 +1,594 @@
+{
+ "id": "16-cartas-iglesias",
+ "numero": 16,
+ "lugar": "roma",
+ "titulo": {
+  "es": "Cartas a las iglesias",
+  "en": "Letters to the churches"
+ },
+ "tema": {
+  "es": "archivos de texto: open, with, leer y escribir",
+  "en": "text files: open, with, reading and writing"
+ },
+ "versiculo": "2co-3-3",
+ "medalla": {
+  "es": "Escriba de cartas",
+  "en": "Letter scribe"
+ },
+ "leccion": {
+  "es": [
+   "Hasta ahora todo lo que tu programa sabía se perdía al terminar. Un **archivo** guarda texto en el disco. Se abre con `open(nombre, modo, encoding=\"utf-8\")`: el modo `\"r\"` lee (es el modo por defecto), `\"w\"` escribe desde cero (¡borra lo que había!) y `\"a\"` agrega al final. `encoding=\"utf-8\"` asegura que las tildes y la ñ se lean bien.",
+   "Lo correcto es abrir con `with open(...) as f:`. Al salir del bloque, Python **cierra el archivo** solo, aunque haya un error. Dentro, `f.read()` devuelve todo el texto en una cadena; `f.readlines()` devuelve una lista de líneas, y `for linea in f:` recorre línea por línea sin cargar todo a la vez.",
+   "Cada línea leída **termina en `\"\\n\"`** (el salto de línea). Por eso casi siempre se usa `linea.strip()` antes de trabajar con ella. Al revés, `f.write(texto)` **no agrega** el salto: tienes que escribir `\"\\n\"` tú mismo.",
+   "Abrir para leer un archivo que no existe lanza `FileNotFoundError`. Puedes revisarlo antes con `os.path.exists(nombre)` (después de `import os`), que devuelve `True` o `False`.",
+   "Pablo escribió cartas a las iglesias de Roma, Corinto, Filipos y otras ciudades; las iglesias las copiaban y las compartían (Colosenses 4:16). En este capítulo tus programas leerán y escribirán esas cartas."
+  ],
+  "en": [
+   "Until now, everything your program knew was lost when it ended. A **file** stores text on disk. You open it with `open(name, mode, encoding=\"utf-8\")`: mode `\"r\"` reads (the default), `\"w\"` writes from scratch (it erases what was there!) and `\"a\"` appends to the end. `encoding=\"utf-8\"` makes sure accented letters are read correctly.",
+   "The right way is `with open(...) as f:`. When the block ends, Python **closes the file** for you, even if there was an error. Inside, `f.read()` returns all the text as one string; `f.readlines()` returns a list of lines, and `for line in f:` goes line by line without loading everything at once.",
+   "Every line you read **ends in `\"\\n\"`** (the newline). That is why you almost always use `line.strip()` before working with it. The other way around, `f.write(text)` does **not** add a newline: you must write `\"\\n\"` yourself.",
+   "Opening a file that doesn't exist for reading raises `FileNotFoundError`. You can check first with `os.path.exists(name)` (after `import os`), which returns `True` or `False`.",
+   "Paul wrote letters to the churches in Rome, Corinth, Philippi and other cities; the churches copied and shared them (Colossians 4:16). In this chapter your programs will read and write those letters."
+  ]
+ },
+ "ejemplo": {
+  "es": "import os\n\nwith open(\"saludo.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"Gracia y paz a ustedes,\\n\")\n    f.write(\"de parte de Dios nuestro Padre y del Señor Jesucristo.\\n\")\n\nprint(os.path.exists(\"saludo.txt\"))\nwith open(\"saludo.txt\", encoding=\"utf-8\") as f:\n    for linea in f:\n        print(linea.strip())",
+  "en": "import os\n\nwith open(\"greeting.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"Grace and peace to you\\n\")\n    f.write(\"from God our Father and the Lord Jesus Christ.\\n\")\n\nprint(os.path.exists(\"greeting.txt\"))\nwith open(\"greeting.txt\", encoding=\"utf-8\") as f:\n    for line in f:\n        print(line.strip())"
+ },
+ "ejercicios": [
+  {
+   "id": "leer-carta",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "El archivo `carta.txt` tiene el comienzo de la carta a los Romanos (1:1 y 1:7). Ábrelo con `with open(...)` y `encoding=\"utf-8\"`, léelo completo con `read()` y muéstralo. Debe salir:\n```\nPablo, siervo de Jesucristo, llamado a ser apóstol, apartado para el evangelio de Dios,\nA todos los que están en Roma, amados de Dios, llamados a ser santos: Gracia y paz a ustedes de parte de Dios nuestro Padre y del Señor Jesucristo.\n```",
+    "en": "The file `letter.txt` has the opening of the letter to the Romans (1:1 and 1:7). Open it with `with open(...)` and `encoding=\"utf-8\"`, read it all with `read()` and show it. It should print:\n```\nPaul, a servant of Christ Jesus, called to be an apostle, and set apart for the gospel of God—\nTo all in Rome who are loved by God and called to be saints: Grace and peace to you from God our Father and the Lord Jesus Christ.\n```"
+   },
+   "archivos": {
+    "es": {
+     "carta.txt": "Pablo, siervo de Jesucristo, llamado a ser apóstol, apartado para el evangelio de Dios,\nA todos los que están en Roma, amados de Dios, llamados a ser santos: Gracia y paz a ustedes de parte de Dios nuestro Padre y del Señor Jesucristo.\n"
+    },
+    "en": {
+     "letter.txt": "Paul, a servant of Christ Jesus, called to be an apostle, and set apart for the gospel of God—\nTo all in Rome who are loved by God and called to be saints: Grace and peace to you from God our Father and the Lord Jesus Christ.\n"
+    }
+   },
+   "inicial": {
+    "es": "",
+    "en": ""
+   },
+   "pistas": {
+    "es": [
+     "`with open(\"carta.txt\", \"r\", encoding=\"utf-8\") as f:` abre el archivo para leer.",
+     "Dentro del bloque: `texto = f.read()` y después `print(texto)`."
+    ],
+    "en": [
+     "`with open(\"letter.txt\", \"r\", encoding=\"utf-8\") as f:` opens the file for reading.",
+     "Inside the block: `text = f.read()` and then `print(text)`."
+    ]
+   },
+   "solucion": {
+    "es": "with open(\"carta.txt\", \"r\", encoding=\"utf-8\") as f:\n    texto = f.read()\nprint(texto)",
+    "en": "with open(\"letter.txt\", \"r\", encoding=\"utf-8\") as f:\n    text = f.read()\nprint(text)"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Pablo, siervo de Jesucristo, llamado a ser apóstol, apartado para el evangelio de Dios,\nA todos los que están en Roma, amados de Dios, llamados a ser santos: Gracia y paz a ustedes de parte de Dios nuestro Padre y del Señor Jesucristo.\n"
+     },
+     {
+      "py": "assert 'open(' in _codigo and '.read()' in _codigo",
+      "msg": {
+       "es": "Abre el archivo con open() y léelo con read().",
+       "en": "Open the file with open() and read it with read()."
+      }
+     },
+     {
+      "py": "assert 'Pablo, siervo' not in _codigo",
+      "msg": {
+       "es": "No copies el texto: léelo del archivo.",
+       "en": "Don't copy the text: read it from the file."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Paul, a servant of Christ Jesus, called to be an apostle, and set apart for the gospel of God—\nTo all in Rome who are loved by God and called to be saints: Grace and peace to you from God our Father and the Lord Jesus Christ.\n"
+     },
+     {
+      "py": "assert 'open(' in _codigo and '.read()' in _codigo",
+      "msg": {
+       "es": "Abre el archivo con open() y léelo con read().",
+       "en": "Open the file with open() and read it with read()."
+      }
+     },
+     {
+      "py": "assert 'Paul, a servant' not in _codigo",
+      "msg": {
+       "es": "No copies el texto: léelo del archivo.",
+       "en": "Don't copy the text: read it from the file."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "print(\"carta.txt\")",
+     "with open(\"carta.txt\", encoding=\"utf-8\") as f:\n    print(f)",
+     "f = open(\"Carta.txt\", encoding=\"utf-8\")\nprint(f.read())"
+    ],
+    "en": [
+     "print(\"letter.txt\")",
+     "with open(\"letter.txt\", encoding=\"utf-8\") as f:\n    print(f)",
+     "f = open(\"Letter.txt\", encoding=\"utf-8\")\nprint(f.read())"
+    ]
+   }
+  },
+  {
+   "id": "contar-saludos",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "`saludos.txt` tiene un saludo de Pablo por línea, con la forma `referencia | texto`. Léelo con `readlines()`, muestra cuántas líneas tiene y luego la **primera** línea sin el salto final. Debe salir:\n```\nSaludos: 4\nRomanos 1:7 | A todos los que están en Roma, amados de Dios, llamados a ser santos: Gracia y paz a ustedes de parte de Dios nuestro Padre y del Señor Jesucristo.\n```",
+    "en": "`greetings.txt` has one of Paul's greetings per line, in the form `reference | text`. Read it with `readlines()`, show how many lines it has and then the **first** line without the final newline. It should print:\n```\nGreetings: 4\nRomans 1:7 | To all in Rome who are loved by God and called to be saints: Grace and peace to you from God our Father and the Lord Jesus Christ.\n```"
+   },
+   "archivos": {
+    "es": {
+     "saludos.txt": "Romanos 1:7 | A todos los que están en Roma, amados de Dios, llamados a ser santos: Gracia y paz a ustedes de parte de Dios nuestro Padre y del Señor Jesucristo.\n1 Corintios 1:3 | Gracia y paz a ustedes, de parte de Dios nuestro Padre y del Señor Jesucristo.\nFilipenses 1:2 | Gracia y paz a ustedes, de parte de Dios nuestro Padre y del Señor Jesucristo.\nColosenses 1:2 | a los santos y hermanos fieles en Cristo que están en Colosas: Gracia y paz a ustedes, de parte de Dios nuestro Padre y del Señor Jesucristo.\n"
+    },
+    "en": {
+     "greetings.txt": "Romans 1:7 | To all in Rome who are loved by God and called to be saints: Grace and peace to you from God our Father and the Lord Jesus Christ.\n1 Corinthians 1:3 | Grace and peace to you from God our Father and the Lord Jesus Christ.\nPhilippians 1:2 | Grace and peace to you from God our Father and the Lord Jesus Christ.\nColossians 1:2 | To the saints and faithful brothers in Christ at Colossae: Grace and peace to you from God our Father.\n"
+    }
+   },
+   "inicial": {
+    "es": "",
+    "en": ""
+   },
+   "pistas": {
+    "es": [
+     "`lineas = f.readlines()` da una lista de cadenas; `len(lineas)` cuenta cuántas son.",
+     "`print(\"Saludos:\", len(lineas))` y `print(lineas[0].strip())`."
+    ],
+    "en": [
+     "`lines = f.readlines()` gives a list of strings; `len(lines)` counts them.",
+     "`print(\"Greetings:\", len(lines))` and `print(lines[0].strip())`."
+    ]
+   },
+   "solucion": {
+    "es": "with open(\"saludos.txt\", encoding=\"utf-8\") as f:\n    lineas = f.readlines()\nprint(\"Saludos:\", len(lineas))\nprint(lineas[0].strip())",
+    "en": "with open(\"greetings.txt\", encoding=\"utf-8\") as f:\n    lines = f.readlines()\nprint(\"Greetings:\", len(lines))\nprint(lines[0].strip())"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Saludos: 4\nRomanos 1:7 | A todos los que están en Roma, amados de Dios, llamados a ser santos: Gracia y paz a ustedes de parte de Dios nuestro Padre y del Señor Jesucristo."
+     },
+     {
+      "py": "assert 'readlines()' in _codigo",
+      "msg": {
+       "es": "Usa readlines() para tener la lista de líneas.",
+       "en": "Use readlines() to get the list of lines."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Greetings: 4\nRomans 1:7 | To all in Rome who are loved by God and called to be saints: Grace and peace to you from God our Father and the Lord Jesus Christ."
+     },
+     {
+      "py": "assert 'readlines()' in _codigo",
+      "msg": {
+       "es": "Usa readlines() para tener la lista de líneas.",
+       "en": "Use readlines() to get the list of lines."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "with open(\"saludos.txt\", encoding=\"utf-8\") as f:\n    texto = f.read()\nprint(\"Saludos:\", len(texto))\nprint(texto)",
+     "with open(\"saludos.txt\", encoding=\"utf-8\") as f:\n    lineas = f.readlines()\nprint(\"Saludos:\", len(lineas))\nprint(lineas[1].strip())",
+     "with open(\"saludos.txt\", encoding=\"utf-8\") as f:\n    lineas = f.readlines()\nprint(\"Saludos:\", len(lineas))\nprint(lineas)"
+    ],
+    "en": [
+     "with open(\"greetings.txt\", encoding=\"utf-8\") as f:\n    text = f.read()\nprint(\"Greetings:\", len(text))\nprint(text)",
+     "with open(\"greetings.txt\", encoding=\"utf-8\") as f:\n    lines = f.readlines()\nprint(\"Greetings:\", len(lines))\nprint(lines[1].strip())"
+    ]
+   }
+  },
+  {
+   "id": "palabras-por-saludo",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Recorre `saludos.txt` línea por línea con `for linea in f:`. Separa cada línea en referencia y texto con `split(\" | \")` y muestra cuántas palabras tiene el texto. Debe salir:\n```\nRomanos 1:7: 29 palabras\n1 Corintios 1:3: 15 palabras\nFilipenses 1:2: 15 palabras\nColosenses 1:2: 27 palabras\n```",
+    "en": "Go through `greetings.txt` line by line with `for line in f:`. Split each line into reference and text with `split(\" | \")` and show how many words the text has. It should print:\n```\nRomans 1:7: 28 words\n1 Corinthians 1:3: 14 words\nPhilippians 1:2: 14 words\nColossians 1:2: 19 words\n```"
+   },
+   "archivos": {
+    "es": {
+     "saludos.txt": "Romanos 1:7 | A todos los que están en Roma, amados de Dios, llamados a ser santos: Gracia y paz a ustedes de parte de Dios nuestro Padre y del Señor Jesucristo.\n1 Corintios 1:3 | Gracia y paz a ustedes, de parte de Dios nuestro Padre y del Señor Jesucristo.\nFilipenses 1:2 | Gracia y paz a ustedes, de parte de Dios nuestro Padre y del Señor Jesucristo.\nColosenses 1:2 | a los santos y hermanos fieles en Cristo que están en Colosas: Gracia y paz a ustedes, de parte de Dios nuestro Padre y del Señor Jesucristo.\n"
+    },
+    "en": {
+     "greetings.txt": "Romans 1:7 | To all in Rome who are loved by God and called to be saints: Grace and peace to you from God our Father and the Lord Jesus Christ.\n1 Corinthians 1:3 | Grace and peace to you from God our Father and the Lord Jesus Christ.\nPhilippians 1:2 | Grace and peace to you from God our Father and the Lord Jesus Christ.\nColossians 1:2 | To the saints and faithful brothers in Christ at Colossae: Grace and peace to you from God our Father.\n"
+    }
+   },
+   "inicial": {
+    "es": "with open(\"saludos.txt\", encoding=\"utf-8\") as f:\n    for linea in f:\n        ",
+    "en": "with open(\"greetings.txt\", encoding=\"utf-8\") as f:\n    for line in f:\n        "
+   },
+   "pistas": {
+    "es": [
+     "Primero quita el salto: `ref, texto = linea.strip().split(\" | \")`.",
+     "`texto.split()` da la lista de palabras: `print(f\"{ref}: {len(texto.split())} palabras\")`."
+    ],
+    "en": [
+     "First remove the newline: `ref, text = line.strip().split(\" | \")`.",
+     "`text.split()` gives the list of words: `print(f\"{ref}: {len(text.split())} words\")`."
+    ]
+   },
+   "solucion": {
+    "es": "with open(\"saludos.txt\", encoding=\"utf-8\") as f:\n    for linea in f:\n        ref, texto = linea.strip().split(\" | \")\n        print(f\"{ref}: {len(texto.split())} palabras\")",
+    "en": "with open(\"greetings.txt\", encoding=\"utf-8\") as f:\n    for line in f:\n        ref, text = line.strip().split(\" | \")\n        print(f\"{ref}: {len(text.split())} words\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Romanos 1:7: 29 palabras\n1 Corintios 1:3: 15 palabras\nFilipenses 1:2: 15 palabras\nColosenses 1:2: 27 palabras"
+     }
+    ],
+    "en": [
+     {
+      "salida": "Romans 1:7: 28 words\n1 Corinthians 1:3: 14 words\nPhilippians 1:2: 14 words\nColossians 1:2: 19 words"
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "with open(\"saludos.txt\", encoding=\"utf-8\") as f:\n    for linea in f:\n        ref, texto = linea.strip().split(\" | \")\n        print(f\"{ref}: {len(texto)} palabras\")",
+     "with open(\"saludos.txt\", encoding=\"utf-8\") as f:\n    for linea in f:\n        ref, texto = linea.split(\" | \")\n        print(f\"{ref}: {texto}\")",
+     "with open(\"saludos.txt\", encoding=\"utf-8\") as f:\n    for linea in f:\n        ref, texto = linea.strip().split(\"|\")\n        print(f\"{ref}: {len(texto.split())} palabras\")"
+    ],
+    "en": [
+     "with open(\"greetings.txt\", encoding=\"utf-8\") as f:\n    for line in f:\n        ref, text = line.strip().split(\" | \")\n        print(f\"{ref}: {len(text)} words\")",
+     "with open(\"greetings.txt\", encoding=\"utf-8\") as f:\n    for line in f:\n        ref, text = line.split(\" | \")\n        print(f\"{ref}: {text}\")"
+    ]
+   }
+  },
+  {
+   "id": "copiar-saludo",
+   "tipo": "hueco",
+   "enunciado": {
+    "es": "Un copista guarda el saludo (1:3) y la despedida (16:23) de 1 Corintios en el archivo `1corintios.txt`, **una frase por línea**. Completa el modo de apertura para escribir y lo que falta para que cada frase termine en salto de línea.",
+    "en": "A scribe saves the greeting (1:3) and the farewell (16:23) of 1 Corinthians in the file `1corinthians.txt`, **one sentence per line**. Fill in the opening mode for writing and what is missing so that each sentence ends with a newline."
+   },
+   "plantilla": {
+    "es": "lineas = [\"Gracia y paz a ustedes, de parte de Dios nuestro Padre y del Señor Jesucristo.\", \"La gracia de nuestro Señor Jesucristo sea con ustedes.\"]\nwith open(\"1corintios.txt\", ___, encoding=\"utf-8\") as f:\n    for linea in lineas:\n        f.write(linea ___)",
+    "en": "lines = [\"Grace and peace to you from God our Father and the Lord Jesus Christ.\", \"The grace of the Lord Jesus be with you.\"]\nwith open(\"1corinthians.txt\", ___, encoding=\"utf-8\") as f:\n    for line in lines:\n        f.write(line ___)"
+   },
+   "pistas": {
+    "es": [
+     "El modo para escribir un archivo nuevo es `\"w\"`.",
+     "`write()` no pone el salto: súmalo con `+ \"\\n\"`."
+    ],
+    "en": [
+     "The mode for writing a new file is `\"w\"`.",
+     "`write()` doesn't add the newline: add it with `+ \"\\n\"`."
+    ]
+   },
+   "solucion": {
+    "es": "lineas = [\"Gracia y paz a ustedes, de parte de Dios nuestro Padre y del Señor Jesucristo.\", \"La gracia de nuestro Señor Jesucristo sea con ustedes.\"]\nwith open(\"1corintios.txt\", \"w\", encoding=\"utf-8\") as f:\n    for linea in lineas:\n        f.write(linea + \"\\n\")",
+    "en": "lines = [\"Grace and peace to you from God our Father and the Lord Jesus Christ.\", \"The grace of the Lord Jesus be with you.\"]\nwith open(\"1corinthians.txt\", \"w\", encoding=\"utf-8\") as f:\n    for line in lines:\n        f.write(line + \"\\n\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "py": "assert open('1corintios.txt', encoding='utf-8').read() == 'Gracia y paz a ustedes, de parte de Dios nuestro Padre y del Señor Jesucristo.\\nLa gracia de nuestro Señor Jesucristo sea con ustedes.\\n'",
+      "msg": {
+       "es": "El archivo debe tener las dos frases, cada una en su propia línea (con \\n al final).",
+       "en": "The file must have both sentences, each on its own line (with \\n at the end)."
+      }
+     }
+    ],
+    "en": [
+     {
+      "py": "assert open('1corinthians.txt', encoding='utf-8').read() == 'Grace and peace to you from God our Father and the Lord Jesus Christ.\\nThe grace of the Lord Jesus be with you.\\n'",
+      "msg": {
+       "es": "El archivo debe tener las dos frases, cada una en su propia línea (con \\n al final).",
+       "en": "The file must have both sentences, each on its own line (with \\n at the end)."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "lineas = [\"Gracia y paz a ustedes, de parte de Dios nuestro Padre y del Señor Jesucristo.\", \"La gracia de nuestro Señor Jesucristo sea con ustedes.\"]\nwith open(\"1corintios.txt\", \"w\", encoding=\"utf-8\") as f:\n    for linea in lineas:\n        f.write(linea )",
+     "lineas = [\"Gracia y paz a ustedes, de parte de Dios nuestro Padre y del Señor Jesucristo.\", \"La gracia de nuestro Señor Jesucristo sea con ustedes.\"]\nwith open(\"1corintios.txt\", \"r\", encoding=\"utf-8\") as f:\n    for linea in lineas:\n        f.write(linea + \"\\n\")"
+    ],
+    "en": [
+     "lines = [\"Grace and peace to you from God our Father and the Lord Jesus Christ.\", \"The grace of the Lord Jesus be with you.\"]\nwith open(\"1corinthians.txt\", \"w\", encoding=\"utf-8\") as f:\n    for line in lines:\n        f.write(line )",
+     "lines = [\"Grace and peace to you from God our Father and the Lord Jesus Christ.\", \"The grace of the Lord Jesus be with you.\"]\nwith open(\"1corinthians.txt\", \"r\", encoding=\"utf-8\") as f:\n    for line in lines:\n        f.write(line + \"\\n\")"
+    ]
+   }
+  },
+  {
+   "id": "agregar-iglesias",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "`iglesias.txt` ya tiene `Roma` y `Corinto`, una por línea. **Agrega** al final `Filipos` y `Colosas` (sin borrar lo que había), y después vuelve a abrir el archivo para leerlo y mostrar cada iglesia. Debe salir:\n```\nRoma\nCorinto\nFilipos\nColosas\n```",
+    "en": "`churches.txt` already has `Rome` and `Corinth`, one per line. **Append** `Philippi` and `Colossae` at the end (without erasing what was there), and then open the file again to read it and show each church. It should print:\n```\nRome\nCorinth\nPhilippi\nColossae\n```"
+   },
+   "archivos": {
+    "es": {
+     "iglesias.txt": "Roma\nCorinto\n"
+    },
+    "en": {
+     "churches.txt": "Rome\nCorinth\n"
+    }
+   },
+   "inicial": {
+    "es": "",
+    "en": ""
+   },
+   "pistas": {
+    "es": [
+     "Para agregar sin borrar se abre con el modo `\"a\"`: `with open(\"iglesias.txt\", \"a\", encoding=\"utf-8\") as f:`.",
+     "Escribe `f.write(\"Filipos\\n\")` y `f.write(\"Colosas\\n\")`; luego, en otro `with` con `\"r\"`, recorre las líneas e imprime `linea.strip()`."
+    ],
+    "en": [
+     "To add without erasing, open with mode `\"a\"`: `with open(\"churches.txt\", \"a\", encoding=\"utf-8\") as f:`.",
+     "Write `f.write(\"Philippi\\n\")` and `f.write(\"Colossae\\n\")`; then, in another `with` using `\"r\"`, loop over the lines and print `line.strip()`."
+    ]
+   },
+   "solucion": {
+    "es": "with open(\"iglesias.txt\", \"a\", encoding=\"utf-8\") as f:\n    f.write(\"Filipos\\n\")\n    f.write(\"Colosas\\n\")\n\nwith open(\"iglesias.txt\", \"r\", encoding=\"utf-8\") as f:\n    for linea in f:\n        print(linea.strip())",
+    "en": "with open(\"churches.txt\", \"a\", encoding=\"utf-8\") as f:\n    f.write(\"Philippi\\n\")\n    f.write(\"Colossae\\n\")\n\nwith open(\"churches.txt\", \"r\", encoding=\"utf-8\") as f:\n    for line in f:\n        print(line.strip())"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Roma\nCorinto\nFilipos\nColosas"
+     },
+     {
+      "py": "assert open('iglesias.txt', encoding='utf-8').read() == 'Roma\\nCorinto\\nFilipos\\nColosas\\n'",
+      "msg": {
+       "es": "El archivo debe quedar con las cuatro iglesias, una por línea.",
+       "en": "The file must end up with the four churches, one per line."
+      }
+     },
+     {
+      "py": "assert 'Roma' not in _codigo.replace('Romanos', '')",
+      "msg": {
+       "es": "No escribas Roma ni Corinto: ya están en el archivo; ábrelo con el modo \"a\".",
+       "en": "Don't write Roma or Corinto: they are already in the file; open it with mode \"a\"."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Rome\nCorinth\nPhilippi\nColossae"
+     },
+     {
+      "py": "assert open('churches.txt', encoding='utf-8').read() == 'Rome\\nCorinth\\nPhilippi\\nColossae\\n'",
+      "msg": {
+       "es": "El archivo debe quedar con las cuatro iglesias, una por línea.",
+       "en": "The file must end up with the four churches, one per line."
+      }
+     },
+     {
+      "py": "assert 'Rome' not in _codigo",
+      "msg": {
+       "es": "No escribas Rome ni Corinth: ya están en el archivo; ábrelo con el modo \"a\".",
+       "en": "Don't write Rome or Corinth: they are already in the file; open it with mode \"a\"."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "with open(\"iglesias.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"Filipos\\n\")\n    f.write(\"Colosas\\n\")\n\nwith open(\"iglesias.txt\", encoding=\"utf-8\") as f:\n    for linea in f:\n        print(linea.strip())",
+     "with open(\"iglesias.txt\", \"a\", encoding=\"utf-8\") as f:\n    f.write(\"Filipos\")\n    f.write(\"Colosas\")\n\nwith open(\"iglesias.txt\", encoding=\"utf-8\") as f:\n    for linea in f:\n        print(linea.strip())",
+     "with open(\"iglesias.txt\", \"a\", encoding=\"utf-8\") as f:\n    f.write(\"Filipos\\n\")\n    f.write(\"Colosas\\n\")\n\nwith open(\"iglesias.txt\", encoding=\"utf-8\") as f:\n    for linea in f:\n        print(linea)"
+    ],
+    "en": [
+     "with open(\"churches.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"Philippi\\n\")\n    f.write(\"Colossae\\n\")\n\nwith open(\"churches.txt\", encoding=\"utf-8\") as f:\n    for line in f:\n        print(line.strip())",
+     "with open(\"churches.txt\", \"a\", encoding=\"utf-8\") as f:\n    f.write(\"Philippi\")\n    f.write(\"Colossae\")\n\nwith open(\"churches.txt\", encoding=\"utf-8\") as f:\n    for line in f:\n        print(line.strip())"
+    ]
+   }
+  },
+  {
+   "id": "carta-perdida",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "En Colosenses 4:16, Pablo menciona una carta a Laodicea que no tenemos. Escribe la función `leer_carta(nombre)`: si el archivo existe (usa `os.path.exists`), devuelve su contenido sin espacios ni saltos al principio y al final; si no, devuelve `No tengo la carta: ` seguido del nombre. Luego muestra:\n```\nprint(leer_carta(\"filipenses.txt\"))\nprint(leer_carta(\"laodicea.txt\"))\n```\nDebe salir:\n```\nGracia y paz a ustedes, de parte de Dios nuestro Padre y del Señor Jesucristo.\nNo tengo la carta: laodicea.txt\n```",
+    "en": "In Colossians 4:16, Paul mentions a letter to Laodicea that we don't have. Write the function `read_letter(name)`: if the file exists (use `os.path.exists`), return its content without spaces or newlines at the beginning and end; if not, return `I don't have the letter: ` followed by the name. Then show:\n```\nprint(read_letter(\"philippians.txt\"))\nprint(read_letter(\"laodicea.txt\"))\n```\nIt should print:\n```\nGrace and peace to you from God our Father and the Lord Jesus Christ.\nI don't have the letter: laodicea.txt\n```"
+   },
+   "archivos": {
+    "es": {
+     "filipenses.txt": "Gracia y paz a ustedes, de parte de Dios nuestro Padre y del Señor Jesucristo.\n"
+    },
+    "en": {
+     "philippians.txt": "Grace and peace to you from God our Father and the Lord Jesus Christ.\n"
+    }
+   },
+   "inicial": {
+    "es": "import os\n\ndef leer_carta(nombre):\n    \n\nprint(leer_carta(\"filipenses.txt\"))\nprint(leer_carta(\"laodicea.txt\"))",
+    "en": "import os\n\ndef read_letter(name):\n    \n\nprint(read_letter(\"philippians.txt\"))\nprint(read_letter(\"laodicea.txt\"))"
+   },
+   "pistas": {
+    "es": [
+     "Empieza con `if not os.path.exists(nombre):` y devuelve el aviso con una f-string.",
+     "Si existe: `with open(nombre, encoding=\"utf-8\") as f:` y `return f.read().strip()`."
+    ],
+    "en": [
+     "Start with `if not os.path.exists(name):` and return the notice with an f-string.",
+     "If it exists: `with open(name, encoding=\"utf-8\") as f:` and `return f.read().strip()`."
+    ]
+   },
+   "solucion": {
+    "es": "import os\n\ndef leer_carta(nombre):\n    if not os.path.exists(nombre):\n        return f\"No tengo la carta: {nombre}\"\n    with open(nombre, encoding=\"utf-8\") as f:\n        return f.read().strip()\n\nprint(leer_carta(\"filipenses.txt\"))\nprint(leer_carta(\"laodicea.txt\"))",
+    "en": "import os\n\ndef read_letter(name):\n    if not os.path.exists(name):\n        return f\"I don't have the letter: {name}\"\n    with open(name, encoding=\"utf-8\") as f:\n        return f.read().strip()\n\nprint(read_letter(\"philippians.txt\"))\nprint(read_letter(\"laodicea.txt\"))"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Gracia y paz a ustedes, de parte de Dios nuestro Padre y del Señor Jesucristo.\nNo tengo la carta: laodicea.txt"
+     },
+     {
+      "py": "assert leer_carta('efesios.txt') == 'No tengo la carta: efesios.txt'",
+      "msg": {
+       "es": "Con un archivo que no existe, leer_carta debe devolver el aviso (no imprimirlo ni dar error).",
+       "en": "With a file that doesn't exist, leer_carta must return the notice (not print it or crash)."
+      }
+     },
+     {
+      "py": "open('nueva.txt', 'w', encoding='utf-8').write('  Amén.\\n\\n')\nassert leer_carta('nueva.txt') == 'Amén.'",
+      "msg": {
+       "es": "Devuelve el contenido del archivo con .strip(), sea cual sea el archivo.",
+       "en": "Return the file's content with .strip(), whatever the file is."
+      }
+     },
+     {
+      "py": "assert 'exists(' in _codigo",
+      "msg": {
+       "es": "Usa os.path.exists() para saber si el archivo existe.",
+       "en": "Use os.path.exists() to know whether the file exists."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Grace and peace to you from God our Father and the Lord Jesus Christ.\nI don't have the letter: laodicea.txt"
+     },
+     {
+      "py": "assert read_letter('ephesians.txt') == \"I don't have the letter: ephesians.txt\"",
+      "msg": {
+       "es": "Con un archivo que no existe, read_letter debe devolver el aviso (no imprimirlo ni dar error).",
+       "en": "With a file that doesn't exist, read_letter must return the notice (not print it or crash)."
+      }
+     },
+     {
+      "py": "open('new.txt', 'w', encoding='utf-8').write('  Amen.\\n\\n')\nassert read_letter('new.txt') == 'Amen.'",
+      "msg": {
+       "es": "Devuelve el contenido del archivo con .strip(), sea cual sea el archivo.",
+       "en": "Return the file's content with .strip(), whatever the file is."
+      }
+     },
+     {
+      "py": "assert 'exists(' in _codigo",
+      "msg": {
+       "es": "Usa os.path.exists() para saber si el archivo existe.",
+       "en": "Use os.path.exists() to know whether the file exists."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "import os\n\ndef leer_carta(nombre):\n    with open(nombre, encoding=\"utf-8\") as f:\n        return f.read().strip()\n\nprint(leer_carta(\"filipenses.txt\"))\nprint(leer_carta(\"laodicea.txt\"))",
+     "import os\n\ndef leer_carta(nombre):\n    if not os.path.exists(nombre):\n        print(f\"No tengo la carta: {nombre}\")\n    else:\n        with open(nombre, encoding=\"utf-8\") as f:\n            print(f.read().strip())\n\nleer_carta(\"filipenses.txt\")\nleer_carta(\"laodicea.txt\")",
+     "import os\n\ndef leer_carta(nombre):\n    if not os.path.exists(nombre):\n        return f\"No tengo la carta: {nombre}\"\n    with open(nombre, encoding=\"utf-8\") as f:\n        return f.read()\n\nprint(leer_carta(\"filipenses.txt\"))\nprint(leer_carta(\"laodicea.txt\"))"
+    ],
+    "en": [
+     "import os\n\ndef read_letter(name):\n    with open(name, encoding=\"utf-8\") as f:\n        return f.read().strip()\n\nprint(read_letter(\"philippians.txt\"))\nprint(read_letter(\"laodicea.txt\"))",
+     "import os\n\ndef read_letter(name):\n    if not os.path.exists(name):\n        print(f\"I don't have the letter: {name}\")\n    else:\n        with open(name, encoding=\"utf-8\") as f:\n            print(f.read().strip())\n\nread_letter(\"philippians.txt\")\nread_letter(\"laodicea.txt\")"
+    ]
+   }
+  },
+  {
+   "id": "indice-cartas",
+   "tipo": "escribir",
+   "reto": true,
+   "enunciado": {
+    "es": "**Reto: el índice del copista.** `cartas.txt` tiene una carta por línea con la forma `libro | saludo` (y al final hay una línea vacía). Escribe un programa que:\n- si `cartas.txt` **no existe**, muestre `No hay cartas` y nada más;\n- si existe, lo lea, **salte las líneas vacías** y escriba el archivo `indice.txt` con una línea numerada por carta: `número. libro (N palabras)`, donde N son las palabras del saludo;\n- al final muestre `Índice listo: 6 cartas` (el número calculado).\n\nLas primeras líneas de `indice.txt` deben ser:\n```\n1. Romanos (29 palabras)\n2. 1 Corintios (15 palabras)\n...\n```",
+    "en": "**Challenge: the scribe's index.** `letters.txt` has one letter per line in the form `book | greeting` (and there is an empty line at the end). Write a program that:\n- if `letters.txt` **does not exist**, shows `No letters` and nothing else;\n- if it exists, reads it, **skips empty lines** and writes the file `index.txt` with one numbered line per letter: `number. book (N words)`, where N is the number of words in the greeting;\n- at the end shows `Index ready: 6 letters` (the calculated number).\n\nThe first lines of `index.txt` must be:\n```\n1. Romans (28 words)\n2. 1 Corinthians (14 words)\n...\n```"
+   },
+   "archivos": {
+    "es": {
+     "cartas.txt": "Romanos | A todos los que están en Roma, amados de Dios, llamados a ser santos: Gracia y paz a ustedes de parte de Dios nuestro Padre y del Señor Jesucristo.\n1 Corintios | Gracia y paz a ustedes, de parte de Dios nuestro Padre y del Señor Jesucristo.\n2 Corintios | Gracia y paz a ustedes, de parte de Dios nuestro Padre y del Señor Jesucristo.\nGálatas | Gracia y paz a ustedes, de parte de Dios el Padre, y de nuestro Señor Jesucristo,\nEfesios | Gracia y paz a ustedes, de parte de Dios nuestro Padre y del Señor Jesucristo.\nFilipenses | Gracia y paz a ustedes, de parte de Dios nuestro Padre y del Señor Jesucristo.\n\n"
+    },
+    "en": {
+     "letters.txt": "Romans | To all in Rome who are loved by God and called to be saints: Grace and peace to you from God our Father and the Lord Jesus Christ.\n1 Corinthians | Grace and peace to you from God our Father and the Lord Jesus Christ.\n2 Corinthians | Grace and peace to you from God our Father and the Lord Jesus Christ.\nGalatians | Grace and peace to you from God our Father and the Lord Jesus Christ,\nEphesians | Grace and peace to you from God our Father and the Lord Jesus Christ.\nPhilippians | Grace and peace to you from God our Father and the Lord Jesus Christ.\n\n"
+    }
+   },
+   "inicial": {
+    "es": "import os\n",
+    "en": "import os\n"
+   },
+   "pistas": {
+    "es": [
+     "Lee las líneas, y en el bucle usa `if not linea.strip(): continue` para saltar las vacías. Guarda los pares `(libro, saludo)` en una lista.",
+     "Después: `with open(\"indice.txt\", \"w\", encoding=\"utf-8\") as f:` y `for i, (libro, saludo) in enumerate(cartas, 1): f.write(f\"{i}. {libro} ({len(saludo.split())} palabras)\\n\")`."
+    ],
+    "en": [
+     "Read the lines, and in the loop use `if not line.strip(): continue` to skip empty ones. Store the `(book, greeting)` pairs in a list.",
+     "Then: `with open(\"index.txt\", \"w\", encoding=\"utf-8\") as f:` and `for i, (book, greeting) in enumerate(letters, 1): f.write(f\"{i}. {book} ({len(greeting.split())} words)\\n\")`."
+    ]
+   },
+   "solucion": {
+    "es": "import os\n\nif not os.path.exists(\"cartas.txt\"):\n    print(\"No hay cartas\")\nelse:\n    cartas = []\n    with open(\"cartas.txt\", encoding=\"utf-8\") as f:\n        for linea in f:\n            if not linea.strip():\n                continue\n            libro, saludo = linea.strip().split(\" | \")\n            cartas.append((libro, saludo))\n    with open(\"indice.txt\", \"w\", encoding=\"utf-8\") as f:\n        for i, (libro, saludo) in enumerate(cartas, 1):\n            f.write(f\"{i}. {libro} ({len(saludo.split())} palabras)\\n\")\n    print(f\"Índice listo: {len(cartas)} cartas\")",
+    "en": "import os\n\nif not os.path.exists(\"letters.txt\"):\n    print(\"No letters\")\nelse:\n    letters = []\n    with open(\"letters.txt\", encoding=\"utf-8\") as f:\n        for line in f:\n            if not line.strip():\n                continue\n            book, greeting = line.strip().split(\" | \")\n            letters.append((book, greeting))\n    with open(\"index.txt\", \"w\", encoding=\"utf-8\") as f:\n        for i, (book, greeting) in enumerate(letters, 1):\n            f.write(f\"{i}. {book} ({len(greeting.split())} words)\\n\")\n    print(f\"Index ready: {len(letters)} letters\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Índice listo: 6 cartas"
+     },
+     {
+      "py": "assert open('indice.txt', encoding='utf-8').read() == '1. Romanos (29 palabras)\\n2. 1 Corintios (15 palabras)\\n3. 2 Corintios (15 palabras)\\n4. Gálatas (16 palabras)\\n5. Efesios (15 palabras)\\n6. Filipenses (15 palabras)\\n'",
+      "msg": {
+       "es": "indice.txt no tiene lo esperado: una línea «número. libro (N palabras)» por carta, sin líneas vacías.",
+       "en": "indice.txt doesn't have the expected content: one line «number. book (N palabras)» per letter, no empty lines."
+      }
+     },
+     {
+      "py": "open('cartas.txt', 'a', encoding='utf-8').write('Efesios | Gracia y paz a ustedes\\n')\n_s = _correr([])\nassert _s.strip() == 'Índice listo: 7 cartas' and open('indice.txt', encoding='utf-8').read().endswith('7. Efesios (5 palabras)\\n')",
+      "msg": {
+       "es": "Si cartas.txt cambia, el índice y el número también deben cambiar: no escribas los resultados a mano.",
+       "en": "If cartas.txt changes, the index and the number must change too: don't type the results."
+      }
+     },
+     {
+      "py": "import os\nos.remove('cartas.txt')\nassert _correr([]).strip() == 'No hay cartas'",
+      "msg": {
+       "es": "Si cartas.txt no existe, el programa debe mostrar solo «No hay cartas» (usa os.path.exists).",
+       "en": "If cartas.txt doesn't exist, the program must show only «No hay cartas» (use os.path.exists)."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Index ready: 6 letters"
+     },
+     {
+      "py": "assert open('index.txt', encoding='utf-8').read() == '1. Romans (28 words)\\n2. 1 Corinthians (14 words)\\n3. 2 Corinthians (14 words)\\n4. Galatians (14 words)\\n5. Ephesians (14 words)\\n6. Philippians (14 words)\\n'",
+      "msg": {
+       "es": "index.txt no tiene lo esperado: una línea «número. libro (N words)» por carta, sin líneas vacías.",
+       "en": "index.txt doesn't have the expected content: one line «number. book (N words)» per letter, no empty lines."
+      }
+     },
+     {
+      "py": "open('letters.txt', 'a', encoding='utf-8').write('Ephesians | Grace and peace to you\\n')\n_s = _correr([])\nassert _s.strip() == 'Index ready: 7 letters' and open('index.txt', encoding='utf-8').read().endswith('7. Ephesians (5 words)\\n')",
+      "msg": {
+       "es": "Si letters.txt cambia, el índice y el número también deben cambiar: no escribas los resultados a mano.",
+       "en": "If letters.txt changes, the index and the number must change too: don't type the results."
+      }
+     },
+     {
+      "py": "import os\nos.remove('letters.txt')\nassert _correr([]).strip() == 'No letters'",
+      "msg": {
+       "es": "Si letters.txt no existe, el programa debe mostrar solo «No letters» (usa os.path.exists).",
+       "en": "If letters.txt doesn't exist, the program must show only «No letters» (use os.path.exists)."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "cartas = []\nwith open(\"cartas.txt\", encoding=\"utf-8\") as f:\n    for linea in f:\n        libro, saludo = linea.strip().split(\" | \")\n        cartas.append((libro, saludo))\nprint(f\"Índice listo: {len(cartas)} cartas\")",
+     "import os\n\nif not os.path.exists(\"cartas.txt\"):\n    print(\"No hay cartas\")\nelse:\n    with open(\"cartas.txt\", encoding=\"utf-8\") as f:\n        lineas = f.readlines()\n    with open(\"indice.txt\", \"w\", encoding=\"utf-8\") as f:\n        for i, linea in enumerate(lineas, 1):\n            if linea.strip():\n                libro, saludo = linea.strip().split(\" | \")\n                f.write(f\"{i}. {libro} ({len(saludo.split())} palabras)\\n\")\n    print(f\"Índice listo: {len(lineas)} cartas\")",
+     "import os\n\nif not os.path.exists(\"cartas.txt\"):\n    print(\"No hay cartas\")\nelse:\n    cartas = []\n    with open(\"cartas.txt\", encoding=\"utf-8\") as f:\n        for linea in f:\n            if linea.strip():\n                cartas.append(linea.strip().split(\" | \"))\n    for i, (libro, saludo) in enumerate(cartas, 1):\n        with open(\"indice.txt\", \"w\", encoding=\"utf-8\") as f:\n            f.write(f\"{i}. {libro} ({len(saludo.split())} palabras)\\n\")\n    print(f\"Índice listo: {len(cartas)} cartas\")"
+    ],
+    "en": [
+     "letters = []\nwith open(\"letters.txt\", encoding=\"utf-8\") as f:\n    for line in f:\n        book, greeting = line.strip().split(\" | \")\n        letters.append((book, greeting))\nprint(f\"Index ready: {len(letters)} letters\")",
+     "import os\n\nif not os.path.exists(\"letters.txt\"):\n    print(\"No letters\")\nelse:\n    letters = []\n    with open(\"letters.txt\", encoding=\"utf-8\") as f:\n        for line in f:\n            if line.strip():\n                letters.append(line.strip().split(\" | \"))\n    for i, (book, greeting) in enumerate(letters, 1):\n        with open(\"index.txt\", \"w\", encoding=\"utf-8\") as f:\n            f.write(f\"{i}. {book} ({len(greeting.split())} words)\\n\")\n    print(f\"Index ready: {len(letters)} letters\")"
+    ]
+   }
+  }
+ ]
+}

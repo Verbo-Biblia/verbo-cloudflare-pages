@@ -1,0 +1,188 @@
+{
+ "id": "01-sea-la-luz",
+ "numero": 1,
+ "lugar": "eden",
+ "titulo": {"es": "Génesis: «Sea la luz»", "en": "Genesis: “Let there be light”"},
+ "tema": {"es": "print, cadenas y comentarios", "en": "print, strings and comments"},
+ "versiculo": "gen-1-3",
+ "medalla": {"es": "Primera luz", "en": "First light"},
+ "leccion": {
+  "es": [
+   "Un **programa** es una lista de instrucciones que la computadora sigue en orden, de arriba abajo, como los días de la creación.",
+   "`print()` muestra en la consola lo que pongas entre los paréntesis. El texto va entre comillas: `\"Sea la luz\"`. A un texto entre comillas se le llama **cadena** (en inglés, *string*).",
+   "Las cadenas se pueden unir con `+` y repetir con `*`: `\"ja\" * 3` da `jajaja`.",
+   "Lo que va después de `#` es un **comentario**: Python lo ignora. Sirve para dejar notas a quien lea el código."
+  ],
+  "en": [
+   "A **program** is a list of instructions the computer follows in order, from top to bottom, like the days of creation.",
+   "`print()` shows in the console whatever you put inside the parentheses. Text goes in quotes: `\"Let there be light\"`. Text in quotes is called a **string**.",
+   "Strings can be joined with `+` and repeated with `*`: `\"ha\" * 3` gives `hahaha`.",
+   "Anything after `#` is a **comment**: Python ignores it. It's for leaving notes to whoever reads the code."
+  ]
+ },
+ "ejemplo": {
+  "es": "# Mi primer programa\nprint(\"En el principio creó Dios los cielos y la tierra.\")\nprint(\"Sea la luz\")\nprint(\"=\" * 20)",
+  "en": "# My first program\nprint(\"In the beginning God created the heavens and the earth.\")\nprint(\"Let there be light\")\nprint(\"=\" * 20)"
+ },
+ "ejercicios": [
+  {
+   "id": "luz",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Escribe tu primer programa: haz que muestre exactamente `Sea la luz`.",
+    "en": "Write your first program: make it show exactly `Let there be light`."
+   },
+   "inicial": {"es": "# Escribe tu programa aquí abajo\n", "en": "# Write your program below\n"},
+   "pistas": {
+    "es": ["Usa `print()` y pon el texto entre comillas dentro de los paréntesis.", "Debe quedar así: `print(\"...\")`, con `Sea la luz` dentro de las comillas."],
+    "en": ["Use `print()` and put the text in quotes inside the parentheses.", "It should look like `print(\"...\")`, with `Let there be light` inside the quotes."]
+   },
+   "solucion": {"es": "print(\"Sea la luz\")", "en": "print(\"Let there be light\")"},
+   "pruebas": {"es": [{"salida": "Sea la luz"}], "en": [{"salida": "Let there be light"}]},
+   "errores_tipicos": {
+    "es": ["Print(\"Sea la luz\")", "print(Sea la luz)", "print(\"Sea la luz)", "print(\"sea la luz\")"],
+    "en": ["Print(\"Let there be light\")", "print(Let there be light)", "print(\"Let there be light)"]
+   }
+  },
+  {
+   "id": "principio",
+   "tipo": "hueco",
+   "enunciado": {
+    "es": "Completa el programa para que muestre `En el principio`. No olvides las comillas.",
+    "en": "Fill in the program so it shows `In the beginning`. Don't forget the quotes."
+   },
+   "plantilla": {"es": "print(___)", "en": "print(___)"},
+   "pistas": {
+    "es": ["El texto va entre comillas dobles: `\"...\"`.", "Escribe en el espacio: `\"En el principio\"`."],
+    "en": ["The text goes in double quotes: `\"...\"`.", "Type in the blank: `\"In the beginning\"`."]
+   },
+   "solucion": {"es": "print(\"En el principio\")", "en": "print(\"In the beginning\")"},
+   "pruebas": {"es": [{"salida": "En el principio"}], "en": [{"salida": "In the beginning"}]},
+   "errores_tipicos": {"es": ["print(En el principio)"], "en": ["print(In the beginning)"]}
+  },
+  {
+   "id": "tres-dias",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Cada `print()` muestra una línea. Haz que el programa muestre estas tres líneas:\n```\nDía 1: la luz\nDía 2: el cielo\nDía 3: la tierra y las plantas\n```",
+    "en": "Each `print()` shows one line. Make the program show these three lines:\n```\nDay 1: light\nDay 2: the sky\nDay 3: the land and the plants\n```"
+   },
+   "inicial": {"es": "print(\"Día 1: la luz\")\n", "en": "print(\"Day 1: light\")\n"},
+   "pistas": {
+    "es": ["Necesitas tres `print()`, uno debajo del otro.", "Copia la primera línea dos veces y cambia el texto de cada una."],
+    "en": ["You need three `print()` calls, one under the other.", "Copy the first line twice and change the text of each."]
+   },
+   "solucion": {
+    "es": "print(\"Día 1: la luz\")\nprint(\"Día 2: el cielo\")\nprint(\"Día 3: la tierra y las plantas\")",
+    "en": "print(\"Day 1: light\")\nprint(\"Day 2: the sky\")\nprint(\"Day 3: the land and the plants\")"
+   },
+   "pruebas": {
+    "es": [{"salida": "Día 1: la luz\nDía 2: el cielo\nDía 3: la tierra y las plantas"}],
+    "en": [{"salida": "Day 1: light\nDay 2: the sky\nDay 3: the land and the plants"}]
+   },
+   "errores_tipicos": {"es": ["print(\"Día 1: la luz\")\nprint(\"Día 2: el cielo\")"], "en": ["print(\"Day 1: light\")"]}
+  },
+  {
+   "id": "comentario",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Este programa no corre: la segunda línea es una nota para ti, no es código. Conviértela en comentario poniendo `#` al inicio, sin borrarla.",
+    "en": "This program doesn't run: the second line is a note for you, not code. Turn it into a comment by putting `#` at the start, without deleting it."
+   },
+   "inicial": {
+    "es": "# Génesis 1:4\nEsta línea es una nota para mí\nprint(\"Dios vio que la luz era buena\")\n",
+    "en": "# Genesis 1:4\nThis line is a note for me\nprint(\"God saw that the light was good\")\n"
+   },
+   "pistas": {
+    "es": ["Ejecuta primero el programa para ver el error.", "Escribe `#` justo antes de «Esta línea…»."],
+    "en": ["Run the program first to see the error.", "Type `#` right before “This line…”."]
+   },
+   "solucion": {
+    "es": "# Génesis 1:4\n# Esta línea es una nota para mí\nprint(\"Dios vio que la luz era buena\")",
+    "en": "# Genesis 1:4\n# This line is a note for me\nprint(\"God saw that the light was good\")"
+   },
+   "pruebas": {
+    "es": [
+     {"salida": "Dios vio que la luz era buena"},
+     {"py": "assert any(l.strip().startswith('#') and 'nota' in l for l in _lineas)", "msg": {"es": "No borres la nota: conviértela en comentario con #.", "en": "Don't delete the note: turn it into a comment with #."}}
+    ],
+    "en": [
+     {"salida": "God saw that the light was good"},
+     {"py": "assert any(l.strip().startswith('#') and 'note' in l for l in _lineas)", "msg": {"es": "No borres la nota: conviértela en comentario con #.", "en": "Don't delete the note: turn it into a comment with #."}}
+    ]
+   },
+   "errores_tipicos": {
+    "es": ["# Génesis 1:4\nprint(\"Dios vio que la luz era buena\")", "# Génesis 1:4\nEsta línea es una nota para mí\nprint(\"Dios vio que la luz era buena\")"],
+    "en": ["# Genesis 1:4\nprint(\"God saw that the light was good\")"]
+   }
+  },
+  {
+   "id": "ordenar-dias",
+   "tipo": "ordenar",
+   "enunciado": {
+    "es": "Los días quedaron desordenados. Arma el programa para que los muestre del 1 al 4.",
+    "en": "The days got mixed up. Build the program so it shows them from 1 to 4."
+   },
+   "lineas": {
+    "es": ["print(\"Día 1: la luz\")", "print(\"Día 2: el cielo\")", "print(\"Día 3: la tierra y las plantas\")", "print(\"Día 4: el sol, la luna y las estrellas\")"],
+    "en": ["print(\"Day 1: light\")", "print(\"Day 2: the sky\")", "print(\"Day 3: the land and the plants\")", "print(\"Day 4: the sun, the moon and the stars\")"]
+   },
+   "pistas": {
+    "es": ["Python ejecuta las líneas de arriba abajo.", "Empieza por la línea del Día 1."],
+    "en": ["Python runs the lines from top to bottom.", "Start with the Day 1 line."]
+   },
+   "pruebas": {
+    "es": [{"salida": "Día 1: la luz\nDía 2: el cielo\nDía 3: la tierra y las plantas\nDía 4: el sol, la luna y las estrellas"}],
+    "en": [{"salida": "Day 1: light\nDay 2: the sky\nDay 3: the land and the plants\nDay 4: the sun, the moon and the stars"}]
+   }
+  },
+  {
+   "id": "comillas",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Muestra la frase con sus comillas incluidas:\n```\nY dijo Dios: \"Sea la luz\"\n```",
+    "en": "Show the sentence with its quotation marks included:\n```\nAnd God said, \"Let there be light\"\n```"
+   },
+   "inicial": {"es": "", "en": ""},
+   "pistas": {
+    "es": ["Si el texto lleva comillas dobles por dentro, enciérralo con comillas simples: `print('...')`.", "Así: `print('Y dijo Dios: \"Sea la luz\"')`."],
+    "en": ["If the text has double quotes inside, wrap it in single quotes: `print('...')`.", "Like this: `print('And God said, \"Let there be light\"')`."]
+   },
+   "solucion": {"es": "print('Y dijo Dios: \"Sea la luz\"')", "en": "print('And God said, \"Let there be light\"')"},
+   "pruebas": {"es": [{"salida": "Y dijo Dios: \"Sea la luz\""}], "en": [{"salida": "And God said, \"Let there be light\""}]},
+   "errores_tipicos": {"es": ["print(\"Y dijo Dios: \"Sea la luz\"\")", "print(\"Y dijo Dios: Sea la luz\")"], "en": ["print(\"And God said, \"Let there be light\"\")"]}
+  },
+  {
+   "id": "pergamino",
+   "tipo": "escribir",
+   "reto": true,
+   "enunciado": {
+    "es": "**Reto:** haz un pergamino de texto como este. Las dos líneas de `=` (24 signos cada una) deben hacerse repitiendo la cadena con `*`, no escribiendo los 24 signos.\n```\n========================\nGénesis 1:3\nY dijo Dios: Sea la luz.\n========================\n```",
+    "en": "**Challenge:** make a text scroll like this one. Both lines of `=` (24 signs each) must be made by repeating the string with `*`, not by typing all 24 signs.\n```\n========================\nGenesis 1:3\nAnd God said, Let there be light.\n========================\n```"
+   },
+   "inicial": {"es": "", "en": ""},
+   "pistas": {
+    "es": ["`\"=\" * 24` crea una cadena con 24 signos `=`.", "Son cuatro `print()`: el primero y el último muestran `\"=\" * 24`."],
+    "en": ["`\"=\" * 24` makes a string of 24 `=` signs.", "It's four `print()` calls: the first and the last show `\"=\" * 24`."]
+   },
+   "solucion": {
+    "es": "print(\"=\" * 24)\nprint(\"Génesis 1:3\")\nprint(\"Y dijo Dios: Sea la luz.\")\nprint(\"=\" * 24)",
+    "en": "print(\"=\" * 24)\nprint(\"Genesis 1:3\")\nprint(\"And God said, Let there be light.\")\nprint(\"=\" * 24)"
+   },
+   "pruebas": {
+    "es": [
+     {"salida": "========================\nGénesis 1:3\nY dijo Dios: Sea la luz.\n========================"},
+     {"py": "c = _codigo.replace(' ', '').replace(\"'\", '\"')\nassert '\"=\"*24' in c or '24*\"=\"' in c", "msg": {"es": "Usa la repetición de cadenas: \"=\" * 24, en vez de escribir los 24 signos.", "en": "Use string repetition: \"=\" * 24, instead of typing the 24 signs."}}
+    ],
+    "en": [
+     {"salida": "========================\nGenesis 1:3\nAnd God said, Let there be light.\n========================"},
+     {"py": "c = _codigo.replace(' ', '').replace(\"'\", '\"')\nassert '\"=\"*24' in c or '24*\"=\"' in c", "msg": {"es": "Usa la repetición de cadenas: \"=\" * 24, en vez de escribir los 24 signos.", "en": "Use string repetition: \"=\" * 24, instead of typing the 24 signs."}}
+    ]
+   },
+   "errores_tipicos": {
+    "es": ["print(\"========================\")\nprint(\"Génesis 1:3\")\nprint(\"Y dijo Dios: Sea la luz.\")\nprint(\"========================\")", "print(\"=\" * 20)\nprint(\"Génesis 1:3\")\nprint(\"Y dijo Dios: Sea la luz.\")\nprint(\"=\" * 20)"],
+    "en": ["print(\"========================\")\nprint(\"Genesis 1:3\")\nprint(\"And God said, Let there be light.\")\nprint(\"========================\")"]
+   }
+  }
+ ]
+}

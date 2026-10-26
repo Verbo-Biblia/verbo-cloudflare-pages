@@ -160,6 +160,10 @@
   "estrategia": {
    "es": "Estrategia en tiempo real",
    "en": "Real-time strategy"
+  },
+  "programacion": {
+   "es": "Programación",
+   "en": "Coding"
   }
  },
  "juegos": [
@@ -575,6 +579,39 @@
    "publicado": "2026-10-25",
    "destacado": false,
    "orden_mas_jugados": 12
+  },
+  {
+   "id": "sendero-del-codigo",
+   "titulo": {
+    "es": "Sendero del Código",
+    "en": "Code Path"
+   },
+   "descripcion": {
+    "es": "Aprende a programar en Python de verdad, de cero a nivel intermedio, por los caminos de la Biblia.",
+    "en": "Learn real Python programming, from zero to intermediate, along the paths of the Bible."
+   },
+   "meta_descripcion": {
+    "es": "Juego cristiano gratis para aprender a programar en Python de verdad: 23 capítulos en dos niveles, básico e intermedio, por un sendero de Génesis a Apocalipsis. Lecciones cortas, ejercicios con pistas y el código corriendo en tu navegador, con versículos de la Biblia. En español e inglés, sin instalar nada.",
+    "en": "A free Christian game to learn real Python programming: 23 chapters in two levels, beginner and intermediate, along a path from Genesis to Revelation. Short lessons, exercises with hints and your code running in the browser, with Bible verses. In English and Spanish, nothing to install."
+   },
+   "categoria": "desafio",
+   "infantil": false,
+   "genero": "programacion",
+   "pasaje": "Génesis a Apocalipsis",
+   "duracion_min": null,
+   "movil": true,
+   "idiomas": [
+    "es",
+    "en"
+   ],
+   "portada": "/juegos/sendero-del-codigo/portada.webp",
+   "portada_en": "/juegos/sendero-del-codigo/portada-en.webp",
+   "og_image": "/juegos/sendero-del-codigo/og.jpg",
+   "url_juego": "/juegos/sendero-del-codigo/jugar/",
+   "android": null,
+   "publicado": "2026-10-25",
+   "destacado": false,
+   "orden_mas_jugados": 13
   }
  ]
 }

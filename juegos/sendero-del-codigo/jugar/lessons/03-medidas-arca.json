@@ -1,0 +1,172 @@
+{
+ "id": "03-medidas-arca",
+ "numero": 3,
+ "lugar": "arca",
+ "titulo": {"es": "Las medidas del arca", "en": "The measurements of the ark"},
+ "tema": {"es": "operaciones, round() y f-strings", "en": "arithmetic, round() and f-strings"},
+ "versiculo": "gen-6-15",
+ "medalla": {"es": "Constructor del arca", "en": "Ark builder"},
+ "leccion": {
+  "es": [
+   "Python calcula como una calculadora: `+` suma, `-` resta, `*` multiplica, `/` divide (y siempre da un `float`: `10 / 2` es `5.0`), `//` divide sin decimales, `%` da el resto y `**` es potencia.",
+   "Dios le dio a Noé las medidas del arca en **codos**. Un codo es la distancia del codo a la punta de los dedos: unos **0.45 metros**. Es una medida aproximada, pero sirve para imaginar el tamaño.",
+   "`round(x, 1)` redondea `x` a 1 decimal; `round(x)` lo deja sin decimales.",
+   "Una **f-string** es un texto con `f` delante, donde puedes poner variables entre llaves: `f\"Mide {largo} codos\"`. Es la forma más cómoda de mezclar texto y números."
+  ],
+  "en": [
+   "Python calculates like a calculator: `+` adds, `-` subtracts, `*` multiplies, `/` divides (and always gives a `float`: `10 / 2` is `5.0`), `//` divides without decimals, `%` gives the remainder and `**` is a power.",
+   "God gave Noah the measurements of the ark in **cubits**. A cubit is the distance from the elbow to the tip of the fingers: about **0.45 meters** (18 inches). It's an approximate measure, but it helps us picture the size.",
+   "`round(x, 1)` rounds `x` to 1 decimal; `round(x)` leaves it with no decimals.",
+   "An **f-string** is text with an `f` in front, where you can put variables inside braces: `f\"It is {length} cubits long\"`. It's the easiest way to mix text and numbers."
+  ]
+ },
+ "ejemplo": {
+  "es": "largo = 300  # codos\ncodo = 0.45  # metros\nmetros = largo * codo\nprint(f\"{largo} codos son {metros} metros\")\nprint(10 / 4, 10 // 4, 10 % 4, 2 ** 3)",
+  "en": "length = 300  # cubits\ncubit = 0.45  # meters\nmeters = length * cubit\nprint(f\"{length} cubits are {meters} meters\")\nprint(10 / 4, 10 // 4, 10 % 4, 2 ** 3)"
+ },
+ "ejercicios": [
+  {
+   "id": "suma-medidas",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "El arca medía 300 codos de largo, 50 de ancho y 30 de alto. Guarda esos números en `largo`, `ancho` y `alto`, y muestra la suma de los tres.",
+    "en": "The ark was 300 cubits long, 50 wide and 30 high. Store those numbers in `length`, `width` and `height`, and show the sum of the three."
+   },
+   "inicial": {"es": "largo = 300\n", "en": "length = 300\n"},
+   "pistas": {
+    "es": ["Crea `ancho = 50` y `alto = 30`.", "Luego `print(largo + ancho + alto)`."],
+    "en": ["Create `width = 50` and `height = 30`.", "Then `print(length + width + height)`."]
+   },
+   "solucion": {"es": "largo = 300\nancho = 50\nalto = 30\nprint(largo + ancho + alto)", "en": "length = 300\nwidth = 50\nheight = 30\nprint(length + width + height)"},
+   "pruebas": {
+    "es": [{"py": "assert (largo, ancho, alto) == (300, 50, 30)", "msg": {"es": "Revisa las variables: largo = 300, ancho = 50, alto = 30.", "en": "Check the variables: largo = 300, ancho = 50, alto = 30."}}, {"salida": "380"}],
+    "en": [{"py": "assert (length, width, height) == (300, 50, 30)", "msg": {"es": "Revisa las variables: length = 300, width = 50, height = 30.", "en": "Check the variables: length = 300, width = 50, height = 30."}}, {"salida": "380"}]
+   },
+   "errores_tipicos": {"es": ["largo = 300\nancho = 50\nalto = 30\nprint(\"largo + ancho + alto\")", "largo = \"300\"\nancho = \"50\"\nalto = \"30\"\nprint(largo + ancho + alto)"], "en": ["length = 300\nwidth = 50\nheight = 30\nprint(\"length + width + height\")"]}
+  },
+  {
+   "id": "codos-a-metros",
+   "tipo": "hueco",
+   "enunciado": {
+    "es": "Completa la operación que convierte el largo del arca de codos a metros. El programa debe mostrar `135.0`.",
+    "en": "Fill in the operation that converts the ark's length from cubits to meters. The program must show `135.0`."
+   },
+   "plantilla": {"es": "codo = 0.45\nlargo = 300\nmetros = largo ___ codo\nprint(metros)", "en": "cubit = 0.45\nlength = 300\nmeters = length ___ cubit\nprint(meters)"},
+   "pistas": {
+    "es": ["Cada codo vale 0.45 metros: hay que multiplicar.", "El signo de multiplicar en Python es `*`."],
+    "en": ["Each cubit is 0.45 meters: you need to multiply.", "The multiplication sign in Python is `*`."]
+   },
+   "solucion": {"es": "codo = 0.45\nlargo = 300\nmetros = largo * codo\nprint(metros)", "en": "cubit = 0.45\nlength = 300\nmeters = length * cubit\nprint(meters)"},
+   "pruebas": {"es": [{"salida": "135.0"}], "en": [{"salida": "135.0"}]},
+   "errores_tipicos": {"es": ["codo = 0.45\nlargo = 300\nmetros = largo x codo\nprint(metros)", "codo = 0.45\nlargo = 300\nmetros = largo / codo\nprint(metros)"], "en": ["cubit = 0.45\nlength = 300\nmeters = length x cubit\nprint(meters)"]}
+  },
+  {
+   "id": "redondear",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Convierte a metros el ancho (50 codos) y el alto (30 codos), y muestra cada resultado redondeado a 1 decimal con `round()`. Debe salir:\n```\n22.5\n13.5\n```",
+    "en": "Convert the width (50 cubits) and the height (30 cubits) to meters, and show each result rounded to 1 decimal with `round()`. It should print:\n```\n22.5\n13.5\n```"
+   },
+   "inicial": {"es": "codo = 0.45\nancho = 50\nalto = 30\n", "en": "cubit = 0.45\nwidth = 50\nheight = 30\n"},
+   "pistas": {
+    "es": ["`ancho * codo` da los metros del ancho.", "`print(round(ancho * codo, 1))`, y lo mismo con el alto."],
+    "en": ["`width * cubit` gives the width in meters.", "`print(round(width * cubit, 1))`, and the same with the height."]
+   },
+   "solucion": {"es": "codo = 0.45\nancho = 50\nalto = 30\nprint(round(ancho * codo, 1))\nprint(round(alto * codo, 1))", "en": "cubit = 0.45\nwidth = 50\nheight = 30\nprint(round(width * cubit, 1))\nprint(round(height * cubit, 1))"},
+   "pruebas": {
+    "es": [{"salida": "22.5\n13.5"}, {"py": "assert 'round(' in _codigo", "msg": {"es": "Usa round() para redondear.", "en": "Use round() to round."}}],
+    "en": [{"salida": "22.5\n13.5"}, {"py": "assert 'round(' in _codigo", "msg": {"es": "Usa round() para redondear.", "en": "Use round() to round."}}]
+   },
+   "errores_tipicos": {"es": ["print(22.5)\nprint(13.5)", "codo = 0.45\nancho = 50\nalto = 30\nprint(round(ancho * codo))\nprint(round(alto * codo))"], "en": ["print(22.5)\nprint(13.5)"]}
+  },
+  {
+   "id": "fstring",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Muestra `El arca medía 300 codos de largo` usando una f-string con la variable `largo` (no escribas el 300 dentro del texto).",
+    "en": "Show `The ark was 300 cubits long` using an f-string with the variable `length` (don't type 300 inside the text)."
+   },
+   "inicial": {"es": "largo = 300\n", "en": "length = 300\n"},
+   "pistas": {
+    "es": ["Una f-string empieza con `f` antes de las comillas: `f\"...\"`.", "`print(f\"El arca medía {largo} codos de largo\")`."],
+    "en": ["An f-string starts with `f` before the quotes: `f\"...\"`.", "`print(f\"The ark was {length} cubits long\")`."]
+   },
+   "solucion": {"es": "largo = 300\nprint(f\"El arca medía {largo} codos de largo\")", "en": "length = 300\nprint(f\"The ark was {length} cubits long\")"},
+   "pruebas": {
+    "es": [{"salida": "El arca medía 300 codos de largo"}, {"py": "assert '{largo}' in _codigo", "msg": {"es": "Pon la variable entre llaves dentro de la f-string: {largo}.", "en": "Put the variable in braces inside the f-string: {largo}."}}],
+    "en": [{"salida": "The ark was 300 cubits long"}, {"py": "assert '{length}' in _codigo", "msg": {"es": "Pon la variable entre llaves dentro de la f-string: {length}.", "en": "Put the variable in braces inside the f-string: {length}."}}]
+   },
+   "errores_tipicos": {"es": ["largo = 300\nprint(\"El arca medía {largo} codos de largo\")", "largo = 300\nprint(\"El arca medía 300 codos de largo\")"], "en": ["length = 300\nprint(\"The ark was {length} cubits long\")"]}
+  },
+  {
+   "id": "parejas",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Los animales entraban al arca de dos en dos. Si en la fila hay `37` animales, ¿cuántas parejas completas hay y cuántos quedan sin pareja? Usa `//` y `%` con la variable `animales`. Debe salir:\n```\nParejas: 18\nSin pareja: 1\n```",
+    "en": "The animals went into the ark two by two. If there are `37` animals in line, how many full pairs are there and how many are left without a pair? Use `//` and `%` with the variable `animals`. It should print:\n```\nPairs: 18\nWithout a pair: 1\n```"
+   },
+   "inicial": {"es": "animales = 37\n", "en": "animals = 37\n"},
+   "pistas": {
+    "es": ["`animales // 2` da las parejas completas; `animales % 2`, los que sobran.", "`print(\"Parejas:\", animales // 2)`."],
+    "en": ["`animals // 2` gives the full pairs; `animals % 2`, the ones left over.", "`print(\"Pairs:\", animals // 2)`."]
+   },
+   "solucion": {"es": "animales = 37\nprint(\"Parejas:\", animales // 2)\nprint(\"Sin pareja:\", animales % 2)", "en": "animals = 37\nprint(\"Pairs:\", animals // 2)\nprint(\"Without a pair:\", animals % 2)"},
+   "pruebas": {
+    "es": [{"salida": "Parejas: 18\nSin pareja: 1"}, {"py": "assert '//' in _codigo and '%' in _codigo", "msg": {"es": "Calcula con // y %, no escribas los resultados.", "en": "Calculate with // and %, don't type the results."}}],
+    "en": [{"salida": "Pairs: 18\nWithout a pair: 1"}, {"py": "assert '//' in _codigo and '%' in _codigo", "msg": {"es": "Calcula con // y %, no escribas los resultados.", "en": "Calculate with // and %, don't type the results."}}]
+   },
+   "errores_tipicos": {"es": ["animales = 37\nprint(\"Parejas:\", animales / 2)\nprint(\"Sin pareja:\", animales % 2)", "print(\"Parejas: 18\")\nprint(\"Sin pareja: 1\")"], "en": ["animals = 37\nprint(\"Pairs:\", animals / 2)\nprint(\"Without a pair:\", animals % 2)"]}
+  },
+  {
+   "id": "area-base",
+   "tipo": "ordenar",
+   "enunciado": {
+    "es": "Ordena las líneas para calcular el área de la base del arca (largo × ancho) y mostrar:\n```\nÁrea de la base: 15000 codos cuadrados\n```",
+    "en": "Put the lines in order to calculate the area of the ark's base (length × width) and show:\n```\nBase area: 15000 square cubits\n```"
+   },
+   "lineas": {
+    "es": ["largo = 300", "ancho = 50", "area = largo * ancho", "print(f\"Área de la base: {area} codos cuadrados\")"],
+    "en": ["length = 300", "width = 50", "area = length * width", "print(f\"Base area: {area} square cubits\")"]
+   },
+   "pistas": {
+    "es": ["No se puede calcular `area` si todavía no existen `largo` y `ancho`.", "El `print` va al final."],
+    "en": ["You can't calculate `area` before `length` and `width` exist.", "The `print` goes last."]
+   },
+   "pruebas": {"es": [{"salida": "Área de la base: 15000 codos cuadrados"}], "en": [{"salida": "Base area: 15000 square cubits"}]}
+  },
+  {
+   "id": "calculadora-arca",
+   "tipo": "escribir",
+   "reto": true,
+   "enunciado": {
+    "es": "**Reto: la calculadora del arca.** Con `codo = 0.45` y las medidas en codos (300, 50, 30), calcula cada medida en metros redondeada a 1 decimal, y el volumen (largo × ancho × alto en metros) redondeado sin decimales. Muéstralo con f-strings:\n```\nLargo: 135.0 m\nAncho: 22.5 m\nAlto: 13.5 m\nVolumen: 41006 m³\n```",
+    "en": "**Challenge: the ark calculator.** With `cubit = 0.45` and the measurements in cubits (300, 50, 30), calculate each measurement in meters rounded to 1 decimal, and the volume (length × width × height in meters) rounded with no decimals. Show it with f-strings:\n```\nLength: 135.0 m\nWidth: 22.5 m\nHeight: 13.5 m\nVolume: 41006 m³\n```"
+   },
+   "inicial": {"es": "codo = 0.45\nlargo = 300\nancho = 50\nalto = 30\n", "en": "cubit = 0.45\nlength = 300\nwidth = 50\nheight = 30\n"},
+   "pistas": {
+    "es": ["Guarda cada medida en metros en una variable nueva: `largo_m = round(largo * codo, 1)`.", "`volumen = round(largo_m * ancho_m * alto_m)` y luego `print(f\"Volumen: {volumen} m³\")`."],
+    "en": ["Store each measurement in meters in a new variable: `length_m = round(length * cubit, 1)`.", "`volume = round(length_m * width_m * height_m)` and then `print(f\"Volume: {volume} m³\")`."]
+   },
+   "solucion": {
+    "es": "codo = 0.45\nlargo = 300\nancho = 50\nalto = 30\nlargo_m = round(largo * codo, 1)\nancho_m = round(ancho * codo, 1)\nalto_m = round(alto * codo, 1)\nvolumen = round(largo_m * ancho_m * alto_m)\nprint(f\"Largo: {largo_m} m\")\nprint(f\"Ancho: {ancho_m} m\")\nprint(f\"Alto: {alto_m} m\")\nprint(f\"Volumen: {volumen} m³\")",
+    "en": "cubit = 0.45\nlength = 300\nwidth = 50\nheight = 30\nlength_m = round(length * cubit, 1)\nwidth_m = round(width * cubit, 1)\nheight_m = round(height * cubit, 1)\nvolume = round(length_m * width_m * height_m)\nprint(f\"Length: {length_m} m\")\nprint(f\"Width: {width_m} m\")\nprint(f\"Height: {height_m} m\")\nprint(f\"Volume: {volume} m³\")"
+   },
+   "pruebas": {
+    "es": [
+     {"salida": "Largo: 135.0 m\nAncho: 22.5 m\nAlto: 13.5 m\nVolumen: 41006 m³"},
+     {"py": "assert 'round(' in _codigo and ('f\"' in _codigo or \"f'\" in _codigo)", "msg": {"es": "Calcula con round() y muestra con f-strings.", "en": "Calculate with round() and show with f-strings."}},
+     {"py": "assert '41006' not in _codigo and '135.0' not in _codigo", "msg": {"es": "No escribas los resultados: deja que Python los calcule.", "en": "Don't type the results: let Python calculate them."}}
+    ],
+    "en": [
+     {"salida": "Length: 135.0 m\nWidth: 22.5 m\nHeight: 13.5 m\nVolume: 41006 m³"},
+     {"py": "assert 'round(' in _codigo and ('f\"' in _codigo or \"f'\" in _codigo)", "msg": {"es": "Calcula con round() y muestra con f-strings.", "en": "Calculate with round() and show with f-strings."}},
+     {"py": "assert '41006' not in _codigo and '135.0' not in _codigo", "msg": {"es": "No escribas los resultados: deja que Python los calcule.", "en": "Don't type the results: let Python calculate them."}}
+    ]
+   },
+   "errores_tipicos": {
+    "es": ["print(\"Largo: 135.0 m\")\nprint(\"Ancho: 22.5 m\")\nprint(\"Alto: 13.5 m\")\nprint(\"Volumen: 41006 m³\")", "codo = 0.45\nlargo = 300\nancho = 50\nalto = 30\nprint(f\"Largo: {largo * codo} m\")\nprint(f\"Ancho: {ancho * codo} m\")\nprint(f\"Alto: {alto * codo} m\")\nprint(f\"Volumen: {largo * ancho * alto * codo} m³\")"],
+    "en": ["print(\"Length: 135.0 m\")\nprint(\"Width: 22.5 m\")\nprint(\"Height: 13.5 m\")\nprint(\"Volume: 41006 m³\")"]
+   }
+  }
+ ]
+}

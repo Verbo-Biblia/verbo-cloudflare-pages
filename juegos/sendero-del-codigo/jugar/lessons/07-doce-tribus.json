@@ -1,0 +1,543 @@
+{
+ "id": "07-doce-tribus",
+ "numero": 7,
+ "lugar": "jerusalen",
+ "titulo": {
+  "es": "Las doce tribus",
+  "en": "The twelve tribes"
+ },
+ "tema": {
+  "es": "listas, índices, rebanadas y métodos de listas",
+  "en": "lists, indexes, slices and list methods"
+ },
+ "versiculo": "gen-49-28",
+ "medalla": {
+  "es": "Guardián de las tribus",
+  "en": "Keeper of the tribes"
+ },
+ "leccion": {
+  "es": [
+   "Antes de morir, Jacob bendijo a sus doce hijos, y de ellos salieron las doce tribus de Israel (Génesis 49:28). Para guardar muchos valores juntos, Python usa **listas**: `hijos = [\"Rubén\", \"Simeón\", \"Leví\"]`.",
+   "Cada elemento tiene un **índice** que empieza en 0: `hijos[0]` es `\"Rubén\"`. Los negativos cuentan desde el final: `hijos[-1]` es el último. Una **rebanada** toma un trozo: `hijos[1:3]` da los índices 1 y 2 (el fin no se incluye); `hijos[:2]` son los dos primeros y `hijos[-2:]`, los dos últimos.",
+   "Las listas se pueden cambiar: `.append(x)` agrega al final, `.insert(i, x)` pone `x` en la posición `i`, `.remove(x)` quita la primera vez que aparece `x` y `.index(x)` dice en qué posición está. `x in lista` da `True` o `False`.",
+   "`for hijo in hijos:` recorre la lista elemento por elemento. `len(lista)` cuenta los elementos; con números, `sum`, `min` y `max` dan la suma, el menor y el mayor. `sorted(lista)` devuelve una copia ordenada, sin cambiar la original."
+  ],
+  "en": [
+   "Before he died, Jacob blessed his twelve sons, and from them came the twelve tribes of Israel (Genesis 49:28). To keep many values together, Python uses **lists**: `sons = [\"Reuben\", \"Simeon\", \"Levi\"]`.",
+   "Each item has an **index** that starts at 0: `sons[0]` is `\"Reuben\"`. Negative ones count from the end: `sons[-1]` is the last. A **slice** takes a piece: `sons[1:3]` gives indexes 1 and 2 (the end is not included); `sons[:2]` are the first two and `sons[-2:]`, the last two.",
+   "Lists can be changed: `.append(x)` adds to the end, `.insert(i, x)` puts `x` at position `i`, `.remove(x)` removes the first time `x` appears and `.index(x)` tells which position it is at. `x in list` gives `True` or `False`.",
+   "`for son in sons:` goes through the list item by item. `len(list)` counts the items; with numbers, `sum`, `min` and `max` give the sum, the smallest and the largest. `sorted(list)` returns a sorted copy, without changing the original."
+  ]
+ },
+ "ejemplo": {
+  "es": "hijos = [\"Rubén\", \"Simeón\", \"Leví\", \"Judá\"]\nprint(hijos[0], hijos[-1], len(hijos))\nprint(hijos[1:3])\nhijos.append(\"Zabulón\")\nprint(\"Leví\" in hijos, hijos.index(\"Judá\"))\nfor hijo in sorted(hijos):\n    print(\"-\", hijo)\nprint(sum([46500, 59300]), max([46500, 59300]))",
+  "en": "sons = [\"Reuben\", \"Simeon\", \"Levi\", \"Judah\"]\nprint(sons[0], sons[-1], len(sons))\nprint(sons[1:3])\nsons.append(\"Zebulun\")\nprint(\"Levi\" in sons, sons.index(\"Judah\"))\nfor son in sorted(sons):\n    print(\"-\", son)\nprint(sum([46500, 59300]), max([46500, 59300]))"
+ },
+ "ejercicios": [
+  {
+   "id": "primeros-cuatro",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Jacob bendijo a sus hijos empezando por Rubén, Simeón, Leví y Judá (Génesis 49). Crea una lista `hijos` con esos cuatro nombres, en ese orden. Muestra cuántos hay con `len()` y el primero con el índice `[0]`:\n```\n4\nRubén\n```",
+    "en": "Jacob blessed his sons starting with Reuben, Simeon, Levi and Judah (Genesis 49). Create a list `sons` with those four names, in that order. Show how many there are with `len()` and the first one with the index `[0]`:\n```\n4\nReuben\n```"
+   },
+   "inicial": {
+    "es": "",
+    "en": ""
+   },
+   "pistas": {
+    "es": [
+     "Una lista va entre corchetes y separada por comas: `hijos = [\"Rubén\", \"Simeón\", ...]`.",
+     "`print(len(hijos))` y `print(hijos[0])`: el primer elemento tiene el índice 0."
+    ],
+    "en": [
+     "A list goes in square brackets, separated by commas: `sons = [\"Reuben\", \"Simeon\", ...]`.",
+     "`print(len(sons))` and `print(sons[0])`: the first item has index 0."
+    ]
+   },
+   "solucion": {
+    "es": "hijos = [\"Rubén\", \"Simeón\", \"Leví\", \"Judá\"]\nprint(len(hijos))\nprint(hijos[0])",
+    "en": "sons = [\"Reuben\", \"Simeon\", \"Levi\", \"Judah\"]\nprint(len(sons))\nprint(sons[0])"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "py": "assert hijos == ['Rubén', 'Simeón', 'Leví', 'Judá']",
+      "msg": {
+       "es": "La lista hijos debe tener Rubén, Simeón, Leví y Judá, en ese orden y con tildes.",
+       "en": "The list hijos must have Rubén, Simeón, Leví and Judá, in that order and with accents."
+      }
+     },
+     {
+      "salida": "4\nRubén"
+     },
+     {
+      "py": "assert 'len(' in _codigo and '[0]' in _codigo",
+      "msg": {
+       "es": "Usa len(hijos) y hijos[0]; no escribas el resultado.",
+       "en": "Use len(hijos) and hijos[0]; don't type the result."
+      }
+     }
+    ],
+    "en": [
+     {
+      "py": "assert sons == ['Reuben', 'Simeon', 'Levi', 'Judah']",
+      "msg": {
+       "es": "La lista sons debe tener Reuben, Simeon, Levi y Judah, en ese orden.",
+       "en": "The list sons must have Reuben, Simeon, Levi and Judah, in that order."
+      }
+     },
+     {
+      "salida": "4\nReuben"
+     },
+     {
+      "py": "assert 'len(' in _codigo and '[0]' in _codigo",
+      "msg": {
+       "es": "Usa len(sons) y sons[0]; no escribas el resultado.",
+       "en": "Use len(sons) and sons[0]; don't type the result."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "hijos = [\"Rubén\", \"Simeón\", \"Leví\", \"Judá\"]\nprint(len(hijos))\nprint(hijos[1])",
+     "hijos = \"Rubén\", \"Simeón\", \"Leví\", \"Judá\"\nprint(4)\nprint(\"Rubén\")",
+     "hijos = [\"Rubén\" \"Simeón\" \"Leví\" \"Judá\"]\nprint(len(hijos))\nprint(hijos[0])"
+    ],
+    "en": [
+     "sons = [\"Reuben\", \"Simeon\", \"Levi\", \"Judah\"]\nprint(len(sons))\nprint(sons[1])",
+     "sons = [\"Reuben\" \"Simeon\" \"Levi\" \"Judah\"]\nprint(len(sons))\nprint(sons[0])"
+    ]
+   }
+  },
+  {
+   "id": "desde-el-final",
+   "tipo": "hueco",
+   "enunciado": {
+    "es": "Los índices **negativos** cuentan desde el final: `-1` es el último. Completa con índices negativos para mostrar los dos últimos hijos que bendijo Jacob, empezando por el último:\n```\nBenjamín\nJosé\n```",
+    "en": "**Negative** indexes count from the end: `-1` is the last one. Fill in negative indexes to show the last two sons Jacob blessed, starting with the very last:\n```\nBenjamin\nJoseph\n```"
+   },
+   "plantilla": {
+    "es": "hijos = [\"Rubén\", \"Simeón\", \"Leví\", \"Judá\", \"Zabulón\", \"Isacar\", \"Dan\", \"Gad\", \"Aser\", \"Neftalí\", \"José\", \"Benjamín\"]\nprint(hijos[___])\nprint(hijos[___])",
+    "en": "sons = [\"Reuben\", \"Simeon\", \"Levi\", \"Judah\", \"Zebulun\", \"Issachar\", \"Dan\", \"Gad\", \"Asher\", \"Naphtali\", \"Joseph\", \"Benjamin\"]\nprint(sons[___])\nprint(sons[___])"
+   },
+   "pistas": {
+    "es": [
+     "`hijos[-1]` es el último elemento de la lista.",
+     "El penúltimo es `hijos[-2]`."
+    ],
+    "en": [
+     "`sons[-1]` is the last item in the list.",
+     "The second to last is `sons[-2]`."
+    ]
+   },
+   "solucion": {
+    "es": "hijos = [\"Rubén\", \"Simeón\", \"Leví\", \"Judá\", \"Zabulón\", \"Isacar\", \"Dan\", \"Gad\", \"Aser\", \"Neftalí\", \"José\", \"Benjamín\"]\nprint(hijos[-1])\nprint(hijos[-2])",
+    "en": "sons = [\"Reuben\", \"Simeon\", \"Levi\", \"Judah\", \"Zebulun\", \"Issachar\", \"Dan\", \"Gad\", \"Asher\", \"Naphtali\", \"Joseph\", \"Benjamin\"]\nprint(sons[-1])\nprint(sons[-2])"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Benjamín\nJosé"
+     },
+     {
+      "py": "assert _codigo.count('[-') >= 2",
+      "msg": {
+       "es": "Usa índices negativos, como -1.",
+       "en": "Use negative indexes, like -1."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Benjamin\nJoseph"
+     },
+     {
+      "py": "assert _codigo.count('[-') >= 2",
+      "msg": {
+       "es": "Usa índices negativos, como -1.",
+       "en": "Use negative indexes, like -1."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "hijos = [\"Rubén\", \"Simeón\", \"Leví\", \"Judá\", \"Zabulón\", \"Isacar\", \"Dan\", \"Gad\", \"Aser\", \"Neftalí\", \"José\", \"Benjamín\"]\nprint(hijos[-0])\nprint(hijos[-1])",
+     "hijos = [\"Rubén\", \"Simeón\", \"Leví\", \"Judá\", \"Zabulón\", \"Isacar\", \"Dan\", \"Gad\", \"Aser\", \"Neftalí\", \"José\", \"Benjamín\"]\nprint(hijos[11])\nprint(hijos[10])",
+     "hijos = [\"Rubén\", \"Simeón\", \"Leví\", \"Judá\", \"Zabulón\", \"Isacar\", \"Dan\", \"Gad\", \"Aser\", \"Neftalí\", \"José\", \"Benjamín\"]\nprint(hijos[12])\nprint(hijos[11])"
+    ],
+    "en": [
+     "sons = [\"Reuben\", \"Simeon\", \"Levi\", \"Judah\", \"Zebulun\", \"Issachar\", \"Dan\", \"Gad\", \"Asher\", \"Naphtali\", \"Joseph\", \"Benjamin\"]\nprint(sons[-0])\nprint(sons[-1])",
+     "sons = [\"Reuben\", \"Simeon\", \"Levi\", \"Judah\", \"Zebulun\", \"Issachar\", \"Dan\", \"Gad\", \"Asher\", \"Naphtali\", \"Joseph\", \"Benjamin\"]\nprint(sons[12])\nprint(sons[11])"
+    ]
+   }
+  },
+  {
+   "id": "hijos-de-raquel",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Una **rebanada** (*slicing*) toma un trozo de la lista: `lista[inicio:fin]`, sin incluir `fin`. Muestra los cuatro primeros hijos de la lista y, en otra línea, los dos últimos, José y Benjamín, que eran los hijos de Raquel (Génesis 35:24):\n```\n['Rubén', 'Simeón', 'Leví', 'Judá']\n['José', 'Benjamín']\n```",
+    "en": "A **slice** takes a piece of the list: `list[start:end]`, not including `end`. Show the first four sons in the list and, on another line, the last two, Joseph and Benjamin, who were the sons of Rachel (Genesis 35:24):\n```\n['Reuben', 'Simeon', 'Levi', 'Judah']\n['Joseph', 'Benjamin']\n```"
+   },
+   "inicial": {
+    "es": "hijos = [\"Rubén\", \"Simeón\", \"Leví\", \"Judá\", \"Zabulón\", \"Isacar\", \"Dan\", \"Gad\", \"Aser\", \"Neftalí\", \"José\", \"Benjamín\"]\n",
+    "en": "sons = [\"Reuben\", \"Simeon\", \"Levi\", \"Judah\", \"Zebulun\", \"Issachar\", \"Dan\", \"Gad\", \"Asher\", \"Naphtali\", \"Joseph\", \"Benjamin\"]\n"
+   },
+   "pistas": {
+    "es": [
+     "Si omites el inicio, empieza desde el principio: `hijos[:4]` da los índices 0, 1, 2 y 3.",
+     "Si omites el fin, llega hasta el final: `hijos[-2:]` da los dos últimos."
+    ],
+    "en": [
+     "If you leave out the start, it begins at the beginning: `sons[:4]` gives indexes 0, 1, 2 and 3.",
+     "If you leave out the end, it goes to the end: `sons[-2:]` gives the last two."
+    ]
+   },
+   "solucion": {
+    "es": "hijos = [\"Rubén\", \"Simeón\", \"Leví\", \"Judá\", \"Zabulón\", \"Isacar\", \"Dan\", \"Gad\", \"Aser\", \"Neftalí\", \"José\", \"Benjamín\"]\nprint(hijos[:4])\nprint(hijos[-2:])",
+    "en": "sons = [\"Reuben\", \"Simeon\", \"Levi\", \"Judah\", \"Zebulun\", \"Issachar\", \"Dan\", \"Gad\", \"Asher\", \"Naphtali\", \"Joseph\", \"Benjamin\"]\nprint(sons[:4])\nprint(sons[-2:])"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "['Rubén', 'Simeón', 'Leví', 'Judá']\n['José', 'Benjamín']"
+     },
+     {
+      "py": "assert __import__('re').search(r'hijos\\[[^\\]]*:', _codigo)",
+      "msg": {
+       "es": "Usa rebanadas con dos puntos, como hijos[:4].",
+       "en": "Use slices with a colon, like hijos[:4]."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "['Reuben', 'Simeon', 'Levi', 'Judah']\n['Joseph', 'Benjamin']"
+     },
+     {
+      "py": "assert __import__('re').search(r'sons\\[[^\\]]*:', _codigo)",
+      "msg": {
+       "es": "Usa rebanadas con dos puntos, como sons[:4].",
+       "en": "Use slices with a colon, like sons[:4]."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "hijos = [\"Rubén\", \"Simeón\", \"Leví\", \"Judá\", \"Zabulón\", \"Isacar\", \"Dan\", \"Gad\", \"Aser\", \"Neftalí\", \"José\", \"Benjamín\"]\nprint(hijos[:3])\nprint(hijos[-2:])",
+     "hijos = [\"Rubén\", \"Simeón\", \"Leví\", \"Judá\", \"Zabulón\", \"Isacar\", \"Dan\", \"Gad\", \"Aser\", \"Neftalí\", \"José\", \"Benjamín\"]\nprint(hijos[1:4])\nprint(hijos[10:11])",
+     "hijos = [\"Rubén\", \"Simeón\", \"Leví\", \"Judá\", \"Zabulón\", \"Isacar\", \"Dan\", \"Gad\", \"Aser\", \"Neftalí\", \"José\", \"Benjamín\"]\nprint(hijos[4])\nprint(hijos[-2])",
+     "print([\"Rubén\", \"Simeón\", \"Leví\", \"Judá\"])\nprint([\"José\", \"Benjamín\"])"
+    ],
+    "en": [
+     "sons = [\"Reuben\", \"Simeon\", \"Levi\", \"Judah\", \"Zebulun\", \"Issachar\", \"Dan\", \"Gad\", \"Asher\", \"Naphtali\", \"Joseph\", \"Benjamin\"]\nprint(sons[:3])\nprint(sons[-2:])",
+     "sons = [\"Reuben\", \"Simeon\", \"Levi\", \"Judah\", \"Zebulun\", \"Issachar\", \"Dan\", \"Gad\", \"Asher\", \"Naphtali\", \"Joseph\", \"Benjamin\"]\nprint(sons[1:4])\nprint(sons[10:11])",
+     "print([\"Reuben\", \"Simeon\", \"Levi\", \"Judah\"])\nprint([\"Joseph\", \"Benjamin\"])"
+    ]
+   }
+  },
+  {
+   "id": "corregir-lista",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Esta lista tiene errores: falta Simeón, sobra Moisés (él era de la tribu de Leví, no un hijo de Jacob) y falta Zabulón al final. Corrígela **con métodos**, sin volver a escribirla: `insert` para poner a Simeón en el índice 1, `remove` para quitar a Moisés y `append` para agregar a Zabulón. Muestra la lista:\n```\n['Rubén', 'Simeón', 'Leví', 'Judá', 'Zabulón']\n```",
+    "en": "This list has mistakes: Simeon is missing, Moses shouldn't be there (he was from the tribe of Levi, not a son of Jacob) and Zebulun is missing at the end. Fix it **with methods**, without writing it again: `insert` to put Simeon at index 1, `remove` to take Moses out and `append` to add Zebulun. Show the list:\n```\n['Reuben', 'Simeon', 'Levi', 'Judah', 'Zebulun']\n```"
+   },
+   "inicial": {
+    "es": "hijos = [\"Rubén\", \"Leví\", \"Moisés\", \"Judá\"]\n",
+    "en": "sons = [\"Reuben\", \"Levi\", \"Moses\", \"Judah\"]\n"
+   },
+   "pistas": {
+    "es": [
+     "`hijos.insert(1, \"Simeón\")` pone a Simeón en la posición 1 y corre los demás a la derecha.",
+     "`hijos.remove(\"Moisés\")` quita ese valor y `hijos.append(\"Zabulón\")` agrega al final. Luego `print(hijos)`."
+    ],
+    "en": [
+     "`sons.insert(1, \"Simeon\")` puts Simeon at position 1 and shifts the rest to the right.",
+     "`sons.remove(\"Moses\")` removes that value and `sons.append(\"Zebulun\")` adds to the end. Then `print(sons)`."
+    ]
+   },
+   "solucion": {
+    "es": "hijos = [\"Rubén\", \"Leví\", \"Moisés\", \"Judá\"]\nhijos.insert(1, \"Simeón\")\nhijos.remove(\"Moisés\")\nhijos.append(\"Zabulón\")\nprint(hijos)",
+    "en": "sons = [\"Reuben\", \"Levi\", \"Moses\", \"Judah\"]\nsons.insert(1, \"Simeon\")\nsons.remove(\"Moses\")\nsons.append(\"Zebulun\")\nprint(sons)"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "py": "assert hijos == ['Rubén', 'Simeón', 'Leví', 'Judá', 'Zabulón']",
+      "msg": {
+       "es": "La lista final debe ser Rubén, Simeón, Leví, Judá, Zabulón (en ese orden).",
+       "en": "The final list must be Rubén, Simeón, Leví, Judá, Zabulón (in that order)."
+      }
+     },
+     {
+      "salida": "['Rubén', 'Simeón', 'Leví', 'Judá', 'Zabulón']"
+     },
+     {
+      "py": "assert '.insert(' in _codigo and '.remove(' in _codigo and '.append(' in _codigo",
+      "msg": {
+       "es": "Usa los tres métodos: insert, remove y append.",
+       "en": "Use all three methods: insert, remove and append."
+      }
+     }
+    ],
+    "en": [
+     {
+      "py": "assert sons == ['Reuben', 'Simeon', 'Levi', 'Judah', 'Zebulun']",
+      "msg": {
+       "es": "La lista final debe ser Reuben, Simeon, Levi, Judah, Zebulun (en ese orden).",
+       "en": "The final list must be Reuben, Simeon, Levi, Judah, Zebulun (in that order)."
+      }
+     },
+     {
+      "salida": "['Reuben', 'Simeon', 'Levi', 'Judah', 'Zebulun']"
+     },
+     {
+      "py": "assert '.insert(' in _codigo and '.remove(' in _codigo and '.append(' in _codigo",
+      "msg": {
+       "es": "Usa los tres métodos: insert, remove y append.",
+       "en": "Use all three methods: insert, remove and append."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "hijos = [\"Rubén\", \"Leví\", \"Moisés\", \"Judá\"]\nhijos.insert(2, \"Simeón\")\nhijos.remove(\"Moisés\")\nhijos.append(\"Zabulón\")\nprint(hijos)",
+     "hijos = [\"Rubén\", \"Leví\", \"Moisés\", \"Judá\"]\nhijos.insert(\"Simeón\", 1)\nhijos.remove(\"Moisés\")\nhijos.append(\"Zabulón\")\nprint(hijos)",
+     "hijos = [\"Rubén\", \"Simeón\", \"Leví\", \"Judá\", \"Zabulón\"]\nprint(hijos)",
+     "hijos = [\"Rubén\", \"Leví\", \"Moisés\", \"Judá\"]\nhijos.insert(1, \"Simeón\")\nhijos.remove(\"Moises\")\nhijos.append(\"Zabulón\")\nprint(hijos)"
+    ],
+    "en": [
+     "sons = [\"Reuben\", \"Levi\", \"Moses\", \"Judah\"]\nsons.insert(2, \"Simeon\")\nsons.remove(\"Moses\")\nsons.append(\"Zebulun\")\nprint(sons)",
+     "sons = [\"Reuben\", \"Levi\", \"Moses\", \"Judah\"]\nsons.insert(\"Simeon\", 1)\nsons.remove(\"Moses\")\nsons.append(\"Zebulun\")\nprint(sons)",
+     "sons = [\"Reuben\", \"Simeon\", \"Levi\", \"Judah\", \"Zebulun\"]\nprint(sons)"
+    ]
+   }
+  },
+  {
+   "id": "buscar-hijo",
+   "tipo": "ordenar",
+   "enunciado": {
+    "es": "Ordena las líneas para buscar un nombre en la lista con `in`. Con `José` debe salir `José es hijo de Jacob`; con `Moisés`, `Moisés no está en la lista`.",
+    "en": "Put the lines in order to look for a name in the list with `in`. With `Joseph` it must show `Joseph is a son of Jacob`; with `Moses`, `Moses is not on the list`."
+   },
+   "lineas": {
+    "es": [
+     "hijos = [\"Rubén\", \"Simeón\", \"Leví\", \"Judá\", \"Zabulón\", \"Isacar\", \"Dan\", \"Gad\", \"Aser\", \"Neftalí\", \"José\", \"Benjamín\"]",
+     "nombre = input(\"¿A quién buscas? \").strip()",
+     "if nombre in hijos:",
+     "    print(f\"{nombre} es hijo de Jacob\")",
+     "else:",
+     "    print(f\"{nombre} no está en la lista\")"
+    ],
+    "en": [
+     "sons = [\"Reuben\", \"Simeon\", \"Levi\", \"Judah\", \"Zebulun\", \"Issachar\", \"Dan\", \"Gad\", \"Asher\", \"Naphtali\", \"Joseph\", \"Benjamin\"]",
+     "name = input(\"Who are you looking for? \").strip()",
+     "if name in sons:",
+     "    print(f\"{name} is a son of Jacob\")",
+     "else:",
+     "    print(f\"{name} is not on the list\")"
+    ]
+   },
+   "entradas": {
+    "es": [
+     "José"
+    ],
+    "en": [
+     "Joseph"
+    ]
+   },
+   "pistas": {
+    "es": [
+     "La lista y el `input` van antes del `if`, porque el `if` los usa.",
+     "`nombre in hijos` da `True` si el nombre está en la lista. El mensaje de «no está» va en el `else`."
+    ],
+    "en": [
+     "The list and the `input` go before the `if`, because the `if` uses them.",
+     "`name in sons` gives `True` if the name is in the list. The “not on the list” message goes in the `else`."
+    ]
+   },
+   "pruebas": {
+    "es": [
+     {
+      "py": "_L = [l.strip() for l in _salida.splitlines()]\nassert _L[-1:] == ['José es hijo de Jacob']",
+      "msg": {
+       "es": "Con «José» debe salir «José es hijo de Jacob».",
+       "en": "With “José” it must show “José es hijo de Jacob”."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['Moisés']).splitlines()]\nassert _L[-1:] == ['Moisés no está en la lista']",
+      "msg": {
+       "es": "Con «Moisés» debe salir «Moisés no está en la lista».",
+       "en": "With “Moisés” it must show “Moisés no está en la lista”."
+      }
+     }
+    ],
+    "en": [
+     {
+      "py": "_L = [l.strip() for l in _salida.splitlines()]\nassert _L[-1:] == ['Joseph is a son of Jacob']",
+      "msg": {
+       "es": "Con «Joseph» debe salir «Joseph is a son of Jacob».",
+       "en": "With “Joseph” it must show “Joseph is a son of Jacob”."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['Moses']).splitlines()]\nassert _L[-1:] == ['Moses is not on the list']",
+      "msg": {
+       "es": "Con «Moses» debe salir «Moses is not on the list».",
+       "en": "With “Moses” it must show “Moses is not on the list”."
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "numerar-hijos",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Recorre la lista con `for` y muestra cada hijo con su número, en el orden en que Jacob los bendijo. Usa un **contador** que empiece en 0 y suba 1 en cada vuelta (o `enumerate`, si ya lo conoces). Un solo `print`, dentro del bucle:\n```\n1. Rubén\n2. Simeón\n3. Leví\n4. Judá\n5. Zabulón\n6. Isacar\n7. Dan\n8. Gad\n9. Aser\n10. Neftalí\n11. José\n12. Benjamín\n```",
+    "en": "Go through the list with `for` and show each son with his number, in the order Jacob blessed them. Use a **counter** that starts at 0 and goes up by 1 each turn (or `enumerate`, if you already know it). A single `print`, inside the loop:\n```\n1. Reuben\n2. Simeon\n3. Levi\n4. Judah\n5. Zebulun\n6. Issachar\n7. Dan\n8. Gad\n9. Asher\n10. Naphtali\n11. Joseph\n12. Benjamin\n```"
+   },
+   "inicial": {
+    "es": "hijos = [\"Rubén\", \"Simeón\", \"Leví\", \"Judá\", \"Zabulón\", \"Isacar\", \"Dan\", \"Gad\", \"Aser\", \"Neftalí\", \"José\", \"Benjamín\"]\nnumero = 0\n",
+    "en": "sons = [\"Reuben\", \"Simeon\", \"Levi\", \"Judah\", \"Zebulun\", \"Issachar\", \"Dan\", \"Gad\", \"Asher\", \"Naphtali\", \"Joseph\", \"Benjamin\"]\nnumber = 0\n"
+   },
+   "pistas": {
+    "es": [
+     "`for hijo in hijos:` le da a `hijo` cada nombre, uno por uno.",
+     "Dentro: `numero += 1` y luego `print(f\"{numero}. {hijo}\")`."
+    ],
+    "en": [
+     "`for son in sons:` gives `son` each name, one by one.",
+     "Inside: `number += 1` and then `print(f\"{number}. {son}\")`."
+    ]
+   },
+   "solucion": {
+    "es": "hijos = [\"Rubén\", \"Simeón\", \"Leví\", \"Judá\", \"Zabulón\", \"Isacar\", \"Dan\", \"Gad\", \"Aser\", \"Neftalí\", \"José\", \"Benjamín\"]\nnumero = 0\nfor hijo in hijos:\n    numero += 1\n    print(f\"{numero}. {hijo}\")",
+    "en": "sons = [\"Reuben\", \"Simeon\", \"Levi\", \"Judah\", \"Zebulun\", \"Issachar\", \"Dan\", \"Gad\", \"Asher\", \"Naphtali\", \"Joseph\", \"Benjamin\"]\nnumber = 0\nfor son in sons:\n    number += 1\n    print(f\"{number}. {son}\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "1. Rubén\n2. Simeón\n3. Leví\n4. Judá\n5. Zabulón\n6. Isacar\n7. Dan\n8. Gad\n9. Aser\n10. Neftalí\n11. José\n12. Benjamín"
+     },
+     {
+      "py": "assert 'for ' in _codigo and _codigo.count('print') == 1",
+      "msg": {
+       "es": "Usa un for con un solo print dentro.",
+       "en": "Use a for with a single print inside."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "1. Reuben\n2. Simeon\n3. Levi\n4. Judah\n5. Zebulun\n6. Issachar\n7. Dan\n8. Gad\n9. Asher\n10. Naphtali\n11. Joseph\n12. Benjamin"
+     },
+     {
+      "py": "assert 'for ' in _codigo and _codigo.count('print') == 1",
+      "msg": {
+       "es": "Usa un for con un solo print dentro.",
+       "en": "Use a for with a single print inside."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "hijos = [\"Rubén\", \"Simeón\", \"Leví\", \"Judá\", \"Zabulón\", \"Isacar\", \"Dan\", \"Gad\", \"Aser\", \"Neftalí\", \"José\", \"Benjamín\"]\nnumero = 0\nfor hijo in hijos:\n    print(f\"{numero}. {hijo}\")\n    numero += 1",
+     "hijos = [\"Rubén\", \"Simeón\", \"Leví\", \"Judá\", \"Zabulón\", \"Isacar\", \"Dan\", \"Gad\", \"Aser\", \"Neftalí\", \"José\", \"Benjamín\"]\nnumero = 0\nfor hijo in hijos:\n    numero = 1\n    print(f\"{numero}. {hijo}\")",
+     "hijos = [\"Rubén\", \"Simeón\", \"Leví\", \"Judá\", \"Zabulón\", \"Isacar\", \"Dan\", \"Gad\", \"Aser\", \"Neftalí\", \"José\", \"Benjamín\"]\nnumero = 0\nfor hijo in hijos:\n    numero += 1\n    print(f\"{numero}. {hijos}\")"
+    ],
+    "en": [
+     "sons = [\"Reuben\", \"Simeon\", \"Levi\", \"Judah\", \"Zebulun\", \"Issachar\", \"Dan\", \"Gad\", \"Asher\", \"Naphtali\", \"Joseph\", \"Benjamin\"]\nnumber = 0\nfor son in sons:\n    print(f\"{number}. {son}\")\n    number += 1",
+     "sons = [\"Reuben\", \"Simeon\", \"Levi\", \"Judah\", \"Zebulun\", \"Issachar\", \"Dan\", \"Gad\", \"Asher\", \"Naphtali\", \"Joseph\", \"Benjamin\"]\nnumber = 0\nfor son in sons:\n    number = 1\n    print(f\"{number}. {son}\")"
+    ]
+   }
+  },
+  {
+   "id": "censo-tribus",
+   "tipo": "escribir",
+   "reto": true,
+   "enunciado": {
+    "es": "**Reto: el censo del desierto.** En el censo de Números 1 no se contó a Leví (Números 1:47-49), y José aparece como dos tribus: Efraín y Manasés. Tienes las tribus y sus cifras en dos listas, en el mismo orden. Usa `len`, `sum`, `max`, `min`, `sorted` y el índice de cada número (`censo.index(...)`) para mostrar:\n```\nTribus contadas: 12\nTotal: 603550\nMayor: 74600 (Judá)\nMenor: 32200 (Manasés)\nPrimera en orden alfabético: Aser\n```\nNo escribas ningún resultado: que Python lo calcule.",
+    "en": "**Challenge: the census in the desert.** In the census of Numbers 1, Levi was not counted (Numbers 1:47-49), and Joseph appears as two tribes: Ephraim and Manasseh. You have the tribes and their numbers in two lists, in the same order. Use `len`, `sum`, `max`, `min`, `sorted` and the index of each number (`census.index(...)`) to show:\n```\nTribes counted: 12\nTotal: 603550\nLargest: 74600 (Judah)\nSmallest: 32200 (Manasseh)\nFirst in alphabetical order: Asher\n```\nDon't type any result: let Python calculate it."
+   },
+   "inicial": {
+    "es": "tribus = [\"Rubén\", \"Simeón\", \"Gad\", \"Judá\", \"Isacar\", \"Zabulón\", \"Efraín\", \"Manasés\", \"Benjamín\", \"Dan\", \"Aser\", \"Neftalí\"]\ncenso = [46500, 59300, 45650, 74600, 54400, 57400, 40500, 32200, 35400, 62700, 41500, 53400]\n",
+    "en": "tribes = [\"Reuben\", \"Simeon\", \"Gad\", \"Judah\", \"Issachar\", \"Zebulun\", \"Ephraim\", \"Manasseh\", \"Benjamin\", \"Dan\", \"Asher\", \"Naphtali\"]\ncensus = [46500, 59300, 45650, 74600, 54400, 57400, 40500, 32200, 35400, 62700, 41500, 53400]\n"
+   },
+   "pistas": {
+    "es": [
+     "`mayor = max(censo)` y `tribus[censo.index(mayor)]` da el nombre de esa tribu, porque las dos listas van en el mismo orden. Igual con `min`.",
+     "`print(f\"Total: {sum(censo)}\")` y `sorted(tribus)[0]` da la primera en orden alfabético."
+    ],
+    "en": [
+     "`largest = max(census)` and `tribes[census.index(largest)]` gives that tribe's name, because both lists are in the same order. The same with `min`.",
+     "`print(f\"Total: {sum(census)}\")` and `sorted(tribes)[0]` gives the first one in alphabetical order."
+    ]
+   },
+   "solucion": {
+    "es": "tribus = [\"Rubén\", \"Simeón\", \"Gad\", \"Judá\", \"Isacar\", \"Zabulón\", \"Efraín\", \"Manasés\", \"Benjamín\", \"Dan\", \"Aser\", \"Neftalí\"]\ncenso = [46500, 59300, 45650, 74600, 54400, 57400, 40500, 32200, 35400, 62700, 41500, 53400]\nmayor = max(censo)\nmenor = min(censo)\nprint(f\"Tribus contadas: {len(tribus)}\")\nprint(f\"Total: {sum(censo)}\")\nprint(f\"Mayor: {mayor} ({tribus[censo.index(mayor)]})\")\nprint(f\"Menor: {menor} ({tribus[censo.index(menor)]})\")\nprint(f\"Primera en orden alfabético: {sorted(tribus)[0]}\")",
+    "en": "tribes = [\"Reuben\", \"Simeon\", \"Gad\", \"Judah\", \"Issachar\", \"Zebulun\", \"Ephraim\", \"Manasseh\", \"Benjamin\", \"Dan\", \"Asher\", \"Naphtali\"]\ncensus = [46500, 59300, 45650, 74600, 54400, 57400, 40500, 32200, 35400, 62700, 41500, 53400]\nlargest = max(census)\nsmallest = min(census)\nprint(f\"Tribes counted: {len(tribes)}\")\nprint(f\"Total: {sum(census)}\")\nprint(f\"Largest: {largest} ({tribes[census.index(largest)]})\")\nprint(f\"Smallest: {smallest} ({tribes[census.index(smallest)]})\")\nprint(f\"First in alphabetical order: {sorted(tribes)[0]}\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Tribus contadas: 12\nTotal: 603550\nMayor: 74600 (Judá)\nMenor: 32200 (Manasés)\nPrimera en orden alfabético: Aser"
+     },
+     {
+      "py": "assert '603550' not in _codigo and _codigo.count('74600') == 1 and _codigo.count('32200') == 1",
+      "msg": {
+       "es": "No escribas los resultados: calcula con sum(), max() y min().",
+       "en": "Don't type the results: calculate with sum(), max() and min()."
+      }
+     },
+     {
+      "py": "assert _codigo.count('Judá') == 1 and _codigo.count('Manasés') == 1 and _codigo.count('Aser') == 1",
+      "msg": {
+       "es": "No escribas los nombres de las tribus en los print: búscalos en la lista con el índice y con sorted().",
+       "en": "Don't type the tribe names in the prints: look them up in the list with the index and with sorted()."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Tribes counted: 12\nTotal: 603550\nLargest: 74600 (Judah)\nSmallest: 32200 (Manasseh)\nFirst in alphabetical order: Asher"
+     },
+     {
+      "py": "assert '603550' not in _codigo and _codigo.count('74600') == 1 and _codigo.count('32200') == 1",
+      "msg": {
+       "es": "No escribas los resultados: calcula con sum(), max() y min().",
+       "en": "Don't type the results: calculate with sum(), max() and min()."
+      }
+     },
+     {
+      "py": "assert _codigo.count('Judah') == 1 and _codigo.count('Manasseh') == 1 and _codigo.count('Asher') == 1",
+      "msg": {
+       "es": "No escribas los nombres de las tribus en los print: búscalos en la lista con el índice y con sorted().",
+       "en": "Don't type the tribe names in the prints: look them up in the list with the index and with sorted()."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "tribus = [\"Rubén\", \"Simeón\", \"Gad\", \"Judá\", \"Isacar\", \"Zabulón\", \"Efraín\", \"Manasés\", \"Benjamín\", \"Dan\", \"Aser\", \"Neftalí\"]\ncenso = [46500, 59300, 45650, 74600, 54400, 57400, 40500, 32200, 35400, 62700, 41500, 53400]\nprint(f\"Tribus contadas: {len(tribus)}\")\nprint(f\"Total: {sum(censo)}\")\nprint(f\"Mayor: {max(censo)} (Judá)\")\nprint(f\"Menor: {min(censo)} (Manasés)\")\nprint(f\"Primera en orden alfabético: {sorted(tribus)[0]}\")",
+     "tribus = [\"Rubén\", \"Simeón\", \"Gad\", \"Judá\", \"Isacar\", \"Zabulón\", \"Efraín\", \"Manasés\", \"Benjamín\", \"Dan\", \"Aser\", \"Neftalí\"]\ncenso = [46500, 59300, 45650, 74600, 54400, 57400, 40500, 32200, 35400, 62700, 41500, 53400]\nprint(f\"Tribus contadas: {len(tribus)}\")\nprint(f\"Total: {sum(censo)}\")\nprint(f\"Mayor: {max(censo)} ({tribus[max(censo)]})\")\nprint(f\"Menor: {min(censo)} ({tribus[min(censo)]})\")\nprint(f\"Primera en orden alfabético: {sorted(tribus)[0]}\")",
+     "tribus = [\"Rubén\", \"Simeón\", \"Gad\", \"Judá\", \"Isacar\", \"Zabulón\", \"Efraín\", \"Manasés\", \"Benjamín\", \"Dan\", \"Aser\", \"Neftalí\"]\ncenso = [46500, 59300, 45650, 74600, 54400, 57400, 40500, 32200, 35400, 62700, 41500, 53400]\nprint(f\"Tribus contadas: {len(tribus)}\")\nprint(f\"Total: {sum(censo)}\")\nprint(f\"Mayor: {max(censo)} ({tribus[censo.index(max(censo))]})\")\nprint(f\"Menor: {min(censo)} ({tribus[censo.index(min(censo))]})\")\nprint(f\"Primera en orden alfabético: {tribus[0]}\")",
+     "tribus = [\"Rubén\", \"Simeón\", \"Gad\", \"Judá\", \"Isacar\", \"Zabulón\", \"Efraín\", \"Manasés\", \"Benjamín\", \"Dan\", \"Aser\", \"Neftalí\"]\ncenso = [46500, 59300, 45650, 74600, 54400, 57400, 40500, 32200, 35400, 62700, 41500, 53400]\nprint(f\"Tribus contadas: {len(tribus)}\")\nprint(\"Total: 603550\")\nprint(f\"Mayor: {max(censo)} ({tribus[censo.index(max(censo))]})\")\nprint(f\"Menor: {min(censo)} ({tribus[censo.index(min(censo))]})\")\nprint(f\"Primera en orden alfabético: {sorted(tribus)[0]}\")"
+    ],
+    "en": [
+     "tribes = [\"Reuben\", \"Simeon\", \"Gad\", \"Judah\", \"Issachar\", \"Zebulun\", \"Ephraim\", \"Manasseh\", \"Benjamin\", \"Dan\", \"Asher\", \"Naphtali\"]\ncensus = [46500, 59300, 45650, 74600, 54400, 57400, 40500, 32200, 35400, 62700, 41500, 53400]\nprint(f\"Tribes counted: {len(tribes)}\")\nprint(f\"Total: {sum(census)}\")\nprint(f\"Largest: {max(census)} (Judah)\")\nprint(f\"Smallest: {min(census)} (Manasseh)\")\nprint(f\"First in alphabetical order: {sorted(tribes)[0]}\")",
+     "tribes = [\"Reuben\", \"Simeon\", \"Gad\", \"Judah\", \"Issachar\", \"Zebulun\", \"Ephraim\", \"Manasseh\", \"Benjamin\", \"Dan\", \"Asher\", \"Naphtali\"]\ncensus = [46500, 59300, 45650, 74600, 54400, 57400, 40500, 32200, 35400, 62700, 41500, 53400]\nprint(f\"Tribes counted: {len(tribes)}\")\nprint(f\"Total: {sum(census)}\")\nprint(f\"Largest: {max(census)} ({tribes[max(census)]})\")\nprint(f\"Smallest: {min(census)} ({tribes[min(census)]})\")\nprint(f\"First in alphabetical order: {sorted(tribes)[0]}\")",
+     "tribes = [\"Reuben\", \"Simeon\", \"Gad\", \"Judah\", \"Issachar\", \"Zebulun\", \"Ephraim\", \"Manasseh\", \"Benjamin\", \"Dan\", \"Asher\", \"Naphtali\"]\ncensus = [46500, 59300, 45650, 74600, 54400, 57400, 40500, 32200, 35400, 62700, 41500, 53400]\nprint(f\"Tribes counted: {len(tribes)}\")\nprint(f\"Total: {sum(census)}\")\nprint(f\"Largest: {max(census)} ({tribes[census.index(max(census))]})\")\nprint(f\"Smallest: {min(census)} ({tribes[census.index(min(census))]})\")\nprint(f\"First in alphabetical order: {tribes[0]}\")"
+    ]
+   }
+  }
+ ]
+}

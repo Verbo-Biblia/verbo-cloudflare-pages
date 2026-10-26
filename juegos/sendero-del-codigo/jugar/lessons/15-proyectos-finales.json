@@ -1,0 +1,747 @@
+{
+ "id": "15-proyectos-finales",
+ "numero": 15,
+ "lugar": "pablo",
+ "titulo": {
+  "es": "Proyectos finales",
+  "en": "Final projects"
+ },
+ "tema": {
+  "es": "proyectos completos: consola, archivos y lienzo",
+  "en": "complete projects: console, files and canvas"
+ },
+ "versiculo": "col-3-23",
+ "medalla": {
+  "es": "De todo corazón",
+  "en": "With all my heart"
+ },
+ "leccion": {
+  "es": [
+   "Este capítulo cierra el nivel básico. Ya no hay pasos guiados: cada proyecto trae **requisitos**, y tú decides cómo cumplirlos. Antes de escribir, piensa qué datos necesitas, qué funciones te conviene escribir y qué casos raros puede haber (una respuesta vacía, un 0, una palabra que no está).",
+   "El módulo **lienzo** dibuja en la página. Las coordenadas son píxeles y `(0, 0)` es la esquina de **arriba a la izquierda**: la `x` crece a la derecha y la `y` hacia abajo. `lienzo.tamano(400, 300)`, `lienzo.fondo(color)`, `lienzo.rectangulo(x, y, ancho, alto, color, borde)`, `lienzo.circulo(x, y, radio, color)`, `lienzo.linea(x1, y1, x2, y2, color, grosor)` y `lienzo.texto(x, y, contenido, color, tamano, centrado=True)`. Los colores pueden ser nombres en inglés (`\"gold\"`) o códigos (`\"#8b6b3e\"`). Se dibuja en orden: lo último queda encima.",
+   "Junto a tu programa está siempre `versiculos.json`. `json.load(open(\"versiculos.json\", encoding=\"utf-8\"))` lo convierte en un diccionario de Python que puedes recorrer como cualquier otro.",
+   "Prueba tus programas con varias entradas, no solo con la del ejemplo: así lo harán las pruebas. Y hazlo con gusto: «todo lo que hagan, háganlo de corazón, como para el Señor» (Colosenses 3:23)."
+  ],
+  "en": [
+   "This chapter closes the beginner level. There are no guided steps anymore: each project comes with **requirements**, and you decide how to meet them. Before writing, think about what data you need, which functions are worth writing and what odd cases there might be (an empty answer, a 0, a word that isn't there).",
+   "The **lienzo** (canvas) module draws on the page. Coordinates are pixels and `(0, 0)` is the **top-left** corner: `x` grows to the right and `y` grows downward. `lienzo.size(400, 300)`, `lienzo.background(color)`, `lienzo.rectangle(x, y, width, height, color, border)`, `lienzo.circle(x, y, radius, color)`, `lienzo.line(x1, y1, x2, y2, color, thickness)` and `lienzo.text(x, y, content, color, size, centrado=True)`. Colors can be names (`\"gold\"`) or codes (`\"#8b6b3e\"`). Things are drawn in order: the last one ends up on top.",
+   "The file `versiculos.json` is always next to your program. `json.load(open(\"versiculos.json\", encoding=\"utf-8\"))` turns it into a Python dictionary you can loop over like any other.",
+   "Test your programs with several inputs, not just the one in the example: that's what the tests will do. And do it gladly: “Whatever you do, work at it with your whole being, as for the Lord” (Colossians 3:23)."
+  ]
+ },
+ "ejemplo": {
+  "es": "import json\nimport lienzo\n\nversiculos = json.load(open(\"versiculos.json\", encoding=\"utf-8\"))\nv = versiculos[\"gen-1-3\"][\"es\"]\nprint(v[\"ref\"], \"—\", v[\"texto\"])\n\nlienzo.tamano(400, 200)\nlienzo.fondo(\"midnightblue\")\nlienzo.circulo(80, 100, 40, \"gold\")\nlienzo.rectangulo(160, 60, 200, 80, \"white\", \"gold\")\nlienzo.linea(130, 100, 160, 100, \"gold\", 3)\nlienzo.texto(260, 88, v[\"ref\"], \"midnightblue\", 22, centrado=True)",
+  "en": "import json\nimport lienzo\n\nverses = json.load(open(\"versiculos.json\", encoding=\"utf-8\"))\nv = verses[\"gen-1-3\"][\"en\"]\nprint(v[\"ref\"], \"—\", v[\"texto\"])\n\nlienzo.size(400, 200)\nlienzo.background(\"midnightblue\")\nlienzo.circle(80, 100, 40, \"gold\")\nlienzo.rectangle(160, 60, 200, 80, \"white\", \"gold\")\nlienzo.line(130, 100, 160, 100, \"gold\", 3)\nlienzo.text(260, 88, v[\"ref\"], \"midnightblue\", 22, centrado=True)"
+ },
+ "ejercicios": [
+  {
+   "id": "calentamiento-lienzo",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "**Calentamiento: «Sea la luz».** Con el módulo `lienzo`, dibuja en un lienzo de 400 × 300:\n- un **fondo** oscuro (es lo primero que dibujas);\n- un **círculo** de luz que quede completo dentro del lienzo;\n- el texto `Sea la luz`.\n\nLos colores y las posiciones los eliges tú. Pulsa **Ejecutar** para ver tu dibujo.",
+    "en": "**Warm-up: “Let there be light.”** With the `lienzo` module, draw on a 400 × 300 canvas:\n- a dark **background** (it's the first thing you draw);\n- a **circle** of light that fits completely inside the canvas;\n- the text `Let there be light`.\n\nYou choose the colors and positions. Press **Run** to see your drawing."
+   },
+   "inicial": {
+    "es": "import lienzo\n\nlienzo.tamano(400, 300)\n",
+    "en": "import lienzo\n\nlienzo.size(400, 300)\n"
+   },
+   "pistas": {
+    "es": [
+     "(0, 0) es la esquina de arriba a la izquierda; la `y` crece hacia abajo. Un círculo está completo si `x - radio >= 0`, `x + radio <= 400`, y lo mismo con `y` y 300.",
+     "Las funciones son `lienzo.fondo(color)`, `lienzo.circulo(x, y, radio, color)` y `lienzo.texto(x, y, contenido, color, tamano, centrado=True)`."
+    ],
+    "en": [
+     "(0, 0) is the top-left corner; `y` grows downward. A circle is complete if `x - radius >= 0`, `x + radius <= 400`, and the same with `y` and 300.",
+     "The functions are `lienzo.background(color)`, `lienzo.circle(x, y, radius, color)` and `lienzo.text(x, y, content, color, size, centrado=True)`."
+    ]
+   },
+   "solucion": {
+    "es": "import lienzo\n\nlienzo.tamano(400, 300)\nlienzo.fondo(\"midnightblue\")\nlienzo.circulo(200, 120, 60, \"gold\")\nlienzo.texto(200, 220, \"Sea la luz\", \"white\", 32, centrado=True)",
+    "en": "import lienzo\n\nlienzo.size(400, 300)\nlienzo.background(\"midnightblue\")\nlienzo.circle(200, 120, 60, \"gold\")\nlienzo.text(200, 220, \"Let there be light\", \"white\", 32, centrado=True)"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "py": "assert _dibujo and _dibujo[0]['tipo'] == 'fondo'",
+      "msg": {
+       "es": "Empieza dibujando el fondo con `lienzo.fondo(...)`; si no, taparía lo demás.",
+       "en": "Start by drawing the background with `lienzo.fondo(...)`; otherwise it would cover everything else."
+      }
+     },
+     {
+      "py": "assert any(o['tipo'] == 'circulo' and o['r'] > 0 and o['x'] - o['r'] >= 0 and o['x'] + o['r'] <= 400 and o['y'] - o['r'] >= 0 and o['y'] + o['r'] <= 300 for o in _dibujo)",
+      "msg": {
+       "es": "Falta un círculo que quepa completo en el lienzo de 400 × 300 (revisa su centro y su radio).",
+       "en": "There must be a circle that fits completely on the 400 × 300 canvas (check its center and radius)."
+      }
+     },
+     {
+      "py": "_t = [o for o in _dibujo if o['tipo'] == 'texto']\nassert any(o['texto'] == 'Sea la luz' for o in _t)",
+      "msg": {
+       "es": "Escribe el texto `Sea la luz` (igual, con mayúscula al principio) con `lienzo.texto`.",
+       "en": "Write the text `Sea la luz` (exactly, capitalized) with `lienzo.texto`."
+      }
+     }
+    ],
+    "en": [
+     {
+      "py": "assert _dibujo and _dibujo[0]['tipo'] == 'fondo'",
+      "msg": {
+       "es": "Empieza dibujando el fondo con `lienzo.background(...)`; si no, taparía lo demás.",
+       "en": "Start by drawing the background with `lienzo.background(...)`; otherwise it would cover everything else."
+      }
+     },
+     {
+      "py": "assert any(o['tipo'] == 'circulo' and o['r'] > 0 and o['x'] - o['r'] >= 0 and o['x'] + o['r'] <= 400 and o['y'] - o['r'] >= 0 and o['y'] + o['r'] <= 300 for o in _dibujo)",
+      "msg": {
+       "es": "Falta un círculo que quepa completo en el lienzo de 400 × 300 (revisa su centro y su radio).",
+       "en": "There must be a circle that fits completely on the 400 × 300 canvas (check its center and radius)."
+      }
+     },
+     {
+      "py": "_t = [o for o in _dibujo if o['tipo'] == 'texto']\nassert any(o['texto'] == 'Let there be light' for o in _t)",
+      "msg": {
+       "es": "Escribe el texto `Let there be light` (igual) con `lienzo.text`.",
+       "en": "Write the text `Let there be light` (exactly) with `lienzo.text`."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "lienzo.tamano(400, 300)\nlienzo.fondo(\"midnightblue\")\nlienzo.circulo(200, 120, 60, \"gold\")\nlienzo.texto(200, 220, \"Sea la luz\", \"white\", 32, centrado=True)",
+     "import lienzo\n\nlienzo.tamano(400, 300)\nlienzo.circulo(200, 120, 60, \"gold\")\nlienzo.texto(200, 220, \"Sea la luz\", \"white\", 32, centrado=True)\nlienzo.fondo(\"midnightblue\")",
+     "import lienzo\n\nlienzo.tamano(400, 300)\nlienzo.fondo(\"midnightblue\")\nlienzo.circulo(380, 120, 60, \"gold\")\nlienzo.texto(200, 220, \"Sea la luz\", \"white\", 32, centrado=True)",
+     "import lienzo\n\nlienzo.tamano(400, 300)\nlienzo.fondo(\"midnightblue\")\nlienzo.circulo(200, 120, 60, \"gold\")\nlienzo.texto(200, 220, \"sea la luz\", \"white\", 32, centrado=True)"
+    ],
+    "en": [
+     "lienzo.size(400, 300)\nlienzo.background(\"midnightblue\")\nlienzo.circle(200, 120, 60, \"gold\")\nlienzo.text(200, 220, \"Let there be light\", \"white\", 32, centrado=True)",
+     "import lienzo\n\nlienzo.size(400, 300)\nlienzo.circle(200, 120, 60, \"gold\")\nlienzo.text(200, 220, \"Let there be light\", \"white\", 32, centrado=True)\nlienzo.background(\"midnightblue\")",
+     "import lienzo\n\nlienzo.size(400, 300)\nlienzo.background(\"midnightblue\")\nlienzo.circle(380, 120, 60, \"gold\")\nlienzo.text(200, 220, \"Let there be light\", \"white\", 32, centrado=True)",
+     "import lienzo\n\nlienzo.size(400, 300)\nlienzo.background(\"midnightblue\")\nlienzo.circle(200, 120, 60, \"gold\")\nlienzo.text(200, 220, \"let there be light\", \"white\", 32, centrado=True)"
+    ]
+   }
+  },
+  {
+   "id": "quiz-biblico",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "**Proyecto: quiz bíblico.** Escribe un quiz de consola con estas tres preguntas y sus respuestas:\n- ¿Cuántos libros tiene la Biblia? → `66`\n- ¿Quién construyó el arca? → `Noé`\n- ¿En qué ciudad nació Pablo? → `Tarso`\n\nRequisitos:\n- Pide cada respuesta con `input()` y acéptala aunque tenga otras mayúsculas o espacios de más.\n- Si acierta, muestra `¡Correcto!`; si no, `La respuesta es: ` y la respuesta.\n- Al final muestra `Puntuación: N de 3`.\n\nAl **Comprobar**, el quiz recibe `66`, `noé` y `Roma` (2 de 3), y luego se prueba con otras respuestas.",
+    "en": "**Project: Bible quiz.** Write a console quiz with these three questions and their answers:\n- How many books are in the Bible? → `66`\n- Who built the ark? → `Noah`\n- In what city was Paul born? → `Tarsus`\n\nRequirements:\n- Ask for each answer with `input()` and accept it even with different capitals or extra spaces.\n- If it's right, show `Correct!`; if not, `The answer is: ` and the answer.\n- At the end show `Score: N out of 3`.\n\nWhen you **Check**, the quiz receives `66`, `noah` and `Rome` (2 out of 3), and then it's tested with other answers."
+   },
+   "inicial": {
+    "es": "",
+    "en": ""
+   },
+   "entradas": {
+    "es": [
+     "66",
+     "noé",
+     "Roma"
+    ],
+    "en": [
+     "66",
+     "noah",
+     "Rome"
+    ]
+   },
+   "pistas": {
+    "es": [
+     "Guardar las preguntas y respuestas en una lista de tuplas te deja recorrerlas con un solo `for`, en vez de repetir el mismo código tres veces.",
+     "Para comparar sin fijarte en mayúsculas ni espacios: `r.strip().lower() == respuesta.lower()`. Lleva la cuenta en una variable que empieza en 0."
+    ],
+    "en": [
+     "Storing the questions and answers in a list of tuples lets you go through them with a single `for`, instead of repeating the same code three times.",
+     "To compare ignoring capitals and spaces: `r.strip().lower() == answer.lower()`. Keep the count in a variable that starts at 0."
+    ]
+   },
+   "solucion": {
+    "es": "preguntas = [\n    (\"¿Cuántos libros tiene la Biblia? \", \"66\"),\n    (\"¿Quién construyó el arca? \", \"Noé\"),\n    (\"¿En qué ciudad nació Pablo? \", \"Tarso\"),\n]\npuntos = 0\nfor pregunta, respuesta in preguntas:\n    r = input(pregunta)\n    if r.strip().lower() == respuesta.lower():\n        print(\"¡Correcto!\")\n        puntos += 1\n    else:\n        print(\"La respuesta es:\", respuesta)\nprint(f\"Puntuación: {puntos} de {len(preguntas)}\")",
+    "en": "questions = [\n    (\"How many books are in the Bible? \", \"66\"),\n    (\"Who built the ark? \", \"Noah\"),\n    (\"In what city was Paul born? \", \"Tarsus\"),\n]\npoints = 0\nfor question, answer in questions:\n    r = input(question)\n    if r.strip().lower() == answer.lower():\n        print(\"Correct!\")\n        points += 1\n    else:\n        print(\"The answer is:\", answer)\nprint(f\"Score: {points} out of {len(questions)}\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "py": "_ult = lambda s: s.strip().split('\\n')[-1].strip()\nassert _ult(_salida) == 'Puntuación: 2 de 3'",
+      "msg": {
+       "es": "La última línea debe ser `Puntuación: N de 3`.",
+       "en": "The last line must be `Puntuación: N de 3`."
+      }
+     },
+     {
+      "py": "_ult = lambda s: s.strip().split('\\n')[-1].strip()\nassert _ult(_correr(['66', 'Noé', 'Tarso'])) == 'Puntuación: 3 de 3' and _ult(_correr(['12', 'Moisés', 'Roma'])) == 'Puntuación: 0 de 3'",
+      "msg": {
+       "es": "Prueba otras respuestas: todas bien debe dar 3 puntos y todas mal, 0. Suma los puntos con cada respuesta, no los escribas fijos.",
+       "en": "Try other answers: all right must give 3 points and all wrong, 0. Add up the points with each answer, don't type them as a fixed number."
+      }
+     },
+     {
+      "py": "_ult = lambda s: s.strip().split('\\n')[-1].strip()\nassert _ult(_correr([' 66 ', 'NOÉ', 'tarso'])) == 'Puntuación: 3 de 3'",
+      "msg": {
+       "es": "Acepta la respuesta aunque tenga mayúsculas distintas o espacios al principio o al final: compara con `.strip().lower()`.",
+       "en": "Accept the answer even with different capitals or spaces at the start or end: compare with `.strip().lower()`."
+      }
+     },
+     {
+      "py": "assert _salida.count('¡Correcto!') == 2 and _correr(['66', 'Noé', 'Tarso']).count('¡Correcto!') == 3",
+      "msg": {
+       "es": "Después de cada respuesta correcta muestra `¡Correcto!`.",
+       "en": "After each right answer show `¡Correcto!`."
+      }
+     }
+    ],
+    "en": [
+     {
+      "py": "_ult = lambda s: s.strip().split('\\n')[-1].strip()\nassert _ult(_salida) == 'Score: 2 out of 3'",
+      "msg": {
+       "es": "La última línea debe ser `Score: N out of 3`.",
+       "en": "The last line must be `Score: N out of 3`."
+      }
+     },
+     {
+      "py": "_ult = lambda s: s.strip().split('\\n')[-1].strip()\nassert _ult(_correr(['66', 'Noah', 'Tarsus'])) == 'Score: 3 out of 3' and _ult(_correr(['12', 'Moses', 'Rome'])) == 'Score: 0 out of 3'",
+      "msg": {
+       "es": "Prueba otras respuestas: todas bien debe dar 3 puntos y todas mal, 0. Suma los puntos con cada respuesta, no los escribas fijos.",
+       "en": "Try other answers: all right must give 3 points and all wrong, 0. Add up the points with each answer, don't type them as a fixed number."
+      }
+     },
+     {
+      "py": "_ult = lambda s: s.strip().split('\\n')[-1].strip()\nassert _ult(_correr([' 66 ', 'NOAH', 'tarsus'])) == 'Score: 3 out of 3'",
+      "msg": {
+       "es": "Acepta la respuesta aunque tenga mayúsculas distintas o espacios al principio o al final: compara con `.strip().lower()`.",
+       "en": "Accept the answer even with different capitals or spaces at the start or end: compare with `.strip().lower()`."
+      }
+     },
+     {
+      "py": "assert _salida.count('Correct!') == 2 and _correr(['66', 'Noah', 'Tarsus']).count('Correct!') == 3",
+      "msg": {
+       "es": "Después de cada respuesta correcta muestra `Correct!`.",
+       "en": "After each right answer show `Correct!`."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "preguntas = [\n    (\"¿Cuántos libros tiene la Biblia? \", \"66\"),\n    (\"¿Quién construyó el arca? \", \"Noé\"),\n    (\"¿En qué ciudad nació Pablo? \", \"Tarso\"),\n]\npuntos = 0\nfor pregunta, respuesta in preguntas:\n    r = input(pregunta)\n    if r == respuesta:\n        print(\"¡Correcto!\")\n        puntos += 1\n    else:\n        print(\"La respuesta es:\", respuesta)\nprint(f\"Puntuación: {puntos} de {len(preguntas)}\")",
+     "preguntas = [\n    (\"¿Cuántos libros tiene la Biblia? \", \"66\"),\n    (\"¿Quién construyó el arca? \", \"Noé\"),\n    (\"¿En qué ciudad nació Pablo? \", \"Tarso\"),\n]\npuntos = 0\nfor pregunta, respuesta in preguntas:\n    r = input(pregunta)\n    if r.strip().lower() == respuesta.lower():\n        print(\"¡Correcto!\")\n        puntos += 1\n    else:\n        print(\"La respuesta es:\", respuesta)\nprint(\"Puntuación: 2 de 3\")",
+     "preguntas = [\n    (\"¿Cuántos libros tiene la Biblia? \", \"66\"),\n    (\"¿Quién construyó el arca? \", \"Noé\"),\n    (\"¿En qué ciudad nació Pablo? \", \"Tarso\"),\n]\npuntos = 0\nfor pregunta, respuesta in preguntas:\n    r = input(pregunta)\n    if r.strip().lower() == respuesta.lower():\n        print(\"¡Correcto!\")\n    else:\n        print(\"La respuesta es:\", respuesta)\nprint(f\"Puntuación: {puntos} de {len(preguntas)}\")",
+     "preguntas = [\n    (\"¿Cuántos libros tiene la Biblia? \", \"66\"),\n    (\"¿Quién construyó el arca? \", \"Noé\"),\n    (\"¿En qué ciudad nació Pablo? \", \"Tarso\"),\n]\npuntos = 0\nfor pregunta, respuesta in preguntas:\n    r = input(pregunta)\n    puntos = 0\n    if r.strip().lower() == respuesta.lower():\n        print(\"¡Correcto!\")\n        puntos += 1\n    else:\n        print(\"La respuesta es:\", respuesta)\nprint(f\"Puntuación: {puntos} de {len(preguntas)}\")"
+    ],
+    "en": [
+     "questions = [\n    (\"How many books are in the Bible? \", \"66\"),\n    (\"Who built the ark? \", \"Noah\"),\n    (\"In what city was Paul born? \", \"Tarsus\"),\n]\npoints = 0\nfor question, answer in questions:\n    r = input(question)\n    if r == answer:\n        print(\"Correct!\")\n        points += 1\n    else:\n        print(\"The answer is:\", answer)\nprint(f\"Score: {points} out of {len(questions)}\")",
+     "questions = [\n    (\"How many books are in the Bible? \", \"66\"),\n    (\"Who built the ark? \", \"Noah\"),\n    (\"In what city was Paul born? \", \"Tarsus\"),\n]\npoints = 0\nfor question, answer in questions:\n    r = input(question)\n    if r.strip().lower() == answer.lower():\n        print(\"Correct!\")\n        points += 1\n    else:\n        print(\"The answer is:\", answer)\nprint(\"Score: 2 out of 3\")",
+     "questions = [\n    (\"How many books are in the Bible? \", \"66\"),\n    (\"Who built the ark? \", \"Noah\"),\n    (\"In what city was Paul born? \", \"Tarsus\"),\n]\npoints = 0\nfor question, answer in questions:\n    r = input(question)\n    if r.strip().lower() == answer.lower():\n        print(\"Correct!\")\n    else:\n        print(\"The answer is:\", answer)\nprint(f\"Score: {points} out of {len(questions)}\")",
+     "questions = [\n    (\"How many books are in the Bible? \", \"66\"),\n    (\"Who built the ark? \", \"Noah\"),\n    (\"In what city was Paul born? \", \"Tarsus\"),\n]\npoints = 0\nfor question, answer in questions:\n    r = input(question)\n    points = 0\n    if r.strip().lower() == answer.lower():\n        print(\"Correct!\")\n        points += 1\n    else:\n        print(\"The answer is:\", answer)\nprint(f\"Score: {points} out of {len(questions)}\")"
+    ]
+   }
+  },
+  {
+   "id": "plan-lectura",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "**Proyecto: plan de lectura.** La Biblia tiene **1189 capítulos**. Pregunta en cuántos días se quiere leer y calcula cuántos capítulos tocan por día, redondeando hacia arriba.\n\nRequisitos:\n- Una función `capitulos_por_dia(dias)` que devuelva ese número con `math.ceil`.\n- Muestra `Lee N capítulos al día` y, como a ese ritmo quizá termines antes, `Terminarás en D días`.\n- Si la respuesta no es un número entero mayor que 0, muestra `Escribe un número entero mayor que 0` (sin que el programa se caiga).\n\nCon `365` debe salir:\n```\n¿En cuántos días quieres leer la Biblia? 365\nLee 4 capítulos al día\nTerminarás en 298 días\n```",
+    "en": "**Project: reading plan.** The Bible has **1189 chapters**. Ask in how many days the reader wants to read it and calculate how many chapters each day gets, rounding up.\n\nRequirements:\n- A function `chapters_per_day(days)` that returns that number with `math.ceil`.\n- Show `Read N chapters a day` and, since at that pace you may finish early, `You'll finish in D days`.\n- If the answer isn't a whole number greater than 0, show `Type a whole number greater than 0` (without the program crashing).\n\nWith `365` it should print:\n```\nIn how many days do you want to read the Bible? 365\nRead 4 chapters a day\nYou'll finish in 298 days\n```"
+   },
+   "inicial": {
+    "es": "",
+    "en": ""
+   },
+   "entradas": {
+    "es": [
+     "365"
+    ],
+    "en": [
+     "365"
+    ]
+   },
+   "pistas": {
+    "es": [
+     "Una sola división no basta: primero los capítulos por día (`math.ceil(1189 / dias)`) y luego, con ese número, los días reales (`math.ceil(1189 / por_dia)`).",
+     "`int(\"un año\")` lanza `ValueError`; para el 0 o los negativos, revisa con `if` (puedes hacer `raise ValueError` para ir al mismo `except`)."
+    ],
+    "en": [
+     "One division isn't enough: first the chapters per day (`math.ceil(1189 / days)`) and then, with that number, the real days (`math.ceil(1189 / per_day)`).",
+     "`int(\"a year\")` raises `ValueError`; for 0 or negative numbers, check with `if` (you can `raise ValueError` to go to the same `except`)."
+    ]
+   },
+   "solucion": {
+    "es": "import math\n\nCAPITULOS = 1189\n\ndef capitulos_por_dia(dias):\n    return math.ceil(CAPITULOS / dias)\n\ntry:\n    dias = int(input(\"¿En cuántos días quieres leer la Biblia? \"))\n    if dias <= 0:\n        raise ValueError\n    por_dia = capitulos_por_dia(dias)\n    print(f\"Lee {por_dia} capítulos al día\")\n    print(f\"Terminarás en {math.ceil(CAPITULOS / por_dia)} días\")\nexcept ValueError:\n    print(\"Escribe un número entero mayor que 0\")",
+    "en": "import math\n\nCHAPTERS = 1189\n\ndef chapters_per_day(days):\n    return math.ceil(CHAPTERS / days)\n\ntry:\n    days = int(input(\"In how many days do you want to read the Bible? \"))\n    if days <= 0:\n        raise ValueError\n    per_day = chapters_per_day(days)\n    print(f\"Read {per_day} chapters a day\")\n    print(f\"You'll finish in {math.ceil(CHAPTERS / per_day)} days\")\nexcept ValueError:\n    print(\"Type a whole number greater than 0\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "¿En cuántos días quieres leer la Biblia? 365\nLee 4 capítulos al día\nTerminarás en 298 días"
+     },
+     {
+      "py": "assert [capitulos_por_dia(d) for d in (1, 2, 90, 365, 1189, 2000)] == [1189, 595, 14, 4, 1, 1]",
+      "msg": {
+       "es": "`capitulos_por_dia(dias)` debe devolver 1189 ÷ días redondeado **hacia arriba** con `math.ceil` (con 2000 días, 1 por día).",
+       "en": "`capitulos_por_dia(days)` must return 1189 ÷ days rounded **up** with `math.ceil` (with 2000 days, 1 a day)."
+      }
+     },
+     {
+      "py": "_s = _correr(['90'])\nassert 'Lee 14 capítulos al día' in _s and 'Terminarás en 85 días' in _s",
+      "msg": {
+       "es": "Prueba con 90 días: deben salir 14 capítulos al día y 85 días. Calcula los días reales con `math.ceil(1189 / por_dia)`.",
+       "en": "Try 90 days: it must show 14 chapters a day and 85 days. Calculate the real days with `math.ceil(1189 / per_day)`."
+      }
+     },
+     {
+      "py": "assert all('Escribe un número entero mayor que 0' in _correr([x]) for x in ('0', '-5', 'un año', '2.5'))",
+      "msg": {
+       "es": "Si escriben 0, un negativo o algo que no es un número entero, muestra `Escribe un número entero mayor que 0` (usa `try`/`except ValueError`).",
+       "en": "If they type 0, a negative number or something that isn't a whole number, show `Escribe un número entero mayor que 0` (use `try`/`except ValueError`)."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "In how many days do you want to read the Bible? 365\nRead 4 chapters a day\nYou'll finish in 298 days"
+     },
+     {
+      "py": "assert [chapters_per_day(d) for d in (1, 2, 90, 365, 1189, 2000)] == [1189, 595, 14, 4, 1, 1]",
+      "msg": {
+       "es": "`chapters_per_day(dias)` debe devolver 1189 ÷ días redondeado **hacia arriba** con `math.ceil` (con 2000 días, 1 por día).",
+       "en": "`chapters_per_day(days)` must return 1189 ÷ days rounded **up** with `math.ceil` (with 2000 days, 1 a day)."
+      }
+     },
+     {
+      "py": "_s = _correr(['90'])\nassert 'Read 14 chapters a day' in _s and \"You'll finish in 85 days\" in _s",
+      "msg": {
+       "es": "Prueba con 90 días: deben salir 14 capítulos al día y 85 días. Calcula los días reales con `math.ceil(1189 / por_dia)`.",
+       "en": "Try 90 days: it must show 14 chapters a day and 85 days. Calculate the real days with `math.ceil(1189 / per_day)`."
+      }
+     },
+     {
+      "py": "assert all('Type a whole number greater than 0' in _correr([x]) for x in ('0', '-5', 'un año', '2.5'))",
+      "msg": {
+       "es": "Si escriben 0, un negativo o algo que no es un número entero, muestra `Type a whole number greater than 0` (usa `try`/`except ValueError`).",
+       "en": "If they type 0, a negative number or something that isn't a whole number, show `Type a whole number greater than 0` (use `try`/`except ValueError`)."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "import math\n\nCAPITULOS = 1189\n\ndef capitulos_por_dia(dias):\n    return round(CAPITULOS / dias)\n\ntry:\n    dias = int(input(\"¿En cuántos días quieres leer la Biblia? \"))\n    if dias <= 0:\n        raise ValueError\n    por_dia = capitulos_por_dia(dias)\n    print(f\"Lee {por_dia} capítulos al día\")\n    print(f\"Terminarás en {math.ceil(CAPITULOS / por_dia)} días\")\nexcept ValueError:\n    print(\"Escribe un número entero mayor que 0\")",
+     "import math\n\nCAPITULOS = 1189\n\ndef capitulos_por_dia(dias):\n    return CAPITULOS // dias\n\ntry:\n    dias = int(input(\"¿En cuántos días quieres leer la Biblia? \"))\n    if dias <= 0:\n        raise ValueError\n    por_dia = capitulos_por_dia(dias)\n    print(f\"Lee {por_dia} capítulos al día\")\n    print(f\"Terminarás en {math.ceil(CAPITULOS / por_dia)} días\")\nexcept ValueError:\n    print(\"Escribe un número entero mayor que 0\")",
+     "import math\n\nCAPITULOS = 1189\n\ndef capitulos_por_dia(dias):\n    return math.ceil(CAPITULOS / dias)\n\ntry:\n    dias = int(input(\"¿En cuántos días quieres leer la Biblia? \"))\n    por_dia = capitulos_por_dia(dias)\n    print(f\"Lee {por_dia} capítulos al día\")\n    print(f\"Terminarás en {math.ceil(CAPITULOS / por_dia)} días\")\nexcept ValueError:\n    print(\"Escribe un número entero mayor que 0\")",
+     "import math\n\nCAPITULOS = 1189\n\ndef capitulos_por_dia(dias):\n    return math.ceil(CAPITULOS / dias)\n\ntry:\n    dias = int(input(\"¿En cuántos días quieres leer la Biblia? \"))\n    if dias <= 0:\n        raise ValueError\n    por_dia = capitulos_por_dia(dias)\n    print(f\"Lee {por_dia} capítulos al día\")\n    print(f\"Terminarás en {dias} días\")\nexcept ValueError:\n    print(\"Escribe un número entero mayor que 0\")"
+    ],
+    "en": [
+     "import math\n\nCHAPTERS = 1189\n\ndef chapters_per_day(days):\n    return round(CHAPTERS / days)\n\ntry:\n    days = int(input(\"In how many days do you want to read the Bible? \"))\n    if days <= 0:\n        raise ValueError\n    per_day = chapters_per_day(days)\n    print(f\"Read {per_day} chapters a day\")\n    print(f\"You'll finish in {math.ceil(CHAPTERS / per_day)} days\")\nexcept ValueError:\n    print(\"Type a whole number greater than 0\")",
+     "import math\n\nCHAPTERS = 1189\n\ndef chapters_per_day(days):\n    return CHAPTERS // days\n\ntry:\n    days = int(input(\"In how many days do you want to read the Bible? \"))\n    if days <= 0:\n        raise ValueError\n    per_day = chapters_per_day(days)\n    print(f\"Read {per_day} chapters a day\")\n    print(f\"You'll finish in {math.ceil(CHAPTERS / per_day)} days\")\nexcept ValueError:\n    print(\"Type a whole number greater than 0\")",
+     "import math\n\nCHAPTERS = 1189\n\ndef chapters_per_day(days):\n    return math.ceil(CHAPTERS / days)\n\ntry:\n    days = int(input(\"In how many days do you want to read the Bible? \"))\n    per_day = chapters_per_day(days)\n    print(f\"Read {per_day} chapters a day\")\n    print(f\"You'll finish in {math.ceil(CHAPTERS / per_day)} days\")\nexcept ValueError:\n    print(\"Type a whole number greater than 0\")",
+     "import math\n\nCHAPTERS = 1189\n\ndef chapters_per_day(days):\n    return math.ceil(CHAPTERS / days)\n\ntry:\n    days = int(input(\"In how many days do you want to read the Bible? \"))\n    if days <= 0:\n        raise ValueError\n    per_day = chapters_per_day(days)\n    print(f\"Read {per_day} chapters a day\")\n    print(f\"You'll finish in {days} days\")\nexcept ValueError:\n    print(\"Type a whole number greater than 0\")"
+    ]
+   }
+  },
+  {
+   "id": "buscador-versiculos",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "**Proyecto: buscador de versículos.** Junto a tu programa está siempre el archivo `versiculos.json`, con los versículos del sendero. `json.load(open(\"versiculos.json\", encoding=\"utf-8\"))` lo convierte en un diccionario: cada clave es un id (como `\"gen-1-3\"`) y cada valor tiene la forma\n```\n{\"es\": {\"texto\": \"...\", \"ref\": \"Génesis 1:3\", \"version\": \"...\"},\n \"en\": {\"texto\": \"...\", \"ref\": \"Genesis 1:3\", \"version\": \"...\"}}\n```\nRequisitos:\n- Una función `buscar(palabra)` que devuelva la lista de **referencias** en español de los versículos cuyo texto contiene esa palabra, sin importar mayúsculas.\n- Muestra lo que encuentra `buscar(\"luz\")`, una referencia por línea, y al final `N versículos con «luz»`.\n\nCon los versículos de ahora, sale:\n```\nGénesis 1:3\nSalmos 119:105\nJuan 1:5\nMateo 5:14\n4 versículos con «luz»\n```",
+    "en": "**Project: verse finder.** The file `versiculos.json`, with the verses of the path, is always next to your program. `json.load(open(\"versiculos.json\", encoding=\"utf-8\"))` turns it into a dictionary: each key is an id (like `\"gen-1-3\"`) and each value has the shape\n```\n{\"es\": {\"texto\": \"...\", \"ref\": \"Génesis 1:3\", \"version\": \"...\"},\n \"en\": {\"texto\": \"...\", \"ref\": \"Genesis 1:3\", \"version\": \"...\"}}\n```\nRequirements:\n- A function `search(word)` that returns the list of English **references** of the verses whose text (`[\"en\"][\"texto\"]`) contains that word, ignoring capitals.\n- Show what `search(\"light\")` finds, one reference per line, and at the end `N verses with “light”`.\n\nWith the current verses, it prints:\n```\nGenesis 1:3\nPsalm 119:105\nJohn 1:5\nMatthew 5:14\n4 verses with “light”\n```"
+   },
+   "inicial": {
+    "es": "import json\n\n",
+    "en": "import json\n\n"
+   },
+   "pistas": {
+    "es": [
+     "`for v in versiculos.values():` recorre cada versículo; `v[\"es\"][\"texto\"]` es su texto y `v[\"es\"][\"ref\"]` su referencia. `\"luz\" in texto` dice si la palabra aparece.",
+     "Una comprensión con filtro lo resuelve en una línea: `[v[\"es\"][\"ref\"] for v in versiculos.values() if palabra in v[\"es\"][\"texto\"].lower()]` (con `palabra` ya en minúsculas)."
+    ],
+    "en": [
+     "`for v in verses.values():` goes through each verse; `v[\"en\"][\"texto\"]` is its text and `v[\"en\"][\"ref\"]` its reference. `\"light\" in text` tells whether the word appears.",
+     "A comprehension with a filter solves it in one line: `[v[\"en\"][\"ref\"] for v in verses.values() if word in v[\"en\"][\"texto\"].lower()]` (with `word` already in lowercase)."
+    ]
+   },
+   "solucion": {
+    "es": "import json\n\nversiculos = json.load(open(\"versiculos.json\", encoding=\"utf-8\"))\n\ndef buscar(palabra):\n    palabra = palabra.lower()\n    return [v[\"es\"][\"ref\"] for v in versiculos.values() if palabra in v[\"es\"][\"texto\"].lower()]\n\nencontrados = buscar(\"luz\")\nfor ref in encontrados:\n    print(ref)\nprint(f\"{len(encontrados)} versículos con «luz»\")",
+    "en": "import json\n\nverses = json.load(open(\"versiculos.json\", encoding=\"utf-8\"))\n\ndef search(word):\n    word = word.lower()\n    return [v[\"en\"][\"ref\"] for v in verses.values() if word in v[\"en\"][\"texto\"].lower()]\n\nfound = search(\"light\")\nfor ref in found:\n    print(ref)\nprint(f\"{len(found)} verses with “light”\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "py": "import json as _j\n_v = _j.load(open('versiculos.json', encoding='utf-8'))\n_esp = lambda p: [x['es']['ref'] for x in _v.values() if p.lower() in x['es']['texto'].lower()]\n_e = _esp('luz')\nassert _salida.strip() == '\\n'.join(_e + [str(len(_e)) + ' versículos con «luz»'])",
+      "msg": {
+       "es": "La salida debe ser cada referencia encontrada, una por línea, y al final la línea con el total (mira el ejemplo).",
+       "en": "The output must be each reference found, one per line, and at the end the line with the total (see the example)."
+      }
+     },
+     {
+      "py": "import json as _j\n_v = _j.load(open('versiculos.json', encoding='utf-8'))\n_esp = lambda p: [x['es']['ref'] for x in _v.values() if p.lower() in x['es']['texto'].lower()]\nassert buscar('luz') == _esp('luz') and buscar('dios') == _esp('dios')",
+      "msg": {
+       "es": "`buscar` debe devolver la lista de **referencias** (`[\"es\"][\"ref\"]`) de los versículos cuyo **texto** contiene la palabra, en el orden del archivo.",
+       "en": "`buscar` must return the list of **references** (`[\"es\"][\"ref\"]`) of the verses whose **text** contains the word, in the file's order."
+      }
+     },
+     {
+      "py": "import json as _j\n_v = _j.load(open('versiculos.json', encoding='utf-8'))\n_esp = lambda p: [x['es']['ref'] for x in _v.values() if p.lower() in x['es']['texto'].lower()]\nassert buscar('LUZ') == _esp('luz') and buscar('Dios') == _esp('dios')",
+      "msg": {
+       "es": "La búsqueda no debe fijarse en mayúsculas: pasa a minúsculas tanto la palabra como el texto.",
+       "en": "The search must ignore capitals: lowercase both the word and the text."
+      }
+     },
+     {
+      "py": "assert buscar('zzzz') == []",
+      "msg": {
+       "es": "Si ningún versículo tiene la palabra, devuelve una lista vacía.",
+       "en": "If no verse has the word, return an empty list."
+      }
+     },
+     {
+      "py": "assert 'json.load' in _codigo",
+      "msg": {
+       "es": "Lee los versículos del archivo con `json.load(open(\"versiculos.json\", encoding=\"utf-8\"))`.",
+       "en": "Read the verses from the file with `json.load(open(\"versiculos.json\", encoding=\"utf-8\"))`."
+      }
+     }
+    ],
+    "en": [
+     {
+      "py": "import json as _j\n_v = _j.load(open('versiculos.json', encoding='utf-8'))\n_esp = lambda p: [x['en']['ref'] for x in _v.values() if p.lower() in x['en']['texto'].lower()]\n_e = _esp('light')\nassert _salida.strip() == '\\n'.join(_e + [str(len(_e)) + ' verses with “light”'])",
+      "msg": {
+       "es": "La salida debe ser cada referencia encontrada, una por línea, y al final la línea con el total (mira el ejemplo).",
+       "en": "The output must be each reference found, one per line, and at the end the line with the total (see the example)."
+      }
+     },
+     {
+      "py": "import json as _j\n_v = _j.load(open('versiculos.json', encoding='utf-8'))\n_esp = lambda p: [x['en']['ref'] for x in _v.values() if p.lower() in x['en']['texto'].lower()]\nassert search('light') == _esp('light') and search('god') == _esp('god')",
+      "msg": {
+       "es": "`search` debe devolver la lista de **referencias** (`[\"en\"][\"ref\"]`) de los versículos cuyo **texto** contiene la palabra, en el orden del archivo.",
+       "en": "`search` must return the list of **references** (`[\"en\"][\"ref\"]`) of the verses whose **text** contains the word, in the file's order."
+      }
+     },
+     {
+      "py": "import json as _j\n_v = _j.load(open('versiculos.json', encoding='utf-8'))\n_esp = lambda p: [x['en']['ref'] for x in _v.values() if p.lower() in x['en']['texto'].lower()]\nassert search('LIGHT') == _esp('light') and search('God') == _esp('god')",
+      "msg": {
+       "es": "La búsqueda no debe fijarse en mayúsculas: pasa a minúsculas tanto la palabra como el texto.",
+       "en": "The search must ignore capitals: lowercase both the word and the text."
+      }
+     },
+     {
+      "py": "assert search('zzzz') == []",
+      "msg": {
+       "es": "Si ningún versículo tiene la palabra, devuelve una lista vacía.",
+       "en": "If no verse has the word, return an empty list."
+      }
+     },
+     {
+      "py": "assert 'json.load' in _codigo",
+      "msg": {
+       "es": "Lee los versículos del archivo con `json.load(open(\"versiculos.json\", encoding=\"utf-8\"))`.",
+       "en": "Read the verses from the file with `json.load(open(\"versiculos.json\", encoding=\"utf-8\"))`."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "import json\n\nversiculos = json.load(open(\"versiculos.json\", encoding=\"utf-8\"))\n\ndef buscar(palabra):\n    return [v[\"es\"][\"ref\"] for v in versiculos.values() if palabra in v[\"es\"][\"texto\"]]\n\nencontrados = buscar(\"luz\")\nfor ref in encontrados:\n    print(ref)\nprint(f\"{len(encontrados)} versículos con «luz»\")",
+     "import json\n\nversiculos = json.load(open(\"versiculos.json\", encoding=\"utf-8\"))\n\ndef buscar(palabra):\n    palabra = palabra.lower()\n    return [v[\"es\"][\"texto\"] for v in versiculos.values() if palabra in v[\"es\"][\"texto\"].lower()]\n\nencontrados = buscar(\"luz\")\nfor ref in encontrados:\n    print(ref)\nprint(f\"{len(encontrados)} versículos con «luz»\")",
+     "import json\n\nversiculos = json.load(open(\"versiculos.json\", encoding=\"utf-8\"))\n\ndef buscar(palabra):\n    palabra = palabra.lower()\n    return [v[\"es\"][\"ref\"] for v in versiculos.values() if palabra in v[\"es\"][\"ref\"].lower()]\n\nencontrados = buscar(\"luz\")\nfor ref in encontrados:\n    print(ref)\nprint(f\"{len(encontrados)} versículos con «luz»\")",
+     "import json\n\nversiculos = open(\"versiculos.json\", encoding=\"utf-8\").read()\n\ndef buscar(palabra):\n    return [v[\"es\"][\"ref\"] for v in versiculos.values() if palabra in v[\"es\"][\"texto\"].lower()]\n\nprint(buscar(\"luz\"))"
+    ],
+    "en": [
+     "import json\n\nverses = json.load(open(\"versiculos.json\", encoding=\"utf-8\"))\n\ndef search(word):\n    return [v[\"en\"][\"ref\"] for v in verses.values() if word in v[\"en\"][\"texto\"]]\n\nfound = search(\"light\")\nfor ref in found:\n    print(ref)\nprint(f\"{len(found)} verses with “light”\")",
+     "import json\n\nverses = json.load(open(\"versiculos.json\", encoding=\"utf-8\"))\n\ndef search(word):\n    word = word.lower()\n    return [v[\"en\"][\"texto\"] for v in verses.values() if word in v[\"en\"][\"texto\"].lower()]\n\nfound = search(\"light\")\nfor ref in found:\n    print(ref)\nprint(f\"{len(found)} verses with “light”\")",
+     "import json\n\nverses = json.load(open(\"versiculos.json\", encoding=\"utf-8\"))\n\ndef search(word):\n    word = word.lower()\n    return [v[\"en\"][\"ref\"] for v in verses.values() if word in v[\"en\"][\"ref\"].lower()]\n\nfound = search(\"light\")\nfor ref in found:\n    print(ref)\nprint(f\"{len(found)} verses with “light”\")",
+     "import json\n\nverses = open(\"versiculos.json\", encoding=\"utf-8\").read()\n\ndef search(word):\n    return [v[\"en\"][\"ref\"] for v in verses.values() if word in v[\"en\"][\"texto\"].lower()]\n\nprint(search(\"light\"))"
+    ]
+   }
+  },
+  {
+   "id": "plano-tabernaculo",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "**Proyecto: plano del tabernáculo.** Dibuja un plano a escala, con **4 píxeles por codo**, en un lienzo de 500 × 250 con fondo. La esquina de arriba a la izquierda del atrio está en el píxel `(50, 25)`; todas las demás medidas se cuentan en codos desde esa esquina. El este (la entrada) queda a la izquierda.\n- Función `px(codos)` que convierte codos a píxeles.\n- **Atrio**: 100 × 50 codos (Éxodo 27:18), en el codo (0, 0).\n- **Tabernáculo**: unos 30 × 10 codos (20 tablas de codo y medio por lado, Éxodo 26:16-23), en el codo (60, 20).\n- **Altar**: 5 × 5 codos (Éxodo 27:1), en el codo (20, 22.5).\n- **Puerta**: una línea de 20 codos (Éxodo 27:16) en el lado izquierdo, del codo (0, 15) al (0, 35).\n- Los textos `Tabernáculo`, `Altar` y `Puerta` donde quieras.\n\nLas posiciones son una ilustración; los colores, a tu gusto.",
+    "en": "**Project: plan of the tabernacle.** Draw a scale plan, with **4 pixels per cubit**, on a 500 × 250 canvas with a background. The top-left corner of the courtyard is at pixel `(50, 25)`; every other measurement is counted in cubits from that corner. The east (the entrance) is on the left.\n- A function `px(cubits)` that converts cubits to pixels.\n- **Courtyard**: 100 × 50 cubits (Exodus 27:18), at cubit (0, 0).\n- **Tabernacle**: about 30 × 10 cubits (20 frames a cubit and a half wide on each side, Exodus 26:16-23), at cubit (60, 20).\n- **Altar**: 5 × 5 cubits (Exodus 27:1), at cubit (20, 22.5).\n- **Gate**: a 20-cubit line on the left side, from cubit (0, 15) to (0, 35) (Exodus 27:16).\n- The labels `Tabernacle`, `Altar` and `Gate` wherever you like.\n\nThe positions are an illustration; the colors are up to you."
+   },
+   "inicial": {
+    "es": "import lienzo\n\nESCALA = 4      # píxeles por codo\nOX, OY = 50, 25 # esquina del atrio en el lienzo\n\n",
+    "en": "import lienzo\n\nSCALE = 4       # pixels per cubit\nOX, OY = 50, 25 # corner of the courtyard on the canvas\n\n"
+   },
+   "pistas": {
+    "es": [
+     "Un punto que está en el codo `x` queda en el píxel `OX + px(x)`; un ancho de `a` codos mide `px(a)` píxeles. Una función propia que dibuje un rectángulo recibiendo codos te ahorra repetir esas cuentas.",
+     "Revisa tus números: el tabernáculo debe empezar en el píxel `50 + 60 × 4 = 290`."
+    ],
+    "en": [
+     "A point at cubit `x` lands on pixel `OX + px(x)`; a width of `w` cubits is `px(w)` pixels. A function of your own that draws a rectangle taking cubits saves you from repeating that math.",
+     "Check your numbers: the tabernacle must start at pixel `50 + 60 × 4 = 290`."
+    ]
+   },
+   "solucion": {
+    "es": "import lienzo\n\nESCALA = 4      # píxeles por codo\nOX, OY = 50, 25 # esquina del atrio en el lienzo\n\ndef px(codos):\n    return codos * ESCALA\n\ndef rect_codos(x, y, ancho, alto, color, borde=None):\n    lienzo.rectangulo(OX + px(x), OY + px(y), px(ancho), px(alto), color, borde)\n\nlienzo.tamano(500, 250)\nlienzo.fondo(\"wheat\")\nrect_codos(0, 0, 100, 50, \"white\", \"sienna\")        # atrio\nrect_codos(60, 20, 30, 10, \"goldenrod\", \"saddlebrown\")  # tabernáculo\nrect_codos(20, 22.5, 5, 5, \"peru\")                  # altar\nlienzo.linea(OX, OY + px(15), OX, OY + px(35), \"royalblue\", 6)  # puerta\nlienzo.texto(OX + px(75), OY + px(12), \"Tabernáculo\", \"black\", 16, centrado=True)\nlienzo.texto(OX + px(22.5), OY + px(30), \"Altar\", \"black\", 14, centrado=True)\nlienzo.texto(OX + 8, OY + px(24), \"Puerta\", \"royalblue\", 14)",
+    "en": "import lienzo\n\nSCALE = 4       # pixels per cubit\nOX, OY = 50, 25 # corner of the courtyard on the canvas\n\ndef px(cubits):\n    return cubits * SCALE\n\ndef rect_cubits(x, y, width, height, color, border=None):\n    lienzo.rectangle(OX + px(x), OY + px(y), px(width), px(height), color, border)\n\nlienzo.size(500, 250)\nlienzo.background(\"wheat\")\nrect_cubits(0, 0, 100, 50, \"white\", \"sienna\")        # courtyard\nrect_cubits(60, 20, 30, 10, \"goldenrod\", \"saddlebrown\")  # tabernacle\nrect_cubits(20, 22.5, 5, 5, \"peru\")                  # altar\nlienzo.line(OX, OY + px(15), OX, OY + px(35), \"royalblue\", 6)  # gate\nlienzo.text(OX + px(75), OY + px(12), \"Tabernacle\", \"black\", 16, centrado=True)\nlienzo.text(OX + px(22.5), OY + px(30), \"Altar\", \"black\", 14, centrado=True)\nlienzo.text(OX + 8, OY + px(24), \"Gate\", \"royalblue\", 14)"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "py": "assert px(1) == 4 and px(100) == 400 and px(2.5) == 10",
+      "msg": {
+       "es": "`px(codos)` debe devolver los codos por la escala: 1 codo = 4 píxeles.",
+       "en": "`px(cubits)` must return the cubits times the scale: 1 cubit = 4 pixels."
+      }
+     },
+     {
+      "py": "import lienzo as _lz\nassert _lz._tam == [500, 250] and _dibujo[0]['tipo'] == 'fondo'",
+      "msg": {
+       "es": "El lienzo debe medir 500 × 250 y lo primero es el fondo.",
+       "en": "The canvas must be 500 × 250 and the first thing is the background."
+      }
+     },
+     {
+      "py": "_r = lambda x, y, w, h: any(o['tipo'] == 'rect' and (o['x'], o['y'], o['w'], o['h']) == (x, y, w, h) for o in _dibujo)\nassert _r(50, 25, 400, 200)",
+      "msg": {
+       "es": "El atrio (100 × 50 codos) debe ser un rectángulo en (50, 25) de 400 × 200 píxeles.",
+       "en": "The courtyard (100 × 50 cubits) must be a rectangle at (50, 25), 400 × 200 pixels."
+      }
+     },
+     {
+      "py": "_r = lambda x, y, w, h: any(o['tipo'] == 'rect' and (o['x'], o['y'], o['w'], o['h']) == (x, y, w, h) for o in _dibujo)\nassert _r(290, 105, 120, 40)",
+      "msg": {
+       "es": "El tabernáculo (30 × 10 codos, a 60 codos a la derecha y 20 hacia abajo de la esquina del atrio) debe quedar en (290, 105) con 120 × 40 píxeles.",
+       "en": "The tabernacle (30 × 10 cubits, 60 cubits to the right and 20 down from the courtyard's corner) must be at (290, 105), 120 × 40 pixels."
+      }
+     },
+     {
+      "py": "_r = lambda x, y, w, h: any(o['tipo'] == 'rect' and (o['x'], o['y'], o['w'], o['h']) == (x, y, w, h) for o in _dibujo)\nassert _r(130, 115, 20, 20)",
+      "msg": {
+       "es": "El altar (5 × 5 codos, en el codo (20, 22.5) del atrio) debe quedar en (130, 115) con 20 × 20 píxeles.",
+       "en": "The altar (5 × 5 cubits, at cubit (20, 22.5) of the courtyard) must be at (130, 115), 20 × 20 pixels."
+      }
+     },
+     {
+      "py": "assert any(o['tipo'] == 'linea' and sorted([(o['x1'], o['y1']), (o['x2'], o['y2'])]) == [(50, 85), (50, 165)] for o in _dibujo)",
+      "msg": {
+       "es": "La puerta (20 codos en el centro del lado izquierdo) es una línea de (50, 85) a (50, 165).",
+       "en": "The gate (20 cubits in the middle of the left side) is a line from (50, 85) to (50, 165)."
+      }
+     },
+     {
+      "py": "_t = [o['texto'] for o in _dibujo if o['tipo'] == 'texto']\nassert all(n in _t for n in ['Tabernáculo', 'Altar', 'Puerta'])",
+      "msg": {
+       "es": "Ponle su nombre a cada parte: `Tabernáculo`, `Altar` y `Puerta`.",
+       "en": "Label each part: `Tabernáculo`, `Altar` and `Puerta`."
+      }
+     }
+    ],
+    "en": [
+     {
+      "py": "assert px(1) == 4 and px(100) == 400 and px(2.5) == 10",
+      "msg": {
+       "es": "`px(codos)` debe devolver los codos por la escala: 1 codo = 4 píxeles.",
+       "en": "`px(cubits)` must return the cubits times the scale: 1 cubit = 4 pixels."
+      }
+     },
+     {
+      "py": "import lienzo as _lz\nassert _lz._tam == [500, 250] and _dibujo[0]['tipo'] == 'fondo'",
+      "msg": {
+       "es": "El lienzo debe medir 500 × 250 y lo primero es el fondo.",
+       "en": "The canvas must be 500 × 250 and the first thing is the background."
+      }
+     },
+     {
+      "py": "_r = lambda x, y, w, h: any(o['tipo'] == 'rect' and (o['x'], o['y'], o['w'], o['h']) == (x, y, w, h) for o in _dibujo)\nassert _r(50, 25, 400, 200)",
+      "msg": {
+       "es": "El atrio (100 × 50 codos) debe ser un rectángulo en (50, 25) de 400 × 200 píxeles.",
+       "en": "The courtyard (100 × 50 cubits) must be a rectangle at (50, 25), 400 × 200 pixels."
+      }
+     },
+     {
+      "py": "_r = lambda x, y, w, h: any(o['tipo'] == 'rect' and (o['x'], o['y'], o['w'], o['h']) == (x, y, w, h) for o in _dibujo)\nassert _r(290, 105, 120, 40)",
+      "msg": {
+       "es": "El tabernáculo (30 × 10 codos, a 60 codos a la derecha y 20 hacia abajo de la esquina del atrio) debe quedar en (290, 105) con 120 × 40 píxeles.",
+       "en": "The tabernacle (30 × 10 cubits, 60 cubits to the right and 20 down from the courtyard's corner) must be at (290, 105), 120 × 40 pixels."
+      }
+     },
+     {
+      "py": "_r = lambda x, y, w, h: any(o['tipo'] == 'rect' and (o['x'], o['y'], o['w'], o['h']) == (x, y, w, h) for o in _dibujo)\nassert _r(130, 115, 20, 20)",
+      "msg": {
+       "es": "El altar (5 × 5 codos, en el codo (20, 22.5) del atrio) debe quedar en (130, 115) con 20 × 20 píxeles.",
+       "en": "The altar (5 × 5 cubits, at cubit (20, 22.5) of the courtyard) must be at (130, 115), 20 × 20 pixels."
+      }
+     },
+     {
+      "py": "assert any(o['tipo'] == 'linea' and sorted([(o['x1'], o['y1']), (o['x2'], o['y2'])]) == [(50, 85), (50, 165)] for o in _dibujo)",
+      "msg": {
+       "es": "La puerta (20 codos en el centro del lado izquierdo) es una línea de (50, 85) a (50, 165).",
+       "en": "The gate (20 cubits in the middle of the left side) is a line from (50, 85) to (50, 165)."
+      }
+     },
+     {
+      "py": "_t = [o['texto'] for o in _dibujo if o['tipo'] == 'texto']\nassert all(n in _t for n in ['Tabernacle', 'Altar', 'Gate'])",
+      "msg": {
+       "es": "Ponle su nombre a cada parte: `Tabernacle`, `Altar` y `Gate`.",
+       "en": "Label each part: `Tabernacle`, `Altar` and `Gate`."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "import lienzo\n\nESCALA = 4      # píxeles por codo\nOX, OY = 50, 25 # esquina del atrio en el lienzo\n\ndef px(codos):\n    return codos * ESCALA\n\ndef rect_codos(x, y, ancho, alto, color, borde=None):\n    lienzo.rectangulo(px(x), px(y), px(ancho), px(alto), color, borde)\n\nlienzo.tamano(500, 250)\nlienzo.fondo(\"wheat\")\nrect_codos(0, 0, 100, 50, \"white\", \"sienna\")        # atrio\nrect_codos(60, 20, 30, 10, \"goldenrod\", \"saddlebrown\")  # tabernáculo\nrect_codos(20, 22.5, 5, 5, \"peru\")                  # altar\nlienzo.linea(OX, OY + px(15), OX, OY + px(35), \"royalblue\", 6)  # puerta\nlienzo.texto(OX + px(75), OY + px(12), \"Tabernáculo\", \"black\", 16, centrado=True)\nlienzo.texto(OX + px(22.5), OY + px(30), \"Altar\", \"black\", 14, centrado=True)\nlienzo.texto(OX + 8, OY + px(24), \"Puerta\", \"royalblue\", 14)",
+     "import lienzo\n\nESCALA = 4      # píxeles por codo\nOX, OY = 50, 25 # esquina del atrio en el lienzo\n\ndef px(codos):\n    return codos * ESCALA\n\ndef rect_codos(x, y, ancho, alto, color, borde=None):\n    lienzo.rectangulo(OX + px(x), OY + px(y), px(ancho), px(alto), color, borde)\n\nlienzo.tamano(500, 250)\nlienzo.fondo(\"wheat\")\nrect_codos(0, 0, 100, 50, \"white\", \"sienna\")        # atrio\nrect_codos(60, 20, 10, 30, \"goldenrod\", \"saddlebrown\")  # tabernáculo\nrect_codos(20, 22.5, 5, 5, \"peru\")                  # altar\nlienzo.linea(OX, OY + px(15), OX, OY + px(35), \"royalblue\", 6)  # puerta\nlienzo.texto(OX + px(75), OY + px(12), \"Tabernáculo\", \"black\", 16, centrado=True)\nlienzo.texto(OX + px(22.5), OY + px(30), \"Altar\", \"black\", 14, centrado=True)\nlienzo.texto(OX + 8, OY + px(24), \"Puerta\", \"royalblue\", 14)",
+     "import lienzo\n\nESCALA = 4      # píxeles por codo\nOX, OY = 50, 25 # esquina del atrio en el lienzo\n\ndef px(codos):\n    return codos + ESCALA\n\ndef rect_codos(x, y, ancho, alto, color, borde=None):\n    lienzo.rectangulo(OX + px(x), OY + px(y), px(ancho), px(alto), color, borde)\n\nlienzo.tamano(500, 250)\nlienzo.fondo(\"wheat\")\nrect_codos(0, 0, 100, 50, \"white\", \"sienna\")        # atrio\nrect_codos(60, 20, 30, 10, \"goldenrod\", \"saddlebrown\")  # tabernáculo\nrect_codos(20, 22.5, 5, 5, \"peru\")                  # altar\nlienzo.linea(OX, OY + px(15), OX, OY + px(35), \"royalblue\", 6)  # puerta\nlienzo.texto(OX + px(75), OY + px(12), \"Tabernáculo\", \"black\", 16, centrado=True)\nlienzo.texto(OX + px(22.5), OY + px(30), \"Altar\", \"black\", 14, centrado=True)\nlienzo.texto(OX + 8, OY + px(24), \"Puerta\", \"royalblue\", 14)",
+     "import lienzo\n\nESCALA = 4      # píxeles por codo\nOX, OY = 50, 25 # esquina del atrio en el lienzo\n\ndef px(codos):\n    return codos * ESCALA\n\ndef rect_codos(x, y, ancho, alto, color, borde=None):\n    lienzo.rectangulo(OX + px(x), OY + px(y), ancho, alto, color, borde)\n\nlienzo.tamano(500, 250)\nlienzo.fondo(\"wheat\")\nrect_codos(0, 0, 100, 50, \"white\", \"sienna\")        # atrio\nrect_codos(60, 20, 30, 10, \"goldenrod\", \"saddlebrown\")  # tabernáculo\nrect_codos(20, 22.5, 5, 5, \"peru\")                  # altar\nlienzo.linea(OX, OY + px(15), OX, OY + px(35), \"royalblue\", 6)  # puerta\nlienzo.texto(OX + px(75), OY + px(12), \"Tabernáculo\", \"black\", 16, centrado=True)\nlienzo.texto(OX + px(22.5), OY + px(30), \"Altar\", \"black\", 14, centrado=True)\nlienzo.texto(OX + 8, OY + px(24), \"Puerta\", \"royalblue\", 14)"
+    ],
+    "en": [
+     "import lienzo\n\nSCALE = 4       # pixels per cubit\nOX, OY = 50, 25 # corner of the courtyard on the canvas\n\ndef px(cubits):\n    return cubits * SCALE\n\ndef rect_cubits(x, y, width, height, color, border=None):\n    lienzo.rectangle(px(x), px(y), px(width), px(height), color, border)\n\nlienzo.size(500, 250)\nlienzo.background(\"wheat\")\nrect_cubits(0, 0, 100, 50, \"white\", \"sienna\")        # courtyard\nrect_cubits(60, 20, 30, 10, \"goldenrod\", \"saddlebrown\")  # tabernacle\nrect_cubits(20, 22.5, 5, 5, \"peru\")                  # altar\nlienzo.line(OX, OY + px(15), OX, OY + px(35), \"royalblue\", 6)  # gate\nlienzo.text(OX + px(75), OY + px(12), \"Tabernacle\", \"black\", 16, centrado=True)\nlienzo.text(OX + px(22.5), OY + px(30), \"Altar\", \"black\", 14, centrado=True)\nlienzo.text(OX + 8, OY + px(24), \"Gate\", \"royalblue\", 14)",
+     "import lienzo\n\nSCALE = 4       # pixels per cubit\nOX, OY = 50, 25 # corner of the courtyard on the canvas\n\ndef px(cubits):\n    return cubits * SCALE\n\ndef rect_cubits(x, y, width, height, color, border=None):\n    lienzo.rectangle(OX + px(x), OY + px(y), px(width), px(height), color, border)\n\nlienzo.size(500, 250)\nlienzo.background(\"wheat\")\nrect_cubits(0, 0, 100, 50, \"white\", \"sienna\")        # courtyard\nrect_cubits(60, 20, 10, 30, \"goldenrod\", \"saddlebrown\")  # tabernacle\nrect_cubits(20, 22.5, 5, 5, \"peru\")                  # altar\nlienzo.line(OX, OY + px(15), OX, OY + px(35), \"royalblue\", 6)  # gate\nlienzo.text(OX + px(75), OY + px(12), \"Tabernacle\", \"black\", 16, centrado=True)\nlienzo.text(OX + px(22.5), OY + px(30), \"Altar\", \"black\", 14, centrado=True)\nlienzo.text(OX + 8, OY + px(24), \"Gate\", \"royalblue\", 14)",
+     "import lienzo\n\nSCALE = 4       # pixels per cubit\nOX, OY = 50, 25 # corner of the courtyard on the canvas\n\ndef px(cubits):\n    return cubits + SCALE\n\ndef rect_cubits(x, y, width, height, color, border=None):\n    lienzo.rectangle(OX + px(x), OY + px(y), px(width), px(height), color, border)\n\nlienzo.size(500, 250)\nlienzo.background(\"wheat\")\nrect_cubits(0, 0, 100, 50, \"white\", \"sienna\")        # courtyard\nrect_cubits(60, 20, 30, 10, \"goldenrod\", \"saddlebrown\")  # tabernacle\nrect_cubits(20, 22.5, 5, 5, \"peru\")                  # altar\nlienzo.line(OX, OY + px(15), OX, OY + px(35), \"royalblue\", 6)  # gate\nlienzo.text(OX + px(75), OY + px(12), \"Tabernacle\", \"black\", 16, centrado=True)\nlienzo.text(OX + px(22.5), OY + px(30), \"Altar\", \"black\", 14, centrado=True)\nlienzo.text(OX + 8, OY + px(24), \"Gate\", \"royalblue\", 14)",
+     "import lienzo\n\nSCALE = 4       # pixels per cubit\nOX, OY = 50, 25 # corner of the courtyard on the canvas\n\ndef px(cubits):\n    return cubits * SCALE\n\ndef rect_cubits(x, y, width, height, color, border=None):\n    lienzo.rectangle(OX + px(x), OY + px(y), width, height, color, border)\n\nlienzo.size(500, 250)\nlienzo.background(\"wheat\")\nrect_cubits(0, 0, 100, 50, \"white\", \"sienna\")        # courtyard\nrect_cubits(60, 20, 30, 10, \"goldenrod\", \"saddlebrown\")  # tabernacle\nrect_cubits(20, 22.5, 5, 5, \"peru\")                  # altar\nlienzo.line(OX, OY + px(15), OX, OY + px(35), \"royalblue\", 6)  # gate\nlienzo.text(OX + px(75), OY + px(12), \"Tabernacle\", \"black\", 16, centrado=True)\nlienzo.text(OX + px(22.5), OY + px(30), \"Altar\", \"black\", 14, centrado=True)\nlienzo.text(OX + 8, OY + px(24), \"Gate\", \"royalblue\", 14)"
+    ]
+   }
+  },
+  {
+   "id": "reto-tarjeta-versiculo",
+   "tipo": "escribir",
+   "reto": true,
+   "enunciado": {
+    "es": "**Reto final: tarjeta de versículo.** Diseña con código una tarjeta para compartir Colosenses 3:23, que vale para todo lo que hiciste en este nivel: «todo lo que hagan, háganlo de corazón».\n\nRequisitos:\n- Lee el versículo `\"col-3-23\"` de `versiculos.json` (texto y referencia en español).\n- Escribe `partir(texto, ancho)`: devuelve una lista de líneas, juntando palabras mientras quepan en `ancho` letras (espacios incluidos) y sin cortar ninguna palabra.\n- Lienzo de 500 × 300: fondo, una tarjeta (rectángulo **con borde**), cada línea de `partir(texto, 30)` como un texto aparte, de arriba hacia abajo, y la referencia debajo.\n\nEl diseño (colores, tamaños, posiciones) es tuyo, siempre que todo quede dentro del lienzo.",
+    "en": "**Final challenge: verse card.** Use code to design a card to share Colossians 3:23, which fits everything you did in this level: “whatever you do, work at it with your whole being.”\n\nRequirements:\n- Read the verse `\"col-3-23\"` from `versiculos.json` (English text and reference).\n- Write `wrap(text, width)`: it returns a list of lines, joining words while they fit in `width` characters (spaces included) and without cutting any word.\n- A 500 × 300 canvas: background, a card (a rectangle **with a border**), each line of `wrap(text, 30)` as a separate text, from top to bottom, and the reference below.\n\nThe design (colors, sizes, positions) is yours, as long as everything stays inside the canvas."
+   },
+   "inicial": {
+    "es": "import json\nimport lienzo\n\n",
+    "en": "import json\nimport lienzo\n\n"
+   },
+   "pistas": {
+    "es": [
+     "Para `partir`, lleva la línea que estás armando en una variable; antes de sumar una palabra, mira si `len(actual) + 1 + len(palabra)` cabe. Al terminar el bucle, no olvides la última línea.",
+     "Para el dibujo, una variable `y` que empieza arriba y crece unos 30 píxeles por cada línea. `rectangulo(x, y, ancho, alto, color, borde)` lleva el color del borde al final."
+    ],
+    "en": [
+     "For `wrap`, keep the line you're building in a variable; before adding a word, check whether `len(current) + 1 + len(word)` fits. When the loop ends, don't forget the last line.",
+     "For the drawing, a variable `y` that starts at the top and grows by about 30 pixels for each line. `rectangle(x, y, width, height, color, border)` takes the border color last."
+    ]
+   },
+   "solucion": {
+    "es": "import json\nimport lienzo\n\ndef partir(texto, ancho):\n    lineas = []\n    actual = \"\"\n    for palabra in texto.split():\n        if actual == \"\":\n            actual = palabra\n        elif len(actual) + 1 + len(palabra) <= ancho:\n            actual += \" \" + palabra\n        else:\n            lineas.append(actual)\n            actual = palabra\n    if actual != \"\":\n        lineas.append(actual)\n    return lineas\n\nversiculos = json.load(open(\"versiculos.json\", encoding=\"utf-8\"))\nv = versiculos[\"col-3-23\"][\"es\"]\n\nlienzo.tamano(500, 300)\nlienzo.fondo(\"#f3ead7\")\nlienzo.rectangulo(20, 20, 460, 260, \"#fffaf0\", \"#8b6b3e\")\ny = 60\nfor linea in partir(v[\"texto\"], 30):\n    lienzo.texto(250, y, linea, \"#3b2f2f\", 24, centrado=True)\n    y += 32\nlienzo.texto(250, 235, v[\"ref\"], \"#8b6b3e\", 20, centrado=True)",
+    "en": "import json\nimport lienzo\n\ndef wrap(text, width):\n    lines = []\n    current = \"\"\n    for word in text.split():\n        if current == \"\":\n            current = word\n        elif len(current) + 1 + len(word) <= width:\n            current += \" \" + word\n        else:\n            lines.append(current)\n            current = word\n    if current != \"\":\n        lines.append(current)\n    return lines\n\nverses = json.load(open(\"versiculos.json\", encoding=\"utf-8\"))\nv = verses[\"col-3-23\"][\"en\"]\n\nlienzo.size(500, 300)\nlienzo.background(\"#f3ead7\")\nlienzo.rectangle(20, 20, 460, 260, \"#fffaf0\", \"#8b6b3e\")\ny = 60\nfor line in wrap(v[\"texto\"], 30):\n    lienzo.text(250, y, line, \"#3b2f2f\", 24, centrado=True)\n    y += 32\nlienzo.text(250, 235, v[\"ref\"], \"#8b6b3e\", 20, centrado=True)"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "py": "assert partir('', 10) == [] and partir('uno dos tres', 7) == ['uno dos', 'tres'] and partir('a bb ccc dddd', 6) == ['a bb', 'ccc', 'dddd']",
+      "msg": {
+       "es": "`partir` debe juntar palabras mientras la línea no pase de `ancho` letras (contando los espacios), y empezar otra cuando ya no quepa la siguiente. Con texto vacío devuelve `[]`.",
+       "en": "`partir` must join words while the line doesn't go over `ancho` characters (spaces included), and start another one when the next word no longer fits. With empty text it returns `[]`."
+      }
+     },
+     {
+      "py": "def _ref(t, a):\n    r, act = [], ''\n    for p in t.split():\n        if not act: act = p\n        elif len(act) + 1 + len(p) <= a: act += ' ' + p\n        else: r.append(act); act = p\n    if act: r.append(act)\n    return r\nimport json as _j\n_v = _j.load(open('versiculos.json', encoding='utf-8'))['col-3-23']['es']\nfor _a in (10, 20, 30, 45):\n    assert partir(_v['texto'], _a) == _ref(_v['texto'], _a)",
+      "msg": {
+       "es": "Prueba `partir` con el versículo y varios anchos: cada línea debe llenarse lo más posible sin pasarse, y no se puede perder ni cortar ninguna palabra.",
+       "en": "Test `partir` with the verse and several widths: each line must be filled as much as possible without going over, and no word can be lost or cut."
+      }
+     },
+     {
+      "py": "assert _dibujo and _dibujo[0]['tipo'] == 'fondo' and any(o['tipo'] == 'rect' and o['borde'] for o in _dibujo)",
+      "msg": {
+       "es": "Dibuja primero el fondo y luego la tarjeta: un rectángulo con borde.",
+       "en": "Draw the background first and then the card: a rectangle with a border."
+      }
+     },
+     {
+      "py": "def _ref(t, a):\n    r, act = [], ''\n    for p in t.split():\n        if not act: act = p\n        elif len(act) + 1 + len(p) <= a: act += ' ' + p\n        else: r.append(act); act = p\n    if act: r.append(act)\n    return r\nimport json as _j\n_v = _j.load(open('versiculos.json', encoding='utf-8'))['col-3-23']['es']\n_t = [o for o in _dibujo if o['tipo'] == 'texto']\n_l = [o for o in _t if o['texto'] in _ref(_v['texto'], 30)]\nassert [o['texto'] for o in _l] == _ref(_v['texto'], 30)\nassert all(_l[i]['y'] < _l[i + 1]['y'] for i in range(len(_l) - 1))",
+      "msg": {
+       "es": "Escribe cada línea del versículo (partido a 30 letras) con su propio `texto`, en orden y cada una más abajo que la anterior.",
+       "en": "Write each line of the verse (wrapped at 30 characters) with its own `text`, in order and each one lower than the one before."
+      }
+     },
+     {
+      "py": "import json as _j\n_v = _j.load(open('versiculos.json', encoding='utf-8'))['col-3-23']['es']\nassert any(o['tipo'] == 'texto' and o['texto'] == _v['ref'] for o in _dibujo)",
+      "msg": {
+       "es": "Falta la referencia del versículo en la tarjeta (sácala del archivo: `[\"ref\"]`).",
+       "en": "The verse reference is missing from the card (take it from the file: `[\"ref\"]`)."
+      }
+     },
+     {
+      "py": "import lienzo as _lz\n_W, _H = _lz._tam\nassert _lz._tam == [500, 300] and all(0 <= o['x'] <= _W and 0 <= o['y'] <= _H for o in _dibujo if o['tipo'] in ('texto', 'rect'))",
+      "msg": {
+       "es": "El lienzo debe medir 500 × 300 y todo lo que dibujes tiene que empezar dentro de él.",
+       "en": "The canvas must be 500 × 300 and everything you draw has to start inside it."
+      }
+     },
+     {
+      "py": "assert 'versiculos.json' in _codigo and 'json.load' in _codigo",
+      "msg": {
+       "es": "Lee el versículo de `versiculos.json` con `json.load`, no lo copies a mano.",
+       "en": "Read the verse from `versiculos.json` with `json.load`, don't copy it by hand."
+      }
+     }
+    ],
+    "en": [
+     {
+      "py": "assert wrap('', 10) == [] and wrap('one two six', 7) == ['one two', 'six'] and wrap('a bb ccc dddd', 6) == ['a bb', 'ccc', 'dddd']",
+      "msg": {
+       "es": "`wrap` debe juntar palabras mientras la línea no pase de `width` letras (contando los espacios), y empezar otra cuando ya no quepa la siguiente. Con texto vacío devuelve `[]`.",
+       "en": "`wrap` must join words while the line doesn't go over `width` characters (spaces included), and start another one when the next word no longer fits. With empty text it returns `[]`."
+      }
+     },
+     {
+      "py": "def _ref(t, a):\n    r, act = [], ''\n    for p in t.split():\n        if not act: act = p\n        elif len(act) + 1 + len(p) <= a: act += ' ' + p\n        else: r.append(act); act = p\n    if act: r.append(act)\n    return r\nimport json as _j\n_v = _j.load(open('versiculos.json', encoding='utf-8'))['col-3-23']['en']\nfor _a in (10, 20, 30, 45):\n    assert wrap(_v['texto'], _a) == _ref(_v['texto'], _a)",
+      "msg": {
+       "es": "Prueba `wrap` con el versículo y varios anchos: cada línea debe llenarse lo más posible sin pasarse, y no se puede perder ni cortar ninguna palabra.",
+       "en": "Test `wrap` with the verse and several widths: each line must be filled as much as possible without going over, and no word can be lost or cut."
+      }
+     },
+     {
+      "py": "assert _dibujo and _dibujo[0]['tipo'] == 'fondo' and any(o['tipo'] == 'rect' and o['borde'] for o in _dibujo)",
+      "msg": {
+       "es": "Dibuja primero el fondo y luego la tarjeta: un rectángulo con borde.",
+       "en": "Draw the background first and then the card: a rectangle with a border."
+      }
+     },
+     {
+      "py": "def _ref(t, a):\n    r, act = [], ''\n    for p in t.split():\n        if not act: act = p\n        elif len(act) + 1 + len(p) <= a: act += ' ' + p\n        else: r.append(act); act = p\n    if act: r.append(act)\n    return r\nimport json as _j\n_v = _j.load(open('versiculos.json', encoding='utf-8'))['col-3-23']['en']\n_t = [o for o in _dibujo if o['tipo'] == 'texto']\n_l = [o for o in _t if o['texto'] in _ref(_v['texto'], 30)]\nassert [o['texto'] for o in _l] == _ref(_v['texto'], 30)\nassert all(_l[i]['y'] < _l[i + 1]['y'] for i in range(len(_l) - 1))",
+      "msg": {
+       "es": "Escribe cada línea del versículo (partido a 30 letras) con su propio `texto`, en orden y cada una más abajo que la anterior.",
+       "en": "Write each line of the verse (wrapped at 30 characters) with its own `text`, in order and each one lower than the one before."
+      }
+     },
+     {
+      "py": "import json as _j\n_v = _j.load(open('versiculos.json', encoding='utf-8'))['col-3-23']['en']\nassert any(o['tipo'] == 'texto' and o['texto'] == _v['ref'] for o in _dibujo)",
+      "msg": {
+       "es": "Falta la referencia del versículo en la tarjeta (sácala del archivo: `[\"ref\"]`).",
+       "en": "The verse reference is missing from the card (take it from the file: `[\"ref\"]`)."
+      }
+     },
+     {
+      "py": "import lienzo as _lz\n_W, _H = _lz._tam\nassert _lz._tam == [500, 300] and all(0 <= o['x'] <= _W and 0 <= o['y'] <= _H for o in _dibujo if o['tipo'] in ('texto', 'rect'))",
+      "msg": {
+       "es": "El lienzo debe medir 500 × 300 y todo lo que dibujes tiene que empezar dentro de él.",
+       "en": "The canvas must be 500 × 300 and everything you draw has to start inside it."
+      }
+     },
+     {
+      "py": "assert 'versiculos.json' in _codigo and 'json.load' in _codigo",
+      "msg": {
+       "es": "Lee el versículo de `versiculos.json` con `json.load`, no lo copies a mano.",
+       "en": "Read the verse from `versiculos.json` with `json.load`, don't copy it by hand."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "import json\nimport lienzo\n\ndef partir(texto, ancho):\n    lineas = []\n    actual = \"\"\n    for palabra in texto.split():\n        if actual == \"\":\n            actual = palabra\n        elif len(actual) + 1 + len(palabra) <= ancho:\n            actual += \" \" + palabra\n        else:\n            lineas.append(actual)\n            actual = palabra\n    return lineas\n\nversiculos = json.load(open(\"versiculos.json\", encoding=\"utf-8\"))\nv = versiculos[\"col-3-23\"][\"es\"]\n\nlienzo.tamano(500, 300)\nlienzo.fondo(\"#f3ead7\")\nlienzo.rectangulo(20, 20, 460, 260, \"#fffaf0\", \"#8b6b3e\")\ny = 60\nfor linea in partir(v[\"texto\"], 30):\n    lienzo.texto(250, y, linea, \"#3b2f2f\", 24, centrado=True)\n    y += 32\nlienzo.texto(250, 235, v[\"ref\"], \"#8b6b3e\", 20, centrado=True)",
+     "import json\nimport lienzo\n\ndef partir(texto, ancho):\n    lineas = []\n    actual = \"\"\n    for palabra in texto.split():\n        if actual == \"\":\n            actual = palabra\n        elif len(actual) <= ancho:\n            actual += \" \" + palabra\n        else:\n            lineas.append(actual)\n            actual = palabra\n    if actual != \"\":\n        lineas.append(actual)\n    return lineas\n\nversiculos = json.load(open(\"versiculos.json\", encoding=\"utf-8\"))\nv = versiculos[\"col-3-23\"][\"es\"]\n\nlienzo.tamano(500, 300)\nlienzo.fondo(\"#f3ead7\")\nlienzo.rectangulo(20, 20, 460, 260, \"#fffaf0\", \"#8b6b3e\")\ny = 60\nfor linea in partir(v[\"texto\"], 30):\n    lienzo.texto(250, y, linea, \"#3b2f2f\", 24, centrado=True)\n    y += 32\nlienzo.texto(250, 235, v[\"ref\"], \"#8b6b3e\", 20, centrado=True)",
+     "import json\nimport lienzo\n\ndef partir(texto, ancho):\n    lineas = []\n    actual = \"\"\n    for palabra in texto.split():\n        if actual == \"\":\n            actual = palabra\n        elif len(actual) + 1 + len(palabra) <= ancho:\n            actual += \" \" + palabra\n        else:\n            lineas.append(actual)\n            actual = palabra\n    if actual != \"\":\n        lineas.append(actual)\n    return lineas\n\nversiculos = json.load(open(\"versiculos.json\", encoding=\"utf-8\"))\nv = versiculos[\"col-3-23\"][\"es\"]\n\nlienzo.tamano(500, 300)\nlienzo.fondo(\"#f3ead7\")\nlienzo.rectangulo(20, 20, 460, 260, \"#fffaf0\", \"#8b6b3e\")\ny = 60\nfor linea in partir(v[\"texto\"], 30):\n    lienzo.texto(250, y, linea, \"#3b2f2f\", 24, centrado=True)\nlienzo.texto(250, 235, v[\"ref\"], \"#8b6b3e\", 20, centrado=True)",
+     "import json\nimport lienzo\n\ndef partir(texto, ancho):\n    lineas = []\n    actual = \"\"\n    for palabra in texto.split():\n        if actual == \"\":\n            actual = palabra\n        elif len(actual) + 1 + len(palabra) <= ancho:\n            actual += \" \" + palabra\n        else:\n            lineas.append(actual)\n            actual = palabra\n    if actual != \"\":\n        lineas.append(actual)\n    return lineas\n\nversiculos = json.load(open(\"versiculos.json\", encoding=\"utf-8\"))\nv = versiculos[\"col-3-23\"][\"es\"]\n\nlienzo.tamano(500, 300)\nlienzo.fondo(\"#f3ead7\")\nlienzo.rectangulo(20, 20, 460, 260, \"#fffaf0\")\ny = 60\nfor linea in partir(v[\"texto\"], 30):\n    lienzo.texto(250, y, linea, \"#3b2f2f\", 24, centrado=True)\n    y += 32\nlienzo.texto(250, 235, v[\"ref\"], \"#8b6b3e\", 20, centrado=True)"
+    ],
+    "en": [
+     "import json\nimport lienzo\n\ndef wrap(text, width):\n    lines = []\n    current = \"\"\n    for word in text.split():\n        if current == \"\":\n            current = word\n        elif len(current) + 1 + len(word) <= width:\n            current += \" \" + word\n        else:\n            lines.append(current)\n            current = word\n    return lines\n\nverses = json.load(open(\"versiculos.json\", encoding=\"utf-8\"))\nv = verses[\"col-3-23\"][\"en\"]\n\nlienzo.size(500, 300)\nlienzo.background(\"#f3ead7\")\nlienzo.rectangle(20, 20, 460, 260, \"#fffaf0\", \"#8b6b3e\")\ny = 60\nfor line in wrap(v[\"texto\"], 30):\n    lienzo.text(250, y, line, \"#3b2f2f\", 24, centrado=True)\n    y += 32\nlienzo.text(250, 235, v[\"ref\"], \"#8b6b3e\", 20, centrado=True)",
+     "import json\nimport lienzo\n\ndef wrap(text, width):\n    lines = []\n    current = \"\"\n    for word in text.split():\n        if current == \"\":\n            current = word\n        elif len(current) <= width:\n            current += \" \" + word\n        else:\n            lines.append(current)\n            current = word\n    if current != \"\":\n        lines.append(current)\n    return lines\n\nverses = json.load(open(\"versiculos.json\", encoding=\"utf-8\"))\nv = verses[\"col-3-23\"][\"en\"]\n\nlienzo.size(500, 300)\nlienzo.background(\"#f3ead7\")\nlienzo.rectangle(20, 20, 460, 260, \"#fffaf0\", \"#8b6b3e\")\ny = 60\nfor line in wrap(v[\"texto\"], 30):\n    lienzo.text(250, y, line, \"#3b2f2f\", 24, centrado=True)\n    y += 32\nlienzo.text(250, 235, v[\"ref\"], \"#8b6b3e\", 20, centrado=True)",
+     "import json\nimport lienzo\n\ndef wrap(text, width):\n    lines = []\n    current = \"\"\n    for word in text.split():\n        if current == \"\":\n            current = word\n        elif len(current) + 1 + len(word) <= width:\n            current += \" \" + word\n        else:\n            lines.append(current)\n            current = word\n    if current != \"\":\n        lines.append(current)\n    return lines\n\nverses = json.load(open(\"versiculos.json\", encoding=\"utf-8\"))\nv = verses[\"col-3-23\"][\"en\"]\n\nlienzo.size(500, 300)\nlienzo.background(\"#f3ead7\")\nlienzo.rectangle(20, 20, 460, 260, \"#fffaf0\", \"#8b6b3e\")\ny = 60\nfor line in wrap(v[\"texto\"], 30):\n    lienzo.text(250, y, line, \"#3b2f2f\", 24, centrado=True)\nlienzo.text(250, 235, v[\"ref\"], \"#8b6b3e\", 20, centrado=True)",
+     "import json\nimport lienzo\n\ndef wrap(text, width):\n    lines = []\n    current = \"\"\n    for word in text.split():\n        if current == \"\":\n            current = word\n        elif len(current) + 1 + len(word) <= width:\n            current += \" \" + word\n        else:\n            lines.append(current)\n            current = word\n    if current != \"\":\n        lines.append(current)\n    return lines\n\nverses = json.load(open(\"versiculos.json\", encoding=\"utf-8\"))\nv = verses[\"col-3-23\"][\"en\"]\n\nlienzo.size(500, 300)\nlienzo.background(\"#f3ead7\")\nlienzo.rectangle(20, 20, 460, 260, \"#fffaf0\")\ny = 60\nfor line in wrap(v[\"texto\"], 30):\n    lienzo.text(250, y, line, \"#3b2f2f\", 24, centrado=True)\n    y += 32\nlienzo.text(250, 235, v[\"ref\"], \"#8b6b3e\", 20, centrado=True)"
+    ]
+   }
+  }
+ ]
+}

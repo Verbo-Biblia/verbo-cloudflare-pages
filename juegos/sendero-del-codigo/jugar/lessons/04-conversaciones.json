@@ -1,0 +1,652 @@
+{
+ "id": "04-conversaciones",
+ "numero": 4,
+ "lugar": "desierto",
+ "titulo": {
+  "es": "Conversaciones",
+  "en": "Conversations"
+ },
+ "tema": {
+  "es": "input(), int(), float() y métodos de cadena",
+  "en": "input(), int(), float() and string methods"
+ },
+ "versiculo": "pr-15-1",
+ "medalla": {
+  "es": "Buen oyente",
+  "en": "Good listener"
+ },
+ "leccion": {
+  "es": [
+   "`input(\"mensaje\")` muestra el mensaje, espera a que el jugador escriba algo y lo devuelve: `nombre = input(\"¿Cómo te llamas? \")`. Lo que devuelve es **siempre texto** (`str`), aunque escriban un número.",
+   "Para calcular hay que convertir: `int(\"40\")` da el entero `40` y `float(\"2.5\")` da `2.5`. Sin convertir, `\"40\" + 1` da un `TypeError`, y `int(\"hola\")` da un `ValueError`.",
+   "Los **métodos de cadena** se escriben con punto: `.upper()` (MAYÚSCULAS), `.lower()` (minúsculas), `.strip()` (quita espacios de los extremos), `.replace(\"viejo\", \"nuevo\")`, `.split()` (separa en palabras), `.count(\"a\")` (cuenta apariciones) y `.startswith(\"Shalom\")` (`True` o `False`). `len(texto)` cuenta sus caracteres.",
+   "Los métodos **no cambian** la variable: devuelven un texto nuevo. Por eso se guarda: `frase = frase.strip()`. Y se pueden encadenar: `input().strip().lower()`.",
+   "En el desierto, Moisés escuchaba al pueblo y hablaba con Dios. Un buen programa también escucha: pregunta, entiende lo que le dicen y responde con amabilidad."
+  ],
+  "en": [
+   "`input(\"message\")` shows the message, waits for the player to type something and returns it: `name = input(\"What's your name? \")`. What it returns is **always text** (`str`), even if they type a number.",
+   "To calculate you have to convert: `int(\"40\")` gives the integer `40` and `float(\"2.5\")` gives `2.5`. Without converting, `\"40\" + 1` gives a `TypeError`, and `int(\"hello\")` gives a `ValueError`.",
+   "**String methods** are written with a dot: `.upper()` (CAPITALS), `.lower()` (lowercase), `.strip()` (removes spaces at the ends), `.replace(\"old\", \"new\")`, `.split()` (splits into words), `.count(\"a\")` (counts occurrences) and `.startswith(\"Shalom\")` (`True` or `False`). `len(text)` counts its characters.",
+   "Methods **don't change** the variable: they return new text. That's why you store it: `sentence = sentence.strip()`. And you can chain them: `input().strip().lower()`.",
+   "In the desert, Moses listened to the people and spoke with God. A good program listens too: it asks, understands what it's told and answers kindly."
+  ]
+ },
+ "ejemplo": {
+  "es": "nombre = input(\"¿Cómo te llamas? \").strip()\nanios = int(input(\"¿Cuántos años tienes? \"))\nprint(f\"Shalom, {nombre.upper()}\")\nprint(f\"En diez años tendrás {anios + 10}\")\nfrase = \"La respuesta amable calma la ira\"\nprint(frase.lower(), len(frase.split()))\nprint(frase.replace(\"ira\", \"furia\"), frase.startswith(\"La\"))",
+  "en": "name = input(\"What's your name? \").strip()\nyears = int(input(\"How old are you? \"))\nprint(f\"Shalom, {name.upper()}\")\nprint(f\"In ten years you will be {years + 10}\")\nsentence = \"A gentle answer turns away wrath\"\nprint(sentence.lower(), len(sentence.split()))\nprint(sentence.replace(\"wrath\", \"anger\"), sentence.startswith(\"A\"))"
+ },
+ "ejercicios": [
+  {
+   "id": "saludo-desierto",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "En el desierto, el pueblo de Israel acampaba en tiendas y los viajeros se saludaban con **«Shalom»** (paz). Pide un nombre con `input()` y saluda a esa persona. Si escribe `Ana`, la última línea debe ser:\n```\nShalom, Ana\n```",
+    "en": "In the desert, the people of Israel camped in tents and travelers greeted each other with **“Shalom”** (peace). Ask for a name with `input()` and greet that person. If they type `Ann`, the last line must be:\n```\nShalom, Ann\n```"
+   },
+   "inicial": {
+    "es": "",
+    "en": ""
+   },
+   "entradas": {
+    "es": [
+     "Ana"
+    ],
+    "en": [
+     "Ann"
+    ]
+   },
+   "pistas": {
+    "es": [
+     "`nombre = input(\"¿Cómo te llamas? \")` guarda lo que escriba el jugador.",
+     "Luego `print(f\"Shalom, {nombre}\")`."
+    ],
+    "en": [
+     "`name = input(\"What's your name? \")` stores what the player types.",
+     "Then `print(f\"Shalom, {name}\")`."
+    ]
+   },
+   "solucion": {
+    "es": "nombre = input(\"¿Cómo te llamas? \")\nprint(f\"Shalom, {nombre}\")",
+    "en": "name = input(\"What's your name? \")\nprint(f\"Shalom, {name}\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "py": "assert 'input(' in _codigo",
+      "msg": {
+       "es": "Usa input() para pedir el dato.",
+       "en": "Use input() to ask for the value."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _salida.splitlines()]\nassert _L[-1:] == ['Shalom, Ana']",
+      "msg": {
+       "es": "La última línea debe ser «Shalom, Ana» (con coma y espacio).",
+       "en": "The last line must be “Shalom, Ana” (with a comma and a space)."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['Moisés']).splitlines()]\nassert _L[-1:] == ['Shalom, Moisés']",
+      "msg": {
+       "es": "Saluda al nombre que escriban: con «Moisés» debe salir «Shalom, Moisés». No escribas el nombre en el código.",
+       "en": "Greet whatever name is typed: with “Moisés” it must show “Shalom, Moisés”. Don't type the name in the code."
+      }
+     }
+    ],
+    "en": [
+     {
+      "py": "assert 'input(' in _codigo",
+      "msg": {
+       "es": "Usa input() para pedir el dato.",
+       "en": "Use input() to ask for the value."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _salida.splitlines()]\nassert _L[-1:] == ['Shalom, Ann']",
+      "msg": {
+       "es": "La última línea debe ser «Shalom, Ann» (con coma y espacio).",
+       "en": "The last line must be “Shalom, Ann” (with a comma and a space)."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['Moses']).splitlines()]\nassert _L[-1:] == ['Shalom, Moses']",
+      "msg": {
+       "es": "Saluda al nombre que escriban: con «Moses» debe salir «Shalom, Moses». No escribas el nombre en el código.",
+       "en": "Greet whatever name is typed: with “Moses” it must show “Shalom, Moses”. Don't type the name in the code."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "print(\"Shalom, Ana\")",
+     "nombre = input(\"¿Cómo te llamas? \")\nprint(\"Shalom, nombre\")",
+     "nombre = input(\"¿Cómo te llamas? \")\nprint(\"Shalom\", nombre)"
+    ],
+    "en": [
+     "print(\"Shalom, Ann\")",
+     "name = input(\"What's your name? \")\nprint(\"Shalom, name\")",
+     "name = input(\"What's your name? \")\nprint(\"Shalom\", name)"
+    ]
+   }
+  },
+  {
+   "id": "edad-moises",
+   "tipo": "hueco",
+   "enunciado": {
+    "es": "`input()` siempre devuelve **texto**. Para sumar hay que convertirlo con `int()`. Moisés tenía 80 años cuando habló con el faraón (Éxodo 7:7) y vivió 40 años más en el desierto. Completa el programa: si escriben `80`, debe mostrar `120`.",
+    "en": "`input()` always returns **text**. To add, you have to convert it with `int()`. Moses was 80 years old when he spoke to Pharaoh (Exodus 7:7) and lived 40 more years in the desert. Fill in the program: if they type `80`, it must show `120`."
+   },
+   "plantilla": {
+    "es": "edad = ___(input(\"Edad de Moisés: \"))\nprint(edad + 40)",
+    "en": "age = ___(input(\"Age of Moses: \"))\nprint(age + 40)"
+   },
+   "entradas": {
+    "es": [
+     "80"
+    ],
+    "en": [
+     "80"
+    ]
+   },
+   "pistas": {
+    "es": [
+     "Sin convertir, `\"80\" + 40` da un `TypeError`: no se puede sumar texto con número.",
+     "La función que convierte texto en número entero es `int`."
+    ],
+    "en": [
+     "Without converting, `\"80\" + 40` gives a `TypeError`: you can't add text and a number.",
+     "The function that turns text into a whole number is `int`."
+    ]
+   },
+   "solucion": {
+    "es": "edad = int(input(\"Edad de Moisés: \"))\nprint(edad + 40)",
+    "en": "age = int(input(\"Age of Moses: \"))\nprint(age + 40)"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "py": "_L = [l.strip() for l in _salida.splitlines()]\nassert _L[-1:] == ['120']",
+      "msg": {
+       "es": "Debe salir 120, un número entero (sin .0). Convierte con int().",
+       "en": "It must show 120, a whole number (no .0). Convert with int()."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['10']).splitlines()]\nassert _L[-1:] == ['50']",
+      "msg": {
+       "es": "Con 10 debe salir 50: suma 40 a la edad que escriban.",
+       "en": "With 10 it must show 50: add 40 to the age typed."
+      }
+     }
+    ],
+    "en": [
+     {
+      "py": "_L = [l.strip() for l in _salida.splitlines()]\nassert _L[-1:] == ['120']",
+      "msg": {
+       "es": "Debe salir 120, un número entero (sin .0). Convierte con int().",
+       "en": "It must show 120, a whole number (no .0). Convert with int()."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['10']).splitlines()]\nassert _L[-1:] == ['50']",
+      "msg": {
+       "es": "Con 10 debe salir 50: suma 40 a la edad que escriban.",
+       "en": "With 10 it must show 50: add 40 to the age typed."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "edad = str(input(\"Edad de Moisés: \"))\nprint(edad + 40)",
+     "edad = float(input(\"Edad de Moisés: \"))\nprint(edad + 40)",
+     "edad = int(input(\"Edad de Moisés: \"))\nprint(120)"
+    ],
+    "en": [
+     "age = str(input(\"Age of Moses: \"))\nprint(age + 40)",
+     "age = float(input(\"Age of Moses: \"))\nprint(age + 40)"
+    ]
+   }
+  },
+  {
+   "id": "respuesta-amable",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "«La respuesta amable calma la ira» (Proverbios 15:1). Escribir todo en MAYÚSCULAS se siente como gritar. Pide una frase y muéstrala en minúsculas con `.lower()`. Si escriben `¡NO GRITES, POR FAVOR!`, la última línea debe ser:\n```\n¡no grites, por favor!\n```",
+    "en": "“A gentle answer turns away wrath” (Proverbs 15:1). Writing everything in CAPITALS feels like shouting. Ask for a sentence and show it in lowercase with `.lower()`. If they type `PLEASE, DON'T SHOUT!`, the last line must be:\n```\nplease, don't shout!\n```"
+   },
+   "inicial": {
+    "es": "",
+    "en": ""
+   },
+   "entradas": {
+    "es": [
+     "¡NO GRITES, POR FAVOR!"
+    ],
+    "en": [
+     "PLEASE, DON'T SHOUT!"
+    ]
+   },
+   "pistas": {
+    "es": [
+     "Guarda la frase: `frase = input(\"Frase: \")`.",
+     "Los métodos se escriben con punto después de la variable: `print(frase.lower())`."
+    ],
+    "en": [
+     "Store the sentence: `sentence = input(\"Sentence: \")`.",
+     "Methods go after the variable with a dot: `print(sentence.lower())`."
+    ]
+   },
+   "solucion": {
+    "es": "frase = input(\"Frase: \")\nprint(frase.lower())",
+    "en": "sentence = input(\"Sentence: \")\nprint(sentence.lower())"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "py": "assert 'input(' in _codigo",
+      "msg": {
+       "es": "Usa input() para pedir el dato.",
+       "en": "Use input() to ask for the value."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _salida.splitlines()]\nassert _L[-1:] == ['¡no grites, por favor!']",
+      "msg": {
+       "es": "La última línea debe ser la frase en minúsculas.",
+       "en": "The last line must be the sentence in lowercase."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['SHALOM A TODOS']).splitlines()]\nassert _L[-1:] == ['shalom a todos']",
+      "msg": {
+       "es": "Con «SHALOM A TODOS» debe salir «shalom a todos»: convierte lo que escriban, no una frase fija.",
+       "en": "With “SHALOM A TODOS” it must show “shalom a todos”: convert whatever is typed, not a fixed sentence."
+      }
+     }
+    ],
+    "en": [
+     {
+      "py": "assert 'input(' in _codigo",
+      "msg": {
+       "es": "Usa input() para pedir el dato.",
+       "en": "Use input() to ask for the value."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _salida.splitlines()]\nassert _L[-1:] == [\"please, don't shout!\"]",
+      "msg": {
+       "es": "La última línea debe ser la frase en minúsculas.",
+       "en": "The last line must be the sentence in lowercase."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['PEACE TO ALL']).splitlines()]\nassert _L[-1:] == ['peace to all']",
+      "msg": {
+       "es": "Con «PEACE TO ALL» debe salir «peace to all»: convierte lo que escriban, no una frase fija.",
+       "en": "With “PEACE TO ALL” it must show “peace to all”: convert whatever is typed, not a fixed sentence."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "frase = input(\"Frase: \")\nprint(frase.upper())",
+     "frase = input(\"Frase: \")\nfrase.lower()\nprint(frase)",
+     "print(\"¡no grites, por favor!\")"
+    ],
+    "en": [
+     "sentence = input(\"Sentence: \")\nprint(sentence.upper())",
+     "sentence = input(\"Sentence: \")\nsentence.lower()\nprint(sentence)"
+    ]
+   }
+  },
+  {
+   "id": "queja-peticion",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "En el desierto el pueblo se quejaba mucho. Pablo enseña: «presenten sus peticiones delante de Dios» (Filipenses 4:6). Pide una frase, quítale los espacios de los extremos con `.strip()` y cambia la palabra `queja` por `petición` con `.replace()`. Si escriben `   Señor, tengo una queja   `, la última línea debe ser:\n```\nSeñor, tengo una petición\n```",
+    "en": "In the desert the people complained a lot. Paul teaches: “present your requests to God” (Philippians 4:6). Ask for a sentence, remove the spaces at both ends with `.strip()` and change the word `complaint` to `request` with `.replace()`. If they type `   Lord, I have a complaint   `, the last line must be:\n```\nLord, I have a request\n```"
+   },
+   "inicial": {
+    "es": "",
+    "en": ""
+   },
+   "entradas": {
+    "es": [
+     "   Señor, tengo una queja   "
+    ],
+    "en": [
+     "   Lord, I have a complaint   "
+    ]
+   },
+   "pistas": {
+    "es": [
+     "Los métodos de cadena **no cambian** la variable: devuelven un texto nuevo. Guárdalo: `frase = frase.strip()`.",
+     "`frase = frase.replace(\"queja\", \"petición\")` y luego `print(frase)`. También puedes encadenar: `frase.strip().replace(...)`."
+    ],
+    "en": [
+     "String methods **don't change** the variable: they return new text. Store it: `sentence = sentence.strip()`.",
+     "`sentence = sentence.replace(\"complaint\", \"request\")` and then `print(sentence)`. You can also chain them: `sentence.strip().replace(...)`."
+    ]
+   },
+   "solucion": {
+    "es": "frase = input(\"Frase: \")\nfrase = frase.strip()\nfrase = frase.replace(\"queja\", \"petición\")\nprint(frase)",
+    "en": "sentence = input(\"Sentence: \")\nsentence = sentence.strip()\nsentence = sentence.replace(\"complaint\", \"request\")\nprint(sentence)"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "py": "assert 'input(' in _codigo",
+      "msg": {
+       "es": "Usa input() para pedir el dato.",
+       "en": "Use input() to ask for the value."
+      }
+     },
+     {
+      "py": "_s = _salida.splitlines()[-1]\nassert _s == _s.strip()",
+      "msg": {
+       "es": "Quedan espacios en los extremos: usa .strip().",
+       "en": "There are spaces left at the ends: use .strip()."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _salida.splitlines()]\nassert _L[-1:] == ['Señor, tengo una petición']",
+      "msg": {
+       "es": "La última línea debe ser «Señor, tengo una petición».",
+       "en": "The last line must be “Señor, tengo una petición”."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['  una queja y otra queja ']).splitlines()]\nassert _L[-1:] == ['una petición y otra petición']",
+      "msg": {
+       "es": "Cambia todas las veces que aparezca «queja»: con «  una queja y otra queja » debe salir «una petición y otra petición».",
+       "en": "Change every “queja”: with “  una queja y otra queja ” it must show “una petición y otra petición”."
+      }
+     }
+    ],
+    "en": [
+     {
+      "py": "assert 'input(' in _codigo",
+      "msg": {
+       "es": "Usa input() para pedir el dato.",
+       "en": "Use input() to ask for the value."
+      }
+     },
+     {
+      "py": "_s = _salida.splitlines()[-1]\nassert _s == _s.strip()",
+      "msg": {
+       "es": "Quedan espacios en los extremos: usa .strip().",
+       "en": "There are spaces left at the ends: use .strip()."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _salida.splitlines()]\nassert _L[-1:] == ['Lord, I have a request']",
+      "msg": {
+       "es": "La última línea debe ser «Lord, I have a request».",
+       "en": "The last line must be “Lord, I have a request”."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['  one complaint and another complaint ']).splitlines()]\nassert _L[-1:] == ['one request and another request']",
+      "msg": {
+       "es": "Cambia todas las veces que aparezca «complaint»: con «  one complaint and another complaint » debe salir «one request and another request».",
+       "en": "Change every “complaint”: with “  one complaint and another complaint ” it must show “one request and another request”."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "frase = input(\"Frase: \")\nfrase.strip()\nfrase.replace(\"queja\", \"petición\")\nprint(frase)",
+     "frase = input(\"Frase: \")\nprint(frase.replace(\"queja\", \"petición\"))",
+     "frase = input(\"Frase: \")\nprint(frase.strip().replace(\"petición\", \"queja\"))"
+    ],
+    "en": [
+     "sentence = input(\"Sentence: \")\nsentence.strip()\nsentence.replace(\"complaint\", \"request\")\nprint(sentence)",
+     "sentence = input(\"Sentence: \")\nprint(sentence.replace(\"complaint\", \"request\"))"
+    ]
+   }
+  },
+  {
+   "id": "contar-palabras",
+   "tipo": "ordenar",
+   "enunciado": {
+    "es": "Ordena las líneas para pedir una frase, separarla en palabras con `.split()` y contar cuántas son con `len()`. Con `La respuesta amable calma la ira` la última línea debe ser:\n```\nTiene 6 palabras\n```",
+    "en": "Put the lines in order to ask for a sentence, split it into words with `.split()` and count them with `len()`. With `A gentle answer turns away wrath` the last line must be:\n```\nIt has 6 words\n```"
+   },
+   "lineas": {
+    "es": [
+     "frase = input(\"Frase: \")",
+     "palabras = frase.split()",
+     "cantidad = len(palabras)",
+     "print(f\"Tiene {cantidad} palabras\")"
+    ],
+    "en": [
+     "sentence = input(\"Sentence: \")",
+     "words = sentence.split()",
+     "count = len(words)",
+     "print(f\"It has {count} words\")"
+    ]
+   },
+   "entradas": {
+    "es": [
+     "La respuesta amable calma la ira"
+    ],
+    "en": [
+     "A gentle answer turns away wrath"
+    ]
+   },
+   "pistas": {
+    "es": [
+     "Primero hay que tener la frase; después se puede separar.",
+     "`len(palabras)` cuenta las palabras; `len(frase)` contaría las letras y espacios."
+    ],
+    "en": [
+     "First you need the sentence; then you can split it.",
+     "`len(words)` counts the words; `len(sentence)` would count letters and spaces."
+    ]
+   },
+   "pruebas": {
+    "es": [
+     {
+      "py": "_L = [l.strip() for l in _salida.splitlines()]\nassert _L[-1:] == ['Tiene 6 palabras']",
+      "msg": {
+       "es": "La última línea debe ser «Tiene 6 palabras».",
+       "en": "The last line must be “Tiene 6 palabras”."
+      }
+     }
+    ],
+    "en": [
+     {
+      "py": "_L = [l.strip() for l in _salida.splitlines()]\nassert _L[-1:] == ['It has 6 words']",
+      "msg": {
+       "es": "La última línea debe ser «It has 6 words».",
+       "en": "The last line must be “It has 6 words”."
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "mana-por-tienda",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Cada mañana caía maná y cada familia recogía según las personas que había en su tienda (Éxodo 16:16). Pide cuántas personas hay (número **entero**, `int`) y cuántos litros recoge cada una (número **con decimales**, `float`). Muestra el total redondeado a 1 decimal. Con `6` y `2.2` la última línea debe ser:\n```\nTotal: 13.2 litros\n```",
+    "en": "Every morning manna fell and each family gathered according to the people in their tent (Exodus 16:16). Ask how many people there are (a **whole** number, `int`) and how many liters each one gathers (a number **with decimals**, `float`). Show the total rounded to 1 decimal. With `6` and `2.2` the last line must be:\n```\nTotal: 13.2 liters\n```"
+   },
+   "inicial": {
+    "es": "",
+    "en": ""
+   },
+   "entradas": {
+    "es": [
+     "6",
+     "2.2"
+    ],
+    "en": [
+     "6",
+     "2.2"
+    ]
+   },
+   "pistas": {
+    "es": [
+     "`personas = int(input(\"Personas: \"))` y `litros = float(input(\"Litros por persona: \"))`.",
+     "`total = round(personas * litros, 1)` y luego `print(f\"Total: {total} litros\")`."
+    ],
+    "en": [
+     "`people = int(input(\"People: \"))` and `liters = float(input(\"Liters per person: \"))`.",
+     "`total = round(people * liters, 1)` and then `print(f\"Total: {total} liters\")`."
+    ]
+   },
+   "solucion": {
+    "es": "personas = int(input(\"Personas: \"))\nlitros = float(input(\"Litros por persona: \"))\ntotal = round(personas * litros, 1)\nprint(f\"Total: {total} litros\")",
+    "en": "people = int(input(\"People: \"))\nliters = float(input(\"Liters per person: \"))\ntotal = round(people * liters, 1)\nprint(f\"Total: {total} liters\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "py": "assert _codigo.count('input(') >= 2",
+      "msg": {
+       "es": "Pide los dos datos con input().",
+       "en": "Ask for both values with input()."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _salida.splitlines()]\nassert _L[-1:] == ['Total: 13.2 litros']",
+      "msg": {
+       "es": "Con 6 y 2.2 la última línea debe ser «Total: 13.2 litros». ¿Redondeaste a 1 decimal con round()?",
+       "en": "With 6 and 2.2 the last line must be “Total: 13.2 litros”. Did you round to 1 decimal with round()?"
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['4', '1.5']).splitlines()]\nassert _L[-1:] == ['Total: 6.0 litros']",
+      "msg": {
+       "es": "Con 4 y 1.5 debe salir «Total: 6.0 litros»: calcula con lo que escriban.",
+       "en": "With 4 and 1.5 it must show “Total: 6.0 litros”: calculate with what is typed."
+      }
+     }
+    ],
+    "en": [
+     {
+      "py": "assert _codigo.count('input(') >= 2",
+      "msg": {
+       "es": "Pide los dos datos con input().",
+       "en": "Ask for both values with input()."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _salida.splitlines()]\nassert _L[-1:] == ['Total: 13.2 liters']",
+      "msg": {
+       "es": "Con 6 y 2.2 la última línea debe ser «Total: 13.2 liters». ¿Redondeaste a 1 decimal con round()?",
+       "en": "With 6 and 2.2 the last line must be “Total: 13.2 liters”. Did you round to 1 decimal with round()?"
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['4', '1.5']).splitlines()]\nassert _L[-1:] == ['Total: 6.0 liters']",
+      "msg": {
+       "es": "Con 4 y 1.5 debe salir «Total: 6.0 liters»: calcula con lo que escriban.",
+       "en": "With 4 and 1.5 it must show “Total: 6.0 liters”: calculate with what is typed."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "personas = int(input(\"Personas: \"))\nlitros = int(input(\"Litros por persona: \"))\nprint(f\"Total: {personas * litros} litros\")",
+     "personas = int(input(\"Personas: \"))\nlitros = float(input(\"Litros por persona: \"))\nprint(f\"Total: {personas * litros} litros\")",
+     "personas = input(\"Personas: \")\nlitros = input(\"Litros por persona: \")\nprint(f\"Total: {personas * litros} litros\")"
+    ],
+    "en": [
+     "people = int(input(\"People: \"))\nliters = float(input(\"Liters per person: \"))\nprint(f\"Total: {people * liters} liters\")",
+     "people = input(\"People: \")\nliters = input(\"Liters per person: \")\nprint(f\"Total: {people * liters} liters\")"
+    ]
+   }
+  },
+  {
+   "id": "buen-conversador",
+   "tipo": "escribir",
+   "reto": true,
+   "enunciado": {
+    "es": "**Reto: el buen conversador.** Pide un nombre y un mensaje. Muestra el nombre sin espacios sobrantes y en mayúsculas, el mensaje en minúsculas, cuántas palabras tiene y cuántas veces aparece la letra `a` en el mensaje (usa `.count(\"a\")` sobre el mensaje ya en minúsculas). Con `  ana ` y `La respuesta AMABLE calma la ira` las últimas líneas deben ser:\n```\nNombre: ANA\nMensaje: la respuesta amable calma la ira\nPalabras: 6\nLetras a: 8\n```",
+    "en": "**Challenge: the good listener.** Ask for a name and a message. Show the name without extra spaces and in capitals, the message in lowercase, how many words it has and how many times the letter `a` appears in the message (use `.count(\"a\")` on the message already in lowercase). With `  ann ` and `A gentle answer TURNS away wrath` the last lines must be:\n```\nName: ANN\nMessage: a gentle answer turns away wrath\nWords: 6\nLetters a: 5\n```"
+   },
+   "inicial": {
+    "es": "",
+    "en": ""
+   },
+   "entradas": {
+    "es": [
+     "  ana ",
+     "La respuesta AMABLE calma la ira"
+    ],
+    "en": [
+     "  ann ",
+     "A gentle answer TURNS away wrath"
+    ]
+   },
+   "pistas": {
+    "es": [
+     "Limpia y convierte al guardar: `nombre = input(\"Nombre: \").strip().upper()` y `mensaje = input(\"Mensaje: \").lower()`.",
+     "`len(mensaje.split())` cuenta las palabras y `mensaje.count(\"a\")` cuenta las letras a. Muestra cada dato con una f-string."
+    ],
+    "en": [
+     "Clean and convert as you store: `name = input(\"Name: \").strip().upper()` and `message = input(\"Message: \").lower()`.",
+     "`len(message.split())` counts the words and `message.count(\"a\")` counts the letter a. Show each value with an f-string."
+    ]
+   },
+   "solucion": {
+    "es": "nombre = input(\"Nombre: \").strip().upper()\nmensaje = input(\"Mensaje: \").lower()\nprint(f\"Nombre: {nombre}\")\nprint(f\"Mensaje: {mensaje}\")\nprint(f\"Palabras: {len(mensaje.split())}\")\nprint(f\"Letras a: {mensaje.count('a')}\")",
+    "en": "name = input(\"Name: \").strip().upper()\nmessage = input(\"Message: \").lower()\nprint(f\"Name: {name}\")\nprint(f\"Message: {message}\")\nprint(f\"Words: {len(message.split())}\")\nprint(f\"Letters a: {message.count('a')}\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "py": "_L = [l.strip() for l in _salida.splitlines()]\nassert _L[-4:] == ['Nombre: ANA', 'Mensaje: la respuesta amable calma la ira', 'Palabras: 6', 'Letras a: 8']",
+      "msg": {
+       "es": "Las últimas 4 líneas no coinciden con el ejemplo. Revisa .strip(), .upper(), .lower(), len(...split()) y .count(\"a\").",
+       "en": "The last 4 lines don't match the example. Check .strip(), .upper(), .lower(), len(...split()) and .count(\"a\")."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['Josué ', 'ESFUÉRZATE y sé valiente']).splitlines()]\nassert _L[-4:] == ['Nombre: JOSUÉ', 'Mensaje: esfuérzate y sé valiente', 'Palabras: 4', 'Letras a: 2']",
+      "msg": {
+       "es": "Con otros datos («Josué » y «ESFUÉRZATE y sé valiente») no sale bien: calcula todo con lo que escriban, no escribas los números.",
+       "en": "With other values (“Josué ” and “ESFUÉRZATE y sé valiente”) it doesn't work: calculate everything from what is typed, don't type the numbers."
+      }
+     }
+    ],
+    "en": [
+     {
+      "py": "_L = [l.strip() for l in _salida.splitlines()]\nassert _L[-4:] == ['Name: ANN', 'Message: a gentle answer turns away wrath', 'Words: 6', 'Letters a: 5']",
+      "msg": {
+       "es": "Las últimas 4 líneas no coinciden con el ejemplo. Revisa .strip(), .upper(), .lower(), len(...split()) y .count(\"a\").",
+       "en": "The last 4 lines don't match the example. Check .strip(), .upper(), .lower(), len(...split()) and .count(\"a\")."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['Joshua ', 'BE STRONG and courageous']).splitlines()]\nassert _L[-4:] == ['Name: JOSHUA', 'Message: be strong and courageous', 'Words: 4', 'Letters a: 2']",
+      "msg": {
+       "es": "Con otros datos («Joshua » y «BE STRONG and courageous») no sale bien: calcula todo con lo que escriban, no escribas los números.",
+       "en": "With other values (“Joshua ” and “BE STRONG and courageous”) it doesn't work: calculate everything from what is typed, don't type the numbers."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "nombre = input(\"Nombre: \").upper()\nmensaje = input(\"Mensaje: \").lower()\nprint(f\"Nombre: {nombre}\")\nprint(f\"Mensaje: {mensaje}\")\nprint(f\"Palabras: {len(mensaje.split())}\")\nprint(f\"Letras a: {mensaje.count('a')}\")",
+     "nombre = input(\"Nombre: \").strip().upper()\nmensaje = input(\"Mensaje: \").lower()\nprint(f\"Nombre: {nombre}\")\nprint(f\"Mensaje: {mensaje}\")\nprint(f\"Palabras: {len(mensaje)}\")\nprint(f\"Letras a: {mensaje.count('a')}\")",
+     "nombre = input(\"Nombre: \").strip().upper()\nmensaje = input(\"Mensaje: \")\nprint(f\"Nombre: {nombre}\")\nprint(f\"Mensaje: {mensaje.lower()}\")\nprint(f\"Palabras: {len(mensaje.split())}\")\nprint(f\"Letras a: {mensaje.count('a')}\")",
+     "nombre = input(\"Nombre: \").strip().upper()\nmensaje = input(\"Mensaje: \").lower()\nprint(f\"Nombre: {nombre}\")\nprint(f\"Mensaje: {mensaje}\")\nprint(\"Palabras: 6\")\nprint(\"Letras a: 8\")"
+    ],
+    "en": [
+     "name = input(\"Name: \").upper()\nmessage = input(\"Message: \").lower()\nprint(f\"Name: {name}\")\nprint(f\"Message: {message}\")\nprint(f\"Words: {len(message.split())}\")\nprint(f\"Letters a: {message.count('a')}\")",
+     "name = input(\"Name: \").strip().upper()\nmessage = input(\"Message: \").lower()\nprint(f\"Name: {name}\")\nprint(f\"Message: {message}\")\nprint(f\"Words: {len(message)}\")\nprint(f\"Letters a: {message.count('a')}\")",
+     "name = input(\"Name: \").strip().upper()\nmessage = input(\"Message: \")\nprint(f\"Name: {name}\")\nprint(f\"Message: {message.lower()}\")\nprint(f\"Words: {len(message.split())}\")\nprint(f\"Letters a: {message.count('a')}\")"
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,629 @@
+{
+ "id": "20-concordancia",
+ "numero": 20,
+ "lugar": "patmos",
+ "titulo": {
+  "es": "La concordancia",
+  "en": "The concordance"
+ },
+ "tema": {
+  "es": "Counter, defaultdict, sorted con key y lambda, comprensiones de diccionario y de conjunto",
+  "en": "Counter, defaultdict, sorted with key and lambda, dictionary and set comprehensions"
+ },
+ "versiculo": "sal-119-11",
+ "medalla": {
+  "es": "Guardián de la palabra",
+  "en": "Keeper of the word"
+ },
+ "leccion": {
+  "es": [
+   "Una **concordancia** es el índice que dice en qué versículos aparece cada palabra: así se busca «luz» en toda la Biblia. Para armarla, el módulo `collections` trae dos diccionarios especiales.",
+   "`Counter(lista)` cuenta cuántas veces está cada elemento; una clave que no existe vale `0`, así que `conteo[p] += 1` siempre funciona. `conteo.most_common(3)` devuelve una lista de pares `(elemento, veces)` de mayor a menor. `defaultdict(list)` crea una lista vacía la primera vez que pides una clave: `indice[p].append(ref)` sin preguntar antes si `p` existía. (Ojo: solo *consultar* `indice[p]` ya crea la clave; para mirar sin crear, usa `indice.get(p, [])`).",
+   "`sorted(datos, key=f, reverse=True)` devuelve una **lista nueva** ordenada según lo que `f` devuelva para cada elemento. Una `lambda` es una función corta sin nombre: `key=lambda par: par[1]` ordena pares por su segundo valor. Si la key devuelve una tupla, compara por partes: `lambda par: (-par[1], par[0])` ordena de más a menos y, en empate, alfabéticamente. El orden es **estable**: los empates conservan el orden original.",
+   "Las **comprensiones** también sirven con llaves: `{p: len(p) for p in palabras if len(p) > 3}` arma un diccionario, y `{p[0] for p in palabras}` (sin dos puntos) arma un **conjunto**, sin repetidos.",
+   "Para comparar palabras de verdad, límpialas antes: `p.strip(\".,;:\").lower()` quita los signos del borde y pasa a minúsculas, así «Luz,» y «luz» cuentan como la misma."
+  ],
+  "en": [
+   "A **concordance** is the index that tells you which verses each word appears in: that's how you look up \"light\" in the whole Bible. To build one, the `collections` module brings two special dictionaries.",
+   "`Counter(items)` counts how many times each element appears; a missing key is worth `0`, so `counts[w] += 1` always works. `counts.most_common(3)` returns a list of `(element, times)` pairs from most to least. `defaultdict(list)` creates an empty list the first time you ask for a key: `index[w].append(ref)` without checking first whether `w` existed. (Careful: just *reading* `index[w]` already creates the key; to look without creating, use `index.get(w, [])`).",
+   "`sorted(data, key=f, reverse=True)` returns a **new list** sorted by whatever `f` returns for each element. A `lambda` is a short function without a name: `key=lambda pair: pair[1]` sorts pairs by their second value. If the key returns a tuple, it compares part by part: `lambda pair: (-pair[1], pair[0])` sorts from most to least and, on a tie, alphabetically. Sorting is **stable**: ties keep their original order.",
+   "**Comprehensions** also work with braces: `{w: len(w) for w in words if len(w) > 3}` builds a dictionary, and `{w[0] for w in words}` (no colon) builds a **set**, with no duplicates.",
+   "To compare words properly, clean them first: `w.strip(\".,;:\").lower()` removes the signs at the edges and makes it lowercase, so \"Light,\" and \"light\" count as the same word."
+  ]
+ },
+ "ejemplo": {
+  "es": "from collections import Counter, defaultdict\n\nversos = {\"Juan 1:4\": \"la vida era la luz\", \"Juan 1:5\": \"la luz brilla\"}\nconteo = Counter()\nindice = defaultdict(list)\nfor ref, texto in versos.items():\n    for palabra in texto.split():\n        conteo[palabra] += 1\n        indice[palabra].append(ref)\n\nprint(conteo.most_common(2))\nprint(indice[\"luz\"])\nprint(sorted(conteo, key=lambda p: len(p), reverse=True))\nprint({p: len(p) for p in conteo if len(p) > 3})\nprint({p[0] for p in conteo})",
+  "en": "from collections import Counter, defaultdict\n\nverses = {\"John 1:4\": \"that life was the light\", \"John 1:5\": \"the light shines\"}\ncounts = Counter()\nindex = defaultdict(list)\nfor ref, text in verses.items():\n    for word in text.split():\n        counts[word] += 1\n        index[word].append(ref)\n\nprint(counts.most_common(2))\nprint(index[\"light\"])\nprint(sorted(counts, key=lambda w: len(w), reverse=True))\nprint({w: len(w) for w in counts if len(w) > 3})\nprint({w[0] for w in counts})"
+ },
+ "ejercicios": [
+  {
+   "id": "mas-comunes",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Juan 1:1 repite algunas palabras a propósito. Separa `texto` en palabras, quita a cada una los signos `.,;:` del borde con `strip` y pásala a minúsculas; cuenta con `Counter` y muestra las **3 más comunes** con `most_common`, una por línea:\n```\nel: 4\nera: 3\nverbo: 3\n```\nEn un empate, `most_common` respeta el orden en que cada palabra apareció primero.",
+    "en": "John 1:1 repeats some words on purpose. Split `text` into words, strip the `.,;:` signs from the edges of each one and make it lowercase; count them with `Counter` and show the **3 most common** with `most_common`, one per line:\n```\nthe: 4\nwas: 3\nword: 3\n```\nIn a tie, `most_common` keeps the order in which each word first appeared."
+   },
+   "inicial": {
+    "es": "from collections import Counter\n\ntexto = \"En el principio era el Verbo, y el Verbo era con Dios, y el Verbo era Dios.\"\n",
+    "en": "from collections import Counter\n\ntext = \"In the beginning was the Word, and the Word was with God, and the Word was God.\"\n"
+   },
+   "pistas": {
+    "es": [
+     "Una lista por comprensión limpia todo de una vez: `[p.strip(\".,;:\").lower() for p in texto.split()]`.",
+     "`for palabra, veces in Counter(palabras).most_common(3):` y adentro `print(f\"{palabra}: {veces}\")`."
+    ],
+    "en": [
+     "A list comprehension cleans everything at once: `[w.strip(\".,;:\").lower() for w in text.split()]`.",
+     "`for word, times in Counter(words).most_common(3):` and inside `print(f\"{word}: {times}\")`."
+    ]
+   },
+   "solucion": {
+    "es": "from collections import Counter\n\ntexto = \"En el principio era el Verbo, y el Verbo era con Dios, y el Verbo era Dios.\"\npalabras = [p.strip(\".,;:\").lower() for p in texto.split()]\nconteo = Counter(palabras)\nfor palabra, veces in conteo.most_common(3):\n    print(f\"{palabra}: {veces}\")",
+    "en": "from collections import Counter\n\ntext = \"In the beginning was the Word, and the Word was with God, and the Word was God.\"\nwords = [w.strip(\".,;:\").lower() for w in text.split()]\ncounts = Counter(words)\nfor word, times in counts.most_common(3):\n    print(f\"{word}: {times}\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "el: 4\nera: 3\nverbo: 3"
+     },
+     {
+      "py": "assert 'Counter(' in _codigo and 'most_common(' in _codigo",
+      "msg": {
+       "es": "Cuenta con Counter(...) y elige con .most_common(3).",
+       "en": "Count with Counter(...) and pick with .most_common(3)."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "the: 4\nwas: 3\nword: 3"
+     },
+     {
+      "py": "assert 'Counter(' in _codigo and 'most_common(' in _codigo",
+      "msg": {
+       "es": "Cuenta con Counter(...) y elige con .most_common(3).",
+       "en": "Count with Counter(...) and pick with .most_common(3)."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "from collections import Counter\n\ntexto = \"En el principio era el Verbo, y el Verbo era con Dios, y el Verbo era Dios.\"\nconteo = Counter(texto.lower().split())\nfor palabra, veces in conteo.most_common(3):\n    print(f\"{palabra}: {veces}\")",
+     "from collections import Counter\n\ntexto = \"En el principio era el Verbo, y el Verbo era con Dios, y el Verbo era Dios.\"\npalabras = [p.strip(\".,;:\").lower() for p in texto.split()]\nfor par in Counter(palabras).most_common(3):\n    print(par)",
+     "from collections import Counter\n\ntexto = \"En el principio era el Verbo, y el Verbo era con Dios, y el Verbo era Dios.\"\npalabras = [p.strip(\".,;:\").lower() for p in texto.split()]\nfor palabra, veces in Counter(palabras).most_common():\n    print(f\"{palabra}: {veces}\")"
+    ],
+    "en": [
+     "from collections import Counter\n\ntext = \"In the beginning was the Word, and the Word was with God, and the Word was God.\"\ncounts = Counter(text.lower().split())\nfor word, times in counts.most_common(3):\n    print(f\"{word}: {times}\")",
+     "from collections import Counter\n\ntext = \"In the beginning was the Word, and the Word was with God, and the Word was God.\"\nwords = [w.strip(\".,;:\").lower() for w in text.split()]\nfor pair in Counter(words).most_common(3):\n    print(pair)",
+     "from collections import Counter\n\ntext = \"In the beginning was the Word, and the Word was with God, and the Word was God.\"\nwords = [w.strip(\".,;:\").lower() for w in text.split()]\nfor word, times in Counter(words).most_common():\n    print(f\"{word}: {times}\")"
+    ]
+   }
+  },
+  {
+   "id": "por-letra",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Agrupa estos libros del Nuevo Testamento por su **letra inicial** en `por_letra`, un `defaultdict(list)` (letra → lista de libros, en el orden en que aparecen). Luego muestra las letras en orden alfabético:\n```\nC: Colosenses\nE: Efesios\nF: Filipenses\nG: Gálatas\nH: Hechos\nJ: Juan\nL: Lucas\nM: Mateo, Marcos\nR: Romanos\n```",
+    "en": "Group these New Testament books by their **first letter** in `by_letter`, a `defaultdict(list)` (letter → list of books, in the order they appear). Then show the letters in alphabetical order:\n```\nA: Acts\nC: Colossians\nE: Ephesians\nG: Galatians\nJ: John\nL: Luke\nM: Matthew, Mark\nP: Philippians\nR: Romans\n```"
+   },
+   "inicial": {
+    "es": "from collections import defaultdict\n\nlibros = [\"Mateo\", \"Marcos\", \"Lucas\", \"Juan\", \"Hechos\", \"Romanos\", \"Gálatas\", \"Efesios\", \"Filipenses\", \"Colosenses\"]\n",
+    "en": "from collections import defaultdict\n\nbooks = [\"Matthew\", \"Mark\", \"Luke\", \"John\", \"Acts\", \"Romans\", \"Galatians\", \"Ephesians\", \"Philippians\", \"Colossians\"]\n"
+   },
+   "pistas": {
+    "es": [
+     "Con `defaultdict(list)` no hace falta preguntar si la letra ya existe: `por_letra[libro[0]].append(libro)`.",
+     "`for letra in sorted(por_letra):` y `\", \".join(por_letra[letra])` para unir los nombres."
+    ],
+    "en": [
+     "With `defaultdict(list)` you don't need to check whether the letter exists: `by_letter[book[0]].append(book)`.",
+     "`for letter in sorted(by_letter):` and `\", \".join(by_letter[letter])` to join the names."
+    ]
+   },
+   "solucion": {
+    "es": "from collections import defaultdict\n\nlibros = [\"Mateo\", \"Marcos\", \"Lucas\", \"Juan\", \"Hechos\", \"Romanos\", \"Gálatas\", \"Efesios\", \"Filipenses\", \"Colosenses\"]\npor_letra = defaultdict(list)\nfor libro in libros:\n    por_letra[libro[0]].append(libro)\nfor letra in sorted(por_letra):\n    print(f\"{letra}: {', '.join(por_letra[letra])}\")",
+    "en": "from collections import defaultdict\n\nbooks = [\"Matthew\", \"Mark\", \"Luke\", \"John\", \"Acts\", \"Romans\", \"Galatians\", \"Ephesians\", \"Philippians\", \"Colossians\"]\nby_letter = defaultdict(list)\nfor book in books:\n    by_letter[book[0]].append(book)\nfor letter in sorted(by_letter):\n    print(f\"{letter}: {', '.join(by_letter[letter])}\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "C: Colosenses\nE: Efesios\nF: Filipenses\nG: Gálatas\nH: Hechos\nJ: Juan\nL: Lucas\nM: Mateo, Marcos\nR: Romanos"
+     },
+     {
+      "py": "from collections import defaultdict as _dd\nassert isinstance(por_letra, _dd) and por_letra.default_factory is list",
+      "msg": {
+       "es": "por_letra debe ser un defaultdict(list).",
+       "en": "por_letra must be a defaultdict(list)."
+      }
+     },
+     {
+      "py": "assert dict(por_letra) == {'M': ['Mateo', 'Marcos'], 'L': ['Lucas'], 'J': ['Juan'], 'H': ['Hechos'], 'R': ['Romanos'], 'G': ['Gálatas'], 'E': ['Efesios'], 'F': ['Filipenses'], 'C': ['Colosenses']}",
+      "msg": {
+       "es": "Cada letra debe guardar todos sus libros (M: Mateo y Marcos).",
+       "en": "Each letter must keep all its books (M: Mateo and Marcos)."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "A: Acts\nC: Colossians\nE: Ephesians\nG: Galatians\nJ: John\nL: Luke\nM: Matthew, Mark\nP: Philippians\nR: Romans"
+     },
+     {
+      "py": "from collections import defaultdict as _dd\nassert isinstance(by_letter, _dd) and by_letter.default_factory is list",
+      "msg": {
+       "es": "by_letter debe ser un defaultdict(list).",
+       "en": "by_letter must be a defaultdict(list)."
+      }
+     },
+     {
+      "py": "assert dict(by_letter) == {'M': ['Matthew', 'Mark'], 'L': ['Luke'], 'J': ['John'], 'A': ['Acts'], 'R': ['Romans'], 'G': ['Galatians'], 'E': ['Ephesians'], 'P': ['Philippians'], 'C': ['Colossians']}",
+      "msg": {
+       "es": "Cada letra debe guardar todos sus libros (M: Matthew y Mark).",
+       "en": "Each letter must keep all its books (M: Matthew and Mark)."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "from collections import defaultdict\n\nlibros = [\"Mateo\", \"Marcos\", \"Lucas\", \"Juan\", \"Hechos\", \"Romanos\", \"Gálatas\", \"Efesios\", \"Filipenses\", \"Colosenses\"]\npor_letra = {}\nfor libro in libros:\n    por_letra[libro[0]].append(libro)\nfor letra in sorted(por_letra):\n    print(f\"{letra}: {', '.join(por_letra[letra])}\")",
+     "from collections import defaultdict\n\nlibros = [\"Mateo\", \"Marcos\", \"Lucas\", \"Juan\", \"Hechos\", \"Romanos\", \"Gálatas\", \"Efesios\", \"Filipenses\", \"Colosenses\"]\npor_letra = defaultdict(list)\nfor libro in libros:\n    por_letra[libro[0]] = [libro]\nfor letra in sorted(por_letra):\n    print(f\"{letra}: {', '.join(por_letra[letra])}\")",
+     "from collections import defaultdict\n\nlibros = [\"Mateo\", \"Marcos\", \"Lucas\", \"Juan\", \"Hechos\", \"Romanos\", \"Gálatas\", \"Efesios\", \"Filipenses\", \"Colosenses\"]\npor_letra = defaultdict(list)\nfor libro in libros:\n    por_letra[libro[0]].append(libro)\nfor letra in por_letra:\n    print(f\"{letra}: {', '.join(por_letra[letra])}\")"
+    ],
+    "en": [
+     "from collections import defaultdict\n\nbooks = [\"Matthew\", \"Mark\", \"Luke\", \"John\", \"Acts\", \"Romans\", \"Galatians\", \"Ephesians\", \"Philippians\", \"Colossians\"]\nby_letter = {}\nfor book in books:\n    by_letter[book[0]].append(book)\nfor letter in sorted(by_letter):\n    print(f\"{letter}: {', '.join(by_letter[letter])}\")",
+     "from collections import defaultdict\n\nbooks = [\"Matthew\", \"Mark\", \"Luke\", \"John\", \"Acts\", \"Romans\", \"Galatians\", \"Ephesians\", \"Philippians\", \"Colossians\"]\nby_letter = defaultdict(list)\nfor book in books:\n    by_letter[book[0]] = [book]\nfor letter in sorted(by_letter):\n    print(f\"{letter}: {', '.join(by_letter[letter])}\")"
+    ]
+   }
+  },
+  {
+   "id": "orden-con-desempate",
+   "tipo": "hueco",
+   "enunciado": {
+    "es": "Ordena los libros **de más a menos capítulos** y, si empatan, **en orden alfabético**. Completa la `key` con una `lambda` que reciba cada par `(libro, total)`. Debe salir:\n```\nHechos 28\nMateo 28\nLucas 24\nJuan 21\nMarcos 16\n```",
+    "en": "Sort the books **from most to fewest chapters** and, on a tie, **alphabetically**. Fill in the `key` with a `lambda` that receives each `(book, total)` pair. It should print:\n```\nActs 28\nMatthew 28\nLuke 24\nJohn 21\nMark 16\n```"
+   },
+   "plantilla": {
+    "es": "capitulos = {\"Marcos\": 16, \"Mateo\": 28, \"Juan\": 21, \"Hechos\": 28, \"Lucas\": 24}\nfor libro, total in sorted(capitulos.items(), key=___):\n    print(libro, total)",
+    "en": "chapters = {\"Mark\": 16, \"Matthew\": 28, \"John\": 21, \"Acts\": 28, \"Luke\": 24}\nfor book, total in sorted(chapters.items(), key=___):\n    print(book, total)"
+   },
+   "pistas": {
+    "es": [
+     "Si la `key` devuelve una tupla, Python compara el primer valor y, si empatan, el segundo.",
+     "Un número negativo invierte el orden solo de ese valor: `lambda par: (-par[1], par[0])`."
+    ],
+    "en": [
+     "If the `key` returns a tuple, Python compares the first value and, on a tie, the second.",
+     "A negative number reverses the order of that value only: `lambda pair: (-pair[1], pair[0])`."
+    ]
+   },
+   "solucion": {
+    "es": "capitulos = {\"Marcos\": 16, \"Mateo\": 28, \"Juan\": 21, \"Hechos\": 28, \"Lucas\": 24}\nfor libro, total in sorted(capitulos.items(), key=lambda par: (-par[1], par[0])):\n    print(libro, total)",
+    "en": "chapters = {\"Mark\": 16, \"Matthew\": 28, \"John\": 21, \"Acts\": 28, \"Luke\": 24}\nfor book, total in sorted(chapters.items(), key=lambda pair: (-pair[1], pair[0])):\n    print(book, total)"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Hechos 28\nMateo 28\nLucas 24\nJuan 21\nMarcos 16"
+     },
+     {
+      "py": "assert 'lambda' in _codigo",
+      "msg": {
+       "es": "La key debe ser una lambda.",
+       "en": "The key must be a lambda."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Acts 28\nMatthew 28\nLuke 24\nJohn 21\nMark 16"
+     },
+     {
+      "py": "assert 'lambda' in _codigo",
+      "msg": {
+       "es": "La key debe ser una lambda.",
+       "en": "The key must be a lambda."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "capitulos = {\"Marcos\": 16, \"Mateo\": 28, \"Juan\": 21, \"Hechos\": 28, \"Lucas\": 24}\nfor libro, total in sorted(capitulos.items(), key=lambda par: par[1]):\n    print(libro, total)",
+     "capitulos = {\"Marcos\": 16, \"Mateo\": 28, \"Juan\": 21, \"Hechos\": 28, \"Lucas\": 24}\nfor libro, total in sorted(capitulos.items(), key=lambda par: -par[1]):\n    print(libro, total)",
+     "capitulos = {\"Marcos\": 16, \"Mateo\": 28, \"Juan\": 21, \"Hechos\": 28, \"Lucas\": 24}\nfor libro, total in sorted(capitulos.items(), key=par[1]):\n    print(libro, total)"
+    ],
+    "en": [
+     "chapters = {\"Mark\": 16, \"Matthew\": 28, \"John\": 21, \"Acts\": 28, \"Luke\": 24}\nfor book, total in sorted(chapters.items(), key=lambda pair: pair[1]):\n    print(book, total)",
+     "chapters = {\"Mark\": 16, \"Matthew\": 28, \"John\": 21, \"Acts\": 28, \"Luke\": 24}\nfor book, total in sorted(chapters.items(), key=lambda pair: -pair[1]):\n    print(book, total)",
+     "chapters = {\"Mark\": 16, \"Matthew\": 28, \"John\": 21, \"Acts\": 28, \"Luke\": 24}\nfor book, total in sorted(chapters.items(), key=pair[1]):\n    print(book, total)"
+    ]
+   }
+  },
+  {
+   "id": "comprensiones",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Con Salmos 119:105 ya separado en `palabras`, crea **con una comprensión cada uno**:\n- `largos`: diccionario palabra → número de letras, solo con las palabras de **más de 3 letras**;\n- `iniciales`: **conjunto** con la primera letra de cada palabra.\n\nMuestra `largos` y luego `sorted(iniciales)`:\n```\n{'palabra': 7, 'lámpara': 7, 'para': 4, 'pies': 4, 'camino': 6}\n['c', 'e', 'l', 'm', 'p', 't', 'u', 'y']\n```",
+    "en": "With Psalm 119:105 already split into `words`, create **each one with a comprehension**:\n- `lengths`: dictionary word → number of letters, only for words with **more than 3 letters**;\n- `initials`: a **set** with the first letter of each word.\n\nShow `lengths` and then `sorted(initials)`:\n```\n{'your': 4, 'word': 4, 'lamp': 4, 'feet': 4, 'light': 5, 'path': 4}\n['a', 'f', 'i', 'l', 'm', 'p', 't', 'w', 'y']\n```"
+   },
+   "inicial": {
+    "es": "texto = \"Tu palabra es una lámpara para mis pies y una luz para mi camino.\"\npalabras = [p.strip(\".,\").lower() for p in texto.split()]\n",
+    "en": "text = \"Your word is a lamp to my feet and a light to my path.\"\nwords = [w.strip(\".,\").lower() for w in text.split()]\n"
+   },
+   "pistas": {
+    "es": [
+     "Diccionario: `{clave: valor for x in lista if condición}`. Conjunto: `{valor for x in lista}` (sin dos puntos).",
+     "`largos = {p: len(p) for p in palabras if len(p) > 3}` e `iniciales = {p[0] for p in palabras}`."
+    ],
+    "en": [
+     "Dictionary: `{key: value for x in items if condition}`. Set: `{value for x in items}` (no colon).",
+     "`lengths = {w: len(w) for w in words if len(w) > 3}` and `initials = {w[0] for w in words}`."
+    ]
+   },
+   "solucion": {
+    "es": "texto = \"Tu palabra es una lámpara para mis pies y una luz para mi camino.\"\npalabras = [p.strip(\".,\").lower() for p in texto.split()]\nlargos = {p: len(p) for p in palabras if len(p) > 3}\niniciales = {p[0] for p in palabras}\nprint(largos)\nprint(sorted(iniciales))",
+    "en": "text = \"Your word is a lamp to my feet and a light to my path.\"\nwords = [w.strip(\".,\").lower() for w in text.split()]\nlengths = {w: len(w) for w in words if len(w) > 3}\ninitials = {w[0] for w in words}\nprint(lengths)\nprint(sorted(initials))"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "{'palabra': 7, 'lámpara': 7, 'para': 4, 'pies': 4, 'camino': 6}\n['c', 'e', 'l', 'm', 'p', 't', 'u', 'y']"
+     },
+     {
+      "py": "assert largos == {p: len(p) for p in palabras if len(p) > 3}",
+      "msg": {
+       "es": "largos debe tener solo las palabras de más de 3 letras, con su largo.",
+       "en": "largos must have only the words longer than 3 letters, with their length."
+      }
+     },
+     {
+      "py": "assert isinstance(iniciales, set) and iniciales == {p[0] for p in palabras}",
+      "msg": {
+       "es": "iniciales debe ser un conjunto (set) con la primera letra de cada palabra.",
+       "en": "iniciales must be a set with the first letter of each word."
+      }
+     },
+     {
+      "py": "import re as _re\nassert len(_re.findall(r'\\{[^{}]*\\bfor\\b[^{}]*\\}', _codigo)) >= 2",
+      "msg": {
+       "es": "Crea largos e iniciales con comprensiones entre llaves { ... for ... }, no con un bucle aparte.",
+       "en": "Create largos and iniciales with comprehensions in braces { ... for ... }, not with a separate loop."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "{'your': 4, 'word': 4, 'lamp': 4, 'feet': 4, 'light': 5, 'path': 4}\n['a', 'f', 'i', 'l', 'm', 'p', 't', 'w', 'y']"
+     },
+     {
+      "py": "assert lengths == {w: len(w) for w in words if len(w) > 3}",
+      "msg": {
+       "es": "lengths debe tener solo las palabras de más de 3 letras, con su largo.",
+       "en": "lengths must have only the words longer than 3 letters, with their length."
+      }
+     },
+     {
+      "py": "assert isinstance(initials, set) and initials == {w[0] for w in words}",
+      "msg": {
+       "es": "initials debe ser un conjunto (set) con la primera letra de cada palabra.",
+       "en": "initials must be a set with the first letter of each word."
+      }
+     },
+     {
+      "py": "import re as _re\nassert len(_re.findall(r'\\{[^{}]*\\bfor\\b[^{}]*\\}', _codigo)) >= 2",
+      "msg": {
+       "es": "Crea lengths e initials con comprensiones entre llaves { ... for ... }, no con un bucle aparte.",
+       "en": "Create lengths and initials with comprehensions in braces { ... for ... }, not with a separate loop."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "texto = \"Tu palabra es una lámpara para mis pies y una luz para mi camino.\"\npalabras = [p.strip(\".,\").lower() for p in texto.split()]\nlargos = {p: len(p) for p in palabras if len(p) >= 3}\niniciales = {p[0] for p in palabras}\nprint(largos)\nprint(sorted(iniciales))",
+     "texto = \"Tu palabra es una lámpara para mis pies y una luz para mi camino.\"\npalabras = [p.strip(\".,\").lower() for p in texto.split()]\nlargos = {p: len(p) for p in palabras if len(p) > 3}\niniciales = [p[0] for p in palabras]\nprint(largos)\nprint(sorted(iniciales))",
+     "texto = \"Tu palabra es una lámpara para mis pies y una luz para mi camino.\"\npalabras = [p.strip(\".,\").lower() for p in texto.split()]\nlargos = {}\nfor p in palabras:\n    if len(p) > 3:\n        largos[p] = len(p)\niniciales = set()\nfor p in palabras:\n    iniciales.add(p[0])\nprint(largos)\nprint(sorted(iniciales))"
+    ],
+    "en": [
+     "text = \"Your word is a lamp to my feet and a light to my path.\"\nwords = [w.strip(\".,\").lower() for w in text.split()]\nlengths = {w: len(w) for w in words if len(w) >= 3}\ninitials = {w[0] for w in words}\nprint(lengths)\nprint(sorted(initials))",
+     "text = \"Your word is a lamp to my feet and a light to my path.\"\nwords = [w.strip(\".,\").lower() for w in text.split()]\nlengths = {w: len(w) for w in words if len(w) > 3}\ninitials = [w[0] for w in words]\nprint(lengths)\nprint(sorted(initials))",
+     "text = \"Your word is a lamp to my feet and a light to my path.\"\nwords = [w.strip(\".,\").lower() for w in text.split()]\nlengths = {}\nfor w in words:\n    if len(w) > 3:\n        lengths[w] = len(w)\ninitials = set()\nfor w in words:\n    initials.add(w[0])\nprint(lengths)\nprint(sorted(initials))"
+    ]
+   }
+  },
+  {
+   "id": "concordancia",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Escribe `concordancia(versos)`: recibe un diccionario referencia → texto y devuelve un `defaultdict(list)` palabra → lista de referencias donde aparece. Cada palabra va sin los `SIGNOS` del borde y en minúsculas; si una palabra se repite en el mismo verso, su referencia va **una sola vez**; y si una palabra queda vacía (era solo un signo), se salta. Luego muestra:\n```\nluz: Génesis 1:3, Salmos 119:105, Juan 1:4, Juan 1:5\ntinieblas: Juan 1:5\n```",
+    "en": "Write `concordance(verses)`: it receives a dictionary reference → text and returns a `defaultdict(list)` word → list of references where it appears. Each word goes without the edge `SIGNOS` and in lowercase; if a word repeats in the same verse, its reference goes **only once**; and if a word ends up empty (it was only a sign), skip it. Then show:\n```\nlight: Genesis 1:3, Psalm 119:105, John 1:4, John 1:5\ndarkness: John 1:5\n```"
+   },
+   "inicial": {
+    "es": "from collections import defaultdict\n\nSIGNOS = \".,;:!?¡¿“”‘’\\\"'()«»—\"\nversos = {\n    \"Génesis 1:3\": \"Y dijo Dios: Sea la luz. Y fue la luz.\",\n    \"Salmos 119:105\": \"Tu palabra es una lámpara para mis pies y una luz para mi camino.\",\n    \"Juan 1:4\": \"En él estaba la vida, y la vida era la luz de los hombres.\",\n    \"Juan 1:5\": \"La luz brilla en las tinieblas, y las tinieblas no la vencieron.\",\n}\n\ndef concordancia(versos):\n    \n",
+    "en": "from collections import defaultdict\n\nSIGNOS = \".,;:!?¡¿“”‘’\\\"'()«»—\"\nverses = {\n    \"Genesis 1:3\": \"And God said, “Let there be light,” and there was light.\",\n    \"Psalm 119:105\": \"Your word is a lamp to my feet and a light to my path.\",\n    \"John 1:4\": \"In Him was life, and that life was the light of men.\",\n    \"John 1:5\": \"The Light shines in the darkness, and the darkness has not overcome it.\",\n}\n\ndef concordance(verses):\n    \n"
+   },
+   "pistas": {
+    "es": [
+     "Recorre `versos.items()` y, dentro, cada palabra de `texto.split()`; límpiala con `palabra.strip(SIGNOS).lower()`.",
+     "Antes de agregar: `if palabra and ref not in indice[palabra]: indice[palabra].append(ref)`. Al final, `return indice`."
+    ],
+    "en": [
+     "Loop over `verses.items()` and, inside, each word of `text.split()`; clean it with `word.strip(SIGNOS).lower()`.",
+     "Before adding: `if word and ref not in index[word]: index[word].append(ref)`. At the end, `return index`."
+    ]
+   },
+   "solucion": {
+    "es": "from collections import defaultdict\n\nSIGNOS = \".,;:!?¡¿“”‘’\\\"'()«»—\"\nversos = {\n    \"Génesis 1:3\": \"Y dijo Dios: Sea la luz. Y fue la luz.\",\n    \"Salmos 119:105\": \"Tu palabra es una lámpara para mis pies y una luz para mi camino.\",\n    \"Juan 1:4\": \"En él estaba la vida, y la vida era la luz de los hombres.\",\n    \"Juan 1:5\": \"La luz brilla en las tinieblas, y las tinieblas no la vencieron.\",\n}\n\ndef concordancia(versos):\n    indice = defaultdict(list)\n    for ref, texto in versos.items():\n        for palabra in texto.split():\n            palabra = palabra.strip(SIGNOS).lower()\n            if palabra and ref not in indice[palabra]:\n                indice[palabra].append(ref)\n    return indice\n\nconc = concordancia(versos)\nprint(\"luz:\", \", \".join(conc[\"luz\"]))\nprint(\"tinieblas:\", \", \".join(conc[\"tinieblas\"]))",
+    "en": "from collections import defaultdict\n\nSIGNOS = \".,;:!?¡¿“”‘’\\\"'()«»—\"\nverses = {\n    \"Genesis 1:3\": \"And God said, “Let there be light,” and there was light.\",\n    \"Psalm 119:105\": \"Your word is a lamp to my feet and a light to my path.\",\n    \"John 1:4\": \"In Him was life, and that life was the light of men.\",\n    \"John 1:5\": \"The Light shines in the darkness, and the darkness has not overcome it.\",\n}\n\ndef concordance(verses):\n    index = defaultdict(list)\n    for ref, text in verses.items():\n        for word in text.split():\n            word = word.strip(SIGNOS).lower()\n            if word and ref not in index[word]:\n                index[word].append(ref)\n    return index\n\nconc = concordance(verses)\nprint(\"light:\", \", \".join(conc[\"light\"]))\nprint(\"darkness:\", \", \".join(conc[\"darkness\"]))"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "luz: Génesis 1:3, Salmos 119:105, Juan 1:4, Juan 1:5\ntinieblas: Juan 1:5"
+     },
+     {
+      "py": "assert dict(concordancia({})) == {}",
+      "msg": {
+       "es": "Con un diccionario vacío, concordancia debe devolver un índice vacío.",
+       "en": "With an empty dictionary, concordancia must return an empty index."
+      }
+     },
+     {
+      "py": "assert dict(concordancia({'A 1:1': 'Luz, luz.'})) == {'luz': ['A 1:1']}",
+      "msg": {
+       "es": "concordancia({'A 1:1': 'Luz, luz.'}) debe dar {'luz': ['A 1:1']}: minúsculas, sin signos y sin repetir la referencia.",
+       "en": "concordancia({'A 1:1': 'Luz, luz.'}) must give {'luz': ['A 1:1']}: lowercase, no signs and no repeated reference."
+      }
+     },
+     {
+      "py": "_r = concordancia({'A': 'sol ; luz', 'B': 'Sol'})\nassert _r['sol'] == ['A', 'B'] and '' not in _r",
+      "msg": {
+       "es": "Las referencias van en el orden de los versos, y un signo suelto («;») no es una palabra: sáltalo si queda vacío.",
+       "en": "References go in verse order, and a lone sign (\";\") is not a word: skip it if it ends up empty."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "light: Genesis 1:3, Psalm 119:105, John 1:4, John 1:5\ndarkness: John 1:5"
+     },
+     {
+      "py": "assert dict(concordance({})) == {}",
+      "msg": {
+       "es": "Con un diccionario vacío, concordance debe devolver un índice vacío.",
+       "en": "With an empty dictionary, concordance must return an empty index."
+      }
+     },
+     {
+      "py": "assert dict(concordance({'A 1:1': 'Luz, luz.'})) == {'luz': ['A 1:1']}",
+      "msg": {
+       "es": "concordance({'A 1:1': 'Luz, luz.'}) debe dar {'luz': ['A 1:1']}: minúsculas, sin signos y sin repetir la referencia.",
+       "en": "concordance({'A 1:1': 'Luz, luz.'}) must give {'luz': ['A 1:1']}: lowercase, no signs and no repeated reference."
+      }
+     },
+     {
+      "py": "_r = concordance({'A': 'sol ; luz', 'B': 'Sol'})\nassert _r['sol'] == ['A', 'B'] and '' not in _r",
+      "msg": {
+       "es": "Las referencias van en el orden de los versos, y un signo suelto («;») no es una palabra: sáltalo si queda vacío.",
+       "en": "References go in verse order, and a lone sign (\";\") is not a word: skip it if it ends up empty."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "from collections import defaultdict\n\nSIGNOS = \".,;:!?¡¿“”‘’\\\"'()«»—\"\nversos = {\n    \"Génesis 1:3\": \"Y dijo Dios: Sea la luz. Y fue la luz.\",\n    \"Salmos 119:105\": \"Tu palabra es una lámpara para mis pies y una luz para mi camino.\",\n    \"Juan 1:4\": \"En él estaba la vida, y la vida era la luz de los hombres.\",\n    \"Juan 1:5\": \"La luz brilla en las tinieblas, y las tinieblas no la vencieron.\",\n}\n\ndef concordancia(versos):\n    indice = defaultdict(list)\n    for ref, texto in versos.items():\n        for palabra in texto.split():\n            palabra = palabra.strip(SIGNOS).lower()\n            if palabra:\n                indice[palabra].append(ref)\n    return indice\n\nconc = concordancia(versos)\nprint(\"luz:\", \", \".join(conc[\"luz\"]))\nprint(\"tinieblas:\", \", \".join(conc[\"tinieblas\"]))",
+     "from collections import defaultdict\n\nSIGNOS = \".,;:!?¡¿“”‘’\\\"'()«»—\"\nversos = {\n    \"Génesis 1:3\": \"Y dijo Dios: Sea la luz. Y fue la luz.\",\n    \"Salmos 119:105\": \"Tu palabra es una lámpara para mis pies y una luz para mi camino.\",\n    \"Juan 1:4\": \"En él estaba la vida, y la vida era la luz de los hombres.\",\n    \"Juan 1:5\": \"La luz brilla en las tinieblas, y las tinieblas no la vencieron.\",\n}\n\ndef concordancia(versos):\n    indice = defaultdict(list)\n    for ref, texto in versos.items():\n        for palabra in texto.split():\n            palabra = palabra.strip(SIGNOS)\n            if palabra and ref not in indice[palabra]:\n                indice[palabra].append(ref)\n    return indice\n\nconc = concordancia(versos)\nprint(\"luz:\", \", \".join(conc[\"luz\"]))\nprint(\"tinieblas:\", \", \".join(conc[\"tinieblas\"]))",
+     "from collections import defaultdict\n\nSIGNOS = \".,;:!?¡¿“”‘’\\\"'()«»—\"\nversos = {\n    \"Génesis 1:3\": \"Y dijo Dios: Sea la luz. Y fue la luz.\",\n    \"Salmos 119:105\": \"Tu palabra es una lámpara para mis pies y una luz para mi camino.\",\n    \"Juan 1:4\": \"En él estaba la vida, y la vida era la luz de los hombres.\",\n    \"Juan 1:5\": \"La luz brilla en las tinieblas, y las tinieblas no la vencieron.\",\n}\n\ndef concordancia(versos):\n    indice = defaultdict(list)\n    for ref, texto in versos.items():\n        for palabra in texto.split():\n            palabra = palabra.lower()\n            if palabra and ref not in indice[palabra]:\n                indice[palabra].append(ref)\n    return indice\n\nconc = concordancia(versos)\nprint(\"luz:\", \", \".join(conc[\"luz\"]))\nprint(\"tinieblas:\", \", \".join(conc[\"tinieblas\"]))"
+    ],
+    "en": [
+     "from collections import defaultdict\n\nSIGNOS = \".,;:!?¡¿“”‘’\\\"'()«»—\"\nverses = {\n    \"Genesis 1:3\": \"And God said, “Let there be light,” and there was light.\",\n    \"Psalm 119:105\": \"Your word is a lamp to my feet and a light to my path.\",\n    \"John 1:4\": \"In Him was life, and that life was the light of men.\",\n    \"John 1:5\": \"The Light shines in the darkness, and the darkness has not overcome it.\",\n}\n\ndef concordance(verses):\n    index = defaultdict(list)\n    for ref, text in verses.items():\n        for word in text.split():\n            word = word.strip(SIGNOS).lower()\n            if word:\n                index[word].append(ref)\n    return index\n\nconc = concordance(verses)\nprint(\"light:\", \", \".join(conc[\"light\"]))\nprint(\"darkness:\", \", \".join(conc[\"darkness\"]))",
+     "from collections import defaultdict\n\nSIGNOS = \".,;:!?¡¿“”‘’\\\"'()«»—\"\nverses = {\n    \"Genesis 1:3\": \"And God said, “Let there be light,” and there was light.\",\n    \"Psalm 119:105\": \"Your word is a lamp to my feet and a light to my path.\",\n    \"John 1:4\": \"In Him was life, and that life was the light of men.\",\n    \"John 1:5\": \"The Light shines in the darkness, and the darkness has not overcome it.\",\n}\n\ndef concordance(verses):\n    index = defaultdict(list)\n    for ref, text in verses.items():\n        for word in text.split():\n            word = word.strip(SIGNOS)\n            if word and ref not in index[word]:\n                index[word].append(ref)\n    return index\n\nconc = concordance(verses)\nprint(\"light:\", \", \".join(conc[\"light\"]))\nprint(\"darkness:\", \", \".join(conc[\"darkness\"]))"
+    ]
+   }
+  },
+  {
+   "id": "palabras-del-sendero",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "`versiculos.json` guarda todos los versículos del sendero (`datos[id][\"es\"][\"texto\"]`). Cuenta las palabras **de 5 letras o más** (limpias con `SIGNOS` y en minúsculas) de todos los textos en español y muestra las **5 más frecuentes**, de más a menos veces y, en empate, **en orden alfabético** (usa `sorted` con `key`, no `most_common`). Con los versículos de hoy sale:\n```\njehová: 6\nnombre: 6\nporque: 5\ntodos: 4\ncielos: 3\n```\n(Si el juego suma versículos, el resultado puede cambiar: la prueba lo calcula de nuevo).",
+    "en": "`versiculos.json` holds all the verses of the path (`data[id][\"en\"][\"texto\"]`). Count the words **with 5 letters or more** (cleaned with `SIGNOS` and lowercase) in all the English texts and show the **5 most frequent**, from most to fewest times and, on a tie, **alphabetically** (use `sorted` with `key`, not `most_common`). With today's verses it prints:\n```\nevery: 6\nlight: 5\ncubits: 3\ngreat: 3\nisrael: 3\n```\n(If the game adds verses, the result may change: the test calculates it again)."
+   },
+   "inicial": {
+    "es": "import json\nfrom collections import Counter\n\nSIGNOS = \".,;:!?¡¿“”‘’\\\"'()«»—\"\n",
+    "en": "import json\nfrom collections import Counter\n\nSIGNOS = \".,;:!?¡¿“”‘’\\\"'()«»—\"\n"
+   },
+   "pistas": {
+    "es": [
+     "Abre el archivo con `json.load`; recorre `datos.values()` y suma con `conteo[palabra] += 1` solo si `len(palabra) >= 5`.",
+     "`sorted(conteo.items(), key=lambda par: (-par[1], par[0]))[:5]` te da los 5 pares ya ordenados."
+    ],
+    "en": [
+     "Open the file with `json.load`; loop over `data.values()` and add with `counts[word] += 1` only if `len(word) >= 5`.",
+     "`sorted(counts.items(), key=lambda pair: (-pair[1], pair[0]))[:5]` gives you the 5 pairs already sorted."
+    ]
+   },
+   "solucion": {
+    "es": "import json\nfrom collections import Counter\n\nSIGNOS = \".,;:!?¡¿“”‘’\\\"'()«»—\"\n\nwith open(\"versiculos.json\", encoding=\"utf-8\") as f:\n    datos = json.load(f)\n\nconteo = Counter()\nfor cita in datos.values():\n    for palabra in cita[\"es\"][\"texto\"].split():\n        palabra = palabra.strip(SIGNOS).lower()\n        if len(palabra) >= 5:\n            conteo[palabra] += 1\n\nfor palabra, veces in sorted(conteo.items(), key=lambda par: (-par[1], par[0]))[:5]:\n    print(f\"{palabra}: {veces}\")",
+    "en": "import json\nfrom collections import Counter\n\nSIGNOS = \".,;:!?¡¿“”‘’\\\"'()«»—\"\n\nwith open(\"versiculos.json\", encoding=\"utf-8\") as f:\n    data = json.load(f)\n\ncounts = Counter()\nfor quote in data.values():\n    for word in quote[\"en\"][\"texto\"].split():\n        word = word.strip(SIGNOS).lower()\n        if len(word) >= 5:\n            counts[word] += 1\n\nfor word, times in sorted(counts.items(), key=lambda pair: (-pair[1], pair[0]))[:5]:\n    print(f\"{word}: {times}\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "py": "import json as _j\nfrom collections import Counter as _C\n_d = _j.load(open('versiculos.json', encoding='utf-8'))\n_c = _C()\nfor _v in _d.values():\n    for _p in _v['es']['texto'].split():\n        _p = _p.strip(SIGNOS).lower()\n        if len(_p) >= 5:\n            _c[_p] += 1\n_esp = '\\n'.join(f'{a}: {b}' for a, b in sorted(_c.items(), key=lambda x: (-x[1], x[0]))[:5])\nassert '\\n'.join(l.rstrip() for l in _salida.strip().split('\\n')) == _esp",
+      "msg": {
+       "es": "La salida no coincide: 5 líneas «palabra: n», solo palabras de 5 letras o más (ya limpias), de más a menos veces y, en empate, en orden alfabético.",
+       "en": "The output doesn't match: 5 lines \"word: n\", only words with 5 letters or more (already cleaned), from most to fewest times and, on a tie, alphabetically."
+      }
+     },
+     {
+      "py": "assert 'versiculos.json' in _codigo and 'Counter(' in _codigo and 'key=' in _codigo",
+      "msg": {
+       "es": "Lee versiculos.json, cuenta con Counter y ordena con sorted(..., key=...).",
+       "en": "Read versiculos.json, count with Counter and sort with sorted(..., key=...)."
+      }
+     },
+     {
+      "py": "import json as _j\n_f = open('versiculos.json', 'w', encoding='utf-8')\n_j.dump({'x': {'es': {'texto': 'zarza zarza arcos arcos, mar', 'ref': 'X 1:1'}}}, _f)\n_f.close()\nassert _correr([]).strip() == 'arcos: 2\\nzarza: 2'",
+      "msg": {
+       "es": "Probé con otro versiculos.json («zarza zarza arcos arcos, mar») y debía salir «arcos: 2» antes que «zarza: 2»: en empate, orden alfabético.",
+       "en": "I tried another versiculos.json (\"zarza zarza arcos arcos, mar\") and \"arcos: 2\" had to come before \"zarza: 2\": alphabetical on a tie."
+      }
+     }
+    ],
+    "en": [
+     {
+      "py": "import json as _j\nfrom collections import Counter as _C\n_d = _j.load(open('versiculos.json', encoding='utf-8'))\n_c = _C()\nfor _v in _d.values():\n    for _p in _v['en']['texto'].split():\n        _p = _p.strip(SIGNOS).lower()\n        if len(_p) >= 5:\n            _c[_p] += 1\n_esp = '\\n'.join(f'{a}: {b}' for a, b in sorted(_c.items(), key=lambda x: (-x[1], x[0]))[:5])\nassert '\\n'.join(l.rstrip() for l in _salida.strip().split('\\n')) == _esp",
+      "msg": {
+       "es": "La salida no coincide: 5 líneas «palabra: n», solo palabras de 5 letras o más (ya limpias), de más a menos veces y, en empate, en orden alfabético.",
+       "en": "The output doesn't match: 5 lines \"word: n\", only words with 5 letters or more (already cleaned), from most to fewest times and, on a tie, alphabetically."
+      }
+     },
+     {
+      "py": "assert 'versiculos.json' in _codigo and 'Counter(' in _codigo and 'key=' in _codigo",
+      "msg": {
+       "es": "Lee versiculos.json, cuenta con Counter y ordena con sorted(..., key=...).",
+       "en": "Read versiculos.json, count with Counter and sort with sorted(..., key=...)."
+      }
+     },
+     {
+      "py": "import json as _j\n_f = open('versiculos.json', 'w', encoding='utf-8')\n_j.dump({'x': {'en': {'texto': 'zarza zarza arcos arcos, mar', 'ref': 'X 1:1'}}}, _f)\n_f.close()\nassert _correr([]).strip() == 'arcos: 2\\nzarza: 2'",
+      "msg": {
+       "es": "Probé con otro versiculos.json («zarza zarza arcos arcos, mar») y debía salir «arcos: 2» antes que «zarza: 2»: en empate, orden alfabético.",
+       "en": "I tried another versiculos.json (\"zarza zarza arcos arcos, mar\") and \"arcos: 2\" had to come before \"zarza: 2\": alphabetical on a tie."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "import json\nfrom collections import Counter\n\nSIGNOS = \".,;:!?¡¿“”‘’\\\"'()«»—\"\n\nwith open(\"versiculos.json\", encoding=\"utf-8\") as f:\n    datos = json.load(f)\n\nconteo = Counter()\nfor cita in datos.values():\n    for palabra in cita[\"es\"][\"texto\"].split():\n        palabra = palabra.strip(SIGNOS).lower()\n        if len(palabra) > 5:\n            conteo[palabra] += 1\n\nfor palabra, veces in sorted(conteo.items(), key=lambda par: (-par[1], par[0]))[:5]:\n    print(f\"{palabra}: {veces}\")",
+     "import json\nfrom collections import Counter\n\nSIGNOS = \".,;:!?¡¿“”‘’\\\"'()«»—\"\n\nwith open(\"versiculos.json\", encoding=\"utf-8\") as f:\n    datos = json.load(f)\n\nconteo = Counter()\nfor cita in datos.values():\n    for palabra in cita[\"es\"][\"texto\"].split():\n        palabra = palabra.strip(SIGNOS).lower()\n        if len(palabra) >= 5:\n            conteo[palabra] += 1\n\nfor palabra, veces in sorted(conteo.items(), key=lambda par: par[1], reverse=True)[:5]:\n    print(f\"{palabra}: {veces}\")",
+     "import json\nfrom collections import Counter\n\nSIGNOS = \".,;:!?¡¿“”‘’\\\"'()«»—\"\n\nwith open(\"versiculos.json\", encoding=\"utf-8\") as f:\n    datos = json.load(f)\n\nconteo = Counter()\nfor cita in datos.values():\n    for palabra in cita[\"es\"][\"texto\"].split():\n        palabra = palabra.lower()\n        if len(palabra) >= 5:\n            conteo[palabra] += 1\n\nfor palabra, veces in sorted(conteo.items(), key=lambda par: (-par[1], par[0]))[:5]:\n    print(f\"{palabra}: {veces}\")"
+    ],
+    "en": [
+     "import json\nfrom collections import Counter\n\nSIGNOS = \".,;:!?¡¿“”‘’\\\"'()«»—\"\n\nwith open(\"versiculos.json\", encoding=\"utf-8\") as f:\n    data = json.load(f)\n\ncounts = Counter()\nfor quote in data.values():\n    for word in quote[\"en\"][\"texto\"].split():\n        word = word.strip(SIGNOS).lower()\n        if len(word) > 5:\n            counts[word] += 1\n\nfor word, times in sorted(counts.items(), key=lambda pair: (-pair[1], pair[0]))[:5]:\n    print(f\"{word}: {times}\")",
+     "import json\nfrom collections import Counter\n\nSIGNOS = \".,;:!?¡¿“”‘’\\\"'()«»—\"\n\nwith open(\"versiculos.json\", encoding=\"utf-8\") as f:\n    data = json.load(f)\n\ncounts = Counter()\nfor quote in data.values():\n    for word in quote[\"en\"][\"texto\"].split():\n        word = word.lower()\n        if len(word) >= 5:\n            counts[word] += 1\n\nfor word, times in sorted(counts.items(), key=lambda pair: (-pair[1], pair[0]))[:5]:\n    print(f\"{word}: {times}\")"
+    ]
+   }
+  },
+  {
+   "id": "concordancia-del-sendero",
+   "tipo": "escribir",
+   "reto": true,
+   "enunciado": {
+    "es": "**Reto: la concordancia del sendero.** Con `versiculos.json` (cada cita tiene `[\"es\"][\"texto\"]` y `[\"es\"][\"ref\"]`):\n1. Arma `indice`, un `defaultdict(list)` palabra → referencias, con las palabras de **4 letras o más** (limpias con `SIGNOS`, en minúsculas) y sin repetir una referencia.\n2. Escribe `buscar(palabra)`: devuelve la lista de referencias sin distinguir mayúsculas, o `[]` si no está (¡sin agregar la palabra al índice!).\n3. Muestra las **3 palabras que aparecen en más versículos** (en empate, alfabético) como `palabra (n): ref; ref`.\n4. Con una **comprensión de conjunto**, cuenta los libros distintos citados (el libro es la referencia sin su última parte: `ref.rsplit(\" \", 1)[0]`).\n\nCon los versículos de hoy sale:\n```\npara (8): Génesis 2:19; Génesis 2:20; Salmos 119:105; 2 Timoteo 3:16; Colosenses 3:23; Proverbios 13:22; Salmos 119:11; Apocalipsis 21:2\ntodo (8): Génesis 2:19; Génesis 2:20; Jueces 6:37; Mateo 13:34; Hebreos 12:1; 1 Corintios 14:40; Colosenses 3:23; 1 Tesalonicenses 5:21\ndios (7): Génesis 1:1; Génesis 1:3; Génesis 2:19; 2 Timoteo 3:16; Efesios 2:8; 2 Corintios 3:3; Apocalipsis 21:2\nLibros citados: 17\n```",
+    "en": "**Challenge: the path's concordance.** With `versiculos.json` (each quote has `[\"en\"][\"texto\"]` and `[\"en\"][\"ref\"]`):\n1. Build `index`, a `defaultdict(list)` word → references, with the words of **4 letters or more** (cleaned with `SIGNOS`, lowercase) and without repeating a reference.\n2. Write `search(word)`: it returns the list of references ignoring case, or `[]` if it isn't there (without adding the word to the index!).\n3. Show the **3 words found in the most verses** (alphabetical on a tie) as `word (n): ref; ref`.\n4. With a **set comprehension**, count the different books quoted (the book is the reference without its last part: `ref.rsplit(\" \", 1)[0]`).\n\nWith today's verses it prints:\n```\nlord (6): Genesis 2:19; Genesis 7:1; Proverbs 2:6; Psalm 23:1-6; Lamentations 3:22-23; Colossians 3:23\nyour (6): Genesis 7:1; Psalm 119:105; Psalm 23:1-6; Lamentations 3:22-23; Colossians 3:23; Psalm 119:11\nevery (5): Genesis 2:19; Genesis 2:20; Hebrews 12:1; Lamentations 3:22-23; Numbers 1:2\nBooks quoted: 17\n```"
+   },
+   "inicial": {
+    "es": "import json\nfrom collections import defaultdict\n\nSIGNOS = \".,;:!?¡¿“”‘’\\\"'()«»—\"\n",
+    "en": "import json\nfrom collections import defaultdict\n\nSIGNOS = \".,;:!?¡¿“”‘’\\\"'()«»—\"\n"
+   },
+   "pistas": {
+    "es": [
+     "Para el índice, el mismo bucle del ejercicio 5 pero con `len(palabra) >= 4`. En `buscar`, `indice.get(clave, [])` no crea la clave (a diferencia de `indice[clave]`).",
+     "Las 3 mejores: `sorted(indice.items(), key=lambda par: (-len(par[1]), par[0]))[:3]`. Los libros: `{cita[\"es\"][\"ref\"].rsplit(\" \", 1)[0] for cita in datos.values()}`."
+    ],
+    "en": [
+     "For the index, the same loop as exercise 5 but with `len(word) >= 4`. In `search`, `index.get(key, [])` doesn't create the key (unlike `index[key]`).",
+     "The top 3: `sorted(index.items(), key=lambda pair: (-len(pair[1]), pair[0]))[:3]`. The books: `{quote[\"en\"][\"ref\"].rsplit(\" \", 1)[0] for quote in data.values()}`."
+    ]
+   },
+   "solucion": {
+    "es": "import json\nfrom collections import defaultdict\n\nSIGNOS = \".,;:!?¡¿“”‘’\\\"'()«»—\"\n\nwith open(\"versiculos.json\", encoding=\"utf-8\") as f:\n    datos = json.load(f)\n\nindice = defaultdict(list)\nfor cita in datos.values():\n    ref = cita[\"es\"][\"ref\"]\n    for palabra in cita[\"es\"][\"texto\"].split():\n        palabra = palabra.strip(SIGNOS).lower()\n        if len(palabra) >= 4 and ref not in indice[palabra]:\n            indice[palabra].append(ref)\n\ndef buscar(palabra):\n    return list(indice.get(palabra.strip(SIGNOS).lower(), []))\n\nmejores = sorted(indice.items(), key=lambda par: (-len(par[1]), par[0]))[:3]\nfor palabra, refs in mejores:\n    print(f\"{palabra} ({len(refs)}): {'; '.join(refs)}\")\n\nlibros = {cita[\"es\"][\"ref\"].rsplit(\" \", 1)[0] for cita in datos.values()}\nprint(\"Libros citados:\", len(libros))",
+    "en": "import json\nfrom collections import defaultdict\n\nSIGNOS = \".,;:!?¡¿“”‘’\\\"'()«»—\"\n\nwith open(\"versiculos.json\", encoding=\"utf-8\") as f:\n    data = json.load(f)\n\nindex = defaultdict(list)\nfor quote in data.values():\n    ref = quote[\"en\"][\"ref\"]\n    for word in quote[\"en\"][\"texto\"].split():\n        word = word.strip(SIGNOS).lower()\n        if len(word) >= 4 and ref not in index[word]:\n            index[word].append(ref)\n\ndef search(word):\n    return list(index.get(word.strip(SIGNOS).lower(), []))\n\nbest = sorted(index.items(), key=lambda pair: (-len(pair[1]), pair[0]))[:3]\nfor word, refs in best:\n    print(f\"{word} ({len(refs)}): {'; '.join(refs)}\")\n\nbooks = {quote[\"en\"][\"ref\"].rsplit(\" \", 1)[0] for quote in data.values()}\nprint(\"Books quoted:\", len(books))"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "py": "import json as _j\n_d = _j.load(open('versiculos.json', encoding='utf-8'))\n_ix = {}\nfor _v in _d.values():\n    _r = _v['es']['ref']\n    for _p in _v['es']['texto'].split():\n        _p = _p.strip(SIGNOS).lower()\n        if len(_p) >= 4:\n            _ix.setdefault(_p, [])\n            if _r not in _ix[_p]: _ix[_p].append(_r)\n_top = sorted(_ix.items(), key=lambda x: (-len(x[1]), x[0]))[:3]\n_lib = {_v['es']['ref'].rsplit(' ', 1)[0] for _v in _d.values()}\n_esp = [f\"{a} ({len(b)}): {'; '.join(b)}\" for a, b in _top] + ['Libros citados: ' + str(len(_lib))]\nassert [l.rstrip() for l in _salida.strip().split('\\n')] == _esp",
+      "msg": {
+       "es": "La salida no coincide: las 3 palabras que están en más versículos (en empate, alfabético), con «palabra (n): ref; ref», y al final cuántos libros distintos se citan.",
+       "en": "The output doesn't match: the 3 words found in the most verses (alphabetical on a tie), as \"word (n): ref; ref\", and at the end how many different books are quoted."
+      }
+     },
+     {
+      "py": "from collections import defaultdict as _dd\nassert isinstance(indice, _dd)",
+      "msg": {
+       "es": "indice debe ser un defaultdict(list).",
+       "en": "indice must be a defaultdict(list)."
+      }
+     },
+     {
+      "py": "import json as _j\n_d = _j.load(open('versiculos.json', encoding='utf-8'))\n_ix = {}\nfor _v in _d.values():\n    _r = _v['es']['ref']\n    for _p in _v['es']['texto'].split():\n        _p = _p.strip(SIGNOS).lower()\n        if len(_p) >= 4:\n            _ix.setdefault(_p, [])\n            if _r not in _ix[_p]: _ix[_p].append(_r)\n_top = sorted(_ix.items(), key=lambda x: (-len(x[1]), x[0]))[:3]\n_lib = {_v['es']['ref'].rsplit(' ', 1)[0] for _v in _d.values()}\n_w = _top[0][0]\nassert buscar(_w.upper()) == _ix[_w] and buscar('zzzz') == [] and 'zzzz' not in indice",
+      "msg": {
+       "es": "buscar() no debe distinguir mayúsculas, debe devolver [] si la palabra no está, y no debe meter palabras nuevas en indice (usa .get).",
+       "en": "buscar() must ignore case, return [] if the word isn't there, and must not add new words to indice (use .get)."
+      }
+     },
+     {
+      "py": "import json as _j\n_f = open('versiculos.json', 'w', encoding='utf-8')\n_j.dump({'a': {'es': {'texto': 'Zarza ardiente', 'ref': 'Libro 3:2'}}, 'b': {'es': {'texto': 'zarza santo, arca.', 'ref': 'Libro 3:5'}}, 'c': {'es': {'texto': 'Arca del pacto', 'ref': 'Otro 25:10'}}}, _f)\n_f.close()\nassert [l.rstrip() for l in _correr([]).strip().split('\\n')] == ['arca (2): Libro 3:5; Otro 25:10', 'zarza (2): Libro 3:2; Libro 3:5', 'ardiente (1): Libro 3:2', 'Libros citados: 2']",
+      "msg": {
+       "es": "Probé con otro versiculos.json y el orden no salió bien: de más a menos versículos y, en empate, alfabético (arca antes que zarza); y los libros se cuentan sin repetir.",
+       "en": "I tried another versiculos.json and the order was wrong: from most to fewest verses and, on a tie, alphabetical (arca before zarza); and books are counted without repeats."
+      }
+     },
+     {
+      "py": "import re as _re\nassert 'lambda' in _codigo and _re.search(r'\\{[^{}]*\\bfor\\b[^{}]*\\}', _codigo)",
+      "msg": {
+       "es": "Ordena con sorted y una lambda, y cuenta los libros con una comprensión de conjunto { ... for ... }.",
+       "en": "Sort with sorted and a lambda, and count the books with a set comprehension { ... for ... }."
+      }
+     }
+    ],
+    "en": [
+     {
+      "py": "import json as _j\n_d = _j.load(open('versiculos.json', encoding='utf-8'))\n_ix = {}\nfor _v in _d.values():\n    _r = _v['en']['ref']\n    for _p in _v['en']['texto'].split():\n        _p = _p.strip(SIGNOS).lower()\n        if len(_p) >= 4:\n            _ix.setdefault(_p, [])\n            if _r not in _ix[_p]: _ix[_p].append(_r)\n_top = sorted(_ix.items(), key=lambda x: (-len(x[1]), x[0]))[:3]\n_lib = {_v['en']['ref'].rsplit(' ', 1)[0] for _v in _d.values()}\n_esp = [f\"{a} ({len(b)}): {'; '.join(b)}\" for a, b in _top] + ['Books quoted: ' + str(len(_lib))]\nassert [l.rstrip() for l in _salida.strip().split('\\n')] == _esp",
+      "msg": {
+       "es": "La salida no coincide: las 3 palabras que están en más versículos (en empate, alfabético), con «palabra (n): ref; ref», y al final cuántos libros distintos se citan.",
+       "en": "The output doesn't match: the 3 words found in the most verses (alphabetical on a tie), as \"word (n): ref; ref\", and at the end how many different books are quoted."
+      }
+     },
+     {
+      "py": "from collections import defaultdict as _dd\nassert isinstance(index, _dd)",
+      "msg": {
+       "es": "index debe ser un defaultdict(list).",
+       "en": "index must be a defaultdict(list)."
+      }
+     },
+     {
+      "py": "import json as _j\n_d = _j.load(open('versiculos.json', encoding='utf-8'))\n_ix = {}\nfor _v in _d.values():\n    _r = _v['en']['ref']\n    for _p in _v['en']['texto'].split():\n        _p = _p.strip(SIGNOS).lower()\n        if len(_p) >= 4:\n            _ix.setdefault(_p, [])\n            if _r not in _ix[_p]: _ix[_p].append(_r)\n_top = sorted(_ix.items(), key=lambda x: (-len(x[1]), x[0]))[:3]\n_lib = {_v['en']['ref'].rsplit(' ', 1)[0] for _v in _d.values()}\n_w = _top[0][0]\nassert search(_w.upper()) == _ix[_w] and search('zzzz') == [] and 'zzzz' not in index",
+      "msg": {
+       "es": "search() no debe distinguir mayúsculas, debe devolver [] si la palabra no está, y no debe meter palabras nuevas en index (usa .get).",
+       "en": "search() must ignore case, return [] if the word isn't there, and must not add new words to index (use .get)."
+      }
+     },
+     {
+      "py": "import json as _j\n_f = open('versiculos.json', 'w', encoding='utf-8')\n_j.dump({'a': {'en': {'texto': 'Zarza ardiente', 'ref': 'Libro 3:2'}}, 'b': {'en': {'texto': 'zarza santo, arca.', 'ref': 'Libro 3:5'}}, 'c': {'en': {'texto': 'Arca del pacto', 'ref': 'Otro 25:10'}}}, _f)\n_f.close()\nassert [l.rstrip() for l in _correr([]).strip().split('\\n')] == ['arca (2): Libro 3:5; Otro 25:10', 'zarza (2): Libro 3:2; Libro 3:5', 'ardiente (1): Libro 3:2', 'Books quoted: 2']",
+      "msg": {
+       "es": "Probé con otro versiculos.json y el orden no salió bien: de más a menos versículos y, en empate, alfabético (arca antes que zarza); y los libros se cuentan sin repetir.",
+       "en": "I tried another versiculos.json and the order was wrong: from most to fewest verses and, on a tie, alphabetical (arca before zarza); and books are counted without repeats."
+      }
+     },
+     {
+      "py": "import re as _re\nassert 'lambda' in _codigo and _re.search(r'\\{[^{}]*\\bfor\\b[^{}]*\\}', _codigo)",
+      "msg": {
+       "es": "Ordena con sorted y una lambda, y cuenta los libros con una comprensión de conjunto { ... for ... }.",
+       "en": "Sort with sorted and a lambda, and count the books with a set comprehension { ... for ... }."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "import json\nfrom collections import defaultdict\n\nSIGNOS = \".,;:!?¡¿“”‘’\\\"'()«»—\"\n\nwith open(\"versiculos.json\", encoding=\"utf-8\") as f:\n    datos = json.load(f)\n\nindice = defaultdict(list)\nfor cita in datos.values():\n    ref = cita[\"es\"][\"ref\"]\n    for palabra in cita[\"es\"][\"texto\"].split():\n        palabra = palabra.strip(SIGNOS).lower()\n        if len(palabra) >= 4 and ref not in indice[palabra]:\n            indice[palabra].append(ref)\n\ndef buscar(palabra):\n    return indice[palabra.lower()]\n\nmejores = sorted(indice.items(), key=lambda par: (-len(par[1]), par[0]))[:3]\nfor palabra, refs in mejores:\n    print(f\"{palabra} ({len(refs)}): {'; '.join(refs)}\")\n\nlibros = {cita[\"es\"][\"ref\"].rsplit(\" \", 1)[0] for cita in datos.values()}\nprint(\"Libros citados:\", len(libros))",
+     "import json\nfrom collections import defaultdict\n\nSIGNOS = \".,;:!?¡¿“”‘’\\\"'()«»—\"\n\nwith open(\"versiculos.json\", encoding=\"utf-8\") as f:\n    datos = json.load(f)\n\nindice = defaultdict(list)\nfor cita in datos.values():\n    ref = cita[\"es\"][\"ref\"]\n    for palabra in cita[\"es\"][\"texto\"].split():\n        palabra = palabra.strip(SIGNOS).lower()\n        if len(palabra) >= 4:\n            indice[palabra].append(ref)\n\ndef buscar(palabra):\n    return list(indice.get(palabra.strip(SIGNOS).lower(), []))\n\nmejores = sorted(indice.items(), key=lambda par: (-len(par[1]), par[0]))[:3]\nfor palabra, refs in mejores:\n    print(f\"{palabra} ({len(refs)}): {'; '.join(refs)}\")\n\nlibros = {cita[\"es\"][\"ref\"].rsplit(\" \", 1)[0] for cita in datos.values()}\nprint(\"Libros citados:\", len(libros))",
+     "import json\nfrom collections import defaultdict\n\nSIGNOS = \".,;:!?¡¿“”‘’\\\"'()«»—\"\n\nwith open(\"versiculos.json\", encoding=\"utf-8\") as f:\n    datos = json.load(f)\n\nindice = defaultdict(list)\nfor cita in datos.values():\n    ref = cita[\"es\"][\"ref\"]\n    for palabra in cita[\"es\"][\"texto\"].split():\n        palabra = palabra.strip(SIGNOS).lower()\n        if len(palabra) >= 4 and ref not in indice[palabra]:\n            indice[palabra].append(ref)\n\ndef buscar(palabra):\n    return list(indice.get(palabra.strip(SIGNOS).lower(), []))\n\nmejores = sorted(indice.items(), key=lambda par: len(par[1]), reverse=True)[:3]\nfor palabra, refs in mejores:\n    print(f\"{palabra} ({len(refs)}): {'; '.join(refs)}\")\n\nlibros = {cita[\"es\"][\"ref\"].rsplit(\" \", 1)[0] for cita in datos.values()}\nprint(\"Libros citados:\", len(libros))",
+     "import json\nfrom collections import defaultdict\n\nSIGNOS = \".,;:!?¡¿“”‘’\\\"'()«»—\"\n\nwith open(\"versiculos.json\", encoding=\"utf-8\") as f:\n    datos = json.load(f)\n\nindice = defaultdict(list)\nfor cita in datos.values():\n    ref = cita[\"es\"][\"ref\"]\n    for palabra in cita[\"es\"][\"texto\"].split():\n        palabra = palabra.strip(SIGNOS).lower()\n        if len(palabra) >= 4 and ref not in indice[palabra]:\n            indice[palabra].append(ref)\n\ndef buscar(palabra):\n    return list(indice.get(palabra.strip(SIGNOS).lower(), []))\n\nmejores = sorted(indice.items(), key=lambda par: (-len(par[1]), par[0]))[:3]\nfor palabra, refs in mejores:\n    print(f\"{palabra} ({len(refs)}): {'; '.join(refs)}\")\n\nlibros = list(datos)\nprint(\"Libros citados:\", len(libros))"
+    ],
+    "en": [
+     "import json\nfrom collections import defaultdict\n\nSIGNOS = \".,;:!?¡¿“”‘’\\\"'()«»—\"\n\nwith open(\"versiculos.json\", encoding=\"utf-8\") as f:\n    data = json.load(f)\n\nindex = defaultdict(list)\nfor quote in data.values():\n    ref = quote[\"en\"][\"ref\"]\n    for word in quote[\"en\"][\"texto\"].split():\n        word = word.strip(SIGNOS).lower()\n        if len(word) >= 4 and ref not in index[word]:\n            index[word].append(ref)\n\ndef search(word):\n    return index[word.lower()]\n\nbest = sorted(index.items(), key=lambda pair: (-len(pair[1]), pair[0]))[:3]\nfor word, refs in best:\n    print(f\"{word} ({len(refs)}): {'; '.join(refs)}\")\n\nbooks = {quote[\"en\"][\"ref\"].rsplit(\" \", 1)[0] for quote in data.values()}\nprint(\"Books quoted:\", len(books))",
+     "import json\nfrom collections import defaultdict\n\nSIGNOS = \".,;:!?¡¿“”‘’\\\"'()«»—\"\n\nwith open(\"versiculos.json\", encoding=\"utf-8\") as f:\n    data = json.load(f)\n\nindex = defaultdict(list)\nfor quote in data.values():\n    ref = quote[\"en\"][\"ref\"]\n    for word in quote[\"en\"][\"texto\"].split():\n        word = word.strip(SIGNOS).lower()\n        if len(word) >= 4:\n            index[word].append(ref)\n\ndef search(word):\n    return list(index.get(word.strip(SIGNOS).lower(), []))\n\nbest = sorted(index.items(), key=lambda pair: (-len(pair[1]), pair[0]))[:3]\nfor word, refs in best:\n    print(f\"{word} ({len(refs)}): {'; '.join(refs)}\")\n\nbooks = {quote[\"en\"][\"ref\"].rsplit(\" \", 1)[0] for quote in data.values()}\nprint(\"Books quoted:\", len(books))",
+     "import json\nfrom collections import defaultdict\n\nSIGNOS = \".,;:!?¡¿“”‘’\\\"'()«»—\"\n\nwith open(\"versiculos.json\", encoding=\"utf-8\") as f:\n    data = json.load(f)\n\nindex = defaultdict(list)\nfor quote in data.values():\n    ref = quote[\"en\"][\"ref\"]\n    for word in quote[\"en\"][\"texto\"].split():\n        word = word.strip(SIGNOS).lower()\n        if len(word) >= 4 and ref not in index[word]:\n            index[word].append(ref)\n\ndef search(word):\n    return list(index.get(word.strip(SIGNOS).lower(), []))\n\nbest = sorted(index.items(), key=lambda pair: len(pair[1]), reverse=True)[:3]\nfor word, refs in best:\n    print(f\"{word} ({len(refs)}): {'; '.join(refs)}\")\n\nbooks = {quote[\"en\"][\"ref\"].rsplit(\" \", 1)[0] for quote in data.values()}\nprint(\"Books quoted:\", len(books))"
+    ]
+   }
+  }
+ ]
+}

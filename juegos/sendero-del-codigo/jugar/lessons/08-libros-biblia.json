@@ -1,0 +1,531 @@
+{
+ "id": "08-libros-biblia",
+ "numero": 8,
+ "lugar": "jerusalen",
+ "titulo": {
+  "es": "Los libros de la Biblia",
+  "en": "The books of the Bible"
+ },
+ "tema": {
+  "es": "diccionarios, tuplas y conjuntos",
+  "en": "dictionaries, tuples and sets"
+ },
+ "versiculo": "2ti-3-16",
+ "medalla": {
+  "es": "Bibliotecario del templo",
+  "en": "Temple librarian"
+ },
+ "leccion": {
+  "es": [
+   "Un **diccionario** guarda pares **clave → valor** entre llaves: `capitulos = {\"Génesis\": 50, \"Éxodo\": 40}`. Con la clave encuentras el valor: `capitulos[\"Génesis\"]` da `50`. Si la clave no existe, Python lanza `KeyError`; `capitulos.get(\"Rut\", 0)` devuelve `0` en lugar del error.",
+   "Para **agregar o cambiar** un par: `capitulos[\"Rut\"] = 4`. `len(capitulos)` cuenta los pares y `\"Rut\" in capitulos` pregunta si esa clave está. `.keys()` da las claves, `.values()` los valores e `.items()` los pares; `sum(capitulos.values())` suma todos los valores.",
+   "Una **tupla** es como una lista que no se puede cambiar, escrita con paréntesis: `libro = (\"Jonás\", 4)`. Se puede **desempaquetar** en varias variables: `nombre, caps = libro`. Eso mismo hace `for libro, caps in capitulos.items():` en cada vuelta.",
+   "Un **conjunto** (`set`) es una colección sin repetidos y sin orden: `leidos = {\"Rut\", \"Jonás\"}`. Sirve para preguntar con `in`, juntar con `a.union(b)` (o `a | b`) y ver lo común con `a.intersection(b)` (o `a & b`). Como no tiene orden, para mostrarlo ordenado usa `sorted(conjunto)`, que devuelve una lista."
+  ],
+  "en": [
+   "A **dictionary** stores **key → value** pairs inside braces: `chapters = {\"Genesis\": 50, \"Exodus\": 40}`. With the key you find the value: `chapters[\"Genesis\"]` gives `50`. If the key doesn't exist, Python raises `KeyError`; `chapters.get(\"Ruth\", 0)` returns `0` instead of the error.",
+   "To **add or change** a pair: `chapters[\"Ruth\"] = 4`. `len(chapters)` counts the pairs and `\"Ruth\" in chapters` asks whether that key is there. `.keys()` gives the keys, `.values()` the values and `.items()` the pairs; `sum(chapters.values())` adds up all the values.",
+   "A **tuple** is like a list that can't be changed, written with parentheses: `book = (\"Jonah\", 4)`. You can **unpack** it into several variables: `name, chaps = book`. That's exactly what `for book, chaps in chapters.items():` does on each pass.",
+   "A **set** is a collection with no duplicates and no order: `read = {\"Ruth\", \"Jonah\"}`. It's great for asking with `in`, joining with `a.union(b)` (or `a | b`) and finding what they share with `a.intersection(b)` (or `a & b`). Since it has no order, to show it sorted use `sorted(my_set)`, which returns a list."
+  ]
+ },
+ "ejemplo": {
+  "es": "capitulos = {\"Génesis\": 50, \"Rut\": 4, \"Jonás\": 4}\ncapitulos[\"Marcos\"] = 16\nprint(capitulos[\"Génesis\"])\nprint(capitulos.get(\"Hechos\", 0))\nfor libro, caps in capitulos.items():\n    print(libro, \"tiene\", caps, \"capítulos\")\nprint(\"Total:\", sum(capitulos.values()))\n\nprimero = (\"Génesis\", 50)\nnombre, caps = primero\nprint(nombre, caps)\n\nleidos = {\"Rut\", \"Jonás\", \"Rut\"}\nprint(sorted(leidos), \"Rut\" in leidos)",
+  "en": "chapters = {\"Genesis\": 50, \"Ruth\": 4, \"Jonah\": 4}\nchapters[\"Mark\"] = 16\nprint(chapters[\"Genesis\"])\nprint(chapters.get(\"Acts\", 0))\nfor book, chaps in chapters.items():\n    print(book, \"has\", chaps, \"chapters\")\nprint(\"Total:\", sum(chapters.values()))\n\nfirst = (\"Genesis\", 50)\nname, chaps = first\nprint(name, chaps)\n\nread = {\"Ruth\", \"Jonah\", \"Ruth\"}\nprint(sorted(read), \"Ruth\" in read)"
+ },
+ "ejercicios": [
+  {
+   "id": "primer-diccionario",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Crea un diccionario `capitulos` con los tres primeros libros de la Biblia y su número de capítulos: Génesis 50, Éxodo 40 y Levítico 27. Luego muestra los capítulos de Éxodo usando su clave. Debe salir:\n```\n40\n```",
+    "en": "Create a dictionary `chapters` with the first three books of the Bible and their number of chapters: Genesis 50, Exodus 40 and Leviticus 27. Then show the chapters of Exodus using its key. It should print:\n```\n40\n```"
+   },
+   "inicial": {
+    "es": "capitulos = {\"Génesis\": 50}\n",
+    "en": "chapters = {\"Genesis\": 50}\n"
+   },
+   "pistas": {
+    "es": [
+     "Los pares van separados por comas: `{\"Génesis\": 50, \"Éxodo\": 40, ...}`.",
+     "Para leer un valor: `print(capitulos[\"Éxodo\"])`, con la clave entre comillas."
+    ],
+    "en": [
+     "Pairs are separated by commas: `{\"Genesis\": 50, \"Exodus\": 40, ...}`.",
+     "To read a value: `print(chapters[\"Exodus\"])`, with the key in quotes."
+    ]
+   },
+   "solucion": {
+    "es": "capitulos = {\"Génesis\": 50, \"Éxodo\": 40, \"Levítico\": 27}\nprint(capitulos[\"Éxodo\"])",
+    "en": "chapters = {\"Genesis\": 50, \"Exodus\": 40, \"Leviticus\": 27}\nprint(chapters[\"Exodus\"])"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "py": "assert capitulos == {'Génesis': 50, 'Éxodo': 40, 'Levítico': 27}",
+      "msg": {
+       "es": "Revisa el diccionario: Génesis 50, Éxodo 40, Levítico 27 (con tildes y números sin comillas).",
+       "en": "Check the dictionary: Génesis 50, Éxodo 40, Levítico 27 (with accents and numbers without quotes)."
+      }
+     },
+     {
+      "salida": "40"
+     },
+     {
+      "py": "assert '[' in _codigo",
+      "msg": {
+       "es": "Lee el valor con su clave: capitulos[\"Éxodo\"].",
+       "en": "Read the value with its key: capitulos[\"Éxodo\"]."
+      }
+     }
+    ],
+    "en": [
+     {
+      "py": "assert chapters == {'Genesis': 50, 'Exodus': 40, 'Leviticus': 27}",
+      "msg": {
+       "es": "Revisa el diccionario: Genesis 50, Exodus 40, Leviticus 27 (números sin comillas).",
+       "en": "Check the dictionary: Genesis 50, Exodus 40, Leviticus 27 (numbers without quotes)."
+      }
+     },
+     {
+      "salida": "40"
+     },
+     {
+      "py": "assert '[' in _codigo",
+      "msg": {
+       "es": "Lee el valor con su clave: chapters[\"Exodus\"].",
+       "en": "Read the value with its key: chapters[\"Exodus\"]."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "capitulos = {\"Génesis\": 50, \"Éxodo\": 40, \"Levítico\": 27}\nprint(capitulos[Éxodo])",
+     "capitulos = {\"Génesis\": \"50\", \"Éxodo\": \"40\", \"Levítico\": \"27\"}\nprint(capitulos[\"Éxodo\"])",
+     "capitulos = {\"Génesis\": 50, \"Éxodo\": 40, \"Levítico\": 27}\nprint(40)"
+    ],
+    "en": [
+     "chapters = {\"Genesis\": 50, \"Exodus\": 40, \"Leviticus\": 27}\nprint(chapters[Exodus])",
+     "chapters = {\"Genesis\": \"50\", \"Exodus\": \"40\", \"Leviticus\": \"27\"}\nprint(chapters[\"Exodus\"])",
+     "chapters = {\"Genesis\": 50, \"Exodus\": 40, \"Leviticus\": 27}\nprint(40)"
+    ]
+   }
+  },
+  {
+   "id": "get-seguro",
+   "tipo": "hueco",
+   "enunciado": {
+    "es": "El diccionario `antiguo` solo tiene libros del Antiguo Testamento, así que `\"Hechos\"` no está. Completa con el método que busca una clave **sin** lanzar `KeyError` y devuelve `0` si no la encuentra. Debe salir:\n```\n4\n0\n```",
+    "en": "The dictionary `old` only has Old Testament books, so `\"Acts\"` isn't there. Fill in the method that looks up a key **without** raising `KeyError` and returns `0` if it isn't found. It should print:\n```\n4\n0\n```"
+   },
+   "plantilla": {
+    "es": "antiguo = {\"Génesis\": 50, \"Rut\": 4, \"Jonás\": 4}\nprint(antiguo.___(\"Jonás\", 0))\nprint(antiguo.___(\"Hechos\", 0))",
+    "en": "old = {\"Genesis\": 50, \"Ruth\": 4, \"Jonah\": 4}\nprint(old.___(\"Jonah\", 0))\nprint(old.___(\"Acts\", 0))"
+   },
+   "pistas": {
+    "es": [
+     "Es un método de tres letras que en inglés significa «obtener».",
+     "`antiguo.get(\"Hechos\", 0)`: el segundo dato es lo que devuelve si la clave no está."
+    ],
+    "en": [
+     "It's a three-letter method meaning \"obtain\".",
+     "`old.get(\"Acts\", 0)`: the second value is what it returns if the key isn't there."
+    ]
+   },
+   "solucion": {
+    "es": "antiguo = {\"Génesis\": 50, \"Rut\": 4, \"Jonás\": 4}\nprint(antiguo.get(\"Jonás\", 0))\nprint(antiguo.get(\"Hechos\", 0))",
+    "en": "old = {\"Genesis\": 50, \"Ruth\": 4, \"Jonah\": 4}\nprint(old.get(\"Jonah\", 0))\nprint(old.get(\"Acts\", 0))"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "4\n0"
+     }
+    ],
+    "en": [
+     {
+      "salida": "4\n0"
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "antiguo = {\"Génesis\": 50, \"Rut\": 4, \"Jonás\": 4}\nprint(antiguo.keys(\"Jonás\", 0))\nprint(antiguo.keys(\"Hechos\", 0))",
+     "antiguo = {\"Génesis\": 50, \"Rut\": 4, \"Jonás\": 4}\nprint(antiguo.get(\"Jonás\"))\nprint(antiguo.get(\"Hechos\"))"
+    ],
+    "en": [
+     "old = {\"Genesis\": 50, \"Ruth\": 4, \"Jonah\": 4}\nprint(old.keys(\"Jonah\", 0))\nprint(old.keys(\"Acts\", 0))",
+     "old = {\"Genesis\": 50, \"Ruth\": 4, \"Jonah\": 4}\nprint(old.get(\"Jonah\"))\nprint(old.get(\"Acts\"))"
+    ]
+   }
+  },
+  {
+   "id": "evangelios",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Agrega al diccionario `evangelios` los libros que faltan: Lucas con 24 capítulos y Juan con 21. Después recórrelo con `for` y `.items()` para mostrar:\n```\nMateo: 28 capítulos\nMarcos: 16 capítulos\nLucas: 24 capítulos\nJuan: 21 capítulos\n```",
+    "en": "Add the missing books to the dictionary `gospels`: Luke with 24 chapters and John with 21. Then loop over it with `for` and `.items()` to show:\n```\nMatthew: 28 chapters\nMark: 16 chapters\nLuke: 24 chapters\nJohn: 21 chapters\n```"
+   },
+   "inicial": {
+    "es": "evangelios = {\"Mateo\": 28, \"Marcos\": 16}\n",
+    "en": "gospels = {\"Matthew\": 28, \"Mark\": 16}\n"
+   },
+   "pistas": {
+    "es": [
+     "Para agregar: `evangelios[\"Lucas\"] = 24`. Lo mismo con Juan.",
+     "`for libro, caps in evangelios.items():` y dentro `print(f\"{libro}: {caps} capítulos\")`."
+    ],
+    "en": [
+     "To add: `gospels[\"Luke\"] = 24`. The same with John.",
+     "`for book, chaps in gospels.items():` and inside `print(f\"{book}: {chaps} chapters\")`."
+    ]
+   },
+   "solucion": {
+    "es": "evangelios = {\"Mateo\": 28, \"Marcos\": 16}\nevangelios[\"Lucas\"] = 24\nevangelios[\"Juan\"] = 21\nfor libro, caps in evangelios.items():\n    print(f\"{libro}: {caps} capítulos\")",
+    "en": "gospels = {\"Matthew\": 28, \"Mark\": 16}\ngospels[\"Luke\"] = 24\ngospels[\"John\"] = 21\nfor book, chaps in gospels.items():\n    print(f\"{book}: {chaps} chapters\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "py": "assert evangelios == {'Mateo': 28, 'Marcos': 16, 'Lucas': 24, 'Juan': 21}",
+      "msg": {
+       "es": "El diccionario debe quedar con los cuatro evangelios: Lucas 24 y Juan 21.",
+       "en": "The dictionary must end with the four Gospels: Lucas 24 and Juan 21."
+      }
+     },
+     {
+      "salida": "Mateo: 28 capítulos\nMarcos: 16 capítulos\nLucas: 24 capítulos\nJuan: 21 capítulos"
+     },
+     {
+      "py": "assert 'for' in _codigo and '.items()' in _codigo",
+      "msg": {
+       "es": "Recorre el diccionario con for y .items().",
+       "en": "Loop over the dictionary with for and .items()."
+      }
+     }
+    ],
+    "en": [
+     {
+      "py": "assert gospels == {'Matthew': 28, 'Mark': 16, 'Luke': 24, 'John': 21}",
+      "msg": {
+       "es": "El diccionario debe quedar con los cuatro evangelios: Luke 24 y John 21.",
+       "en": "The dictionary must end with the four Gospels: Luke 24 and John 21."
+      }
+     },
+     {
+      "salida": "Matthew: 28 chapters\nMark: 16 chapters\nLuke: 24 chapters\nJohn: 21 chapters"
+     },
+     {
+      "py": "assert 'for' in _codigo and '.items()' in _codigo",
+      "msg": {
+       "es": "Recorre el diccionario con for y .items().",
+       "en": "Loop over the dictionary with for and .items()."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "evangelios = {\"Mateo\": 28, \"Marcos\": 16}\nevangelios[\"Lucas\"] = 24\nevangelios[\"Juan\"] = 21\nfor libro in evangelios.items():\n    print(f\"{libro}: capítulos\")",
+     "evangelios = {\"Mateo\": 28, \"Marcos\": 16}\nevangelios.append(\"Lucas\", 24)\nevangelios.append(\"Juan\", 21)",
+     "evangelios = {\"Mateo\": 28, \"Marcos\": 16}\nevangelios[\"Lucas\"] = 24\nevangelios[\"Juan\"] = 21\nprint(\"Mateo: 28 capítulos\")\nprint(\"Marcos: 16 capítulos\")\nprint(\"Lucas: 24 capítulos\")\nprint(\"Juan: 21 capítulos\")"
+    ],
+    "en": [
+     "gospels = {\"Matthew\": 28, \"Mark\": 16}\ngospels[\"Luke\"] = 24\ngospels[\"John\"] = 21\nfor book in gospels.items():\n    print(f\"{book}: chapters\")",
+     "gospels = {\"Matthew\": 28, \"Mark\": 16}\ngospels.append(\"Luke\", 24)\ngospels.append(\"John\", 21)",
+     "gospels = {\"Matthew\": 28, \"Mark\": 16}\ngospels[\"Luke\"] = 24\ngospels[\"John\"] = 21\nprint(\"Matthew: 28 chapters\")\nprint(\"Mark: 16 chapters\")\nprint(\"Luke: 24 chapters\")\nprint(\"John: 21 chapters\")"
+    ]
+   }
+  },
+  {
+   "id": "sumar-evangelios",
+   "tipo": "ordenar",
+   "enunciado": {
+    "es": "Ordena las líneas para sumar los capítulos de los cuatro evangelios recorriendo el diccionario, y mostrar:\n```\nLos evangelios tienen 89 capítulos\n```",
+    "en": "Put the lines in order to add up the chapters of the four Gospels by looping over the dictionary, and show:\n```\nThe Gospels have 89 chapters\n```"
+   },
+   "lineas": {
+    "es": [
+     "evangelios = {\"Mateo\": 28, \"Marcos\": 16, \"Lucas\": 24, \"Juan\": 21}",
+     "total = 0",
+     "for libro, caps in evangelios.items():",
+     "    total = total + caps",
+     "print(f\"Los evangelios tienen {total} capítulos\")"
+    ],
+    "en": [
+     "gospels = {\"Matthew\": 28, \"Mark\": 16, \"Luke\": 24, \"John\": 21}",
+     "total = 0",
+     "for book, chaps in gospels.items():",
+     "    total = total + chaps",
+     "print(f\"The Gospels have {total} chapters\")"
+    ]
+   },
+   "pistas": {
+    "es": [
+     "El total empieza en 0 antes del bucle.",
+     "La línea con sangría va dentro del `for`; el `print` va al final, fuera del bucle."
+    ],
+    "en": [
+     "The total starts at 0 before the loop.",
+     "The indented line goes inside the `for`; the `print` goes last, outside the loop."
+    ]
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Los evangelios tienen 89 capítulos"
+     }
+    ],
+    "en": [
+     {
+      "salida": "The Gospels have 89 chapters"
+     }
+    ]
+   }
+  },
+  {
+   "id": "libros-cortos",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "La lista `libros` tiene tuplas `(nombre, capítulos)`. Recórrela desempaquetando cada tupla, muestra solo los libros con **menos de 5** capítulos y al final cuántos son. Debe salir:\n```\nRut\nJonás\nAbdías\nCortos: 3\n```",
+    "en": "The list `books` has tuples `(name, chapters)`. Loop over it unpacking each tuple, show only the books with **fewer than 5** chapters and, at the end, how many there are. It should print:\n```\nRuth\nJonah\nObadiah\nShort: 3\n```"
+   },
+   "inicial": {
+    "es": "libros = [(\"Rut\", 4), (\"Ester\", 10), (\"Jonás\", 4), (\"Abdías\", 1), (\"Daniel\", 12)]\n",
+    "en": "books = [(\"Ruth\", 4), (\"Esther\", 10), (\"Jonah\", 4), (\"Obadiah\", 1), (\"Daniel\", 12)]\n"
+   },
+   "pistas": {
+    "es": [
+     "`for nombre, caps in libros:` desempaqueta cada tupla en dos variables.",
+     "Dentro: `if caps < 5:` muestra el nombre y suma 1 a un contador `cortos` que empieza en 0."
+    ],
+    "en": [
+     "`for name, chaps in books:` unpacks each tuple into two variables.",
+     "Inside: `if chaps < 5:` show the name and add 1 to a counter `short` that starts at 0."
+    ]
+   },
+   "solucion": {
+    "es": "libros = [(\"Rut\", 4), (\"Ester\", 10), (\"Jonás\", 4), (\"Abdías\", 1), (\"Daniel\", 12)]\ncortos = 0\nfor nombre, caps in libros:\n    if caps < 5:\n        print(nombre)\n        cortos += 1\nprint(\"Cortos:\", cortos)",
+    "en": "books = [(\"Ruth\", 4), (\"Esther\", 10), (\"Jonah\", 4), (\"Obadiah\", 1), (\"Daniel\", 12)]\nshort = 0\nfor name, chaps in books:\n    if chaps < 5:\n        print(name)\n        short += 1\nprint(\"Short:\", short)"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Rut\nJonás\nAbdías\nCortos: 3"
+     },
+     {
+      "py": "assert 'for' in _codigo and 'if' in _codigo and '\"Rut\"' not in _codigo.split('\\n', 1)[1]",
+      "msg": {
+       "es": "Recorre la lista con for y filtra con if; no escribas los nombres a mano.",
+       "en": "Loop over the list with for and filter with if; don't type the names by hand."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Ruth\nJonah\nObadiah\nShort: 3"
+     },
+     {
+      "py": "assert 'for' in _codigo and 'if' in _codigo and '\"Ruth\"' not in _codigo.split('\\n', 1)[1]",
+      "msg": {
+       "es": "Recorre la lista con for y filtra con if; no escribas los nombres a mano.",
+       "en": "Loop over the list with for and filter with if; don't type the names by hand."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "libros = [(\"Rut\", 4), (\"Ester\", 10), (\"Jonás\", 4), (\"Abdías\", 1), (\"Daniel\", 12)]\ncortos = 0\nfor libro in libros:\n    if libro < 5:\n        print(libro)\n        cortos += 1\nprint(\"Cortos:\", cortos)",
+     "libros = [(\"Rut\", 4), (\"Ester\", 10), (\"Jonás\", 4), (\"Abdías\", 1), (\"Daniel\", 12)]\ncortos = 0\nfor nombre, caps in libros:\n    if caps <= 10:\n        print(nombre)\n        cortos += 1\nprint(\"Cortos:\", cortos)",
+     "libros = [(\"Rut\", 4), (\"Ester\", 10), (\"Jonás\", 4), (\"Abdías\", 1), (\"Daniel\", 12)]\ncortos = 0\nfor nombre, caps in libros:\n    if caps < 5:\n        print(nombre)\n        cortos += 1\n    print(\"Cortos:\", cortos)"
+    ],
+    "en": [
+     "books = [(\"Ruth\", 4), (\"Esther\", 10), (\"Jonah\", 4), (\"Obadiah\", 1), (\"Daniel\", 12)]\nshort = 0\nfor book in books:\n    if book < 5:\n        print(book)\n        short += 1\nprint(\"Short:\", short)",
+     "books = [(\"Ruth\", 4), (\"Esther\", 10), (\"Jonah\", 4), (\"Obadiah\", 1), (\"Daniel\", 12)]\nshort = 0\nfor name, chaps in books:\n    if chaps <= 10:\n        print(name)\n        short += 1\nprint(\"Short:\", short)",
+     "books = [(\"Ruth\", 4), (\"Esther\", 10), (\"Jonah\", 4), (\"Obadiah\", 1), (\"Daniel\", 12)]\nshort = 0\nfor name, chaps in books:\n    if chaps < 5:\n        print(name)\n        short += 1\n    print(\"Short:\", short)"
+    ]
+   }
+  },
+  {
+   "id": "lecturas-comunes",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Ana y Luis anotan en conjuntos los libros que ya leyeron. Muestra los que leyeron **los dos** (ordenados con `sorted`), cuántos libros distintos leyeron **entre los dos** y si Luis leyó Rut. Debe salir:\n```\nAmbos leyeron: ['Jonás', 'Marcos']\nEntre los dos: 5 libros\n¿Luis leyó Rut? False\n```",
+    "en": "Ann and Luke write down in sets the books they've already read. Show the ones **both** read (sorted with `sorted`), how many different books they read **between them**, and whether Luke read Ruth. It should print:\n```\nBoth read: ['Jonah', 'Mark']\nBetween them: 5 books\nDid Luke read Ruth? False\n```"
+   },
+   "inicial": {
+    "es": "ana = {\"Génesis\", \"Rut\", \"Jonás\", \"Marcos\"}\nluis = {\"Jonás\", \"Marcos\", \"Hechos\"}\n",
+    "en": "ann = {\"Genesis\", \"Ruth\", \"Jonah\", \"Mark\"}\nluke = {\"Jonah\", \"Mark\", \"Acts\"}\n"
+   },
+   "pistas": {
+    "es": [
+     "Lo común es `ana.intersection(luis)`; todos juntos, `ana.union(luis)`, y `len()` los cuenta.",
+     "`print(\"Ambos leyeron:\", sorted(ana.intersection(luis)))`, `print(\"Entre los dos:\", len(ana.union(luis)), \"libros\")` y `print(\"¿Luis leyó Rut?\", \"Rut\" in luis)`."
+    ],
+    "en": [
+     "What they share is `ann.intersection(luke)`; everything together, `ann.union(luke)`, and `len()` counts them.",
+     "`print(\"Both read:\", sorted(ann.intersection(luke)))`, `print(\"Between them:\", len(ann.union(luke)), \"books\")` and `print(\"Did Luke read Ruth?\", \"Ruth\" in luke)`."
+    ]
+   },
+   "solucion": {
+    "es": "ana = {\"Génesis\", \"Rut\", \"Jonás\", \"Marcos\"}\nluis = {\"Jonás\", \"Marcos\", \"Hechos\"}\nprint(\"Ambos leyeron:\", sorted(ana.intersection(luis)))\nprint(\"Entre los dos:\", len(ana.union(luis)), \"libros\")\nprint(\"¿Luis leyó Rut?\", \"Rut\" in luis)",
+    "en": "ann = {\"Genesis\", \"Ruth\", \"Jonah\", \"Mark\"}\nluke = {\"Jonah\", \"Mark\", \"Acts\"}\nprint(\"Both read:\", sorted(ann.intersection(luke)))\nprint(\"Between them:\", len(ann.union(luke)), \"books\")\nprint(\"Did Luke read Ruth?\", \"Ruth\" in luke)"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Ambos leyeron: ['Jonás', 'Marcos']\nEntre los dos: 5 libros\n¿Luis leyó Rut? False"
+     },
+     {
+      "py": "assert ('intersection' in _codigo or '&' in _codigo) and ('union' in _codigo or '|' in _codigo)",
+      "msg": {
+       "es": "Calcula con intersection() (o &) y union() (o |), no escribas los resultados.",
+       "en": "Calculate with intersection() (or &) and union() (or |), don't type the results."
+      }
+     },
+     {
+      "py": "assert ' in luis' in _codigo",
+      "msg": {
+       "es": "Pregunta con in si \"Rut\" está en luis.",
+       "en": "Ask with in whether \"Rut\" is in luis."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Both read: ['Jonah', 'Mark']\nBetween them: 5 books\nDid Luke read Ruth? False"
+     },
+     {
+      "py": "assert ('intersection' in _codigo or '&' in _codigo) and ('union' in _codigo or '|' in _codigo)",
+      "msg": {
+       "es": "Calcula con intersection() (o &) y union() (o |), no escribas los resultados.",
+       "en": "Calculate with intersection() (or &) and union() (or |), don't type the results."
+      }
+     },
+     {
+      "py": "assert ' in luke' in _codigo",
+      "msg": {
+       "es": "Pregunta con in si \"Ruth\" está en luke.",
+       "en": "Ask with in whether \"Ruth\" is in luke."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "ana = {\"Génesis\", \"Rut\", \"Jonás\", \"Marcos\"}\nluis = {\"Jonás\", \"Marcos\", \"Hechos\"}\nprint(\"Ambos leyeron:\", sorted(ana.union(luis)))\nprint(\"Entre los dos:\", len(ana.intersection(luis)), \"libros\")\nprint(\"¿Luis leyó Rut?\", \"Rut\" in luis)",
+     "ana = {\"Génesis\", \"Rut\", \"Jonás\", \"Marcos\"}\nluis = {\"Jonás\", \"Marcos\", \"Hechos\"}\nprint(\"Ambos leyeron:\", sorted(ana.intersection(luis)))\nprint(\"Entre los dos:\", len(ana) + len(luis), \"libros\")\nprint(\"¿Luis leyó Rut?\", \"Rut\" in luis)",
+     "ana = {\"Génesis\", \"Rut\", \"Jonás\", \"Marcos\"}\nluis = {\"Jonás\", \"Marcos\", \"Hechos\"}\nprint(\"Ambos leyeron:\", ana.intersection(luis))\nprint(\"Entre los dos:\", len(ana.union(luis)), \"libros\")\nprint(\"¿Luis leyó Rut?\", \"Rut\" in luis)"
+    ],
+    "en": [
+     "ann = {\"Genesis\", \"Ruth\", \"Jonah\", \"Mark\"}\nluke = {\"Jonah\", \"Mark\", \"Acts\"}\nprint(\"Both read:\", sorted(ann.union(luke)))\nprint(\"Between them:\", len(ann.intersection(luke)), \"books\")\nprint(\"Did Luke read Ruth?\", \"Ruth\" in luke)",
+     "ann = {\"Genesis\", \"Ruth\", \"Jonah\", \"Mark\"}\nluke = {\"Jonah\", \"Mark\", \"Acts\"}\nprint(\"Both read:\", sorted(ann.intersection(luke)))\nprint(\"Between them:\", len(ann) + len(luke), \"books\")\nprint(\"Did Luke read Ruth?\", \"Ruth\" in luke)"
+    ]
+   }
+  },
+  {
+   "id": "buscador-libros",
+   "tipo": "escribir",
+   "reto": true,
+   "enunciado": {
+    "es": "**Reto: el buscador de libros.** Con el diccionario `biblia`, pide el nombre de un libro con `input(\"¿Qué libro buscas? \")`. Si está, muestra sus capítulos; si no, avisa. Después muestra el total de capítulos y de libros del diccionario, y una lista con los libros de **más de 25** capítulos. Con `Jonás` debe salir:\n```\n¿Qué libro buscas? Jonás\nJonás tiene 4 capítulos\nTotal: 460 capítulos en 12 libros\nMás de 25: ['Génesis', 'Éxodo', 'Salmos', 'Proverbios', 'Isaías', 'Mateo', 'Hechos']\n```\nY con `Genesis` (sin tilde, no es la misma clave): `No encontré Genesis`.",
+    "en": "**Challenge: the book finder.** With the dictionary `bible`, ask for a book name with `input(\"Which book are you looking for? \")`. If it's there, show its chapters; if not, say so. Then show the total chapters and books in the dictionary, and a list of the books with **more than 25** chapters. With `Jonah` it should print:\n```\nWhich book are you looking for? Jonah\nJonah has 4 chapters\nTotal: 460 chapters in 12 books\nMore than 25: ['Genesis', 'Exodus', 'Psalms', 'Proverbs', 'Isaiah', 'Matthew', 'Acts']\n```\nAnd with `genesis` (lowercase, it's not the same key): `I didn't find genesis`."
+   },
+   "inicial": {
+    "es": "biblia = {\n    \"Génesis\": 50, \"Éxodo\": 40, \"Rut\": 4, \"Salmos\": 150,\n    \"Proverbios\": 31, \"Isaías\": 66, \"Jonás\": 4, \"Mateo\": 28,\n    \"Marcos\": 16, \"Juan\": 21, \"Hechos\": 28, \"Apocalipsis\": 22,\n}\n",
+    "en": "bible = {\n    \"Genesis\": 50, \"Exodus\": 40, \"Ruth\": 4, \"Psalms\": 150,\n    \"Proverbs\": 31, \"Isaiah\": 66, \"Jonah\": 4, \"Matthew\": 28,\n    \"Mark\": 16, \"John\": 21, \"Acts\": 28, \"Revelation\": 22,\n}\n"
+   },
+   "entradas": {
+    "es": [
+     "Jonás"
+    ],
+    "en": [
+     "Jonah"
+    ]
+   },
+   "pistas": {
+    "es": [
+     "Usa `if libro in biblia:` para saber si está; `sum(biblia.values())` y `len(biblia)` dan los totales.",
+     "Para la lista: `largos = []`, luego `for nombre, caps in biblia.items():` y `if caps > 25: largos.append(nombre)`; al final `print(\"Más de 25:\", largos)`."
+    ],
+    "en": [
+     "Use `if book in bible:` to know whether it's there; `sum(bible.values())` and `len(bible)` give the totals.",
+     "For the list: `long_books = []`, then `for name, chaps in bible.items():` and `if chaps > 25: long_books.append(name)`; at the end `print(\"More than 25:\", long_books)`."
+    ]
+   },
+   "solucion": {
+    "es": "biblia = {\n    \"Génesis\": 50, \"Éxodo\": 40, \"Rut\": 4, \"Salmos\": 150,\n    \"Proverbios\": 31, \"Isaías\": 66, \"Jonás\": 4, \"Mateo\": 28,\n    \"Marcos\": 16, \"Juan\": 21, \"Hechos\": 28, \"Apocalipsis\": 22,\n}\nlibro = input(\"¿Qué libro buscas? \")\nif libro in biblia:\n    print(f\"{libro} tiene {biblia[libro]} capítulos\")\nelse:\n    print(f\"No encontré {libro}\")\nprint(f\"Total: {sum(biblia.values())} capítulos en {len(biblia)} libros\")\nlargos = []\nfor nombre, caps in biblia.items():\n    if caps > 25:\n        largos.append(nombre)\nprint(\"Más de 25:\", largos)",
+    "en": "bible = {\n    \"Genesis\": 50, \"Exodus\": 40, \"Ruth\": 4, \"Psalms\": 150,\n    \"Proverbs\": 31, \"Isaiah\": 66, \"Jonah\": 4, \"Matthew\": 28,\n    \"Mark\": 16, \"John\": 21, \"Acts\": 28, \"Revelation\": 22,\n}\nbook = input(\"Which book are you looking for? \")\nif book in bible:\n    print(f\"{book} has {bible[book]} chapters\")\nelse:\n    print(f\"I didn't find {book}\")\nprint(f\"Total: {sum(bible.values())} chapters in {len(bible)} books\")\nlong_books = []\nfor name, chaps in bible.items():\n    if chaps > 25:\n        long_books.append(name)\nprint(\"More than 25:\", long_books)"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "¿Qué libro buscas? Jonás\nJonás tiene 4 capítulos\nTotal: 460 capítulos en 12 libros\nMás de 25: ['Génesis', 'Éxodo', 'Salmos', 'Proverbios', 'Isaías', 'Mateo', 'Hechos']"
+     },
+     {
+      "py": "assert 'Salmos tiene 150 capítulos' in _correr(['Salmos'])",
+      "msg": {
+       "es": "Con «Salmos» debe salir «Salmos tiene 150 capítulos»: busca el valor en el diccionario.",
+       "en": "With «Salmos» it should print «Salmos tiene 150 capítulos»: look up the value in the dictionary."
+      }
+     },
+     {
+      "py": "s = _correr(['Genesis'])\nassert 'No encontré Genesis' in s and 'Genesis tiene' not in s",
+      "msg": {
+       "es": "Si el libro no está (por ejemplo «Genesis» sin tilde), muestra «No encontré Genesis» sin lanzar KeyError.",
+       "en": "If the book isn't there (for example «Genesis» without the accent), show «No encontré Genesis» without a KeyError."
+      }
+     },
+     {
+      "py": "assert '460' not in _codigo and \"'Isaías'\" not in _codigo",
+      "msg": {
+       "es": "No escribas los resultados: calcula el total y arma la lista con un bucle.",
+       "en": "Don't type the results: calculate the total and build the list with a loop."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Which book are you looking for? Jonah\nJonah has 4 chapters\nTotal: 460 chapters in 12 books\nMore than 25: ['Genesis', 'Exodus', 'Psalms', 'Proverbs', 'Isaiah', 'Matthew', 'Acts']"
+     },
+     {
+      "py": "assert 'Psalms has 150 chapters' in _correr(['Psalms'])",
+      "msg": {
+       "es": "Con «Psalms» debe salir «Psalms has 150 chapters»: busca el valor en el diccionario.",
+       "en": "With «Psalms» it should print «Psalms has 150 chapters»: look up the value in the dictionary."
+      }
+     },
+     {
+      "py": "s = _correr(['genesis'])\nassert \"I didn't find genesis\" in s and 'genesis has' not in s",
+      "msg": {
+       "es": "Si el libro no está (por ejemplo «genesis» en minúscula), muestra «I didn't find genesis» sin lanzar KeyError.",
+       "en": "If the book isn't there (for example «genesis» in lowercase), show «I didn't find genesis» without a KeyError."
+      }
+     },
+     {
+      "py": "assert '460' not in _codigo and \"'Isaiah'\" not in _codigo",
+      "msg": {
+       "es": "No escribas los resultados: calcula el total y arma la lista con un bucle.",
+       "en": "Don't type the results: calculate the total and build the list with a loop."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "biblia = {\n    \"Génesis\": 50, \"Éxodo\": 40, \"Rut\": 4, \"Salmos\": 150,\n    \"Proverbios\": 31, \"Isaías\": 66, \"Jonás\": 4, \"Mateo\": 28,\n    \"Marcos\": 16, \"Juan\": 21, \"Hechos\": 28, \"Apocalipsis\": 22,\n}\nlibro = input(\"¿Qué libro buscas? \")\nprint(f\"{libro} tiene {biblia[libro]} capítulos\")\nprint(f\"Total: {sum(biblia.values())} capítulos en {len(biblia)} libros\")\nlargos = []\nfor nombre, caps in biblia.items():\n    if caps > 25:\n        largos.append(nombre)\nprint(\"Más de 25:\", largos)",
+     "biblia = {\n    \"Génesis\": 50, \"Éxodo\": 40, \"Rut\": 4, \"Salmos\": 150,\n    \"Proverbios\": 31, \"Isaías\": 66, \"Jonás\": 4, \"Mateo\": 28,\n    \"Marcos\": 16, \"Juan\": 21, \"Hechos\": 28, \"Apocalipsis\": 22,\n}\nlibro = input(\"¿Qué libro buscas? \")\nif libro in biblia:\n    print(f\"{libro} tiene {biblia[libro]} capítulos\")\nelse:\n    print(f\"No encontré {libro}\")\nprint(f\"Total: {sum(biblia.keys())} capítulos en {len(biblia)} libros\")",
+     "biblia = {\n    \"Génesis\": 50, \"Éxodo\": 40, \"Rut\": 4, \"Salmos\": 150,\n    \"Proverbios\": 31, \"Isaías\": 66, \"Jonás\": 4, \"Mateo\": 28,\n    \"Marcos\": 16, \"Juan\": 21, \"Hechos\": 28, \"Apocalipsis\": 22,\n}\nlibro = input(\"¿Qué libro buscas? \")\nif libro in biblia:\n    print(f\"{libro} tiene {biblia[libro]} capítulos\")\nelse:\n    print(f\"No encontré {libro}\")\nprint(f\"Total: {sum(biblia.values())} capítulos en {len(biblia)} libros\")\nlargos = []\nfor nombre, caps in biblia.items():\n    if caps >= 25:\n        largos.append(caps)\nprint(\"Más de 25:\", largos)",
+     "libro = input(\"¿Qué libro buscas? \")\nprint(\"Jonás tiene 4 capítulos\")\nprint(\"Total: 460 capítulos en 12 libros\")\nprint(\"Más de 25: ['Génesis', 'Éxodo', 'Salmos', 'Proverbios', 'Isaías', 'Mateo', 'Hechos']\")"
+    ],
+    "en": [
+     "bible = {\n    \"Genesis\": 50, \"Exodus\": 40, \"Ruth\": 4, \"Psalms\": 150,\n    \"Proverbs\": 31, \"Isaiah\": 66, \"Jonah\": 4, \"Matthew\": 28,\n    \"Mark\": 16, \"John\": 21, \"Acts\": 28, \"Revelation\": 22,\n}\nbook = input(\"Which book are you looking for? \")\nprint(f\"{book} has {bible[book]} chapters\")\nprint(f\"Total: {sum(bible.values())} chapters in {len(bible)} books\")\nlong_books = []\nfor name, chaps in bible.items():\n    if chaps > 25:\n        long_books.append(name)\nprint(\"More than 25:\", long_books)",
+     "bible = {\n    \"Genesis\": 50, \"Exodus\": 40, \"Ruth\": 4, \"Psalms\": 150,\n    \"Proverbs\": 31, \"Isaiah\": 66, \"Jonah\": 4, \"Matthew\": 28,\n    \"Mark\": 16, \"John\": 21, \"Acts\": 28, \"Revelation\": 22,\n}\nbook = input(\"Which book are you looking for? \")\nif book in bible:\n    print(f\"{book} has {bible[book]} chapters\")\nelse:\n    print(f\"I didn't find {book}\")\nprint(f\"Total: {sum(bible.values())} chapters in {len(bible)} books\")\nlong_books = []\nfor name, chaps in bible.items():\n    if chaps >= 25:\n        long_books.append(chaps)\nprint(\"More than 25:\", long_books)",
+     "book = input(\"Which book are you looking for? \")\nprint(\"Jonah has 4 chapters\")\nprint(\"Total: 460 chapters in 12 books\")\nprint(\"More than 25: ['Genesis', 'Exodus', 'Psalms', 'Proverbs', 'Isaiah', 'Matthew', 'Acts']\")"
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Sofer">
+  <!-- Sofer, el joven escriba (personaje original del juego) -->
+  <circle cx="60" cy="60" r="58" fill="#efe1c0"/>
+  <!-- túnica -->
+  <path d="M22 120c2-26 16-38 38-38s36 12 38 38z" fill="#8a5a33"/>
+  <path d="M52 84l8 16 8-16z" fill="#e9d7ae"/>
+  <path d="M44 86c4 10 6 22 6 34h-4c0-12-3-22-7-31zM76 86c-4 10-6 22-6 34h4c0-12 3-22 7-31z" fill="#2f4a6d"/>
+  <!-- cuello y cara -->
+  <rect x="53" y="70" width="14" height="14" rx="5" fill="#c98a5c"/>
+  <ellipse cx="60" cy="54" rx="22" ry="24" fill="#d99a69"/>
+  <!-- pelo y turbante -->
+  <path d="M38 52c-2-10 2-16 6-18l-2 14z" fill="#3b2618"/>
+  <path d="M82 52c2-10-2-16-6-18l2 14z" fill="#3b2618"/>
+  <path d="M36 44c0-16 11-26 24-26s24 10 24 26c-6-5-14-8-24-8s-18 3-24 8z" fill="#f4ead3"/>
+  <path d="M37 41c6-5 14-7 23-7s17 2 23 7l-1 4c-6-4-13-6-22-6s-16 2-22 6z" fill="#2f4a6d"/>
+  <!-- orejas -->
+  <ellipse cx="38" cy="56" rx="4" ry="6" fill="#c98a5c"/>
+  <ellipse cx="82" cy="56" rx="4" ry="6" fill="#c98a5c"/>
+  <!-- ojos, cejas, mejillas, sonrisa -->
+  <path d="M46 49q5-3 9 0M65 49q5-3 9 0" stroke="#3b2618" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <ellipse cx="51" cy="56" rx="3" ry="3.6" fill="#2a1a10"/>
+  <ellipse cx="69" cy="56" rx="3" ry="3.6" fill="#2a1a10"/>
+  <circle cx="52" cy="54.8" r="1" fill="#fff"/>
+  <circle cx="70" cy="54.8" r="1" fill="#fff"/>
+  <ellipse cx="45" cy="63" rx="4" ry="2.5" fill="#e07f62" opacity=".45"/>
+  <ellipse cx="75" cy="63" rx="4" ry="2.5" fill="#e07f62" opacity=".45"/>
+  <path d="M53 66q7 6 14 0" stroke="#7a3b22" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <!-- rollo y cálamo -->
+  <g transform="rotate(-12 88 98)">
+    <rect x="70" y="90" width="34" height="14" rx="3" fill="#f6ecd2" stroke="#b98a4a" stroke-width="1.5"/>
+    <rect x="66" y="88" width="6" height="18" rx="3" fill="#b98a4a"/>
+    <rect x="102" y="88" width="6" height="18" rx="3" fill="#b98a4a"/>
+    <path d="M76 95h20M76 99h14" stroke="#b98a4a" stroke-width="1.4" stroke-linecap="round"/>
+  </g>
+  <path d="M30 110l22-30" stroke="#5a3a1e" stroke-width="3" stroke-linecap="round"/>
+  <path d="M52 80l3-5-1 6z" fill="#2a1a10"/>
+</svg>

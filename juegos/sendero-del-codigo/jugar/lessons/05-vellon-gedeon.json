@@ -1,0 +1,727 @@
+{
+ "id": "05-vellon-gedeon",
+ "numero": 5,
+ "lugar": "desierto",
+ "titulo": {
+  "es": "El vellón de Gedeón",
+  "en": "Gideon's fleece"
+ },
+ "tema": {
+  "es": "if, elif, else, comparaciones y and / or / not",
+  "en": "if, elif, else, comparisons and and / or / not"
+ },
+ "versiculo": "jue-6-37",
+ "medalla": {
+  "es": "Lector de señales",
+  "en": "Sign reader"
+ },
+ "leccion": {
+  "es": [
+   "Gedeón le pidió a Dios una señal: si a la mañana el vellón estaba mojado y el suelo seco, sabría que Dios lo enviaba (Jueces 6:36-40). Un programa también decide según lo que encuentra.",
+   "Las **comparaciones** dan `True` o `False`: `==` (igual), `!=` (distinto), `<`, `>`, `<=`, `>=`. Cuidado: `=` guarda un valor y `==` compara.",
+   "`if condicion:` ejecuta el bloque con **sangría** (4 espacios) solo si la condición es `True`. `elif otra:` se revisa si la anterior fue falsa, y `else:` se ejecuta cuando ninguna se cumplió. Python se queda con la **primera** condición verdadera.",
+   "Para combinar condiciones: `a and b` (las dos), `a or b` (al menos una) y `not a` (lo contrario). Cada lado debe ser una comparación completa: `x == \"seco\" or x == \"mojado\"`, no `x == \"seco\" or \"mojado\"`."
+  ],
+  "en": [
+   "Gideon asked God for a sign: if in the morning the fleece was wet and the ground dry, he would know God was sending him (Judges 6:36-40). A program also decides based on what it finds.",
+   "**Comparisons** give `True` or `False`: `==` (equal), `!=` (not equal), `<`, `>`, `<=`, `>=`. Careful: `=` stores a value and `==` compares.",
+   "`if condition:` runs the **indented** block (4 spaces) only if the condition is `True`. `elif other:` is checked if the previous one was false, and `else:` runs when none was true. Python keeps the **first** true condition.",
+   "To combine conditions: `a and b` (both), `a or b` (at least one) and `not a` (the opposite). Each side must be a full comparison: `x == \"dry\" or x == \"wet\"`, not `x == \"dry\" or \"wet\"`."
+  ]
+ },
+ "ejemplo": {
+  "es": "vellon = \"mojado\"\nsuelo = \"seco\"\nprint(vellon == \"mojado\", suelo != \"seco\")\nif vellon == \"mojado\" and suelo == \"seco\":\n    print(\"Primera señal\")\nelif vellon == \"seco\" and suelo == \"mojado\":\n    print(\"Segunda señal\")\nelse:\n    print(\"Sin señal\")\nprint(not True, 300 < 10000 or False)",
+  "en": "fleece = \"wet\"\nground = \"dry\"\nprint(fleece == \"wet\", ground != \"dry\")\nif fleece == \"wet\" and ground == \"dry\":\n    print(\"First sign\")\nelif fleece == \"dry\" and ground == \"wet\":\n    print(\"Second sign\")\nelse:\n    print(\"No sign\")\nprint(not True, 300 < 10000 or False)"
+ },
+ "ejercicios": [
+  {
+   "id": "comparar-ejercito",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "El ejército de Gedeón quedó en 10000 hombres, y Dios le dijo: «Los salvaré con los trescientos» (Jueces 7:3, 7:7). Con `soldados = 300`, muestra el resultado de dos comparaciones: si `soldados` es menor que 10000 y si es igual a 300. Debe salir:\n```\nTrue\nTrue\n```",
+    "en": "Gideon's army went down to 10000 men, and God told him: “With the three hundred men… I will save you” (Judges 7:3, 7:7). With `soldiers = 300`, show the result of two comparisons: whether `soldiers` is less than 10000 and whether it is equal to 300. It should print:\n```\nTrue\nTrue\n```"
+   },
+   "inicial": {
+    "es": "soldados = 300\n",
+    "en": "soldiers = 300\n"
+   },
+   "pistas": {
+    "es": [
+     "Una comparación da `True` o `False`: `print(soldados < 10000)`.",
+     "Para «es igual» se usan **dos** signos: `print(soldados == 300)`. Uno solo (`=`) guarda un valor."
+    ],
+    "en": [
+     "A comparison gives `True` or `False`: `print(soldiers < 10000)`.",
+     "For “is equal” you use **two** signs: `print(soldiers == 300)`. A single one (`=`) stores a value."
+    ]
+   },
+   "solucion": {
+    "es": "soldados = 300\nprint(soldados < 10000)\nprint(soldados == 300)",
+    "en": "soldiers = 300\nprint(soldiers < 10000)\nprint(soldiers == 300)"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "True\nTrue"
+     },
+     {
+      "py": "assert '<' in _codigo and '==' in _codigo",
+      "msg": {
+       "es": "Compara con < y con ==; no escribas True directamente.",
+       "en": "Compare with < and with ==; don't type True directly."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "True\nTrue"
+     },
+     {
+      "py": "assert '<' in _codigo and '==' in _codigo",
+      "msg": {
+       "es": "Compara con < y con ==; no escribas True directamente.",
+       "en": "Compare with < and with ==; don't type True directly."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "print(True)\nprint(True)",
+     "soldados = 300\nprint(soldados < 10000)\nprint(soldados = 300)",
+     "soldados = 300\nprint(soldados > 10000)\nprint(soldados == 300)"
+    ],
+    "en": [
+     "print(True)\nprint(True)",
+     "soldiers = 300\nprint(soldiers < 10000)\nprint(soldiers = 300)"
+    ]
+   }
+  },
+  {
+   "id": "vellon-mojado",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Gedeón miraba el vellón cada mañana. Pide `¿El vellón está mojado? (si/no) ` y, si la respuesta es `si`, muestra `Hay rocío en el vellón`; si no, muestra `El vellón está seco`. Con `si` la última línea debe ser:\n```\nHay rocío en el vellón\n```",
+    "en": "Gideon checked the fleece every morning. Ask `Is the fleece wet? (yes/no) ` and, if the answer is `yes`, show `There is dew on the fleece`; otherwise show `The fleece is dry`. With `yes` the last line must be:\n```\nThere is dew on the fleece\n```"
+   },
+   "inicial": {
+    "es": "respuesta = input(\"¿El vellón está mojado? (si/no) \")\n",
+    "en": "answer = input(\"Is the fleece wet? (yes/no) \")\n"
+   },
+   "entradas": {
+    "es": [
+     "si"
+    ],
+    "en": [
+     "yes"
+    ]
+   },
+   "pistas": {
+    "es": [
+     "`if respuesta == \"si\":` y en la línea siguiente, con 4 espacios de sangría, el `print`.",
+     "Después, sin sangría, `else:` y otro `print` con sangría para el caso contrario."
+    ],
+    "en": [
+     "`if answer == \"yes\":` and on the next line, indented 4 spaces, the `print`.",
+     "Then, without indentation, `else:` and another indented `print` for the other case."
+    ]
+   },
+   "solucion": {
+    "es": "respuesta = input(\"¿El vellón está mojado? (si/no) \")\nif respuesta == \"si\":\n    print(\"Hay rocío en el vellón\")\nelse:\n    print(\"El vellón está seco\")",
+    "en": "answer = input(\"Is the fleece wet? (yes/no) \")\nif answer == \"yes\":\n    print(\"There is dew on the fleece\")\nelse:\n    print(\"The fleece is dry\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "py": "assert 'if ' in _codigo",
+      "msg": {
+       "es": "Usa if para decidir.",
+       "en": "Use if to decide."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _salida.splitlines()]\nassert _L[-1:] == ['Hay rocío en el vellón']",
+      "msg": {
+       "es": "Con «si» la última línea debe ser «Hay rocío en el vellón».",
+       "en": "With “si” the last line must be “Hay rocío en el vellón”."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['no']).splitlines()]\nassert _L[-1:] == ['El vellón está seco']",
+      "msg": {
+       "es": "Con «no» debe salir solo «El vellón está seco». ¿Pusiste el else?",
+       "en": "With “no” it must show only “El vellón está seco”. Did you add the else?"
+      }
+     }
+    ],
+    "en": [
+     {
+      "py": "assert 'if ' in _codigo",
+      "msg": {
+       "es": "Usa if para decidir.",
+       "en": "Use if to decide."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _salida.splitlines()]\nassert _L[-1:] == ['There is dew on the fleece']",
+      "msg": {
+       "es": "Con «yes» la última línea debe ser «There is dew on the fleece».",
+       "en": "With “yes” the last line must be “There is dew on the fleece”."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['no']).splitlines()]\nassert _L[-1:] == ['The fleece is dry']",
+      "msg": {
+       "es": "Con «no» debe salir solo «The fleece is dry». ¿Pusiste el else?",
+       "en": "With “no” it must show only “The fleece is dry”. Did you add the else?"
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "respuesta = input(\"¿El vellón está mojado? (si/no) \")\nif respuesta = \"si\":\n    print(\"Hay rocío en el vellón\")\nelse:\n    print(\"El vellón está seco\")",
+     "respuesta = input(\"¿El vellón está mojado? (si/no) \")\nif respuesta == \"si\":\nprint(\"Hay rocío en el vellón\")\nelse:\nprint(\"El vellón está seco\")",
+     "respuesta = input(\"¿El vellón está mojado? (si/no) \")\nif respuesta == \"si\":\n    print(\"Hay rocío en el vellón\")\nprint(\"El vellón está seco\")",
+     "respuesta = input(\"¿El vellón está mojado? (si/no) \")\nprint(\"Hay rocío en el vellón\")"
+    ],
+    "en": [
+     "answer = input(\"Is the fleece wet? (yes/no) \")\nif answer = \"yes\":\n    print(\"There is dew on the fleece\")\nelse:\n    print(\"The fleece is dry\")",
+     "answer = input(\"Is the fleece wet? (yes/no) \")\nif answer == \"yes\":\n    print(\"There is dew on the fleece\")\nprint(\"The fleece is dry\")",
+     "answer = input(\"Is the fleece wet? (yes/no) \")\nprint(\"There is dew on the fleece\")"
+    ]
+   }
+  },
+  {
+   "id": "primera-senal",
+   "tipo": "hueco",
+   "enunciado": {
+    "es": "La primera señal que pidió Gedeón: rocío **solo** sobre el vellón y todo el suelo seco (Jueces 6:37). Completa la condición: se deben cumplir **las dos** cosas a la vez. Con `mojado` y `seco` debe salir `Es la señal`; con `mojado` y `mojado`, `No es la señal`.",
+    "en": "The first sign Gideon asked for: dew **only** on the fleece and all the ground dry (Judges 6:37). Fill in the condition: **both** things must be true at the same time. With `wet` and `dry` it must show `It is the sign`; with `wet` and `wet`, `It is not the sign`."
+   },
+   "plantilla": {
+    "es": "vellon = input(\"Vellón: \")\nsuelo = input(\"Suelo: \")\nif vellon == \"mojado\" ___ suelo == \"seco\":\n    print(\"Es la señal\")\nelse:\n    print(\"No es la señal\")",
+    "en": "fleece = input(\"Fleece: \")\nground = input(\"Ground: \")\nif fleece == \"wet\" ___ ground == \"dry\":\n    print(\"It is the sign\")\nelse:\n    print(\"It is not the sign\")"
+   },
+   "entradas": {
+    "es": [
+     "mojado",
+     "seco"
+    ],
+    "en": [
+     "wet",
+     "dry"
+    ]
+   },
+   "pistas": {
+    "es": [
+     "`or` basta con que una sea verdadera; aquí se necesitan las dos.",
+     "La palabra es `and`."
+    ],
+    "en": [
+     "`or` only needs one to be true; here you need both.",
+     "The word is `and`."
+    ]
+   },
+   "solucion": {
+    "es": "vellon = input(\"Vellón: \")\nsuelo = input(\"Suelo: \")\nif vellon == \"mojado\" and suelo == \"seco\":\n    print(\"Es la señal\")\nelse:\n    print(\"No es la señal\")",
+    "en": "fleece = input(\"Fleece: \")\nground = input(\"Ground: \")\nif fleece == \"wet\" and ground == \"dry\":\n    print(\"It is the sign\")\nelse:\n    print(\"It is not the sign\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "py": "_L = [l.strip() for l in _salida.splitlines()]\nassert _L[-1:] == ['Es la señal']",
+      "msg": {
+       "es": "Con «mojado» y «seco» debe salir «Es la señal».",
+       "en": "With “mojado” and “seco” it must show “Es la señal”."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['mojado', 'mojado']).splitlines()]\nassert _L[-1:] == ['No es la señal']",
+      "msg": {
+       "es": "Con «mojado» y «mojado» no es la señal: las dos condiciones deben cumplirse.",
+       "en": "With “mojado” and “mojado” it is not the sign: both conditions must be true."
+      }
+     }
+    ],
+    "en": [
+     {
+      "py": "_L = [l.strip() for l in _salida.splitlines()]\nassert _L[-1:] == ['It is the sign']",
+      "msg": {
+       "es": "Con «wet» y «dry» debe salir «It is the sign».",
+       "en": "With “wet” and “dry” it must show “It is the sign”."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['wet', 'wet']).splitlines()]\nassert _L[-1:] == ['It is not the sign']",
+      "msg": {
+       "es": "Con «wet» y «wet» no es la señal: las dos condiciones deben cumplirse.",
+       "en": "With “wet” and “wet” it is not the sign: both conditions must be true."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "vellon = input(\"Vellón: \")\nsuelo = input(\"Suelo: \")\nif vellon == \"mojado\" or suelo == \"seco\":\n    print(\"Es la señal\")\nelse:\n    print(\"No es la señal\")",
+     "vellon = input(\"Vellón: \")\nsuelo = input(\"Suelo: \")\nif vellon == \"mojado\" & suelo == \"seco\":\n    print(\"Es la señal\")\nelse:\n    print(\"No es la señal\")",
+     "vellon = input(\"Vellón: \")\nsuelo = input(\"Suelo: \")\nif vellon == \"mojado\" y suelo == \"seco\":\n    print(\"Es la señal\")\nelse:\n    print(\"No es la señal\")"
+    ],
+    "en": [
+     "fleece = input(\"Fleece: \")\nground = input(\"Ground: \")\nif fleece == \"wet\" or ground == \"dry\":\n    print(\"It is the sign\")\nelse:\n    print(\"It is not the sign\")",
+     "fleece = input(\"Fleece: \")\nground = input(\"Ground: \")\nif fleece == \"wet\" & ground == \"dry\":\n    print(\"It is the sign\")\nelse:\n    print(\"It is not the sign\")"
+    ]
+   }
+  },
+  {
+   "id": "demasiados",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Dios le dijo a Gedeón que su ejército era demasiado numeroso (Jueces 7:2). Pide el número de soldados (conviértelo con `int()`) y usa `if`, `elif` y `else`:\n- más de 10000: `Son demasiados`\n- más de 300 (pero no más de 10000): `Todavía son muchos`\n- 300 o menos: `Con estos basta`\n\nCon `32000` la última línea debe ser `Son demasiados`.",
+    "en": "God told Gideon that his army was too large (Judges 7:2). Ask for the number of soldiers (convert it with `int()`) and use `if`, `elif` and `else`:\n- more than 10000: `Too many`\n- more than 300 (but not more than 10000): `Still too many`\n- 300 or fewer: `These are enough`\n\nWith `32000` the last line must be `Too many`."
+   },
+   "inicial": {
+    "es": "",
+    "en": ""
+   },
+   "entradas": {
+    "es": [
+     "32000"
+    ],
+    "en": [
+     "32000"
+    ]
+   },
+   "pistas": {
+    "es": [
+     "`soldados = int(input(\"Soldados: \"))`. Luego `if soldados > 10000:`.",
+     "Python revisa en orden y se queda con la primera condición verdadera: `elif soldados > 300:` y al final `else:`."
+    ],
+    "en": [
+     "`soldiers = int(input(\"Soldiers: \"))`. Then `if soldiers > 10000:`.",
+     "Python checks in order and keeps the first true condition: `elif soldiers > 300:` and finally `else:`."
+    ]
+   },
+   "solucion": {
+    "es": "soldados = int(input(\"Soldados: \"))\nif soldados > 10000:\n    print(\"Son demasiados\")\nelif soldados > 300:\n    print(\"Todavía son muchos\")\nelse:\n    print(\"Con estos basta\")",
+    "en": "soldiers = int(input(\"Soldiers: \"))\nif soldiers > 10000:\n    print(\"Too many\")\nelif soldiers > 300:\n    print(\"Still too many\")\nelse:\n    print(\"These are enough\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "py": "assert 'elif' in _codigo",
+      "msg": {
+       "es": "Usa elif para la segunda condición.",
+       "en": "Use elif for the second condition."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _salida.splitlines()]\nassert _L[-1:] == ['Son demasiados']",
+      "msg": {
+       "es": "Con 32000 debe salir solo «Son demasiados».",
+       "en": "With 32000 it must show only “Son demasiados”."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['10000']).splitlines()]\nassert _L[-1:] == ['Todavía son muchos']",
+      "msg": {
+       "es": "Con 10000 debe salir «Todavía son muchos» (10000 no es más de 10000).",
+       "en": "With 10000 it must show “Todavía son muchos” (10000 is not more than 10000)."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['300']).splitlines()]\nassert _L[-1:] == ['Con estos basta']",
+      "msg": {
+       "es": "Con 300 debe salir «Con estos basta».",
+       "en": "With 300 it must show “Con estos basta”."
+      }
+     },
+     {
+      "py": "assert _correr(['301']).splitlines()[-1].strip() == 'Todavía son muchos' and len(_correr(['50000']).splitlines()) == 2",
+      "msg": {
+       "es": "Revisa los límites: con 301 debe salir «Todavía son muchos», y debe mostrarse un solo mensaje cada vez.",
+       "en": "Check the limits: with 301 it must show “Todavía son muchos”, and only one message must be shown each time."
+      }
+     }
+    ],
+    "en": [
+     {
+      "py": "assert 'elif' in _codigo",
+      "msg": {
+       "es": "Usa elif para la segunda condición.",
+       "en": "Use elif for the second condition."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _salida.splitlines()]\nassert _L[-1:] == ['Too many']",
+      "msg": {
+       "es": "Con 32000 debe salir solo «Too many».",
+       "en": "With 32000 it must show only “Too many”."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['10000']).splitlines()]\nassert _L[-1:] == ['Still too many']",
+      "msg": {
+       "es": "Con 10000 debe salir «Still too many» (10000 no es más de 10000).",
+       "en": "With 10000 it must show “Still too many” (10000 is not more than 10000)."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['300']).splitlines()]\nassert _L[-1:] == ['These are enough']",
+      "msg": {
+       "es": "Con 300 debe salir «These are enough».",
+       "en": "With 300 it must show “These are enough”."
+      }
+     },
+     {
+      "py": "assert _correr(['301']).splitlines()[-1].strip() == 'Still too many' and len(_correr(['50000']).splitlines()) == 2",
+      "msg": {
+       "es": "Revisa los límites: con 301 debe salir «Still too many», y debe mostrarse un solo mensaje cada vez.",
+       "en": "Check the limits: with 301 it must show “Still too many”, and only one message must be shown each time."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "soldados = int(input(\"Soldados: \"))\nif soldados > 300:\n    print(\"Todavía son muchos\")\nelif soldados > 10000:\n    print(\"Son demasiados\")\nelse:\n    print(\"Con estos basta\")",
+     "soldados = int(input(\"Soldados: \"))\nif soldados > 10000:\n    print(\"Son demasiados\")\nif soldados > 300:\n    print(\"Todavía son muchos\")\nelse:\n    print(\"Con estos basta\")",
+     "soldados = int(input(\"Soldados: \"))\nif soldados >= 10000:\n    print(\"Son demasiados\")\nelif soldados > 300:\n    print(\"Todavía son muchos\")\nelse:\n    print(\"Con estos basta\")",
+     "soldados = input(\"Soldados: \")\nif soldados > 10000:\n    print(\"Son demasiados\")\nelif soldados > 300:\n    print(\"Todavía son muchos\")\nelse:\n    print(\"Con estos basta\")"
+    ],
+    "en": [
+     "soldiers = int(input(\"Soldiers: \"))\nif soldiers > 300:\n    print(\"Still too many\")\nelif soldiers > 10000:\n    print(\"Too many\")\nelse:\n    print(\"These are enough\")",
+     "soldiers = int(input(\"Soldiers: \"))\nif soldiers > 10000:\n    print(\"Too many\")\nif soldiers > 300:\n    print(\"Still too many\")\nelse:\n    print(\"These are enough\")",
+     "soldiers = input(\"Soldiers: \")\nif soldiers > 10000:\n    print(\"Too many\")\nelif soldiers > 300:\n    print(\"Still too many\")\nelse:\n    print(\"These are enough\")"
+    ]
+   }
+  },
+  {
+   "id": "el-que-tema",
+   "tipo": "ordenar",
+   "enunciado": {
+    "es": "«El que tenga miedo y tiemble, que regrese» (Jueces 7:3). Ordena las líneas (fíjate en la sangría) para preguntar si el soldado tiene miedo, guardar en `valiente` si respondió `no`, y usar `not`. Con `si` debe salir `Puedes regresar a casa`; con `no`, `Quédate con Gedeón`.",
+    "en": "“Whoever is fearful and trembling may turn back” (Judges 7:3). Put the lines in order (watch the indentation) to ask whether the soldier is afraid, store in `brave` whether they answered `no`, and use `not`. With `yes` it must show `You may go back home`; with `no`, `Stay with Gideon`."
+   },
+   "lineas": {
+    "es": [
+     "miedo = input(\"¿Tienes miedo? (si/no) \")",
+     "valiente = miedo == \"no\"",
+     "if not valiente:",
+     "    print(\"Puedes regresar a casa\")",
+     "else:",
+     "    print(\"Quédate con Gedeón\")"
+    ],
+    "en": [
+     "afraid = input(\"Are you afraid? (yes/no) \")",
+     "brave = afraid == \"no\"",
+     "if not brave:",
+     "    print(\"You may go back home\")",
+     "else:",
+     "    print(\"Stay with Gideon\")"
+    ]
+   },
+   "entradas": {
+    "es": [
+     "si"
+    ],
+    "en": [
+     "yes"
+    ]
+   },
+   "pistas": {
+    "es": [
+     "`valiente` necesita la respuesta: primero el `input`, luego `valiente = miedo == \"no\"`.",
+     "`not valiente` es `True` cuando el soldado **no** es valiente: ahí va «Puedes regresar a casa»."
+    ],
+    "en": [
+     "`brave` needs the answer: first the `input`, then `brave = afraid == \"no\"`.",
+     "`not brave` is `True` when the soldier is **not** brave: that's where “You may go back home” goes."
+    ]
+   },
+   "pruebas": {
+    "es": [
+     {
+      "py": "_L = [l.strip() for l in _salida.splitlines()]\nassert _L[-1:] == ['Puedes regresar a casa']",
+      "msg": {
+       "es": "Con «si» debe salir «Puedes regresar a casa».",
+       "en": "With “si” it must show “Puedes regresar a casa”."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['no']).splitlines()]\nassert _L[-1:] == ['Quédate con Gedeón']",
+      "msg": {
+       "es": "Con «no» debe salir «Quédate con Gedeón».",
+       "en": "With “no” it must show “Quédate con Gedeón”."
+      }
+     }
+    ],
+    "en": [
+     {
+      "py": "_L = [l.strip() for l in _salida.splitlines()]\nassert _L[-1:] == ['You may go back home']",
+      "msg": {
+       "es": "Con «yes» debe salir «You may go back home».",
+       "en": "With “yes” it must show “You may go back home”."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['no']).splitlines()]\nassert _L[-1:] == ['Stay with Gideon']",
+      "msg": {
+       "es": "Con «no» debe salir «Stay with Gideon».",
+       "en": "With “no” it must show “Stay with Gideon”."
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "dos-senales",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Gedeón pidió dos señales: la primera noche, vellón `mojado` y suelo `seco`; la segunda, vellón `seco` y suelo `mojado` (Jueces 6:37-40). Pide el estado del vellón y del suelo. Si es **cualquiera** de las dos señales, muestra `Es una de las señales de Gedeón`; si no, `No es una señal`. Combina `and` y `or`. Con `seco` y `mojado` la última línea debe ser:\n```\nEs una de las señales de Gedeón\n```",
+    "en": "Gideon asked for two signs: the first night, fleece `wet` and ground `dry`; the second, fleece `dry` and ground `wet` (Judges 6:37-40). Ask for the state of the fleece and of the ground. If it is **either** of the two signs, show `It is one of Gideon's signs`; otherwise `It is not a sign`. Combine `and` and `or`. With `dry` and `wet` the last line must be:\n```\nIt is one of Gideon's signs\n```"
+   },
+   "inicial": {
+    "es": "vellon = input(\"Vellón: \")\nsuelo = input(\"Suelo: \")\n",
+    "en": "fleece = input(\"Fleece: \")\nground = input(\"Ground: \")\n"
+   },
+   "entradas": {
+    "es": [
+     "seco",
+     "mojado"
+    ],
+    "en": [
+     "dry",
+     "wet"
+    ]
+   },
+   "pistas": {
+    "es": [
+     "Cada señal es una condición con `and`: `(vellon == \"mojado\" and suelo == \"seco\")`.",
+     "Junta las dos con `or`: `if (vellon == \"mojado\" and suelo == \"seco\") or (vellon == \"seco\" and suelo == \"mojado\"):`."
+    ],
+    "en": [
+     "Each sign is a condition with `and`: `(fleece == \"wet\" and ground == \"dry\")`.",
+     "Join both with `or`: `if (fleece == \"wet\" and ground == \"dry\") or (fleece == \"dry\" and ground == \"wet\"):`."
+    ]
+   },
+   "solucion": {
+    "es": "vellon = input(\"Vellón: \")\nsuelo = input(\"Suelo: \")\nif (vellon == \"mojado\" and suelo == \"seco\") or (vellon == \"seco\" and suelo == \"mojado\"):\n    print(\"Es una de las señales de Gedeón\")\nelse:\n    print(\"No es una señal\")",
+    "en": "fleece = input(\"Fleece: \")\nground = input(\"Ground: \")\nif (fleece == \"wet\" and ground == \"dry\") or (fleece == \"dry\" and ground == \"wet\"):\n    print(\"It is one of Gideon's signs\")\nelse:\n    print(\"It is not a sign\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "py": "_L = [l.strip() for l in _salida.splitlines()]\nassert _L[-1:] == ['Es una de las señales de Gedeón']",
+      "msg": {
+       "es": "Con «seco» y «mojado» es la segunda señal.",
+       "en": "With “seco” and “mojado” it is the second sign."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['mojado', 'seco']).splitlines()]\nassert _L[-1:] == ['Es una de las señales de Gedeón']",
+      "msg": {
+       "es": "Con «mojado» y «seco» es la primera señal.",
+       "en": "With “mojado” and “seco” it is the first sign."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['mojado', 'mojado']).splitlines()]\nassert _L[-1:] == ['No es una señal']",
+      "msg": {
+       "es": "Con «mojado» y «mojado» no es ninguna señal.",
+       "en": "With “mojado” and “mojado” it is not a sign."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['seco', 'seco']).splitlines()]\nassert _L[-1:] == ['No es una señal']",
+      "msg": {
+       "es": "Con «seco» y «seco» no es ninguna señal.",
+       "en": "With “seco” and “seco” it is not a sign."
+      }
+     }
+    ],
+    "en": [
+     {
+      "py": "_L = [l.strip() for l in _salida.splitlines()]\nassert _L[-1:] == [\"It is one of Gideon's signs\"]",
+      "msg": {
+       "es": "Con «dry» y «wet» es la segunda señal.",
+       "en": "With “dry” and “wet” it is the second sign."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['wet', 'dry']).splitlines()]\nassert _L[-1:] == [\"It is one of Gideon's signs\"]",
+      "msg": {
+       "es": "Con «wet» y «dry» es la primera señal.",
+       "en": "With “wet” and “dry” it is the first sign."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['wet', 'wet']).splitlines()]\nassert _L[-1:] == ['It is not a sign']",
+      "msg": {
+       "es": "Con «wet» y «wet» no es ninguna señal.",
+       "en": "With “wet” and “wet” it is not a sign."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['dry', 'dry']).splitlines()]\nassert _L[-1:] == ['It is not a sign']",
+      "msg": {
+       "es": "Con «dry» y «dry» no es ninguna señal.",
+       "en": "With “dry” and “dry” it is not a sign."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "vellon = input(\"Vellón: \")\nsuelo = input(\"Suelo: \")\nif vellon == \"mojado\" and suelo == \"seco\":\n    print(\"Es una de las señales de Gedeón\")\nelse:\n    print(\"No es una señal\")",
+     "vellon = input(\"Vellón: \")\nsuelo = input(\"Suelo: \")\nif vellon == \"mojado\" or suelo == \"seco\" or vellon == \"seco\" or suelo == \"mojado\":\n    print(\"Es una de las señales de Gedeón\")\nelse:\n    print(\"No es una señal\")",
+     "vellon = input(\"Vellón: \")\nsuelo = input(\"Suelo: \")\nif vellon == \"mojado\" or \"seco\":\n    print(\"Es una de las señales de Gedeón\")\nelse:\n    print(\"No es una señal\")"
+    ],
+    "en": [
+     "fleece = input(\"Fleece: \")\nground = input(\"Ground: \")\nif fleece == \"wet\" and ground == \"dry\":\n    print(\"It is one of Gideon's signs\")\nelse:\n    print(\"It is not a sign\")",
+     "fleece = input(\"Fleece: \")\nground = input(\"Ground: \")\nif fleece == \"wet\" or \"dry\":\n    print(\"It is one of Gideon's signs\")\nelse:\n    print(\"It is not a sign\")"
+    ]
+   }
+  },
+  {
+   "id": "noches-gedeon",
+   "tipo": "escribir",
+   "reto": true,
+   "enunciado": {
+    "es": "**Reto: las noches de Gedeón.** Pide el número de la noche (`int`), el estado del vellón y el del suelo. Acepta mayúsculas y espacios de más (usa `.strip().lower()`). Muestra:\n- si la noche no es 1 ni 2: `Gedeón pidió solo dos señales`\n- noche 1, vellón mojado y suelo seco: `Primera señal: rocío solo en el vellón`\n- noche 2, vellón seco y suelo mojado: `Segunda señal: solo el vellón seco`\n- en otro caso: `Esta noche no hubo señal`\n\nCon `2`, `Seco` y ` MOJADO` la última línea debe ser:\n```\nSegunda señal: solo el vellón seco\n```",
+    "en": "**Challenge: Gideon's nights.** Ask for the night number (`int`), the state of the fleece and of the ground. Accept capitals and extra spaces (use `.strip().lower()`). Show:\n- if the night is neither 1 nor 2: `Gideon asked for only two signs`\n- night 1, fleece wet and ground dry: `First sign: dew only on the fleece`\n- night 2, fleece dry and ground wet: `Second sign: only the fleece dry`\n- otherwise: `No sign tonight`\n\nWith `2`, `Dry` and ` WET` the last line must be:\n```\nSecond sign: only the fleece dry\n```"
+   },
+   "inicial": {
+    "es": "",
+    "en": ""
+   },
+   "entradas": {
+    "es": [
+     "2",
+     "Seco",
+     " MOJADO"
+    ],
+    "en": [
+     "2",
+     "Dry",
+     " WET"
+    ]
+   },
+   "pistas": {
+    "es": [
+     "`noche = int(input(\"Noche: \"))` y `vellon = input(\"Vellón: \").strip().lower()` (igual con `suelo`). Revisa primero la noche inválida: `if noche != 1 and noche != 2:`.",
+     "Luego `elif noche == 1 and vellon == \"mojado\" and suelo == \"seco\":`, otro `elif` para la noche 2 y al final `else:`."
+    ],
+    "en": [
+     "`night = int(input(\"Night: \"))` and `fleece = input(\"Fleece: \").strip().lower()` (the same with `ground`). Check the invalid night first: `if night != 1 and night != 2:`.",
+     "Then `elif night == 1 and fleece == \"wet\" and ground == \"dry\":`, another `elif` for night 2 and finally `else:`."
+    ]
+   },
+   "solucion": {
+    "es": "noche = int(input(\"Noche: \"))\nvellon = input(\"Vellón: \").strip().lower()\nsuelo = input(\"Suelo: \").strip().lower()\nif noche != 1 and noche != 2:\n    print(\"Gedeón pidió solo dos señales\")\nelif noche == 1 and vellon == \"mojado\" and suelo == \"seco\":\n    print(\"Primera señal: rocío solo en el vellón\")\nelif noche == 2 and vellon == \"seco\" and suelo == \"mojado\":\n    print(\"Segunda señal: solo el vellón seco\")\nelse:\n    print(\"Esta noche no hubo señal\")",
+    "en": "night = int(input(\"Night: \"))\nfleece = input(\"Fleece: \").strip().lower()\nground = input(\"Ground: \").strip().lower()\nif night != 1 and night != 2:\n    print(\"Gideon asked for only two signs\")\nelif night == 1 and fleece == \"wet\" and ground == \"dry\":\n    print(\"First sign: dew only on the fleece\")\nelif night == 2 and fleece == \"dry\" and ground == \"wet\":\n    print(\"Second sign: only the fleece dry\")\nelse:\n    print(\"No sign tonight\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "py": "_L = [l.strip() for l in _salida.splitlines()]\nassert _L[-1:] == ['Segunda señal: solo el vellón seco']",
+      "msg": {
+       "es": "Con 2, «Seco» y « MOJADO» debe salir «Segunda señal: solo el vellón seco». Revisa el orden y las condiciones, y limpia con .strip().lower().",
+       "en": "With 2, “Seco” and “ MOJADO” it must show “Segunda señal: solo el vellón seco”. Check the order and the conditions, and clean with .strip().lower()."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['1', 'mojado', 'SECO']).splitlines()]\nassert _L[-1:] == ['Primera señal: rocío solo en el vellón']",
+      "msg": {
+       "es": "Con 1, «mojado» y «SECO» es la primera señal.",
+       "en": "With 1, “mojado” and “SECO” it is the first sign."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['1', 'seco', 'mojado']).splitlines()]\nassert _L[-1:] == ['Esta noche no hubo señal']",
+      "msg": {
+       "es": "Con 1, «seco» y «mojado» no hay señal: la primera noche el vellón debía estar mojado.",
+       "en": "With 1, “seco” and “mojado” there is no sign: on the first night the fleece had to be wet."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['2', 'mojado', 'seco']).splitlines()]\nassert _L[-1:] == ['Esta noche no hubo señal']",
+      "msg": {
+       "es": "Con 2, «mojado» y «seco» no hay señal: la segunda noche el vellón debía estar seco.",
+       "en": "With 2, “mojado” and “seco” there is no sign: on the second night the fleece had to be dry."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['3', 'mojado', 'seco']).splitlines()]\nassert _L[-1:] == ['Gedeón pidió solo dos señales']",
+      "msg": {
+       "es": "Con la noche 3 debe salir «Gedeón pidió solo dos señales».",
+       "en": "With night 3 it must show “Gedeón pidió solo dos señales”."
+      }
+     },
+     {
+      "py": "assert len(_correr(['3', 'seco', 'mojado']).splitlines()) == 4",
+      "msg": {
+       "es": "Muestra un solo mensaje cada vez (usa elif, no varios if).",
+       "en": "Show only one message each time (use elif, not several ifs)."
+      }
+     }
+    ],
+    "en": [
+     {
+      "py": "_L = [l.strip() for l in _salida.splitlines()]\nassert _L[-1:] == ['Second sign: only the fleece dry']",
+      "msg": {
+       "es": "Con 2, «Dry» y « WET» debe salir «Second sign: only the fleece dry». Revisa el orden y las condiciones, y limpia con .strip().lower().",
+       "en": "With 2, “Dry” and “ WET” it must show “Second sign: only the fleece dry”. Check the order and the conditions, and clean with .strip().lower()."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['1', 'wet', 'DRY']).splitlines()]\nassert _L[-1:] == ['First sign: dew only on the fleece']",
+      "msg": {
+       "es": "Con 1, «wet» y «DRY» es la primera señal.",
+       "en": "With 1, “wet” and “DRY” it is the first sign."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['1', 'dry', 'wet']).splitlines()]\nassert _L[-1:] == ['No sign tonight']",
+      "msg": {
+       "es": "Con 1, «dry» y «wet» no hay señal: la primera noche el vellón debía estar mojado.",
+       "en": "With 1, “dry” and “wet” there is no sign: on the first night the fleece had to be wet."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['2', 'wet', 'dry']).splitlines()]\nassert _L[-1:] == ['No sign tonight']",
+      "msg": {
+       "es": "Con 2, «wet» y «dry» no hay señal: la segunda noche el vellón debía estar seco.",
+       "en": "With 2, “wet” and “dry” there is no sign: on the second night the fleece had to be dry."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['3', 'wet', 'dry']).splitlines()]\nassert _L[-1:] == ['Gideon asked for only two signs']",
+      "msg": {
+       "es": "Con la noche 3 debe salir «Gideon asked for only two signs».",
+       "en": "With night 3 it must show “Gideon asked for only two signs”."
+      }
+     },
+     {
+      "py": "assert len(_correr(['3', 'dry', 'wet']).splitlines()) == 4",
+      "msg": {
+       "es": "Muestra un solo mensaje cada vez (usa elif, no varios if).",
+       "en": "Show only one message each time (use elif, not several ifs)."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "noche = int(input(\"Noche: \"))\nvellon = input(\"Vellón: \")\nsuelo = input(\"Suelo: \")\nif noche != 1 and noche != 2:\n    print(\"Gedeón pidió solo dos señales\")\nelif noche == 1 and vellon == \"mojado\" and suelo == \"seco\":\n    print(\"Primera señal: rocío solo en el vellón\")\nelif noche == 2 and vellon == \"seco\" and suelo == \"mojado\":\n    print(\"Segunda señal: solo el vellón seco\")\nelse:\n    print(\"Esta noche no hubo señal\")",
+     "noche = int(input(\"Noche: \"))\nvellon = input(\"Vellón: \").strip().lower()\nsuelo = input(\"Suelo: \").strip().lower()\nif noche == 1 and vellon == \"mojado\" and suelo == \"seco\":\n    print(\"Primera señal: rocío solo en el vellón\")\nelif vellon == \"seco\" and suelo == \"mojado\":\n    print(\"Segunda señal: solo el vellón seco\")\nelse:\n    print(\"Esta noche no hubo señal\")",
+     "noche = int(input(\"Noche: \"))\nvellon = input(\"Vellón: \").strip().lower()\nsuelo = input(\"Suelo: \").strip().lower()\nif noche != 1 or noche != 2:\n    print(\"Gedeón pidió solo dos señales\")\nelif noche == 1 and vellon == \"mojado\" and suelo == \"seco\":\n    print(\"Primera señal: rocío solo en el vellón\")\nelif noche == 2 and vellon == \"seco\" and suelo == \"mojado\":\n    print(\"Segunda señal: solo el vellón seco\")\nelse:\n    print(\"Esta noche no hubo señal\")"
+    ],
+    "en": [
+     "night = int(input(\"Night: \"))\nfleece = input(\"Fleece: \")\nground = input(\"Ground: \")\nif night != 1 and night != 2:\n    print(\"Gideon asked for only two signs\")\nelif night == 1 and fleece == \"wet\" and ground == \"dry\":\n    print(\"First sign: dew only on the fleece\")\nelif night == 2 and fleece == \"dry\" and ground == \"wet\":\n    print(\"Second sign: only the fleece dry\")\nelse:\n    print(\"No sign tonight\")",
+     "night = int(input(\"Night: \"))\nfleece = input(\"Fleece: \").strip().lower()\nground = input(\"Ground: \").strip().lower()\nif night != 1 or night != 2:\n    print(\"Gideon asked for only two signs\")\nelif night == 1 and fleece == \"wet\" and ground == \"dry\":\n    print(\"First sign: dew only on the fleece\")\nelif night == 2 and fleece == \"dry\" and ground == \"wet\":\n    print(\"Second sign: only the fleece dry\")\nelse:\n    print(\"No sign tonight\")"
+    ]
+   }
+  }
+ ]
+}

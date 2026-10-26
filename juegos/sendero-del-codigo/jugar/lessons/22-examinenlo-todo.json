@@ -1,0 +1,722 @@
+{
+ "id": "22-examinenlo-todo",
+ "numero": 22,
+ "lugar": "nueva_jerusalen",
+ "titulo": {
+  "es": "Examínenlo todo",
+  "en": "Test everything"
+ },
+ "tema": {
+  "es": "assert, funciones de prueba, casos borde, excepciones propias, raise y tracebacks",
+  "en": "assert, test functions, edge cases, custom exceptions, raise and tracebacks"
+ },
+ "versiculo": "1ts-5-21",
+ "medalla": {
+  "es": "Examinador fiel",
+  "en": "Faithful examiner"
+ },
+ "leccion": {
+  "es": [
+   "«Examínenlo todo; retengan lo bueno.» Un buen programador no *cree* que su código funciona: lo **prueba**. `assert condición, \"mensaje\"` no hace nada si la condición es verdadera y lanza `AssertionError` con ese mensaje si es falsa. Sirve para dejar escritos los supuestos mientras programas (no para validar lo que escribe el usuario: Python puede desactivar los `assert` con `python -O`).",
+   "Una **función de prueba** reúne varios `assert`: si termina sin error, pasó. Las pruebas que valen son las de los **casos borde**: la lista vacía, un solo elemento, el primero y el último, el 0, los números negativos, los datos mal escritos. Para probar que algo **debe fallar**: `try: f(x)` / `except MiError: pass` / `else: assert False`. Las herramientas profesionales (`unittest`, `pytest`) usan esta misma idea.",
+   "Puedes crear tus **propias excepciones** heredando de `Exception`: `class CitaInvalidaError(Exception): pass` (el nombre termina en `Error`, por costumbre). Se lanzan con `raise CitaInvalidaError(\"mensaje\")` y se atrapan con `except CitaInvalidaError as e:`; `str(e)` da el mensaje. Así quien usa tu función sabe exactamente qué salió mal.",
+   "Cuando algo se cae, Python muestra un **traceback**. Léelo de abajo hacia arriba: la última línea dice el tipo de error y su mensaje (`KeyError: 'Lukas'`); arriba aparecen el archivo, la línea y la función donde pasó, y más arriba, quién llamó a esa función (*most recent call last*: la llamada más reciente va al final).",
+   "Para **depurar**: reproduce el fallo con el caso más pequeño posible, mira los valores intermedios con `print`, corrige la causa (no tapes el error con un `try` vacío) y vuelve a correr todas tus pruebas."
+  ],
+  "en": [
+   "\"Test everything. Hold fast to what is good.\" A good programmer doesn't *believe* their code works: they **test** it. `assert condition, \"message\"` does nothing if the condition is true and raises `AssertionError` with that message if it's false. It's for writing down your assumptions while you program (not for validating what the user types: Python can turn off `assert`s with `python -O`).",
+   "A **test function** gathers several `assert`s: if it ends without an error, it passed. The tests that count are the **edge cases**: the empty list, a single item, the first and the last, 0, negative numbers, badly written data. To test that something **must fail**: `try: f(x)` / `except MyError: pass` / `else: assert False`. Professional tools (`unittest`, `pytest`) use this same idea.",
+   "You can create your **own exceptions** by inheriting from `Exception`: `class InvalidReferenceError(Exception): pass` (the name ends in `Error`, by convention). You raise them with `raise InvalidReferenceError(\"message\")` and catch them with `except InvalidReferenceError as e:`; `str(e)` gives the message. That way whoever uses your function knows exactly what went wrong.",
+   "When something crashes, Python shows a **traceback**. Read it from the bottom up: the last line says the error type and its message (`KeyError: 'Lukke'`); above it are the file, the line and the function where it happened, and further up, who called that function (*most recent call last*: the most recent call goes at the end).",
+   "To **debug**: reproduce the bug with the smallest possible case, look at the in-between values with `print`, fix the cause (don't hide the error with an empty `try`) and run all your tests again."
+  ]
+ },
+ "ejemplo": {
+  "es": "import traceback\n\nclass CapituloInexistenteError(Exception):\n    pass\n\nCAPITULOS = {\"Rut\": 4, \"Jonás\": 4}\n\ndef validar(libro, capitulo):\n    if not 1 <= capitulo <= CAPITULOS[libro]:\n        raise CapituloInexistenteError(f\"{libro} no tiene capítulo {capitulo}\")\n    return f\"{libro} {capitulo}\"\n\ndef probar_validar():\n    assert validar(\"Rut\", 1) == \"Rut 1\"\n    assert validar(\"Jonás\", 4) == \"Jonás 4\"      # caso borde: el último\n    try:\n        validar(\"Rut\", 5)\n    except CapituloInexistenteError:\n        pass\n    else:\n        assert False, \"validar debía fallar con Rut 5\"\n\nprobar_validar()\nprint(\"Pruebas: todo bien\")\n\ntry:\n    validar(\"Abdías\", 1)\nexcept KeyError:\n    print(traceback.format_exc())",
+  "en": "import traceback\n\nclass ChapterNotFoundError(Exception):\n    pass\n\nCHAPTERS = {\"Ruth\": 4, \"Jonah\": 4}\n\ndef validate(book, chapter):\n    if not 1 <= chapter <= CHAPTERS[book]:\n        raise ChapterNotFoundError(f\"{book} has no chapter {chapter}\")\n    return f\"{book} {chapter}\"\n\ndef test_validate():\n    assert validate(\"Ruth\", 1) == \"Ruth 1\"\n    assert validate(\"Jonah\", 4) == \"Jonah 4\"      # edge case: the last one\n    try:\n        validate(\"Ruth\", 5)\n    except ChapterNotFoundError:\n        pass\n    else:\n        assert False, \"validate should have failed with Ruth 5\"\n\ntest_validate()\nprint(\"Tests: all good\")\n\ntry:\n    validate(\"Obadiah\", 1)\nexcept KeyError:\n    print(traceback.format_exc())"
+ },
+ "ejercicios": [
+  {
+   "id": "supuesto",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Un `assert` deja escrito lo que **suponemos** que es cierto. Escribe `capitulo_y_versiculo(cita)`: primero un `assert` que compruebe que la cita tiene `\":\"`, con el mensaje `Falta ':' en <cita>` (p. ej. `Falta ':' en 316`); luego separa y devuelve una tupla de dos enteros:\n```\n(3, 16)\n(119, 105)\n```",
+    "en": "An `assert` writes down what we **assume** is true. Write `chapter_and_verse(ref)`: first an `assert` that checks the reference has `\":\"`, with the message `Missing ':' in <ref>` (e.g. `Missing ':' in 316`); then split it and return a tuple of two integers:\n```\n(3, 16)\n(119, 105)\n```"
+   },
+   "inicial": {
+    "es": "def capitulo_y_versiculo(cita):\n    \n\nprint(capitulo_y_versiculo(\"3:16\"))\nprint(capitulo_y_versiculo(\"119:105\"))",
+    "en": "def chapter_and_verse(ref):\n    \n\nprint(chapter_and_verse(\"3:16\"))\nprint(chapter_and_verse(\"119:105\"))"
+   },
+   "pistas": {
+    "es": [
+     "La forma es `assert condición, mensaje`. El mensaje puede ser una f-string.",
+     "`assert \":\" in cita, f\"Falta ':' en {cita}\"` y después `capitulo, versiculo = cita.split(\":\")` y `return int(capitulo), int(versiculo)`."
+    ],
+    "en": [
+     "The form is `assert condition, message`. The message can be an f-string.",
+     "`assert \":\" in ref, f\"Missing ':' in {ref}\"` and then `chapter, verse = ref.split(\":\")` and `return int(chapter), int(verse)`."
+    ]
+   },
+   "solucion": {
+    "es": "def capitulo_y_versiculo(cita):\n    assert \":\" in cita, f\"Falta ':' en {cita}\"\n    capitulo, versiculo = cita.split(\":\")\n    return int(capitulo), int(versiculo)\n\nprint(capitulo_y_versiculo(\"3:16\"))\nprint(capitulo_y_versiculo(\"119:105\"))",
+    "en": "def chapter_and_verse(ref):\n    assert \":\" in ref, f\"Missing ':' in {ref}\"\n    chapter, verse = ref.split(\":\")\n    return int(chapter), int(verse)\n\nprint(chapter_and_verse(\"3:16\"))\nprint(chapter_and_verse(\"119:105\"))"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "(3, 16)\n(119, 105)"
+     },
+     {
+      "py": "assert capitulo_y_versiculo('1:1') == (1, 1) and capitulo_y_versiculo('150:6') == (150, 6)",
+      "msg": {
+       "es": "capitulo_y_versiculo('150:6') debe devolver la tupla de enteros (150, 6).",
+       "en": "capitulo_y_versiculo('150:6') must return the tuple of integers (150, 6)."
+      }
+     },
+     {
+      "py": "try:\n    capitulo_y_versiculo('316')\n    _m = None\nexcept AssertionError as _e:\n    _m = str(_e)\nassert _m == \"Falta ':' en 316\"",
+      "msg": {
+       "es": "Con '316' (sin dos puntos), el assert debe fallar con el mensaje exacto «Falta ':' en 316».",
+       "en": "With '316' (no colon), the assert must fail with the exact message \"Falta ':' en 316\"."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "(3, 16)\n(119, 105)"
+     },
+     {
+      "py": "assert chapter_and_verse('1:1') == (1, 1) and chapter_and_verse('150:6') == (150, 6)",
+      "msg": {
+       "es": "chapter_and_verse('150:6') debe devolver la tupla de enteros (150, 6).",
+       "en": "chapter_and_verse('150:6') must return the tuple of integers (150, 6)."
+      }
+     },
+     {
+      "py": "try:\n    chapter_and_verse('316')\n    _m = None\nexcept AssertionError as _e:\n    _m = str(_e)\nassert _m == \"Missing ':' in 316\"",
+      "msg": {
+       "es": "Con '316' (sin dos puntos), el assert debe fallar con el mensaje exacto «Missing ':' in 316».",
+       "en": "With '316' (no colon), the assert must fail with the exact message \"Missing ':' in 316\"."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "def capitulo_y_versiculo(cita):\n    capitulo, versiculo = cita.split(\":\")\n    return int(capitulo), int(versiculo)\n\nprint(capitulo_y_versiculo(\"3:16\"))\nprint(capitulo_y_versiculo(\"119:105\"))",
+     "def capitulo_y_versiculo(cita):\n    assert \":\" in cita, f\"Falta ':' en {cita}\"\n    capitulo, versiculo = cita.split(\":\")\n    return capitulo, versiculo\n\nprint(\"(3, 16)\")\nprint(\"(119, 105)\")",
+     "def capitulo_y_versiculo(cita):\n    assert \":\" in cita, \"Falta :\"\n    capitulo, versiculo = cita.split(\":\")\n    return int(capitulo), int(versiculo)\n\nprint(capitulo_y_versiculo(\"3:16\"))\nprint(capitulo_y_versiculo(\"119:105\"))"
+    ],
+    "en": [
+     "def chapter_and_verse(ref):\n    chapter, verse = ref.split(\":\")\n    return int(chapter), int(verse)\n\nprint(chapter_and_verse(\"3:16\"))\nprint(chapter_and_verse(\"119:105\"))",
+     "def chapter_and_verse(ref):\n    assert \":\" in ref, \"Missing :\"\n    chapter, verse = ref.split(\":\")\n    return int(chapter), int(verse)\n\nprint(chapter_and_verse(\"3:16\"))\nprint(chapter_and_verse(\"119:105\"))"
+    ]
+   }
+  },
+  {
+   "id": "atrapa-el-fallo",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "`contar_palabra` ya funciona bien. Tu trabajo es escribir `probar_contar_palabra()`, una función con varios `assert` que pase con esta versión correcta pero **falle** si alguien la estropea. La prueba oculta la correrá contra versiones con fallos: una que distingue mayúsculas, una que cuenta pedazos de palabras («sol» dentro de «soldado») y una que no quita los signos («luz.»). Incluye también un caso borde: el texto vacío. Si todo pasa, sale:\n```\nTodas las pruebas pasaron\n```",
+    "en": "`count_word` already works well. Your job is to write `test_count_word()`, a function with several `assert`s that passes with this correct version but **fails** if someone breaks it. The hidden test will run it against broken versions: one that is case-sensitive, one that counts pieces of words (\"light\" inside \"lighthouse\") and one that doesn't remove signs (\"light.\"). Also include an edge case: the empty text. If everything passes, it prints:\n```\nAll tests passed\n```"
+   },
+   "inicial": {
+    "es": "SIGNOS = \".,;:!?¡¿\"\n\ndef contar_palabra(texto, palabra):\n    \"\"\"Cuántas veces está palabra en texto, como palabra entera, sin importar mayúsculas ni signos.\"\"\"\n    palabra = palabra.lower()\n    return sum(1 for p in texto.split() if p.strip(SIGNOS).lower() == palabra)\n\ndef probar_contar_palabra():\n    \n\nprobar_contar_palabra()\nprint(\"Todas las pruebas pasaron\")",
+    "en": "SIGNOS = \".,;:!?¡¿\"\n\ndef count_word(text, word):\n    \"\"\"How many times word is in text, as a whole word, ignoring case and signs.\"\"\"\n    word = word.lower()\n    return sum(1 for w in text.split() if w.strip(SIGNOS).lower() == word)\n\ndef test_count_word():\n    \n\ntest_count_word()\nprint(\"All tests passed\")"
+   },
+   "pistas": {
+    "es": [
+     "Cada `assert` es un caso: `assert contar_palabra(\"luz y luz\", \"luz\") == 2`. Piensa en cada fallo posible y escribe un caso que lo delate.",
+     "Casos que sirven: `(\"La luz brilla\", \"LUZ\") == 1`, `(\"Sea la luz.\", \"luz\") == 1`, `(\"el soldado\", \"sol\") == 0` y `(\"\", \"luz\") == 0`."
+    ],
+    "en": [
+     "Each `assert` is a case: `assert count_word(\"light and light\", \"light\") == 2`. Think of each possible bug and write a case that exposes it.",
+     "Useful cases: `(\"The Light shines\", \"light\") == 1`, `(\"there was light.\", \"light\") == 1`, `(\"the lighthouse\", \"light\") == 0` and `(\"\", \"light\") == 0`."
+    ]
+   },
+   "solucion": {
+    "es": "SIGNOS = \".,;:!?¡¿\"\n\ndef contar_palabra(texto, palabra):\n    \"\"\"Cuántas veces está palabra en texto, como palabra entera, sin importar mayúsculas ni signos.\"\"\"\n    palabra = palabra.lower()\n    return sum(1 for p in texto.split() if p.strip(SIGNOS).lower() == palabra)\n\ndef probar_contar_palabra():\n    assert contar_palabra(\"luz y luz\", \"luz\") == 2\n    assert contar_palabra(\"La luz brilla\", \"LUZ\") == 1\n    assert contar_palabra(\"Sea la luz.\", \"luz\") == 1\n    assert contar_palabra(\"el soldado\", \"sol\") == 0\n    assert contar_palabra(\"\", \"luz\") == 0\n\nprobar_contar_palabra()\nprint(\"Todas las pruebas pasaron\")",
+    "en": "SIGNOS = \".,;:!?¡¿\"\n\ndef count_word(text, word):\n    \"\"\"How many times word is in text, as a whole word, ignoring case and signs.\"\"\"\n    word = word.lower()\n    return sum(1 for w in text.split() if w.strip(SIGNOS).lower() == word)\n\ndef test_count_word():\n    assert count_word(\"light and light\", \"light\") == 2\n    assert count_word(\"The Light shines\", \"light\") == 1\n    assert count_word(\"there was light.\", \"light\") == 1\n    assert count_word(\"the lighthouse\", \"light\") == 0\n    assert count_word(\"\", \"light\") == 0\n\ntest_count_word()\nprint(\"All tests passed\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Todas las pruebas pasaron"
+     },
+     {
+      "py": "assert contar_palabra('Luz, luz', 'luz') == 2 and contar_palabra('soldado', 'sol') == 0",
+      "msg": {
+       "es": "No cambies contar_palabra: ya está bien. Lo que escribes es la prueba.",
+       "en": "Don't change contar_palabra: it's already right. What you write is the test."
+      }
+     },
+     {
+      "py": "def _mala(t, p):\n    return sum(1 for x in t.split() if x.strip(SIGNOS) == p)\n\n_g = probar_contar_palabra.__globals__\n_orig = _g['contar_palabra']\n_g['contar_palabra'] = _mala\ntry:\n    probar_contar_palabra()\n    _ok = False\nexcept Exception:\n    _ok = True\nfinally:\n    _g['contar_palabra'] = _orig\nassert _ok",
+      "msg": {
+       "es": "Tu prueba no atrapa una versión que distingue mayúsculas: agrega un caso con mayúsculas, como contar_palabra(\"La Luz\", \"luz\") == 1.",
+       "en": "Your test doesn't catch a version that is case-sensitive: add a case with capitals, like contar_palabra(\"The Light\", \"light\") == 1."
+      }
+     },
+     {
+      "py": "def _mala(t, p):\n    return t.lower().count(p.lower())\n\n_g = probar_contar_palabra.__globals__\n_orig = _g['contar_palabra']\n_g['contar_palabra'] = _mala\ntry:\n    probar_contar_palabra()\n    _ok = False\nexcept Exception:\n    _ok = True\nfinally:\n    _g['contar_palabra'] = _orig\nassert _ok",
+      "msg": {
+       "es": "Tu prueba no atrapa una versión que cuenta pedazos de palabras: agrega un caso como contar_palabra(\"el soldado\", \"sol\") == 0.",
+       "en": "Your test doesn't catch a version that counts pieces of words: add a case like contar_palabra(\"the lighthouse\", \"light\") == 0."
+      }
+     },
+     {
+      "py": "def _mala(t, p):\n    return sum(1 for x in t.split() if x.lower() == p.lower())\n\n_g = probar_contar_palabra.__globals__\n_orig = _g['contar_palabra']\n_g['contar_palabra'] = _mala\ntry:\n    probar_contar_palabra()\n    _ok = False\nexcept Exception:\n    _ok = True\nfinally:\n    _g['contar_palabra'] = _orig\nassert _ok",
+      "msg": {
+       "es": "Tu prueba no atrapa una versión que no quita los signos: agrega un caso con puntuación, como contar_palabra(\"Sea la luz.\", \"luz\") == 1.",
+       "en": "Your test doesn't catch a version that doesn't remove signs: add a case with punctuation, like contar_palabra(\"there was light.\", \"light\") == 1."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "All tests passed"
+     },
+     {
+      "py": "assert count_word('Luz, luz', 'luz') == 2 and count_word('soldado', 'sol') == 0",
+      "msg": {
+       "es": "No cambies count_word: ya está bien. Lo que escribes es la prueba.",
+       "en": "Don't change count_word: it's already right. What you write is the test."
+      }
+     },
+     {
+      "py": "def _mala(t, p):\n    return sum(1 for x in t.split() if x.strip(SIGNOS) == p)\n\n_g = test_count_word.__globals__\n_orig = _g['count_word']\n_g['count_word'] = _mala\ntry:\n    test_count_word()\n    _ok = False\nexcept Exception:\n    _ok = True\nfinally:\n    _g['count_word'] = _orig\nassert _ok",
+      "msg": {
+       "es": "Tu prueba no atrapa una versión que distingue mayúsculas: agrega un caso con mayúsculas, como count_word(\"La Luz\", \"luz\") == 1.",
+       "en": "Your test doesn't catch a version that is case-sensitive: add a case with capitals, like count_word(\"The Light\", \"light\") == 1."
+      }
+     },
+     {
+      "py": "def _mala(t, p):\n    return t.lower().count(p.lower())\n\n_g = test_count_word.__globals__\n_orig = _g['count_word']\n_g['count_word'] = _mala\ntry:\n    test_count_word()\n    _ok = False\nexcept Exception:\n    _ok = True\nfinally:\n    _g['count_word'] = _orig\nassert _ok",
+      "msg": {
+       "es": "Tu prueba no atrapa una versión que cuenta pedazos de palabras: agrega un caso como count_word(\"el soldado\", \"sol\") == 0.",
+       "en": "Your test doesn't catch a version that counts pieces of words: add a case like count_word(\"the lighthouse\", \"light\") == 0."
+      }
+     },
+     {
+      "py": "def _mala(t, p):\n    return sum(1 for x in t.split() if x.lower() == p.lower())\n\n_g = test_count_word.__globals__\n_orig = _g['count_word']\n_g['count_word'] = _mala\ntry:\n    test_count_word()\n    _ok = False\nexcept Exception:\n    _ok = True\nfinally:\n    _g['count_word'] = _orig\nassert _ok",
+      "msg": {
+       "es": "Tu prueba no atrapa una versión que no quita los signos: agrega un caso con puntuación, como count_word(\"Sea la luz.\", \"luz\") == 1.",
+       "en": "Your test doesn't catch a version that doesn't remove signs: add a case with punctuation, like count_word(\"there was light.\", \"light\") == 1."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "SIGNOS = \".,;:!?¡¿\"\n\ndef contar_palabra(texto, palabra):\n    \"\"\"Cuántas veces está palabra en texto, como palabra entera, sin importar mayúsculas ni signos.\"\"\"\n    palabra = palabra.lower()\n    return sum(1 for p in texto.split() if p.strip(SIGNOS).lower() == palabra)\n\ndef probar_contar_palabra():\n    assert contar_palabra(\"luz y luz\", \"luz\") == 2\n\nprobar_contar_palabra()\nprint(\"Todas las pruebas pasaron\")",
+     "SIGNOS = \".,;:!?¡¿\"\n\ndef contar_palabra(texto, palabra):\n    \"\"\"Cuántas veces está palabra en texto, como palabra entera, sin importar mayúsculas ni signos.\"\"\"\n    palabra = palabra.lower()\n    return sum(1 for p in texto.split() if p.strip(SIGNOS).lower() == palabra)\n\ndef probar_contar_palabra():\n    assert contar_palabra(\"luz y luz\", \"luz\") == 2\n    assert contar_palabra(\"La luz brilla\", \"LUZ\") == 1\n    assert contar_palabra(\"Sea la luz.\", \"luz\") == 1\n\nprobar_contar_palabra()\nprint(\"Todas las pruebas pasaron\")",
+     "SIGNOS = \".,;:!?¡¿\"\n\ndef contar_palabra(texto, palabra):\n    \"\"\"Cuántas veces está palabra en texto, como palabra entera, sin importar mayúsculas ni signos.\"\"\"\n    palabra = palabra.lower()\n    return sum(1 for p in texto.split() if p.strip(SIGNOS).lower() == palabra)\n\ndef probar_contar_palabra():\n    assert contar_palabra(\"Sea la luz. Y fue la luz.\", \"luz\") == 1\n\nprobar_contar_palabra()\nprint(\"Todas las pruebas pasaron\")",
+     "SIGNOS = \".,;:!?¡¿\"\n\ndef contar_palabra(texto, palabra):\n    \"\"\"Cuántas veces está palabra en texto, como palabra entera, sin importar mayúsculas ni signos.\"\"\"\n    palabra = palabra.lower()\n    return sum(1 for p in texto.split() if p.strip(SIGNOS).lower() == palabra)\n\ndef probar_contar_palabra():\n    contar_palabra(\"luz y luz\", \"luz\") == 2\n    contar_palabra(\"el soldado\", \"sol\") == 0\n\nprobar_contar_palabra()\nprint(\"Todas las pruebas pasaron\")"
+    ],
+    "en": [
+     "SIGNOS = \".,;:!?¡¿\"\n\ndef count_word(text, word):\n    \"\"\"How many times word is in text, as a whole word, ignoring case and signs.\"\"\"\n    word = word.lower()\n    return sum(1 for w in text.split() if w.strip(SIGNOS).lower() == word)\n\ndef test_count_word():\n    assert count_word(\"light and light\", \"light\") == 2\n\ntest_count_word()\nprint(\"All tests passed\")",
+     "SIGNOS = \".,;:!?¡¿\"\n\ndef count_word(text, word):\n    \"\"\"How many times word is in text, as a whole word, ignoring case and signs.\"\"\"\n    word = word.lower()\n    return sum(1 for w in text.split() if w.strip(SIGNOS).lower() == word)\n\ndef test_count_word():\n    count_word(\"light and light\", \"light\") == 2\n    count_word(\"the lighthouse\", \"light\") == 0\n\ntest_count_word()\nprint(\"All tests passed\")"
+    ]
+   }
+  },
+  {
+   "id": "cita-invalida",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Escribe `leer_cita(texto)`: convierte `\"Juan 3:16\"` en `(\"Juan\", 3, 16)` y también acepta libros con número, como `\"1 Juan 4:8\"`. Si la cita está mal escrita (sin espacio o sin `:`, libro vacío, capítulo o versículo que no son números), **lanza** `CitaInvalidaError` con el mensaje `Cita inválida: <texto>`; nunca dejes escapar otro error (como el `ValueError` de `int`). El bucle ya atrapa tu excepción:\n```\n('Juan', 3, 16)\n('1 Juan', 4, 8)\nError: Cita inválida: Salmos 23\nError: Cita inválida: Rut a:b\n```",
+    "en": "Write `read_ref(text)`: it turns `\"John 3:16\"` into `(\"John\", 3, 16)` and also accepts numbered books, like `\"1 John 4:8\"`. If the reference is badly written (no space or no `:`, empty book, chapter or verse that aren't numbers), **raise** `InvalidReferenceError` with the message `Invalid reference: <text>`; never let another error escape (like the `ValueError` from `int`). The loop already catches your exception:\n```\n('John', 3, 16)\n('1 John', 4, 8)\nError: Invalid reference: Psalm 23\nError: Invalid reference: Ruth a:b\n```"
+   },
+   "inicial": {
+    "es": "class CitaInvalidaError(Exception):\n    pass\n\ndef leer_cita(texto):\n    \n\nfor cita in [\"Juan 3:16\", \"1 Juan 4:8\", \"Salmos 23\", \"Rut a:b\"]:\n    try:\n        print(leer_cita(cita))\n    except CitaInvalidaError as error:\n        print(\"Error:\", error)",
+    "en": "class InvalidReferenceError(Exception):\n    pass\n\ndef read_ref(text):\n    \n\nfor ref in [\"John 3:16\", \"1 John 4:8\", \"Psalm 23\", \"Ruth a:b\"]:\n    try:\n        print(read_ref(ref))\n    except InvalidReferenceError as error:\n        print(\"Error:\", error)"
+   },
+   "pistas": {
+    "es": [
+     "`texto.rsplit(\" \", 1)` corta solo en el **último** espacio: `\"1 Juan 4:8\"` → `[\"1 Juan\", \"4:8\"]`. Y `resto.partition(\":\")` da `(antes, \":\", después)` sin fallar.",
+     "Comprueba antes de convertir: `if not libro or not capitulo.isdigit() or not versiculo.isdigit(): raise CitaInvalidaError(f\"Cita inválida: {texto}\")`."
+    ],
+    "en": [
+     "`text.rsplit(\" \", 1)` cuts only at the **last** space: `\"1 John 4:8\"` → `[\"1 John\", \"4:8\"]`. And `rest.partition(\":\")` gives `(before, \":\", after)` without failing.",
+     "Check before converting: `if not book or not chapter.isdigit() or not verse.isdigit(): raise InvalidReferenceError(f\"Invalid reference: {text}\")`."
+    ]
+   },
+   "solucion": {
+    "es": "class CitaInvalidaError(Exception):\n    pass\n\ndef leer_cita(texto):\n    if \" \" not in texto or \":\" not in texto:\n        raise CitaInvalidaError(f\"Cita inválida: {texto}\")\n    libro, resto = texto.rsplit(\" \", 1)\n    capitulo, _, versiculo = resto.partition(\":\")\n    if not libro or not capitulo.isdigit() or not versiculo.isdigit():\n        raise CitaInvalidaError(f\"Cita inválida: {texto}\")\n    return libro, int(capitulo), int(versiculo)\n\nfor cita in [\"Juan 3:16\", \"1 Juan 4:8\", \"Salmos 23\", \"Rut a:b\"]:\n    try:\n        print(leer_cita(cita))\n    except CitaInvalidaError as error:\n        print(\"Error:\", error)",
+    "en": "class InvalidReferenceError(Exception):\n    pass\n\ndef read_ref(text):\n    if \" \" not in text or \":\" not in text:\n        raise InvalidReferenceError(f\"Invalid reference: {text}\")\n    book, rest = text.rsplit(\" \", 1)\n    chapter, _, verse = rest.partition(\":\")\n    if not book or not chapter.isdigit() or not verse.isdigit():\n        raise InvalidReferenceError(f\"Invalid reference: {text}\")\n    return book, int(chapter), int(verse)\n\nfor ref in [\"John 3:16\", \"1 John 4:8\", \"Psalm 23\", \"Ruth a:b\"]:\n    try:\n        print(read_ref(ref))\n    except InvalidReferenceError as error:\n        print(\"Error:\", error)"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "('Juan', 3, 16)\n('1 Juan', 4, 8)\nError: Cita inválida: Salmos 23\nError: Cita inválida: Rut a:b"
+     },
+     {
+      "py": "assert issubclass(CitaInvalidaError, Exception)",
+      "msg": {
+       "es": "CitaInvalidaError debe heredar de Exception.",
+       "en": "CitaInvalidaError must inherit from Exception."
+      }
+     },
+     {
+      "py": "assert leer_cita('Juan 3:16') == ('Juan', 3, 16) and leer_cita('1 Juan 4:8') == ('1 Juan', 4, 8)",
+      "msg": {
+       "es": "leer_cita debe devolver (libro, capítulo, versículo) con enteros, también con libros de dos palabras como «1 Juan» (usa rsplit).",
+       "en": "leer_cita must return (book, chapter, verse) with integers, also for two-word books like \"1 Juan\" (use rsplit)."
+      }
+     },
+     {
+      "py": "for _t in ['Salmos 23', 'Rut a:b', '', 'Juan 3:', ' 3:16', 'Juan 3:16:2']:\n    try:\n        leer_cita(_t)\n        _bien = False\n    except CitaInvalidaError as _e:\n        _bien = str(_e) == 'Cita inválida: ' + _t\n    assert _bien, _t",
+      "msg": {
+       "es": "Cada cita mal escrita debe lanzar CitaInvalidaError con el mensaje «Cita inválida: <cita>», y no otro error (probé: 'Salmos 23', 'Rut a:b', '', 'Juan 3:', ' 3:16', 'Juan 3:16:2').",
+       "en": "Every badly written reference must raise CitaInvalidaError with the message \"Cita inválida: <ref>\", and no other error (I tried: 'Salmos 23', 'Rut a:b', '', 'Juan 3:', ' 3:16', 'Juan 3:16:2')."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "('John', 3, 16)\n('1 John', 4, 8)\nError: Invalid reference: Psalm 23\nError: Invalid reference: Ruth a:b"
+     },
+     {
+      "py": "assert issubclass(InvalidReferenceError, Exception)",
+      "msg": {
+       "es": "InvalidReferenceError debe heredar de Exception.",
+       "en": "InvalidReferenceError must inherit from Exception."
+      }
+     },
+     {
+      "py": "assert read_ref('John 3:16') == ('John', 3, 16) and read_ref('1 John 4:8') == ('1 John', 4, 8)",
+      "msg": {
+       "es": "read_ref debe devolver (libro, capítulo, versículo) con enteros, también con libros de dos palabras como «1 John» (usa rsplit).",
+       "en": "read_ref must return (book, chapter, verse) with integers, also for two-word books like \"1 John\" (use rsplit)."
+      }
+     },
+     {
+      "py": "for _t in ['Psalm 23', 'Ruth a:b', '', 'John 3:', ' 3:16', 'John 3:16:2']:\n    try:\n        read_ref(_t)\n        _bien = False\n    except InvalidReferenceError as _e:\n        _bien = str(_e) == 'Invalid reference: ' + _t\n    assert _bien, _t",
+      "msg": {
+       "es": "Cada cita mal escrita debe lanzar InvalidReferenceError con el mensaje «Invalid reference: <cita>», y no otro error (probé: 'Psalm 23', 'Ruth a:b', '', 'John 3:', ' 3:16', 'John 3:16:2').",
+       "en": "Every badly written reference must raise InvalidReferenceError with the message \"Invalid reference: <ref>\", and no other error (I tried: 'Psalm 23', 'Ruth a:b', '', 'John 3:', ' 3:16', 'John 3:16:2')."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "class CitaInvalidaError(Exception):\n    pass\n\ndef leer_cita(texto):\n    libro, resto = texto.split(\" \")\n    capitulo, versiculo = resto.split(\":\")\n    return libro, int(capitulo), int(versiculo)\n\nfor cita in [\"Juan 3:16\", \"1 Juan 4:8\", \"Salmos 23\", \"Rut a:b\"]:\n    try:\n        print(leer_cita(cita))\n    except CitaInvalidaError as error:\n        print(\"Error:\", error)",
+     "class CitaInvalidaError(Exception):\n    pass\n\ndef leer_cita(texto):\n    try:\n        libro, resto = texto.rsplit(\" \", 1)\n        capitulo, versiculo = resto.split(\":\")\n        return libro, int(capitulo), int(versiculo)\n    except ValueError:\n        return None\n\nfor cita in [\"Juan 3:16\", \"1 Juan 4:8\", \"Salmos 23\", \"Rut a:b\"]:\n    try:\n        print(leer_cita(cita))\n    except CitaInvalidaError as error:\n        print(\"Error:\", error)",
+     "class CitaInvalidaError(Exception):\n    pass\n\ndef leer_cita(texto):\n    if \" \" not in texto or \":\" not in texto:\n        raise ValueError(f\"Cita inválida: {texto}\")\n    libro, resto = texto.rsplit(\" \", 1)\n    capitulo, _, versiculo = resto.partition(\":\")\n    if not libro or not capitulo.isdigit() or not versiculo.isdigit():\n        raise ValueError(f\"Cita inválida: {texto}\")\n    return libro, int(capitulo), int(versiculo)\n\nfor cita in [\"Juan 3:16\", \"1 Juan 4:8\", \"Salmos 23\", \"Rut a:b\"]:\n    try:\n        print(leer_cita(cita))\n    except CitaInvalidaError as error:\n        print(\"Error:\", error)",
+     "class CitaInvalidaError(Exception):\n    pass\n\ndef leer_cita(texto):\n    try:\n        libro, resto = texto.rsplit(\" \", 1)\n        capitulo, versiculo = resto.split(\":\")\n        return libro, int(capitulo), int(versiculo)\n    except ValueError:\n        raise CitaInvalidaError(f\"Cita inválida: {texto}\")\n\nfor cita in [\"Juan 3:16\", \"1 Juan 4:8\", \"Salmos 23\", \"Rut a:b\"]:\n    try:\n        print(leer_cita(cita))\n    except CitaInvalidaError as error:\n        print(\"Error:\", error)"
+    ],
+    "en": [
+     "class InvalidReferenceError(Exception):\n    pass\n\ndef read_ref(text):\n    book, rest = text.split(\" \")\n    chapter, verse = rest.split(\":\")\n    return book, int(chapter), int(verse)\n\nfor ref in [\"John 3:16\", \"1 John 4:8\", \"Psalm 23\", \"Ruth a:b\"]:\n    try:\n        print(read_ref(ref))\n    except InvalidReferenceError as error:\n        print(\"Error:\", error)",
+     "class InvalidReferenceError(Exception):\n    pass\n\ndef read_ref(text):\n    if \" \" not in text or \":\" not in text:\n        raise ValueError(f\"Invalid reference: {text}\")\n    book, rest = text.rsplit(\" \", 1)\n    chapter, _, verse = rest.partition(\":\")\n    if not book or not chapter.isdigit() or not verse.isdigit():\n        raise ValueError(f\"Invalid reference: {text}\")\n    return book, int(chapter), int(verse)\n\nfor ref in [\"John 3:16\", \"1 John 4:8\", \"Psalm 23\", \"Ruth a:b\"]:\n    try:\n        print(read_ref(ref))\n    except InvalidReferenceError as error:\n        print(\"Error:\", error)"
+    ]
+   }
+  },
+  {
+   "id": "lee-el-traceback",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Este programa debía sumar los capítulos de los cuatro evangelios, pero se cayó con este *traceback*:\n```\nTraceback (most recent call last):\n  File \"capitulos.py\", line 9, in <module>\n    print(total_capitulos([\"Mateo\", \"Marcos\", \"Lukas\", \"Juan\"]))\n  File \"capitulos.py\", line 6, in total_capitulos\n    suma += capitulos[libro]\nKeyError: 'Lukas'\n```\nLéelo **de abajo hacia arriba**: la última línea dice qué pasó (`KeyError: 'Lukas'`), y arriba, en qué línea y desde qué llamada. Corrige el programa (¡cuidado: al arreglar un fallo puede aparecer otro!) para que muestre:\n```\n89\n```\nNo tapes los errores con `try`/`except`: arregla su causa.",
+    "en": "This program was supposed to add up the chapters of the four Gospels, but it crashed with this *traceback*:\n```\nTraceback (most recent call last):\n  File \"chapters.py\", line 9, in <module>\n    print(total_chapters([\"Matthew\", \"Mark\", \"Lukke\", \"John\"]))\n  File \"chapters.py\", line 6, in total_chapters\n    total += chapters[book]\nKeyError: 'Lukke'\n```\nRead it **from the bottom up**: the last line says what happened (`KeyError: 'Lukke'`), and above, on which line and from which call. Fix the program (careful: fixing one bug may reveal another!) so it shows:\n```\n89\n```\nDon't hide the errors with `try`/`except`: fix their cause."
+   },
+   "inicial": {
+    "es": "capitulos = {\"Mateo\": 28, \"Marcos\": 16, \"Lucas\": 24, \"Juan\": \"21\"}\n\ndef total_capitulos(libros):\n    suma = 0\n    for libro in libros:\n        suma += capitulos[libro]\n    return suma\n\nprint(total_capitulos([\"Mateo\", \"Marcos\", \"Lukas\", \"Juan\"]))",
+    "en": "chapters = {\"Matthew\": 28, \"Mark\": 16, \"Luke\": 24, \"John\": \"21\"}\n\ndef total_chapters(books):\n    total = 0\n    for book in books:\n        total += chapters[book]\n    return total\n\nprint(total_chapters([\"Matthew\", \"Mark\", \"Lukke\", \"John\"]))"
+   },
+   "pistas": {
+    "es": [
+     "`KeyError: 'Lukas'` quiere decir que esa clave no está en el diccionario: compara cómo se escribe en la lista y en `capitulos`.",
+     "Luego aparece un `TypeError` al sumar un `int` con un `str`: en el diccionario, `\"21\"` tiene comillas. Debe ser `21`."
+    ],
+    "en": [
+     "`KeyError: 'Lukke'` means that key isn't in the dictionary: compare how it's spelled in the list and in `chapters`.",
+     "Then a `TypeError` appears when adding an `int` to a `str`: in the dictionary, `\"21\"` has quotes. It must be `21`."
+    ]
+   },
+   "solucion": {
+    "es": "capitulos = {\"Mateo\": 28, \"Marcos\": 16, \"Lucas\": 24, \"Juan\": 21}\n\ndef total_capitulos(libros):\n    suma = 0\n    for libro in libros:\n        suma += capitulos[libro]\n    return suma\n\nprint(total_capitulos([\"Mateo\", \"Marcos\", \"Lucas\", \"Juan\"]))",
+    "en": "chapters = {\"Matthew\": 28, \"Mark\": 16, \"Luke\": 24, \"John\": 21}\n\ndef total_chapters(books):\n    total = 0\n    for book in books:\n        total += chapters[book]\n    return total\n\nprint(total_chapters([\"Matthew\", \"Mark\", \"Luke\", \"John\"]))"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "89"
+     },
+     {
+      "py": "assert total_capitulos(['Mateo']) == 28 and total_capitulos([]) == 0 and total_capitulos(['Juan', 'Juan']) == 42",
+      "msg": {
+       "es": "total_capitulos debe seguir sumando cualquier lista de libros (y dar 0 con una lista vacía).",
+       "en": "total_capitulos must still add up any list of books (and give 0 with an empty list)."
+      }
+     },
+     {
+      "py": "assert '89' not in _codigo and 'except' not in _codigo",
+      "msg": {
+       "es": "No escribas el 89 ni uses try/except: corrige los datos que causan los errores.",
+       "en": "Don't type 89 or use try/except: fix the data that causes the errors."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "89"
+     },
+     {
+      "py": "assert total_chapters(['Matthew']) == 28 and total_chapters([]) == 0 and total_chapters(['John', 'John']) == 42",
+      "msg": {
+       "es": "total_chapters debe seguir sumando cualquier lista de libros (y dar 0 con una lista vacía).",
+       "en": "total_chapters must still add up any list of books (and give 0 with an empty list)."
+      }
+     },
+     {
+      "py": "assert '89' not in _codigo and 'except' not in _codigo",
+      "msg": {
+       "es": "No escribas el 89 ni uses try/except: corrige los datos que causan los errores.",
+       "en": "Don't type 89 or use try/except: fix the data that causes the errors."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "capitulos = {\"Mateo\": 28, \"Marcos\": 16, \"Lucas\": 24, \"Juan\": \"21\"}\n\ndef total_capitulos(libros):\n    suma = 0\n    for libro in libros:\n        suma += capitulos[libro]\n    return suma\n\nprint(total_capitulos([\"Mateo\", \"Marcos\", \"Lucas\", \"Juan\"]))",
+     "capitulos = {\"Mateo\": 28, \"Marcos\": 16, \"Lucas\": 24, \"Juan\": \"21\"}\n\ndef total_capitulos(libros):\n    suma = 0\n    for libro in libros:\n        try:\n            suma += capitulos[libro]\n        except (KeyError, TypeError):\n            pass\n    return suma\n\nprint(total_capitulos([\"Mateo\", \"Marcos\", \"Lukas\", \"Juan\"]))",
+     "capitulos = {\"Mateo\": 28, \"Marcos\": 16, \"Lucas\": 24, \"Juan\": \"21\"}\n\ndef total_capitulos(libros):\n    suma = 0\n    for libro in libros:\n        suma += capitulos[libro]\n    return suma\n\nprint(total_capitulos([\"Mateo\", \"Marcos\", \"Juan\"]))"
+    ],
+    "en": [
+     "chapters = {\"Matthew\": 28, \"Mark\": 16, \"Luke\": 24, \"John\": \"21\"}\n\ndef total_chapters(books):\n    total = 0\n    for book in books:\n        total += chapters[book]\n    return total\n\nprint(total_chapters([\"Matthew\", \"Mark\", \"Luke\", \"John\"]))",
+     "chapters = {\"Matthew\": 28, \"Mark\": 16, \"Luke\": 24, \"John\": \"21\"}\n\ndef total_chapters(books):\n    total = 0\n    for book in books:\n        try:\n            total += chapters[book]\n        except (KeyError, TypeError):\n            pass\n    return total\n\nprint(total_chapters([\"Matthew\", \"Mark\", \"Lukke\", \"John\"]))"
+    ]
+   }
+  },
+  {
+   "id": "lanzar-y-atrapar",
+   "tipo": "hueco",
+   "enunciado": {
+    "es": "Rut, Jonás y Filipenses tienen 4 capítulos cada uno. Completa: `validar` debe **lanzar** la excepción cuando el capítulo no existe, y el bucle debe **atraparla** para seguir con las demás citas:\n```\nRut 2\nError: Jonás no tiene capítulo 5\nError: Filipenses no tiene capítulo 0\nFilipenses 4\n```",
+    "en": "Ruth, Jonah and Philippians have 4 chapters each. Fill in: `validate` must **raise** the exception when the chapter doesn't exist, and the loop must **catch** it to go on with the other references:\n```\nRuth 2\nError: Jonah has no chapter 5\nError: Philippians has no chapter 0\nPhilippians 4\n```"
+   },
+   "plantilla": {
+    "es": "class CapituloInexistenteError(Exception):\n    pass\n\nCAPITULOS = {\"Rut\": 4, \"Jonás\": 4, \"Filipenses\": 4}\n\ndef validar(libro, capitulo):\n    if not 1 <= capitulo <= CAPITULOS[libro]:\n        ___ CapituloInexistenteError(f\"{libro} no tiene capítulo {capitulo}\")\n    return f\"{libro} {capitulo}\"\n\nfor libro, cap in [(\"Rut\", 2), (\"Jonás\", 5), (\"Filipenses\", 0), (\"Filipenses\", 4)]:\n    try:\n        print(validar(libro, cap))\n    ___ CapituloInexistenteError as error:\n        print(\"Error:\", error)",
+    "en": "class ChapterNotFoundError(Exception):\n    pass\n\nCHAPTERS = {\"Ruth\": 4, \"Jonah\": 4, \"Philippians\": 4}\n\ndef validate(book, chapter):\n    if not 1 <= chapter <= CHAPTERS[book]:\n        ___ ChapterNotFoundError(f\"{book} has no chapter {chapter}\")\n    return f\"{book} {chapter}\"\n\nfor book, ch in [(\"Ruth\", 2), (\"Jonah\", 5), (\"Philippians\", 0), (\"Philippians\", 4)]:\n    try:\n        print(validate(book, ch))\n    ___ ChapterNotFoundError as error:\n        print(\"Error:\", error)"
+   },
+   "pistas": {
+    "es": [
+     "Una excepción se lanza con una palabra y se atrapa con otra, dentro de `try`.",
+     "Arriba va `raise`; abajo, `except`."
+    ],
+    "en": [
+     "An exception is raised with one word and caught with another, inside `try`.",
+     "Above goes `raise`; below, `except`."
+    ]
+   },
+   "solucion": {
+    "es": "class CapituloInexistenteError(Exception):\n    pass\n\nCAPITULOS = {\"Rut\": 4, \"Jonás\": 4, \"Filipenses\": 4}\n\ndef validar(libro, capitulo):\n    if not 1 <= capitulo <= CAPITULOS[libro]:\n        raise CapituloInexistenteError(f\"{libro} no tiene capítulo {capitulo}\")\n    return f\"{libro} {capitulo}\"\n\nfor libro, cap in [(\"Rut\", 2), (\"Jonás\", 5), (\"Filipenses\", 0), (\"Filipenses\", 4)]:\n    try:\n        print(validar(libro, cap))\n    except CapituloInexistenteError as error:\n        print(\"Error:\", error)",
+    "en": "class ChapterNotFoundError(Exception):\n    pass\n\nCHAPTERS = {\"Ruth\": 4, \"Jonah\": 4, \"Philippians\": 4}\n\ndef validate(book, chapter):\n    if not 1 <= chapter <= CHAPTERS[book]:\n        raise ChapterNotFoundError(f\"{book} has no chapter {chapter}\")\n    return f\"{book} {chapter}\"\n\nfor book, ch in [(\"Ruth\", 2), (\"Jonah\", 5), (\"Philippians\", 0), (\"Philippians\", 4)]:\n    try:\n        print(validate(book, ch))\n    except ChapterNotFoundError as error:\n        print(\"Error:\", error)"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Rut 2\nError: Jonás no tiene capítulo 5\nError: Filipenses no tiene capítulo 0\nFilipenses 4"
+     }
+    ],
+    "en": [
+     {
+      "salida": "Ruth 2\nError: Jonah has no chapter 5\nError: Philippians has no chapter 0\nPhilippians 4"
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "class CapituloInexistenteError(Exception):\n    pass\n\nCAPITULOS = {\"Rut\": 4, \"Jonás\": 4, \"Filipenses\": 4}\n\ndef validar(libro, capitulo):\n    if not 1 <= capitulo <= CAPITULOS[libro]:\n        return CapituloInexistenteError(f\"{libro} no tiene capítulo {capitulo}\")\n    return f\"{libro} {capitulo}\"\n\nfor libro, cap in [(\"Rut\", 2), (\"Jonás\", 5), (\"Filipenses\", 0), (\"Filipenses\", 4)]:\n    try:\n        print(validar(libro, cap))\n    except CapituloInexistenteError as error:\n        print(\"Error:\", error)",
+     "class CapituloInexistenteError(Exception):\n    pass\n\nCAPITULOS = {\"Rut\": 4, \"Jonás\": 4, \"Filipenses\": 4}\n\ndef validar(libro, capitulo):\n    if not 1 <= capitulo <= CAPITULOS[libro]:\n        raise CapituloInexistenteError(f\"{libro} no tiene capítulo {capitulo}\")\n    return f\"{libro} {capitulo}\"\n\nfor libro, cap in [(\"Rut\", 2), (\"Jonás\", 5), (\"Filipenses\", 0), (\"Filipenses\", 4)]:\n    try:\n        print(validar(libro, cap))\n    finally CapituloInexistenteError as error:\n        print(\"Error:\", error)"
+    ],
+    "en": [
+     "class ChapterNotFoundError(Exception):\n    pass\n\nCHAPTERS = {\"Ruth\": 4, \"Jonah\": 4, \"Philippians\": 4}\n\ndef validate(book, chapter):\n    if not 1 <= chapter <= CHAPTERS[book]:\n        return ChapterNotFoundError(f\"{book} has no chapter {chapter}\")\n    return f\"{book} {chapter}\"\n\nfor book, ch in [(\"Ruth\", 2), (\"Jonah\", 5), (\"Philippians\", 0), (\"Philippians\", 4)]:\n    try:\n        print(validate(book, ch))\n    except ChapterNotFoundError as error:\n        print(\"Error:\", error)",
+     "class ChapterNotFoundError(Exception):\n    pass\n\nCHAPTERS = {\"Ruth\": 4, \"Jonah\": 4, \"Philippians\": 4}\n\ndef validate(book, chapter):\n    if not 1 <= chapter <= CHAPTERS[book]:\n        raise ChapterNotFoundError(f\"{book} has no chapter {chapter}\")\n    return f\"{book} {chapter}\"\n\nfor book, ch in [(\"Ruth\", 2), (\"Jonah\", 5), (\"Philippians\", 0), (\"Philippians\", 4)]:\n    try:\n        print(validate(book, ch))\n    finally ChapterNotFoundError as error:\n        print(\"Error:\", error)"
+    ]
+   }
+  },
+  {
+   "id": "busqueda-con-pruebas",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Esta búsqueda binaria tiene un fallo escondido. Primero escribe `probar_buscar()` con casos borde de verdad: cada elemento de una lista (incluidos **el primero y el último**), valores que no están (menores, intermedios y mayores que todos), la lista **vacía** y una lista de **un solo** elemento. Córrela: verás que falla. Después **corrige `buscar`** hasta que pase:\n```\nTodas las pruebas pasaron\n```\nLa prueba oculta correrá tu `probar_buscar` contra una versión correcta (debe pasar) y contra varias con fallos (debe fallar con todas).",
+    "en": "This binary search has a hidden bug. First write `test_search()` with real edge cases: every item of a list (including **the first and the last**), values that aren't there (smaller, in between and larger than all), the **empty** list and a list with **only one** item. Run it: you'll see it fail. Then **fix `search`** until it passes:\n```\nAll tests passed\n```\nThe hidden test will run your `test_search` against a correct version (it must pass) and against several broken ones (it must fail with all of them)."
+   },
+   "inicial": {
+    "es": "def buscar(lista, objetivo):\n    \"\"\"Posición de objetivo en una lista ordenada, o -1 si no está (búsqueda binaria).\"\"\"\n    inicio, fin = 0, len(lista) - 1\n    while inicio < fin:\n        medio = (inicio + fin) // 2\n        if lista[medio] == objetivo:\n            return medio\n        elif lista[medio] < objetivo:\n            inicio = medio + 1\n        else:\n            fin = medio - 1\n    return -1\n\ndef probar_buscar():\n    \n\nprobar_buscar()\nprint(\"Todas las pruebas pasaron\")",
+    "en": "def search(items, target):\n    \"\"\"Position of target in a sorted list, or -1 if it isn't there (binary search).\"\"\"\n    start, end = 0, len(items) - 1\n    while start < end:\n        middle = (start + end) // 2\n        if items[middle] == target:\n            return middle\n        elif items[middle] < target:\n            start = middle + 1\n        else:\n            end = middle - 1\n    return -1\n\ndef test_search():\n    \n\ntest_search()\nprint(\"All tests passed\")"
+   },
+   "pistas": {
+    "es": [
+     "Un bucle en la prueba revisa todos los elementos: `for i, libro in enumerate(libros): assert buscar(libros, libro) == i`. Agrega `assert buscar([], \"Rut\") == -1` y `assert buscar([\"Rut\"], \"Rut\") == 0`.",
+     "Con `inicio < fin`, cuando queda un solo candidato (`inicio == fin`) el bucle termina sin mirarlo. Debe ser `while inicio <= fin:`."
+    ],
+    "en": [
+     "A loop in the test checks every item: `for i, book in enumerate(books): assert search(books, book) == i`. Add `assert search([], \"Ruth\") == -1` and `assert search([\"Ruth\"], \"Ruth\") == 0`.",
+     "With `start < end`, when only one candidate is left (`start == end`) the loop ends without looking at it. It must be `while start <= end:`."
+    ]
+   },
+   "solucion": {
+    "es": "def buscar(lista, objetivo):\n    \"\"\"Posición de objetivo en una lista ordenada, o -1 si no está (búsqueda binaria).\"\"\"\n    inicio, fin = 0, len(lista) - 1\n    while inicio <= fin:\n        medio = (inicio + fin) // 2\n        if lista[medio] == objetivo:\n            return medio\n        elif lista[medio] < objetivo:\n            inicio = medio + 1\n        else:\n            fin = medio - 1\n    return -1\n\ndef probar_buscar():\n    libros = [\"Abdías\", \"Hageo\", \"Joel\", \"Jonás\", \"Rut\"]\n    for i, libro in enumerate(libros):\n        assert buscar(libros, libro) == i\n    assert buscar(libros, \"Amós\") == -1\n    assert buscar(libros, \"Aarón\") == -1\n    assert buscar(libros, \"Zacarías\") == -1\n    assert buscar([], \"Rut\") == -1\n    assert buscar([\"Rut\"], \"Rut\") == 0\n\nprobar_buscar()\nprint(\"Todas las pruebas pasaron\")",
+    "en": "def search(items, target):\n    \"\"\"Position of target in a sorted list, or -1 if it isn't there (binary search).\"\"\"\n    start, end = 0, len(items) - 1\n    while start <= end:\n        middle = (start + end) // 2\n        if items[middle] == target:\n            return middle\n        elif items[middle] < target:\n            start = middle + 1\n        else:\n            end = middle - 1\n    return -1\n\ndef test_search():\n    books = [\"Amos\", \"Haggai\", \"Joel\", \"Jonah\", \"Ruth\"]\n    for i, book in enumerate(books):\n        assert search(books, book) == i\n    assert search(books, \"Hosea\") == -1\n    assert search(books, \"Aaron\") == -1\n    assert search(books, \"Zechariah\") == -1\n    assert search([], \"Ruth\") == -1\n    assert search([\"Ruth\"], \"Ruth\") == 0\n\ntest_search()\nprint(\"All tests passed\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Todas las pruebas pasaron"
+     },
+     {
+      "py": "for _n in range(9):\n    _l = list(range(0, 2 * _n, 2))\n    for _i, _x in enumerate(_l):\n        assert buscar(_l, _x) == _i\n    for _x in range(-1, 2 * _n + 1, 2):\n        assert buscar(_l, _x) == -1",
+      "msg": {
+       "es": "buscar todavía falla en algún caso (probé listas de 0 a 8 elementos, buscando cada uno y valores que no están). Mira la condición del while.",
+       "en": "buscar still fails in some case (I tried lists of 0 to 8 elements, looking for each one and for values that aren't there). Look at the while condition."
+      }
+     },
+     {
+      "py": "def _mala(l, x):\n    a, b = 0, len(l) - 1\n    while a <= b:\n        m = (a + b) // 2\n        if l[m] == x: return m\n        if l[m] < x: a = m + 1\n        else: b = m - 1\n    return -1\n\n_g = probar_buscar.__globals__\n_orig = _g['buscar']\n_g['buscar'] = _mala\ntry:\n    probar_buscar()\nfinally:\n    _g['buscar'] = _orig",
+      "msg": {
+       "es": "Tu prueba falla con una búsqueda binaria correcta: revisa lo que esperan tus assert.",
+       "en": "Your test fails with a correct binary search: check what your asserts expect."
+      }
+     },
+     {
+      "py": "def _mala(l, x):\n    a, b = 0, len(l) - 1\n    while a < b:\n        m = (a + b) // 2\n        if l[m] == x: return m\n        if l[m] < x: a = m + 1\n        else: b = m - 1\n    return -1\n\n_g = probar_buscar.__globals__\n_orig = _g['buscar']\n_g['buscar'] = _mala\ntry:\n    probar_buscar()\n    _ok = False\nexcept Exception:\n    _ok = True\nfinally:\n    _g['buscar'] = _orig\nassert _ok",
+      "msg": {
+       "es": "Tu prueba no atrapa el fallo original (while con <): busca en una lista de un solo elemento, o el último de la lista.",
+       "en": "Your test doesn't catch the original bug (while with <): search in a one-element list, or for the last item."
+      }
+     },
+     {
+      "py": "def _mala(l, x):\n    a, b = 0, len(l) - 1\n    while a <= b:\n        m = (a + b) // 2\n        if l[m] == x: return m\n        if l[m] < x: a = m + 1\n        else: b = m - 1\n    return None\n\n_g = probar_buscar.__globals__\n_orig = _g['buscar']\n_g['buscar'] = _mala\ntry:\n    probar_buscar()\n    _ok = False\nexcept Exception:\n    _ok = True\nfinally:\n    _g['buscar'] = _orig\nassert _ok",
+      "msg": {
+       "es": "Tu prueba no atrapa una versión que devuelve None en vez de -1: comprueba un valor que no está.",
+       "en": "Your test doesn't catch a version that returns None instead of -1: check a value that isn't there."
+      }
+     },
+     {
+      "py": "def _mala(l, x):\n    for i in range(1, len(l)):\n        if l[i] == x: return i\n    return -1\n\n_g = probar_buscar.__globals__\n_orig = _g['buscar']\n_g['buscar'] = _mala\ntry:\n    probar_buscar()\n    _ok = False\nexcept Exception:\n    _ok = True\nfinally:\n    _g['buscar'] = _orig\nassert _ok",
+      "msg": {
+       "es": "Tu prueba no atrapa una versión que nunca encuentra el primer elemento: búscalo.",
+       "en": "Your test doesn't catch a version that never finds the first item: search for it."
+      }
+     },
+     {
+      "py": "def _mala(l, x):\n    for i in range(len(l) - 1):\n        if l[i] == x: return i\n    return -1\n\n_g = probar_buscar.__globals__\n_orig = _g['buscar']\n_g['buscar'] = _mala\ntry:\n    probar_buscar()\n    _ok = False\nexcept Exception:\n    _ok = True\nfinally:\n    _g['buscar'] = _orig\nassert _ok",
+      "msg": {
+       "es": "Tu prueba no atrapa una versión que nunca encuentra el último elemento: búscalo.",
+       "en": "Your test doesn't catch a version that never finds the last item: search for it."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "All tests passed"
+     },
+     {
+      "py": "for _n in range(9):\n    _l = list(range(0, 2 * _n, 2))\n    for _i, _x in enumerate(_l):\n        assert search(_l, _x) == _i\n    for _x in range(-1, 2 * _n + 1, 2):\n        assert search(_l, _x) == -1",
+      "msg": {
+       "es": "search todavía falla en algún caso (probé listas de 0 a 8 elementos, buscando cada uno y valores que no están). Mira la condición del while.",
+       "en": "search still fails in some case (I tried lists of 0 to 8 elements, looking for each one and for values that aren't there). Look at the while condition."
+      }
+     },
+     {
+      "py": "def _mala(l, x):\n    a, b = 0, len(l) - 1\n    while a <= b:\n        m = (a + b) // 2\n        if l[m] == x: return m\n        if l[m] < x: a = m + 1\n        else: b = m - 1\n    return -1\n\n_g = test_search.__globals__\n_orig = _g['search']\n_g['search'] = _mala\ntry:\n    test_search()\nfinally:\n    _g['search'] = _orig",
+      "msg": {
+       "es": "Tu prueba falla con una búsqueda binaria correcta: revisa lo que esperan tus assert.",
+       "en": "Your test fails with a correct binary search: check what your asserts expect."
+      }
+     },
+     {
+      "py": "def _mala(l, x):\n    a, b = 0, len(l) - 1\n    while a < b:\n        m = (a + b) // 2\n        if l[m] == x: return m\n        if l[m] < x: a = m + 1\n        else: b = m - 1\n    return -1\n\n_g = test_search.__globals__\n_orig = _g['search']\n_g['search'] = _mala\ntry:\n    test_search()\n    _ok = False\nexcept Exception:\n    _ok = True\nfinally:\n    _g['search'] = _orig\nassert _ok",
+      "msg": {
+       "es": "Tu prueba no atrapa el fallo original (while con <): busca en una lista de un solo elemento, o el último de la lista.",
+       "en": "Your test doesn't catch the original bug (while with <): search in a one-element list, or for the last item."
+      }
+     },
+     {
+      "py": "def _mala(l, x):\n    a, b = 0, len(l) - 1\n    while a <= b:\n        m = (a + b) // 2\n        if l[m] == x: return m\n        if l[m] < x: a = m + 1\n        else: b = m - 1\n    return None\n\n_g = test_search.__globals__\n_orig = _g['search']\n_g['search'] = _mala\ntry:\n    test_search()\n    _ok = False\nexcept Exception:\n    _ok = True\nfinally:\n    _g['search'] = _orig\nassert _ok",
+      "msg": {
+       "es": "Tu prueba no atrapa una versión que devuelve None en vez de -1: comprueba un valor que no está.",
+       "en": "Your test doesn't catch a version that returns None instead of -1: check a value that isn't there."
+      }
+     },
+     {
+      "py": "def _mala(l, x):\n    for i in range(1, len(l)):\n        if l[i] == x: return i\n    return -1\n\n_g = test_search.__globals__\n_orig = _g['search']\n_g['search'] = _mala\ntry:\n    test_search()\n    _ok = False\nexcept Exception:\n    _ok = True\nfinally:\n    _g['search'] = _orig\nassert _ok",
+      "msg": {
+       "es": "Tu prueba no atrapa una versión que nunca encuentra el primer elemento: búscalo.",
+       "en": "Your test doesn't catch a version that never finds the first item: search for it."
+      }
+     },
+     {
+      "py": "def _mala(l, x):\n    for i in range(len(l) - 1):\n        if l[i] == x: return i\n    return -1\n\n_g = test_search.__globals__\n_orig = _g['search']\n_g['search'] = _mala\ntry:\n    test_search()\n    _ok = False\nexcept Exception:\n    _ok = True\nfinally:\n    _g['search'] = _orig\nassert _ok",
+      "msg": {
+       "es": "Tu prueba no atrapa una versión que nunca encuentra el último elemento: búscalo.",
+       "en": "Your test doesn't catch a version that never finds the last item: search for it."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "def buscar(lista, objetivo):\n    \"\"\"Posición de objetivo en una lista ordenada, o -1 si no está (búsqueda binaria).\"\"\"\n    inicio, fin = 0, len(lista) - 1\n    while inicio < fin:\n        medio = (inicio + fin) // 2\n        if lista[medio] == objetivo:\n            return medio\n        elif lista[medio] < objetivo:\n            inicio = medio + 1\n        else:\n            fin = medio - 1\n    return -1\n\ndef probar_buscar():\n    libros = [\"Abdías\", \"Hageo\", \"Joel\", \"Jonás\", \"Rut\"]\n    assert buscar(libros, \"Joel\") == 2\n\nprobar_buscar()\nprint(\"Todas las pruebas pasaron\")",
+     "def buscar(lista, objetivo):\n    \"\"\"Posición de objetivo en una lista ordenada, o -1 si no está (búsqueda binaria).\"\"\"\n    inicio, fin = 0, len(lista) - 1\n    while inicio < fin:\n        medio = (inicio + fin) // 2\n        if lista[medio] == objetivo:\n            return medio\n        elif lista[medio] < objetivo:\n            inicio = medio + 1\n        else:\n            fin = medio - 1\n    return -1\n\ndef probar_buscar():\n    libros = [\"Abdías\", \"Hageo\", \"Joel\", \"Jonás\", \"Rut\"]\n    for i, libro in enumerate(libros):\n        assert buscar(libros, libro) == i\n    assert buscar(libros, \"Amós\") == -1\n    assert buscar(libros, \"Aarón\") == -1\n    assert buscar(libros, \"Zacarías\") == -1\n    assert buscar([], \"Rut\") == -1\n    assert buscar([\"Rut\"], \"Rut\") == 0\n\nprobar_buscar()\nprint(\"Todas las pruebas pasaron\")",
+     "def buscar(lista, objetivo):\n    \"\"\"Posición de objetivo en una lista ordenada, o -1 si no está (búsqueda binaria).\"\"\"\n    inicio, fin = 0, len(lista) - 1\n    while inicio <= fin:\n        medio = (inicio + fin) // 2\n        if lista[medio] == objetivo:\n            return medio\n        elif lista[medio] < objetivo:\n            inicio = medio + 1\n        else:\n            fin = medio - 1\n    return -1\n\ndef probar_buscar():\n    libros = [\"Abdías\", \"Hageo\", \"Joel\", \"Jonás\", \"Rut\"]\n    assert buscar(libros, \"Joel\") == 2\n    assert buscar(libros, \"Amós\") == -1\n\nprobar_buscar()\nprint(\"Todas las pruebas pasaron\")"
+    ],
+    "en": [
+     "def search(items, target):\n    \"\"\"Position of target in a sorted list, or -1 if it isn't there (binary search).\"\"\"\n    start, end = 0, len(items) - 1\n    while start < end:\n        middle = (start + end) // 2\n        if items[middle] == target:\n            return middle\n        elif items[middle] < target:\n            start = middle + 1\n        else:\n            end = middle - 1\n    return -1\n\ndef test_search():\n    books = [\"Amos\", \"Haggai\", \"Joel\", \"Jonah\", \"Ruth\"]\n    assert search(books, \"Joel\") == 2\n\ntest_search()\nprint(\"All tests passed\")",
+     "def search(items, target):\n    \"\"\"Position of target in a sorted list, or -1 if it isn't there (binary search).\"\"\"\n    start, end = 0, len(items) - 1\n    while start <= end:\n        middle = (start + end) // 2\n        if items[middle] == target:\n            return middle\n        elif items[middle] < target:\n            start = middle + 1\n        else:\n            end = middle - 1\n    return -1\n\ndef test_search():\n    books = [\"Amos\", \"Haggai\", \"Joel\", \"Jonah\", \"Ruth\"]\n    assert search(books, \"Joel\") == 2\n    assert search(books, \"Hosea\") == -1\n\ntest_search()\nprint(\"All tests passed\")"
+    ]
+   }
+  },
+  {
+   "id": "plan-probado",
+   "tipo": "escribir",
+   "reto": true,
+   "enunciado": {
+    "es": "**Reto: un plan de lectura a prueba de fallos.**\n1. `repartir(capitulos, dias)` devuelve cuántos capítulos leer cada día: lo más parejo posible y con los días más largos **primero** (`repartir(28, 5)` → `[6, 6, 6, 5, 5]`). Si `dias < 1`, lanza `PlanInvalidoError(\"Los días deben ser al menos 1\")`; si hay más días que capítulos, `PlanInvalidoError(\"No alcanza: 3 capítulos para 4 días\")` (con los números del caso).\n2. `probar_repartir()` comprueba con `assert` los casos normales, los bordes (tantos días como capítulos, un solo día) **y** que los casos inválidos lancen la excepción. La prueba oculta la correrá contra 4 versiones con fallos: tiene que atraparlas todas.\n3. El programa corre las pruebas, muestra el plan de Mateo (28 capítulos) y atrapa el error de un plan de Rut en 0 días:\n```\nPruebas: todo bien\nMateo en 5 días:\nDía 1: 6 capítulos\nDía 2: 6 capítulos\nDía 3: 6 capítulos\nDía 4: 5 capítulos\nDía 5: 5 capítulos\nError: Los días deben ser al menos 1\n```",
+    "en": "**Challenge: a bug-proof reading plan.**\n1. `split_plan(chapters, days)` returns how many chapters to read each day: as even as possible and with the longer days **first** (`split_plan(28, 5)` → `[6, 6, 6, 5, 5]`). If `days < 1`, raise `InvalidPlanError(\"Days must be at least 1\")`; if there are more days than chapters, `InvalidPlanError(\"Not enough: 3 chapters for 4 days\")` (with the case's numbers).\n2. `test_split_plan()` checks with `assert` the normal cases, the edges (as many days as chapters, a single day) **and** that the invalid cases raise the exception. The hidden test will run it against 4 broken versions: it has to catch all of them.\n3. The program runs the tests, shows the plan for Matthew (28 chapters) and catches the error of a plan for Ruth in 0 days:\n```\nTests: all good\nMatthew in 5 days:\nDay 1: 6 chapters\nDay 2: 6 chapters\nDay 3: 6 chapters\nDay 4: 5 chapters\nDay 5: 5 chapters\nError: Days must be at least 1\n```"
+   },
+   "inicial": {
+    "es": "class PlanInvalidoError(Exception):\n    pass\n\ndef repartir(capitulos, dias):\n    \n\ndef probar_repartir():\n    \n",
+    "en": "class InvalidPlanError(Exception):\n    pass\n\ndef split_plan(chapters, days):\n    \n\ndef test_split_plan():\n    \n"
+   },
+   "pistas": {
+    "es": [
+     "`base, extra = divmod(capitulos, dias)`: todos los días leen `base`, y los primeros `extra` días leen uno más.",
+     "Para probar que algo **debe** fallar: `try: repartir(10, 0)` / `except PlanInvalidoError: pass` / `else: assert False, \"debía fallar\"`. Una función auxiliar `debe_fallar(c, d)` te ahorra repetirlo."
+    ],
+    "en": [
+     "`base, extra = divmod(chapters, days)`: every day reads `base`, and the first `extra` days read one more.",
+     "To test that something **must** fail: `try: split_plan(10, 0)` / `except InvalidPlanError: pass` / `else: assert False, \"should have failed\"`. A helper `must_fail(c, d)` saves you from repeating it."
+    ]
+   },
+   "solucion": {
+    "es": "class PlanInvalidoError(Exception):\n    pass\n\ndef repartir(capitulos, dias):\n    if dias < 1:\n        raise PlanInvalidoError(\"Los días deben ser al menos 1\")\n    if capitulos < dias:\n        raise PlanInvalidoError(f\"No alcanza: {capitulos} capítulos para {dias} días\")\n    base, extra = divmod(capitulos, dias)\n    return [base + 1 if i < extra else base for i in range(dias)]\n\ndef debe_fallar(capitulos, dias):\n    try:\n        repartir(capitulos, dias)\n    except PlanInvalidoError:\n        return\n    assert False, f\"repartir({capitulos}, {dias}) debía fallar\"\n\ndef probar_repartir():\n    assert repartir(28, 5) == [6, 6, 6, 5, 5]\n    assert repartir(10, 10) == [1] * 10\n    assert repartir(7, 1) == [7]\n    debe_fallar(10, 0)\n    debe_fallar(10, -2)\n    debe_fallar(3, 4)\n\nprobar_repartir()\nprint(\"Pruebas: todo bien\")\nprint(\"Mateo en 5 días:\")\nfor dia, cantidad in enumerate(repartir(28, 5), start=1):\n    print(f\"Día {dia}: {cantidad} capítulos\")\ntry:\n    repartir(4, 0)\nexcept PlanInvalidoError as error:\n    print(\"Error:\", error)",
+    "en": "class InvalidPlanError(Exception):\n    pass\n\ndef split_plan(chapters, days):\n    if days < 1:\n        raise InvalidPlanError(\"Days must be at least 1\")\n    if chapters < days:\n        raise InvalidPlanError(f\"Not enough: {chapters} chapters for {days} days\")\n    base, extra = divmod(chapters, days)\n    return [base + 1 if i < extra else base for i in range(days)]\n\ndef must_fail(chapters, days):\n    try:\n        split_plan(chapters, days)\n    except InvalidPlanError:\n        return\n    assert False, f\"split_plan({chapters}, {days}) should have failed\"\n\ndef test_split_plan():\n    assert split_plan(28, 5) == [6, 6, 6, 5, 5]\n    assert split_plan(10, 10) == [1] * 10\n    assert split_plan(7, 1) == [7]\n    must_fail(10, 0)\n    must_fail(10, -2)\n    must_fail(3, 4)\n\ntest_split_plan()\nprint(\"Tests: all good\")\nprint(\"Matthew in 5 days:\")\nfor day, amount in enumerate(split_plan(28, 5), start=1):\n    print(f\"Day {day}: {amount} chapters\")\ntry:\n    split_plan(4, 0)\nexcept InvalidPlanError as error:\n    print(\"Error:\", error)"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Pruebas: todo bien\nMateo en 5 días:\nDía 1: 6 capítulos\nDía 2: 6 capítulos\nDía 3: 6 capítulos\nDía 4: 5 capítulos\nDía 5: 5 capítulos\nError: Los días deben ser al menos 1"
+     },
+     {
+      "py": "for _c in range(1, 31):\n    for _d in range(1, _c + 1):\n        _r = repartir(_c, _d)\n        assert len(_r) == _d and sum(_r) == _c and max(_r) - min(_r) <= 1 and _r == sorted(_r, reverse=True), (_c, _d)",
+      "msg": {
+       "es": "repartir no reparte bien: debe dar una lista con un número por día, que sume todos los capítulos, lo más pareja posible (diferencia de 1 como mucho) y con los días más largos primero.",
+       "en": "repartir doesn't split well: it must give a list with one number per day, adding up to all the chapters, as even as possible (a difference of 1 at most) and with the longer days first."
+      }
+     },
+     {
+      "py": "assert issubclass(PlanInvalidoError, Exception)\n_v = []\nfor _a in [(10, 0), (10, -1), (3, 4), (0, 1)]:\n    try:\n        repartir(*_a)\n        _v.append(None)\n    except PlanInvalidoError as _e:\n        _v.append(str(_e))\nassert _v == ['Los días deben ser al menos 1', 'Los días deben ser al menos 1', 'No alcanza: 3 capítulos para 4 días', 'No alcanza: 0 capítulos para 1 días']",
+      "msg": {
+       "es": "repartir debe lanzar PlanInvalidoError con días < 1 («Los días deben ser al menos 1») y con más días que capítulos («No alcanza: 3 capítulos para 4 días»).",
+       "en": "repartir must raise PlanInvalidoError with days < 1 (\"Los días deben ser al menos 1\") and with more days than chapters (\"No alcanza: 3 capítulos para 4 días\")."
+      }
+     },
+     {
+      "py": "def _mala(c, d):\n    if d < 1: raise PlanInvalidoError('Los días deben ser al menos 1')\n    if c < d: raise PlanInvalidoError('No alcanza: {} capítulos para {} días'.format(c, d))\n    b, x = divmod(c, d)\n    return [b + 1 if i < x else b for i in range(d)]\n\n_g = probar_repartir.__globals__\n_orig = _g['repartir']\n_g['repartir'] = _mala\ntry:\n    probar_repartir()\nfinally:\n    _g['repartir'] = _orig",
+      "msg": {
+       "es": "Tu función de prueba falla con una versión correcta: revisa lo que esperan tus assert.",
+       "en": "Your test function fails with a correct version: check what your asserts expect."
+      }
+     },
+     {
+      "py": "def _mala(c, d):\n    if d < 1: raise PlanInvalidoError('Los días deben ser al menos 1')\n    if c < d: raise PlanInvalidoError('No alcanza: {} capítulos para {} días'.format(c, d))\n    b, x = divmod(c, d)\n    return [c // d] * d\n\n_g = probar_repartir.__globals__\n_orig = _g['repartir']\n_g['repartir'] = _mala\ntry:\n    probar_repartir()\n    _ok = False\nexcept Exception:\n    _ok = True\nfinally:\n    _g['repartir'] = _orig\nassert _ok",
+      "msg": {
+       "es": "Tu prueba no atrapa una versión que pierde capítulos al dividir con // (28 en 5 días daría [5, 5, 5, 5, 5]): comprueba la lista exacta o su suma.",
+       "en": "Your test doesn't catch a version that loses chapters dividing with // (28 in 5 days would give [5, 5, 5, 5, 5]): check the exact list or its sum."
+      }
+     },
+     {
+      "py": "def _mala(c, d):\n    if d < 1: raise PlanInvalidoError('Los días deben ser al menos 1')\n    if c < d: raise PlanInvalidoError('No alcanza: {} capítulos para {} días'.format(c, d))\n    b, x = divmod(c, d)\n    return [b + 1 if i >= d - x else b for i in range(d)]\n\n_g = probar_repartir.__globals__\n_orig = _g['repartir']\n_g['repartir'] = _mala\ntry:\n    probar_repartir()\n    _ok = False\nexcept Exception:\n    _ok = True\nfinally:\n    _g['repartir'] = _orig\nassert _ok",
+      "msg": {
+       "es": "Tu prueba no atrapa una versión que pone los días con más capítulos al final ([5, 5, 6, 6, 6]): comprueba la lista exacta.",
+       "en": "Your test doesn't catch a version that puts the longer days at the end ([5, 5, 6, 6, 6]): check the exact list."
+      }
+     },
+     {
+      "py": "def _mala(c, d):\n    if d < 1: return []\n    if c < d: raise PlanInvalidoError('No alcanza: {} capítulos para {} días'.format(c, d))\n    b, x = divmod(c, d)\n    return [b + 1 if i < x else b for i in range(d)]\n\n_g = probar_repartir.__globals__\n_orig = _g['repartir']\n_g['repartir'] = _mala\ntry:\n    probar_repartir()\n    _ok = False\nexcept Exception:\n    _ok = True\nfinally:\n    _g['repartir'] = _orig\nassert _ok",
+      "msg": {
+       "es": "Tu prueba no atrapa una versión que con 0 días devuelve [] en vez de lanzar PlanInvalidoError: comprueba que ese caso falle.",
+       "en": "Your test doesn't catch a version that returns [] with 0 days instead of raising PlanInvalidoError: check that this case fails."
+      }
+     },
+     {
+      "py": "def _mala(c, d):\n    if d < 1: raise PlanInvalidoError('Los días deben ser al menos 1')\n    b, x = divmod(c, d)\n    return [b + 1 if i < x else b for i in range(d)]\n\n_g = probar_repartir.__globals__\n_orig = _g['repartir']\n_g['repartir'] = _mala\ntry:\n    probar_repartir()\n    _ok = False\nexcept Exception:\n    _ok = True\nfinally:\n    _g['repartir'] = _orig\nassert _ok",
+      "msg": {
+       "es": "Tu prueba no atrapa una versión que acepta más días que capítulos (3 en 4 días daría [1, 1, 1, 0]): comprueba que ese caso falle.",
+       "en": "Your test doesn't catch a version that accepts more days than chapters (3 in 4 days would give [1, 1, 1, 0]): check that this case fails."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Tests: all good\nMatthew in 5 days:\nDay 1: 6 chapters\nDay 2: 6 chapters\nDay 3: 6 chapters\nDay 4: 5 chapters\nDay 5: 5 chapters\nError: Days must be at least 1"
+     },
+     {
+      "py": "for _c in range(1, 31):\n    for _d in range(1, _c + 1):\n        _r = split_plan(_c, _d)\n        assert len(_r) == _d and sum(_r) == _c and max(_r) - min(_r) <= 1 and _r == sorted(_r, reverse=True), (_c, _d)",
+      "msg": {
+       "es": "split_plan no reparte bien: debe dar una lista con un número por día, que sume todos los capítulos, lo más pareja posible (diferencia de 1 como mucho) y con los días más largos primero.",
+       "en": "split_plan doesn't split well: it must give a list with one number per day, adding up to all the chapters, as even as possible (a difference of 1 at most) and with the longer days first."
+      }
+     },
+     {
+      "py": "assert issubclass(InvalidPlanError, Exception)\n_v = []\nfor _a in [(10, 0), (10, -1), (3, 4), (0, 1)]:\n    try:\n        split_plan(*_a)\n        _v.append(None)\n    except InvalidPlanError as _e:\n        _v.append(str(_e))\nassert _v == ['Days must be at least 1', 'Days must be at least 1', 'Not enough: 3 chapters for 4 days', 'Not enough: 0 chapters for 1 days']",
+      "msg": {
+       "es": "split_plan debe lanzar InvalidPlanError con días < 1 («Days must be at least 1») y con más días que capítulos («Not enough: 3 chapters for 4 days»).",
+       "en": "split_plan must raise InvalidPlanError with days < 1 (\"Days must be at least 1\") and with more days than chapters (\"Not enough: 3 chapters for 4 days\")."
+      }
+     },
+     {
+      "py": "def _mala(c, d):\n    if d < 1: raise InvalidPlanError('Days must be at least 1')\n    if c < d: raise InvalidPlanError('Not enough: {} chapters for {} days'.format(c, d))\n    b, x = divmod(c, d)\n    return [b + 1 if i < x else b for i in range(d)]\n\n_g = test_split_plan.__globals__\n_orig = _g['split_plan']\n_g['split_plan'] = _mala\ntry:\n    test_split_plan()\nfinally:\n    _g['split_plan'] = _orig",
+      "msg": {
+       "es": "Tu función de prueba falla con una versión correcta: revisa lo que esperan tus assert.",
+       "en": "Your test function fails with a correct version: check what your asserts expect."
+      }
+     },
+     {
+      "py": "def _mala(c, d):\n    if d < 1: raise InvalidPlanError('Days must be at least 1')\n    if c < d: raise InvalidPlanError('Not enough: {} chapters for {} days'.format(c, d))\n    b, x = divmod(c, d)\n    return [c // d] * d\n\n_g = test_split_plan.__globals__\n_orig = _g['split_plan']\n_g['split_plan'] = _mala\ntry:\n    test_split_plan()\n    _ok = False\nexcept Exception:\n    _ok = True\nfinally:\n    _g['split_plan'] = _orig\nassert _ok",
+      "msg": {
+       "es": "Tu prueba no atrapa una versión que pierde capítulos al dividir con // (28 en 5 días daría [5, 5, 5, 5, 5]): comprueba la lista exacta o su suma.",
+       "en": "Your test doesn't catch a version that loses chapters dividing with // (28 in 5 days would give [5, 5, 5, 5, 5]): check the exact list or its sum."
+      }
+     },
+     {
+      "py": "def _mala(c, d):\n    if d < 1: raise InvalidPlanError('Days must be at least 1')\n    if c < d: raise InvalidPlanError('Not enough: {} chapters for {} days'.format(c, d))\n    b, x = divmod(c, d)\n    return [b + 1 if i >= d - x else b for i in range(d)]\n\n_g = test_split_plan.__globals__\n_orig = _g['split_plan']\n_g['split_plan'] = _mala\ntry:\n    test_split_plan()\n    _ok = False\nexcept Exception:\n    _ok = True\nfinally:\n    _g['split_plan'] = _orig\nassert _ok",
+      "msg": {
+       "es": "Tu prueba no atrapa una versión que pone los días con más capítulos al final ([5, 5, 6, 6, 6]): comprueba la lista exacta.",
+       "en": "Your test doesn't catch a version that puts the longer days at the end ([5, 5, 6, 6, 6]): check the exact list."
+      }
+     },
+     {
+      "py": "def _mala(c, d):\n    if d < 1: return []\n    if c < d: raise InvalidPlanError('Not enough: {} chapters for {} days'.format(c, d))\n    b, x = divmod(c, d)\n    return [b + 1 if i < x else b for i in range(d)]\n\n_g = test_split_plan.__globals__\n_orig = _g['split_plan']\n_g['split_plan'] = _mala\ntry:\n    test_split_plan()\n    _ok = False\nexcept Exception:\n    _ok = True\nfinally:\n    _g['split_plan'] = _orig\nassert _ok",
+      "msg": {
+       "es": "Tu prueba no atrapa una versión que con 0 días devuelve [] en vez de lanzar InvalidPlanError: comprueba que ese caso falle.",
+       "en": "Your test doesn't catch a version that returns [] with 0 days instead of raising InvalidPlanError: check that this case fails."
+      }
+     },
+     {
+      "py": "def _mala(c, d):\n    if d < 1: raise InvalidPlanError('Days must be at least 1')\n    b, x = divmod(c, d)\n    return [b + 1 if i < x else b for i in range(d)]\n\n_g = test_split_plan.__globals__\n_orig = _g['split_plan']\n_g['split_plan'] = _mala\ntry:\n    test_split_plan()\n    _ok = False\nexcept Exception:\n    _ok = True\nfinally:\n    _g['split_plan'] = _orig\nassert _ok",
+      "msg": {
+       "es": "Tu prueba no atrapa una versión que acepta más días que capítulos (3 en 4 días daría [1, 1, 1, 0]): comprueba que ese caso falle.",
+       "en": "Your test doesn't catch a version that accepts more days than chapters (3 in 4 days would give [1, 1, 1, 0]): check that this case fails."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "class PlanInvalidoError(Exception):\n    pass\n\ndef repartir(capitulos, dias):\n    if dias < 1:\n        raise PlanInvalidoError(\"Los días deben ser al menos 1\")\n    if capitulos < dias:\n        raise PlanInvalidoError(f\"No alcanza: {capitulos} capítulos para {dias} días\")\n    base, extra = divmod(capitulos, dias)\n    return [base + 1 if i < extra else base for i in range(dias)]\n\ndef debe_fallar(capitulos, dias):\n    try:\n        repartir(capitulos, dias)\n    except PlanInvalidoError:\n        return\n    assert False, f\"repartir({capitulos}, {dias}) debía fallar\"\n\ndef probar_repartir():\n    assert repartir(28, 5) == [6, 6, 6, 5, 5]\n    assert repartir(10, 10) == [1] * 10\n    assert repartir(7, 1) == [7]\n\nprobar_repartir()\nprint(\"Pruebas: todo bien\")\nprint(\"Mateo en 5 días:\")\nfor dia, cantidad in enumerate(repartir(28, 5), start=1):\n    print(f\"Día {dia}: {cantidad} capítulos\")\ntry:\n    repartir(4, 0)\nexcept PlanInvalidoError as error:\n    print(\"Error:\", error)",
+     "class PlanInvalidoError(Exception):\n    pass\n\ndef repartir(capitulos, dias):\n    if dias < 1:\n        raise PlanInvalidoError(\"Los días deben ser al menos 1\")\n    if capitulos < dias:\n        raise PlanInvalidoError(f\"No alcanza: {capitulos} capítulos para {dias} días\")\n    base, extra = divmod(capitulos, dias)\n    return [base + 1 if i >= dias - extra else base for i in range(dias)]\n\ndef debe_fallar(capitulos, dias):\n    try:\n        repartir(capitulos, dias)\n    except PlanInvalidoError:\n        return\n    assert False, f\"repartir({capitulos}, {dias}) debía fallar\"\n\ndef probar_repartir():\n    assert repartir(28, 5) == [5, 5, 6, 6, 6]\n    assert repartir(10, 10) == [1] * 10\n    assert repartir(7, 1) == [7]\n    debe_fallar(10, 0)\n    debe_fallar(10, -2)\n    debe_fallar(3, 4)\n\nprobar_repartir()\nprint(\"Pruebas: todo bien\")\nprint(\"Mateo en 5 días:\")\nfor dia, cantidad in enumerate(repartir(28, 5), start=1):\n    print(f\"Día {dia}: {cantidad} capítulos\")\ntry:\n    repartir(4, 0)\nexcept PlanInvalidoError as error:\n    print(\"Error:\", error)",
+     "class PlanInvalidoError(Exception):\n    pass\n\ndef repartir(capitulos, dias):\n    if dias < 1:\n        raise PlanInvalidoError(\"Los días deben ser al menos 1\")\n    if capitulos < dias:\n        raise PlanInvalidoError(f\"No alcanza: {capitulos} capítulos para {dias} días\")\n    base, extra = divmod(capitulos, dias)\n    return [base + 1 if i < extra else base for i in range(dias)]\n\ndef debe_fallar(capitulos, dias):\n    try:\n        repartir(capitulos, dias)\n    except PlanInvalidoError:\n        return\n    assert False, f\"repartir({capitulos}, {dias}) debía fallar\"\n\ndef probar_repartir():\n    assert sum(repartir(28, 5)) == 28\n    debe_fallar(10, 0)\n    debe_fallar(10, -2)\n    debe_fallar(3, 4)\n\nprobar_repartir()\nprint(\"Pruebas: todo bien\")\nprint(\"Mateo en 5 días:\")\nfor dia, cantidad in enumerate(repartir(28, 5), start=1):\n    print(f\"Día {dia}: {cantidad} capítulos\")\ntry:\n    repartir(4, 0)\nexcept PlanInvalidoError as error:\n    print(\"Error:\", error)",
+     "class PlanInvalidoError(Exception):\n    pass\n\ndef repartir(capitulos, dias):\n    if dias < 1:\n        raise PlanInvalidoError(\"Los días deben ser al menos 1\")\n    base, extra = divmod(capitulos, dias)\n    return [base + 1 if i < extra else base for i in range(dias)]\n\ndef debe_fallar(capitulos, dias):\n    try:\n        repartir(capitulos, dias)\n    except PlanInvalidoError:\n        return\n    assert False, f\"repartir({capitulos}, {dias}) debía fallar\"\n\ndef probar_repartir():\n    assert repartir(28, 5) == [6, 6, 6, 5, 5]\n    assert repartir(10, 10) == [1] * 10\n    assert repartir(7, 1) == [7]\n    debe_fallar(10, 0)\n    debe_fallar(10, -2)\n\nprobar_repartir()\nprint(\"Pruebas: todo bien\")\nprint(\"Mateo en 5 días:\")\nfor dia, cantidad in enumerate(repartir(28, 5), start=1):\n    print(f\"Día {dia}: {cantidad} capítulos\")\ntry:\n    repartir(4, 0)\nexcept PlanInvalidoError as error:\n    print(\"Error:\", error)"
+    ],
+    "en": [
+     "class InvalidPlanError(Exception):\n    pass\n\ndef split_plan(chapters, days):\n    if days < 1:\n        raise InvalidPlanError(\"Days must be at least 1\")\n    if chapters < days:\n        raise InvalidPlanError(f\"Not enough: {chapters} chapters for {days} days\")\n    base, extra = divmod(chapters, days)\n    return [base + 1 if i < extra else base for i in range(days)]\n\ndef must_fail(chapters, days):\n    try:\n        split_plan(chapters, days)\n    except InvalidPlanError:\n        return\n    assert False, f\"split_plan({chapters}, {days}) should have failed\"\n\ndef test_split_plan():\n    assert split_plan(28, 5) == [6, 6, 6, 5, 5]\n    assert split_plan(10, 10) == [1] * 10\n    assert split_plan(7, 1) == [7]\n\ntest_split_plan()\nprint(\"Tests: all good\")\nprint(\"Matthew in 5 days:\")\nfor day, amount in enumerate(split_plan(28, 5), start=1):\n    print(f\"Day {day}: {amount} chapters\")\ntry:\n    split_plan(4, 0)\nexcept InvalidPlanError as error:\n    print(\"Error:\", error)",
+     "class InvalidPlanError(Exception):\n    pass\n\ndef split_plan(chapters, days):\n    if days < 1:\n        raise InvalidPlanError(\"Days must be at least 1\")\n    if chapters < days:\n        raise InvalidPlanError(f\"Not enough: {chapters} chapters for {days} days\")\n    base, extra = divmod(chapters, days)\n    return [base + 1 if i >= days - extra else base for i in range(days)]\n\ndef must_fail(chapters, days):\n    try:\n        split_plan(chapters, days)\n    except InvalidPlanError:\n        return\n    assert False, f\"split_plan({chapters}, {days}) should have failed\"\n\ndef test_split_plan():\n    assert split_plan(28, 5) == [5, 5, 6, 6, 6]\n    assert split_plan(10, 10) == [1] * 10\n    assert split_plan(7, 1) == [7]\n    must_fail(10, 0)\n    must_fail(10, -2)\n    must_fail(3, 4)\n\ntest_split_plan()\nprint(\"Tests: all good\")\nprint(\"Matthew in 5 days:\")\nfor day, amount in enumerate(split_plan(28, 5), start=1):\n    print(f\"Day {day}: {amount} chapters\")\ntry:\n    split_plan(4, 0)\nexcept InvalidPlanError as error:\n    print(\"Error:\", error)"
+    ]
+   }
+  }
+ ]
+}

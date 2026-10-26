@@ -1,0 +1,551 @@
+{
+ "id": "10-salmo-dato",
+ "numero": 10,
+ "lugar": "galilea",
+ "titulo": {
+  "es": "El Salmo como dato",
+  "en": "The Psalm as data"
+ },
+ "tema": {
+  "es": "procesar texto: lower, replace, split, join y contar",
+  "en": "text processing: lower, replace, split, join and counting"
+ },
+ "versiculo": "sal-23-1-6",
+ "medalla": {
+  "es": "Escriba del Salmo 23",
+  "en": "Scribe of Psalm 23"
+ },
+ "leccion": {
+  "es": [
+   "Un texto también es un dato que se puede analizar. Primero se **normaliza**: `texto.lower()` lo pasa a minúsculas (así «Jehová» y «jehová» cuentan igual) y `texto.replace(\".\", \"\")` quita un signo. Para quitar varios, un bucle: `for signo in \".,;\": texto = texto.replace(signo, \"\")`. Las cadenas no cambian: cada método **devuelve una cadena nueva**, por eso hay que guardarla en una variable.",
+   "`texto.split()` corta el texto por los espacios y devuelve una **lista de palabras**; `len()` la cuenta. `\" \".join(lista)` hace lo contrario: une una lista de cadenas poniendo el separador entre ellas: `\"-\".join([\"mi\", \"pastor\"])` da `mi-pastor`.",
+   "Para contar una palabra, `palabras.count(\"mi\")` cuenta solo palabras completas, mientras que `texto.count(\"mi\")` también cuenta el «mi» que hay dentro de «misericordia». Para contar **todas** a la vez usa un diccionario: `frecuencia[p] = frecuencia.get(p, 0) + 1` para cada palabra `p`.",
+   "Para hallar la palabra **más frecuente**, recorre el diccionario guardando la mejor que llevas hasta ahora y cámbiala cuando encuentres una con más veces. Para **buscar** un término en varios versículos, limpia cada uno, sepáralo en palabras y pregunta `termino in palabras`."
+  ],
+  "en": [
+   "Text is also data you can analyze. First you **normalize** it: `text.lower()` turns it into lowercase (so «LORD» and «lord» count the same) and `text.replace(\".\", \"\")` removes a sign. To remove several, use a loop: `for sign in \".,;\": text = text.replace(sign, \"\")`. Strings don't change: each method **returns a new string**, so you have to store it in a variable.",
+   "`text.split()` cuts the text at the spaces and returns a **list of words**; `len()` counts it. `\" \".join(a_list)` does the opposite: it joins a list of strings putting the separator between them: `\"-\".join([\"my\", \"shepherd\"])` gives `my-shepherd`.",
+   "To count one word, `words.count(\"he\")` counts only whole words, while `text.count(\"he\")` also counts the «he» inside «the» and «shepherd». To count **all** of them at once use a dictionary: `frequency[w] = frequency.get(w, 0) + 1` for each word `w`.",
+   "To find the **most frequent** word, loop over the dictionary keeping the best one so far, and replace it when you find one with more times. To **search** for a term in several verses, clean each one, split it into words and ask `term in words`."
+  ]
+ },
+ "ejemplo": {
+  "es": "verso = \"Jehová es mi pastor; nada me faltará.\"\ntexto = verso.lower()\nfor signo in \".,;\":\n    texto = texto.replace(signo, \"\")\npalabras = texto.split()\nprint(palabras)\nprint(len(palabras), \"palabras\")\nprint(\"-\".join(palabras))\n\nfrecuencia = {}\nfor p in palabras:\n    frecuencia[p] = frecuencia.get(p, 0) + 1\nprint(frecuencia)",
+  "en": "verse = \"The LORD is my shepherd; I shall not want.\"\ntext = verse.lower()\nfor sign in \".,;\":\n    text = text.replace(sign, \"\")\nwords = text.split()\nprint(words)\nprint(len(words), \"words\")\nprint(\"-\".join(words))\n\nfrequency = {}\nfor w in words:\n    frequency[w] = frequency.get(w, 0) + 1\nprint(frequency)"
+ },
+ "ejercicios": [
+  {
+   "id": "primer-verso",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Muestra el primer versículo del Salmo 23 en minúsculas y, en otra línea, cuántas palabras tiene (sepáralo con `split()`). Debe salir:\n```\njehová es mi pastor; nada me faltará.\nPalabras: 7\n```",
+    "en": "Show the first verse of Psalm 23 in lowercase and, on another line, how many words it has (split it with `split()`). It should print:\n```\nthe lord is my shepherd; i shall not want.\nWords: 9\n```"
+   },
+   "inicial": {
+    "es": "verso = \"Jehová es mi pastor; nada me faltará.\"\n",
+    "en": "verse = \"The LORD is my shepherd; I shall not want.\"\n"
+   },
+   "pistas": {
+    "es": [
+     "`verso.lower()` da el texto en minúsculas.",
+     "`print(\"Palabras:\", len(verso.split()))`."
+    ],
+    "en": [
+     "`verse.lower()` gives the text in lowercase.",
+     "`print(\"Words:\", len(verse.split()))`."
+    ]
+   },
+   "solucion": {
+    "es": "verso = \"Jehová es mi pastor; nada me faltará.\"\nprint(verso.lower())\nprint(\"Palabras:\", len(verso.split()))",
+    "en": "verse = \"The LORD is my shepherd; I shall not want.\"\nprint(verse.lower())\nprint(\"Words:\", len(verse.split()))"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "jehová es mi pastor; nada me faltará.\nPalabras: 7"
+     },
+     {
+      "py": "assert 'split(' in _codigo and 'lower(' in _codigo",
+      "msg": {
+       "es": "Usa lower() y split(); no escribas el resultado.",
+       "en": "Use lower() and split(); don't type the result."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "the lord is my shepherd; i shall not want.\nWords: 9"
+     },
+     {
+      "py": "assert 'split(' in _codigo and 'lower(' in _codigo",
+      "msg": {
+       "es": "Usa lower() y split(); no escribas el resultado.",
+       "en": "Use lower() and split(); don't type the result."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "verso = \"Jehová es mi pastor; nada me faltará.\"\nprint(verso.lower())\nprint(\"Palabras:\", len(verso))",
+     "verso = \"Jehová es mi pastor; nada me faltará.\"\nverso.lower()\nprint(verso)\nprint(\"Palabras:\", len(verso.split()))",
+     "verso = \"Jehová es mi pastor; nada me faltará.\"\nprint(verso.lower)\nprint(\"Palabras:\", len(verso.split()))"
+    ],
+    "en": [
+     "verse = \"The LORD is my shepherd; I shall not want.\"\nprint(verse.lower())\nprint(\"Words:\", len(verse))",
+     "verse = \"The LORD is my shepherd; I shall not want.\"\nverse.lower()\nprint(verse)\nprint(\"Words:\", len(verse.split()))",
+     "verse = \"The LORD is my shepherd; I shall not want.\"\nprint(verse.lower)\nprint(\"Words:\", len(verse.split()))"
+    ]
+   }
+  },
+  {
+   "id": "quitar-signos",
+   "tipo": "hueco",
+   "enunciado": {
+    "es": "Completa el bucle para **quitar** cada signo de puntuación (cambiarlo por nada). Debe salir:\n```\njehová es mi pastor nada me faltará\n```",
+    "en": "Fill in the loop to **remove** each punctuation sign (replace it with nothing). It should print:\n```\nthe lord is my shepherd i shall not want\n```"
+   },
+   "plantilla": {
+    "es": "verso = \"Jehová es mi pastor; nada me faltará.\"\nfor signo in \".,;\":\n    verso = verso.replace(signo, ___)\nprint(verso.lower())",
+    "en": "verse = \"The LORD is my shepherd; I shall not want.\"\nfor sign in \".,;\":\n    verse = verse.replace(sign, ___)\nprint(verse.lower())"
+   },
+   "pistas": {
+    "es": [
+     "`replace(a, b)` cambia cada `a` por `b`. Aquí `b` debe ser una cadena vacía.",
+     "Una cadena vacía son dos comillas sin nada en medio: `\"\"`."
+    ],
+    "en": [
+     "`replace(a, b)` changes each `a` into `b`. Here `b` must be an empty string.",
+     "An empty string is two quotes with nothing between them: `\"\"`."
+    ]
+   },
+   "solucion": {
+    "es": "verso = \"Jehová es mi pastor; nada me faltará.\"\nfor signo in \".,;\":\n    verso = verso.replace(signo, \"\")\nprint(verso.lower())",
+    "en": "verse = \"The LORD is my shepherd; I shall not want.\"\nfor sign in \".,;\":\n    verse = verse.replace(sign, \"\")\nprint(verse.lower())"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "jehová es mi pastor nada me faltará"
+     }
+    ],
+    "en": [
+     {
+      "salida": "the lord is my shepherd i shall not want"
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "verso = \"Jehová es mi pastor; nada me faltará.\"\nfor signo in \".,;\":\n    verso = verso.replace(signo, \" \")\nprint(verso.lower())",
+     "verso = \"Jehová es mi pastor; nada me faltará.\"\nfor signo in \".,;\":\n    verso = verso.replace(signo, signo)\nprint(verso.lower())"
+    ],
+    "en": [
+     "verse = \"The LORD is my shepherd; I shall not want.\"\nfor sign in \".,;\":\n    verse = verse.replace(sign, \" \")\nprint(verse.lower())",
+     "verse = \"The LORD is my shepherd; I shall not want.\"\nfor sign in \".,;\":\n    verse = verse.replace(sign, sign)\nprint(verse.lower())"
+    ]
+   }
+  },
+  {
+   "id": "unir-palabras",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Con el versículo 3, quita el punto, sepáralo en palabras y vuelve a unirlas con `join`: primero solo las **tres primeras** con espacios, luego **todas** con guiones. Debe salir:\n```\nRestaura mi alma\nRestaura-mi-alma-y-me-guía-por-sendas-de-justicia-por-amor-de-su-nombre\n```",
+    "en": "With verse 3, remove the punctuation (`;` and `.`), split it into words and join them again with `join`: first only the **first four** with spaces, then **all** of them with hyphens. It should print:\n```\nHe restores my soul\nHe-restores-my-soul-He-guides-me-in-the-paths-of-righteousness-for-the-sake-of-His-name\n```"
+   },
+   "inicial": {
+    "es": "verso = \"Restaura mi alma y me guía por sendas de justicia por amor de su nombre.\"\n",
+    "en": "verse = \"He restores my soul; He guides me in the paths of righteousness for the sake of His name.\"\n"
+   },
+   "pistas": {
+    "es": [
+     "`palabras = verso.replace(\".\", \"\").split()` da la lista. `palabras[:3]` son las tres primeras.",
+     "`print(\" \".join(palabras[:3]))` y `print(\"-\".join(palabras))`."
+    ],
+    "en": [
+     "`words = verse.replace(\";\", \"\").replace(\".\", \"\").split()` gives the list. `words[:4]` are the first four.",
+     "`print(\" \".join(words[:4]))` and `print(\"-\".join(words))`."
+    ]
+   },
+   "solucion": {
+    "es": "verso = \"Restaura mi alma y me guía por sendas de justicia por amor de su nombre.\"\npalabras = verso.replace(\".\", \"\").split()\nprint(\" \".join(palabras[:3]))\nprint(\"-\".join(palabras))",
+    "en": "verse = \"He restores my soul; He guides me in the paths of righteousness for the sake of His name.\"\nwords = verse.replace(\";\", \"\").replace(\".\", \"\").split()\nprint(\" \".join(words[:4]))\nprint(\"-\".join(words))"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Restaura mi alma\nRestaura-mi-alma-y-me-guía-por-sendas-de-justicia-por-amor-de-su-nombre"
+     },
+     {
+      "py": "assert '.join(' in _codigo and 'split(' in _codigo",
+      "msg": {
+       "es": "Separa con split() y une con join().",
+       "en": "Split with split() and join with join()."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "He restores my soul\nHe-restores-my-soul-He-guides-me-in-the-paths-of-righteousness-for-the-sake-of-His-name"
+     },
+     {
+      "py": "assert '.join(' in _codigo and 'split(' in _codigo",
+      "msg": {
+       "es": "Separa con split() y une con join().",
+       "en": "Split with split() and join with join()."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "verso = \"Restaura mi alma y me guía por sendas de justicia por amor de su nombre.\"\npalabras = verso.split()\nprint(\" \".join(palabras[:3]))\nprint(\"-\".join(palabras))",
+     "verso = \"Restaura mi alma y me guía por sendas de justicia por amor de su nombre.\"\npalabras = verso.replace(\".\", \"\").split()\nprint(palabras[:3])\nprint(\"-\".join(palabras))",
+     "verso = \"Restaura mi alma y me guía por sendas de justicia por amor de su nombre.\"\nprint(verso.replace(\" \", \"-\"))"
+    ],
+    "en": [
+     "verse = \"He restores my soul; He guides me in the paths of righteousness for the sake of His name.\"\nwords = verse.split()\nprint(\" \".join(words[:4]))\nprint(\"-\".join(words))",
+     "verse = \"He restores my soul; He guides me in the paths of righteousness for the sake of His name.\"\nwords = verse.replace(\";\", \"\").replace(\".\", \"\").split()\nprint(words[:4])\nprint(\"-\".join(words))",
+     "verse = \"He restores my soul; He guides me in the paths of righteousness for the sake of His name.\"\nprint(verse.replace(\" \", \"-\"))"
+    ]
+   }
+  },
+  {
+   "id": "contar-palabras",
+   "tipo": "ordenar",
+   "enunciado": {
+    "es": "Ordena las líneas para limpiar los dos primeros versículos y contar sus palabras. Debe salir:\n```\nPalabras: 20\n```",
+    "en": "Put the lines in order to clean the first two verses and count their words. It should print:\n```\nWords: 23\n```"
+   },
+   "lineas": {
+    "es": [
+     "texto = \"Jehová es mi pastor; nada me faltará. En verdes pastos me hace descansar y junto a aguas tranquilas me conduce.\"",
+     "texto = texto.lower()",
+     "for signo in \".,;\":",
+     "    texto = texto.replace(signo, \"\")",
+     "palabras = texto.split()",
+     "print(\"Palabras:\", len(palabras))"
+    ],
+    "en": [
+     "text = \"The LORD is my shepherd; I shall not want. He makes me lie down in green pastures; He leads me beside quiet waters.\"",
+     "text = text.lower()",
+     "for sign in \".,;\":",
+     "    text = text.replace(sign, \"\")",
+     "words = text.split()",
+     "print(\"Words:\", len(words))"
+    ]
+   },
+   "pistas": {
+    "es": [
+     "Primero el texto, luego se limpia y al final se separa y se cuenta.",
+     "La línea con sangría (el `replace`) va dentro del `for`."
+    ],
+    "en": [
+     "First the text, then it's cleaned, and last it's split and counted.",
+     "The indented line (the `replace`) goes inside the `for`."
+    ]
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Palabras: 20"
+     }
+    ],
+    "en": [
+     {
+      "salida": "Words: 23"
+     }
+    ]
+   }
+  },
+  {
+   "id": "contar-mi",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Con todo el Salmo 23 (ya está en `salmo`), límpialo, sepáralo en la lista `palabras` y cuenta cuántas veces aparecen como palabras completas `mi` y `jehová`. Debe salir:\n```\nmi: 5\njehová: 2\n```\nOjo: `salmo.count(\"mi\")` daría 9, porque también cuenta el «mi» que hay dentro de «conmigo», «mis», «enemigos» y «misericordia».",
+    "en": "With the whole of Psalm 23 (it's already in `psalm`), clean it, split it into the list `words` and count how many times `he` and `lord` appear as whole words. It should print:\n```\nhe: 4\nlord: 2\n```\nCareful: `psalm.lower().count(\"he\")` would give 17, because it also counts the «he» in «the» and «shepherd»."
+   },
+   "inicial": {
+    "es": "salmo = (\n    \"Jehová es mi pastor; nada me faltará. \"\n    \"En verdes pastos me hace descansar y junto a aguas tranquilas me conduce. \"\n    \"Restaura mi alma y me guía por sendas de justicia por amor de su nombre. \"\n    \"Aunque ande por el valle de sombra de muerte, no temeré mal alguno, porque tú estás conmigo; tu vara y tu cayado me infunden aliento. \"\n    \"Preparas una mesa delante de mí en presencia de mis enemigos; unges mi cabeza con aceite y mi copa rebosa. \"\n    \"Ciertamente el bien y la misericordia me seguirán todos los días de mi vida, y habitaré en la casa de Jehová por largos días.\"\n)\n",
+    "en": "psalm = (\n    \"The LORD is my shepherd; I shall not want. \"\n    \"He makes me lie down in green pastures; He leads me beside quiet waters. \"\n    \"He restores my soul; He guides me in the paths of righteousness for the sake of His name. \"\n    \"Even though I walk through the valley of the shadow of death, I will fear no evil, for You are with me; Your rod and Your staff, they comfort me. \"\n    \"You prepare a table before me in the presence of my enemies. You anoint my head with oil; my cup overflows. \"\n    \"Surely goodness and mercy will follow me all the days of my life, and I will dwell in the house of the LORD forever.\"\n)\n"
+   },
+   "pistas": {
+    "es": [
+     "Limpia como antes: `texto = salmo.lower()` y un `for` con `replace` para `.,;`. Luego `palabras = texto.split()`.",
+     "`print(\"mi:\", palabras.count(\"mi\"))` y lo mismo con `\"jehová\"` (en minúsculas, con tilde)."
+    ],
+    "en": [
+     "Clean as before: `text = psalm.lower()` and a `for` with `replace` for `.,;`. Then `words = text.split()`.",
+     "`print(\"he:\", words.count(\"he\"))` and the same with `\"lord\"` (in lowercase)."
+    ]
+   },
+   "solucion": {
+    "es": "salmo = (\n    \"Jehová es mi pastor; nada me faltará. \"\n    \"En verdes pastos me hace descansar y junto a aguas tranquilas me conduce. \"\n    \"Restaura mi alma y me guía por sendas de justicia por amor de su nombre. \"\n    \"Aunque ande por el valle de sombra de muerte, no temeré mal alguno, porque tú estás conmigo; tu vara y tu cayado me infunden aliento. \"\n    \"Preparas una mesa delante de mí en presencia de mis enemigos; unges mi cabeza con aceite y mi copa rebosa. \"\n    \"Ciertamente el bien y la misericordia me seguirán todos los días de mi vida, y habitaré en la casa de Jehová por largos días.\"\n)\ntexto = salmo.lower()\nfor signo in \".,;\":\n    texto = texto.replace(signo, \"\")\npalabras = texto.split()\nprint(\"mi:\", palabras.count(\"mi\"))\nprint(\"jehová:\", palabras.count(\"jehová\"))",
+    "en": "psalm = (\n    \"The LORD is my shepherd; I shall not want. \"\n    \"He makes me lie down in green pastures; He leads me beside quiet waters. \"\n    \"He restores my soul; He guides me in the paths of righteousness for the sake of His name. \"\n    \"Even though I walk through the valley of the shadow of death, I will fear no evil, for You are with me; Your rod and Your staff, they comfort me. \"\n    \"You prepare a table before me in the presence of my enemies. You anoint my head with oil; my cup overflows. \"\n    \"Surely goodness and mercy will follow me all the days of my life, and I will dwell in the house of the LORD forever.\"\n)\ntext = psalm.lower()\nfor sign in \".,;\":\n    text = text.replace(sign, \"\")\nwords = text.split()\nprint(\"he:\", words.count(\"he\"))\nprint(\"lord:\", words.count(\"lord\"))"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "mi: 5\njehová: 2"
+     },
+     {
+      "py": "assert palabras == ['jehová', 'es', 'mi', 'pastor', 'nada', 'me', 'faltará', 'en', 'verdes', 'pastos', 'me', 'hace', 'descansar', 'y', 'junto', 'a', 'aguas', 'tranquilas', 'me', 'conduce', 'restaura', 'mi', 'alma', 'y', 'me', 'guía', 'por', 'sendas', 'de', 'justicia', 'por', 'amor', 'de', 'su', 'nombre', 'aunque', 'ande', 'por', 'el', 'valle', 'de', 'sombra', 'de', 'muerte', 'no', 'temeré', 'mal', 'alguno', 'porque', 'tú', 'estás', 'conmigo', 'tu', 'vara', 'y', 'tu', 'cayado', 'me', 'infunden', 'aliento', 'preparas', 'una', 'mesa', 'delante', 'de', 'mí', 'en', 'presencia', 'de', 'mis', 'enemigos', 'unges', 'mi', 'cabeza', 'con', 'aceite', 'y', 'mi', 'copa', 'rebosa', 'ciertamente', 'el', 'bien', 'y', 'la', 'misericordia', 'me', 'seguirán', 'todos', 'los', 'días', 'de', 'mi', 'vida', 'y', 'habitaré', 'en', 'la', 'casa', 'de', 'jehová', 'por', 'largos', 'días']",
+      "msg": {
+       "es": "La lista palabras debe tener todas las palabras del salmo en minúsculas y sin . , ;",
+       "en": "The list palabras must have every word of the psalm in lowercase and without . , ;"
+      }
+     },
+     {
+      "py": "assert 'mi: 5' not in _codigo and 'mi:\", 5' not in _codigo",
+      "msg": {
+       "es": "Cuenta con Python; no escribas el número.",
+       "en": "Count with Python; don't type the number."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "he: 4\nlord: 2"
+     },
+     {
+      "py": "assert words == ['the', 'lord', 'is', 'my', 'shepherd', 'i', 'shall', 'not', 'want', 'he', 'makes', 'me', 'lie', 'down', 'in', 'green', 'pastures', 'he', 'leads', 'me', 'beside', 'quiet', 'waters', 'he', 'restores', 'my', 'soul', 'he', 'guides', 'me', 'in', 'the', 'paths', 'of', 'righteousness', 'for', 'the', 'sake', 'of', 'his', 'name', 'even', 'though', 'i', 'walk', 'through', 'the', 'valley', 'of', 'the', 'shadow', 'of', 'death', 'i', 'will', 'fear', 'no', 'evil', 'for', 'you', 'are', 'with', 'me', 'your', 'rod', 'and', 'your', 'staff', 'they', 'comfort', 'me', 'you', 'prepare', 'a', 'table', 'before', 'me', 'in', 'the', 'presence', 'of', 'my', 'enemies', 'you', 'anoint', 'my', 'head', 'with', 'oil', 'my', 'cup', 'overflows', 'surely', 'goodness', 'and', 'mercy', 'will', 'follow', 'me', 'all', 'the', 'days', 'of', 'my', 'life', 'and', 'i', 'will', 'dwell', 'in', 'the', 'house', 'of', 'the', 'lord', 'forever']",
+      "msg": {
+       "es": "La lista words debe tener todas las palabras del salmo en minúsculas y sin . , ;",
+       "en": "The list words must have every word of the psalm in lowercase and without . , ;"
+      }
+     },
+     {
+      "py": "assert 'he: 4' not in _codigo and 'he:\", 4' not in _codigo",
+      "msg": {
+       "es": "Cuenta con Python; no escribas el número.",
+       "en": "Count with Python; don't type the number."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "salmo = (\n    \"Jehová es mi pastor; nada me faltará. \"\n    \"En verdes pastos me hace descansar y junto a aguas tranquilas me conduce. \"\n    \"Restaura mi alma y me guía por sendas de justicia por amor de su nombre. \"\n    \"Aunque ande por el valle de sombra de muerte, no temeré mal alguno, porque tú estás conmigo; tu vara y tu cayado me infunden aliento. \"\n    \"Preparas una mesa delante de mí en presencia de mis enemigos; unges mi cabeza con aceite y mi copa rebosa. \"\n    \"Ciertamente el bien y la misericordia me seguirán todos los días de mi vida, y habitaré en la casa de Jehová por largos días.\"\n)\ntexto = salmo.lower()\nfor signo in \".,;\":\n    texto = texto.replace(signo, \"\")\npalabras = texto.split()\nprint(\"mi:\", texto.count(\"mi\"))\nprint(\"jehová:\", texto.count(\"jehová\"))",
+     "salmo = (\n    \"Jehová es mi pastor; nada me faltará. \"\n    \"En verdes pastos me hace descansar y junto a aguas tranquilas me conduce. \"\n    \"Restaura mi alma y me guía por sendas de justicia por amor de su nombre. \"\n    \"Aunque ande por el valle de sombra de muerte, no temeré mal alguno, porque tú estás conmigo; tu vara y tu cayado me infunden aliento. \"\n    \"Preparas una mesa delante de mí en presencia de mis enemigos; unges mi cabeza con aceite y mi copa rebosa. \"\n    \"Ciertamente el bien y la misericordia me seguirán todos los días de mi vida, y habitaré en la casa de Jehová por largos días.\"\n)\npalabras = salmo.split()\nprint(\"mi:\", palabras.count(\"mi\"))\nprint(\"jehová:\", palabras.count(\"jehová\"))",
+     "salmo = (\n    \"Jehová es mi pastor; nada me faltará. \"\n    \"En verdes pastos me hace descansar y junto a aguas tranquilas me conduce. \"\n    \"Restaura mi alma y me guía por sendas de justicia por amor de su nombre. \"\n    \"Aunque ande por el valle de sombra de muerte, no temeré mal alguno, porque tú estás conmigo; tu vara y tu cayado me infunden aliento. \"\n    \"Preparas una mesa delante de mí en presencia de mis enemigos; unges mi cabeza con aceite y mi copa rebosa. \"\n    \"Ciertamente el bien y la misericordia me seguirán todos los días de mi vida, y habitaré en la casa de Jehová por largos días.\"\n)\ntexto = salmo.lower()\nfor signo in \".,;\":\n    texto.replace(signo, \"\")\npalabras = texto.split()\nprint(\"mi:\", palabras.count(\"mi\"))\nprint(\"jehová:\", palabras.count(\"jehová\"))"
+    ],
+    "en": [
+     "psalm = (\n    \"The LORD is my shepherd; I shall not want. \"\n    \"He makes me lie down in green pastures; He leads me beside quiet waters. \"\n    \"He restores my soul; He guides me in the paths of righteousness for the sake of His name. \"\n    \"Even though I walk through the valley of the shadow of death, I will fear no evil, for You are with me; Your rod and Your staff, they comfort me. \"\n    \"You prepare a table before me in the presence of my enemies. You anoint my head with oil; my cup overflows. \"\n    \"Surely goodness and mercy will follow me all the days of my life, and I will dwell in the house of the LORD forever.\"\n)\ntext = psalm.lower()\nfor sign in \".,;\":\n    text = text.replace(sign, \"\")\nwords = text.split()\nprint(\"he:\", text.count(\"he\"))\nprint(\"lord:\", text.count(\"lord\"))",
+     "psalm = (\n    \"The LORD is my shepherd; I shall not want. \"\n    \"He makes me lie down in green pastures; He leads me beside quiet waters. \"\n    \"He restores my soul; He guides me in the paths of righteousness for the sake of His name. \"\n    \"Even though I walk through the valley of the shadow of death, I will fear no evil, for You are with me; Your rod and Your staff, they comfort me. \"\n    \"You prepare a table before me in the presence of my enemies. You anoint my head with oil; my cup overflows. \"\n    \"Surely goodness and mercy will follow me all the days of my life, and I will dwell in the house of the LORD forever.\"\n)\nwords = psalm.split()\nprint(\"he:\", words.count(\"he\"))\nprint(\"lord:\", words.count(\"lord\"))",
+     "psalm = (\n    \"The LORD is my shepherd; I shall not want. \"\n    \"He makes me lie down in green pastures; He leads me beside quiet waters. \"\n    \"He restores my soul; He guides me in the paths of righteousness for the sake of His name. \"\n    \"Even though I walk through the valley of the shadow of death, I will fear no evil, for You are with me; Your rod and Your staff, they comfort me. \"\n    \"You prepare a table before me in the presence of my enemies. You anoint my head with oil; my cup overflows. \"\n    \"Surely goodness and mercy will follow me all the days of my life, and I will dwell in the house of the LORD forever.\"\n)\ntext = psalm.lower()\nfor sign in \".,;\":\n    text.replace(sign, \"\")\nwords = text.split()\nprint(\"he:\", words.count(\"he\"))\nprint(\"lord:\", words.count(\"lord\"))"
+    ]
+   }
+  },
+  {
+   "id": "mas-frecuente",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Llena el diccionario `frecuencia` (palabra → veces) recorriendo `palabras`, **sin usar `Counter`**. Luego busca la palabra que más se repite (si hay empate, la primera que encuentres) y muestra:\n```\nPalabras distintas: 73\nMás frecuente: de (8 veces)\n```",
+    "en": "Fill the dictionary `frequency` (word → times) by looping over `words`, **without using `Counter`**. Then find the word that repeats the most (if there's a tie, the first one you find) and show:\n```\nDifferent words: 72\nMost frequent: the (9 times)\n```"
+   },
+   "inicial": {
+    "es": "salmo = (\n    \"Jehová es mi pastor; nada me faltará. \"\n    \"En verdes pastos me hace descansar y junto a aguas tranquilas me conduce. \"\n    \"Restaura mi alma y me guía por sendas de justicia por amor de su nombre. \"\n    \"Aunque ande por el valle de sombra de muerte, no temeré mal alguno, porque tú estás conmigo; tu vara y tu cayado me infunden aliento. \"\n    \"Preparas una mesa delante de mí en presencia de mis enemigos; unges mi cabeza con aceite y mi copa rebosa. \"\n    \"Ciertamente el bien y la misericordia me seguirán todos los días de mi vida, y habitaré en la casa de Jehová por largos días.\"\n)\ntexto = salmo.lower()\nfor signo in \".,;\":\n    texto = texto.replace(signo, \"\")\npalabras = texto.split()\n\nfrecuencia = {}\n",
+    "en": "psalm = (\n    \"The LORD is my shepherd; I shall not want. \"\n    \"He makes me lie down in green pastures; He leads me beside quiet waters. \"\n    \"He restores my soul; He guides me in the paths of righteousness for the sake of His name. \"\n    \"Even though I walk through the valley of the shadow of death, I will fear no evil, for You are with me; Your rod and Your staff, they comfort me. \"\n    \"You prepare a table before me in the presence of my enemies. You anoint my head with oil; my cup overflows. \"\n    \"Surely goodness and mercy will follow me all the days of my life, and I will dwell in the house of the LORD forever.\"\n)\ntext = psalm.lower()\nfor sign in \".,;\":\n    text = text.replace(sign, \"\")\nwords = text.split()\n\nfrequency = {}\n"
+   },
+   "pistas": {
+    "es": [
+     "`for p in palabras: frecuencia[p] = frecuencia.get(p, 0) + 1`. `len(frecuencia)` da las palabras distintas.",
+     "Empieza con `mejor = palabras[0]` y recorre `for p in frecuencia:`; si `frecuencia[p] > frecuencia[mejor]`, entonces `mejor = p`."
+    ],
+    "en": [
+     "`for w in words: frequency[w] = frequency.get(w, 0) + 1`. `len(frequency)` gives the different words.",
+     "Start with `best = words[0]` and loop `for w in frequency:`; if `frequency[w] > frequency[best]`, then `best = w`."
+    ]
+   },
+   "solucion": {
+    "es": "salmo = (\n    \"Jehová es mi pastor; nada me faltará. \"\n    \"En verdes pastos me hace descansar y junto a aguas tranquilas me conduce. \"\n    \"Restaura mi alma y me guía por sendas de justicia por amor de su nombre. \"\n    \"Aunque ande por el valle de sombra de muerte, no temeré mal alguno, porque tú estás conmigo; tu vara y tu cayado me infunden aliento. \"\n    \"Preparas una mesa delante de mí en presencia de mis enemigos; unges mi cabeza con aceite y mi copa rebosa. \"\n    \"Ciertamente el bien y la misericordia me seguirán todos los días de mi vida, y habitaré en la casa de Jehová por largos días.\"\n)\ntexto = salmo.lower()\nfor signo in \".,;\":\n    texto = texto.replace(signo, \"\")\npalabras = texto.split()\n\nfrecuencia = {}\nfor p in palabras:\n    frecuencia[p] = frecuencia.get(p, 0) + 1\nprint(\"Palabras distintas:\", len(frecuencia))\n\nmejor = palabras[0]\nfor p in frecuencia:\n    if frecuencia[p] > frecuencia[mejor]:\n        mejor = p\nprint(f\"Más frecuente: {mejor} ({frecuencia[mejor]} veces)\")",
+    "en": "psalm = (\n    \"The LORD is my shepherd; I shall not want. \"\n    \"He makes me lie down in green pastures; He leads me beside quiet waters. \"\n    \"He restores my soul; He guides me in the paths of righteousness for the sake of His name. \"\n    \"Even though I walk through the valley of the shadow of death, I will fear no evil, for You are with me; Your rod and Your staff, they comfort me. \"\n    \"You prepare a table before me in the presence of my enemies. You anoint my head with oil; my cup overflows. \"\n    \"Surely goodness and mercy will follow me all the days of my life, and I will dwell in the house of the LORD forever.\"\n)\ntext = psalm.lower()\nfor sign in \".,;\":\n    text = text.replace(sign, \"\")\nwords = text.split()\n\nfrequency = {}\nfor w in words:\n    frequency[w] = frequency.get(w, 0) + 1\nprint(\"Different words:\", len(frequency))\n\nbest = words[0]\nfor w in frequency:\n    if frequency[w] > frequency[best]:\n        best = w\nprint(f\"Most frequent: {best} ({frequency[best]} times)\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Palabras distintas: 73\nMás frecuente: de (8 veces)"
+     },
+     {
+      "py": "f = {}\nfor p in palabras:\n    f[p] = f.get(p, 0) + 1\nassert frecuencia == f",
+      "msg": {
+       "es": "El diccionario frecuencia debe tener cada palabra con sus veces (por ejemplo, frecuencia[\"mi\"] vale 5).",
+       "en": "The dictionary frecuencia must have each word with its count (for example, frecuencia[\"mi\"] is 5)."
+      }
+     },
+     {
+      "py": "assert 'Counter' not in _codigo and 'max(' not in _codigo",
+      "msg": {
+       "es": "Hazlo a mano, con un bucle (Counter y max vienen más adelante).",
+       "en": "Do it by hand, with a loop (Counter and max come later)."
+      }
+     },
+     {
+      "py": "assert \"'de'\" not in _codigo and '\"de\"' not in _codigo",
+      "msg": {
+       "es": "No escribas la respuesta: búscala con un bucle.",
+       "en": "Don't type the answer: find it with a loop."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Different words: 72\nMost frequent: the (9 times)"
+     },
+     {
+      "py": "f = {}\nfor w in words:\n    f[w] = f.get(w, 0) + 1\nassert frequency == f",
+      "msg": {
+       "es": "El diccionario frequency debe tener cada palabra con sus veces (por ejemplo, frequency[\"my\"] vale 6).",
+       "en": "The dictionary frequency must have each word with its count (for example, frequency[\"my\"] is 6)."
+      }
+     },
+     {
+      "py": "assert 'Counter' not in _codigo and 'max(' not in _codigo",
+      "msg": {
+       "es": "Hazlo a mano, con un bucle (Counter y max vienen más adelante).",
+       "en": "Do it by hand, with a loop (Counter and max come later)."
+      }
+     },
+     {
+      "py": "assert \"'the'\" not in _codigo and '\"the\"' not in _codigo",
+      "msg": {
+       "es": "No escribas la respuesta: búscala con un bucle.",
+       "en": "Don't type the answer: find it with a loop."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "salmo = (\n    \"Jehová es mi pastor; nada me faltará. \"\n    \"En verdes pastos me hace descansar y junto a aguas tranquilas me conduce. \"\n    \"Restaura mi alma y me guía por sendas de justicia por amor de su nombre. \"\n    \"Aunque ande por el valle de sombra de muerte, no temeré mal alguno, porque tú estás conmigo; tu vara y tu cayado me infunden aliento. \"\n    \"Preparas una mesa delante de mí en presencia de mis enemigos; unges mi cabeza con aceite y mi copa rebosa. \"\n    \"Ciertamente el bien y la misericordia me seguirán todos los días de mi vida, y habitaré en la casa de Jehová por largos días.\"\n)\ntexto = salmo.lower()\nfor signo in \".,;\":\n    texto = texto.replace(signo, \"\")\npalabras = texto.split()\n\nfrecuencia = {}\nfor p in palabras:\n    frecuencia[p] = 1\nprint(\"Palabras distintas:\", len(frecuencia))\nmejor = palabras[0]\nfor p in frecuencia:\n    if frecuencia[p] > frecuencia[mejor]:\n        mejor = p\nprint(f\"Más frecuente: {mejor} ({frecuencia[mejor]} veces)\")",
+     "salmo = (\n    \"Jehová es mi pastor; nada me faltará. \"\n    \"En verdes pastos me hace descansar y junto a aguas tranquilas me conduce. \"\n    \"Restaura mi alma y me guía por sendas de justicia por amor de su nombre. \"\n    \"Aunque ande por el valle de sombra de muerte, no temeré mal alguno, porque tú estás conmigo; tu vara y tu cayado me infunden aliento. \"\n    \"Preparas una mesa delante de mí en presencia de mis enemigos; unges mi cabeza con aceite y mi copa rebosa. \"\n    \"Ciertamente el bien y la misericordia me seguirán todos los días de mi vida, y habitaré en la casa de Jehová por largos días.\"\n)\ntexto = salmo.lower()\nfor signo in \".,;\":\n    texto = texto.replace(signo, \"\")\npalabras = texto.split()\n\nfrecuencia = {}\nfor p in palabras:\n    frecuencia[p] = frecuencia[p] + 1\nprint(\"Palabras distintas:\", len(frecuencia))",
+     "salmo = (\n    \"Jehová es mi pastor; nada me faltará. \"\n    \"En verdes pastos me hace descansar y junto a aguas tranquilas me conduce. \"\n    \"Restaura mi alma y me guía por sendas de justicia por amor de su nombre. \"\n    \"Aunque ande por el valle de sombra de muerte, no temeré mal alguno, porque tú estás conmigo; tu vara y tu cayado me infunden aliento. \"\n    \"Preparas una mesa delante de mí en presencia de mis enemigos; unges mi cabeza con aceite y mi copa rebosa. \"\n    \"Ciertamente el bien y la misericordia me seguirán todos los días de mi vida, y habitaré en la casa de Jehová por largos días.\"\n)\ntexto = salmo.lower()\nfor signo in \".,;\":\n    texto = texto.replace(signo, \"\")\npalabras = texto.split()\n\nfrecuencia = {}\nfor p in palabras:\n    frecuencia[p] = frecuencia.get(p, 0) + 1\nprint(\"Palabras distintas:\", len(palabras))\nmejor = palabras[0]\nfor p in frecuencia:\n    if frecuencia[p] > frecuencia[mejor]:\n        mejor = p\nprint(f\"Más frecuente: {mejor} ({frecuencia[mejor]} veces)\")",
+     "from collections import Counter\nsalmo = (\n    \"Jehová es mi pastor; nada me faltará. \"\n    \"En verdes pastos me hace descansar y junto a aguas tranquilas me conduce. \"\n    \"Restaura mi alma y me guía por sendas de justicia por amor de su nombre. \"\n    \"Aunque ande por el valle de sombra de muerte, no temeré mal alguno, porque tú estás conmigo; tu vara y tu cayado me infunden aliento. \"\n    \"Preparas una mesa delante de mí en presencia de mis enemigos; unges mi cabeza con aceite y mi copa rebosa. \"\n    \"Ciertamente el bien y la misericordia me seguirán todos los días de mi vida, y habitaré en la casa de Jehová por largos días.\"\n)\ntexto = salmo.lower()\nfor signo in \".,;\":\n    texto = texto.replace(signo, \"\")\npalabras = texto.split()\n\nfrecuencia = {}\nfrecuencia = Counter(palabras)\nprint(\"Palabras distintas:\", len(frecuencia))\nmejor = frecuencia.most_common(1)[0][0]\nprint(f\"Más frecuente: {mejor} ({frecuencia[mejor]} veces)\")"
+    ],
+    "en": [
+     "psalm = (\n    \"The LORD is my shepherd; I shall not want. \"\n    \"He makes me lie down in green pastures; He leads me beside quiet waters. \"\n    \"He restores my soul; He guides me in the paths of righteousness for the sake of His name. \"\n    \"Even though I walk through the valley of the shadow of death, I will fear no evil, for You are with me; Your rod and Your staff, they comfort me. \"\n    \"You prepare a table before me in the presence of my enemies. You anoint my head with oil; my cup overflows. \"\n    \"Surely goodness and mercy will follow me all the days of my life, and I will dwell in the house of the LORD forever.\"\n)\ntext = psalm.lower()\nfor sign in \".,;\":\n    text = text.replace(sign, \"\")\nwords = text.split()\n\nfrequency = {}\nfor w in words:\n    frequency[w] = 1\nprint(\"Different words:\", len(frequency))\nbest = words[0]\nfor w in frequency:\n    if frequency[w] > frequency[best]:\n        best = w\nprint(f\"Most frequent: {best} ({frequency[best]} times)\")",
+     "psalm = (\n    \"The LORD is my shepherd; I shall not want. \"\n    \"He makes me lie down in green pastures; He leads me beside quiet waters. \"\n    \"He restores my soul; He guides me in the paths of righteousness for the sake of His name. \"\n    \"Even though I walk through the valley of the shadow of death, I will fear no evil, for You are with me; Your rod and Your staff, they comfort me. \"\n    \"You prepare a table before me in the presence of my enemies. You anoint my head with oil; my cup overflows. \"\n    \"Surely goodness and mercy will follow me all the days of my life, and I will dwell in the house of the LORD forever.\"\n)\ntext = psalm.lower()\nfor sign in \".,;\":\n    text = text.replace(sign, \"\")\nwords = text.split()\n\nfrequency = {}\nfor w in words:\n    frequency[w] = frequency[w] + 1\nprint(\"Different words:\", len(frequency))",
+     "psalm = (\n    \"The LORD is my shepherd; I shall not want. \"\n    \"He makes me lie down in green pastures; He leads me beside quiet waters. \"\n    \"He restores my soul; He guides me in the paths of righteousness for the sake of His name. \"\n    \"Even though I walk through the valley of the shadow of death, I will fear no evil, for You are with me; Your rod and Your staff, they comfort me. \"\n    \"You prepare a table before me in the presence of my enemies. You anoint my head with oil; my cup overflows. \"\n    \"Surely goodness and mercy will follow me all the days of my life, and I will dwell in the house of the LORD forever.\"\n)\ntext = psalm.lower()\nfor sign in \".,;\":\n    text = text.replace(sign, \"\")\nwords = text.split()\n\nfrequency = {}\nfor w in words:\n    frequency[w] = frequency.get(w, 0) + 1\nprint(\"Different words:\", len(words))\nbest = words[0]\nfor w in frequency:\n    if frequency[w] > frequency[best]:\n        best = w\nprint(f\"Most frequent: {best} ({frequency[best]} times)\")",
+     "from collections import Counter\npsalm = (\n    \"The LORD is my shepherd; I shall not want. \"\n    \"He makes me lie down in green pastures; He leads me beside quiet waters. \"\n    \"He restores my soul; He guides me in the paths of righteousness for the sake of His name. \"\n    \"Even though I walk through the valley of the shadow of death, I will fear no evil, for You are with me; Your rod and Your staff, they comfort me. \"\n    \"You prepare a table before me in the presence of my enemies. You anoint my head with oil; my cup overflows. \"\n    \"Surely goodness and mercy will follow me all the days of my life, and I will dwell in the house of the LORD forever.\"\n)\ntext = psalm.lower()\nfor sign in \".,;\":\n    text = text.replace(sign, \"\")\nwords = text.split()\n\nfrequency = {}\nfrequency = Counter(words)\nprint(\"Different words:\", len(frequency))\nbest = frequency.most_common(1)[0][0]\nprint(f\"Most frequent: {best} ({frequency[best]} times)\")"
+    ]
+   }
+  },
+  {
+   "id": "buscador-salmo",
+   "tipo": "escribir",
+   "reto": true,
+   "enunciado": {
+    "es": "**Reto: el buscador del salmo.** La lista `versos` tiene los seis versículos del Salmo 23. Pide un término con `input(\"Buscar: \")` y muestra, con su número, cada versículo donde aparece como **palabra completa**, sin importar mayúsculas ni signos. Al final muestra cuántos encontraste o, si no hay ninguno, `No aparece en el salmo`. Con `Jehová` debe salir:\n```\nBuscar: Jehová\n1: Jehová es mi pastor; nada me faltará.\n6: Ciertamente el bien y la misericordia me seguirán todos los días de mi vida, y habitaré en la casa de Jehová por largos días.\nVersículos encontrados: 2\n```\nCon `me` deben salir 5 versículos (el 5 no, aunque «mesa» empiece con «me»).",
+    "en": "**Challenge: the psalm finder.** The list `verses` has the six verses of Psalm 23. Ask for a term with `input(\"Search: \")` and show, with its number, each verse where it appears as a **whole word**, ignoring capital letters and punctuation. At the end show how many you found or, if there are none, `Not found in the psalm`. With `Lord` it should print:\n```\nSearch: Lord\n1: The LORD is my shepherd; I shall not want.\n6: Surely goodness and mercy will follow me all the days of my life, and I will dwell in the house of the LORD forever.\nVerses found: 2\n```\nWith `he` there should be 2 verses (not verse 1, even though «the» and «shepherd» contain «he»)."
+   },
+   "inicial": {
+    "es": "versos = [\n    \"Jehová es mi pastor; nada me faltará.\",\n    \"En verdes pastos me hace descansar y junto a aguas tranquilas me conduce.\",\n    \"Restaura mi alma y me guía por sendas de justicia por amor de su nombre.\",\n    \"Aunque ande por el valle de sombra de muerte, no temeré mal alguno, porque tú estás conmigo; tu vara y tu cayado me infunden aliento.\",\n    \"Preparas una mesa delante de mí en presencia de mis enemigos; unges mi cabeza con aceite y mi copa rebosa.\",\n    \"Ciertamente el bien y la misericordia me seguirán todos los días de mi vida, y habitaré en la casa de Jehová por largos días.\",\n]\n",
+    "en": "verses = [\n    \"The LORD is my shepherd; I shall not want.\",\n    \"He makes me lie down in green pastures; He leads me beside quiet waters.\",\n    \"He restores my soul; He guides me in the paths of righteousness for the sake of His name.\",\n    \"Even though I walk through the valley of the shadow of death, I will fear no evil, for You are with me; Your rod and Your staff, they comfort me.\",\n    \"You prepare a table before me in the presence of my enemies. You anoint my head with oil; my cup overflows.\",\n    \"Surely goodness and mercy will follow me all the days of my life, and I will dwell in the house of the LORD forever.\",\n]\n"
+   },
+   "entradas": {
+    "es": [
+     "Jehová"
+    ],
+    "en": [
+     "Lord"
+    ]
+   },
+   "pistas": {
+    "es": [
+     "Pasa el término a minúsculas. Para cada verso: `texto = verso.lower()`, quítale los signos con `replace` y pregunta `if termino in texto.split():`.",
+     "Lleva dos contadores: `numero` (sube en cada verso, empieza en 1) y `encontrados` (sube solo cuando aparece). Al final, `if encontrados > 0:` muestra el total y, si no, el aviso."
+    ],
+    "en": [
+     "Turn the term into lowercase. For each verse: `text = verse.lower()`, remove the signs with `replace` and ask `if term in text.split():`.",
+     "Keep two counters: `number` (goes up on every verse, starts at 1) and `found` (goes up only when it appears). At the end, `if found > 0:` show the total and otherwise the notice."
+    ]
+   },
+   "solucion": {
+    "es": "versos = [\n    \"Jehová es mi pastor; nada me faltará.\",\n    \"En verdes pastos me hace descansar y junto a aguas tranquilas me conduce.\",\n    \"Restaura mi alma y me guía por sendas de justicia por amor de su nombre.\",\n    \"Aunque ande por el valle de sombra de muerte, no temeré mal alguno, porque tú estás conmigo; tu vara y tu cayado me infunden aliento.\",\n    \"Preparas una mesa delante de mí en presencia de mis enemigos; unges mi cabeza con aceite y mi copa rebosa.\",\n    \"Ciertamente el bien y la misericordia me seguirán todos los días de mi vida, y habitaré en la casa de Jehová por largos días.\",\n]\ntermino = input(\"Buscar: \").lower().strip()\nencontrados = 0\nnumero = 1\nfor verso in versos:\n    texto = verso.lower()\n    for signo in \".,;\":\n        texto = texto.replace(signo, \"\")\n    if termino in texto.split():\n        print(f\"{numero}: {verso}\")\n        encontrados += 1\n    numero += 1\nif encontrados > 0:\n    print(\"Versículos encontrados:\", encontrados)\nelse:\n    print(\"No aparece en el salmo\")",
+    "en": "verses = [\n    \"The LORD is my shepherd; I shall not want.\",\n    \"He makes me lie down in green pastures; He leads me beside quiet waters.\",\n    \"He restores my soul; He guides me in the paths of righteousness for the sake of His name.\",\n    \"Even though I walk through the valley of the shadow of death, I will fear no evil, for You are with me; Your rod and Your staff, they comfort me.\",\n    \"You prepare a table before me in the presence of my enemies. You anoint my head with oil; my cup overflows.\",\n    \"Surely goodness and mercy will follow me all the days of my life, and I will dwell in the house of the LORD forever.\",\n]\nterm = input(\"Search: \").lower().strip()\nfound = 0\nnumber = 1\nfor verse in verses:\n    text = verse.lower()\n    for sign in \".,;\":\n        text = text.replace(sign, \"\")\n    if term in text.split():\n        print(f\"{number}: {verse}\")\n        found += 1\n    number += 1\nif found > 0:\n    print(\"Verses found:\", found)\nelse:\n    print(\"Not found in the psalm\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Buscar: Jehová\n1: Jehová es mi pastor; nada me faltará.\n6: Ciertamente el bien y la misericordia me seguirán todos los días de mi vida, y habitaré en la casa de Jehová por largos días.\nVersículos encontrados: 2"
+     },
+     {
+      "py": "assert _correr(['me']) == 'Buscar: me\\n1: Jehová es mi pastor; nada me faltará.\\n2: En verdes pastos me hace descansar y junto a aguas tranquilas me conduce.\\n3: Restaura mi alma y me guía por sendas de justicia por amor de su nombre.\\n4: Aunque ande por el valle de sombra de muerte, no temeré mal alguno, porque tú estás conmigo; tu vara y tu cayado me infunden aliento.\\n6: Ciertamente el bien y la misericordia me seguirán todos los días de mi vida, y habitaré en la casa de Jehová por largos días.\\nVersículos encontrados: 5\\n'",
+      "msg": {
+       "es": "Con «me» deben salir los versículos 1, 2, 3, 4 y 6: busca palabras completas (el 5 dice «mesa», que no es «me»).",
+       "en": "With «me» it should show verses 1, 2, 3, 4 and 6: search for whole words (verse 5 says «mesa», which isn't «me»)."
+      }
+     },
+     {
+      "py": "assert _correr(['MESA']) == 'Buscar: MESA\\n5: Preparas una mesa delante de mí en presencia de mis enemigos; unges mi cabeza con aceite y mi copa rebosa.\\nVersículos encontrados: 1\\n'",
+      "msg": {
+       "es": "Sin importar mayúsculas: con «MESA» debe salir el versículo 5.",
+       "en": "Ignoring capital letters: with «MESA» it should show verse 5."
+      }
+     },
+     {
+      "py": "assert _correr(['oveja']) == 'Buscar: oveja\\nNo aparece en el salmo\\n'",
+      "msg": {
+       "es": "Si el término no está, muestra solo «No aparece en el salmo».",
+       "en": "If the term isn't there, show only «No aparece en el salmo»."
+      }
+     },
+     {
+      "py": "assert _correr(['faltará']).count('1: ') == 1",
+      "msg": {
+       "es": "Quita los signos: «faltará.» lleva punto, pero «faltará» debe encontrarse en el versículo 1.",
+       "en": "Remove the signs: «faltará.» has a period, but «faltará» must be found in verse 1."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Search: Lord\n1: The LORD is my shepherd; I shall not want.\n6: Surely goodness and mercy will follow me all the days of my life, and I will dwell in the house of the LORD forever.\nVerses found: 2"
+     },
+     {
+      "py": "assert _correr(['he']) == 'Search: he\\n2: He makes me lie down in green pastures; He leads me beside quiet waters.\\n3: He restores my soul; He guides me in the paths of righteousness for the sake of His name.\\nVerses found: 2\\n'",
+      "msg": {
+       "es": "Con «he» deben salir solo los versículos 2 y 3: busca palabras completas («the» no es «he»).",
+       "en": "With «he» it should show only verses 2 and 3: search for whole words («the» isn't «he»)."
+      }
+     },
+     {
+      "py": "assert _correr(['TABLE']) == 'Search: TABLE\\n5: You prepare a table before me in the presence of my enemies. You anoint my head with oil; my cup overflows.\\nVerses found: 1\\n'",
+      "msg": {
+       "es": "Sin importar mayúsculas: con «TABLE» debe salir el versículo 5.",
+       "en": "Ignoring capital letters: with «TABLE» it should show verse 5."
+      }
+     },
+     {
+      "py": "assert _correr(['sheep']) == 'Search: sheep\\nNot found in the psalm\\n'",
+      "msg": {
+       "es": "Si el término no está, muestra solo «Not found in the psalm».",
+       "en": "If the term isn't there, show only «Not found in the psalm»."
+      }
+     },
+     {
+      "py": "assert _correr(['want']).count('1: ') == 1",
+      "msg": {
+       "es": "Quita los signos: «want.» lleva punto, pero «want» debe encontrarse en el versículo 1.",
+       "en": "Remove the signs: «want.» has a period, but «want» must be found in verse 1."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "versos = [\n    \"Jehová es mi pastor; nada me faltará.\",\n    \"En verdes pastos me hace descansar y junto a aguas tranquilas me conduce.\",\n    \"Restaura mi alma y me guía por sendas de justicia por amor de su nombre.\",\n    \"Aunque ande por el valle de sombra de muerte, no temeré mal alguno, porque tú estás conmigo; tu vara y tu cayado me infunden aliento.\",\n    \"Preparas una mesa delante de mí en presencia de mis enemigos; unges mi cabeza con aceite y mi copa rebosa.\",\n    \"Ciertamente el bien y la misericordia me seguirán todos los días de mi vida, y habitaré en la casa de Jehová por largos días.\",\n]\ntermino = input(\"Buscar: \").lower().strip()\nencontrados = 0\nnumero = 1\nfor verso in versos:\n    texto = verso.lower()\n    for signo in \".,;\":\n        texto = texto.replace(signo, \"\")\n    if termino in texto:\n        print(f\"{numero}: {verso}\")\n        encontrados += 1\n    numero += 1\nif encontrados > 0:\n    print(\"Versículos encontrados:\", encontrados)\nelse:\n    print(\"No aparece en el salmo\")",
+     "versos = [\n    \"Jehová es mi pastor; nada me faltará.\",\n    \"En verdes pastos me hace descansar y junto a aguas tranquilas me conduce.\",\n    \"Restaura mi alma y me guía por sendas de justicia por amor de su nombre.\",\n    \"Aunque ande por el valle de sombra de muerte, no temeré mal alguno, porque tú estás conmigo; tu vara y tu cayado me infunden aliento.\",\n    \"Preparas una mesa delante de mí en presencia de mis enemigos; unges mi cabeza con aceite y mi copa rebosa.\",\n    \"Ciertamente el bien y la misericordia me seguirán todos los días de mi vida, y habitaré en la casa de Jehová por largos días.\",\n]\ntermino = input(\"Buscar: \")\nencontrados = 0\nnumero = 1\nfor verso in versos:\n    texto = verso.lower()\n    for signo in \".,;\":\n        texto = texto.replace(signo, \"\")\n    if termino in texto.split():\n        print(f\"{numero}: {verso}\")\n        encontrados += 1\n    numero += 1\nif encontrados > 0:\n    print(\"Versículos encontrados:\", encontrados)\nelse:\n    print(\"No aparece en el salmo\")",
+     "versos = [\n    \"Jehová es mi pastor; nada me faltará.\",\n    \"En verdes pastos me hace descansar y junto a aguas tranquilas me conduce.\",\n    \"Restaura mi alma y me guía por sendas de justicia por amor de su nombre.\",\n    \"Aunque ande por el valle de sombra de muerte, no temeré mal alguno, porque tú estás conmigo; tu vara y tu cayado me infunden aliento.\",\n    \"Preparas una mesa delante de mí en presencia de mis enemigos; unges mi cabeza con aceite y mi copa rebosa.\",\n    \"Ciertamente el bien y la misericordia me seguirán todos los días de mi vida, y habitaré en la casa de Jehová por largos días.\",\n]\ntermino = input(\"Buscar: \").lower().strip()\nencontrados = 0\nnumero = 1\nfor verso in versos:\n    texto = verso.lower()\n    for signo in \".,;\":\n        texto = texto.replace(signo, \"\")\n    if termino in verso.lower().split():\n        print(f\"{numero}: {verso}\")\n        encontrados += 1\n    numero += 1\nif encontrados > 0:\n    print(\"Versículos encontrados:\", encontrados)\nelse:\n    print(\"No aparece en el salmo\")",
+     "versos = [\n    \"Jehová es mi pastor; nada me faltará.\",\n    \"En verdes pastos me hace descansar y junto a aguas tranquilas me conduce.\",\n    \"Restaura mi alma y me guía por sendas de justicia por amor de su nombre.\",\n    \"Aunque ande por el valle de sombra de muerte, no temeré mal alguno, porque tú estás conmigo; tu vara y tu cayado me infunden aliento.\",\n    \"Preparas una mesa delante de mí en presencia de mis enemigos; unges mi cabeza con aceite y mi copa rebosa.\",\n    \"Ciertamente el bien y la misericordia me seguirán todos los días de mi vida, y habitaré en la casa de Jehová por largos días.\",\n]\ntermino = input(\"Buscar: \").lower().strip()\nencontrados = 0\nnumero = 1\nfor verso in versos:\n    texto = verso.lower()\n    for signo in \".,;\":\n        texto = texto.replace(signo, \"\")\n    if termino in texto.split():\n        print(f\"{numero}: {verso}\")\n        encontrados += 1\nif encontrados > 0:\n    print(\"Versículos encontrados:\", encontrados)\nelse:\n    print(\"No aparece en el salmo\")"
+    ],
+    "en": [
+     "verses = [\n    \"The LORD is my shepherd; I shall not want.\",\n    \"He makes me lie down in green pastures; He leads me beside quiet waters.\",\n    \"He restores my soul; He guides me in the paths of righteousness for the sake of His name.\",\n    \"Even though I walk through the valley of the shadow of death, I will fear no evil, for You are with me; Your rod and Your staff, they comfort me.\",\n    \"You prepare a table before me in the presence of my enemies. You anoint my head with oil; my cup overflows.\",\n    \"Surely goodness and mercy will follow me all the days of my life, and I will dwell in the house of the LORD forever.\",\n]\nterm = input(\"Search: \").lower().strip()\nfound = 0\nnumber = 1\nfor verse in verses:\n    text = verse.lower()\n    for sign in \".,;\":\n        text = text.replace(sign, \"\")\n    if term in text:\n        print(f\"{number}: {verse}\")\n        found += 1\n    number += 1\nif found > 0:\n    print(\"Verses found:\", found)\nelse:\n    print(\"Not found in the psalm\")",
+     "verses = [\n    \"The LORD is my shepherd; I shall not want.\",\n    \"He makes me lie down in green pastures; He leads me beside quiet waters.\",\n    \"He restores my soul; He guides me in the paths of righteousness for the sake of His name.\",\n    \"Even though I walk through the valley of the shadow of death, I will fear no evil, for You are with me; Your rod and Your staff, they comfort me.\",\n    \"You prepare a table before me in the presence of my enemies. You anoint my head with oil; my cup overflows.\",\n    \"Surely goodness and mercy will follow me all the days of my life, and I will dwell in the house of the LORD forever.\",\n]\nterm = input(\"Search: \")\nfound = 0\nnumber = 1\nfor verse in verses:\n    text = verse.lower()\n    for sign in \".,;\":\n        text = text.replace(sign, \"\")\n    if term in text.split():\n        print(f\"{number}: {verse}\")\n        found += 1\n    number += 1\nif found > 0:\n    print(\"Verses found:\", found)\nelse:\n    print(\"Not found in the psalm\")",
+     "verses = [\n    \"The LORD is my shepherd; I shall not want.\",\n    \"He makes me lie down in green pastures; He leads me beside quiet waters.\",\n    \"He restores my soul; He guides me in the paths of righteousness for the sake of His name.\",\n    \"Even though I walk through the valley of the shadow of death, I will fear no evil, for You are with me; Your rod and Your staff, they comfort me.\",\n    \"You prepare a table before me in the presence of my enemies. You anoint my head with oil; my cup overflows.\",\n    \"Surely goodness and mercy will follow me all the days of my life, and I will dwell in the house of the LORD forever.\",\n]\nterm = input(\"Search: \").lower().strip()\nfound = 0\nnumber = 1\nfor verse in verses:\n    text = verse.lower()\n    for sign in \".,;\":\n        text = text.replace(sign, \"\")\n    if term in verse.lower().split():\n        print(f\"{number}: {verse}\")\n        found += 1\n    number += 1\nif found > 0:\n    print(\"Verses found:\", found)\nelse:\n    print(\"Not found in the psalm\")",
+     "verses = [\n    \"The LORD is my shepherd; I shall not want.\",\n    \"He makes me lie down in green pastures; He leads me beside quiet waters.\",\n    \"He restores my soul; He guides me in the paths of righteousness for the sake of His name.\",\n    \"Even though I walk through the valley of the shadow of death, I will fear no evil, for You are with me; Your rod and Your staff, they comfort me.\",\n    \"You prepare a table before me in the presence of my enemies. You anoint my head with oil; my cup overflows.\",\n    \"Surely goodness and mercy will follow me all the days of my life, and I will dwell in the house of the LORD forever.\",\n]\nterm = input(\"Search: \").lower().strip()\nfound = 0\nnumber = 1\nfor verse in verses:\n    text = verse.lower()\n    for sign in \".,;\":\n        text = text.replace(sign, \"\")\n    if term in text.split():\n        print(f\"{number}: {verse}\")\n        found += 1\nif found > 0:\n    print(\"Verses found:\", found)\nelse:\n    print(\"Not found in the psalm\")"
+    ]
+   }
+  }
+ ]
+}

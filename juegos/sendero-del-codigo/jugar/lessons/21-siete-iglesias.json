@@ -1,0 +1,603 @@
+{
+ "id": "21-siete-iglesias",
+ "numero": 21,
+ "lugar": "patmos",
+ "titulo": {
+  "es": "Las siete iglesias",
+  "en": "The seven churches"
+ },
+ "tema": {
+  "es": "enumerate, zip, iteradores, generadores con yield, any/all e itertools",
+  "en": "enumerate, zip, iterators, generators with yield, any/all and itertools"
+ },
+ "versiculo": "ap-1-11",
+ "medalla": {
+  "es": "Mensajero de Patmos",
+  "en": "Messenger of Patmos"
+ },
+ "leccion": {
+  "es": [
+   "Desde la isla de Patmos, Juan recibió la orden de escribir a siete iglesias de Asia, en un orden preciso: Éfeso, Esmirna, Pérgamo, Tiatira, Sardis, Filadelfia y Laodicea. Para recorrer listas así, Python tiene herramientas finas: `enumerate(lista, start=1)` da pares `(número, elemento)`, y `zip(a, b)` empareja dos listas elemento por elemento (se detiene en la más corta).",
+   "Un `for` funciona con **iteradores**: `iter(lista)` crea uno, y cada `next(it)` entrega el siguiente elemento; cuando no quedan, lanza `StopIteration` (el `for` la atrapa en silencio). `next(it, valor)` devuelve `valor` en vez de lanzar el error. Un iterador recuerda por dónde va y **se gasta**: no vuelve a empezar.",
+   "Una función con `yield` es un **generador**: al llamarla no corre todavía; cada `next` la hace avanzar hasta el siguiente `yield`, entrega ese valor y se **pausa** ahí. Es **perezosa**: produce los valores uno a uno, sin armar la lista entera, así que puede leer archivos enormes o secuencias sin fin.",
+   "Una **expresión generadora** es una comprensión entre paréntesis: `sum(len(n) for n in iglesias)` (sin corchetes, no crea una lista). `any(...)` es `True` si **algún** elemento cumple y `all(...)` si **todos** cumplen; los dos se detienen apenas saben la respuesta.",
+   "El módulo `itertools` trae iteradores listos: `count(1)` cuenta 1, 2, 3… sin fin; `cycle(lista)` repite la lista sin fin; `islice(it, 10)` toma solo los primeros 10; `chain(a, b)` recorre uno tras otro."
+  ],
+  "en": [
+   "From the island of Patmos, John was told to write to seven churches in Asia, in a precise order: Ephesus, Smyrna, Pergamum, Thyatira, Sardis, Philadelphia and Laodicea. To walk through lists like this, Python has fine tools: `enumerate(items, start=1)` gives `(number, element)` pairs, and `zip(a, b)` pairs two lists element by element (it stops at the shorter one).",
+   "A `for` works with **iterators**: `iter(items)` creates one, and each `next(it)` hands out the next element; when none are left, it raises `StopIteration` (the `for` catches it quietly). `next(it, value)` returns `value` instead of raising the error. An iterator remembers where it is and **gets used up**: it doesn't start over.",
+   "A function with `yield` is a **generator**: calling it doesn't run it yet; each `next` moves it forward to the next `yield`, hands out that value and **pauses** there. It is **lazy**: it produces values one at a time, without building the whole list, so it can read huge files or endless sequences.",
+   "A **generator expression** is a comprehension in parentheses: `sum(len(n) for n in churches)` (no brackets, it doesn't create a list). `any(...)` is `True` if **some** element matches and `all(...)` if **all** of them match; both stop as soon as they know the answer.",
+   "The `itertools` module brings ready-made iterators: `count(1)` counts 1, 2, 3… forever; `cycle(items)` repeats the list forever; `islice(it, 10)` takes only the first 10; `chain(a, b)` goes through one after the other."
+  ]
+ },
+ "ejemplo": {
+  "es": "iglesias = [\"Éfeso\", \"Esmirna\", \"Pérgamo\", \"Tiatira\", \"Sardis\", \"Filadelfia\", \"Laodicea\"]\n\nfor n, iglesia in enumerate(iglesias[:3], start=1):\n    print(n, iglesia)\n\nit = iter(iglesias)\nprint(next(it), next(it))          # Éfeso Esmirna\n\ndef largas(nombres):\n    for nombre in nombres:\n        if len(nombre) > 7:\n            yield nombre               # se pausa aquí hasta el próximo next()\n\nprint(list(largas(iglesias)))\nprint(sum(len(n) for n in iglesias))\nprint(any(n.startswith(\"S\") for n in iglesias), all(n.istitle() for n in iglesias))",
+  "en": "churches = [\"Ephesus\", \"Smyrna\", \"Pergamum\", \"Thyatira\", \"Sardis\", \"Philadelphia\", \"Laodicea\"]\n\nfor n, church in enumerate(churches[:3], start=1):\n    print(n, church)\n\nit = iter(churches)\nprint(next(it), next(it))          # Ephesus Smyrna\n\ndef long_names(names):\n    for name in names:\n        if len(name) > 7:\n            yield name                 # it pauses here until the next next()\n\nprint(list(long_names(churches)))\nprint(sum(len(n) for n in churches))\nprint(any(n.startswith(\"S\") for n in churches), all(n.istitle() for n in churches))"
+ },
+ "ejercicios": [
+  {
+   "id": "numerar",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Juan recibió la orden de escribir a siete iglesias, en este orden (Apocalipsis 1:11). Numéralas desde 1 con `enumerate` (sin contador a mano):\n```\n1. Éfeso\n2. Esmirna\n3. Pérgamo\n4. Tiatira\n5. Sardis\n6. Filadelfia\n7. Laodicea\n```",
+    "en": "John was told to write to seven churches, in this order (Revelation 1:11). Number them from 1 with `enumerate` (no counter by hand):\n```\n1. Ephesus\n2. Smyrna\n3. Pergamum\n4. Thyatira\n5. Sardis\n6. Philadelphia\n7. Laodicea\n```"
+   },
+   "inicial": {
+    "es": "iglesias = [\"Éfeso\", \"Esmirna\", \"Pérgamo\", \"Tiatira\", \"Sardis\", \"Filadelfia\", \"Laodicea\"]\n",
+    "en": "churches = [\"Ephesus\", \"Smyrna\", \"Pergamum\", \"Thyatira\", \"Sardis\", \"Philadelphia\", \"Laodicea\"]\n"
+   },
+   "pistas": {
+    "es": [
+     "`enumerate(lista, start=1)` da pares `(número, elemento)` empezando en 1.",
+     "`for numero, iglesia in enumerate(iglesias, start=1):` y `print(f\"{numero}. {iglesia}\")`."
+    ],
+    "en": [
+     "`enumerate(items, start=1)` gives `(number, element)` pairs starting at 1.",
+     "`for number, church in enumerate(churches, start=1):` and `print(f\"{number}. {church}\")`."
+    ]
+   },
+   "solucion": {
+    "es": "iglesias = [\"Éfeso\", \"Esmirna\", \"Pérgamo\", \"Tiatira\", \"Sardis\", \"Filadelfia\", \"Laodicea\"]\nfor numero, iglesia in enumerate(iglesias, start=1):\n    print(f\"{numero}. {iglesia}\")",
+    "en": "churches = [\"Ephesus\", \"Smyrna\", \"Pergamum\", \"Thyatira\", \"Sardis\", \"Philadelphia\", \"Laodicea\"]\nfor number, church in enumerate(churches, start=1):\n    print(f\"{number}. {church}\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "1. Éfeso\n2. Esmirna\n3. Pérgamo\n4. Tiatira\n5. Sardis\n6. Filadelfia\n7. Laodicea"
+     },
+     {
+      "py": "assert 'enumerate(' in _codigo",
+      "msg": {
+       "es": "Usa enumerate(...) para numerar.",
+       "en": "Use enumerate(...) to number."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "1. Ephesus\n2. Smyrna\n3. Pergamum\n4. Thyatira\n5. Sardis\n6. Philadelphia\n7. Laodicea"
+     },
+     {
+      "py": "assert 'enumerate(' in _codigo",
+      "msg": {
+       "es": "Usa enumerate(...) para numerar.",
+       "en": "Use enumerate(...) to number."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "iglesias = [\"Éfeso\", \"Esmirna\", \"Pérgamo\", \"Tiatira\", \"Sardis\", \"Filadelfia\", \"Laodicea\"]\nfor numero, iglesia in enumerate(iglesias):\n    print(f\"{numero}. {iglesia}\")",
+     "iglesias = [\"Éfeso\", \"Esmirna\", \"Pérgamo\", \"Tiatira\", \"Sardis\", \"Filadelfia\", \"Laodicea\"]\nnumero = 1\nfor iglesia in iglesias:\n    print(f\"{numero}. {iglesia}\")\n    numero += 1",
+     "iglesias = [\"Éfeso\", \"Esmirna\", \"Pérgamo\", \"Tiatira\", \"Sardis\", \"Filadelfia\", \"Laodicea\"]\nfor iglesia, numero in enumerate(iglesias, start=1):\n    print(f\"{numero}. {iglesia}\")"
+    ],
+    "en": [
+     "churches = [\"Ephesus\", \"Smyrna\", \"Pergamum\", \"Thyatira\", \"Sardis\", \"Philadelphia\", \"Laodicea\"]\nfor number, church in enumerate(churches):\n    print(f\"{number}. {church}\")",
+     "churches = [\"Ephesus\", \"Smyrna\", \"Pergamum\", \"Thyatira\", \"Sardis\", \"Philadelphia\", \"Laodicea\"]\nnumber = 1\nfor church in churches:\n    print(f\"{number}. {church}\")\n    number += 1"
+    ]
+   }
+  },
+  {
+   "id": "cada-carta",
+   "tipo": "hueco",
+   "enunciado": {
+    "es": "`zip` empareja cada iglesia con el versículo donde empieza su carta, y `enumerate` numera esos pares. Completa las variables del `for`: cada vuelta recibe `(número, (iglesia, cita))`. Debe salir:\n```\n1. Éfeso: Apocalipsis 2:1\n2. Esmirna: Apocalipsis 2:8\n3. Pérgamo: Apocalipsis 2:12\n4. Tiatira: Apocalipsis 2:18\n5. Sardis: Apocalipsis 3:1\n6. Filadelfia: Apocalipsis 3:7\n7. Laodicea: Apocalipsis 3:14\n```",
+    "en": "`zip` pairs each church with the verse where its letter begins, and `enumerate` numbers those pairs. Fill in the `for` variables: each turn receives `(number, (church, ref))`. It should print:\n```\n1. Ephesus: Revelation 2:1\n2. Smyrna: Revelation 2:8\n3. Pergamum: Revelation 2:12\n4. Thyatira: Revelation 2:18\n5. Sardis: Revelation 3:1\n6. Philadelphia: Revelation 3:7\n7. Laodicea: Revelation 3:14\n```"
+   },
+   "plantilla": {
+    "es": "iglesias = [\"Éfeso\", \"Esmirna\", \"Pérgamo\", \"Tiatira\", \"Sardis\", \"Filadelfia\", \"Laodicea\"]\ncitas = [\"2:1\", \"2:8\", \"2:12\", \"2:18\", \"3:1\", \"3:7\", \"3:14\"]\nfor ___ in enumerate(zip(iglesias, citas), start=1):\n    print(f\"{n}. {iglesia}: Apocalipsis {cita}\")",
+    "en": "churches = [\"Ephesus\", \"Smyrna\", \"Pergamum\", \"Thyatira\", \"Sardis\", \"Philadelphia\", \"Laodicea\"]\nrefs = [\"2:1\", \"2:8\", \"2:12\", \"2:18\", \"3:1\", \"3:7\", \"3:14\"]\nfor ___ in enumerate(zip(churches, refs), start=1):\n    print(f\"{n}. {church}: Revelation {ref}\")"
+   },
+   "pistas": {
+    "es": [
+     "`enumerate` entrega un número y el elemento; aquí el elemento es una tupla de `zip`.",
+     "Desempaqueta con paréntesis: `n, (iglesia, cita)`."
+    ],
+    "en": [
+     "`enumerate` gives a number and the element; here the element is a tuple from `zip`.",
+     "Unpack with parentheses: `n, (church, ref)`."
+    ]
+   },
+   "solucion": {
+    "es": "iglesias = [\"Éfeso\", \"Esmirna\", \"Pérgamo\", \"Tiatira\", \"Sardis\", \"Filadelfia\", \"Laodicea\"]\ncitas = [\"2:1\", \"2:8\", \"2:12\", \"2:18\", \"3:1\", \"3:7\", \"3:14\"]\nfor n, (iglesia, cita) in enumerate(zip(iglesias, citas), start=1):\n    print(f\"{n}. {iglesia}: Apocalipsis {cita}\")",
+    "en": "churches = [\"Ephesus\", \"Smyrna\", \"Pergamum\", \"Thyatira\", \"Sardis\", \"Philadelphia\", \"Laodicea\"]\nrefs = [\"2:1\", \"2:8\", \"2:12\", \"2:18\", \"3:1\", \"3:7\", \"3:14\"]\nfor n, (church, ref) in enumerate(zip(churches, refs), start=1):\n    print(f\"{n}. {church}: Revelation {ref}\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "1. Éfeso: Apocalipsis 2:1\n2. Esmirna: Apocalipsis 2:8\n3. Pérgamo: Apocalipsis 2:12\n4. Tiatira: Apocalipsis 2:18\n5. Sardis: Apocalipsis 3:1\n6. Filadelfia: Apocalipsis 3:7\n7. Laodicea: Apocalipsis 3:14"
+     }
+    ],
+    "en": [
+     {
+      "salida": "1. Ephesus: Revelation 2:1\n2. Smyrna: Revelation 2:8\n3. Pergamum: Revelation 2:12\n4. Thyatira: Revelation 2:18\n5. Sardis: Revelation 3:1\n6. Philadelphia: Revelation 3:7\n7. Laodicea: Revelation 3:14"
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "iglesias = [\"Éfeso\", \"Esmirna\", \"Pérgamo\", \"Tiatira\", \"Sardis\", \"Filadelfia\", \"Laodicea\"]\ncitas = [\"2:1\", \"2:8\", \"2:12\", \"2:18\", \"3:1\", \"3:7\", \"3:14\"]\nfor n, iglesia, cita in enumerate(zip(iglesias, citas), start=1):\n    print(f\"{n}. {iglesia}: Apocalipsis {cita}\")",
+     "iglesias = [\"Éfeso\", \"Esmirna\", \"Pérgamo\", \"Tiatira\", \"Sardis\", \"Filadelfia\", \"Laodicea\"]\ncitas = [\"2:1\", \"2:8\", \"2:12\", \"2:18\", \"3:1\", \"3:7\", \"3:14\"]\nfor (iglesia, cita), n in enumerate(zip(iglesias, citas), start=1):\n    print(f\"{n}. {iglesia}: Apocalipsis {cita}\")"
+    ],
+    "en": [
+     "churches = [\"Ephesus\", \"Smyrna\", \"Pergamum\", \"Thyatira\", \"Sardis\", \"Philadelphia\", \"Laodicea\"]\nrefs = [\"2:1\", \"2:8\", \"2:12\", \"2:18\", \"3:1\", \"3:7\", \"3:14\"]\nfor n, church, ref in enumerate(zip(churches, refs), start=1):\n    print(f\"{n}. {church}: Revelation {ref}\")",
+     "churches = [\"Ephesus\", \"Smyrna\", \"Pergamum\", \"Thyatira\", \"Sardis\", \"Philadelphia\", \"Laodicea\"]\nrefs = [\"2:1\", \"2:8\", \"2:12\", \"2:18\", \"3:1\", \"3:7\", \"3:14\"]\nfor (church, ref), n in enumerate(zip(churches, refs), start=1):\n    print(f\"{n}. {church}: Revelation {ref}\")"
+    ]
+   }
+  },
+  {
+   "id": "paso-a-paso",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Recorre las iglesias **a mano**, como lo hace un `for` por dentro: crea un iterador con `iter`, saca las dos primeras con `next`, y junta las demás en un `while True` que termine al atrapar `StopIteration`. Al final, muestra lo que da `next(it, \"ninguna\")` con el iterador ya agotado:\n```\nPrimera: Éfeso\nSegunda: Esmirna\nFaltan: Pérgamo, Tiatira, Sardis, Filadelfia, Laodicea\nAl final, next(it, \"ninguna\") da: ninguna\n```",
+    "en": "Walk through the churches **by hand**, the way a `for` does it inside: create an iterator with `iter`, take the first two with `next`, and collect the rest in a `while True` that ends when it catches `StopIteration`. At the end, show what `next(it, \"none\")` gives with the iterator already used up:\n```\nFirst: Ephesus\nSecond: Smyrna\nLeft: Pergamum, Thyatira, Sardis, Philadelphia, Laodicea\nAt the end, next(it, \"none\") gives: none\n```"
+   },
+   "inicial": {
+    "es": "iglesias = [\"Éfeso\", \"Esmirna\", \"Pérgamo\", \"Tiatira\", \"Sardis\", \"Filadelfia\", \"Laodicea\"]\n",
+    "en": "churches = [\"Ephesus\", \"Smyrna\", \"Pergamum\", \"Thyatira\", \"Sardis\", \"Philadelphia\", \"Laodicea\"]\n"
+   },
+   "pistas": {
+    "es": [
+     "Un iterador recuerda por dónde va: cada `next(it)` da el siguiente. Si no quedan, lanza `StopIteration`.",
+     "Dentro del `while True:` pon `try: resto.append(next(it))` y `except StopIteration: break`."
+    ],
+    "en": [
+     "An iterator remembers where it is: each `next(it)` gives the next one. If none are left, it raises `StopIteration`.",
+     "Inside the `while True:` put `try: rest.append(next(it))` and `except StopIteration: break`."
+    ]
+   },
+   "solucion": {
+    "es": "iglesias = [\"Éfeso\", \"Esmirna\", \"Pérgamo\", \"Tiatira\", \"Sardis\", \"Filadelfia\", \"Laodicea\"]\nit = iter(iglesias)\nprint(\"Primera:\", next(it))\nprint(\"Segunda:\", next(it))\nresto = []\nwhile True:\n    try:\n        resto.append(next(it))\n    except StopIteration:\n        break\nprint(\"Faltan:\", \", \".join(resto))\nprint('Al final, next(it, \"ninguna\") da:', next(it, \"ninguna\"))",
+    "en": "churches = [\"Ephesus\", \"Smyrna\", \"Pergamum\", \"Thyatira\", \"Sardis\", \"Philadelphia\", \"Laodicea\"]\nit = iter(churches)\nprint(\"First:\", next(it))\nprint(\"Second:\", next(it))\nrest = []\nwhile True:\n    try:\n        rest.append(next(it))\n    except StopIteration:\n        break\nprint(\"Left:\", \", \".join(rest))\nprint('At the end, next(it, \"none\") gives:', next(it, \"none\"))"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Primera: Éfeso\nSegunda: Esmirna\nFaltan: Pérgamo, Tiatira, Sardis, Filadelfia, Laodicea\nAl final, next(it, \"ninguna\") da: ninguna"
+     },
+     {
+      "py": "assert 'iter(' in _codigo and 'next(' in _codigo and 'StopIteration' in _codigo and 'while' in _codigo",
+      "msg": {
+       "es": "Usa iter(), next() y un while True que atrape StopIteration (no un for).",
+       "en": "Use iter(), next() and a while True that catches StopIteration (not a for)."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "First: Ephesus\nSecond: Smyrna\nLeft: Pergamum, Thyatira, Sardis, Philadelphia, Laodicea\nAt the end, next(it, \"none\") gives: none"
+     },
+     {
+      "py": "assert 'iter(' in _codigo and 'next(' in _codigo and 'StopIteration' in _codigo and 'while' in _codigo",
+      "msg": {
+       "es": "Usa iter(), next() y un while True que atrape StopIteration (no un for).",
+       "en": "Use iter(), next() and a while True that catches StopIteration (not a for)."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "iglesias = [\"Éfeso\", \"Esmirna\", \"Pérgamo\", \"Tiatira\", \"Sardis\", \"Filadelfia\", \"Laodicea\"]\nprint(\"Primera:\", next(iter(iglesias)))\nprint(\"Segunda:\", next(iter(iglesias)))\nprint(\"Faltan:\", \", \".join(iglesias[2:]))\nprint('Al final, next(it, \"ninguna\") da:', \"ninguna\")",
+     "iglesias = [\"Éfeso\", \"Esmirna\", \"Pérgamo\", \"Tiatira\", \"Sardis\", \"Filadelfia\", \"Laodicea\"]\nit = iter(iglesias)\nprint(\"Primera:\", next(it))\nprint(\"Segunda:\", next(it))\nresto = []\nfor iglesia in it:\n    resto.append(iglesia)\nprint(\"Faltan:\", \", \".join(resto))\nprint('Al final, next(it, \"ninguna\") da:', next(it, \"ninguna\"))",
+     "iglesias = [\"Éfeso\", \"Esmirna\", \"Pérgamo\", \"Tiatira\", \"Sardis\", \"Filadelfia\", \"Laodicea\"]\nit = iter(iglesias)\nprint(\"Primera:\", next(it))\nprint(\"Segunda:\", next(it))\nresto = []\nwhile True:\n    resto.append(next(it))\nprint(\"Faltan:\", \", \".join(resto))"
+    ],
+    "en": [
+     "churches = [\"Ephesus\", \"Smyrna\", \"Pergamum\", \"Thyatira\", \"Sardis\", \"Philadelphia\", \"Laodicea\"]\nprint(\"First:\", next(iter(churches)))\nprint(\"Second:\", next(iter(churches)))\nprint(\"Left:\", \", \".join(churches[2:]))\nprint('At the end, next(it, \"none\") gives:', \"none\")",
+     "churches = [\"Ephesus\", \"Smyrna\", \"Pergamum\", \"Thyatira\", \"Sardis\", \"Philadelphia\", \"Laodicea\"]\nit = iter(churches)\nprint(\"First:\", next(it))\nprint(\"Second:\", next(it))\nrest = []\nfor church in it:\n    rest.append(church)\nprint(\"Left:\", \", \".join(rest))\nprint('At the end, next(it, \"none\") gives:', next(it, \"none\"))"
+    ]
+   }
+  },
+  {
+   "id": "tu-enumerate",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Escribe tu propio `enumerate`: el generador `numeradas(elementos, inicio=1)` da tuplas `(número, elemento)` con `yield`, sin usar `enumerate`, sin `len()` y sin armar una lista (debe funcionar incluso con una secuencia sin fin). Después úsalo para mostrar:\n```\n1 Éfeso\n2 Esmirna\n3 Pérgamo\n4 Tiatira\n5 Sardis\n6 Filadelfia\n7 Laodicea\n```",
+    "en": "Write your own `enumerate`: the generator `numbered(items, start=1)` gives `(number, item)` tuples with `yield`, without using `enumerate`, without `len()` and without building a list (it must work even with an endless sequence). Then use it to show:\n```\n1 Ephesus\n2 Smyrna\n3 Pergamum\n4 Thyatira\n5 Sardis\n6 Philadelphia\n7 Laodicea\n```"
+   },
+   "inicial": {
+    "es": "def numeradas(elementos, inicio=1):\n    \n\niglesias = [\"Éfeso\", \"Esmirna\", \"Pérgamo\", \"Tiatira\", \"Sardis\", \"Filadelfia\", \"Laodicea\"]\n",
+    "en": "def numbered(items, start=1):\n    \n\nchurches = [\"Ephesus\", \"Smyrna\", \"Pergamum\", \"Thyatira\", \"Sardis\", \"Philadelphia\", \"Laodicea\"]\n"
+   },
+   "pistas": {
+    "es": [
+     "Lleva un contador `n = inicio`; dentro del `for`, entrega la tupla y luego súmale 1.",
+     "`yield n, elemento` y después `n += 1`. El `print` va fuera de la función, en un `for n, iglesia in numeradas(iglesias):`."
+    ],
+    "en": [
+     "Keep a counter `n = start`; inside the `for`, hand out the tuple and then add 1.",
+     "`yield n, item` and then `n += 1`. The `print` goes outside the function, in a `for n, church in numbered(churches):`."
+    ]
+   },
+   "solucion": {
+    "es": "def numeradas(elementos, inicio=1):\n    n = inicio\n    for elemento in elementos:\n        yield n, elemento\n        n += 1\n\niglesias = [\"Éfeso\", \"Esmirna\", \"Pérgamo\", \"Tiatira\", \"Sardis\", \"Filadelfia\", \"Laodicea\"]\nfor n, iglesia in numeradas(iglesias):\n    print(n, iglesia)",
+    "en": "def numbered(items, start=1):\n    n = start\n    for item in items:\n        yield n, item\n        n += 1\n\nchurches = [\"Ephesus\", \"Smyrna\", \"Pergamum\", \"Thyatira\", \"Sardis\", \"Philadelphia\", \"Laodicea\"]\nfor n, church in numbered(churches):\n    print(n, church)"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "1 Éfeso\n2 Esmirna\n3 Pérgamo\n4 Tiatira\n5 Sardis\n6 Filadelfia\n7 Laodicea"
+     },
+     {
+      "py": "import inspect as _i\nassert _i.isgeneratorfunction(numeradas)",
+      "msg": {
+       "es": "numeradas debe ser un generador: usa yield (sin return de una lista).",
+       "en": "numeradas must be a generator: use yield (not return a list)."
+      }
+     },
+     {
+      "py": "assert list(numeradas(['a', 'b'])) == [(1, 'a'), (2, 'b')] and list(numeradas('xy', 0)) == [(0, 'x'), (1, 'y')]",
+      "msg": {
+       "es": "numeradas(['a', 'b']) debe dar (1, 'a') y (2, 'b'); con un inicio de 0, empezar en 0.",
+       "en": "numeradas(['a', 'b']) must give (1, 'a') and (2, 'b'); with a start of 0, begin at 0."
+      }
+     },
+     {
+      "py": "assert list(numeradas([], 5)) == []",
+      "msg": {
+       "es": "Con una lista vacía no debe dar nada.",
+       "en": "With an empty list it must give nothing."
+      }
+     },
+     {
+      "py": "import itertools as _it\n_g = numeradas(_it.count(10))\nassert next(_g) == (1, 10) and next(_g) == (2, 11)",
+      "msg": {
+       "es": "numeradas debe ser perezoso: probé con una secuencia sin fin (itertools.count) y no debe usar len() ni armar una lista.",
+       "en": "numeradas must be lazy: I tried an endless sequence (itertools.count) and it must not use len() or build a list."
+      }
+     },
+     {
+      "py": "assert 'enumerate' not in _codigo",
+      "msg": {
+       "es": "Escríbelo tú sin usar enumerate: esa es la gracia.",
+       "en": "Write it yourself without enumerate: that's the point."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "1 Ephesus\n2 Smyrna\n3 Pergamum\n4 Thyatira\n5 Sardis\n6 Philadelphia\n7 Laodicea"
+     },
+     {
+      "py": "import inspect as _i\nassert _i.isgeneratorfunction(numbered)",
+      "msg": {
+       "es": "numbered debe ser un generador: usa yield (sin return de una lista).",
+       "en": "numbered must be a generator: use yield (not return a list)."
+      }
+     },
+     {
+      "py": "assert list(numbered(['a', 'b'])) == [(1, 'a'), (2, 'b')] and list(numbered('xy', 0)) == [(0, 'x'), (1, 'y')]",
+      "msg": {
+       "es": "numbered(['a', 'b']) debe dar (1, 'a') y (2, 'b'); con un inicio de 0, empezar en 0.",
+       "en": "numbered(['a', 'b']) must give (1, 'a') and (2, 'b'); with a start of 0, begin at 0."
+      }
+     },
+     {
+      "py": "assert list(numbered([], 5)) == []",
+      "msg": {
+       "es": "Con una lista vacía no debe dar nada.",
+       "en": "With an empty list it must give nothing."
+      }
+     },
+     {
+      "py": "import itertools as _it\n_g = numbered(_it.count(10))\nassert next(_g) == (1, 10) and next(_g) == (2, 11)",
+      "msg": {
+       "es": "numbered debe ser perezoso: probé con una secuencia sin fin (itertools.count) y no debe usar len() ni armar una lista.",
+       "en": "numbered must be lazy: I tried an endless sequence (itertools.count) and it must not use len() or build a list."
+      }
+     },
+     {
+      "py": "assert 'enumerate' not in _codigo",
+      "msg": {
+       "es": "Escríbelo tú sin usar enumerate: esa es la gracia.",
+       "en": "Write it yourself without enumerate: that's the point."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "def numeradas(elementos, inicio=1):\n    resultado = []\n    for i in range(len(elementos)):\n        resultado.append((i + inicio, elementos[i]))\n    return resultado\n\niglesias = [\"Éfeso\", \"Esmirna\", \"Pérgamo\", \"Tiatira\", \"Sardis\", \"Filadelfia\", \"Laodicea\"]\nfor n, iglesia in numeradas(iglesias):\n    print(n, iglesia)",
+     "def numeradas(elementos, inicio=1):\n    n = inicio\n    for elemento in elementos:\n        n += 1\n        yield n, elemento\n\niglesias = [\"Éfeso\", \"Esmirna\", \"Pérgamo\", \"Tiatira\", \"Sardis\", \"Filadelfia\", \"Laodicea\"]\nfor n, iglesia in numeradas(iglesias):\n    print(n, iglesia)",
+     "def numeradas(elementos, inicio=1):\n    n = 1\n    for elemento in elementos:\n        yield n, elemento\n        n += 1\n\niglesias = [\"Éfeso\", \"Esmirna\", \"Pérgamo\", \"Tiatira\", \"Sardis\", \"Filadelfia\", \"Laodicea\"]\nfor n, iglesia in numeradas(iglesias):\n    print(n, iglesia)"
+    ],
+    "en": [
+     "def numbered(items, start=1):\n    result = []\n    for i in range(len(items)):\n        result.append((i + start, items[i]))\n    return result\n\nchurches = [\"Ephesus\", \"Smyrna\", \"Pergamum\", \"Thyatira\", \"Sardis\", \"Philadelphia\", \"Laodicea\"]\nfor n, church in numbered(churches):\n    print(n, church)",
+     "def numbered(items, start=1):\n    n = start\n    for item in items:\n        n += 1\n        yield n, item\n\nchurches = [\"Ephesus\", \"Smyrna\", \"Pergamum\", \"Thyatira\", \"Sardis\", \"Philadelphia\", \"Laodicea\"]\nfor n, church in numbered(churches):\n    print(n, church)"
+    ]
+   }
+  },
+  {
+   "id": "alguna-todas",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Responde con **expresiones generadoras** (sin corchetes, sin listas intermedias): el total de letras de los siete nombres con `sum`, si **todas** tienen 6 letras o más con `all`, si **alguna** termina en «a» con `any`, y la más larga con `max(..., key=len)`:\n```\nLetras en total: 50\n¿Todas tienen 6 letras o más? False\n¿Alguna termina en «a»? True\nMás larga: Filadelfia\n```",
+    "en": "Answer with **generator expressions** (no brackets, no in-between lists): the total letters of the seven names with `sum`, whether **all** have 6 letters or more with `all`, whether **any** ends in \"a\" with `any`, and the longest with `max(..., key=len)`:\n```\nLetters in total: 55\nDo all have 6 letters or more? True\nDoes any end in \"a\"? True\nLongest: Philadelphia\n```"
+   },
+   "inicial": {
+    "es": "iglesias = [\"Éfeso\", \"Esmirna\", \"Pérgamo\", \"Tiatira\", \"Sardis\", \"Filadelfia\", \"Laodicea\"]\n",
+    "en": "churches = [\"Ephesus\", \"Smyrna\", \"Pergamum\", \"Thyatira\", \"Sardis\", \"Philadelphia\", \"Laodicea\"]\n"
+   },
+   "pistas": {
+    "es": [
+     "Una expresión generadora es como una comprensión de lista pero sin corchetes: `sum(len(n) for n in iglesias)`.",
+     "`all(len(n) >= 6 for n in iglesias)` y `any(n.endswith(\"a\") for n in iglesias)`."
+    ],
+    "en": [
+     "A generator expression is like a list comprehension without brackets: `sum(len(n) for n in churches)`.",
+     "`all(len(n) >= 6 for n in churches)` and `any(n.endswith(\"a\") for n in churches)`."
+    ]
+   },
+   "solucion": {
+    "es": "iglesias = [\"Éfeso\", \"Esmirna\", \"Pérgamo\", \"Tiatira\", \"Sardis\", \"Filadelfia\", \"Laodicea\"]\nprint(\"Letras en total:\", sum(len(n) for n in iglesias))\nprint(\"¿Todas tienen 6 letras o más?\", all(len(n) >= 6 for n in iglesias))\nprint(\"¿Alguna termina en «a»?\", any(n.endswith(\"a\") for n in iglesias))\nprint(\"Más larga:\", max(iglesias, key=len))",
+    "en": "churches = [\"Ephesus\", \"Smyrna\", \"Pergamum\", \"Thyatira\", \"Sardis\", \"Philadelphia\", \"Laodicea\"]\nprint(\"Letters in total:\", sum(len(n) for n in churches))\nprint(\"Do all have 6 letters or more?\", all(len(n) >= 6 for n in churches))\nprint('Does any end in \"a\"?', any(n.endswith(\"a\") for n in churches))\nprint(\"Longest:\", max(churches, key=len))"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Letras en total: 50\n¿Todas tienen 6 letras o más? False\n¿Alguna termina en «a»? True\nMás larga: Filadelfia"
+     },
+     {
+      "py": "assert 'any(' in _codigo and 'all(' in _codigo and 'sum(' in _codigo",
+      "msg": {
+       "es": "Usa sum(), all() y any().",
+       "en": "Use sum(), all() and any()."
+      }
+     },
+     {
+      "py": "import re as _re\nassert not _re.search(r'(sum|any|all|max)\\(\\s*\\[', _codigo) and 'for' in _codigo",
+      "msg": {
+       "es": "Pásales una expresión generadora, sin corchetes: sum(len(n) for n in ...).",
+       "en": "Pass them a generator expression, without brackets: sum(len(n) for n in ...)."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Letters in total: 55\nDo all have 6 letters or more? True\nDoes any end in \"a\"? True\nLongest: Philadelphia"
+     },
+     {
+      "py": "assert 'any(' in _codigo and 'all(' in _codigo and 'sum(' in _codigo",
+      "msg": {
+       "es": "Usa sum(), all() y any().",
+       "en": "Use sum(), all() and any()."
+      }
+     },
+     {
+      "py": "import re as _re\nassert not _re.search(r'(sum|any|all|max)\\(\\s*\\[', _codigo) and 'for' in _codigo",
+      "msg": {
+       "es": "Pásales una expresión generadora, sin corchetes: sum(len(n) for n in ...).",
+       "en": "Pass them a generator expression, without brackets: sum(len(n) for n in ...)."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "iglesias = [\"Éfeso\", \"Esmirna\", \"Pérgamo\", \"Tiatira\", \"Sardis\", \"Filadelfia\", \"Laodicea\"]\nprint(\"Letras en total:\", sum(len(n) for n in iglesias))\nprint(\"¿Todas tienen 6 letras o más?\", any(len(n) >= 6 for n in iglesias))\nprint(\"¿Alguna termina en «a»?\", any(n.endswith(\"a\") for n in iglesias))\nprint(\"Más larga:\", max(iglesias, key=len))",
+     "iglesias = [\"Éfeso\", \"Esmirna\", \"Pérgamo\", \"Tiatira\", \"Sardis\", \"Filadelfia\", \"Laodicea\"]\nprint(\"Letras en total:\", sum([len(n) for n in iglesias]))\nprint(\"¿Todas tienen 6 letras o más?\", all(len(n) >= 6 for n in iglesias))\nprint(\"¿Alguna termina en «a»?\", any(n.endswith(\"a\") for n in iglesias))\nprint(\"Más larga:\", max(iglesias, key=len))",
+     "iglesias = [\"Éfeso\", \"Esmirna\", \"Pérgamo\", \"Tiatira\", \"Sardis\", \"Filadelfia\", \"Laodicea\"]\nprint(\"Letras en total:\", sum(len(n) for n in iglesias))\nprint(\"¿Todas tienen 6 letras o más?\", all(len(iglesias) >= 6 for n in iglesias))\nprint(\"¿Alguna termina en «a»?\", any(n.endswith(\"a\") for n in iglesias))\nprint(\"Más larga:\", max(iglesias, key=len))"
+    ],
+    "en": [
+     "churches = [\"Ephesus\", \"Smyrna\", \"Pergamum\", \"Thyatira\", \"Sardis\", \"Philadelphia\", \"Laodicea\"]\nprint(\"Letters in total:\", sum(len(n) for n in churches))\nprint(\"Do all have 6 letters or more?\", any(len(n) >= 6 for n in churches))\nprint('Does any end in \"a\"?', any(n.endswith(\"a\") for n in churches))\nprint(\"Longest:\", max(churches, key=len))",
+     "churches = [\"Ephesus\", \"Smyrna\", \"Pergamum\", \"Thyatira\", \"Sardis\", \"Philadelphia\", \"Laodicea\"]\nprint(\"Letters in total:\", sum([len(n) for n in churches]))\nprint(\"Do all have 6 letters or more?\", all(len(n) >= 6 for n in churches))\nprint('Does any end in \"a\"?', any(n.endswith(\"a\") for n in churches))\nprint(\"Longest:\", max(churches, key=len))"
+    ]
+   }
+  },
+  {
+   "id": "ruta-del-mensajero",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Imagina a un mensajero que lleva cartas por las siete ciudades en orden y, al llegar a la última, vuelve a empezar. Con `cycle` (repite sin fin) y `islice` (corta los primeros 10), muestra sus primeros **10 días**; numera con `count(1)` y `zip`, o con `enumerate`:\n```\nDía 1: Éfeso\nDía 2: Esmirna\nDía 3: Pérgamo\nDía 4: Tiatira\nDía 5: Sardis\nDía 6: Filadelfia\nDía 7: Laodicea\nDía 8: Éfeso\nDía 9: Esmirna\nDía 10: Pérgamo\n```",
+    "en": "Picture a messenger carrying letters through the seven cities in order and, after the last one, starting again. With `cycle` (repeats forever) and `islice` (cuts the first 10), show his first **10 days**; number them with `count(1)` and `zip`, or with `enumerate`:\n```\nDay 1: Ephesus\nDay 2: Smyrna\nDay 3: Pergamum\nDay 4: Thyatira\nDay 5: Sardis\nDay 6: Philadelphia\nDay 7: Laodicea\nDay 8: Ephesus\nDay 9: Smyrna\nDay 10: Pergamum\n```"
+   },
+   "inicial": {
+    "es": "from itertools import count, cycle, islice\n\niglesias = [\"Éfeso\", \"Esmirna\", \"Pérgamo\", \"Tiatira\", \"Sardis\", \"Filadelfia\", \"Laodicea\"]\n",
+    "en": "from itertools import count, cycle, islice\n\nchurches = [\"Ephesus\", \"Smyrna\", \"Pergamum\", \"Thyatira\", \"Sardis\", \"Philadelphia\", \"Laodicea\"]\n"
+   },
+   "pistas": {
+    "es": [
+     "`cycle(iglesias)` nunca termina: sin `islice(..., 10)` el bucle no pararía.",
+     "`for dia, iglesia in zip(count(1), islice(cycle(iglesias), 10)):` y `print(f\"Día {dia}: {iglesia}\")`."
+    ],
+    "en": [
+     "`cycle(churches)` never ends: without `islice(..., 10)` the loop wouldn't stop.",
+     "`for day, church in zip(count(1), islice(cycle(churches), 10)):` and `print(f\"Day {day}: {church}\")`."
+    ]
+   },
+   "solucion": {
+    "es": "from itertools import count, cycle, islice\n\niglesias = [\"Éfeso\", \"Esmirna\", \"Pérgamo\", \"Tiatira\", \"Sardis\", \"Filadelfia\", \"Laodicea\"]\nfor dia, iglesia in zip(count(1), islice(cycle(iglesias), 10)):\n    print(f\"Día {dia}: {iglesia}\")",
+    "en": "from itertools import count, cycle, islice\n\nchurches = [\"Ephesus\", \"Smyrna\", \"Pergamum\", \"Thyatira\", \"Sardis\", \"Philadelphia\", \"Laodicea\"]\nfor day, church in zip(count(1), islice(cycle(churches), 10)):\n    print(f\"Day {day}: {church}\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Día 1: Éfeso\nDía 2: Esmirna\nDía 3: Pérgamo\nDía 4: Tiatira\nDía 5: Sardis\nDía 6: Filadelfia\nDía 7: Laodicea\nDía 8: Éfeso\nDía 9: Esmirna\nDía 10: Pérgamo"
+     },
+     {
+      "py": "assert 'cycle(' in _codigo and 'islice(' in _codigo",
+      "msg": {
+       "es": "Usa cycle() para repetir e islice() para tomar 10.",
+       "en": "Use cycle() to repeat and islice() to take 10."
+      }
+     },
+     {
+      "py": "assert '%' not in _codigo",
+      "msg": {
+       "es": "No calcules la posición con %: deja que cycle haga la vuelta.",
+       "en": "Don't compute the position with %: let cycle do the wrap-around."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Day 1: Ephesus\nDay 2: Smyrna\nDay 3: Pergamum\nDay 4: Thyatira\nDay 5: Sardis\nDay 6: Philadelphia\nDay 7: Laodicea\nDay 8: Ephesus\nDay 9: Smyrna\nDay 10: Pergamum"
+     },
+     {
+      "py": "assert 'cycle(' in _codigo and 'islice(' in _codigo",
+      "msg": {
+       "es": "Usa cycle() para repetir e islice() para tomar 10.",
+       "en": "Use cycle() to repeat and islice() to take 10."
+      }
+     },
+     {
+      "py": "assert '%' not in _codigo",
+      "msg": {
+       "es": "No calcules la posición con %: deja que cycle haga la vuelta.",
+       "en": "Don't compute the position with %: let cycle do the wrap-around."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "from itertools import count, cycle, islice\n\niglesias = [\"Éfeso\", \"Esmirna\", \"Pérgamo\", \"Tiatira\", \"Sardis\", \"Filadelfia\", \"Laodicea\"]\nfor dia, iglesia in zip(count(1), islice(cycle(iglesias), 1, 10)):\n    print(f\"Día {dia}: {iglesia}\")",
+     "from itertools import count, cycle, islice\n\niglesias = [\"Éfeso\", \"Esmirna\", \"Pérgamo\", \"Tiatira\", \"Sardis\", \"Filadelfia\", \"Laodicea\"]\nfor dia in range(1, 11):\n    print(f\"Día {dia}: {iglesias[(dia - 1) % 7]}\")",
+     "from itertools import count, cycle, islice\n\niglesias = [\"Éfeso\", \"Esmirna\", \"Pérgamo\", \"Tiatira\", \"Sardis\", \"Filadelfia\", \"Laodicea\"]\nfor dia, iglesia in zip(count(), islice(cycle(iglesias), 10)):\n    print(f\"Día {dia}: {iglesia}\")"
+    ],
+    "en": [
+     "from itertools import count, cycle, islice\n\nchurches = [\"Ephesus\", \"Smyrna\", \"Pergamum\", \"Thyatira\", \"Sardis\", \"Philadelphia\", \"Laodicea\"]\nfor day, church in zip(count(1), islice(cycle(churches), 1, 10)):\n    print(f\"Day {day}: {church}\")",
+     "from itertools import count, cycle, islice\n\nchurches = [\"Ephesus\", \"Smyrna\", \"Pergamum\", \"Thyatira\", \"Sardis\", \"Philadelphia\", \"Laodicea\"]\nfor day in range(1, 11):\n    print(f\"Day {day}: {churches[(day - 1) % 7]}\")"
+    ]
+   }
+  },
+  {
+   "id": "lector-de-cartas",
+   "tipo": "escribir",
+   "reto": true,
+   "enunciado": {
+    "es": "**Reto: el lector de las siete cartas.** El archivo `cartas.csv` dice dónde empieza y dónde termina cada carta de Apocalipsis 2 y 3; tiene una línea de comentario (`#`) y una línea vacía.\n1. Escribe el generador `leer_cartas(lineas)`: salta comentarios y líneas vacías, y da tuplas `(iglesia, capitulo, desde, hasta)` con números enteros.\n2. Pásale el archivo abierto y guarda el resultado en una lista (un generador solo se recorre **una vez**, y aquí lo necesitas varias).\n3. Muestra cada carta con `enumerate`, el total de versículos con una expresión generadora, si alguna pasa de 10 con `any`, y la más larga con `max` y una `lambda`:\n```\n1. Éfeso: Apocalipsis 2:1-7 (7 versículos)\n2. Esmirna: Apocalipsis 2:8-11 (4 versículos)\n3. Pérgamo: Apocalipsis 2:12-17 (6 versículos)\n4. Tiatira: Apocalipsis 2:18-29 (12 versículos)\n5. Sardis: Apocalipsis 3:1-6 (6 versículos)\n6. Filadelfia: Apocalipsis 3:7-13 (7 versículos)\n7. Laodicea: Apocalipsis 3:14-22 (9 versículos)\nTotal: 51 versículos\n¿Alguna pasa de 10 versículos? True\nLa más larga: Tiatira\n```",
+    "en": "**Challenge: the reader of the seven letters.** The file `letters.csv` says where each letter in Revelation 2 and 3 begins and ends; it has a comment line (`#`) and an empty line.\n1. Write the generator `read_letters(lines)`: skip comments and empty lines, and give `(church, chapter, start, end)` tuples with whole numbers.\n2. Pass it the open file and keep the result in a list (a generator can only be walked through **once**, and here you need it several times).\n3. Show each letter with `enumerate`, the total verses with a generator expression, whether any is longer than 10 with `any`, and the longest with `max` and a `lambda`:\n```\n1. Ephesus: Revelation 2:1-7 (7 verses)\n2. Smyrna: Revelation 2:8-11 (4 verses)\n3. Pergamum: Revelation 2:12-17 (6 verses)\n4. Thyatira: Revelation 2:18-29 (12 verses)\n5. Sardis: Revelation 3:1-6 (6 verses)\n6. Philadelphia: Revelation 3:7-13 (7 verses)\n7. Laodicea: Revelation 3:14-22 (9 verses)\nTotal: 51 verses\nIs any longer than 10 verses? True\nThe longest: Thyatira\n```"
+   },
+   "inicial": {
+    "es": "def leer_cartas(lineas):\n    \n",
+    "en": "def read_letters(lines):\n    \n"
+   },
+   "archivos": {
+    "es": {
+     "cartas.csv": "# iglesia,capitulo,desde,hasta\nÉfeso,2,1,7\nEsmirna,2,8,11\nPérgamo,2,12,17\nTiatira,2,18,29\n\nSardis,3,1,6\nFiladelfia,3,7,13\nLaodicea,3,14,22\n"
+    },
+    "en": {
+     "letters.csv": "# church,chapter,from,to\nEphesus,2,1,7\nSmyrna,2,8,11\nPergamum,2,12,17\nThyatira,2,18,29\n\nSardis,3,1,6\nPhiladelphia,3,7,13\nLaodicea,3,14,22\n"
+    }
+   },
+   "pistas": {
+    "es": [
+     "Un archivo abierto ya es un iterable de líneas: `leer_cartas(f)` las va leyendo una por una. Dentro: `strip()`, `continue` si está vacía o empieza con `#`, `split(\",\")` e `int()`.",
+     "Los versículos de una carta son `hasta - desde + 1`. `sum(hasta - desde + 1 for _, _, desde, hasta in cartas)` y `max(cartas, key=lambda c: c[3] - c[2])`."
+    ],
+    "en": [
+     "An open file is already an iterable of lines: `read_letters(f)` reads them one by one. Inside: `strip()`, `continue` if it's empty or starts with `#`, `split(\",\")` and `int()`.",
+     "The verses of a letter are `end - start + 1`. `sum(end - start + 1 for _, _, start, end in letters)` and `max(letters, key=lambda l: l[3] - l[2])`."
+    ]
+   },
+   "solucion": {
+    "es": "def leer_cartas(lineas):\n    for linea in lineas:\n        linea = linea.strip()\n        if not linea or linea.startswith(\"#\"):\n            continue\n        iglesia, capitulo, desde, hasta = linea.split(\",\")\n        yield iglesia, int(capitulo), int(desde), int(hasta)\n\nwith open(\"cartas.csv\", encoding=\"utf-8\") as f:\n    cartas = list(leer_cartas(f))\n\nfor n, (iglesia, cap, desde, hasta) in enumerate(cartas, start=1):\n    print(f\"{n}. {iglesia}: Apocalipsis {cap}:{desde}-{hasta} ({hasta - desde + 1} versículos)\")\nprint(\"Total:\", sum(hasta - desde + 1 for _, _, desde, hasta in cartas), \"versículos\")\nprint(\"¿Alguna pasa de 10 versículos?\", any(hasta - desde + 1 > 10 for _, _, desde, hasta in cartas))\nlarga = max(cartas, key=lambda c: c[3] - c[2])\nprint(\"La más larga:\", larga[0])",
+    "en": "def read_letters(lines):\n    for line in lines:\n        line = line.strip()\n        if not line or line.startswith(\"#\"):\n            continue\n        church, chapter, start, end = line.split(\",\")\n        yield church, int(chapter), int(start), int(end)\n\nwith open(\"letters.csv\", encoding=\"utf-8\") as f:\n    letters = list(read_letters(f))\n\nfor n, (church, ch, start, end) in enumerate(letters, start=1):\n    print(f\"{n}. {church}: Revelation {ch}:{start}-{end} ({end - start + 1} verses)\")\nprint(\"Total:\", sum(end - start + 1 for _, _, start, end in letters), \"verses\")\nprint(\"Is any longer than 10 verses?\", any(end - start + 1 > 10 for _, _, start, end in letters))\nlongest = max(letters, key=lambda l: l[3] - l[2])\nprint(\"The longest:\", longest[0])"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "1. Éfeso: Apocalipsis 2:1-7 (7 versículos)\n2. Esmirna: Apocalipsis 2:8-11 (4 versículos)\n3. Pérgamo: Apocalipsis 2:12-17 (6 versículos)\n4. Tiatira: Apocalipsis 2:18-29 (12 versículos)\n5. Sardis: Apocalipsis 3:1-6 (6 versículos)\n6. Filadelfia: Apocalipsis 3:7-13 (7 versículos)\n7. Laodicea: Apocalipsis 3:14-22 (9 versículos)\nTotal: 51 versículos\n¿Alguna pasa de 10 versículos? True\nLa más larga: Tiatira"
+     },
+     {
+      "py": "import inspect as _i\nassert _i.isgeneratorfunction(leer_cartas)",
+      "msg": {
+       "es": "leer_cartas debe ser un generador (con yield).",
+       "en": "leer_cartas must be a generator (with yield)."
+      }
+     },
+     {
+      "py": "assert list(leer_cartas(['# a,b,c,d\\n', '\\n', 'Roma,1,2,3\\n', '  \\n'])) == [('Roma', 1, 2, 3)]",
+      "msg": {
+       "es": "leer_cartas debe saltar comentarios (#) y líneas vacías, quitar el \\n y dar tuplas (nombre, capítulo, desde, hasta) con números enteros.",
+       "en": "leer_cartas must skip comments (#) and empty lines, remove the \\n and give (name, chapter, from, to) tuples with whole numbers."
+      }
+     },
+     {
+      "py": "assert list(leer_cartas([])) == []",
+      "msg": {
+       "es": "Sin líneas no debe dar nada.",
+       "en": "With no lines it must give nothing."
+      }
+     },
+     {
+      "py": "assert 'enumerate(' in _codigo and 'any(' in _codigo and 'yield' in _codigo",
+      "msg": {
+       "es": "Usa enumerate para numerar y any para la pregunta.",
+       "en": "Use enumerate to number and any for the question."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "1. Ephesus: Revelation 2:1-7 (7 verses)\n2. Smyrna: Revelation 2:8-11 (4 verses)\n3. Pergamum: Revelation 2:12-17 (6 verses)\n4. Thyatira: Revelation 2:18-29 (12 verses)\n5. Sardis: Revelation 3:1-6 (6 verses)\n6. Philadelphia: Revelation 3:7-13 (7 verses)\n7. Laodicea: Revelation 3:14-22 (9 verses)\nTotal: 51 verses\nIs any longer than 10 verses? True\nThe longest: Thyatira"
+     },
+     {
+      "py": "import inspect as _i\nassert _i.isgeneratorfunction(read_letters)",
+      "msg": {
+       "es": "read_letters debe ser un generador (con yield).",
+       "en": "read_letters must be a generator (with yield)."
+      }
+     },
+     {
+      "py": "assert list(read_letters(['# a,b,c,d\\n', '\\n', 'Roma,1,2,3\\n', '  \\n'])) == [('Roma', 1, 2, 3)]",
+      "msg": {
+       "es": "read_letters debe saltar comentarios (#) y líneas vacías, quitar el \\n y dar tuplas (nombre, capítulo, desde, hasta) con números enteros.",
+       "en": "read_letters must skip comments (#) and empty lines, remove the \\n and give (name, chapter, from, to) tuples with whole numbers."
+      }
+     },
+     {
+      "py": "assert list(read_letters([])) == []",
+      "msg": {
+       "es": "Sin líneas no debe dar nada.",
+       "en": "With no lines it must give nothing."
+      }
+     },
+     {
+      "py": "assert 'enumerate(' in _codigo and 'any(' in _codigo and 'yield' in _codigo",
+      "msg": {
+       "es": "Usa enumerate para numerar y any para la pregunta.",
+       "en": "Use enumerate to number and any for the question."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "def leer_cartas(lineas):\n    for linea in lineas:\n        linea = linea.strip()\n        iglesia, capitulo, desde, hasta = linea.split(\",\")\n        yield iglesia, int(capitulo), int(desde), int(hasta)\n\nwith open(\"cartas.csv\", encoding=\"utf-8\") as f:\n    cartas = list(leer_cartas(f))\n\nfor n, (iglesia, cap, desde, hasta) in enumerate(cartas, start=1):\n    print(f\"{n}. {iglesia}: Apocalipsis {cap}:{desde}-{hasta} ({hasta - desde + 1} versículos)\")\nprint(\"Total:\", sum(hasta - desde + 1 for _, _, desde, hasta in cartas), \"versículos\")\nprint(\"¿Alguna pasa de 10 versículos?\", any(hasta - desde + 1 > 10 for _, _, desde, hasta in cartas))\nlarga = max(cartas, key=lambda c: c[3] - c[2])\nprint(\"La más larga:\", larga[0])",
+     "def leer_cartas(lineas):\n    for linea in lineas:\n        linea = linea.strip()\n        if not linea or linea.startswith(\"#\"):\n            continue\n        iglesia, capitulo, desde, hasta = linea.split(\",\")\n        yield iglesia, int(capitulo), int(desde), int(hasta)\n\nwith open(\"cartas.csv\", encoding=\"utf-8\") as f:\n    cartas = leer_cartas(f)\n    cartas = list(cartas)\n\nfor n, (iglesia, cap, desde, hasta) in enumerate(cartas, start=1):\n    print(f\"{n}. {iglesia}: Apocalipsis {cap}:{desde}-{hasta} ({hasta - desde} versículos)\")\nprint(\"Total:\", sum(hasta - desde + 1 for _, _, desde, hasta in cartas), \"versículos\")\nprint(\"¿Alguna pasa de 10 versículos?\", any(hasta - desde + 1 > 10 for _, _, desde, hasta in cartas))\nlarga = max(cartas, key=lambda c: c[3] - c[2])\nprint(\"La más larga:\", larga[0])",
+     "def leer_cartas(lineas):\n    for linea in lineas:\n        linea = linea.strip()\n        if not linea or linea.startswith(\"#\"):\n            continue\n        iglesia, capitulo, desde, hasta = linea.split(\",\")\n        yield iglesia, capitulo, desde, hasta\n\nwith open(\"cartas.csv\", encoding=\"utf-8\") as f:\n    cartas = list(leer_cartas(f))\n\nfor n, (iglesia, cap, desde, hasta) in enumerate(cartas, start=1):\n    print(f\"{n}. {iglesia}: Apocalipsis {cap}:{desde}-{hasta} ({hasta - desde + 1} versículos)\")\nprint(\"Total:\", sum(hasta - desde + 1 for _, _, desde, hasta in cartas), \"versículos\")\nprint(\"¿Alguna pasa de 10 versículos?\", any(hasta - desde + 1 > 10 for _, _, desde, hasta in cartas))\nlarga = max(cartas, key=lambda c: c[3] - c[2])\nprint(\"La más larga:\", larga[0])",
+     "def leer_cartas(lineas):\n    for linea in lineas:\n        linea = linea.strip()\n        if not linea or linea.startswith(\"#\"):\n            continue\n        iglesia, capitulo, desde, hasta = linea.split(\",\")\n        yield iglesia, int(capitulo), int(desde), int(hasta)\n\nwith open(\"cartas.csv\", encoding=\"utf-8\") as f:\n    cartas = leer_cartas(f)\n    for n, (iglesia, cap, desde, hasta) in enumerate(cartas, start=1):\n        print(f\"{n}. {iglesia}\")\n\nfor n, (iglesia, cap, desde, hasta) in enumerate(cartas, start=1):\n    print(f\"{n}. {iglesia}: Apocalipsis {cap}:{desde}-{hasta} ({hasta - desde + 1} versículos)\")\nprint(\"Total:\", sum(hasta - desde + 1 for _, _, desde, hasta in cartas), \"versículos\")\nprint(\"¿Alguna pasa de 10 versículos?\", any(hasta - desde + 1 > 10 for _, _, desde, hasta in cartas))\nlarga = max(cartas, key=lambda c: c[3] - c[2])\nprint(\"La más larga:\", larga[0])"
+    ],
+    "en": [
+     "def read_letters(lines):\n    for line in lines:\n        line = line.strip()\n        church, chapter, start, end = line.split(\",\")\n        yield church, int(chapter), int(start), int(end)\n\nwith open(\"letters.csv\", encoding=\"utf-8\") as f:\n    letters = list(read_letters(f))\n\nfor n, (church, ch, start, end) in enumerate(letters, start=1):\n    print(f\"{n}. {church}: Revelation {ch}:{start}-{end} ({end - start + 1} verses)\")\nprint(\"Total:\", sum(end - start + 1 for _, _, start, end in letters), \"verses\")\nprint(\"Is any longer than 10 verses?\", any(end - start + 1 > 10 for _, _, start, end in letters))\nlongest = max(letters, key=lambda l: l[3] - l[2])\nprint(\"The longest:\", longest[0])",
+     "def read_letters(lines):\n    for line in lines:\n        line = line.strip()\n        if not line or line.startswith(\"#\"):\n            continue\n        church, chapter, start, end = line.split(\",\")\n        yield church, int(chapter), int(start), int(end)\n\nwith open(\"letters.csv\", encoding=\"utf-8\") as f:\n    letters = list(read_letters(f))\n\nfor n, (church, ch, start, end) in enumerate(letters, start=1):\n    print(f\"{n}. {church}: Revelation {ch}:{start}-{end} ({end - start} verses)\")\nprint(\"Total:\", sum(end - start + 1 for _, _, start, end in letters), \"verses\")\nprint(\"Is any longer than 10 verses?\", any(end - start + 1 > 10 for _, _, start, end in letters))\nlongest = max(letters, key=lambda l: l[3] - l[2])\nprint(\"The longest:\", longest[0])",
+     "def read_letters(lines):\n    for line in lines:\n        line = line.strip()\n        if not line or line.startswith(\"#\"):\n            continue\n        church, chapter, start, end = line.split(\",\")\n        yield church, chapter, start, end\n\nwith open(\"letters.csv\", encoding=\"utf-8\") as f:\n    letters = list(read_letters(f))\n\nfor n, (church, ch, start, end) in enumerate(letters, start=1):\n    print(f\"{n}. {church}: Revelation {ch}:{start}-{end} ({end - start + 1} verses)\")\nprint(\"Total:\", sum(end - start + 1 for _, _, start, end in letters), \"verses\")\nprint(\"Is any longer than 10 verses?\", any(end - start + 1 > 10 for _, _, start, end in letters))\nlongest = max(letters, key=lambda l: l[3] - l[2])\nprint(\"The longest:\", longest[0])"
+    ]
+   }
+  }
+ ]
+}

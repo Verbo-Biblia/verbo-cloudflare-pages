@@ -1,0 +1,597 @@
+{
+ "id": "19-genealogias",
+ "numero": 19,
+ "lugar": "patmos",
+ "titulo": {
+  "es": "Genealogías",
+  "en": "Genealogies"
+ },
+ "tema": {
+  "es": "recursión: funciones que se llaman a sí mismas",
+  "en": "recursion: functions that call themselves"
+ },
+ "versiculo": "mt-1-1",
+ "medalla": {
+  "es": "Cronista de generaciones",
+  "en": "Chronicler of generations"
+ },
+ "leccion": {
+  "es": [
+   "Una función **recursiva** se llama a sí misma para resolver una versión más pequeña del mismo problema. Siempre tiene dos partes: el **caso base**, que se responde sin volver a llamarse (por ejemplo, `factorial(0)` es `1`), y el **caso recursivo**, que achica el problema y se llama otra vez: `factorial(n) = n * factorial(n - 1)`.",
+   "Cada llamada espera la respuesta de la siguiente, hasta llegar al caso base; luego las respuestas «vuelven» hacia arriba. Si olvidas el caso base, o el problema no se achica, la función nunca termina: Python se detiene con `RecursionError` al pasar de unas **1000 llamadas** anidadas (`sys.getrecursionlimit()`).",
+   "La recursión brilla con datos **anidados**, como un árbol genealógico: `hijos = {\"Judá\": [\"Fares\", \"Zara\"], ...}`. Contar los descendientes de alguien es: por cada hijo, 1 más los descendientes de ese hijo. Quien no tiene hijos registrados es el caso base: `hijos.get(nombre, [])` devuelve una lista vacía y el bucle no hace nada.",
+   "Todo lo que se hace con recursión también se puede hacer con un bucle (versión **iterativa**). Para recorrer una línea recta, como subir de hijo a padre, un `while` es más simple y no tiene límite de profundidad; para ramas que se dividen, la recursión suele ser más clara.",
+   "Mateo 1 abre el Nuevo Testamento con la genealogía de Jesucristo, «hijo de David, hijo de Abraham», y cuenta catorce generaciones desde Abraham hasta David (Mateo 1:17). Tus funciones lo comprobarán."
+  ],
+  "en": [
+   "A **recursive** function calls itself to solve a smaller version of the same problem. It always has two parts: the **base case**, answered without calling itself again (for example, `factorial(0)` is `1`), and the **recursive case**, which shrinks the problem and calls itself again: `factorial(n) = n * factorial(n - 1)`.",
+   "Each call waits for the answer of the next one, until the base case is reached; then the answers “travel back” up. If you forget the base case, or the problem doesn't shrink, the function never ends: Python stops with `RecursionError` after about **1000 nested calls** (`sys.getrecursionlimit()`).",
+   "Recursion shines with **nested** data, like a family tree: `children = {\"Judah\": [\"Perez\", \"Zerah\"], ...}`. Counting someone's descendants is: for each child, 1 plus that child's descendants. Someone with no recorded children is the base case: `children.get(name, [])` returns an empty list and the loop does nothing.",
+   "Everything you do with recursion can also be done with a loop (the **iterative** version). To walk a straight line, like going up from son to father, a `while` is simpler and has no depth limit; for branches that split, recursion is usually clearer.",
+   "Matthew 1 opens the New Testament with the genealogy of Jesus Christ, “the son of David, the son of Abraham,” and counts fourteen generations from Abraham to David (Matthew 1:17). Your functions will check it."
+  ]
+ },
+ "ejemplo": {
+  "es": "def cuenta_regresiva(n):\n    if n == 0:              # caso base\n        print(\"¡Llegamos!\")\n        return\n    print(n)\n    cuenta_regresiva(n - 1)  # caso recursivo: un problema más pequeño\n\ncuenta_regresiva(3)\n\nhijos = {\"Abraham\": [\"Isaac\"], \"Isaac\": [\"Jacob\"], \"Jacob\": [\"Judá\"]}\n\ndef descendientes(nombre):\n    total = 0\n    for hijo in hijos.get(nombre, []):\n        total += 1 + descendientes(hijo)\n    return total\n\nprint(descendientes(\"Abraham\"))",
+  "en": "def countdown(n):\n    if n == 0:              # base case\n        print(\"We made it!\")\n        return\n    print(n)\n    countdown(n - 1)        # recursive case: a smaller problem\n\ncountdown(3)\n\nchildren = {\"Abraham\": [\"Isaac\"], \"Isaac\": [\"Jacob\"], \"Jacob\": [\"Judah\"]}\n\ndef descendants(name):\n    total = 0\n    for child in children.get(name, []):\n        total += 1 + descendants(child)\n    return total\n\nprint(descendants(\"Abraham\"))"
+ },
+ "ejercicios": [
+  {
+   "id": "factorial",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Los doce hijos de Jacob se pueden poner en fila de `12!` formas distintas (12 × 11 × … × 1). Escribe `factorial(n)` **recursiva**, sin `for` ni `while`: el caso base es `factorial(0) = 1`, y si no, `n * factorial(n - 1)`. Muestra `factorial(12)`:\n```\n479001600\n```",
+    "en": "Jacob's twelve sons can stand in line in `12!` different ways (12 × 11 × … × 1). Write a **recursive** `factorial(n)`, without `for` or `while`: the base case is `factorial(0) = 1`, and otherwise `n * factorial(n - 1)`. Show `factorial(12)`:\n```\n479001600\n```"
+   },
+   "inicial": {
+    "es": "def factorial(n):\n    \n\nprint(factorial(12))",
+    "en": "def factorial(n):\n    \n\nprint(factorial(12))"
+   },
+   "pistas": {
+    "es": [
+     "Caso base: `if n == 0: return 1`.",
+     "Caso recursivo: `return n * factorial(n - 1)`."
+    ],
+    "en": [
+     "Base case: `if n == 0: return 1`.",
+     "Recursive case: `return n * factorial(n - 1)`."
+    ]
+   },
+   "solucion": {
+    "es": "def factorial(n):\n    if n == 0:\n        return 1\n    return n * factorial(n - 1)\n\nprint(factorial(12))",
+    "en": "def factorial(n):\n    if n == 0:\n        return 1\n    return n * factorial(n - 1)\n\nprint(factorial(12))"
+   },
+   "pruebas": [
+    {
+     "salida": "479001600"
+    },
+    {
+     "py": "assert factorial(0) == 1 and factorial(1) == 1 and factorial(5) == 120",
+     "msg": {
+      "es": "factorial(0) debe ser 1 (el caso base), factorial(1) = 1 y factorial(5) = 120.",
+      "en": "factorial(0) must be 1 (the base case), factorial(1) = 1 and factorial(5) = 120."
+     }
+    },
+    {
+     "py": "import ast\n_f = [n for n in ast.walk(ast.parse(_codigo)) if isinstance(n, ast.FunctionDef) and n.name == 'factorial'][0]\nassert not any(isinstance(n, (ast.For, ast.While, ast.ListComp, ast.GeneratorExp)) for n in ast.walk(_f))\nassert any(isinstance(n, ast.Call) and getattr(n.func, 'id', '') == 'factorial' for n in ast.walk(_f))",
+     "msg": {
+      "es": "factorial debe resolverse con recursión: que se llame a sí misma, sin for ni while.",
+      "en": "factorial must be solved with recursion: it calls itself, with no for or while."
+     }
+    }
+   ],
+   "errores_tipicos": {
+    "es": [
+     "def factorial(n):\n    return n * factorial(n - 1)\n\nprint(factorial(12))",
+     "def factorial(n):\n    if n == 0:\n        return 0\n    return n * factorial(n - 1)\n\nprint(factorial(12))",
+     "def factorial(n):\n    total = 1\n    for i in range(1, n + 1):\n        total *= i\n    return total\n\nprint(factorial(12))",
+     "def factorial(n):\n    if n == 0:\n        return 1\n    return n * factorial(n)\n\nprint(factorial(12))"
+    ],
+    "en": [
+     "def factorial(n):\n    return n * factorial(n - 1)\n\nprint(factorial(12))",
+     "def factorial(n):\n    total = 1\n    for i in range(1, n + 1):\n        total *= i\n    return total\n\nprint(factorial(12))"
+    ]
+   }
+  },
+  {
+   "id": "sumar-censo",
+   "tipo": "hueco",
+   "enunciado": {
+    "es": "Una lista también se puede pensar de forma recursiva: su suma es el **primer** elemento más la suma **del resto**, y la suma de una lista vacía es 0. Completa el caso base y la llamada recursiva para sumar el censo de Números 1. Debe salir `603550`.",
+    "en": "A list can also be seen recursively: its sum is the **first** element plus the sum **of the rest**, and the sum of an empty list is 0. Fill in the base case and the recursive call to add up the census of Numbers 1. It should print `603550`."
+   },
+   "plantilla": {
+    "es": "def sumar(lista):\n    if ___:\n        return 0\n    return lista[0] + ___\n\ncenso = [46500, 59300, 45650, 74600, 54400, 57400, 40500, 32200, 35400, 62700, 41500, 53400]  # Números 1\nprint(sumar(censo))",
+    "en": "def add_up(lista):\n    if ___:\n        return 0\n    return lista[0] + ___\n\ncensus = [46500, 59300, 45650, 74600, 54400, 57400, 40500, 32200, 35400, 62700, 41500, 53400]  # Numbers 1\nprint(add_up(census))"
+   },
+   "pistas": {
+    "es": [
+     "El caso base es la lista vacía: `not lista` (o `len(lista) == 0`).",
+     "«El resto» es `lista[1:]`: la llamada es `sumar(lista[1:])`."
+    ],
+    "en": [
+     "The base case is the empty list: `not lista` (or `len(lista) == 0`).",
+     "“The rest” is `lista[1:]`: the call is `add_up(lista[1:])`."
+    ]
+   },
+   "solucion": {
+    "es": "def sumar(lista):\n    if not lista:\n        return 0\n    return lista[0] + sumar(lista[1:])\n\ncenso = [46500, 59300, 45650, 74600, 54400, 57400, 40500, 32200, 35400, 62700, 41500, 53400]  # Números 1\nprint(sumar(censo))",
+    "en": "def add_up(lista):\n    if not lista:\n        return 0\n    return lista[0] + add_up(lista[1:])\n\ncensus = [46500, 59300, 45650, 74600, 54400, 57400, 40500, 32200, 35400, 62700, 41500, 53400]  # Numbers 1\nprint(add_up(census))"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "603550"
+     },
+     {
+      "py": "assert sumar([]) == 0 and sumar([7]) == 7 and sumar([1, 2, 3]) == 6",
+      "msg": {
+       "es": "sumar([]) debe dar 0, sumar([7]) 7 y sumar([1, 2, 3]) 6.",
+       "en": "sumar([]) must give 0, sumar([7]) 7 and sumar([1, 2, 3]) 6."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "603550"
+     },
+     {
+      "py": "assert add_up([]) == 0 and add_up([7]) == 7 and add_up([1, 2, 3]) == 6",
+      "msg": {
+       "es": "add_up([]) debe dar 0, add_up([7]) 7 y add_up([1, 2, 3]) 6.",
+       "en": "add_up([]) must give 0, add_up([7]) 7 and add_up([1, 2, 3]) 6."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "def sumar(lista):\n    if not lista:\n        return 0\n    return lista[0] + sumar(lista)\n\ncenso = [46500, 59300, 45650, 74600, 54400, 57400, 40500, 32200, 35400, 62700, 41500, 53400]  # Números 1\nprint(sumar(censo))",
+     "def sumar(lista):\n    if len(lista) == 1:\n        return 0\n    return lista[0] + sumar(lista[1:])\n\ncenso = [46500, 59300, 45650, 74600, 54400, 57400, 40500, 32200, 35400, 62700, 41500, 53400]  # Números 1\nprint(sumar(censo))",
+     "def sumar(lista):\n    if not lista:\n        return 0\n    return lista[0] + lista[1:]\n\ncenso = [46500, 59300, 45650, 74600, 54400, 57400, 40500, 32200, 35400, 62700, 41500, 53400]  # Números 1\nprint(sumar(censo))"
+    ],
+    "en": [
+     "def add_up(lista):\n    if not lista:\n        return 0\n    return lista[0] + add_up(lista)\n\ncensus = [46500, 59300, 45650, 74600, 54400, 57400, 40500, 32200, 35400, 62700, 41500, 53400]  # Numbers 1\nprint(add_up(census))",
+     "def add_up(lista):\n    if len(lista) == 1:\n        return 0\n    return lista[0] + add_up(lista[1:])\n\ncensus = [46500, 59300, 45650, 74600, 54400, 57400, 40500, 32200, 35400, 62700, 41500, 53400]  # Numbers 1\nprint(add_up(census))"
+    ]
+   }
+  },
+  {
+   "id": "descendientes",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "El diccionario `hijos` tiene el árbol de Mateo 1:2-6, de Abraham a David (Judá fue padre de Fares y Zara). Escribe `descendientes(nombre)`, que cuenta **todos** los descendientes que hay en el árbol: por cada hijo, 1 más los descendientes de ese hijo. Quien no aparece como clave no tiene hijos registrados. Debe salir:\n```\n14\n11\n```",
+    "en": "The `children` dictionary holds the tree of Matthew 1:2-6, from Abraham to David (Judah was the father of Perez and Zerah). Write `descendants(name)`, which counts **all** the descendants in the tree: for each child, 1 plus that child's descendants. Anyone who doesn't appear as a key has no recorded children. It should print:\n```\n14\n11\n```"
+   },
+   "inicial": {
+    "es": "hijos = {\n    \"Abraham\": [\"Isaac\"],\n    \"Isaac\": [\"Jacob\"],\n    \"Jacob\": [\"Judá\"],\n    \"Judá\": [\"Fares\", \"Zara\"],\n    \"Fares\": [\"Esrom\"],\n    \"Esrom\": [\"Aram\"],\n    \"Aram\": [\"Aminadab\"],\n    \"Aminadab\": [\"Naasón\"],\n    \"Naasón\": [\"Salmón\"],\n    \"Salmón\": [\"Booz\"],\n    \"Booz\": [\"Obed\"],\n    \"Obed\": [\"Isaí\"],\n    \"Isaí\": [\"David\"],\n}\n\ndef descendientes(nombre):\n    \n\nprint(descendientes(\"Abraham\"))\nprint(descendientes(\"Judá\"))",
+    "en": "children = {\n    \"Abraham\": [\"Isaac\"],\n    \"Isaac\": [\"Jacob\"],\n    \"Jacob\": [\"Judah\"],\n    \"Judah\": [\"Perez\", \"Zerah\"],\n    \"Perez\": [\"Hezron\"],\n    \"Hezron\": [\"Ram\"],\n    \"Ram\": [\"Amminadab\"],\n    \"Amminadab\": [\"Nahshon\"],\n    \"Nahshon\": [\"Salmon\"],\n    \"Salmon\": [\"Boaz\"],\n    \"Boaz\": [\"Obed\"],\n    \"Obed\": [\"Jesse\"],\n    \"Jesse\": [\"David\"],\n}\n\ndef descendants(name):\n    \n\nprint(descendants(\"Abraham\"))\nprint(descendants(\"Judah\"))"
+   },
+   "pistas": {
+    "es": [
+     "`hijos.get(nombre, [])` da la lista de hijos, o una lista vacía si no tiene: ese es el caso base, sin `if`.",
+     "`total = 0`, luego `for hijo in hijos.get(nombre, []): total += 1 + descendientes(hijo)` y `return total`."
+    ],
+    "en": [
+     "`children.get(name, [])` gives the list of children, or an empty list if there are none: that is the base case, no `if` needed.",
+     "`total = 0`, then `for child in children.get(name, []): total += 1 + descendants(child)` and `return total`."
+    ]
+   },
+   "solucion": {
+    "es": "hijos = {\n    \"Abraham\": [\"Isaac\"],\n    \"Isaac\": [\"Jacob\"],\n    \"Jacob\": [\"Judá\"],\n    \"Judá\": [\"Fares\", \"Zara\"],\n    \"Fares\": [\"Esrom\"],\n    \"Esrom\": [\"Aram\"],\n    \"Aram\": [\"Aminadab\"],\n    \"Aminadab\": [\"Naasón\"],\n    \"Naasón\": [\"Salmón\"],\n    \"Salmón\": [\"Booz\"],\n    \"Booz\": [\"Obed\"],\n    \"Obed\": [\"Isaí\"],\n    \"Isaí\": [\"David\"],\n}\n\ndef descendientes(nombre):\n    total = 0\n    for hijo in hijos.get(nombre, []):\n        total += 1 + descendientes(hijo)\n    return total\n\nprint(descendientes(\"Abraham\"))\nprint(descendientes(\"Judá\"))",
+    "en": "children = {\n    \"Abraham\": [\"Isaac\"],\n    \"Isaac\": [\"Jacob\"],\n    \"Jacob\": [\"Judah\"],\n    \"Judah\": [\"Perez\", \"Zerah\"],\n    \"Perez\": [\"Hezron\"],\n    \"Hezron\": [\"Ram\"],\n    \"Ram\": [\"Amminadab\"],\n    \"Amminadab\": [\"Nahshon\"],\n    \"Nahshon\": [\"Salmon\"],\n    \"Salmon\": [\"Boaz\"],\n    \"Boaz\": [\"Obed\"],\n    \"Obed\": [\"Jesse\"],\n    \"Jesse\": [\"David\"],\n}\n\ndef descendants(name):\n    total = 0\n    for child in children.get(name, []):\n        total += 1 + descendants(child)\n    return total\n\nprint(descendants(\"Abraham\"))\nprint(descendants(\"Judah\"))"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "14\n11"
+     },
+     {
+      "py": "assert descendientes('David') == 0 and descendientes('Zara') == 0 and descendientes('Isaí') == 1 and descendientes('Booz') == 3",
+      "msg": {
+       "es": "Revisa los bordes: David y Zara tienen 0, Isaí 1 y Booz 3.",
+       "en": "Check the edges: David and Zara have 0, Isaí 1 and Booz 3."
+      }
+     },
+     {
+      "py": "hijos['David'] = ['Salomón']\nassert descendientes('Judá') == 12",
+      "msg": {
+       "es": "Debe funcionar con cualquier árbol: si David tiene un hijo más, Judá tiene 12. Recorre el diccionario hijos.",
+       "en": "It must work with any tree: if David has one more child, Judá has 12. Walk the hijos dictionary."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "14\n11"
+     },
+     {
+      "py": "assert descendants('David') == 0 and descendants('Zerah') == 0 and descendants('Jesse') == 1 and descendants('Boaz') == 3",
+      "msg": {
+       "es": "Revisa los bordes: David y Zerah tienen 0, Jesse 1 y Boaz 3.",
+       "en": "Check the edges: David and Zerah have 0, Jesse 1 and Boaz 3."
+      }
+     },
+     {
+      "py": "children['David'] = ['Solomon']\nassert descendants('Judah') == 12",
+      "msg": {
+       "es": "Debe funcionar con cualquier árbol: si David tiene un hijo más, Judah tiene 12. Recorre el diccionario children.",
+       "en": "It must work with any tree: if David has one more child, Judah has 12. Walk the children dictionary."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "hijos = {\n    \"Abraham\": [\"Isaac\"],\n    \"Isaac\": [\"Jacob\"],\n    \"Jacob\": [\"Judá\"],\n    \"Judá\": [\"Fares\", \"Zara\"],\n    \"Fares\": [\"Esrom\"],\n    \"Esrom\": [\"Aram\"],\n    \"Aram\": [\"Aminadab\"],\n    \"Aminadab\": [\"Naasón\"],\n    \"Naasón\": [\"Salmón\"],\n    \"Salmón\": [\"Booz\"],\n    \"Booz\": [\"Obed\"],\n    \"Obed\": [\"Isaí\"],\n    \"Isaí\": [\"David\"],\n}\n\ndef descendientes(nombre):\n    total = 0\n    for hijo in hijos.get(nombre, []):\n        total += descendientes(hijo)\n    return total\n\nprint(descendientes(\"Abraham\"))\nprint(descendientes(\"Judá\"))",
+     "hijos = {\n    \"Abraham\": [\"Isaac\"],\n    \"Isaac\": [\"Jacob\"],\n    \"Jacob\": [\"Judá\"],\n    \"Judá\": [\"Fares\", \"Zara\"],\n    \"Fares\": [\"Esrom\"],\n    \"Esrom\": [\"Aram\"],\n    \"Aram\": [\"Aminadab\"],\n    \"Aminadab\": [\"Naasón\"],\n    \"Naasón\": [\"Salmón\"],\n    \"Salmón\": [\"Booz\"],\n    \"Booz\": [\"Obed\"],\n    \"Obed\": [\"Isaí\"],\n    \"Isaí\": [\"David\"],\n}\n\ndef descendientes(nombre):\n    total = 0\n    for hijo in hijos[nombre]:\n        total += 1 + descendientes(hijo)\n    return total\n\nprint(descendientes(\"Abraham\"))\nprint(descendientes(\"Judá\"))",
+     "hijos = {\n    \"Abraham\": [\"Isaac\"],\n    \"Isaac\": [\"Jacob\"],\n    \"Jacob\": [\"Judá\"],\n    \"Judá\": [\"Fares\", \"Zara\"],\n    \"Fares\": [\"Esrom\"],\n    \"Esrom\": [\"Aram\"],\n    \"Aram\": [\"Aminadab\"],\n    \"Aminadab\": [\"Naasón\"],\n    \"Naasón\": [\"Salmón\"],\n    \"Salmón\": [\"Booz\"],\n    \"Booz\": [\"Obed\"],\n    \"Obed\": [\"Isaí\"],\n    \"Isaí\": [\"David\"],\n}\n\ndef descendientes(nombre):\n    total = 0\n    for hijo in hijos.get(nombre, []):\n        total += 1\n    return total\n\nprint(descendientes(\"Abraham\"))\nprint(descendientes(\"Judá\"))",
+     "hijos = {\n    \"Abraham\": [\"Isaac\"],\n    \"Isaac\": [\"Jacob\"],\n    \"Jacob\": [\"Judá\"],\n    \"Judá\": [\"Fares\", \"Zara\"],\n    \"Fares\": [\"Esrom\"],\n    \"Esrom\": [\"Aram\"],\n    \"Aram\": [\"Aminadab\"],\n    \"Aminadab\": [\"Naasón\"],\n    \"Naasón\": [\"Salmón\"],\n    \"Salmón\": [\"Booz\"],\n    \"Booz\": [\"Obed\"],\n    \"Obed\": [\"Isaí\"],\n    \"Isaí\": [\"David\"],\n}\n\ndef descendientes(nombre):\n    total = 0\n    for hijo in hijos.get(nombre, []):\n        total += 1 + descendientes(hijo)\n        return total\n\nprint(descendientes(\"Abraham\"))\nprint(descendientes(\"Judá\"))"
+    ],
+    "en": [
+     "children = {\n    \"Abraham\": [\"Isaac\"],\n    \"Isaac\": [\"Jacob\"],\n    \"Jacob\": [\"Judah\"],\n    \"Judah\": [\"Perez\", \"Zerah\"],\n    \"Perez\": [\"Hezron\"],\n    \"Hezron\": [\"Ram\"],\n    \"Ram\": [\"Amminadab\"],\n    \"Amminadab\": [\"Nahshon\"],\n    \"Nahshon\": [\"Salmon\"],\n    \"Salmon\": [\"Boaz\"],\n    \"Boaz\": [\"Obed\"],\n    \"Obed\": [\"Jesse\"],\n    \"Jesse\": [\"David\"],\n}\n\ndef descendants(name):\n    total = 0\n    for child in children.get(name, []):\n        total += descendants(child)\n    return total\n\nprint(descendants(\"Abraham\"))\nprint(descendants(\"Judah\"))",
+     "children = {\n    \"Abraham\": [\"Isaac\"],\n    \"Isaac\": [\"Jacob\"],\n    \"Jacob\": [\"Judah\"],\n    \"Judah\": [\"Perez\", \"Zerah\"],\n    \"Perez\": [\"Hezron\"],\n    \"Hezron\": [\"Ram\"],\n    \"Ram\": [\"Amminadab\"],\n    \"Amminadab\": [\"Nahshon\"],\n    \"Nahshon\": [\"Salmon\"],\n    \"Salmon\": [\"Boaz\"],\n    \"Boaz\": [\"Obed\"],\n    \"Obed\": [\"Jesse\"],\n    \"Jesse\": [\"David\"],\n}\n\ndef descendants(name):\n    total = 0\n    for child in children[name]:\n        total += 1 + descendants(child)\n    return total\n\nprint(descendants(\"Abraham\"))\nprint(descendants(\"Judah\"))",
+     "children = {\n    \"Abraham\": [\"Isaac\"],\n    \"Isaac\": [\"Jacob\"],\n    \"Jacob\": [\"Judah\"],\n    \"Judah\": [\"Perez\", \"Zerah\"],\n    \"Perez\": [\"Hezron\"],\n    \"Hezron\": [\"Ram\"],\n    \"Ram\": [\"Amminadab\"],\n    \"Amminadab\": [\"Nahshon\"],\n    \"Nahshon\": [\"Salmon\"],\n    \"Salmon\": [\"Boaz\"],\n    \"Boaz\": [\"Obed\"],\n    \"Obed\": [\"Jesse\"],\n    \"Jesse\": [\"David\"],\n}\n\ndef descendants(name):\n    total = 0\n    for child in children.get(name, []):\n        total += 1\n    return total\n\nprint(descendants(\"Abraham\"))\nprint(descendants(\"Judah\"))"
+    ]
+   }
+  },
+  {
+   "id": "catorce-generaciones",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Mateo 1:17 dice que hubo «catorce generaciones desde Abraham hasta David». Compruébalo: escribe `generaciones(nombre)`, que devuelve cuántas generaciones tiene la rama **más larga** que empieza en `nombre`, contándolo a él. Alguien sin hijos registrados es 1 generación; si no, es 1 más la mayor de las generaciones de sus hijos. Debe salir:\n```\nDe Abraham a David: 14 generaciones\n```",
+    "en": "Matthew 1:17 says there were “fourteen generations from Abraham to David.” Check it: write `generations(name)`, which returns how many generations the **longest** branch starting at `name` has, counting that person. Someone with no recorded children is 1 generation; otherwise it is 1 plus the largest number of generations among their children. It should print:\n```\nFrom Abraham to David: 14 generations\n```"
+   },
+   "inicial": {
+    "es": "hijos = {\n    \"Abraham\": [\"Isaac\"],\n    \"Isaac\": [\"Jacob\"],\n    \"Jacob\": [\"Judá\"],\n    \"Judá\": [\"Fares\", \"Zara\"],\n    \"Fares\": [\"Esrom\"],\n    \"Esrom\": [\"Aram\"],\n    \"Aram\": [\"Aminadab\"],\n    \"Aminadab\": [\"Naasón\"],\n    \"Naasón\": [\"Salmón\"],\n    \"Salmón\": [\"Booz\"],\n    \"Booz\": [\"Obed\"],\n    \"Obed\": [\"Isaí\"],\n    \"Isaí\": [\"David\"],\n}\n\ndef generaciones(nombre):\n    \n\nprint(f\"De Abraham a David: {generaciones('Abraham')} generaciones\")",
+    "en": "children = {\n    \"Abraham\": [\"Isaac\"],\n    \"Isaac\": [\"Jacob\"],\n    \"Jacob\": [\"Judah\"],\n    \"Judah\": [\"Perez\", \"Zerah\"],\n    \"Perez\": [\"Hezron\"],\n    \"Hezron\": [\"Ram\"],\n    \"Ram\": [\"Amminadab\"],\n    \"Amminadab\": [\"Nahshon\"],\n    \"Nahshon\": [\"Salmon\"],\n    \"Salmon\": [\"Boaz\"],\n    \"Boaz\": [\"Obed\"],\n    \"Obed\": [\"Jesse\"],\n    \"Jesse\": [\"David\"],\n}\n\ndef generations(name):\n    \n\nprint(f\"From Abraham to David: {generations('Abraham')} generations\")"
+   },
+   "pistas": {
+    "es": [
+     "Guarda en `mayor = 0` la rama más larga de los hijos; recorre `hijos.get(nombre, [])` y quédate con el máximo de `generaciones(hijo)`.",
+     "Dentro del bucle: `mayor = max(mayor, generaciones(hijo))`. Al final: `return 1 + mayor`."
+    ],
+    "en": [
+     "Keep the longest branch among the children in `longest = 0`; loop over `children.get(name, [])` and keep the maximum of `generations(child)`.",
+     "Inside the loop: `longest = max(longest, generations(child))`. At the end: `return 1 + longest`."
+    ]
+   },
+   "solucion": {
+    "es": "hijos = {\n    \"Abraham\": [\"Isaac\"],\n    \"Isaac\": [\"Jacob\"],\n    \"Jacob\": [\"Judá\"],\n    \"Judá\": [\"Fares\", \"Zara\"],\n    \"Fares\": [\"Esrom\"],\n    \"Esrom\": [\"Aram\"],\n    \"Aram\": [\"Aminadab\"],\n    \"Aminadab\": [\"Naasón\"],\n    \"Naasón\": [\"Salmón\"],\n    \"Salmón\": [\"Booz\"],\n    \"Booz\": [\"Obed\"],\n    \"Obed\": [\"Isaí\"],\n    \"Isaí\": [\"David\"],\n}\n\ndef generaciones(nombre):\n    mayor = 0\n    for hijo in hijos.get(nombre, []):\n        mayor = max(mayor, generaciones(hijo))\n    return 1 + mayor\n\nprint(f\"De Abraham a David: {generaciones('Abraham')} generaciones\")",
+    "en": "children = {\n    \"Abraham\": [\"Isaac\"],\n    \"Isaac\": [\"Jacob\"],\n    \"Jacob\": [\"Judah\"],\n    \"Judah\": [\"Perez\", \"Zerah\"],\n    \"Perez\": [\"Hezron\"],\n    \"Hezron\": [\"Ram\"],\n    \"Ram\": [\"Amminadab\"],\n    \"Amminadab\": [\"Nahshon\"],\n    \"Nahshon\": [\"Salmon\"],\n    \"Salmon\": [\"Boaz\"],\n    \"Boaz\": [\"Obed\"],\n    \"Obed\": [\"Jesse\"],\n    \"Jesse\": [\"David\"],\n}\n\ndef generations(name):\n    longest = 0\n    for child in children.get(name, []):\n        longest = max(longest, generations(child))\n    return 1 + longest\n\nprint(f\"From Abraham to David: {generations('Abraham')} generations\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "De Abraham a David: 14 generaciones"
+     },
+     {
+      "py": "assert generaciones('David') == 1 and generaciones('Zara') == 1 and generaciones('Judá') == 11 and generaciones('Isaí') == 2",
+      "msg": {
+       "es": "Revisa: David y Zara son 1 generación, Isaí 2 y Judá 11 (por la rama de Fares).",
+       "en": "Check: David and Zara are 1 generation, Isaí 2 and Judá 11 (through Fares's branch)."
+      }
+     },
+     {
+      "py": "assert 'max' in _codigo",
+      "msg": {
+       "es": "Quédate con la rama más larga usando max().",
+       "en": "Keep the longest branch using max()."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "From Abraham to David: 14 generations"
+     },
+     {
+      "py": "assert generations('David') == 1 and generations('Zerah') == 1 and generations('Judah') == 11 and generations('Jesse') == 2",
+      "msg": {
+       "es": "Revisa: David y Zerah son 1 generación, Jesse 2 y Judah 11 (por la rama de Perez).",
+       "en": "Check: David and Zerah are 1 generation, Jesse 2 and Judah 11 (through Perez's branch)."
+      }
+     },
+     {
+      "py": "assert 'max' in _codigo",
+      "msg": {
+       "es": "Quédate con la rama más larga usando max().",
+       "en": "Keep the longest branch using max()."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "hijos = {\n    \"Abraham\": [\"Isaac\"],\n    \"Isaac\": [\"Jacob\"],\n    \"Jacob\": [\"Judá\"],\n    \"Judá\": [\"Fares\", \"Zara\"],\n    \"Fares\": [\"Esrom\"],\n    \"Esrom\": [\"Aram\"],\n    \"Aram\": [\"Aminadab\"],\n    \"Aminadab\": [\"Naasón\"],\n    \"Naasón\": [\"Salmón\"],\n    \"Salmón\": [\"Booz\"],\n    \"Booz\": [\"Obed\"],\n    \"Obed\": [\"Isaí\"],\n    \"Isaí\": [\"David\"],\n}\n\ndef generaciones(nombre):\n    mayor = 0\n    for hijo in hijos.get(nombre, []):\n        mayor = mayor + generaciones(hijo)\n    return 1 + mayor\n\nprint(f\"De Abraham a David: {generaciones('Abraham')} generaciones\")",
+     "hijos = {\n    \"Abraham\": [\"Isaac\"],\n    \"Isaac\": [\"Jacob\"],\n    \"Jacob\": [\"Judá\"],\n    \"Judá\": [\"Fares\", \"Zara\"],\n    \"Fares\": [\"Esrom\"],\n    \"Esrom\": [\"Aram\"],\n    \"Aram\": [\"Aminadab\"],\n    \"Aminadab\": [\"Naasón\"],\n    \"Naasón\": [\"Salmón\"],\n    \"Salmón\": [\"Booz\"],\n    \"Booz\": [\"Obed\"],\n    \"Obed\": [\"Isaí\"],\n    \"Isaí\": [\"David\"],\n}\n\ndef generaciones(nombre):\n    mayor = 0\n    for hijo in hijos.get(nombre, []):\n        mayor = max(mayor, generaciones(hijo))\n    return mayor\n\nprint(f\"De Abraham a David: {generaciones('Abraham')} generaciones\")",
+     "hijos = {\n    \"Abraham\": [\"Isaac\"],\n    \"Isaac\": [\"Jacob\"],\n    \"Jacob\": [\"Judá\"],\n    \"Judá\": [\"Fares\", \"Zara\"],\n    \"Fares\": [\"Esrom\"],\n    \"Esrom\": [\"Aram\"],\n    \"Aram\": [\"Aminadab\"],\n    \"Aminadab\": [\"Naasón\"],\n    \"Naasón\": [\"Salmón\"],\n    \"Salmón\": [\"Booz\"],\n    \"Booz\": [\"Obed\"],\n    \"Obed\": [\"Isaí\"],\n    \"Isaí\": [\"David\"],\n}\n\ndef generaciones(nombre):\n    mayor = 0\n    for hijo in hijos.get(nombre, []):\n        mayor = generaciones(hijo)\n    return 1 + mayor\n\nprint(f\"De Abraham a David: {generaciones('Abraham')} generaciones\")",
+     "print(\"De Abraham a David: 14 generaciones\")"
+    ],
+    "en": [
+     "children = {\n    \"Abraham\": [\"Isaac\"],\n    \"Isaac\": [\"Jacob\"],\n    \"Jacob\": [\"Judah\"],\n    \"Judah\": [\"Perez\", \"Zerah\"],\n    \"Perez\": [\"Hezron\"],\n    \"Hezron\": [\"Ram\"],\n    \"Ram\": [\"Amminadab\"],\n    \"Amminadab\": [\"Nahshon\"],\n    \"Nahshon\": [\"Salmon\"],\n    \"Salmon\": [\"Boaz\"],\n    \"Boaz\": [\"Obed\"],\n    \"Obed\": [\"Jesse\"],\n    \"Jesse\": [\"David\"],\n}\n\ndef generations(name):\n    longest = 0\n    for child in children.get(name, []):\n        longest = longest + generations(child)\n    return 1 + longest\n\nprint(f\"From Abraham to David: {generations('Abraham')} generations\")",
+     "children = {\n    \"Abraham\": [\"Isaac\"],\n    \"Isaac\": [\"Jacob\"],\n    \"Jacob\": [\"Judah\"],\n    \"Judah\": [\"Perez\", \"Zerah\"],\n    \"Perez\": [\"Hezron\"],\n    \"Hezron\": [\"Ram\"],\n    \"Ram\": [\"Amminadab\"],\n    \"Amminadab\": [\"Nahshon\"],\n    \"Nahshon\": [\"Salmon\"],\n    \"Salmon\": [\"Boaz\"],\n    \"Boaz\": [\"Obed\"],\n    \"Obed\": [\"Jesse\"],\n    \"Jesse\": [\"David\"],\n}\n\ndef generations(name):\n    longest = 0\n    for child in children.get(name, []):\n        longest = max(longest, generations(child))\n    return longest\n\nprint(f\"From Abraham to David: {generations('Abraham')} generations\")",
+     "print(\"From Abraham to David: 14 generations\")"
+    ]
+   }
+  },
+  {
+   "id": "ascendencia",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Ahora al revés: el diccionario `padre` dice quién fue el padre de cada uno. Escribe `ascendencia(nombre)` **recursiva**, sin bucles, que devuelve la **lista** desde `nombre` hasta el antepasado más antiguo registrado. Caso base: si `nombre` no tiene padre en el diccionario, la lista es solo `[nombre]`. Debe salir:\n```\nDavid ← Isaí ← Obed ← Booz ← Salmón ← Naasón ← Aminadab ← Aram ← Esrom ← Fares ← Judá ← Jacob ← Isaac ← Abraham\n```",
+    "en": "Now the other way: the `father` dictionary says who each person's father was. Write a **recursive** `ancestry(name)`, with no loops, that returns the **list** from `name` up to the oldest recorded ancestor. Base case: if `name` has no father in the dictionary, the list is just `[name]`. It should print:\n```\nDavid ← Jesse ← Obed ← Boaz ← Salmon ← Nahshon ← Amminadab ← Ram ← Hezron ← Perez ← Judah ← Jacob ← Isaac ← Abraham\n```"
+   },
+   "inicial": {
+    "es": "padre = {\n    \"Isaac\": \"Abraham\",\n    \"Jacob\": \"Isaac\",\n    \"Judá\": \"Jacob\",\n    \"Fares\": \"Judá\",\n    \"Esrom\": \"Fares\",\n    \"Aram\": \"Esrom\",\n    \"Aminadab\": \"Aram\",\n    \"Naasón\": \"Aminadab\",\n    \"Salmón\": \"Naasón\",\n    \"Booz\": \"Salmón\",\n    \"Obed\": \"Booz\",\n    \"Isaí\": \"Obed\",\n    \"David\": \"Isaí\",\n}\n\ndef ascendencia(nombre):\n    \n\nprint(\" ← \".join(ascendencia(\"David\")))",
+    "en": "father = {\n    \"Isaac\": \"Abraham\",\n    \"Jacob\": \"Isaac\",\n    \"Judah\": \"Jacob\",\n    \"Perez\": \"Judah\",\n    \"Hezron\": \"Perez\",\n    \"Ram\": \"Hezron\",\n    \"Amminadab\": \"Ram\",\n    \"Nahshon\": \"Amminadab\",\n    \"Salmon\": \"Nahshon\",\n    \"Boaz\": \"Salmon\",\n    \"Obed\": \"Boaz\",\n    \"Jesse\": \"Obed\",\n    \"David\": \"Jesse\",\n}\n\ndef ancestry(name):\n    \n\nprint(\" ← \".join(ancestry(\"David\")))"
+   },
+   "pistas": {
+    "es": [
+     "Caso base: `if nombre not in padre: return [nombre]`.",
+     "Caso recursivo: una lista con `nombre` seguida de la ascendencia de su padre: `return [nombre] + ascendencia(padre[nombre])`."
+    ],
+    "en": [
+     "Base case: `if name not in father: return [name]`.",
+     "Recursive case: a list with `name` followed by the ancestry of their father: `return [name] + ancestry(father[name])`."
+    ]
+   },
+   "solucion": {
+    "es": "padre = {\n    \"Isaac\": \"Abraham\",\n    \"Jacob\": \"Isaac\",\n    \"Judá\": \"Jacob\",\n    \"Fares\": \"Judá\",\n    \"Esrom\": \"Fares\",\n    \"Aram\": \"Esrom\",\n    \"Aminadab\": \"Aram\",\n    \"Naasón\": \"Aminadab\",\n    \"Salmón\": \"Naasón\",\n    \"Booz\": \"Salmón\",\n    \"Obed\": \"Booz\",\n    \"Isaí\": \"Obed\",\n    \"David\": \"Isaí\",\n}\n\ndef ascendencia(nombre):\n    if nombre not in padre:\n        return [nombre]\n    return [nombre] + ascendencia(padre[nombre])\n\nprint(\" ← \".join(ascendencia(\"David\")))",
+    "en": "father = {\n    \"Isaac\": \"Abraham\",\n    \"Jacob\": \"Isaac\",\n    \"Judah\": \"Jacob\",\n    \"Perez\": \"Judah\",\n    \"Hezron\": \"Perez\",\n    \"Ram\": \"Hezron\",\n    \"Amminadab\": \"Ram\",\n    \"Nahshon\": \"Amminadab\",\n    \"Salmon\": \"Nahshon\",\n    \"Boaz\": \"Salmon\",\n    \"Obed\": \"Boaz\",\n    \"Jesse\": \"Obed\",\n    \"David\": \"Jesse\",\n}\n\ndef ancestry(name):\n    if name not in father:\n        return [name]\n    return [name] + ancestry(father[name])\n\nprint(\" ← \".join(ancestry(\"David\")))"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "David ← Isaí ← Obed ← Booz ← Salmón ← Naasón ← Aminadab ← Aram ← Esrom ← Fares ← Judá ← Jacob ← Isaac ← Abraham"
+     },
+     {
+      "py": "assert ascendencia('Abraham') == ['Abraham'] and ascendencia('Jacob') == ['Jacob', 'Isaac', 'Abraham']",
+      "msg": {
+       "es": "ascendencia(\"Abraham\") debe ser [\"Abraham\"] y ascendencia(\"Jacob\") [\"Jacob\", \"Isaac\", \"Abraham\"]: devuelve una lista.",
+       "en": "ascendencia(\"Abraham\") must be [\"Abraham\"] and ascendencia(\"Jacob\") [\"Jacob\", \"Isaac\", \"Abraham\"]: return a list."
+      }
+     },
+     {
+      "py": "import ast\n_f = [n for n in ast.walk(ast.parse(_codigo)) if isinstance(n, ast.FunctionDef) and n.name == 'ascendencia'][0]\nassert not any(isinstance(n, (ast.For, ast.While, ast.ListComp, ast.GeneratorExp)) for n in ast.walk(_f))\nassert any(isinstance(n, ast.Call) and getattr(n.func, 'id', '') == 'ascendencia' for n in ast.walk(_f))",
+      "msg": {
+       "es": "ascendencia debe resolverse con recursión: que se llame a sí misma, sin for ni while.",
+       "en": "ascendencia must be solved with recursion: it calls itself, with no for or while."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "David ← Jesse ← Obed ← Boaz ← Salmon ← Nahshon ← Amminadab ← Ram ← Hezron ← Perez ← Judah ← Jacob ← Isaac ← Abraham"
+     },
+     {
+      "py": "assert ancestry('Abraham') == ['Abraham'] and ancestry('Jacob') == ['Jacob', 'Isaac', 'Abraham']",
+      "msg": {
+       "es": "ancestry(\"Abraham\") debe ser [\"Abraham\"] y ancestry(\"Jacob\") [\"Jacob\", \"Isaac\", \"Abraham\"]: devuelve una lista.",
+       "en": "ancestry(\"Abraham\") must be [\"Abraham\"] and ancestry(\"Jacob\") [\"Jacob\", \"Isaac\", \"Abraham\"]: return a list."
+      }
+     },
+     {
+      "py": "import ast\n_f = [n for n in ast.walk(ast.parse(_codigo)) if isinstance(n, ast.FunctionDef) and n.name == 'ancestry'][0]\nassert not any(isinstance(n, (ast.For, ast.While, ast.ListComp, ast.GeneratorExp)) for n in ast.walk(_f))\nassert any(isinstance(n, ast.Call) and getattr(n.func, 'id', '') == 'ancestry' for n in ast.walk(_f))",
+      "msg": {
+       "es": "ancestry debe resolverse con recursión: que se llame a sí misma, sin for ni while.",
+       "en": "ancestry must be solved with recursion: it calls itself, with no for or while."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "padre = {\n    \"Isaac\": \"Abraham\",\n    \"Jacob\": \"Isaac\",\n    \"Judá\": \"Jacob\",\n    \"Fares\": \"Judá\",\n    \"Esrom\": \"Fares\",\n    \"Aram\": \"Esrom\",\n    \"Aminadab\": \"Aram\",\n    \"Naasón\": \"Aminadab\",\n    \"Salmón\": \"Naasón\",\n    \"Booz\": \"Salmón\",\n    \"Obed\": \"Booz\",\n    \"Isaí\": \"Obed\",\n    \"David\": \"Isaí\",\n}\n\ndef ascendencia(nombre):\n    return [nombre] + ascendencia(padre[nombre])\n\nprint(\" ← \".join(ascendencia(\"David\")))",
+     "padre = {\n    \"Isaac\": \"Abraham\",\n    \"Jacob\": \"Isaac\",\n    \"Judá\": \"Jacob\",\n    \"Fares\": \"Judá\",\n    \"Esrom\": \"Fares\",\n    \"Aram\": \"Esrom\",\n    \"Aminadab\": \"Aram\",\n    \"Naasón\": \"Aminadab\",\n    \"Salmón\": \"Naasón\",\n    \"Booz\": \"Salmón\",\n    \"Obed\": \"Booz\",\n    \"Isaí\": \"Obed\",\n    \"David\": \"Isaí\",\n}\n\ndef ascendencia(nombre):\n    if nombre not in padre:\n        return [nombre]\n    return [nombre] + ascendencia(nombre)\n\nprint(\" ← \".join(ascendencia(\"David\")))",
+     "padre = {\n    \"Isaac\": \"Abraham\",\n    \"Jacob\": \"Isaac\",\n    \"Judá\": \"Jacob\",\n    \"Fares\": \"Judá\",\n    \"Esrom\": \"Fares\",\n    \"Aram\": \"Esrom\",\n    \"Aminadab\": \"Aram\",\n    \"Naasón\": \"Aminadab\",\n    \"Salmón\": \"Naasón\",\n    \"Booz\": \"Salmón\",\n    \"Obed\": \"Booz\",\n    \"Isaí\": \"Obed\",\n    \"David\": \"Isaí\",\n}\n\ndef ascendencia(nombre):\n    if nombre not in padre:\n        return [nombre]\n    return nombre + ascendencia(padre[nombre])\n\nprint(\" ← \".join(ascendencia(\"David\")))",
+     "padre = {\n    \"Isaac\": \"Abraham\",\n    \"Jacob\": \"Isaac\",\n    \"Judá\": \"Jacob\",\n    \"Fares\": \"Judá\",\n    \"Esrom\": \"Fares\",\n    \"Aram\": \"Esrom\",\n    \"Aminadab\": \"Aram\",\n    \"Naasón\": \"Aminadab\",\n    \"Salmón\": \"Naasón\",\n    \"Booz\": \"Salmón\",\n    \"Obed\": \"Booz\",\n    \"Isaí\": \"Obed\",\n    \"David\": \"Isaí\",\n}\n\ndef ascendencia(nombre):\n    if nombre not in padre:\n        return [nombre]\n    return ascendencia(padre[nombre]) + [nombre]\n\nprint(\" ← \".join(ascendencia(\"David\")))"
+    ],
+    "en": [
+     "father = {\n    \"Isaac\": \"Abraham\",\n    \"Jacob\": \"Isaac\",\n    \"Judah\": \"Jacob\",\n    \"Perez\": \"Judah\",\n    \"Hezron\": \"Perez\",\n    \"Ram\": \"Hezron\",\n    \"Amminadab\": \"Ram\",\n    \"Nahshon\": \"Amminadab\",\n    \"Salmon\": \"Nahshon\",\n    \"Boaz\": \"Salmon\",\n    \"Obed\": \"Boaz\",\n    \"Jesse\": \"Obed\",\n    \"David\": \"Jesse\",\n}\n\ndef ancestry(name):\n    return [name] + ancestry(father[name])\n\nprint(\" ← \".join(ancestry(\"David\")))",
+     "father = {\n    \"Isaac\": \"Abraham\",\n    \"Jacob\": \"Isaac\",\n    \"Judah\": \"Jacob\",\n    \"Perez\": \"Judah\",\n    \"Hezron\": \"Perez\",\n    \"Ram\": \"Hezron\",\n    \"Amminadab\": \"Ram\",\n    \"Nahshon\": \"Amminadab\",\n    \"Salmon\": \"Nahshon\",\n    \"Boaz\": \"Salmon\",\n    \"Obed\": \"Boaz\",\n    \"Jesse\": \"Obed\",\n    \"David\": \"Jesse\",\n}\n\ndef ancestry(name):\n    if name not in father:\n        return [name]\n    return [name] + ancestry(name)\n\nprint(\" ← \".join(ancestry(\"David\")))",
+     "father = {\n    \"Isaac\": \"Abraham\",\n    \"Jacob\": \"Isaac\",\n    \"Judah\": \"Jacob\",\n    \"Perez\": \"Judah\",\n    \"Hezron\": \"Perez\",\n    \"Ram\": \"Hezron\",\n    \"Amminadab\": \"Ram\",\n    \"Nahshon\": \"Amminadab\",\n    \"Salmon\": \"Nahshon\",\n    \"Boaz\": \"Salmon\",\n    \"Obed\": \"Boaz\",\n    \"Jesse\": \"Obed\",\n    \"David\": \"Jesse\",\n}\n\ndef ancestry(name):\n    if name not in father:\n        return [name]\n    return ancestry(father[name]) + [name]\n\nprint(\" ← \".join(ancestry(\"David\")))"
+    ]
+   }
+  },
+  {
+   "id": "version-iterativa",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Aquí está la segunda parte de la genealogía: los reyes de David a Josías (Mateo 1:6-11), con la `ascendencia` recursiva ya hecha. Escribe `ascendencia_iter(nombre)`, que devuelve **la misma lista** pero con un `while` y **sin** llamarse a sí misma: empieza con `[nombre]` y sube de padre en padre mientras haya uno. Debe salir:\n```\nTrue\n14\n```",
+    "en": "Here is the second part of the genealogy: the kings from David to Josiah (Matthew 1:6-11), with the recursive `ancestry` already done. Write `ancestry_iter(name)`, which returns **the same list** but with a `while` and **without** calling itself: start with `[name]` and go up from father to father while there is one. It should print:\n```\nTrue\n14\n```"
+   },
+   "inicial": {
+    "es": "padre = {\n    \"Salomón\": \"David\",\n    \"Roboam\": \"Salomón\",\n    \"Abías\": \"Roboam\",\n    \"Asa\": \"Abías\",\n    \"Josafat\": \"Asa\",\n    \"Joram\": \"Josafat\",\n    \"Uzías\": \"Joram\",\n    \"Jotam\": \"Uzías\",\n    \"Acaz\": \"Jotam\",\n    \"Ezequías\": \"Acaz\",\n    \"Manasés\": \"Ezequías\",\n    \"Amón\": \"Manasés\",\n    \"Josías\": \"Amón\",\n}\n\ndef ascendencia(nombre):\n    if nombre not in padre:\n        return [nombre]\n    return [nombre] + ascendencia(padre[nombre])\n\ndef ascendencia_iter(nombre):\n    \n\nprint(ascendencia_iter(\"Josías\") == ascendencia(\"Josías\"))\nprint(len(ascendencia_iter(\"Josías\")))",
+    "en": "father = {\n    \"Solomon\": \"David\",\n    \"Rehoboam\": \"Solomon\",\n    \"Abijah\": \"Rehoboam\",\n    \"Asa\": \"Abijah\",\n    \"Jehoshaphat\": \"Asa\",\n    \"Joram\": \"Jehoshaphat\",\n    \"Uzziah\": \"Joram\",\n    \"Jotham\": \"Uzziah\",\n    \"Ahaz\": \"Jotham\",\n    \"Hezekiah\": \"Ahaz\",\n    \"Manasseh\": \"Hezekiah\",\n    \"Amon\": \"Manasseh\",\n    \"Josiah\": \"Amon\",\n}\n\ndef ancestry(name):\n    if name not in father:\n        return [name]\n    return [name] + ancestry(father[name])\n\ndef ancestry_iter(name):\n    \n\nprint(ancestry_iter(\"Josiah\") == ancestry(\"Josiah\"))\nprint(len(ancestry_iter(\"Josiah\")))"
+   },
+   "pistas": {
+    "es": [
+     "`linea = [nombre]` y luego `while nombre in padre:`.",
+     "Dentro: `nombre = padre[nombre]` y `linea.append(nombre)`; al salir del bucle, `return linea`."
+    ],
+    "en": [
+     "`line = [name]` and then `while name in father:`.",
+     "Inside: `name = father[name]` and `line.append(name)`; after the loop, `return line`."
+    ]
+   },
+   "solucion": {
+    "es": "padre = {\n    \"Salomón\": \"David\",\n    \"Roboam\": \"Salomón\",\n    \"Abías\": \"Roboam\",\n    \"Asa\": \"Abías\",\n    \"Josafat\": \"Asa\",\n    \"Joram\": \"Josafat\",\n    \"Uzías\": \"Joram\",\n    \"Jotam\": \"Uzías\",\n    \"Acaz\": \"Jotam\",\n    \"Ezequías\": \"Acaz\",\n    \"Manasés\": \"Ezequías\",\n    \"Amón\": \"Manasés\",\n    \"Josías\": \"Amón\",\n}\n\ndef ascendencia(nombre):\n    if nombre not in padre:\n        return [nombre]\n    return [nombre] + ascendencia(padre[nombre])\n\ndef ascendencia_iter(nombre):\n    linea = [nombre]\n    while nombre in padre:\n        nombre = padre[nombre]\n        linea.append(nombre)\n    return linea\n\nprint(ascendencia_iter(\"Josías\") == ascendencia(\"Josías\"))\nprint(len(ascendencia_iter(\"Josías\")))",
+    "en": "father = {\n    \"Solomon\": \"David\",\n    \"Rehoboam\": \"Solomon\",\n    \"Abijah\": \"Rehoboam\",\n    \"Asa\": \"Abijah\",\n    \"Jehoshaphat\": \"Asa\",\n    \"Joram\": \"Jehoshaphat\",\n    \"Uzziah\": \"Joram\",\n    \"Jotham\": \"Uzziah\",\n    \"Ahaz\": \"Jotham\",\n    \"Hezekiah\": \"Ahaz\",\n    \"Manasseh\": \"Hezekiah\",\n    \"Amon\": \"Manasseh\",\n    \"Josiah\": \"Amon\",\n}\n\ndef ancestry(name):\n    if name not in father:\n        return [name]\n    return [name] + ancestry(father[name])\n\ndef ancestry_iter(name):\n    line = [name]\n    while name in father:\n        name = father[name]\n        line.append(name)\n    return line\n\nprint(ancestry_iter(\"Josiah\") == ancestry(\"Josiah\"))\nprint(len(ancestry_iter(\"Josiah\")))"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "True\n14"
+     },
+     {
+      "py": "assert ascendencia_iter('David') == ['David'] and ascendencia_iter('Roboam') == ['Roboam', 'Salomón', 'David']",
+      "msg": {
+       "es": "ascendencia_iter(\"David\") debe ser [\"David\"] y ascendencia_iter(\"Roboam\") [\"Roboam\", \"Salomón\", \"David\"].",
+       "en": "ascendencia_iter(\"David\") must be [\"David\"] and ascendencia_iter(\"Roboam\") [\"Roboam\", \"Salomón\", \"David\"]."
+      }
+     },
+     {
+      "py": "import sys\n_p = {f'g{i}': f'g{i - 1}' for i in range(1, 3000)}\npadre.clear(); padre.update(_p)\nassert len(ascendencia_iter('g2999')) == 3000",
+      "msg": {
+       "es": "La versión iterativa no debe llamarse a sí misma: con 3000 generaciones tiene que funcionar sin RecursionError.",
+       "en": "The iterative version must not call itself: with 3000 generations it has to work without RecursionError."
+      }
+     },
+     {
+      "py": "assert 'while' in _codigo",
+      "msg": {
+       "es": "Usa un while para subir de padre en padre.",
+       "en": "Use a while to go up from father to father."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "True\n14"
+     },
+     {
+      "py": "assert ancestry_iter('David') == ['David'] and ancestry_iter('Rehoboam') == ['Rehoboam', 'Solomon', 'David']",
+      "msg": {
+       "es": "ancestry_iter(\"David\") debe ser [\"David\"] y ancestry_iter(\"Rehoboam\") [\"Rehoboam\", \"Solomon\", \"David\"].",
+       "en": "ancestry_iter(\"David\") must be [\"David\"] and ancestry_iter(\"Rehoboam\") [\"Rehoboam\", \"Solomon\", \"David\"]."
+      }
+     },
+     {
+      "py": "_p = {f'g{i}': f'g{i - 1}' for i in range(1, 3000)}\nfather.clear(); father.update(_p)\nassert len(ancestry_iter('g2999')) == 3000",
+      "msg": {
+       "es": "La versión iterativa no debe llamarse a sí misma: con 3000 generaciones tiene que funcionar sin RecursionError.",
+       "en": "The iterative version must not call itself: with 3000 generations it has to work without RecursionError."
+      }
+     },
+     {
+      "py": "assert 'while' in _codigo",
+      "msg": {
+       "es": "Usa un while para subir de padre en padre.",
+       "en": "Use a while to go up from father to father."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "padre = {\n    \"Salomón\": \"David\",\n    \"Roboam\": \"Salomón\",\n    \"Abías\": \"Roboam\",\n    \"Asa\": \"Abías\",\n    \"Josafat\": \"Asa\",\n    \"Joram\": \"Josafat\",\n    \"Uzías\": \"Joram\",\n    \"Jotam\": \"Uzías\",\n    \"Acaz\": \"Jotam\",\n    \"Ezequías\": \"Acaz\",\n    \"Manasés\": \"Ezequías\",\n    \"Amón\": \"Manasés\",\n    \"Josías\": \"Amón\",\n}\n\ndef ascendencia(nombre):\n    if nombre not in padre:\n        return [nombre]\n    return [nombre] + ascendencia(padre[nombre])\n\ndef ascendencia_iter(nombre):\n    return ascendencia(nombre)\n\nprint(ascendencia_iter(\"Josías\") == ascendencia(\"Josías\"))\nprint(len(ascendencia_iter(\"Josías\")))",
+     "padre = {\n    \"Salomón\": \"David\",\n    \"Roboam\": \"Salomón\",\n    \"Abías\": \"Roboam\",\n    \"Asa\": \"Abías\",\n    \"Josafat\": \"Asa\",\n    \"Joram\": \"Josafat\",\n    \"Uzías\": \"Joram\",\n    \"Jotam\": \"Uzías\",\n    \"Acaz\": \"Jotam\",\n    \"Ezequías\": \"Acaz\",\n    \"Manasés\": \"Ezequías\",\n    \"Amón\": \"Manasés\",\n    \"Josías\": \"Amón\",\n}\n\ndef ascendencia(nombre):\n    if nombre not in padre:\n        return [nombre]\n    return [nombre] + ascendencia(padre[nombre])\n\ndef ascendencia_iter(nombre):\n    linea = [nombre]\n    while nombre in padre:\n        linea.append(padre[nombre])\n        nombre = padre[nombre]\n    linea.append(nombre)\n    return linea\n\nprint(ascendencia_iter(\"Josías\") == ascendencia(\"Josías\"))\nprint(len(ascendencia_iter(\"Josías\")))",
+     "padre = {\n    \"Salomón\": \"David\",\n    \"Roboam\": \"Salomón\",\n    \"Abías\": \"Roboam\",\n    \"Asa\": \"Abías\",\n    \"Josafat\": \"Asa\",\n    \"Joram\": \"Josafat\",\n    \"Uzías\": \"Joram\",\n    \"Jotam\": \"Uzías\",\n    \"Acaz\": \"Jotam\",\n    \"Ezequías\": \"Acaz\",\n    \"Manasés\": \"Ezequías\",\n    \"Amón\": \"Manasés\",\n    \"Josías\": \"Amón\",\n}\n\ndef ascendencia(nombre):\n    if nombre not in padre:\n        return [nombre]\n    return [nombre] + ascendencia(padre[nombre])\n\ndef ascendencia_iter(nombre):\n    linea = []\n    while nombre in padre:\n        nombre = padre[nombre]\n        linea.append(nombre)\n    return linea\n\nprint(ascendencia_iter(\"Josías\") == ascendencia(\"Josías\"))\nprint(len(ascendencia_iter(\"Josías\")))",
+     "padre = {\n    \"Salomón\": \"David\",\n    \"Roboam\": \"Salomón\",\n    \"Abías\": \"Roboam\",\n    \"Asa\": \"Abías\",\n    \"Josafat\": \"Asa\",\n    \"Joram\": \"Josafat\",\n    \"Uzías\": \"Joram\",\n    \"Jotam\": \"Uzías\",\n    \"Acaz\": \"Jotam\",\n    \"Ezequías\": \"Acaz\",\n    \"Manasés\": \"Ezequías\",\n    \"Amón\": \"Manasés\",\n    \"Josías\": \"Amón\",\n}\n\ndef ascendencia(nombre):\n    if nombre not in padre:\n        return [nombre]\n    return [nombre] + ascendencia(padre[nombre])\n\ndef ascendencia_iter(nombre):\n    linea = [nombre]\n    while nombre in padre:\n        nombre = padre[nombre]\n        linea.append(nombre)\n        return linea\n\nprint(ascendencia_iter(\"Josías\") == ascendencia(\"Josías\"))\nprint(len(ascendencia_iter(\"Josías\")))"
+    ],
+    "en": [
+     "father = {\n    \"Solomon\": \"David\",\n    \"Rehoboam\": \"Solomon\",\n    \"Abijah\": \"Rehoboam\",\n    \"Asa\": \"Abijah\",\n    \"Jehoshaphat\": \"Asa\",\n    \"Joram\": \"Jehoshaphat\",\n    \"Uzziah\": \"Joram\",\n    \"Jotham\": \"Uzziah\",\n    \"Ahaz\": \"Jotham\",\n    \"Hezekiah\": \"Ahaz\",\n    \"Manasseh\": \"Hezekiah\",\n    \"Amon\": \"Manasseh\",\n    \"Josiah\": \"Amon\",\n}\n\ndef ancestry(name):\n    if name not in father:\n        return [name]\n    return [name] + ancestry(father[name])\n\ndef ancestry_iter(name):\n    return ancestry(name)\n\nprint(ancestry_iter(\"Josiah\") == ancestry(\"Josiah\"))\nprint(len(ancestry_iter(\"Josiah\")))",
+     "father = {\n    \"Solomon\": \"David\",\n    \"Rehoboam\": \"Solomon\",\n    \"Abijah\": \"Rehoboam\",\n    \"Asa\": \"Abijah\",\n    \"Jehoshaphat\": \"Asa\",\n    \"Joram\": \"Jehoshaphat\",\n    \"Uzziah\": \"Joram\",\n    \"Jotham\": \"Uzziah\",\n    \"Ahaz\": \"Jotham\",\n    \"Hezekiah\": \"Ahaz\",\n    \"Manasseh\": \"Hezekiah\",\n    \"Amon\": \"Manasseh\",\n    \"Josiah\": \"Amon\",\n}\n\ndef ancestry(name):\n    if name not in father:\n        return [name]\n    return [name] + ancestry(father[name])\n\ndef ancestry_iter(name):\n    line = []\n    while name in father:\n        name = father[name]\n        line.append(name)\n    return line\n\nprint(ancestry_iter(\"Josiah\") == ancestry(\"Josiah\"))\nprint(len(ancestry_iter(\"Josiah\")))"
+    ]
+   }
+  },
+  {
+   "id": "arbol-y-camino",
+   "tipo": "escribir",
+   "reto": true,
+   "enunciado": {
+    "es": "**Reto: el árbol de Judá.** Con el diccionario `hijos`, escribe dos funciones recursivas:\n- `mostrar(nombre, nivel=0)`: imprime `nombre` con `2 * nivel` espacios delante y luego muestra a cada hijo con un nivel más.\n- `camino(desde, hasta)`: devuelve la lista de nombres que baja de `desde` hasta `hasta` (incluidos los dos), o `None` si `hasta` no es descendiente de `desde`. Caso base: si `desde == hasta`, el camino es `[desde]`.\n\nLuego llama a `mostrar(\"Judá\")` y muestra cuántas generaciones tiene `camino(\"Abraham\", \"David\")`. Las primeras líneas deben ser:\n```\nJudá\n  Fares\n    Esrom\n      Aram\n...\n```\ny la última:\n```\nDe Abraham a David: 14 generaciones\n```",
+    "en": "**Challenge: Judah's tree.** Using the `children` dictionary, write two recursive functions:\n- `show(name, level=0)`: prints `name` with `2 * level` spaces in front and then shows each child one level deeper.\n- `path(start, end)`: returns the list of names going down from `start` to `end` (both included), or `None` if `end` is not a descendant of `start`. Base case: if `start == end`, the path is `[start]`.\n\nThen call `show(\"Judah\")` and show how many generations `path(\"Abraham\", \"David\")` has. The first lines must be:\n```\nJudah\n  Perez\n    Hezron\n      Ram\n...\n```\nand the last one:\n```\nFrom Abraham to David: 14 generations\n```"
+   },
+   "inicial": {
+    "es": "hijos = {\n    \"Abraham\": [\"Isaac\"],\n    \"Isaac\": [\"Jacob\"],\n    \"Jacob\": [\"Judá\"],\n    \"Judá\": [\"Fares\", \"Zara\"],\n    \"Fares\": [\"Esrom\"],\n    \"Esrom\": [\"Aram\"],\n    \"Aram\": [\"Aminadab\"],\n    \"Aminadab\": [\"Naasón\"],\n    \"Naasón\": [\"Salmón\"],\n    \"Salmón\": [\"Booz\"],\n    \"Booz\": [\"Obed\"],\n    \"Obed\": [\"Isaí\"],\n    \"Isaí\": [\"David\"],\n}\n\ndef mostrar(nombre, nivel=0):\n    \n\ndef camino(desde, hasta):\n    \n",
+    "en": "children = {\n    \"Abraham\": [\"Isaac\"],\n    \"Isaac\": [\"Jacob\"],\n    \"Jacob\": [\"Judah\"],\n    \"Judah\": [\"Perez\", \"Zerah\"],\n    \"Perez\": [\"Hezron\"],\n    \"Hezron\": [\"Ram\"],\n    \"Ram\": [\"Amminadab\"],\n    \"Amminadab\": [\"Nahshon\"],\n    \"Nahshon\": [\"Salmon\"],\n    \"Salmon\": [\"Boaz\"],\n    \"Boaz\": [\"Obed\"],\n    \"Obed\": [\"Jesse\"],\n    \"Jesse\": [\"David\"],\n}\n\ndef show(name, level=0):\n    \n\ndef path(start, end):\n    \n"
+   },
+   "pistas": {
+    "es": [
+     "`mostrar`: `print(\"  \" * nivel + nombre)` y luego `for hijo in hijos.get(nombre, []): mostrar(hijo, nivel + 1)`.",
+     "`camino`: tras el caso base, prueba con cada hijo: `resto = camino(hijo, hasta)`; si `resto is not None`, devuelve `[desde] + resto`. Si ningún hijo sirve, `return None`."
+    ],
+    "en": [
+     "`show`: `print(\"  \" * level + name)` and then `for child in children.get(name, []): show(child, level + 1)`.",
+     "`path`: after the base case, try each child: `rest = path(child, end)`; if `rest is not None`, return `[start] + rest`. If no child works, `return None`."
+    ]
+   },
+   "solucion": {
+    "es": "hijos = {\n    \"Abraham\": [\"Isaac\"],\n    \"Isaac\": [\"Jacob\"],\n    \"Jacob\": [\"Judá\"],\n    \"Judá\": [\"Fares\", \"Zara\"],\n    \"Fares\": [\"Esrom\"],\n    \"Esrom\": [\"Aram\"],\n    \"Aram\": [\"Aminadab\"],\n    \"Aminadab\": [\"Naasón\"],\n    \"Naasón\": [\"Salmón\"],\n    \"Salmón\": [\"Booz\"],\n    \"Booz\": [\"Obed\"],\n    \"Obed\": [\"Isaí\"],\n    \"Isaí\": [\"David\"],\n}\n\ndef mostrar(nombre, nivel=0):\n    print(\"  \" * nivel + nombre)\n    for hijo in hijos.get(nombre, []):\n        mostrar(hijo, nivel + 1)\n\ndef camino(desde, hasta):\n    if desde == hasta:\n        return [desde]\n    for hijo in hijos.get(desde, []):\n        resto = camino(hijo, hasta)\n        if resto is not None:\n            return [desde] + resto\n    return None\n\nmostrar(\"Judá\")\nprint(f\"De Abraham a David: {len(camino('Abraham', 'David'))} generaciones\")",
+    "en": "children = {\n    \"Abraham\": [\"Isaac\"],\n    \"Isaac\": [\"Jacob\"],\n    \"Jacob\": [\"Judah\"],\n    \"Judah\": [\"Perez\", \"Zerah\"],\n    \"Perez\": [\"Hezron\"],\n    \"Hezron\": [\"Ram\"],\n    \"Ram\": [\"Amminadab\"],\n    \"Amminadab\": [\"Nahshon\"],\n    \"Nahshon\": [\"Salmon\"],\n    \"Salmon\": [\"Boaz\"],\n    \"Boaz\": [\"Obed\"],\n    \"Obed\": [\"Jesse\"],\n    \"Jesse\": [\"David\"],\n}\n\ndef show(name, level=0):\n    print(\"  \" * level + name)\n    for child in children.get(name, []):\n        show(child, level + 1)\n\ndef path(start, end):\n    if start == end:\n        return [start]\n    for child in children.get(start, []):\n        rest = path(child, end)\n        if rest is not None:\n            return [start] + rest\n    return None\n\nshow(\"Judah\")\nprint(f\"From Abraham to David: {len(path('Abraham', 'David'))} generations\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Judá\n  Fares\n    Esrom\n      Aram\n        Aminadab\n          Naasón\n            Salmón\n              Booz\n                Obed\n                  Isaí\n                    David\n  Zara\nDe Abraham a David: 14 generaciones"
+     },
+     {
+      "py": "assert camino('Judá', 'Obed') == ['Judá', 'Fares', 'Esrom', 'Aram', 'Aminadab', 'Naasón', 'Salmón', 'Booz', 'Obed']",
+      "msg": {
+       "es": "camino(\"Judá\", \"Obed\") debe bajar por Fares hasta Obed, incluidos los dos extremos.",
+       "en": "camino(\"Judá\", \"Obed\") must go down through Fares to Obed, both ends included."
+      }
+     },
+     {
+      "py": "assert camino('David', 'David') == ['David'] and camino('Judá', 'Zara') == ['Judá', 'Zara']",
+      "msg": {
+       "es": "Caso base: camino(\"David\", \"David\") es [\"David\"]. Y camino(\"Judá\", \"Zara\") es [\"Judá\", \"Zara\"].",
+       "en": "Base case: camino(\"David\", \"David\") is [\"David\"]. And camino(\"Judá\", \"Zara\") is [\"Judá\", \"Zara\"]."
+      }
+     },
+     {
+      "py": "assert camino('Zara', 'David') is None and camino('David', 'Abraham') is None",
+      "msg": {
+       "es": "Si no hay camino (Zara no es antepasado de David), camino debe devolver None.",
+       "en": "If there is no path (Zara is not an ancestor of David), camino must return None."
+      }
+     },
+     {
+      "py": "import ast\n_f = [n for n in ast.walk(ast.parse(_codigo)) if isinstance(n, ast.FunctionDef) and n.name in ('mostrar', 'camino')]\nassert len(_f) == 2 and all(any(isinstance(n, ast.Call) and getattr(n.func, 'id', '') == f.name for n in ast.walk(f)) for f in _f)",
+      "msg": {
+       "es": "mostrar y camino deben ser recursivas: cada una se llama a sí misma.",
+       "en": "mostrar and camino must be recursive: each one calls itself."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Judah\n  Perez\n    Hezron\n      Ram\n        Amminadab\n          Nahshon\n            Salmon\n              Boaz\n                Obed\n                  Jesse\n                    David\n  Zerah\nFrom Abraham to David: 14 generations"
+     },
+     {
+      "py": "assert path('Judah', 'Obed') == ['Judah', 'Perez', 'Hezron', 'Ram', 'Amminadab', 'Nahshon', 'Salmon', 'Boaz', 'Obed']",
+      "msg": {
+       "es": "path(\"Judah\", \"Obed\") debe bajar por Perez hasta Obed, incluidos los dos extremos.",
+       "en": "path(\"Judah\", \"Obed\") must go down through Perez to Obed, both ends included."
+      }
+     },
+     {
+      "py": "assert path('David', 'David') == ['David'] and path('Judah', 'Zerah') == ['Judah', 'Zerah']",
+      "msg": {
+       "es": "Caso base: path(\"David\", \"David\") es [\"David\"]. Y path(\"Judah\", \"Zerah\") es [\"Judah\", \"Zerah\"].",
+       "en": "Base case: path(\"David\", \"David\") is [\"David\"]. And path(\"Judah\", \"Zerah\") is [\"Judah\", \"Zerah\"]."
+      }
+     },
+     {
+      "py": "assert path('Zerah', 'David') is None and path('David', 'Abraham') is None",
+      "msg": {
+       "es": "Si no hay camino (Zerah no es antepasado de David), path debe devolver None.",
+       "en": "If there is no path (Zerah is not an ancestor of David), path must return None."
+      }
+     },
+     {
+      "py": "import ast\n_f = [n for n in ast.walk(ast.parse(_codigo)) if isinstance(n, ast.FunctionDef) and n.name in ('show', 'path')]\nassert len(_f) == 2 and all(any(isinstance(n, ast.Call) and getattr(n.func, 'id', '') == f.name for n in ast.walk(f)) for f in _f)",
+      "msg": {
+       "es": "show y path deben ser recursivas: cada una se llama a sí misma.",
+       "en": "show and path must be recursive: each one calls itself."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "hijos = {\n    \"Abraham\": [\"Isaac\"],\n    \"Isaac\": [\"Jacob\"],\n    \"Jacob\": [\"Judá\"],\n    \"Judá\": [\"Fares\", \"Zara\"],\n    \"Fares\": [\"Esrom\"],\n    \"Esrom\": [\"Aram\"],\n    \"Aram\": [\"Aminadab\"],\n    \"Aminadab\": [\"Naasón\"],\n    \"Naasón\": [\"Salmón\"],\n    \"Salmón\": [\"Booz\"],\n    \"Booz\": [\"Obed\"],\n    \"Obed\": [\"Isaí\"],\n    \"Isaí\": [\"David\"],\n}\n\ndef mostrar(nombre, nivel=0):\n    print(\" \" * nivel + nombre)\n    for hijo in hijos.get(nombre, []):\n        mostrar(hijo, nivel + 1)\n\ndef camino(desde, hasta):\n    if desde == hasta:\n        return [desde]\n    for hijo in hijos.get(desde, []):\n        resto = camino(hijo, hasta)\n        if resto is not None:\n            return [desde] + resto\n    return None\n\nmostrar(\"Judá\")\nprint(f\"De Abraham a David: {len(camino('Abraham', 'David'))} generaciones\")",
+     "hijos = {\n    \"Abraham\": [\"Isaac\"],\n    \"Isaac\": [\"Jacob\"],\n    \"Jacob\": [\"Judá\"],\n    \"Judá\": [\"Fares\", \"Zara\"],\n    \"Fares\": [\"Esrom\"],\n    \"Esrom\": [\"Aram\"],\n    \"Aram\": [\"Aminadab\"],\n    \"Aminadab\": [\"Naasón\"],\n    \"Naasón\": [\"Salmón\"],\n    \"Salmón\": [\"Booz\"],\n    \"Booz\": [\"Obed\"],\n    \"Obed\": [\"Isaí\"],\n    \"Isaí\": [\"David\"],\n}\n\ndef mostrar(nombre, nivel=0):\n    print(\"  \" * nivel + nombre)\n    for hijo in hijos.get(nombre, []):\n        mostrar(hijo, nivel + 1)\n\ndef camino(desde, hasta):\n    if desde == hasta:\n        return [desde]\n    for hijo in hijos.get(desde, []):\n        return [desde] + camino(hijo, hasta)\n    return None\n\nmostrar(\"Judá\")\nprint(f\"De Abraham a David: {len(camino('Abraham', 'David'))} generaciones\")",
+     "hijos = {\n    \"Abraham\": [\"Isaac\"],\n    \"Isaac\": [\"Jacob\"],\n    \"Jacob\": [\"Judá\"],\n    \"Judá\": [\"Fares\", \"Zara\"],\n    \"Fares\": [\"Esrom\"],\n    \"Esrom\": [\"Aram\"],\n    \"Aram\": [\"Aminadab\"],\n    \"Aminadab\": [\"Naasón\"],\n    \"Naasón\": [\"Salmón\"],\n    \"Salmón\": [\"Booz\"],\n    \"Booz\": [\"Obed\"],\n    \"Obed\": [\"Isaí\"],\n    \"Isaí\": [\"David\"],\n}\n\ndef mostrar(nombre, nivel=0):\n    print(\"  \" * nivel + nombre)\n    for hijo in hijos.get(nombre, []):\n        mostrar(hijo, nivel + 1)\n\ndef camino(desde, hasta):\n    if desde == hasta:\n        return [desde]\n    for hijo in hijos.get(desde, []):\n        resto = camino(hijo, hasta)\n        if resto is not None:\n            return resto\n    return None\n\nmostrar(\"Judá\")\nprint(f\"De Abraham a David: {len(camino('Abraham', 'David'))} generaciones\")",
+     "hijos = {\n    \"Abraham\": [\"Isaac\"],\n    \"Isaac\": [\"Jacob\"],\n    \"Jacob\": [\"Judá\"],\n    \"Judá\": [\"Fares\", \"Zara\"],\n    \"Fares\": [\"Esrom\"],\n    \"Esrom\": [\"Aram\"],\n    \"Aram\": [\"Aminadab\"],\n    \"Aminadab\": [\"Naasón\"],\n    \"Naasón\": [\"Salmón\"],\n    \"Salmón\": [\"Booz\"],\n    \"Booz\": [\"Obed\"],\n    \"Obed\": [\"Isaí\"],\n    \"Isaí\": [\"David\"],\n}\n\ndef mostrar(nombre, nivel=0):\n    print(\"  \" * nivel + nombre)\n    for hijo in hijos.get(nombre, []):\n        mostrar(hijo, nivel)\n\ndef camino(desde, hasta):\n    if desde == hasta:\n        return [desde]\n    for hijo in hijos.get(desde, []):\n        resto = camino(hijo, hasta)\n        if resto is not None:\n            return [desde] + resto\n    return None\n\nmostrar(\"Judá\")\nprint(f\"De Abraham a David: {len(camino('Abraham', 'David'))} generaciones\")"
+    ],
+    "en": [
+     "children = {\n    \"Abraham\": [\"Isaac\"],\n    \"Isaac\": [\"Jacob\"],\n    \"Jacob\": [\"Judah\"],\n    \"Judah\": [\"Perez\", \"Zerah\"],\n    \"Perez\": [\"Hezron\"],\n    \"Hezron\": [\"Ram\"],\n    \"Ram\": [\"Amminadab\"],\n    \"Amminadab\": [\"Nahshon\"],\n    \"Nahshon\": [\"Salmon\"],\n    \"Salmon\": [\"Boaz\"],\n    \"Boaz\": [\"Obed\"],\n    \"Obed\": [\"Jesse\"],\n    \"Jesse\": [\"David\"],\n}\n\ndef show(name, level=0):\n    print(\" \" * level + name)\n    for child in children.get(name, []):\n        show(child, level + 1)\n\ndef path(start, end):\n    if start == end:\n        return [start]\n    for child in children.get(start, []):\n        rest = path(child, end)\n        if rest is not None:\n            return [start] + rest\n    return None\n\nshow(\"Judah\")\nprint(f\"From Abraham to David: {len(path('Abraham', 'David'))} generations\")",
+     "children = {\n    \"Abraham\": [\"Isaac\"],\n    \"Isaac\": [\"Jacob\"],\n    \"Jacob\": [\"Judah\"],\n    \"Judah\": [\"Perez\", \"Zerah\"],\n    \"Perez\": [\"Hezron\"],\n    \"Hezron\": [\"Ram\"],\n    \"Ram\": [\"Amminadab\"],\n    \"Amminadab\": [\"Nahshon\"],\n    \"Nahshon\": [\"Salmon\"],\n    \"Salmon\": [\"Boaz\"],\n    \"Boaz\": [\"Obed\"],\n    \"Obed\": [\"Jesse\"],\n    \"Jesse\": [\"David\"],\n}\n\ndef show(name, level=0):\n    print(\"  \" * level + name)\n    for child in children.get(name, []):\n        show(child, level + 1)\n\ndef path(start, end):\n    if start == end:\n        return [start]\n    for child in children.get(start, []):\n        return [start] + path(child, end)\n    return None\n\nshow(\"Judah\")\nprint(f\"From Abraham to David: {len(path('Abraham', 'David'))} generations\")",
+     "children = {\n    \"Abraham\": [\"Isaac\"],\n    \"Isaac\": [\"Jacob\"],\n    \"Jacob\": [\"Judah\"],\n    \"Judah\": [\"Perez\", \"Zerah\"],\n    \"Perez\": [\"Hezron\"],\n    \"Hezron\": [\"Ram\"],\n    \"Ram\": [\"Amminadab\"],\n    \"Amminadab\": [\"Nahshon\"],\n    \"Nahshon\": [\"Salmon\"],\n    \"Salmon\": [\"Boaz\"],\n    \"Boaz\": [\"Obed\"],\n    \"Obed\": [\"Jesse\"],\n    \"Jesse\": [\"David\"],\n}\n\ndef show(name, level=0):\n    print(\"  \" * level + name)\n    for child in children.get(name, []):\n        show(child, level)\n\ndef path(start, end):\n    if start == end:\n        return [start]\n    for child in children.get(start, []):\n        rest = path(child, end)\n        if rest is not None:\n            return [start] + rest\n    return None\n\nshow(\"Judah\")\nprint(f\"From Abraham to David: {len(path('Abraham', 'David'))} generations\")"
+    ]
+   }
+  }
+ ]
+}

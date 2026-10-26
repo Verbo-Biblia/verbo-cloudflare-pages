@@ -1,0 +1,575 @@
+{
+ "id": "09-parabolas",
+ "numero": 9,
+ "lugar": "galilea",
+ "titulo": {
+  "es": "Las parábolas",
+  "en": "The parables"
+ },
+ "tema": {
+  "es": "funciones, parámetros y return",
+  "en": "functions, parameters and return"
+ },
+ "versiculo": "mt-13-34",
+ "medalla": {
+  "es": "Narrador de parábolas",
+  "en": "Parable teller"
+ },
+ "leccion": {
+  "es": [
+   "Jesús enseñaba con parábolas: historias cortas que se cuentan una y otra vez. Una **función** es parecida: un bloque de código con nombre que defines una vez con `def` y luego **llamas** cuantas veces quieras: `def bendecir(nombre):` … y después `bendecir(\"Ana\")`.",
+   "Lo que va entre paréntesis en el `def` son los **parámetros**: variables que reciben los datos de cada llamada (los **argumentos**). `return` **devuelve** un resultado a quien llamó y termina la función: `total = cosecha(10, 30)`. Si una función no tiene `return`, devuelve `None`. Ojo: `print` solo muestra; `return` entrega el valor para seguir usándolo.",
+   "Un parámetro puede tener **valor por defecto**: `def quedan(total, perdidas=1):` se puede llamar como `quedan(100)` o como `quedan(100, 3)`. También puedes pasar **argumentos con nombre**, en cualquier orden: `quedan(perdidas=3, total=100)`.",
+   "**Alcance**: las variables creadas dentro de una función son **locales**: nacen al llamarla y desaparecen al terminar; afuera no existen. Las de afuera son **globales**: la función puede leerlas, pero si les asigna un valor dentro, Python las toma como locales (y puede dar `UnboundLocalError`). Lo más claro es pasar los datos como parámetros y recibir el resultado con `return`."
+  ],
+  "en": [
+   "Jesus taught with parables: short stories told again and again. A **function** is similar: a named block of code you define once with `def` and then **call** as many times as you like: `def bless(name):` … and then `bless(\"Ann\")`.",
+   "What goes inside the parentheses in the `def` are the **parameters**: variables that receive the data of each call (the **arguments**). `return` **gives back** a result to the caller and ends the function: `total = harvest(10, 30)`. If a function has no `return`, it returns `None`. Careful: `print` only shows; `return` hands over the value so you can keep using it.",
+   "A parameter can have a **default value**: `def left(total, lost=1):` can be called as `left(100)` or as `left(100, 3)`. You can also pass **keyword arguments**, in any order: `left(lost=3, total=100)`.",
+   "**Scope**: variables created inside a function are **local**: they're born when it's called and disappear when it ends; outside, they don't exist. Variables outside are **global**: the function can read them, but if it assigns to them inside, Python treats them as local (and you may get `UnboundLocalError`). The clearest way is to pass the data as parameters and get the result back with `return`."
+  ]
+ },
+ "ejemplo": {
+  "es": "def bendecir(nombre):\n    print(f\"El Señor te bendiga, {nombre}\")\n\ndef cosecha(semillas, rendimiento=30):\n    return semillas * rendimiento\n\nbendecir(\"Ana\")\nbendecir(\"Pedro\")\nprint(cosecha(10))\nprint(cosecha(10, 100))\nprint(cosecha(rendimiento=60, semillas=2))",
+  "en": "def bless(name):\n    print(f\"The Lord bless you, {name}\")\n\ndef harvest(seeds, rate=30):\n    return seeds * rate\n\nbless(\"Ann\")\nbless(\"Peter\")\nprint(harvest(10))\nprint(harvest(10, 100))\nprint(harvest(rate=60, seeds=2))"
+ },
+ "ejercicios": [
+  {
+   "id": "bendecir",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Define una función `bendecir(nombre)` que muestre `Que Dios te bendiga, ` seguido del nombre. Luego llámala dos veces, con `\"Ana\"` y con `\"Pedro\"`. Debe salir:\n```\nQue Dios te bendiga, Ana\nQue Dios te bendiga, Pedro\n```",
+    "en": "Define a function `bless(name)` that shows `May God bless you, ` followed by the name. Then call it twice, with `\"Ann\"` and with `\"Peter\"`. It should print:\n```\nMay God bless you, Ann\nMay God bless you, Peter\n```"
+   },
+   "inicial": {
+    "es": "def bendecir(nombre):\n",
+    "en": "def bless(name):\n"
+   },
+   "pistas": {
+    "es": [
+     "El cuerpo de la función va con sangría (4 espacios) debajo del `def`.",
+     "Dentro: `print(f\"Que Dios te bendiga, {nombre}\")`. Afuera, sin sangría: `bendecir(\"Ana\")` y `bendecir(\"Pedro\")`."
+    ],
+    "en": [
+     "The function's body goes indented (4 spaces) under the `def`.",
+     "Inside: `print(f\"May God bless you, {name}\")`. Outside, not indented: `bless(\"Ann\")` and `bless(\"Peter\")`."
+    ]
+   },
+   "solucion": {
+    "es": "def bendecir(nombre):\n    print(f\"Que Dios te bendiga, {nombre}\")\n\nbendecir(\"Ana\")\nbendecir(\"Pedro\")",
+    "en": "def bless(name):\n    print(f\"May God bless you, {name}\")\n\nbless(\"Ann\")\nbless(\"Peter\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Que Dios te bendiga, Ana\nQue Dios te bendiga, Pedro"
+     },
+     {
+      "py": "assert callable(bendecir) and bendecir.__code__.co_argcount == 1",
+      "msg": {
+       "es": "Define la función bendecir con un parámetro: def bendecir(nombre):",
+       "en": "Define the function bendecir with one parameter: def bendecir(nombre):"
+      }
+     },
+     {
+      "py": "assert _codigo.count('bendecir(') >= 3",
+      "msg": {
+       "es": "Llama a la función dos veces, no escribas los saludos con print.",
+       "en": "Call the function twice; don't type the greetings with print."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "May God bless you, Ann\nMay God bless you, Peter"
+     },
+     {
+      "py": "assert callable(bless) and bless.__code__.co_argcount == 1",
+      "msg": {
+       "es": "Define la función bless con un parámetro: def bless(name):",
+       "en": "Define the function bless with one parameter: def bless(name):"
+      }
+     },
+     {
+      "py": "assert _codigo.count('bless(') >= 3",
+      "msg": {
+       "es": "Llama a la función dos veces, no escribas los saludos con print.",
+       "en": "Call the function twice; don't type the greetings with print."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "def bendecir(nombre):\n    print(f\"Que Dios te bendiga, {nombre}\")",
+     "def bendecir(nombre):\nprint(f\"Que Dios te bendiga, {nombre}\")\nbendecir(\"Ana\")\nbendecir(\"Pedro\")",
+     "def bendecir(nombre):\n    print(\"Que Dios te bendiga, nombre\")\n\nbendecir(\"Ana\")\nbendecir(\"Pedro\")",
+     "def bendecir():\n    print(\"Que Dios te bendiga, Ana\")\n    print(\"Que Dios te bendiga, Pedro\")\n\nbendecir()"
+    ],
+    "en": [
+     "def bless(name):\n    print(f\"May God bless you, {name}\")",
+     "def bless(name):\nprint(f\"May God bless you, {name}\")\nbless(\"Ann\")\nbless(\"Peter\")",
+     "def bless(name):\n    print(\"May God bless you, name\")\n\nbless(\"Ann\")\nbless(\"Peter\")",
+     "def bless():\n    print(\"May God bless you, Ann\")\n    print(\"May God bless you, Peter\")\n\nbless()"
+    ]
+   }
+  },
+  {
+   "id": "cosecha-return",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "En la parábola del sembrador, la semilla que cayó en buena tierra «dio fruto: unas, ciento por uno; otras, sesenta; y otras, treinta» (Mateo 13:8). Escribe `cosecha(semillas, rendimiento)` que **devuelva** con `return` cuántos granos se cosechan (semillas × rendimiento). Luego muestra el resultado de `cosecha(5, 100)`:\n```\n500\n```",
+    "en": "In the parable of the sower, the seed that fell on good soil \"produced a crop—a hundredfold, sixtyfold, or thirtyfold\" (Matthew 13:8). Write `harvest(seeds, rate)` that **returns** with `return` how many grains are harvested (seeds × rate). Then show the result of `harvest(5, 100)`:\n```\n500\n```"
+   },
+   "inicial": {
+    "es": "def cosecha(semillas, rendimiento):\n",
+    "en": "def harvest(seeds, rate):\n"
+   },
+   "pistas": {
+    "es": [
+     "Dentro de la función: `return semillas * rendimiento`.",
+     "Afuera: `print(cosecha(5, 100))`. El `print` va fuera de la función; la función solo devuelve."
+    ],
+    "en": [
+     "Inside the function: `return seeds * rate`.",
+     "Outside: `print(harvest(5, 100))`. The `print` goes outside the function; the function only returns."
+    ]
+   },
+   "solucion": {
+    "es": "def cosecha(semillas, rendimiento):\n    return semillas * rendimiento\n\nprint(cosecha(5, 100))",
+    "en": "def harvest(seeds, rate):\n    return seeds * rate\n\nprint(harvest(5, 100))"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "500"
+     },
+     {
+      "py": "assert cosecha(10, 30) == 300 and cosecha(3, 60) == 180 and cosecha(0, 100) == 0",
+      "msg": {
+       "es": "cosecha debe DEVOLVER semillas × rendimiento (por ejemplo, cosecha(10, 30) devuelve 300). ¿Usaste return?",
+       "en": "cosecha must RETURN seeds × rate (for example, cosecha(10, 30) returns 300). Did you use return?"
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "500"
+     },
+     {
+      "py": "assert harvest(10, 30) == 300 and harvest(3, 60) == 180 and harvest(0, 100) == 0",
+      "msg": {
+       "es": "harvest debe DEVOLVER semillas × rendimiento (por ejemplo, harvest(10, 30) devuelve 300). ¿Usaste return?",
+       "en": "harvest must RETURN seeds × rate (for example, harvest(10, 30) returns 300). Did you use return?"
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "def cosecha(semillas, rendimiento):\n    print(semillas * rendimiento)\n\ncosecha(5, 100)",
+     "def cosecha(semillas, rendimiento):\n    return 500\n\nprint(cosecha(5, 100))",
+     "def cosecha(semillas, rendimiento):\n    return semillas + rendimiento\n\nprint(cosecha(5, 100))"
+    ],
+    "en": [
+     "def harvest(seeds, rate):\n    print(seeds * rate)\n\nharvest(5, 100)",
+     "def harvest(seeds, rate):\n    return 500\n\nprint(harvest(5, 100))",
+     "def harvest(seeds, rate):\n    return seeds + rate\n\nprint(harvest(5, 100))"
+    ]
+   }
+  },
+  {
+   "id": "oveja-perdida",
+   "tipo": "hueco",
+   "enunciado": {
+    "es": "En la parábola, un hombre tiene cien ovejas y pierde una (Lucas 15:4). Completa la función para que `perdidas` valga **1 por defecto**. Debe salir:\n```\n99\n97\n```",
+    "en": "In the parable, a man has a hundred sheep and loses one (Luke 15:4). Fill in the function so that `lost` is **1 by default**. It should print:\n```\n99\n97\n```"
+   },
+   "plantilla": {
+    "es": "def quedan(total, perdidas___):\n    return total - perdidas\n\nprint(quedan(100))\nprint(quedan(100, 3))",
+    "en": "def left(total, lost___):\n    return total - lost\n\nprint(left(100))\nprint(left(100, 3))"
+   },
+   "pistas": {
+    "es": [
+     "El valor por defecto se escribe en el `def`, con `=` después del nombre del parámetro.",
+     "`def quedan(total, perdidas=1):`"
+    ],
+    "en": [
+     "The default value goes in the `def`, with `=` after the parameter's name.",
+     "`def left(total, lost=1):`"
+    ]
+   },
+   "solucion": {
+    "es": "def quedan(total, perdidas=1):\n    return total - perdidas\n\nprint(quedan(100))\nprint(quedan(100, 3))",
+    "en": "def left(total, lost=1):\n    return total - lost\n\nprint(left(100))\nprint(left(100, 3))"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "99\n97"
+     },
+     {
+      "py": "assert quedan(10) == 9 and quedan(10, 0) == 10",
+      "msg": {
+       "es": "perdidas debe valer 1 si no se indica: quedan(10) devuelve 9.",
+       "en": "perdidas must be 1 when it isn't given: quedan(10) returns 9."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "99\n97"
+     },
+     {
+      "py": "assert left(10) == 9 and left(10, 0) == 10",
+      "msg": {
+       "es": "lost debe valer 1 si no se indica: left(10) devuelve 9.",
+       "en": "lost must be 1 when it isn't given: left(10) returns 9."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "def quedan(total, perdidas):\n    return total - perdidas\n\nprint(quedan(100))\nprint(quedan(100, 3))",
+     "def quedan(total, perdidas=3):\n    return total - perdidas\n\nprint(quedan(100))\nprint(quedan(100, 3))",
+     "def quedan(total, perdidas==1):\n    return total - perdidas\n\nprint(quedan(100))\nprint(quedan(100, 3))"
+    ],
+    "en": [
+     "def left(total, lost):\n    return total - lost\n\nprint(left(100))\nprint(left(100, 3))",
+     "def left(total, lost=3):\n    return total - lost\n\nprint(left(100))\nprint(left(100, 3))",
+     "def left(total, lost==1):\n    return total - lost\n\nprint(left(100))\nprint(left(100, 3))"
+    ]
+   }
+  },
+  {
+   "id": "ficha-parabola",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Escribe `ficha(titulo, capitulo, libro=\"Mateo\")` que **devuelva** un texto como `El sembrador (Mateo 13)`. Luego muestra dos fichas: la del sembrador (capítulo 13, con el libro por defecto) y la del buen samaritano, que está en Lucas 10, pasando **todos los argumentos con nombre**. Debe salir:\n```\nEl sembrador (Mateo 13)\nEl buen samaritano (Lucas 10)\n```",
+    "en": "Write `card(title, chapter, book=\"Matthew\")` that **returns** a text like `The sower (Matthew 13)`. Then show two cards: the sower (chapter 13, with the default book) and the good Samaritan, which is in Luke 10, passing **every argument by name**. It should print:\n```\nThe sower (Matthew 13)\nThe good Samaritan (Luke 10)\n```"
+   },
+   "inicial": {
+    "es": "def ficha(titulo, capitulo, libro=\"Mateo\"):\n",
+    "en": "def card(title, chapter, book=\"Matthew\"):\n"
+   },
+   "pistas": {
+    "es": [
+     "Dentro: `return f\"{titulo} ({libro} {capitulo})\"`.",
+     "La segunda llamada: `print(ficha(titulo=\"El buen samaritano\", libro=\"Lucas\", capitulo=10))`."
+    ],
+    "en": [
+     "Inside: `return f\"{title} ({book} {chapter})\"`.",
+     "The second call: `print(card(title=\"The good Samaritan\", book=\"Luke\", chapter=10))`."
+    ]
+   },
+   "solucion": {
+    "es": "def ficha(titulo, capitulo, libro=\"Mateo\"):\n    return f\"{titulo} ({libro} {capitulo})\"\n\nprint(ficha(\"El sembrador\", 13))\nprint(ficha(titulo=\"El buen samaritano\", libro=\"Lucas\", capitulo=10))",
+    "en": "def card(title, chapter, book=\"Matthew\"):\n    return f\"{title} ({book} {chapter})\"\n\nprint(card(\"The sower\", 13))\nprint(card(title=\"The good Samaritan\", book=\"Luke\", chapter=10))"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "El sembrador (Mateo 13)\nEl buen samaritano (Lucas 10)"
+     },
+     {
+      "py": "assert ficha('La levadura', 13) == 'La levadura (Mateo 13)' and ficha('La oveja perdida', 15, 'Lucas') == 'La oveja perdida (Lucas 15)'",
+      "msg": {
+       "es": "ficha debe DEVOLVER el texto «Título (Libro capítulo)», con Mateo por defecto.",
+       "en": "ficha must RETURN the text «Title (Book chapter)», with Mateo by default."
+      }
+     },
+     {
+      "py": "import re\nassert re.search(r'titulo\\s*=', _codigo) and re.search(r'capitulo\\s*=\\s*10', _codigo) and re.search(r'libro\\s*=\\s*[\"\\']Lucas', _codigo)",
+      "msg": {
+       "es": "En la segunda llamada pasa los tres argumentos con nombre: titulo=..., capitulo=10, libro=\"Lucas\".",
+       "en": "In the second call pass all three arguments by name: titulo=..., capitulo=10, libro=\"Lucas\"."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "The sower (Matthew 13)\nThe good Samaritan (Luke 10)"
+     },
+     {
+      "py": "assert card('The yeast', 13) == 'The yeast (Matthew 13)' and card('The lost sheep', 15, 'Luke') == 'The lost sheep (Luke 15)'",
+      "msg": {
+       "es": "card debe DEVOLVER el texto «Title (Book chapter)», con Matthew por defecto.",
+       "en": "card must RETURN the text «Title (Book chapter)», with Matthew by default."
+      }
+     },
+     {
+      "py": "import re\nassert re.search(r'title\\s*=', _codigo) and re.search(r'chapter\\s*=\\s*10', _codigo) and re.search(r'book\\s*=\\s*[\"\\']Luke', _codigo)",
+      "msg": {
+       "es": "En la segunda llamada pasa los tres argumentos con nombre: title=..., chapter=10, book=\"Luke\".",
+       "en": "In the second call pass all three arguments by name: title=..., chapter=10, book=\"Luke\"."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "def ficha(titulo, capitulo, libro=\"Mateo\"):\n    return f\"{titulo} ({libro} {capitulo})\"\n\nprint(ficha(\"El sembrador\", 13))\nprint(ficha(\"El buen samaritano\", 10, \"Lucas\"))",
+     "def ficha(titulo, capitulo, libro=\"Mateo\"):\n    return f\"{titulo} ({libro} {capitulo})\"\n\nprint(ficha(\"El sembrador\", 13))\nprint(ficha(titulo=\"El buen samaritano\", capitulo=10))",
+     "def ficha(titulo, capitulo, libro=\"Mateo\"):\n    print(f\"{titulo} ({libro} {capitulo})\")\n\nficha(\"El sembrador\", 13)\nficha(titulo=\"El buen samaritano\", libro=\"Lucas\", capitulo=10)"
+    ],
+    "en": [
+     "def card(title, chapter, book=\"Matthew\"):\n    return f\"{title} ({book} {chapter})\"\n\nprint(card(\"The sower\", 13))\nprint(card(\"The good Samaritan\", 10, \"Luke\"))",
+     "def card(title, chapter, book=\"Matthew\"):\n    return f\"{title} ({book} {chapter})\"\n\nprint(card(\"The sower\", 13))\nprint(card(title=\"The good Samaritan\", chapter=10))",
+     "def card(title, chapter, book=\"Matthew\"):\n    print(f\"{title} ({book} {chapter})\")\n\ncard(\"The sower\", 13)\ncard(title=\"The good Samaritan\", book=\"Luke\", chapter=10)"
+    ]
+   }
+  },
+  {
+   "id": "talentos",
+   "tipo": "ordenar",
+   "enunciado": {
+    "es": "En la parábola de los talentos, el siervo que recibió cinco ganó otros cinco. Ordena las líneas: primero la variable global, luego la función (con su variable local `resultado`) y al final la llamada. Debe salir:\n```\n10\n```",
+    "en": "In the parable of the talents, the servant who received five gained five more. Put the lines in order: first the global variable, then the function (with its local variable `result`) and finally the call. It should print:\n```\n10\n```"
+   },
+   "lineas": {
+    "es": [
+     "talentos = 5",
+     "def duplicar(cantidad):",
+     "    resultado = cantidad * 2",
+     "    return resultado",
+     "talentos = duplicar(talentos)",
+     "print(talentos)"
+    ],
+    "en": [
+     "talents = 5",
+     "def double(amount):",
+     "    result = amount * 2",
+     "    return result",
+     "talents = double(talents)",
+     "print(talents)"
+    ]
+   },
+   "pistas": {
+    "es": [
+     "Las líneas con sangría son el cuerpo de la función y van justo debajo del `def`, con el `return` al final.",
+     "Una función se define antes de llamarla; el `print` va al final."
+    ],
+    "en": [
+     "The indented lines are the function's body and go right below the `def`, with the `return` last.",
+     "A function is defined before it's called; the `print` goes last."
+    ]
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "10"
+     },
+     {
+      "py": "assert talentos == 10",
+      "msg": {
+       "es": "Al final, talentos debe valer 10.",
+       "en": "At the end, talentos must be 10."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "10"
+     },
+     {
+      "py": "assert talents == 10",
+      "msg": {
+       "es": "Al final, talents debe valer 10.",
+       "en": "At the end, talents must be 10."
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "moneda-perdida",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "La mujer de la parábola tenía diez monedas de plata y perdió una (Lucas 15:8). Este programa da `UnboundLocalError`, porque la función asigna a `monedas` como si fuera local. Arréglalo **sin usar `global`**: que `perder` reciba la cantidad como parámetro y **devuelva** la nueva. Debe salir:\n```\nQuedan 9 monedas\n```",
+    "en": "The woman in the parable had ten silver coins and lost one (Luke 15:8). This program raises `UnboundLocalError`, because the function assigns to `coins` as if it were local. Fix it **without using `global`**: make `lose` receive the amount as a parameter and **return** the new one. It should print:\n```\n9 coins left\n```"
+   },
+   "inicial": {
+    "es": "monedas = 10\n\ndef perder():\n    monedas = monedas - 1\n\nperder()\nprint(f\"Quedan {monedas} monedas\")\n",
+    "en": "coins = 10\n\ndef lose():\n    coins = coins - 1\n\nlose()\nprint(f\"{coins} coins left\")\n"
+   },
+   "pistas": {
+    "es": [
+     "Cambia el `def` a `def perder(cantidad):` y dentro `return cantidad - 1`.",
+     "La llamada guarda lo que devuelve la función: `monedas = perder(monedas)`."
+    ],
+    "en": [
+     "Change the `def` to `def lose(amount):` and inside `return amount - 1`.",
+     "The call stores what the function returns: `coins = lose(coins)`."
+    ]
+   },
+   "solucion": {
+    "es": "monedas = 10\n\ndef perder(cantidad):\n    return cantidad - 1\n\nmonedas = perder(monedas)\nprint(f\"Quedan {monedas} monedas\")",
+    "en": "coins = 10\n\ndef lose(amount):\n    return amount - 1\n\ncoins = lose(coins)\nprint(f\"{coins} coins left\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Quedan 9 monedas"
+     },
+     {
+      "py": "assert perder(10) == 9 and perder(1) == 0",
+      "msg": {
+       "es": "perder debe recibir la cantidad y devolverla con una menos: perder(10) devuelve 9.",
+       "en": "perder must receive the amount and return it minus one: perder(10) returns 9."
+      }
+     },
+     {
+      "py": "assert 'global' not in _codigo",
+      "msg": {
+       "es": "Resuélvelo sin global: usa un parámetro y return.",
+       "en": "Solve it without global: use a parameter and return."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "9 coins left"
+     },
+     {
+      "py": "assert lose(10) == 9 and lose(1) == 0",
+      "msg": {
+       "es": "lose debe recibir la cantidad y devolverla con una menos: lose(10) devuelve 9.",
+       "en": "lose must receive the amount and return it minus one: lose(10) returns 9."
+      }
+     },
+     {
+      "py": "assert 'global' not in _codigo",
+      "msg": {
+       "es": "Resuélvelo sin global: usa un parámetro y return.",
+       "en": "Solve it without global: use a parameter and return."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "monedas = 10\n\ndef perder():\n    monedas = monedas - 1\n\nperder()\nprint(f\"Quedan {monedas} monedas\")",
+     "monedas = 10\n\ndef perder(cantidad):\n    return cantidad - 1\n\nperder(monedas)\nprint(f\"Quedan {monedas} monedas\")",
+     "monedas = 10\n\ndef perder():\n    global monedas\n    monedas = monedas - 1\n\nperder()\nprint(f\"Quedan {monedas} monedas\")",
+     "monedas = 10\n\ndef perder(cantidad):\n    cantidad = cantidad - 1\n\nperder(monedas)\nprint(\"Quedan 9 monedas\")"
+    ],
+    "en": [
+     "coins = 10\n\ndef lose():\n    coins = coins - 1\n\nlose()\nprint(f\"{coins} coins left\")",
+     "coins = 10\n\ndef lose(amount):\n    return amount - 1\n\nlose(coins)\nprint(f\"{coins} coins left\")",
+     "coins = 10\n\ndef lose():\n    global coins\n    coins = coins - 1\n\nlose()\nprint(f\"{coins} coins left\")",
+     "coins = 10\n\ndef lose(amount):\n    amount = amount - 1\n\nlose(coins)\nprint(\"9 coins left\")"
+    ]
+   }
+  },
+  {
+   "id": "sembrador",
+   "tipo": "escribir",
+   "reto": true,
+   "enunciado": {
+    "es": "**Reto: la parábola del sembrador en números.** La semilla cayó junto al camino, en pedregales, entre espinos y en buena tierra; solo la buena tierra dio fruto. Escribe dos funciones:\n- `cosecha(semillas, tierra, rendimiento=30)`: devuelve `semillas * rendimiento` si `tierra` es `\"buena\"`, y `0` en cualquier otro caso.\n- `resumen(tierra, semillas, rendimiento=30)`: devuelve un texto como `buena: 10 semillas -> 300`, usando `cosecha` para el número.\n\nLuego muestra tres resúmenes: buena tierra con 10 semillas y rendimiento 100 (pásalo **con nombre**), buena tierra con 10 semillas (por defecto) y camino con 10 semillas:\n```\nbuena: 10 semillas -> 1000\nbuena: 10 semillas -> 300\ncamino: 10 semillas -> 0\n```",
+    "en": "**Challenge: the parable of the sower in numbers.** The seed fell along the path, on rocky ground, among thorns and on good soil; only the good soil bore fruit. Write two functions:\n- `harvest(seeds, soil, rate=30)`: returns `seeds * rate` if `soil` is `\"good\"`, and `0` in any other case.\n- `summary(soil, seeds, rate=30)`: returns a text like `good: 10 seeds -> 300`, using `harvest` for the number.\n\nThen show three summaries: good soil with 10 seeds and rate 100 (pass it **by name**), good soil with 10 seeds (default) and path with 10 seeds:\n```\ngood: 10 seeds -> 1000\ngood: 10 seeds -> 300\npath: 10 seeds -> 0\n```"
+   },
+   "inicial": {
+    "es": "def cosecha(semillas, tierra, rendimiento=30):\n    pass\n\ndef resumen(tierra, semillas, rendimiento=30):\n    pass\n",
+    "en": "def harvest(seeds, soil, rate=30):\n    pass\n\ndef summary(soil, seeds, rate=30):\n    pass\n"
+   },
+   "pistas": {
+    "es": [
+     "En `cosecha`: `if tierra == \"buena\": return semillas * rendimiento` y, si no, `return 0`.",
+     "En `resumen`: `return f\"{tierra}: {semillas} semillas -> {cosecha(semillas, tierra, rendimiento)}\"`. La primera llamada: `print(resumen(\"buena\", 10, rendimiento=100))`."
+    ],
+    "en": [
+     "In `harvest`: `if soil == \"good\": return seeds * rate` and otherwise `return 0`.",
+     "In `summary`: `return f\"{soil}: {seeds} seeds -> {harvest(seeds, soil, rate)}\"`. The first call: `print(summary(\"good\", 10, rate=100))`."
+    ]
+   },
+   "solucion": {
+    "es": "def cosecha(semillas, tierra, rendimiento=30):\n    if tierra == \"buena\":\n        return semillas * rendimiento\n    return 0\n\ndef resumen(tierra, semillas, rendimiento=30):\n    granos = cosecha(semillas, tierra, rendimiento)\n    return f\"{tierra}: {semillas} semillas -> {granos}\"\n\nprint(resumen(\"buena\", 10, rendimiento=100))\nprint(resumen(\"buena\", 10))\nprint(resumen(\"camino\", 10))",
+    "en": "def harvest(seeds, soil, rate=30):\n    if soil == \"good\":\n        return seeds * rate\n    return 0\n\ndef summary(soil, seeds, rate=30):\n    grains = harvest(seeds, soil, rate)\n    return f\"{soil}: {seeds} seeds -> {grains}\"\n\nprint(summary(\"good\", 10, rate=100))\nprint(summary(\"good\", 10))\nprint(summary(\"path\", 10))"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "buena: 10 semillas -> 1000\nbuena: 10 semillas -> 300\ncamino: 10 semillas -> 0"
+     },
+     {
+      "py": "assert cosecha(4, 'buena') == 120 and cosecha(4, 'buena', 60) == 240 and cosecha(0, 'buena', 100) == 0",
+      "msg": {
+       "es": "cosecha debe devolver semillas × rendimiento en buena tierra, con 30 por defecto: cosecha(4, \"buena\") devuelve 120.",
+       "en": "cosecha must return seeds × rate on good soil, with 30 by default: cosecha(4, \"buena\") returns 120."
+      }
+     },
+     {
+      "py": "assert cosecha(50, 'pedregal', 100) == 0 and cosecha(50, 'espinos') == 0 and cosecha(50, 'camino') == 0",
+      "msg": {
+       "es": "Fuera de la buena tierra no hay fruto: cosecha(50, \"espinos\") debe devolver 0.",
+       "en": "Outside the good soil there's no fruit: cosecha(50, \"espinos\") must return 0."
+      }
+     },
+     {
+      "py": "assert resumen('espinos', 7) == 'espinos: 7 semillas -> 0' and resumen('buena', 2, 60) == 'buena: 2 semillas -> 120'",
+      "msg": {
+       "es": "resumen debe DEVOLVER el texto «tierra: N semillas -> granos».",
+       "en": "resumen must RETURN the text «soil: N semillas -> grains»."
+      }
+     },
+     {
+      "py": "import re\nassert len(re.findall(r'cosecha\\s*\\(', _codigo)) >= 2 and re.search(r'rendimiento\\s*=\\s*100', _codigo)",
+      "msg": {
+       "es": "Usa cosecha dentro de resumen, y pasa rendimiento=100 con nombre en la primera llamada.",
+       "en": "Use cosecha inside resumen, and pass rendimiento=100 by name in the first call."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "good: 10 seeds -> 1000\ngood: 10 seeds -> 300\npath: 10 seeds -> 0"
+     },
+     {
+      "py": "assert harvest(4, 'good') == 120 and harvest(4, 'good', 60) == 240 and harvest(0, 'good', 100) == 0",
+      "msg": {
+       "es": "harvest debe devolver semillas × rendimiento en buena tierra, con 30 por defecto: harvest(4, \"good\") devuelve 120.",
+       "en": "harvest must return seeds × rate on good soil, with 30 by default: harvest(4, \"good\") returns 120."
+      }
+     },
+     {
+      "py": "assert harvest(50, 'rocky', 100) == 0 and harvest(50, 'thorns') == 0 and harvest(50, 'path') == 0",
+      "msg": {
+       "es": "Fuera de la buena tierra no hay fruto: harvest(50, \"thorns\") debe devolver 0.",
+       "en": "Outside the good soil there's no fruit: harvest(50, \"thorns\") must return 0."
+      }
+     },
+     {
+      "py": "assert summary('thorns', 7) == 'thorns: 7 seeds -> 0' and summary('good', 2, 60) == 'good: 2 seeds -> 120'",
+      "msg": {
+       "es": "summary debe DEVOLVER el texto «soil: N seeds -> grains».",
+       "en": "summary must RETURN the text «soil: N seeds -> grains»."
+      }
+     },
+     {
+      "py": "import re\nassert len(re.findall(r'harvest\\s*\\(', _codigo)) >= 2 and re.search(r'rate\\s*=\\s*100', _codigo)",
+      "msg": {
+       "es": "Usa harvest dentro de summary, y pasa rate=100 con nombre en la primera llamada.",
+       "en": "Use harvest inside summary, and pass rate=100 by name in the first call."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "def cosecha(semillas, tierra, rendimiento=30):\n    if tierra == \"buena\":\n        return semillas * rendimiento\n\ndef resumen(tierra, semillas, rendimiento=30):\n    return f\"{tierra}: {semillas} semillas -> {cosecha(semillas, tierra, rendimiento)}\"\n\nprint(resumen(\"buena\", 10, rendimiento=100))\nprint(resumen(\"buena\", 10))\nprint(resumen(\"camino\", 10))",
+     "def cosecha(semillas, tierra, rendimiento=30):\n    if tierra == \"buena\":\n        return semillas * rendimiento\n    return 0\n\ndef resumen(tierra, semillas, rendimiento=30):\n    return f\"{tierra}: {semillas} semillas -> {cosecha(semillas, tierra)}\"\n\nprint(resumen(\"buena\", 10, rendimiento=100))\nprint(resumen(\"buena\", 10))\nprint(resumen(\"camino\", 10))",
+     "def cosecha(semillas, tierra, rendimiento=30):\n    if tierra == \"buena\":\n        return semillas * rendimiento\n    return 0\n\ndef resumen(tierra, semillas, rendimiento=30):\n    print(f\"{tierra}: {semillas} semillas -> {cosecha(semillas, tierra, rendimiento)}\")\n\nresumen(\"buena\", 10, rendimiento=100)\nresumen(\"buena\", 10)\nresumen(\"camino\", 10)",
+     "def cosecha(semillas, tierra, rendimiento=30):\n    if tierra == \"buena\":\n        return semillas * rendimiento\n    return 0\n\ndef resumen(tierra, semillas, rendimiento=30):\n    return f\"{tierra}: {semillas} semillas -> {cosecha(tierra, semillas, rendimiento)}\"\n\nprint(resumen(\"buena\", 10, rendimiento=100))\nprint(resumen(\"buena\", 10))\nprint(resumen(\"camino\", 10))"
+    ],
+    "en": [
+     "def harvest(seeds, soil, rate=30):\n    if soil == \"good\":\n        return seeds * rate\n\ndef summary(soil, seeds, rate=30):\n    return f\"{soil}: {seeds} seeds -> {harvest(seeds, soil, rate)}\"\n\nprint(summary(\"good\", 10, rate=100))\nprint(summary(\"good\", 10))\nprint(summary(\"path\", 10))",
+     "def harvest(seeds, soil, rate=30):\n    if soil == \"good\":\n        return seeds * rate\n    return 0\n\ndef summary(soil, seeds, rate=30):\n    return f\"{soil}: {seeds} seeds -> {harvest(seeds, soil)}\"\n\nprint(summary(\"good\", 10, rate=100))\nprint(summary(\"good\", 10))\nprint(summary(\"path\", 10))",
+     "def harvest(seeds, soil, rate=30):\n    if soil == \"good\":\n        return seeds * rate\n    return 0\n\ndef summary(soil, seeds, rate=30):\n    print(f\"{soil}: {seeds} seeds -> {harvest(seeds, soil, rate)}\")\n\nsummary(\"good\", 10, rate=100)\nsummary(\"good\", 10)\nsummary(\"path\", 10)",
+     "def harvest(seeds, soil, rate=30):\n    if soil == \"good\":\n        return seeds * rate\n    return 0\n\ndef summary(soil, seeds, rate=30):\n    return f\"{soil}: {seeds} seeds -> {harvest(soil, seeds, rate)}\"\n\nprint(summary(\"good\", 10, rate=100))\nprint(summary(\"good\", 10))\nprint(summary(\"path\", 10))"
+    ]
+   }
+  }
+ ]
+}

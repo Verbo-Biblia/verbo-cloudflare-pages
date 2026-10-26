@@ -1,0 +1,2029 @@
+{
+ "terminos": [
+  {
+   "termino": {
+    "es": "print()",
+    "en": "print()"
+   },
+   "definicion": {
+    "es": "Función que **muestra** algo en la consola. Puedes darle varios valores separados por comas y los muestra con un espacio entre ellos.",
+    "en": "Function that **shows** something in the console. You can give it several values separated by commas and it shows them with a space between them."
+   },
+   "ejemplo": {
+    "es": "print(\"Sea la luz\")\nprint(\"Día\", 1)",
+    "en": "print(\"Let there be light\")\nprint(\"Day\", 1)"
+   },
+   "capitulo": 1
+  },
+  {
+   "termino": {
+    "es": "cadena (str)",
+    "en": "string (str)"
+   },
+   "definicion": {
+    "es": "Un **texto** escrito entre comillas, dobles `\"...\"` o simples `'...'`. Python lo trata como una secuencia de caracteres.",
+    "en": "A piece of **text** written between quotes, double `\"...\"` or single `'...'`. Python treats it as a sequence of characters."
+   },
+   "ejemplo": {
+    "es": "saludo = \"Hola, mundo\"\nprint(saludo)",
+    "en": "greeting = \"Hello, world\"\nprint(greeting)"
+   },
+   "capitulo": 1
+  },
+  {
+   "termino": {
+    "es": "comentario",
+    "en": "comment"
+   },
+   "definicion": {
+    "es": "Texto que empieza con `#` y que Python **ignora**. Sirve para dejar notas a quien lea el código (¡incluido tú mismo en el futuro!).",
+    "en": "Text that starts with `#` and that Python **ignores**. It's for leaving notes to whoever reads the code (including future you!)."
+   },
+   "ejemplo": {
+    "es": "# Esto es un comentario\nprint(\"Esto sí se muestra\")  # nota al final",
+    "en": "# This is a comment\nprint(\"This does show\")  # note at the end"
+   },
+   "capitulo": 1
+  },
+  {
+   "termino": {
+    "es": "concatenar",
+    "en": "concatenate"
+   },
+   "definicion": {
+    "es": "Unir cadenas con `+`. Ojo: no agrega espacios, tú decides dónde ponerlos.",
+    "en": "Joining strings with `+`. Careful: it doesn't add spaces; you decide where they go."
+   },
+   "ejemplo": {
+    "es": "nombre = \"Eva\"\nprint(\"Hola, \" + nombre + \"!\")",
+    "en": "name = \"Eve\"\nprint(\"Hello, \" + name + \"!\")"
+   },
+   "capitulo": 1
+  },
+  {
+   "termino": {
+    "es": "repetir cadenas",
+    "en": "repeating strings"
+   },
+   "definicion": {
+    "es": "Multiplicar una cadena por un número entero la **repite**: `\"ja\" * 3` da `\"jajaja\"`.",
+    "en": "Multiplying a string by a whole number **repeats** it: `\"ha\" * 3` gives `\"hahaha\"`."
+   },
+   "ejemplo": {
+    "es": "print(\"ja\" * 3)\nprint(\"-\" * 20)",
+    "en": "print(\"ha\" * 3)\nprint(\"-\" * 20)"
+   },
+   "capitulo": 1
+  },
+  {
+   "termino": {
+    "es": "consola",
+    "en": "console"
+   },
+   "definicion": {
+    "es": "La zona donde aparece lo que tu programa muestra con `print()` y donde salen los mensajes de error.",
+    "en": "The area where what your program shows with `print()` appears, and where error messages come out."
+   },
+   "ejemplo": {
+    "es": "print(\"Esto aparece en la consola\")",
+    "en": "print(\"This appears in the console\")"
+   },
+   "capitulo": 1
+  },
+  {
+   "termino": {
+    "es": "variable",
+    "en": "variable"
+   },
+   "definicion": {
+    "es": "Un **nombre** que guarda un valor. Con `=` le das (o le cambias) el valor: `=` significa «guarda», no «es igual».",
+    "en": "A **name** that holds a value. With `=` you give it (or change) its value: `=` means “store”, not “equals”."
+   },
+   "ejemplo": {
+    "es": "edad = 12\nprint(edad)\nedad = 13\nprint(edad)",
+    "en": "age = 12\nprint(age)\nage = 13\nprint(age)"
+   },
+   "capitulo": 2
+  },
+  {
+   "termino": {
+    "es": "tipo de dato",
+    "en": "data type"
+   },
+   "definicion": {
+    "es": "La clase de valor que es algo: texto (`str`), entero (`int`), decimal (`float`) o verdadero/falso (`bool`), entre otros. El tipo decide qué operaciones puedes hacer.",
+    "en": "The kind of value something is: text (`str`), whole number (`int`), decimal (`float`) or true/false (`bool`), among others. The type decides which operations you can do."
+   },
+   "ejemplo": {
+    "es": "print(type(\"oveja\"))\nprint(type(4))\nprint(type(1.5))\nprint(type(True))",
+    "en": "print(type(\"sheep\"))\nprint(type(4))\nprint(type(1.5))\nprint(type(True))"
+   },
+   "capitulo": 2
+  },
+  {
+   "termino": {
+    "es": "int (entero)",
+    "en": "int (integer)"
+   },
+   "definicion": {
+    "es": "Número **sin decimales**, positivo, negativo o cero: `7`, `-3`, `0`.",
+    "en": "A number **without decimals**, positive, negative or zero: `7`, `-3`, `0`."
+   },
+   "ejemplo": {
+    "es": "tribus = 12\nprint(tribus + 1)",
+    "en": "tribes = 12\nprint(tribes + 1)"
+   },
+   "capitulo": 2
+  },
+  {
+   "termino": {
+    "es": "float (decimal)",
+    "en": "float"
+   },
+   "definicion": {
+    "es": "Número **con decimales**. En Python se escribe con **punto**, no con coma: `1.5`, `3.14`.",
+    "en": "A number **with decimals**. In Python it's written with a **dot**, not a comma: `1.5`, `3.14`."
+   },
+   "ejemplo": {
+    "es": "altura = 1.65\nprint(altura * 2)",
+    "en": "height = 1.65\nprint(height * 2)"
+   },
+   "capitulo": 2
+  },
+  {
+   "termino": {
+    "es": "bool (booleano)",
+    "en": "bool (Boolean)"
+   },
+   "definicion": {
+    "es": "Tipo con solo dos valores: `True` (verdadero) y `False` (falso). Van con mayúscula inicial y sin comillas.",
+    "en": "A type with only two values: `True` and `False`. They start with a capital letter and have no quotes."
+   },
+   "ejemplo": {
+    "es": "tiene_alas = True\nprint(tiene_alas)\nprint(5 > 8)",
+    "en": "has_wings = True\nprint(has_wings)\nprint(5 > 8)"
+   },
+   "capitulo": 2
+  },
+  {
+   "termino": {
+    "es": "type()",
+    "en": "type()"
+   },
+   "definicion": {
+    "es": "Función que te dice el **tipo** de un valor o variable.",
+    "en": "Function that tells you the **type** of a value or variable."
+   },
+   "ejemplo": {
+    "es": "patas = 4\nprint(type(patas))",
+    "en": "legs = 4\nprint(type(legs))"
+   },
+   "capitulo": 2
+  },
+  {
+   "termino": {
+    "es": "None",
+    "en": "None"
+   },
+   "definicion": {
+    "es": "Valor especial que significa «**nada**» o «sin valor». Es lo que devuelve una función que no tiene `return`.",
+    "en": "A special value meaning “**nothing**” or “no value”. It's what a function without `return` gives back."
+   },
+   "ejemplo": {
+    "es": "respuesta = None\nprint(respuesta)\nprint(type(respuesta))",
+    "en": "answer = None\nprint(answer)\nprint(type(answer))"
+   },
+   "capitulo": 2
+  },
+  {
+   "termino": {
+    "es": "operadores aritméticos",
+    "en": "arithmetic operators"
+   },
+   "definicion": {
+    "es": "Los signos para hacer cuentas: `+` suma, `-` resta, `*` multiplica y `/` divide. La división `/` siempre da un `float`.",
+    "en": "The symbols for doing math: `+` adds, `-` subtracts, `*` multiplies and `/` divides. Division with `/` always gives a `float`."
+   },
+   "ejemplo": {
+    "es": "print(300 + 50)\nprint(300 - 50)\nprint(300 * 2)\nprint(300 / 6)",
+    "en": "print(300 + 50)\nprint(300 - 50)\nprint(300 * 2)\nprint(300 / 6)"
+   },
+   "capitulo": 3
+  },
+  {
+   "termino": {
+    "es": "división entera (//)",
+    "en": "floor division (//)"
+   },
+   "definicion": {
+    "es": "Divide y se queda solo con la parte **entera**, sin decimales (redondea hacia abajo).",
+    "en": "Divides and keeps only the **whole** part, without decimals (rounds down)."
+   },
+   "ejemplo": {
+    "es": "panes = 5\npersonas = 2\nprint(panes // personas)",
+    "en": "loaves = 5\npeople = 2\nprint(loaves // people)"
+   },
+   "capitulo": 3
+  },
+  {
+   "termino": {
+    "es": "módulo o resto (%)",
+    "en": "modulo or remainder (%)"
+   },
+   "definicion": {
+    "es": "Da lo que **sobra** de una división entera. `n % 2 == 0` es la forma clásica de saber si `n` es par.",
+    "en": "Gives what is **left over** from a whole division. `n % 2 == 0` is the classic way to check if `n` is even."
+   },
+   "ejemplo": {
+    "es": "print(7 % 3)\nprint(10 % 2 == 0)",
+    "en": "print(7 % 3)\nprint(10 % 2 == 0)"
+   },
+   "capitulo": 3
+  },
+  {
+   "termino": {
+    "es": "potencia (**)",
+    "en": "power (**)"
+   },
+   "definicion": {
+    "es": "Eleva un número a otro: `2 ** 3` es 2 × 2 × 2 = 8.",
+    "en": "Raises one number to another: `2 ** 3` is 2 × 2 × 2 = 8."
+   },
+   "ejemplo": {
+    "es": "print(2 ** 3)\nprint(7 ** 2)",
+    "en": "print(2 ** 3)\nprint(7 ** 2)"
+   },
+   "capitulo": 3
+  },
+  {
+   "termino": {
+    "es": "round()",
+    "en": "round()"
+   },
+   "definicion": {
+    "es": "Redondea un número. `round(x, 2)` lo deja con **2 decimales**; sin el segundo número lo redondea a entero.",
+    "en": "Rounds a number. `round(x, 2)` leaves it with **2 decimals**; without the second number it rounds to a whole number."
+   },
+   "ejemplo": {
+    "es": "codo = 0.4572\nprint(round(300 * codo, 1))\nprint(round(2.7))",
+    "en": "cubit = 0.4572\nprint(round(300 * cubit, 1))\nprint(round(2.7))"
+   },
+   "capitulo": 3
+  },
+  {
+   "termino": {
+    "es": "f-string",
+    "en": "f-string"
+   },
+   "definicion": {
+    "es": "Cadena con una `f` delante donde puedes meter valores entre llaves: `f\"Tengo {edad} años\"`. Con `{x:.2f}` muestras 2 decimales.",
+    "en": "A string with an `f` in front where you can put values inside braces: `f\"I am {age} years old\"`. With `{x:.2f}` you show 2 decimals."
+   },
+   "ejemplo": {
+    "es": "nombre = \"Noé\"\nanios = 600\nprint(f\"{nombre} tenía {anios} años\")\nprint(f\"{3.14159:.2f}\")",
+    "en": "name = \"Noah\"\nyears = 600\nprint(f\"{name} was {years} years old\")\nprint(f\"{3.14159:.2f}\")"
+   },
+   "capitulo": 3
+  },
+  {
+   "termino": {
+    "es": "precedencia de operadores",
+    "en": "operator precedence"
+   },
+   "definicion": {
+    "es": "El orden en que Python hace las cuentas: primero `**`, luego `*`, `/`, `//`, `%` y al final `+` y `-`. Los **paréntesis** van antes que todo.",
+    "en": "The order in which Python does the math: first `**`, then `*`, `/`, `//`, `%` and finally `+` and `-`. **Parentheses** come before everything."
+   },
+   "ejemplo": {
+    "es": "print(2 + 3 * 4)\nprint((2 + 3) * 4)",
+    "en": "print(2 + 3 * 4)\nprint((2 + 3) * 4)"
+   },
+   "capitulo": 3
+  },
+  {
+   "termino": {
+    "es": "input()",
+    "en": "input()"
+   },
+   "definicion": {
+    "es": "Función que **pregunta** algo al usuario y espera su respuesta. Siempre devuelve una cadena (`str`), aunque escriban un número.",
+    "en": "Function that **asks** the user something and waits for the answer. It always returns a string (`str`), even if they type a number."
+   },
+   "ejemplo": {
+    "es": "nombre = input(\"¿Cómo te llamas? \")\nprint(\"Hola,\", nombre)",
+    "en": "name = input(\"What is your name? \")\nprint(\"Hello,\", name)"
+   },
+   "capitulo": 4
+  },
+  {
+   "termino": {
+    "es": "conversión de tipos",
+    "en": "type conversion"
+   },
+   "definicion": {
+    "es": "Cambiar un valor de un tipo a otro con `int()`, `float()`, `str()` o `bool()`. Se usa mucho para convertir lo que llega de `input()` en número.",
+    "en": "Changing a value from one type to another with `int()`, `float()`, `str()` or `bool()`. It's often used to turn what comes from `input()` into a number."
+   },
+   "ejemplo": {
+    "es": "texto = \"12\"\nnumero = int(texto)\nprint(numero + 1)\nprint(float(\"2.5\") * 2)\nprint(str(40) + \" días\")",
+    "en": "text = \"12\"\nnumber = int(text)\nprint(number + 1)\nprint(float(\"2.5\") * 2)\nprint(str(40) + \" days\")"
+   },
+   "capitulo": 4
+  },
+  {
+   "termino": {
+    "es": "método",
+    "en": "method"
+   },
+   "definicion": {
+    "es": "Una función que **pertenece** a un valor y se llama con un punto: `texto.upper()`. Cada tipo tiene sus propios métodos.",
+    "en": "A function that **belongs** to a value and is called with a dot: `text.upper()`. Each type has its own methods."
+   },
+   "ejemplo": {
+    "es": "palabra = \"maná\"\nprint(palabra.upper())",
+    "en": "word = \"manna\"\nprint(word.upper())"
+   },
+   "capitulo": 4
+  },
+  {
+   "termino": {
+    "es": "upper() y lower()",
+    "en": "upper() and lower()"
+   },
+   "definicion": {
+    "es": "Métodos de cadena: `upper()` devuelve el texto en **MAYÚSCULAS** y `lower()` en **minúsculas**. No cambian la variable original.",
+    "en": "String methods: `upper()` returns the text in **UPPERCASE** and `lower()` in **lowercase**. They don't change the original variable."
+   },
+   "ejemplo": {
+    "es": "texto = \"Shalom\"\nprint(texto.upper())\nprint(texto.lower())",
+    "en": "text = \"Shalom\"\nprint(text.upper())\nprint(text.lower())"
+   },
+   "capitulo": 4
+  },
+  {
+   "termino": {
+    "es": "replace()",
+    "en": "replace()"
+   },
+   "definicion": {
+    "es": "Método de cadena que **reemplaza** un trozo de texto por otro en todas partes donde aparece.",
+    "en": "String method that **replaces** a piece of text with another everywhere it appears."
+   },
+   "ejemplo": {
+    "es": "frase = \"buenas noches\"\nprint(frase.replace(\"noches\", \"días\"))",
+    "en": "phrase = \"good night\"\nprint(phrase.replace(\"night\", \"morning\"))"
+   },
+   "capitulo": 4
+  },
+  {
+   "termino": {
+    "es": "split()",
+    "en": "split()"
+   },
+   "definicion": {
+    "es": "Método que **corta** una cadena en pedazos y devuelve una lista. Sin argumentos corta por los espacios; `split(\",\")` corta por las comas.",
+    "en": "Method that **cuts** a string into pieces and returns a list. With no arguments it cuts at spaces; `split(\",\")` cuts at commas."
+   },
+   "ejemplo": {
+    "es": "frase = \"fe esperanza amor\"\nprint(frase.split())\nprint(\"a,b,c\".split(\",\"))",
+    "en": "phrase = \"faith hope love\"\nprint(phrase.split())\nprint(\"a,b,c\".split(\",\"))"
+   },
+   "capitulo": 4
+  },
+  {
+   "termino": {
+    "es": "strip()",
+    "en": "strip()"
+   },
+   "definicion": {
+    "es": "Método que **quita los espacios** (y saltos de línea) del principio y del final de una cadena.",
+    "en": "Method that **removes spaces** (and line breaks) from the start and end of a string."
+   },
+   "ejemplo": {
+    "es": "respuesta = \"   sí  \"\nprint(\"[\" + respuesta.strip() + \"]\")",
+    "en": "answer = \"   yes  \"\nprint(\"[\" + answer.strip() + \"]\")"
+   },
+   "capitulo": 4
+  },
+  {
+   "termino": {
+    "es": "len()",
+    "en": "len()"
+   },
+   "definicion": {
+    "es": "Función que dice **cuántos elementos** tiene algo: letras de una cadena, elementos de una lista, claves de un diccionario…",
+    "en": "Function that tells **how many items** something has: letters in a string, items in a list, keys in a dictionary…"
+   },
+   "ejemplo": {
+    "es": "print(len(\"Jerusalén\"))\nprint(len([1, 2, 3]))",
+    "en": "print(len(\"Jerusalem\"))\nprint(len([1, 2, 3]))"
+   },
+   "capitulo": 4
+  },
+  {
+   "termino": {
+    "es": "if / elif / else",
+    "en": "if / elif / else"
+   },
+   "definicion": {
+    "es": "Instrucciones para **decidir**: `if` ejecuta su bloque si la condición es verdadera; `elif` prueba otra condición; `else` se ejecuta si ninguna se cumplió. Cada bloque va con dos puntos `:` y sangría.",
+    "en": "Statements for **deciding**: `if` runs its block if the condition is true; `elif` tries another condition; `else` runs if none was met. Each block ends its line with a colon `:` and is indented."
+   },
+   "ejemplo": {
+    "es": "nota = 85\nif nota >= 90:\n    print(\"Excelente\")\nelif nota >= 60:\n    print(\"Aprobado\")\nelse:\n    print(\"A seguir practicando\")",
+    "en": "score = 85\nif score >= 90:\n    print(\"Excellent\")\nelif score >= 60:\n    print(\"Passed\")\nelse:\n    print(\"Keep practicing\")"
+   },
+   "capitulo": 5
+  },
+  {
+   "termino": {
+    "es": "condición",
+    "en": "condition"
+   },
+   "definicion": {
+    "es": "Una expresión que da `True` o `False`, como `edad >= 18`. Es lo que revisan `if` y `while`.",
+    "en": "An expression that gives `True` or `False`, like `age >= 18`. It's what `if` and `while` check."
+   },
+   "ejemplo": {
+    "es": "edad = 15\nprint(edad >= 18)",
+    "en": "age = 15\nprint(age >= 18)"
+   },
+   "capitulo": 5
+  },
+  {
+   "termino": {
+    "es": "operadores de comparación",
+    "en": "comparison operators"
+   },
+   "definicion": {
+    "es": "Comparan dos valores y dan un booleano: `==` igual, `!=` distinto, `<` menor, `>` mayor, `<=` menor o igual, `>=` mayor o igual. No confundas `==` (comparar) con `=` (guardar).",
+    "en": "They compare two values and give a Boolean: `==` equal, `!=` not equal, `<` less, `>` greater, `<=` less or equal, `>=` greater or equal. Don't confuse `==` (compare) with `=` (store)."
+   },
+   "ejemplo": {
+    "es": "print(3 == 3)\nprint(\"oveja\" != \"cabra\")\nprint(10 <= 7)",
+    "en": "print(3 == 3)\nprint(\"sheep\" != \"goat\")\nprint(10 <= 7)"
+   },
+   "capitulo": 5
+  },
+  {
+   "termino": {
+    "es": "and / or / not",
+    "en": "and / or / not"
+   },
+   "definicion": {
+    "es": "Operadores lógicos: `and` es verdadero si **ambas** partes lo son; `or` si **al menos una** lo es; `not` invierte el valor.",
+    "en": "Logical operators: `and` is true if **both** parts are; `or` if **at least one** is; `not` flips the value."
+   },
+   "ejemplo": {
+    "es": "vellon_mojado = True\nsuelo_seco = True\nprint(vellon_mojado and suelo_seco)\nprint(vellon_mojado or False)\nprint(not suelo_seco)",
+    "en": "fleece_wet = True\nground_dry = True\nprint(fleece_wet and ground_dry)\nprint(fleece_wet or False)\nprint(not ground_dry)"
+   },
+   "capitulo": 5
+  },
+  {
+   "termino": {
+    "es": "sangría",
+    "en": "indentation"
+   },
+   "definicion": {
+    "es": "Los espacios al inicio de una línea. En Python **marcan qué líneas van dentro** de un `if`, un bucle o una función. Se usan 4 espacios.",
+    "en": "The spaces at the start of a line. In Python they **mark which lines belong inside** an `if`, a loop or a function. Use 4 spaces."
+   },
+   "ejemplo": {
+    "es": "if True:\n    print(\"dentro del if\")\nprint(\"fuera del if\")",
+    "en": "if True:\n    print(\"inside the if\")\nprint(\"outside the if\")"
+   },
+   "capitulo": 5
+  },
+  {
+   "termino": {
+    "es": "bloque",
+    "en": "block"
+   },
+   "definicion": {
+    "es": "Grupo de líneas con la misma sangría que van juntas, por ejemplo todo lo que está dentro de un `if`. Empieza después de una línea que termina en `:`.",
+    "en": "A group of lines with the same indentation that belong together, for example everything inside an `if`. It starts after a line ending in `:`."
+   },
+   "ejemplo": {
+    "es": "llueve = False\nif not llueve:\n    print(\"Sal a caminar\")\n    print(\"Lleva agua\")",
+    "en": "raining = False\nif not raining:\n    print(\"Go for a walk\")\n    print(\"Bring water\")"
+   },
+   "capitulo": 5
+  },
+  {
+   "termino": {
+    "es": "bucle",
+    "en": "loop"
+   },
+   "definicion": {
+    "es": "Código que se **repite** varias veces. En Python hay dos: `for` (recorre algo) y `while` (repite mientras se cumpla una condición).",
+    "en": "Code that **repeats** several times. Python has two: `for` (goes through something) and `while` (repeats while a condition holds)."
+   },
+   "ejemplo": {
+    "es": "for vuelta in range(3):\n    print(\"Vuelta\", vuelta + 1)",
+    "en": "for lap in range(3):\n    print(\"Lap\", lap + 1)"
+   },
+   "capitulo": 6
+  },
+  {
+   "termino": {
+    "es": "for",
+    "en": "for"
+   },
+   "definicion": {
+    "es": "Bucle que **recorre** uno por uno los elementos de una secuencia (lista, cadena, `range`…) y ejecuta su bloque para cada uno.",
+    "en": "A loop that **goes through** the items of a sequence (list, string, `range`…) one by one and runs its block for each."
+   },
+   "ejemplo": {
+    "es": "for letra in \"paz\":\n    print(letra)",
+    "en": "for letter in \"joy\":\n    print(letter)"
+   },
+   "capitulo": 6
+  },
+  {
+   "termino": {
+    "es": "while",
+    "en": "while"
+   },
+   "definicion": {
+    "es": "Bucle que repite su bloque **mientras** la condición sea verdadera. Algo dentro debe cambiar para que termine algún día.",
+    "en": "A loop that repeats its block **while** the condition is true. Something inside must change so it ends someday."
+   },
+   "ejemplo": {
+    "es": "dia = 1\nwhile dia <= 7:\n    print(\"Día\", dia)\n    dia += 1",
+    "en": "day = 1\nwhile day <= 7:\n    print(\"Day\", day)\n    day += 1"
+   },
+   "capitulo": 6
+  },
+  {
+   "termino": {
+    "es": "range()",
+    "en": "range()"
+   },
+   "definicion": {
+    "es": "Genera una secuencia de números enteros. `range(5)` da 0, 1, 2, 3, 4 (sin el 5). `range(1, 8)` va del 1 al 7; `range(0, 10, 2)` salta de 2 en 2.",
+    "en": "Produces a sequence of whole numbers. `range(5)` gives 0, 1, 2, 3, 4 (not 5). `range(1, 8)` goes from 1 to 7; `range(0, 10, 2)` jumps by 2."
+   },
+   "ejemplo": {
+    "es": "print(list(range(5)))\nprint(list(range(1, 8)))\nprint(list(range(0, 10, 2)))",
+    "en": "print(list(range(5)))\nprint(list(range(1, 8)))\nprint(list(range(0, 10, 2)))"
+   },
+   "capitulo": 6
+  },
+  {
+   "termino": {
+    "es": "contador",
+    "en": "counter"
+   },
+   "definicion": {
+    "es": "Variable que empieza en `0` y **suma 1** cada vez que pasa algo, para saber cuántas veces ocurrió.",
+    "en": "A variable that starts at `0` and **adds 1** each time something happens, to know how many times it occurred."
+   },
+   "ejemplo": {
+    "es": "palabras = [\"amor\", \"luz\", \"alegría\", \"paz\"]\ncortas = 0\nfor p in palabras:\n    if len(p) <= 3:\n        cortas += 1\nprint(cortas)",
+    "en": "words = [\"love\", \"light\", \"joy\", \"peace\"]\nshort = 0\nfor w in words:\n    if len(w) <= 3:\n        short += 1\nprint(short)"
+   },
+   "capitulo": 6
+  },
+  {
+   "termino": {
+    "es": "acumulador",
+    "en": "accumulator"
+   },
+   "definicion": {
+    "es": "Variable que empieza vacía (`0`, `\"\"` o `[]`) y va **juntando** resultados dentro de un bucle, como una suma total.",
+    "en": "A variable that starts empty (`0`, `\"\"` or `[]`) and **collects** results inside a loop, like a running total."
+   },
+   "ejemplo": {
+    "es": "total = 0\nfor n in [5, 2, 7]:\n    total += n\nprint(total)",
+    "en": "total = 0\nfor n in [5, 2, 7]:\n    total += n\nprint(total)"
+   },
+   "capitulo": 6
+  },
+  {
+   "termino": {
+    "es": "+= (asignación aumentada)",
+    "en": "+= (augmented assignment)"
+   },
+   "definicion": {
+    "es": "Atajo para cambiar una variable usando su propio valor: `x += 1` es lo mismo que `x = x + 1`. También existen `-=`, `*=` y `/=`.",
+    "en": "A shortcut for changing a variable using its own value: `x += 1` is the same as `x = x + 1`. There are also `-=`, `*=` and `/=`."
+   },
+   "ejemplo": {
+    "es": "vueltas = 0\nvueltas += 1\nvueltas += 1\nprint(vueltas)",
+    "en": "laps = 0\nlaps += 1\nlaps += 1\nprint(laps)"
+   },
+   "capitulo": 6
+  },
+  {
+   "termino": {
+    "es": "break",
+    "en": "break"
+   },
+   "definicion": {
+    "es": "Instrucción que **sale** del bucle de inmediato, aunque falten vueltas.",
+    "en": "A statement that **exits** the loop right away, even if there are laps left."
+   },
+   "ejemplo": {
+    "es": "for n in range(1, 10):\n    if n == 4:\n        break\n    print(n)",
+    "en": "for n in range(1, 10):\n    if n == 4:\n        break\n    print(n)"
+   },
+   "capitulo": 6
+  },
+  {
+   "termino": {
+    "es": "continue",
+    "en": "continue"
+   },
+   "definicion": {
+    "es": "Instrucción que **salta** el resto de la vuelta actual y pasa a la siguiente.",
+    "en": "A statement that **skips** the rest of the current lap and goes on to the next one."
+   },
+   "ejemplo": {
+    "es": "for n in range(1, 6):\n    if n == 3:\n        continue\n    print(n)",
+    "en": "for n in range(1, 6):\n    if n == 3:\n        continue\n    print(n)"
+   },
+   "capitulo": 6
+  },
+  {
+   "termino": {
+    "es": "bucle infinito",
+    "en": "infinite loop"
+   },
+   "definicion": {
+    "es": "Un bucle que **nunca termina**, casi siempre porque la condición del `while` nunca se vuelve falsa. A veces se usa a propósito con `while True:` y un `break` dentro.",
+    "en": "A loop that **never ends**, usually because the `while` condition never becomes false. Sometimes it's used on purpose with `while True:` and a `break` inside."
+   },
+   "ejemplo": {
+    "es": "n = 0\nwhile True:\n    n += 1\n    if n == 3:\n        break\nprint(\"Salí en la vuelta\", n)",
+    "en": "n = 0\nwhile True:\n    n += 1\n    if n == 3:\n        break\nprint(\"Left on lap\", n)"
+   },
+   "capitulo": 6
+  },
+  {
+   "termino": {
+    "es": "lista",
+    "en": "list"
+   },
+   "definicion": {
+    "es": "Colección **ordenada** de valores entre corchetes `[ ]`, separados por comas. Se puede cambiar: agregar, quitar u ordenar elementos.",
+    "en": "An **ordered** collection of values inside square brackets `[ ]`, separated by commas. It can be changed: add, remove or sort items."
+   },
+   "ejemplo": {
+    "es": "tribus = [\"Rubén\", \"Simeón\", \"Leví\"]\nprint(tribus)\nprint(len(tribus))",
+    "en": "tribes = [\"Reuben\", \"Simeon\", \"Levi\"]\nprint(tribes)\nprint(len(tribes))"
+   },
+   "capitulo": 7
+  },
+  {
+   "termino": {
+    "es": "índice",
+    "en": "index"
+   },
+   "definicion": {
+    "es": "La **posición** de un elemento en una lista o cadena. Se empieza a contar desde `0`; el índice `-1` es el último.",
+    "en": "The **position** of an item in a list or string. Counting starts at `0`; index `-1` is the last one."
+   },
+   "ejemplo": {
+    "es": "tribus = [\"Rubén\", \"Simeón\", \"Leví\"]\nprint(tribus[0])\nprint(tribus[-1])",
+    "en": "tribes = [\"Reuben\", \"Simeon\", \"Levi\"]\nprint(tribes[0])\nprint(tribes[-1])"
+   },
+   "capitulo": 7
+  },
+  {
+   "termino": {
+    "es": "slicing (rebanadas)",
+    "en": "slicing"
+   },
+   "definicion": {
+    "es": "Tomar un **trozo** de una lista o cadena con `[inicio:fin]`. Incluye el inicio pero **no** el fin. Si omites uno, va hasta el borde.",
+    "en": "Taking a **piece** of a list or string with `[start:end]`. It includes the start but **not** the end. If you leave one out, it goes to the edge."
+   },
+   "ejemplo": {
+    "es": "dias = [\"lun\", \"mar\", \"mié\", \"jue\", \"vie\"]\nprint(dias[1:3])\nprint(dias[:2])\nprint(\"Génesis\"[0:3])",
+    "en": "days = [\"mon\", \"tue\", \"wed\", \"thu\", \"fri\"]\nprint(days[1:3])\nprint(days[:2])\nprint(\"Genesis\"[0:3])"
+   },
+   "capitulo": 7
+  },
+  {
+   "termino": {
+    "es": "append()",
+    "en": "append()"
+   },
+   "definicion": {
+    "es": "Método de lista que **agrega** un elemento al final.",
+    "en": "List method that **adds** an item to the end."
+   },
+   "ejemplo": {
+    "es": "frutas = [\"uva\", \"higo\"]\nfrutas.append(\"granada\")\nprint(frutas)",
+    "en": "fruits = [\"grape\", \"fig\"]\nfruits.append(\"pomegranate\")\nprint(fruits)"
+   },
+   "capitulo": 7
+  },
+  {
+   "termino": {
+    "es": "remove()",
+    "en": "remove()"
+   },
+   "definicion": {
+    "es": "Método de lista que **quita** la primera aparición de un valor. Si el valor no está, da `ValueError`.",
+    "en": "List method that **removes** the first occurrence of a value. If the value isn't there, it raises `ValueError`."
+   },
+   "ejemplo": {
+    "es": "frutas = [\"uva\", \"higo\", \"uva\"]\nfrutas.remove(\"uva\")\nprint(frutas)",
+    "en": "fruits = [\"grape\", \"fig\", \"grape\"]\nfruits.remove(\"grape\")\nprint(fruits)"
+   },
+   "capitulo": 7
+  },
+  {
+   "termino": {
+    "es": "sorted() y sort()",
+    "en": "sorted() and sort()"
+   },
+   "definicion": {
+    "es": "`sorted(lista)` devuelve una **lista nueva** ordenada; `lista.sort()` ordena la misma lista. Con `reverse=True` ordenan de mayor a menor.",
+    "en": "`sorted(list)` returns a **new** sorted list; `list.sort()` sorts the same list in place. With `reverse=True` they sort from largest to smallest."
+   },
+   "ejemplo": {
+    "es": "numeros = [3, 1, 2]\nprint(sorted(numeros))\nprint(numeros)\nnumeros.sort(reverse=True)\nprint(numeros)",
+    "en": "numbers = [3, 1, 2]\nprint(sorted(numbers))\nprint(numbers)\nnumbers.sort(reverse=True)\nprint(numbers)"
+   },
+   "capitulo": 7
+  },
+  {
+   "termino": {
+    "es": "in (pertenencia)",
+    "en": "in (membership)"
+   },
+   "definicion": {
+    "es": "Operador que pregunta si un valor **está dentro** de una lista, cadena, diccionario o conjunto. Da `True` o `False`.",
+    "en": "Operator that asks whether a value **is inside** a list, string, dictionary or set. It gives `True` or `False`."
+   },
+   "ejemplo": {
+    "es": "tribus = [\"Judá\", \"Leví\"]\nprint(\"Judá\" in tribus)\nprint(\"z\" in \"paz\")",
+    "en": "tribes = [\"Judah\", \"Levi\"]\nprint(\"Judah\" in tribes)\nprint(\"z\" in \"peace\")"
+   },
+   "capitulo": 7
+  },
+  {
+   "termino": {
+    "es": "sum(), min() y max()",
+    "en": "sum(), min() and max()"
+   },
+   "definicion": {
+    "es": "Funciones que dan la **suma**, el **menor** y el **mayor** de una colección de números.",
+    "en": "Functions that give the **sum**, the **smallest** and the **largest** of a collection of numbers."
+   },
+   "ejemplo": {
+    "es": "edades = [12, 9, 15]\nprint(sum(edades), min(edades), max(edades))",
+    "en": "ages = [12, 9, 15]\nprint(sum(ages), min(ages), max(ages))"
+   },
+   "capitulo": 7
+  },
+  {
+   "termino": {
+    "es": "diccionario",
+    "en": "dictionary"
+   },
+   "definicion": {
+    "es": "Colección de pares **clave: valor** entre llaves `{ }`. Buscas un valor por su clave, como en un diccionario de verdad buscas una definición por la palabra.",
+    "en": "A collection of **key: value** pairs inside braces `{ }`. You look up a value by its key, just like in a real dictionary you look up a definition by its word."
+   },
+   "ejemplo": {
+    "es": "capitulos = {\"Génesis\": 50, \"Rut\": 4}\nprint(capitulos[\"Rut\"])\ncapitulos[\"Jonás\"] = 4\nprint(capitulos)",
+    "en": "chapters = {\"Genesis\": 50, \"Ruth\": 4}\nprint(chapters[\"Ruth\"])\nchapters[\"Jonah\"] = 4\nprint(chapters)"
+   },
+   "capitulo": 8
+  },
+  {
+   "termino": {
+    "es": "clave y valor",
+    "en": "key and value"
+   },
+   "definicion": {
+    "es": "En un diccionario, la **clave** es el nombre con que buscas (no se repite) y el **valor** es lo que guarda. `items()` te da ambos a la vez.",
+    "en": "In a dictionary, the **key** is the name you look up by (it can't repeat) and the **value** is what it holds. `items()` gives you both at once."
+   },
+   "ejemplo": {
+    "es": "libro = {\"nombre\": \"Salmos\", \"capitulos\": 150}\nfor clave, valor in libro.items():\n    print(clave, \"→\", valor)",
+    "en": "book = {\"name\": \"Psalms\", \"chapters\": 150}\nfor key, value in book.items():\n    print(key, \"→\", value)"
+   },
+   "capitulo": 8
+  },
+  {
+   "termino": {
+    "es": "get()",
+    "en": "get()"
+   },
+   "definicion": {
+    "es": "Método de diccionario que busca una clave **sin dar error** si no existe: devuelve `None` o el valor por defecto que le pases.",
+    "en": "Dictionary method that looks up a key **without an error** if it doesn't exist: it returns `None` or the default value you give it."
+   },
+   "ejemplo": {
+    "es": "edades = {\"Isaac\": 40}\nprint(edades.get(\"Isaac\"))\nprint(edades.get(\"Jacob\", 0))",
+    "en": "ages = {\"Isaac\": 40}\nprint(ages.get(\"Isaac\"))\nprint(ages.get(\"Jacob\", 0))"
+   },
+   "capitulo": 8
+  },
+  {
+   "termino": {
+    "es": "tupla",
+    "en": "tuple"
+   },
+   "definicion": {
+    "es": "Colección **ordenada que no se puede cambiar**, escrita entre paréntesis `( )`. Sirve para datos que van juntos, como unas coordenadas.",
+    "en": "An **ordered collection that can't be changed**, written in parentheses `( )`. It's good for data that go together, like coordinates."
+   },
+   "ejemplo": {
+    "es": "punto = (3, 5)\nx, y = punto\nprint(x, y)\nprint(punto[0])",
+    "en": "point = (3, 5)\nx, y = point\nprint(x, y)\nprint(point[0])"
+   },
+   "capitulo": 8
+  },
+  {
+   "termino": {
+    "es": "conjunto (set)",
+    "en": "set"
+   },
+   "definicion": {
+    "es": "Colección **sin orden y sin repetidos**, entre llaves. Útil para quitar duplicados o saber si algo ya apareció.",
+    "en": "A collection **without order and without duplicates**, in braces. Useful for removing duplicates or checking whether something already showed up."
+   },
+   "ejemplo": {
+    "es": "colores = {\"rojo\", \"azul\", \"rojo\"}\nprint(len(colores))\nprint(\"azul\" in colores)",
+    "en": "colors = {\"red\", \"blue\", \"red\"}\nprint(len(colors))\nprint(\"blue\" in colors)"
+   },
+   "capitulo": 8
+  },
+  {
+   "termino": {
+    "es": "mutable e inmutable",
+    "en": "mutable and immutable"
+   },
+   "definicion": {
+    "es": "Un valor **mutable** se puede cambiar después de creado (listas, diccionarios, conjuntos). Uno **inmutable** no (cadenas, números, tuplas): sus métodos devuelven valores nuevos.",
+    "en": "A **mutable** value can be changed after it's created (lists, dictionaries, sets). An **immutable** one can't (strings, numbers, tuples): their methods return new values."
+   },
+   "ejemplo": {
+    "es": "lista = [1, 2]\nlista.append(3)\nprint(lista)\ntexto = \"hola\"\ntexto.upper()\nprint(texto)",
+    "en": "items = [1, 2]\nitems.append(3)\nprint(items)\ntext = \"hello\"\ntext.upper()\nprint(text)"
+   },
+   "capitulo": 8
+  },
+  {
+   "termino": {
+    "es": "función",
+    "en": "function"
+   },
+   "definicion": {
+    "es": "Un bloque de código con **nombre** que puedes usar muchas veces. Se crea con `def` y se usa (se «llama») escribiendo su nombre con paréntesis.",
+    "en": "A **named** block of code you can use many times. You create it with `def` and use (“call”) it by writing its name with parentheses."
+   },
+   "ejemplo": {
+    "es": "def saludar():\n    print(\"¡La paz sea contigo!\")\n\nsaludar()\nsaludar()",
+    "en": "def greet():\n    print(\"Peace be with you!\")\n\ngreet()\ngreet()"
+   },
+   "capitulo": 9
+  },
+  {
+   "termino": {
+    "es": "def",
+    "en": "def"
+   },
+   "definicion": {
+    "es": "Palabra clave para **definir** una función: `def nombre(parametros):` y debajo, con sangría, su cuerpo.",
+    "en": "Keyword for **defining** a function: `def name(parameters):` and below it, indented, its body."
+   },
+   "ejemplo": {
+    "es": "def doble(n):\n    return n * 2\n\nprint(doble(21))",
+    "en": "def double(n):\n    return n * 2\n\nprint(double(21))"
+   },
+   "capitulo": 9
+  },
+  {
+   "termino": {
+    "es": "parámetro",
+    "en": "parameter"
+   },
+   "definicion": {
+    "es": "El **nombre** que una función usa para recibir un dato. Se escribe entre los paréntesis del `def`.",
+    "en": "The **name** a function uses to receive a piece of data. It goes between the parentheses of the `def`."
+   },
+   "ejemplo": {
+    "es": "def saludar(nombre):\n    print(\"Hola,\", nombre)\n\nsaludar(\"Rut\")",
+    "en": "def greet(name):\n    print(\"Hello,\", name)\n\ngreet(\"Ruth\")"
+   },
+   "capitulo": 9
+  },
+  {
+   "termino": {
+    "es": "argumento",
+    "en": "argument"
+   },
+   "definicion": {
+    "es": "El **valor** concreto que le pasas a una función al llamarla. En `saludar(\"Rut\")`, el argumento es `\"Rut\"`.",
+    "en": "The actual **value** you pass to a function when you call it. In `greet(\"Ruth\")`, the argument is `\"Ruth\"`."
+   },
+   "ejemplo": {
+    "es": "def area(base, altura):\n    return base * altura\n\nprint(area(3, 4))\nprint(area(altura=2, base=5))",
+    "en": "def area(width, height):\n    return width * height\n\nprint(area(3, 4))\nprint(area(height=2, width=5))"
+   },
+   "capitulo": 9
+  },
+  {
+   "termino": {
+    "es": "return",
+    "en": "return"
+   },
+   "definicion": {
+    "es": "Instrucción que **devuelve** un resultado desde la función a quien la llamó, y la termina. Sin `return`, la función devuelve `None`.",
+    "en": "A statement that **gives back** a result from the function to whoever called it, and ends the function. Without `return`, the function gives back `None`."
+   },
+   "ejemplo": {
+    "es": "def cuadrado(n):\n    return n * n\n\nresultado = cuadrado(7)\nprint(resultado + 1)",
+    "en": "def square(n):\n    return n * n\n\nresult = square(7)\nprint(result + 1)"
+   },
+   "capitulo": 9
+  },
+  {
+   "termino": {
+    "es": "valor por defecto",
+    "en": "default value"
+   },
+   "definicion": {
+    "es": "Valor que toma un parámetro **si no le pasas nada**. Se escribe con `=` en el `def`.",
+    "en": "The value a parameter takes **if you don't pass anything**. It's written with `=` in the `def`."
+   },
+   "ejemplo": {
+    "es": "def saludar(nombre=\"amigo\"):\n    print(\"Hola,\", nombre)\n\nsaludar()\nsaludar(\"Ana\")",
+    "en": "def greet(name=\"friend\"):\n    print(\"Hello,\", name)\n\ngreet()\ngreet(\"Anna\")"
+   },
+   "capitulo": 9
+  },
+  {
+   "termino": {
+    "es": "alcance (scope)",
+    "en": "scope"
+   },
+   "definicion": {
+    "es": "La zona del programa donde existe una variable. Las variables creadas **dentro** de una función son locales: no se ven desde fuera.",
+    "en": "The part of the program where a variable exists. Variables created **inside** a function are local: they can't be seen from outside."
+   },
+   "ejemplo": {
+    "es": "mensaje = \"global\"\n\ndef probar():\n    mensaje = \"local\"\n    print(mensaje)\n\nprobar()\nprint(mensaje)",
+    "en": "message = \"global\"\n\ndef test():\n    message = \"local\"\n    print(message)\n\ntest()\nprint(message)"
+   },
+   "capitulo": 9
+  },
+  {
+   "termino": {
+    "es": "llamar una función",
+    "en": "calling a function"
+   },
+   "definicion": {
+    "es": "**Usar** una función escribiendo su nombre seguido de paréntesis, con los argumentos dentro. Sin paréntesis no se ejecuta.",
+    "en": "**Using** a function by writing its name followed by parentheses, with the arguments inside. Without the parentheses it doesn't run."
+   },
+   "ejemplo": {
+    "es": "def bendecir():\n    return \"Bendiciones\"\n\nprint(bendecir())",
+    "en": "def bless():\n    return \"Blessings\"\n\nprint(bless())"
+   },
+   "capitulo": 9
+  },
+  {
+   "termino": {
+    "es": "procesar texto",
+    "en": "text processing"
+   },
+   "definicion": {
+    "es": "Analizar o transformar un texto paso a paso: limpiarlo, cortarlo en palabras, contarlas, buscar o reemplazar partes.",
+    "en": "Analyzing or transforming a text step by step: cleaning it, cutting it into words, counting them, searching or replacing parts."
+   },
+   "ejemplo": {
+    "es": "salmo = \"El Señor es mi pastor, nada me faltará.\"\nlimpio = salmo.lower().replace(\",\", \"\").replace(\".\", \"\")\npalabras = limpio.split()\nprint(len(palabras), \"palabras\")\nprint(palabras.count(\"mi\"))",
+    "en": "psalm = \"The Lord is my shepherd, I shall not want.\"\nclean = psalm.lower().replace(\",\", \"\").replace(\".\", \"\")\nwords = clean.split()\nprint(len(words), \"words\")\nprint(words.count(\"my\"))"
+   },
+   "capitulo": 10
+  },
+  {
+   "termino": {
+    "es": "join()",
+    "en": "join()"
+   },
+   "definicion": {
+    "es": "Método de cadena que **une** los elementos de una lista de cadenas, poniendo el texto que elijas entre ellos. Es lo contrario de `split()`.",
+    "en": "String method that **joins** the items of a list of strings, putting the text you choose between them. It's the opposite of `split()`."
+   },
+   "ejemplo": {
+    "es": "palabras = [\"fe\", \"esperanza\", \"amor\"]\nprint(\", \".join(palabras))\nprint(\"-\".join(\"paz\"))",
+    "en": "words = [\"faith\", \"hope\", \"love\"]\nprint(\", \".join(words))\nprint(\"-\".join(\"joy\"))"
+   },
+   "capitulo": 10
+  },
+  {
+   "termino": {
+    "es": "count() y find()",
+    "en": "count() and find()"
+   },
+   "definicion": {
+    "es": "Métodos de cadena: `count()` dice **cuántas veces** aparece un texto; `find()` da la **posición** donde aparece por primera vez, o `-1` si no está.",
+    "en": "String methods: `count()` tells **how many times** a text appears; `find()` gives the **position** where it first appears, or `-1` if it isn't there."
+   },
+   "ejemplo": {
+    "es": "texto = \"santo, santo, santo\"\nprint(texto.count(\"santo\"))\nprint(texto.find(\"santo\"))\nprint(texto.find(\"x\"))",
+    "en": "text = \"holy, holy, holy\"\nprint(text.count(\"holy\"))\nprint(text.find(\"holy\"))\nprint(text.find(\"x\"))"
+   },
+   "capitulo": 10
+  },
+  {
+   "termino": {
+    "es": "salto de línea (\\n)",
+    "en": "newline (\\n)"
+   },
+   "definicion": {
+    "es": "El carácter especial `\\n` dentro de una cadena significa «**pasa a la siguiente línea**». `splitlines()` corta un texto por sus líneas.",
+    "en": "The special character `\\n` inside a string means “**go to the next line**”. `splitlines()` cuts a text into its lines."
+   },
+   "ejemplo": {
+    "es": "versos = \"Alaben\\nal Señor\"\nprint(versos)\nprint(versos.splitlines())",
+    "en": "verses = \"Praise\\nthe Lord\"\nprint(verses)\nprint(verses.splitlines())"
+   },
+   "capitulo": 10
+  },
+  {
+   "termino": {
+    "es": "excepción",
+    "en": "exception"
+   },
+   "definicion": {
+    "es": "Un **error** que ocurre mientras el programa corre, como dividir entre cero. Si nadie la atiende, el programa se detiene y muestra un traceback.",
+    "en": "An **error** that happens while the program runs, like dividing by zero. If nobody handles it, the program stops and shows a traceback."
+   },
+   "ejemplo": {
+    "es": "try:\n    print(10 / 0)\nexcept ZeroDivisionError:\n    print(\"No se puede dividir entre cero\")",
+    "en": "try:\n    print(10 / 0)\nexcept ZeroDivisionError:\n    print(\"You cannot divide by zero\")"
+   },
+   "capitulo": 11
+  },
+  {
+   "termino": {
+    "es": "traceback",
+    "en": "traceback"
+   },
+   "definicion": {
+    "es": "El **informe** que Python muestra cuando ocurre un error: dice en qué línea pasó y qué tipo de error fue. Léelo **de abajo hacia arriba**: la última línea es la más importante.",
+    "en": "The **report** Python shows when an error happens: it tells which line it happened on and what kind of error it was. Read it **from the bottom up**: the last line is the most important."
+   },
+   "ejemplo": {
+    "es": "# Así se ve un traceback:\n# Traceback (most recent call last):\n#   File \"main.py\", line 2, in <module>\n# NameError: name 'nombr' is not defined\nprint(\"Lee siempre la última línea\")",
+    "en": "# This is what a traceback looks like:\n# Traceback (most recent call last):\n#   File \"main.py\", line 2, in <module>\n# NameError: name 'nme' is not defined\nprint(\"Always read the last line\")"
+   },
+   "capitulo": 11
+  },
+  {
+   "termino": {
+    "es": "try / except",
+    "en": "try / except"
+   },
+   "definicion": {
+    "es": "Estructura para **atrapar errores**: Python intenta el bloque `try` y, si ocurre la excepción indicada, ejecuta el bloque `except` en lugar de detenerse.",
+    "en": "A structure for **catching errors**: Python tries the `try` block and, if the given exception happens, runs the `except` block instead of stopping."
+   },
+   "ejemplo": {
+    "es": "texto = \"doce\"\ntry:\n    numero = int(texto)\nexcept ValueError:\n    print(\"Eso no es un número\")",
+    "en": "text = \"twelve\"\ntry:\n    number = int(text)\nexcept ValueError:\n    print(\"That is not a number\")"
+   },
+   "capitulo": 11
+  },
+  {
+   "termino": {
+    "es": "else y finally",
+    "en": "else and finally"
+   },
+   "definicion": {
+    "es": "Partes opcionales de un `try`: `else` se ejecuta si **no hubo error**; `finally` se ejecuta **siempre**, haya error o no.",
+    "en": "Optional parts of a `try`: `else` runs if **there was no error**; `finally` runs **always**, error or not."
+   },
+   "ejemplo": {
+    "es": "try:\n    n = int(\"7\")\nexcept ValueError:\n    print(\"Error\")\nelse:\n    print(\"Todo bien:\", n)\nfinally:\n    print(\"Fin\")",
+    "en": "try:\n    n = int(\"7\")\nexcept ValueError:\n    print(\"Error\")\nelse:\n    print(\"All good:\", n)\nfinally:\n    print(\"Done\")"
+   },
+   "capitulo": 11
+  },
+  {
+   "termino": {
+    "es": "raise",
+    "en": "raise"
+   },
+   "definicion": {
+    "es": "Instrucción para **lanzar** una excepción a propósito cuando algo no está bien, con un mensaje que explique el problema.",
+    "en": "A statement for **raising** an exception on purpose when something is wrong, with a message that explains the problem."
+   },
+   "ejemplo": {
+    "es": "def dividir(a, b):\n    if b == 0:\n        raise ValueError(\"b no puede ser 0\")\n    return a / b\n\ntry:\n    dividir(5, 0)\nexcept ValueError as e:\n    print(\"Error:\", e)",
+    "en": "def divide(a, b):\n    if b == 0:\n        raise ValueError(\"b cannot be 0\")\n    return a / b\n\ntry:\n    divide(5, 0)\nexcept ValueError as e:\n    print(\"Error:\", e)"
+   },
+   "capitulo": 11
+  },
+  {
+   "termino": {
+    "es": "NameError",
+    "en": "NameError"
+   },
+   "definicion": {
+    "es": "Error que sale cuando usas un **nombre que no existe**: una variable que no creaste o que escribiste mal.",
+    "en": "Error raised when you use a **name that doesn't exist**: a variable you didn't create or misspelled."
+   },
+   "ejemplo": {
+    "es": "nombre = \"Daniel\"\ntry:\n    print(nombr)\nexcept NameError as e:\n    print(e)",
+    "en": "name = \"Daniel\"\ntry:\n    print(nme)\nexcept NameError as e:\n    print(e)"
+   },
+   "capitulo": 11
+  },
+  {
+   "termino": {
+    "es": "TypeError",
+    "en": "TypeError"
+   },
+   "definicion": {
+    "es": "Error que sale cuando usas un valor de un **tipo equivocado**, como sumar un texto con un número.",
+    "en": "Error raised when you use a value of the **wrong type**, like adding text and a number."
+   },
+   "ejemplo": {
+    "es": "try:\n    print(\"Edad: \" + 12)\nexcept TypeError:\n    print(\"Convierte con str(): \" + str(12))",
+    "en": "try:\n    print(\"Age: \" + 12)\nexcept TypeError:\n    print(\"Convert with str(): \" + str(12))"
+   },
+   "capitulo": 11
+  },
+  {
+   "termino": {
+    "es": "ValueError",
+    "en": "ValueError"
+   },
+   "definicion": {
+    "es": "Error que sale cuando el tipo es correcto pero el **valor no sirve**, como `int(\"hola\")`.",
+    "en": "Error raised when the type is right but the **value doesn't work**, like `int(\"hello\")`."
+   },
+   "ejemplo": {
+    "es": "try:\n    int(\"hola\")\nexcept ValueError as e:\n    print(e)",
+    "en": "try:\n    int(\"hello\")\nexcept ValueError as e:\n    print(e)"
+   },
+   "capitulo": 11
+  },
+  {
+   "termino": {
+    "es": "IndentationError",
+    "en": "IndentationError"
+   },
+   "definicion": {
+    "es": "Error por **sangría incorrecta**: falta sangría después de `:` o las líneas de un bloque no están alineadas.",
+    "en": "Error caused by **wrong indentation**: missing indentation after `:` or lines of a block that don't line up."
+   },
+   "ejemplo": {
+    "es": "codigo = \"if True:\\nprint(1)\"\ntry:\n    exec(codigo)\nexcept IndentationError:\n    print(\"Falta sangría después de los dos puntos\")",
+    "en": "code = \"if True:\\nprint(1)\"\ntry:\n    exec(code)\nexcept IndentationError:\n    print(\"Missing indentation after the colon\")"
+   },
+   "capitulo": 11
+  },
+  {
+   "termino": {
+    "es": "SyntaxError",
+    "en": "SyntaxError"
+   },
+   "definicion": {
+    "es": "Error de **escritura**: el código no sigue las reglas de Python (falta un paréntesis, unas comillas o los dos puntos). Python lo detecta antes de empezar a correr.",
+    "en": "A **writing** error: the code doesn't follow Python's rules (a missing parenthesis, quote or colon). Python catches it before it starts running."
+   },
+   "ejemplo": {
+    "es": "codigo = \"print(\\\"hola\\\"\"\ntry:\n    exec(codigo)\nexcept SyntaxError:\n    print(\"Falta cerrar el paréntesis\")",
+    "en": "code = \"print(\\\"hello\\\"\"\ntry:\n    exec(code)\nexcept SyntaxError:\n    print(\"The parenthesis is not closed\")"
+   },
+   "capitulo": 11
+  },
+  {
+   "termino": {
+    "es": "IndexError y KeyError",
+    "en": "IndexError and KeyError"
+   },
+   "definicion": {
+    "es": "`IndexError`: pediste una **posición** que no existe en una lista. `KeyError`: pediste una **clave** que no está en un diccionario.",
+    "en": "`IndexError`: you asked for a **position** that doesn't exist in a list. `KeyError`: you asked for a **key** that isn't in a dictionary."
+   },
+   "ejemplo": {
+    "es": "lista = [1, 2, 3]\ntry:\n    print(lista[5])\nexcept IndexError:\n    print(\"No hay posición 5\")\ntry:\n    print({\"a\": 1}[\"b\"])\nexcept KeyError:\n    print(\"No hay clave b\")",
+    "en": "items = [1, 2, 3]\ntry:\n    print(items[5])\nexcept IndexError:\n    print(\"There is no position 5\")\ntry:\n    print({\"a\": 1}[\"b\"])\nexcept KeyError:\n    print(\"There is no key b\")"
+   },
+   "capitulo": 11
+  },
+  {
+   "termino": {
+    "es": "clase",
+    "en": "class"
+   },
+   "definicion": {
+    "es": "Un **molde** para crear objetos. Define qué datos (atributos) y qué acciones (métodos) tendrán. Se crea con `class` y su nombre suele empezar con mayúscula.",
+    "en": "A **blueprint** for creating objects. It defines what data (attributes) and actions (methods) they'll have. You create it with `class` and its name usually starts with a capital letter."
+   },
+   "ejemplo": {
+    "es": "class Oveja:\n    def __init__(self, nombre):\n        self.nombre = nombre\n\nuna = Oveja(\"Lana\")\nprint(una.nombre)",
+    "en": "class Sheep:\n    def __init__(self, name):\n        self.name = name\n\none = Sheep(\"Woolly\")\nprint(one.name)"
+   },
+   "capitulo": 12
+  },
+  {
+   "termino": {
+    "es": "objeto (instancia)",
+    "en": "object (instance)"
+   },
+   "definicion": {
+    "es": "Un valor concreto creado a partir de una clase. Cada objeto tiene **sus propios** datos, aunque comparta el molde con otros.",
+    "en": "A concrete value created from a class. Each object has **its own** data, even if it shares the blueprint with others."
+   },
+   "ejemplo": {
+    "es": "class Persona:\n    def __init__(self, nombre):\n        self.nombre = nombre\n\nrut = Persona(\"Rut\")\nnoemi = Persona(\"Noemí\")\nprint(rut.nombre, \"y\", noemi.nombre)",
+    "en": "class Person:\n    def __init__(self, name):\n        self.name = name\n\nruth = Person(\"Ruth\")\nnaomi = Person(\"Naomi\")\nprint(ruth.name, \"and\", naomi.name)"
+   },
+   "capitulo": 12
+  },
+  {
+   "termino": {
+    "es": "__init__",
+    "en": "__init__"
+   },
+   "definicion": {
+    "es": "Método especial que se ejecuta **al crear** un objeto. Ahí se le dan sus valores iniciales.",
+    "en": "A special method that runs **when an object is created**. That's where it gets its starting values."
+   },
+   "ejemplo": {
+    "es": "class Rollo:\n    def __init__(self, titulo, paginas):\n        self.titulo = titulo\n        self.paginas = paginas\n\nr = Rollo(\"Isaías\", 66)\nprint(r.titulo, r.paginas)",
+    "en": "class Scroll:\n    def __init__(self, title, pages):\n        self.title = title\n        self.pages = pages\n\ns = Scroll(\"Isaiah\", 66)\nprint(s.title, s.pages)"
+   },
+   "capitulo": 12
+  },
+  {
+   "termino": {
+    "es": "self",
+    "en": "self"
+   },
+   "definicion": {
+    "es": "El primer parámetro de los métodos: representa **al objeto mismo**. Con `self.algo` lees o guardas datos de ese objeto.",
+    "en": "The first parameter of methods: it stands for **the object itself**. With `self.something` you read or store that object's data."
+   },
+   "ejemplo": {
+    "es": "class Contador:\n    def __init__(self):\n        self.valor = 0\n    def sumar(self):\n        self.valor += 1\n\nc = Contador()\nc.sumar()\nc.sumar()\nprint(c.valor)",
+    "en": "class Counter:\n    def __init__(self):\n        self.value = 0\n    def add(self):\n        self.value += 1\n\nc = Counter()\nc.add()\nc.add()\nprint(c.value)"
+   },
+   "capitulo": 12
+  },
+  {
+   "termino": {
+    "es": "atributo",
+    "en": "attribute"
+   },
+   "definicion": {
+    "es": "Un **dato** que pertenece a un objeto, como su nombre o su edad. Se lee y se cambia con un punto: `objeto.atributo`.",
+    "en": "A piece of **data** that belongs to an object, like its name or age. You read and change it with a dot: `object.attribute`."
+   },
+   "ejemplo": {
+    "es": "class Pastor:\n    def __init__(self, nombre):\n        self.nombre = nombre\n        self.ovejas = 99\n\nd = Pastor(\"David\")\nd.ovejas += 1\nprint(d.nombre, d.ovejas)",
+    "en": "class Shepherd:\n    def __init__(self, name):\n        self.name = name\n        self.sheep = 99\n\nd = Shepherd(\"David\")\nd.sheep += 1\nprint(d.name, d.sheep)"
+   },
+   "capitulo": 12
+  },
+  {
+   "termino": {
+    "es": "método (de una clase)",
+    "en": "method (of a class)"
+   },
+   "definicion": {
+    "es": "Una **función definida dentro de una clase**. Describe algo que el objeto sabe hacer y se llama con `objeto.metodo()`.",
+    "en": "A **function defined inside a class**. It describes something the object can do and is called with `object.method()`."
+   },
+   "ejemplo": {
+    "es": "class Profeta:\n    def __init__(self, nombre):\n        self.nombre = nombre\n    def hablar(self):\n        return self.nombre + \" anuncia buenas noticias\"\n\np = Profeta(\"Isaías\")\nprint(p.hablar())",
+    "en": "class Prophet:\n    def __init__(self, name):\n        self.name = name\n    def speak(self):\n        return self.name + \" brings good news\"\n\np = Prophet(\"Isaiah\")\nprint(p.speak())"
+   },
+   "capitulo": 12
+  },
+  {
+   "termino": {
+    "es": "algoritmo",
+    "en": "algorithm"
+   },
+   "definicion": {
+    "es": "Una **receta** de pasos claros y ordenados para resolver un problema. El mismo problema puede tener algoritmos más rápidos o más lentos.",
+    "en": "A **recipe** of clear, ordered steps for solving a problem. The same problem can have faster or slower algorithms."
+   },
+   "ejemplo": {
+    "es": "# Algoritmo: hallar el mayor sin usar max()\nnumeros = [4, 9, 2, 7]\nmayor = numeros[0]\nfor n in numeros:\n    if n > mayor:\n        mayor = n\nprint(mayor)",
+    "en": "# Algorithm: find the largest without max()\nnumbers = [4, 9, 2, 7]\nlargest = numbers[0]\nfor n in numbers:\n    if n > largest:\n        largest = n\nprint(largest)"
+   },
+   "capitulo": 13
+  },
+  {
+   "termino": {
+    "es": "búsqueda lineal",
+    "en": "linear search"
+   },
+   "definicion": {
+    "es": "Buscar algo revisando los elementos **uno por uno**, desde el principio, hasta encontrarlo. Funciona siempre, pero es lenta en listas muy largas.",
+    "en": "Searching for something by checking the items **one by one**, from the start, until you find it. It always works, but it's slow on very long lists."
+   },
+   "ejemplo": {
+    "es": "def buscar(lista, objetivo):\n    for i in range(len(lista)):\n        if lista[i] == objetivo:\n            return i\n    return -1\n\nprint(buscar([\"Mateo\", \"Marcos\", \"Lucas\", \"Juan\"], \"Lucas\"))",
+    "en": "def search(items, target):\n    for i in range(len(items)):\n        if items[i] == target:\n            return i\n    return -1\n\nprint(search([\"Matthew\", \"Mark\", \"Luke\", \"John\"], \"Luke\"))"
+   },
+   "capitulo": 13
+  },
+  {
+   "termino": {
+    "es": "búsqueda binaria",
+    "en": "binary search"
+   },
+   "definicion": {
+    "es": "Buscar en una lista **ordenada** mirando el elemento del medio y descartando la mitad que no sirve, una y otra vez. Es muchísimo más rápida que la lineal.",
+    "en": "Searching a **sorted** list by looking at the middle item and throwing away the half that can't contain the target, again and again. It's much faster than linear search."
+   },
+   "ejemplo": {
+    "es": "def binaria(lista, objetivo):\n    inicio, fin = 0, len(lista) - 1\n    while inicio <= fin:\n        medio = (inicio + fin) // 2\n        if lista[medio] == objetivo:\n            return medio\n        if lista[medio] < objetivo:\n            inicio = medio + 1\n        else:\n            fin = medio - 1\n    return -1\n\nprint(binaria([1, 3, 5, 7, 9, 11], 7))",
+    "en": "def binary(items, target):\n    start, end = 0, len(items) - 1\n    while start <= end:\n        middle = (start + end) // 2\n        if items[middle] == target:\n            return middle\n        if items[middle] < target:\n            start = middle + 1\n        else:\n            end = middle - 1\n    return -1\n\nprint(binary([1, 3, 5, 7, 9, 11], 7))"
+   },
+   "capitulo": 13
+  },
+  {
+   "termino": {
+    "es": "ordenamiento",
+    "en": "sorting"
+   },
+   "definicion": {
+    "es": "Poner elementos **en orden** (de menor a mayor, alfabético…). Hay muchos algoritmos para hacerlo, como el de burbuja; en Python lo práctico es `sorted()`.",
+    "en": "Putting items **in order** (smallest to largest, alphabetical…). There are many algorithms for it, like bubble sort; in Python the practical way is `sorted()`."
+   },
+   "ejemplo": {
+    "es": "rollos = [5, 2, 4, 1]\nfor i in range(len(rollos)):\n    for j in range(len(rollos) - 1 - i):\n        if rollos[j] > rollos[j + 1]:\n            rollos[j], rollos[j + 1] = rollos[j + 1], rollos[j]\nprint(rollos)",
+    "en": "scrolls = [5, 2, 4, 1]\nfor i in range(len(scrolls)):\n    for j in range(len(scrolls) - 1 - i):\n        if scrolls[j] > scrolls[j + 1]:\n            scrolls[j], scrolls[j + 1] = scrolls[j + 1], scrolls[j]\nprint(scrolls)"
+   },
+   "capitulo": 13
+  },
+  {
+   "termino": {
+    "es": "comprensión de listas",
+    "en": "list comprehension"
+   },
+   "definicion": {
+    "es": "Forma corta de **crear una lista** a partir de otra en una sola línea: `[expresion for x in lista if condicion]`.",
+    "en": "A short way to **build a list** from another in one line: `[expression for x in items if condition]`."
+   },
+   "ejemplo": {
+    "es": "numeros = [1, 2, 3, 4, 5, 6]\ncuadrados = [n * n for n in numeros]\npares = [n for n in numeros if n % 2 == 0]\nprint(cuadrados)\nprint(pares)",
+    "en": "numbers = [1, 2, 3, 4, 5, 6]\nsquares = [n * n for n in numbers]\nevens = [n for n in numbers if n % 2 == 0]\nprint(squares)\nprint(evens)"
+   },
+   "capitulo": 13
+  },
+  {
+   "termino": {
+    "es": "módulo",
+    "en": "module"
+   },
+   "definicion": {
+    "es": "Un archivo de Python con funciones y valores listos para usar en otros programas. Python trae muchos de fábrica, como `random` y `math`.",
+    "en": "A Python file with functions and values ready to use in other programs. Python comes with many built in, like `random` and `math`."
+   },
+   "ejemplo": {
+    "es": "import math\nprint(math.pi)",
+    "en": "import math\nprint(math.pi)"
+   },
+   "capitulo": 14
+  },
+  {
+   "termino": {
+    "es": "import",
+    "en": "import"
+   },
+   "definicion": {
+    "es": "Instrucción para **traer** un módulo a tu programa. `import math` trae todo el módulo; `from math import sqrt` trae solo una parte.",
+    "en": "A statement for **bringing** a module into your program. `import math` brings the whole module; `from math import sqrt` brings just one part."
+   },
+   "ejemplo": {
+    "es": "import random\nfrom math import sqrt\nprint(sqrt(49))\nprint(random.randint(1, 6) in range(1, 7))",
+    "en": "import random\nfrom math import sqrt\nprint(sqrt(49))\nprint(random.randint(1, 6) in range(1, 7))"
+   },
+   "capitulo": 14
+  },
+  {
+   "termino": {
+    "es": "random",
+    "en": "random"
+   },
+   "definicion": {
+    "es": "Módulo para el **azar**: `randint(a, b)` da un entero entre `a` y `b` (ambos incluidos), `choice(lista)` elige un elemento y `shuffle(lista)` mezcla la lista.",
+    "en": "Module for **chance**: `randint(a, b)` gives a whole number between `a` and `b` (both included), `choice(list)` picks an item and `shuffle(list)` mixes the list."
+   },
+   "ejemplo": {
+    "es": "import random\ndado = random.randint(1, 6)\nprint(\"Salió\", dado)\nprint(random.choice([\"Pedro\", \"Andrés\", \"Juan\"]))",
+    "en": "import random\ndie = random.randint(1, 6)\nprint(\"You rolled\", die)\nprint(random.choice([\"Peter\", \"Andrew\", \"John\"]))"
+   },
+   "capitulo": 14
+  },
+  {
+   "termino": {
+    "es": "math",
+    "en": "math"
+   },
+   "definicion": {
+    "es": "Módulo de **matemáticas**: `sqrt()` raíz cuadrada, `pi`, `floor()` y `ceil()` para redondear hacia abajo y hacia arriba, entre otros.",
+    "en": "Module for **math**: `sqrt()` square root, `pi`, `floor()` and `ceil()` for rounding down and up, among others."
+   },
+   "ejemplo": {
+    "es": "import math\nprint(math.sqrt(144))\nprint(math.ceil(4.1))\nprint(math.floor(4.9))",
+    "en": "import math\nprint(math.sqrt(144))\nprint(math.ceil(4.1))\nprint(math.floor(4.9))"
+   },
+   "capitulo": 14
+  },
+  {
+   "termino": {
+    "es": "datetime",
+    "en": "datetime"
+   },
+   "definicion": {
+    "es": "Módulo para trabajar con **fechas y horas**: crear fechas, saber la de hoy y calcular cuántos días hay entre dos.",
+    "en": "Module for working with **dates and times**: creating dates, getting today's date and working out how many days lie between two."
+   },
+   "ejemplo": {
+    "es": "from datetime import date\nnavidad = date(2026, 12, 25)\ninicio = date(2026, 12, 1)\nprint((navidad - inicio).days, \"días\")\nprint(navidad.year)",
+    "en": "from datetime import date\nchristmas = date(2026, 12, 25)\nstart = date(2026, 12, 1)\nprint((christmas - start).days, \"days\")\nprint(christmas.year)"
+   },
+   "capitulo": 14
+  },
+  {
+   "termino": {
+    "es": "proyecto",
+    "en": "project"
+   },
+   "definicion": {
+    "es": "Un programa más grande que junta muchas de las cosas aprendidas para lograr algo completo: un juego, una calculadora, un dibujo. Se arma por partes, probando cada una.",
+    "en": "A bigger program that brings together many of the things you've learned to make something complete: a game, a calculator, a drawing. You build it in parts, testing each one."
+   },
+   "ejemplo": {
+    "es": "# Plan de un proyecto:\n# 1. Datos  2. Funciones  3. Programa principal\nversiculos = [\"Juan 3:16\", \"Salmo 23:1\"]\n\ndef mostrar(lista):\n    for v in lista:\n        print(\"-\", v)\n\nmostrar(versiculos)",
+    "en": "# A project plan:\n# 1. Data  2. Functions  3. Main program\nverses = [\"John 3:16\", \"Psalm 23:1\"]\n\ndef show(items):\n    for v in items:\n        print(\"-\", v)\n\nshow(verses)"
+   },
+   "capitulo": 15
+  },
+  {
+   "termino": {
+    "es": "lienzo",
+    "en": "lienzo (canvas)"
+   },
+   "definicion": {
+    "es": "Módulo propio del Sendero para **dibujar** en la página: `tamano()`, `fondo()`, `rectangulo()`, `circulo()`, `linea()` y `texto()`. Las coordenadas van en píxeles y `(0, 0)` es la esquina de arriba a la izquierda.",
+    "en": "The Sendero's own module for **drawing** on the page: `tamano()` (size), `fondo()` (background), `rectangulo()`, `circulo()`, `linea()` and `texto()`. Coordinates are in pixels and `(0, 0)` is the top-left corner."
+   },
+   "ejemplo": {
+    "es": "import lienzo\nlienzo.tamano(300, 200)\nlienzo.fondo(\"skyblue\")\nlienzo.circulo(150, 80, 40, \"gold\")\nlienzo.texto(150, 150, \"Sea la luz\", centrado=True)",
+    "en": "import lienzo\nlienzo.tamano(300, 200)\nlienzo.fondo(\"skyblue\")\nlienzo.circulo(150, 80, 40, \"gold\")\nlienzo.texto(150, 150, \"Let there be light\", centrado=True)"
+   },
+   "capitulo": 15
+  },
+  {
+   "termino": {
+    "es": "coordenadas",
+    "en": "coordinates"
+   },
+   "definicion": {
+    "es": "Dos números `(x, y)` que dicen **dónde** está un punto: `x` cuenta hacia la derecha y `y` hacia **abajo**, empezando en la esquina de arriba a la izquierda.",
+    "en": "Two numbers `(x, y)` that tell **where** a point is: `x` counts to the right and `y` counts **down**, starting at the top-left corner."
+   },
+   "ejemplo": {
+    "es": "import lienzo\nlienzo.tamano(200, 200)\nlienzo.linea(0, 0, 200, 200, \"black\")\nlienzo.rectangulo(150, 10, 40, 20, \"green\")",
+    "en": "import lienzo\nlienzo.tamano(200, 200)\nlienzo.linea(0, 0, 200, 200, \"black\")\nlienzo.rectangulo(150, 10, 40, 20, \"green\")"
+   },
+   "capitulo": 15
+  },
+  {
+   "termino": {
+    "es": "archivo",
+    "en": "file"
+   },
+   "definicion": {
+    "es": "Datos guardados con un nombre en el disco, como `cartas.txt`. Tu programa puede **leerlos** y **escribirlos** para que la información no se pierda al terminar.",
+    "en": "Data saved under a name on the disk, like `letters.txt`. Your program can **read** and **write** them so information isn't lost when it ends."
+   },
+   "ejemplo": {
+    "es": "with open(\"saludo.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"Gracia y paz\\n\")\nwith open(\"saludo.txt\", encoding=\"utf-8\") as f:\n    print(f.read())",
+    "en": "with open(\"greeting.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"Grace and peace\\n\")\nwith open(\"greeting.txt\", encoding=\"utf-8\") as f:\n    print(f.read())"
+   },
+   "capitulo": 16
+  },
+  {
+   "termino": {
+    "es": "open()",
+    "en": "open()"
+   },
+   "definicion": {
+    "es": "Función que **abre** un archivo y te da un objeto para leerlo o escribirlo. Recibe el nombre del archivo, el modo y, mejor siempre, el `encoding`.",
+    "en": "Function that **opens** a file and gives you an object for reading or writing it. It takes the file name, the mode and, always best, the `encoding`."
+   },
+   "ejemplo": {
+    "es": "f = open(\"notas.txt\", \"w\", encoding=\"utf-8\")\nf.write(\"Primera nota\")\nf.close()\nprint(open(\"notas.txt\", encoding=\"utf-8\").read())",
+    "en": "f = open(\"notes.txt\", \"w\", encoding=\"utf-8\")\nf.write(\"First note\")\nf.close()\nprint(open(\"notes.txt\", encoding=\"utf-8\").read())"
+   },
+   "capitulo": 16
+  },
+  {
+   "termino": {
+    "es": "with",
+    "en": "with"
+   },
+   "definicion": {
+    "es": "Bloque que abre algo (como un archivo) y lo **cierra solo** al terminar, aunque ocurra un error. Es la forma recomendada de usar `open()`.",
+    "en": "A block that opens something (like a file) and **closes it automatically** at the end, even if an error happens. It's the recommended way to use `open()`."
+   },
+   "ejemplo": {
+    "es": "with open(\"lista.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"pan\\npeces\\n\")\nwith open(\"lista.txt\", encoding=\"utf-8\") as f:\n    for linea in f:\n        print(linea.strip())",
+    "en": "with open(\"list.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"bread\\nfish\\n\")\nwith open(\"list.txt\", encoding=\"utf-8\") as f:\n    for line in f:\n        print(line.strip())"
+   },
+   "capitulo": 16
+  },
+  {
+   "termino": {
+    "es": "modos de archivo (r, w, a)",
+    "en": "file modes (r, w, a)"
+   },
+   "definicion": {
+    "es": "El segundo argumento de `open()`: `\"r\"` **lee** (es el modo por defecto), `\"w\"` **escribe** borrando lo que había y `\"a\"` **agrega** al final sin borrar.",
+    "en": "The second argument of `open()`: `\"r\"` **reads** (the default mode), `\"w\"` **writes**, erasing what was there, and `\"a\"` **appends** to the end without erasing."
+   },
+   "ejemplo": {
+    "es": "with open(\"diario.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"Lunes\\n\")\nwith open(\"diario.txt\", \"a\", encoding=\"utf-8\") as f:\n    f.write(\"Martes\\n\")\nwith open(\"diario.txt\", \"r\", encoding=\"utf-8\") as f:\n    print(f.read())",
+    "en": "with open(\"diary.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"Monday\\n\")\nwith open(\"diary.txt\", \"a\", encoding=\"utf-8\") as f:\n    f.write(\"Tuesday\\n\")\nwith open(\"diary.txt\", \"r\", encoding=\"utf-8\") as f:\n    print(f.read())"
+   },
+   "capitulo": 16
+  },
+  {
+   "termino": {
+    "es": "encoding",
+    "en": "encoding"
+   },
+   "definicion": {
+    "es": "La forma de convertir el texto en bytes al guardarlo. Usa siempre `encoding=\"utf-8\"` para que las tildes y la ñ se guarden y lean bien.",
+    "en": "The way text is turned into bytes when saved. Always use `encoding=\"utf-8\"` so accented letters and symbols are saved and read correctly."
+   },
+   "ejemplo": {
+    "es": "with open(\"niño.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"Año de gracia\")\nwith open(\"niño.txt\", encoding=\"utf-8\") as f:\n    print(f.read())",
+    "en": "with open(\"cafe.txt\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"Café, naïve, jalapeño\")\nwith open(\"cafe.txt\", encoding=\"utf-8\") as f:\n    print(f.read())"
+   },
+   "capitulo": 16
+  },
+  {
+   "termino": {
+    "es": "JSON",
+    "en": "JSON"
+   },
+   "definicion": {
+    "es": "Formato de texto para guardar datos estructurados (listas, diccionarios, números, textos). El módulo `json` los convierte: `dumps`/`dump` para guardar y `loads`/`load` para leer.",
+    "en": "A text format for saving structured data (lists, dictionaries, numbers, text). The `json` module converts them: `dumps`/`dump` to save and `loads`/`load` to read."
+   },
+   "ejemplo": {
+    "es": "import json\ntribu = {\"nombre\": \"Judá\", \"hombres\": 74600}\ntexto = json.dumps(tribu, ensure_ascii=False)\nprint(texto)\ndatos = json.loads(texto)\nprint(datos[\"hombres\"])",
+    "en": "import json\ntribe = {\"name\": \"Judah\", \"men\": 74600}\ntext = json.dumps(tribe)\nprint(text)\ndata = json.loads(text)\nprint(data[\"men\"])"
+   },
+   "capitulo": 17
+  },
+  {
+   "termino": {
+    "es": "CSV",
+    "en": "CSV"
+   },
+   "definicion": {
+    "es": "Formato de **tabla en texto**: cada línea es una fila y las columnas se separan con comas. El módulo `csv` lo lee y escribe; `DictReader` da cada fila como diccionario.",
+    "en": "A **table-as-text** format: each line is a row and columns are separated by commas. The `csv` module reads and writes it; `DictReader` gives each row as a dictionary."
+   },
+   "ejemplo": {
+    "es": "import csv\nwith open(\"censo.csv\", \"w\", encoding=\"utf-8\", newline=\"\") as f:\n    f.write(\"tribu,hombres\\nRubén,46500\\nSimeón,59300\\n\")\nwith open(\"censo.csv\", encoding=\"utf-8\", newline=\"\") as f:\n    for fila in csv.DictReader(f):\n        print(fila[\"tribu\"], int(fila[\"hombres\"]))",
+    "en": "import csv\nwith open(\"census.csv\", \"w\", encoding=\"utf-8\", newline=\"\") as f:\n    f.write(\"tribe,men\\nReuben,46500\\nSimeon,59300\\n\")\nwith open(\"census.csv\", encoding=\"utf-8\", newline=\"\") as f:\n    for row in csv.DictReader(f):\n        print(row[\"tribe\"], int(row[\"men\"]))"
+   },
+   "capitulo": 17
+  },
+  {
+   "termino": {
+    "es": "herencia",
+    "en": "inheritance"
+   },
+   "definicion": {
+    "es": "Crear una clase **a partir de otra**: la clase hija recibe los atributos y métodos de la madre y puede agregar o cambiar los suyos. Se escribe `class Hija(Madre):`.",
+    "en": "Creating a class **from another one**: the child class gets the parent's attributes and methods and can add or change its own. You write `class Child(Parent):`."
+   },
+   "ejemplo": {
+    "es": "class Animal:\n    def __init__(self, nombre):\n        self.nombre = nombre\n    def hablar(self):\n        return \"...\"\n\nclass Oveja(Animal):\n    def hablar(self):\n        return \"¡Beee!\"\n\nprint(Oveja(\"Lana\").nombre, Oveja(\"Lana\").hablar())",
+    "en": "class Animal:\n    def __init__(self, name):\n        self.name = name\n    def speak(self):\n        return \"...\"\n\nclass Sheep(Animal):\n    def speak(self):\n        return \"Baa!\"\n\nprint(Sheep(\"Woolly\").name, Sheep(\"Woolly\").speak())"
+   },
+   "capitulo": 18
+  },
+  {
+   "termino": {
+    "es": "super()",
+    "en": "super()"
+   },
+   "definicion": {
+    "es": "Función que permite a la clase hija **usar los métodos de la clase madre**, por ejemplo para reutilizar su `__init__`.",
+    "en": "Function that lets the child class **use the parent class's methods**, for example to reuse its `__init__`."
+   },
+   "ejemplo": {
+    "es": "class Persona:\n    def __init__(self, nombre):\n        self.nombre = nombre\n\nclass Rey(Persona):\n    def __init__(self, nombre, reino):\n        super().__init__(nombre)\n        self.reino = reino\n\nd = Rey(\"David\", \"Israel\")\nprint(d.nombre, d.reino)",
+    "en": "class Person:\n    def __init__(self, name):\n        self.name = name\n\nclass King(Person):\n    def __init__(self, name, kingdom):\n        super().__init__(name)\n        self.kingdom = kingdom\n\nd = King(\"David\", \"Israel\")\nprint(d.name, d.kingdom)"
+   },
+   "capitulo": 18
+  },
+  {
+   "termino": {
+    "es": "sobrescribir un método",
+    "en": "overriding a method"
+   },
+   "definicion": {
+    "es": "Cuando la clase hija define un método **con el mismo nombre** que uno de la madre, el de la hija reemplaza al de la madre para sus objetos.",
+    "en": "When the child class defines a method **with the same name** as one in the parent, the child's version replaces the parent's for its objects."
+   },
+   "ejemplo": {
+    "es": "class Ave:\n    def mover(self):\n        return \"vuela\"\n\nclass Avestruz(Ave):\n    def mover(self):\n        return \"corre\"\n\nprint(Ave().mover(), Avestruz().mover())",
+    "en": "class Bird:\n    def move(self):\n        return \"flies\"\n\nclass Ostrich(Bird):\n    def move(self):\n        return \"runs\"\n\nprint(Bird().move(), Ostrich().move())"
+   },
+   "capitulo": 18
+  },
+  {
+   "termino": {
+    "es": "__str__",
+    "en": "__str__"
+   },
+   "definicion": {
+    "es": "Método especial que dice **cómo se ve un objeto como texto**, por ejemplo al hacer `print(objeto)`.",
+    "en": "A special method that says **how an object looks as text**, for example when you do `print(object)`."
+   },
+   "ejemplo": {
+    "es": "class Libro:\n    def __init__(self, nombre, capitulos):\n        self.nombre = nombre\n        self.capitulos = capitulos\n    def __str__(self):\n        return f\"{self.nombre} ({self.capitulos} capítulos)\"\n\nprint(Libro(\"Rut\", 4))",
+    "en": "class Book:\n    def __init__(self, name, chapters):\n        self.name = name\n        self.chapters = chapters\n    def __str__(self):\n        return f\"{self.name} ({self.chapters} chapters)\"\n\nprint(Book(\"Ruth\", 4))"
+   },
+   "capitulo": 18
+  },
+  {
+   "termino": {
+    "es": "__eq__",
+    "en": "__eq__"
+   },
+   "definicion": {
+    "es": "Método especial que decide cuándo dos objetos son **iguales** con `==`. Sin él, `==` solo es verdadero si es el mismo objeto.",
+    "en": "A special method that decides when two objects are **equal** with `==`. Without it, `==` is only true if it's the very same object."
+   },
+   "ejemplo": {
+    "es": "class Punto:\n    def __init__(self, x, y):\n        self.x, self.y = x, y\n    def __eq__(self, otro):\n        return self.x == otro.x and self.y == otro.y\n\nprint(Punto(1, 2) == Punto(1, 2))",
+    "en": "class Point:\n    def __init__(self, x, y):\n        self.x, self.y = x, y\n    def __eq__(self, other):\n        return self.x == other.x and self.y == other.y\n\nprint(Point(1, 2) == Point(1, 2))"
+   },
+   "capitulo": 18
+  },
+  {
+   "termino": {
+    "es": "__lt__",
+    "en": "__lt__"
+   },
+   "definicion": {
+    "es": "Método especial para el operador `<` («menor que»). Si lo defines, puedes **ordenar** tus objetos con `sorted()`.",
+    "en": "A special method for the `<` (“less than”) operator. If you define it, you can **sort** your objects with `sorted()`."
+   },
+   "ejemplo": {
+    "es": "class Rey:\n    def __init__(self, nombre, anios):\n        self.nombre, self.anios = nombre, anios\n    def __lt__(self, otro):\n        return self.anios < otro.anios\n\nreyes = [Rey(\"Salomón\", 40), Rey(\"Saúl\", 2), Rey(\"Josías\", 31)]\nprint([r.nombre for r in sorted(reyes)])",
+    "en": "class King:\n    def __init__(self, name, years):\n        self.name, self.years = name, years\n    def __lt__(self, other):\n        return self.years < other.years\n\nkings = [King(\"Solomon\", 40), King(\"Saul\", 2), King(\"Josiah\", 31)]\nprint([k.name for k in sorted(kings)])"
+   },
+   "capitulo": 18
+  },
+  {
+   "termino": {
+    "es": "métodos especiales (dunder)",
+    "en": "special methods (dunder)"
+   },
+   "definicion": {
+    "es": "Métodos con dos guiones bajos a cada lado, como `__init__`, `__str__` o `__eq__`. Python los llama **solo** en momentos concretos: al crear, imprimir, comparar…",
+    "en": "Methods with two underscores on each side, like `__init__`, `__str__` or `__eq__`. Python calls them **on its own** at specific moments: when creating, printing, comparing…"
+   },
+   "ejemplo": {
+    "es": "class Coro:\n    def __init__(self, voces):\n        self.voces = voces\n    def __len__(self):\n        return len(self.voces)\n\nprint(len(Coro([\"soprano\", \"alto\", \"tenor\"])))",
+    "en": "class Choir:\n    def __init__(self, voices):\n        self.voices = voices\n    def __len__(self):\n        return len(self.voices)\n\nprint(len(Choir([\"soprano\", \"alto\", \"tenor\"])))"
+   },
+   "capitulo": 18
+  },
+  {
+   "termino": {
+    "es": "recursión",
+    "en": "recursion"
+   },
+   "definicion": {
+    "es": "Cuando una función **se llama a sí misma** para resolver una versión más pequeña del mismo problema. Necesita un caso base para detenerse.",
+    "en": "When a function **calls itself** to solve a smaller version of the same problem. It needs a base case to stop."
+   },
+   "ejemplo": {
+    "es": "def cuenta_atras(n):\n    if n == 0:\n        print(\"¡Despegue!\")\n        return\n    print(n)\n    cuenta_atras(n - 1)\n\ncuenta_atras(3)",
+    "en": "def countdown(n):\n    if n == 0:\n        print(\"Liftoff!\")\n        return\n    print(n)\n    countdown(n - 1)\n\ncountdown(3)"
+   },
+   "capitulo": 19
+  },
+  {
+   "termino": {
+    "es": "caso base",
+    "en": "base case"
+   },
+   "definicion": {
+    "es": "En una función recursiva, la situación **más simple** que se responde directamente, sin volver a llamarse. Sin él, la recursión nunca termina (`RecursionError`).",
+    "en": "In a recursive function, the **simplest** situation, answered directly without calling itself again. Without it, recursion never ends (`RecursionError`)."
+   },
+   "ejemplo": {
+    "es": "def factorial(n):\n    if n <= 1:\n        return 1\n    return n * factorial(n - 1)\n\nprint(factorial(5))",
+    "en": "def factorial(n):\n    if n <= 1:\n        return 1\n    return n * factorial(n - 1)\n\nprint(factorial(5))"
+   },
+   "capitulo": 19
+  },
+  {
+   "termino": {
+    "es": "caso recursivo",
+    "en": "recursive case"
+   },
+   "definicion": {
+    "es": "La parte de una función recursiva que **se llama a sí misma** con un problema más pequeño, acercándose al caso base.",
+    "en": "The part of a recursive function that **calls itself** with a smaller problem, getting closer to the base case."
+   },
+   "ejemplo": {
+    "es": "arbol = {\"Abraham\": {\"Isaac\": {\"Jacob\": {}}}}\n\ndef contar(familia):\n    total = 0\n    for hijos in familia.values():\n        total += 1 + contar(hijos)\n    return total\n\nprint(contar(arbol))",
+    "en": "tree = {\"Abraham\": {\"Isaac\": {\"Jacob\": {}}}}\n\ndef count(family):\n    total = 0\n    for children in family.values():\n        total += 1 + count(children)\n    return total\n\nprint(count(tree))"
+   },
+   "capitulo": 19
+  },
+  {
+   "termino": {
+    "es": "Counter",
+    "en": "Counter"
+   },
+   "definicion": {
+    "es": "Herramienta del módulo `collections` que **cuenta** cuántas veces aparece cada elemento. `most_common(n)` da los `n` más repetidos.",
+    "en": "A tool from the `collections` module that **counts** how many times each item appears. `most_common(n)` gives the `n` most repeated."
+   },
+   "ejemplo": {
+    "es": "from collections import Counter\npalabras = \"amor es paciente amor es bondadoso\".split()\nconteo = Counter(palabras)\nprint(conteo[\"amor\"])\nprint(conteo.most_common(1))",
+    "en": "from collections import Counter\nwords = \"love is patient love is kind\".split()\ncounts = Counter(words)\nprint(counts[\"love\"])\nprint(counts.most_common(1))"
+   },
+   "capitulo": 20
+  },
+  {
+   "termino": {
+    "es": "defaultdict",
+    "en": "defaultdict"
+   },
+   "definicion": {
+    "es": "Diccionario del módulo `collections` que crea un **valor inicial automático** cuando pides una clave que no existe, por ejemplo una lista vacía.",
+    "en": "A dictionary from the `collections` module that creates an **automatic starting value** when you ask for a key that doesn't exist, for example an empty list."
+   },
+   "ejemplo": {
+    "es": "from collections import defaultdict\npor_letra = defaultdict(list)\nfor nombre in [\"Ana\", \"Abel\", \"Pedro\"]:\n    por_letra[nombre[0]].append(nombre)\nprint(dict(por_letra))",
+    "en": "from collections import defaultdict\nby_letter = defaultdict(list)\nfor name in [\"Anna\", \"Abel\", \"Peter\"]:\n    by_letter[name[0]].append(name)\nprint(dict(by_letter))"
+   },
+   "capitulo": 20
+  },
+  {
+   "termino": {
+    "es": "lambda",
+    "en": "lambda"
+   },
+   "definicion": {
+    "es": "Una **función pequeña sin nombre** escrita en una sola línea: `lambda x: x * 2`. Se usa mucho como argumento `key=`.",
+    "en": "A **small nameless function** written on one line: `lambda x: x * 2`. It's often used as a `key=` argument."
+   },
+   "ejemplo": {
+    "es": "doble = lambda x: x * 2\nprint(doble(8))",
+    "en": "double = lambda x: x * 2\nprint(double(8))"
+   },
+   "capitulo": 20
+  },
+  {
+   "termino": {
+    "es": "key=",
+    "en": "key="
+   },
+   "definicion": {
+    "es": "Argumento de `sorted()`, `min()` y `max()` que dice **por qué criterio** comparar: una función que se aplica a cada elemento.",
+    "en": "An argument of `sorted()`, `min()` and `max()` that says **by what criterion** to compare: a function applied to each item."
+   },
+   "ejemplo": {
+    "es": "libros = [(\"Génesis\", 50), (\"Rut\", 4), (\"Salmos\", 150)]\nprint(sorted(libros, key=lambda l: l[1]))\nprint(max([\"paz\", \"alegría\", \"fe\"], key=len))",
+    "en": "books = [(\"Genesis\", 50), (\"Ruth\", 4), (\"Psalms\", 150)]\nprint(sorted(books, key=lambda b: b[1]))\nprint(max([\"peace\", \"joy\", \"faithfulness\"], key=len))"
+   },
+   "capitulo": 20
+  },
+  {
+   "termino": {
+    "es": "enumerate()",
+    "en": "enumerate()"
+   },
+   "definicion": {
+    "es": "Función que, al recorrer una lista, te da a la vez la **posición y el elemento**. Con `start=1` empieza a contar desde 1.",
+    "en": "Function that, while going through a list, gives you the **position and the item** at the same time. With `start=1` it starts counting from 1."
+   },
+   "ejemplo": {
+    "es": "iglesias = [\"Éfeso\", \"Esmirna\", \"Pérgamo\"]\nfor i, nombre in enumerate(iglesias, start=1):\n    print(i, nombre)",
+    "en": "churches = [\"Ephesus\", \"Smyrna\", \"Pergamum\"]\nfor i, name in enumerate(churches, start=1):\n    print(i, name)"
+   },
+   "capitulo": 21
+  },
+  {
+   "termino": {
+    "es": "zip()",
+    "en": "zip()"
+   },
+   "definicion": {
+    "es": "Función que recorre **varias listas a la vez**, emparejando sus elementos uno a uno.",
+    "en": "Function that goes through **several lists at once**, pairing their items one by one."
+   },
+   "ejemplo": {
+    "es": "nombres = [\"Pedro\", \"Pablo\"]\noficios = [\"pescador\", \"fabricante de tiendas\"]\nfor n, o in zip(nombres, oficios):\n    print(n, \"era\", o)",
+    "en": "names = [\"Peter\", \"Paul\"]\njobs = [\"fisherman\", \"tentmaker\"]\nfor n, j in zip(names, jobs):\n    print(n, \"was a\", j)"
+   },
+   "capitulo": 21
+  },
+  {
+   "termino": {
+    "es": "iterable e iterador",
+    "en": "iterable and iterator"
+   },
+   "definicion": {
+    "es": "Un **iterable** es algo que se puede recorrer con `for` (listas, cadenas, diccionarios…). Un **iterador** es el objeto que va entregando sus elementos uno a uno con `next()`.",
+    "en": "An **iterable** is something you can go through with `for` (lists, strings, dictionaries…). An **iterator** is the object that hands out its items one by one with `next()`."
+   },
+   "ejemplo": {
+    "es": "colores = [\"rojo\", \"verde\"]\nit = iter(colores)\nprint(next(it))\nprint(next(it))",
+    "en": "colors = [\"red\", \"green\"]\nit = iter(colors)\nprint(next(it))\nprint(next(it))"
+   },
+   "capitulo": 21
+  },
+  {
+   "termino": {
+    "es": "generador y yield",
+    "en": "generator and yield"
+   },
+   "definicion": {
+    "es": "Un **generador** es una función que usa `yield` en vez de `return`: entrega valores **de a uno**, pausándose entre cada uno, sin crear toda la lista en memoria.",
+    "en": "A **generator** is a function that uses `yield` instead of `return`: it hands out values **one at a time**, pausing between each, without building the whole list in memory."
+   },
+   "ejemplo": {
+    "es": "def dias_de_creacion():\n    for dia in range(1, 7):\n        yield dia\n\nfor d in dias_de_creacion():\n    print(\"Día\", d)",
+    "en": "def days_of_creation():\n    for day in range(1, 7):\n        yield day\n\nfor d in days_of_creation():\n    print(\"Day\", d)"
+   },
+   "capitulo": 21
+  },
+  {
+   "termino": {
+    "es": "any() y all()",
+    "en": "any() and all()"
+   },
+   "definicion": {
+    "es": "`any()` da `True` si **al menos un** elemento es verdadero; `all()` da `True` si **todos** lo son.",
+    "en": "`any()` gives `True` if **at least one** item is true; `all()` gives `True` if **all** of them are."
+   },
+   "ejemplo": {
+    "es": "notas = [80, 95, 70]\nprint(any(n >= 90 for n in notas))\nprint(all(n >= 60 for n in notas))",
+    "en": "scores = [80, 95, 70]\nprint(any(s >= 90 for s in scores))\nprint(all(s >= 60 for s in scores))"
+   },
+   "capitulo": 21
+  },
+  {
+   "termino": {
+    "es": "assert",
+    "en": "assert"
+   },
+   "definicion": {
+    "es": "Instrucción que **comprueba** que algo sea verdadero. Si no lo es, lanza `AssertionError` y te avisa de inmediato que algo falló.",
+    "en": "A statement that **checks** that something is true. If it isn't, it raises `AssertionError` and warns you right away that something went wrong."
+   },
+   "ejemplo": {
+    "es": "def doble(n):\n    return n * 2\n\nassert doble(3) == 6\nassert doble(0) == 0, \"el doble de 0 es 0\"\nprint(\"Todo correcto\")",
+    "en": "def double(n):\n    return n * 2\n\nassert double(3) == 6\nassert double(0) == 0, \"double of 0 is 0\"\nprint(\"All correct\")"
+   },
+   "capitulo": 22
+  },
+  {
+   "termino": {
+    "es": "prueba (test)",
+    "en": "test"
+   },
+   "definicion": {
+    "es": "Código que **verifica** que otro código funcione como esperas, comparando lo que da con lo que debería dar. Las pruebas te avisan si un cambio rompe algo.",
+    "en": "Code that **checks** that other code works as you expect, comparing what it gives with what it should give. Tests warn you if a change breaks something."
+   },
+   "ejemplo": {
+    "es": "def es_par(n):\n    return n % 2 == 0\n\ndef probar_es_par():\n    assert es_par(4)\n    assert not es_par(7)\n    print(\"Pruebas superadas\")\n\nprobar_es_par()",
+    "en": "def is_even(n):\n    return n % 2 == 0\n\ndef test_is_even():\n    assert is_even(4)\n    assert not is_even(7)\n    print(\"Tests passed\")\n\ntest_is_even()"
+   },
+   "capitulo": 22
+  },
+  {
+   "termino": {
+    "es": "depurar",
+    "en": "debugging"
+   },
+   "definicion": {
+    "es": "Buscar y **corregir errores** (bugs) en un programa. Un truco sencillo: poner `print()` en puntos clave para ver qué valores tienen las variables.",
+    "en": "Finding and **fixing errors** (bugs) in a program. A simple trick: put `print()` at key points to see what values the variables have."
+   },
+   "ejemplo": {
+    "es": "total = 0\nfor n in [3, 4, 5]:\n    total += n\n    print(\"depurando: n =\", n, \"total =\", total)\nprint(total)",
+    "en": "total = 0\nfor n in [3, 4, 5]:\n    total += n\n    print(\"debugging: n =\", n, \"total =\", total)\nprint(total)"
+   },
+   "capitulo": 22
+  },
+  {
+   "termino": {
+    "es": "excepción propia",
+    "en": "custom exception"
+   },
+   "definicion": {
+    "es": "Un tipo de error que **creas tú**, como una clase que hereda de `Exception`. Sirve para dar errores con nombres claros para tu programa.",
+    "en": "An error type that **you create**, as a class that inherits from `Exception`. It lets you raise errors with clear names for your program."
+   },
+   "ejemplo": {
+    "es": "class VersiculoNoEncontrado(Exception):\n    pass\n\ndef buscar(cita):\n    raise VersiculoNoEncontrado(cita)\n\ntry:\n    buscar(\"Juan 99:1\")\nexcept VersiculoNoEncontrado as e:\n    print(\"No existe:\", e)",
+    "en": "class VerseNotFound(Exception):\n    pass\n\ndef find(ref):\n    raise VerseNotFound(ref)\n\ntry:\n    find(\"John 99:1\")\nexcept VerseNotFound as e:\n    print(\"Does not exist:\", e)"
+   },
+   "capitulo": 22
+  },
+  {
+   "termino": {
+    "es": "paquete",
+    "en": "package"
+   },
+   "definicion": {
+    "es": "Una **carpeta** que agrupa varios módulos relacionados. Se importa con puntos: `from paquete.modulo import funcion`.",
+    "en": "A **folder** that groups several related modules. You import from it with dots: `from package.module import function`."
+   },
+   "ejemplo": {
+    "es": "# Estructura de un paquete:\n# ciudad/\n#     __init__.py\n#     calles.py\n# Uso: from ciudad.calles import recorrer\nfrom os.path import join\nprint(join(\"ciudad\", \"calles.py\"))",
+    "en": "# Structure of a package:\n# city/\n#     __init__.py\n#     streets.py\n# Use: from city.streets import walk\nfrom os.path import join\nprint(join(\"city\", \"streets.py\"))"
+   },
+   "capitulo": 23
+  },
+  {
+   "termino": {
+    "es": "módulo propio",
+    "en": "your own module"
+   },
+   "definicion": {
+    "es": "Un archivo `.py` que **escribes tú** con funciones para usar en otros programas. Si se llama `saludos.py`, lo traes con `import saludos`.",
+    "en": "A `.py` file that **you write** with functions to use in other programs. If it's called `greetings.py`, you bring it in with `import greetings`."
+   },
+   "ejemplo": {
+    "es": "with open(\"saludos.py\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"def hola(n):\\n    return 'Hola, ' + n\\n\")\n\nimport saludos\nprint(saludos.hola(\"Juan\"))",
+    "en": "with open(\"greetings.py\", \"w\", encoding=\"utf-8\") as f:\n    f.write(\"def hello(n):\\n    return 'Hello, ' + n\\n\")\n\nimport greetings\nprint(greetings.hello(\"John\"))"
+   },
+   "capitulo": 23
+  },
+  {
+   "termino": {
+    "es": "__name__ == \"__main__\"",
+    "en": "__name__ == \"__main__\""
+   },
+   "definicion": {
+    "es": "Condición que es verdadera solo cuando el archivo se **ejecuta directamente**, no cuando otro programa lo importa. Ahí va el código «principal».",
+    "en": "A condition that is true only when the file is **run directly**, not when another program imports it. That's where the “main” code goes."
+   },
+   "ejemplo": {
+    "es": "def principal():\n    print(\"Ejecutando el programa principal\")\n\nif __name__ == \"__main__\":\n    principal()",
+    "en": "def main():\n    print(\"Running the main program\")\n\nif __name__ == \"__main__\":\n    main()"
+   },
+   "capitulo": 23
+  },
+  {
+   "termino": {
+    "es": "pip",
+    "en": "pip"
+   },
+   "definicion": {
+    "es": "Programa que se usa **en la terminal** (no dentro de Python) para instalar paquetes de otras personas desde internet, como `pip install requests`.",
+    "en": "A program used **in the terminal** (not inside Python) to install other people's packages from the internet, like `pip install requests`."
+   },
+   "ejemplo": {
+    "es": "# En la terminal, no en Python:\n#   pip install requests\n#   pip list\nimport sys\nprint(sys.version_info.major)",
+    "en": "# In the terminal, not in Python:\n#   pip install requests\n#   pip list\nimport sys\nprint(sys.version_info.major)"
+   },
+   "capitulo": 23
+  },
+  {
+   "termino": {
+    "es": "entorno virtual",
+    "en": "virtual environment"
+   },
+   "definicion": {
+    "es": "Una carpeta con un Python **aparte** para un proyecto, con sus propios paquetes, para que no se mezclen con los de otros proyectos. Se crea con `python -m venv .venv`.",
+    "en": "A folder with a **separate** Python for one project, with its own packages, so they don't mix with other projects'. You create it with `python -m venv .venv`."
+   },
+   "ejemplo": {
+    "es": "# En la terminal:\n#   python -m venv .venv\n#   source .venv/bin/activate\nimport sys\nprint(\"¿Dentro de un entorno virtual?\", sys.prefix != sys.base_prefix)",
+    "en": "# In the terminal:\n#   python -m venv .venv\n#   source .venv/bin/activate\nimport sys\nprint(\"Inside a virtual environment?\", sys.prefix != sys.base_prefix)"
+   },
+   "capitulo": 23
+  }
+ ]
+}

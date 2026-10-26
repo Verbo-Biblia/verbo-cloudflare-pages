@@ -1,0 +1,667 @@
+{
+ "id": "23-ciudad-completa",
+ "numero": 23,
+ "lugar": "nueva_jerusalen",
+ "titulo": {
+  "es": "La ciudad completa",
+  "en": "The finished city"
+ },
+ "tema": {
+  "es": "módulos, import, if __name__ == \"__main__\", organizar un proyecto y seguir en tu computadora",
+  "en": "modules, import, if __name__ == \"__main__\", organizing a project and going on with your own computer"
+ },
+ "versiculo": "ap-21-2",
+ "medalla": {
+  "es": "Constructor de la ciudad",
+  "en": "City builder"
+ },
+ "leccion": {
+  "es": [
+   "Juan vio la nueva Jerusalén «preparada»: completa, con cada parte en su lugar. Un programa grande se arma igual, en varios archivos. Cada archivo `.py` es un **módulo**: `import biblia` lo ejecuta **una vez** y te da sus nombres con prefijo (`biblia.CAPITULOS`); `from utiles import agrupar` trae un nombre suelto, y `import biblia as b` le pone un apodo. Una carpeta de módulos (con un `__init__.py`) es un **paquete**.",
+   "Cada módulo tiene la variable `__name__`: vale `\"__main__\"` en el archivo que ejecutas y el nombre del módulo (`\"biblia\"`) cuando se importa. Por eso un archivo principal termina así: `if __name__ == \"__main__\": main()`. Su programa corre al ejecutarlo, pero otro archivo puede importarlo para usar sus funciones (o probarlas) sin que se ejecute nada.",
+   "Para organizar un proyecto, separa por tareas: **datos** (`biblia.py`), **lógica** (clases y funciones pequeñas que se pueden probar), **presentación** (el `main()` que lee y muestra) y **pruebas**. Cada módulo hace una cosa y se entiende solo.",
+   "**Para seguir en tu propia computadora:** instala Python desde **python.org** (en Windows, marca «Add Python to PATH»). Escribe tu programa en un editor como **VS Code** (con su extensión de Python) y córrelo en una terminal con `python archivo.py` (en macOS y Linux, `python3`). Para cada proyecto crea un **entorno virtual** con `python -m venv .venv` y actívalo (`.venv\\Scripts\\activate` en Windows, `source .venv/bin/activate` en macOS y Linux); ahí instala bibliotecas con `pip install nombre`, sin mezclar proyectos. Todo lo que aprendiste en el sendero funciona igual allá."
+  ],
+  "en": [
+   "John saw the new Jerusalem \"prepared\": complete, with every part in its place. A large program is built the same way, in several files. Every `.py` file is a **module**: `import bible` runs it **once** and gives you its names with a prefix (`bible.CHAPTERS`); `from tools import chunks` brings a single name, and `import bible as b` gives it a nickname. A folder of modules (with an `__init__.py`) is a **package**.",
+   "Every module has the variable `__name__`: it is `\"__main__\"` in the file you run and the module's name (`\"bible\"`) when it is imported. That's why a main file ends like this: `if __name__ == \"__main__\": main()`. Its program runs when you run it, but another file can import it to use its functions (or test them) without anything running.",
+   "To organize a project, split it by tasks: **data** (`bible.py`), **logic** (classes and small functions that can be tested), **presentation** (the `main()` that reads and shows) and **tests**. Each module does one thing and makes sense on its own.",
+   "**To keep going on your own computer:** install Python from **python.org** (on Windows, check \"Add Python to PATH\"). Write your program in an editor like **VS Code** (with its Python extension) and run it in a terminal with `python file.py` (on macOS and Linux, `python3`). For each project create a **virtual environment** with `python -m venv .venv` and activate it (`.venv\\Scripts\\activate` on Windows, `source .venv/bin/activate` on macOS and Linux); there you install libraries with `pip install name`, without mixing projects. Everything you learned on the path works the same there."
+  ]
+ },
+ "ejemplo": {
+  "es": "import libros\nfrom libros import contar as cuantos\n\n\ndef main():\n    print(\"Evangelios:\", \", \".join(libros.EVANGELIOS))\n    print(\"Son\", cuantos())\n    print(\"Este programa se llama\", __name__, \"y el módulo,\", libros.__name__)\n\n\nif __name__ == \"__main__\":\n    main()",
+  "en": "import books\nfrom books import count as how_many\n\n\ndef main():\n    print(\"Gospels:\", \", \".join(books.GOSPELS))\n    print(\"There are\", how_many())\n    print(\"This program is called\", __name__, \"and the module,\", books.__name__)\n\n\nif __name__ == \"__main__\":\n    main()"
+ },
+ "archivos_ejemplo": {
+  "es": {
+   "libros.py": "\"\"\"Un módulo pequeño: datos y una función.\"\"\"\nEVANGELIOS = [\"Mateo\", \"Marcos\", \"Lucas\", \"Juan\"]\n\n\ndef contar():\n    return len(EVANGELIOS)\n\n\nif __name__ == \"__main__\":\n    print(\"Probando libros.py:\", contar())\n"
+  },
+  "en": {
+   "books.py": "\"\"\"A small module: data and a function.\"\"\"\nGOSPELS = [\"Matthew\", \"Mark\", \"Luke\", \"John\"]\n\n\ndef count():\n    return len(GOSPELS)\n\n\nif __name__ == \"__main__\":\n    print(\"Testing books.py:\", count())\n"
+  }
+ },
+ "ejercicios": [
+  {
+   "id": "importar",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "El archivo `biblia.py` (míralo en **Archivos**) es un **módulo**: guarda `CAPITULOS` (los 66 libros en orden con sus capítulos), `ANTIGUO` y `NUEVO`. Impórtalo con `import biblia` y, sin copiar sus datos, muestra:\n```\nLibros: 66\nAntiguo Testamento: 39\nNuevo Testamento: 27\nCapítulos de Salmos: 150\nTotal de capítulos: 1189\n```",
+    "en": "The file `bible.py` (see it under **Files**) is a **module**: it holds `CHAPTERS` (the 66 books in order with their chapters), `OLD` and `NEW`. Import it with `import bible` and, without copying its data, show:\n```\nBooks: 66\nOld Testament: 39\nNew Testament: 27\nChapters in Psalms: 150\nTotal chapters: 1189\n```"
+   },
+   "inicial": {
+    "es": "import biblia\n",
+    "en": "import bible\n"
+   },
+   "archivos": {
+    "es": {
+     "biblia.py": "\"\"\"Datos de la Biblia: los 66 libros en orden, con su número de capítulos.\"\"\"\n\nCAPITULOS = {\n    \"Génesis\": 50,\n    \"Éxodo\": 40,\n    \"Levítico\": 27,\n    \"Números\": 36,\n    \"Deuteronomio\": 34,\n    \"Josué\": 24,\n    \"Jueces\": 21,\n    \"Rut\": 4,\n    \"1 Samuel\": 31,\n    \"2 Samuel\": 24,\n    \"1 Reyes\": 22,\n    \"2 Reyes\": 25,\n    \"1 Crónicas\": 29,\n    \"2 Crónicas\": 36,\n    \"Esdras\": 10,\n    \"Nehemías\": 13,\n    \"Ester\": 10,\n    \"Job\": 42,\n    \"Salmos\": 150,\n    \"Proverbios\": 31,\n    \"Eclesiastés\": 12,\n    \"Cantares\": 8,\n    \"Isaías\": 66,\n    \"Jeremías\": 52,\n    \"Lamentaciones\": 5,\n    \"Ezequiel\": 48,\n    \"Daniel\": 12,\n    \"Oseas\": 14,\n    \"Joel\": 3,\n    \"Amós\": 9,\n    \"Abdías\": 1,\n    \"Jonás\": 4,\n    \"Miqueas\": 7,\n    \"Nahúm\": 3,\n    \"Habacuc\": 3,\n    \"Sofonías\": 3,\n    \"Hageo\": 2,\n    \"Zacarías\": 14,\n    \"Malaquías\": 4,\n    \"Mateo\": 28,\n    \"Marcos\": 16,\n    \"Lucas\": 24,\n    \"Juan\": 21,\n    \"Hechos\": 28,\n    \"Romanos\": 16,\n    \"1 Corintios\": 16,\n    \"2 Corintios\": 13,\n    \"Gálatas\": 6,\n    \"Efesios\": 6,\n    \"Filipenses\": 4,\n    \"Colosenses\": 4,\n    \"1 Tesalonicenses\": 5,\n    \"2 Tesalonicenses\": 3,\n    \"1 Timoteo\": 6,\n    \"2 Timoteo\": 4,\n    \"Tito\": 3,\n    \"Filemón\": 1,\n    \"Hebreos\": 13,\n    \"Santiago\": 5,\n    \"1 Pedro\": 5,\n    \"2 Pedro\": 3,\n    \"1 Juan\": 5,\n    \"2 Juan\": 1,\n    \"3 Juan\": 1,\n    \"Judas\": 1,\n    \"Apocalipsis\": 22,\n}\n\nANTIGUO = list(CAPITULOS)[:39]\nNUEVO = list(CAPITULOS)[39:]\n"
+    },
+    "en": {
+     "bible.py": "\"\"\"Bible data: the 66 books in order, with their number of chapters.\"\"\"\n\nCHAPTERS = {\n    \"Genesis\": 50,\n    \"Exodus\": 40,\n    \"Leviticus\": 27,\n    \"Numbers\": 36,\n    \"Deuteronomy\": 34,\n    \"Joshua\": 24,\n    \"Judges\": 21,\n    \"Ruth\": 4,\n    \"1 Samuel\": 31,\n    \"2 Samuel\": 24,\n    \"1 Kings\": 22,\n    \"2 Kings\": 25,\n    \"1 Chronicles\": 29,\n    \"2 Chronicles\": 36,\n    \"Ezra\": 10,\n    \"Nehemiah\": 13,\n    \"Esther\": 10,\n    \"Job\": 42,\n    \"Psalms\": 150,\n    \"Proverbs\": 31,\n    \"Ecclesiastes\": 12,\n    \"Song of Songs\": 8,\n    \"Isaiah\": 66,\n    \"Jeremiah\": 52,\n    \"Lamentations\": 5,\n    \"Ezekiel\": 48,\n    \"Daniel\": 12,\n    \"Hosea\": 14,\n    \"Joel\": 3,\n    \"Amos\": 9,\n    \"Obadiah\": 1,\n    \"Jonah\": 4,\n    \"Micah\": 7,\n    \"Nahum\": 3,\n    \"Habakkuk\": 3,\n    \"Zephaniah\": 3,\n    \"Haggai\": 2,\n    \"Zechariah\": 14,\n    \"Malachi\": 4,\n    \"Matthew\": 28,\n    \"Mark\": 16,\n    \"Luke\": 24,\n    \"John\": 21,\n    \"Acts\": 28,\n    \"Romans\": 16,\n    \"1 Corinthians\": 16,\n    \"2 Corinthians\": 13,\n    \"Galatians\": 6,\n    \"Ephesians\": 6,\n    \"Philippians\": 4,\n    \"Colossians\": 4,\n    \"1 Thessalonians\": 5,\n    \"2 Thessalonians\": 3,\n    \"1 Timothy\": 6,\n    \"2 Timothy\": 4,\n    \"Titus\": 3,\n    \"Philemon\": 1,\n    \"Hebrews\": 13,\n    \"James\": 5,\n    \"1 Peter\": 5,\n    \"2 Peter\": 3,\n    \"1 John\": 5,\n    \"2 John\": 1,\n    \"3 John\": 1,\n    \"Jude\": 1,\n    \"Revelation\": 22,\n}\n\nOLD = list(CHAPTERS)[:39]\nNEW = list(CHAPTERS)[39:]\n"
+    }
+   },
+   "pistas": {
+    "es": [
+     "Con `import biblia`, lo que hay dentro se usa con el prefijo: `biblia.CAPITULOS`, `biblia.NUEVO`.",
+     "`len(biblia.CAPITULOS)`, `biblia.CAPITULOS[\"Salmos\"]` y `sum(biblia.CAPITULOS.values())`."
+    ],
+    "en": [
+     "With `import bible`, what's inside is used with the prefix: `bible.CHAPTERS`, `bible.NEW`.",
+     "`len(bible.CHAPTERS)`, `bible.CHAPTERS[\"Psalms\"]` and `sum(bible.CHAPTERS.values())`."
+    ]
+   },
+   "solucion": {
+    "es": "import biblia\n\nprint(\"Libros:\", len(biblia.CAPITULOS))\nprint(\"Antiguo Testamento:\", len(biblia.ANTIGUO))\nprint(\"Nuevo Testamento:\", len(biblia.NUEVO))\nprint(\"Capítulos de Salmos:\", biblia.CAPITULOS[\"Salmos\"])\nprint(\"Total de capítulos:\", sum(biblia.CAPITULOS.values()))",
+    "en": "import bible\n\nprint(\"Books:\", len(bible.CHAPTERS))\nprint(\"Old Testament:\", len(bible.OLD))\nprint(\"New Testament:\", len(bible.NEW))\nprint(\"Chapters in Psalms:\", bible.CHAPTERS[\"Psalms\"])\nprint(\"Total chapters:\", sum(bible.CHAPTERS.values()))"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Libros: 66\nAntiguo Testamento: 39\nNuevo Testamento: 27\nCapítulos de Salmos: 150\nTotal de capítulos: 1189"
+     },
+     {
+      "py": "assert 'import biblia' in _codigo and '1189' not in _codigo and '150' not in _codigo",
+      "msg": {
+       "es": "Importa biblia y calcula con sus datos: no escribas los resultados.",
+       "en": "Import biblia and calculate with its data: don't type the results."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Books: 66\nOld Testament: 39\nNew Testament: 27\nChapters in Psalms: 150\nTotal chapters: 1189"
+     },
+     {
+      "py": "assert 'import bible' in _codigo and '1189' not in _codigo and '150' not in _codigo",
+      "msg": {
+       "es": "Importa bible y calcula con sus datos: no escribas los resultados.",
+       "en": "Import bible and calculate with its data: don't type the results."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "import biblia.py\n\nprint(\"Libros:\", len(biblia.CAPITULOS))",
+     "import biblia\n\nprint(\"Libros:\", len(CAPITULOS))",
+     "import biblia\n\nprint(\"Libros:\", 66)\nprint(\"Antiguo Testamento:\", 39)\nprint(\"Nuevo Testamento:\", 27)\nprint(\"Capítulos de Salmos:\", 150)\nprint(\"Total de capítulos:\", 1189)"
+    ],
+    "en": [
+     "import bible.py\n\nprint(\"Books:\", len(bible.CHAPTERS))",
+     "import bible\n\nprint(\"Books:\", len(CHAPTERS))"
+    ]
+   }
+  },
+  {
+   "id": "desde-el-modulo",
+   "tipo": "hueco",
+   "enunciado": {
+    "es": "`citas.py` es un módulo que a su vez importa `biblia`. Completa: trae dos funciones de `citas` para usarlas **sin prefijo**, e importa `biblia` con el apodo `b`. Debe salir:\n```\nRut 1:16\nFalse True\nRut tiene 4 capítulos\n```",
+    "en": "`refs.py` is a module that in turn imports `bible`. Fill in: bring two functions from `refs` to use them **without a prefix**, and import `bible` with the nickname `b`. It should print:\n```\nRuth 1:16\nFalse True\nRuth has 4 chapters\n```"
+   },
+   "plantilla": {
+    "es": "___ citas import formatear, es_valida\nimport biblia ___ b\n\nprint(formatear(\"Rut\", 1, 16))\nprint(es_valida(\"Rut\", 5), es_valida(\"Abdías\", 1))\nprint(\"Rut tiene\", b.CAPITULOS[\"Rut\"], \"capítulos\")",
+    "en": "___ refs import format_ref, is_valid\nimport bible ___ b\n\nprint(format_ref(\"Ruth\", 1, 16))\nprint(is_valid(\"Ruth\", 5), is_valid(\"Obadiah\", 1))\nprint(\"Ruth has\", b.CHAPTERS[\"Ruth\"], \"chapters\")"
+   },
+   "archivos": {
+    "es": {
+     "biblia.py": "\"\"\"Datos de la Biblia: los 66 libros en orden, con su número de capítulos.\"\"\"\n\nCAPITULOS = {\n    \"Génesis\": 50,\n    \"Éxodo\": 40,\n    \"Levítico\": 27,\n    \"Números\": 36,\n    \"Deuteronomio\": 34,\n    \"Josué\": 24,\n    \"Jueces\": 21,\n    \"Rut\": 4,\n    \"1 Samuel\": 31,\n    \"2 Samuel\": 24,\n    \"1 Reyes\": 22,\n    \"2 Reyes\": 25,\n    \"1 Crónicas\": 29,\n    \"2 Crónicas\": 36,\n    \"Esdras\": 10,\n    \"Nehemías\": 13,\n    \"Ester\": 10,\n    \"Job\": 42,\n    \"Salmos\": 150,\n    \"Proverbios\": 31,\n    \"Eclesiastés\": 12,\n    \"Cantares\": 8,\n    \"Isaías\": 66,\n    \"Jeremías\": 52,\n    \"Lamentaciones\": 5,\n    \"Ezequiel\": 48,\n    \"Daniel\": 12,\n    \"Oseas\": 14,\n    \"Joel\": 3,\n    \"Amós\": 9,\n    \"Abdías\": 1,\n    \"Jonás\": 4,\n    \"Miqueas\": 7,\n    \"Nahúm\": 3,\n    \"Habacuc\": 3,\n    \"Sofonías\": 3,\n    \"Hageo\": 2,\n    \"Zacarías\": 14,\n    \"Malaquías\": 4,\n    \"Mateo\": 28,\n    \"Marcos\": 16,\n    \"Lucas\": 24,\n    \"Juan\": 21,\n    \"Hechos\": 28,\n    \"Romanos\": 16,\n    \"1 Corintios\": 16,\n    \"2 Corintios\": 13,\n    \"Gálatas\": 6,\n    \"Efesios\": 6,\n    \"Filipenses\": 4,\n    \"Colosenses\": 4,\n    \"1 Tesalonicenses\": 5,\n    \"2 Tesalonicenses\": 3,\n    \"1 Timoteo\": 6,\n    \"2 Timoteo\": 4,\n    \"Tito\": 3,\n    \"Filemón\": 1,\n    \"Hebreos\": 13,\n    \"Santiago\": 5,\n    \"1 Pedro\": 5,\n    \"2 Pedro\": 3,\n    \"1 Juan\": 5,\n    \"2 Juan\": 1,\n    \"3 Juan\": 1,\n    \"Judas\": 1,\n    \"Apocalipsis\": 22,\n}\n\nANTIGUO = list(CAPITULOS)[:39]\nNUEVO = list(CAPITULOS)[39:]\n",
+     "citas.py": "\"\"\"Funciones para citas bíblicas. Este módulo usa a otro: biblia.\"\"\"\nimport biblia\n\n\ndef formatear(libro, capitulo, versiculo):\n    return f\"{libro} {capitulo}:{versiculo}\"\n\n\ndef es_valida(libro, capitulo):\n    return libro in biblia.CAPITULOS and 1 <= capitulo <= biblia.CAPITULOS[libro]\n"
+    },
+    "en": {
+     "bible.py": "\"\"\"Bible data: the 66 books in order, with their number of chapters.\"\"\"\n\nCHAPTERS = {\n    \"Genesis\": 50,\n    \"Exodus\": 40,\n    \"Leviticus\": 27,\n    \"Numbers\": 36,\n    \"Deuteronomy\": 34,\n    \"Joshua\": 24,\n    \"Judges\": 21,\n    \"Ruth\": 4,\n    \"1 Samuel\": 31,\n    \"2 Samuel\": 24,\n    \"1 Kings\": 22,\n    \"2 Kings\": 25,\n    \"1 Chronicles\": 29,\n    \"2 Chronicles\": 36,\n    \"Ezra\": 10,\n    \"Nehemiah\": 13,\n    \"Esther\": 10,\n    \"Job\": 42,\n    \"Psalms\": 150,\n    \"Proverbs\": 31,\n    \"Ecclesiastes\": 12,\n    \"Song of Songs\": 8,\n    \"Isaiah\": 66,\n    \"Jeremiah\": 52,\n    \"Lamentations\": 5,\n    \"Ezekiel\": 48,\n    \"Daniel\": 12,\n    \"Hosea\": 14,\n    \"Joel\": 3,\n    \"Amos\": 9,\n    \"Obadiah\": 1,\n    \"Jonah\": 4,\n    \"Micah\": 7,\n    \"Nahum\": 3,\n    \"Habakkuk\": 3,\n    \"Zephaniah\": 3,\n    \"Haggai\": 2,\n    \"Zechariah\": 14,\n    \"Malachi\": 4,\n    \"Matthew\": 28,\n    \"Mark\": 16,\n    \"Luke\": 24,\n    \"John\": 21,\n    \"Acts\": 28,\n    \"Romans\": 16,\n    \"1 Corinthians\": 16,\n    \"2 Corinthians\": 13,\n    \"Galatians\": 6,\n    \"Ephesians\": 6,\n    \"Philippians\": 4,\n    \"Colossians\": 4,\n    \"1 Thessalonians\": 5,\n    \"2 Thessalonians\": 3,\n    \"1 Timothy\": 6,\n    \"2 Timothy\": 4,\n    \"Titus\": 3,\n    \"Philemon\": 1,\n    \"Hebrews\": 13,\n    \"James\": 5,\n    \"1 Peter\": 5,\n    \"2 Peter\": 3,\n    \"1 John\": 5,\n    \"2 John\": 1,\n    \"3 John\": 1,\n    \"Jude\": 1,\n    \"Revelation\": 22,\n}\n\nOLD = list(CHAPTERS)[:39]\nNEW = list(CHAPTERS)[39:]\n",
+     "refs.py": "\"\"\"Functions for Bible references. This module uses another one: bible.\"\"\"\nimport bible\n\n\ndef format_ref(book, chapter, verse):\n    return f\"{book} {chapter}:{verse}\"\n\n\ndef is_valid(book, chapter):\n    return book in bible.CHAPTERS and 1 <= chapter <= bible.CHAPTERS[book]\n"
+    }
+   },
+   "pistas": {
+    "es": [
+     "Para traer nombres sueltos de un módulo se escribe `___ módulo import nombre`.",
+     "`from citas import ...` y `import biblia as b`."
+    ],
+    "en": [
+     "To bring single names from a module you write `___ module import name`.",
+     "`from refs import ...` and `import bible as b`."
+    ]
+   },
+   "solucion": {
+    "es": "from citas import formatear, es_valida\nimport biblia as b\n\nprint(formatear(\"Rut\", 1, 16))\nprint(es_valida(\"Rut\", 5), es_valida(\"Abdías\", 1))\nprint(\"Rut tiene\", b.CAPITULOS[\"Rut\"], \"capítulos\")",
+    "en": "from refs import format_ref, is_valid\nimport bible as b\n\nprint(format_ref(\"Ruth\", 1, 16))\nprint(is_valid(\"Ruth\", 5), is_valid(\"Obadiah\", 1))\nprint(\"Ruth has\", b.CHAPTERS[\"Ruth\"], \"chapters\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Rut 1:16\nFalse True\nRut tiene 4 capítulos"
+     }
+    ],
+    "en": [
+     {
+      "salida": "Ruth 1:16\nFalse True\nRuth has 4 chapters"
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "import citas import formatear, es_valida\nimport biblia as b\n\nprint(formatear(\"Rut\", 1, 16))\nprint(es_valida(\"Rut\", 5), es_valida(\"Abdías\", 1))\nprint(\"Rut tiene\", b.CAPITULOS[\"Rut\"], \"capítulos\")",
+     "from citas import formatear, es_valida\nimport biblia in b\n\nprint(formatear(\"Rut\", 1, 16))\nprint(es_valida(\"Rut\", 5), es_valida(\"Abdías\", 1))\nprint(\"Rut tiene\", b.CAPITULOS[\"Rut\"], \"capítulos\")"
+    ],
+    "en": [
+     "import refs import format_ref, is_valid\nimport bible as b\n\nprint(format_ref(\"Ruth\", 1, 16))\nprint(is_valid(\"Ruth\", 5), is_valid(\"Obadiah\", 1))\nprint(\"Ruth has\", b.CHAPTERS[\"Ruth\"], \"chapters\")",
+     "from refs import format_ref, is_valid\nimport bible in b\n\nprint(format_ref(\"Ruth\", 1, 16))\nprint(is_valid(\"Ruth\", 5), is_valid(\"Obadiah\", 1))\nprint(\"Ruth has\", b.CHAPTERS[\"Ruth\"], \"chapters\")"
+    ]
+   }
+  },
+  {
+   "id": "quien-es-main",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Mira `mensajero.py`: tiene un `print` suelto, una función y un bloque `if __name__ == \"__main__\":`. Impórtalo, muestra el `__name__` de **tu** programa y usa `anunciar`. Observa qué partes del módulo corren al importarlo y cuáles no:\n```\nCargando mensajero; __name__ = mensajero\nPrograma principal; __name__ = __main__\n¡LA CIUDAD ESTÁ LISTA!\n```",
+    "en": "Look at `messenger.py`: it has a loose `print`, a function and an `if __name__ == \"__main__\":` block. Import it, show the `__name__` of **your** program and use `announce`. Notice which parts of the module run when you import it and which don't:\n```\nLoading messenger; __name__ = messenger\nMain program; __name__ = __main__\nTHE CITY IS READY!\n```"
+   },
+   "archivos": {
+    "es": {
+     "mensajero.py": "print(\"Cargando mensajero; __name__ =\", __name__)\n\n\ndef anunciar(texto):\n    return \"¡\" + texto.upper() + \"!\"\n\n\nif __name__ == \"__main__\":\n    print(\"Esto solo sale si ejecutas mensajero.py directamente\")\n"
+    },
+    "en": {
+     "messenger.py": "print(\"Loading messenger; __name__ =\", __name__)\n\n\ndef announce(text):\n    return text.upper() + \"!\"\n\n\nif __name__ == \"__main__\":\n    print(\"This only shows if you run messenger.py directly\")\n"
+    }
+   },
+   "pistas": {
+    "es": [
+     "Importar un módulo **ejecuta** su código de arriba abajo una vez; por eso su `print` sale primero. Dentro de él, `__name__` vale `\"mensajero\"`.",
+     "Escribe `import mensajero`, luego `print(\"Programa principal; __name__ =\", __name__)` y `print(mensajero.anunciar(\"La ciudad está lista\"))`."
+    ],
+    "en": [
+     "Importing a module **runs** its code from top to bottom once; that's why its `print` comes first. Inside it, `__name__` is `\"messenger\"`.",
+     "Write `import messenger`, then `print(\"Main program; __name__ =\", __name__)` and `print(messenger.announce(\"The city is ready\"))`."
+    ]
+   },
+   "solucion": {
+    "es": "import mensajero\n\nprint(\"Programa principal; __name__ =\", __name__)\nprint(mensajero.anunciar(\"La ciudad está lista\"))",
+    "en": "import messenger\n\nprint(\"Main program; __name__ =\", __name__)\nprint(messenger.announce(\"The city is ready\"))"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Cargando mensajero; __name__ = mensajero\nPrograma principal; __name__ = __main__\n¡LA CIUDAD ESTÁ LISTA!"
+     },
+     {
+      "py": "assert '__name__' in _codigo and 'anunciar(' in _codigo",
+      "msg": {
+       "es": "Muestra __name__ con print y usa la función anunciar del módulo.",
+       "en": "Show __name__ with print and use the module's anunciar function."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Loading messenger; __name__ = messenger\nMain program; __name__ = __main__\nTHE CITY IS READY!"
+     },
+     {
+      "py": "assert '__name__' in _codigo and 'announce(' in _codigo",
+      "msg": {
+       "es": "Muestra __name__ con print y usa la función announce del módulo.",
+       "en": "Show __name__ with print and use the module's announce function."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "print(\"Programa principal; __name__ =\", __name__)\nimport mensajero\nprint(mensajero.anunciar(\"La ciudad está lista\"))",
+     "import mensajero\n\nprint(\"Programa principal; __name__ =\", __name__)\nprint(anunciar(\"La ciudad está lista\"))",
+     "import mensajero\n\nprint(\"Programa principal; __name__ = mensajero\")\nprint(mensajero.anunciar(\"La ciudad está lista\"))"
+    ],
+    "en": [
+     "print(\"Main program; __name__ =\", __name__)\nimport messenger\nprint(messenger.announce(\"The city is ready\"))",
+     "import messenger\n\nprint(\"Main program; __name__ =\", __name__)\nprint(announce(\"The city is ready\"))"
+    ]
+   }
+  },
+  {
+   "id": "main-protegido",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Organiza un programa como se hace en un proyecto real. Escribe `dias_para(libro, por_dia)`, que diga cuántos días se necesitan para leer un libro (redondeando **hacia arriba**: un día con menos capítulos también cuenta), y una función `main()` que muestre:\n```\nGénesis: 50 capítulos, 17 días leyendo 3 por día\nSalmos: 150 capítulos, 30 días leyendo 5 por día\nApocalipsis: 22 capítulos, 11 días leyendo 2 por día\n```\nLlama a `main()` solo dentro de `if __name__ == \"__main__\":`, para que otro programa pueda importar tu archivo y usar `dias_para` sin que se muestre nada.",
+    "en": "Organize a program the way a real project does. Write `days_for(book, per_day)`, which says how many days you need to read a book (rounding **up**: a day with fewer chapters still counts), and a `main()` function that shows:\n```\nGenesis: 50 chapters, 17 days reading 3 a day\nPsalms: 150 chapters, 30 days reading 5 a day\nRevelation: 22 chapters, 11 days reading 2 a day\n```\nCall `main()` only inside `if __name__ == \"__main__\":`, so another program can import your file and use `days_for` without anything being shown."
+   },
+   "inicial": {
+    "es": "import biblia\n",
+    "en": "import bible\n"
+   },
+   "archivos": {
+    "es": {
+     "biblia.py": "\"\"\"Datos de la Biblia: los 66 libros en orden, con su número de capítulos.\"\"\"\n\nCAPITULOS = {\n    \"Génesis\": 50,\n    \"Éxodo\": 40,\n    \"Levítico\": 27,\n    \"Números\": 36,\n    \"Deuteronomio\": 34,\n    \"Josué\": 24,\n    \"Jueces\": 21,\n    \"Rut\": 4,\n    \"1 Samuel\": 31,\n    \"2 Samuel\": 24,\n    \"1 Reyes\": 22,\n    \"2 Reyes\": 25,\n    \"1 Crónicas\": 29,\n    \"2 Crónicas\": 36,\n    \"Esdras\": 10,\n    \"Nehemías\": 13,\n    \"Ester\": 10,\n    \"Job\": 42,\n    \"Salmos\": 150,\n    \"Proverbios\": 31,\n    \"Eclesiastés\": 12,\n    \"Cantares\": 8,\n    \"Isaías\": 66,\n    \"Jeremías\": 52,\n    \"Lamentaciones\": 5,\n    \"Ezequiel\": 48,\n    \"Daniel\": 12,\n    \"Oseas\": 14,\n    \"Joel\": 3,\n    \"Amós\": 9,\n    \"Abdías\": 1,\n    \"Jonás\": 4,\n    \"Miqueas\": 7,\n    \"Nahúm\": 3,\n    \"Habacuc\": 3,\n    \"Sofonías\": 3,\n    \"Hageo\": 2,\n    \"Zacarías\": 14,\n    \"Malaquías\": 4,\n    \"Mateo\": 28,\n    \"Marcos\": 16,\n    \"Lucas\": 24,\n    \"Juan\": 21,\n    \"Hechos\": 28,\n    \"Romanos\": 16,\n    \"1 Corintios\": 16,\n    \"2 Corintios\": 13,\n    \"Gálatas\": 6,\n    \"Efesios\": 6,\n    \"Filipenses\": 4,\n    \"Colosenses\": 4,\n    \"1 Tesalonicenses\": 5,\n    \"2 Tesalonicenses\": 3,\n    \"1 Timoteo\": 6,\n    \"2 Timoteo\": 4,\n    \"Tito\": 3,\n    \"Filemón\": 1,\n    \"Hebreos\": 13,\n    \"Santiago\": 5,\n    \"1 Pedro\": 5,\n    \"2 Pedro\": 3,\n    \"1 Juan\": 5,\n    \"2 Juan\": 1,\n    \"3 Juan\": 1,\n    \"Judas\": 1,\n    \"Apocalipsis\": 22,\n}\n\nANTIGUO = list(CAPITULOS)[:39]\nNUEVO = list(CAPITULOS)[39:]\n"
+    },
+    "en": {
+     "bible.py": "\"\"\"Bible data: the 66 books in order, with their number of chapters.\"\"\"\n\nCHAPTERS = {\n    \"Genesis\": 50,\n    \"Exodus\": 40,\n    \"Leviticus\": 27,\n    \"Numbers\": 36,\n    \"Deuteronomy\": 34,\n    \"Joshua\": 24,\n    \"Judges\": 21,\n    \"Ruth\": 4,\n    \"1 Samuel\": 31,\n    \"2 Samuel\": 24,\n    \"1 Kings\": 22,\n    \"2 Kings\": 25,\n    \"1 Chronicles\": 29,\n    \"2 Chronicles\": 36,\n    \"Ezra\": 10,\n    \"Nehemiah\": 13,\n    \"Esther\": 10,\n    \"Job\": 42,\n    \"Psalms\": 150,\n    \"Proverbs\": 31,\n    \"Ecclesiastes\": 12,\n    \"Song of Songs\": 8,\n    \"Isaiah\": 66,\n    \"Jeremiah\": 52,\n    \"Lamentations\": 5,\n    \"Ezekiel\": 48,\n    \"Daniel\": 12,\n    \"Hosea\": 14,\n    \"Joel\": 3,\n    \"Amos\": 9,\n    \"Obadiah\": 1,\n    \"Jonah\": 4,\n    \"Micah\": 7,\n    \"Nahum\": 3,\n    \"Habakkuk\": 3,\n    \"Zephaniah\": 3,\n    \"Haggai\": 2,\n    \"Zechariah\": 14,\n    \"Malachi\": 4,\n    \"Matthew\": 28,\n    \"Mark\": 16,\n    \"Luke\": 24,\n    \"John\": 21,\n    \"Acts\": 28,\n    \"Romans\": 16,\n    \"1 Corinthians\": 16,\n    \"2 Corinthians\": 13,\n    \"Galatians\": 6,\n    \"Ephesians\": 6,\n    \"Philippians\": 4,\n    \"Colossians\": 4,\n    \"1 Thessalonians\": 5,\n    \"2 Thessalonians\": 3,\n    \"1 Timothy\": 6,\n    \"2 Timothy\": 4,\n    \"Titus\": 3,\n    \"Philemon\": 1,\n    \"Hebrews\": 13,\n    \"James\": 5,\n    \"1 Peter\": 5,\n    \"2 Peter\": 3,\n    \"1 John\": 5,\n    \"2 John\": 1,\n    \"3 John\": 1,\n    \"Jude\": 1,\n    \"Revelation\": 22,\n}\n\nOLD = list(CHAPTERS)[:39]\nNEW = list(CHAPTERS)[39:]\n"
+    }
+   },
+   "pistas": {
+    "es": [
+     "Redondear hacia arriba sin `math`: `-(-a // b)`. O con `import math` y `math.ceil(a / b)`.",
+     "Al final, sin sangría: `if __name__ == \"__main__\":` y, dentro, `main()`."
+    ],
+    "en": [
+     "Round up without `math`: `-(-a // b)`. Or with `import math` and `math.ceil(a / b)`.",
+     "At the end, with no indentation: `if __name__ == \"__main__\":` and, inside, `main()`."
+    ]
+   },
+   "solucion": {
+    "es": "import biblia\n\n\ndef dias_para(libro, por_dia):\n    return -(-biblia.CAPITULOS[libro] // por_dia)\n\n\ndef main():\n    for libro, por_dia in [(\"Génesis\", 3), (\"Salmos\", 5), (\"Apocalipsis\", 2)]:\n        print(f\"{libro}: {biblia.CAPITULOS[libro]} capítulos, {dias_para(libro, por_dia)} días leyendo {por_dia} por día\")\n\n\nif __name__ == \"__main__\":\n    main()",
+    "en": "import bible\n\n\ndef days_for(book, per_day):\n    return -(-bible.CHAPTERS[book] // per_day)\n\n\ndef main():\n    for book, per_day in [(\"Genesis\", 3), (\"Psalms\", 5), (\"Revelation\", 2)]:\n        print(f\"{book}: {bible.CHAPTERS[book]} chapters, {days_for(book, per_day)} days reading {per_day} a day\")\n\n\nif __name__ == \"__main__\":\n    main()"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Génesis: 50 capítulos, 17 días leyendo 3 por día\nSalmos: 150 capítulos, 30 días leyendo 5 por día\nApocalipsis: 22 capítulos, 11 días leyendo 2 por día"
+     },
+     {
+      "py": "assert dias_para('Rut', 4) == 1 and dias_para('Rut', 3) == 2 and dias_para('Abdías', 10) == 1 and dias_para('Salmos', 50) == 3",
+      "msg": {
+       "es": "dias_para debe redondear hacia arriba: Rut (4 capítulos) leyendo 3 por día necesita 2 días, no 1.",
+       "en": "dias_para must round up: Rut (4 chapters) reading 3 a day needs 2 days, not 1."
+      }
+     },
+     {
+      "py": "assert callable(main)",
+      "msg": {
+       "es": "Pon el programa dentro de una función main().",
+       "en": "Put the program inside a main() function."
+      }
+     },
+     {
+      "py": "import io as _io, contextlib as _cl, re as _re\nassert _re.search(r'''^if\\s+__name__\\s*==\\s*['\"]__main__['\"]\\s*:''', _codigo, _re.M)\n_b = _io.StringIO()\nwith _cl.redirect_stdout(_b):\n    exec(_codigo, {'__name__': 'otro_modulo'})\nassert _b.getvalue() == ''",
+      "msg": {
+       "es": "Llama a main() solo dentro de if __name__ == \"__main__\": (al importar tu archivo como módulo no debe mostrar nada).",
+       "en": "Call main() only inside if __name__ == \"__main__\": (importing your file as a module must not show anything)."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Genesis: 50 chapters, 17 days reading 3 a day\nPsalms: 150 chapters, 30 days reading 5 a day\nRevelation: 22 chapters, 11 days reading 2 a day"
+     },
+     {
+      "py": "assert days_for('Ruth', 4) == 1 and days_for('Ruth', 3) == 2 and days_for('Obadiah', 10) == 1 and days_for('Psalms', 50) == 3",
+      "msg": {
+       "es": "days_for debe redondear hacia arriba: Ruth (4 capítulos) leyendo 3 por día necesita 2 días, no 1.",
+       "en": "days_for must round up: Ruth (4 chapters) reading 3 a day needs 2 days, not 1."
+      }
+     },
+     {
+      "py": "assert callable(main)",
+      "msg": {
+       "es": "Pon el programa dentro de una función main().",
+       "en": "Put the program inside a main() function."
+      }
+     },
+     {
+      "py": "import io as _io, contextlib as _cl, re as _re\nassert _re.search(r'''^if\\s+__name__\\s*==\\s*['\"]__main__['\"]\\s*:''', _codigo, _re.M)\n_b = _io.StringIO()\nwith _cl.redirect_stdout(_b):\n    exec(_codigo, {'__name__': 'otro_modulo'})\nassert _b.getvalue() == ''",
+      "msg": {
+       "es": "Llama a main() solo dentro de if __name__ == \"__main__\": (al importar tu archivo como módulo no debe mostrar nada).",
+       "en": "Call main() only inside if __name__ == \"__main__\": (importing your file as a module must not show anything)."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "import biblia\n\n\ndef dias_para(libro, por_dia):\n    return -(-biblia.CAPITULOS[libro] // por_dia)\n\n\ndef main():\n    for libro, por_dia in [(\"Génesis\", 3), (\"Salmos\", 5), (\"Apocalipsis\", 2)]:\n        print(f\"{libro}: {biblia.CAPITULOS[libro]} capítulos, {dias_para(libro, por_dia)} días leyendo {por_dia} por día\")\n\n\nmain()",
+     "import biblia\n\n\ndef dias_para(libro, por_dia):\n    return biblia.CAPITULOS[libro] // por_dia\n\n\ndef main():\n    for libro, por_dia in [(\"Génesis\", 3), (\"Salmos\", 5), (\"Apocalipsis\", 2)]:\n        print(f\"{libro}: {biblia.CAPITULOS[libro]} capítulos, {dias_para(libro, por_dia)} días leyendo {por_dia} por día\")\n\n\nif __name__ == \"__main__\":\n    main()",
+     "import biblia\n\n\ndef dias_para(libro, por_dia):\n    return -(-biblia.CAPITULOS[libro] // por_dia)\n\n\ndef main():\n    for libro, por_dia in [(\"Génesis\", 3), (\"Salmos\", 5), (\"Apocalipsis\", 2)]:\n        print(f\"{libro}: {biblia.CAPITULOS[libro]} capítulos, {dias_para(libro, por_dia)} días leyendo {por_dia} por día\")\n\n\nif __name__ == \"main\":\n    main()"
+    ],
+    "en": [
+     "import bible\n\n\ndef days_for(book, per_day):\n    return -(-bible.CHAPTERS[book] // per_day)\n\n\ndef main():\n    for book, per_day in [(\"Genesis\", 3), (\"Psalms\", 5), (\"Revelation\", 2)]:\n        print(f\"{book}: {bible.CHAPTERS[book]} chapters, {days_for(book, per_day)} days reading {per_day} a day\")\n\n\nmain()",
+     "import bible\n\n\ndef days_for(book, per_day):\n    return bible.CHAPTERS[book] // per_day\n\n\ndef main():\n    for book, per_day in [(\"Genesis\", 3), (\"Psalms\", 5), (\"Revelation\", 2)]:\n        print(f\"{book}: {bible.CHAPTERS[book]} chapters, {days_for(book, per_day)} days reading {per_day} a day\")\n\n\nif __name__ == \"__main__\":\n    main()"
+    ]
+   }
+  },
+  {
+   "id": "forma-del-programa",
+   "tipo": "ordenar",
+   "enunciado": {
+    "es": "Ordena las líneas de este archivo principal: primero los `import`, luego las funciones y al final el bloque `if __name__ == \"__main__\":`. Usa `agrupar` de `utiles.py` para repartir Santiago de 2 en 2:\n```\nDía 1: Santiago 1, 2\nDía 2: Santiago 3, 4\nDía 3: Santiago 5\n```",
+    "en": "Put the lines of this main file in order: first the `import`s, then the functions and at the end the `if __name__ == \"__main__\":` block. It uses `chunks` from `tools.py` to split James 2 by 2:\n```\nDay 1: James 1, 2\nDay 2: James 3, 4\nDay 3: James 5\n```"
+   },
+   "lineas": {
+    "es": [
+     "import biblia",
+     "from utiles import agrupar",
+     "def mostrar_plan(libro, por_dia):",
+     "    capitulos = range(1, biblia.CAPITULOS[libro] + 1)",
+     "    for dia, grupo in enumerate(agrupar(capitulos, por_dia), start=1):",
+     "        print(f\"Día {dia}: {libro} {', '.join(str(c) for c in grupo)}\")",
+     "if __name__ == \"__main__\":",
+     "    mostrar_plan(\"Santiago\", 2)"
+    ],
+    "en": [
+     "import bible",
+     "from tools import chunks",
+     "def show_plan(book, per_day):",
+     "    chapters = range(1, bible.CHAPTERS[book] + 1)",
+     "    for day, group in enumerate(chunks(chapters, per_day), start=1):",
+     "        print(f\"Day {day}: {book} {', '.join(str(c) for c in group)}\")",
+     "if __name__ == \"__main__\":",
+     "    show_plan(\"James\", 2)"
+    ]
+   },
+   "archivos": {
+    "es": {
+     "biblia.py": "\"\"\"Datos de la Biblia: los 66 libros en orden, con su número de capítulos.\"\"\"\n\nCAPITULOS = {\n    \"Génesis\": 50,\n    \"Éxodo\": 40,\n    \"Levítico\": 27,\n    \"Números\": 36,\n    \"Deuteronomio\": 34,\n    \"Josué\": 24,\n    \"Jueces\": 21,\n    \"Rut\": 4,\n    \"1 Samuel\": 31,\n    \"2 Samuel\": 24,\n    \"1 Reyes\": 22,\n    \"2 Reyes\": 25,\n    \"1 Crónicas\": 29,\n    \"2 Crónicas\": 36,\n    \"Esdras\": 10,\n    \"Nehemías\": 13,\n    \"Ester\": 10,\n    \"Job\": 42,\n    \"Salmos\": 150,\n    \"Proverbios\": 31,\n    \"Eclesiastés\": 12,\n    \"Cantares\": 8,\n    \"Isaías\": 66,\n    \"Jeremías\": 52,\n    \"Lamentaciones\": 5,\n    \"Ezequiel\": 48,\n    \"Daniel\": 12,\n    \"Oseas\": 14,\n    \"Joel\": 3,\n    \"Amós\": 9,\n    \"Abdías\": 1,\n    \"Jonás\": 4,\n    \"Miqueas\": 7,\n    \"Nahúm\": 3,\n    \"Habacuc\": 3,\n    \"Sofonías\": 3,\n    \"Hageo\": 2,\n    \"Zacarías\": 14,\n    \"Malaquías\": 4,\n    \"Mateo\": 28,\n    \"Marcos\": 16,\n    \"Lucas\": 24,\n    \"Juan\": 21,\n    \"Hechos\": 28,\n    \"Romanos\": 16,\n    \"1 Corintios\": 16,\n    \"2 Corintios\": 13,\n    \"Gálatas\": 6,\n    \"Efesios\": 6,\n    \"Filipenses\": 4,\n    \"Colosenses\": 4,\n    \"1 Tesalonicenses\": 5,\n    \"2 Tesalonicenses\": 3,\n    \"1 Timoteo\": 6,\n    \"2 Timoteo\": 4,\n    \"Tito\": 3,\n    \"Filemón\": 1,\n    \"Hebreos\": 13,\n    \"Santiago\": 5,\n    \"1 Pedro\": 5,\n    \"2 Pedro\": 3,\n    \"1 Juan\": 5,\n    \"2 Juan\": 1,\n    \"3 Juan\": 1,\n    \"Judas\": 1,\n    \"Apocalipsis\": 22,\n}\n\nANTIGUO = list(CAPITULOS)[:39]\nNUEVO = list(CAPITULOS)[39:]\n",
+     "utiles.py": "\"\"\"Herramientas pequeñas para recorrer datos.\"\"\"\nfrom itertools import islice\n\n\ndef agrupar(iterable, n):\n    \"\"\"Genera listas de n elementos seguidos (la última puede ser más corta).\"\"\"\n    it = iter(iterable)\n    while True:\n        grupo = list(islice(it, n))\n        if not grupo:\n            return\n        yield grupo\n"
+    },
+    "en": {
+     "bible.py": "\"\"\"Bible data: the 66 books in order, with their number of chapters.\"\"\"\n\nCHAPTERS = {\n    \"Genesis\": 50,\n    \"Exodus\": 40,\n    \"Leviticus\": 27,\n    \"Numbers\": 36,\n    \"Deuteronomy\": 34,\n    \"Joshua\": 24,\n    \"Judges\": 21,\n    \"Ruth\": 4,\n    \"1 Samuel\": 31,\n    \"2 Samuel\": 24,\n    \"1 Kings\": 22,\n    \"2 Kings\": 25,\n    \"1 Chronicles\": 29,\n    \"2 Chronicles\": 36,\n    \"Ezra\": 10,\n    \"Nehemiah\": 13,\n    \"Esther\": 10,\n    \"Job\": 42,\n    \"Psalms\": 150,\n    \"Proverbs\": 31,\n    \"Ecclesiastes\": 12,\n    \"Song of Songs\": 8,\n    \"Isaiah\": 66,\n    \"Jeremiah\": 52,\n    \"Lamentations\": 5,\n    \"Ezekiel\": 48,\n    \"Daniel\": 12,\n    \"Hosea\": 14,\n    \"Joel\": 3,\n    \"Amos\": 9,\n    \"Obadiah\": 1,\n    \"Jonah\": 4,\n    \"Micah\": 7,\n    \"Nahum\": 3,\n    \"Habakkuk\": 3,\n    \"Zephaniah\": 3,\n    \"Haggai\": 2,\n    \"Zechariah\": 14,\n    \"Malachi\": 4,\n    \"Matthew\": 28,\n    \"Mark\": 16,\n    \"Luke\": 24,\n    \"John\": 21,\n    \"Acts\": 28,\n    \"Romans\": 16,\n    \"1 Corinthians\": 16,\n    \"2 Corinthians\": 13,\n    \"Galatians\": 6,\n    \"Ephesians\": 6,\n    \"Philippians\": 4,\n    \"Colossians\": 4,\n    \"1 Thessalonians\": 5,\n    \"2 Thessalonians\": 3,\n    \"1 Timothy\": 6,\n    \"2 Timothy\": 4,\n    \"Titus\": 3,\n    \"Philemon\": 1,\n    \"Hebrews\": 13,\n    \"James\": 5,\n    \"1 Peter\": 5,\n    \"2 Peter\": 3,\n    \"1 John\": 5,\n    \"2 John\": 1,\n    \"3 John\": 1,\n    \"Jude\": 1,\n    \"Revelation\": 22,\n}\n\nOLD = list(CHAPTERS)[:39]\nNEW = list(CHAPTERS)[39:]\n",
+     "tools.py": "\"\"\"Small tools for walking through data.\"\"\"\nfrom itertools import islice\n\n\ndef chunks(iterable, n):\n    \"\"\"Generates lists of n items in a row (the last one may be shorter).\"\"\"\n    it = iter(iterable)\n    while True:\n        group = list(islice(it, n))\n        if not group:\n            return\n        yield group\n"
+    }
+   },
+   "pistas": {
+    "es": [
+     "La sangría te dice qué línea va dentro de cuál: 4 espacios dentro de la función, 8 dentro del `for`.",
+     "Las dos importaciones van arriba; `mostrar_plan(\"Santiago\", 2)` va dentro del `if` final."
+    ],
+    "en": [
+     "The indentation tells you which line goes inside which: 4 spaces inside the function, 8 inside the `for`.",
+     "Both imports go on top; `show_plan(\"James\", 2)` goes inside the final `if`."
+    ]
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Día 1: Santiago 1, 2\nDía 2: Santiago 3, 4\nDía 3: Santiago 5"
+     }
+    ],
+    "en": [
+     {
+      "salida": "Day 1: James 1, 2\nDay 2: James 3, 4\nDay 3: James 5"
+     }
+    ]
+   }
+  },
+  {
+   "id": "progreso",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Un proyecto con tres partes: los **datos** (`biblia.py`), la **lectura** del registro (`lecturas.py`, con el generador `leer_registro`) y tu programa, que **presenta**. `registro.txt` anota cada capítulo leído; algunos se leyeron dos veces. Muestra el avance de cada libro, contando cada capítulo **una sola vez**, de mayor a menor porcentaje (en empate, alfabético), con el porcentaje redondeado:\n```\nRut: 4 de 4 (100%)\nJonás: 2 de 4 (50%)\nFilipenses: 1 de 4 (25%)\nSantiago: 1 de 5 (20%)\n```\nUsa `main()` y el bloque `if __name__ == \"__main__\":`.",
+    "en": "A project in three parts: the **data** (`bible.py`), the **reading** of the log (`readings.py`, with the generator `read_log`) and your program, which **presents**. `log.txt` notes every chapter read; some were read twice. Show the progress of each book, counting each chapter **only once**, from highest to lowest percentage (alphabetical on a tie), with the percentage rounded:\n```\nRuth: 4 of 4 (100%)\nJonah: 2 of 4 (50%)\nPhilippians: 1 of 4 (25%)\nJames: 1 of 5 (20%)\n```\nUse `main()` and the `if __name__ == \"__main__\":` block."
+   },
+   "inicial": {
+    "es": "from collections import defaultdict\n\nimport biblia\nfrom lecturas import leer_registro\n",
+    "en": "from collections import defaultdict\n\nimport bible\nfrom readings import read_log\n"
+   },
+   "archivos": {
+    "es": {
+     "biblia.py": "\"\"\"Datos de la Biblia: los 66 libros en orden, con su número de capítulos.\"\"\"\n\nCAPITULOS = {\n    \"Génesis\": 50,\n    \"Éxodo\": 40,\n    \"Levítico\": 27,\n    \"Números\": 36,\n    \"Deuteronomio\": 34,\n    \"Josué\": 24,\n    \"Jueces\": 21,\n    \"Rut\": 4,\n    \"1 Samuel\": 31,\n    \"2 Samuel\": 24,\n    \"1 Reyes\": 22,\n    \"2 Reyes\": 25,\n    \"1 Crónicas\": 29,\n    \"2 Crónicas\": 36,\n    \"Esdras\": 10,\n    \"Nehemías\": 13,\n    \"Ester\": 10,\n    \"Job\": 42,\n    \"Salmos\": 150,\n    \"Proverbios\": 31,\n    \"Eclesiastés\": 12,\n    \"Cantares\": 8,\n    \"Isaías\": 66,\n    \"Jeremías\": 52,\n    \"Lamentaciones\": 5,\n    \"Ezequiel\": 48,\n    \"Daniel\": 12,\n    \"Oseas\": 14,\n    \"Joel\": 3,\n    \"Amós\": 9,\n    \"Abdías\": 1,\n    \"Jonás\": 4,\n    \"Miqueas\": 7,\n    \"Nahúm\": 3,\n    \"Habacuc\": 3,\n    \"Sofonías\": 3,\n    \"Hageo\": 2,\n    \"Zacarías\": 14,\n    \"Malaquías\": 4,\n    \"Mateo\": 28,\n    \"Marcos\": 16,\n    \"Lucas\": 24,\n    \"Juan\": 21,\n    \"Hechos\": 28,\n    \"Romanos\": 16,\n    \"1 Corintios\": 16,\n    \"2 Corintios\": 13,\n    \"Gálatas\": 6,\n    \"Efesios\": 6,\n    \"Filipenses\": 4,\n    \"Colosenses\": 4,\n    \"1 Tesalonicenses\": 5,\n    \"2 Tesalonicenses\": 3,\n    \"1 Timoteo\": 6,\n    \"2 Timoteo\": 4,\n    \"Tito\": 3,\n    \"Filemón\": 1,\n    \"Hebreos\": 13,\n    \"Santiago\": 5,\n    \"1 Pedro\": 5,\n    \"2 Pedro\": 3,\n    \"1 Juan\": 5,\n    \"2 Juan\": 1,\n    \"3 Juan\": 1,\n    \"Judas\": 1,\n    \"Apocalipsis\": 22,\n}\n\nANTIGUO = list(CAPITULOS)[:39]\nNUEVO = list(CAPITULOS)[39:]\n",
+     "lecturas.py": "\"\"\"Leer el registro de lecturas.\"\"\"\n\n\ndef leer_registro(lineas):\n    \"\"\"Genera (libro, capitulo) por cada línea «Libro;capítulo»; salta vacías y comentarios.\"\"\"\n    for linea in lineas:\n        linea = linea.strip()\n        if not linea or linea.startswith(\"#\"):\n            continue\n        libro, capitulo = linea.split(\";\")\n        yield libro, int(capitulo)\n",
+     "registro.txt": "# libro;capítulo\nRut;1\nRut;2\nJonás;1\nRut;3\nFilipenses;1\nRut;2\nRut;4\nSantiago;1\nJonás;2\n"
+    },
+    "en": {
+     "bible.py": "\"\"\"Bible data: the 66 books in order, with their number of chapters.\"\"\"\n\nCHAPTERS = {\n    \"Genesis\": 50,\n    \"Exodus\": 40,\n    \"Leviticus\": 27,\n    \"Numbers\": 36,\n    \"Deuteronomy\": 34,\n    \"Joshua\": 24,\n    \"Judges\": 21,\n    \"Ruth\": 4,\n    \"1 Samuel\": 31,\n    \"2 Samuel\": 24,\n    \"1 Kings\": 22,\n    \"2 Kings\": 25,\n    \"1 Chronicles\": 29,\n    \"2 Chronicles\": 36,\n    \"Ezra\": 10,\n    \"Nehemiah\": 13,\n    \"Esther\": 10,\n    \"Job\": 42,\n    \"Psalms\": 150,\n    \"Proverbs\": 31,\n    \"Ecclesiastes\": 12,\n    \"Song of Songs\": 8,\n    \"Isaiah\": 66,\n    \"Jeremiah\": 52,\n    \"Lamentations\": 5,\n    \"Ezekiel\": 48,\n    \"Daniel\": 12,\n    \"Hosea\": 14,\n    \"Joel\": 3,\n    \"Amos\": 9,\n    \"Obadiah\": 1,\n    \"Jonah\": 4,\n    \"Micah\": 7,\n    \"Nahum\": 3,\n    \"Habakkuk\": 3,\n    \"Zephaniah\": 3,\n    \"Haggai\": 2,\n    \"Zechariah\": 14,\n    \"Malachi\": 4,\n    \"Matthew\": 28,\n    \"Mark\": 16,\n    \"Luke\": 24,\n    \"John\": 21,\n    \"Acts\": 28,\n    \"Romans\": 16,\n    \"1 Corinthians\": 16,\n    \"2 Corinthians\": 13,\n    \"Galatians\": 6,\n    \"Ephesians\": 6,\n    \"Philippians\": 4,\n    \"Colossians\": 4,\n    \"1 Thessalonians\": 5,\n    \"2 Thessalonians\": 3,\n    \"1 Timothy\": 6,\n    \"2 Timothy\": 4,\n    \"Titus\": 3,\n    \"Philemon\": 1,\n    \"Hebrews\": 13,\n    \"James\": 5,\n    \"1 Peter\": 5,\n    \"2 Peter\": 3,\n    \"1 John\": 5,\n    \"2 John\": 1,\n    \"3 John\": 1,\n    \"Jude\": 1,\n    \"Revelation\": 22,\n}\n\nOLD = list(CHAPTERS)[:39]\nNEW = list(CHAPTERS)[39:]\n",
+     "readings.py": "\"\"\"Read the reading log.\"\"\"\n\n\ndef read_log(lines):\n    \"\"\"Generates (book, chapter) for each \"Book;chapter\" line; skips empty lines and comments.\"\"\"\n    for line in lines:\n        line = line.strip()\n        if not line or line.startswith(\"#\"):\n            continue\n        book, chapter = line.split(\";\")\n        yield book, int(chapter)\n",
+     "log.txt": "# book;chapter\nRuth;1\nRuth;2\nJonah;1\nRuth;3\nPhilippians;1\nRuth;2\nRuth;4\nJames;1\nJonah;2\n"
+    }
+   },
+   "pistas": {
+    "es": [
+     "Un `defaultdict(set)` libro → conjunto de capítulos descarta las lecturas repetidas: `leidos[libro].add(capitulo)`.",
+     "Arma filas `(libro, leídos, total)` con `biblia.CAPITULOS[libro]` y ordénalas con `key=lambda fila: (-fila[1] / fila[2], fila[0])`."
+    ],
+    "en": [
+     "A `defaultdict(set)` book → set of chapters drops repeated readings: `done[book].add(chapter)`.",
+     "Build `(book, read, total)` rows with `bible.CHAPTERS[book]` and sort them with `key=lambda row: (-row[1] / row[2], row[0])`."
+    ]
+   },
+   "solucion": {
+    "es": "from collections import defaultdict\n\nimport biblia\nfrom lecturas import leer_registro\n\n\ndef progreso(lineas):\n    leidos = defaultdict(set)\n    for libro, capitulo in leer_registro(lineas):\n        leidos[libro].add(capitulo)\n    return leidos\n\n\ndef main():\n    with open(\"registro.txt\", encoding=\"utf-8\") as f:\n        leidos = progreso(f)\n    filas = [(libro, len(caps), biblia.CAPITULOS[libro]) for libro, caps in leidos.items()]\n    filas.sort(key=lambda fila: (-fila[1] / fila[2], fila[0]))\n    for libro, hechos, total in filas:\n        print(f\"{libro}: {hechos} de {total} ({round(100 * hechos / total)}%)\")\n\n\nif __name__ == \"__main__\":\n    main()",
+    "en": "from collections import defaultdict\n\nimport bible\nfrom readings import read_log\n\n\ndef progress(lines):\n    done = defaultdict(set)\n    for book, chapter in read_log(lines):\n        done[book].add(chapter)\n    return done\n\n\ndef main():\n    with open(\"log.txt\", encoding=\"utf-8\") as f:\n        done = progress(f)\n    rows = [(book, len(chs), bible.CHAPTERS[book]) for book, chs in done.items()]\n    rows.sort(key=lambda row: (-row[1] / row[2], row[0]))\n    for book, read, total in rows:\n        print(f\"{book}: {read} of {total} ({round(100 * read / total)}%)\")\n\n\nif __name__ == \"__main__\":\n    main()"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Rut: 4 de 4 (100%)\nJonás: 2 de 4 (50%)\nFilipenses: 1 de 4 (25%)\nSantiago: 1 de 5 (20%)"
+     },
+     {
+      "py": "assert 'registro.txt' in _codigo and 'leer_registro' in _codigo and 'import biblia' in _codigo",
+      "msg": {
+       "es": "Lee registro.txt con leer_registro (del módulo) y toma los capítulos de biblia.",
+       "en": "Read registro.txt with leer_registro (from the module) and take the chapters from biblia."
+      }
+     },
+     {
+      "py": "open('registro.txt', 'a', encoding='utf-8').write('Santiago;2\\nSantiago;2\\n')\nassert _correr([]).strip() == 'Rut: 4 de 4 (100%)\\nJonás: 2 de 4 (50%)\\nSantiago: 2 de 5 (40%)\\nFilipenses: 1 de 4 (25%)'",
+      "msg": {
+       "es": "Agregué dos lecturas al registro (el mismo capítulo dos veces) y el resultado no cambió como debía: cuenta cada capítulo una sola vez y ordena de nuevo.",
+       "en": "I added two readings to the log (the same chapter twice) and the result didn't change as it should: count each chapter only once and sort again."
+      }
+     },
+     {
+      "py": "import io as _io, contextlib as _cl, re as _re\nassert _re.search(r'''^if\\s+__name__\\s*==\\s*['\"]__main__['\"]\\s*:''', _codigo, _re.M)\n_b = _io.StringIO()\nwith _cl.redirect_stdout(_b):\n    exec(_codigo, {'__name__': 'otro_modulo'})\nassert _b.getvalue() == ''",
+      "msg": {
+       "es": "Pon el programa en main() y llámala dentro de if __name__ == \"__main__\":.",
+       "en": "Put the program in main() and call it inside if __name__ == \"__main__\":."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Ruth: 4 of 4 (100%)\nJonah: 2 of 4 (50%)\nPhilippians: 1 of 4 (25%)\nJames: 1 of 5 (20%)"
+     },
+     {
+      "py": "assert 'log.txt' in _codigo and 'read_log' in _codigo and 'import bible' in _codigo",
+      "msg": {
+       "es": "Lee log.txt con read_log (del módulo) y toma los capítulos de bible.",
+       "en": "Read log.txt with read_log (from the module) and take the chapters from bible."
+      }
+     },
+     {
+      "py": "open('log.txt', 'a', encoding='utf-8').write('James;2\\nJames;2\\n')\nassert _correr([]).strip() == 'Ruth: 4 of 4 (100%)\\nJonah: 2 of 4 (50%)\\nJames: 2 of 5 (40%)\\nPhilippians: 1 of 4 (25%)'",
+      "msg": {
+       "es": "Agregué dos lecturas al registro (el mismo capítulo dos veces) y el resultado no cambió como debía: cuenta cada capítulo una sola vez y ordena de nuevo.",
+       "en": "I added two readings to the log (the same chapter twice) and the result didn't change as it should: count each chapter only once and sort again."
+      }
+     },
+     {
+      "py": "import io as _io, contextlib as _cl, re as _re\nassert _re.search(r'''^if\\s+__name__\\s*==\\s*['\"]__main__['\"]\\s*:''', _codigo, _re.M)\n_b = _io.StringIO()\nwith _cl.redirect_stdout(_b):\n    exec(_codigo, {'__name__': 'otro_modulo'})\nassert _b.getvalue() == ''",
+      "msg": {
+       "es": "Pon el programa en main() y llámala dentro de if __name__ == \"__main__\":.",
+       "en": "Put the program in main() and call it inside if __name__ == \"__main__\":."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "from collections import defaultdict\n\nimport biblia\nfrom lecturas import leer_registro\n\n\ndef progreso(lineas):\n    leidos = defaultdict(list)\n    for libro, capitulo in leer_registro(lineas):\n        leidos[libro].append(capitulo)\n    return leidos\n\n\ndef main():\n    with open(\"registro.txt\", encoding=\"utf-8\") as f:\n        leidos = progreso(f)\n    filas = [(libro, len(caps), biblia.CAPITULOS[libro]) for libro, caps in leidos.items()]\n    filas.sort(key=lambda fila: (-fila[1] / fila[2], fila[0]))\n    for libro, hechos, total in filas:\n        print(f\"{libro}: {hechos} de {total} ({round(100 * hechos / total)}%)\")\n\n\nif __name__ == \"__main__\":\n    main()",
+     "from collections import defaultdict\n\nimport biblia\nfrom lecturas import leer_registro\n\n\ndef progreso(lineas):\n    leidos = defaultdict(set)\n    for libro, capitulo in leer_registro(lineas):\n        leidos[libro].add(capitulo)\n    return leidos\n\n\ndef main():\n    with open(\"registro.txt\", encoding=\"utf-8\") as f:\n        leidos = progreso(f)\n    filas = [(libro, len(caps), biblia.CAPITULOS[libro]) for libro, caps in leidos.items()]\n    for libro, hechos, total in filas:\n        print(f\"{libro}: {hechos} de {total} ({round(100 * hechos / total)}%)\")\n\n\nif __name__ == \"__main__\":\n    main()",
+     "from collections import defaultdict\n\nimport biblia\nfrom lecturas import leer_registro\n\n\ndef progreso(lineas):\n    leidos = defaultdict(set)\n    for libro, capitulo in leer_registro(lineas):\n        leidos[libro].add(capitulo)\n    return leidos\n\n\ndef main():\n    with open(\"registro.txt\", encoding=\"utf-8\") as f:\n        leidos = progreso(f)\n    filas = [(libro, len(caps), biblia.CAPITULOS[libro]) for libro, caps in leidos.items()]\n    filas.sort(key=lambda fila: (-fila[1] / fila[2], fila[0]))\n    for libro, hechos, total in filas:\n        print(f\"{libro}: {hechos} de {total} ({round(100 * hechos / total)}%)\")\n\n\nmain()",
+     "print(\"Rut: 4 de 4 (100%)\")\nprint(\"Jonás: 2 de 4 (50%)\")\nprint(\"Filipenses: 1 de 4 (25%)\")\nprint(\"Santiago: 1 de 5 (20%)\")"
+    ],
+    "en": [
+     "from collections import defaultdict\n\nimport bible\nfrom readings import read_log\n\n\ndef progress(lines):\n    done = defaultdict(list)\n    for book, chapter in read_log(lines):\n        done[book].append(chapter)\n    return done\n\n\ndef main():\n    with open(\"log.txt\", encoding=\"utf-8\") as f:\n        done = progress(f)\n    rows = [(book, len(chs), bible.CHAPTERS[book]) for book, chs in done.items()]\n    rows.sort(key=lambda row: (-row[1] / row[2], row[0]))\n    for book, read, total in rows:\n        print(f\"{book}: {read} of {total} ({round(100 * read / total)}%)\")\n\n\nif __name__ == \"__main__\":\n    main()",
+     "from collections import defaultdict\n\nimport bible\nfrom readings import read_log\n\n\ndef progress(lines):\n    done = defaultdict(set)\n    for book, chapter in read_log(lines):\n        done[book].add(chapter)\n    return done\n\n\ndef main():\n    with open(\"log.txt\", encoding=\"utf-8\") as f:\n        done = progress(f)\n    rows = [(book, len(chs), bible.CHAPTERS[book]) for book, chs in done.items()]\n    for book, read, total in rows:\n        print(f\"{book}: {read} of {total} ({round(100 * read / total)}%)\")\n\n\nif __name__ == \"__main__\":\n    main()"
+    ]
+   }
+  },
+  {
+   "id": "ciudad-completa",
+   "tipo": "escribir",
+   "reto": true,
+   "enunciado": {
+    "es": "**Reto final: la app del plan de lectura.** Usa los módulos `biblia.py` (datos) y `utiles.py` (`agrupar`), y escribe en tu archivo:\n1. `PlanInvalidoError` y la clase `PlanDeLectura(libros, por_dia)`: si `por_dia < 1` lanza `PlanInvalidoError(\"Lee al menos un capítulo por día\")`; si un libro no existe, `PlanInvalidoError(\"No conozco el libro <libro>\")`.\n2. El generador `capitulos()` (da `\"Rut 1\"`, `\"Rut 2\"`… de todos los libros, en orden), el generador `dias()` (da `(número de día, lista de capítulos)`; un día puede juntar el final de un libro con el comienzo del siguiente) y `total()`.\n3. `probar_plan()` con al menos 3 `assert`, incluidos casos borde y planes inválidos.\n4. `main()`: corre las pruebas, muestra el plan de Rut, Jonás y Filipenses a 5 capítulos por día y atrapa dos planes inválidos. Llámala con `if __name__ == \"__main__\":`.\n```\nPruebas: todo bien\nDía 1: Rut 1, Rut 2, Rut 3, Rut 4, Jonás 1\nDía 2: Jonás 2, Jonás 3, Jonás 4, Filipenses 1, Filipenses 2\nDía 3: Filipenses 3, Filipenses 4\nTotal: 12 capítulos en 3 días\nError: No conozco el libro Filipensis\nError: Lee al menos un capítulo por día\n```",
+    "en": "**Final challenge: the reading plan app.** Use the modules `bible.py` (data) and `tools.py` (`chunks`), and write in your file:\n1. `InvalidPlanError` and the class `ReadingPlan(books, per_day)`: if `per_day < 1` raise `InvalidPlanError(\"Read at least one chapter a day\")`; if a book doesn't exist, `InvalidPlanError(\"I don't know the book <book>\")`.\n2. The generator `chapters()` (gives `\"Ruth 1\"`, `\"Ruth 2\"`… for all the books, in order), the generator `days()` (gives `(day number, list of chapters)`; one day can join the end of a book with the start of the next) and `total()`.\n3. `test_plan()` with at least 3 `assert`s, including edge cases and invalid plans.\n4. `main()`: runs the tests, shows the plan for Ruth, Jonah and Philippians at 5 chapters a day and catches two invalid plans. Call it with `if __name__ == \"__main__\":`.\n```\nTests: all good\nDay 1: Ruth 1, Ruth 2, Ruth 3, Ruth 4, Jonah 1\nDay 2: Jonah 2, Jonah 3, Jonah 4, Philippians 1, Philippians 2\nDay 3: Philippians 3, Philippians 4\nTotal: 12 chapters in 3 days\nError: I don't know the book Philipians\nError: Read at least one chapter a day\n```"
+   },
+   "inicial": {
+    "es": "import biblia\nfrom utiles import agrupar\n",
+    "en": "import bible\nfrom tools import chunks\n"
+   },
+   "archivos": {
+    "es": {
+     "biblia.py": "\"\"\"Datos de la Biblia: los 66 libros en orden, con su número de capítulos.\"\"\"\n\nCAPITULOS = {\n    \"Génesis\": 50,\n    \"Éxodo\": 40,\n    \"Levítico\": 27,\n    \"Números\": 36,\n    \"Deuteronomio\": 34,\n    \"Josué\": 24,\n    \"Jueces\": 21,\n    \"Rut\": 4,\n    \"1 Samuel\": 31,\n    \"2 Samuel\": 24,\n    \"1 Reyes\": 22,\n    \"2 Reyes\": 25,\n    \"1 Crónicas\": 29,\n    \"2 Crónicas\": 36,\n    \"Esdras\": 10,\n    \"Nehemías\": 13,\n    \"Ester\": 10,\n    \"Job\": 42,\n    \"Salmos\": 150,\n    \"Proverbios\": 31,\n    \"Eclesiastés\": 12,\n    \"Cantares\": 8,\n    \"Isaías\": 66,\n    \"Jeremías\": 52,\n    \"Lamentaciones\": 5,\n    \"Ezequiel\": 48,\n    \"Daniel\": 12,\n    \"Oseas\": 14,\n    \"Joel\": 3,\n    \"Amós\": 9,\n    \"Abdías\": 1,\n    \"Jonás\": 4,\n    \"Miqueas\": 7,\n    \"Nahúm\": 3,\n    \"Habacuc\": 3,\n    \"Sofonías\": 3,\n    \"Hageo\": 2,\n    \"Zacarías\": 14,\n    \"Malaquías\": 4,\n    \"Mateo\": 28,\n    \"Marcos\": 16,\n    \"Lucas\": 24,\n    \"Juan\": 21,\n    \"Hechos\": 28,\n    \"Romanos\": 16,\n    \"1 Corintios\": 16,\n    \"2 Corintios\": 13,\n    \"Gálatas\": 6,\n    \"Efesios\": 6,\n    \"Filipenses\": 4,\n    \"Colosenses\": 4,\n    \"1 Tesalonicenses\": 5,\n    \"2 Tesalonicenses\": 3,\n    \"1 Timoteo\": 6,\n    \"2 Timoteo\": 4,\n    \"Tito\": 3,\n    \"Filemón\": 1,\n    \"Hebreos\": 13,\n    \"Santiago\": 5,\n    \"1 Pedro\": 5,\n    \"2 Pedro\": 3,\n    \"1 Juan\": 5,\n    \"2 Juan\": 1,\n    \"3 Juan\": 1,\n    \"Judas\": 1,\n    \"Apocalipsis\": 22,\n}\n\nANTIGUO = list(CAPITULOS)[:39]\nNUEVO = list(CAPITULOS)[39:]\n",
+     "utiles.py": "\"\"\"Herramientas pequeñas para recorrer datos.\"\"\"\nfrom itertools import islice\n\n\ndef agrupar(iterable, n):\n    \"\"\"Genera listas de n elementos seguidos (la última puede ser más corta).\"\"\"\n    it = iter(iterable)\n    while True:\n        grupo = list(islice(it, n))\n        if not grupo:\n            return\n        yield grupo\n"
+    },
+    "en": {
+     "bible.py": "\"\"\"Bible data: the 66 books in order, with their number of chapters.\"\"\"\n\nCHAPTERS = {\n    \"Genesis\": 50,\n    \"Exodus\": 40,\n    \"Leviticus\": 27,\n    \"Numbers\": 36,\n    \"Deuteronomy\": 34,\n    \"Joshua\": 24,\n    \"Judges\": 21,\n    \"Ruth\": 4,\n    \"1 Samuel\": 31,\n    \"2 Samuel\": 24,\n    \"1 Kings\": 22,\n    \"2 Kings\": 25,\n    \"1 Chronicles\": 29,\n    \"2 Chronicles\": 36,\n    \"Ezra\": 10,\n    \"Nehemiah\": 13,\n    \"Esther\": 10,\n    \"Job\": 42,\n    \"Psalms\": 150,\n    \"Proverbs\": 31,\n    \"Ecclesiastes\": 12,\n    \"Song of Songs\": 8,\n    \"Isaiah\": 66,\n    \"Jeremiah\": 52,\n    \"Lamentations\": 5,\n    \"Ezekiel\": 48,\n    \"Daniel\": 12,\n    \"Hosea\": 14,\n    \"Joel\": 3,\n    \"Amos\": 9,\n    \"Obadiah\": 1,\n    \"Jonah\": 4,\n    \"Micah\": 7,\n    \"Nahum\": 3,\n    \"Habakkuk\": 3,\n    \"Zephaniah\": 3,\n    \"Haggai\": 2,\n    \"Zechariah\": 14,\n    \"Malachi\": 4,\n    \"Matthew\": 28,\n    \"Mark\": 16,\n    \"Luke\": 24,\n    \"John\": 21,\n    \"Acts\": 28,\n    \"Romans\": 16,\n    \"1 Corinthians\": 16,\n    \"2 Corinthians\": 13,\n    \"Galatians\": 6,\n    \"Ephesians\": 6,\n    \"Philippians\": 4,\n    \"Colossians\": 4,\n    \"1 Thessalonians\": 5,\n    \"2 Thessalonians\": 3,\n    \"1 Timothy\": 6,\n    \"2 Timothy\": 4,\n    \"Titus\": 3,\n    \"Philemon\": 1,\n    \"Hebrews\": 13,\n    \"James\": 5,\n    \"1 Peter\": 5,\n    \"2 Peter\": 3,\n    \"1 John\": 5,\n    \"2 John\": 1,\n    \"3 John\": 1,\n    \"Jude\": 1,\n    \"Revelation\": 22,\n}\n\nOLD = list(CHAPTERS)[:39]\nNEW = list(CHAPTERS)[39:]\n",
+     "tools.py": "\"\"\"Small tools for walking through data.\"\"\"\nfrom itertools import islice\n\n\ndef chunks(iterable, n):\n    \"\"\"Generates lists of n items in a row (the last one may be shorter).\"\"\"\n    it = iter(iterable)\n    while True:\n        group = list(islice(it, n))\n        if not group:\n            return\n        yield group\n"
+    }
+   },
+   "pistas": {
+    "es": [
+     "`capitulos()` tiene dos `for` anidados (libros y números) con un `yield f\"{libro} {numero}\"`. Para `dias()`, `agrupar(self.capitulos(), self.por_dia)` ya junta los capítulos de a 5, y `enumerate(..., start=1)` los numera.",
+     "Dentro de un generador, `yield from enumerate(agrupar(self.capitulos(), self.por_dia), start=1)` entrega cada par. Para validar: `if libro not in biblia.CAPITULOS: raise PlanInvalidoError(f\"No conozco el libro {libro}\")`."
+    ],
+    "en": [
+     "`chapters()` has two nested `for`s (books and numbers) with a `yield f\"{book} {number}\"`. For `days()`, `chunks(self.chapters(), self.per_day)` already groups the chapters 5 at a time, and `enumerate(..., start=1)` numbers them.",
+     "Inside a generator, `yield from enumerate(chunks(self.chapters(), self.per_day), start=1)` hands out each pair. To validate: `if book not in bible.CHAPTERS: raise InvalidPlanError(f\"I don't know the book {book}\")`."
+    ]
+   },
+   "solucion": {
+    "es": "import biblia\nfrom utiles import agrupar\n\n\nclass PlanInvalidoError(Exception):\n    pass\n\n\nclass PlanDeLectura:\n    def __init__(self, libros, por_dia):\n        if por_dia < 1:\n            raise PlanInvalidoError(\"Lee al menos un capítulo por día\")\n        for libro in libros:\n            if libro not in biblia.CAPITULOS:\n                raise PlanInvalidoError(f\"No conozco el libro {libro}\")\n        self.libros = list(libros)\n        self.por_dia = por_dia\n\n    def capitulos(self):\n        for libro in self.libros:\n            for numero in range(1, biblia.CAPITULOS[libro] + 1):\n                yield f\"{libro} {numero}\"\n\n    def dias(self):\n        yield from enumerate(agrupar(self.capitulos(), self.por_dia), start=1)\n\n    def total(self):\n        return sum(biblia.CAPITULOS[libro] for libro in self.libros)\n\n\ndef probar_plan():\n    plan = PlanDeLectura([\"Rut\"], 3)\n    assert list(plan.dias()) == [(1, [\"Rut 1\", \"Rut 2\", \"Rut 3\"]), (2, [\"Rut 4\"])]\n    assert plan.total() == 4\n    assert list(PlanDeLectura([\"Abdías\"], 10).dias()) == [(1, [\"Abdías 1\"])]\n    for libros, por_dia in [([\"Rut\"], 0), ([\"Rutt\"], 2)]:\n        try:\n            PlanDeLectura(libros, por_dia)\n        except PlanInvalidoError:\n            pass\n        else:\n            assert False, \"el plan debía ser inválido\"\n\n\ndef main():\n    probar_plan()\n    print(\"Pruebas: todo bien\")\n    plan = PlanDeLectura([\"Rut\", \"Jonás\", \"Filipenses\"], 5)\n    cuantos = 0\n    for dia, lectura in plan.dias():\n        print(f\"Día {dia}: {', '.join(lectura)}\")\n        cuantos = dia\n    print(f\"Total: {plan.total()} capítulos en {cuantos} días\")\n    for libros, por_dia in [([\"Filipensis\"], 2), ([\"Rut\"], 0)]:\n        try:\n            PlanDeLectura(libros, por_dia)\n        except PlanInvalidoError as error:\n            print(\"Error:\", error)\n\n\nif __name__ == \"__main__\":\n    main()",
+    "en": "import bible\nfrom tools import chunks\n\n\nclass InvalidPlanError(Exception):\n    pass\n\n\nclass ReadingPlan:\n    def __init__(self, books, per_day):\n        if per_day < 1:\n            raise InvalidPlanError(\"Read at least one chapter a day\")\n        for book in books:\n            if book not in bible.CHAPTERS:\n                raise InvalidPlanError(f\"I don't know the book {book}\")\n        self.books = list(books)\n        self.per_day = per_day\n\n    def chapters(self):\n        for book in self.books:\n            for number in range(1, bible.CHAPTERS[book] + 1):\n                yield f\"{book} {number}\"\n\n    def days(self):\n        yield from enumerate(chunks(self.chapters(), self.per_day), start=1)\n\n    def total(self):\n        return sum(bible.CHAPTERS[book] for book in self.books)\n\n\ndef test_plan():\n    plan = ReadingPlan([\"Ruth\"], 3)\n    assert list(plan.days()) == [(1, [\"Ruth 1\", \"Ruth 2\", \"Ruth 3\"]), (2, [\"Ruth 4\"])]\n    assert plan.total() == 4\n    assert list(ReadingPlan([\"Obadiah\"], 10).days()) == [(1, [\"Obadiah 1\"])]\n    for books, per_day in [([\"Ruth\"], 0), ([\"Ruthh\"], 2)]:\n        try:\n            ReadingPlan(books, per_day)\n        except InvalidPlanError:\n            pass\n        else:\n            assert False, \"the plan should have been invalid\"\n\n\ndef main():\n    test_plan()\n    print(\"Tests: all good\")\n    plan = ReadingPlan([\"Ruth\", \"Jonah\", \"Philippians\"], 5)\n    count = 0\n    for day, reading in plan.days():\n        print(f\"Day {day}: {', '.join(reading)}\")\n        count = day\n    print(f\"Total: {plan.total()} chapters in {count} days\")\n    for books, per_day in [([\"Philipians\"], 2), ([\"Ruth\"], 0)]:\n        try:\n            ReadingPlan(books, per_day)\n        except InvalidPlanError as error:\n            print(\"Error:\", error)\n\n\nif __name__ == \"__main__\":\n    main()"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Pruebas: todo bien\nDía 1: Rut 1, Rut 2, Rut 3, Rut 4, Jonás 1\nDía 2: Jonás 2, Jonás 3, Jonás 4, Filipenses 1, Filipenses 2\nDía 3: Filipenses 3, Filipenses 4\nTotal: 12 capítulos en 3 días\nError: No conozco el libro Filipensis\nError: Lee al menos un capítulo por día"
+     },
+     {
+      "py": "import re as _re\nassert _re.search(r'^\\s*(import biblia|from biblia import)', _codigo, _re.M)",
+      "msg": {
+       "es": "Toma los capítulos del módulo biblia (impórtalo): no copies los datos.",
+       "en": "Take the chapters from the biblia module (import it): don't copy the data."
+      }
+     },
+     {
+      "py": "assert issubclass(PlanInvalidoError, Exception)",
+      "msg": {
+       "es": "PlanInvalidoError debe heredar de Exception.",
+       "en": "PlanInvalidoError must inherit from Exception."
+      }
+     },
+     {
+      "py": "_p = PlanDeLectura(['Rut'], 3)\nassert [(d, list(g)) for d, g in _p.dias()] == [(1, ['Rut 1', 'Rut 2', 'Rut 3']), (2, ['Rut 4'])] and _p.total() == 4\nassert [(d, list(g)) for d, g in PlanDeLectura(['Abdías', 'Rut'], 2).dias()] == [(1, ['Abdías 1', 'Rut 1']), (2, ['Rut 2', 'Rut 3']), (3, ['Rut 4'])]",
+      "msg": {
+       "es": "PlanDeLectura(['Rut'], 3).dias() debe dar (1, ['Rut 1', 'Rut 2', 'Rut 3']) y (2, ['Rut 4']); un día puede juntar el final de un libro con el comienzo del siguiente.",
+       "en": "PlanDeLectura(['Rut'], 3).dias() must give (1, ['Rut 1', 'Rut 2', 'Rut 3']) and (2, ['Rut 4']); one day can join the end of a book with the start of the next."
+      }
+     },
+     {
+      "py": "import biblia as _b\n_p = PlanDeLectura(list(_b.CAPITULOS), 1)\n_it = _p.dias()\n_c = _p.capitulos()\nassert hasattr(_it, '__next__') and hasattr(_c, '__next__') and next(_it) == (1, ['Génesis 1']) and next(_c) == 'Génesis 1'",
+      "msg": {
+       "es": "capitulos() y dias() deben ser generadores (perezosos): con los 66 libros no se arma la lista entera, se entrega un día a la vez.",
+       "en": "capitulos() and dias() must be generators (lazy): with all 66 books the whole list isn't built, one day is handed out at a time."
+      }
+     },
+     {
+      "py": "_v = []\nfor _a in [(['Rut'], 0), (['Rutx'], 2), (['Rut', 'Nada'], 1)]:\n    try:\n        PlanDeLectura(*_a)\n        _v.append(None)\n    except PlanInvalidoError as _e:\n        _v.append(str(_e))\nassert _v == ['Lee al menos un capítulo por día', 'No conozco el libro Rutx', 'No conozco el libro Nada']",
+      "msg": {
+       "es": "Un plan inválido debe lanzar PlanInvalidoError: «Lee al menos un capítulo por día» si por día es menos de 1, y «No conozco el libro <libro>» si un libro no existe (no un KeyError).",
+       "en": "An invalid plan must raise PlanInvalidoError: \"Lee al menos un capítulo por día\" if per day is less than 1, and \"No conozco el libro <book>\" if a book doesn't exist (not a KeyError)."
+      }
+     },
+     {
+      "py": "probar_plan()\nassert _codigo.count('assert') >= 3",
+      "msg": {
+       "es": "Escribe probar_plan() con al menos 3 assert, y que pase.",
+       "en": "Write probar_plan() with at least 3 asserts, and make it pass."
+      }
+     },
+     {
+      "py": "import io as _io, contextlib as _cl, re as _re\nassert _re.search(r'''^if\\s+__name__\\s*==\\s*['\"]__main__['\"]\\s*:''', _codigo, _re.M)\n_b = _io.StringIO()\nwith _cl.redirect_stdout(_b):\n    exec(_codigo, {'__name__': 'otro_modulo'})\nassert _b.getvalue() == ''",
+      "msg": {
+       "es": "Pon el programa en main() y llámala dentro de if __name__ == \"__main__\": (al importarlo, tu archivo no debe mostrar nada).",
+       "en": "Put the program in main() and call it inside if __name__ == \"__main__\": (when imported, your file must not show anything)."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Tests: all good\nDay 1: Ruth 1, Ruth 2, Ruth 3, Ruth 4, Jonah 1\nDay 2: Jonah 2, Jonah 3, Jonah 4, Philippians 1, Philippians 2\nDay 3: Philippians 3, Philippians 4\nTotal: 12 chapters in 3 days\nError: I don't know the book Philipians\nError: Read at least one chapter a day"
+     },
+     {
+      "py": "import re as _re\nassert _re.search(r'^\\s*(import bible|from bible import)', _codigo, _re.M)",
+      "msg": {
+       "es": "Toma los capítulos del módulo bible (impórtalo): no copies los datos.",
+       "en": "Take the chapters from the bible module (import it): don't copy the data."
+      }
+     },
+     {
+      "py": "assert issubclass(InvalidPlanError, Exception)",
+      "msg": {
+       "es": "InvalidPlanError debe heredar de Exception.",
+       "en": "InvalidPlanError must inherit from Exception."
+      }
+     },
+     {
+      "py": "_p = ReadingPlan(['Ruth'], 3)\nassert [(d, list(g)) for d, g in _p.days()] == [(1, ['Ruth 1', 'Ruth 2', 'Ruth 3']), (2, ['Ruth 4'])] and _p.total() == 4\nassert [(d, list(g)) for d, g in ReadingPlan(['Obadiah', 'Ruth'], 2).days()] == [(1, ['Obadiah 1', 'Ruth 1']), (2, ['Ruth 2', 'Ruth 3']), (3, ['Ruth 4'])]",
+      "msg": {
+       "es": "ReadingPlan(['Ruth'], 3).days() debe dar (1, ['Ruth 1', 'Ruth 2', 'Ruth 3']) y (2, ['Ruth 4']); un día puede juntar el final de un libro con el comienzo del siguiente.",
+       "en": "ReadingPlan(['Ruth'], 3).days() must give (1, ['Ruth 1', 'Ruth 2', 'Ruth 3']) and (2, ['Ruth 4']); one day can join the end of a book with the start of the next."
+      }
+     },
+     {
+      "py": "import bible as _b\n_p = ReadingPlan(list(_b.CHAPTERS), 1)\n_it = _p.days()\n_c = _p.chapters()\nassert hasattr(_it, '__next__') and hasattr(_c, '__next__') and next(_it) == (1, ['Genesis 1']) and next(_c) == 'Genesis 1'",
+      "msg": {
+       "es": "chapters() y days() deben ser generadores (perezosos): con los 66 libros no se arma la lista entera, se entrega un día a la vez.",
+       "en": "chapters() and days() must be generators (lazy): with all 66 books the whole list isn't built, one day is handed out at a time."
+      }
+     },
+     {
+      "py": "_v = []\nfor _a in [(['Ruth'], 0), (['Ruthx'], 2), (['Ruth', 'Nada'], 1)]:\n    try:\n        ReadingPlan(*_a)\n        _v.append(None)\n    except InvalidPlanError as _e:\n        _v.append(str(_e))\nassert _v == ['Read at least one chapter a day', \"I don't know the book Ruthx\", \"I don't know the book Nada\"]",
+      "msg": {
+       "es": "Un plan inválido debe lanzar InvalidPlanError: «Read at least one chapter a day» si por día es menos de 1, y «I don't know the book <libro>» si un libro no existe (no un KeyError).",
+       "en": "An invalid plan must raise InvalidPlanError: \"Read at least one chapter a day\" if per day is less than 1, and \"I don't know the book <book>\" if a book doesn't exist (not a KeyError)."
+      }
+     },
+     {
+      "py": "test_plan()\nassert _codigo.count('assert') >= 3",
+      "msg": {
+       "es": "Escribe test_plan() con al menos 3 assert, y que pase.",
+       "en": "Write test_plan() with at least 3 asserts, and make it pass."
+      }
+     },
+     {
+      "py": "import io as _io, contextlib as _cl, re as _re\nassert _re.search(r'''^if\\s+__name__\\s*==\\s*['\"]__main__['\"]\\s*:''', _codigo, _re.M)\n_b = _io.StringIO()\nwith _cl.redirect_stdout(_b):\n    exec(_codigo, {'__name__': 'otro_modulo'})\nassert _b.getvalue() == ''",
+      "msg": {
+       "es": "Pon el programa en main() y llámala dentro de if __name__ == \"__main__\": (al importarlo, tu archivo no debe mostrar nada).",
+       "en": "Put the program in main() and call it inside if __name__ == \"__main__\": (when imported, your file must not show anything)."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "import biblia\nfrom utiles import agrupar\n\n\nclass PlanInvalidoError(Exception):\n    pass\n\n\nclass PlanDeLectura:\n    def __init__(self, libros, por_dia):\n        if por_dia < 1:\n            raise PlanInvalidoError(\"Lee al menos un capítulo por día\")\n        for libro in libros:\n            if libro not in biblia.CAPITULOS:\n                raise PlanInvalidoError(f\"No conozco el libro {libro}\")\n        self.libros = list(libros)\n        self.por_dia = por_dia\n\n    def capitulos(self):\n        for libro in self.libros:\n            for numero in range(1, biblia.CAPITULOS[libro] + 1):\n                yield f\"{libro} {numero}\"\n\n    def dias(self):\n        yield from enumerate(agrupar(self.capitulos(), self.por_dia), start=1)\n\n    def total(self):\n        return sum(biblia.CAPITULOS[libro] for libro in self.libros)\n\n\ndef probar_plan():\n    plan = PlanDeLectura([\"Rut\"], 3)\n    assert list(plan.dias()) == [(1, [\"Rut 1\", \"Rut 2\", \"Rut 3\"]), (2, [\"Rut 4\"])]\n    assert plan.total() == 4\n    assert list(PlanDeLectura([\"Abdías\"], 10).dias()) == [(1, [\"Abdías 1\"])]\n    for libros, por_dia in [([\"Rut\"], 0), ([\"Rutt\"], 2)]:\n        try:\n            PlanDeLectura(libros, por_dia)\n        except PlanInvalidoError:\n            pass\n        else:\n            assert False, \"el plan debía ser inválido\"\n\n\ndef main():\n    probar_plan()\n    print(\"Pruebas: todo bien\")\n    plan = PlanDeLectura([\"Rut\", \"Jonás\", \"Filipenses\"], 5)\n    cuantos = 0\n    for dia, lectura in plan.dias():\n        print(f\"Día {dia}: {', '.join(lectura)}\")\n        cuantos = dia\n    print(f\"Total: {plan.total()} capítulos en {cuantos} días\")\n    for libros, por_dia in [([\"Filipensis\"], 2), ([\"Rut\"], 0)]:\n        try:\n            PlanDeLectura(libros, por_dia)\n        except PlanInvalidoError as error:\n            print(\"Error:\", error)\n\n\nmain()",
+     "import biblia\nfrom utiles import agrupar\n\n\nclass PlanInvalidoError(Exception):\n    pass\n\n\nclass PlanDeLectura:\n    def __init__(self, libros, por_dia):\n        if por_dia < 1:\n            raise PlanInvalidoError(\"Lee al menos un capítulo por día\")\n        for libro in libros:\n            if libro not in biblia.CAPITULOS:\n                raise PlanInvalidoError(f\"No conozco el libro {libro}\")\n        self.libros = list(libros)\n        self.por_dia = por_dia\n\n    def capitulos(self):\n        for libro in self.libros:\n            for numero in range(1, biblia.CAPITULOS[libro] + 1):\n                yield f\"{libro} {numero}\"\n\n    def dias(self):\n        return list(enumerate(agrupar(list(self.capitulos()), self.por_dia), start=1))\n\n    def total(self):\n        return sum(biblia.CAPITULOS[libro] for libro in self.libros)\n\n\ndef probar_plan():\n    plan = PlanDeLectura([\"Rut\"], 3)\n    assert list(plan.dias()) == [(1, [\"Rut 1\", \"Rut 2\", \"Rut 3\"]), (2, [\"Rut 4\"])]\n    assert plan.total() == 4\n    assert list(PlanDeLectura([\"Abdías\"], 10).dias()) == [(1, [\"Abdías 1\"])]\n    for libros, por_dia in [([\"Rut\"], 0), ([\"Rutt\"], 2)]:\n        try:\n            PlanDeLectura(libros, por_dia)\n        except PlanInvalidoError:\n            pass\n        else:\n            assert False, \"el plan debía ser inválido\"\n\n\ndef main():\n    probar_plan()\n    print(\"Pruebas: todo bien\")\n    plan = PlanDeLectura([\"Rut\", \"Jonás\", \"Filipenses\"], 5)\n    cuantos = 0\n    for dia, lectura in plan.dias():\n        print(f\"Día {dia}: {', '.join(lectura)}\")\n        cuantos = dia\n    print(f\"Total: {plan.total()} capítulos en {cuantos} días\")\n    for libros, por_dia in [([\"Filipensis\"], 2), ([\"Rut\"], 0)]:\n        try:\n            PlanDeLectura(libros, por_dia)\n        except PlanInvalidoError as error:\n            print(\"Error:\", error)\n\n\nif __name__ == \"__main__\":\n    main()",
+     "import biblia\nfrom utiles import agrupar\n\n\nclass PlanInvalidoError(Exception):\n    pass\n\n\nclass PlanDeLectura:\n    def __init__(self, libros, por_dia):\n        if por_dia < 1:\n            raise PlanInvalidoError(\"Lee al menos un capítulo por día\")\n        for libro in libros:\n            biblia.CAPITULOS[libro]\n        self.libros = list(libros)\n        self.por_dia = por_dia\n\n    def capitulos(self):\n        for libro in self.libros:\n            for numero in range(1, biblia.CAPITULOS[libro] + 1):\n                yield f\"{libro} {numero}\"\n\n    def dias(self):\n        yield from enumerate(agrupar(self.capitulos(), self.por_dia), start=1)\n\n    def total(self):\n        return sum(biblia.CAPITULOS[libro] for libro in self.libros)\n\n\ndef probar_plan():\n    plan = PlanDeLectura([\"Rut\"], 3)\n    assert list(plan.dias()) == [(1, [\"Rut 1\", \"Rut 2\", \"Rut 3\"]), (2, [\"Rut 4\"])]\n    assert plan.total() == 4\n    assert list(PlanDeLectura([\"Abdías\"], 10).dias()) == [(1, [\"Abdías 1\"])]\n    for libros, por_dia in [([\"Rut\"], 0), ([\"Rut\"], 0)]:\n        try:\n            PlanDeLectura(libros, por_dia)\n        except PlanInvalidoError:\n            pass\n        else:\n            assert False, \"el plan debía ser inválido\"\n\n\ndef main():\n    probar_plan()\n    print(\"Pruebas: todo bien\")\n    plan = PlanDeLectura([\"Rut\", \"Jonás\", \"Filipenses\"], 5)\n    cuantos = 0\n    for dia, lectura in plan.dias():\n        print(f\"Día {dia}: {', '.join(lectura)}\")\n        cuantos = dia\n    print(f\"Total: {plan.total()} capítulos en {cuantos} días\")\n    for libros, por_dia in [([\"Rut\"], 0)]:\n        try:\n            PlanDeLectura(libros, por_dia)\n        except PlanInvalidoError as error:\n            print(\"Error:\", error)\n\n\nif __name__ == \"__main__\":\n    main()",
+     "import biblia\nfrom utiles import agrupar\n\n\nclass PlanInvalidoError(Exception):\n    pass\n\n\nclass PlanDeLectura:\n    def __init__(self, libros, por_dia):\n        if por_dia < 1:\n            raise PlanInvalidoError(\"Lee al menos un capítulo por día\")\n        for libro in libros:\n            if libro not in biblia.CAPITULOS:\n                raise PlanInvalidoError(f\"No conozco el libro {libro}\")\n        self.libros = list(libros)\n        self.por_dia = por_dia\n\n    def capitulos(self):\n        for libro in self.libros:\n            yield from (f\"{libro} {n}\" for n in range(1, biblia.CAPITULOS[libro]))\n\n    def dias(self):\n        yield from enumerate(agrupar(self.capitulos(), self.por_dia), start=1)\n\n    def total(self):\n        return sum(biblia.CAPITULOS[libro] for libro in self.libros)\n\n\ndef probar_plan():\n    plan = PlanDeLectura([\"Rut\"], 3)\n    assert plan.total() == 4\n    for libros, por_dia in [([\"Rut\"], 0), ([\"Rutt\"], 2)]:\n        try:\n            PlanDeLectura(libros, por_dia)\n        except PlanInvalidoError:\n            pass\n        else:\n            assert False, \"el plan debía ser inválido\"\n\n\ndef main():\n    probar_plan()\n    print(\"Pruebas: todo bien\")\n    plan = PlanDeLectura([\"Rut\", \"Jonás\", \"Filipenses\"], 5)\n    cuantos = 0\n    for dia, lectura in plan.dias():\n        print(f\"Día {dia}: {', '.join(lectura)}\")\n        cuantos = dia\n    print(f\"Total: {plan.total()} capítulos en {cuantos} días\")\n    for libros, por_dia in [([\"Filipensis\"], 2), ([\"Rut\"], 0)]:\n        try:\n            PlanDeLectura(libros, por_dia)\n        except PlanInvalidoError as error:\n            print(\"Error:\", error)\n\n\nif __name__ == \"__main__\":\n    main()"
+    ],
+    "en": [
+     "import bible\nfrom tools import chunks\n\n\nclass InvalidPlanError(Exception):\n    pass\n\n\nclass ReadingPlan:\n    def __init__(self, books, per_day):\n        if per_day < 1:\n            raise InvalidPlanError(\"Read at least one chapter a day\")\n        for book in books:\n            if book not in bible.CHAPTERS:\n                raise InvalidPlanError(f\"I don't know the book {book}\")\n        self.books = list(books)\n        self.per_day = per_day\n\n    def chapters(self):\n        for book in self.books:\n            for number in range(1, bible.CHAPTERS[book] + 1):\n                yield f\"{book} {number}\"\n\n    def days(self):\n        yield from enumerate(chunks(self.chapters(), self.per_day), start=1)\n\n    def total(self):\n        return sum(bible.CHAPTERS[book] for book in self.books)\n\n\ndef test_plan():\n    plan = ReadingPlan([\"Ruth\"], 3)\n    assert list(plan.days()) == [(1, [\"Ruth 1\", \"Ruth 2\", \"Ruth 3\"]), (2, [\"Ruth 4\"])]\n    assert plan.total() == 4\n    assert list(ReadingPlan([\"Obadiah\"], 10).days()) == [(1, [\"Obadiah 1\"])]\n    for books, per_day in [([\"Ruth\"], 0), ([\"Ruthh\"], 2)]:\n        try:\n            ReadingPlan(books, per_day)\n        except InvalidPlanError:\n            pass\n        else:\n            assert False, \"the plan should have been invalid\"\n\n\ndef main():\n    test_plan()\n    print(\"Tests: all good\")\n    plan = ReadingPlan([\"Ruth\", \"Jonah\", \"Philippians\"], 5)\n    count = 0\n    for day, reading in plan.days():\n        print(f\"Day {day}: {', '.join(reading)}\")\n        count = day\n    print(f\"Total: {plan.total()} chapters in {count} days\")\n    for books, per_day in [([\"Philipians\"], 2), ([\"Ruth\"], 0)]:\n        try:\n            ReadingPlan(books, per_day)\n        except InvalidPlanError as error:\n            print(\"Error:\", error)\n\n\nmain()",
+     "import bible\nfrom tools import chunks\n\n\nclass InvalidPlanError(Exception):\n    pass\n\n\nclass ReadingPlan:\n    def __init__(self, books, per_day):\n        if per_day < 1:\n            raise InvalidPlanError(\"Read at least one chapter a day\")\n        for book in books:\n            if book not in bible.CHAPTERS:\n                raise InvalidPlanError(f\"I don't know the book {book}\")\n        self.books = list(books)\n        self.per_day = per_day\n\n    def chapters(self):\n        for book in self.books:\n            for number in range(1, bible.CHAPTERS[book] + 1):\n                yield f\"{book} {number}\"\n\n    def days(self):\n        return list(enumerate(chunks(list(self.chapters()), self.per_day), start=1))\n\n    def total(self):\n        return sum(bible.CHAPTERS[book] for book in self.books)\n\n\ndef test_plan():\n    plan = ReadingPlan([\"Ruth\"], 3)\n    assert list(plan.days()) == [(1, [\"Ruth 1\", \"Ruth 2\", \"Ruth 3\"]), (2, [\"Ruth 4\"])]\n    assert plan.total() == 4\n    assert list(ReadingPlan([\"Obadiah\"], 10).days()) == [(1, [\"Obadiah 1\"])]\n    for books, per_day in [([\"Ruth\"], 0), ([\"Ruthh\"], 2)]:\n        try:\n            ReadingPlan(books, per_day)\n        except InvalidPlanError:\n            pass\n        else:\n            assert False, \"the plan should have been invalid\"\n\n\ndef main():\n    test_plan()\n    print(\"Tests: all good\")\n    plan = ReadingPlan([\"Ruth\", \"Jonah\", \"Philippians\"], 5)\n    count = 0\n    for day, reading in plan.days():\n        print(f\"Day {day}: {', '.join(reading)}\")\n        count = day\n    print(f\"Total: {plan.total()} chapters in {count} days\")\n    for books, per_day in [([\"Philipians\"], 2), ([\"Ruth\"], 0)]:\n        try:\n            ReadingPlan(books, per_day)\n        except InvalidPlanError as error:\n            print(\"Error:\", error)\n\n\nif __name__ == \"__main__\":\n    main()",
+     "import bible\nfrom tools import chunks\n\n\nclass InvalidPlanError(Exception):\n    pass\n\n\nclass ReadingPlan:\n    def __init__(self, books, per_day):\n        if per_day < 1:\n            raise InvalidPlanError(\"Read at least one chapter a day\")\n        for book in books:\n            bible.CHAPTERS[book]\n        self.books = list(books)\n        self.per_day = per_day\n\n    def chapters(self):\n        for book in self.books:\n            for number in range(1, bible.CHAPTERS[book] + 1):\n                yield f\"{book} {number}\"\n\n    def days(self):\n        yield from enumerate(chunks(self.chapters(), self.per_day), start=1)\n\n    def total(self):\n        return sum(bible.CHAPTERS[book] for book in self.books)\n\n\ndef test_plan():\n    plan = ReadingPlan([\"Ruth\"], 3)\n    assert list(plan.days()) == [(1, [\"Ruth 1\", \"Ruth 2\", \"Ruth 3\"]), (2, [\"Ruth 4\"])]\n    assert plan.total() == 4\n    assert list(ReadingPlan([\"Obadiah\"], 10).days()) == [(1, [\"Obadiah 1\"])]\n    for books, per_day in [([\"Ruth\"], 0), ([\"Ruth\"], 0)]:\n        try:\n            ReadingPlan(books, per_day)\n        except InvalidPlanError:\n            pass\n        else:\n            assert False, \"the plan should have been invalid\"\n\n\ndef main():\n    test_plan()\n    print(\"Tests: all good\")\n    plan = ReadingPlan([\"Ruth\", \"Jonah\", \"Philippians\"], 5)\n    count = 0\n    for day, reading in plan.days():\n        print(f\"Day {day}: {', '.join(reading)}\")\n        count = day\n    print(f\"Total: {plan.total()} chapters in {count} days\")\n    for books, per_day in [([\"Ruth\"], 0)]:\n        try:\n            ReadingPlan(books, per_day)\n        except InvalidPlanError as error:\n            print(\"Error:\", error)\n\n\nif __name__ == \"__main__\":\n    main()"
+    ]
+   }
+  }
+ ]
+}

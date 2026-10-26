@@ -1,0 +1,611 @@
+{
+ "id": "13-ordenar-rollos",
+ "numero": 13,
+ "lugar": "pablo",
+ "titulo": {
+  "es": "Ordenar los rollos",
+  "en": "Sorting the scrolls"
+ },
+ "tema": {
+  "es": "búsqueda lineal y binaria, ordenamiento y comprensión de listas",
+  "en": "linear and binary search, sorting and list comprehensions"
+ },
+ "versiculo": "1co-14-40",
+ "medalla": {
+  "es": "Escriba ordenado",
+  "en": "Orderly scribe"
+ },
+ "leccion": {
+  "es": [
+   "Un **algoritmo** es una receta exacta para resolver un problema. Buscar un rollo en un estante desordenado pide una **búsqueda lineal**: revisar uno por uno hasta encontrarlo. Si hay 1000 rollos, puede tomar 1000 pasos.",
+   "Si el estante **está ordenado**, sirve la **búsqueda binaria**: miras el del medio y descartas la mitad donde no puede estar, una y otra vez. Con 1000 rollos bastan unos 10 pasos. Se lleva con dos marcas, `izq` y `der`, y `medio = (izq + der) // 2`.",
+   "Para ordenar a mano, el **ordenamiento de burbuja** compara vecinos y los intercambia si están al revés: `a[j], a[j + 1] = a[j + 1], a[j]`. El de **selección** busca el menor de lo que falta y lo pone en su lugar. Python ya trae `sorted()`, pero escribirlos tú enseña a pensar paso a paso.",
+   "Una **comprensión de lista** arma una lista nueva en una sola línea: `[c * 2 for c in capitulos if c > 30]` toma cada `c`, se queda con los que cumplen la condición y guarda `c * 2`. «Que todo se haga decentemente y con orden» (1 Corintios 14:40)."
+  ],
+  "en": [
+   "An **algorithm** is an exact recipe for solving a problem. Finding a scroll on a messy shelf calls for a **linear search**: check one by one until you find it. With 1000 scrolls, it can take 1000 steps.",
+   "If the shelf **is sorted**, you can use **binary search**: look at the middle one and throw away the half where it can't be, again and again. With 1000 scrolls about 10 steps are enough. It's done with two markers, `left` and `right`, and `middle = (left + right) // 2`.",
+   "To sort by hand, **bubble sort** compares neighbors and swaps them if they're the wrong way round: `a[j], a[j + 1] = a[j + 1], a[j]`. **Selection sort** finds the smallest of what's left and puts it in its place. Python already has `sorted()`, but writing them yourself teaches you to think step by step.",
+   "A **list comprehension** builds a new list in a single line: `[c * 2 for c in chapters if c > 30]` takes each `c`, keeps the ones that meet the condition and stores `c * 2`. “Everything must be done in a proper and orderly manner” (1 Corinthians 14:40)."
+  ]
+ },
+ "ejemplo": {
+  "es": "def buscar(lista, objetivo):\n    for i in range(len(lista)):\n        if lista[i] == objetivo:\n            return i\n    return -1\n\nrollos = [\"Isaías\", \"Jeremías\", \"Ezequiel\", \"Daniel\"]\nprint(buscar(rollos, \"Daniel\"))   # 3\nprint(buscar(rollos, \"Jonás\"))    # -1\n\ncapitulos = [66, 52, 48, 12]\nlargos = [c for c in capitulos if c > 40]\nprint(largos)\n\na = [3, 1]\na[0], a[1] = a[1], a[0]   # intercambio\nprint(a)",
+  "en": "def search(items, target):\n    for i in range(len(items)):\n        if items[i] == target:\n            return i\n    return -1\n\nscrolls = [\"Isaiah\", \"Jeremiah\", \"Ezekiel\", \"Daniel\"]\nprint(search(scrolls, \"Daniel\"))   # 3\nprint(search(scrolls, \"Jonah\"))    # -1\n\nchapters = [66, 52, 48, 12]\nlong_ones = [c for c in chapters if c > 40]\nprint(long_ones)\n\na = [3, 1]\na[0], a[1] = a[1], a[0]   # swap\nprint(a)"
+ },
+ "ejercicios": [
+  {
+   "id": "busqueda-lineal",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "En la sinagoga, los rollos de los profetas están en un estante sin ningún orden. Escribe la función `buscar(lista, objetivo)` que revise la lista **uno por uno** y devuelva la **posición** de la primera vez que aparece `objetivo`, o `-1` si no está. No uses `.index()`. Debe salir:\n```\n2\n-1\n```",
+    "en": "In the synagogue, the scrolls of the prophets sit on a shelf in no particular order. Write the function `search(items, target)` that checks the list **one by one** and returns the **position** of the first time `target` appears, or `-1` if it's not there. Don't use `.index()`. It should print:\n```\n2\n-1\n```"
+   },
+   "inicial": {
+    "es": "def buscar(lista, objetivo):\n    \n\nrollos = [\"Isaías\", \"Jeremías\", \"Ezequiel\", \"Daniel\"]\nprint(buscar(rollos, \"Ezequiel\"))\nprint(buscar(rollos, \"Jonás\"))\n",
+    "en": "def search(items, target):\n    \n\nscrolls = [\"Isaiah\", \"Jeremiah\", \"Ezekiel\", \"Daniel\"]\nprint(search(scrolls, \"Ezekiel\"))\nprint(search(scrolls, \"Jonah\"))\n"
+   },
+   "pistas": {
+    "es": [
+     "Recorre las posiciones con `for i in range(len(lista)):` y compara `lista[i] == objetivo`. En cuanto lo encuentres, `return i`.",
+     "El `return -1` va **después** del bucle, sin sangría extra: solo se llega ahí si revisaste todo y no apareció."
+    ],
+    "en": [
+     "Go through the positions with `for i in range(len(items)):` and compare `items[i] == target`. As soon as you find it, `return i`.",
+     "The `return -1` goes **after** the loop, with no extra indentation: you only get there if you checked everything and it never appeared."
+    ]
+   },
+   "solucion": {
+    "es": "def buscar(lista, objetivo):\n    for i in range(len(lista)):\n        if lista[i] == objetivo:\n            return i\n    return -1\n\nrollos = [\"Isaías\", \"Jeremías\", \"Ezequiel\", \"Daniel\"]\nprint(buscar(rollos, \"Ezequiel\"))\nprint(buscar(rollos, \"Jonás\"))",
+    "en": "def search(items, target):\n    for i in range(len(items)):\n        if items[i] == target:\n            return i\n    return -1\n\nscrolls = [\"Isaiah\", \"Jeremiah\", \"Ezekiel\", \"Daniel\"]\nprint(search(scrolls, \"Ezekiel\"))\nprint(search(scrolls, \"Jonah\"))"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "2\n-1"
+     },
+     {
+      "py": "assert buscar([], 'x') == -1\nassert buscar(['Amós'], 'Amós') == 0\nassert buscar(['Amós', 'Joel', 'Amós'], 'Amós') == 0\nassert buscar(['Amós', 'Joel'], 'Joel') == 1\nassert buscar(['Amós', 'Joel'], 'Rut') == -1\nassert buscar([3, 1, 2], 2) == 2",
+      "msg": {
+       "es": "Prueba tu función con más casos: lista vacía (debe dar -1), un solo elemento, repetidos (la primera posición) y un rollo que no está.",
+       "en": "Test your function with more cases: empty list (must give -1), one element, repeats (the first position) and a scroll that isn't there."
+      }
+     },
+     {
+      "py": "assert '.index(' not in _codigo",
+      "msg": {
+       "es": "Escribe tú la búsqueda con un bucle, sin `.index()`.",
+       "en": "Write the search yourself with a loop, without `.index()`."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "2\n-1"
+     },
+     {
+      "py": "assert search([], 'x') == -1\nassert search(['Amos'], 'Amos') == 0\nassert search(['Amos', 'Joel', 'Amos'], 'Amos') == 0\nassert search(['Amos', 'Joel'], 'Joel') == 1\nassert search(['Amos', 'Joel'], 'Rut') == -1\nassert search([3, 1, 2], 2) == 2",
+      "msg": {
+       "es": "Prueba tu función con más casos: lista vacía (debe dar -1), un solo elemento, repetidos (la primera posición) y un rollo que no está.",
+       "en": "Test your function with more cases: empty list (must give -1), one element, repeats (the first position) and a scroll that isn't there."
+      }
+     },
+     {
+      "py": "assert '.index(' not in _codigo",
+      "msg": {
+       "es": "Escribe tú la búsqueda con un bucle, sin `.index()`.",
+       "en": "Write the search yourself with a loop, without `.index()`."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "def buscar(lista, objetivo):\n    for i in range(len(lista)):\n        if lista[i] == objetivo:\n            return i\n        else:\n            return -1\n\nrollos = [\"Isaías\", \"Jeremías\", \"Ezequiel\", \"Daniel\"]\nprint(buscar(rollos, \"Ezequiel\"))\nprint(buscar(rollos, \"Jonás\"))",
+     "def buscar(lista, objetivo):\n    for i in range(len(lista)):\n        if lista[i] == objetivo:\n            return i\n\nrollos = [\"Isaías\", \"Jeremías\", \"Ezequiel\", \"Daniel\"]\nprint(buscar(rollos, \"Ezequiel\"))\nprint(buscar(rollos, \"Jonás\"))",
+     "def buscar(lista, objetivo):\n    for i in range(len(lista)):\n        if lista[i] == objetivo:\n            return True\n    return False\n\nrollos = [\"Isaías\", \"Jeremías\", \"Ezequiel\", \"Daniel\"]\nprint(buscar(rollos, \"Ezequiel\"))\nprint(buscar(rollos, \"Jonás\"))",
+     "def buscar(lista, objetivo):\n    return lista.index(objetivo)\n\nrollos = [\"Isaías\", \"Jeremías\", \"Ezequiel\", \"Daniel\"]\nprint(buscar(rollos, \"Ezequiel\"))\nprint(buscar(rollos, \"Jonás\"))"
+    ],
+    "en": [
+     "def search(items, target):\n    for i in range(len(items)):\n        if items[i] == target:\n            return i\n        else:\n            return -1\n\nscrolls = [\"Isaiah\", \"Jeremiah\", \"Ezekiel\", \"Daniel\"]\nprint(search(scrolls, \"Ezekiel\"))\nprint(search(scrolls, \"Jonah\"))",
+     "def search(items, target):\n    for i in range(len(items)):\n        if items[i] == target:\n            return i\n\nscrolls = [\"Isaiah\", \"Jeremiah\", \"Ezekiel\", \"Daniel\"]\nprint(search(scrolls, \"Ezekiel\"))\nprint(search(scrolls, \"Jonah\"))",
+     "def search(items, target):\n    for i in range(len(items)):\n        if items[i] == target:\n            return True\n    return False\n\nscrolls = [\"Isaiah\", \"Jeremiah\", \"Ezekiel\", \"Daniel\"]\nprint(search(scrolls, \"Ezekiel\"))\nprint(search(scrolls, \"Jonah\"))",
+     "def search(items, target):\n    return items.index(target)\n\nscrolls = [\"Isaiah\", \"Jeremiah\", \"Ezekiel\", \"Daniel\"]\nprint(search(scrolls, \"Ezekiel\"))\nprint(search(scrolls, \"Jonah\"))"
+    ]
+   }
+  },
+  {
+   "id": "comprension-filtro",
+   "tipo": "hueco",
+   "enunciado": {
+    "es": "Los cinco rollos de la Ley tienen 50, 40, 27, 36 y 34 capítulos. Completa la **comprensión de lista** para quedarte solo con los que tienen **más de 35** capítulos. Debe salir:\n```\n[50, 40, 36]\n```",
+    "en": "The five scrolls of the Law have 50, 40, 27, 36 and 34 chapters. Complete the **list comprehension** to keep only the ones with **more than 35** chapters. It should print:\n```\n[50, 40, 36]\n```"
+   },
+   "plantilla": {
+    "es": "# capítulos de Génesis, Éxodo, Levítico, Números y Deuteronomio\ncapitulos = [50, 40, 27, 36, 34]\nlargos = [c for c in capitulos if ___]\nprint(largos)",
+    "en": "# chapters in Genesis, Exodus, Leviticus, Numbers and Deuteronomy\nchapters = [50, 40, 27, 36, 34]\nlong_ones = [c for c in chapters if ___]\nprint(long_ones)"
+   },
+   "pistas": {
+    "es": [
+     "Lo que va después de `if` es la condición que debe cumplir cada `c` para entrar en la lista nueva.",
+     "`c > 35`."
+    ],
+    "en": [
+     "What goes after `if` is the condition each `c` must meet to get into the new list.",
+     "`c > 35`."
+    ]
+   },
+   "solucion": {
+    "es": "# capítulos de Génesis, Éxodo, Levítico, Números y Deuteronomio\ncapitulos = [50, 40, 27, 36, 34]\nlargos = [c for c in capitulos if c > 35]\nprint(largos)",
+    "en": "# chapters in Genesis, Exodus, Leviticus, Numbers and Deuteronomy\nchapters = [50, 40, 27, 36, 34]\nlong_ones = [c for c in chapters if c > 35]\nprint(long_ones)"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "[50, 40, 36]"
+     }
+    ],
+    "en": [
+     {
+      "salida": "[50, 40, 36]"
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "# capítulos de Génesis, Éxodo, Levítico, Números y Deuteronomio\ncapitulos = [50, 40, 27, 36, 34]\nlargos = [c for c in capitulos if c < 35]\nprint(largos)",
+     "# capítulos de Génesis, Éxodo, Levítico, Números y Deuteronomio\ncapitulos = [50, 40, 27, 36, 34]\nlargos = [c for c in capitulos if c > 36]\nprint(largos)",
+     "# capítulos de Génesis, Éxodo, Levítico, Números y Deuteronomio\ncapitulos = [50, 40, 27, 36, 34]\nlargos = [c for c in capitulos if c = 35]\nprint(largos)"
+    ],
+    "en": [
+     "# chapters in Genesis, Exodus, Leviticus, Numbers and Deuteronomy\nchapters = [50, 40, 27, 36, 34]\nlong_ones = [c for c in chapters if c < 35]\nprint(long_ones)",
+     "# chapters in Genesis, Exodus, Leviticus, Numbers and Deuteronomy\nchapters = [50, 40, 27, 36, 34]\nlong_ones = [c for c in chapters if c > 36]\nprint(long_ones)",
+     "# chapters in Genesis, Exodus, Leviticus, Numbers and Deuteronomy\nchapters = [50, 40, 27, 36, 34]\nlong_ones = [c for c in chapters if c = 35]\nprint(long_ones)"
+    ]
+   }
+  },
+  {
+   "id": "cartas-cortas",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "El diccionario `cartas` tiene algunas cartas de Pablo con su número de capítulos. Usa **dos comprensiones de lista**:\n- `cortas`: los nombres de las cartas con **6 capítulos o menos**.\n- `mayusculas`: esos mismos nombres en mayúsculas.\n\nDebe salir:\n```\n['Gálatas', 'Efesios', 'Filipenses', 'Colosenses']\n['GÁLATAS', 'EFESIOS', 'FILIPENSES', 'COLOSENSES']\n```",
+    "en": "The dictionary `letters` has some of Paul's letters with their number of chapters. Use **two list comprehensions**:\n- `short`: the names of the letters with **6 chapters or fewer**.\n- `capitals`: those same names in capital letters.\n\nIt should print:\n```\n['Galatians', 'Ephesians', 'Philippians', 'Colossians']\n['GALATIANS', 'EPHESIANS', 'PHILIPPIANS', 'COLOSSIANS']\n```"
+   },
+   "inicial": {
+    "es": "cartas = {\"Romanos\": 16, \"1 Corintios\": 16, \"2 Corintios\": 13, \"Gálatas\": 6,\n          \"Efesios\": 6, \"Filipenses\": 4, \"Colosenses\": 4}\n\n",
+    "en": "letters = {\"Romans\": 16, \"1 Corinthians\": 16, \"2 Corinthians\": 13, \"Galatians\": 6,\n           \"Ephesians\": 6, \"Philippians\": 4, \"Colossians\": 4}\n\n"
+   },
+   "pistas": {
+    "es": [
+     "Recorrer un diccionario con `for nombre in cartas` da sus claves; el número de capítulos es `cartas[nombre]`.",
+     "`cortas = [nombre for nombre in cartas if cartas[nombre] <= 6]` y `mayusculas = [nombre.upper() for nombre in cortas]`."
+    ],
+    "en": [
+     "Looping over a dictionary with `for name in letters` gives its keys; the number of chapters is `letters[name]`.",
+     "`short = [name for name in letters if letters[name] <= 6]` and `capitals = [name.upper() for name in short]`."
+    ]
+   },
+   "solucion": {
+    "es": "cartas = {\"Romanos\": 16, \"1 Corintios\": 16, \"2 Corintios\": 13, \"Gálatas\": 6,\n          \"Efesios\": 6, \"Filipenses\": 4, \"Colosenses\": 4}\n\ncortas = [nombre for nombre in cartas if cartas[nombre] <= 6]\nmayusculas = [nombre.upper() for nombre in cortas]\nprint(cortas)\nprint(mayusculas)",
+    "en": "letters = {\"Romans\": 16, \"1 Corinthians\": 16, \"2 Corinthians\": 13, \"Galatians\": 6,\n           \"Ephesians\": 6, \"Philippians\": 4, \"Colossians\": 4}\n\nshort = [name for name in letters if letters[name] <= 6]\ncapitals = [name.upper() for name in short]\nprint(short)\nprint(capitals)"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "['Gálatas', 'Efesios', 'Filipenses', 'Colosenses']\n['GÁLATAS', 'EFESIOS', 'FILIPENSES', 'COLOSENSES']"
+     },
+     {
+      "py": "assert cortas == ['Gálatas', 'Efesios', 'Filipenses', 'Colosenses'] and mayusculas == [n.upper() for n in cortas]",
+      "msg": {
+       "es": "Guarda las listas en `cortas` y `mayusculas`.",
+       "en": "Store the lists in `cortas` and `mayusculas`."
+      }
+     },
+     {
+      "py": "import re as _re\nassert len(_re.findall(r'\\[[^\\n]*\\bfor\\b', _codigo)) >= 2 and '.append(' not in _codigo",
+      "msg": {
+       "es": "Arma las dos listas con comprensiones: `[... for ... in ...]`.",
+       "en": "Build both lists with comprehensions: `[... for ... in ...]`."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "['Galatians', 'Ephesians', 'Philippians', 'Colossians']\n['GALATIANS', 'EPHESIANS', 'PHILIPPIANS', 'COLOSSIANS']"
+     },
+     {
+      "py": "assert short == ['Galatians', 'Ephesians', 'Philippians', 'Colossians'] and capitals == [n.upper() for n in short]",
+      "msg": {
+       "es": "Guarda las listas en `short` y `capitals`.",
+       "en": "Store the lists in `short` and `capitals`."
+      }
+     },
+     {
+      "py": "import re as _re\nassert len(_re.findall(r'\\[[^\\n]*\\bfor\\b', _codigo)) >= 2 and '.append(' not in _codigo",
+      "msg": {
+       "es": "Arma las dos listas con comprensiones: `[... for ... in ...]`.",
+       "en": "Build both lists with comprehensions: `[... for ... in ...]`."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "cartas = {\"Romanos\": 16, \"1 Corintios\": 16, \"2 Corintios\": 13, \"Gálatas\": 6,\n          \"Efesios\": 6, \"Filipenses\": 4, \"Colosenses\": 4}\n\ncortas = [nombre for nombre in cartas if nombre <= 6]\nmayusculas = [nombre.upper() for nombre in cortas]\nprint(cortas)\nprint(mayusculas)",
+     "cartas = {\"Romanos\": 16, \"1 Corintios\": 16, \"2 Corintios\": 13, \"Gálatas\": 6,\n          \"Efesios\": 6, \"Filipenses\": 4, \"Colosenses\": 4}\n\ncortas = [nombre for nombre in cartas if cartas[nombre] < 6]\nmayusculas = [nombre.upper() for nombre in cortas]\nprint(cortas)\nprint(mayusculas)",
+     "cartas = {\"Romanos\": 16, \"1 Corintios\": 16, \"2 Corintios\": 13, \"Gálatas\": 6,\n          \"Efesios\": 6, \"Filipenses\": 4, \"Colosenses\": 4}\n\ncortas = [cartas[nombre] for nombre in cartas if cartas[nombre] <= 6]\nmayusculas = [nombre.upper() for nombre in cortas]\nprint(cortas)\nprint(mayusculas)",
+     "cartas = {\"Romanos\": 16, \"1 Corintios\": 16, \"2 Corintios\": 13, \"Gálatas\": 6,\n          \"Efesios\": 6, \"Filipenses\": 4, \"Colosenses\": 4}\ncortas = []\nfor nombre in cartas:\n    if cartas[nombre] <= 6:\n        cortas.append(nombre)\nmayusculas = []\nfor nombre in cortas:\n    mayusculas.append(nombre.upper())\nprint(cortas)\nprint(mayusculas)"
+    ],
+    "en": [
+     "letters = {\"Romans\": 16, \"1 Corinthians\": 16, \"2 Corinthians\": 13, \"Galatians\": 6,\n           \"Ephesians\": 6, \"Philippians\": 4, \"Colossians\": 4}\n\nshort = [name for name in letters if name <= 6]\ncapitals = [name.upper() for name in short]\nprint(short)\nprint(capitals)",
+     "letters = {\"Romans\": 16, \"1 Corinthians\": 16, \"2 Corinthians\": 13, \"Galatians\": 6,\n           \"Ephesians\": 6, \"Philippians\": 4, \"Colossians\": 4}\n\nshort = [name for name in letters if letters[name] < 6]\ncapitals = [name.upper() for name in short]\nprint(short)\nprint(capitals)",
+     "letters = {\"Romans\": 16, \"1 Corinthians\": 16, \"2 Corinthians\": 13, \"Galatians\": 6,\n           \"Ephesians\": 6, \"Philippians\": 4, \"Colossians\": 4}\n\nshort = [letters[name] for name in letters if letters[name] <= 6]\ncapitals = [name.upper() for name in short]\nprint(short)\nprint(capitals)",
+     "letters = {\"Romans\": 16, \"1 Corinthians\": 16, \"2 Corinthians\": 13, \"Galatians\": 6,\n           \"Ephesians\": 6, \"Philippians\": 4, \"Colossians\": 4}\nshort = []\nfor name in letters:\n    if letters[name] <= 6:\n        short.append(name)\ncapitals = []\nfor name in short:\n    capitals.append(name.upper())\nprint(short)\nprint(capitals)"
+    ]
+   }
+  },
+  {
+   "id": "burbuja-ordenar",
+   "tipo": "ordenar",
+   "enunciado": {
+    "es": "El **ordenamiento de burbuja** recorre la lista comparando cada elemento con su vecino y los intercambia si están al revés; así, en cada vuelta el más grande «sube» al final. Ordena las líneas para ordenar los capítulos de cuatro cartas. Debe salir:\n```\n[4, 6, 13, 16]\n```",
+    "en": "**Bubble sort** walks through the list comparing each element with its neighbor and swaps them if they're the wrong way round; so on each pass the largest one “bubbles up” to the end. Put the lines in order to sort the chapters of four letters. It should print:\n```\n[4, 6, 13, 16]\n```"
+   },
+   "lineas": {
+    "es": [
+     "def burbuja(lista):",
+     "    n = len(lista)",
+     "    for i in range(n):",
+     "        for j in range(n - 1 - i):",
+     "            if lista[j] > lista[j + 1]:",
+     "                lista[j], lista[j + 1] = lista[j + 1], lista[j]",
+     "    return lista",
+     "print(burbuja([16, 6, 13, 4]))"
+    ],
+    "en": [
+     "def bubble(items):",
+     "    n = len(items)",
+     "    for i in range(n):",
+     "        for j in range(n - 1 - i):",
+     "            if items[j] > items[j + 1]:",
+     "                items[j], items[j + 1] = items[j + 1], items[j]",
+     "    return items",
+     "print(bubble([16, 6, 13, 4]))"
+    ]
+   },
+   "pistas": {
+    "es": [
+     "Usa la sangría como guía: cada línea más adentro depende de la de arriba que termina en `:`. Necesitas `n` antes de los bucles.",
+     "El intercambio va dentro del `if`, el `if` dentro del bucle de `j`, y el `return` al final de la función, fuera de los bucles."
+    ],
+    "en": [
+     "Use the indentation as a guide: each line further in depends on the one above that ends in `:`. You need `n` before the loops.",
+     "The swap goes inside the `if`, the `if` inside the `j` loop, and the `return` at the end of the function, outside the loops."
+    ]
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "[4, 6, 13, 16]"
+     },
+     {
+      "py": "assert burbuja([5, 4, 3, 2, 1]) == [1, 2, 3, 4, 5] and burbuja([]) == []",
+      "msg": {
+       "es": "La función debe ordenar cualquier lista; revisa dónde quedaron los bucles y el `return`.",
+       "en": "The function must sort any list; check where the loops and the `return` ended up."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "[4, 6, 13, 16]"
+     },
+     {
+      "py": "assert bubble([5, 4, 3, 2, 1]) == [1, 2, 3, 4, 5] and bubble([]) == []",
+      "msg": {
+       "es": "La función debe ordenar cualquier lista; revisa dónde quedaron los bucles y el `return`.",
+       "en": "The function must sort any list; check where the loops and the `return` ended up."
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "ordenar-a-mano",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Escribe la función `ordenar(lista)` que **devuelva** la lista ordenada de menor a mayor, sin usar `sorted()` ni `.sort()`. Puedes usar burbuja o el **ordenamiento por selección**: busca el menor de lo que falta y ponlo en su lugar, una posición a la vez. Debe funcionar con textos y con números. Debe salir:\n```\n['Juan', 'Lucas', 'Marcos', 'Mateo']\n[16, 21, 24, 28]\n```",
+    "en": "Write the function `sort_list(items)` that **returns** the list sorted from smallest to largest, without using `sorted()` or `.sort()`. You can use bubble sort or **selection sort**: find the smallest of what's left and put it in its place, one position at a time. It must work with text and with numbers. It should print:\n```\n['John', 'Luke', 'Mark', 'Matthew']\n[16, 21, 24, 28]\n```"
+   },
+   "inicial": {
+    "es": "def ordenar(lista):\n    \n\nevangelios = [\"Lucas\", \"Mateo\", \"Juan\", \"Marcos\"]\nprint(ordenar(evangelios))\nprint(ordenar([28, 16, 24, 21]))\n",
+    "en": "def sort_list(items):\n    \n\ngospels = [\"Luke\", \"Matthew\", \"John\", \"Mark\"]\nprint(sort_list(gospels))\nprint(sort_list([28, 16, 24, 21]))\n"
+   },
+   "pistas": {
+    "es": [
+     "Selección: para cada posición `i`, busca con otro bucle la posición `menor` del elemento más chico desde `i` hasta el final, y luego intercámbialos: `lista[i], lista[menor] = lista[menor], lista[i]`.",
+     "`for i in range(len(lista)):` → `menor = i` → `for j in range(i + 1, len(lista)):` → `if lista[j] < lista[menor]: menor = j`; después del bucle de `j`, el intercambio. Al final, `return lista`."
+    ],
+    "en": [
+     "Selection: for each position `i`, use another loop to find the position `smallest` of the smallest element from `i` to the end, and then swap them: `items[i], items[smallest] = items[smallest], items[i]`.",
+     "`for i in range(len(items)):` → `smallest = i` → `for j in range(i + 1, len(items)):` → `if items[j] < items[smallest]: smallest = j`; after the `j` loop, the swap. At the end, `return items`."
+    ]
+   },
+   "solucion": {
+    "es": "def ordenar(lista):\n    copia = lista[:]\n    for i in range(len(copia)):\n        menor = i\n        for j in range(i + 1, len(copia)):\n            if copia[j] < copia[menor]:\n                menor = j\n        copia[i], copia[menor] = copia[menor], copia[i]\n    return copia\n\nevangelios = [\"Lucas\", \"Mateo\", \"Juan\", \"Marcos\"]\nprint(ordenar(evangelios))\nprint(ordenar([28, 16, 24, 21]))",
+    "en": "def sort_list(items):\n    copy = items[:]\n    for i in range(len(copy)):\n        smallest = i\n        for j in range(i + 1, len(copy)):\n            if copy[j] < copy[smallest]:\n                smallest = j\n        copy[i], copy[smallest] = copy[smallest], copy[i]\n    return copy\n\ngospels = [\"Luke\", \"Matthew\", \"John\", \"Mark\"]\nprint(sort_list(gospels))\nprint(sort_list([28, 16, 24, 21]))"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "['Juan', 'Lucas', 'Marcos', 'Mateo']\n[16, 21, 24, 28]"
+     },
+     {
+      "py": "assert ordenar([]) == []\nassert ordenar([7]) == [7]\nassert ordenar([3, 2, 1]) == [1, 2, 3]\nassert ordenar([2, 1, 2, 1]) == [1, 1, 2, 2]\nassert ordenar([1, 2, 3]) == [1, 2, 3]\nassert ordenar([5, -1, 0, 9, 3, 3, 8]) == [-1, 0, 3, 3, 5, 8, 9]",
+      "msg": {
+       "es": "Prueba más casos: lista vacía, un elemento, al revés, con repetidos y ya ordenada. Tu función debe dar la lista bien ordenada en todos.",
+       "en": "Test more cases: empty list, one element, reversed, with repeats and already sorted. Your function must give a correctly sorted list in all of them."
+      }
+     },
+     {
+      "py": "assert 'sorted(' not in _codigo and '.sort(' not in _codigo",
+      "msg": {
+       "es": "Escribe tú el ordenamiento con bucles, sin `sorted()` ni `.sort()`.",
+       "en": "Write the sorting yourself with loops, without `sorted()` or `.sort()`."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "['John', 'Luke', 'Mark', 'Matthew']\n[16, 21, 24, 28]"
+     },
+     {
+      "py": "assert sort_list([]) == []\nassert sort_list([7]) == [7]\nassert sort_list([3, 2, 1]) == [1, 2, 3]\nassert sort_list([2, 1, 2, 1]) == [1, 1, 2, 2]\nassert sort_list([1, 2, 3]) == [1, 2, 3]\nassert sort_list([5, -1, 0, 9, 3, 3, 8]) == [-1, 0, 3, 3, 5, 8, 9]",
+      "msg": {
+       "es": "Prueba más casos: lista vacía, un elemento, al revés, con repetidos y ya ordenada. Tu función debe dar la lista bien ordenada en todos.",
+       "en": "Test more cases: empty list, one element, reversed, with repeats and already sorted. Your function must give a correctly sorted list in all of them."
+      }
+     },
+     {
+      "py": "assert 'sorted(' not in _codigo and '.sort(' not in _codigo",
+      "msg": {
+       "es": "Escribe tú el ordenamiento con bucles, sin `sorted()` ni `.sort()`.",
+       "en": "Write the sorting yourself with loops, without `sorted()` or `.sort()`."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "def ordenar(lista):\n    return sorted(lista)\n\nevangelios = [\"Lucas\", \"Mateo\", \"Juan\", \"Marcos\"]\nprint(ordenar(evangelios))\nprint(ordenar([28, 16, 24, 21]))",
+     "def ordenar(lista):\n    for j in range(len(lista) - 1):\n        if lista[j] > lista[j + 1]:\n            lista[j], lista[j + 1] = lista[j + 1], lista[j]\n    return lista\n\nevangelios = [\"Lucas\", \"Mateo\", \"Juan\", \"Marcos\"]\nprint(ordenar(evangelios))\nprint(ordenar([28, 16, 24, 21]))",
+     "def ordenar(lista):\n    n = len(lista)\n    for i in range(n):\n        for j in range(n):\n            if lista[j] > lista[j + 1]:\n                lista[j], lista[j + 1] = lista[j + 1], lista[j]\n    return lista\n\nevangelios = [\"Lucas\", \"Mateo\", \"Juan\", \"Marcos\"]\nprint(ordenar(evangelios))\nprint(ordenar([28, 16, 24, 21]))",
+     "def ordenar(lista):\n    copia = lista[:]\n    for i in range(len(copia)):\n        menor = i\n        for j in range(i + 1, len(copia)):\n            if copia[j] < copia[menor]:\n                menor = j\n                copia[i] = copia[menor]\n    return copia\n\nevangelios = [\"Lucas\", \"Mateo\", \"Juan\", \"Marcos\"]\nprint(ordenar(evangelios))\nprint(ordenar([28, 16, 24, 21]))"
+    ],
+    "en": [
+     "def sort_list(items):\n    return sorted(items)\n\ngospels = [\"Luke\", \"Matthew\", \"John\", \"Mark\"]\nprint(sort_list(gospels))\nprint(sort_list([28, 16, 24, 21]))",
+     "def sort_list(items):\n    for j in range(len(items) - 1):\n        if items[j] > items[j + 1]:\n            items[j], items[j + 1] = items[j + 1], items[j]\n    return items\n\ngospels = [\"Luke\", \"Matthew\", \"John\", \"Mark\"]\nprint(sort_list(gospels))\nprint(sort_list([28, 16, 24, 21]))",
+     "def sort_list(items):\n    n = len(items)\n    for i in range(n):\n        for j in range(n):\n            if items[j] > items[j + 1]:\n                items[j], items[j + 1] = items[j + 1], items[j]\n    return items\n\ngospels = [\"Luke\", \"Matthew\", \"John\", \"Mark\"]\nprint(sort_list(gospels))\nprint(sort_list([28, 16, 24, 21]))",
+     "def sort_list(items):\n    copy = items[:]\n    for i in range(len(copy)):\n        smallest = i\n        for j in range(i + 1, len(copy)):\n            if copy[j] < copy[smallest]:\n                smallest = j\n                copy[i] = copy[smallest]\n    return copy\n\ngospels = [\"Luke\", \"Matthew\", \"John\", \"Mark\"]\nprint(sort_list(gospels))\nprint(sort_list([28, 16, 24, 21]))"
+    ]
+   }
+  },
+  {
+   "id": "busqueda-binaria",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Cuando la lista **ya está ordenada**, no hace falta revisarla toda. Escribe `binaria(lista, objetivo)`: mira el elemento del **medio**; si es el objetivo, devuelve su posición; si el objetivo es mayor, sigue buscando solo en la mitad derecha; si es menor, en la izquierda. Si ya no queda nada por revisar, devuelve `-1`. Debe salir:\n```\n2\n-1\n```",
+    "en": "When the list is **already sorted**, you don't need to check all of it. Write `binary(items, target)`: look at the **middle** element; if it's the target, return its position; if the target is larger, keep searching only in the right half; if it's smaller, in the left half. When there's nothing left to check, return `-1`. It should print:\n```\n3\n-1\n```"
+   },
+   "inicial": {
+    "es": "def binaria(lista, objetivo):\n    izq = 0\n    der = len(lista) - 1\n    \n\ncartas = [\"Colosenses\", \"Efesios\", \"Filipenses\", \"Gálatas\", \"Romanos\"]\nprint(binaria(cartas, \"Filipenses\"))\nprint(binaria(cartas, \"Hebreos\"))\n",
+    "en": "def binary(items, target):\n    left = 0\n    right = len(items) - 1\n    \n\nletters = [\"Colossians\", \"Ephesians\", \"Galatians\", \"Philippians\", \"Romans\"]\nprint(binary(letters, \"Philippians\"))\nprint(binary(letters, \"Hebrews\"))\n"
+   },
+   "pistas": {
+    "es": [
+     "`izq` y `der` marcan el pedazo que falta revisar. Repite `while izq <= der:` y en cada vuelta calcula `medio = (izq + der) // 2`.",
+     "Si `lista[medio] == objetivo`: `return medio`. Si `lista[medio] < objetivo`: `izq = medio + 1`. Si no: `der = medio - 1`. Después del `while`, `return -1`."
+    ],
+    "en": [
+     "`left` and `right` mark the piece still to check. Repeat `while left <= right:` and on each pass compute `middle = (left + right) // 2`.",
+     "If `items[middle] == target`: `return middle`. If `items[middle] < target`: `left = middle + 1`. Otherwise: `right = middle - 1`. After the `while`, `return -1`."
+    ]
+   },
+   "solucion": {
+    "es": "def binaria(lista, objetivo):\n    izq = 0\n    der = len(lista) - 1\n    while izq <= der:\n        medio = (izq + der) // 2\n        if lista[medio] == objetivo:\n            return medio\n        elif lista[medio] < objetivo:\n            izq = medio + 1\n        else:\n            der = medio - 1\n    return -1\n\ncartas = [\"Colosenses\", \"Efesios\", \"Filipenses\", \"Gálatas\", \"Romanos\"]\nprint(binaria(cartas, \"Filipenses\"))\nprint(binaria(cartas, \"Hebreos\"))",
+    "en": "def binary(items, target):\n    left = 0\n    right = len(items) - 1\n    while left <= right:\n        middle = (left + right) // 2\n        if items[middle] == target:\n            return middle\n        elif items[middle] < target:\n            left = middle + 1\n        else:\n            right = middle - 1\n    return -1\n\nletters = [\"Colossians\", \"Ephesians\", \"Galatians\", \"Philippians\", \"Romans\"]\nprint(binary(letters, \"Philippians\"))\nprint(binary(letters, \"Hebrews\"))"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "2\n-1"
+     },
+     {
+      "py": "assert binaria([], 'Hageo') == -1\nassert binaria(['Hageo'], 'Hageo') == 0 and binaria(['Hageo'], 'Joel') == -1\n_x = ['Hageo', 'Joel', 'Rut']\nassert [binaria(_x, e) for e in _x] == [0, 1, 2]\nassert binaria(_x, 'A') == -1 and binaria(_x, 'Z') == -1\nassert [binaria(list(range(10)), k) for k in range(-1, 11)] == [-1] + list(range(10)) + [-1]",
+      "msg": {
+       "es": "Prueba más casos: lista vacía, un elemento, cada posición de una lista y objetivos menores o mayores que todos. Revisa los límites `izq <= der` y `medio ± 1`.",
+       "en": "Test more cases: empty list, one element, every position of a list, and targets smaller or larger than all. Check the limits `izq <= der` and `medio ± 1`."
+      }
+     },
+     {
+      "py": "class _L(list):\n    n = 0\n    def __getitem__(self, i):\n        _L.n += 1\n        return list.__getitem__(self, i)\n    def __iter__(self):\n        _L.n += 10 ** 6\n        return list.__iter__(self)\n    def __contains__(self, x):\n        _L.n += 10 ** 6\n        return list.__contains__(self, x)\n    def index(self, *a):\n        _L.n += 10 ** 6\n        return list.index(self, *a)\n_l = _L(range(0, 2000, 2))\nassert binaria(_l, 1234) == 617 and binaria(_l, 0) == 0 and binaria(_l, 1998) == 999 and binaria(_l, 777) == -1\nassert _L.n < 100",
+      "msg": {
+       "es": "Tu búsqueda revisa demasiados elementos: en cada paso mira solo el del medio y descarta la mitad (en 1000 elementos bastan unos 10 pasos).",
+       "en": "Your search checks too many elements: on each step look only at the middle one and throw away half (10 steps or so are enough for 1000 elements)."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "3\n-1"
+     },
+     {
+      "py": "assert binary([], 'Haggai') == -1\nassert binary(['Haggai'], 'Haggai') == 0 and binary(['Haggai'], 'Joel') == -1\n_x = ['Haggai', 'Joel', 'Ruth']\nassert [binary(_x, e) for e in _x] == [0, 1, 2]\nassert binary(_x, 'A') == -1 and binary(_x, 'Z') == -1\nassert [binary(list(range(10)), k) for k in range(-1, 11)] == [-1] + list(range(10)) + [-1]",
+      "msg": {
+       "es": "Prueba más casos: lista vacía, un elemento, cada posición de una lista y objetivos menores o mayores que todos. Revisa los límites `left <= right` y `middle ± 1`.",
+       "en": "Test more cases: empty list, one element, every position of a list, and targets smaller or larger than all. Check the limits `left <= right` and `middle ± 1`."
+      }
+     },
+     {
+      "py": "class _L(list):\n    n = 0\n    def __getitem__(self, i):\n        _L.n += 1\n        return list.__getitem__(self, i)\n    def __iter__(self):\n        _L.n += 10 ** 6\n        return list.__iter__(self)\n    def __contains__(self, x):\n        _L.n += 10 ** 6\n        return list.__contains__(self, x)\n    def index(self, *a):\n        _L.n += 10 ** 6\n        return list.index(self, *a)\n_l = _L(range(0, 2000, 2))\nassert binary(_l, 1234) == 617 and binary(_l, 0) == 0 and binary(_l, 1998) == 999 and binary(_l, 777) == -1\nassert _L.n < 100",
+      "msg": {
+       "es": "Tu búsqueda revisa demasiados elementos: en cada paso mira solo el del medio y descarta la mitad (en 1000 elementos bastan unos 10 pasos).",
+       "en": "Your search checks too many elements: on each step look only at the middle one and throw away half (10 steps or so are enough for 1000 elements)."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "def binaria(lista, objetivo):\n    izq = 0\n    der = len(lista) - 1\n    while izq < der:\n        medio = (izq + der) // 2\n        if lista[medio] == objetivo:\n            return medio\n        elif lista[medio] < objetivo:\n            izq = medio + 1\n        else:\n            der = medio - 1\n    return -1\n\ncartas = [\"Colosenses\", \"Efesios\", \"Filipenses\", \"Gálatas\", \"Romanos\"]\nprint(binaria(cartas, \"Filipenses\"))\nprint(binaria(cartas, \"Hebreos\"))",
+     "def binaria(lista, objetivo):\n    izq = 0\n    der = len(lista) - 1\n    while izq <= der:\n        medio = (izq + der) // 2\n        if lista[medio] == objetivo:\n            return medio\n        elif lista[medio] < objetivo:\n            der = medio - 1\n        else:\n            izq = medio + 1\n    return -1\n\ncartas = [\"Colosenses\", \"Efesios\", \"Filipenses\", \"Gálatas\", \"Romanos\"]\nprint(binaria(cartas, \"Filipenses\"))\nprint(binaria(cartas, \"Hebreos\"))",
+     "def binaria(lista, objetivo):\n    for i in range(len(lista)):\n        if lista[i] == objetivo:\n            return i\n    return -1\n\ncartas = [\"Colosenses\", \"Efesios\", \"Filipenses\", \"Gálatas\", \"Romanos\"]\nprint(binaria(cartas, \"Filipenses\"))\nprint(binaria(cartas, \"Hebreos\"))",
+     "def binaria(lista, objetivo):\n    izq = 0\n    der = len(lista) - 1\n    while izq <= der:\n        medio = (izq + der) / 2\n        if lista[medio] == objetivo:\n            return medio\n        elif lista[medio] < objetivo:\n            izq = medio + 1\n        else:\n            der = medio - 1\n    return -1\n\ncartas = [\"Colosenses\", \"Efesios\", \"Filipenses\", \"Gálatas\", \"Romanos\"]\nprint(binaria(cartas, \"Filipenses\"))\nprint(binaria(cartas, \"Hebreos\"))"
+    ],
+    "en": [
+     "def binary(items, target):\n    left = 0\n    right = len(items) - 1\n    while left < right:\n        middle = (left + right) // 2\n        if items[middle] == target:\n            return middle\n        elif items[middle] < target:\n            left = middle + 1\n        else:\n            right = middle - 1\n    return -1\n\nletters = [\"Colossians\", \"Ephesians\", \"Galatians\", \"Philippians\", \"Romans\"]\nprint(binary(letters, \"Philippians\"))\nprint(binary(letters, \"Hebrews\"))",
+     "def binary(items, target):\n    left = 0\n    right = len(items) - 1\n    while left <= right:\n        middle = (left + right) // 2\n        if items[middle] == target:\n            return middle\n        elif items[middle] < target:\n            right = middle - 1\n        else:\n            left = middle + 1\n    return -1\n\nletters = [\"Colossians\", \"Ephesians\", \"Galatians\", \"Philippians\", \"Romans\"]\nprint(binary(letters, \"Philippians\"))\nprint(binary(letters, \"Hebrews\"))",
+     "def binary(items, target):\n    for i in range(len(items)):\n        if items[i] == target:\n            return i\n    return -1\n\nletters = [\"Colossians\", \"Ephesians\", \"Galatians\", \"Philippians\", \"Romans\"]\nprint(binary(letters, \"Philippians\"))\nprint(binary(letters, \"Hebrews\"))",
+     "def binary(items, target):\n    left = 0\n    right = len(items) - 1\n    while left <= right:\n        middle = (left + right) / 2\n        if items[middle] == target:\n            return middle\n        elif items[middle] < target:\n            left = middle + 1\n        else:\n            right = middle - 1\n    return -1\n\nletters = [\"Colossians\", \"Ephesians\", \"Galatians\", \"Philippians\", \"Romans\"]\nprint(binary(letters, \"Philippians\"))\nprint(binary(letters, \"Hebrews\"))"
+    ]
+   }
+  },
+  {
+   "id": "reto-estante",
+   "tipo": "escribir",
+   "reto": true,
+   "enunciado": {
+    "es": "**Reto: el estante de los rollos.** Pablo pidió a Timoteo que le llevara «los libros, especialmente los pergaminos» (2 Timoteo 4:13). Pon orden en el estante:\n1. Escribe `ordenar(lista)` a mano (sin `sorted()` ni `.sort()`) y guarda en `estante` los `rollos` ordenados.\n2. Escribe `binaria(lista, objetivo)` y úsala para buscar cada rollo de `pedidos` en el `estante`. El **lugar** es la posición + 1.\n3. Con una **comprensión de lista**, guarda en `encontrados` los pedidos que sí están.\n\nDebe salir:\n```\nEstante: Colosenses, Efesios, Filipenses, Gálatas, Romanos\nEfesios: lugar 2\nHebreos: no está\nRomanos: lugar 5\nEncontrados: 2 de 3\n```",
+    "en": "**Challenge: the scroll shelf.** Paul asked Timothy to bring “my scrolls, especially the parchments” (2 Timothy 4:13). Put the shelf in order:\n1. Write `sort_list(items)` by hand (without `sorted()` or `.sort()`) and store the sorted `scrolls` in `shelf`.\n2. Write `binary(items, target)` and use it to look for each scroll in `requests` on the `shelf`. The **place** is the position + 1.\n3. With a **list comprehension**, store in `found` the requests that are there.\n\nIt should print:\n```\nShelf: Colossians, Ephesians, Galatians, Philippians, Romans\nEphesians: place 2\nHebrews: not here\nRomans: place 5\nFound: 2 of 3\n```"
+   },
+   "inicial": {
+    "es": "rollos = [\"Romanos\", \"Gálatas\", \"Efesios\", \"Colosenses\", \"Filipenses\"]\npedidos = [\"Efesios\", \"Hebreos\", \"Romanos\"]\n",
+    "en": "scrolls = [\"Romans\", \"Galatians\", \"Ephesians\", \"Colossians\", \"Philippians\"]\nrequests = [\"Ephesians\", \"Hebrews\", \"Romans\"]\n"
+   },
+   "pistas": {
+    "es": [
+     "Escribe las dos funciones arriba (puedes reutilizar las de los ejercicios anteriores). La búsqueda binaria solo sirve sobre el `estante` ya ordenado, no sobre `rollos`.",
+     "`for p in pedidos:` → `pos = binaria(estante, p)` → si `pos == -1`, «no está»; si no, `f\"{p}: lugar {pos + 1}\"`. Luego `encontrados = [p for p in pedidos if binaria(estante, p) != -1]`."
+    ],
+    "en": [
+     "Write the two functions at the top (you can reuse the ones from the earlier exercises). Binary search only works on the already sorted `shelf`, not on `scrolls`.",
+     "`for r in requests:` → `pos = binary(shelf, r)` → if `pos == -1`, “not here”; otherwise `f\"{r}: place {pos + 1}\"`. Then `found = [r for r in requests if binary(shelf, r) != -1]`."
+    ]
+   },
+   "solucion": {
+    "es": "def ordenar(lista):\n    copia = lista[:]\n    for i in range(len(copia)):\n        menor = i\n        for j in range(i + 1, len(copia)):\n            if copia[j] < copia[menor]:\n                menor = j\n        copia[i], copia[menor] = copia[menor], copia[i]\n    return copia\n\n\ndef binaria(lista, objetivo):\n    izq = 0\n    der = len(lista) - 1\n    while izq <= der:\n        medio = (izq + der) // 2\n        if lista[medio] == objetivo:\n            return medio\n        elif lista[medio] < objetivo:\n            izq = medio + 1\n        else:\n            der = medio - 1\n    return -1\n\n\nrollos = [\"Romanos\", \"Gálatas\", \"Efesios\", \"Colosenses\", \"Filipenses\"]\npedidos = [\"Efesios\", \"Hebreos\", \"Romanos\"]\n\nestante = ordenar(rollos)\nprint(\"Estante:\", \", \".join(estante))\nfor p in pedidos:\n    pos = binaria(estante, p)\n    if pos == -1:\n        print(f\"{p}: no está\")\n    else:\n        print(f\"{p}: lugar {pos + 1}\")\nencontrados = [p for p in pedidos if binaria(estante, p) != -1]\nprint(f\"Encontrados: {len(encontrados)} de {len(pedidos)}\")",
+    "en": "def sort_list(items):\n    copy = items[:]\n    for i in range(len(copy)):\n        smallest = i\n        for j in range(i + 1, len(copy)):\n            if copy[j] < copy[smallest]:\n                smallest = j\n        copy[i], copy[smallest] = copy[smallest], copy[i]\n    return copy\n\n\ndef binary(items, target):\n    left = 0\n    right = len(items) - 1\n    while left <= right:\n        middle = (left + right) // 2\n        if items[middle] == target:\n            return middle\n        elif items[middle] < target:\n            left = middle + 1\n        else:\n            right = middle - 1\n    return -1\n\n\nscrolls = [\"Romans\", \"Galatians\", \"Ephesians\", \"Colossians\", \"Philippians\"]\nrequests = [\"Ephesians\", \"Hebrews\", \"Romans\"]\n\nshelf = sort_list(scrolls)\nprint(\"Shelf:\", \", \".join(shelf))\nfor r in requests:\n    pos = binary(shelf, r)\n    if pos == -1:\n        print(f\"{r}: not here\")\n    else:\n        print(f\"{r}: place {pos + 1}\")\nfound = [r for r in requests if binary(shelf, r) != -1]\nprint(f\"Found: {len(found)} of {len(requests)}\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Estante: Colosenses, Efesios, Filipenses, Gálatas, Romanos\nEfesios: lugar 2\nHebreos: no está\nRomanos: lugar 5\nEncontrados: 2 de 3"
+     },
+     {
+      "py": "assert ordenar([]) == []\nassert ordenar([7]) == [7]\nassert ordenar([3, 2, 1]) == [1, 2, 3]\nassert ordenar([2, 1, 2, 1]) == [1, 1, 2, 2]\nassert ordenar([1, 2, 3]) == [1, 2, 3]\nassert ordenar([5, -1, 0, 9, 3, 3, 8]) == [-1, 0, 3, 3, 5, 8, 9]",
+      "msg": {
+       "es": "`ordenar` debe funcionar con cualquier lista: vacía, de un elemento, al revés, con repetidos…",
+       "en": "`ordenar` must work with any list: empty, one element, reversed, with repeats…"
+      }
+     },
+     {
+      "py": "assert binaria([], 'Hageo') == -1\nassert binaria(['Hageo'], 'Hageo') == 0 and binaria(['Hageo'], 'Joel') == -1\n_x = ['Hageo', 'Joel', 'Rut']\nassert [binaria(_x, e) for e in _x] == [0, 1, 2]\nassert binaria(_x, 'A') == -1 and binaria(_x, 'Z') == -1\nassert [binaria(list(range(10)), k) for k in range(-1, 11)] == [-1] + list(range(10)) + [-1]",
+      "msg": {
+       "es": "`binaria` debe dar la posición correcta, o -1, también con la lista vacía y con objetivos que no están.",
+       "en": "`binaria` must give the right position, or -1, also with an empty list and with targets that aren't there."
+      }
+     },
+     {
+      "py": "class _L(list):\n    n = 0\n    def __getitem__(self, i):\n        _L.n += 1\n        return list.__getitem__(self, i)\n    def __iter__(self):\n        _L.n += 10 ** 6\n        return list.__iter__(self)\n    def __contains__(self, x):\n        _L.n += 10 ** 6\n        return list.__contains__(self, x)\n    def index(self, *a):\n        _L.n += 10 ** 6\n        return list.index(self, *a)\n_l = _L(range(0, 2000, 2))\nassert binaria(_l, 1234) == 617 and binaria(_l, 0) == 0 and binaria(_l, 1998) == 999 and binaria(_l, 777) == -1\nassert _L.n < 100",
+      "msg": {
+       "es": "`binaria` revisa demasiados elementos: en cada paso mira solo el del medio y descarta la mitad.",
+       "en": "`binaria` checks too many elements: on each step look only at the middle one and throw away half."
+      }
+     },
+     {
+      "py": "assert estante == ['Colosenses', 'Efesios', 'Filipenses', 'Gálatas', 'Romanos'] and encontrados == ['Efesios', 'Romanos']",
+      "msg": {
+       "es": "Guarda los rollos ordenados en `estante` y los pedidos que sí están en `encontrados`.",
+       "en": "Store the sorted scrolls in `estante` and the requests that are there in `encontrados`."
+      }
+     },
+     {
+      "py": "import re as _re\nassert _re.search(r'encontrados\\s*=\\s*\\[[^\\]]*\\bfor\\b', _codigo)",
+      "msg": {
+       "es": "Arma `encontrados` con una comprensión de lista: `encontrados = [... for ... in ...]`.",
+       "en": "Build `encontrados` with a list comprehension: `encontrados = [... for ... in ...]`."
+      }
+     },
+     {
+      "py": "assert 'sorted(' not in _codigo and '.sort(' not in _codigo",
+      "msg": {
+       "es": "Escribe tú el ordenamiento con bucles, sin `sorted()` ni `.sort()`.",
+       "en": "Write the sorting yourself with loops, without `sorted()` or `.sort()`."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Shelf: Colossians, Ephesians, Galatians, Philippians, Romans\nEphesians: place 2\nHebrews: not here\nRomans: place 5\nFound: 2 of 3"
+     },
+     {
+      "py": "assert sort_list([]) == []\nassert sort_list([7]) == [7]\nassert sort_list([3, 2, 1]) == [1, 2, 3]\nassert sort_list([2, 1, 2, 1]) == [1, 1, 2, 2]\nassert sort_list([1, 2, 3]) == [1, 2, 3]\nassert sort_list([5, -1, 0, 9, 3, 3, 8]) == [-1, 0, 3, 3, 5, 8, 9]",
+      "msg": {
+       "es": "`sort_list` debe funcionar con cualquier lista: vacía, de un elemento, al revés, con repetidos…",
+       "en": "`sort_list` must work with any list: empty, one element, reversed, with repeats…"
+      }
+     },
+     {
+      "py": "assert binary([], 'Haggai') == -1\nassert binary(['Haggai'], 'Haggai') == 0 and binary(['Haggai'], 'Joel') == -1\n_x = ['Haggai', 'Joel', 'Ruth']\nassert [binary(_x, e) for e in _x] == [0, 1, 2]\nassert binary(_x, 'A') == -1 and binary(_x, 'Z') == -1\nassert [binary(list(range(10)), k) for k in range(-1, 11)] == [-1] + list(range(10)) + [-1]",
+      "msg": {
+       "es": "`binary` debe dar la posición correcta, o -1, también con la lista vacía y con objetivos que no están.",
+       "en": "`binary` must give the right position, or -1, also with an empty list and with targets that aren't there."
+      }
+     },
+     {
+      "py": "class _L(list):\n    n = 0\n    def __getitem__(self, i):\n        _L.n += 1\n        return list.__getitem__(self, i)\n    def __iter__(self):\n        _L.n += 10 ** 6\n        return list.__iter__(self)\n    def __contains__(self, x):\n        _L.n += 10 ** 6\n        return list.__contains__(self, x)\n    def index(self, *a):\n        _L.n += 10 ** 6\n        return list.index(self, *a)\n_l = _L(range(0, 2000, 2))\nassert binary(_l, 1234) == 617 and binary(_l, 0) == 0 and binary(_l, 1998) == 999 and binary(_l, 777) == -1\nassert _L.n < 100",
+      "msg": {
+       "es": "`binary` revisa demasiados elementos: en cada paso mira solo el del medio y descarta la mitad.",
+       "en": "`binary` checks too many elements: on each step look only at the middle one and throw away half."
+      }
+     },
+     {
+      "py": "assert shelf == ['Colossians', 'Ephesians', 'Galatians', 'Philippians', 'Romans'] and found == ['Ephesians', 'Romans']",
+      "msg": {
+       "es": "Guarda los rollos ordenados en `shelf` y los pedidos que sí están en `found`.",
+       "en": "Store the sorted scrolls in `shelf` and the requests that are there in `found`."
+      }
+     },
+     {
+      "py": "import re as _re\nassert _re.search(r'found\\s*=\\s*\\[[^\\]]*\\bfor\\b', _codigo)",
+      "msg": {
+       "es": "Arma `found` con una comprensión de lista: `found = [... for ... in ...]`.",
+       "en": "Build `found` with a list comprehension: `found = [... for ... in ...]`."
+      }
+     },
+     {
+      "py": "assert 'sorted(' not in _codigo and '.sort(' not in _codigo",
+      "msg": {
+       "es": "Escribe tú el ordenamiento con bucles, sin `sorted()` ni `.sort()`.",
+       "en": "Write the sorting yourself with loops, without `sorted()` or `.sort()`."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "def ordenar(lista):\n    copia = lista[:]\n    for i in range(len(copia)):\n        menor = i\n        for j in range(i + 1, len(copia)):\n            if copia[j] < copia[menor]:\n                menor = j\n        copia[i], copia[menor] = copia[menor], copia[i]\n    return copia\n\n\ndef binaria(lista, objetivo):\n    izq = 0\n    der = len(lista) - 1\n    while izq <= der:\n        medio = (izq + der) // 2\n        if lista[medio] == objetivo:\n            return medio\n        elif lista[medio] < objetivo:\n            izq = medio + 1\n        else:\n            der = medio - 1\n    return -1\n\n\nrollos = [\"Romanos\", \"Gálatas\", \"Efesios\", \"Colosenses\", \"Filipenses\"]\npedidos = [\"Efesios\", \"Hebreos\", \"Romanos\"]\n\nestante = rollos\nprint(\"Estante:\", \", \".join(estante))\nfor p in pedidos:\n    pos = binaria(estante, p)\n    if pos == -1:\n        print(f\"{p}: no está\")\n    else:\n        print(f\"{p}: lugar {pos + 1}\")\nencontrados = [p for p in pedidos if binaria(estante, p) != -1]\nprint(f\"Encontrados: {len(encontrados)} de {len(pedidos)}\")",
+     "def ordenar(lista):\n    copia = lista[:]\n    for i in range(len(copia)):\n        menor = i\n        for j in range(i + 1, len(copia)):\n            if copia[j] < copia[menor]:\n                menor = j\n        copia[i], copia[menor] = copia[menor], copia[i]\n    return copia\n\n\ndef binaria(lista, objetivo):\n    izq = 0\n    der = len(lista) - 1\n    while izq <= der:\n        medio = (izq + der) // 2\n        if lista[medio] == objetivo:\n            return medio\n        elif lista[medio] < objetivo:\n            izq = medio + 1\n        else:\n            der = medio - 1\n    return -1\n\n\nrollos = [\"Romanos\", \"Gálatas\", \"Efesios\", \"Colosenses\", \"Filipenses\"]\npedidos = [\"Efesios\", \"Hebreos\", \"Romanos\"]\n\nestante = ordenar(rollos)\nprint(\"Estante:\", \", \".join(estante))\nfor p in pedidos:\n    pos = binaria(estante, p)\n    if pos == -1:\n        print(f\"{p}: no está\")\n    else:\n        print(f\"{p}: lugar {pos}\")\nencontrados = [p for p in pedidos if binaria(estante, p) != -1]\nprint(f\"Encontrados: {len(encontrados)} de {len(pedidos)}\")",
+     "def ordenar(lista):\n    copia = lista[:]\n    for i in range(len(copia)):\n        menor = i\n        for j in range(i + 1, len(copia)):\n            if copia[j] < copia[menor]:\n                menor = j\n        copia[i], copia[menor] = copia[menor], copia[i]\n    return copia\n\n\ndef binaria(lista, objetivo):\n    izq = 0\n    der = len(lista) - 1\n    while izq <= der:\n        medio = (izq + der) // 2\n        if lista[medio] == objetivo:\n            return medio\n        elif lista[medio] < objetivo:\n            izq = medio + 1\n        else:\n            der = medio - 1\n    return -1\n\n\nrollos = [\"Romanos\", \"Gálatas\", \"Efesios\", \"Colosenses\", \"Filipenses\"]\npedidos = [\"Efesios\", \"Hebreos\", \"Romanos\"]\n\nestante = ordenar(rollos)\nprint(\"Estante:\", \", \".join(estante))\nfor p in pedidos:\n    pos = binaria(estante, p)\n    if pos == -1:\n        print(f\"{p}: no está\")\n    else:\n        print(f\"{p}: lugar {pos + 1}\")\nencontrados = []\nfor p in pedidos:\n    if binaria(estante, p) != -1:\n        encontrados.append(p)\nprint(f\"Encontrados: {len(encontrados)} de {len(pedidos)}\")",
+     "def ordenar(lista):\n    copia = lista[:]\n    for i in range(len(copia)):\n        menor = i\n        for j in range(i + 1, len(copia)):\n            if copia[j] < copia[menor]:\n                menor = j\n        copia[i], copia[menor] = copia[menor], copia[i]\n    return copia\n\n\ndef binaria(lista, objetivo):\n    izq = 0\n    der = len(lista) - 1\n    while izq <= der:\n        medio = (izq + der) // 2\n        if lista[medio] == objetivo:\n            return medio\n        elif lista[medio] < objetivo:\n            izq = medio + 1\n        else:\n            der = medio - 1\n    return -1\n\n\nrollos = [\"Romanos\", \"Gálatas\", \"Efesios\", \"Colosenses\", \"Filipenses\"]\npedidos = [\"Efesios\", \"Hebreos\", \"Romanos\"]\n\nestante = sorted(rollos)\nprint(\"Estante:\", \", \".join(estante))\nfor p in pedidos:\n    pos = binaria(estante, p)\n    if pos == -1:\n        print(f\"{p}: no está\")\n    else:\n        print(f\"{p}: lugar {pos + 1}\")\nencontrados = [p for p in pedidos if binaria(estante, p) != -1]\nprint(f\"Encontrados: {len(encontrados)} de {len(pedidos)}\")"
+    ],
+    "en": [
+     "def sort_list(items):\n    copy = items[:]\n    for i in range(len(copy)):\n        smallest = i\n        for j in range(i + 1, len(copy)):\n            if copy[j] < copy[smallest]:\n                smallest = j\n        copy[i], copy[smallest] = copy[smallest], copy[i]\n    return copy\n\n\ndef binary(items, target):\n    left = 0\n    right = len(items) - 1\n    while left <= right:\n        middle = (left + right) // 2\n        if items[middle] == target:\n            return middle\n        elif items[middle] < target:\n            left = middle + 1\n        else:\n            right = middle - 1\n    return -1\n\n\nscrolls = [\"Romans\", \"Galatians\", \"Ephesians\", \"Colossians\", \"Philippians\"]\nrequests = [\"Ephesians\", \"Hebrews\", \"Romans\"]\n\nshelf = scrolls\nprint(\"Shelf:\", \", \".join(shelf))\nfor r in requests:\n    pos = binary(shelf, r)\n    if pos == -1:\n        print(f\"{r}: not here\")\n    else:\n        print(f\"{r}: place {pos + 1}\")\nfound = [r for r in requests if binary(shelf, r) != -1]\nprint(f\"Found: {len(found)} of {len(requests)}\")",
+     "def sort_list(items):\n    copy = items[:]\n    for i in range(len(copy)):\n        smallest = i\n        for j in range(i + 1, len(copy)):\n            if copy[j] < copy[smallest]:\n                smallest = j\n        copy[i], copy[smallest] = copy[smallest], copy[i]\n    return copy\n\n\ndef binary(items, target):\n    left = 0\n    right = len(items) - 1\n    while left <= right:\n        middle = (left + right) // 2\n        if items[middle] == target:\n            return middle\n        elif items[middle] < target:\n            left = middle + 1\n        else:\n            right = middle - 1\n    return -1\n\n\nscrolls = [\"Romans\", \"Galatians\", \"Ephesians\", \"Colossians\", \"Philippians\"]\nrequests = [\"Ephesians\", \"Hebrews\", \"Romans\"]\n\nshelf = sort_list(scrolls)\nprint(\"Shelf:\", \", \".join(shelf))\nfor r in requests:\n    pos = binary(shelf, r)\n    if pos == -1:\n        print(f\"{r}: not here\")\n    else:\n        print(f\"{r}: place {pos}\")\nfound = [r for r in requests if binary(shelf, r) != -1]\nprint(f\"Found: {len(found)} of {len(requests)}\")",
+     "def sort_list(items):\n    copy = items[:]\n    for i in range(len(copy)):\n        smallest = i\n        for j in range(i + 1, len(copy)):\n            if copy[j] < copy[smallest]:\n                smallest = j\n        copy[i], copy[smallest] = copy[smallest], copy[i]\n    return copy\n\n\ndef binary(items, target):\n    left = 0\n    right = len(items) - 1\n    while left <= right:\n        middle = (left + right) // 2\n        if items[middle] == target:\n            return middle\n        elif items[middle] < target:\n            left = middle + 1\n        else:\n            right = middle - 1\n    return -1\n\n\nscrolls = [\"Romans\", \"Galatians\", \"Ephesians\", \"Colossians\", \"Philippians\"]\nrequests = [\"Ephesians\", \"Hebrews\", \"Romans\"]\n\nshelf = sort_list(scrolls)\nprint(\"Shelf:\", \", \".join(shelf))\nfor r in requests:\n    pos = binary(shelf, r)\n    if pos == -1:\n        print(f\"{r}: not here\")\n    else:\n        print(f\"{r}: place {pos + 1}\")\nfound = []\nfor r in requests:\n    if binary(shelf, r) != -1:\n        found.append(r)\nprint(f\"Found: {len(found)} of {len(requests)}\")",
+     "def sort_list(items):\n    copy = items[:]\n    for i in range(len(copy)):\n        smallest = i\n        for j in range(i + 1, len(copy)):\n            if copy[j] < copy[smallest]:\n                smallest = j\n        copy[i], copy[smallest] = copy[smallest], copy[i]\n    return copy\n\n\ndef binary(items, target):\n    left = 0\n    right = len(items) - 1\n    while left <= right:\n        middle = (left + right) // 2\n        if items[middle] == target:\n            return middle\n        elif items[middle] < target:\n            left = middle + 1\n        else:\n            right = middle - 1\n    return -1\n\n\nscrolls = [\"Romans\", \"Galatians\", \"Ephesians\", \"Colossians\", \"Philippians\"]\nrequests = [\"Ephesians\", \"Hebrews\", \"Romans\"]\n\nshelf = sorted(scrolls)\nprint(\"Shelf:\", \", \".join(shelf))\nfor r in requests:\n    pos = binary(shelf, r)\n    if pos == -1:\n        print(f\"{r}: not here\")\n    else:\n        print(f\"{r}: place {pos + 1}\")\nfound = [r for r in requests if binary(shelf, r) != -1]\nprint(f\"Found: {len(found)} of {len(requests)}\")"
+    ]
+   }
+  }
+ ]
+}

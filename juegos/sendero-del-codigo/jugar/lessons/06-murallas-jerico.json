@@ -1,0 +1,553 @@
+{
+ "id": "06-murallas-jerico",
+ "numero": 6,
+ "lugar": "jerico",
+ "titulo": {
+  "es": "Las murallas de Jericó",
+  "en": "The walls of Jericho"
+ },
+ "tema": {
+  "es": "for, while, range, acumuladores, break y continue",
+  "en": "for, while, range, accumulators, break and continue"
+ },
+ "versiculo": "jos-6-20",
+ "medalla": {
+  "es": "Marchador fiel",
+  "en": "Faithful marcher"
+ },
+ "leccion": {
+  "es": [
+   "Dios mandó a Israel marchar alrededor de Jericó una vez al día durante seis días, y siete veces el séptimo día (Josué 6:3-4). Repetir algo muchas veces es justo lo que hacen los **bucles**.",
+   "`for x in range(1, 7):` repite el bloque con sangría para `x` = 1, 2, 3, 4, 5, 6: `range(a, b)` empieza en `a` y **no incluye** `b`. `range(5)` da 0, 1, 2, 3, 4. Un `for` también recorre texto, letra por letra: `for letra in \"Jericó\":`.",
+   "`while condicion:` repite **mientras** la condición sea verdadera. Algo dentro del bucle debe cambiarla (por ejemplo `n -= 1`), o el bucle nunca termina.",
+   "Un **contador** o **acumulador** es una variable que empieza en `0` antes del bucle y crece dentro de él: `total += vueltas` (es lo mismo que `total = total + vueltas`). El resultado se muestra después del bucle, sin sangría.",
+   "`break` sale del bucle en ese mismo momento; `continue` salta el resto de esa vuelta y pasa a la siguiente. Con `while True:` y un `break` se repite hasta que pase algo, como el gran grito."
+  ],
+  "en": [
+   "God commanded Israel to march around Jericho once a day for six days, and seven times on the seventh day (Joshua 6:3-4). Repeating something many times is exactly what **loops** do.",
+   "`for x in range(1, 7):` repeats the indented block for `x` = 1, 2, 3, 4, 5, 6: `range(a, b)` starts at `a` and **doesn't include** `b`. `range(5)` gives 0, 1, 2, 3, 4. A `for` also goes through text, letter by letter: `for letter in \"Jericho\":`.",
+   "`while condition:` repeats **while** the condition is true. Something inside the loop must change it (for example `n -= 1`), or the loop never ends.",
+   "A **counter** or **accumulator** is a variable that starts at `0` before the loop and grows inside it: `total += laps` (the same as `total = total + laps`). The result is shown after the loop, without indentation.",
+   "`break` leaves the loop right away; `continue` skips the rest of that turn and moves on to the next one. With `while True:` and a `break` you repeat until something happens, like the great shout."
+  ]
+ },
+ "ejemplo": {
+  "es": "total = 0\nfor dia in range(1, 7):\n    total += 1\nprint(\"Seis días:\", total, \"vueltas\")\nvueltas = 0\nwhile True:\n    vueltas += 1\n    if vueltas % 2 == 0:\n        continue\n    print(\"Vuelta impar:\", vueltas)\n    if vueltas == 7:\n        break\nprint(\"¡Griten!\")",
+  "en": "total = 0\nfor day in range(1, 7):\n    total += 1\nprint(\"Six days:\", total, \"laps\")\nlaps = 0\nwhile True:\n    laps += 1\n    if laps % 2 == 0:\n        continue\n    print(\"Odd lap:\", laps)\n    if laps == 7:\n        break\nprint(\"Shout!\")"
+ },
+ "ejercicios": [
+  {
+   "id": "seis-dias",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Durante seis días, el pueblo dio **una vuelta** a Jericó cada día (Josué 6:3). Usa `for` con `range()` para mostrar:\n```\nDía 1: una vuelta\nDía 2: una vuelta\nDía 3: una vuelta\nDía 4: una vuelta\nDía 5: una vuelta\nDía 6: una vuelta\n```",
+    "en": "For six days, the people marched around Jericho **once** each day (Joshua 6:3). Use `for` with `range()` to show:\n```\nDay 1: one lap\nDay 2: one lap\nDay 3: one lap\nDay 4: one lap\nDay 5: one lap\nDay 6: one lap\n```"
+   },
+   "inicial": {
+    "es": "",
+    "en": ""
+   },
+   "pistas": {
+    "es": [
+     "`range(1, 7)` da 1, 2, 3, 4, 5, 6: empieza en el primero y **no incluye** el último.",
+     "`for dia in range(1, 7):` y dentro, con sangría, `print(f\"Día {dia}: una vuelta\")`."
+    ],
+    "en": [
+     "`range(1, 7)` gives 1, 2, 3, 4, 5, 6: it starts at the first number and **doesn't include** the last.",
+     "`for day in range(1, 7):` and inside, indented, `print(f\"Day {day}: one lap\")`."
+    ]
+   },
+   "solucion": {
+    "es": "for dia in range(1, 7):\n    print(f\"Día {dia}: una vuelta\")",
+    "en": "for day in range(1, 7):\n    print(f\"Day {day}: one lap\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Día 1: una vuelta\nDía 2: una vuelta\nDía 3: una vuelta\nDía 4: una vuelta\nDía 5: una vuelta\nDía 6: una vuelta"
+     },
+     {
+      "py": "assert 'for ' in _codigo",
+      "msg": {
+       "es": "Usa un bucle for.",
+       "en": "Use a for loop."
+      }
+     },
+     {
+      "py": "assert _codigo.count('print') == 1",
+      "msg": {
+       "es": "Usa un solo print dentro del bucle: el for lo repite por ti.",
+       "en": "Use a single print inside the loop: the for repeats it for you."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Day 1: one lap\nDay 2: one lap\nDay 3: one lap\nDay 4: one lap\nDay 5: one lap\nDay 6: one lap"
+     },
+     {
+      "py": "assert 'for ' in _codigo",
+      "msg": {
+       "es": "Usa un bucle for.",
+       "en": "Use a for loop."
+      }
+     },
+     {
+      "py": "assert _codigo.count('print') == 1",
+      "msg": {
+       "es": "Usa un solo print dentro del bucle: el for lo repite por ti.",
+       "en": "Use a single print inside the loop: the for repeats it for you."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "for dia in range(6):\n    print(f\"Día {dia}: una vuelta\")",
+     "for dia in range(1, 6):\n    print(f\"Día {dia}: una vuelta\")",
+     "for dia in range(1, 7):\nprint(f\"Día {dia}: una vuelta\")"
+    ],
+    "en": [
+     "for day in range(6):\n    print(f\"Day {day}: one lap\")",
+     "for day in range(1, 6):\n    print(f\"Day {day}: one lap\")"
+    ]
+   }
+  },
+  {
+   "id": "septimo-dia",
+   "tipo": "hueco",
+   "enunciado": {
+    "es": "El séptimo día dieron **siete vueltas** (Josué 6:15). Completa el `range` para que se muestren las vueltas de la 1 a la 7.\n```\nVuelta 1\n...\nVuelta 7\n```",
+    "en": "On the seventh day they marched around **seven times** (Joshua 6:15). Fill in the `range` so the laps from 1 to 7 are shown.\n```\nLap 1\n...\nLap 7\n```"
+   },
+   "plantilla": {
+    "es": "for vuelta in range(1, ___):\n    print(\"Vuelta\", vuelta)",
+    "en": "for lap in range(1, ___):\n    print(\"Lap\", lap)"
+   },
+   "pistas": {
+    "es": [
+     "El segundo número de `range` **no se incluye**.",
+     "Para llegar hasta el 7 hay que poner `8`."
+    ],
+    "en": [
+     "The second number in `range` is **not included**.",
+     "To reach 7 you have to write `8`."
+    ]
+   },
+   "solucion": {
+    "es": "for vuelta in range(1, 8):\n    print(\"Vuelta\", vuelta)",
+    "en": "for lap in range(1, 8):\n    print(\"Lap\", lap)"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Vuelta 1\nVuelta 2\nVuelta 3\nVuelta 4\nVuelta 5\nVuelta 6\nVuelta 7"
+     }
+    ],
+    "en": [
+     {
+      "salida": "Lap 1\nLap 2\nLap 3\nLap 4\nLap 5\nLap 6\nLap 7"
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "for vuelta in range(1, 7):\n    print(\"Vuelta\", vuelta)",
+     "for vuelta in range(1, 9):\n    print(\"Vuelta\", vuelta)"
+    ],
+    "en": [
+     "for lap in range(1, 7):\n    print(\"Lap\", lap)"
+    ]
+   }
+  },
+  {
+   "id": "total-semana",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "¿Cuántas vueltas dieron en toda la semana? Usa un **acumulador**: empieza con `total = 0` y recorre los días del 1 al 7 sumando 1 vuelta los días 1 a 6, y 7 vueltas el día 7. Al final muestra:\n```\nVueltas en total: 13\n```",
+    "en": "How many laps did they march in the whole week? Use an **accumulator**: start with `total = 0` and go through days 1 to 7, adding 1 lap on days 1 to 6 and 7 laps on day 7. At the end show:\n```\nTotal laps: 13\n```"
+   },
+   "inicial": {
+    "es": "total = 0\n",
+    "en": "total = 0\n"
+   },
+   "pistas": {
+    "es": [
+     "`for dia in range(1, 8):` y dentro un `if dia == 7:` que suma 7 (`total += 7`); en el `else`, `total += 1`.",
+     "El `print` va **después** del bucle, sin sangría: `print(\"Vueltas en total:\", total)`."
+    ],
+    "en": [
+     "`for day in range(1, 8):` and inside an `if day == 7:` that adds 7 (`total += 7`); in the `else`, `total += 1`.",
+     "The `print` goes **after** the loop, without indentation: `print(\"Total laps:\", total)`."
+    ]
+   },
+   "solucion": {
+    "es": "total = 0\nfor dia in range(1, 8):\n    if dia == 7:\n        total += 7\n    else:\n        total += 1\nprint(\"Vueltas en total:\", total)",
+    "en": "total = 0\nfor day in range(1, 8):\n    if day == 7:\n        total += 7\n    else:\n        total += 1\nprint(\"Total laps:\", total)"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Vueltas en total: 13"
+     },
+     {
+      "py": "assert 'for ' in _codigo",
+      "msg": {
+       "es": "Usa un bucle for.",
+       "en": "Use a for loop."
+      }
+     },
+     {
+      "py": "assert total == 13 and '13' not in _codigo",
+      "msg": {
+       "es": "Calcula el 13 con el acumulador total; no lo escribas.",
+       "en": "Calculate the 13 with the accumulator total; don't type it."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Total laps: 13"
+     },
+     {
+      "py": "assert 'for ' in _codigo",
+      "msg": {
+       "es": "Usa un bucle for.",
+       "en": "Use a for loop."
+      }
+     },
+     {
+      "py": "assert total == 13 and '13' not in _codigo",
+      "msg": {
+       "es": "Calcula el 13 con el acumulador total; no lo escribas.",
+       "en": "Calculate the 13 with the accumulator total; don't type it."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "total = 0\nfor dia in range(1, 8):\n    if dia == 7:\n        total += 7\n    else:\n        total += 1\n    print(\"Vueltas en total:\", total)",
+     "total = 0\nfor dia in range(1, 8):\n    total = 0\n    if dia == 7:\n        total += 7\n    else:\n        total += 1\nprint(\"Vueltas en total:\", total)",
+     "total = 0\nfor dia in range(1, 7):\n    if dia == 7:\n        total += 7\n    else:\n        total += 1\nprint(\"Vueltas en total:\", total)",
+     "print(\"Vueltas en total: 13\")"
+    ],
+    "en": [
+     "total = 0\nfor day in range(1, 8):\n    if day == 7:\n        total += 7\n    else:\n        total += 1\n    print(\"Total laps:\", total)",
+     "total = 0\nfor day in range(1, 8):\n    total = 0\n    if day == 7:\n        total += 7\n    else:\n        total += 1\nprint(\"Total laps:\", total)",
+     "print(\"Total laps: 13\")"
+    ]
+   }
+  },
+  {
+   "id": "antes-del-grito",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Josué mandó al pueblo callar hasta el día en que les dijera «¡Griten!» (Josué 6:10). Haz una cuenta regresiva con `while`: empieza en `n = 7`, muestra `n` y réstale 1 mientras sea mayor que 0. Al final muestra `¡Griten!`.\n```\n7\n6\n5\n4\n3\n2\n1\n¡Griten!\n```",
+    "en": "Joshua ordered the people to stay silent until the day he told them “Shout!” (Joshua 6:10). Make a countdown with `while`: start at `n = 7`, show `n` and subtract 1 while it is greater than 0. At the end show `Shout!`.\n```\n7\n6\n5\n4\n3\n2\n1\nShout!\n```"
+   },
+   "inicial": {
+    "es": "n = 7\n",
+    "en": "n = 7\n"
+   },
+   "pistas": {
+    "es": [
+     "`while n > 0:` repite el bloque mientras la condición sea verdadera.",
+     "Dentro: `print(n)` y `n -= 1` (si olvidas restar, el bucle nunca termina). Después, sin sangría, `print(\"¡Griten!\")`."
+    ],
+    "en": [
+     "`while n > 0:` repeats the block while the condition is true.",
+     "Inside: `print(n)` and `n -= 1` (if you forget to subtract, the loop never ends). Then, without indentation, `print(\"Shout!\")`."
+    ]
+   },
+   "solucion": {
+    "es": "n = 7\nwhile n > 0:\n    print(n)\n    n -= 1\nprint(\"¡Griten!\")",
+    "en": "n = 7\nwhile n > 0:\n    print(n)\n    n -= 1\nprint(\"Shout!\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "7\n6\n5\n4\n3\n2\n1\n¡Griten!"
+     },
+     {
+      "py": "assert 'while ' in _codigo",
+      "msg": {
+       "es": "Usa un bucle while.",
+       "en": "Use a while loop."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "7\n6\n5\n4\n3\n2\n1\nShout!"
+     },
+     {
+      "py": "assert 'while ' in _codigo",
+      "msg": {
+       "es": "Usa un bucle while.",
+       "en": "Use a while loop."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "n = 7\nwhile n > 0:\n    print(n)\nprint(\"¡Griten!\")",
+     "n = 7\nwhile n > 0:\n    n -= 1\n    print(n)\nprint(\"¡Griten!\")",
+     "n = 7\nwhile n > 0:\n    print(n)\n    n -= 1\n    print(\"¡Griten!\")",
+     "n = 7\nwhile n >= 0:\n    print(n)\n    n -= 1\nprint(\"¡Griten!\")"
+    ],
+    "en": [
+     "n = 7\nwhile n > 0:\n    print(n)\nprint(\"Shout!\")",
+     "n = 7\nwhile n > 0:\n    n -= 1\n    print(n)\nprint(\"Shout!\")",
+     "n = 7\nwhile n > 0:\n    print(n)\n    n -= 1\n    print(\"Shout!\")"
+    ]
+   }
+  },
+  {
+   "id": "en-silencio",
+   "tipo": "ordenar",
+   "enunciado": {
+    "es": "Ordena las líneas (fíjate en la sangría). `continue` salta lo que queda de la vuelta del bucle y pasa a la siguiente. Debe salir:\n```\nDía 1: en silencio\nDía 2: en silencio\nDía 3: en silencio\nDía 4: en silencio\nDía 5: en silencio\nDía 6: en silencio\nDía 7: ¡griten!\n```",
+    "en": "Put the lines in order (watch the indentation). `continue` skips the rest of the current loop turn and moves on to the next one. It should print:\n```\nDay 1: in silence\nDay 2: in silence\nDay 3: in silence\nDay 4: in silence\nDay 5: in silence\nDay 6: in silence\nDay 7: shout!\n```"
+   },
+   "lineas": {
+    "es": [
+     "for dia in range(1, 8):",
+     "    if dia < 7:",
+     "        print(f\"Día {dia}: en silencio\")",
+     "        continue",
+     "    print(f\"Día {dia}: ¡griten!\")"
+    ],
+    "en": [
+     "for day in range(1, 8):",
+     "    if day < 7:",
+     "        print(f\"Day {day}: in silence\")",
+     "        continue",
+     "    print(f\"Day {day}: shout!\")"
+    ]
+   },
+   "pistas": {
+    "es": [
+     "El `for` va primero; todo lo demás va dentro de él.",
+     "Si `continue` va antes del `print` del silencio, ese `print` nunca se ejecuta. El grito va al final, fuera del `if`."
+    ],
+    "en": [
+     "The `for` goes first; everything else goes inside it.",
+     "If `continue` comes before the silence `print`, that `print` never runs. The shout goes last, outside the `if`."
+    ]
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Día 1: en silencio\nDía 2: en silencio\nDía 3: en silencio\nDía 4: en silencio\nDía 5: en silencio\nDía 6: en silencio\nDía 7: ¡griten!"
+     }
+    ],
+    "en": [
+     {
+      "salida": "Day 1: in silence\nDay 2: in silence\nDay 3: in silence\nDay 4: in silence\nDay 5: in silence\nDay 6: in silence\nDay 7: shout!"
+     }
+    ]
+   }
+  },
+  {
+   "id": "hasta-el-grito",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Cuenta las vueltas que escriba el jugador. Repite con `while True`: pide una orden con `input()`; si es `marchar`, suma una vuelta; si es `gritar`, termina el bucle con `break`. Al final muestra cuántas vueltas dieron. Con siete veces `marchar` y luego `gritar`, la última línea debe ser:\n```\nVueltas: 7\n```",
+    "en": "Count the laps the player types. Repeat with `while True`: ask for an order with `input()`; if it is `march`, add one lap; if it is `shout`, end the loop with `break`. At the end show how many laps they marched. With `march` seven times and then `shout`, the last line must be:\n```\nLaps: 7\n```"
+   },
+   "inicial": {
+    "es": "vueltas = 0\n",
+    "en": "laps = 0\n"
+   },
+   "entradas": {
+    "es": [
+     "marchar",
+     "marchar",
+     "marchar",
+     "marchar",
+     "marchar",
+     "marchar",
+     "marchar",
+     "gritar"
+    ],
+    "en": [
+     "march",
+     "march",
+     "march",
+     "march",
+     "march",
+     "march",
+     "march",
+     "shout"
+    ]
+   },
+   "pistas": {
+    "es": [
+     "Dentro del `while True:`: `orden = input(\"Orden: \")`, luego `if orden == \"gritar\": break`.",
+     "Si no fue `gritar`, `elif orden == \"marchar\": vueltas += 1`. Después del bucle, sin sangría, `print(f\"Vueltas: {vueltas}\")`."
+    ],
+    "en": [
+     "Inside the `while True:`: `order = input(\"Order: \")`, then `if order == \"shout\": break`.",
+     "If it wasn't `shout`, `elif order == \"march\": laps += 1`. After the loop, without indentation, `print(f\"Laps: {laps}\")`."
+    ]
+   },
+   "solucion": {
+    "es": "vueltas = 0\nwhile True:\n    orden = input(\"Orden: \")\n    if orden == \"gritar\":\n        break\n    elif orden == \"marchar\":\n        vueltas += 1\nprint(f\"Vueltas: {vueltas}\")",
+    "en": "laps = 0\nwhile True:\n    order = input(\"Order: \")\n    if order == \"shout\":\n        break\n    elif order == \"march\":\n        laps += 1\nprint(f\"Laps: {laps}\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "py": "assert 'break' in _codigo",
+      "msg": {
+       "es": "Termina el bucle con break.",
+       "en": "End the loop with break."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _salida.splitlines()]\nassert _L[-1:] == ['Vueltas: 7']",
+      "msg": {
+       "es": "Con siete «marchar» y un «gritar» la última línea debe ser «Vueltas: 7».",
+       "en": "With seven “marchar” and one “gritar” the last line must be “Vueltas: 7”."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['marchar', 'marchar', 'gritar']).splitlines()]\nassert _L[-1:] == ['Vueltas: 2']",
+      "msg": {
+       "es": "Con «marchar», «marchar», «gritar» debe salir «Vueltas: 2»: cuenta solo lo que escriban.",
+       "en": "With “marchar”, “marchar”, “gritar” it must show “Vueltas: 2”: count only what is typed."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['gritar']).splitlines()]\nassert _L[-1:] == ['Vueltas: 0']",
+      "msg": {
+       "es": "Si escriben «gritar» de una vez, deben salir 0 vueltas.",
+       "en": "If they type “gritar” right away, it must show 0 laps."
+      }
+     }
+    ],
+    "en": [
+     {
+      "py": "assert 'break' in _codigo",
+      "msg": {
+       "es": "Termina el bucle con break.",
+       "en": "End the loop with break."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _salida.splitlines()]\nassert _L[-1:] == ['Laps: 7']",
+      "msg": {
+       "es": "Con siete «march» y un «shout» la última línea debe ser «Laps: 7».",
+       "en": "With seven “march” and one “shout” the last line must be “Laps: 7”."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['march', 'march', 'shout']).splitlines()]\nassert _L[-1:] == ['Laps: 2']",
+      "msg": {
+       "es": "Con «march», «march», «shout» debe salir «Laps: 2»: cuenta solo lo que escriban.",
+       "en": "With “march”, “march”, “shout” it must show “Laps: 2”: count only what is typed."
+      }
+     },
+     {
+      "py": "_L = [l.strip() for l in _correr(['shout']).splitlines()]\nassert _L[-1:] == ['Laps: 0']",
+      "msg": {
+       "es": "Si escriben «shout» de una vez, deben salir 0 vueltas.",
+       "en": "If they type “shout” right away, it must show 0 laps."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "vueltas = 0\nwhile True:\n    orden = input(\"Orden: \")\n    vueltas += 1\n    if orden == \"gritar\":\n        break\nprint(f\"Vueltas: {vueltas}\")",
+     "vueltas = 0\nwhile True:\n    orden = input(\"Orden: \")\n    if orden == \"gritar\":\n        break\n    elif orden == \"marchar\":\n        vueltas += 1\n    print(f\"Vueltas: {vueltas}\")",
+     "vueltas = 0\nfor i in range(7):\n    orden = input(\"Orden: \")\n    vueltas += 1\nprint(f\"Vueltas: {vueltas}\")"
+    ],
+    "en": [
+     "laps = 0\nwhile True:\n    order = input(\"Order: \")\n    laps += 1\n    if order == \"shout\":\n        break\nprint(f\"Laps: {laps}\")",
+     "laps = 0\nfor i in range(7):\n    order = input(\"Order: \")\n    laps += 1\nprint(f\"Laps: {laps}\")"
+    ]
+   }
+  },
+  {
+   "id": "semana-jerico",
+   "tipo": "escribir",
+   "reto": true,
+   "enunciado": {
+    "es": "**Reto: la semana de Jericó.** Con un bucle, recorre los 7 días: los días 1 a 6 se da 1 vuelta y el día 7, 7 vueltas. Muestra cada día (fíjate en «vuelta» y «vueltas»), acumula el total y al final anuncia el grito. No escribas el 13: que lo calcule el programa.\n```\nDía 1: 1 vuelta\nDía 2: 1 vuelta\nDía 3: 1 vuelta\nDía 4: 1 vuelta\nDía 5: 1 vuelta\nDía 6: 1 vuelta\nDía 7: 7 vueltas\nTotal: 13 vueltas\n¡Griten! La muralla se derrumbó.\n```",
+    "en": "**Challenge: the week of Jericho.** With a loop, go through the 7 days: on days 1 to 6 they march 1 lap and on day 7, 7 laps. Show each day (watch “lap” and “laps”), accumulate the total and at the end announce the shout. Don't type 13: let the program calculate it.\n```\nDay 1: 1 lap\nDay 2: 1 lap\nDay 3: 1 lap\nDay 4: 1 lap\nDay 5: 1 lap\nDay 6: 1 lap\nDay 7: 7 laps\nTotal: 13 laps\nShout! The wall collapsed.\n```"
+   },
+   "inicial": {
+    "es": "total = 0\n",
+    "en": "total = 0\n"
+   },
+   "pistas": {
+    "es": [
+     "Dentro de `for dia in range(1, 8):` decide con `if dia == 7:` cuántas vueltas hay y qué texto mostrar; suma con `total += vueltas`.",
+     "Día 7: `print(f\"Día {dia}: {vueltas} vueltas\")`; los demás: `print(f\"Día {dia}: {vueltas} vuelta\")`. Después del bucle, `print(f\"Total: {total} vueltas\")` y el grito."
+    ],
+    "en": [
+     "Inside `for day in range(1, 8):` decide with `if day == 7:` how many laps there are and what text to show; add with `total += laps`.",
+     "Day 7: `print(f\"Day {day}: {laps} laps\")`; the others: `print(f\"Day {day}: {laps} lap\")`. After the loop, `print(f\"Total: {total} laps\")` and the shout."
+    ]
+   },
+   "solucion": {
+    "es": "total = 0\nfor dia in range(1, 8):\n    if dia == 7:\n        vueltas = 7\n        print(f\"Día {dia}: {vueltas} vueltas\")\n    else:\n        vueltas = 1\n        print(f\"Día {dia}: {vueltas} vuelta\")\n    total += vueltas\nprint(f\"Total: {total} vueltas\")\nprint(\"¡Griten! La muralla se derrumbó.\")",
+    "en": "total = 0\nfor day in range(1, 8):\n    if day == 7:\n        laps = 7\n        print(f\"Day {day}: {laps} laps\")\n    else:\n        laps = 1\n        print(f\"Day {day}: {laps} lap\")\n    total += laps\nprint(f\"Total: {total} laps\")\nprint(\"Shout! The wall collapsed.\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Día 1: 1 vuelta\nDía 2: 1 vuelta\nDía 3: 1 vuelta\nDía 4: 1 vuelta\nDía 5: 1 vuelta\nDía 6: 1 vuelta\nDía 7: 7 vueltas\nTotal: 13 vueltas\n¡Griten! La muralla se derrumbó."
+     },
+     {
+      "py": "assert 'for ' in _codigo or 'while ' in _codigo",
+      "msg": {
+       "es": "Recorre los días con un bucle.",
+       "en": "Go through the days with a loop."
+      }
+     },
+     {
+      "py": "assert '13' not in _codigo and _codigo.count('print') <= 5",
+      "msg": {
+       "es": "No escribas el 13 ni un print por día: usa el bucle y un acumulador.",
+       "en": "Don't type the 13 or one print per day: use the loop and an accumulator."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Day 1: 1 lap\nDay 2: 1 lap\nDay 3: 1 lap\nDay 4: 1 lap\nDay 5: 1 lap\nDay 6: 1 lap\nDay 7: 7 laps\nTotal: 13 laps\nShout! The wall collapsed."
+     },
+     {
+      "py": "assert 'for ' in _codigo or 'while ' in _codigo",
+      "msg": {
+       "es": "Recorre los días con un bucle.",
+       "en": "Go through the days with a loop."
+      }
+     },
+     {
+      "py": "assert '13' not in _codigo and _codigo.count('print') <= 5",
+      "msg": {
+       "es": "No escribas el 13 ni un print por día: usa el bucle y un acumulador.",
+       "en": "Don't type the 13 or one print per day: use the loop and an accumulator."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "total = 0\nfor dia in range(1, 8):\n    if dia == 7:\n        vueltas = 7\n    else:\n        vueltas = 1\n    print(f\"Día {dia}: {vueltas} vueltas\")\n    total += vueltas\nprint(f\"Total: {total} vueltas\")\nprint(\"¡Griten! La muralla se derrumbó.\")",
+     "total = 0\nfor dia in range(1, 8):\n    if dia == 7:\n        vueltas = 7\n        print(f\"Día {dia}: {vueltas} vueltas\")\n    else:\n        vueltas = 1\n        print(f\"Día {dia}: {vueltas} vuelta\")\n    total += vueltas\n    print(f\"Total: {total} vueltas\")\nprint(\"¡Griten! La muralla se derrumbó.\")",
+     "total = 0\nfor dia in range(1, 7):\n    if dia == 7:\n        vueltas = 7\n        print(f\"Día {dia}: {vueltas} vueltas\")\n    else:\n        vueltas = 1\n        print(f\"Día {dia}: {vueltas} vuelta\")\n    total += vueltas\nprint(f\"Total: {total} vueltas\")\nprint(\"¡Griten! La muralla se derrumbó.\")"
+    ],
+    "en": [
+     "total = 0\nfor day in range(1, 8):\n    if day == 7:\n        laps = 7\n    else:\n        laps = 1\n    print(f\"Day {day}: {laps} laps\")\n    total += laps\nprint(f\"Total: {total} laps\")\nprint(\"Shout! The wall collapsed.\")",
+     "total = 0\nfor day in range(1, 8):\n    if day == 7:\n        laps = 7\n        print(f\"Day {day}: {laps} laps\")\n    else:\n        laps = 1\n        print(f\"Day {day}: {laps} lap\")\n    total += laps\n    print(f\"Total: {total} laps\")\nprint(\"Shout! The wall collapsed.\")"
+    ]
+   }
+  }
+ ]
+}

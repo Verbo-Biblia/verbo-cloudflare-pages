@@ -1,0 +1,619 @@
+{
+ "id": "18-herencia",
+ "numero": 18,
+ "lugar": "roma",
+ "titulo": {
+  "es": "Herencia: de padres a hijos",
+  "en": "Inheritance: from parents to children"
+ },
+ "tema": {
+  "es": "herencia de clases y métodos especiales",
+  "en": "class inheritance and special methods"
+ },
+ "versiculo": "pr-13-22",
+ "medalla": {
+  "es": "Buena herencia",
+  "en": "Good inheritance"
+ },
+ "leccion": {
+  "es": [
+   "Una clase puede **heredar** de otra: `class Rey(Persona):` crea una clase hija que recibe todos los atributos y métodos de la clase padre, y puede agregar los suyos. Así no repites código: lo común va en el padre y lo especial en cada hija.",
+   "Si la hija tiene su propio `__init__`, llama primero al del padre con `super().__init__(...)` para que prepare los atributos comunes. Si la hija define un método con el **mismo nombre** que el padre, lo **sobrescribe**; dentro de él, `super().metodo()` todavía permite usar la versión del padre.",
+   "`isinstance(objeto, Clase)` responde si un objeto es de esa clase **o de una hija**: un `Rey` también es una `Persona`, pero una `Persona` no es un `Rey`.",
+   "Los **métodos especiales** llevan dos guiones bajos a cada lado. `__str__` da el texto que usan `print()` y `str()`; `__repr__`, el que ves en listas y en la consola (lo ideal es que parezca el código que crea el objeto). `__eq__(self, otro)` define qué hace `==`, y `__lt__(self, otro)` define `<`: con él, `sorted()` y `.sort()` ya saben ordenar tus objetos.",
+   "Si `otro` no es de tu clase, en `__eq__` o `__lt__` se devuelve `NotImplemented` (o simplemente `False` en `__eq__`) para que Python no se confunda. «El bueno deja herencia a sus nietos»: una buena clase padre también deja mucho a sus hijas."
+  ],
+  "en": [
+   "A class can **inherit** from another: `class King(Person):` creates a child class that receives all the attributes and methods of the parent class, and can add its own. This way you don't repeat code: what is shared goes in the parent and what is special goes in each child.",
+   "If the child has its own `__init__`, first call the parent's with `super().__init__(...)` so it sets up the shared attributes. If the child defines a method with the **same name** as the parent, it **overrides** it; inside it, `super().method()` still lets you use the parent's version.",
+   "`isinstance(obj, Class)` tells you whether an object belongs to that class **or to a child of it**: a `King` is also a `Person`, but a `Person` is not a `King`.",
+   "**Special methods** have two underscores on each side. `__str__` gives the text used by `print()` and `str()`; `__repr__`, the one you see in lists and in the console (ideally it looks like the code that creates the object). `__eq__(self, other)` defines what `==` does, and `__lt__(self, other)` defines `<`: with it, `sorted()` and `.sort()` already know how to sort your objects.",
+   "If `other` is not of your class, `__eq__` or `__lt__` return `NotImplemented` (or simply `False` in `__eq__`) so Python doesn't get confused. “A good man leaves an inheritance to his children's children”: a good parent class also leaves a lot to its children."
+  ]
+ },
+ "ejemplo": {
+  "es": "class Persona:\n    def __init__(self, nombre, tribu):\n        self.nombre = nombre\n        self.tribu = tribu\n\n    def presentarse(self):\n        return f\"Soy {self.nombre}, de la tribu de {self.tribu}\"\n\nclass Rey(Persona):\n    def __init__(self, nombre, tribu, reino, anios):\n        super().__init__(nombre, tribu)\n        self.reino = reino\n        self.anios = anios\n\n    def reinar(self):\n        return f\"{self.nombre} reinó {self.anios} años sobre {self.reino}\"\n\n    def __str__(self):\n        return f\"Rey {self.nombre}\"\n\n\ndavid = Rey(\"David\", \"Judá\", \"Israel\", 40)\nprint(david.presentarse())\nprint(david.reinar())\nprint(david)\nprint(isinstance(david, Persona))",
+  "en": "class Person:\n    def __init__(self, name, tribe):\n        self.name = name\n        self.tribe = tribe\n\n    def introduce(self):\n        return f\"I am {self.name}, of the tribe of {self.tribe}\"\n\nclass King(Person):\n    def __init__(self, name, tribe, kingdom, years):\n        super().__init__(name, tribe)\n        self.kingdom = kingdom\n        self.years = years\n\n    def reign(self):\n        return f\"{self.name} reigned over {self.kingdom} for {self.years} years\"\n\n    def __str__(self):\n        return f\"King {self.name}\"\n\n\ndavid = King(\"David\", \"Judah\", \"Israel\", 40)\nprint(david.introduce())\nprint(david.reign())\nprint(david)\nprint(isinstance(david, Person))"
+ },
+ "ejercicios": [
+  {
+   "id": "clase-rey",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Crea la clase `Rey`, hija de `Persona`. Su `__init__(self, nombre, tribu, reino, anios)` usa `super().__init__` para el nombre y la tribu, y guarda `reino` y `anios`. Agrégale el método `reinar()`, que **devuelve** el texto de abajo. Salomón «reinó en Jerusalén sobre todo Israel durante cuarenta años» (1 Reyes 11:42). Debe salir:\n```\nSoy Salomón, de la tribu de Judá\nSalomón reinó 40 años sobre todo Israel\n```",
+    "en": "Create the class `King`, a child of `Person`. Its `__init__(self, name, tribe, kingdom, years)` uses `super().__init__` for the name and the tribe, and stores `kingdom` and `years`. Add the method `reign()`, which **returns** the text below. Solomon “reigned in Jerusalem over all Israel” for forty years (1 Kings 11:42). It should print:\n```\nI am Solomon, of the tribe of Judah\nSolomon reigned over all Israel for 40 years\n```"
+   },
+   "inicial": {
+    "es": "class Persona:\n    def __init__(self, nombre, tribu):\n        self.nombre = nombre\n        self.tribu = tribu\n\n    def presentarse(self):\n        return f\"Soy {self.nombre}, de la tribu de {self.tribu}\"\n\n\n# tu clase Rey aquí\n\n\nsalomon = Rey(\"Salomón\", \"Judá\", \"todo Israel\", 40)\nprint(salomon.presentarse())\nprint(salomon.reinar())",
+    "en": "class Person:\n    def __init__(self, name, tribe):\n        self.name = name\n        self.tribe = tribe\n\n    def introduce(self):\n        return f\"I am {self.name}, of the tribe of {self.tribe}\"\n\n\n# your King class here\n\n\nsolomon = King(\"Solomon\", \"Judah\", \"all Israel\", 40)\nprint(solomon.introduce())\nprint(solomon.reign())"
+   },
+   "pistas": {
+    "es": [
+     "Empieza con `class Rey(Persona):`. En su `__init__`, la primera línea es `super().__init__(nombre, tribu)`.",
+     "Luego `self.reino = reino`, `self.anios = anios`, y `def reinar(self): return f\"{self.nombre} reinó {self.anios} años sobre {self.reino}\"`."
+    ],
+    "en": [
+     "Start with `class King(Person):`. In its `__init__`, the first line is `super().__init__(name, tribe)`.",
+     "Then `self.kingdom = kingdom`, `self.years = years`, and `def reign(self): return f\"{self.name} reigned over {self.kingdom} for {self.years} years\"`."
+    ]
+   },
+   "solucion": {
+    "es": "class Persona:\n    def __init__(self, nombre, tribu):\n        self.nombre = nombre\n        self.tribu = tribu\n\n    def presentarse(self):\n        return f\"Soy {self.nombre}, de la tribu de {self.tribu}\"\n\nclass Rey(Persona):\n    def __init__(self, nombre, tribu, reino, anios):\n        super().__init__(nombre, tribu)\n        self.reino = reino\n        self.anios = anios\n\n    def reinar(self):\n        return f\"{self.nombre} reinó {self.anios} años sobre {self.reino}\"\n\n\nsalomon = Rey(\"Salomón\", \"Judá\", \"todo Israel\", 40)\nprint(salomon.presentarse())\nprint(salomon.reinar())",
+    "en": "class Person:\n    def __init__(self, name, tribe):\n        self.name = name\n        self.tribe = tribe\n\n    def introduce(self):\n        return f\"I am {self.name}, of the tribe of {self.tribe}\"\n\nclass King(Person):\n    def __init__(self, name, tribe, kingdom, years):\n        super().__init__(name, tribe)\n        self.kingdom = kingdom\n        self.years = years\n\n    def reign(self):\n        return f\"{self.name} reigned over {self.kingdom} for {self.years} years\"\n\n\nsolomon = King(\"Solomon\", \"Judah\", \"all Israel\", 40)\nprint(solomon.introduce())\nprint(solomon.reign())"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Soy Salomón, de la tribu de Judá\nSalomón reinó 40 años sobre todo Israel"
+     },
+     {
+      "py": "d = Rey('David', 'Judá', 'Israel', 40)\nassert d.nombre == 'David' and d.tribu == 'Judá' and d.reino == 'Israel' and d.anios == 40",
+      "msg": {
+       "es": "Un Rey debe guardar nombre, tribu, reino y anios.",
+       "en": "A Rey must store nombre, tribu, reino and anios."
+      }
+     },
+     {
+      "py": "assert Rey('David', 'Judá', 'Israel', 40).reinar() == 'David reinó 40 años sobre Israel'",
+      "msg": {
+       "es": "reinar() debe devolver (no imprimir) «David reinó 40 años sobre Israel» para David.",
+       "en": "reinar() must return (not print) «David reinó 40 años sobre Israel» for David."
+      }
+     },
+     {
+      "py": "assert issubclass(Rey, Persona) and 'presentarse' not in Rey.__dict__",
+      "msg": {
+       "es": "Rey debe heredar de Persona (class Rey(Persona):) y usar su presentarse(), sin copiarlo.",
+       "en": "Rey must inherit from Persona (class Rey(Persona):) and use its presentarse(), without copying it."
+      }
+     },
+     {
+      "py": "assert 'super().__init__' in _codigo or 'Persona.__init__' in _codigo",
+      "msg": {
+       "es": "Llama al __init__ del padre con super().__init__(nombre, tribu).",
+       "en": "Call the parent's __init__ with super().__init__(nombre, tribu)."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "I am Solomon, of the tribe of Judah\nSolomon reigned over all Israel for 40 years"
+     },
+     {
+      "py": "d = King('David', 'Judah', 'Israel', 40)\nassert d.name == 'David' and d.tribe == 'Judah' and d.kingdom == 'Israel' and d.years == 40",
+      "msg": {
+       "es": "Un King debe guardar name, tribe, kingdom y years.",
+       "en": "A King must store name, tribe, kingdom and years."
+      }
+     },
+     {
+      "py": "assert King('David', 'Judah', 'Israel', 40).reign() == 'David reigned over Israel for 40 years'",
+      "msg": {
+       "es": "reign() debe devolver (no imprimir) «David reigned over Israel for 40 years» para David.",
+       "en": "reign() must return (not print) «David reigned over Israel for 40 years» for David."
+      }
+     },
+     {
+      "py": "assert issubclass(King, Person) and 'introduce' not in King.__dict__",
+      "msg": {
+       "es": "King debe heredar de Person (class King(Person):) y usar su introduce(), sin copiarlo.",
+       "en": "King must inherit from Person (class King(Person):) and use its introduce(), without copying it."
+      }
+     },
+     {
+      "py": "assert 'super().__init__' in _codigo or 'Person.__init__' in _codigo",
+      "msg": {
+       "es": "Llama al __init__ del padre con super().__init__(name, tribe).",
+       "en": "Call the parent's __init__ with super().__init__(name, tribe)."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "class Persona:\n    def __init__(self, nombre, tribu):\n        self.nombre = nombre\n        self.tribu = tribu\n\n    def presentarse(self):\n        return f\"Soy {self.nombre}, de la tribu de {self.tribu}\"\n\nclass Rey(Persona):\n    def __init__(self, nombre, tribu, reino, anios):\n        self.reino = reino\n        self.anios = anios\n\n    def reinar(self):\n        return f\"{self.nombre} reinó {self.anios} años sobre {self.reino}\"\n\n\nsalomon = Rey(\"Salomón\", \"Judá\", \"todo Israel\", 40)\nprint(salomon.presentarse())\nprint(salomon.reinar())",
+     "class Persona:\n    def __init__(self, nombre, tribu):\n        self.nombre = nombre\n        self.tribu = tribu\n\n    def presentarse(self):\n        return f\"Soy {self.nombre}, de la tribu de {self.tribu}\"\n\nclass Rey:\n    def __init__(self, nombre, tribu, reino, anios):\n        self.nombre = nombre\n        self.tribu = tribu\n        self.reino = reino\n        self.anios = anios\n\n    def reinar(self):\n        return f\"{self.nombre} reinó {self.anios} años sobre {self.reino}\"\n\n    def presentarse(self):\n        return f\"Soy {self.nombre}, de la tribu de {self.tribu}\"\n\nsalomon = Rey(\"Salomón\", \"Judá\", \"todo Israel\", 40)\nprint(salomon.presentarse())\nprint(salomon.reinar())",
+     "class Persona:\n    def __init__(self, nombre, tribu):\n        self.nombre = nombre\n        self.tribu = tribu\n\n    def presentarse(self):\n        return f\"Soy {self.nombre}, de la tribu de {self.tribu}\"\n\nclass Rey(Persona):\n    def __init__(self, nombre, tribu, reino, anios):\n        super().__init__(nombre, tribu)\n        self.reino = reino\n        self.anios = anios\n\n    def reinar(self):\n        print(f\"{self.nombre} reinó {self.anios} años sobre {self.reino}\")\n\n\nsalomon = Rey(\"Salomón\", \"Judá\", \"todo Israel\", 40)\nprint(salomon.presentarse())\nprint(salomon.reinar())",
+     "class Persona:\n    def __init__(self, nombre, tribu):\n        self.nombre = nombre\n        self.tribu = tribu\n\n    def presentarse(self):\n        return f\"Soy {self.nombre}, de la tribu de {self.tribu}\"\n\nclass Rey(Persona):\n    def __init__(self, nombre, tribu, reino, anios):\n        super().__init__(self, nombre, tribu)\n        self.reino = reino\n        self.anios = anios\n\n    def reinar(self):\n        return f\"{self.nombre} reinó {self.anios} años sobre {self.reino}\"\n\n\nsalomon = Rey(\"Salomón\", \"Judá\", \"todo Israel\", 40)\nprint(salomon.presentarse())\nprint(salomon.reinar())"
+    ],
+    "en": [
+     "class Person:\n    def __init__(self, name, tribe):\n        self.name = name\n        self.tribe = tribe\n\n    def introduce(self):\n        return f\"I am {self.name}, of the tribe of {self.tribe}\"\n\nclass King(Person):\n    def __init__(self, name, tribe, kingdom, years):\n        self.kingdom = kingdom\n        self.years = years\n\n    def reign(self):\n        return f\"{self.name} reigned over {self.kingdom} for {self.years} years\"\n\n\nsolomon = King(\"Solomon\", \"Judah\", \"all Israel\", 40)\nprint(solomon.introduce())\nprint(solomon.reign())",
+     "class Person:\n    def __init__(self, name, tribe):\n        self.name = name\n        self.tribe = tribe\n\n    def introduce(self):\n        return f\"I am {self.name}, of the tribe of {self.tribe}\"\n\nclass King(Person):\n    def __init__(self, name, tribe, kingdom, years):\n        super().__init__(name, tribe)\n        self.kingdom = kingdom\n        self.years = years\n\n    def reign(self):\n        print(f\"{self.name} reigned over {self.kingdom} for {self.years} years\")\n\n\nsolomon = King(\"Solomon\", \"Judah\", \"all Israel\", 40)\nprint(solomon.introduce())\nprint(solomon.reign())",
+     "class Person:\n    def __init__(self, name, tribe):\n        self.name = name\n        self.tribe = tribe\n\n    def introduce(self):\n        return f\"I am {self.name}, of the tribe of {self.tribe}\"\n\nclass King(Person):\n    def __init__(self, name, tribe, kingdom, years):\n        super().__init__(self, name, tribe)\n        self.kingdom = kingdom\n        self.years = years\n\n    def reign(self):\n        return f\"{self.name} reigned over {self.kingdom} for {self.years} years\"\n\n\nsolomon = King(\"Solomon\", \"Judah\", \"all Israel\", 40)\nprint(solomon.introduce())\nprint(solomon.reign())"
+    ]
+   }
+  },
+  {
+   "id": "sacerdote",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Moisés y Aarón eran hermanos, de la tribu de Leví (Éxodo 6:20), y Aarón fue el primer sumo sacerdote. Crea la clase `Sacerdote`, hija de `Persona`, que **sobrescribe** `presentarse()`: debe devolver lo mismo que el padre más `, y sirvo como sacerdote`. Usa `super().presentarse()` para no repetir el texto. Debe salir:\n```\nSoy Moisés, de la tribu de Leví\nSoy Aarón, de la tribu de Leví, y sirvo como sacerdote\n```",
+    "en": "Moses and Aaron were brothers, of the tribe of Levi (Exodus 6:20), and Aaron was the first high priest. Create the class `Priest`, a child of `Person`, that **overrides** `introduce()`: it must return the same as the parent plus `, and I serve as a priest`. Use `super().introduce()` so you don't repeat the text. It should print:\n```\nI am Moses, of the tribe of Levi\nI am Aaron, of the tribe of Levi, and I serve as a priest\n```"
+   },
+   "inicial": {
+    "es": "class Persona:\n    def __init__(self, nombre, tribu):\n        self.nombre = nombre\n        self.tribu = tribu\n\n    def presentarse(self):\n        return f\"Soy {self.nombre}, de la tribu de {self.tribu}\"\n\n\n# tu clase Sacerdote aquí\n\n\nmoises = Persona(\"Moisés\", \"Leví\")\naaron = Sacerdote(\"Aarón\", \"Leví\")\nprint(moises.presentarse())\nprint(aaron.presentarse())",
+    "en": "class Person:\n    def __init__(self, name, tribe):\n        self.name = name\n        self.tribe = tribe\n\n    def introduce(self):\n        return f\"I am {self.name}, of the tribe of {self.tribe}\"\n\n\n# your Priest class here\n\n\nmoses = Person(\"Moses\", \"Levi\")\naaron = Priest(\"Aaron\", \"Levi\")\nprint(moses.introduce())\nprint(aaron.introduce())"
+   },
+   "pistas": {
+    "es": [
+     "`Sacerdote` no necesita `__init__`: si no lo escribes, hereda el de `Persona`.",
+     "`def presentarse(self): return super().presentarse() + \", y sirvo como sacerdote\"`."
+    ],
+    "en": [
+     "`Priest` doesn't need an `__init__`: if you don't write one, it inherits `Person`'s.",
+     "`def introduce(self): return super().introduce() + \", and I serve as a priest\"`."
+    ]
+   },
+   "solucion": {
+    "es": "class Persona:\n    def __init__(self, nombre, tribu):\n        self.nombre = nombre\n        self.tribu = tribu\n\n    def presentarse(self):\n        return f\"Soy {self.nombre}, de la tribu de {self.tribu}\"\n\nclass Sacerdote(Persona):\n    def presentarse(self):\n        return super().presentarse() + \", y sirvo como sacerdote\"\n\n\nmoises = Persona(\"Moisés\", \"Leví\")\naaron = Sacerdote(\"Aarón\", \"Leví\")\nprint(moises.presentarse())\nprint(aaron.presentarse())",
+    "en": "class Person:\n    def __init__(self, name, tribe):\n        self.name = name\n        self.tribe = tribe\n\n    def introduce(self):\n        return f\"I am {self.name}, of the tribe of {self.tribe}\"\n\nclass Priest(Person):\n    def introduce(self):\n        return super().introduce() + \", and I serve as a priest\"\n\n\nmoses = Person(\"Moses\", \"Levi\")\naaron = Priest(\"Aaron\", \"Levi\")\nprint(moses.introduce())\nprint(aaron.introduce())"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Soy Moisés, de la tribu de Leví\nSoy Aarón, de la tribu de Leví, y sirvo como sacerdote"
+     },
+     {
+      "py": "assert Sacerdote('Eleazar', 'Leví').presentarse() == 'Soy Eleazar, de la tribu de Leví, y sirvo como sacerdote'",
+      "msg": {
+       "es": "presentarse() de Sacerdote debe servir para cualquier sacerdote, no solo para Aarón.",
+       "en": "Sacerdote's presentarse() must work for any priest, not only Aaron."
+      }
+     },
+     {
+      "py": "assert issubclass(Sacerdote, Persona) and 'super().presentarse()' in _codigo",
+      "msg": {
+       "es": "Hereda de Persona y reutiliza el texto del padre con super().presentarse().",
+       "en": "Inherit from Persona and reuse the parent's text with super().presentarse()."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "I am Moses, of the tribe of Levi\nI am Aaron, of the tribe of Levi, and I serve as a priest"
+     },
+     {
+      "py": "assert Priest('Eleazar', 'Levi').introduce() == 'I am Eleazar, of the tribe of Levi, and I serve as a priest'",
+      "msg": {
+       "es": "introduce() de Priest debe servir para cualquier sacerdote, no solo para Aaron.",
+       "en": "Priest's introduce() must work for any priest, not only Aaron."
+      }
+     },
+     {
+      "py": "assert issubclass(Priest, Person) and 'super().introduce()' in _codigo",
+      "msg": {
+       "es": "Hereda de Person y reutiliza el texto del padre con super().introduce().",
+       "en": "Inherit from Person and reuse the parent's text with super().introduce()."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "class Persona:\n    def __init__(self, nombre, tribu):\n        self.nombre = nombre\n        self.tribu = tribu\n\n    def presentarse(self):\n        return f\"Soy {self.nombre}, de la tribu de {self.tribu}\"\n\nclass Sacerdote(Persona):\n    def presentarse(self):\n        return \"Soy Aarón, de la tribu de Leví, y sirvo como sacerdote\"\n\n\nmoises = Persona(\"Moisés\", \"Leví\")\naaron = Sacerdote(\"Aarón\", \"Leví\")\nprint(moises.presentarse())\nprint(aaron.presentarse())",
+     "class Persona:\n    def __init__(self, nombre, tribu):\n        self.nombre = nombre\n        self.tribu = tribu\n\n    def presentarse(self):\n        return f\"Soy {self.nombre}, de la tribu de {self.tribu}\"\n\nclass Sacerdote(Persona):\n    def presentarse(self):\n        return self.presentarse() + \", y sirvo como sacerdote\"\n\n\nmoises = Persona(\"Moisés\", \"Leví\")\naaron = Sacerdote(\"Aarón\", \"Leví\")\nprint(moises.presentarse())\nprint(aaron.presentarse())",
+     "class Persona:\n    def __init__(self, nombre, tribu):\n        self.nombre = nombre\n        self.tribu = tribu\n\n    def presentarse(self):\n        return f\"Soy {self.nombre}, de la tribu de {self.tribu}\"\n\nclass Sacerdote(Persona):\n    def presentarse(self):\n        return f\"Soy {self.nombre}, de la tribu de {self.tribu}, y sirvo como sacerdote\"\n\n\nmoises = Persona(\"Moisés\", \"Leví\")\naaron = Sacerdote(\"Aarón\", \"Leví\")\nprint(moises.presentarse())\nprint(aaron.presentarse())",
+     "class Persona:\n    def __init__(self, nombre, tribu):\n        self.nombre = nombre\n        self.tribu = tribu\n\n    def presentarse(self):\n        return f\"Soy {self.nombre}, de la tribu de {self.tribu}\"\n\nclass Sacerdote(Persona):\n    def presentarse(self):\n        return super().presentarse + \", y sirvo como sacerdote\"\n\n\nmoises = Persona(\"Moisés\", \"Leví\")\naaron = Sacerdote(\"Aarón\", \"Leví\")\nprint(moises.presentarse())\nprint(aaron.presentarse())"
+    ],
+    "en": [
+     "class Person:\n    def __init__(self, name, tribe):\n        self.name = name\n        self.tribe = tribe\n\n    def introduce(self):\n        return f\"I am {self.name}, of the tribe of {self.tribe}\"\n\nclass Priest(Person):\n    def introduce(self):\n        return \"I am Aaron, of the tribe of Levi, and I serve as a priest\"\n\n\nmoses = Person(\"Moses\", \"Levi\")\naaron = Priest(\"Aaron\", \"Levi\")\nprint(moses.introduce())\nprint(aaron.introduce())",
+     "class Person:\n    def __init__(self, name, tribe):\n        self.name = name\n        self.tribe = tribe\n\n    def introduce(self):\n        return f\"I am {self.name}, of the tribe of {self.tribe}\"\n\nclass Priest(Person):\n    def introduce(self):\n        return self.introduce() + \", and I serve as a priest\"\n\n\nmoses = Person(\"Moses\", \"Levi\")\naaron = Priest(\"Aaron\", \"Levi\")\nprint(moses.introduce())\nprint(aaron.introduce())",
+     "class Person:\n    def __init__(self, name, tribe):\n        self.name = name\n        self.tribe = tribe\n\n    def introduce(self):\n        return f\"I am {self.name}, of the tribe of {self.tribe}\"\n\nclass Priest(Person):\n    def introduce(self):\n        return super().introduce + \", and I serve as a priest\"\n\n\nmoses = Person(\"Moses\", \"Levi\")\naaron = Priest(\"Aaron\", \"Levi\")\nprint(moses.introduce())\nprint(aaron.introduce())"
+    ]
+   }
+  },
+  {
+   "id": "es-rey",
+   "tipo": "hueco",
+   "enunciado": {
+    "es": "En la lista hay personas y reyes mezclados. Solo los reyes tienen `reinar()`; a los demás hay que pedirles `presentarse()`. Completa la condición para preguntar si `p` es un `Rey`. Debe salir:\n```\nSoy Moisés, de la tribu de Leví\nDavid reinó 40 años sobre Israel\nSoy Josué, de la tribu de Efraín\nSalomón reinó 40 años sobre todo Israel\n```",
+    "en": "The list mixes people and kings. Only kings have `reign()`; the others must be asked to `introduce()`. Fill in the condition that asks whether `p` is a `King`. It should print:\n```\nI am Moses, of the tribe of Levi\nDavid reigned over Israel for 40 years\nI am Joshua, of the tribe of Ephraim\nSolomon reigned over all Israel for 40 years\n```"
+   },
+   "plantilla": {
+    "es": "class Persona:\n    def __init__(self, nombre, tribu):\n        self.nombre = nombre\n        self.tribu = tribu\n\n    def presentarse(self):\n        return f\"Soy {self.nombre}, de la tribu de {self.tribu}\"\n\nclass Rey(Persona):\n    def __init__(self, nombre, tribu, reino, anios):\n        super().__init__(nombre, tribu)\n        self.reino = reino\n        self.anios = anios\n\n    def reinar(self):\n        return f\"{self.nombre} reinó {self.anios} años sobre {self.reino}\"\n\n\npersonas = [\n    Persona(\"Moisés\", \"Leví\"),\n    Rey(\"David\", \"Judá\", \"Israel\", 40),\n    Persona(\"Josué\", \"Efraín\"),\n    Rey(\"Salomón\", \"Judá\", \"todo Israel\", 40),\n]\nfor p in personas:\n    if ___(p, ___):\n        print(p.reinar())\n    else:\n        print(p.presentarse())",
+    "en": "class Person:\n    def __init__(self, name, tribe):\n        self.name = name\n        self.tribe = tribe\n\n    def introduce(self):\n        return f\"I am {self.name}, of the tribe of {self.tribe}\"\n\nclass King(Person):\n    def __init__(self, name, tribe, kingdom, years):\n        super().__init__(name, tribe)\n        self.kingdom = kingdom\n        self.years = years\n\n    def reign(self):\n        return f\"{self.name} reigned over {self.kingdom} for {self.years} years\"\n\n\npeople = [\n    Person(\"Moses\", \"Levi\"),\n    King(\"David\", \"Judah\", \"Israel\", 40),\n    Person(\"Joshua\", \"Ephraim\"),\n    King(\"Solomon\", \"Judah\", \"all Israel\", 40),\n]\nfor p in people:\n    if ___(p, ___):\n        print(p.reign())\n    else:\n        print(p.introduce())"
+   },
+   "pistas": {
+    "es": [
+     "La función que pregunta «¿este objeto es de esta clase?» es `isinstance`.",
+     "`if isinstance(p, Rey):`. Ojo: con `Persona` sería verdadero para todos, porque un `Rey` también es una `Persona`."
+    ],
+    "en": [
+     "The function that asks “is this object of this class?” is `isinstance`.",
+     "`if isinstance(p, King):`. Careful: with `Person` it would be true for all, because a `King` is also a `Person`."
+    ]
+   },
+   "solucion": {
+    "es": "class Persona:\n    def __init__(self, nombre, tribu):\n        self.nombre = nombre\n        self.tribu = tribu\n\n    def presentarse(self):\n        return f\"Soy {self.nombre}, de la tribu de {self.tribu}\"\n\nclass Rey(Persona):\n    def __init__(self, nombre, tribu, reino, anios):\n        super().__init__(nombre, tribu)\n        self.reino = reino\n        self.anios = anios\n\n    def reinar(self):\n        return f\"{self.nombre} reinó {self.anios} años sobre {self.reino}\"\n\n\npersonas = [\n    Persona(\"Moisés\", \"Leví\"),\n    Rey(\"David\", \"Judá\", \"Israel\", 40),\n    Persona(\"Josué\", \"Efraín\"),\n    Rey(\"Salomón\", \"Judá\", \"todo Israel\", 40),\n]\nfor p in personas:\n    if isinstance(p, Rey):\n        print(p.reinar())\n    else:\n        print(p.presentarse())",
+    "en": "class Person:\n    def __init__(self, name, tribe):\n        self.name = name\n        self.tribe = tribe\n\n    def introduce(self):\n        return f\"I am {self.name}, of the tribe of {self.tribe}\"\n\nclass King(Person):\n    def __init__(self, name, tribe, kingdom, years):\n        super().__init__(name, tribe)\n        self.kingdom = kingdom\n        self.years = years\n\n    def reign(self):\n        return f\"{self.name} reigned over {self.kingdom} for {self.years} years\"\n\n\npeople = [\n    Person(\"Moses\", \"Levi\"),\n    King(\"David\", \"Judah\", \"Israel\", 40),\n    Person(\"Joshua\", \"Ephraim\"),\n    King(\"Solomon\", \"Judah\", \"all Israel\", 40),\n]\nfor p in people:\n    if isinstance(p, King):\n        print(p.reign())\n    else:\n        print(p.introduce())"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Soy Moisés, de la tribu de Leví\nDavid reinó 40 años sobre Israel\nSoy Josué, de la tribu de Efraín\nSalomón reinó 40 años sobre todo Israel"
+     }
+    ],
+    "en": [
+     {
+      "salida": "I am Moses, of the tribe of Levi\nDavid reigned over Israel for 40 years\nI am Joshua, of the tribe of Ephraim\nSolomon reigned over all Israel for 40 years"
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "class Persona:\n    def __init__(self, nombre, tribu):\n        self.nombre = nombre\n        self.tribu = tribu\n\n    def presentarse(self):\n        return f\"Soy {self.nombre}, de la tribu de {self.tribu}\"\n\nclass Rey(Persona):\n    def __init__(self, nombre, tribu, reino, anios):\n        super().__init__(nombre, tribu)\n        self.reino = reino\n        self.anios = anios\n\n    def reinar(self):\n        return f\"{self.nombre} reinó {self.anios} años sobre {self.reino}\"\n\n\npersonas = [\n    Persona(\"Moisés\", \"Leví\"),\n    Rey(\"David\", \"Judá\", \"Israel\", 40),\n    Persona(\"Josué\", \"Efraín\"),\n    Rey(\"Salomón\", \"Judá\", \"todo Israel\", 40),\n]\nfor p in personas:\n    if isinstance(p, Persona):\n        print(p.reinar())\n    else:\n        print(p.presentarse())",
+     "class Persona:\n    def __init__(self, nombre, tribu):\n        self.nombre = nombre\n        self.tribu = tribu\n\n    def presentarse(self):\n        return f\"Soy {self.nombre}, de la tribu de {self.tribu}\"\n\nclass Rey(Persona):\n    def __init__(self, nombre, tribu, reino, anios):\n        super().__init__(nombre, tribu)\n        self.reino = reino\n        self.anios = anios\n\n    def reinar(self):\n        return f\"{self.nombre} reinó {self.anios} años sobre {self.reino}\"\n\n\npersonas = [\n    Persona(\"Moisés\", \"Leví\"),\n    Rey(\"David\", \"Judá\", \"Israel\", 40),\n    Persona(\"Josué\", \"Efraín\"),\n    Rey(\"Salomón\", \"Judá\", \"todo Israel\", 40),\n]\nfor p in personas:\n    if type(p, Rey):\n        print(p.reinar())\n    else:\n        print(p.presentarse())"
+    ],
+    "en": [
+     "class Person:\n    def __init__(self, name, tribe):\n        self.name = name\n        self.tribe = tribe\n\n    def introduce(self):\n        return f\"I am {self.name}, of the tribe of {self.tribe}\"\n\nclass King(Person):\n    def __init__(self, name, tribe, kingdom, years):\n        super().__init__(name, tribe)\n        self.kingdom = kingdom\n        self.years = years\n\n    def reign(self):\n        return f\"{self.name} reigned over {self.kingdom} for {self.years} years\"\n\n\npeople = [\n    Person(\"Moses\", \"Levi\"),\n    King(\"David\", \"Judah\", \"Israel\", 40),\n    Person(\"Joshua\", \"Ephraim\"),\n    King(\"Solomon\", \"Judah\", \"all Israel\", 40),\n]\nfor p in people:\n    if isinstance(p, Person):\n        print(p.reign())\n    else:\n        print(p.introduce())",
+     "class Person:\n    def __init__(self, name, tribe):\n        self.name = name\n        self.tribe = tribe\n\n    def introduce(self):\n        return f\"I am {self.name}, of the tribe of {self.tribe}\"\n\nclass King(Person):\n    def __init__(self, name, tribe, kingdom, years):\n        super().__init__(name, tribe)\n        self.kingdom = kingdom\n        self.years = years\n\n    def reign(self):\n        return f\"{self.name} reigned over {self.kingdom} for {self.years} years\"\n\n\npeople = [\n    Person(\"Moses\", \"Levi\"),\n    King(\"David\", \"Judah\", \"Israel\", 40),\n    Person(\"Joshua\", \"Ephraim\"),\n    King(\"Solomon\", \"Judah\", \"all Israel\", 40),\n]\nfor p in people:\n    if type(p, King):\n        print(p.reign())\n    else:\n        print(p.introduce())"
+    ]
+   }
+  },
+  {
+   "id": "str-repr",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Agrega a la clase `Libro` dos métodos especiales: `__str__`, que devuelve `Rut (4 cap.)`, y `__repr__`, que devuelve `Libro('Rut', 4)` (como el código que crea el objeto). `print(objeto)` usa `__str__`; una lista muestra sus elementos con `__repr__`. Debe salir:\n```\nRut (4 cap.)\n[Libro('Rut', 4), Libro('Jonás', 4)]\n```",
+    "en": "Add two special methods to the class `Book`: `__str__`, which returns `Ruth (4 ch.)`, and `__repr__`, which returns `Book('Ruth', 4)` (like the code that creates the object). `print(obj)` uses `__str__`; a list shows its elements with `__repr__`. It should print:\n```\nRuth (4 ch.)\n[Book('Ruth', 4), Book('Jonah', 4)]\n```"
+   },
+   "inicial": {
+    "es": "class Libro:\n    def __init__(self, nombre, capitulos):\n        self.nombre = nombre\n        self.capitulos = capitulos\n\n    # __str__ y __repr__ aquí\n\n\nrut = Libro(\"Rut\", 4)\nprint(rut)\nprint([rut, Libro(\"Jonás\", 4)])",
+    "en": "class Book:\n    def __init__(self, name, chapters):\n        self.name = name\n        self.chapters = chapters\n\n    # __str__ and __repr__ here\n\n\nruth = Book(\"Ruth\", 4)\nprint(ruth)\nprint([ruth, Book(\"Jonah\", 4)])"
+   },
+   "pistas": {
+    "es": [
+     "`def __str__(self): return f\"{self.nombre} ({self.capitulos} cap.)\"`.",
+     "Para las comillas del nombre en `__repr__` usa `!r`: `return f\"Libro({self.nombre!r}, {self.capitulos})\"`."
+    ],
+    "en": [
+     "`def __str__(self): return f\"{self.name} ({self.chapters} ch.)\"`.",
+     "For the quotes around the name in `__repr__` use `!r`: `return f\"Book({self.name!r}, {self.chapters})\"`."
+    ]
+   },
+   "solucion": {
+    "es": "class Libro:\n    def __init__(self, nombre, capitulos):\n        self.nombre = nombre\n        self.capitulos = capitulos\n\n    def __str__(self):\n        return f\"{self.nombre} ({self.capitulos} cap.)\"\n\n    def __repr__(self):\n        return f\"Libro({self.nombre!r}, {self.capitulos})\"\n\n\nrut = Libro(\"Rut\", 4)\nprint(rut)\nprint([rut, Libro(\"Jonás\", 4)])",
+    "en": "class Book:\n    def __init__(self, name, chapters):\n        self.name = name\n        self.chapters = chapters\n\n    def __str__(self):\n        return f\"{self.name} ({self.chapters} ch.)\"\n\n    def __repr__(self):\n        return f\"Book({self.name!r}, {self.chapters})\"\n\n\nruth = Book(\"Ruth\", 4)\nprint(ruth)\nprint([ruth, Book(\"Jonah\", 4)])"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Rut (4 cap.)\n[Libro('Rut', 4), Libro('Jonás', 4)]"
+     },
+     {
+      "py": "g = Libro('Génesis', 50)\nassert str(g) == 'Génesis (50 cap.)' and repr(g) == \"Libro('Génesis', 50)\"",
+      "msg": {
+       "es": "Para Libro(\"Génesis\", 50): str da «Génesis (50 cap.)» y repr da «Libro('Génesis', 50)». Usa los atributos, no textos fijos.",
+       "en": "For Libro(\"Génesis\", 50): str gives «Génesis (50 cap.)» and repr gives «Libro('Génesis', 50)». Use the attributes, not fixed text."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Ruth (4 ch.)\n[Book('Ruth', 4), Book('Jonah', 4)]"
+     },
+     {
+      "py": "g = Book('Genesis', 50)\nassert str(g) == 'Genesis (50 ch.)' and repr(g) == \"Book('Genesis', 50)\"",
+      "msg": {
+       "es": "Para Book(\"Genesis\", 50): str da «Genesis (50 ch.)» y repr da «Book('Genesis', 50)». Usa los atributos, no textos fijos.",
+       "en": "For Book(\"Genesis\", 50): str gives «Genesis (50 ch.)» and repr gives «Book('Genesis', 50)». Use the attributes, not fixed text."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "class Libro:\n    def __init__(self, nombre, capitulos):\n        self.nombre = nombre\n        self.capitulos = capitulos\n\n    def __str__(self):\n        return f\"{self.nombre} ({self.capitulos} cap.)\"\n\n\nrut = Libro(\"Rut\", 4)\nprint(rut)\nprint([rut, Libro(\"Jonás\", 4)])",
+     "class Libro:\n    def __init__(self, nombre, capitulos):\n        self.nombre = nombre\n        self.capitulos = capitulos\n\n    def __str__(self):\n        return f\"{self.nombre} ({self.capitulos} cap.)\"\n\n    def __repr__(self):\n        return f\"Libro({self.nombre}, {self.capitulos})\"\n\n\nrut = Libro(\"Rut\", 4)\nprint(rut)\nprint([rut, Libro(\"Jonás\", 4)])",
+     "class Libro:\n    def __init__(self, nombre, capitulos):\n        self.nombre = nombre\n        self.capitulos = capitulos\n\n    def __str__(self):\n        print(f\"{self.nombre} ({self.capitulos} cap.)\")\n\n    def __repr__(self):\n        return f\"Libro({self.nombre!r}, {self.capitulos})\"\n\n\nrut = Libro(\"Rut\", 4)\nprint(rut)\nprint([rut, Libro(\"Jonás\", 4)])",
+     "class Libro:\n    def __init__(self, nombre, capitulos):\n        self.nombre = nombre\n        self.capitulos = capitulos\n\n    def str(self):\n        return f\"{self.nombre} ({self.capitulos} cap.)\"\n\n    def __repr__(self):\n        return f\"Libro({self.nombre!r}, {self.capitulos})\"\n\n\nrut = Libro(\"Rut\", 4)\nprint(rut)\nprint([rut, Libro(\"Jonás\", 4)])"
+    ],
+    "en": [
+     "class Book:\n    def __init__(self, name, chapters):\n        self.name = name\n        self.chapters = chapters\n\n    def __str__(self):\n        return f\"{self.name} ({self.chapters} ch.)\"\n\n\nruth = Book(\"Ruth\", 4)\nprint(ruth)\nprint([ruth, Book(\"Jonah\", 4)])",
+     "class Book:\n    def __init__(self, name, chapters):\n        self.name = name\n        self.chapters = chapters\n\n    def __str__(self):\n        return f\"{self.name} ({self.chapters} ch.)\"\n\n    def __repr__(self):\n        return f\"Book({self.name}, {self.chapters})\"\n\n\nruth = Book(\"Ruth\", 4)\nprint(ruth)\nprint([ruth, Book(\"Jonah\", 4)])",
+     "class Book:\n    def __init__(self, name, chapters):\n        self.name = name\n        self.chapters = chapters\n\n    def str(self):\n        return f\"{self.name} ({self.chapters} ch.)\"\n\n    def __repr__(self):\n        return f\"Book({self.name!r}, {self.chapters})\"\n\n\nruth = Book(\"Ruth\", 4)\nprint(ruth)\nprint([ruth, Book(\"Jonah\", 4)])"
+    ]
+   }
+  },
+  {
+   "id": "iguales",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Sin `__eq__`, dos objetos `Libro(\"Rut\", 4)` creados por separado **no** son iguales para `==` (Python compara si son el mismo objeto). Agrega `__eq__(self, otro)`: dos libros son iguales si tienen el mismo nombre **y** los mismos capítulos; si `otro` no es un `Libro`, devuelve `NotImplemented`. Así también funciona `in`. Debe salir:\n```\nTrue\nTrue\nFalse\n```",
+    "en": "Without `__eq__`, two `Book(\"Ruth\", 4)` objects created separately are **not** equal for `==` (Python checks whether they are the same object). Add `__eq__(self, other)`: two books are equal if they have the same name **and** the same chapters; if `other` is not a `Book`, return `NotImplemented`. That also makes `in` work. It should print:\n```\nTrue\nTrue\nFalse\n```"
+   },
+   "inicial": {
+    "es": "class Libro:\n    def __init__(self, nombre, capitulos):\n        self.nombre = nombre\n        self.capitulos = capitulos\n\n    # __eq__ aquí\n\n\nbiblioteca = [Libro(\"Génesis\", 50), Libro(\"Rut\", 4), Libro(\"Romanos\", 16)]\nprint(Libro(\"Rut\", 4) == Libro(\"Rut\", 4))\nprint(Libro(\"Rut\", 4) in biblioteca)\nprint(Libro(\"Rut\", 5) in biblioteca)",
+    "en": "class Book:\n    def __init__(self, name, chapters):\n        self.name = name\n        self.chapters = chapters\n\n    # __eq__ here\n\n\nlibrary = [Book(\"Genesis\", 50), Book(\"Ruth\", 4), Book(\"Romans\", 16)]\nprint(Book(\"Ruth\", 4) == Book(\"Ruth\", 4))\nprint(Book(\"Ruth\", 4) in library)\nprint(Book(\"Ruth\", 5) in library)"
+   },
+   "pistas": {
+    "es": [
+     "Empieza con `if not isinstance(otro, Libro): return NotImplemented`.",
+     "Luego `return self.nombre == otro.nombre and self.capitulos == otro.capitulos`."
+    ],
+    "en": [
+     "Start with `if not isinstance(other, Book): return NotImplemented`.",
+     "Then `return self.name == other.name and self.chapters == other.chapters`."
+    ]
+   },
+   "solucion": {
+    "es": "class Libro:\n    def __init__(self, nombre, capitulos):\n        self.nombre = nombre\n        self.capitulos = capitulos\n\n    def __eq__(self, otro):\n        if not isinstance(otro, Libro):\n            return NotImplemented\n        return self.nombre == otro.nombre and self.capitulos == otro.capitulos\n\n\nbiblioteca = [Libro(\"Génesis\", 50), Libro(\"Rut\", 4), Libro(\"Romanos\", 16)]\nprint(Libro(\"Rut\", 4) == Libro(\"Rut\", 4))\nprint(Libro(\"Rut\", 4) in biblioteca)\nprint(Libro(\"Rut\", 5) in biblioteca)",
+    "en": "class Book:\n    def __init__(self, name, chapters):\n        self.name = name\n        self.chapters = chapters\n\n    def __eq__(self, other):\n        if not isinstance(other, Book):\n            return NotImplemented\n        return self.name == other.name and self.chapters == other.chapters\n\n\nlibrary = [Book(\"Genesis\", 50), Book(\"Ruth\", 4), Book(\"Romans\", 16)]\nprint(Book(\"Ruth\", 4) == Book(\"Ruth\", 4))\nprint(Book(\"Ruth\", 4) in library)\nprint(Book(\"Ruth\", 5) in library)"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "True\nTrue\nFalse"
+     },
+     {
+      "py": "assert Libro('Rut', 4) != Libro('Jonás', 4) and Libro('Rut', 4) != Libro('Rut', 5)",
+      "msg": {
+       "es": "Compara el nombre y también los capítulos.",
+       "en": "Compare the name and also the chapters."
+      }
+     },
+     {
+      "py": "assert (Libro('Rut', 4) == 'Rut') is False and (Libro('Rut', 4) == 4) is False",
+      "msg": {
+       "es": "Comparar un Libro con algo que no es Libro (\"Rut\" o 4) debe dar False, sin error: revisa con isinstance.",
+       "en": "Comparing a Libro with something that is not a Libro (\"Rut\" or 4) must give False, without an error: check with isinstance."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "True\nTrue\nFalse"
+     },
+     {
+      "py": "assert Book('Ruth', 4) != Book('Jonah', 4) and Book('Ruth', 4) != Book('Ruth', 5)",
+      "msg": {
+       "es": "Compara el nombre y también los capítulos.",
+       "en": "Compare the name and also the chapters."
+      }
+     },
+     {
+      "py": "assert (Book('Ruth', 4) == 'Ruth') is False and (Book('Ruth', 4) == 4) is False",
+      "msg": {
+       "es": "Comparar un Book con algo que no es Book (\"Ruth\" o 4) debe dar False, sin error: revisa con isinstance.",
+       "en": "Comparing a Book with something that is not a Book (\"Ruth\" or 4) must give False, without an error: check with isinstance."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "class Libro:\n    def __init__(self, nombre, capitulos):\n        self.nombre = nombre\n        self.capitulos = capitulos\n\n\nbiblioteca = [Libro(\"Génesis\", 50), Libro(\"Rut\", 4), Libro(\"Romanos\", 16)]\nprint(Libro(\"Rut\", 4) == Libro(\"Rut\", 4))\nprint(Libro(\"Rut\", 4) in biblioteca)\nprint(Libro(\"Rut\", 5) in biblioteca)",
+     "class Libro:\n    def __init__(self, nombre, capitulos):\n        self.nombre = nombre\n        self.capitulos = capitulos\n\n    def __eq__(self, otro):\n        if not isinstance(otro, Libro):\n            return NotImplemented\n        return self.nombre == otro.nombre\n\n\nbiblioteca = [Libro(\"Génesis\", 50), Libro(\"Rut\", 4), Libro(\"Romanos\", 16)]\nprint(Libro(\"Rut\", 4) == Libro(\"Rut\", 4))\nprint(Libro(\"Rut\", 4) in biblioteca)\nprint(Libro(\"Rut\", 5) in biblioteca)",
+     "class Libro:\n    def __init__(self, nombre, capitulos):\n        self.nombre = nombre\n        self.capitulos = capitulos\n\n    def __eq__(self, otro):\n        return self.nombre == otro.nombre and self.capitulos == otro.capitulos\n\n\nbiblioteca = [Libro(\"Génesis\", 50), Libro(\"Rut\", 4), Libro(\"Romanos\", 16)]\nprint(Libro(\"Rut\", 4) == Libro(\"Rut\", 4))\nprint(Libro(\"Rut\", 4) in biblioteca)\nprint(Libro(\"Rut\", 5) in biblioteca)",
+     "class Libro:\n    def __init__(self, nombre, capitulos):\n        self.nombre = nombre\n        self.capitulos = capitulos\n\n    def __eq__(self, otro):\n        if not isinstance(otro, Libro):\n            return NotImplemented\n        return self == otro\n\n\nbiblioteca = [Libro(\"Génesis\", 50), Libro(\"Rut\", 4), Libro(\"Romanos\", 16)]\nprint(Libro(\"Rut\", 4) == Libro(\"Rut\", 4))\nprint(Libro(\"Rut\", 4) in biblioteca)\nprint(Libro(\"Rut\", 5) in biblioteca)"
+    ],
+    "en": [
+     "class Book:\n    def __init__(self, name, chapters):\n        self.name = name\n        self.chapters = chapters\n\n\nlibrary = [Book(\"Genesis\", 50), Book(\"Ruth\", 4), Book(\"Romans\", 16)]\nprint(Book(\"Ruth\", 4) == Book(\"Ruth\", 4))\nprint(Book(\"Ruth\", 4) in library)\nprint(Book(\"Ruth\", 5) in library)",
+     "class Book:\n    def __init__(self, name, chapters):\n        self.name = name\n        self.chapters = chapters\n\n    def __eq__(self, other):\n        if not isinstance(other, Book):\n            return NotImplemented\n        return self.name == other.name\n\n\nlibrary = [Book(\"Genesis\", 50), Book(\"Ruth\", 4), Book(\"Romans\", 16)]\nprint(Book(\"Ruth\", 4) == Book(\"Ruth\", 4))\nprint(Book(\"Ruth\", 4) in library)\nprint(Book(\"Ruth\", 5) in library)",
+     "class Book:\n    def __init__(self, name, chapters):\n        self.name = name\n        self.chapters = chapters\n\n    def __eq__(self, other):\n        return self.name == other.name and self.chapters == other.chapters\n\n\nlibrary = [Book(\"Genesis\", 50), Book(\"Ruth\", 4), Book(\"Romans\", 16)]\nprint(Book(\"Ruth\", 4) == Book(\"Ruth\", 4))\nprint(Book(\"Ruth\", 4) in library)\nprint(Book(\"Ruth\", 5) in library)"
+    ]
+   }
+  },
+  {
+   "id": "ordenar-tribus",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "`sorted(tribus)` da error porque Python no sabe cuándo una `Tribu` es «menor» que otra. Agrega `__lt__(self, otro)` para que una tribu sea menor si tiene **menos varones** (cifras de Números 1). No uses `key=`: `sorted` debe funcionar gracias a `__lt__`. Debe salir:\n```\nManasés: 32200\nEfraín: 40500\nRubén: 46500\nDan: 62700\nJudá: 74600\n```",
+    "en": "`sorted(tribes)` gives an error because Python doesn't know when a `Tribe` is “less than” another. Add `__lt__(self, other)` so that a tribe is less if it has **fewer men** (numbers from Numbers 1). Don't use `key=`: `sorted` must work thanks to `__lt__`. It should print:\n```\nManasseh: 32200\nEphraim: 40500\nReuben: 46500\nDan: 62700\nJudah: 74600\n```"
+   },
+   "inicial": {
+    "es": "class Tribu:\n    def __init__(self, nombre, varones):\n        self.nombre = nombre\n        self.varones = varones\n\n    def __str__(self):\n        return f\"{self.nombre}: {self.varones}\"\n\n    # __lt__ aquí\n\n\ntribus = [Tribu(\"Rubén\", 46500), Tribu(\"Judá\", 74600), Tribu(\"Efraín\", 40500), Tribu(\"Manasés\", 32200), Tribu(\"Dan\", 62700)]\nfor t in sorted(tribus):\n    print(t)",
+    "en": "class Tribe:\n    def __init__(self, name, men):\n        self.name = name\n        self.men = men\n\n    def __str__(self):\n        return f\"{self.name}: {self.men}\"\n\n    # __lt__ here\n\n\ntribes = [Tribe(\"Reuben\", 46500), Tribe(\"Judah\", 74600), Tribe(\"Ephraim\", 40500), Tribe(\"Manasseh\", 32200), Tribe(\"Dan\", 62700)]\nfor t in sorted(tribes):\n    print(t)"
+   },
+   "pistas": {
+    "es": [
+     "`__lt__` recibe `self` y `otro`, y devuelve `True` si `self` va antes.",
+     "`def __lt__(self, otro): return self.varones < otro.varones`."
+    ],
+    "en": [
+     "`__lt__` receives `self` and `other`, and returns `True` if `self` goes first.",
+     "`def __lt__(self, other): return self.men < other.men`."
+    ]
+   },
+   "solucion": {
+    "es": "class Tribu:\n    def __init__(self, nombre, varones):\n        self.nombre = nombre\n        self.varones = varones\n\n    def __str__(self):\n        return f\"{self.nombre}: {self.varones}\"\n\n    def __lt__(self, otro):\n        return self.varones < otro.varones\n\n\ntribus = [Tribu(\"Rubén\", 46500), Tribu(\"Judá\", 74600), Tribu(\"Efraín\", 40500), Tribu(\"Manasés\", 32200), Tribu(\"Dan\", 62700)]\nfor t in sorted(tribus):\n    print(t)",
+    "en": "class Tribe:\n    def __init__(self, name, men):\n        self.name = name\n        self.men = men\n\n    def __str__(self):\n        return f\"{self.name}: {self.men}\"\n\n    def __lt__(self, other):\n        return self.men < other.men\n\n\ntribes = [Tribe(\"Reuben\", 46500), Tribe(\"Judah\", 74600), Tribe(\"Ephraim\", 40500), Tribe(\"Manasseh\", 32200), Tribe(\"Dan\", 62700)]\nfor t in sorted(tribes):\n    print(t)"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Manasés: 32200\nEfraín: 40500\nRubén: 46500\nDan: 62700\nJudá: 74600"
+     },
+     {
+      "py": "assert not (Tribu('Gad', 45650) < Tribu('Aser', 41500))\nassert Tribu('Aser', 41500) < Tribu('Gad', 45650)",
+      "msg": {
+       "es": "Tribu(\"Aser\", 41500) < Tribu(\"Gad\", 45650) debe ser True, y al revés False: compara los varones.",
+       "en": "Tribu(\"Aser\", 41500) < Tribu(\"Gad\", 45650) must be True, and the other way around False: compare the men."
+      }
+     },
+     {
+      "py": "assert 'key=' not in _codigo and '__lt__' in Tribu.__dict__",
+      "msg": {
+       "es": "Define __lt__ en la clase y ordena sin key=.",
+       "en": "Define __lt__ in the class and sort without key=."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Manasseh: 32200\nEphraim: 40500\nReuben: 46500\nDan: 62700\nJudah: 74600"
+     },
+     {
+      "py": "assert not (Tribe('Gad', 45650) < Tribe('Asher', 41500))\nassert Tribe('Asher', 41500) < Tribe('Gad', 45650)",
+      "msg": {
+       "es": "Tribe(\"Asher\", 41500) < Tribe(\"Gad\", 45650) debe ser True, y al revés False: compara los varones.",
+       "en": "Tribe(\"Asher\", 41500) < Tribe(\"Gad\", 45650) must be True, and the other way around False: compare the men."
+      }
+     },
+     {
+      "py": "assert 'key=' not in _codigo and '__lt__' in Tribe.__dict__",
+      "msg": {
+       "es": "Define __lt__ en la clase y ordena sin key=.",
+       "en": "Define __lt__ in the class and sort without key=."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "class Tribu:\n    def __init__(self, nombre, varones):\n        self.nombre = nombre\n        self.varones = varones\n\n    def __str__(self):\n        return f\"{self.nombre}: {self.varones}\"\n\n\ntribus = [Tribu(\"Rubén\", 46500), Tribu(\"Judá\", 74600), Tribu(\"Efraín\", 40500), Tribu(\"Manasés\", 32200), Tribu(\"Dan\", 62700)]\nfor t in sorted(tribus):\n    print(t)",
+     "class Tribu:\n    def __init__(self, nombre, varones):\n        self.nombre = nombre\n        self.varones = varones\n\n    def __str__(self):\n        return f\"{self.nombre}: {self.varones}\"\n\n    def __lt__(self, otro):\n        return self.varones > otro.varones\n\n\ntribus = [Tribu(\"Rubén\", 46500), Tribu(\"Judá\", 74600), Tribu(\"Efraín\", 40500), Tribu(\"Manasés\", 32200), Tribu(\"Dan\", 62700)]\nfor t in sorted(tribus):\n    print(t)",
+     "class Tribu:\n    def __init__(self, nombre, varones):\n        self.nombre = nombre\n        self.varones = varones\n\n    def __str__(self):\n        return f\"{self.nombre}: {self.varones}\"\n\n    def __lt__(self, otro):\n        return self.nombre < otro.nombre\n\n\ntribus = [Tribu(\"Rubén\", 46500), Tribu(\"Judá\", 74600), Tribu(\"Efraín\", 40500), Tribu(\"Manasés\", 32200), Tribu(\"Dan\", 62700)]\nfor t in sorted(tribus):\n    print(t)",
+     "class Tribu:\n    def __init__(self, nombre, varones):\n        self.nombre = nombre\n        self.varones = varones\n\n    def __str__(self):\n        return f\"{self.nombre}: {self.varones}\"\n\n\ntribus = [Tribu(\"Rubén\", 46500), Tribu(\"Judá\", 74600), Tribu(\"Efraín\", 40500), Tribu(\"Manasés\", 32200), Tribu(\"Dan\", 62700)]\nfor t in sorted(tribus, key=lambda t: t.varones):\n    print(t)"
+    ],
+    "en": [
+     "class Tribe:\n    def __init__(self, name, men):\n        self.name = name\n        self.men = men\n\n    def __str__(self):\n        return f\"{self.name}: {self.men}\"\n\n\ntribes = [Tribe(\"Reuben\", 46500), Tribe(\"Judah\", 74600), Tribe(\"Ephraim\", 40500), Tribe(\"Manasseh\", 32200), Tribe(\"Dan\", 62700)]\nfor t in sorted(tribes):\n    print(t)",
+     "class Tribe:\n    def __init__(self, name, men):\n        self.name = name\n        self.men = men\n\n    def __str__(self):\n        return f\"{self.name}: {self.men}\"\n\n    def __lt__(self, other):\n        return self.men > other.men\n\n\ntribes = [Tribe(\"Reuben\", 46500), Tribe(\"Judah\", 74600), Tribe(\"Ephraim\", 40500), Tribe(\"Manasseh\", 32200), Tribe(\"Dan\", 62700)]\nfor t in sorted(tribes):\n    print(t)",
+     "class Tribe:\n    def __init__(self, name, men):\n        self.name = name\n        self.men = men\n\n    def __str__(self):\n        return f\"{self.name}: {self.men}\"\n\n    def __lt__(self, other):\n        return self.name < other.name\n\n\ntribes = [Tribe(\"Reuben\", 46500), Tribe(\"Judah\", 74600), Tribe(\"Ephraim\", 40500), Tribe(\"Manasseh\", 32200), Tribe(\"Dan\", 62700)]\nfor t in sorted(tribes):\n    print(t)"
+    ]
+   }
+  },
+  {
+   "id": "biblioteca",
+   "tipo": "escribir",
+   "reto": true,
+   "enunciado": {
+    "es": "**Reto: la biblioteca de Roma.** Escribe la clase `Libro(nombre, capitulos)` con:\n- `__str__` → `Rut (4 cap.)`\n- `__repr__` → `Libro('Rut', 4)`\n- `__eq__`: iguales si coinciden nombre y capítulos (`NotImplemented` si el otro no es un `Libro`)\n- `__lt__`: va antes el que tiene **menos capítulos**; si empatan, el de nombre alfabéticamente menor.\n\nY la clase hija `Carta(nombre, capitulos, autor)`, que usa `super().__init__`, y cuyo `__str__` agrega el autor: `Filemón (1 cap.), de Pablo`. Su `repr` debe empezar con `Carta(` (pista: `type(self).__name__`).\n\nCon la lista `libros` del editor, muestra los libros ordenados con `sorted()` y cuántas cartas hay (con `isinstance`). Debe salir:\n```\nFilemón (1 cap.), de Pablo\nJudas (1 cap.), de Judas\nJonás (4 cap.)\nRut (4 cap.)\nSantiago (5 cap.), de Santiago\nRomanos (16 cap.), de Pablo\nGénesis (50 cap.)\nCartas: 4\n```",
+    "en": "**Challenge: the library in Rome.** Write the class `Book(name, chapters)` with:\n- `__str__` → `Ruth (4 ch.)`\n- `__repr__` → `Book('Ruth', 4)`\n- `__eq__`: equal if name and chapters match (`NotImplemented` if the other one is not a `Book`)\n- `__lt__`: the one with **fewer chapters** comes first; if they tie, the one whose name comes first alphabetically.\n\nAnd the child class `Letter(name, chapters, author)`, which uses `super().__init__`, and whose `__str__` adds the author: `Philemon (1 ch.), by Paul`. Its `repr` must start with `Letter(` (hint: `type(self).__name__`).\n\nWith the `books` list in the editor, show the books sorted with `sorted()` and how many letters there are (with `isinstance`). It should print:\n```\nJude (1 ch.), by Jude\nPhilemon (1 ch.), by Paul\nJonah (4 ch.)\nRuth (4 ch.)\nJames (5 ch.), by James\nRomans (16 ch.), by Paul\nGenesis (50 ch.)\nLetters: 4\n```"
+   },
+   "inicial": {
+    "es": "# tus clases Libro y Carta aquí\n\n\nlibros = [\n    Libro(\"Génesis\", 50),\n    Carta(\"Romanos\", 16, \"Pablo\"),\n    Libro(\"Rut\", 4),\n    Carta(\"Filemón\", 1, \"Pablo\"),\n    Carta(\"Santiago\", 5, \"Santiago\"),\n    Libro(\"Jonás\", 4),\n    Carta(\"Judas\", 1, \"Judas\"),\n]\n",
+    "en": "# your Book and Letter classes here\n\n\nbooks = [\n    Book(\"Genesis\", 50),\n    Letter(\"Romans\", 16, \"Paul\"),\n    Book(\"Ruth\", 4),\n    Letter(\"Philemon\", 1, \"Paul\"),\n    Letter(\"James\", 5, \"James\"),\n    Book(\"Jonah\", 4),\n    Letter(\"Jude\", 1, \"Jude\"),\n]\n"
+   },
+   "pistas": {
+    "es": [
+     "Para el desempate, compara tuplas: `(self.capitulos, self.nombre) < (otro.capitulos, otro.nombre)`. Python compara el primer elemento y, si empatan, el segundo.",
+     "En `Carta`: `def __str__(self): return super().__str__() + f\", de {self.autor}\"`. En `Libro.__repr__`: `return f\"{type(self).__name__}({self.nombre!r}, {self.capitulos})\"`."
+    ],
+    "en": [
+     "For the tie-break, compare tuples: `(self.chapters, self.name) < (other.chapters, other.name)`. Python compares the first element and, if they tie, the second.",
+     "In `Letter`: `def __str__(self): return super().__str__() + f\", by {self.author}\"`. In `Book.__repr__`: `return f\"{type(self).__name__}({self.name!r}, {self.chapters})\"`."
+    ]
+   },
+   "solucion": {
+    "es": "class Libro:\n    def __init__(self, nombre, capitulos):\n        self.nombre = nombre\n        self.capitulos = capitulos\n\n    def __str__(self):\n        return f\"{self.nombre} ({self.capitulos} cap.)\"\n\n    def __repr__(self):\n        return f\"{type(self).__name__}({self.nombre!r}, {self.capitulos})\"\n\n    def __eq__(self, otro):\n        if not isinstance(otro, Libro):\n            return NotImplemented\n        return (self.nombre, self.capitulos) == (otro.nombre, otro.capitulos)\n\n    def __lt__(self, otro):\n        return (self.capitulos, self.nombre) < (otro.capitulos, otro.nombre)\n\n\nclass Carta(Libro):\n    def __init__(self, nombre, capitulos, autor):\n        super().__init__(nombre, capitulos)\n        self.autor = autor\n\n    def __str__(self):\n        return super().__str__() + f\", de {self.autor}\"\n\n\nlibros = [\n    Libro(\"Génesis\", 50),\n    Carta(\"Romanos\", 16, \"Pablo\"),\n    Libro(\"Rut\", 4),\n    Carta(\"Filemón\", 1, \"Pablo\"),\n    Carta(\"Santiago\", 5, \"Santiago\"),\n    Libro(\"Jonás\", 4),\n    Carta(\"Judas\", 1, \"Judas\"),\n]\n\nfor libro in sorted(libros):\n    print(libro)\ncartas = [l for l in libros if isinstance(l, Carta)]\nprint(f\"Cartas: {len(cartas)}\")",
+    "en": "class Book:\n    def __init__(self, name, chapters):\n        self.name = name\n        self.chapters = chapters\n\n    def __str__(self):\n        return f\"{self.name} ({self.chapters} ch.)\"\n\n    def __repr__(self):\n        return f\"{type(self).__name__}({self.name!r}, {self.chapters})\"\n\n    def __eq__(self, other):\n        if not isinstance(other, Book):\n            return NotImplemented\n        return (self.name, self.chapters) == (other.name, other.chapters)\n\n    def __lt__(self, other):\n        return (self.chapters, self.name) < (other.chapters, other.name)\n\n\nclass Letter(Book):\n    def __init__(self, name, chapters, author):\n        super().__init__(name, chapters)\n        self.author = author\n\n    def __str__(self):\n        return super().__str__() + f\", by {self.author}\"\n\n\nbooks = [\n    Book(\"Genesis\", 50),\n    Letter(\"Romans\", 16, \"Paul\"),\n    Book(\"Ruth\", 4),\n    Letter(\"Philemon\", 1, \"Paul\"),\n    Letter(\"James\", 5, \"James\"),\n    Book(\"Jonah\", 4),\n    Letter(\"Jude\", 1, \"Jude\"),\n]\n\nfor book in sorted(books):\n    print(book)\nletters = [b for b in books if isinstance(b, Letter)]\nprint(f\"Letters: {len(letters)}\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Filemón (1 cap.), de Pablo\nJudas (1 cap.), de Judas\nJonás (4 cap.)\nRut (4 cap.)\nSantiago (5 cap.), de Santiago\nRomanos (16 cap.), de Pablo\nGénesis (50 cap.)\nCartas: 4"
+     },
+     {
+      "py": "assert repr(Libro('Rut', 4)) == \"Libro('Rut', 4)\" and repr(Carta('Romanos', 16, 'Pablo')) == \"Carta('Romanos', 16)\"",
+      "msg": {
+       "es": "repr debe dar Libro('Rut', 4) para un Libro y Carta('Romanos', 16) para una Carta.",
+       "en": "repr must give Libro('Rut', 4) for a Libro and Carta('Romanos', 16) for a Carta."
+      }
+     },
+     {
+      "py": "assert Libro('Rut', 4) == Libro('Rut', 4) and Libro('Rut', 4) != Libro('Rut', 5) and (Libro('Rut', 4) == 'Rut') is False",
+      "msg": {
+       "es": "Revisa __eq__: mismo nombre y capítulos, y False (sin error) al comparar con algo que no es Libro.",
+       "en": "Check __eq__: same name and chapters, and False (no error) when comparing with something that is not a Libro."
+      }
+     },
+     {
+      "py": "assert Libro('Jonás', 4) < Libro('Rut', 4) and not (Libro('Rut', 4) < Libro('Jonás', 4)) and Libro('Rut', 4) < Libro('Santiago', 5)",
+      "msg": {
+       "es": "Revisa __lt__: primero por capítulos y, si empatan, por nombre.",
+       "en": "Check __lt__: first by chapters and, if they tie, by name."
+      }
+     },
+     {
+      "py": "c = Carta('Romanos', 16, 'Pablo')\nassert isinstance(c, Libro) and c.autor == 'Pablo' and str(c) == 'Romanos (16 cap.), de Pablo' and '__lt__' not in Carta.__dict__",
+      "msg": {
+       "es": "Carta debe heredar de Libro (y su __lt__), guardar autor y mostrar «Romanos (16 cap.), de Pablo».",
+       "en": "Carta must inherit from Libro (and its __lt__), store autor and show «Romanos (16 cap.), de Pablo»."
+      }
+     },
+     {
+      "py": "assert 'sorted(' in _codigo and 'key=' not in _codigo and 'isinstance(' in _codigo",
+      "msg": {
+       "es": "Ordena con sorted() sin key= (que lo haga __lt__) y cuenta las cartas con isinstance().",
+       "en": "Sort with sorted() without key= (let __lt__ do it) and count the letters with isinstance()."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Jude (1 ch.), by Jude\nPhilemon (1 ch.), by Paul\nJonah (4 ch.)\nRuth (4 ch.)\nJames (5 ch.), by James\nRomans (16 ch.), by Paul\nGenesis (50 ch.)\nLetters: 4"
+     },
+     {
+      "py": "assert repr(Book('Ruth', 4)) == \"Book('Ruth', 4)\" and repr(Letter('Romans', 16, 'Paul')) == \"Letter('Romans', 16)\"",
+      "msg": {
+       "es": "repr debe dar Book('Ruth', 4) para un Book y Letter('Romans', 16) para una Letter.",
+       "en": "repr must give Book('Ruth', 4) for a Book and Letter('Romans', 16) for a Letter."
+      }
+     },
+     {
+      "py": "assert Book('Ruth', 4) == Book('Ruth', 4) and Book('Ruth', 4) != Book('Ruth', 5) and (Book('Ruth', 4) == 'Ruth') is False",
+      "msg": {
+       "es": "Revisa __eq__: mismo nombre y capítulos, y False (sin error) al comparar con algo que no es Book.",
+       "en": "Check __eq__: same name and chapters, and False (no error) when comparing with something that is not a Book."
+      }
+     },
+     {
+      "py": "assert Book('Jonah', 4) < Book('Ruth', 4) and not (Book('Ruth', 4) < Book('Jonah', 4)) and Book('Ruth', 4) < Book('James', 5)",
+      "msg": {
+       "es": "Revisa __lt__: primero por capítulos y, si empatan, por nombre.",
+       "en": "Check __lt__: first by chapters and, if they tie, by name."
+      }
+     },
+     {
+      "py": "c = Letter('Romans', 16, 'Paul')\nassert isinstance(c, Book) and c.author == 'Paul' and str(c) == 'Romans (16 ch.), by Paul' and '__lt__' not in Letter.__dict__",
+      "msg": {
+       "es": "Letter debe heredar de Book (y su __lt__), guardar author y mostrar «Romans (16 ch.), by Paul».",
+       "en": "Letter must inherit from Book (and its __lt__), store author and show «Romans (16 ch.), by Paul»."
+      }
+     },
+     {
+      "py": "assert 'sorted(' in _codigo and 'key=' not in _codigo and 'isinstance(' in _codigo",
+      "msg": {
+       "es": "Ordena con sorted() sin key= (que lo haga __lt__) y cuenta las cartas con isinstance().",
+       "en": "Sort with sorted() without key= (let __lt__ do it) and count the letters with isinstance()."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "class Libro:\n    def __init__(self, nombre, capitulos):\n        self.nombre = nombre\n        self.capitulos = capitulos\n\n    def __str__(self):\n        return f\"{self.nombre} ({self.capitulos} cap.)\"\n\n    def __repr__(self):\n        return f\"{type(self).__name__}({self.nombre!r}, {self.capitulos})\"\n\n    def __eq__(self, otro):\n        if not isinstance(otro, Libro):\n            return NotImplemented\n        return (self.nombre, self.capitulos) == (otro.nombre, otro.capitulos)\n\n    def __lt__(self, otro):\n        return self.capitulos < otro.capitulos\n\n\nclass Carta(Libro):\n    def __init__(self, nombre, capitulos, autor):\n        super().__init__(nombre, capitulos)\n        self.autor = autor\n\n    def __str__(self):\n        return super().__str__() + f\", de {self.autor}\"\n\n\nlibros = [\n    Libro(\"Génesis\", 50),\n    Carta(\"Romanos\", 16, \"Pablo\"),\n    Libro(\"Rut\", 4),\n    Carta(\"Filemón\", 1, \"Pablo\"),\n    Carta(\"Santiago\", 5, \"Santiago\"),\n    Libro(\"Jonás\", 4),\n    Carta(\"Judas\", 1, \"Judas\"),\n]\n\nfor libro in sorted(libros):\n    print(libro)\ncartas = [l for l in libros if isinstance(l, Carta)]\nprint(f\"Cartas: {len(cartas)}\")",
+     "class Libro:\n    def __init__(self, nombre, capitulos):\n        self.nombre = nombre\n        self.capitulos = capitulos\n\n    def __str__(self):\n        return f\"{self.nombre} ({self.capitulos} cap.)\"\n\n    def __repr__(self):\n        return f\"Libro({self.nombre!r}, {self.capitulos})\"\n\n    def __eq__(self, otro):\n        if not isinstance(otro, Libro):\n            return NotImplemented\n        return (self.nombre, self.capitulos) == (otro.nombre, otro.capitulos)\n\n    def __lt__(self, otro):\n        return (self.capitulos, self.nombre) < (otro.capitulos, otro.nombre)\n\n\nclass Carta(Libro):\n    def __init__(self, nombre, capitulos, autor):\n        super().__init__(nombre, capitulos)\n        self.autor = autor\n\n    def __str__(self):\n        return super().__str__() + f\", de {self.autor}\"\n\n\nlibros = [\n    Libro(\"Génesis\", 50),\n    Carta(\"Romanos\", 16, \"Pablo\"),\n    Libro(\"Rut\", 4),\n    Carta(\"Filemón\", 1, \"Pablo\"),\n    Carta(\"Santiago\", 5, \"Santiago\"),\n    Libro(\"Jonás\", 4),\n    Carta(\"Judas\", 1, \"Judas\"),\n]\n\nfor libro in sorted(libros):\n    print(libro)\ncartas = [l for l in libros if isinstance(l, Carta)]\nprint(f\"Cartas: {len(cartas)}\")",
+     "class Libro:\n    def __init__(self, nombre, capitulos):\n        self.nombre = nombre\n        self.capitulos = capitulos\n\n    def __str__(self):\n        return f\"{self.nombre} ({self.capitulos} cap.)\"\n\n    def __repr__(self):\n        return f\"{type(self).__name__}({self.nombre!r}, {self.capitulos})\"\n\n    def __eq__(self, otro):\n        if not isinstance(otro, Libro):\n            return NotImplemented\n        return (self.nombre, self.capitulos) == (otro.nombre, otro.capitulos)\n\n    def __lt__(self, otro):\n        return (self.capitulos, self.nombre) < (otro.capitulos, otro.nombre)\n\n\nclass Carta(Libro):\n    def __init__(self, nombre, capitulos, autor):\n        super().__init__(nombre, capitulos)\n        self.autor = autor\n\n    def __str__(self):\n        return f\"{self.nombre}, de {self.autor}\"\n\n\nlibros = [\n    Libro(\"Génesis\", 50),\n    Carta(\"Romanos\", 16, \"Pablo\"),\n    Libro(\"Rut\", 4),\n    Carta(\"Filemón\", 1, \"Pablo\"),\n    Carta(\"Santiago\", 5, \"Santiago\"),\n    Libro(\"Jonás\", 4),\n    Carta(\"Judas\", 1, \"Judas\"),\n]\n\nfor libro in sorted(libros):\n    print(libro)\ncartas = [l for l in libros if isinstance(l, Carta)]\nprint(f\"Cartas: {len(cartas)}\")",
+     "class Libro:\n    def __init__(self, nombre, capitulos):\n        self.nombre = nombre\n        self.capitulos = capitulos\n\n    def __str__(self):\n        return f\"{self.nombre} ({self.capitulos} cap.)\"\n\n    def __repr__(self):\n        return f\"{type(self).__name__}({self.nombre!r}, {self.capitulos})\"\n\n    def __eq__(self, otro):\n        if not isinstance(otro, Libro):\n            return NotImplemented\n        return (self.nombre, self.capitulos) == (otro.nombre, otro.capitulos)\n\n    def __lt__(self, otro):\n        return (self.capitulos, self.nombre) < (otro.capitulos, otro.nombre)\n\n\nclass Carta(Libro):\n    def __init__(self, nombre, capitulos, autor):\n        super().__init__(nombre, capitulos)\n        self.autor = autor\n\n    def __str__(self):\n        return super().__str__() + f\", de {self.autor}\"\n\n\nlibros = [\n    Libro(\"Génesis\", 50),\n    Carta(\"Romanos\", 16, \"Pablo\"),\n    Libro(\"Rut\", 4),\n    Carta(\"Filemón\", 1, \"Pablo\"),\n    Carta(\"Santiago\", 5, \"Santiago\"),\n    Libro(\"Jonás\", 4),\n    Carta(\"Judas\", 1, \"Judas\"),\n]\n\nfor libro in sorted(libros):\n    print(libro)\ncartas = [l for l in libros if isinstance(l, Libro)]\nprint(f\"Cartas: {len(cartas)}\")"
+    ],
+    "en": [
+     "class Book:\n    def __init__(self, name, chapters):\n        self.name = name\n        self.chapters = chapters\n\n    def __str__(self):\n        return f\"{self.name} ({self.chapters} ch.)\"\n\n    def __repr__(self):\n        return f\"{type(self).__name__}({self.name!r}, {self.chapters})\"\n\n    def __eq__(self, other):\n        if not isinstance(other, Book):\n            return NotImplemented\n        return (self.name, self.chapters) == (other.name, other.chapters)\n\n    def __lt__(self, other):\n        return self.chapters < other.chapters\n\n\nclass Letter(Book):\n    def __init__(self, name, chapters, author):\n        super().__init__(name, chapters)\n        self.author = author\n\n    def __str__(self):\n        return super().__str__() + f\", by {self.author}\"\n\n\nbooks = [\n    Book(\"Genesis\", 50),\n    Letter(\"Romans\", 16, \"Paul\"),\n    Book(\"Ruth\", 4),\n    Letter(\"Philemon\", 1, \"Paul\"),\n    Letter(\"James\", 5, \"James\"),\n    Book(\"Jonah\", 4),\n    Letter(\"Jude\", 1, \"Jude\"),\n]\n\nfor book in sorted(books):\n    print(book)\nletters = [b for b in books if isinstance(b, Letter)]\nprint(f\"Letters: {len(letters)}\")",
+     "class Book:\n    def __init__(self, name, chapters):\n        self.name = name\n        self.chapters = chapters\n\n    def __str__(self):\n        return f\"{self.name} ({self.chapters} ch.)\"\n\n    def __repr__(self):\n        return f\"Book({self.name!r}, {self.chapters})\"\n\n    def __eq__(self, other):\n        if not isinstance(other, Book):\n            return NotImplemented\n        return (self.name, self.chapters) == (other.name, other.chapters)\n\n    def __lt__(self, other):\n        return (self.chapters, self.name) < (other.chapters, other.name)\n\n\nclass Letter(Book):\n    def __init__(self, name, chapters, author):\n        super().__init__(name, chapters)\n        self.author = author\n\n    def __str__(self):\n        return super().__str__() + f\", by {self.author}\"\n\n\nbooks = [\n    Book(\"Genesis\", 50),\n    Letter(\"Romans\", 16, \"Paul\"),\n    Book(\"Ruth\", 4),\n    Letter(\"Philemon\", 1, \"Paul\"),\n    Letter(\"James\", 5, \"James\"),\n    Book(\"Jonah\", 4),\n    Letter(\"Jude\", 1, \"Jude\"),\n]\n\nfor book in sorted(books):\n    print(book)\nletters = [b for b in books if isinstance(b, Letter)]\nprint(f\"Letters: {len(letters)}\")",
+     "class Book:\n    def __init__(self, name, chapters):\n        self.name = name\n        self.chapters = chapters\n\n    def __str__(self):\n        return f\"{self.name} ({self.chapters} ch.)\"\n\n    def __repr__(self):\n        return f\"{type(self).__name__}({self.name!r}, {self.chapters})\"\n\n    def __eq__(self, other):\n        if not isinstance(other, Book):\n            return NotImplemented\n        return (self.name, self.chapters) == (other.name, other.chapters)\n\n    def __lt__(self, other):\n        return (self.chapters, self.name) < (other.chapters, other.name)\n\n\nclass Letter(Book):\n    def __init__(self, name, chapters, author):\n        super().__init__(name, chapters)\n        self.author = author\n\n    def __str__(self):\n        return super().__str__() + f\", by {self.author}\"\n\n\nbooks = [\n    Book(\"Genesis\", 50),\n    Letter(\"Romans\", 16, \"Paul\"),\n    Book(\"Ruth\", 4),\n    Letter(\"Philemon\", 1, \"Paul\"),\n    Letter(\"James\", 5, \"James\"),\n    Book(\"Jonah\", 4),\n    Letter(\"Jude\", 1, \"Jude\"),\n]\n\nfor book in sorted(books):\n    print(book)\nletters = [b for b in books if isinstance(b, Book)]\nprint(f\"Letters: {len(letters)}\")"
+    ]
+   }
+  }
+ ]
+}

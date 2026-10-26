@@ -1,0 +1,297 @@
+{
+ "_leeme": "Orden del sendero. Cada capítulo con «archivo» se puede jugar; los que tienen null salen como «Próximamente». «nivel» agrupa los capítulos (ver «niveles»). Ver README.md.",
+ "capitulos": [
+  {
+   "numero": 1,
+   "lugar": "eden",
+   "archivo": "01-sea-la-luz.json",
+   "titulo": {
+    "es": "Génesis: «Sea la luz»",
+    "en": "Genesis: “Let there be light”"
+   },
+   "nivel": "basico"
+  },
+  {
+   "numero": 2,
+   "lugar": "eden",
+   "archivo": "02-nombres-animales.json",
+   "titulo": {
+    "es": "Los nombres de los animales",
+    "en": "Naming the animals"
+   },
+   "nivel": "basico"
+  },
+  {
+   "numero": 3,
+   "lugar": "arca",
+   "archivo": "03-medidas-arca.json",
+   "titulo": {
+    "es": "Las medidas del arca",
+    "en": "The measurements of the ark"
+   },
+   "nivel": "basico"
+  },
+  {
+   "numero": 4,
+   "lugar": "desierto",
+   "archivo": "04-conversaciones.json",
+   "titulo": {
+    "es": "Conversaciones",
+    "en": "Conversations"
+   },
+   "nivel": "basico"
+  },
+  {
+   "numero": 5,
+   "lugar": "desierto",
+   "archivo": "05-vellon-gedeon.json",
+   "titulo": {
+    "es": "El vellón de Gedeón",
+    "en": "Gideon's fleece"
+   },
+   "nivel": "basico"
+  },
+  {
+   "numero": 6,
+   "lugar": "jerico",
+   "archivo": "06-murallas-jerico.json",
+   "titulo": {
+    "es": "Las murallas de Jericó",
+    "en": "The walls of Jericho"
+   },
+   "nivel": "basico"
+  },
+  {
+   "numero": 7,
+   "lugar": "jerusalen",
+   "archivo": "07-doce-tribus.json",
+   "titulo": {
+    "es": "Las doce tribus",
+    "en": "The twelve tribes"
+   },
+   "nivel": "basico"
+  },
+  {
+   "numero": 8,
+   "lugar": "jerusalen",
+   "archivo": "08-libros-biblia.json",
+   "titulo": {
+    "es": "Los libros de la Biblia",
+    "en": "The books of the Bible"
+   },
+   "nivel": "basico"
+  },
+  {
+   "numero": 9,
+   "lugar": "galilea",
+   "archivo": "09-parabolas.json",
+   "titulo": {
+    "es": "Las parábolas",
+    "en": "The parables"
+   },
+   "nivel": "basico"
+  },
+  {
+   "numero": 10,
+   "lugar": "galilea",
+   "archivo": "10-salmo-dato.json",
+   "titulo": {
+    "es": "El Salmo como dato",
+    "en": "The Psalm as data"
+   },
+   "nivel": "basico"
+  },
+  {
+   "numero": 11,
+   "lugar": "pablo",
+   "archivo": "11-errores-gracia.json",
+   "titulo": {
+    "es": "Errores y gracia",
+    "en": "Errors and grace"
+   },
+   "nivel": "basico"
+  },
+  {
+   "numero": 12,
+   "lugar": "pablo",
+   "archivo": "12-personajes-objetos.json",
+   "titulo": {
+    "es": "Personajes como objetos",
+    "en": "Characters as objects"
+   },
+   "nivel": "basico"
+  },
+  {
+   "numero": 13,
+   "lugar": "pablo",
+   "archivo": "13-ordenar-rollos.json",
+   "titulo": {
+    "es": "Ordenar los rollos",
+    "en": "Sorting the scrolls"
+   },
+   "nivel": "basico"
+  },
+  {
+   "numero": 14,
+   "lugar": "pablo",
+   "archivo": "14-modulos.json",
+   "titulo": {
+    "es": "Módulos",
+    "en": "Modules"
+   },
+   "nivel": "basico"
+  },
+  {
+   "numero": 15,
+   "lugar": "pablo",
+   "archivo": "15-proyectos-finales.json",
+   "titulo": {
+    "es": "Proyectos finales",
+    "en": "Final projects"
+   },
+   "nivel": "basico"
+  },
+  {
+   "numero": 16,
+   "lugar": "roma",
+   "nivel": "intermedio",
+   "archivo": "16-cartas-iglesias.json",
+   "titulo": {
+    "es": "Cartas a las iglesias",
+    "en": "Letters to the churches"
+   }
+  },
+  {
+   "numero": 17,
+   "lugar": "roma",
+   "nivel": "intermedio",
+   "archivo": "17-censo-tribus.json",
+   "titulo": {
+    "es": "El censo de las tribus",
+    "en": "The census of the tribes"
+   }
+  },
+  {
+   "numero": 18,
+   "lugar": "roma",
+   "nivel": "intermedio",
+   "archivo": "18-herencia.json",
+   "titulo": {
+    "es": "Herencia: de padres a hijos",
+    "en": "Inheritance: from parents to children"
+   }
+  },
+  {
+   "numero": 19,
+   "lugar": "patmos",
+   "nivel": "intermedio",
+   "archivo": "19-genealogias.json",
+   "titulo": {
+    "es": "Genealogías",
+    "en": "Genealogies"
+   }
+  },
+  {
+   "numero": 20,
+   "lugar": "patmos",
+   "nivel": "intermedio",
+   "archivo": "20-concordancia.json",
+   "titulo": {
+    "es": "La concordancia",
+    "en": "The concordance"
+   }
+  },
+  {
+   "numero": 21,
+   "lugar": "patmos",
+   "nivel": "intermedio",
+   "archivo": "21-siete-iglesias.json",
+   "titulo": {
+    "es": "Las siete iglesias",
+    "en": "The seven churches"
+   }
+  },
+  {
+   "numero": 22,
+   "lugar": "nueva_jerusalen",
+   "nivel": "intermedio",
+   "archivo": "22-examinenlo-todo.json",
+   "titulo": {
+    "es": "Examínenlo todo",
+    "en": "Test everything"
+   }
+  },
+  {
+   "numero": 23,
+   "lugar": "nueva_jerusalen",
+   "nivel": "intermedio",
+   "archivo": "23-ciudad-completa.json",
+   "titulo": {
+    "es": "La ciudad completa",
+    "en": "The finished city"
+   }
+  }
+ ],
+ "niveles": [
+  {
+   "id": "basico",
+   "desde": 1,
+   "titulo": {
+    "es": "Nivel básico",
+    "en": "Beginner level"
+   },
+   "lema": {
+    "es": "Del Génesis a los caminos de Pablo · 15 capítulos",
+    "en": "From Genesis to Paul's journeys · 15 chapters"
+   },
+   "aprenderas": {
+    "es": [
+     "Escribir tus propios programas de principio a fin",
+     "Variables, decisiones (if) y bucles (for, while)",
+     "Listas, diccionarios, tuplas y conjuntos",
+     "Funciones, errores con try/except y clases sencillas",
+     "Algoritmos de búsqueda y ordenamiento, y módulos como random y math",
+     "4 proyectos propios: quiz bíblico, plan de lectura, buscador de versículos y una tarjeta dibujada con código"
+    ],
+    "en": [
+     "Write your own programs from start to finish",
+     "Variables, decisions (if) and loops (for, while)",
+     "Lists, dictionaries, tuples and sets",
+     "Functions, errors with try/except and simple classes",
+     "Searching and sorting algorithms, and modules like random and math",
+     "4 projects of your own: Bible quiz, reading plan, verse finder and a card drawn with code"
+    ]
+   }
+  },
+  {
+   "id": "intermedio",
+   "desde": 16,
+   "titulo": {
+    "es": "Nivel intermedio",
+    "en": "Intermediate level"
+   },
+   "lema": {
+    "es": "De Roma a la nueva Jerusalén · 8 capítulos",
+    "en": "From Rome to the new Jerusalem · 8 chapters"
+   },
+   "aprenderas": {
+    "es": [
+     "Leer y guardar archivos de texto, JSON y CSV",
+     "Herencia de clases y métodos especiales (__str__, __eq__…)",
+     "Recursión, iteradores y generadores",
+     "Colecciones avanzadas: Counter, defaultdict, sorted con key y lambda",
+     "Probar tu propio código y depurarlo como un profesional",
+     "Un proyecto grande en varios módulos, y cómo seguir con Python en tu computadora"
+    ],
+    "en": [
+     "Read and save text, JSON and CSV files",
+     "Class inheritance and special methods (__str__, __eq__…)",
+     "Recursion, iterators and generators",
+     "Advanced collections: Counter, defaultdict, sorted with key and lambda",
+     "Test your own code and debug it like a professional",
+     "A large project across several modules, and how to keep going with Python on your own computer"
+    ]
+   }
+  }
+ ]
+}

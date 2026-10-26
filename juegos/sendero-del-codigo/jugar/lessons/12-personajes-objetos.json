@@ -1,0 +1,611 @@
+{
+ "id": "12-personajes-objetos",
+ "numero": 12,
+ "lugar": "pablo",
+ "titulo": {
+  "es": "Personajes como objetos",
+  "en": "Characters as objects"
+ },
+ "tema": {
+  "es": "clases, __init__, self, atributos y métodos",
+  "en": "classes, __init__, self, attributes and methods"
+ },
+ "versiculo": "heb-12-1",
+ "medalla": {
+  "es": "Testigo fiel",
+  "en": "Faithful witness"
+ },
+ "leccion": {
+  "es": [
+   "Una **clase** es un molde para crear **objetos**. La clase `Personaje` dice qué datos tiene un personaje y qué puede hacer; cada objeto creado con ella (Pablo, Lidia, Lucas) es una **instancia** con sus propios datos.",
+   "`__init__` es un método especial que Python corre solo al crear un objeto: `pablo = Personaje(\"Pablo\", \"Tarso\")`. Su primer parámetro, `self`, es el objeto que se está creando; con `self.nombre = nombre` guardas un **atributo** dentro de él. Al llamar a la clase no escribes `self`: Python lo pone.",
+   "Un **método** es una función escrita dentro de la clase; también recibe `self` primero, y así puede leer y cambiar los atributos de **ese** objeto. Se llama con punto: `pablo.presentarse()`. Los atributos también se leen con punto: `pablo.ciudad`.",
+   "Los objetos se pueden guardar en listas y recorrer con `for`: `for p in equipo: print(p.nombre)`. Así, como la «nube de testigos» de Hebreos 12:1, puedes tener muchos personajes con la misma forma y datos distintos."
+  ],
+  "en": [
+   "A **class** is a mold for creating **objects**. The `Character` class says what data a character has and what it can do; each object created with it (Paul, Lydia, Luke) is an **instance** with its own data.",
+   "`__init__` is a special method that Python runs by itself when an object is created: `paul = Character(\"Paul\", \"Tarsus\")`. Its first parameter, `self`, is the object being created; with `self.name = name` you store an **attribute** inside it. When you call the class you don't write `self`: Python fills it in.",
+   "A **method** is a function written inside the class; it also receives `self` first, so it can read and change the attributes of **that** object. You call it with a dot: `paul.introduce()`. Attributes are read with a dot too: `paul.city`.",
+   "Objects can be stored in lists and looped over with `for`: `for c in team: print(c.name)`. So, like the “cloud of witnesses” of Hebrews 12:1, you can have many characters with the same shape and different data."
+  ]
+ },
+ "ejemplo": {
+  "es": "class Personaje:\n    def __init__(self, nombre, ciudad):\n        self.nombre = nombre\n        self.ciudad = ciudad\n\n    def presentarse(self):\n        return f\"Soy {self.nombre}, de {self.ciudad}\"\n\npablo = Personaje(\"Pablo\", \"Tarso\")\nbernabe = Personaje(\"Bernabé\", \"Chipre\")\nprint(pablo.presentarse())\nprint(bernabe.ciudad)\n\nequipo = [pablo, bernabe]\nfor p in equipo:\n    print(p.nombre)",
+  "en": "class Character:\n    def __init__(self, name, city):\n        self.name = name\n        self.city = city\n\n    def introduce(self):\n        return f\"I am {self.name}, from {self.city}\"\n\npaul = Character(\"Paul\", \"Tarsus\")\nbarnabas = Character(\"Barnabas\", \"Cyprus\")\nprint(paul.introduce())\nprint(barnabas.city)\n\nteam = [paul, barnabas]\nfor c in team:\n    print(c.name)"
+ },
+ "ejercicios": [
+  {
+   "id": "primer-objeto",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "La clase `Personaje` ya está escrita. Crea con ella un objeto `lidia` para Lidia, de la ciudad de Tiatira (Hechos 16:14), y muestra su `nombre` y su `ciudad`, uno en cada línea:\n```\nLidia\nTiatira\n```",
+    "en": "The `Character` class is already written. Use it to create an object `lydia` for Lydia, from the city of Thyatira (Acts 16:14), and show her `name` and her `city`, one per line:\n```\nLydia\nThyatira\n```"
+   },
+   "inicial": {
+    "es": "class Personaje:\n    def __init__(self, nombre, ciudad):\n        self.nombre = nombre\n        self.ciudad = ciudad\n\n",
+    "en": "class Character:\n    def __init__(self, name, city):\n        self.name = name\n        self.city = city\n\n"
+   },
+   "pistas": {
+    "es": [
+     "Un objeto se crea llamando a la clase como si fuera una función: `Personaje(\"...\", \"...\")`. No escribas `self`: Python lo pone solo.",
+     "`lidia = Personaje(\"Lidia\", \"Tiatira\")` y luego `print(lidia.nombre)` y `print(lidia.ciudad)`."
+    ],
+    "en": [
+     "You create an object by calling the class as if it were a function: `Character(\"...\", \"...\")`. Don't write `self`: Python fills it in.",
+     "`lydia = Character(\"Lydia\", \"Thyatira\")` and then `print(lydia.name)` and `print(lydia.city)`."
+    ]
+   },
+   "solucion": {
+    "es": "class Personaje:\n    def __init__(self, nombre, ciudad):\n        self.nombre = nombre\n        self.ciudad = ciudad\n\nlidia = Personaje(\"Lidia\", \"Tiatira\")\nprint(lidia.nombre)\nprint(lidia.ciudad)",
+    "en": "class Character:\n    def __init__(self, name, city):\n        self.name = name\n        self.city = city\n\nlydia = Character(\"Lydia\", \"Thyatira\")\nprint(lydia.name)\nprint(lydia.city)"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "py": "assert isinstance(lidia, Personaje)",
+      "msg": {
+       "es": "Crea `lidia` con la clase: `lidia = Personaje(...)`.",
+       "en": "Create `lidia` with the class: `lidia = Personaje(...)`."
+      }
+     },
+     {
+      "py": "assert lidia.nombre == 'Lidia' and lidia.ciudad == 'Tiatira'",
+      "msg": {
+       "es": "Revisa los datos: nombre \"Lidia\" y ciudad \"Tiatira\", en ese orden.",
+       "en": "Check the data: name \"Lidia\" and city \"Tiatira\", in that order."
+      }
+     },
+     {
+      "salida": "Lidia\nTiatira"
+     },
+     {
+      "py": "assert 'lidia.nombre' in _codigo and 'lidia.ciudad' in _codigo",
+      "msg": {
+       "es": "Muestra los atributos del objeto (`lidia.nombre`), no el texto escrito a mano.",
+       "en": "Show the object's attributes (`lidia.nombre`), not hand-typed text."
+      }
+     }
+    ],
+    "en": [
+     {
+      "py": "assert isinstance(lydia, Character)",
+      "msg": {
+       "es": "Crea `lydia` con la clase: `lydia = Character(...)`.",
+       "en": "Create `lydia` with the class: `lydia = Character(...)`."
+      }
+     },
+     {
+      "py": "assert lydia.name == 'Lydia' and lydia.city == 'Thyatira'",
+      "msg": {
+       "es": "Revisa los datos: name \"Lydia\" y city \"Thyatira\", en ese orden.",
+       "en": "Check the data: name \"Lydia\" and city \"Thyatira\", in that order."
+      }
+     },
+     {
+      "salida": "Lydia\nThyatira"
+     },
+     {
+      "py": "assert 'lydia.name' in _codigo and 'lydia.city' in _codigo",
+      "msg": {
+       "es": "Muestra los atributos del objeto (`lydia.name`), no el texto escrito a mano.",
+       "en": "Show the object's attributes (`lydia.name`), not hand-typed text."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "class Personaje:\n    def __init__(self, nombre, ciudad):\n        self.nombre = nombre\n        self.ciudad = ciudad\n\nlidia = Personaje(self, \"Lidia\", \"Tiatira\")\nprint(lidia.nombre)\nprint(lidia.ciudad)",
+     "class Personaje:\n    def __init__(self, nombre, ciudad):\n        self.nombre = nombre\n        self.ciudad = ciudad\n\nlidia = Personaje(\"Tiatira\", \"Lidia\")\nprint(lidia.ciudad)\nprint(lidia.nombre)",
+     "class Personaje:\n    def __init__(self, nombre, ciudad):\n        self.nombre = nombre\n        self.ciudad = ciudad\n\nprint(\"Lidia\")\nprint(\"Tiatira\")",
+     "class Personaje:\n    def __init__(self, nombre, ciudad):\n        self.nombre = nombre\n        self.ciudad = ciudad\n\nlidia = Personaje(\"Lidia\", \"Tiatira\")\nprint(nombre)\nprint(ciudad)"
+    ],
+    "en": [
+     "class Character:\n    def __init__(self, name, city):\n        self.name = name\n        self.city = city\n\nlydia = Character(self, \"Lydia\", \"Thyatira\")\nprint(lydia.name)\nprint(lydia.city)",
+     "class Character:\n    def __init__(self, name, city):\n        self.name = name\n        self.city = city\n\nlydia = Character(\"Thyatira\", \"Lydia\")\nprint(lydia.city)\nprint(lydia.name)",
+     "class Character:\n    def __init__(self, name, city):\n        self.name = name\n        self.city = city\n\nprint(\"Lydia\")\nprint(\"Thyatira\")",
+     "class Character:\n    def __init__(self, name, city):\n        self.name = name\n        self.city = city\n\nlydia = Character(\"Lydia\", \"Thyatira\")\nprint(name)\nprint(city)"
+    ]
+   }
+  },
+  {
+   "id": "completar-init",
+   "tipo": "hueco",
+   "enunciado": {
+    "es": "Pablo llama a Lucas «el médico amado» (Colosenses 4:14). Completa `__init__` para que cada personaje guarde su nombre y su oficio. Debe salir:\n```\nLucas era médico\n```",
+    "en": "Paul calls Luke “the beloved physician” (Colossians 4:14). Complete `__init__` so each character stores its name and its job. It should print:\n```\nLuke was a physician\n```"
+   },
+   "plantilla": {
+    "es": "class Personaje:\n    def __init__(___, nombre, oficio):\n        self.nombre = ___\n        self.oficio = oficio\n\nlucas = Personaje(\"Lucas\", \"médico\")\nprint(lucas.nombre, \"era\", lucas.oficio)",
+    "en": "class Character:\n    def __init__(___, name, job):\n        self.name = ___\n        self.job = job\n\nluke = Character(\"Luke\", \"a physician\")\nprint(luke.name, \"was\", luke.job)"
+   },
+   "pistas": {
+    "es": [
+     "El primer parámetro de todo método es el objeto mismo; por costumbre se llama `self`.",
+     "`def __init__(self, nombre, oficio):` y `self.nombre = nombre` (el valor que llegó como parámetro)."
+    ],
+    "en": [
+     "The first parameter of every method is the object itself; by convention it's called `self`.",
+     "`def __init__(self, name, job):` and `self.name = name` (the value that came in as a parameter)."
+    ]
+   },
+   "solucion": {
+    "es": "class Personaje:\n    def __init__(self, nombre, oficio):\n        self.nombre = nombre\n        self.oficio = oficio\n\nlucas = Personaje(\"Lucas\", \"médico\")\nprint(lucas.nombre, \"era\", lucas.oficio)",
+    "en": "class Character:\n    def __init__(self, name, job):\n        self.name = name\n        self.job = job\n\nluke = Character(\"Luke\", \"a physician\")\nprint(luke.name, \"was\", luke.job)"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Lucas era médico"
+     },
+     {
+      "py": "assert Personaje('Bernabé', 'levita').nombre == 'Bernabé'",
+      "msg": {
+       "es": "Cada objeto debe guardar el nombre que recibe: `self.nombre = nombre`, no un texto fijo.",
+       "en": "Each object must store the name it receives: `self.nombre = nombre`, not fixed text."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Luke was a physician"
+     },
+     {
+      "py": "assert Character('Barnabas', 'a Levite').name == 'Barnabas'",
+      "msg": {
+       "es": "Cada objeto debe guardar el nombre que recibe: `self.name = name`, no un texto fijo.",
+       "en": "Each object must store the name it receives: `self.name = name`, not fixed text."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "class Personaje:\n    def __init__( nombre, oficio):\n        self.nombre = nombre\n        self.oficio = oficio\n\nlucas = Personaje(\"Lucas\", \"médico\")\nprint(lucas.nombre, \"era\", lucas.oficio)",
+     "class Personaje:\n    def __init__(self, nombre, oficio):\n        self.nombre = \"Lucas\"\n        self.oficio = oficio\n\nlucas = Personaje(\"Lucas\", \"médico\")\nprint(lucas.nombre, \"era\", lucas.oficio)",
+     "class Personaje:\n    def __init__(self, nombre, oficio):\n        self.nombre = self\n        self.oficio = oficio\n\nlucas = Personaje(\"Lucas\", \"médico\")\nprint(lucas.nombre, \"era\", lucas.oficio)"
+    ],
+    "en": [
+     "class Character:\n    def __init__( name, job):\n        self.name = name\n        self.job = job\n\nluke = Character(\"Luke\", \"a physician\")\nprint(luke.name, \"was\", luke.job)",
+     "class Character:\n    def __init__(self, name, job):\n        self.name = \"Luke\"\n        self.job = job\n\nluke = Character(\"Luke\", \"a physician\")\nprint(luke.name, \"was\", luke.job)",
+     "class Character:\n    def __init__(self, name, job):\n        self.name = self\n        self.job = job\n\nluke = Character(\"Luke\", \"a physician\")\nprint(luke.name, \"was\", luke.job)"
+    ]
+   }
+  },
+  {
+   "id": "metodo-presentarse",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Escribe la clase `Personaje` con `__init__(self, nombre, ciudad)` y un método `presentarse()` que **devuelva** (con `return`) el texto `Soy <nombre>, de <ciudad>`. Crea a `pablo`, de Tarso (Hechos 22:3), y muestra su presentación:\n```\nSoy Pablo, de Tarso\n```",
+    "en": "Write the `Character` class with `__init__(self, name, city)` and a method `introduce()` that **returns** (with `return`) the text `I am <name>, from <city>`. Create `paul`, from Tarsus (Acts 22:3), and show his introduction:\n```\nI am Paul, from Tarsus\n```"
+   },
+   "inicial": {
+    "es": "class Personaje:\n    def __init__(self, nombre, ciudad):\n        self.nombre = nombre\n        self.ciudad = ciudad\n\n    def presentarse(self):\n        \n",
+    "en": "class Character:\n    def __init__(self, name, city):\n        self.name = name\n        self.city = city\n\n    def introduce(self):\n        \n"
+   },
+   "pistas": {
+    "es": [
+     "Dentro del método, los datos del objeto se leen con `self`: `self.nombre`, `self.ciudad`.",
+     "`return f\"Soy {self.nombre}, de {self.ciudad}\"`; fuera de la clase: `pablo = Personaje(\"Pablo\", \"Tarso\")` y `print(pablo.presentarse())`."
+    ],
+    "en": [
+     "Inside the method, the object's data is read through `self`: `self.name`, `self.city`.",
+     "`return f\"I am {self.name}, from {self.city}\"`; outside the class: `paul = Character(\"Paul\", \"Tarsus\")` and `print(paul.introduce())`."
+    ]
+   },
+   "solucion": {
+    "es": "class Personaje:\n    def __init__(self, nombre, ciudad):\n        self.nombre = nombre\n        self.ciudad = ciudad\n\n    def presentarse(self):\n        return f\"Soy {self.nombre}, de {self.ciudad}\"\n\npablo = Personaje(\"Pablo\", \"Tarso\")\nprint(pablo.presentarse())",
+    "en": "class Character:\n    def __init__(self, name, city):\n        self.name = name\n        self.city = city\n\n    def introduce(self):\n        return f\"I am {self.name}, from {self.city}\"\n\npaul = Character(\"Paul\", \"Tarsus\")\nprint(paul.introduce())"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Soy Pablo, de Tarso"
+     },
+     {
+      "py": "assert Personaje('Apolos', 'Alejandría').presentarse() == 'Soy Apolos, de Alejandría'",
+      "msg": {
+       "es": "`presentarse()` debe **devolver** el texto con `return` y servir para cualquier personaje (prueba: Apolos, de Alejandría).",
+       "en": "`presentarse()` must **return** the text with `return` and work for any character (test: Apolos, from Alejandría)."
+      }
+     },
+     {
+      "py": "assert isinstance(pablo, Personaje)",
+      "msg": {
+       "es": "Crea el objeto `pablo` con tu clase.",
+       "en": "Create the object `pablo` with your class."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "I am Paul, from Tarsus"
+     },
+     {
+      "py": "assert Character('Apollos', 'Alexandria').introduce() == 'I am Apollos, from Alexandria'",
+      "msg": {
+       "es": "`introduce()` debe **devolver** el texto con `return` y servir para cualquier personaje (prueba: Apollos, de Alexandria).",
+       "en": "`introduce()` must **return** the text with `return` and work for any character (test: Apollos, from Alexandria)."
+      }
+     },
+     {
+      "py": "assert isinstance(paul, Character)",
+      "msg": {
+       "es": "Crea el objeto `paul` con tu clase.",
+       "en": "Create the object `paul` with your class."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "class Personaje:\n    def __init__(self, nombre, ciudad):\n        self.nombre = nombre\n        self.ciudad = ciudad\n\n    def presentarse(self):\n        print(f\"Soy {self.nombre}, de {self.ciudad}\")\n\npablo = Personaje(\"Pablo\", \"Tarso\")\nprint(pablo.presentarse())",
+     "class Personaje:\n    def __init__(self, nombre, ciudad):\n        self.nombre = nombre\n        self.ciudad = ciudad\n\n    def presentarse(self):\n        return f\"Soy {nombre}, de {ciudad}\"\n\npablo = Personaje(\"Pablo\", \"Tarso\")\nprint(pablo.presentarse())",
+     "class Personaje:\n    def __init__(self, nombre, ciudad):\n        self.nombre = nombre\n        self.ciudad = ciudad\n\n    def presentarse(self):\n        return \"Soy Pablo, de Tarso\"\n\npablo = Personaje(\"Pablo\", \"Tarso\")\nprint(pablo.presentarse())",
+     "class Personaje:\n    def __init__(self, nombre, ciudad):\n        self.nombre = nombre\n        self.ciudad = ciudad\n\n    def presentarse(self):\n        return f\"Soy {self.nombre}, de {self.ciudad}\"\n\npablo = Personaje(\"Pablo\", \"Tarso\")\nprint(pablo.presentarse)"
+    ],
+    "en": [
+     "class Character:\n    def __init__(self, name, city):\n        self.name = name\n        self.city = city\n\n    def introduce(self):\n        print(f\"I am {self.name}, from {self.city}\")\n\npaul = Character(\"Paul\", \"Tarsus\")\nprint(paul.introduce())",
+     "class Character:\n    def __init__(self, name, city):\n        self.name = name\n        self.city = city\n\n    def introduce(self):\n        return f\"I am {name}, from {city}\"\n\npaul = Character(\"Paul\", \"Tarsus\")\nprint(paul.introduce())",
+     "class Character:\n    def __init__(self, name, city):\n        self.name = name\n        self.city = city\n\n    def introduce(self):\n        return \"I am Paul, from Tarsus\"\n\npaul = Character(\"Paul\", \"Tarsus\")\nprint(paul.introduce())",
+     "class Character:\n    def __init__(self, name, city):\n        self.name = name\n        self.city = city\n\n    def introduce(self):\n        return f\"I am {self.name}, from {self.city}\"\n\npaul = Character(\"Paul\", \"Tarsus\")\nprint(paul.introduce)"
+    ]
+   }
+  },
+  {
+   "id": "clase-versiculo",
+   "tipo": "ordenar",
+   "enunciado": {
+    "es": "Ordena las líneas para escribir la clase `Versiculo`, crear un versículo y mostrarlo. Fíjate en la sangría: lo que está más adentro pertenece a la línea de arriba que termina en `:`. Debe salir:\n```\n1 Corintios 14:40 — Pero que todo se haga decentemente y con orden.\n```",
+    "en": "Put the lines in order to write the `Verse` class, create a verse and show it. Watch the indentation: what is further in belongs to the line above that ends in `:`. It should print:\n```\n1 Corinthians 14:40 — But everything must be done in a proper and orderly manner.\n```"
+   },
+   "lineas": {
+    "es": [
+     "class Versiculo:",
+     "    def __init__(self, ref, texto):",
+     "        self.ref = ref",
+     "        self.texto = texto",
+     "    def mostrar(self):",
+     "        return f\"{self.ref} — {self.texto}\"",
+     "v = Versiculo(\"1 Corintios 14:40\", \"Pero que todo se haga decentemente y con orden.\")",
+     "print(v.mostrar())"
+    ],
+    "en": [
+     "class Verse:",
+     "    def __init__(self, ref, text):",
+     "        self.ref = ref",
+     "        self.text = text",
+     "    def show(self):",
+     "        return f\"{self.ref} — {self.text}\"",
+     "v = Verse(\"1 Corinthians 14:40\", \"But everything must be done in a proper and orderly manner.\")",
+     "print(v.show())"
+    ]
+   },
+   "pistas": {
+    "es": [
+     "Primero va `class`, luego `__init__` con sus dos asignaciones, y después el otro método.",
+     "El objeto `v` solo se puede crear cuando la clase ya está completa; el `print` va al final."
+    ],
+    "en": [
+     "First comes `class`, then `__init__` with its two assignments, and then the other method.",
+     "The object `v` can only be created once the class is complete; the `print` goes last."
+    ]
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "1 Corintios 14:40 — Pero que todo se haga decentemente y con orden."
+     },
+     {
+      "py": "assert Versiculo('A', 'b').mostrar() == 'A — b'",
+      "msg": {
+       "es": "El método `mostrar` debe ir dentro de la clase.",
+       "en": "The `mostrar` method must go inside the class."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "1 Corinthians 14:40 — But everything must be done in a proper and orderly manner."
+     },
+     {
+      "py": "assert Verse('A', 'b').show() == 'A — b'",
+      "msg": {
+       "es": "El método `show` debe ir dentro de la clase.",
+       "en": "The `show` method must go inside the class."
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "viajero",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "En su primer viaje, Pablo pasó por Salamina, Pafos y Perge (Hechos 13). Escribe la clase `Viajero`:\n- `__init__(self, nombre)` guarda el nombre y crea `self.ciudades` como lista vacía.\n- `visitar(self, ciudad)` agrega la ciudad a `self.ciudades`.\n\nCrea a `pablo`, haz que visite las tres ciudades y muestra:\n```\nPablo visitó 3 ciudades: Salamina, Pafos, Perge\n```",
+    "en": "On his first journey, Paul went through Salamis, Paphos and Perga (Acts 13). Write the `Traveler` class:\n- `__init__(self, name)` stores the name and creates `self.cities` as an empty list.\n- `visit(self, city)` adds the city to `self.cities`.\n\nCreate `paul`, make him visit the three cities and show:\n```\nPaul visited 3 cities: Salamis, Paphos, Perga\n```"
+   },
+   "inicial": {
+    "es": "class Viajero:\n    def __init__(self, nombre):\n        self.nombre = nombre\n",
+    "en": "class Traveler:\n    def __init__(self, name):\n        self.name = name\n"
+   },
+   "pistas": {
+    "es": [
+     "Un método puede cambiar los atributos del objeto: `self.ciudades.append(ciudad)`. La lista vacía se crea en `__init__`, para que cada viajero tenga la suya.",
+     "Llama al método tres veces: `pablo.visitar(\"Salamina\")`… y al final usa `len(pablo.ciudades)` y `\", \".join(pablo.ciudades)` en una f-string."
+    ],
+    "en": [
+     "A method can change the object's attributes: `self.cities.append(city)`. Create the empty list in `__init__`, so each traveler has their own.",
+     "Call the method three times: `paul.visit(\"Salamis\")`… and at the end use `len(paul.cities)` and `\", \".join(paul.cities)` in an f-string."
+    ]
+   },
+   "solucion": {
+    "es": "class Viajero:\n    def __init__(self, nombre):\n        self.nombre = nombre\n        self.ciudades = []\n\n    def visitar(self, ciudad):\n        self.ciudades.append(ciudad)\n\npablo = Viajero(\"Pablo\")\npablo.visitar(\"Salamina\")\npablo.visitar(\"Pafos\")\npablo.visitar(\"Perge\")\nprint(f\"{pablo.nombre} visitó {len(pablo.ciudades)} ciudades: {', '.join(pablo.ciudades)}\")",
+    "en": "class Traveler:\n    def __init__(self, name):\n        self.name = name\n        self.cities = []\n\n    def visit(self, city):\n        self.cities.append(city)\n\npaul = Traveler(\"Paul\")\npaul.visit(\"Salamis\")\npaul.visit(\"Paphos\")\npaul.visit(\"Perga\")\nprint(f\"{paul.name} visited {len(paul.cities)} cities: {', '.join(paul.cities)}\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Pablo visitó 3 ciudades: Salamina, Pafos, Perge"
+     },
+     {
+      "py": "_a = Viajero('Bernabé')\n_b = Viajero('Silas')\n_a.visitar('Chipre')\nassert _a.ciudades == ['Chipre'] and _b.ciudades == []",
+      "msg": {
+       "es": "Cada viajero necesita su propia lista: créala en `__init__` con `self.ciudades = []`, y que `visitar` la use con `self`.",
+       "en": "Each traveler needs their own list: create it in `__init__` with `self.ciudades = []`, and have `visitar` use it through `self`."
+      }
+     },
+     {
+      "py": "assert pablo.ciudades == ['Salamina', 'Pafos', 'Perge']",
+      "msg": {
+       "es": "`pablo.ciudades` debe tener las tres ciudades en orden; agrégalas con `pablo.visitar(...)`.",
+       "en": "`pablo.ciudades` must hold the three cities in order; add them with `pablo.visitar(...)`."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Paul visited 3 cities: Salamis, Paphos, Perga"
+     },
+     {
+      "py": "_a = Traveler('Barnabas')\n_b = Traveler('Silas')\n_a.visit('Cyprus')\nassert _a.cities == ['Cyprus'] and _b.cities == []",
+      "msg": {
+       "es": "Cada viajero necesita su propia lista: créala en `__init__` con `self.cities = []`, y que `visit` la use con `self`.",
+       "en": "Each traveler needs their own list: create it in `__init__` with `self.cities = []`, and have `visit` use it through `self`."
+      }
+     },
+     {
+      "py": "assert paul.cities == ['Salamis', 'Paphos', 'Perga']",
+      "msg": {
+       "es": "`paul.cities` debe tener las tres ciudades en orden; agrégalas con `paul.visit(...)`.",
+       "en": "`paul.cities` must hold the three cities in order; add them with `paul.visit(...)`."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "class Viajero:\n    ciudades = []\n\n    def __init__(self, nombre):\n        self.nombre = nombre\n\n    def visitar(self, ciudad):\n        self.ciudades.append(ciudad)\n\npablo = Viajero(\"Pablo\")\npablo.visitar(\"Salamina\")\npablo.visitar(\"Pafos\")\npablo.visitar(\"Perge\")\nprint(f\"{pablo.nombre} visitó {len(pablo.ciudades)} ciudades: {', '.join(pablo.ciudades)}\")",
+     "class Viajero:\n    def __init__(self, nombre):\n        self.nombre = nombre\n        self.ciudades = []\n\n    def visitar(self, ciudad):\n        ciudades.append(ciudad)\n\npablo = Viajero(\"Pablo\")\npablo.visitar(\"Salamina\")\npablo.visitar(\"Pafos\")\npablo.visitar(\"Perge\")\nprint(f\"{pablo.nombre} visitó {len(pablo.ciudades)} ciudades: {', '.join(pablo.ciudades)}\")",
+     "class Viajero:\n    def __init__(self, nombre):\n        self.nombre = nombre\n        self.ciudades = []\n\n    def visitar(self, ciudad):\n        self.ciudades = [ciudad]\n\npablo = Viajero(\"Pablo\")\npablo.visitar(\"Salamina\")\npablo.visitar(\"Pafos\")\npablo.visitar(\"Perge\")\nprint(f\"{pablo.nombre} visitó {len(pablo.ciudades)} ciudades: {', '.join(pablo.ciudades)}\")",
+     "class Viajero:\n    def __init__(self, nombre):\n        self.nombre = nombre\n        self.ciudades = []\n\n    def visitar(self, ciudad):\n        self.ciudades.append(ciudad)\n\npablo = Viajero(\"Pablo\")\npablo.visitar(\"Salamina\")\npablo.visitar(\"Pafos\")\npablo.visitar(\"Perge\")\nprint(f\"{pablo.nombre} visitó {len(pablo.ciudades)} ciudades: {pablo.ciudades}\")"
+    ],
+    "en": [
+     "class Traveler:\n    cities = []\n\n    def __init__(self, name):\n        self.name = name\n\n    def visit(self, city):\n        self.cities.append(city)\n\npaul = Traveler(\"Paul\")\npaul.visit(\"Salamis\")\npaul.visit(\"Paphos\")\npaul.visit(\"Perga\")\nprint(f\"{paul.name} visited {len(paul.cities)} cities: {', '.join(paul.cities)}\")",
+     "class Traveler:\n    def __init__(self, name):\n        self.name = name\n        self.cities = []\n\n    def visit(self, city):\n        cities.append(city)\n\npaul = Traveler(\"Paul\")\npaul.visit(\"Salamis\")\npaul.visit(\"Paphos\")\npaul.visit(\"Perga\")\nprint(f\"{paul.name} visited {len(paul.cities)} cities: {', '.join(paul.cities)}\")",
+     "class Traveler:\n    def __init__(self, name):\n        self.name = name\n        self.cities = []\n\n    def visit(self, city):\n        self.cities = [city]\n\npaul = Traveler(\"Paul\")\npaul.visit(\"Salamis\")\npaul.visit(\"Paphos\")\npaul.visit(\"Perga\")\nprint(f\"{paul.name} visited {len(paul.cities)} cities: {', '.join(paul.cities)}\")",
+     "class Traveler:\n    def __init__(self, name):\n        self.name = name\n        self.cities = []\n\n    def visit(self, city):\n        self.cities.append(city)\n\npaul = Traveler(\"Paul\")\npaul.visit(\"Salamis\")\npaul.visit(\"Paphos\")\npaul.visit(\"Perga\")\nprint(f\"{paul.name} visited {len(paul.cities)} cities: {paul.cities}\")"
+    ]
+   }
+  },
+  {
+   "id": "lista-de-objetos",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Pablo trabajaba con Aquila y Priscila, porque «el oficio de ellos era hacer tiendas» (Hechos 18:3). La lista `equipo` tiene objetos `Personaje`. Escribe la función `con_oficio(personajes, oficio)` que **devuelva** una lista con los nombres de los personajes que tienen ese oficio (en el mismo orden). Luego muestra:\n```\n['Pablo', 'Aquila', 'Priscila']\n['Lucas']\n```",
+    "en": "Paul worked with Aquila and Priscilla, “because they were tentmakers by trade, just as he was” (Acts 18:3). The list `team` holds `Character` objects. Write the function `with_job(characters, job)` that **returns** a list with the names of the characters who have that job (in the same order). Then show:\n```\n['Paul', 'Aquila', 'Priscilla']\n['Luke']\n```"
+   },
+   "inicial": {
+    "es": "class Personaje:\n    def __init__(self, nombre, oficio):\n        self.nombre = nombre\n        self.oficio = oficio\n\nequipo = [\n    Personaje(\"Pablo\", \"fabricante de tiendas\"),\n    Personaje(\"Lucas\", \"médico\"),\n    Personaje(\"Aquila\", \"fabricante de tiendas\"),\n    Personaje(\"Lidia\", \"vendedora de púrpura\"),\n    Personaje(\"Priscila\", \"fabricante de tiendas\"),\n]\n\n",
+    "en": "class Character:\n    def __init__(self, name, job):\n        self.name = name\n        self.job = job\n\nteam = [\n    Character(\"Paul\", \"tentmaker\"),\n    Character(\"Luke\", \"physician\"),\n    Character(\"Aquila\", \"tentmaker\"),\n    Character(\"Lydia\", \"dealer in purple cloth\"),\n    Character(\"Priscilla\", \"tentmaker\"),\n]\n\n"
+   },
+   "pistas": {
+    "es": [
+     "Recorre la lista con `for p in personajes:`; cada `p` es un objeto, así que puedes preguntar `p.oficio`.",
+     "Empieza con `nombres = []`, agrega `p.nombre` cuando `p.oficio == oficio` y al final `return nombres`."
+    ],
+    "en": [
+     "Loop over the list with `for c in characters:`; each `c` is an object, so you can ask for `c.job`.",
+     "Start with `names = []`, append `c.name` when `c.job == job`, and at the end `return names`."
+    ]
+   },
+   "solucion": {
+    "es": "class Personaje:\n    def __init__(self, nombre, oficio):\n        self.nombre = nombre\n        self.oficio = oficio\n\nequipo = [\n    Personaje(\"Pablo\", \"fabricante de tiendas\"),\n    Personaje(\"Lucas\", \"médico\"),\n    Personaje(\"Aquila\", \"fabricante de tiendas\"),\n    Personaje(\"Lidia\", \"vendedora de púrpura\"),\n    Personaje(\"Priscila\", \"fabricante de tiendas\"),\n]\n\n\ndef con_oficio(personajes, oficio):\n    nombres = []\n    for p in personajes:\n        if p.oficio == oficio:\n            nombres.append(p.nombre)\n    return nombres\n\nprint(con_oficio(equipo, \"fabricante de tiendas\"))\nprint(con_oficio(equipo, \"médico\"))",
+    "en": "class Character:\n    def __init__(self, name, job):\n        self.name = name\n        self.job = job\n\nteam = [\n    Character(\"Paul\", \"tentmaker\"),\n    Character(\"Luke\", \"physician\"),\n    Character(\"Aquila\", \"tentmaker\"),\n    Character(\"Lydia\", \"dealer in purple cloth\"),\n    Character(\"Priscilla\", \"tentmaker\"),\n]\n\n\ndef with_job(characters, job):\n    names = []\n    for c in characters:\n        if c.job == job:\n            names.append(c.name)\n    return names\n\nprint(with_job(team, \"tentmaker\"))\nprint(with_job(team, \"physician\"))"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "['Pablo', 'Aquila', 'Priscila']\n['Lucas']"
+     },
+     {
+      "py": "assert con_oficio(equipo, 'pastor') == [] and con_oficio([], 'médico') == []",
+      "msg": {
+       "es": "Si nadie tiene ese oficio (o la lista está vacía), la función debe devolver una lista vacía `[]`.",
+       "en": "If no one has that job (or the list is empty), the function must return an empty list `[]`."
+      }
+     },
+     {
+      "py": "assert con_oficio([Personaje('Bernabé', 'levita')], 'levita') == ['Bernabé']",
+      "msg": {
+       "es": "La función debe devolver los **nombres** (`p.nombre`), no los objetos, y servir para cualquier lista.",
+       "en": "The function must return the **names** (`p.nombre`), not the objects, and work for any list."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "['Paul', 'Aquila', 'Priscilla']\n['Luke']"
+     },
+     {
+      "py": "assert with_job(team, 'shepherd') == [] and with_job([], 'physician') == []",
+      "msg": {
+       "es": "Si nadie tiene ese oficio (o la lista está vacía), la función debe devolver una lista vacía `[]`.",
+       "en": "If no one has that job (or the list is empty), the function must return an empty list `[]`."
+      }
+     },
+     {
+      "py": "assert with_job([Character('Barnabas', 'Levite')], 'Levite') == ['Barnabas']",
+      "msg": {
+       "es": "La función debe devolver los **nombres** (`c.name`), no los objetos, y servir para cualquier lista.",
+       "en": "The function must return the **names** (`c.name`), not the objects, and work for any list."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "class Personaje:\n    def __init__(self, nombre, oficio):\n        self.nombre = nombre\n        self.oficio = oficio\n\nequipo = [\n    Personaje(\"Pablo\", \"fabricante de tiendas\"),\n    Personaje(\"Lucas\", \"médico\"),\n    Personaje(\"Aquila\", \"fabricante de tiendas\"),\n    Personaje(\"Lidia\", \"vendedora de púrpura\"),\n    Personaje(\"Priscila\", \"fabricante de tiendas\"),\n]\n\n\ndef con_oficio(personajes, oficio):\n    nombres = []\n    for p in personajes:\n        if p.oficio == oficio:\n            nombres.append(p)\n    return nombres\n\nprint(con_oficio(equipo, \"fabricante de tiendas\"))\nprint(con_oficio(equipo, \"médico\"))",
+     "class Personaje:\n    def __init__(self, nombre, oficio):\n        self.nombre = nombre\n        self.oficio = oficio\n\nequipo = [\n    Personaje(\"Pablo\", \"fabricante de tiendas\"),\n    Personaje(\"Lucas\", \"médico\"),\n    Personaje(\"Aquila\", \"fabricante de tiendas\"),\n    Personaje(\"Lidia\", \"vendedora de púrpura\"),\n    Personaje(\"Priscila\", \"fabricante de tiendas\"),\n]\n\n\ndef con_oficio(personajes, oficio):\n    nombres = []\n    for p in equipo:\n        if p.oficio == oficio:\n            nombres.append(p.nombre)\n    return nombres\n\nprint(con_oficio(equipo, \"fabricante de tiendas\"))\nprint(con_oficio(equipo, \"médico\"))",
+     "class Personaje:\n    def __init__(self, nombre, oficio):\n        self.nombre = nombre\n        self.oficio = oficio\n\nequipo = [\n    Personaje(\"Pablo\", \"fabricante de tiendas\"),\n    Personaje(\"Lucas\", \"médico\"),\n    Personaje(\"Aquila\", \"fabricante de tiendas\"),\n    Personaje(\"Lidia\", \"vendedora de púrpura\"),\n    Personaje(\"Priscila\", \"fabricante de tiendas\"),\n]\n\n\ndef con_oficio(personajes, oficio):\n    nombres = []\n    for p in personajes:\n        if p.oficio == oficio:\n            nombres.append(p.nombre)\n        return nombres\n\nprint(con_oficio(equipo, \"fabricante de tiendas\"))\nprint(con_oficio(equipo, \"médico\"))",
+     "class Personaje:\n    def __init__(self, nombre, oficio):\n        self.nombre = nombre\n        self.oficio = oficio\n\nequipo = [\n    Personaje(\"Pablo\", \"fabricante de tiendas\"),\n    Personaje(\"Lucas\", \"médico\"),\n    Personaje(\"Aquila\", \"fabricante de tiendas\"),\n    Personaje(\"Lidia\", \"vendedora de púrpura\"),\n    Personaje(\"Priscila\", \"fabricante de tiendas\"),\n]\n\n\ndef con_oficio(personajes, oficio):\n    nombres = []\n    for p in personajes:\n        if p == oficio:\n            nombres.append(p.nombre)\n    return nombres\n\nprint(con_oficio(equipo, \"fabricante de tiendas\"))\nprint(con_oficio(equipo, \"médico\"))"
+    ],
+    "en": [
+     "class Character:\n    def __init__(self, name, job):\n        self.name = name\n        self.job = job\n\nteam = [\n    Character(\"Paul\", \"tentmaker\"),\n    Character(\"Luke\", \"physician\"),\n    Character(\"Aquila\", \"tentmaker\"),\n    Character(\"Lydia\", \"dealer in purple cloth\"),\n    Character(\"Priscilla\", \"tentmaker\"),\n]\n\n\ndef with_job(characters, job):\n    names = []\n    for c in characters:\n        if c.job == job:\n            names.append(c)\n    return names\n\nprint(with_job(team, \"tentmaker\"))\nprint(with_job(team, \"physician\"))",
+     "class Character:\n    def __init__(self, name, job):\n        self.name = name\n        self.job = job\n\nteam = [\n    Character(\"Paul\", \"tentmaker\"),\n    Character(\"Luke\", \"physician\"),\n    Character(\"Aquila\", \"tentmaker\"),\n    Character(\"Lydia\", \"dealer in purple cloth\"),\n    Character(\"Priscilla\", \"tentmaker\"),\n]\n\n\ndef with_job(characters, job):\n    names = []\n    for c in team:\n        if c.job == job:\n            names.append(c.name)\n    return names\n\nprint(with_job(team, \"tentmaker\"))\nprint(with_job(team, \"physician\"))",
+     "class Character:\n    def __init__(self, name, job):\n        self.name = name\n        self.job = job\n\nteam = [\n    Character(\"Paul\", \"tentmaker\"),\n    Character(\"Luke\", \"physician\"),\n    Character(\"Aquila\", \"tentmaker\"),\n    Character(\"Lydia\", \"dealer in purple cloth\"),\n    Character(\"Priscilla\", \"tentmaker\"),\n]\n\n\ndef with_job(characters, job):\n    names = []\n    for c in characters:\n        if c.job == job:\n            names.append(c.name)\n        return names\n\nprint(with_job(team, \"tentmaker\"))\nprint(with_job(team, \"physician\"))",
+     "class Character:\n    def __init__(self, name, job):\n        self.name = name\n        self.job = job\n\nteam = [\n    Character(\"Paul\", \"tentmaker\"),\n    Character(\"Luke\", \"physician\"),\n    Character(\"Aquila\", \"tentmaker\"),\n    Character(\"Lydia\", \"dealer in purple cloth\"),\n    Character(\"Priscilla\", \"tentmaker\"),\n]\n\n\ndef with_job(characters, job):\n    names = []\n    for c in characters:\n        if c == job:\n            names.append(c.name)\n    return names\n\nprint(with_job(team, \"tentmaker\"))\nprint(with_job(team, \"physician\"))"
+    ]
+   }
+  },
+  {
+   "id": "reto-memoria",
+   "tipo": "escribir",
+   "reto": true,
+   "enunciado": {
+    "es": "**Reto: la libreta de memoria de Timoteo.** Pablo le recordó a Timoteo que desde niño conocía las Escrituras (2 Timoteo 3:15). Escribe dos clases:\n- `Versiculo(ref, texto)` con el método `palabras()`, que devuelve cuántas palabras tiene el texto.\n- `Personaje(nombre)` con la lista `memorizados` (vacía al empezar), el método `memorizar(versiculo)` que agrega un objeto `Versiculo`, y el método `resumen()` que devuelve `<nombre> memorizó <cantidad> versículos (<total de palabras> palabras)`.\n\nCrea a `timoteo`, haz que memorice los dos versículos del código inicial (crea un objeto `Versiculo` para cada uno), muestra las palabras de cada uno y el resumen:\n```\n1 Corintios 14:40: 9 palabras\nEfesios 2:8: 20 palabras\nTimoteo memorizó 2 versículos (29 palabras)\n```",
+    "en": "**Challenge: Timothy's memory notebook.** Paul reminded Timothy that he had known the Scriptures from childhood (2 Timothy 3:15). Write two classes:\n- `Verse(ref, text)` with the method `words()`, which returns how many words the text has.\n- `Character(name)` with the list `memorized` (empty at the start), the method `memorize(verse)` that adds a `Verse` object, and the method `summary()` that returns `<name> memorized <count> verses (<total words> words)`.\n\nCreate `timothy`, have him memorize the two verses in the starting code (create a `Verse` object for each), show the words of each one and the summary:\n```\n1 Corinthians 14:40: 11 words\nEphesians 2:8: 22 words\nTimothy memorized 2 verses (33 words)\n```"
+   },
+   "inicial": {
+    "es": "# 1 Corintios 14:40\ntexto1 = \"Pero que todo se haga decentemente y con orden.\"\n# Efesios 2:8\ntexto2 = \"Porque por gracia han sido salvados, mediante la fe; y esto no procede de ustedes, pues es don de Dios,\"\n\n",
+    "en": "# 1 Corinthians 14:40\ntext1 = \"But everything must be done in a proper and orderly manner.\"\n# Ephesians 2:8\ntext2 = \"For it is by grace you have been saved through faith, and this not from yourselves; it is the gift of God,\"\n\n"
+   },
+   "pistas": {
+    "es": [
+     "`texto.split()` parte el texto por los espacios y da una lista de palabras; su `len()` es la cantidad. En `resumen()`, suma `v.palabras()` de cada versículo de `self.memorizados`.",
+     "`timoteo.memorizar(Versiculo(\"1 Corintios 14:40\", texto1))`; luego `for v in timoteo.memorizados: print(f\"{v.ref}: {v.palabras()} palabras\")` y `print(timoteo.resumen())`."
+    ],
+    "en": [
+     "`text.split()` splits the text on spaces and gives a list of words; its `len()` is the count. In `summary()`, add up `v.words()` for each verse in `self.memorized`.",
+     "`timothy.memorize(Verse(\"1 Corinthians 14:40\", text1))`; then `for v in timothy.memorized: print(f\"{v.ref}: {v.words()} words\")` and `print(timothy.summary())`."
+    ]
+   },
+   "solucion": {
+    "es": "# 1 Corintios 14:40\ntexto1 = \"Pero que todo se haga decentemente y con orden.\"\n# Efesios 2:8\ntexto2 = \"Porque por gracia han sido salvados, mediante la fe; y esto no procede de ustedes, pues es don de Dios,\"\n\nclass Versiculo:\n    def __init__(self, ref, texto):\n        self.ref = ref\n        self.texto = texto\n\n    def palabras(self):\n        return len(self.texto.split())\n\n\nclass Personaje:\n    def __init__(self, nombre):\n        self.nombre = nombre\n        self.memorizados = []\n\n    def memorizar(self, versiculo):\n        self.memorizados.append(versiculo)\n\n    def resumen(self):\n        total = 0\n        for v in self.memorizados:\n            total += v.palabras()\n        return f\"{self.nombre} memorizó {len(self.memorizados)} versículos ({total} palabras)\"\n\n\ntimoteo = Personaje(\"Timoteo\")\ntimoteo.memorizar(Versiculo(\"1 Corintios 14:40\", texto1))\ntimoteo.memorizar(Versiculo(\"Efesios 2:8\", texto2))\nfor v in timoteo.memorizados:\n    print(f\"{v.ref}: {v.palabras()} palabras\")\nprint(timoteo.resumen())",
+    "en": "# 1 Corinthians 14:40\ntext1 = \"But everything must be done in a proper and orderly manner.\"\n# Ephesians 2:8\ntext2 = \"For it is by grace you have been saved through faith, and this not from yourselves; it is the gift of God,\"\n\nclass Verse:\n    def __init__(self, ref, text):\n        self.ref = ref\n        self.text = text\n\n    def words(self):\n        return len(self.text.split())\n\n\nclass Character:\n    def __init__(self, name):\n        self.name = name\n        self.memorized = []\n\n    def memorize(self, verse):\n        self.memorized.append(verse)\n\n    def summary(self):\n        total = 0\n        for v in self.memorized:\n            total += v.words()\n        return f\"{self.name} memorized {len(self.memorized)} verses ({total} words)\"\n\n\ntimothy = Character(\"Timothy\")\ntimothy.memorize(Verse(\"1 Corinthians 14:40\", text1))\ntimothy.memorize(Verse(\"Ephesians 2:8\", text2))\nfor v in timothy.memorized:\n    print(f\"{v.ref}: {v.words()} words\")\nprint(timothy.summary())"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "1 Corintios 14:40: 9 palabras\nEfesios 2:8: 20 palabras\nTimoteo memorizó 2 versículos (29 palabras)"
+     },
+     {
+      "py": "assert Versiculo('Juan 11:35', 'Jesús lloró.').palabras() == 2 and Versiculo('X', '').palabras() == 0",
+      "msg": {
+       "es": "`palabras()` debe contar las palabras de **su** texto: `len(self.texto.split())`.",
+       "en": "`palabras()` must count the words of **its own** text: `len(self.texto.split())`."
+      }
+     },
+     {
+      "py": "_p = Personaje('Ana')\nassert _p.memorizados == [] and _p.resumen() == 'Ana memorizó 0 versículos (0 palabras)'",
+      "msg": {
+       "es": "Un personaje nuevo empieza con `memorizados` vacía, y su resumen dice `0 versículos (0 palabras)`.",
+       "en": "A new character starts with an empty `memorizados`, and its summary says `0 versículos (0 palabras)`."
+      }
+     },
+     {
+      "py": "_p = Personaje('Ana')\n_q = Personaje('Eunice')\n_p.memorizar(Versiculo('A 1:1', 'uno dos tres'))\nassert _q.memorizados == [] and _p.resumen() == 'Ana memorizó 1 versículos (3 palabras)'",
+      "msg": {
+       "es": "`memorizar` debe agregar el versículo a la lista de **ese** personaje (créala en `__init__` con `self.memorizados = []`), y `resumen()` debe sumar sus palabras.",
+       "en": "`memorizar` must add the verse to **that** character's list (create it in `__init__` with `self.memorizados = []`), and `resumen()` must add up its words."
+      }
+     },
+     {
+      "py": "assert all(isinstance(v, Versiculo) for v in timoteo.memorizados) and len(timoteo.memorizados) == 2",
+      "msg": {
+       "es": "`timoteo.memorizados` debe tener dos objetos `Versiculo`.",
+       "en": "`timoteo.memorizados` must hold two `Versiculo` objects."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "1 Corinthians 14:40: 11 words\nEphesians 2:8: 22 words\nTimothy memorized 2 verses (33 words)"
+     },
+     {
+      "py": "assert Verse('John 11:35', 'Jesus wept.').words() == 2 and Verse('X', '').words() == 0",
+      "msg": {
+       "es": "`words()` debe contar las palabras de **su** texto: `len(self.text.split())`.",
+       "en": "`words()` must count the words of **its own** text: `len(self.text.split())`."
+      }
+     },
+     {
+      "py": "_p = Character('Ann')\nassert _p.memorized == [] and _p.summary() == 'Ann memorized 0 verses (0 words)'",
+      "msg": {
+       "es": "Un personaje nuevo empieza con `memorized` vacía, y su resumen dice `0 verses (0 words)`.",
+       "en": "A new character starts with an empty `memorized`, and its summary says `0 verses (0 words)`."
+      }
+     },
+     {
+      "py": "_p = Character('Ann')\n_q = Character('Eunice')\n_p.memorize(Verse('A 1:1', 'one two three'))\nassert _q.memorized == [] and _p.summary() == 'Ann memorized 1 verses (3 words)'",
+      "msg": {
+       "es": "`memorize` debe agregar el versículo a la lista de **ese** personaje (créala en `__init__` con `self.memorized = []`), y `summary()` debe sumar sus palabras.",
+       "en": "`memorize` must add the verse to **that** character's list (create it in `__init__` with `self.memorized = []`), and `summary()` must add up its words."
+      }
+     },
+     {
+      "py": "assert all(isinstance(v, Verse) for v in timothy.memorized) and len(timothy.memorized) == 2",
+      "msg": {
+       "es": "`timothy.memorized` debe tener dos objetos `Verse`.",
+       "en": "`timothy.memorized` must hold two `Verse` objects."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "# 1 Corintios 14:40\ntexto1 = \"Pero que todo se haga decentemente y con orden.\"\n# Efesios 2:8\ntexto2 = \"Porque por gracia han sido salvados, mediante la fe; y esto no procede de ustedes, pues es don de Dios,\"\n\nclass Versiculo:\n    def __init__(self, ref, texto):\n        self.ref = ref\n        self.texto = texto\n\n    def palabras(self):\n        return len(self.texto)\n\n\nclass Personaje:\n    def __init__(self, nombre):\n        self.nombre = nombre\n        self.memorizados = []\n\n    def memorizar(self, versiculo):\n        self.memorizados.append(versiculo)\n\n    def resumen(self):\n        total = 0\n        for v in self.memorizados:\n            total += v.palabras()\n        return f\"{self.nombre} memorizó {len(self.memorizados)} versículos ({total} palabras)\"\n\n\ntimoteo = Personaje(\"Timoteo\")\ntimoteo.memorizar(Versiculo(\"1 Corintios 14:40\", texto1))\ntimoteo.memorizar(Versiculo(\"Efesios 2:8\", texto2))\nfor v in timoteo.memorizados:\n    print(f\"{v.ref}: {v.palabras()} palabras\")\nprint(timoteo.resumen())",
+     "# 1 Corintios 14:40\ntexto1 = \"Pero que todo se haga decentemente y con orden.\"\n# Efesios 2:8\ntexto2 = \"Porque por gracia han sido salvados, mediante la fe; y esto no procede de ustedes, pues es don de Dios,\"\n\nclass Versiculo:\n    def __init__(self, ref, texto):\n        self.ref = ref\n        self.texto = texto\n\n    def palabras(self):\n        return len(self.texto.split())\n\n\nclass Personaje:\n    memorizados = []\n\n    def __init__(self, nombre):\n        self.nombre = nombre\n\n    def memorizar(self, versiculo):\n        self.memorizados.append(versiculo)\n\n    def resumen(self):\n        total = 0\n        for v in self.memorizados:\n            total += v.palabras()\n        return f\"{self.nombre} memorizó {len(self.memorizados)} versículos ({total} palabras)\"\n\n\ntimoteo = Personaje(\"Timoteo\")\ntimoteo.memorizar(Versiculo(\"1 Corintios 14:40\", texto1))\ntimoteo.memorizar(Versiculo(\"Efesios 2:8\", texto2))\nfor v in timoteo.memorizados:\n    print(f\"{v.ref}: {v.palabras()} palabras\")\nprint(timoteo.resumen())",
+     "# 1 Corintios 14:40\ntexto1 = \"Pero que todo se haga decentemente y con orden.\"\n# Efesios 2:8\ntexto2 = \"Porque por gracia han sido salvados, mediante la fe; y esto no procede de ustedes, pues es don de Dios,\"\n\nclass Versiculo:\n    def __init__(self, ref, texto):\n        self.ref = ref\n        self.texto = texto\n\n    def palabras(self):\n        return len(self.texto.split())\n\n\nclass Personaje:\n    def __init__(self, nombre):\n        self.nombre = nombre\n        self.memorizados = []\n\n    def memorizar(self, versiculo):\n        self.memorizados.append(versiculo)\n\n    def resumen(self):\n        total = 0\n        for v in self.memorizados:\n            total = v.palabras()\n        return f\"{self.nombre} memorizó {len(self.memorizados)} versículos ({total} palabras)\"\n\n\ntimoteo = Personaje(\"Timoteo\")\ntimoteo.memorizar(Versiculo(\"1 Corintios 14:40\", texto1))\ntimoteo.memorizar(Versiculo(\"Efesios 2:8\", texto2))\nfor v in timoteo.memorizados:\n    print(f\"{v.ref}: {v.palabras()} palabras\")\nprint(timoteo.resumen())",
+     "# 1 Corintios 14:40\ntexto1 = \"Pero que todo se haga decentemente y con orden.\"\n# Efesios 2:8\ntexto2 = \"Porque por gracia han sido salvados, mediante la fe; y esto no procede de ustedes, pues es don de Dios,\"\n\nclass Versiculo:\n    def __init__(self, ref, texto):\n        self.ref = ref\n        self.texto = texto\n\n    def palabras(self):\n        return len(self.texto.split())\n\n\nclass Personaje:\n    def __init__(self, nombre):\n        self.nombre = nombre\n        self.memorizados = []\n\n    def memorizar(self, versiculo):\n        self.memorizados.append(versiculo)\n\n    def resumen(self):\n        total = 0\n        for v in self.memorizados:\n            total += v.palabras\n        return f\"{self.nombre} memorizó {len(self.memorizados)} versículos ({total} palabras)\"\n\n\ntimoteo = Personaje(\"Timoteo\")\ntimoteo.memorizar(Versiculo(\"1 Corintios 14:40\", texto1))\ntimoteo.memorizar(Versiculo(\"Efesios 2:8\", texto2))\nfor v in timoteo.memorizados:\n    print(f\"{v.ref}: {v.palabras()} palabras\")\nprint(timoteo.resumen())"
+    ],
+    "en": [
+     "# 1 Corinthians 14:40\ntext1 = \"But everything must be done in a proper and orderly manner.\"\n# Ephesians 2:8\ntext2 = \"For it is by grace you have been saved through faith, and this not from yourselves; it is the gift of God,\"\n\nclass Verse:\n    def __init__(self, ref, text):\n        self.ref = ref\n        self.text = text\n\n    def words(self):\n        return len(self.text)\n\n\nclass Character:\n    def __init__(self, name):\n        self.name = name\n        self.memorized = []\n\n    def memorize(self, verse):\n        self.memorized.append(verse)\n\n    def summary(self):\n        total = 0\n        for v in self.memorized:\n            total += v.words()\n        return f\"{self.name} memorized {len(self.memorized)} verses ({total} words)\"\n\n\ntimothy = Character(\"Timothy\")\ntimothy.memorize(Verse(\"1 Corinthians 14:40\", text1))\ntimothy.memorize(Verse(\"Ephesians 2:8\", text2))\nfor v in timothy.memorized:\n    print(f\"{v.ref}: {v.words()} words\")\nprint(timothy.summary())",
+     "# 1 Corinthians 14:40\ntext1 = \"But everything must be done in a proper and orderly manner.\"\n# Ephesians 2:8\ntext2 = \"For it is by grace you have been saved through faith, and this not from yourselves; it is the gift of God,\"\n\nclass Verse:\n    def __init__(self, ref, text):\n        self.ref = ref\n        self.text = text\n\n    def words(self):\n        return len(self.text.split())\n\n\nclass Character:\n    memorized = []\n\n    def __init__(self, name):\n        self.name = name\n\n    def memorize(self, verse):\n        self.memorized.append(verse)\n\n    def summary(self):\n        total = 0\n        for v in self.memorized:\n            total += v.words()\n        return f\"{self.name} memorized {len(self.memorized)} verses ({total} words)\"\n\n\ntimothy = Character(\"Timothy\")\ntimothy.memorize(Verse(\"1 Corinthians 14:40\", text1))\ntimothy.memorize(Verse(\"Ephesians 2:8\", text2))\nfor v in timothy.memorized:\n    print(f\"{v.ref}: {v.words()} words\")\nprint(timothy.summary())",
+     "# 1 Corinthians 14:40\ntext1 = \"But everything must be done in a proper and orderly manner.\"\n# Ephesians 2:8\ntext2 = \"For it is by grace you have been saved through faith, and this not from yourselves; it is the gift of God,\"\n\nclass Verse:\n    def __init__(self, ref, text):\n        self.ref = ref\n        self.text = text\n\n    def words(self):\n        return len(self.text.split())\n\n\nclass Character:\n    def __init__(self, name):\n        self.name = name\n        self.memorized = []\n\n    def memorize(self, verse):\n        self.memorized.append(verse)\n\n    def summary(self):\n        total = 0\n        for v in self.memorized:\n            total = v.words()\n        return f\"{self.name} memorized {len(self.memorized)} verses ({total} words)\"\n\n\ntimothy = Character(\"Timothy\")\ntimothy.memorize(Verse(\"1 Corinthians 14:40\", text1))\ntimothy.memorize(Verse(\"Ephesians 2:8\", text2))\nfor v in timothy.memorized:\n    print(f\"{v.ref}: {v.words()} words\")\nprint(timothy.summary())",
+     "# 1 Corinthians 14:40\ntext1 = \"But everything must be done in a proper and orderly manner.\"\n# Ephesians 2:8\ntext2 = \"For it is by grace you have been saved through faith, and this not from yourselves; it is the gift of God,\"\n\nclass Verse:\n    def __init__(self, ref, text):\n        self.ref = ref\n        self.text = text\n\n    def words(self):\n        return len(self.text.split())\n\n\nclass Character:\n    def __init__(self, name):\n        self.name = name\n        self.memorized = []\n\n    def memorize(self, verse):\n        self.memorized.append(verse)\n\n    def summary(self):\n        total = 0\n        for v in self.memorized:\n            total += v.words\n        return f\"{self.name} memorized {len(self.memorized)} verses ({total} words)\"\n\n\ntimothy = Character(\"Timothy\")\ntimothy.memorize(Verse(\"1 Corinthians 14:40\", text1))\ntimothy.memorize(Verse(\"Ephesians 2:8\", text2))\nfor v in timothy.memorized:\n    print(f\"{v.ref}: {v.words()} words\")\nprint(timothy.summary())"
+    ]
+   }
+  }
+ ]
+}

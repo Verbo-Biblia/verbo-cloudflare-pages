@@ -1,0 +1,659 @@
+{
+ "id": "11-errores-gracia",
+ "numero": 11,
+ "lugar": "pablo",
+ "titulo": {
+  "es": "Errores y gracia",
+  "en": "Errors and grace"
+ },
+ "tema": {
+  "es": "tracebacks, try / except y raise",
+  "en": "tracebacks, try / except and raise"
+ },
+ "versiculo": "ef-2-8",
+ "medalla": {
+  "es": "Sereno ante el error",
+  "en": "Calm before errors"
+ },
+ "leccion": {
+  "es": [
+   "Equivocarse es parte de aprender. Cuando algo sale mal, Python lanza una **excepción** y muestra un **traceback**. Léelo de **abajo hacia arriba**: la última línea dice el **tipo** de error y su mensaje (`IndexError: list index out of range`) y las de arriba dicen en qué **línea** ocurrió. No es un regaño: es una pista exacta.",
+   "Con `try:` y `except` el programa no se detiene: si dentro del `try` ocurre ese error, salta al `except`. Atrapa errores **específicos**: `ValueError` (`int(\"tres\")`), `ZeroDivisionError` (dividir entre 0), `KeyError` (una clave que no está en el diccionario) e `IndexError` (una posición fuera de la lista). Un `except:` sin tipo atrapa todo y esconde errores que sí querías ver.",
+   "`else:` corre solo si **no** hubo error; `finally:` corre **siempre**, haya error o no. Con `except ValueError as e:` guardas el error en `e` y `print(e)` muestra su mensaje.",
+   "Tú también puedes lanzar un error con `raise ValueError(\"mensaje\")` cuando un dato no tiene sentido. Y para **validar** lo que escribe el usuario se usa un bucle: `while True:` pide el dato, intenta convertirlo y sale con `break` cuando es válido; si no, avisa y vuelve a preguntar (`continue` salta directo a la siguiente vuelta)."
+  ],
+  "en": [
+   "Making mistakes is part of learning. When something goes wrong, Python raises an **exception** and shows a **traceback**. Read it **from the bottom up**: the last line says the error's **type** and its message (`IndexError: list index out of range`) and the lines above say on which **line** it happened. It isn't a scolding: it's an exact clue.",
+   "With `try:` and `except` the program doesn't stop: if that error happens inside the `try`, it jumps to the `except`. Catch **specific** errors: `ValueError` (`int(\"three\")`), `ZeroDivisionError` (dividing by 0), `KeyError` (a key that isn't in the dictionary) and `IndexError` (a position outside the list). A bare `except:` catches everything and hides errors you did want to see.",
+   "`else:` runs only if there was **no** error; `finally:` runs **always**, error or not. With `except ValueError as e:` you keep the error in `e`, and `print(e)` shows its message.",
+   "You can raise an error yourself with `raise ValueError(\"message\")` when a value makes no sense. And to **validate** what the user types, use a loop: `while True:` asks for the value, tries to convert it and leaves with `break` when it's valid; if not, it warns and asks again (`continue` jumps straight to the next pass)."
+  ]
+ },
+ "ejemplo": {
+  "es": "cartas = [\"Romanos\", \"Gálatas\", \"Efesios\"]\nfor texto in [\"2\", \"dos\", \"7\"]:\n    try:\n        numero = int(texto)\n        carta = cartas[numero]\n    except ValueError:\n        print(texto, \"no es un número\")\n    except IndexError:\n        print(\"No hay carta en la posición\", texto)\n    else:\n        print(\"Encontré\", carta)\n    finally:\n        print(\"---\")\n\ntry:\n    raise ValueError(\"Ese capítulo no existe\")\nexcept ValueError as e:\n    print(\"Error:\", e)",
+  "en": "letters = [\"Romans\", \"Galatians\", \"Ephesians\"]\nfor text in [\"2\", \"two\", \"7\"]:\n    try:\n        number = int(text)\n        letter = letters[number]\n    except ValueError:\n        print(text, \"is not a number\")\n    except IndexError:\n        print(\"There's no letter at position\", text)\n    else:\n        print(\"Found\", letter)\n    finally:\n        print(\"---\")\n\ntry:\n    raise ValueError(\"That chapter doesn't exist\")\nexcept ValueError as e:\n    print(\"Error:\", e)"
+ },
+ "ejercicios": [
+  {
+   "id": "leer-traceback",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Este programa quiere mostrar la **quinta** carta de Pablo de la lista, pero al ejecutarlo falla. Ejecútalo y lee el error: la última línea dice `IndexError: list index out of range` (posición fuera de la lista) en la línea 2. Arregla el índice. Debe salir:\n```\nEfesios\n```",
+    "en": "This program wants to show the **fifth** of Paul's letters in the list, but it fails when it runs. Run it and read the error: the last line says `IndexError: list index out of range` (position outside the list) on line 2. Fix the index. It should print:\n```\nEphesians\n```"
+   },
+   "inicial": {
+    "es": "cartas = [\"Romanos\", \"1 Corintios\", \"2 Corintios\", \"Gálatas\", \"Efesios\"]\nprint(cartas[5])\n",
+    "en": "letters = [\"Romans\", \"1 Corinthians\", \"2 Corinthians\", \"Galatians\", \"Ephesians\"]\nprint(letters[5])\n"
+   },
+   "pistas": {
+    "es": [
+     "Las posiciones empiezan en 0: la primera carta es `cartas[0]`.",
+     "La quinta es `cartas[4]` (o la última, `cartas[-1]`)."
+    ],
+    "en": [
+     "Positions start at 0: the first letter is `letters[0]`.",
+     "The fifth one is `letters[4]` (or the last one, `letters[-1]`)."
+    ]
+   },
+   "solucion": {
+    "es": "cartas = [\"Romanos\", \"1 Corintios\", \"2 Corintios\", \"Gálatas\", \"Efesios\"]\nprint(cartas[4])",
+    "en": "letters = [\"Romans\", \"1 Corinthians\", \"2 Corinthians\", \"Galatians\", \"Ephesians\"]\nprint(letters[4])"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Efesios"
+     },
+     {
+      "py": "assert len(cartas) == 5 and 'cartas[' in _codigo",
+      "msg": {
+       "es": "Deja la lista como está y muestra la carta con su índice: cartas[...].",
+       "en": "Leave the list as it is and show the letter with its index: cartas[...]."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Ephesians"
+     },
+     {
+      "py": "assert len(letters) == 5 and 'letters[' in _codigo",
+      "msg": {
+       "es": "Deja la lista como está y muestra la carta con su índice: letters[...].",
+       "en": "Leave the list as it is and show the letter with its index: letters[...]."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "cartas = [\"Romanos\", \"1 Corintios\", \"2 Corintios\", \"Gálatas\", \"Efesios\"]\nprint(cartas[5])",
+     "cartas = [\"Romanos\", \"1 Corintios\", \"2 Corintios\", \"Gálatas\", \"Efesios\"]\nprint(cartas[3])",
+     "cartas = [\"Romanos\", \"1 Corintios\", \"2 Corintios\", \"Gálatas\", \"Efesios\"]\nprint(\"Efesios\")"
+    ],
+    "en": [
+     "letters = [\"Romans\", \"1 Corinthians\", \"2 Corinthians\", \"Galatians\", \"Ephesians\"]\nprint(letters[5])",
+     "letters = [\"Romans\", \"1 Corinthians\", \"2 Corinthians\", \"Galatians\", \"Ephesians\"]\nprint(letters[3])",
+     "letters = [\"Romans\", \"1 Corinthians\", \"2 Corinthians\", \"Galatians\", \"Ephesians\"]\nprint(\"Ephesians\")"
+    ]
+   }
+  },
+  {
+   "id": "capitulos-hoy",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Pide con `input(\"¿Cuántos capítulos leíste hoy? \")` un número y conviértelo con `int()`. Si la persona escribe letras, `int()` lanza `ValueError`: atrápalo con `try` / `except ValueError` y muestra un aviso amable. Con `tres` debe salir:\n```\n¿Cuántos capítulos leíste hoy? tres\nEscribe el número con cifras, por ejemplo 3\n```\nY con `3`: `¡Muy bien! Leíste 3 capítulos`.",
+    "en": "Ask for a number with `input(\"How many chapters did you read today? \")` and convert it with `int()`. If the person types letters, `int()` raises `ValueError`: catch it with `try` / `except ValueError` and show a kind notice. With `three` it should print:\n```\nHow many chapters did you read today? three\nWrite the number with digits, for example 3\n```\nAnd with `3`: `Well done! You read 3 chapters`."
+   },
+   "inicial": {
+    "es": "",
+    "en": ""
+   },
+   "entradas": {
+    "es": [
+     "tres"
+    ],
+    "en": [
+     "three"
+    ]
+   },
+   "pistas": {
+    "es": [
+     "Pon la conversión dentro del `try`: `capitulos = int(input(\"...\"))`.",
+     "```\ntry:\n    capitulos = int(input(\"¿Cuántos capítulos leíste hoy? \"))\n    print(f\"¡Muy bien! Leíste {capitulos} capítulos\")\nexcept ValueError:\n    print(\"Escribe el número con cifras, por ejemplo 3\")\n```"
+    ],
+    "en": [
+     "Put the conversion inside the `try`: `chapters = int(input(\"...\"))`.",
+     "```\ntry:\n    chapters = int(input(\"How many chapters did you read today? \"))\n    print(f\"Well done! You read {chapters} chapters\")\nexcept ValueError:\n    print(\"Write the number with digits, for example 3\")\n```"
+    ]
+   },
+   "solucion": {
+    "es": "try:\n    capitulos = int(input(\"¿Cuántos capítulos leíste hoy? \"))\n    print(f\"¡Muy bien! Leíste {capitulos} capítulos\")\nexcept ValueError:\n    print(\"Escribe el número con cifras, por ejemplo 3\")",
+    "en": "try:\n    chapters = int(input(\"How many chapters did you read today? \"))\n    print(f\"Well done! You read {chapters} chapters\")\nexcept ValueError:\n    print(\"Write the number with digits, for example 3\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "¿Cuántos capítulos leíste hoy? tres\nEscribe el número con cifras, por ejemplo 3"
+     },
+     {
+      "py": "s = _correr(['3'])\nassert '¡Muy bien! Leíste 3 capítulos' in s and 'Escribe' not in s",
+      "msg": {
+       "es": "Con «3» debe salir «¡Muy bien! Leíste 3 capítulos» (y sin el aviso).",
+       "en": "With «3» it should print «¡Muy bien! Leíste 3 capítulos» (and no notice)."
+      }
+     },
+     {
+      "py": "assert '¡Muy bien! Leíste 12 capítulos' in _correr(['12'])",
+      "msg": {
+       "es": "Usa el número que escribió la persona, no uno fijo.",
+       "en": "Use the number the person typed, not a fixed one."
+      }
+     },
+     {
+      "py": "assert 'except ValueError' in _codigo",
+      "msg": {
+       "es": "Atrapa el error específico: except ValueError:",
+       "en": "Catch the specific error: except ValueError:"
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "How many chapters did you read today? three\nWrite the number with digits, for example 3"
+     },
+     {
+      "py": "s = _correr(['3'])\nassert 'Well done! You read 3 chapters' in s and 'Write' not in s",
+      "msg": {
+       "es": "Con «3» debe salir «Well done! You read 3 chapters» (y sin el aviso).",
+       "en": "With «3» it should print «Well done! You read 3 chapters» (and no notice)."
+      }
+     },
+     {
+      "py": "assert 'Well done! You read 12 chapters' in _correr(['12'])",
+      "msg": {
+       "es": "Usa el número que escribió la persona, no uno fijo.",
+       "en": "Use the number the person typed, not a fixed one."
+      }
+     },
+     {
+      "py": "assert 'except ValueError' in _codigo",
+      "msg": {
+       "es": "Atrapa el error específico: except ValueError:",
+       "en": "Catch the specific error: except ValueError:"
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "capitulos = int(input(\"¿Cuántos capítulos leíste hoy? \"))\nprint(f\"¡Muy bien! Leíste {capitulos} capítulos\")",
+     "try:\n    capitulos = int(input(\"¿Cuántos capítulos leíste hoy? \"))\nexcept:\n    print(\"Escribe el número con cifras, por ejemplo 3\")\nprint(f\"¡Muy bien! Leíste {capitulos} capítulos\")",
+     "try:\n    capitulos = int(input(\"¿Cuántos capítulos leíste hoy? \"))\n    print(f\"¡Muy bien! Leíste {capitulos} capítulos\")\nexcept:\n    print(\"Escribe el número con cifras, por ejemplo 3\")"
+    ],
+    "en": [
+     "chapters = int(input(\"How many chapters did you read today? \"))\nprint(f\"Well done! You read {chapters} chapters\")",
+     "try:\n    chapters = int(input(\"How many chapters did you read today? \"))\nexcept:\n    print(\"Write the number with digits, for example 3\")\nprint(f\"Well done! You read {chapters} chapters\")",
+     "try:\n    chapters = int(input(\"How many chapters did you read today? \"))\n    print(f\"Well done! You read {chapters} chapters\")\nexcept:\n    print(\"Write the number with digits, for example 3\")"
+    ]
+   }
+  },
+  {
+   "id": "repartir-panes",
+   "tipo": "hueco",
+   "enunciado": {
+    "es": "Hay 5 panes para repartir. Si alguien escribe `0`, dividir entre cero lanza un error. Completa el `except` con el **tipo exacto** de ese error. Con `0` debe salir:\n```\n¿Entre cuántas personas? 0\nNo hay nadie con quien repartir\n```",
+    "en": "There are 5 loaves to share. If someone types `0`, dividing by zero raises an error. Fill in the `except` with the **exact type** of that error. With `0` it should print:\n```\nAmong how many people? 0\nThere's no one to share with\n```"
+   },
+   "plantilla": {
+    "es": "panes = 5\npersonas = int(input(\"¿Entre cuántas personas? \"))\ntry:\n    print(\"A cada una le toca\", panes / personas)\nexcept ___:\n    print(\"No hay nadie con quien repartir\")",
+    "en": "loaves = 5\npeople = int(input(\"Among how many people? \"))\ntry:\n    print(\"Each one gets\", loaves / people)\nexcept ___:\n    print(\"There's no one to share with\")"
+   },
+   "entradas": {
+    "es": [
+     "0"
+    ],
+    "en": [
+     "0"
+    ]
+   },
+   "pistas": {
+    "es": [
+     "Ejecútalo sin `try` con 0 y mira la última línea del error.",
+     "Es `ZeroDivisionError` (error de división entre cero)."
+    ],
+    "en": [
+     "Run it without the `try` using 0 and look at the last line of the error.",
+     "It's `ZeroDivisionError` (division by zero error)."
+    ]
+   },
+   "solucion": {
+    "es": "panes = 5\npersonas = int(input(\"¿Entre cuántas personas? \"))\ntry:\n    print(\"A cada una le toca\", panes / personas)\nexcept ZeroDivisionError:\n    print(\"No hay nadie con quien repartir\")",
+    "en": "loaves = 5\npeople = int(input(\"Among how many people? \"))\ntry:\n    print(\"Each one gets\", loaves / people)\nexcept ZeroDivisionError:\n    print(\"There's no one to share with\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "¿Entre cuántas personas? 0\nNo hay nadie con quien repartir"
+     },
+     {
+      "py": "assert 'A cada una le toca 2.5' in _correr(['2'])",
+      "msg": {
+       "es": "Con 2 personas debe salir «A cada una le toca 2.5».",
+       "en": "With 2 people it should print «A cada una le toca 2.5»."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Among how many people? 0\nThere's no one to share with"
+     },
+     {
+      "py": "assert 'Each one gets 2.5' in _correr(['2'])",
+      "msg": {
+       "es": "Con 2 personas debe salir «Each one gets 2.5».",
+       "en": "With 2 people it should print «Each one gets 2.5»."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "panes = 5\npersonas = int(input(\"¿Entre cuántas personas? \"))\ntry:\n    print(\"A cada una le toca\", panes / personas)\nexcept ValueError:\n    print(\"No hay nadie con quien repartir\")",
+     "panes = 5\npersonas = int(input(\"¿Entre cuántas personas? \"))\ntry:\n    print(\"A cada una le toca\", panes / personas)\nexcept ZeroDivision:\n    print(\"No hay nadie con quien repartir\")"
+    ],
+    "en": [
+     "loaves = 5\npeople = int(input(\"Among how many people? \"))\ntry:\n    print(\"Each one gets\", loaves / people)\nexcept ValueError:\n    print(\"There's no one to share with\")",
+     "loaves = 5\npeople = int(input(\"Among how many people? \"))\ntry:\n    print(\"Each one gets\", loaves / people)\nexcept ZeroDivision:\n    print(\"There's no one to share with\")"
+    ]
+   }
+  },
+  {
+   "id": "capitulos-de",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Escribe `capitulos_de(libro)` que devuelva cuántos capítulos tiene una carta del diccionario `cartas`. Si el libro no está, `cartas[libro]` lanza `KeyError`: atrápalo con `try` / `except KeyError` y devuelve `0` (no uses `get`). Debe salir:\n```\n16\n0\n```",
+    "en": "Write `chapters_of(book)` that returns how many chapters a letter in the dictionary `letters` has. If the book isn't there, `letters[book]` raises `KeyError`: catch it with `try` / `except KeyError` and return `0` (don't use `get`). It should print:\n```\n16\n0\n```"
+   },
+   "inicial": {
+    "es": "cartas = {\"Romanos\": 16, \"Gálatas\": 6, \"Efesios\": 6, \"Filipenses\": 4, \"Colosenses\": 4}\n\ndef capitulos_de(libro):\n    pass\n\nprint(capitulos_de(\"Romanos\"))\nprint(capitulos_de(\"Efesio\"))\n",
+    "en": "letters = {\"Romans\": 16, \"Galatians\": 6, \"Ephesians\": 6, \"Philippians\": 4, \"Colossians\": 4}\n\ndef chapters_of(book):\n    pass\n\nprint(chapters_of(\"Romans\"))\nprint(chapters_of(\"Ephesian\"))\n"
+   },
+   "pistas": {
+    "es": [
+     "Dentro de la función: `try:` y, con sangría, `return cartas[libro]`.",
+     "Después: `except KeyError:` y, con sangría, `return 0`."
+    ],
+    "en": [
+     "Inside the function: `try:` and, indented, `return letters[book]`.",
+     "Then: `except KeyError:` and, indented, `return 0`."
+    ]
+   },
+   "solucion": {
+    "es": "cartas = {\"Romanos\": 16, \"Gálatas\": 6, \"Efesios\": 6, \"Filipenses\": 4, \"Colosenses\": 4}\n\ndef capitulos_de(libro):\n    try:\n        return cartas[libro]\n    except KeyError:\n        return 0\n\nprint(capitulos_de(\"Romanos\"))\nprint(capitulos_de(\"Efesio\"))",
+    "en": "letters = {\"Romans\": 16, \"Galatians\": 6, \"Ephesians\": 6, \"Philippians\": 4, \"Colossians\": 4}\n\ndef chapters_of(book):\n    try:\n        return letters[book]\n    except KeyError:\n        return 0\n\nprint(chapters_of(\"Romans\"))\nprint(chapters_of(\"Ephesian\"))"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "16\n0"
+     },
+     {
+      "py": "assert capitulos_de('Efesios') == 6 and capitulos_de('Filipenses') == 4 and capitulos_de('Colosenses') == 4",
+      "msg": {
+       "es": "capitulos_de debe devolver el valor del diccionario: capitulos_de(\"Efesios\") devuelve 6.",
+       "en": "capitulos_de must return the dictionary's value: capitulos_de(\"Efesios\") returns 6."
+      }
+     },
+     {
+      "py": "assert capitulos_de('Hebreos') == 0 and capitulos_de('') == 0",
+      "msg": {
+       "es": "Si el libro no está, devuelve 0.",
+       "en": "If the book isn't there, return 0."
+      }
+     },
+     {
+      "py": "assert 'except KeyError' in _codigo and '.get(' not in _codigo",
+      "msg": {
+       "es": "Resuélvelo con try / except KeyError, sin get.",
+       "en": "Solve it with try / except KeyError, without get."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "16\n0"
+     },
+     {
+      "py": "assert chapters_of('Ephesians') == 6 and chapters_of('Philippians') == 4 and chapters_of('Colossians') == 4",
+      "msg": {
+       "es": "chapters_of debe devolver el valor del diccionario: chapters_of(\"Ephesians\") devuelve 6.",
+       "en": "chapters_of must return the dictionary's value: chapters_of(\"Ephesians\") returns 6."
+      }
+     },
+     {
+      "py": "assert chapters_of('Hebrews') == 0 and chapters_of('') == 0",
+      "msg": {
+       "es": "Si el libro no está, devuelve 0.",
+       "en": "If the book isn't there, return 0."
+      }
+     },
+     {
+      "py": "assert 'except KeyError' in _codigo and '.get(' not in _codigo",
+      "msg": {
+       "es": "Resuélvelo con try / except KeyError, sin get.",
+       "en": "Solve it with try / except KeyError, without get."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "cartas = {\"Romanos\": 16, \"Gálatas\": 6, \"Efesios\": 6, \"Filipenses\": 4, \"Colosenses\": 4}\n\ndef capitulos_de(libro):\n    return cartas[libro]\n\nprint(capitulos_de(\"Romanos\"))\nprint(capitulos_de(\"Efesio\"))",
+     "cartas = {\"Romanos\": 16, \"Gálatas\": 6, \"Efesios\": 6, \"Filipenses\": 4, \"Colosenses\": 4}\n\ndef capitulos_de(libro):\n    try:\n        return cartas[libro]\n    except IndexError:\n        return 0\n\nprint(capitulos_de(\"Romanos\"))\nprint(capitulos_de(\"Efesio\"))",
+     "cartas = {\"Romanos\": 16, \"Gálatas\": 6, \"Efesios\": 6, \"Filipenses\": 4, \"Colosenses\": 4}\n\ndef capitulos_de(libro):\n    return cartas.get(libro, 0)\n\nprint(capitulos_de(\"Romanos\"))\nprint(capitulos_de(\"Efesio\"))",
+     "cartas = {\"Romanos\": 16, \"Gálatas\": 6, \"Efesios\": 6, \"Filipenses\": 4, \"Colosenses\": 4}\n\ndef capitulos_de(libro):\n    try:\n        print(cartas[libro])\n    except KeyError:\n        print(0)\n\ncapitulos_de(\"Romanos\")\ncapitulos_de(\"Efesio\")"
+    ],
+    "en": [
+     "letters = {\"Romans\": 16, \"Galatians\": 6, \"Ephesians\": 6, \"Philippians\": 4, \"Colossians\": 4}\n\ndef chapters_of(book):\n    return letters[book]\n\nprint(chapters_of(\"Romans\"))\nprint(chapters_of(\"Ephesian\"))",
+     "letters = {\"Romans\": 16, \"Galatians\": 6, \"Ephesians\": 6, \"Philippians\": 4, \"Colossians\": 4}\n\ndef chapters_of(book):\n    try:\n        return letters[book]\n    except IndexError:\n        return 0\n\nprint(chapters_of(\"Romans\"))\nprint(chapters_of(\"Ephesian\"))",
+     "letters = {\"Romans\": 16, \"Galatians\": 6, \"Ephesians\": 6, \"Philippians\": 4, \"Colossians\": 4}\n\ndef chapters_of(book):\n    return letters.get(book, 0)\n\nprint(chapters_of(\"Romans\"))\nprint(chapters_of(\"Ephesian\"))",
+     "letters = {\"Romans\": 16, \"Galatians\": 6, \"Ephesians\": 6, \"Philippians\": 4, \"Colossians\": 4}\n\ndef chapters_of(book):\n    try:\n        print(letters[book])\n    except KeyError:\n        print(0)\n\nchapters_of(\"Romans\")\nchapters_of(\"Ephesian\")"
+    ]
+   }
+  },
+  {
+   "id": "else-finally",
+   "tipo": "ordenar",
+   "enunciado": {
+    "es": "Ordena las líneas: el programa pide un número de versículo; si no es número avisa, si lo es (`else`) lo confirma, y **siempre** (`finally`) da las gracias. Con `8` debe salir:\n```\nVersículo favorito (número): 8\nLeerás el versículo 8\nGracias por participar\n```",
+    "en": "Put the lines in order: the program asks for a verse number; if it isn't a number it warns, if it is (`else`) it confirms, and **always** (`finally`) says thanks. With `8` it should print:\n```\nFavorite verse (number): 8\nYou'll read verse 8\nThanks for taking part\n```"
+   },
+   "entradas": {
+    "es": [
+     "8"
+    ],
+    "en": [
+     "8"
+    ]
+   },
+   "lineas": {
+    "es": [
+     "texto = input(\"Versículo favorito (número): \")",
+     "try:",
+     "    numero = int(texto)",
+     "except ValueError:",
+     "    print(\"Escribe solo el número\")",
+     "else:",
+     "    print(f\"Leerás el versículo {numero}\")",
+     "finally:",
+     "    print(\"Gracias por participar\")"
+    ],
+    "en": [
+     "text = input(\"Favorite verse (number): \")",
+     "try:",
+     "    number = int(text)",
+     "except ValueError:",
+     "    print(\"Write only the number\")",
+     "else:",
+     "    print(f\"You'll read verse {number}\")",
+     "finally:",
+     "    print(\"Thanks for taking part\")"
+    ]
+   },
+   "pistas": {
+    "es": [
+     "El orden de los bloques es siempre `try`, `except`, `else`, `finally`.",
+     "Debajo de cada bloque va su línea con sangría; el `input` va primero."
+    ],
+    "en": [
+     "The order of the blocks is always `try`, `except`, `else`, `finally`.",
+     "Under each block goes its indented line; the `input` goes first."
+    ]
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Versículo favorito (número): 8\nLeerás el versículo 8\nGracias por participar"
+     },
+     {
+      "py": "assert _correr(['ocho']).endswith('Escribe solo el número\\nGracias por participar\\n')",
+      "msg": {
+       "es": "Con «ocho» debe avisar y también dar las gracias.",
+       "en": "With «ocho» it should warn and also say thanks."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Favorite verse (number): 8\nYou'll read verse 8\nThanks for taking part"
+     },
+     {
+      "py": "assert _correr(['eight']).endswith('Write only the number\\nThanks for taking part\\n')",
+      "msg": {
+       "es": "Con «eight» debe avisar y también dar las gracias.",
+       "en": "With «eight» it should warn and also say thanks."
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "lanzar-error",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Escribe `capitulo_valido(numero, total)`: si `numero` es menor que 1 o mayor que `total`, debe **lanzar** `ValueError(\"Ese capítulo no existe\")` con `raise`; si no, devuelve `numero`. Efesios tiene 6 capítulos, así que el programa de abajo debe mostrar:\n```\n2\nError: Ese capítulo no existe\n```",
+    "en": "Write `valid_chapter(number, total)`: if `number` is less than 1 or greater than `total`, it must **raise** `ValueError(\"That chapter doesn't exist\")` with `raise`; otherwise it returns `number`. Ephesians has 6 chapters, so the program below must show:\n```\n2\nError: That chapter doesn't exist\n```"
+   },
+   "inicial": {
+    "es": "def capitulo_valido(numero, total):\n    pass\n\ntry:\n    print(capitulo_valido(2, 6))\n    print(capitulo_valido(7, 6))\nexcept ValueError as e:\n    print(\"Error:\", e)\n",
+    "en": "def valid_chapter(number, total):\n    pass\n\ntry:\n    print(valid_chapter(2, 6))\n    print(valid_chapter(7, 6))\nexcept ValueError as e:\n    print(\"Error:\", e)\n"
+   },
+   "pistas": {
+    "es": [
+     "`if numero < 1 or numero > total:` y, con sangría, `raise ValueError(\"Ese capítulo no existe\")`.",
+     "Después del `if` (sin sangría extra): `return numero`."
+    ],
+    "en": [
+     "`if number < 1 or number > total:` and, indented, `raise ValueError(\"That chapter doesn't exist\")`.",
+     "After the `if` (no extra indentation): `return number`."
+    ]
+   },
+   "solucion": {
+    "es": "def capitulo_valido(numero, total):\n    if numero < 1 or numero > total:\n        raise ValueError(\"Ese capítulo no existe\")\n    return numero\n\ntry:\n    print(capitulo_valido(2, 6))\n    print(capitulo_valido(7, 6))\nexcept ValueError as e:\n    print(\"Error:\", e)",
+    "en": "def valid_chapter(number, total):\n    if number < 1 or number > total:\n        raise ValueError(\"That chapter doesn't exist\")\n    return number\n\ntry:\n    print(valid_chapter(2, 6))\n    print(valid_chapter(7, 6))\nexcept ValueError as e:\n    print(\"Error:\", e)"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "2\nError: Ese capítulo no existe"
+     },
+     {
+      "py": "assert capitulo_valido(1, 6) == 1 and capitulo_valido(6, 6) == 6 and capitulo_valido(150, 150) == 150",
+      "msg": {
+       "es": "Los capítulos del 1 al total son válidos: capitulo_valido(6, 6) devuelve 6.",
+       "en": "Chapters from 1 to the total are valid: capitulo_valido(6, 6) returns 6."
+      }
+     },
+     {
+      "py": "for n in (0, 7, -3):\n    try:\n        capitulo_valido(n, 6)\n    except ValueError as e:\n        assert str(e) == 'Ese capítulo no existe'\n    else:\n        assert False",
+      "msg": {
+       "es": "Con 0, 7 o un número negativo (y total 6) debe lanzar ValueError(\"Ese capítulo no existe\").",
+       "en": "With 0, 7 or a negative number (and total 6) it must raise ValueError(\"Ese capítulo no existe\")."
+      }
+     },
+     {
+      "py": "assert 'raise' in _codigo",
+      "msg": {
+       "es": "Lanza el error con raise.",
+       "en": "Raise the error with raise."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "2\nError: That chapter doesn't exist"
+     },
+     {
+      "py": "assert valid_chapter(1, 6) == 1 and valid_chapter(6, 6) == 6 and valid_chapter(150, 150) == 150",
+      "msg": {
+       "es": "Los capítulos del 1 al total son válidos: valid_chapter(6, 6) devuelve 6.",
+       "en": "Chapters from 1 to the total are valid: valid_chapter(6, 6) returns 6."
+      }
+     },
+     {
+      "py": "for n in (0, 7, -3):\n    try:\n        valid_chapter(n, 6)\n    except ValueError as e:\n        assert str(e) == \"That chapter doesn't exist\"\n    else:\n        assert False",
+      "msg": {
+       "es": "Con 0, 7 o un número negativo (y total 6) debe lanzar ValueError(\"That chapter doesn't exist\").",
+       "en": "With 0, 7 or a negative number (and total 6) it must raise ValueError(\"That chapter doesn't exist\")."
+      }
+     },
+     {
+      "py": "assert 'raise' in _codigo",
+      "msg": {
+       "es": "Lanza el error con raise.",
+       "en": "Raise the error with raise."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "def capitulo_valido(numero, total):\n    if numero < 1 or numero > total:\n        print(\"Ese capítulo no existe\")\n    return numero\n\ntry:\n    print(capitulo_valido(2, 6))\n    print(capitulo_valido(7, 6))\nexcept ValueError as e:\n    print(\"Error:\", e)",
+     "def capitulo_valido(numero, total):\n    if numero > total:\n        raise ValueError(\"Ese capítulo no existe\")\n    return numero\n\ntry:\n    print(capitulo_valido(2, 6))\n    print(capitulo_valido(7, 6))\nexcept ValueError as e:\n    print(\"Error:\", e)",
+     "def capitulo_valido(numero, total):\n    if numero < 1 or numero >= total:\n        raise ValueError(\"Ese capítulo no existe\")\n    return numero\n\ntry:\n    print(capitulo_valido(2, 6))\n    print(capitulo_valido(7, 6))\nexcept ValueError as e:\n    print(\"Error:\", e)",
+     "def capitulo_valido(numero, total):\n    if numero < 1 or numero > total:\n        return ValueError(\"Ese capítulo no existe\")\n    return numero\n\ntry:\n    print(capitulo_valido(2, 6))\n    print(capitulo_valido(7, 6))\nexcept ValueError as e:\n    print(\"Error:\", e)"
+    ],
+    "en": [
+     "def valid_chapter(number, total):\n    if number < 1 or number > total:\n        print(\"That chapter doesn't exist\")\n    return number\n\ntry:\n    print(valid_chapter(2, 6))\n    print(valid_chapter(7, 6))\nexcept ValueError as e:\n    print(\"Error:\", e)",
+     "def valid_chapter(number, total):\n    if number > total:\n        raise ValueError(\"That chapter doesn't exist\")\n    return number\n\ntry:\n    print(valid_chapter(2, 6))\n    print(valid_chapter(7, 6))\nexcept ValueError as e:\n    print(\"Error:\", e)",
+     "def valid_chapter(number, total):\n    if number < 1 or number >= total:\n        raise ValueError(\"That chapter doesn't exist\")\n    return number\n\ntry:\n    print(valid_chapter(2, 6))\n    print(valid_chapter(7, 6))\nexcept ValueError as e:\n    print(\"Error:\", e)",
+     "def valid_chapter(number, total):\n    if number < 1 or number > total:\n        return ValueError(\"That chapter doesn't exist\")\n    return number\n\ntry:\n    print(valid_chapter(2, 6))\n    print(valid_chapter(7, 6))\nexcept ValueError as e:\n    print(\"Error:\", e)"
+    ]
+   }
+  },
+  {
+   "id": "validar-capitulo",
+   "tipo": "escribir",
+   "reto": true,
+   "enunciado": {
+    "es": "**Reto: pedir hasta que sea válido.** Pide con `input(\"Capítulo de Efesios (1-6): \")` un capítulo y **vuelve a pedirlo** mientras no sea válido: si no es un número, muestra `Eso no es un número.`; si es un número fuera de 1–6, muestra `Efesios solo tiene 6 capítulos.`. Cuando sea válido, confirma. Con `dos`, `9`, `0` y `2` debe salir:\n```\nCapítulo de Efesios (1-6): dos\nEso no es un número.\nCapítulo de Efesios (1-6): 9\nEfesios solo tiene 6 capítulos.\nCapítulo de Efesios (1-6): 0\nEfesios solo tiene 6 capítulos.\nCapítulo de Efesios (1-6): 2\nVas a leer Efesios 2.\n```",
+    "en": "**Challenge: ask until it's valid.** Ask for a chapter with `input(\"Chapter of Ephesians (1-6): \")` and **ask again** while it isn't valid: if it isn't a number, show `That's not a number.`; if it's a number outside 1–6, show `Ephesians only has 6 chapters.`. When it's valid, confirm it. With `two`, `9`, `0` and `2` it should print:\n```\nChapter of Ephesians (1-6): two\nThat's not a number.\nChapter of Ephesians (1-6): 9\nEphesians only has 6 chapters.\nChapter of Ephesians (1-6): 0\nEphesians only has 6 chapters.\nChapter of Ephesians (1-6): 2\nYou're going to read Ephesians 2.\n```"
+   },
+   "inicial": {
+    "es": "",
+    "en": ""
+   },
+   "entradas": {
+    "es": [
+     "dos",
+     "9",
+     "0",
+     "2"
+    ],
+    "en": [
+     "two",
+     "9",
+     "0",
+     "2"
+    ]
+   },
+   "pistas": {
+    "es": [
+     "Usa `while True:`; dentro, pide el texto y conviértelo en un `try`. En el `except ValueError:` avisa y usa `continue` para volver a preguntar.",
+     "Si `1 <= capitulo <= 6`, sal con `break`; si no, muestra el aviso de los 6 capítulos. Después del bucle: `print(f\"Vas a leer Efesios {capitulo}.\")`."
+    ],
+    "en": [
+     "Use `while True:`; inside, ask for the text and convert it in a `try`. In the `except ValueError:` warn and use `continue` to ask again.",
+     "If `1 <= chapter <= 6`, leave with `break`; otherwise show the 6-chapters notice. After the loop: `print(f\"You're going to read Ephesians {chapter}.\")`."
+    ]
+   },
+   "solucion": {
+    "es": "while True:\n    texto = input(\"Capítulo de Efesios (1-6): \")\n    try:\n        capitulo = int(texto)\n    except ValueError:\n        print(\"Eso no es un número.\")\n        continue\n    if 1 <= capitulo <= 6:\n        break\n    print(\"Efesios solo tiene 6 capítulos.\")\nprint(f\"Vas a leer Efesios {capitulo}.\")",
+    "en": "while True:\n    text = input(\"Chapter of Ephesians (1-6): \")\n    try:\n        chapter = int(text)\n    except ValueError:\n        print(\"That's not a number.\")\n        continue\n    if 1 <= chapter <= 6:\n        break\n    print(\"Ephesians only has 6 chapters.\")\nprint(f\"You're going to read Ephesians {chapter}.\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Capítulo de Efesios (1-6): dos\nEso no es un número.\nCapítulo de Efesios (1-6): 9\nEfesios solo tiene 6 capítulos.\nCapítulo de Efesios (1-6): 0\nEfesios solo tiene 6 capítulos.\nCapítulo de Efesios (1-6): 2\nVas a leer Efesios 2."
+     },
+     {
+      "py": "assert _correr(['4']) == 'Capítulo de Efesios (1-6): 4\\nVas a leer Efesios 4.\\n'",
+      "msg": {
+       "es": "Si el primer dato ya es válido, debe confirmar de inmediato.",
+       "en": "If the first value is already valid, it should confirm right away."
+      }
+     },
+     {
+      "py": "assert _correr(['seis', '-1', '7', '6']) == 'Capítulo de Efesios (1-6): seis\\nEso no es un número.\\nCapítulo de Efesios (1-6): -1\\nEfesios solo tiene 6 capítulos.\\nCapítulo de Efesios (1-6): 7\\nEfesios solo tiene 6 capítulos.\\nCapítulo de Efesios (1-6): 6\\nVas a leer Efesios 6.\\n'",
+      "msg": {
+       "es": "Revisa los bordes: -1 y 7 no valen; 1 y 6 sí.",
+       "en": "Check the edges: -1 and 7 aren't valid; 1 and 6 are."
+      }
+     },
+     {
+      "py": "assert _correr(['1']) == 'Capítulo de Efesios (1-6): 1\\nVas a leer Efesios 1.\\n'",
+      "msg": {
+       "es": "El capítulo 1 también es válido.",
+       "en": "Chapter 1 is valid too."
+      }
+     },
+     {
+      "py": "assert 'while' in _codigo and 'except ValueError' in _codigo",
+      "msg": {
+       "es": "Usa un bucle while y atrapa except ValueError.",
+       "en": "Use a while loop and catch except ValueError."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Chapter of Ephesians (1-6): two\nThat's not a number.\nChapter of Ephesians (1-6): 9\nEphesians only has 6 chapters.\nChapter of Ephesians (1-6): 0\nEphesians only has 6 chapters.\nChapter of Ephesians (1-6): 2\nYou're going to read Ephesians 2."
+     },
+     {
+      "py": "assert _correr(['4']) == \"Chapter of Ephesians (1-6): 4\\nYou're going to read Ephesians 4.\\n\"",
+      "msg": {
+       "es": "Si el primer dato ya es válido, debe confirmar de inmediato.",
+       "en": "If the first value is already valid, it should confirm right away."
+      }
+     },
+     {
+      "py": "assert _correr(['six', '-1', '7', '6']) == \"Chapter of Ephesians (1-6): six\\nThat's not a number.\\nChapter of Ephesians (1-6): -1\\nEphesians only has 6 chapters.\\nChapter of Ephesians (1-6): 7\\nEphesians only has 6 chapters.\\nChapter of Ephesians (1-6): 6\\nYou're going to read Ephesians 6.\\n\"",
+      "msg": {
+       "es": "Revisa los bordes: -1 y 7 no valen; 1 y 6 sí.",
+       "en": "Check the edges: -1 and 7 aren't valid; 1 and 6 are."
+      }
+     },
+     {
+      "py": "assert _correr(['1']) == \"Chapter of Ephesians (1-6): 1\\nYou're going to read Ephesians 1.\\n\"",
+      "msg": {
+       "es": "El capítulo 1 también es válido.",
+       "en": "Chapter 1 is valid too."
+      }
+     },
+     {
+      "py": "assert 'while' in _codigo and 'except ValueError' in _codigo",
+      "msg": {
+       "es": "Usa un bucle while y atrapa except ValueError.",
+       "en": "Use a while loop and catch except ValueError."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "while True:\n    capitulo = int(input(\"Capítulo de Efesios (1-6): \"))\n    if 1 <= capitulo <= 6:\n        break\n    print(\"Efesios solo tiene 6 capítulos.\")\nprint(f\"Vas a leer Efesios {capitulo}.\")",
+     "while True:\n    texto = input(\"Capítulo de Efesios (1-6): \")\n    try:\n        capitulo = int(texto)\n    except ValueError:\n        print(\"Eso no es un número.\")\n        continue\n    if 1 <= capitulo < 6:\n        break\n    print(\"Efesios solo tiene 6 capítulos.\")\nprint(f\"Vas a leer Efesios {capitulo}.\")",
+     "while True:\n    texto = input(\"Capítulo de Efesios (1-6): \")\n    try:\n        capitulo = int(texto)\n        break\n    except ValueError:\n        print(\"Eso no es un número.\")\nprint(f\"Vas a leer Efesios {capitulo}.\")",
+     "texto = input(\"Capítulo de Efesios (1-6): \")\ntry:\n    capitulo = int(texto)\n    print(f\"Vas a leer Efesios {capitulo}.\")\nexcept ValueError:\n    print(\"Eso no es un número.\")"
+    ],
+    "en": [
+     "while True:\n    chapter = int(input(\"Chapter of Ephesians (1-6): \"))\n    if 1 <= chapter <= 6:\n        break\n    print(\"Ephesians only has 6 chapters.\")\nprint(f\"You're going to read Ephesians {chapter}.\")",
+     "while True:\n    text = input(\"Chapter of Ephesians (1-6): \")\n    try:\n        chapter = int(text)\n    except ValueError:\n        print(\"That's not a number.\")\n        continue\n    if 1 <= chapter < 6:\n        break\n    print(\"Ephesians only has 6 chapters.\")\nprint(f\"You're going to read Ephesians {chapter}.\")",
+     "while True:\n    text = input(\"Chapter of Ephesians (1-6): \")\n    try:\n        chapter = int(text)\n        break\n    except ValueError:\n        print(\"That's not a number.\")\nprint(f\"You're going to read Ephesians {chapter}.\")",
+     "text = input(\"Chapter of Ephesians (1-6): \")\ntry:\n    chapter = int(text)\n    print(f\"You're going to read Ephesians {chapter}.\")\nexcept ValueError:\n    print(\"That's not a number.\")"
+    ]
+   }
+  }
+ ]
+}

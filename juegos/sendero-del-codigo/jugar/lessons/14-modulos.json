@@ -1,0 +1,539 @@
+{
+ "id": "14-modulos",
+ "numero": 14,
+ "lugar": "pablo",
+ "titulo": {
+  "es": "Módulos",
+  "en": "Modules"
+ },
+ "tema": {
+  "es": "import, random, math y datetime",
+  "en": "import, random, math and datetime"
+ },
+ "versiculo": "lam-3-22-23",
+ "medalla": {
+  "es": "Nuevo cada mañana",
+  "en": "New every morning"
+ },
+ "leccion": {
+  "es": [
+   "Un **módulo** es un archivo de Python con funciones ya escritas que puedes usar. `import math` lo trae entero y sus cosas se usan con punto: `math.sqrt(16)` da `4.0`. `from math import ceil` trae solo `ceil`, que se usa sin punto. `import datetime as dt` le pone un apodo: `dt.date(...)`.",
+   "**math**: `math.sqrt(x)` (raíz cuadrada), `math.pi` (3.14159…), `math.ceil(x)` redondea hacia arriba y `math.floor(x)` hacia abajo: `math.ceil(4.1)` es `5` y `math.floor(4.9)` es `4`.",
+   "**random** da azar: `random.choice(lista)` elige un elemento; `random.randint(1, 6)` un entero de 1 a 6 (los dos incluidos); `random.shuffle(lista)` baraja la lista ahí mismo (devuelve `None`); `random.sample(lista, 3)` elige 3 distintos. `random.seed(5)` fija la «semilla»: desde ahí, el azar sale igual en cada corrida.",
+   "**datetime** maneja fechas: `date(2026, 4, 5)` es el 5 de abril de 2026; `fecha + timedelta(days=7)` es una semana después; restar dos fechas da un `timedelta` con `.days`; y `fecha.weekday()` da el día de la semana (lunes `0` … domingo `6`). Sus misericordias «nuevas son cada mañana» (Lamentaciones 3:23): con `date` puedes darle a cada día su versículo."
+  ],
+  "en": [
+   "A **module** is a Python file with ready-made functions you can use. `import math` brings in the whole thing, and its contents are used with a dot: `math.sqrt(16)` gives `4.0`. `from math import ceil` brings in only `ceil`, which is used without a dot. `import datetime as dt` gives it a nickname: `dt.date(...)`.",
+   "**math**: `math.sqrt(x)` (square root), `math.pi` (3.14159…), `math.ceil(x)` rounds up and `math.floor(x)` rounds down: `math.ceil(4.1)` is `5` and `math.floor(4.9)` is `4`.",
+   "**random** gives chance: `random.choice(items)` picks one element; `random.randint(1, 6)` a whole number from 1 to 6 (both included); `random.shuffle(items)` shuffles the list in place (it returns `None`); `random.sample(items, 3)` picks 3 different ones. `random.seed(5)` sets the “seed”: from then on, chance comes out the same on every run.",
+   "**datetime** handles dates: `date(2026, 4, 5)` is April 5, 2026; `day + timedelta(days=7)` is one week later; subtracting two dates gives a `timedelta` with `.days`; and `day.weekday()` gives the day of the week (Monday `0` … Sunday `6`). His mercies are “new every morning” (Lamentations 3:23): with `date` you can give each day its verse."
+  ]
+ },
+ "ejemplo": {
+  "es": "import math\nimport random\nfrom datetime import date, timedelta\n\nprint(math.sqrt(144), math.ceil(4.1), math.floor(4.9))\nprint(round(math.pi, 2))\n\ndiscipulos = [\"Pablo\", \"Silas\", \"Timoteo\", \"Lucas\"]\nprint(random.choice(discipulos))\nprint(random.randint(1, 6))\nprint(random.sample(discipulos, 2))\n\ndomingo = date(2026, 4, 5)\nprint(domingo + timedelta(days=7))\nprint(domingo.weekday())   # 6 = domingo\nprint((date(2026, 12, 25) - domingo).days, \"días hasta Navidad\")",
+  "en": "import math\nimport random\nfrom datetime import date, timedelta\n\nprint(math.sqrt(144), math.ceil(4.1), math.floor(4.9))\nprint(round(math.pi, 2))\n\ndisciples = [\"Paul\", \"Silas\", \"Timothy\", \"Luke\"]\nprint(random.choice(disciples))\nprint(random.randint(1, 6))\nprint(random.sample(disciples, 2))\n\nsunday = date(2026, 4, 5)\nprint(sunday + timedelta(days=7))\nprint(sunday.weekday())   # 6 = Sunday\nprint((date(2026, 12, 25) - sunday).days, \"days until Christmas\")"
+ },
+ "ejercicios": [
+  {
+   "id": "atrio-cuadrado",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "«El atrio medirá cien codos de largo, cincuenta codos de ancho» (Éxodo 27:18). Imagina un patio **cuadrado** con la misma área (100 × 50). Importa `math` y calcula su lado con `math.sqrt`. Muestra el lado redondeado a 2 decimales y, con `math.floor` y `math.ceil`, entre qué números enteros queda:\n```\nLado: 70.71 codos\nEntre 70 y 71 codos\n```",
+    "en": "“The entire courtyard shall be a hundred cubits long and fifty cubits wide” (Exodus 27:18). Imagine a **square** yard with the same area (100 × 50). Import `math` and calculate its side with `math.sqrt`. Show the side rounded to 2 decimals and, with `math.floor` and `math.ceil`, which whole numbers it falls between:\n```\nSide: 70.71 cubits\nBetween 70 and 71 cubits\n```"
+   },
+   "inicial": {
+    "es": "area = 100 * 50\n",
+    "en": "area = 100 * 50\n"
+   },
+   "pistas": {
+    "es": [
+     "La primera línea del programa es `import math`. Después, todo lo del módulo se usa con punto: `math.sqrt(area)`.",
+     "`lado = math.sqrt(area)`, luego `round(lado, 2)`, `math.floor(lado)` (hacia abajo) y `math.ceil(lado)` (hacia arriba) dentro de f-strings."
+    ],
+    "en": [
+     "The first line of the program is `import math`. After that, everything in the module is used with a dot: `math.sqrt(area)`.",
+     "`side = math.sqrt(area)`, then `round(side, 2)`, `math.floor(side)` (down) and `math.ceil(side)` (up) inside f-strings."
+    ]
+   },
+   "solucion": {
+    "es": "import math\n\narea = 100 * 50\nlado = math.sqrt(area)\nprint(f\"Lado: {round(lado, 2)} codos\")\nprint(f\"Entre {math.floor(lado)} y {math.ceil(lado)} codos\")",
+    "en": "import math\n\narea = 100 * 50\nside = math.sqrt(area)\nprint(f\"Side: {round(side, 2)} cubits\")\nprint(f\"Between {math.floor(side)} and {math.ceil(side)} cubits\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Lado: 70.71 codos\nEntre 70 y 71 codos"
+     },
+     {
+      "py": "assert 'math.sqrt(' in _codigo and 'math.floor(' in _codigo and 'math.ceil(' in _codigo",
+      "msg": {
+       "es": "Usa las funciones del módulo: `math.sqrt`, `math.floor` y `math.ceil`.",
+       "en": "Use the module's functions: `math.sqrt`, `math.floor` and `math.ceil`."
+      }
+     },
+     {
+      "py": "assert '70.71' not in _codigo",
+      "msg": {
+       "es": "No escribas el resultado: deja que `math.sqrt` lo calcule.",
+       "en": "Don't type the result: let `math.sqrt` calculate it."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Side: 70.71 cubits\nBetween 70 and 71 cubits"
+     },
+     {
+      "py": "assert 'math.sqrt(' in _codigo and 'math.floor(' in _codigo and 'math.ceil(' in _codigo",
+      "msg": {
+       "es": "Usa las funciones del módulo: `math.sqrt`, `math.floor` y `math.ceil`.",
+       "en": "Use the module's functions: `math.sqrt`, `math.floor` and `math.ceil`."
+      }
+     },
+     {
+      "py": "assert '70.71' not in _codigo",
+      "msg": {
+       "es": "No escribas el resultado: deja que `math.sqrt` lo calcule.",
+       "en": "Don't type the result: let `math.sqrt` calculate it."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "area = 100 * 50\nlado = math.sqrt(area)\nprint(f\"Lado: {round(lado, 2)} codos\")\nprint(f\"Entre {math.floor(lado)} y {math.ceil(lado)} codos\")",
+     "import math\n\narea = 100 * 50\nlado = sqrt(area)\nprint(f\"Lado: {round(lado, 2)} codos\")\nprint(f\"Entre {math.floor(lado)} y {math.ceil(lado)} codos\")",
+     "import math\n\narea = 100 * 50\nlado = area ** 0.5\nprint(f\"Lado: {round(lado, 2)} codos\")\nprint(f\"Entre {math.floor(lado)} y {math.ceil(lado)} codos\")",
+     "import math\n\narea = 100 * 50\nlado = math.sqrt(area)\nprint(f\"Lado: {round(lado, 2)} codos\")\nprint(f\"Entre {math.ceil(lado)} y {math.floor(lado)} codos\")"
+    ],
+    "en": [
+     "area = 100 * 50\nside = math.sqrt(area)\nprint(f\"Side: {round(side, 2)} cubits\")\nprint(f\"Between {math.floor(side)} and {math.ceil(side)} cubits\")",
+     "import math\n\narea = 100 * 50\nside = sqrt(area)\nprint(f\"Side: {round(side, 2)} cubits\")\nprint(f\"Between {math.floor(side)} and {math.ceil(side)} cubits\")",
+     "import math\n\narea = 100 * 50\nside = area ** 0.5\nprint(f\"Side: {round(side, 2)} cubits\")\nprint(f\"Between {math.floor(side)} and {math.ceil(side)} cubits\")",
+     "import math\n\narea = 100 * 50\nside = math.sqrt(area)\nprint(f\"Side: {round(side, 2)} cubits\")\nprint(f\"Between {math.ceil(side)} and {math.floor(side)} cubits\")"
+    ]
+   }
+  },
+  {
+   "id": "salmos-por-dia",
+   "tipo": "hueco",
+   "enunciado": {
+    "es": "El libro de los Salmos tiene 150 capítulos. Si lees 4 al día, `150 / 4` da `37.5`: necesitas **38** días (el último lees solo 2). Completa el `from … import` y la función que redondea **hacia arriba**. Fíjate en que, al importar así, la función se usa sin `math.` delante. Debe salir:\n```\n38\n37\n```",
+    "en": "The book of Psalms has 150 chapters. If you read 4 a day, `150 / 4` gives `37.5`: you need **38** days (on the last one you read only 2). Complete the `from … import` and the function that rounds **up**. Notice that, when you import this way, the function is used without `math.` in front. It should print:\n```\n38\n37\n```"
+   },
+   "plantilla": {
+    "es": "from math import ___, floor\n\nsalmos = 150\npor_dia = 4\nprint(___(salmos / por_dia))   # días para leerlos todos\nprint(floor(salmos / por_dia)) # días en que lees 4 completos",
+    "en": "from math import ___, floor\n\npsalms = 150\nper_day = 4\nprint(___(psalms / per_day))    # days to read them all\nprint(floor(psalms / per_day))  # days on which you read 4 full ones"
+   },
+   "pistas": {
+    "es": [
+     "`floor` redondea hacia abajo; su pareja que redondea hacia arriba también está en `math`.",
+     "Es `ceil` en los dos espacios: `from math import ceil, floor` y `print(ceil(salmos / por_dia))`."
+    ],
+    "en": [
+     "`floor` rounds down; its partner that rounds up is also in `math`.",
+     "It's `ceil` in both blanks: `from math import ceil, floor` and `print(ceil(psalms / per_day))`."
+    ]
+   },
+   "solucion": {
+    "es": "from math import ceil, floor\n\nsalmos = 150\npor_dia = 4\nprint(ceil(salmos / por_dia))   # días para leerlos todos\nprint(floor(salmos / por_dia)) # días en que lees 4 completos",
+    "en": "from math import ceil, floor\n\npsalms = 150\nper_day = 4\nprint(ceil(psalms / per_day))    # days to read them all\nprint(floor(psalms / per_day))  # days on which you read 4 full ones"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "38\n37"
+     },
+     {
+      "py": "assert 'ceil' in _codigo",
+      "msg": {
+       "es": "Usa `ceil`, que siempre redondea hacia arriba.",
+       "en": "Use `ceil`, which always rounds up."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "38\n37"
+     },
+     {
+      "py": "assert 'ceil' in _codigo",
+      "msg": {
+       "es": "Usa `ceil`, que siempre redondea hacia arriba.",
+       "en": "Use `ceil`, which always rounds up."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "from math import round, floor\n\nsalmos = 150\npor_dia = 4\nprint(round(salmos / por_dia))   # días para leerlos todos\nprint(floor(salmos / por_dia)) # días en que lees 4 completos",
+     "from math import floor\n\nsalmos = 150\npor_dia = 4\nprint(ceil(salmos / por_dia))   # días para leerlos todos\nprint(floor(salmos / por_dia)) # días en que lees 4 completos",
+     "from math import int, floor\n\nsalmos = 150\npor_dia = 4\nprint(int(salmos / por_dia))   # días para leerlos todos\nprint(floor(salmos / por_dia)) # días en que lees 4 completos",
+     "from math import ceil, floor\n\nsalmos = 150\npor_dia = 4\nprint(math.ceil(salmos / por_dia))   # días para leerlos todos\nprint(floor(salmos / por_dia)) # días en que lees 4 completos"
+    ],
+    "en": [
+     "from math import round, floor\n\npsalms = 150\nper_day = 4\nprint(round(psalms / per_day))    # days to read them all\nprint(floor(psalms / per_day))  # days on which you read 4 full ones",
+     "from math import floor\n\npsalms = 150\nper_day = 4\nprint(ceil(psalms / per_day))    # days to read them all\nprint(floor(psalms / per_day))  # days on which you read 4 full ones",
+     "from math import int, floor\n\npsalms = 150\nper_day = 4\nprint(int(psalms / per_day))    # days to read them all\nprint(floor(psalms / per_day))  # days on which you read 4 full ones",
+     "from math import ceil, floor\n\npsalms = 150\nper_day = 4\nprint(math.ceil(psalms / per_day))    # days to read them all\nprint(floor(psalms / per_day))  # days on which you read 4 full ones"
+    ]
+   }
+  },
+  {
+   "id": "versiculo-al-azar",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Para repasar de memoria, el programa debe elegir **al azar** una de las citas de `refs`. Importa `random`, usa `random.choice` y muestra, por ejemplo:\n```\nHoy repasa: Romanos 8:28\n```\nCada vez que lo ejecutes puede salir una cita distinta.",
+    "en": "To review from memory, the program must pick **at random** one of the references in `refs`. Import `random`, use `random.choice` and show, for example:\n```\nReview today: Romans 8:28\n```\nEach time you run it a different reference may come out."
+   },
+   "inicial": {
+    "es": "refs = [\"Juan 3:16\", \"Salmos 23:1\", \"Romanos 8:28\", \"Filipenses 4:13\", \"Lamentaciones 3:23\"]\n",
+    "en": "refs = [\"John 3:16\", \"Psalm 23:1\", \"Romans 8:28\", \"Philippians 4:13\", \"Lamentations 3:23\"]\n"
+   },
+   "pistas": {
+    "es": [
+     "`random.choice(lista)` devuelve un elemento cualquiera de la lista. Antes necesitas `import random`.",
+     "`print(\"Hoy repasa:\", random.choice(refs))`."
+    ],
+    "en": [
+     "`random.choice(items)` returns any one element of the list. Before that you need `import random`.",
+     "`print(\"Review today:\", random.choice(refs))`."
+    ]
+   },
+   "solucion": {
+    "es": "import random\n\nrefs = [\"Juan 3:16\", \"Salmos 23:1\", \"Romanos 8:28\", \"Filipenses 4:13\", \"Lamentaciones 3:23\"]\nprint(\"Hoy repasa:\", random.choice(refs))",
+    "en": "import random\n\nrefs = [\"John 3:16\", \"Psalm 23:1\", \"Romans 8:28\", \"Philippians 4:13\", \"Lamentations 3:23\"]\nprint(\"Review today:\", random.choice(refs))"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "py": "_l = _salida.strip()\nassert _l.startswith('Hoy repasa: ') and _l[12:] in refs",
+      "msg": {
+       "es": "Debe salir una sola línea: `Hoy repasa: ` y una de las citas de `refs`.",
+       "en": "There must be a single line: `Hoy repasa: ` and one of the references in `refs`."
+      }
+     },
+     {
+      "py": "_vistas = set()\nfor _s in range(1, 30):\n    _l = _correr([], _s).strip()\n    assert _l.startswith('Hoy repasa: ') and _l[len('Hoy repasa: '):] in refs\n    _vistas.add(_l)\nassert len(_vistas) >= 3",
+      "msg": {
+       "es": "La cita debe cambiar de una vez a otra: elígela con `random.choice(refs)`, no escribas una fija.",
+       "en": "The reference must change from one run to another: pick it with `random.choice(refs)`, don't type a fixed one."
+      }
+     }
+    ],
+    "en": [
+     {
+      "py": "_l = _salida.strip()\nassert _l.startswith('Review today: ') and _l[14:] in refs",
+      "msg": {
+       "es": "Debe salir una sola línea: `Review today: ` y una de las citas de `refs`.",
+       "en": "There must be a single line: `Review today: ` and one of the references in `refs`."
+      }
+     },
+     {
+      "py": "_vistas = set()\nfor _s in range(1, 30):\n    _l = _correr([], _s).strip()\n    assert _l.startswith('Review today: ') and _l[len('Review today: '):] in refs\n    _vistas.add(_l)\nassert len(_vistas) >= 3",
+      "msg": {
+       "es": "La cita debe cambiar de una vez a otra: elígela con `random.choice(refs)`, no escribas una fija.",
+       "en": "The reference must change from one run to another: pick it with `random.choice(refs)`, don't type a fixed one."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "refs = [\"Juan 3:16\", \"Salmos 23:1\", \"Romanos 8:28\", \"Filipenses 4:13\", \"Lamentaciones 3:23\"]\nprint(\"Hoy repasa:\", random.choice(refs))",
+     "refs = [\"Juan 3:16\", \"Salmos 23:1\", \"Romanos 8:28\", \"Filipenses 4:13\", \"Lamentaciones 3:23\"]\nprint(\"Hoy repasa:\", refs[0])",
+     "import random\n\nrefs = [\"Juan 3:16\", \"Salmos 23:1\", \"Romanos 8:28\", \"Filipenses 4:13\", \"Lamentaciones 3:23\"]\nprint(\"Hoy repasa:\", random.choice)",
+     "import random\n\nrefs = [\"Juan 3:16\", \"Salmos 23:1\", \"Romanos 8:28\", \"Filipenses 4:13\", \"Lamentaciones 3:23\"]\nprint(\"Hoy repasa:\", refs[random.randint(1, 5)])"
+    ],
+    "en": [
+     "refs = [\"John 3:16\", \"Psalm 23:1\", \"Romans 8:28\", \"Philippians 4:13\", \"Lamentations 3:23\"]\nprint(\"Review today:\", random.choice(refs))",
+     "refs = [\"John 3:16\", \"Psalm 23:1\", \"Romans 8:28\", \"Philippians 4:13\", \"Lamentations 3:23\"]\nprint(\"Review today:\", refs[0])",
+     "import random\n\nrefs = [\"John 3:16\", \"Psalm 23:1\", \"Romans 8:28\", \"Philippians 4:13\", \"Lamentations 3:23\"]\nprint(\"Review today:\", random.choice)",
+     "import random\n\nrefs = [\"John 3:16\", \"Psalm 23:1\", \"Romans 8:28\", \"Philippians 4:13\", \"Lamentations 3:23\"]\nprint(\"Review today:\", refs[random.randint(1, 5)])"
+    ]
+   }
+  },
+  {
+   "id": "lectores",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "El domingo leerán la Biblia en voz alta **tres hermanos distintos**, elegidos al azar de la lista. Usa `random.sample(lista, 3)`, que elige 3 elementos **sin repetir**, y muestra cada nombre en su propia línea, por ejemplo:\n```\nMarta\nAna\nTomás\n```",
+    "en": "On Sunday **three different members** will read the Bible aloud, chosen at random from the list. Use `random.sample(items, 3)`, which picks 3 elements **without repeating**, and show each name on its own line, for example:\n```\nMartha\nAnn\nThomas\n```"
+   },
+   "inicial": {
+    "es": "import random\n\nhermanos = [\"Ana\", \"Luis\", \"Marta\", \"Pedro\", \"Sofía\", \"Tomás\"]\n",
+    "en": "import random\n\nmembers = [\"Ann\", \"Louis\", \"Martha\", \"Peter\", \"Sophie\", \"Thomas\"]\n"
+   },
+   "pistas": {
+    "es": [
+     "`random.choice` podría elegir a la misma persona dos veces; `random.sample` no. Devuelve una lista nueva.",
+     "`lectores = random.sample(hermanos, 3)` y luego `for nombre in lectores: print(nombre)`."
+    ],
+    "en": [
+     "`random.choice` could pick the same person twice; `random.sample` won't. It returns a new list.",
+     "`readers = random.sample(members, 3)` and then `for name in readers: print(name)`."
+    ]
+   },
+   "solucion": {
+    "es": "import random\n\nhermanos = [\"Ana\", \"Luis\", \"Marta\", \"Pedro\", \"Sofía\", \"Tomás\"]\nlectores = random.sample(hermanos, 3)\nfor nombre in lectores:\n    print(nombre)",
+    "en": "import random\n\nmembers = [\"Ann\", \"Louis\", \"Martha\", \"Peter\", \"Sophie\", \"Thomas\"]\nreaders = random.sample(members, 3)\nfor name in readers:\n    print(name)"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "py": "_l = _salida.split()\nassert len(_l) == 3 and all(x in hermanos for x in _l)",
+      "msg": {
+       "es": "Deben salir 3 nombres de la lista `hermanos`, uno por línea.",
+       "en": "There must be 3 names from the `hermanos` list, one per line."
+      }
+     },
+     {
+      "py": "_vistas = set()\nfor _s in range(1, 60):\n    _l = _correr([], _s).split()\n    assert len(_l) == 3 and len(set(_l)) == 3 and all(x in hermanos for x in _l)\n    _vistas.add(tuple(_l))\nassert len(_vistas) >= 5",
+      "msg": {
+       "es": "En cada corrida deben salir 3 hermanos **distintos** y elegidos al azar (prueba con varias semillas): usa `random.sample`.",
+       "en": "Each run must show 3 **different** members chosen at random (tested with several seeds): use `random.sample`."
+      }
+     }
+    ],
+    "en": [
+     {
+      "py": "_l = _salida.split()\nassert len(_l) == 3 and all(x in members for x in _l)",
+      "msg": {
+       "es": "Deben salir 3 nombres de la lista `members`, uno por línea.",
+       "en": "There must be 3 names from the `members` list, one per line."
+      }
+     },
+     {
+      "py": "_vistas = set()\nfor _s in range(1, 60):\n    _l = _correr([], _s).split()\n    assert len(_l) == 3 and len(set(_l)) == 3 and all(x in members for x in _l)\n    _vistas.add(tuple(_l))\nassert len(_vistas) >= 5",
+      "msg": {
+       "es": "En cada corrida deben salir 3 hermanos **distintos** y elegidos al azar (prueba con varias semillas): usa `random.sample`.",
+       "en": "Each run must show 3 **different** members chosen at random (tested with several seeds): use `random.sample`."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "import random\n\nhermanos = [\"Ana\", \"Luis\", \"Marta\", \"Pedro\", \"Sofía\", \"Tomás\"]\nfor i in range(3):\n    print(random.choice(hermanos))",
+     "import random\n\nhermanos = [\"Ana\", \"Luis\", \"Marta\", \"Pedro\", \"Sofía\", \"Tomás\"]\nfor nombre in hermanos[:3]:\n    print(nombre)",
+     "import random\n\nhermanos = [\"Ana\", \"Luis\", \"Marta\", \"Pedro\", \"Sofía\", \"Tomás\"]\nprint(random.sample(hermanos, 3))",
+     "import random\n\nhermanos = [\"Ana\", \"Luis\", \"Marta\", \"Pedro\", \"Sofía\", \"Tomás\"]\nlectores = random.shuffle(hermanos)\nfor nombre in lectores[:3]:\n    print(nombre)"
+    ],
+    "en": [
+     "import random\n\nmembers = [\"Ann\", \"Louis\", \"Martha\", \"Peter\", \"Sophie\", \"Thomas\"]\nfor i in range(3):\n    print(random.choice(members))",
+     "import random\n\nmembers = [\"Ann\", \"Louis\", \"Martha\", \"Peter\", \"Sophie\", \"Thomas\"]\nfor name in members[:3]:\n    print(name)",
+     "import random\n\nmembers = [\"Ann\", \"Louis\", \"Martha\", \"Peter\", \"Sophie\", \"Thomas\"]\nprint(random.sample(members, 3))",
+     "import random\n\nmembers = [\"Ann\", \"Louis\", \"Martha\", \"Peter\", \"Sophie\", \"Thomas\"]\nreaders = random.shuffle(members)\nfor name in readers[:3]:\n    print(name)"
+    ]
+   }
+  },
+  {
+   "id": "pentecostes",
+   "tipo": "ordenar",
+   "enunciado": {
+    "es": "En 2026, el domingo de Resurrección es el 5 de abril, y Pentecostés se celebra 49 días después. Ordena las líneas para calcular su fecha con `date` y `timedelta`, y comprobar con `weekday()` que cae en domingo (`6`; el lunes es `0`). Debe salir:\n```\n2026-05-24\n6\n```",
+    "en": "In 2026, Resurrection Sunday is April 5, and Pentecost is celebrated 49 days later. Put the lines in order to calculate its date with `date` and `timedelta`, and check with `weekday()` that it falls on a Sunday (`6`; Monday is `0`). It should print:\n```\n2026-05-24\n6\n```"
+   },
+   "lineas": {
+    "es": [
+     "from datetime import date, timedelta",
+     "resurreccion = date(2026, 4, 5)",
+     "pentecostes = resurreccion + timedelta(days=49)",
+     "print(pentecostes)",
+     "print(pentecostes.weekday())"
+    ],
+    "en": [
+     "from datetime import date, timedelta",
+     "resurrection = date(2026, 4, 5)",
+     "pentecost = resurrection + timedelta(days=49)",
+     "print(pentecost)",
+     "print(pentecost.weekday())"
+    ]
+   },
+   "pistas": {
+    "es": [
+     "Lo primero siempre es importar: sin el `import`, `date` no existe.",
+     "Luego la fecha de inicio, después la suma con `timedelta`, y al final los dos `print`, en el orden de la salida."
+    ],
+    "en": [
+     "Importing always comes first: without the `import`, `date` doesn't exist.",
+     "Then the starting date, after that the addition with `timedelta`, and finally the two `print` lines, in the order of the output."
+    ]
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "2026-05-24\n6"
+     }
+    ],
+    "en": [
+     {
+      "salida": "2026-05-24\n6"
+     }
+    ]
+   }
+  },
+  {
+   "id": "versiculo-del-dia",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "«Nuevas son cada mañana» (Lamentaciones 3:23). Escribe `versiculo_del_dia(fecha, refs)`: calcula cuántos días pasaron desde el 1 de enero del año de `fecha` (el 1 de enero da `0`) y devuelve `refs[dias % len(refs)]`. Así, cada día toca una cita distinta y, al acabarse la lista, vuelve a empezar. La función usa la fecha que recibe, **no** la de hoy. Debe salir:\n```\nLamentaciones 3:22-23\nColosenses 3:23\n```",
+    "en": "“They are new every morning” (Lamentations 3:23). Write `verse_of_the_day(day, refs)`: count how many days have passed since January 1 of the year of `day` (January 1 gives `0`) and return `refs[number % len(refs)]`. That way each day gets a different reference and, when the list runs out, it starts over. The function uses the date it receives, **not** today's. It should print:\n```\nLamentations 3:22-23\nColossians 3:23\n```"
+   },
+   "inicial": {
+    "es": "from datetime import date\n\nrefs = [\"Lamentaciones 3:22-23\", \"Salmos 119:105\", \"Juan 1:5\", \"Mateo 5:14\", \"Colosenses 3:23\"]\n\n",
+    "en": "from datetime import date\n\nrefs = [\"Lamentations 3:22-23\", \"Psalm 119:105\", \"John 1:5\", \"Matthew 5:14\", \"Colossians 3:23\"]\n\n"
+   },
+   "pistas": {
+    "es": [
+     "Restar dos fechas da un `timedelta`, y su atributo `.days` es el número de días: `(fecha - date(fecha.year, 1, 1)).days`. `fecha.year` es el año de esa fecha.",
+     "`dias = (fecha - date(fecha.year, 1, 1)).days` y `return refs[dias % len(refs)]`. El `%` hace que el número dé la vuelta a la lista."
+    ],
+    "en": [
+     "Subtracting two dates gives a `timedelta`, and its `.days` attribute is the number of days: `(day - date(day.year, 1, 1)).days`. `day.year` is the year of that date.",
+     "`number = (day - date(day.year, 1, 1)).days` and `return refs[number % len(refs)]`. The `%` makes the number wrap around the list."
+    ]
+   },
+   "solucion": {
+    "es": "from datetime import date\n\nrefs = [\"Lamentaciones 3:22-23\", \"Salmos 119:105\", \"Juan 1:5\", \"Mateo 5:14\", \"Colosenses 3:23\"]\ndef versiculo_del_dia(fecha, refs):\n    dia = (fecha - date(fecha.year, 1, 1)).days\n    return refs[dia % len(refs)]\n\nprint(versiculo_del_dia(date(2026, 1, 1), refs))\nprint(versiculo_del_dia(date(2026, 3, 1), refs))",
+    "en": "from datetime import date\n\nrefs = [\"Lamentations 3:22-23\", \"Psalm 119:105\", \"John 1:5\", \"Matthew 5:14\", \"Colossians 3:23\"]\ndef verse_of_the_day(day, refs):\n    number = (day - date(day.year, 1, 1)).days\n    return refs[number % len(refs)]\n\nprint(verse_of_the_day(date(2026, 1, 1), refs))\nprint(verse_of_the_day(date(2026, 3, 1), refs))"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Lamentaciones 3:22-23\nColosenses 3:23"
+     },
+     {
+      "py": "from datetime import date as _d\n_r = ['a', 'b', 'c', 'd', 'e', 'f', 'g']\nassert versiculo_del_dia(_d(2026, 1, 1), _r) == 'a' and versiculo_del_dia(_d(2026, 1, 2), _r) == 'b'\nassert versiculo_del_dia(_d(2026, 1, 8), _r) == 'a' and versiculo_del_dia(_d(2025, 1, 10), _r) == 'c'\nassert versiculo_del_dia(_d(2024, 12, 31), _r) == 'b' and versiculo_del_dia(_d(2026, 12, 31), ['x']) == 'x'",
+      "msg": {
+       "es": "Prueba más fechas: el 1 de enero toca la primera cita, el 2 la segunda… y al terminarse la lista vuelve a empezar. Cuenta desde el 1 de enero del **mismo año** de la fecha.",
+       "en": "Test more dates: January 1 gets the first reference, the 2nd the second… and when the list ends it starts over. Count from January 1 of the **same year** as the date."
+      }
+     },
+     {
+      "py": "assert 'today(' not in _codigo and 'now(' not in _codigo",
+      "msg": {
+       "es": "No uses la fecha de hoy: la función trabaja con la fecha que recibe.",
+       "en": "Don't use today's date: the function works with the date it receives."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Lamentations 3:22-23\nColossians 3:23"
+     },
+     {
+      "py": "from datetime import date as _d\n_r = ['a', 'b', 'c', 'd', 'e', 'f', 'g']\nassert verse_of_the_day(_d(2026, 1, 1), _r) == 'a' and verse_of_the_day(_d(2026, 1, 2), _r) == 'b'\nassert verse_of_the_day(_d(2026, 1, 8), _r) == 'a' and verse_of_the_day(_d(2025, 1, 10), _r) == 'c'\nassert verse_of_the_day(_d(2024, 12, 31), _r) == 'b' and verse_of_the_day(_d(2026, 12, 31), ['x']) == 'x'",
+      "msg": {
+       "es": "Prueba más fechas: el 1 de enero toca la primera cita, el 2 la segunda… y al terminarse la lista vuelve a empezar. Cuenta desde el 1 de enero del **mismo año** de la fecha.",
+       "en": "Test more dates: January 1 gets the first reference, the 2nd the second… and when the list ends it starts over. Count from January 1 of the **same year** as the date."
+      }
+     },
+     {
+      "py": "assert 'today(' not in _codigo and 'now(' not in _codigo",
+      "msg": {
+       "es": "No uses la fecha de hoy: la función trabaja con la fecha que recibe.",
+       "en": "Don't use today's date: the function works with the date it receives."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "from datetime import date\n\nrefs = [\"Lamentaciones 3:22-23\", \"Salmos 119:105\", \"Juan 1:5\", \"Mateo 5:14\", \"Colosenses 3:23\"]\ndef versiculo_del_dia(fecha, refs):\n    dia = (fecha - date(fecha.year, 1, 1)).days\n    return refs[dia]\n\nprint(versiculo_del_dia(date(2026, 1, 1), refs))\nprint(versiculo_del_dia(date(2026, 3, 1), refs))",
+     "from datetime import date\n\nrefs = [\"Lamentaciones 3:22-23\", \"Salmos 119:105\", \"Juan 1:5\", \"Mateo 5:14\", \"Colosenses 3:23\"]\ndef versiculo_del_dia(fecha, refs):\n    dia = fecha.day\n    return refs[dia % len(refs)]\n\nprint(versiculo_del_dia(date(2026, 1, 1), refs))\nprint(versiculo_del_dia(date(2026, 3, 1), refs))",
+     "from datetime import date\n\nrefs = [\"Lamentaciones 3:22-23\", \"Salmos 119:105\", \"Juan 1:5\", \"Mateo 5:14\", \"Colosenses 3:23\"]\ndef versiculo_del_dia(fecha, refs):\n    dia = (fecha - date(2026, 1, 1)).days\n    return refs[dia % len(refs)]\n\nprint(versiculo_del_dia(date(2026, 1, 1), refs))\nprint(versiculo_del_dia(date(2026, 3, 1), refs))",
+     "from datetime import date\n\nrefs = [\"Lamentaciones 3:22-23\", \"Salmos 119:105\", \"Juan 1:5\", \"Mateo 5:14\", \"Colosenses 3:23\"]\ndef versiculo_del_dia(fecha, refs):\n    dia = fecha - date(fecha.year, 1, 1)\n    return refs[dia % len(refs)]\n\nprint(versiculo_del_dia(date(2026, 1, 1), refs))\nprint(versiculo_del_dia(date(2026, 3, 1), refs))"
+    ],
+    "en": [
+     "from datetime import date\n\nrefs = [\"Lamentations 3:22-23\", \"Psalm 119:105\", \"John 1:5\", \"Matthew 5:14\", \"Colossians 3:23\"]\ndef verse_of_the_day(day, refs):\n    number = (day - date(day.year, 1, 1)).days\n    return refs[number]\n\nprint(verse_of_the_day(date(2026, 1, 1), refs))\nprint(verse_of_the_day(date(2026, 3, 1), refs))",
+     "from datetime import date\n\nrefs = [\"Lamentations 3:22-23\", \"Psalm 119:105\", \"John 1:5\", \"Matthew 5:14\", \"Colossians 3:23\"]\ndef verse_of_the_day(day, refs):\n    number = day.day\n    return refs[number % len(refs)]\n\nprint(verse_of_the_day(date(2026, 1, 1), refs))\nprint(verse_of_the_day(date(2026, 3, 1), refs))",
+     "from datetime import date\n\nrefs = [\"Lamentations 3:22-23\", \"Psalm 119:105\", \"John 1:5\", \"Matthew 5:14\", \"Colossians 3:23\"]\ndef verse_of_the_day(day, refs):\n    number = (day - date(2026, 1, 1)).days\n    return refs[number % len(refs)]\n\nprint(verse_of_the_day(date(2026, 1, 1), refs))\nprint(verse_of_the_day(date(2026, 3, 1), refs))",
+     "from datetime import date\n\nrefs = [\"Lamentations 3:22-23\", \"Psalm 119:105\", \"John 1:5\", \"Matthew 5:14\", \"Colossians 3:23\"]\ndef verse_of_the_day(day, refs):\n    number = day - date(day.year, 1, 1)\n    return refs[number % len(refs)]\n\nprint(verse_of_the_day(date(2026, 1, 1), refs))\nprint(verse_of_the_day(date(2026, 3, 1), refs))"
+    ]
+   }
+  },
+  {
+   "id": "reto-plan-repaso",
+   "tipo": "escribir",
+   "reto": true,
+   "enunciado": {
+    "es": "**Reto: plan de repaso.** Arma un plan para repasar un versículo por día, empezando el domingo 1 de noviembre de 2026. El código inicial ya importa los módulos y fija `random.seed(2026)`, para que el azar dé siempre el mismo orden. Tu programa debe:\n1. Barajar `refs` con `random.shuffle` (una sola vez).\n2. Calcular con `math.ceil` cuántas semanas dura el plan.\n3. Mostrar cada día con su fecha (`inicio + timedelta(days=i)`), el nombre del día (usa `DIAS[...weekday()]`) y su cita.\n\nDebe salir:\n```\nPlan de repaso: 10 versículos en 2 semanas\n2026-11-01 (domingo): Génesis 1:1\n2026-11-02 (lunes): Hebreos 12:1\n2026-11-03 (martes): Juan 1:5\n2026-11-04 (miércoles): Mateo 5:14\n2026-11-05 (jueves): Lamentaciones 3:22-23\n2026-11-06 (viernes): Proverbios 2:6\n2026-11-07 (sábado): 1 Corintios 14:40\n2026-11-08 (domingo): Colosenses 3:23\n2026-11-09 (lunes): Efesios 2:8\n2026-11-10 (martes): Salmos 119:105\n```",
+    "en": "**Challenge: review plan.** Build a plan to review one verse a day, starting on Sunday, November 1, 2026. The starting code already imports the modules and sets `random.seed(2026)`, so chance always gives the same order. Your program must:\n1. Shuffle `refs` with `random.shuffle` (just once).\n2. Calculate with `math.ceil` how many weeks the plan lasts.\n3. Show each day with its date (`start + timedelta(days=i)`), the name of the day (use `DAYS[...weekday()]`) and its reference.\n\nIt should print:\n```\nReview plan: 10 verses in 2 weeks\n2026-11-01 (Sunday): Genesis 1:1\n2026-11-02 (Monday): Hebrews 12:1\n2026-11-03 (Tuesday): John 1:5\n2026-11-04 (Wednesday): Matthew 5:14\n2026-11-05 (Thursday): Lamentations 3:22-23\n2026-11-06 (Friday): Proverbs 2:6\n2026-11-07 (Saturday): 1 Corinthians 14:40\n2026-11-08 (Sunday): Colossians 3:23\n2026-11-09 (Monday): Ephesians 2:8\n2026-11-10 (Tuesday): Psalm 119:105\n```"
+   },
+   "inicial": {
+    "es": "import random\nimport math\nfrom datetime import date, timedelta\n\nDIAS = [\"lunes\", \"martes\", \"miércoles\", \"jueves\", \"viernes\", \"sábado\", \"domingo\"]\nrefs = [\"Génesis 1:1\", \"Salmos 119:105\", \"Juan 1:5\", \"Mateo 5:14\", \"Proverbios 2:6\", \"Efesios 2:8\", \"Hebreos 12:1\", \"1 Corintios 14:40\", \"Lamentaciones 3:22-23\", \"Colosenses 3:23\"]\ninicio = date(2026, 11, 1)\nrandom.seed(2026)\n\n",
+    "en": "import random\nimport math\nfrom datetime import date, timedelta\n\nDAYS = [\"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\", \"Sunday\"]\nrefs = [\"Genesis 1:1\", \"Psalm 119:105\", \"John 1:5\", \"Matthew 5:14\", \"Proverbs 2:6\", \"Ephesians 2:8\", \"Hebrews 12:1\", \"1 Corinthians 14:40\", \"Lamentations 3:22-23\", \"Colossians 3:23\"]\nstart = date(2026, 11, 1)\nrandom.seed(2026)\n\n"
+   },
+   "pistas": {
+    "es": [
+     "`random.shuffle(refs)` desordena la lista **ahí mismo** y devuelve `None`: no guardes su resultado. Las semanas son `math.ceil(len(refs) / 7)`.",
+     "`for i in range(len(refs)):` → `dia = inicio + timedelta(days=i)` → `print(f\"{dia} ({DIAS[dia.weekday()]}): {refs[i]}\")`."
+    ],
+    "en": [
+     "`random.shuffle(refs)` shuffles the list **in place** and returns `None`: don't store its result. The weeks are `math.ceil(len(refs) / 7)`.",
+     "`for i in range(len(refs)):` → `day = start + timedelta(days=i)` → `print(f\"{day} ({DAYS[day.weekday()]}): {refs[i]}\")`."
+    ]
+   },
+   "solucion": {
+    "es": "import random\nimport math\nfrom datetime import date, timedelta\n\nDIAS = [\"lunes\", \"martes\", \"miércoles\", \"jueves\", \"viernes\", \"sábado\", \"domingo\"]\nrefs = [\"Génesis 1:1\", \"Salmos 119:105\", \"Juan 1:5\", \"Mateo 5:14\", \"Proverbios 2:6\", \"Efesios 2:8\", \"Hebreos 12:1\", \"1 Corintios 14:40\", \"Lamentaciones 3:22-23\", \"Colosenses 3:23\"]\ninicio = date(2026, 11, 1)\nrandom.seed(2026)\nrandom.shuffle(refs)\nsemanas = math.ceil(len(refs) / 7)\nprint(f\"Plan de repaso: {len(refs)} versículos en {semanas} semanas\")\nfor i in range(len(refs)):\n    dia = inicio + timedelta(days=i)\n    print(f\"{dia} ({DIAS[dia.weekday()]}): {refs[i]}\")",
+    "en": "import random\nimport math\nfrom datetime import date, timedelta\n\nDAYS = [\"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\", \"Sunday\"]\nrefs = [\"Genesis 1:1\", \"Psalm 119:105\", \"John 1:5\", \"Matthew 5:14\", \"Proverbs 2:6\", \"Ephesians 2:8\", \"Hebrews 12:1\", \"1 Corinthians 14:40\", \"Lamentations 3:22-23\", \"Colossians 3:23\"]\nstart = date(2026, 11, 1)\nrandom.seed(2026)\nrandom.shuffle(refs)\nweeks = math.ceil(len(refs) / 7)\nprint(f\"Review plan: {len(refs)} verses in {weeks} weeks\")\nfor i in range(len(refs)):\n    day = start + timedelta(days=i)\n    print(f\"{day} ({DAYS[day.weekday()]}): {refs[i]}\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Plan de repaso: 10 versículos en 2 semanas\n2026-11-01 (domingo): Génesis 1:1\n2026-11-02 (lunes): Hebreos 12:1\n2026-11-03 (martes): Juan 1:5\n2026-11-04 (miércoles): Mateo 5:14\n2026-11-05 (jueves): Lamentaciones 3:22-23\n2026-11-06 (viernes): Proverbios 2:6\n2026-11-07 (sábado): 1 Corintios 14:40\n2026-11-08 (domingo): Colosenses 3:23\n2026-11-09 (lunes): Efesios 2:8\n2026-11-10 (martes): Salmos 119:105"
+     },
+     {
+      "py": "assert 'shuffle(' in _codigo and 'math.ceil(' in _codigo and 'timedelta(' in _codigo and 'weekday()' in _codigo",
+      "msg": {
+       "es": "Usa `random.shuffle`, `math.ceil`, `timedelta` y `weekday()`.",
+       "en": "Use `random.shuffle`, `math.ceil`, `timedelta` and `weekday()`."
+      }
+     },
+     {
+      "py": "assert 'today(' not in _codigo",
+      "msg": {
+       "es": "El plan empieza en `inicio`, no en la fecha de hoy.",
+       "en": "The plan starts at `inicio`, not at today's date."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Review plan: 10 verses in 2 weeks\n2026-11-01 (Sunday): Genesis 1:1\n2026-11-02 (Monday): Hebrews 12:1\n2026-11-03 (Tuesday): John 1:5\n2026-11-04 (Wednesday): Matthew 5:14\n2026-11-05 (Thursday): Lamentations 3:22-23\n2026-11-06 (Friday): Proverbs 2:6\n2026-11-07 (Saturday): 1 Corinthians 14:40\n2026-11-08 (Sunday): Colossians 3:23\n2026-11-09 (Monday): Ephesians 2:8\n2026-11-10 (Tuesday): Psalm 119:105"
+     },
+     {
+      "py": "assert 'shuffle(' in _codigo and 'math.ceil(' in _codigo and 'timedelta(' in _codigo and 'weekday()' in _codigo",
+      "msg": {
+       "es": "Usa `random.shuffle`, `math.ceil`, `timedelta` y `weekday()`.",
+       "en": "Use `random.shuffle`, `math.ceil`, `timedelta` and `weekday()`."
+      }
+     },
+     {
+      "py": "assert 'today(' not in _codigo",
+      "msg": {
+       "es": "El plan empieza en `start`, no en la fecha de hoy.",
+       "en": "The plan starts at `start`, not at today's date."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "import random\nimport math\nfrom datetime import date, timedelta\n\nDIAS = [\"lunes\", \"martes\", \"miércoles\", \"jueves\", \"viernes\", \"sábado\", \"domingo\"]\nrefs = [\"Génesis 1:1\", \"Salmos 119:105\", \"Juan 1:5\", \"Mateo 5:14\", \"Proverbios 2:6\", \"Efesios 2:8\", \"Hebreos 12:1\", \"1 Corintios 14:40\", \"Lamentaciones 3:22-23\", \"Colosenses 3:23\"]\ninicio = date(2026, 11, 1)\nrandom.seed(2026)\nrefs = random.shuffle(refs)\nsemanas = math.ceil(len(refs) / 7)\nprint(f\"Plan de repaso: {len(refs)} versículos en {semanas} semanas\")\nfor i in range(len(refs)):\n    dia = inicio + timedelta(days=i)\n    print(f\"{dia} ({DIAS[dia.weekday()]}): {refs[i]}\")",
+     "import random\nimport math\nfrom datetime import date, timedelta\n\nDIAS = [\"lunes\", \"martes\", \"miércoles\", \"jueves\", \"viernes\", \"sábado\", \"domingo\"]\nrefs = [\"Génesis 1:1\", \"Salmos 119:105\", \"Juan 1:5\", \"Mateo 5:14\", \"Proverbios 2:6\", \"Efesios 2:8\", \"Hebreos 12:1\", \"1 Corintios 14:40\", \"Lamentaciones 3:22-23\", \"Colosenses 3:23\"]\ninicio = date(2026, 11, 1)\nrandom.seed(2026)\nrandom.shuffle(refs)\nsemanas = len(refs) // 7\nprint(f\"Plan de repaso: {len(refs)} versículos en {semanas} semanas\")\nfor i in range(len(refs)):\n    dia = inicio + timedelta(days=i)\n    print(f\"{dia} ({DIAS[dia.weekday()]}): {refs[i]}\")",
+     "import random\nimport math\nfrom datetime import date, timedelta\n\nDIAS = [\"lunes\", \"martes\", \"miércoles\", \"jueves\", \"viernes\", \"sábado\", \"domingo\"]\nrefs = [\"Génesis 1:1\", \"Salmos 119:105\", \"Juan 1:5\", \"Mateo 5:14\", \"Proverbios 2:6\", \"Efesios 2:8\", \"Hebreos 12:1\", \"1 Corintios 14:40\", \"Lamentaciones 3:22-23\", \"Colosenses 3:23\"]\ninicio = date(2026, 11, 1)\nrandom.seed(2026)\nrandom.shuffle(refs)\nsemanas = math.ceil(len(refs) / 7)\nprint(f\"Plan de repaso: {len(refs)} versículos en {semanas} semanas\")\nfor i in range(len(refs)):\n    dia = inicio + timedelta(days=i)\n    print(f\"{dia} ({DIAS[i]}): {refs[i]}\")",
+     "import random\nimport math\nfrom datetime import date, timedelta\n\nDIAS = [\"lunes\", \"martes\", \"miércoles\", \"jueves\", \"viernes\", \"sábado\", \"domingo\"]\nrefs = [\"Génesis 1:1\", \"Salmos 119:105\", \"Juan 1:5\", \"Mateo 5:14\", \"Proverbios 2:6\", \"Efesios 2:8\", \"Hebreos 12:1\", \"1 Corintios 14:40\", \"Lamentaciones 3:22-23\", \"Colosenses 3:23\"]\ninicio = date(2026, 11, 1)\nrandom.seed(2026)\nrandom.shuffle(refs)\nsemanas = math.ceil(len(refs) / 7)\nprint(f\"Plan de repaso: {len(refs)} versículos en {semanas} semanas\")\nfor i in range(len(refs)):\n    random.shuffle(refs)\n    dia = inicio + timedelta(days=i)\n    print(f\"{dia} ({DIAS[dia.weekday()]}): {refs[i]}\")"
+    ],
+    "en": [
+     "import random\nimport math\nfrom datetime import date, timedelta\n\nDAYS = [\"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\", \"Sunday\"]\nrefs = [\"Genesis 1:1\", \"Psalm 119:105\", \"John 1:5\", \"Matthew 5:14\", \"Proverbs 2:6\", \"Ephesians 2:8\", \"Hebrews 12:1\", \"1 Corinthians 14:40\", \"Lamentations 3:22-23\", \"Colossians 3:23\"]\nstart = date(2026, 11, 1)\nrandom.seed(2026)\nrefs = random.shuffle(refs)\nweeks = math.ceil(len(refs) / 7)\nprint(f\"Review plan: {len(refs)} verses in {weeks} weeks\")\nfor i in range(len(refs)):\n    day = start + timedelta(days=i)\n    print(f\"{day} ({DAYS[day.weekday()]}): {refs[i]}\")",
+     "import random\nimport math\nfrom datetime import date, timedelta\n\nDAYS = [\"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\", \"Sunday\"]\nrefs = [\"Genesis 1:1\", \"Psalm 119:105\", \"John 1:5\", \"Matthew 5:14\", \"Proverbs 2:6\", \"Ephesians 2:8\", \"Hebrews 12:1\", \"1 Corinthians 14:40\", \"Lamentations 3:22-23\", \"Colossians 3:23\"]\nstart = date(2026, 11, 1)\nrandom.seed(2026)\nrandom.shuffle(refs)\nweeks = len(refs) // 7\nprint(f\"Review plan: {len(refs)} verses in {weeks} weeks\")\nfor i in range(len(refs)):\n    day = start + timedelta(days=i)\n    print(f\"{day} ({DAYS[day.weekday()]}): {refs[i]}\")",
+     "import random\nimport math\nfrom datetime import date, timedelta\n\nDAYS = [\"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\", \"Sunday\"]\nrefs = [\"Genesis 1:1\", \"Psalm 119:105\", \"John 1:5\", \"Matthew 5:14\", \"Proverbs 2:6\", \"Ephesians 2:8\", \"Hebrews 12:1\", \"1 Corinthians 14:40\", \"Lamentations 3:22-23\", \"Colossians 3:23\"]\nstart = date(2026, 11, 1)\nrandom.seed(2026)\nrandom.shuffle(refs)\nweeks = math.ceil(len(refs) / 7)\nprint(f\"Review plan: {len(refs)} verses in {weeks} weeks\")\nfor i in range(len(refs)):\n    day = start + timedelta(days=i)\n    print(f\"{day} ({DAYS[i]}): {refs[i]}\")",
+     "import random\nimport math\nfrom datetime import date, timedelta\n\nDAYS = [\"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\", \"Sunday\"]\nrefs = [\"Genesis 1:1\", \"Psalm 119:105\", \"John 1:5\", \"Matthew 5:14\", \"Proverbs 2:6\", \"Ephesians 2:8\", \"Hebrews 12:1\", \"1 Corinthians 14:40\", \"Lamentations 3:22-23\", \"Colossians 3:23\"]\nstart = date(2026, 11, 1)\nrandom.seed(2026)\nrandom.shuffle(refs)\nweeks = math.ceil(len(refs) / 7)\nprint(f\"Review plan: {len(refs)} verses in {weeks} weeks\")\nfor i in range(len(refs)):\n    random.shuffle(refs)\n    day = start + timedelta(days=i)\n    print(f\"{day} ({DAYS[day.weekday()]}): {refs[i]}\")"
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,618 @@
+{
+ "id": "17-censo-tribus",
+ "numero": 17,
+ "lugar": "roma",
+ "titulo": {
+  "es": "El censo de las tribus",
+  "en": "The census of the tribes"
+ },
+ "tema": {
+  "es": "json y csv: guardar y leer datos",
+  "en": "json and csv: saving and reading data"
+ },
+ "versiculo": "num-1-2",
+ "medalla": {
+  "es": "Escriba del censo",
+  "en": "Census scribe"
+ },
+ "leccion": {
+  "es": [
+   "Un archivo de texto guarda letras, pero tus programas trabajan con listas y diccionarios. **JSON** es un formato de texto que los representa casi igual que Python: `{\"tribu\": \"Dan\", \"varones\": 62700}`. Con `import json`, `json.dumps(dato)` convierte un dato en texto JSON y `json.loads(texto)` hace lo contrario.",
+   "Con archivos se usan `json.dump(dato, f)` y `json.load(f)` (sin la **s**, que viene de *string*). `indent=2` escribe el JSON en varias líneas con sangría, fácil de leer; `ensure_ascii=False` deja las tildes como `á` en lugar de `\\u00e1`. Ojo: en JSON las comillas siempre son dobles, y `True`/`None` se escriben `true`/`null`.",
+   "**CSV** (valores separados por comas) es una tabla en texto: la primera fila suele ser el encabezado. `csv.reader(f)` da cada fila como una **lista de cadenas** (los números llegan como texto: conviértelos con `int()`), y `csv.DictReader(f)` da cada fila como un **diccionario** con las columnas del encabezado.",
+   "Para escribir CSV abre el archivo con `newline=\"\"` y usa `csv.writer(f).writerow([...])`, o `csv.DictWriter(f, fieldnames=[...])` con `writeheader()` y `writerow({...})`.",
+   "En Números 1, Moisés y Aarón contaron a los varones de veinte años o más de cada tribu. Esas cifras exactas son los datos de este capítulo; el total fue de **603 550**."
+  ],
+  "en": [
+   "A text file stores letters, but your programs work with lists and dictionaries. **JSON** is a text format that represents them almost the same way Python does: `{\"tribe\": \"Dan\", \"men\": 62700}`. With `import json`, `json.dumps(data)` turns data into JSON text and `json.loads(text)` does the opposite.",
+   "With files you use `json.dump(data, f)` and `json.load(f)` (without the **s**, which stands for *string*). `indent=2` writes the JSON on several indented lines, easy to read; `ensure_ascii=False` keeps accented letters like `á` instead of `\\u00e1`. Careful: in JSON quotes are always double, and `True`/`None` are written `true`/`null`.",
+   "**CSV** (comma-separated values) is a table in text: the first row is usually the header. `csv.reader(f)` gives each row as a **list of strings** (numbers arrive as text: convert them with `int()`), and `csv.DictReader(f)` gives each row as a **dictionary** keyed by the header's columns.",
+   "To write CSV, open the file with `newline=\"\"` and use `csv.writer(f).writerow([...])`, or `csv.DictWriter(f, fieldnames=[...])` with `writeheader()` and `writerow({...})`.",
+   "In Numbers 1, Moses and Aaron counted the men twenty years old or more in each tribe. Those exact figures are this chapter's data; the total was **603,550**."
+  ]
+ },
+ "ejemplo": {
+  "es": "import json, csv\n\njuda = {\"tribu\": \"Judá\", \"varones\": 74600}\ntexto = json.dumps(juda, ensure_ascii=False)\nprint(texto)\nprint(json.loads(texto)[\"varones\"] + 1)\n\nwith open(\"censo.csv\", encoding=\"utf-8\") as f:\n    for fila in csv.DictReader(f):\n        print(fila[\"tribu\"], int(fila[\"varones\"]))",
+  "en": "import json, csv\n\njudah = {\"tribe\": \"Judah\", \"men\": 74600}\ntext = json.dumps(judah)\nprint(text)\nprint(json.loads(text)[\"men\"] + 1)\n\nwith open(\"census.csv\", encoding=\"utf-8\") as f:\n    for row in csv.DictReader(f):\n        print(row[\"tribe\"], int(row[\"men\"]))"
+ },
+ "archivos_ejemplo": {
+  "es": {
+   "censo.csv": "tribu,varones\nRubén,46500\nSimeón,59300\nGad,45650\n"
+  },
+  "en": {
+   "census.csv": "tribe,men\nReuben,46500\nSimeon,59300\nGad,45650\n"
+  }
+ },
+ "ejercicios": [
+  {
+   "id": "a-json",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Convierte el diccionario `tribu` en texto JSON con `json.dumps` y muéstralo. Las tildes deben salir tal cual (usa `ensure_ascii=False`). Debe salir:\n```\n{\"nombre\": \"Judá\", \"varones\": 74600, \"jefe\": \"Naasón\"}\n```",
+    "en": "Turn the dictionary `tribe` into JSON text with `json.dumps` and show it. Use `ensure_ascii=False` so accented letters stay as they are. It should print:\n```\n{\"name\": \"Judah\", \"men\": 74600, \"leader\": \"Nahshon\"}\n```"
+   },
+   "inicial": {
+    "es": "import json\n\ntribu = {\"nombre\": \"Judá\", \"varones\": 74600, \"jefe\": \"Naasón\"}\n",
+    "en": "import json\n\ntribe = {\"name\": \"Judah\", \"men\": 74600, \"leader\": \"Nahshon\"}\n"
+   },
+   "pistas": {
+    "es": [
+     "`print(tribu)` mostraría comillas simples: eso es Python, no JSON.",
+     "`print(json.dumps(tribu, ensure_ascii=False))`."
+    ],
+    "en": [
+     "`print(tribe)` would show single quotes: that's Python, not JSON.",
+     "`print(json.dumps(tribe, ensure_ascii=False))`."
+    ]
+   },
+   "solucion": {
+    "es": "import json\n\ntribu = {\"nombre\": \"Judá\", \"varones\": 74600, \"jefe\": \"Naasón\"}\nprint(json.dumps(tribu, ensure_ascii=False))",
+    "en": "import json\n\ntribe = {\"name\": \"Judah\", \"men\": 74600, \"leader\": \"Nahshon\"}\nprint(json.dumps(tribe, ensure_ascii=False))"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "{\"nombre\": \"Judá\", \"varones\": 74600, \"jefe\": \"Naasón\"}"
+     },
+     {
+      "py": "assert 'dumps(' in _codigo",
+      "msg": {
+       "es": "Usa json.dumps().",
+       "en": "Use json.dumps()."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "{\"name\": \"Judah\", \"men\": 74600, \"leader\": \"Nahshon\"}"
+     },
+     {
+      "py": "assert 'dumps(' in _codigo",
+      "msg": {
+       "es": "Usa json.dumps().",
+       "en": "Use json.dumps()."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "import json\n\ntribu = {\"nombre\": \"Judá\", \"varones\": 74600, \"jefe\": \"Naasón\"}\nprint(tribu)",
+     "import json\n\ntribu = {\"nombre\": \"Judá\", \"varones\": 74600, \"jefe\": \"Naasón\"}\nprint(json.dumps(tribu))",
+     "import json\n\ntribu = {\"nombre\": \"Judá\", \"varones\": 74600, \"jefe\": \"Naasón\"}\nprint(json.dump(tribu))"
+    ],
+    "en": [
+     "import json\n\ntribe = {\"name\": \"Judah\", \"men\": 74600, \"leader\": \"Nahshon\"}\nprint(tribe)",
+     "import json\n\ntribe = {\"name\": \"Judah\", \"men\": 74600, \"leader\": \"Nahshon\"}\nprint(json.dump(tribe))"
+    ]
+   }
+  },
+  {
+   "id": "desde-json",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "`texto` es una cadena JSON con las tres primeras tribus del censo. Conviértela en una lista de Python con `json.loads`, muestra el nombre de cada tribu y al final la suma de sus varones. Debe salir:\n```\nRubén\nSimeón\nGad\nTotal: 151450\n```",
+    "en": "`text` is a JSON string with the first three tribes of the census. Turn it into a Python list with `json.loads`, show each tribe's name and at the end the sum of their men. It should print:\n```\nReuben\nSimeon\nGad\nTotal: 151450\n```"
+   },
+   "inicial": {
+    "es": "import json\n\ntexto = '[{\"tribu\": \"Rubén\", \"varones\": 46500}, {\"tribu\": \"Simeón\", \"varones\": 59300}, {\"tribu\": \"Gad\", \"varones\": 45650}]'\n",
+    "en": "import json\n\ntext = '[{\"tribe\": \"Reuben\", \"men\": 46500}, {\"tribe\": \"Simeon\", \"men\": 59300}, {\"tribe\": \"Gad\", \"men\": 45650}]'\n"
+   },
+   "pistas": {
+    "es": [
+     "`tribus = json.loads(texto)` da una lista de diccionarios; recórrela con `for t in tribus:`.",
+     "Muestra `t[\"tribu\"]` y acumula `total += t[\"varones\"]` (ya es un número, no hace falta `int()`)."
+    ],
+    "en": [
+     "`tribes = json.loads(text)` gives a list of dictionaries; loop over it with `for t in tribes:`.",
+     "Show `t[\"tribe\"]` and accumulate `total += t[\"men\"]` (it's already a number, no need for `int()`)."
+    ]
+   },
+   "solucion": {
+    "es": "import json\n\ntexto = '[{\"tribu\": \"Rubén\", \"varones\": 46500}, {\"tribu\": \"Simeón\", \"varones\": 59300}, {\"tribu\": \"Gad\", \"varones\": 45650}]'\ntribus = json.loads(texto)\ntotal = 0\nfor t in tribus:\n    print(t[\"tribu\"])\n    total += t[\"varones\"]\nprint(f\"Total: {total}\")",
+    "en": "import json\n\ntext = '[{\"tribe\": \"Reuben\", \"men\": 46500}, {\"tribe\": \"Simeon\", \"men\": 59300}, {\"tribe\": \"Gad\", \"men\": 45650}]'\ntribes = json.loads(text)\ntotal = 0\nfor t in tribes:\n    print(t[\"tribe\"])\n    total += t[\"men\"]\nprint(f\"Total: {total}\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Rubén\nSimeón\nGad\nTotal: 151450"
+     },
+     {
+      "py": "assert 'loads(' in _codigo and '151450' not in _codigo",
+      "msg": {
+       "es": "Convierte el texto con json.loads() y calcula la suma.",
+       "en": "Convert the text with json.loads() and calculate the sum."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Reuben\nSimeon\nGad\nTotal: 151450"
+     },
+     {
+      "py": "assert 'loads(' in _codigo and '151450' not in _codigo",
+      "msg": {
+       "es": "Convierte el texto con json.loads() y calcula la suma.",
+       "en": "Convert the text with json.loads() and calculate the sum."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "import json\n\ntexto = '[{\"tribu\": \"Rubén\", \"varones\": 46500}, {\"tribu\": \"Simeón\", \"varones\": 59300}, {\"tribu\": \"Gad\", \"varones\": 45650}]'\ntotal = 0\nfor t in texto:\n    print(t[\"tribu\"])\n    total += t[\"varones\"]\nprint(f\"Total: {total}\")",
+     "import json\n\ntexto = '[{\"tribu\": \"Rubén\", \"varones\": 46500}, {\"tribu\": \"Simeón\", \"varones\": 59300}, {\"tribu\": \"Gad\", \"varones\": 45650}]'\ntribus = json.loads(texto)\ntotal = 0\nfor t in tribus:\n    print(t)\n    total += t[\"varones\"]\nprint(f\"Total: {total}\")",
+     "import json\n\ntexto = '[{\"tribu\": \"Rubén\", \"varones\": 46500}, {\"tribu\": \"Simeón\", \"varones\": 59300}, {\"tribu\": \"Gad\", \"varones\": 45650}]'\ntribus = json.load(texto)\nfor t in tribus:\n    print(t[\"tribu\"])"
+    ],
+    "en": [
+     "import json\n\ntext = '[{\"tribe\": \"Reuben\", \"men\": 46500}, {\"tribe\": \"Simeon\", \"men\": 59300}, {\"tribe\": \"Gad\", \"men\": 45650}]'\ntotal = 0\nfor t in text:\n    print(t[\"tribe\"])\n    total += t[\"men\"]\nprint(f\"Total: {total}\")",
+     "import json\n\ntext = '[{\"tribe\": \"Reuben\", \"men\": 46500}, {\"tribe\": \"Simeon\", \"men\": 59300}, {\"tribe\": \"Gad\", \"men\": 45650}]'\ntribes = json.loads(text)\ntotal = 0\nfor t in tribes:\n    print(t)\n    total += t[\"men\"]\nprint(f\"Total: {total}\")"
+    ]
+   }
+  },
+  {
+   "id": "mayor-menor",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "`censo.json` guarda un diccionario `tribu → varones` con las doce tribus. Cárgalo con `json.load` y muestra cuántas tribus hay, la más numerosa y la menos numerosa. Debe salir:\n```\nTribus: 12\nMayor: Judá (74600)\nMenor: Manasés (32200)\n```",
+    "en": "`census.json` stores a `tribe → men` dictionary with the twelve tribes. Load it with `json.load` and show how many tribes there are, the largest and the smallest. It should print:\n```\nTribes: 12\nLargest: Judah (74600)\nSmallest: Manasseh (32200)\n```"
+   },
+   "archivos": {
+    "es": {
+     "censo.json": "{\n  \"Rubén\": 46500,\n  \"Simeón\": 59300,\n  \"Gad\": 45650,\n  \"Judá\": 74600,\n  \"Isacar\": 54400,\n  \"Zabulón\": 57400,\n  \"Efraín\": 40500,\n  \"Manasés\": 32200,\n  \"Benjamín\": 35400,\n  \"Dan\": 62700,\n  \"Aser\": 41500,\n  \"Neftalí\": 53400\n}"
+    },
+    "en": {
+     "census.json": "{\n  \"Reuben\": 46500,\n  \"Simeon\": 59300,\n  \"Gad\": 45650,\n  \"Judah\": 74600,\n  \"Issachar\": 54400,\n  \"Zebulun\": 57400,\n  \"Ephraim\": 40500,\n  \"Manasseh\": 32200,\n  \"Benjamin\": 35400,\n  \"Dan\": 62700,\n  \"Asher\": 41500,\n  \"Naphtali\": 53400\n}"
+    }
+   },
+   "inicial": {
+    "es": "import json\n",
+    "en": "import json\n"
+   },
+   "pistas": {
+    "es": [
+     "`with open(\"censo.json\", encoding=\"utf-8\") as f: censo = json.load(f)`.",
+     "`mayor = max(censo, key=censo.get)` da la tribu con más varones; `censo[mayor]` da su cifra. Lo mismo con `min`."
+    ],
+    "en": [
+     "`with open(\"census.json\", encoding=\"utf-8\") as f: census = json.load(f)`.",
+     "`largest = max(census, key=census.get)` gives the tribe with the most men; `census[largest]` gives its number. The same with `min`."
+    ]
+   },
+   "solucion": {
+    "es": "import json\n\nwith open(\"censo.json\", encoding=\"utf-8\") as f:\n    censo = json.load(f)\nmayor = max(censo, key=censo.get)\nmenor = min(censo, key=censo.get)\nprint(f\"Tribus: {len(censo)}\")\nprint(f\"Mayor: {mayor} ({censo[mayor]})\")\nprint(f\"Menor: {menor} ({censo[menor]})\")",
+    "en": "import json\n\nwith open(\"census.json\", encoding=\"utf-8\") as f:\n    census = json.load(f)\nlargest = max(census, key=census.get)\nsmallest = min(census, key=census.get)\nprint(f\"Tribes: {len(census)}\")\nprint(f\"Largest: {largest} ({census[largest]})\")\nprint(f\"Smallest: {smallest} ({census[smallest]})\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Tribus: 12\nMayor: Judá (74600)\nMenor: Manasés (32200)"
+     },
+     {
+      "py": "assert 'json.load(' in _codigo and '74600' not in _codigo",
+      "msg": {
+       "es": "Carga los datos con json.load(f) y búscalos con Python, sin escribir las cifras.",
+       "en": "Load the data with json.load(f) and find them with Python, without typing the numbers."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Tribes: 12\nLargest: Judah (74600)\nSmallest: Manasseh (32200)"
+     },
+     {
+      "py": "assert 'json.load(' in _codigo and '74600' not in _codigo",
+      "msg": {
+       "es": "Carga los datos con json.load(f) y búscalos con Python, sin escribir las cifras.",
+       "en": "Load the data with json.load(f) and find them with Python, without typing the numbers."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "import json\n\nwith open(\"censo.json\", encoding=\"utf-8\") as f:\n    censo = json.load(f)\nmayor = max(censo)\nmenor = min(censo)\nprint(f\"Tribus: {len(censo)}\")\nprint(f\"Mayor: {mayor} ({censo[mayor]})\")\nprint(f\"Menor: {menor} ({censo[menor]})\")",
+     "import json\n\nwith open(\"censo.json\", encoding=\"utf-8\") as f:\n    censo = f.read()\nprint(f\"Tribus: {len(censo)}\")",
+     "import json\n\ncenso = json.load(\"censo.json\")\nprint(len(censo))"
+    ],
+    "en": [
+     "import json\n\nwith open(\"census.json\", encoding=\"utf-8\") as f:\n    census = json.load(f)\nlargest = max(census)\nsmallest = min(census)\nprint(f\"Tribes: {len(census)}\")\nprint(f\"Largest: {largest} ({census[largest]})\")\nprint(f\"Smallest: {smallest} ({census[smallest]})\")",
+     "import json\n\ncensus = json.load(\"census.json\")\nprint(len(census))"
+    ]
+   }
+  },
+  {
+   "id": "guardar-resumen",
+   "tipo": "hueco",
+   "enunciado": {
+    "es": "Guarda el diccionario `resumen` en el archivo `resumen.json`, con sangría de **2 espacios** para que sea fácil de leer. Completa la función de `json` que escribe en un archivo y el valor de `indent`.",
+    "en": "Save the dictionary `summary` in the file `summary.json`, indented with **2 spaces** so it's easy to read. Fill in the `json` function that writes to a file and the value of `indent`."
+   },
+   "plantilla": {
+    "es": "import json\n\nresumen = {\"libro\": \"Números\", \"capitulo\": 1, \"tribus\": 12, \"total\": 603550}\nwith open(\"resumen.json\", \"w\", encoding=\"utf-8\") as f:\n    json.___(resumen, f, indent=___, ensure_ascii=False)",
+    "en": "import json\n\nsummary = {\"book\": \"Numbers\", \"chapter\": 1, \"tribes\": 12, \"total\": 603550}\nwith open(\"summary.json\", \"w\", encoding=\"utf-8\") as f:\n    json.___(summary, f, indent=___, ensure_ascii=False)"
+   },
+   "pistas": {
+    "es": [
+     "La función que escribe en un archivo es la que **no** termina en `s`.",
+     "`json.dump(resumen, f, indent=2, ensure_ascii=False)`."
+    ],
+    "en": [
+     "The function that writes to a file is the one that does **not** end in `s`.",
+     "`json.dump(summary, f, indent=2, ensure_ascii=False)`."
+    ]
+   },
+   "solucion": {
+    "es": "import json\n\nresumen = {\"libro\": \"Números\", \"capitulo\": 1, \"tribus\": 12, \"total\": 603550}\nwith open(\"resumen.json\", \"w\", encoding=\"utf-8\") as f:\n    json.dump(resumen, f, indent=2, ensure_ascii=False)",
+    "en": "import json\n\nsummary = {\"book\": \"Numbers\", \"chapter\": 1, \"tribes\": 12, \"total\": 603550}\nwith open(\"summary.json\", \"w\", encoding=\"utf-8\") as f:\n    json.dump(summary, f, indent=2, ensure_ascii=False)"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "py": "import json\nassert json.load(open('resumen.json', encoding='utf-8')) == resumen",
+      "msg": {
+       "es": "resumen.json debe contener el diccionario resumen en JSON.",
+       "en": "resumen.json must contain the resumen dictionary as JSON."
+      }
+     },
+     {
+      "py": "assert open('resumen.json', encoding='utf-8').read().startswith('{\\n  \"libro\": \"Números\"')",
+      "msg": {
+       "es": "Usa indent=2: cada clave en su línea con 2 espacios.",
+       "en": "Use indent=2: each key on its own line with 2 spaces."
+      }
+     }
+    ],
+    "en": [
+     {
+      "py": "import json\nassert json.load(open('summary.json', encoding='utf-8')) == summary",
+      "msg": {
+       "es": "summary.json debe contener el diccionario summary en JSON.",
+       "en": "summary.json must contain the summary dictionary as JSON."
+      }
+     },
+     {
+      "py": "assert open('summary.json', encoding='utf-8').read().startswith('{\\n  \"book\": \"Numbers\"')",
+      "msg": {
+       "es": "Usa indent=2: cada clave en su línea con 2 espacios.",
+       "en": "Use indent=2: each key on its own line with 2 spaces."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "import json\n\nresumen = {\"libro\": \"Números\", \"capitulo\": 1, \"tribus\": 12, \"total\": 603550}\nwith open(\"resumen.json\", \"w\", encoding=\"utf-8\") as f:\n    json.dumps(resumen, f, indent=2, ensure_ascii=False)",
+     "import json\n\nresumen = {\"libro\": \"Números\", \"capitulo\": 1, \"tribus\": 12, \"total\": 603550}\nwith open(\"resumen.json\", \"w\", encoding=\"utf-8\") as f:\n    json.dump(resumen, f, indent=4, ensure_ascii=False)",
+     "import json\n\nresumen = {\"libro\": \"Números\", \"capitulo\": 1, \"tribus\": 12, \"total\": 603550}\nwith open(\"resumen.json\", \"w\", encoding=\"utf-8\") as f:\n    json.dump(resumen, f, indent=None, ensure_ascii=False)"
+    ],
+    "en": [
+     "import json\n\nsummary = {\"book\": \"Numbers\", \"chapter\": 1, \"tribes\": 12, \"total\": 603550}\nwith open(\"summary.json\", \"w\", encoding=\"utf-8\") as f:\n    json.dumps(summary, f, indent=2, ensure_ascii=False)",
+     "import json\n\nsummary = {\"book\": \"Numbers\", \"chapter\": 1, \"tribes\": 12, \"total\": 603550}\nwith open(\"summary.json\", \"w\", encoding=\"utf-8\") as f:\n    json.dump(summary, f, indent=4, ensure_ascii=False)"
+    ]
+   }
+  },
+  {
+   "id": "total-csv",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "`censo.csv` tiene el encabezado `tribu,varones` y luego una fila por tribu. Léelo con `csv.reader`, **salta el encabezado** y suma la columna de varones. Debe salir:\n```\nTotal: 603550\n```\n(Es la cifra de Números 1:46).",
+    "en": "`census.csv` has the header `tribe,men` and then one row per tribe. Read it with `csv.reader`, **skip the header** and add up the men column. It should print:\n```\nTotal: 603550\n```\n(It's the number in Numbers 1:46)."
+   },
+   "archivos": {
+    "es": {
+     "censo.csv": "tribu,varones\nRubén,46500\nSimeón,59300\nGad,45650\nJudá,74600\nIsacar,54400\nZabulón,57400\nEfraín,40500\nManasés,32200\nBenjamín,35400\nDan,62700\nAser,41500\nNeftalí,53400\n"
+    },
+    "en": {
+     "census.csv": "tribe,men\nReuben,46500\nSimeon,59300\nGad,45650\nJudah,74600\nIssachar,54400\nZebulun,57400\nEphraim,40500\nManasseh,32200\nBenjamin,35400\nDan,62700\nAsher,41500\nNaphtali,53400\n"
+    }
+   },
+   "inicial": {
+    "es": "import csv\n",
+    "en": "import csv\n"
+   },
+   "pistas": {
+    "es": [
+     "`lector = csv.reader(f)` y `next(lector)` se salta la primera fila (el encabezado).",
+     "Cada fila es una lista como `[\"Rubén\", \"46500\"]`: suma `int(fila[1])`."
+    ],
+    "en": [
+     "`reader = csv.reader(f)` and `next(reader)` skips the first row (the header).",
+     "Each row is a list like `[\"Reuben\", \"46500\"]`: add `int(row[1])`."
+    ]
+   },
+   "solucion": {
+    "es": "import csv\n\ntotal = 0\nwith open(\"censo.csv\", encoding=\"utf-8\") as f:\n    lector = csv.reader(f)\n    next(lector)\n    for fila in lector:\n        total += int(fila[1])\nprint(f\"Total: {total}\")",
+    "en": "import csv\n\ntotal = 0\nwith open(\"census.csv\", encoding=\"utf-8\") as f:\n    reader = csv.reader(f)\n    next(reader)\n    for row in reader:\n        total += int(row[1])\nprint(f\"Total: {total}\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Total: 603550"
+     },
+     {
+      "py": "assert 'csv.reader(' in _codigo and '603550' not in _codigo",
+      "msg": {
+       "es": "Lee el archivo con csv.reader y calcula la suma.",
+       "en": "Read the file with csv.reader and calculate the sum."
+      }
+     },
+     {
+      "py": "open('censo.csv', 'w', encoding='utf-8').write('tribu,varones\\nLeví,22000\\nDan,62700\\n')\nassert _correr([]).strip() == 'Total: 84700'",
+      "msg": {
+       "es": "Con otro censo.csv la suma debe cambiar: súmala desde el archivo.",
+       "en": "With another censo.csv the sum must change: add it up from the file."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Total: 603550"
+     },
+     {
+      "py": "assert 'csv.reader(' in _codigo and '603550' not in _codigo",
+      "msg": {
+       "es": "Lee el archivo con csv.reader y calcula la suma.",
+       "en": "Read the file with csv.reader and calculate the sum."
+      }
+     },
+     {
+      "py": "open('census.csv', 'w', encoding='utf-8').write('tribe,men\\nLevi,22000\\nDan,62700\\n')\nassert _correr([]).strip() == 'Total: 84700'",
+      "msg": {
+       "es": "Con otro census.csv la suma debe cambiar: súmala desde el archivo.",
+       "en": "With another census.csv the sum must change: add it up from the file."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "import csv\n\ntotal = 0\nwith open(\"censo.csv\", encoding=\"utf-8\") as f:\n    for fila in csv.reader(f):\n        total += int(fila[1])\nprint(f\"Total: {total}\")",
+     "import csv\n\ntotal = 0\nwith open(\"censo.csv\", encoding=\"utf-8\") as f:\n    lector = csv.reader(f)\n    next(lector)\n    for fila in lector:\n        total += fila[1]\nprint(f\"Total: {total}\")",
+     "import csv\n\ntotal = 0\nwith open(\"censo.csv\", encoding=\"utf-8\") as f:\n    lector = csv.reader(f)\n    next(lector)\n    for fila in lector:\n        total = int(fila[1])\nprint(f\"Total: {total}\")"
+    ],
+    "en": [
+     "import csv\n\ntotal = 0\nwith open(\"census.csv\", encoding=\"utf-8\") as f:\n    for row in csv.reader(f):\n        total += int(row[1])\nprint(f\"Total: {total}\")",
+     "import csv\n\ntotal = 0\nwith open(\"census.csv\", encoding=\"utf-8\") as f:\n    reader = csv.reader(f)\n    next(reader)\n    for row in reader:\n        total += row[1]\nprint(f\"Total: {total}\")"
+    ]
+   }
+  },
+  {
+   "id": "mas-de-50000",
+   "tipo": "escribir",
+   "enunciado": {
+    "es": "Escribe la función `tribus_mayores(nombre_archivo, minimo)`: lee el CSV con `csv.DictReader` y devuelve una **lista de pares** `(tribu, varones)` (con `varones` como `int`) de las tribus que tienen **más** de `minimo` varones, en el orden del archivo. Luego muestra las de más de 50000 así:\n```\nSimeón: 59300\nJudá: 74600\nIsacar: 54400\nZabulón: 57400\nDan: 62700\nNeftalí: 53400\n```",
+    "en": "Write the function `large_tribes(file_name, minimum)`: read the CSV with `csv.DictReader` and return a **list of pairs** `(tribe, men)` (with `men` as an `int`) of the tribes that have **more** than `minimum` men, in the file's order. Then show the ones with more than 50000 like this:\n```\nSimeon: 59300\nJudah: 74600\nIssachar: 54400\nZebulun: 57400\nDan: 62700\nNaphtali: 53400\n```"
+   },
+   "archivos": {
+    "es": {
+     "censo.csv": "tribu,varones\nRubén,46500\nSimeón,59300\nGad,45650\nJudá,74600\nIsacar,54400\nZabulón,57400\nEfraín,40500\nManasés,32200\nBenjamín,35400\nDan,62700\nAser,41500\nNeftalí,53400\n"
+    },
+    "en": {
+     "census.csv": "tribe,men\nReuben,46500\nSimeon,59300\nGad,45650\nJudah,74600\nIssachar,54400\nZebulun,57400\nEphraim,40500\nManasseh,32200\nBenjamin,35400\nDan,62700\nAsher,41500\nNaphtali,53400\n"
+    }
+   },
+   "inicial": {
+    "es": "import csv\n\ndef tribus_mayores(nombre_archivo, minimo):\n    \n\nfor tribu, varones in tribus_mayores(\"censo.csv\", 50000):\n    print(f\"{tribu}: {varones}\")",
+    "en": "import csv\n\ndef large_tribes(file_name, minimum):\n    \n\nfor tribe, men in large_tribes(\"census.csv\", 50000):\n    print(f\"{tribe}: {men}\")"
+   },
+   "pistas": {
+    "es": [
+     "Con `for fila in csv.DictReader(f):` cada `fila` es un diccionario como `{\"tribu\": \"Rubén\", \"varones\": \"46500\"}`.",
+     "Convierte `n = int(fila[\"varones\"])`; si `n > minimo`, agrega `(fila[\"tribu\"], n)` a una lista y devuélvela al final."
+    ],
+    "en": [
+     "With `for row in csv.DictReader(f):` each `row` is a dictionary like `{\"tribe\": \"Reuben\", \"men\": \"46500\"}`.",
+     "Convert `n = int(row[\"men\"])`; if `n > minimum`, append `(row[\"tribe\"], n)` to a list and return it at the end."
+    ]
+   },
+   "solucion": {
+    "es": "import csv\n\ndef tribus_mayores(nombre_archivo, minimo):\n    resultado = []\n    with open(nombre_archivo, encoding=\"utf-8\") as f:\n        for fila in csv.DictReader(f):\n            n = int(fila[\"varones\"])\n            if n > minimo:\n                resultado.append((fila[\"tribu\"], n))\n    return resultado\n\nfor tribu, varones in tribus_mayores(\"censo.csv\", 50000):\n    print(f\"{tribu}: {varones}\")",
+    "en": "import csv\n\ndef large_tribes(file_name, minimum):\n    result = []\n    with open(file_name, encoding=\"utf-8\") as f:\n        for row in csv.DictReader(f):\n            n = int(row[\"men\"])\n            if n > minimum:\n                result.append((row[\"tribe\"], n))\n    return result\n\nfor tribe, men in large_tribes(\"census.csv\", 50000):\n    print(f\"{tribe}: {men}\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Simeón: 59300\nJudá: 74600\nIsacar: 54400\nZabulón: 57400\nDan: 62700\nNeftalí: 53400"
+     },
+     {
+      "py": "assert tribus_mayores('censo.csv', 70000) == [('Judá', 74600)]",
+      "msg": {
+       "es": "tribus_mayores(\"censo.csv\", 70000) debe devolver [(\"Judá\", 74600)]: pares con la cifra como int.",
+       "en": "tribus_mayores(\"censo.csv\", 70000) must return [(\"Judá\", 74600)]: pairs with the number as an int."
+      }
+     },
+     {
+      "py": "assert tribus_mayores('censo.csv', 74600) == [] and len(tribus_mayores('censo.csv', 0)) == 12",
+      "msg": {
+       "es": "Usa el parámetro minimo con «más que» (>): con 74600 no queda ninguna, con 0 quedan las 12.",
+       "en": "Use the minimo parameter with «more than» (>): with 74600 none is left, with 0 all 12 are."
+      }
+     },
+     {
+      "py": "assert 'DictReader' in _codigo",
+      "msg": {
+       "es": "Lee el archivo con csv.DictReader.",
+       "en": "Read the file with csv.DictReader."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Simeon: 59300\nJudah: 74600\nIssachar: 54400\nZebulun: 57400\nDan: 62700\nNaphtali: 53400"
+     },
+     {
+      "py": "assert large_tribes('census.csv', 70000) == [('Judah', 74600)]",
+      "msg": {
+       "es": "large_tribes(\"census.csv\", 70000) debe devolver [(\"Judah\", 74600)]: pares con la cifra como int.",
+       "en": "large_tribes(\"census.csv\", 70000) must return [(\"Judah\", 74600)]: pairs with the number as an int."
+      }
+     },
+     {
+      "py": "assert large_tribes('census.csv', 74600) == [] and len(large_tribes('census.csv', 0)) == 12",
+      "msg": {
+       "es": "Usa el parámetro minimum con «más que» (>): con 74600 no queda ninguna, con 0 quedan las 12.",
+       "en": "Use the minimum parameter with «more than» (>): with 74600 none is left, with 0 all 12 are."
+      }
+     },
+     {
+      "py": "assert 'DictReader' in _codigo",
+      "msg": {
+       "es": "Lee el archivo con csv.DictReader.",
+       "en": "Read the file with csv.DictReader."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "import csv\n\ndef tribus_mayores(nombre_archivo, minimo):\n    resultado = []\n    with open(nombre_archivo, encoding=\"utf-8\") as f:\n        for fila in csv.DictReader(f):\n            if fila[\"varones\"] > minimo:\n                resultado.append((fila[\"tribu\"], fila[\"varones\"]))\n    return resultado\n\nfor tribu, varones in tribus_mayores(\"censo.csv\", 50000):\n    print(f\"{tribu}: {varones}\")",
+     "import csv\n\ndef tribus_mayores(nombre_archivo, minimo):\n    resultado = []\n    with open(nombre_archivo, encoding=\"utf-8\") as f:\n        for fila in csv.DictReader(f):\n            n = int(fila[\"varones\"])\n            if n > 50000:\n                resultado.append((fila[\"tribu\"], n))\n    return resultado\n\nfor tribu, varones in tribus_mayores(\"censo.csv\", 50000):\n    print(f\"{tribu}: {varones}\")",
+     "import csv\n\ndef tribus_mayores(nombre_archivo, minimo):\n    resultado = []\n    with open(nombre_archivo, encoding=\"utf-8\") as f:\n        for fila in csv.DictReader(f):\n            n = int(fila[\"varones\"])\n            if n >= minimo:\n                resultado.append((fila[\"tribu\"], n))\n    return resultado\n\nfor tribu, varones in tribus_mayores(\"censo.csv\", 50000):\n    print(f\"{tribu}: {varones}\")",
+     "import csv\n\ndef tribus_mayores(nombre_archivo, minimo):\n    with open(nombre_archivo, encoding=\"utf-8\") as f:\n        for fila in csv.DictReader(f):\n            n = int(fila[\"varones\"])\n            if n > minimo:\n                print(f\"{fila['tribu']}: {n}\")\n\ntribus_mayores(\"censo.csv\", 50000)"
+    ],
+    "en": [
+     "import csv\n\ndef large_tribes(file_name, minimum):\n    result = []\n    with open(file_name, encoding=\"utf-8\") as f:\n        for row in csv.DictReader(f):\n            if row[\"men\"] > minimum:\n                result.append((row[\"tribe\"], row[\"men\"]))\n    return result\n\nfor tribe, men in large_tribes(\"census.csv\", 50000):\n    print(f\"{tribe}: {men}\")",
+     "import csv\n\ndef large_tribes(file_name, minimum):\n    result = []\n    with open(file_name, encoding=\"utf-8\") as f:\n        for row in csv.DictReader(f):\n            n = int(row[\"men\"])\n            if n > 50000:\n                result.append((row[\"tribe\"], n))\n    return result\n\nfor tribe, men in large_tribes(\"census.csv\", 50000):\n    print(f\"{tribe}: {men}\")",
+     "import csv\n\ndef large_tribes(file_name, minimum):\n    with open(file_name, encoding=\"utf-8\") as f:\n        for row in csv.DictReader(f):\n            n = int(row[\"men\"])\n            if n > minimum:\n                print(f\"{row['tribe']}: {n}\")\n\nlarge_tribes(\"census.csv\", 50000)"
+    ]
+   }
+  },
+  {
+   "id": "informe-censo",
+   "tipo": "escribir",
+   "reto": true,
+   "enunciado": {
+    "es": "**Reto: el informe del censo.** A partir de `censo.csv` (columnas `tribu,varones`):\n1. Escribe `porcentajes.csv` con `csv.DictWriter` y las columnas `tribu,varones,porcentaje`, una fila por tribu en el mismo orden; el porcentaje es `varones * 100 / total` redondeado a 1 decimal. La fila de Rubén queda `Rubén,46500,7.7`.\n2. Escribe `resumen.json` (con `indent=2`) con el diccionario `{\"total\": ..., \"mayor\": ..., \"menor\": ...}` (las tribus con más y con menos varones).\n3. Muestra:\n```\nTribus: 12. Total: 603550\n```\nTodo debe calcularse desde el archivo.",
+    "en": "**Challenge: the census report.** Starting from `census.csv` (columns `tribe,men`):\n1. Write `percentages.csv` with `csv.DictWriter` and the columns `tribe,men,percent`, one row per tribe in the same order; the percentage is `men * 100 / total` rounded to 1 decimal. Reuben's row is `Reuben,46500,7.7`.\n2. Write `summary.json` (with `indent=2`) with the dictionary `{\"total\": ..., \"largest\": ..., \"smallest\": ...}` (the tribes with the most and the fewest men).\n3. Show:\n```\nTribes: 12. Total: 603550\n```\nEverything must be calculated from the file."
+   },
+   "archivos": {
+    "es": {
+     "censo.csv": "tribu,varones\nRubén,46500\nSimeón,59300\nGad,45650\nJudá,74600\nIsacar,54400\nZabulón,57400\nEfraín,40500\nManasés,32200\nBenjamín,35400\nDan,62700\nAser,41500\nNeftalí,53400\n"
+    },
+    "en": {
+     "census.csv": "tribe,men\nReuben,46500\nSimeon,59300\nGad,45650\nJudah,74600\nIssachar,54400\nZebulun,57400\nEphraim,40500\nManasseh,32200\nBenjamin,35400\nDan,62700\nAsher,41500\nNaphtali,53400\n"
+    }
+   },
+   "inicial": {
+    "es": "import csv, json\n",
+    "en": "import csv, json\n"
+   },
+   "pistas": {
+    "es": [
+     "Primero lee todo en una lista de pares `(tribu, varones)` con `DictReader` e `int()`, y calcula el total: el porcentaje lo necesita antes de escribir.",
+     "Para escribir: `escritor = csv.DictWriter(f, fieldnames=[\"tribu\", \"varones\", \"porcentaje\"])`, `escritor.writeheader()` y un `escritor.writerow({...})` por tribu. Abre con `newline=\"\"`."
+    ],
+    "en": [
+     "First read everything into a list of `(tribe, men)` pairs with `DictReader` and `int()`, and calculate the total: the percentage needs it before writing.",
+     "To write: `writer = csv.DictWriter(f, fieldnames=[\"tribe\", \"men\", \"percent\"])`, `writer.writeheader()` and one `writer.writerow({...})` per tribe. Open with `newline=\"\"`."
+    ]
+   },
+   "solucion": {
+    "es": "import csv, json\n\nwith open(\"censo.csv\", encoding=\"utf-8\") as f:\n    tribus = [(fila[\"tribu\"], int(fila[\"varones\"])) for fila in csv.DictReader(f)]\n\ntotal = sum(n for _, n in tribus)\nmayor = max(tribus, key=lambda t: t[1])[0]\nmenor = min(tribus, key=lambda t: t[1])[0]\n\nwith open(\"porcentajes.csv\", \"w\", encoding=\"utf-8\", newline=\"\") as f:\n    escritor = csv.DictWriter(f, fieldnames=[\"tribu\", \"varones\", \"porcentaje\"])\n    escritor.writeheader()\n    for tribu, n in tribus:\n        escritor.writerow({\"tribu\": tribu, \"varones\": n, \"porcentaje\": round(n * 100 / total, 1)})\n\nwith open(\"resumen.json\", \"w\", encoding=\"utf-8\") as f:\n    json.dump({\"total\": total, \"mayor\": mayor, \"menor\": menor}, f, indent=2, ensure_ascii=False)\n\nprint(f\"Tribus: {len(tribus)}. Total: {total}\")",
+    "en": "import csv, json\n\nwith open(\"census.csv\", encoding=\"utf-8\") as f:\n    tribes = [(row[\"tribe\"], int(row[\"men\"])) for row in csv.DictReader(f)]\n\ntotal = sum(n for _, n in tribes)\nlargest = max(tribes, key=lambda t: t[1])[0]\nsmallest = min(tribes, key=lambda t: t[1])[0]\n\nwith open(\"percentages.csv\", \"w\", encoding=\"utf-8\", newline=\"\") as f:\n    writer = csv.DictWriter(f, fieldnames=[\"tribe\", \"men\", \"percent\"])\n    writer.writeheader()\n    for tribe, n in tribes:\n        writer.writerow({\"tribe\": tribe, \"men\": n, \"percent\": round(n * 100 / total, 1)})\n\nwith open(\"summary.json\", \"w\", encoding=\"utf-8\") as f:\n    json.dump({\"total\": total, \"largest\": largest, \"smallest\": smallest}, f, indent=2, ensure_ascii=False)\n\nprint(f\"Tribes: {len(tribes)}. Total: {total}\")"
+   },
+   "pruebas": {
+    "es": [
+     {
+      "salida": "Tribus: 12. Total: 603550"
+     },
+     {
+      "py": "import csv\nwith open('porcentajes.csv', encoding='utf-8', newline='') as f:\n    filas = list(csv.DictReader(f))\nassert filas == [{'tribu': 'Rubén', 'varones': '46500', 'porcentaje': '7.7'}, {'tribu': 'Simeón', 'varones': '59300', 'porcentaje': '9.8'}, {'tribu': 'Gad', 'varones': '45650', 'porcentaje': '7.6'}, {'tribu': 'Judá', 'varones': '74600', 'porcentaje': '12.4'}, {'tribu': 'Isacar', 'varones': '54400', 'porcentaje': '9.0'}, {'tribu': 'Zabulón', 'varones': '57400', 'porcentaje': '9.5'}, {'tribu': 'Efraín', 'varones': '40500', 'porcentaje': '6.7'}, {'tribu': 'Manasés', 'varones': '32200', 'porcentaje': '5.3'}, {'tribu': 'Benjamín', 'varones': '35400', 'porcentaje': '5.9'}, {'tribu': 'Dan', 'varones': '62700', 'porcentaje': '10.4'}, {'tribu': 'Aser', 'varones': '41500', 'porcentaje': '6.9'}, {'tribu': 'Neftalí', 'varones': '53400', 'porcentaje': '8.8'}]",
+      "msg": {
+       "es": "porcentajes.csv no es el esperado: encabezado tribu,varones,porcentaje y una fila por tribu, en orden, con el porcentaje redondeado a 1 decimal.",
+       "en": "porcentajes.csv is not as expected: header tribu,varones,porcentaje and one row per tribe, in order, with the percentage rounded to 1 decimal."
+      }
+     },
+     {
+      "py": "import json\nassert json.load(open('resumen.json', encoding='utf-8')) == {'total': 603550, 'mayor': 'Judá', 'menor': 'Manasés'}",
+      "msg": {
+       "es": "resumen.json debe tener total, mayor y menor.",
+       "en": "resumen.json must have total, mayor and menor."
+      }
+     },
+     {
+      "py": "assert '\\n  \"' in open('resumen.json', encoding='utf-8').read()",
+      "msg": {
+       "es": "Guarda resumen.json con indent=2.",
+       "en": "Save resumen.json with indent=2."
+      }
+     },
+     {
+      "py": "open('censo.csv', 'w', encoding='utf-8').write('tribu,varones\\nGad,45650\\nDan,62700\\n')\nimport json\nassert _correr([]).strip() == 'Tribus: 2. Total: 108350' and json.load(open('resumen.json', encoding='utf-8'))['menor'] == 'Gad'",
+      "msg": {
+       "es": "Con otro censo.csv todo debe cambiar: calcula desde el archivo, sin escribir cifras ni nombres.",
+       "en": "With another censo.csv everything must change: calculate from the file, without typing numbers or names."
+      }
+     }
+    ],
+    "en": [
+     {
+      "salida": "Tribes: 12. Total: 603550"
+     },
+     {
+      "py": "import csv\nwith open('percentages.csv', encoding='utf-8', newline='') as f:\n    rows = list(csv.DictReader(f))\nassert rows == [{'tribe': 'Reuben', 'men': '46500', 'percent': '7.7'}, {'tribe': 'Simeon', 'men': '59300', 'percent': '9.8'}, {'tribe': 'Gad', 'men': '45650', 'percent': '7.6'}, {'tribe': 'Judah', 'men': '74600', 'percent': '12.4'}, {'tribe': 'Issachar', 'men': '54400', 'percent': '9.0'}, {'tribe': 'Zebulun', 'men': '57400', 'percent': '9.5'}, {'tribe': 'Ephraim', 'men': '40500', 'percent': '6.7'}, {'tribe': 'Manasseh', 'men': '32200', 'percent': '5.3'}, {'tribe': 'Benjamin', 'men': '35400', 'percent': '5.9'}, {'tribe': 'Dan', 'men': '62700', 'percent': '10.4'}, {'tribe': 'Asher', 'men': '41500', 'percent': '6.9'}, {'tribe': 'Naphtali', 'men': '53400', 'percent': '8.8'}]",
+      "msg": {
+       "es": "percentages.csv no es el esperado: encabezado tribe,men,percent y una fila por tribu, en orden, con el porcentaje redondeado a 1 decimal.",
+       "en": "percentages.csv is not as expected: header tribe,men,percent and one row per tribe, in order, with the percentage rounded to 1 decimal."
+      }
+     },
+     {
+      "py": "import json\nassert json.load(open('summary.json', encoding='utf-8')) == {'total': 603550, 'largest': 'Judah', 'smallest': 'Manasseh'}",
+      "msg": {
+       "es": "summary.json debe tener total, largest y smallest.",
+       "en": "summary.json must have total, largest and smallest."
+      }
+     },
+     {
+      "py": "assert '\\n  \"' in open('summary.json', encoding='utf-8').read()",
+      "msg": {
+       "es": "Guarda summary.json con indent=2.",
+       "en": "Save summary.json with indent=2."
+      }
+     },
+     {
+      "py": "open('census.csv', 'w', encoding='utf-8').write('tribe,men\\nGad,45650\\nDan,62700\\n')\nimport json\nassert _correr([]).strip() == 'Tribes: 2. Total: 108350' and json.load(open('summary.json', encoding='utf-8'))['smallest'] == 'Gad'",
+      "msg": {
+       "es": "Con otro census.csv todo debe cambiar: calcula desde el archivo, sin escribir cifras ni nombres.",
+       "en": "With another census.csv everything must change: calculate from the file, without typing numbers or names."
+      }
+     }
+    ]
+   },
+   "errores_tipicos": {
+    "es": [
+     "import csv, json\n\nwith open(\"censo.csv\", encoding=\"utf-8\") as f:\n    tribus = [(fila[\"tribu\"], int(fila[\"varones\"])) for fila in csv.DictReader(f)]\n\ntotal = sum(n for _, n in tribus)\nmayor = max(tribus, key=lambda t: t[1])[0]\nmenor = min(tribus, key=lambda t: t[1])[0]\n\nwith open(\"porcentajes.csv\", \"w\", encoding=\"utf-8\", newline=\"\") as f:\n    escritor = csv.DictWriter(f, fieldnames=[\"tribu\", \"varones\", \"porcentaje\"])\n    escritor.writeheader()\n    for tribu, n in tribus:\n        escritor.writerow({\"tribu\": tribu, \"varones\": n, \"porcentaje\": n * 100 / total})\n\nwith open(\"resumen.json\", \"w\", encoding=\"utf-8\") as f:\n    json.dump({\"total\": total, \"mayor\": mayor, \"menor\": menor}, f, indent=2, ensure_ascii=False)\n\nprint(f\"Tribus: {len(tribus)}. Total: {total}\")",
+     "import csv, json\n\nwith open(\"censo.csv\", encoding=\"utf-8\") as f:\n    tribus = [(fila[\"tribu\"], int(fila[\"varones\"])) for fila in csv.DictReader(f)]\n\ntotal = sum(n for _, n in tribus)\nmayor = max(tribus, key=lambda t: t[1])[0]\nmenor = min(tribus, key=lambda t: t[1])[0]\n\nwith open(\"porcentajes.csv\", \"w\", encoding=\"utf-8\", newline=\"\") as f:\n    escritor = csv.DictWriter(f, fieldnames=[\"tribu\", \"varones\", \"porcentaje\"])\n    for tribu, n in tribus:\n        escritor.writerow({\"tribu\": tribu, \"varones\": n, \"porcentaje\": round(n * 100 / total, 1)})\n\nwith open(\"resumen.json\", \"w\", encoding=\"utf-8\") as f:\n    json.dump({\"total\": total, \"mayor\": mayor, \"menor\": menor}, f, indent=2, ensure_ascii=False)\n\nprint(f\"Tribus: {len(tribus)}. Total: {total}\")",
+     "import csv, json\n\nwith open(\"censo.csv\", encoding=\"utf-8\") as f:\n    tribus = [(fila[\"tribu\"], int(fila[\"varones\"])) for fila in csv.DictReader(f)]\n\ntotal = sum(n for _, n in tribus)\nmayor = max(tribus, key=lambda t: t[1])[0]\nmenor = min(tribus, key=lambda t: t[1])[0]\n\nwith open(\"porcentajes.csv\", \"w\", encoding=\"utf-8\", newline=\"\") as f:\n    escritor = csv.DictWriter(f, fieldnames=[\"tribu\", \"varones\", \"porcentaje\"])\n    escritor.writeheader()\n    for tribu, n in tribus:\n        escritor.writerow({\"tribu\": tribu, \"varones\": n, \"porcentaje\": round(n * 100 / total, 1)})\n\nwith open(\"resumen.json\", \"w\", encoding=\"utf-8\") as f:\n    f.write(str({\"total\": total, \"mayor\": mayor, \"menor\": menor}))\n\nprint(f\"Tribus: {len(tribus)}. Total: {total}\")",
+     "import csv, json\n\nwith open(\"censo.csv\", encoding=\"utf-8\") as f:\n    tribus = [(fila[\"tribu\"], int(fila[\"varones\"])) for fila in csv.DictReader(f)]\n\ntotal = 603550\nmayor = max(tribus, key=lambda t: t[1])[0]\nmenor = min(tribus, key=lambda t: t[1])[0]\n\nwith open(\"porcentajes.csv\", \"w\", encoding=\"utf-8\", newline=\"\") as f:\n    escritor = csv.DictWriter(f, fieldnames=[\"tribu\", \"varones\", \"porcentaje\"])\n    escritor.writeheader()\n    for tribu, n in tribus:\n        escritor.writerow({\"tribu\": tribu, \"varones\": n, \"porcentaje\": round(n * 100 / total, 1)})\n\nwith open(\"resumen.json\", \"w\", encoding=\"utf-8\") as f:\n    json.dump({\"total\": total, \"mayor\": mayor, \"menor\": menor}, f, indent=2, ensure_ascii=False)\n\nprint(f\"Tribus: {len(tribus)}. Total: {total}\")"
+    ],
+    "en": [
+     "import csv, json\n\nwith open(\"census.csv\", encoding=\"utf-8\") as f:\n    tribes = [(row[\"tribe\"], int(row[\"men\"])) for row in csv.DictReader(f)]\n\ntotal = sum(n for _, n in tribes)\nlargest = max(tribes, key=lambda t: t[1])[0]\nsmallest = min(tribes, key=lambda t: t[1])[0]\n\nwith open(\"percentages.csv\", \"w\", encoding=\"utf-8\", newline=\"\") as f:\n    writer = csv.DictWriter(f, fieldnames=[\"tribe\", \"men\", \"percent\"])\n    writer.writeheader()\n    for tribe, n in tribes:\n        writer.writerow({\"tribe\": tribe, \"men\": n, \"percent\": n * 100 / total})\n\nwith open(\"summary.json\", \"w\", encoding=\"utf-8\") as f:\n    json.dump({\"total\": total, \"largest\": largest, \"smallest\": smallest}, f, indent=2, ensure_ascii=False)\n\nprint(f\"Tribes: {len(tribes)}. Total: {total}\")",
+     "import csv, json\n\nwith open(\"census.csv\", encoding=\"utf-8\") as f:\n    tribes = [(row[\"tribe\"], int(row[\"men\"])) for row in csv.DictReader(f)]\n\ntotal = sum(n for _, n in tribes)\nlargest = max(tribes, key=lambda t: t[1])[0]\nsmallest = min(tribes, key=lambda t: t[1])[0]\n\nwith open(\"percentages.csv\", \"w\", encoding=\"utf-8\", newline=\"\") as f:\n    writer = csv.DictWriter(f, fieldnames=[\"tribe\", \"men\", \"percent\"])\n    for tribe, n in tribes:\n        writer.writerow({\"tribe\": tribe, \"men\": n, \"percent\": round(n * 100 / total, 1)})\n\nwith open(\"summary.json\", \"w\", encoding=\"utf-8\") as f:\n    json.dump({\"total\": total, \"largest\": largest, \"smallest\": smallest}, f, indent=2, ensure_ascii=False)\n\nprint(f\"Tribes: {len(tribes)}. Total: {total}\")",
+     "import csv, json\n\nwith open(\"census.csv\", encoding=\"utf-8\") as f:\n    tribes = [(row[\"tribe\"], int(row[\"men\"])) for row in csv.DictReader(f)]\n\ntotal = 603550\nlargest = max(tribes, key=lambda t: t[1])[0]\nsmallest = min(tribes, key=lambda t: t[1])[0]\n\nwith open(\"percentages.csv\", \"w\", encoding=\"utf-8\", newline=\"\") as f:\n    writer = csv.DictWriter(f, fieldnames=[\"tribe\", \"men\", \"percent\"])\n    writer.writeheader()\n    for tribe, n in tribes:\n        writer.writerow({\"tribe\": tribe, \"men\": n, \"percent\": round(n * 100 / total, 1)})\n\nwith open(\"summary.json\", \"w\", encoding=\"utf-8\") as f:\n    json.dump({\"total\": total, \"largest\": largest, \"smallest\": smallest}, f, indent=2, ensure_ascii=False)\n\nprint(f\"Tribes: {len(tribes)}. Total: {total}\")"
+    ]
+   }
+  }
+ ]
+}
