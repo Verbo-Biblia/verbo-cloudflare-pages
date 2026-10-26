@@ -101,6 +101,7 @@ def cruces(x):
   out+='<section class="cross cross--read"><div>'+bi('LEE MÁS','READ MORE','p',**{'class':'eyebrow'})+bi('Sobre este pasaje en Verbo','About this passage on Verbo','h2')+'<ul>'
   out+=''.join('<li><a href="'+pg['url']+'"><small>'+bi(*pg['tipo'],'span')+'</small> '+e(pg['titulo'])+'</a></li>' for pg in pgs)+'</ul></div></section>'
  return out
+TEMAS='imagenes/temas/'   # colecciones por etiqueta: noindex y fuera del sitemap
 def build():
  ap=argparse.ArgumentParser();ap.add_argument('--todas',action='store_true');ap.add_argument('--banco',type=Path,default=Path.home()/'Verbo/Banco-Imagenes');args=ap.parse_args()
  import fcntl
@@ -132,7 +133,7 @@ def build():
   y={k:x[k] for k in ('id','libro','testamento','capitulo','versiculos','paralelos','titulo','title_en','tipo','tags','descripcion')};y.update(url=base+'/',original=base+'.jpg',thumb=base+'-mini.jpg',thumb_webp=base+'-mini.webp',vertical=base+'-vertical.jpg',medium=base+'-media.jpg',medium_webp=base+'-media.webp',resolution=resolution,width=size[0],height=size[1],weight=f'{source.stat().st_size/1048576:.1f} MB',estado=status,tags_en=[TAGS.get(t,t) for t in x['tags']]);y['cita']=f"{x['libro']} {x['capitulo']}:{x['versiculos']}";y['description_en']=x.get('description_en',f"{x['title_en']}. Bible illustration inspired by {BOOKS.get(x['libro'],x['libro'])} {x['capitulo']}:{x['versiculos']}. Themes: {', '.join(y['tags_en'])}.");items.append(y)
  canonical=CANON
  items.sort(key=lambda x: (canonical.index(x['libro']) if x['libro'] in canonical else 99,int(x['capitulo']),int(str(x['versiculos']).split('-')[0]),x['id']))
- def write(route,title,desc,body,schema=None,image=None,title_en=None,pin=None):
+ def write(route,title,desc,body,schema=None,image=None,title_en=None,pin=None,indexar=True):
   page(route,title,desc,body,schema)
   p=R/route/'index.html';s=p.read_text()
   if title_en:s=s.replace('<title>','<title data-es="'+e(title+' | Verbo',quote=True)+'" data-en="'+e(title_en+' | Verbo',quote=True)+'">',1)
@@ -141,7 +142,7 @@ def build():
   og=''.join(f'<meta property="{k}" content="{e(str(v),quote=True)}">' for k,v in (('og:type','article' if image else 'website'),('og:site_name','Verbo'),('og:locale','es_419'),('og:title',title),('og:description',desc),('og:url',f'https://verbobiblia.com/{route}/'),('og:image',img)))
   if pin:og+=f'<meta property="og:image" content="{e(pin,quote=True)}"><meta property="og:image:width" content="1000"><meta property="og:image:height" content="1500">'
   og+=f'<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="{e(img,quote=True)}">'
-  s=s.replace('</head>',og+'</head>',1);s=s.replace('</head>','<link rel="stylesheet" href="/imagenes/banco.css?v=20261023-1c"></head>').replace('<body>','<body class="image-bank">').replace('<script src="/assets/depth/depth.js" defer data-tilt=".tile" data-enter=".tile,.intro" data-sky="0.5"></script>','');s=s.replace('</head>','<meta name="keywords" content="banco de imágenes cristianas, imágenes cristianas gratis, fondos cristianos gratis, imágenes bíblicas gratis, fondos cristianos, wallpaper cristiano, fondos de pantalla cristianos para celular, fondos para proyector de iglesia, ilustraciones bíblicas, free Bible images, Christian wallpaper, Christian backgrounds, church projector backgrounds, Bible illustrations, Bible stock photos">'+('<meta name="robots" content="noindex,nofollow">' if args.todas else '')+'</head>');p.write_text(s)
+  s=s.replace('</head>',og+'</head>',1);s=s.replace('</head>','<link rel="stylesheet" href="/imagenes/banco.css?v=20261023-1c"></head>').replace('<body>','<body class="image-bank">').replace('<script src="/assets/depth/depth.js" defer data-tilt=".tile" data-enter=".tile,.intro" data-sky="0.5"></script>','');s=s.replace('</head>','<meta name="keywords" content="banco de imágenes cristianas, imágenes cristianas gratis, fondos cristianos gratis, imágenes bíblicas gratis, fondos cristianos, wallpaper cristiano, fondos de pantalla cristianos para celular, fondos para proyector de iglesia, ilustraciones bíblicas, free Bible images, Christian wallpaper, Christian backgrounds, church projector backgrounds, Bible illustrations, Bible stock photos">'+('<meta name="robots" content="noindex,nofollow">' if args.todas else '' if indexar else '<meta name="robots" content="noindex,follow">')+'</head>');p.write_text(s)
  license=bi(LICENSE_ES,LICENSE_EN,'p',id='licencia');license_line=bi(*LICENSE_LINE,'p',**{'class':'license-line'})
  for x in items:
   approved=x['estado']=='aprobada';notice=bi('Imagen generada con IA y revisada por Verbo' if approved else 'Vista previa local: imagen generada con IA, pendiente de revisión por Verbo.','AI-generated image reviewed by Verbo' if approved else 'Local preview: AI-generated image awaiting review by Verbo.','p',**{'class':'notice'})
@@ -159,7 +160,9 @@ def build():
   write(x['url'].strip('/'),x['titulo']+' · Imagen bíblica gratis en HD','Imagen cristiana gratis: '+x['titulo']+' ('+x['cita']+'). '+x['descripcion']+' Descarga libre en HD, horizontal y vertical.',body,schema,image=x['original'],title_en=x['title_en']+' · Free HD Bible image',pin=BASE+'/imagenes/pines/'+x['id']+'.jpg')
  tags=Counter(t for x in items for t in x['tags']);collections=[]
  def collection(route,es,en,rows,desc_es,desc_en):
-  collections.append((route,es,en,rows));n=len(rows);write(route,es,desc_es,image=rows[0]['original'] if rows else None,title_en=en,body='<a class="back-link" href="/imagenes/">← '+bi('Imágenes','Images','span')+'</a><header class="collection-heading">'+bi('LA BIBLIA EN IMÁGENES','THE BIBLE IN IMAGES','p',**{'class':'eyebrow'})+bi(es,en,'h1')+license_line+bi(desc_es,desc_en)+bi(f"{n} {'imagen' if n==1 else 'imágenes'} · Descarga gratuita",f"{n} {'image' if n==1 else 'images'} · Free download",'p')+'</header>'+mosaic(rows,True)+license)
+  # Las páginas por etiqueta (temas) son casi solo galería: AdSense las juzgó «contenido de poco valor» (2026-10-26).
+  # Siguen visibles para quien navega, pero fuera del índice de Google y del sitemap.
+  collections.append((route,es,en,rows));n=len(rows);write(route,es,desc_es,indexar=not route.startswith(TEMAS),image=rows[0]['original'] if rows else None,title_en=en,body='<a class="back-link" href="/imagenes/">← '+bi('Imágenes','Images','span')+'</a><header class="collection-heading">'+bi('LA BIBLIA EN IMÁGENES','THE BIBLE IN IMAGES','p',**{'class':'eyebrow'})+bi(es,en,'h1')+license_line+bi(desc_es,desc_en)+bi(f"{n} {'imagen' if n==1 else 'imágenes'} · Descarga gratuita",f"{n} {'image' if n==1 else 'images'} · Free download",'p')+'</header>'+mosaic(rows,True)+license)
  for book in sorted({x['libro'] for x in items}):collection('imagenes/'+slug(book),'Imágenes bíblicas de '+book+' gratis',BOOKS.get(book,book)+' Bible images',[x for x in items if x['libro']==book],'Imágenes cristianas gratis de '+book+': recorre sus pasajes con ilustraciones para acompañar la lectura, preparar clases y compartir el mensaje bíblico.','Explore '+BOOKS.get(book,book)+' with illustrations for reading, teaching and sharing the biblical message.')
  for typ,(es,en) in TYPES.items():collection('imagenes/tipos/'+typ,es,en,[x for x in items if typ=='wallpapers' or slug(x['tipo'])==typ],('Descarga recortes verticales para el fondo de tu celular. Revisa que el encuadre conserve lo que quieres mostrar.' if typ=='wallpapers' else 'Encuentra '+es.lower()+' para enseñar y crear materiales. Revisa cada pasaje y elige una composición adecuada para tu proyecto.'),('Download vertical crops for your phone background. Check that the crop keeps what you want to show.' if typ=='wallpapers' else 'Find '+en.lower()+' for teaching and creative projects. Read the passage and choose a composition that fits your project.'))
  for tag,count in tags.items():collection('imagenes/temas/'+slug(tag),'Imágenes cristianas: '+tag,'Bible images: '+TAGS.get(tag,tag),[x for x in items if tag in x['tags']],'Imágenes cristianas gratis sobre '+tag+' para acompañar tus materiales. Consulta la cita de cada imagen para comprender su contexto bíblico.','A selection about '+TAGS.get(tag,tag)+' for your materials. Read each image’s reference to understand its biblical context.')
@@ -270,11 +273,11 @@ def sync_sitemap():
  import datetime
  sm=R/'sitemap.xml';t=sm.read_text();base='https://verbobiblia.com/'
  def keep(m):
-  u=m.group(1);return '' if u.startswith(base+'imagenes/') and not (R/u[len(base):]/'index.html').exists() else m.group(0)
+  u=m.group(1);return '' if u.startswith(base+'imagenes/') and (u.startswith(base+TEMAS) or not (R/u[len(base):]/'index.html').exists()) else m.group(0)
  t=re.sub(r'  <url>\n    <loc>(.*?)</loc>\n(?:    .*\n)*?  </url>\n',keep,t);have=set(re.findall(r'<loc>(.*?)</loc>',t));today=datetime.date.today().isoformat();add=''
  for q in sorted((R/'imagenes').rglob('index.html')):
   u=base+str(q.parent.relative_to(R))+'/'
-  if u not in have:add+=f'  <url>\n    <loc>{u}</loc>\n    <lastmod>{today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>{"0.6" if len(q.parent.relative_to(R).parts)>2 else "0.7"}</priority>\n  </url>\n'
+  if u not in have and not u.startswith(base+TEMAS):add+=f'  <url>\n    <loc>{u}</loc>\n    <lastmod>{today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>{"0.6" if len(q.parent.relative_to(R).parts)>2 else "0.7"}</priority>\n  </url>\n'
  sm.write_text(t.replace('</urlset>',add+'</urlset>'))
 if __name__=='__main__':
  build()
