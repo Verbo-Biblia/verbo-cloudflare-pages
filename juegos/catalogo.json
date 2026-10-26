@@ -164,6 +164,10 @@
   "programacion": {
    "es": "Programación",
    "en": "Coding"
+  },
+  "aprender": {
+   "es": "Aprender jugando",
+   "en": "Learn through play"
   }
  },
  "juegos": [
@@ -612,6 +616,39 @@
    "publicado": "2026-10-25",
    "destacado": false,
    "orden_mas_jugados": 13
+  },
+  {
+   "id": "toca-y-aprende",
+   "titulo": {
+    "es": "Toca y aprende",
+    "en": "Tap and Learn"
+   },
+   "descripcion": {
+    "es": "Botones grandes que suenan, brillan y hablan: números, letras, frutas, colores y más.",
+    "en": "Big buttons that light up, play and talk: numbers, letters, fruits, colors and more."
+   },
+   "meta_descripcion": {
+    "es": "Juego cristiano gratis para bebés y niños pequeños: botones grandes que suenan, brillan y dicen su palabra. Números, letras, frutas, colores, formas, instrumentos, cosas de bebé, burbujas, globos y «Dios y yo». En español e inglés, para aprender la otra lengua.",
+    "en": "A free Christian game for babies and toddlers: big buttons that light up, play a sound and say their word. Numbers, letters, fruits, colors, shapes, instruments, baby things, bubbles, balloons and “God and me”. In English and Spanish, to learn the other language."
+   },
+   "categoria": "pequenos",
+   "infantil": true,
+   "genero": "aprender",
+   "pasaje": "Marcos",
+   "duracion_min": 5,
+   "movil": true,
+   "idiomas": [
+    "es",
+    "en"
+   ],
+   "portada": "/juegos/toca-y-aprende/portada.webp",
+   "portada_en": "/juegos/toca-y-aprende/portada-en.webp",
+   "og_image": "/juegos/toca-y-aprende/og.jpg",
+   "url_juego": "/juegos/toca-y-aprende/jugar/",
+   "android": null,
+   "publicado": "2026-10-26",
+   "destacado": false,
+   "orden_mas_jugados": 14
   }
  ]
 }
