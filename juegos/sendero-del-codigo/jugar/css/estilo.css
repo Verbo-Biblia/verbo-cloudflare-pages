@@ -280,3 +280,14 @@ pre code { background: none; padding: 0; }
 .termino small { color: var(--tinta-suave); }
 @media (max-width: 900px) { .barra #b-libre .texto, .barra #b-glosario .texto, .barra #b-pergaminos .texto, .barra #b-progreso .texto { display: none; } }
 .mas-juegos { text-align: center; margin-top: 2rem; }
+.volver-web { text-decoration: none; font-weight: 600; flex: none; }
+
+.herramientas { display: contents; }
+@media (max-width: 640px) {
+  .barra { flex-wrap: wrap; row-gap: .4rem; padding: .45rem 12px; }
+  .barra .marca img { width: 28px; height: 28px; }
+  .herramientas { order: 3; display: flex; width: 100%; justify-content: space-between; gap: .25rem; }
+  .herramientas .boton-barra { flex: 1; justify-content: center; padding: .3rem .2rem; }
+}
+#b-idioma .corto { display: none; }
+@media (max-width: 640px) { #b-idioma .largo { display: none; } #b-idioma .corto { display: inline; } .marca b { font-size: 1.05rem; } }

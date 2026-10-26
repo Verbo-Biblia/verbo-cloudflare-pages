@@ -155,5 +155,7 @@
  "glosario_buscar": "Search a concept…",
  "libre_inicial": "# Free mode: write any program here.\n# The file versiculos.json is available.\nimport json\n\nverses = json.load(open(\"versiculos.json\", encoding=\"utf-8\"))\nprint(len(verses), \"verses saved\")\nprint(verses[\"sal-119-105\"][\"en\"][\"texto\"])\n",
  "libre_texto": "Here you can write and run **any** Python program, with no tests or hints. Your code is saved automatically.\n\n- `input()` works: the console asks you for the value.\n- The file `versiculos.json` is available: open it with `json.load(open(\"versiculos.json\", encoding=\"utf-8\"))`. Each verse has `es` and `en`, with `texto`, `ref` and `version`.\n- With `import lienzo` you can draw: `lienzo.size(400, 300)`, `lienzo.background(color)`, `lienzo.rectangle(x, y, width, height, color)`, `lienzo.circle(x, y, radius, color)`, `lienzo.line(x1, y1, x2, y2, color, width)` and `lienzo.text(x, y, text, color, size, centered)`.\n- You can use the standard library: `random`, `math`, `datetime`, `json`, `collections`…",
- "mas_juegos": "More games from Verbo"
+ "mas_juegos": "More games from Verbo",
+ "volver_web": "Back to the Verbo website",
+ "idioma_corto": "ES"
 }

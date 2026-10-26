@@ -15,32 +15,35 @@
 </head>
 <body>
 <header class="barra">
+  <a class="boton-barra volver-web" id="b-web" href="https://verbobiblia.com/" data-aria="volver_web">← Verbo</a>
   <a class="marca" href="#/" id="marca">
     <img src="assets/svg/icono.svg" alt="" width="34" height="34">
     <b id="titulo-juego">Sendero del Código</b>
   </a>
-  <button class="boton-barra" id="b-libre" type="button">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg>
-    <span class="texto" data-t="libre">Modo libre</span>
-  </button>
-  <button class="boton-barra" id="b-glosario" type="button">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h6a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4z"/><path d="M20 4h-6a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h7z"/></svg>
-    <span class="texto" data-t="glosario">Glosario</span>
-  </button>
-  <button class="boton-barra" id="b-pergaminos" type="button">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 3h11a3 3 0 0 1 0 6H8"/><path d="M6 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h11V9"/><path d="M10 13h5M10 17h4"/></svg>
-    <span class="texto" data-t="pergaminos">Pergaminos</span>
-  </button>
-  <button class="boton-barra" id="b-progreso" type="button">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 17v3h16v-3"/></svg>
-    <span class="texto" data-t="progreso">Progreso</span>
-  </button>
-  <button class="boton-barra" id="b-menos" type="button" data-aria="letra_menos">A−</button>
-  <button class="boton-barra" id="b-mas" type="button" data-aria="letra_mas">A+</button>
-  <button class="boton-barra" id="b-tema" type="button" data-aria="tema_aria">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
-  </button>
-  <button class="boton-barra" id="b-idioma" type="button" data-aria="idioma_aria"><span data-t="idioma">English</span></button>
+  <div class="herramientas">
+    <button class="boton-barra" id="b-libre" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg>
+      <span class="texto" data-t="libre">Modo libre</span>
+    </button>
+    <button class="boton-barra" id="b-glosario" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h6a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4z"/><path d="M20 4h-6a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h7z"/></svg>
+      <span class="texto" data-t="glosario">Glosario</span>
+    </button>
+    <button class="boton-barra" id="b-pergaminos" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 3h11a3 3 0 0 1 0 6H8"/><path d="M6 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h11V9"/><path d="M10 13h5M10 17h4"/></svg>
+      <span class="texto" data-t="pergaminos">Pergaminos</span>
+    </button>
+    <button class="boton-barra" id="b-progreso" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 17v3h16v-3"/></svg>
+      <span class="texto" data-t="progreso">Progreso</span>
+    </button>
+    <button class="boton-barra" id="b-menos" type="button" data-aria="letra_menos">A−</button>
+    <button class="boton-barra" id="b-mas" type="button" data-aria="letra_mas">A+</button>
+    <button class="boton-barra" id="b-tema" type="button" data-aria="tema_aria">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
+    </button>
+  </div>
+  <button class="boton-barra" id="b-idioma" type="button" data-aria="idioma_aria"><span class="largo" data-t="idioma">English</span><span class="corto" data-t="idioma_corto">EN</span></button>
 </header>
 <main id="vista" tabindex="-1"></main>
 <script>

@@ -94,6 +94,10 @@ function oscuroAhora() {
   return tema ? tema === 'oscuro' : matchMedia('(prefers-color-scheme: dark)').matches;
 }
 function botonesBarra() {
+  // Enlace de regreso a la web de Verbo (en el sitio, relativo; dentro de la app Android no se muestra)
+  const web = document.getElementById('b-web');
+  if (/^verboEmbedApp/.test(window.name || '')) web.remove();
+  else if (/(^|\.)verbobiblia\.com$/.test(location.hostname)) web.href = '/';
   document.getElementById('b-pergaminos').onclick = () => { location.hash = '#/pergaminos'; };
   document.getElementById('b-progreso').onclick = () => { location.hash = '#/progreso'; };
   document.getElementById('b-libre').onclick = () => { location.hash = '#/libre'; };

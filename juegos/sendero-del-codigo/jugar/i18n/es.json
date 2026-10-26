@@ -155,5 +155,7 @@
  "glosario_buscar": "Buscar un concepto…",
  "libre_inicial": "# Modo libre: escribe aquí cualquier programa.\n# El archivo versiculos.json está disponible.\nimport json\n\nversiculos = json.load(open(\"versiculos.json\", encoding=\"utf-8\"))\nprint(len(versiculos), \"versículos guardados\")\nprint(versiculos[\"sal-119-105\"][\"es\"][\"texto\"])\n",
  "libre_texto": "Aquí puedes escribir y ejecutar **cualquier programa** de Python, sin pruebas ni pistas. Tu código se guarda solo.\n\n- `input()` funciona: la consola te pide el dato.\n- El archivo `versiculos.json` está disponible: ábrelo con `json.load(open(\"versiculos.json\", encoding=\"utf-8\"))`. Cada versículo tiene `es` y `en`, con `texto`, `ref` y `version`.\n- Con `import lienzo` puedes dibujar: `lienzo.tamano(400, 300)`, `lienzo.fondo(color)`, `lienzo.rectangulo(x, y, ancho, alto, color)`, `lienzo.circulo(x, y, radio, color)`, `lienzo.linea(x1, y1, x2, y2, color, grosor)` y `lienzo.texto(x, y, texto, color, tamano, centrado)`.\n- Puedes usar la biblioteca estándar: `random`, `math`, `datetime`, `json`, `collections`…",
- "mas_juegos": "Más juegos de Verbo"
+ "mas_juegos": "Más juegos de Verbo",
+ "volver_web": "Volver a la web de Verbo",
+ "idioma_corto": "EN"
 }
