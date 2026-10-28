@@ -51,3 +51,12 @@ dialog.verse-card::backdrop{background:rgba(5,12,25,.75)}
 .guides-grid .collection-card span{color:var(--muted);font-size:14px}
 .bank-more{text-align:center;margin:22px 0 0;font-weight:700}
 .bank-more a{text-decoration:underline;text-underline-offset:3px}
+/* Sugerencias de corrección bajo cada imagen */
+.sugerencia{margin-top:1.5rem;padding-top:1rem;border-top:1px solid currentColor;border-top-color:color-mix(in srgb,currentColor 20%,transparent)}
+.sugerencia h2{font-size:1.05rem;margin:0 0 .3rem}
+.sugerencia p{font-size:.88rem;opacity:.8;margin:0 0 .6rem}
+.sugerencia textarea,.sugerencia input{width:100%;box-sizing:border-box;font:inherit;font-size:.9rem;padding:.5rem .6rem;border-radius:8px;border:1px solid currentColor;background:transparent;color:inherit;margin-bottom:.5rem}
+.sugerencia textarea{min-height:5rem;resize:vertical}
+.sugerencia .trampa{position:absolute;left:-9999px}
+.sugerencia button{font:inherit;padding:.5rem 1rem;border-radius:8px;border:1px solid currentColor;background:transparent;color:inherit;cursor:pointer}
+.sugerencia .sug-estado{margin-top:.4rem}

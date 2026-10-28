@@ -1484,6 +1484,34 @@ async function handleVotos(request, env, headers) {
   return jsonOk({ juego, votos: fila?.n || 0, gusta: body.gusta !== false }, headers);
 }
 
+// Sugerencias de corrección de las imágenes del banco (/imagenes/<libro>/<id>/). Anónimas; el
+// contacto es opcional. Van a D1 (misma base que los votos). La IP solo limita envíos por hora.
+const SUGERENCIAS_POR_HORA = 10;
+const SUGERENCIA_IMAGEN = /^[a-z0-9-]{3,120}$/;
+
+async function handleSugerencia(request, env, headers) {
+  if (!env.VOTOS_DB) return jsonError('VOTOS_DB no está configurada', 500, headers);
+  if (request.method !== 'POST') return jsonError('Método no permitido', 405, headers);
+  const body = await readJson(request);
+  if (body?.web) return jsonOk({ ok:true }, headers); // campo trampa para robots
+  const imagen = String(body?.imagen || '');
+  const texto = String(body?.texto || '').trim();
+  const contacto = String(body?.contacto || '').trim().slice(0, 120);
+  if (!SUGERENCIA_IMAGEN.test(imagen) || texto.length < 5 || texto.length > 1500) return jsonError('Sugerencia no válida', 400, headers);
+
+  const ip = request.headers.get('CF-Connecting-IP') || 'desconocida';
+  const cache = caches.default;
+  const clave = new Request(`https://sugerencias.verbo.internal/${encodeURIComponent(ip)}`);
+  const previo = await cache.match(clave);
+  const usados = previo ? Number(await previo.text()) || 0 : 0;
+  if (usados >= SUGERENCIAS_POR_HORA) return jsonError('Demasiados envíos. Intenta más tarde.', 429, headers);
+  await cache.put(clave, new Response(String(usados + 1), { headers:{ 'Cache-Control':'max-age=3600' } }));
+
+  await env.VOTOS_DB.prepare('INSERT INTO sugerencias_imagenes (imagen, texto, contacto, creado) VALUES (?, ?, ?, ?)')
+    .bind(imagen, texto, contacto || null, Date.now()).run();
+  return jsonOk({ ok:true }, headers);
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -1507,6 +1535,7 @@ export default {
       if (url.pathname === '/proyector/estado') return await handleProyectorEstado(request, url, env, headers);
       if (url.pathname === '/v1/reclamos') return await handleReclamo(request, env, headers);
       if (url.pathname === '/v1/juegos/votos') return await handleVotos(request, env, headers);
+      if (url.pathname === '/v1/imagenes/sugerencia') return await handleSugerencia(request, env, headers);
       return await handleApiBible(request, url, env, headers);
     } catch (error) {
       console.error(error);
