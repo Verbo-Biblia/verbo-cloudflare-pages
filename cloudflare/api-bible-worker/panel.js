@@ -161,14 +161,14 @@ header h1{margin:0;font:600 20px Georgia,serif}.rango{display:flex;gap:6px;flex-
 .rango button.activo{background:var(--tinta);color:var(--papel)}main{max-width:1400px;margin:0 auto;padding:20px 24px 60px;display:grid;gap:18px}
 .cifras{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}.cifra{background:var(--papel);border:1px solid var(--linea);border-radius:14px;padding:14px 16px}
 .cifra b{display:block;font-size:26px;font-weight:700}.cifra span{color:var(--suave);font-size:12.5px}
-.rejilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:18px}
+.rejilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr));gap:18px}
 section{background:var(--papel);border:1px solid var(--linea);border-radius:16px;padding:16px 18px;min-width:0}
 section h2{margin:0 0 10px;font:600 16px Georgia,serif}section p.nota{margin:-4px 0 10px;color:var(--suave);font-size:12.5px}
 table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--linea);vertical-align:top}
 th{color:var(--suave);font-weight:600;font-size:12px}td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 td a{color:var(--azul);text-decoration:none;word-break:break-all}.barra{height:6px;border-radius:3px;background:var(--oro);opacity:.75}
-.tabla{max-height:420px;overflow:auto}svg text{fill:var(--suave);font-size:11px}.vacio{color:var(--suave);font-style:italic}
-tr.ses{cursor:pointer}tr.ses:hover td{background:var(--fondo)}#recorrido{font-size:12.5px}#recorrido li{margin:2px 0}
+.tabla{max-height:420px;overflow:auto;-webkit-overflow-scrolling:touch}svg text{fill:var(--suave);font-size:11px}.vacio{color:var(--suave);font-style:italic}
+@media (max-width:640px){header{padding:12px 14px;position:static}header h1{font-size:18px}.rango button{padding:7px 11px;font-size:13px}main{padding:12px 10px 40px;gap:12px}section{padding:12px;border-radius:12px}.cifras{grid-template-columns:repeat(2,1fr);gap:8px}.cifra{padding:10px 12px}.cifra b{font-size:21px}table{font-size:12px}th,td{padding:5px 6px}td{max-width:52vw;overflow-wrap:anywhere}#sesiones table{min-width:620px}#sesiones td{max-width:none;white-space:nowrap}.tabla table{min-width:100%}}tr.ses{cursor:pointer}tr.ses:hover td{background:var(--fondo)}#recorrido{font-size:12.5px}#recorrido li{margin:2px 0}
 `;
 
 const PANEL = pagina(`<header><h1>Panel de Verbo</h1><div class="rango" id="rango">
@@ -185,7 +185,7 @@ function tabla(cols,filas,vacio='Sin datos todavía.'){if(!filas.length)return '
  return '<div class="tabla"><table><tr>'+cols.map(c=>'<th>'+c.t+'</th>').join('')+'</tr>'+filas.map(f=>'<tr'+(f._attr||'')+'>'+cols.map(c=>{let v=c.f?c.f(f[c.k],f):e(f[c.k]);
  if(c.barra)v+='<div class="barra" style="width:'+Math.round(100*(+f[c.k]||0)/max)+'%"></div>';return '<td'+(c.num?' class="n"':'')+'>'+v+'</td>'}).join('')+'</tr>').join('')+'</table></div>'}
 const enlace=r=>'<a href="'+sitio+e(r)+'" target="_blank" rel="noopener">'+e(r)+'</a>';
-function linea(d){if(!d.length)return '<p class="vacio">Sin datos todavía.</p>';const W=900,H=180,p=28,max=Math.max(1,...d.map(x=>x.vistas));
+function linea(d){if(!d.length)return '<p class="vacio">Sin datos todavía.</p>';const W=Math.max(320,Math.min(900,(document.querySelector('main')?.clientWidth||900)-40)),H=W<600?160:180,p=28,max=Math.max(1,...d.map(x=>x.vistas));
  const x=i=>p+i*(W-2*p)/Math.max(1,d.length-1),y=v=>H-p-(H-2*p)*v/max;
  const camino=k=>d.map((r,i)=>(i?'L':'M')+x(i).toFixed(1)+' '+y(r[k]).toFixed(1)).join(' ');
  return '<svg viewBox="0 0 '+W+' '+H+'" width="100%" role="img" aria-label="Visitas por día"><path d="'+camino('vistas')+'" fill="none" stroke="var(--oro)" stroke-width="2.5"/><path d="'+camino('sesiones')+'" fill="none" stroke="var(--azul)" stroke-width="2"/>'
@@ -211,8 +211,8 @@ async function cargar(d){document.querySelectorAll('#rango button').forEach(b=>b
  +'<section><h2>Enlaces de salida</h2><p class="nota">A qué otros sitios se van (Play Store, YouTube, Pinterest…).</p>'+tabla([{t:'Destino',k:'objetivo',f:v=>e(v)},{t:'Veces',k:'n',num:1,barra:1}],D.salidas)+'</section>'
  +'<section><h2>Países y dispositivos</h2>'+tabla([{t:'País',k:'pais'},{t:'Sesiones',k:'sesiones',num:1,barra:1}],D.paises)+tabla([{t:'Dispositivo',k:'disp'},{t:'Sesiones',k:'sesiones',num:1,barra:1}],D.dispositivos)+'</section>'
  +'<section><h2>Sugerencias de imágenes</h2>'+tabla([{t:'Imagen',k:'imagen'},{t:'Sugerencia',k:'texto'},{t:'Fecha',k:'creado',f:v=>new Date(v).toLocaleDateString('es')}],D.sugerencias,'No hay sugerencias.')+'</section>'
- +'</div><section><h2>Sesiones recientes</h2><p class="nota">Cada fila es una visita anónima. Tócala para ver su recorrido.</p>'
- +tabla([{t:'Inicio',k:'inicio',f:v=>new Date(v).toLocaleString('es')},{t:'Origen',k:'ref',f:v=>e(fuente(v))},{t:'Páginas',k:'paginas',num:1},{t:'Duración',k:'ms',num:1,f:dur},{t:'Juegos',k:'juegos'},{t:'País',k:'pais'},{t:'Disp.',k:'disp'},{t:'Nuevo',k:'nuevo',f:v=>v?'sí':''}],
+ +'</div><section id="sesiones"><h2>Sesiones recientes</h2><p class="nota">Cada fila es una visita anónima. Tócala para ver su recorrido.</p>'
+ +tabla([{t:'Inicio',k:'inicio',f:v=>new Date(v).toLocaleString('es',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})},{t:'Origen',k:'ref',f:v=>e(fuente(v))},{t:'Páginas',k:'paginas',num:1},{t:'Duración',k:'ms',num:1,f:dur},{t:'Juegos',k:'juegos'},{t:'País',k:'pais'},{t:'Disp.',k:'disp'},{t:'Nuevo',k:'nuevo',f:v=>v?'sí':''}],
    D.sesiones.map(s=>({...s,_attr:' class="ses" data-s="'+e(s.sesion)+'"'})))+'<ol id="recorrido"></ol></section>';
  document.querySelectorAll('tr.ses').forEach(tr=>tr.onclick=async()=>{const r=await (await fetch('/panel/sesion?id='+tr.dataset.s)).json();
   $('#recorrido').innerHTML=r.eventos.map(x=>'<li>'+new Date(x.t).toLocaleTimeString('es')+' · <b>'+e(x.tipo)+'</b> '+e(x.ruta)+(x.objetivo?' → '+e(x.objetivo):'')+(x.ms?' ('+dur(x.ms)+')':'')+'</li>').join('');
