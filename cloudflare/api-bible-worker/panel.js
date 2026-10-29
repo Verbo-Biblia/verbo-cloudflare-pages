@@ -180,7 +180,7 @@ const PANEL = pagina(`<header><h1>Panel de Verbo</h1><div class="rango" id="rang
 const $=s=>document.querySelector(s), e=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const n=x=>(+x||0).toLocaleString('es'), dur=ms=>{ms=+ms||0;const s=Math.round(ms/1000);return s<60?s+' s':s<3600?Math.floor(s/60)+' min '+(s%60)+' s':(s/3600).toFixed(1)+' h'};
 const sitio='https://verbobiblia.com';
-const fuente=r=>!r?'Directo / sin origen':/google/.test(r)?'Google':/pinterest|pin\\.it/.test(r)?'Pinterest':/facebook|fb\\.|m\\.facebook/.test(r)?'Facebook':/bing/.test(r)?'Bing':/youtube/.test(r)?'YouTube':/whatsapp|wa\\.me/.test(r)?'WhatsApp':/instagram/.test(r)?'Instagram':/chatgpt|openai|perplexity|gemini|claude/.test(r)?'Asistentes de IA':r;
+const fuente=r=>!r?'Directo / sin origen':/^fb-/.test(r)?'Facebook · '+r.slice(3).replace(/-/g,' '):/google/.test(r)?'Google':/pinterest|pin\\.it/.test(r)?'Pinterest':/facebook|fb\\.|m\\.facebook/.test(r)?'Facebook':/bing/.test(r)?'Bing':/youtube/.test(r)?'YouTube':/whatsapp|wa\\.me/.test(r)?'WhatsApp':/instagram/.test(r)?'Instagram':/chatgpt|openai|perplexity|gemini|claude/.test(r)?'Asistentes de IA':r;
 function tabla(cols,filas,vacio='Sin datos todavía.'){if(!filas.length)return '<p class="vacio">'+vacio+'</p>';
  const max=Math.max(1,...filas.map(f=>+f[cols.find(c=>c.barra)?.k]||0));
  return '<div class="tabla"><table><tr>'+cols.map(c=>'<th>'+c.t+'</th>').join('')+'</tr>'+filas.map(f=>'<tr'+(f._attr||'')+'>'+cols.map(c=>{let v=c.f?c.f(f[c.k],f):e(f[c.k]);
