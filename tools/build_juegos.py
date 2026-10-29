@@ -62,7 +62,7 @@ def mas_jugados():
  return sorted((g for g in JUEGOS if g.get('orden_mas_jugados')),key=lambda g:g['orden_mas_jugados'])
 def destacado():return next((g for g in JUEGOS if g.get('destacado')),JUEGOS[0])
 
-NAV=[('/juegos/','home.navGames','Juegos','siempre'),('/imagenes/','home.navImages','Imágenes',''),('/preguntas-cristianas/','home.navQuestions','Preguntas cristianas',''),
+NAV=[('/juegos/','home.navGames','Juegos','siempre'),('/imagenes/','home.navImages','Imágenes',''),('/recursos/','home.navLessons','Lecciones',''),('/preguntas-cristianas/','home.navQuestions','Preguntas cristianas',''),
  ('/historias/','home.navHistories','Historias',''),('/software/','home.navSoftware','Software',''),('/apps/','home.navApps','Apps','')]
 def barra(actual='/juegos/'):
  enl=''.join(f'<a href="{u}" class="{c}"'+(' aria-current="page"' if u==actual else '')+f' data-i18n="{k}">{t}</a>' for u,k,t,c in NAV)

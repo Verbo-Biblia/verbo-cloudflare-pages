@@ -8,6 +8,7 @@ from html import escape as e
 from PIL import Image,ImageOps
 from section_builder import R,tr,page,save
 import referencias_contenido
+import lecciones_banco
 BASE='https://verbobiblia.com'
 # Párrafos de contexto (60-120 palabras ES/EN) y textos de las colecciones, escritos aparte de las fuentes del banco.
 DATOS=R/'data/banco'
@@ -107,6 +108,7 @@ def cruces(x):
  if pgs:
   out+='<section class="cross cross--read"><div>'+bi('LEE MÁS','READ MORE','p',**{'class':'eyebrow'})+bi('Sobre este pasaje en Verbo','About this passage on Verbo','h2')+'<ul>'
   out+=''.join('<li><a href="'+pg['url']+'"><small>'+bi(*pg['tipo'],'span')+'</small> '+e(pg['titulo'])+'</a></li>' for pg in pgs)+'</ul></div></section>'
+ out+=lecciones_banco.seccion(x)  # «Úsala en una clase»: lecciones de Escuela Dominical del pasaje
  return out
 TEMAS='imagenes/temas/'   # colecciones por etiqueta: noindex y fuera del sitemap
 def build():

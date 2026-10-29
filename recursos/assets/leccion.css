@@ -1,0 +1,135 @@
+/* Lecciones de Escuela Dominical: ficha de preparación, pasos de la clase, imagen, juegos e impresión.
+   La estructura (secciones con data-lec) la genera tools/lecciones_escuela.py; aquí solo el aspecto. */
+body.recursos-page .static-page__main article.leccion { --l-cream: #f7efe1; --l-card: #fffdf8; }
+
+/* Botón de imprimir bajo el título */
+body.recursos-page .static-page__main article.leccion .lec-acciones { display: flex; flex-wrap: wrap; gap: 10px; margin: 6px 0 26px; }
+body.recursos-page .static-page__main article.leccion .lec-acciones button {
+  font: inherit; font-size: 13px; color: var(--r-ink); background: var(--r-paper); cursor: pointer;
+  border: 1px solid var(--r-rule-strong); border-radius: 999px; padding: 7px 16px;
+}
+body.recursos-page .static-page__main article.leccion .lec-acciones button:hover { border-color: var(--r-gold); color: var(--r-gold); }
+
+/* Ficha: lo que el maestro necesita antes de la clase */
+body.recursos-page .static-page__main article.leccion .lec-ficha {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 0 0 34px;
+}
+body.recursos-page .static-page__main article.leccion .lec-card {
+  background: var(--l-card); border: 1px solid var(--r-rule); border-radius: 14px; padding: 16px 18px;
+}
+body.recursos-page .static-page__main article.leccion .lec-card > h2 {
+  font-family: inherit; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--r-gold); border: 0; padding: 0; margin: 0 0 8px;
+}
+body.recursos-page .static-page__main article.leccion .lec-card > h2::before { display: none; }
+body.recursos-page .static-page__main article.leccion .lec-card p, body.recursos-page .static-page__main article.leccion .lec-card li { margin: 0 0 6px; }
+body.recursos-page .static-page__main article.leccion .lec-card > :last-child { margin-bottom: 0; }
+body.recursos-page .static-page__main article.leccion .lec-card.lec-versiculo, body.recursos-page .static-page__main article.leccion .lec-card.lec-objetivo { grid-column: 1 / -1; }
+body.recursos-page .static-page__main article.leccion .lec-card.lec-versiculo { background: var(--r-ink); border-color: var(--r-ink); text-align: center; padding: 22px 24px; }
+body.recursos-page .static-page__main article.leccion .lec-card.lec-versiculo > h2 { color: #d6ae70; }
+body.recursos-page .static-page__main article.leccion .lec-card.lec-versiculo blockquote { border: 0; margin: 0; padding: 0; background: none; }
+body.recursos-page .static-page__main article.leccion .lec-card.lec-versiculo blockquote p {
+  font-family: Georgia, 'Times New Roman', serif; font-style: normal; font-size: clamp(19px, 2.4vw, 24px);
+  line-height: 1.4; color: #fffaf2; margin: 0;
+}
+body.recursos-page .static-page__main article.leccion .lec-card.lec-materiales ul { list-style: none; padding: 0; margin: 0; }
+body.recursos-page .static-page__main article.leccion .lec-card.lec-materiales li { position: relative; padding-left: 26px; }
+body.recursos-page .static-page__main article.leccion .lec-card.lec-materiales li::before {
+  content: ''; position: absolute; left: 0; top: .3em; width: 13px; height: 13px;
+  border: 1.5px solid var(--r-rule-strong); border-radius: 4px;
+}
+body.recursos-page .static-page__main article.leccion .lec-card.lec-pasaje p:first-child { font-weight: 500; }
+body.recursos-page .static-page__main article.leccion .lec-card.lec-versiculo { order: 1; }
+body.recursos-page .static-page__main article.leccion .lec-card.lec-objetivo { order: 2; }
+body.recursos-page .static-page__main article.leccion .lec-card.lec-pasaje { order: 3; }
+body.recursos-page .static-page__main article.leccion .lec-card.lec-materiales { order: 4; }
+
+/* Pasos de la clase, numerados */
+body.recursos-page .static-page__main article.leccion .lec-pasos { counter-reset: paso; }
+body.recursos-page .static-page__main article.leccion .lec-paso { position: relative; padding: 0 0 8px 50px; margin: 0 0 22px; }
+body.recursos-page .static-page__main article.leccion .lec-paso::before {
+  counter-increment: paso; content: counter(paso);
+  position: absolute; left: 0; top: 0; width: 32px; height: 32px; border-radius: 50%;
+  display: grid; place-items: center; font-size: 14px; font-weight: 700;
+  background: var(--l-cream); color: var(--r-gold); border: 1px solid var(--r-rule-strong);
+}
+body.recursos-page .static-page__main article.leccion .lec-paso::after {
+  content: ''; position: absolute; left: 16px; top: 38px; bottom: -14px; width: 1px; background: var(--r-rule);
+}
+body.recursos-page .static-page__main article.leccion .lec-paso:last-child::after { display: none; }
+body.recursos-page .static-page__main article.leccion .lec-paso > h2 { margin-top: 2px; border: 0; padding-left: 0; }
+body.recursos-page .static-page__main article.leccion .lec-paso > h2::before { display: none; }
+body.recursos-page .static-page__main article.leccion .lec-paso.lec-historia > p:first-of-type::first-letter {
+  font-family: Georgia, serif; float: left; font-size: 3.1em; line-height: .9; padding: 4px 8px 0 0; color: var(--r-gold);
+}
+body.recursos-page .static-page__main article.leccion .lec-paso ol li em, body.recursos-page .static-page__main article.leccion .lec-paso ul li em { color: var(--r-ink-soft); }
+
+/* Oración final */
+body.recursos-page .static-page__main article.leccion .lec-oracion {
+  background: var(--l-cream); border-radius: 16px; padding: 20px 24px; margin: 8px 0 30px; text-align: center;
+}
+body.recursos-page .static-page__main article.leccion .lec-oracion > h2 { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--r-gold); border: 0; padding: 0; margin: 0 0 8px; }
+body.recursos-page .static-page__main article.leccion .lec-oracion > h2::before { display: none; }
+body.recursos-page .static-page__main article.leccion .lec-oracion blockquote { border: 0; margin: 0; padding: 0; background: none; }
+body.recursos-page .static-page__main article.leccion .lec-oracion blockquote p { font-family: Georgia, serif; font-style: italic; font-size: 17px; line-height: 1.6; color: var(--r-ink); }
+
+/* Imagen del banco */
+body.recursos-page .static-page__main article.leccion .lec-imagen { margin: 6px 0 20px; border-radius: 14px; overflow: hidden; border: 1px solid var(--r-rule); background: var(--l-card); }
+body.recursos-page .static-page__main article.leccion .lec-imagen img { display: block; width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover; }
+body.recursos-page .static-page__main article.leccion .lec-imagen figcaption { padding: 10px 14px; font-size: 13px; line-height: 1.45; color: var(--r-ink-soft); }
+
+/* Juegos relacionados */
+body.recursos-page .static-page__main article.leccion .lec-juegos { margin: 10px 0 26px; }
+body.recursos-page .static-page__main article.leccion .lec-juegos > h2 { border: 0; padding: 0; }
+body.recursos-page .static-page__main article.leccion .lec-juegos > h2::before { display: none; }
+body.recursos-page .static-page__main article.leccion .lec-juegos__lista { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; }
+body.recursos-page .static-page__main article.leccion .lec-juego { display: flex; flex-direction: column; background: var(--l-card); border: 1px solid var(--r-rule); border-radius: 14px; overflow: hidden; text-decoration: none; color: inherit; }
+body.recursos-page .static-page__main article.leccion .lec-juego:hover { border-color: var(--r-gold); }
+body.recursos-page .static-page__main article.leccion .lec-juego img { display: block; width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover; }
+body.recursos-page .static-page__main article.leccion .lec-juego span { display: block; padding: 10px 14px 0; font-weight: 600; color: var(--r-ink); }
+body.recursos-page .static-page__main article.leccion .lec-juego small { display: block; padding: 4px 14px 14px; font-size: 13px; line-height: 1.45; color: var(--r-ink-soft); }
+
+/* Navegación entre lecciones como botones */
+body.recursos-page .static-page__main article.leccion .lesson-nav { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; font-size: 0; }
+body.recursos-page .static-page__main article.leccion .lesson-nav a { font-size: 14px; text-decoration: none; padding: 9px 16px; border: 1px solid var(--r-rule-strong); border-radius: 999px; background: var(--r-paper); }
+body.recursos-page .static-page__main article.leccion .lesson-nav a:hover { border-color: var(--r-gold); }
+
+@media (max-width: 640px) {
+  body.recursos-page .static-page__main article.leccion .lec-ficha { grid-template-columns: 1fr; }
+  body.recursos-page .static-page__main article.leccion .lec-paso { padding-left: 42px; }
+  body.recursos-page .static-page__main article.leccion .lec-paso::before { width: 28px; height: 28px; font-size: 13px; }
+  body.recursos-page .static-page__main article.leccion .lec-paso::after { left: 14px; top: 34px; }
+}
+
+/* Impresión: solo la lección, en blanco y negro legible */
+@media print {
+  body.recursos-page { background: #fff !important; }
+  body.recursos-page .static-page__header, body.recursos-page .quick-nav, .verbo-pie, footer,
+  body.recursos-page .static-page__main article.leccion .lec-acciones, body.recursos-page .static-page__main article.leccion .lec-juegos, body.recursos-page .static-page__main article.leccion .lesson-nav, body.recursos-page .static-page__main article.leccion hr { display: none !important; }
+  body.recursos-page .static-page__main { box-shadow: none !important; border: 0 !important; margin: 0 !important; padding: 0 !important; max-width: none !important; background: #fff !important; }
+  body.recursos-page .static-page__main article.leccion .lec-card, body.recursos-page .static-page__main article.leccion .lec-oracion { break-inside: avoid; }
+  body.recursos-page .static-page__main article.leccion .lec-card.lec-versiculo { background: #fff; border: 2px solid #000; }
+  body.recursos-page .static-page__main article.leccion .lec-card.lec-versiculo blockquote p, body.recursos-page .static-page__main article.leccion .lec-card.lec-versiculo > h2 { color: #000; }
+  body.recursos-page .static-page__main article.leccion .lec-imagen { break-inside: avoid; max-width: 70%; }
+  body.recursos-page .static-page__main article.leccion .lec-paso::after { display: none; }
+}
+
+/* Índice de lecciones del grupo: tarjetas */
+body.recursos-page .static-page__main article.leccion-indice .lec-indice {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; margin: 0 0 30px;
+}
+body.recursos-page .static-page__main article.leccion-indice .lec-tarjeta {
+  display: flex; flex-direction: column; background: var(--l-card); border: 1px solid var(--r-rule); border-radius: 14px;
+  overflow: hidden; text-decoration: none; color: var(--r-ink); transition: transform .2s, border-color .2s;
+}
+body.recursos-page .static-page__main article.leccion-indice .lec-tarjeta:hover { transform: translateY(-2px); border-color: var(--r-gold); }
+body.recursos-page .static-page__main article.leccion-indice .lec-tarjeta img,
+body.recursos-page .static-page__main article.leccion-indice .lec-indice__num { display: block; width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+body.recursos-page .static-page__main article.leccion-indice .lec-indice__num {
+  display: grid; place-items: center; background: var(--l-cream); color: var(--r-gold);
+  font-family: Georgia, serif; font-size: 40px;
+}
+body.recursos-page .static-page__main article.leccion-indice .lec-tarjeta__texto { display: flex; flex-direction: column; gap: 3px; padding: 11px 14px 14px; }
+body.recursos-page .static-page__main article.leccion-indice .lec-tarjeta small { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--r-gold); }
+body.recursos-page .static-page__main article.leccion-indice .lec-tarjeta strong { font-family: Georgia, serif; font-weight: 600; font-size: 17px; line-height: 1.3; }
+body.recursos-page .static-page__main article.leccion-indice .lec-tarjeta em { font-style: normal; font-size: 13px; color: var(--r-ink-soft); }
