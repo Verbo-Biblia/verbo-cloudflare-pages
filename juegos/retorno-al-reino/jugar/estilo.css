@@ -121,6 +121,7 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: #1b1610; col
 .controles kbd { font-family: sans-serif; font-size: 12px; background: rgba(255, 255, 255, 0.14); border-radius: 4px; padding: 1px 6px; }
 .opcion { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin: 8px 0; }
 .opcion select, .opcion input { font: inherit; font-size: 14px; }
+.nota-calidad { margin: -4px 0 8px; font-size: 13px; opacity: 0.8; }
 
 .tactil { position: absolute; inset: 0; }
 .palanca { position: absolute; left: 22px; bottom: 26px; width: 130px; height: 130px; border-radius: 50%; background: rgba(0, 0, 0, 0.25);
