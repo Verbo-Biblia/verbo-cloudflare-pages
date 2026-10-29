@@ -161,6 +161,7 @@ header h1{margin:0;font:600 20px Georgia,serif}.rango{display:flex;gap:6px;flex-
 .rango button.activo{background:var(--tinta);color:var(--papel)}main{max-width:1400px;margin:0 auto;padding:20px 24px 60px;display:grid;gap:18px}
 .cifras{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}.cifra{background:var(--papel);border:1px solid var(--linea);border-radius:14px;padding:14px 16px}
 .cifra b{display:block;font-size:26px;font-weight:700}.cifra span{color:var(--suave);font-size:12.5px}
+.semana{margin-top:12px;border-top:1px solid var(--linea);padding-top:8px;font-size:13px}.semana summary{cursor:pointer;font-weight:600}.semana summary small{font-weight:400;color:var(--suave)}.cifras-s{display:flex;flex-wrap:wrap;gap:6px 16px;margin:8px 0 4px}.cifras-s b{font-size:15px}.semana i{font-style:normal;font-size:11.5px}.semana .sube{color:#5cb85c}.semana .baja{color:#d9534f}.semana ul{margin:6px 0 0;padding-left:18px}.semana li{margin:3px 0}
 .rejilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr));gap:18px}
 section{background:var(--papel);border:1px solid var(--linea);border-radius:16px;padding:16px 18px;min-width:0}
 section h2{margin:0 0 10px;font:600 16px Georgia,serif}section p.nota{margin:-4px 0 10px;color:var(--suave);font-size:12.5px}
@@ -191,6 +192,25 @@ function linea(d){if(!d.length)return '<p class="vacio">Sin datos todavía.</p>'
  return '<svg viewBox="0 0 '+W+' '+H+'" width="100%" role="img" aria-label="Visitas por día"><path d="'+camino('vistas')+'" fill="none" stroke="var(--oro)" stroke-width="2.5"/><path d="'+camino('sesiones')+'" fill="none" stroke="var(--azul)" stroke-width="2"/>'
  +d.map((r,i)=>'<circle cx="'+x(i).toFixed(1)+'" cy="'+y(r.vistas).toFixed(1)+'" r="4" fill="var(--oro)"><title>'+r.dia+': '+r.vistas+' páginas</title></circle><circle cx="'+x(i).toFixed(1)+'" cy="'+y(r.sesiones).toFixed(1)+'" r="3.5" fill="var(--azul)"><title>'+r.dia+': '+r.sesiones+' sesiones</title></circle>').join('')
  +d.map((r,i)=>i%Math.ceil(d.length/10)?'':'<text x="'+x(i)+'" y="'+(H-6)+'" text-anchor="middle">'+r.dia.slice(5)+'</text>').join('')+'<text x="'+p+'" y="14">'+max+'</text></svg><p class="nota"><span style="color:var(--oro)">●</span> páginas vistas · <span style="color:var(--azul)">●</span> sesiones</p>'}
+async function semana(){const el=$('#semana');if(!el)return;
+ const [a,b]=await Promise.all([7,14].map(d=>fetch('/panel/datos?dias='+d).then(r=>r.ok?r.json():null)));if(!a||!b)return;
+ const A=a.total||{},B=b.total||{},prev=k=>(+B[k]||0)-(+A[k]||0),hay=b.porDia.length>a.porDia.length;
+ const flecha=(x,y)=>!hay?'':y===0?(x?' <i class="sube">nuevo</i>':''):' <i class="'+(x>=y?'sube':'baja')+'">'+(x>=y?'▲':'▼')+' '+Math.abs(Math.round(100*(x-y)/y))+' %</i>';
+ const cifra=(k,t)=>'<span><b>'+n(A[k])+'</b> '+t+flecha(+A[k]||0,prev(k))+'</span>';
+ const mapa=(l,k,v)=>Object.fromEntries(l.map(x=>[x[k],+x[v]||0]));
+ const pa=mapa(a.paginas,'ruta','vistas'),pb=mapa(b.paginas,'ruta','vistas');
+ const suben=Object.entries(pa).map(([r,x])=>[r,x-((pb[r]||0)-x)]).filter(x=>x[1]>0).sort((x,y)=>y[1]-x[1]).slice(0,3);
+ const fa={};a.origenes.forEach(o=>{const f=fuente(o.ref);fa[f]=(fa[f]||0)+o.sesiones});
+ const top=Object.entries(fa).sort((x,y)=>y[1]-x[1])[0];
+ const ideas=[];
+ if(suben.length)ideas.push('Lo que más creció: <a href="'+sitio+e(suben[0][0])+'" target="_blank" rel="noopener">'+e(suben[0][0])+'</a>. Conviene hacer más contenido de ese tipo.');
+ if(top)ideas.push('La mayoría llega por <b>'+e(top[0])+'</b> ('+top[1]+' sesiones).');
+ const libros={};a.descargas.forEach(x=>{const m=(x.objetivo||'').split('/')[2];if(m)libros[m]=(libros[m]||0)+x.n});
+ const lib=Object.entries(libros).sort((x,y)=>y[1]-x[1])[0];if(lib)ideas.push('Las descargas vienen sobre todo de <b>'+e(lib[0])+'</b> ('+lib[1]+'). Ese libro merece más imágenes.');
+ const flojo=a.juegos.find(j=>j.partidas>=3&&(+j.reales||0)/j.partidas<0.4);if(flojo)ideas.push('<b>'+e(flojo.juego)+'</b>: muchos lo abren pero pocos lo juegan de verdad. Revisar el inicio.');
+ el.innerHTML='<details class="semana"><summary>Resumen de la semana <small>'+(hay?'frente a la anterior':'(todavía no hay una semana anterior para comparar)')+'</small></summary>'
+  +'<p class="cifras-s">'+cifra('visitantes','visitantes')+cifra('vistas','páginas')+cifra('juegos','partidas')+cifra('descargas','descargas')+'</p>'
+  +(ideas.length?'<ul>'+ideas.map(x=>'<li>'+x+'</li>').join('')+'</ul>':'')+'</details>'}
 async function cargar(d){document.querySelectorAll('#rango button').forEach(b=>b.classList.toggle('activo',+b.dataset.d===d));
  const r=await fetch('/panel/datos?dias='+d);if(!r.ok){$('#m').innerHTML='<p>No se pudieron cargar los datos.</p>';return}const D=await r.json(),T=D.total||{};
  const fuentes={};D.origenes.forEach(o=>{const f=fuente(o.ref);fuentes[f]=(fuentes[f]||0)+o.sesiones});
@@ -200,7 +220,7 @@ async function cargar(d){document.querySelectorAll('#rango button').forEach(b=>b
  $('#m').innerHTML='<div class="cifras">'+[[n(T.visitantes),'visitantes'],[n(T.nuevos),'nuevos'],[n(T.sesiones),'sesiones'],[n(T.vistas),'páginas vistas'],
   [dur(T.ms/Math.max(1,T.sesiones)),'tiempo medio por sesión'],[n(T.juegos),'partidas de juegos'],[n(T.descargas),'descargas'],[n(pinterest),'guardados en Pinterest'],[n(tarjetas),'tarjetas creadas']]
   .map(c=>'<div class="cifra"><b>'+c[0]+'</b><span>'+c[1]+'</span></div>').join('')+'</div>'
- +'<section><h2>Visitas por día</h2>'+linea(D.porDia)+'</section><div class="rejilla">'
+ +'<section><h2>Visitas por día</h2>'+linea(D.porDia)+'<div id="semana"></div></section><div class="rejilla">'
  +'<section><h2>De dónde llegan</h2><p class="nota">Sesiones por origen (Google, Pinterest, Facebook, enlaces de otros sitios…).</p>'+tabla([{t:'Origen',k:'f'},{t:'Sesiones',k:'n',num:1,barra:1}],Object.entries(fuentes).map(([f,x])=>({f,n:x})).sort((a,b)=>b.n-a.n))+'</section>'
  +'<section><h2>Juegos</h2><p class="nota">«Jugadas de verdad»: partidas con 5 toques o teclas o más. «Me gustó»: total acumulado.</p>'+tabla([{t:'Juego',k:'juego'},{t:'Partidas',k:'partidas',num:1,barra:1},{t:'De verdad',k:'reales',num:1},{t:'Tiempo total',k:'total',num:1,f:dur},{t:'Promedio',k:'media',num:1,f:dur},{t:'👍',k:'votos',num:1}],juegos)+'</section>'
  +'<section><h2>Páginas más vistas</h2><p class="nota">Con el tiempo medio en la página y hasta dónde se lee (%).</p>'+tabla([{t:'Página',k:'ruta',f:enlace},{t:'Vistas',k:'vistas',num:1,barra:1},{t:'Tiempo',k:'ms',num:1,f:dur},{t:'Lectura',k:'hondo',num:1,f:v=>v==null?'':Math.round(v)+'%'}],D.paginas)+'</section>'
@@ -218,6 +238,7 @@ async function cargar(d){document.querySelectorAll('#rango button').forEach(b=>b
  document.querySelectorAll('tr.ses').forEach(tr=>tr.onclick=async()=>{const r=await (await fetch('/panel/sesion?id='+tr.dataset.s)).json();
   $('#recorrido').innerHTML=r.eventos.map(x=>'<li>'+new Date(x.t).toLocaleTimeString('es')+' · <b>'+e(x.tipo)+'</b> '+e(x.ruta)+(x.objetivo?' → '+e(x.objetivo):'')+(x.ms?' ('+dur(x.ms)+')':'')+'</li>').join('');
   $('#recorrido').scrollIntoView({behavior:'smooth',block:'nearest'})});
+ semana();
 }
 document.querySelectorAll('#rango button').forEach(b=>b.onclick=()=>cargar(+b.dataset.d));cargar(7);
 </script>`);
