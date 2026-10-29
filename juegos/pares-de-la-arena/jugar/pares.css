@@ -177,3 +177,11 @@ body::before { /* velo para que el texto se lea sobre el fondo */
 .icono[data-musica].apagado { opacity: .55; }
 .icono[data-musica].apagado::after { content: ''; position: absolute; width: 26px; height: 2px; background: var(--texto); transform: rotate(-45deg); border-radius: 2px; }
 .botones-barra { display: flex; gap: 8px; }
+
+/* Entorno común de Verbo (/juegos/comun/modo-juego.js): su botón ✕ va arriba a la izquierda; aquí se le deja lugar
+   para que no tape «← Más juegos» ni la flecha de volver. */
+html { --mj: 0px; }
+html:has(.mj-salir) { --mj: 150px; }
+html.mj-movil:has(.mj-salir) { --mj: 46px; }
+.salir-sitio { left: calc(12px + var(--mj)); }
+.barra { padding-left: calc(12px + var(--mj)); }

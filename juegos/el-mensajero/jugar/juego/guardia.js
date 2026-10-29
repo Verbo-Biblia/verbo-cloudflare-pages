@@ -3,7 +3,7 @@
 // modo 'cazador': no patrulla; persigue desde que se activa hasta la línea de escape.
 
 import * as THREE from 'three';
-import { mover, GRAVEDAD } from './fisica.js?v=ff246806';
+import { mover, GRAVEDAD } from './fisica.js?v=2071f06a';
 
 export const AJUSTES_GUARDIA = {
   velocidadPatrulla: 1.5, velocidadPersigue: 4.6, velocidadAgachado: 1.6,

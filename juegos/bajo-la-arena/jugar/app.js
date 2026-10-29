@@ -27,7 +27,17 @@ const sounds = {};
 const music = { tracks: {}, current: null, playing: null };
 let soundOn = (() => { try { return localStorage.getItem('coldfolio-sonido') !== 'no'; } catch { return true; } })();
 
+// assets/indice.json (lo escribe armar.sh): la lista de archivos del juego. Con ella no hace falta preguntar al
+// servidor por cada extensión posible (eran decenas de peticiones fallidas, lentas en el teléfono). Sin ella, se
+// pregunta como antes.
+const indiceArchivos = fetch('assets/indice.json').then((r) => (r.ok ? r.json() : null)).then((lista) => (Array.isArray(lista) ? new Set(lista) : null), () => null);
+
 async function findAudio(folder, name) {
+  const indice = await indiceArchivos;
+  if (indice) {
+    const extension = audioExtensions.find((e) => indice.has(`${folder}${name}.${e}`));
+    return extension ? `${folder}${name}.${extension}` : null;
+  }
   for (const extension of audioExtensions) {
     const src = `${folder}${name}.${extension}`;
     const ok = await fetch(src, { method: 'HEAD' }).then((response) => response.ok, () => false);
@@ -162,7 +172,10 @@ function resolveAsset(folder, name) {
   if (!assetCache.has(key)) {
     const hasExtension = /\.(jpe?g|png|mp4)$/i.test(name);
     const files = hasExtension ? [name] : MEDIA_EXTENSIONS.map((extension) => `${name}.${extension}`);
-    assetCache.set(key, Promise.all(files.map((file) => fetch(folder + encodeURIComponent(file), { method: 'HEAD' }).then((response) => response.ok, () => false)))
+    const existe = (file) => indiceArchivos.then((indice) => (indice
+      ? indice.has(decodeURIComponent(folder) + file)
+      : fetch(folder + encodeURIComponent(file), { method: 'HEAD' }).then((response) => response.ok, () => false)));
+    assetCache.set(key, Promise.all(files.map(existe))
       .then((found) => {
         const file = files[found.indexOf(true)];
         if (!file) return { kind: 'missing', path: folder + name };
@@ -1095,7 +1108,7 @@ function bindEvents() {
   $('#solve-btn').addEventListener('click', solveHypothesis);
   $('#stamp-btn').addEventListener('click', () => armStamp());
   $('#reset-btn').addEventListener('click', resetCase);
-  $('#media-action').addEventListener('click', () => { closeModals(); showView('home'); window.VerboAds?.pausa('arena-caso-resuelto', 'next'); });
+  $('#media-action').addEventListener('click', () => { closeModals(); showView('home'); window.VerboAds?.pausa('caso-resuelto', 'next'); });
   $('#collection-btn').addEventListener('click', async () => { await renderCollection(); $('#collection-modal').classList.remove('hidden'); });
   bindBoardDrag();
   bindDocZoom();

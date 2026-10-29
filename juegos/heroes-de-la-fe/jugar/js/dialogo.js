@@ -1,8 +1,8 @@
 // Globo de una línea del guion: el mismo para el editor (vista previa y ajuste) y para el jugador.
 // Si la línea tiene «globo» guardado (el usuario lo acomodó a mano), se usa ese; si no, se coloca solo
 // encima de quien habla, con la cola hacia su cara.
-import { W, MODELOS, estado } from './estado.js?v=6e2b4187';
-import { cabeza, caraDe } from './personajes.js?v=6e2b4187';
+import { W, MODELOS, estado } from './estado.js?v=27d4c754';
+import { cabeza, caraDe } from './personajes.js?v=27d4c754';
 
 export const idGloboLinea = l => 'linea-' + l.id;
 

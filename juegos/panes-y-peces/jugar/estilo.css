@@ -127,7 +127,7 @@ button { font: inherit; color: inherit; }
   background: rgba(0, 0, 0, .5); border: 2px solid var(--oro);
 }
 .hud-movs b { font-size: 1.6em; line-height: 1; color: var(--oro-claro); }
-.hud-movs small { font-size: .62em; color: var(--texto-suave); }
+.hud-movs small { font-size: max(13px, .62em); color: var(--texto-suave); }
 .hud-movs.pocos { border-color: #ff7a5a; animation: late 1s infinite; } .hud-movs.pocos b { color: #ffb19a; }
 .hud-puntos { display: flex; align-items: center; gap: 10px; padding: 2px 16px 6px; }
 .hud-puntos > b { min-width: 70px; text-align: right; text-shadow: 0 2px 6px #000; }
@@ -139,7 +139,7 @@ button { font: inherit; color: inherit; }
 .marca.m2::after { content: '★★'; left: -9px; letter-spacing: -2px; }
 .zona-tablero { flex: 1; display: grid; place-items: center; min-height: 0; padding: 4px; }
 .hud-pie { display: flex; gap: 8px; justify-content: flex-end; padding: 0 10px max(8px, env(safe-area-inset-bottom)); }
-.hud-pie .icono { width: 38px; height: 38px; font-size: 16px; }
+.hud-pie .icono { width: 42px; height: 42px; font-size: 16px; }
 
 .tablero { position: relative; touch-action: none; --t: 48px; }
 .tablero.sacude { animation: sacude .35s; }

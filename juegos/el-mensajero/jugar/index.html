@@ -9,7 +9,7 @@
 <meta name="theme-color" content="#0c1024">
 <link rel="canonical" href="https://verbobiblia.com/juegos/el-mensajero/">
 <link rel="stylesheet" href="comun/base.css">
-<link rel="stylesheet" href="mensajero.css?v=ff246806">
+<link rel="stylesheet" href="mensajero.css?v=2071f06a">
 <script type="importmap">
 { "imports": { "three": "./lib/three/three.module.min.js", "three/addons/": "./lib/three/addons/" } }
 </script>
@@ -134,7 +134,9 @@
 
 <p class="error" id="error" hidden></p>
 
-<script src="/juegos/comun/anuncios.js?v=20261023"></script><script>VerboAds.init({juego:'el-mensajero'});</script>
-<script type="module" src="juego/principal.js?v=anuncios1"></script>
+<script src="/juegos/comun/anuncios.js?v=20261023"></script><script>window.VerboAds && VerboAds.init({juego:'el-mensajero'});</script>
+<script type="module" src="juego/principal.js?v=2071f06a"></script>
+<!-- Entorno común de los juegos de Verbo: pantalla completa en el teléfono, orientación y botón ✕ para salir a la ficha -->
+<script src="/juegos/comun/modo-juego.js" data-ficha="/juegos/el-mensajero/" data-orientacion="horizontal" data-salir="arriba-izquierda" defer></script>
 </body>
 </html>

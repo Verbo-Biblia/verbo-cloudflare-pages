@@ -561,7 +561,12 @@ iniciar();
 
 // En celulares: pantalla completa y orientación horizontal fija (Android). iPhone no deja fijarla: ahí queda el
 // aviso «Gira el teléfono». Se pide con un toque, porque los navegadores solo lo permiten tras una acción del usuario.
+// En Verbo, el entorno común (/juegos/comun/modo-juego.js) ya hace esto y pone su propio aviso de girar: aquí no se
+// repite (si no, había dos avisos y dos botones de pantalla completa).
+const conEntornoVerbo = () => !!window.VerboModoJuego;
+if (conEntornoVerbo()) document.documentElement.classList.add('con-modo-juego');
 async function ponerHorizontal() {
+  if (conEntornoVerbo()) return;
   try {
     if (!document.fullscreenElement) await document.documentElement.requestFullscreen?.({ navigationUI: 'hide' });
     await screen.orientation?.lock?.('landscape');

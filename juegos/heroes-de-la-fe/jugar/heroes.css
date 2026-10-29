@@ -47,3 +47,12 @@ body.leyendo #menu { display: none; }
 
 /* Música apagada: el botón se ve tachado y tenue. */
 [data-musica].apagado { opacity: .45; text-decoration: line-through; }
+
+/* Entorno común de Verbo (/juegos/comun/modo-juego.js): su «✕» (salir a la web) va arriba a la derecha en el menú.
+   Mientras se lee se esconde: ahí manda la barra del lector, con su propio «✕ Salir» que vuelve al menú. */
+body.leyendo .mj-salir { display: none; }
+.mj-movil .j-barra button { min-height: 40px; min-width: 40px; }
+/* En el teléfono el escenario de 1600×900 se ve a menos de la mitad: botones de respuesta más altos (≥ 40 px reales). */
+.mj-movil .j-opciones button { font-size: 46px; padding: 30px 44px; }
+.mj-movil .j-opciones .pregunta { font-size: 48px; }
+.mj-movil .j-fin-botones button { font-size: 40px; padding: 28px 40px; }

@@ -162,3 +162,19 @@ body.en-relato .hud, body.en-relato .pista, body.en-relato .aviso, body.en-relat
 .agua i { display: block; height: 100%; width: 100%; background: linear-gradient(90deg, #3a8ad0, #8ad0ff); transition: width .15s; }
 .agua.poca i { background: #d06a3a; }
 .escondido { top: max(80px, calc(env(safe-area-inset-top) + 72px)); }
+
+/* ---------- entorno común de Verbo (/juegos/comun/modo-juego.js): su botón ✕ va arriba a la izquierda */
+body.modo-verbo #inicio > .salir-sitio { display: none; }
+body.modo-verbo .hud { padding-left: calc(max(12px, env(safe-area-inset-left)) + 46px); }
+html:not(.mj-movil) body.modo-verbo .hud { padding-left: 150px; }
+body.modo-verbo .agua, body.modo-verbo .escondido { left: max(16px, env(safe-area-inset-left)); }
+/* en el teléfono, textos de ayuda y pistas legibles */
+body.tactil-activo .controles { font-size: 14px; }
+body.tactil-activo .pista { font-size: 15px; }
+body.tactil-activo .accion { font-size: 14px; }
+/* flechas táctiles: el triángulo de la fuente del juego se veía diminuto */
+.tactil .t-izq button { font-family: system-ui, "Noto Sans Symbols 2", sans-serif; font-size: 30px; line-height: 1; }
+/* en pantallas bajas (teléfono horizontal) la introducción se desplaza: «Empezar» queda siempre a la vista */
+@media (max-height: 560px) {
+  #intro .tarjeta #btn-empezar { position: sticky; bottom: max(8px, env(safe-area-inset-bottom)); box-shadow: 0 6px 22px #000c; }
+}

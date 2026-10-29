@@ -248,3 +248,10 @@ button { font: inherit; color: inherit; border: 0; background: none; cursor: poi
 }
 .felicita b { font-size: clamp(48px, 11vw, 96px); color: #ff6f61; text-shadow: 0 5px 0 #fff, 0 10px 24px #0003; white-space: nowrap; }
 .estrella-gorda { font-size: clamp(90px, 20vw, 170px); line-height: 1; color: #ffc21a; text-shadow: 0 6px 0 #d99a00; animation: salta .8s; }
+
+/* Entorno común de Verbo (/juegos/comun/modo-juego.js): su «✕» va arriba a la derecha, junto a los ajustes, lejos de
+   donde tocan los niños. Se le deja lugar en la barra. En el teléfono reemplaza a «← Más juegos» (no caben los dos y
+   es la misma salida). */
+body:has(> .mj-salir) #barra { padding-right: 156px; }
+.mj-movil body:has(> .mj-salir) #barra { padding-right: max(54px, calc(env(safe-area-inset-right) + 48px)); }
+.mj-movil body:has(> .mj-salir) .salir-sitio { display: none; }

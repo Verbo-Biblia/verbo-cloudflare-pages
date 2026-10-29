@@ -27,10 +27,20 @@ if 'verbo:la-senda-web' not in html:
               '<meta property="og:description" content="Juego gratis de preguntas bíblicas con la Escritura abierta.">'
               '<meta property="og:image" content="https://verbobiblia.com/juegos/la-senda/portada.webp">'
               '<meta property="og:type" content="website">'
-              '<style>#verboVolver{position:fixed;top:6px;left:8px;z-index:50;font:600 12px system-ui,sans-serif;'
-              'color:#f0c75e;text-decoration:none;opacity:.8}#verboVolver:hover{opacity:1}</style>')
+              # El «✕» del entorno común va arriba a la izquierda: el logo del inicio se corre para dejarle lugar y
+              # durante la partida se esconde (ahí manda el «✕» propio del juego, que vuelve al inicio).
+              '<style>html.mj-movil #home .home-top{padding-left:44px}@media (max-width:1010px){html:not(.mj-movil) #home .home-top{padding-left:140px}}'
+              'body:has(#game.active) .mj-salir{display:none}'
+              # En la web, nada de texto por debajo de 13 px (las etiquetas de la app quedaban en 11-12 px).
+              '#homeStats .stat span,.label,.mode-count,.foot,.sheet-note,.counter,.chip,#quoteRef,.refs-title'
+              '{font-size:max(13px,calc(13px * var(--fs)))!important}</style>')
     html = html.replace('<title>La Senda</title>', '<title>La Senda · preguntas bíblicas gratis | Verbo</title>' + cabeza, 1)
-    html = html.replace('<body>', '<body><a id="verboVolver" href="/juegos/" aria-label="Juegos de Verbo / Verbo games">← Verbo</a>', 1)
+    pagina.write_text(html, encoding='utf-8')
+if 'modo-juego.js' not in html:
+    # Entorno común de los juegos de Verbo (pantalla completa, orientación y botón para salir a la ficha).
+    # Solo en la web: la app Android (www/) no lo lleva.
+    html = html.replace('</body>', '<script src="/juegos/comun/modo-juego.js" data-ficha="/juegos/la-senda/" '
+                        'data-orientacion="vertical" data-salir="arriba-izquierda" defer></script>\n</body>', 1)
     pagina.write_text(html, encoding='utf-8')
 if 'anuncios-web.js' not in html:
     # Anuncios de juegos solo en la web (la app Android no lleva AdSense): módulo común + enganche de La Senda.

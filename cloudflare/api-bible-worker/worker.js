@@ -1,3 +1,4 @@
+import { handleMedir, handlePanel } from './panel.js';
 import studyAssistantCatalogData from './study-assistant-catalog.json' with { type: 'json' };
 import { createRemoteJWKSet, jwtVerify } from 'jose';
 
@@ -1518,6 +1519,12 @@ export default {
     const origin = request.headers.get('Origin') || '';
     const headers = corsHeaders(origin, env);
 
+    // Panel privado de Juan: se abre directo en el navegador (sin Origin), con su propia clave.
+    if (url.pathname === '/panel' || url.pathname.startsWith('/panel/')) {
+      try { return await handlePanel(request, url, env); }
+      catch (error) { console.error(error); return new Response('Error del panel', { status:500 }); }
+    }
+
     if (request.method === 'OPTIONS') return new Response(null, { status:204, headers });
     if (!headers['Access-Control-Allow-Origin']) return jsonError('Origen no autorizado', 403, headers);
 
@@ -1534,6 +1541,7 @@ export default {
       if (url.pathname === '/translate-sermon-doc') return await handleTranslateSermonDoc(request, env, headers);
       if (url.pathname === '/proyector/estado') return await handleProyectorEstado(request, url, env, headers);
       if (url.pathname === '/v1/reclamos') return await handleReclamo(request, env, headers);
+      if (url.pathname === '/v1/m') return await handleMedir(request, env, headers);
       if (url.pathname === '/v1/juegos/votos') return await handleVotos(request, env, headers);
       if (url.pathname === '/v1/imagenes/sugerencia') return await handleSugerencia(request, env, headers);
       return await handleApiBible(request, url, env, headers);

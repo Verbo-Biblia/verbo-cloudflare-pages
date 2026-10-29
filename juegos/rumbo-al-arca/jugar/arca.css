@@ -200,3 +200,12 @@ body[data-pantalla="partida"]::before { background: radial-gradient(ellipse at c
 
 /* Teléfono: líneas un poco más gruesas para que se vean y se toquen mejor. */
 @media (max-width: 600px) { .flecha .f-cuerpo { stroke-width: .26; } }
+
+/* Entorno común de Verbo (/juegos/comun/modo-juego.js): su botón ✕ va arriba a la izquierda; aquí se le deja lugar
+   para que no tape «← Más juegos», el nivel ni la flecha de volver. */
+html { --mj: 0px; }
+html:has(.mj-salir) { --mj: 150px; }
+html.mj-movil:has(.mj-salir) { --mj: 46px; }
+.salir-sitio { left: calc(12px + var(--mj)); }
+.barra { padding-left: calc(12px + var(--mj)); }
+.barra-juego { padding-left: calc(14px + var(--mj)); }

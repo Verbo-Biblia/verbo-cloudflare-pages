@@ -5,8 +5,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Base de cartas</title>
-<link rel="stylesheet" href="estilo.css">
-<link rel="stylesheet" href="mundo.css">
+<link rel="stylesheet" href="estilo.css?v=80a585c3">
+<link rel="stylesheet" href="mundo.css?v=80a585c3">
 </head>
 <body>
 
@@ -52,8 +52,8 @@
     <p><b>Maldiciones:</b> caen sobre el rival por varios turnos. La muralla no las detiene.</p>
     <p><b data-carta="E01">Torre</b> (estructura): defiende. El primer combatiente rival que te ataca en cada turno recibe 1 de daño antes de golpear.</p>
     <p><b>Campaña:</b> conquista las mazmorras del mapa ganando sus partidas. Si pierdes 3 seguidas, el enemigo recupera tu última conquista (se reconquista con una sola partida). Con las monedas compras cartas en la tienda y armas tus mazos en el taller.</p>
-    <p class="sub">En el teléfono: toca una carta para verla en grande y tócala otra vez para jugarla; si tocas fuera, eliges otra.</p>
-    <p class="sub">Teclado: Espacio o Enter pulsan el botón que late · 1 a 9 tocan una carta de tu mano · Esc o clic derecho cancelan una selección.</p>
+    <p class="sub solo-tactil">En el teléfono: toca una carta para verla en grande y tócala otra vez para jugarla; si tocas fuera, eliges otra.</p>
+    <p class="sub solo-teclado">Teclado: Espacio o Enter pulsan el botón que late · 1 a 9 tocan una carta de tu mano · Esc o clic derecho cancelan una selección.</p>
   </div>
     <div data-idioma="en" hidden>
     <h2>How to play</h2>
@@ -83,8 +83,8 @@
     <p><b>Curses:</b> they fall on the whole rival for several turns. The wall does not stop them.</p>
     <p><b data-carta="E01">Tower</b> (structure): defends. The first rival fighter that attacks you each turn takes 1 damage before striking.</p>
     <p><b>Campaign:</b> conquer the dungeons on the map by winning their battles. If you lose 3 in a row, the enemy takes back your last conquest (you reconquer it with a single battle). With your coins you buy cards in the shop and build your decks in the workshop.</p>
-    <p class="sub">On a phone: tap a card to see it up close and tap it again to play it; tap elsewhere to choose another.</p>
-    <p class="sub">Keyboard: Space or Enter press the glowing button · 1 to 9 tap a card in your hand · Esc or right click cancel a selection.</p>
+    <p class="sub solo-tactil">On a phone: tap a card to see it up close and tap it again to play it; tap elsewhere to choose another.</p>
+    <p class="sub solo-teclado">Keyboard: Space or Enter press the glowing button · 1 to 9 tap a card in your hand · Esc or right click cancel a selection.</p>
   </div>
   </div>
 </section>
@@ -124,7 +124,8 @@
   <button id="btnHorizontal" data-t="pantallaCompleta">Pantalla completa</button>
 </div>
 
-<script src="/juegos/comun/anuncios.js?v=20261023"></script><script>VerboAds.init({juego:'tierra-prometida'});</script>
-<script type="module" src="main.js?v=anuncios1"></script>
+<script src="/juegos/comun/anuncios.js?v=20261023"></script><script>window.VerboAds && VerboAds.init({juego:'tierra-prometida'});</script>
+<script src="/juegos/comun/modo-juego.js" data-ficha="/juegos/tierra-prometida/" data-orientacion="horizontal" data-salir="arriba-izquierda" defer></script>
+<script type="module" src="main.js?v=80a585c3"></script>
 </body>
 </html>

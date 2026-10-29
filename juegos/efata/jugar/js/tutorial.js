@@ -49,11 +49,15 @@ function pBienvenida(k = 0) {
     </div></main>`;
   const caja = $('#escribiendo'), acc = $('#acciones');
   const palabras = [...caja.querySelectorAll('.pal')];
-  let i = 0, t = null;
-  const terminar = () => { clearInterval(t); palabras.forEach(p => p.classList.add('ver')); acc.classList.add('ver'); };
-  t = setInterval(() => { if (i < palabras.length) palabras[i++].classList.add('ver'); else terminar(); }, 70);
+  let i = 0, t = null, listo = false;
+  // El botón está a la vista desde el principio (en el teléfono el globo a medio escribir parecía vacío):
+  // el primer toque mientras se escribe muestra todo el texto; el siguiente pasa a la parte que sigue.
+  const terminar = () => { clearInterval(t); listo = true; palabras.forEach(p => p.classList.add('ver')); };
+  t = setInterval(() => { if (i < palabras.length) palabras[i++].classList.add('ver'); else terminar(); }, 35);
+  acc.classList.add('ver');
   caja.onclick = terminar;
   $('#sig').onclick = () => {
+    if (!listo) return terminar();
     if (!ultima) return pBienvenida(k + 1);
     E.bienvenida = true; E.tour = {}; guardar();
     location.hash = '#/'; render();

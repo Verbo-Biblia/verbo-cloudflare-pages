@@ -1,7 +1,7 @@
 // Pantalla de la base «combina 3»: menú, mapa de niveles sin fin, partida animada y ventanas.
 // Todo lo temático (nombres, piezas, fondos, versículos, música) viene de tema/tema.json.
-import { Tablero } from './tablero.js?v=2ad6f4e0';
-import { nivel as armarNivel } from './niveles.js?v=2ad6f4e0';
+import { Tablero } from './tablero.js?v=ad07b9e0';
+import { nivel as armarNivel } from './niveles.js?v=ad07b9e0';
 
 const TEXTOS = {
   es: {
@@ -547,7 +547,7 @@ function preguntarSalir() {
 
 // ---------- arranque ----------
 async function iniciar() {
-  tema = await (await fetch('tema/tema.json?v=2ad6f4e0', { cache: 'no-cache' })).json();
+  tema = await (await fetch('tema/tema.json?v=ad07b9e0', { cache: 'no-cache' })).json();
   lang = elegirIdioma();
   cargarProgreso();
   traducir(); pintarBotonesSonido(); pintarInicio();

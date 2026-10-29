@@ -24,8 +24,8 @@
 //   faroles [[x, y, z]] (antorchas en 'cueva'), deco [[modelo, x, y, z, alto]], pistas, objetivos, meta {x}
 
 import * as THREE from 'three';
-import { Constructor, casa, fondo, material, halo, ambiente, capasPintadas, objetosPintados } from './mundo.js?v=ff246806';
-import { Mundo, mover, GRAVEDAD } from './fisica.js?v=ff246806';
+import { Constructor, casa, fondo, material, halo, ambiente, capasPintadas, objetosPintados } from './mundo.js?v=2071f06a';
+import { Mundo, mover, GRAVEDAD } from './fisica.js?v=2071f06a';
 
 export function construirNivel(escena, recursos, D) {
   const mundo = new Mundo();

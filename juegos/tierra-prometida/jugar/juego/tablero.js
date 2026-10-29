@@ -50,7 +50,8 @@ export class Tablero {
     this.tema = tema;
     this.contenedor = contenedor;
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    // En el teléfono, resolución 1,5× como máximo: se ve igual de nítido y la mesa 3D gasta menos batería.
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, matchMedia('(pointer: coarse)').matches ? 1.5 : 2));
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     contenedor.appendChild(this.renderer.domElement);
 

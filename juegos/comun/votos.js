@@ -36,7 +36,7 @@
    try{
     const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({juego,votante:votante(),gusta})});
     if(!r.ok)throw 0;
-    const d=await r.json();b._votos=d.votos;guardar('verbo-gusta:'+juego,gusta?'1':'0');
+    const d=await r.json();b._votos=d.votos;guardar('verbo-gusta:'+juego,gusta?'1':'0');window.VerboMedir&&window.VerboMedir('voto',{objetivo:juego,detalle:{gusta:gusta?1:0}});
    }catch{b._gusta=!gusta;b._votos=Math.max(0,b._votos+(gusta?-1:1))}
    b.disabled=false;pintar(b);
   });

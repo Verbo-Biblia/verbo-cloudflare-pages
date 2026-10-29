@@ -4,7 +4,7 @@
 import { t, idioma, cambiarIdioma, fijarTextos, traducirPagina } from '../comun/idioma.js';
 import { sonar, sonidoActivo, fijarSonido, precargar } from '../comun/sonido.js';
 import { musica, musicaActiva, fijarMusica, carpetaMusica } from '../comun/musica.js';
-import { iniciarJugador, jugar, alPasar } from './jugar.js?v=6e2b4187';
+import { iniciarJugador, jugar, alPasar } from './jugar.js?v=27d4c754';
 
 const TEXTOS = {
   es: {
@@ -12,7 +12,8 @@ const TEXTOS = {
     sobretitulo: 'Novelas gráficas',
     titulo: 'Héroes de la fe',
     subtitulo: 'Vidas reales que confiaron en Dios',
-    como: 'Toca la pantalla (o la barra espaciadora) para avanzar. Cuando aparezca una pregunta, elige qué harías tú: verás lo que de verdad pasó.',
+    como: 'Toca la pantalla para avanzar. Cuando aparezca una pregunta, elige qué harías tú: verás lo que de verdad pasó.',
+    comoPc: 'Haz clic en la pantalla (o usa la barra espaciadora) para avanzar. Cuando aparezca una pregunta, elige qué harías tú: verás lo que de verdad pasó.',
     leer: 'Leer',
     fin: 'Fin', otraVez: '↺ Leer otra vez', otraHistoria: 'Otra historia',
     atras: '◀ Atrás', reiniciar: '↺ Reiniciar', salir: '✕ Salir',
@@ -25,7 +26,8 @@ const TEXTOS = {
     sobretitulo: 'Graphic novels',
     titulo: 'Heroes of Faith',
     subtitulo: 'Real lives that trusted God',
-    como: 'Tap the screen (or press the space bar) to go on. When a question appears, choose what you would do: you will see what really happened.',
+    como: 'Tap the screen to go on. When a question appears, choose what you would do: you will see what really happened.',
+    comoPc: 'Click the screen (or press the space bar) to go on. When a question appears, choose what you would do: you will see what really happened.',
     leer: 'Read',
     fin: 'The End', otraVez: '↺ Read again', otraHistoria: 'Another story',
     atras: '◀ Back', reiniciar: '↺ Restart', salir: '✕ Exit',
@@ -53,6 +55,8 @@ const HISTORIAS = [
 
 const $ = s => document.querySelector(s);
 fijarTextos(TEXTOS);
+// En el teléfono las instrucciones hablan solo de tocar; la barra espaciadora, solo en computadora.
+if (!matchMedia('(pointer: coarse)').matches) $('.como').dataset.t = 'comoPc';
 carpetaMusica('musica/');   // compuesta para este juego (herramientas/componer_musica.mjs)
 
 // Lo que suena mientras se lee: hoja que pasa al cambiar de escena, un acorde al acertar, el cierre al final.
@@ -97,7 +101,7 @@ function pintarMenu() {
 async function abrir(h, boton) {
   boton.querySelector('.t-leer').textContent = t('cargando');
   try {
-    const historia = await (await fetch(`historias/${h.id}.${idioma()}.json?v=6e2b4187`)).json();
+    const historia = await (await fetch(`historias/${h.id}.${idioma()}.json?v=27d4c754`)).json();
     traducirPagina($('#jugador'));
     document.body.classList.add('leyendo');
     leyendo = h.id;

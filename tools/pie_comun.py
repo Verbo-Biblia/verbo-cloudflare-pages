@@ -102,7 +102,8 @@ def footer(home=False):
         if home and group == 'confianza':
             parts.append('      <a href="/ajustes/" data-i18n="pie.configuracion">Configuración</a>')
         parts.append('    </nav>')
-    return '\n'.join(parts + ['  </div>', '</footer>', END])
+    # Medición propia y anónima para el panel privado (assets/medir.js; ver cloudflare/api-bible-worker/panel.js).
+    return '\n'.join(parts + ['  </div>', '</footer>', '<script src="/assets/medir.js?v=20261029" defer></script>', END])
 
 def apply():
     changed = 0

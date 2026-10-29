@@ -138,3 +138,14 @@ canvas.mini.premio { width: 150px; height: 210px; box-shadow: 0 0 40px rgba(255,
 .punto.bloqueada span { pointer-events: none; }
 .punto i { position: relative; }
 .punto i::after { content: ''; position: absolute; inset: -12px; border-radius: 50%; }
+/* Entorno común de Verbo: su «✕» va arriba a la izquierda; la barra de arriba le deja lugar. */
+html:has(.mj-salir) .barra { padding-left: 150px; }
+html.mj-movil:has(.mj-salir) .barra { padding-left: 56px; }
+/* Teléfono: botones del mundo de al menos 40 px para el dedo. */
+@media (pointer: coarse) { .portada .botones button, .portada .botones .boton, .barra .volver { min-height: 40px; } }
+@media (pointer: coarse) and (max-height: 520px) {
+  .portada .botones { display: grid; grid-template-columns: 1fr 1fr; width: min(560px, 90vw); }
+  .portada .botones > .grande { grid-column: 1 / -1; }
+}
+/* Teléfono vertical («Jugar así»): la barra de arriba no se parte en tres renglones. */
+@media (max-width: 500px) { .barra { gap: 8px; } .barra h2 { font-size: 1.05em; } .barra .volver { font-size: .85em; } }

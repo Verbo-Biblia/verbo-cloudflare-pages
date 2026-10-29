@@ -5,16 +5,17 @@ import * as THREE from 'three';
 import { fijarTextos, traducirPagina, t, idioma, cambiarIdioma } from '../comun/idioma.js';
 import { sonidoActivo, fijarSonido, sonar as sonarComun, precargar } from '../comun/sonido.js';
 import { musica, musicaActiva, fijarMusica } from '../comun/musica.js';
+import { TEXTOS } from './textos.js?v=2071f06a';
+import { entrada, leerEntrada, tomar, conectarTactil, limpiarPulsados, usaTactil, pulsar } from './entrada.js?v=2071f06a';
+import { crearEscena, fijarCalidad, aplicarAmbiente, moverCapas, renderizador, escena, camara } from './mundo.js?v=2071f06a';
+import { cargarAnimaciones, cargarModelo, cargarGlb, Personaje } from './personajes.js?v=2071f06a';
+import { construirNivel, normalizarProp } from './nivel.js?v=2071f06a';
+import { MISIONES } from './misiones/index.js';
+import { Jugador } from './jugador.js?v=2071f06a';
+import { Guardia } from './guardia.js?v=2071f06a';
+
 // Pausa de anuncio en un corte natural (apagada mientras /juegos/comun/anuncios.js no se active).
 const pausaAnuncio = (nombre, tipo) => window.VerboAds ? VerboAds.pausa(nombre, tipo) : Promise.resolve();
-import { TEXTOS } from './textos.js?v=ff246806';
-import { entrada, leerEntrada, tomar, conectarTactil, limpiarPulsados, usaTactil, pulsar } from './entrada.js?v=ff246806';
-import { crearEscena, fijarCalidad, aplicarAmbiente, moverCapas, renderizador, escena, camara } from './mundo.js?v=ff246806';
-import { cargarAnimaciones, cargarModelo, cargarGlb, Personaje } from './personajes.js?v=ff246806';
-import { construirNivel, normalizarProp } from './nivel.js?v=ff246806';
-import { MISIONES } from './misiones/index.js';
-import { Jugador } from './jugador.js?v=ff246806';
-import { Guardia } from './guardia.js?v=ff246806';
 
 fijarTextos(TEXTOS);
 // Misión actual: ?m=2 (cada misión se abre en su propia carga de página: así no queda nada de la anterior)
@@ -100,6 +101,13 @@ function mostrar(id) {
   document.body.classList.toggle('jugando', id === 'partida');
   if (!capa) for (const p of document.querySelectorAll('.pantalla:not(.capa)')) p.classList.toggle('activa', p.id === id);
   else $(id).classList.add('activa');
+}
+
+// En pantalla táctil se usa la versión «…T» de un texto (habla de los botones, no de las teclas) si existe.
+function textoTactil(clave) {
+  if (!document.body.classList.contains('tactil-activo')) return clave;
+  if (clave.endsWith('T') && TEXTOS.es[clave]) return clave;
+  return TEXTOS.es[clave + 'T'] ? clave + 'T' : clave;
 }
 
 function pintarBotonesSonido() {
@@ -416,7 +424,7 @@ function actualizarJuego(dt) {
   for (const [x, clave, claveT] of DATOS.pistas) {
     if (!pistasVistas.has(clave) && j.x >= x) {
       pistasVistas.add(clave);
-      pista(t(document.body.classList.contains('tactil-activo') && claveT ? claveT : clave));
+      pista(t(document.body.classList.contains('tactil-activo') && claveT ? claveT : textoTactil(clave)));
     }
   }
   // objetivo
@@ -524,7 +532,7 @@ function pintarAyudas() {
   if (jugador.empujando || jugador.jalando) clave = null;
   el.classList.toggle('ver', !!clave && fase === 'juego');
   if (clave) {
-    el.textContent = t(clave, { u, d });
+    el.textContent = t(textoTactil(clave), { u, d });
     const v = new THREE.Vector3(jugador.c.x, jugador.c.y + 2.15, jugador.z).project(camara);
     el.style.left = ((v.x + 1) / 2) * innerWidth + 'px';
     el.style.top = ((1 - v.y) / 2) * innerHeight + 'px';
@@ -928,6 +936,9 @@ function reiniciarEscenaFinal() {
 conectarTactil($('tactil'));
 if (usaTactil) document.body.classList.add('tactil-activo');
 addEventListener('touchstart', () => { document.body.classList.add('tactil-activo'); pintarBotonesSonido(); }, { once: true, passive: true });
+// Con el entorno común de Verbo (su botón ✕ va arriba a la izquierda) se esconde el enlace propio del menú y el HUD deja lugar.
+addEventListener('DOMContentLoaded', () => { if (window.VerboModoJuego) document.body.classList.add('modo-verbo'); });
+if (window.VerboModoJuego) document.body.classList.add('modo-verbo');
 
 // ---------- arranque
 traducirPagina();

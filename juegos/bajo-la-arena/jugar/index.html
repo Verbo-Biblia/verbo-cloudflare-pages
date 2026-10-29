@@ -141,7 +141,9 @@
     <p class="doc-zoom-hint" data-t="zoomPista">Pellizca o toca dos veces para ampliar · arrastra para moverte</p>
   </div>
 
-  <script src="/juegos/comun/anuncios.js?v=20261023"></script><script>VerboAds.init({juego:'bajo-la-arena'});</script>
-  <script src="app.js?v=anuncios1" type="module"></script>
+  <!-- Anuncios de juegos de Verbo (apagados hasta activar /juegos/comun/anuncios.js); fuera de Verbo no hace nada. -->
+  <script src="/juegos/comun/anuncios.js?v=20261023"></script><script>window.VerboAds && VerboAds.init({juego: location.pathname.split('/')[2]});</script>
+  <script src="app.js?v=0bc81aeb" type="module"></script>
+  <script src="/juegos/comun/modo-juego.js" data-ficha="/juegos/bajo-la-arena/" data-orientacion="libre" data-salir="arriba-izquierda" defer></script>
 </body>
 </html>

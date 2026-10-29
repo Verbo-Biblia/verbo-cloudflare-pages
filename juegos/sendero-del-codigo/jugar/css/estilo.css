@@ -291,3 +291,19 @@ pre code { background: none; padding: 0; }
 }
 #b-idioma .corto { display: none; }
 @media (max-width: 640px) { #b-idioma .largo { display: none; } #b-idioma .corto { display: inline; } .marca b { font-size: 1.05rem; } }
+
+/* ---------- Teléfono (2026-10-29) ---------- */
+/* Botones de ejecutar y comprobar dentro de la barra de símbolos (ver armarZona en js/app.js). */
+.simbolos .sim-accion { font-family: inherit; font-weight: 700; min-width: 2.8rem; color: var(--noche); }
+.simbolos .sim-accion.ejecutar { background: #8fd18a; }
+.simbolos .sim-accion.comprobar { background: var(--dorado); margin-right: .4rem; }
+@media (pointer: coarse) {
+  .atajo { display: none; }                         /* «Ctrl + Enter» no sirve en el teléfono */
+  .boton-barra, .boton.chico { min-height: 40px; }  /* blancos de toque de 40 px como mínimo */
+  .paso { min-width: 40px; height: 40px; }
+  #b-idioma { min-width: 40px; justify-content: center; }
+}
+/* Entorno común de Verbo (/juegos/comun/modo-juego.js): su «✕» va arriba a la izquierda y reemplaza a «← Verbo». */
+body:has(> .mj-salir) #b-web { display: none; }
+body:has(> .mj-salir) .barra { padding-left: 150px; }
+.mj-movil body:has(> .mj-salir) .barra { padding-left: max(52px, calc(env(safe-area-inset-left) + 48px)); }

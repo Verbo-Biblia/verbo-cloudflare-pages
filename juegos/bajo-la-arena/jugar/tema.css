@@ -44,3 +44,6 @@ body { font-size: 17px; }
 @media (max-height: 520px) {
   .case-sheet .case-meta { display: none; }
 }
+
+/* Fondos conocidos desde el principio: así el navegador no pide el fondo genérico de la base (no viene en el juego). */
+:root { --bg-mesa: url('assets/ui/fondo-mesa.jpg'); --bg-portada: url('assets/ui/fondo-portada.jpg'); }

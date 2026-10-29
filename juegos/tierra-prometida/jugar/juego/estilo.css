@@ -125,3 +125,17 @@ label select { flex: 1; max-width: 62%; }
 #pistaMano.visible { opacity: 1; }
 #pistaMano::after { content: '👇'; position: absolute; left: 50%; bottom: -30px; transform: translateX(-50%); font-size: 24px; animation: pistaLate 1s ease-in-out infinite; }
 @keyframes pistaLate { 50% { transform: translate(-50%, 6px); } }
+/* En Verbo el aviso de girar y la pantalla completa los pone el entorno común (/juegos/comun/modo-juego.js). */
+html.con-modo-juego #girar, html.mj-movil #girar { display: none !important; }
+/* «Cómo se juega»: en el teléfono solo los toques; en la computadora, solo el teclado. */
+.solo-tactil { display: none; }
+@media (pointer: coarse) { .solo-teclado { display: none; } .solo-tactil { display: block; } }
+/* Entorno común de Verbo: su «✕» va arriba a la izquierda; el marcador del rival se corre para no quedar debajo. */
+html:has(.mj-salir) .hud.arriba { left: 150px; }
+html.mj-movil:has(.mj-salir) .hud.arriba { left: 50px; }
+/* Teléfono: botones de la mesa de al menos 40 px para el dedo. */
+@media (pointer: coarse) {
+  #controles button { min-height: 40px; }
+  .x { width: 40px; height: 40px; }
+  #sonido { right: 58px !important; }
+}

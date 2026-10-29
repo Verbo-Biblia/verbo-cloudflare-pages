@@ -152,7 +152,7 @@ function via(f, n) {
 // Puntos cuando la flecha avanzó «s» casillas por su vía.
 function puntosEn(v, largo, s) {
   const pt = k => {
-    const i = Math.min(Math.floor(k), v.length - 2), u = k - i;
+    const i = Math.max(0, Math.min(Math.floor(k), v.length - 2)), u = k - i;
     return [v[i][0] + (v[i + 1][0] - v[i][0]) * u, v[i][1] + (v[i + 1][1] - v[i][1]) * u];
   };
   const hasta = s + largo - 1;
@@ -398,7 +398,9 @@ function animar(f, tramos, alTerminar, velocidad = VELOCIDAD, minimo = 90) {
   const t0 = performance.now();
   const largo = f.celdas.length;
   const paso = ahora => {
-    const u = Math.min(1, (ahora - t0) / dur);
+    // El reloj de requestAnimationFrame puede ir un poco antes que t0: sin el «max» la flecha retrocedía a una
+    // casilla inexistente, el juego fallaba y la flecha quedaba trabada (sin poder tocarla otra vez).
+    const u = Math.max(0, Math.min(1, (ahora - t0) / dur));
     const e = b > a ? u * (0.6 + 0.4 * u) : 1 - (1 - u) * (1 - u);
     ponerForma(f.g, puntosEn(f.via, largo, a + (b - a) * e), f.dir);
     if (u < 1) return requestAnimationFrame(paso);
@@ -572,7 +574,7 @@ function alRueda(e) {
 // ---------- arranque ----------
 
 async function iniciar() {
-  niveles = await (await fetch('niveles.json?v=1e43318a')).json();
+  niveles = await (await fetch('niveles.json?v=fc93fc6a')).json();
   pintarInicio();
   mostrar('inicio');
 

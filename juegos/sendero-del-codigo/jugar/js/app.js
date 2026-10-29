@@ -435,6 +435,15 @@ function armarZona({ codigo = '', ej = null, estado = null, soloEjecutar = false
     alComprobar?.(ok, avisos);
   }
 
+  // En el teléfono, mientras se escribe, el teclado tapa «Ejecutar» y «Comprobar»: la barra de símbolos (que flota
+  // encima del teclado) los trae al principio. Al tocarlos se cierra el teclado y se muestra la consola.
+  if (tipo !== 'ordenar') {
+    const accion = (fn, clase, texto, aria) => h('button', { type: 'button', class: 'sim-accion ' + clase, 'aria-label': aria,
+      onclick: () => { document.activeElement?.blur?.(); fn(); setTimeout(() => consola.scrollIntoView({ block: 'center', behavior: 'smooth' }), 350); } }, texto);
+    simbolos.prepend(accion(() => ejecutar(), 'ejecutar', '▶', t('ejecutar')),
+      ...(soloEjecutar ? [] : [accion(() => comprobar(), 'comprobar', '✓', t('comprobar'))]));
+  }
+
   const el = h('div', { class: 'zona' }, contenedor, simbolos,
     h('div', { class: 'acciones' }, bEjecutar, bComprobar, bReiniciar), consola, avisos);
   return { el, editor, ponerSolucion: (sol) => { if (editor) editor.poner(sol); else contenedor.ponerSolucion?.(); } };
