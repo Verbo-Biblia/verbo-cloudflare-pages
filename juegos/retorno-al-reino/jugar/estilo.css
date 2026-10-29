@@ -256,3 +256,17 @@ html.mj-movil #titulo-seguir small { font-size: 13px !important; }
 body:has(.mj-salir) .estado { top: calc(50px + env(safe-area-inset-top)); }
 html.mj-movil body:has(.mj-salir) .estado { top: calc(12px + env(safe-area-inset-top)); }
 @media (max-width: 600px) { .barras { width: min(230px, 33vw); } }
+
+/* veneno (la serpiente de bronce): la barra de vida se pone verde */
+#hud-vida.veneno { background: linear-gradient(#9ad45e, #3f7a26); animation: latido-veneno 1.2s ease-in-out infinite; }
+@keyframes latido-veneno { 50% { filter: brightness(1.35); } }
+/* «mirar»: un anillo en el centro que se llena mientras la cámara mira algo (misiones/base.js: actualizarMirar) */
+#mirar { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: flex; flex-direction: column;
+  align-items: center; gap: 8px; pointer-events: none; }
+#mirar .anillo { --f: 0; width: 64px; height: 64px; border-radius: 50%; opacity: 0.55;
+  background: conic-gradient(#f6d488 calc(var(--f) * 360deg), rgba(255, 255, 255, 0.18) 0);
+  -webkit-mask: radial-gradient(circle, transparent 23px, #000 24px); mask: radial-gradient(circle, transparent 23px, #000 24px); }
+#mirar.centrado .anillo { opacity: 1; filter: drop-shadow(0 0 6px rgba(255, 220, 140, 0.8)); }
+#mirar span { font-size: 14px; background: var(--panel); border: 1px solid var(--borde); border-radius: 8px; padding: 4px 10px;
+  text-shadow: 0 1px 2px #000; white-space: nowrap; }
+@media (max-height: 500px) { #mirar .anillo { width: 52px; height: 52px; } #mirar span { font-size: 12px; } }
