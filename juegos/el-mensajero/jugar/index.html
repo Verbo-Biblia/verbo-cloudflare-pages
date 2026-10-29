@@ -9,7 +9,7 @@
 <meta name="theme-color" content="#0c1024">
 <link rel="canonical" href="https://verbobiblia.com/juegos/el-mensajero/">
 <link rel="stylesheet" href="comun/base.css">
-<link rel="stylesheet" href="mensajero.css?v=2071f06a">
+<link rel="stylesheet" href="mensajero.css?v=b171f69d">
 <script type="importmap">
 { "imports": { "three": "./lib/three/three.module.min.js", "three/addons/": "./lib/three/addons/" } }
 </script>
@@ -76,9 +76,7 @@
   <div id="marcas"></div>
   <div class="tactil" id="tactil">
     <div class="t-izq">
-      <button type="button" data-boton="izq" aria-label="izquierda">◀</button>
-      <button type="button" data-boton="abajo" aria-label="agacharse">▼</button>
-      <button type="button" data-boton="der" aria-label="derecha">▶</button>
+      <div class="palanca" id="palanca" aria-label="palanca: moverte, agacharte y subir escaleras"><span class="pomo"></span></div>
     </div>
     <div class="t-der">
       <button type="button" data-boton="usar" class="chico" aria-label="usar">✋</button>
@@ -135,7 +133,7 @@
 <p class="error" id="error" hidden></p>
 
 <script src="/juegos/comun/anuncios.js?v=20261023"></script><script>window.VerboAds && VerboAds.init({juego:'el-mensajero'});</script>
-<script type="module" src="juego/principal.js?v=2071f06a"></script>
+<script type="module" src="juego/principal.js?v=b171f69d"></script>
 <!-- Entorno común de los juegos de Verbo: pantalla completa en el teléfono, orientación y botón ✕ para salir a la ficha -->
 <script src="/juegos/comun/modo-juego.js" data-ficha="/juegos/el-mensajero/" data-orientacion="horizontal" data-salir="arriba-izquierda" defer></script>
 </body>

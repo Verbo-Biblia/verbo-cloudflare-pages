@@ -5,6 +5,8 @@ export const entrada = { x: 0, abajo: false, arriba: false, saltar: false, corre
 const pulsado = { saltar: false, usar: false, pausa: false };
 const teclas = new Set();
 const toques = { izq: false, der: false, abajo: false, saltar: false, correr: false, usar: false };
+// la palanca táctil (izquierda): -1..1 en cada eje; deja marcar dos direcciones a la vez (agachado y caminando)
+const palanca = { x: 0, y: 0, dedo: null };
 let mandoAntes = {};
 export let usaTactil = matchMedia('(pointer: coarse)').matches;
 
@@ -39,9 +41,31 @@ export function conectarTactil(raiz) {
   // Si un dedo se levantó sin que llegara su «pointerup» (se apagó la pantalla, una notificación, el navegador
   // canceló el toque), su botón quedaba apretado para siempre: ◀ pegado anulaba ▶ y las flechas «no respondían».
   const soltarTodo = () => { if (dedos.size) { dedos.clear(); recalcular(); } };
+  const pal = raiz.querySelector('.palanca'), pomo = pal?.querySelector('.pomo');
+  const moverPalanca = (e) => {
+    const r = pal.getBoundingClientRect(), radio = r.width / 2;
+    let dx = (e.clientX - (r.left + radio)) / radio, dy = (e.clientY - (r.top + radio)) / radio;
+    const largo = Math.hypot(dx, dy);
+    if (largo > 1) { dx /= largo; dy /= largo; }
+    palanca.x = dx; palanca.y = dy;
+    pomo.style.transform = `translate(${(dx * radio * 0.62).toFixed(1)}px, ${(dy * radio * 0.62).toFixed(1)}px)`;
+  };
+  const soltarPalanca = () => {
+    palanca.x = palanca.y = 0; palanca.dedo = null;
+    if (pomo) pomo.style.transform = ''; pal?.classList.remove('activo');
+  };
   raiz.addEventListener('pointerdown', (e) => {
     // El dedo «principal» es el primero que toca la pantalla: si llega uno, no hay otros apoyados.
-    if (e.isPrimary) soltarTodo();
+    if (e.isPrimary) { soltarTodo(); soltarPalanca(); }
+    if (pal && e.target.closest?.('.palanca')) {
+      e.preventDefault();
+      usaTactil = true;
+      raiz.setPointerCapture?.(e.pointerId);
+      palanca.dedo = e.pointerId;
+      pal.classList.add('activo');
+      moverPalanca(e);
+      return;
+    }
     const b = boton(e.clientX, e.clientY);
     if (!b) return;
     e.preventDefault();
@@ -52,6 +76,7 @@ export function conectarTactil(raiz) {
     recalcular();
   });
   raiz.addEventListener('pointermove', (e) => {
+    if (e.pointerId === palanca.dedo) { moverPalanca(e); return; }
     if (!dedos.has(e.pointerId)) return;
     const b = boton(e.clientX, e.clientY);
     const antes = dedos.get(e.pointerId);
@@ -61,12 +86,15 @@ export function conectarTactil(raiz) {
       recalcular();
     }
   });
-  const soltar = (e) => { if (dedos.delete(e.pointerId)) recalcular(); };
+  const soltar = (e) => {
+    if (e.pointerId === palanca.dedo) soltarPalanca();
+    if (dedos.delete(e.pointerId)) recalcular();
+  };
   raiz.addEventListener('pointerup', soltar);
   raiz.addEventListener('pointercancel', soltar);
   raiz.addEventListener('lostpointercapture', soltar);
-  document.addEventListener('visibilitychange', soltarTodo);
-  addEventListener('blur', soltarTodo);
+  document.addEventListener('visibilitychange', () => { soltarTodo(); soltarPalanca(); });
+  addEventListener('blur', () => { soltarTodo(); soltarPalanca(); });
   raiz.addEventListener('contextmenu', (e) => e.preventDefault());
 }
 
@@ -76,6 +104,12 @@ export function leerEntrada() {
   let abajo = tiene('abajo'), arriba = tiene('arriba'), saltar = tiene('saltar'), correr = tiene('correr'), usar = tiene('usar');
   if (toques.izq || toques.der) x = (toques.der ? 1 : 0) - (toques.izq ? 1 : 0);
   abajo ||= toques.abajo; saltar ||= toques.saltar; correr ||= toques.correr; usar ||= toques.usar;
+  // Palanca: zona muerta al centro; abajo/arriba desde ~35° bajo/sobre la horizontal, así la diagonal marca las dos.
+  if (palanca.dedo !== null) {
+    if (Math.abs(palanca.x) > 0.3) x = Math.sign(palanca.x);
+    if (palanca.y > 0.45) abajo = true;
+    if (palanca.y < -0.45) arriba = true;
+  }
   for (const m of navigator.getGamepads?.() ?? []) {
     if (!m || !m.connected) continue;
     const b = (i) => !!m.buttons[i]?.pressed;
