@@ -18,7 +18,7 @@ LINKS = {
     'secciones': [('inicio', '/', 'Inicio'), ('recursos', '/recursos/', 'Recursos'),
         ('libreria', '/libreria/', 'Librería'), ('historias', '/historias/', 'Historias'),
         ('preguntas', '/preguntas-cristianas/', 'Preguntas cristianas'), ('software', '/software/', 'Software'),
-        ('apps', '/apps/', 'Apps'), ('juegos', '/juegos/', 'Juegos'), ('imagenes', '/imagenes/', 'Imágenes bíblicas')],
+        ('apps', '/apps/', 'Apps'), ('juegos', '/juegos/', 'Juegos'), ('musica', '/musica/', 'Música'), ('imagenes', '/imagenes/', 'Imágenes bíblicas')],
     'confianza': [('acerca', '/acerca/', 'Conoce Verbo'), ('mision', '/mision/', 'Misión'),
         ('fundador', '/sobre-el-fundador/', 'Sobre el fundador'), ('privacidad', '/privacidad/', 'Política de privacidad'),
         ('licencias', '/licencias/', 'Licencias'), ('contacto', '/contacto/', 'Contacto')],

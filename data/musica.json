@@ -1,0 +1,1971 @@
+{
+ "_leeme": "Fuente de /musica/. Después de editar: python3 tools/build_musica.py (descarga imágenes nuevas, escribe musica/index.html y el sitemap) y python3 tools/pie_comun.py.",
+ "actualizado": "2026-10-29",
+ "destacado": null,
+ "playlist": {
+  "spotify": "0HeaU1WhbiBwWYDO58OHWy"
+ },
+ "canales": [
+  {
+   "id": "flamenco",
+   "nombre": "Flamenco Cristiano Unción Fresca",
+   "url": "https://www.youtube.com/@flamenco.cristiano",
+   "youtube": "UCGn3ZVtMKAc5YBTKdlsXaSA",
+   "lema": {
+    "es": "Flamenco, rumba, boleros y adoración andina.",
+    "en": "Flamenco, rumba, boleros and Andean worship."
+   }
+  },
+  {
+   "id": "rock",
+   "nombre": "Rock Cristiano",
+   "url": "https://www.youtube.com/@rockcristiano-k4h",
+   "youtube": "UCmuKgT__Go-MCJlbk_7Ya5Q",
+   "lema": {
+    "es": "Bandas de rock y metal cristiano en español.",
+    "en": "Christian rock and metal bands in Spanish."
+   }
+  }
+ ],
+ "estilos": [
+  {
+   "id": "flamenco",
+   "es": "Flamenco y rumba cristiana",
+   "en": "Christian flamenco and rumba",
+   "lema": {
+    "es": "Guitarra española, palmas y cajón: del cante hondo a la rumba de celebración.",
+    "en": "Spanish guitar, handclaps and cajón: from deep cante to celebratory rumba."
+   }
+  },
+  {
+   "id": "boleros",
+   "es": "Boleros y canción romántica",
+   "en": "Boleros and romantic songs",
+   "lema": {
+    "es": "La elegancia del bolero y la balada, con la mirada puesta en Dios.",
+    "en": "The elegance of the bolero and the ballad, with eyes on God."
+   }
+  },
+  {
+   "id": "adoracion",
+   "es": "Adoración, fusión y sonido andino",
+   "en": "Worship, fusion and Andean sounds",
+   "lema": {
+    "es": "Canciones de adoración con acentos acústicos, poéticos y andinos.",
+    "en": "Worship songs with acoustic, poetic and Andean accents."
+   }
+  },
+  {
+   "id": "rock",
+   "es": "Rock y metal",
+   "en": "Rock and metal",
+   "lema": {
+    "es": "Guitarras eléctricas y letras de fe sin maquillaje.",
+    "en": "Electric guitars and unvarnished lyrics of faith."
+   }
+  }
+ ],
+ "artistas": [
+  {
+   "id": "almoraima",
+   "nombre": "Almoraima",
+   "spotify": "1ey8Rmr1ZcHLpH1AlgSIH1",
+   "estilo": "flamenco",
+   "genero": {
+    "es": "Rumba flamenca",
+    "en": "Flamenco rumba"
+   },
+   "descripcion": {
+    "es": "Rumba flamenca para celebrar: palmas, guitarra y estribillos hechos para cantar en grupo, como «Yo bailaré» y «Vamos a alabar». Su repertorio mira hacia la gratitud, la unidad de los creyentes y el gozo de la fe, la cara luminosa del flamenco.",
+    "en": "Celebratory flamenco rumba: handclaps, guitar and choruses made to be sung together, like “Yo bailaré” and “Vamos a alabar”. Its songs lean toward gratitude, unity among believers and the joy of faith — the bright side of flamenco."
+   },
+   "foto": "https://image-cdn-ak.spotifycdn.com/image/ab6761610000e5eb34a92157384cc2a240a11773",
+   "pistas": [
+    {
+     "id": "0Kw320ceh8hVo3v8sQ8P2d",
+     "titulo": "Yo Bailaré",
+     "ms": 186943,
+     "fecha": "2025-07-28",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27371622a5d5f0128695eae89ec"
+    },
+    {
+     "id": "1Ohhi3EmQuzgULB93v5k2f",
+     "titulo": "El León de Judá",
+     "ms": 213103,
+     "fecha": "2025-07-28",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27371622a5d5f0128695eae89ec"
+    },
+    {
+     "id": "6GCAbqgGUHZ3H4SmQIe0Jq",
+     "titulo": "Escucha Ya",
+     "ms": 182903,
+     "fecha": "2025-07-28",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27371622a5d5f0128695eae89ec"
+    },
+    {
+     "id": "4qboeGSoJQGNO82eK21f6f",
+     "titulo": "Vamos a Alabar",
+     "ms": 194943,
+     "fecha": "2025-07-28",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27371622a5d5f0128695eae89ec"
+    },
+    {
+     "id": "5fkbuvLn2WwuQ57nuhyzZJ",
+     "titulo": "No Nos Van a Parar",
+     "ms": 204943,
+     "fecha": "2025-07-28",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27371622a5d5f0128695eae89ec"
+    },
+    {
+     "id": "2MSakAnwRq5pVfhW8FUwOR",
+     "titulo": "Haznos Uno",
+     "ms": 186743,
+     "fecha": "2025-07-28",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27371622a5d5f0128695eae89ec"
+    },
+    {
+     "id": "12DDxYYLaa0VFEyhG5zv1q",
+     "titulo": "Padre, Escucha el Canto",
+     "ms": 277063,
+     "fecha": "2025-07-28",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27371622a5d5f0128695eae89ec"
+    },
+    {
+     "id": "3EviZ7N8N20VEKrA4q4vV5",
+     "titulo": "En Su Presencia",
+     "ms": 191103,
+     "fecha": "2025-07-28",
+     "portada": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b27371622a5d5f0128695eae89ec"
+    },
+    {
+     "id": "1ICKcJjZPBxqL4rW5f8dGX",
+     "titulo": "Mi Amor",
+     "ms": 205103,
+     "fecha": "2025-07-28",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27371622a5d5f0128695eae89ec"
+    },
+    {
+     "id": "5hqo27YGrL7E5KK9nQ1ysk",
+     "titulo": "Yo No Huyo",
+     "ms": 154943,
+     "fecha": "2025-07-28",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27371622a5d5f0128695eae89ec"
+    }
+   ]
+  },
+  {
+   "id": "alvaro-serrano",
+   "nombre": "Álvaro Serrano",
+   "spotify": "35byRKCA4QvTgj6GgOIljj",
+   "estilo": "flamenco",
+   "genero": {
+    "es": "Flamenco de adoración",
+    "en": "Worship flamenco"
+   },
+   "descripcion": {
+    "es": "Flamenco melódico con aire de rumba suave al servicio de letras sobre la gracia, el arrepentimiento y el regreso a Dios. Canciones directas y cercanas, como «Sublime gracia» o «Mi Pastor es el Señor», que presentan a Dios como refugio y pastor.",
+    "en": "Melodic flamenco with a gentle rumba feel, carrying lyrics about grace, repentance and coming back to God. Direct, warm songs like “Sublime gracia” and “Mi Pastor es el Señor” that present God as refuge and shepherd."
+   },
+   "foto": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2733174b253c53f2050d88e7a33",
+   "pistas": [
+    {
+     "id": "4g38z41sYLHyNC9MV2UoIt",
+     "titulo": "Sublime Gracia",
+     "ms": 198120,
+     "fecha": "2025-09-01",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2733174b253c53f2050d88e7a33"
+    },
+    {
+     "id": "6AfShHLJrZwzfaA2u5sKSZ",
+     "titulo": "Tu Misericordia es mayor",
+     "ms": 269880,
+     "fecha": "2025-09-01",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2733174b253c53f2050d88e7a33"
+    },
+    {
+     "id": "79Q10jUsPVBDFkiZLBunKz",
+     "titulo": "En Cristo solamente",
+     "ms": 273640,
+     "fecha": "2025-09-01",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2733174b253c53f2050d88e7a33"
+    },
+    {
+     "id": "0boWQ0PtXtaDcOTVbNrCr9",
+     "titulo": "Mi Pastor es el Señor",
+     "ms": 196720,
+     "fecha": "2025-09-01",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2733174b253c53f2050d88e7a33"
+    },
+    {
+     "id": "5RCUojSCoaTGH6kNtHLuR5",
+     "titulo": "Emmanuel, Dios con nosotros",
+     "ms": 243520,
+     "fecha": "2025-09-01",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2733174b253c53f2050d88e7a33"
+    },
+    {
+     "id": "2X3oDsqb03YveB5NCRE0wa",
+     "titulo": "Llevó mi dolor",
+     "ms": 230120,
+     "fecha": "2025-09-01",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2733174b253c53f2050d88e7a33"
+    },
+    {
+     "id": "13KGDm1eiHwxIQ6QwNdPdl",
+     "titulo": "Manos limpias, corazón puro",
+     "ms": 204840,
+     "fecha": "2025-09-01",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2733174b253c53f2050d88e7a33"
+    },
+    {
+     "id": "5k9Qnab50Tv1FN8qFHJWvr",
+     "titulo": "Gloria al Que Vive",
+     "ms": 282200,
+     "fecha": "2025-10-22",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2736b7cb0dba88c444f3c67091b"
+    },
+    {
+     "id": "2TJCn83PnJ1v2BrufVz3xt",
+     "titulo": "Mientras Camino",
+     "ms": 232680,
+     "fecha": "2025-10-22",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2736b7cb0dba88c444f3c67091b"
+    },
+    {
+     "id": "1YekNwrli4atgMnQ1zJdxW",
+     "titulo": "Dos hombres oraban",
+     "ms": 262800,
+     "fecha": "2025-09-01",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2733174b253c53f2050d88e7a33"
+    }
+   ]
+  },
+  {
+   "id": "luz-marina",
+   "nombre": "Luz Marina",
+   "spotify": "1fMNQdZfgN3R6p928QsLUY",
+   "estilo": "flamenco",
+   "genero": {
+    "es": "Flamenco íntimo",
+    "en": "Intimate flamenco"
+   },
+   "descripcion": {
+    "es": "Flamenco de guitarra y voz, a veces sereno y casi susurrado. Su estreno «Tienes una invitación» funciona como una conversación con quien escucha: una invitación inspirada en Juan 3:16 que deja la respuesta en manos de cada uno.",
+    "en": "Guitar-and-voice flamenco, sometimes calm and almost whispered. Her release “Tienes una invitación” plays like a conversation with the listener: an invitation inspired by John 3:16 that leaves the answer with each person."
+   },
+   "foto": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27375867b98bf24e089f91d0f9b",
+   "pistas": [
+    {
+     "id": "0XfvTnADGCStA18o3QFuyY",
+     "titulo": "Gracias por Mirarme",
+     "ms": 194880,
+     "fecha": "2025-08-15",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27375867b98bf24e089f91d0f9b"
+    },
+    {
+     "id": "4wijZUJFOn3edRldv4f6Df",
+     "titulo": "Buscaré Tu Reino",
+     "ms": 196160,
+     "fecha": "2025-08-15",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27375867b98bf24e089f91d0f9b"
+    },
+    {
+     "id": "22b70lh360avhfgXd2vzm8",
+     "titulo": "En Tus Brazos Descanso",
+     "ms": 183880,
+     "fecha": "2026-03-30",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27351d83eeceffd481220a8ff86"
+    },
+    {
+     "id": "5jCNkAUqZZDmzjTfUCuo1D",
+     "titulo": "Mi Ancla Está en Ti",
+     "ms": 177960,
+     "fecha": "2025-08-15",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27375867b98bf24e089f91d0f9b"
+    },
+    {
+     "id": "1WPv3Y4VaB6liLFIRnIat1",
+     "titulo": "Corro a Ti",
+     "ms": 178360,
+     "fecha": "2025-08-15",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27375867b98bf24e089f91d0f9b"
+    },
+    {
+     "id": "4WX3pLzm5OW1SfT04oS2HF",
+     "titulo": "Me Enamoré de Ti",
+     "ms": 189960,
+     "fecha": "2025-08-15",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27375867b98bf24e089f91d0f9b"
+    },
+    {
+     "id": "24ojsYmCJFu2h2BSA4RWLE",
+     "titulo": "No Quiero a Nadie Más",
+     "ms": 137280,
+     "fecha": "2025-08-15",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27375867b98bf24e089f91d0f9b"
+    },
+    {
+     "id": "40dmXvLskEAtkD7oKYsTPO",
+     "titulo": "En Tus Ojos VI Mi Vida",
+     "ms": 215320,
+     "fecha": "2025-08-15",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27375867b98bf24e089f91d0f9b"
+    },
+    {
+     "id": "3Y6XTg52Skr91cvRO1FtCC",
+     "titulo": "Mi Primer Amor",
+     "ms": 250520,
+     "fecha": "2025-08-15",
+     "portada": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b27375867b98bf24e089f91d0f9b"
+    },
+    {
+     "id": "28zX1dIRO9ebuoay8PaTTp",
+     "titulo": "No Sé Qué Decir",
+     "ms": 219240,
+     "fecha": "2025-08-15",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27375867b98bf24e089f91d0f9b"
+    }
+   ]
+  },
+  {
+   "id": "khalid",
+   "nombre": "Khalid",
+   "spotify": "2kF9BjpkDtwCAqQEo9S3hk",
+   "estilo": "flamenco",
+   "genero": {
+    "es": "Flamenco blues",
+    "en": "Flamenco blues"
+   },
+   "descripcion": {
+    "es": "Flamenco blues: el quejío andaluz y el fraseo del blues se juntan para cantar desde la noche hacia la redención. Canciones como «Cadenas al suelo» y «Me halló en el desierto» no se quedan en la herida: la llevan ante Dios y terminan en libertad.",
+    "en": "Flamenco blues: Andalusian lament meets blues phrasing to sing from the night toward redemption. Songs like “Cadenas al suelo” and “Me halló en el desierto” do not stay in the wound — they bring it before God and end in freedom."
+   },
+   "foto": "https://image-cdn-fa.spotifycdn.com/image/ab6761610000e5eb3e289e1f660982e230f51267",
+   "pistas": [
+    {
+     "id": "465U04HgIyrmyN0AnCx1wM",
+     "titulo": "Dios del Fuego y del Viento",
+     "ms": 217200,
+     "fecha": "2026-04-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2736c243850f11d8b4fe4411327"
+    },
+    {
+     "id": "6XN5XU6XeRTT9PPdq9psB7",
+     "titulo": "Cuando Se Apaga la Luz",
+     "ms": 272960,
+     "fecha": "2026-04-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2736c243850f11d8b4fe4411327"
+    },
+    {
+     "id": "7EOxGuHQBcwe4TBIGEySqU",
+     "titulo": "Libre en el Camino",
+     "ms": 204160,
+     "fecha": "2026-04-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2736c243850f11d8b4fe4411327"
+    },
+    {
+     "id": "4hObpB3zjG04UQywxauJhS",
+     "titulo": "La Roca Eterna",
+     "ms": 194400,
+     "fecha": "2026-04-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2736c243850f11d8b4fe4411327"
+    },
+    {
+     "id": "2KqtLOrjMQQ6g66csAGWUH",
+     "titulo": "Tu Gracia Me Levanta",
+     "ms": 239000,
+     "fecha": "2026-04-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2736c243850f11d8b4fe4411327"
+    },
+    {
+     "id": "6vVlLRegsJgxIV60yZLOEb",
+     "titulo": "Camino en Tu Verdad",
+     "ms": 217120,
+     "fecha": "2026-04-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2736c243850f11d8b4fe4411327"
+    },
+    {
+     "id": "5ZTL6yBbNoWpUQaGuP7krS",
+     "titulo": "Cadenas al Suelo",
+     "ms": 146520,
+     "fecha": "2026-04-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2736c243850f11d8b4fe4411327"
+    },
+    {
+     "id": "4QfCpAcq6QayESqT2TIC90",
+     "titulo": "Fuego en el Alma",
+     "ms": 238000,
+     "fecha": "2026-04-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2736c243850f11d8b4fe4411327"
+    },
+    {
+     "id": "5ODDFX4drc0kpWAldIYGR3",
+     "titulo": "Del Lamento a la Libertad",
+     "ms": 184960,
+     "fecha": "2026-04-14",
+     "portada": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b2736c243850f11d8b4fe4411327"
+    },
+    {
+     "id": "3eNHHs2tdYoaa0MgIiWE4h",
+     "titulo": "Me Halló en el Desierto",
+     "ms": 216840,
+     "fecha": "2026-04-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2736c243850f11d8b4fe4411327"
+    }
+   ]
+  },
+  {
+   "id": "nilo-rivas",
+   "nombre": "Nilo Rivas",
+   "spotify": "5caFNVOQzJVGNn9eC2XpMn",
+   "estilo": "flamenco",
+   "genero": {
+    "es": "Flamenco de alabanza",
+    "en": "Praise flamenco"
+   },
+   "descripcion": {
+    "es": "Flamenco de alabanza con energía de avivamiento. «Fuego otra vez», «Guerreros de luz» y «Voy a danzar» hablan de identidad, gozo y encuentro con Dios, con ritmo y palmas al frente.",
+    "en": "Praise flamenco with a revival spirit. “Fuego otra vez”, “Guerreros de luz” and “Voy a danzar” sing about identity, joy and meeting God, with rhythm and handclaps up front."
+   },
+   "foto": "https://image-cdn-ak.spotifycdn.com/image/ab6761610000e5eb206695cf62e3bde1f92aa4ea",
+   "pistas": [
+    {
+     "id": "2kdifjF9fS2JBfqrm7GoTu",
+     "titulo": "Guerreros de Luz",
+     "ms": 222120,
+     "fecha": "2026-04-14",
+     "portada": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273a107560aee1d0ea8efb94c30"
+    },
+    {
+     "id": "2Xbmfe6eUvaZkkCcsJSTeG",
+     "titulo": "Cuando el Mundo Vea",
+     "ms": 226000,
+     "fecha": "2026-04-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273a107560aee1d0ea8efb94c30"
+    },
+    {
+     "id": "5BHXP1Meuk1Pdg7Puscfpn",
+     "titulo": "Uno en Ti",
+     "ms": 224240,
+     "fecha": "2026-04-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273a107560aee1d0ea8efb94c30"
+    },
+    {
+     "id": "1ppyw99VxfLTtgjWhiu2jd",
+     "titulo": "El Camino Me Trajo a Ti",
+     "ms": 239920,
+     "fecha": "2026-04-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273a107560aee1d0ea8efb94c30"
+    },
+    {
+     "id": "3IuK2BA1QAOc6SpDqDnLLB",
+     "titulo": "Fuego Otra Vez",
+     "ms": 122280,
+     "fecha": "2026-04-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273a107560aee1d0ea8efb94c30"
+    },
+    {
+     "id": "09Wdq5AcCIHqzTbIwgLbJe",
+     "titulo": "Levanto Tu Nombre",
+     "ms": 217360,
+     "fecha": "2026-04-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273a107560aee1d0ea8efb94c30"
+    },
+    {
+     "id": "3dvcsyGpoDfADfeUoIEZDP",
+     "titulo": "Armats I Preparats",
+     "ms": 134440,
+     "fecha": "2026-04-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273a107560aee1d0ea8efb94c30"
+    },
+    {
+     "id": "6cRbk1c25kp83eCQdjgAAO",
+     "titulo": "Voy a Danzar",
+     "ms": 245720,
+     "fecha": "2026-04-14",
+     "portada": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273a107560aee1d0ea8efb94c30"
+    },
+    {
+     "id": "3GjvoZsVcxy1ttaRajmHra",
+     "titulo": "Santo Es el Señor",
+     "ms": 200840,
+     "fecha": "2026-04-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273a107560aee1d0ea8efb94c30"
+    }
+   ]
+  },
+  {
+   "id": "juanillo",
+   "nombre": "Juanillo",
+   "spotify": "60g5zrPqdZAtEAcqMYEa3U",
+   "estilo": "flamenco",
+   "genero": {
+    "es": "Flamenco narrativo",
+    "en": "Story-driven flamenco"
+   },
+   "descripcion": {
+    "es": "Flamenco contemplativo y narrativo. Sus canciones cuentan historias bíblicas y proclaman los «Yo soy» de Jesús en el Evangelio de Juan: «Tú eres el Buen Pastor», «Tú eres el Pan de Vida», «Tú eres el Agua Viva».",
+    "en": "Contemplative, story-driven flamenco. The songs retell Bible stories and proclaim Jesus’ “I am” sayings from the Gospel of John: “Tú eres el Buen Pastor”, “Tú eres el Pan de Vida”, “Tú eres el Agua Viva”."
+   },
+   "foto": "https://image-cdn-ak.spotifycdn.com/image/ab6761610000e5eb0a24fe05002bce12329b835b",
+   "pistas": [
+    {
+     "id": "6QgkD8Gw3HUQOKDxeBd3LI",
+     "titulo": "¿De dónde fui rescatado?",
+     "ms": 199480,
+     "fecha": "2025-08-23",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27339fa82791a74ab93400588d7"
+    },
+    {
+     "id": "3cVfmjhJQl4tRGC4IyRM1n",
+     "titulo": "No quiero vivir sin ti",
+     "ms": 214640,
+     "fecha": "2025-08-23",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27339fa82791a74ab93400588d7"
+    },
+    {
+     "id": "3TkQ98nlWYAyOfx3zdcqaX",
+     "titulo": "En un Pesebre",
+     "ms": 285960,
+     "fecha": "2025-08-23",
+     "portada": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b27339fa82791a74ab93400588d7"
+    },
+    {
+     "id": "74EGsX29ONzLJ3jPf0CRyq",
+     "titulo": "Yo Soy Tu Rey",
+     "ms": 223200,
+     "fecha": "2025-08-23",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27339fa82791a74ab93400588d7"
+    },
+    {
+     "id": "4NEbCHMLfb1sGonYCNAURv",
+     "titulo": "Tú Eres El Buen Pastor",
+     "ms": 213200,
+     "fecha": "2026-03-30",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273d6dfa725d0e7969bb9c1b5db"
+    },
+    {
+     "id": "7zzL1ogaY1BMCjV8KPH6X9",
+     "titulo": "Dios con nosotros",
+     "ms": 269480,
+     "fecha": "2025-08-23",
+     "portada": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b27339fa82791a74ab93400588d7"
+    },
+    {
+     "id": "5D7SbGSSP0ZQGqFfbmfuaq",
+     "titulo": "Tú Eres El Pan De Vida",
+     "ms": 219960,
+     "fecha": "2026-03-30",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273d6dfa725d0e7969bb9c1b5db"
+    },
+    {
+     "id": "0kUw5ZHZaAdICMieXbqsyl",
+     "titulo": "Tú Eres El Agua Viva",
+     "ms": 213640,
+     "fecha": "2026-03-30",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273d6dfa725d0e7969bb9c1b5db"
+    },
+    {
+     "id": "0klJwMVSNHVGNDCCxtyRH8",
+     "titulo": "Ven a Jesús",
+     "ms": 194840,
+     "fecha": "2025-08-23",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27339fa82791a74ab93400588d7"
+    },
+    {
+     "id": "6IrDJzMOkEFhO22GwM6pPq",
+     "titulo": "Vuelvo a la Vida Contigo",
+     "ms": 254920,
+     "fecha": "2025-08-23",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27339fa82791a74ab93400588d7"
+    }
+   ]
+  },
+  {
+   "id": "fuego-santo",
+   "nombre": "Fuego Santo",
+   "spotify": "2JyAIJeiKxNXvV8yOjWcCP",
+   "estilo": "flamenco",
+   "genero": {
+    "es": "Dúo flamenco",
+    "en": "Flamenco duo"
+   },
+   "descripcion": {
+    "es": "Dúo de voz femenina y masculina. Flamenco de alabanza con letras tomadas de la Escritura, que recorren el camino del quebranto a la redención, como en «Tú me hallaste en el polvo» y «El desierto fue camino».",
+    "en": "A duo of female and male voices. Praise flamenco with lyrics drawn from Scripture, walking from brokenness to redemption, as in “Tú me hallaste en el polvo” and “El desierto fue camino”."
+   },
+   "foto": "https://image-cdn-ak.spotifycdn.com/image/ab6761610000e5eb6adc8592ae702634d1dda18d",
+   "pistas": [
+    {
+     "id": "39a8COPkGajA2nV3nMgfrD",
+     "titulo": "El Poderoso de Israel",
+     "ms": 227920,
+     "fecha": "2025-08-23",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27333f416f5139181a7b0111197"
+    },
+    {
+     "id": "1miFkLHFiVw4qxnssxO3AY",
+     "titulo": "El Desierto Fue Camino",
+     "ms": 271160,
+     "fecha": "2025-08-23",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27333f416f5139181a7b0111197"
+    },
+    {
+     "id": "1pufPjq7VAERnWio3lJVfe",
+     "titulo": "Bendecid al Señor",
+     "ms": 177680,
+     "fecha": "2025-08-23",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27333f416f5139181a7b0111197"
+    },
+    {
+     "id": "0RoI5OJzBbyC42agrDDDAQ",
+     "titulo": "Alaba a Adonai",
+     "ms": 199920,
+     "fecha": "2025-08-23",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27333f416f5139181a7b0111197"
+    },
+    {
+     "id": "4k5qcviyyAF20PZOo8yzEx",
+     "titulo": "Yo quiero verte",
+     "ms": 237080,
+     "fecha": "2025-08-23",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27333f416f5139181a7b0111197"
+    },
+    {
+     "id": "28zQagx0AHvU3SFcx4Urah",
+     "titulo": "Júbilo en el Alma",
+     "ms": 176120,
+     "fecha": "2026-01-05",
+     "portada": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b2734e580049872f42110b1b449e"
+    },
+    {
+     "id": "7rXwAJ0fNDgblvH1KjbhlD",
+     "titulo": "Soy Redimido",
+     "ms": 237080,
+     "fecha": "2025-08-23",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27333f416f5139181a7b0111197"
+    },
+    {
+     "id": "3zUwYxUCDwLcVxd89y5pEI",
+     "titulo": "Tú me hallaste en el polvo",
+     "ms": 242440,
+     "fecha": "2025-08-23",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27333f416f5139181a7b0111197"
+    },
+    {
+     "id": "1qAlSLXcB3scuMIiH4JBQU",
+     "titulo": "Nada Nos Separará",
+     "ms": 201480,
+     "fecha": "2026-01-05",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2734e580049872f42110b1b449e"
+    },
+    {
+     "id": "7HQba3Tl0UnTDmR7umqOUj",
+     "titulo": "Mi alma y mi escudo",
+     "ms": 217440,
+     "fecha": "2025-08-23",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27333f416f5139181a7b0111197"
+    }
+   ]
+  },
+  {
+   "id": "jandro",
+   "nombre": "Jandro",
+   "spotify": "0dG7gX55XMKz63IycOQI6z",
+   "estilo": "flamenco",
+   "genero": {
+    "es": "Flamenco de adoración",
+    "en": "Worship flamenco"
+   },
+   "descripcion": {
+    "es": "Flamenco de adoración, de alabanza directa y sin rodeos: «Santo es tu nombre», «Dios maravilloso», «Te necesito». Canciones breves para exaltar a Dios con guitarra y compás.",
+    "en": "Worship flamenco, direct and unadorned praise: “Santo es tu nombre”, “Dios maravilloso”, “Te necesito”. Short songs that exalt God with guitar and compás."
+   },
+   "foto": "https://image-cdn-ak.spotifycdn.com/image/ab6761610000e5eb909c97df98811d0b0774a0a0",
+   "pistas": [
+    {
+     "id": "1vRkbzB1jCYQzdqDvqFAd5",
+     "titulo": "Santo es tu nombre",
+     "ms": 229840,
+     "fecha": "2025-08-23",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273ff1160db4b0983c7bff71691"
+    },
+    {
+     "id": "3zmCr42KH9lgfgqa1VVHzM",
+     "titulo": "Hiciste Vivir Mi Corazón",
+     "ms": 213480,
+     "fecha": "2025-08-23",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273ff1160db4b0983c7bff71691"
+    },
+    {
+     "id": "2LWEQFg7hN1kHK4WNXg293",
+     "titulo": "Llévame a servirte",
+     "ms": 167360,
+     "fecha": "2025-08-23",
+     "portada": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273ff1160db4b0983c7bff71691"
+    },
+    {
+     "id": "3eM7o8VXQQqVN4GhMrM9az",
+     "titulo": "Dios Maravilloso",
+     "ms": 182160,
+     "fecha": "2025-08-23",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273ff1160db4b0983c7bff71691"
+    },
+    {
+     "id": "3uGPLppamPhnxqbbBWnFfN",
+     "titulo": "Señor, Tú Eres Bueno",
+     "ms": 172520,
+     "fecha": "2025-08-23",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273ff1160db4b0983c7bff71691"
+    },
+    {
+     "id": "5VFr6RwchP08tcvyczgiV6",
+     "titulo": "Alabanzas a Nuestro Dios",
+     "ms": 168800,
+     "fecha": "2025-08-23",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273ff1160db4b0983c7bff71691"
+    },
+    {
+     "id": "45Se4QOtSgVCyg8p9tpIb0",
+     "titulo": "De qué me gloriaré",
+     "ms": 167360,
+     "fecha": "2025-08-23",
+     "portada": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273ff1160db4b0983c7bff71691"
+    },
+    {
+     "id": "4J5CrDGcyRv6cOqZ1FRLTQ",
+     "titulo": "Te Necesito",
+     "ms": 154840,
+     "fecha": "2025-08-23",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273ff1160db4b0983c7bff71691"
+    },
+    {
+     "id": "55RoxJ7SB0pLTOYuEXvn8H",
+     "titulo": "Tú serás exaltado",
+     "ms": 154440,
+     "fecha": "2025-08-23",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273ff1160db4b0983c7bff71691"
+    },
+    {
+     "id": "1lRCTkeeOfx4j4o5NhaqCt",
+     "titulo": "Dios Mio Ven",
+     "ms": 190240,
+     "fecha": "2026-03-02",
+     "portada": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b27392778e5151db5c7944f9b173"
+    }
+   ]
+  },
+  {
+   "id": "paco-del-cante",
+   "nombre": "Paco del Cante",
+   "spotify": "0fWm3pTSXJYFU7fznfARPw",
+   "estilo": "flamenco",
+   "genero": {
+    "es": "Cante flamenco",
+    "en": "Flamenco cante"
+   },
+   "descripcion": {
+    "es": "Cante flamenco hondo, con canciones escritas como oraciones: súplica, intercesión y alabanza desde la madrugada. Títulos como «Mi alma se desgarra» y «Quién soy en Ti» muestran ese tono personal.",
+    "en": "Deep flamenco cante, with songs written as prayers: pleading, intercession and praise in the small hours. Titles like “Mi alma se desgarra” and “Quién soy en Ti” show that personal tone."
+   },
+   "foto": "https://image-cdn-ak.spotifycdn.com/image/ab6761610000e5eb3f40981e42fd307081b24b8b",
+   "pistas": [
+    {
+     "id": "6wnjU980uuagJyt8p8XcwB",
+     "titulo": "Mi Dios Vence Con Poder",
+     "ms": 275000,
+     "fecha": "2025-08-24",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273d179960c6b2f012527c21c14"
+    },
+    {
+     "id": "4A6859xKLngfhdattMb3qb",
+     "titulo": "Mi alma se desgarra",
+     "ms": 287920,
+     "fecha": "2025-08-24",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273d179960c6b2f012527c21c14"
+    },
+    {
+     "id": "4DpMWdINA02sdsQ5LADBTz",
+     "titulo": "Celebra al Señor Con Voz de Júbilo",
+     "ms": 257120,
+     "fecha": "2025-08-24",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273d179960c6b2f012527c21c14"
+    },
+    {
+     "id": "2lkgHpKpxUwEzxYz8OZT4l",
+     "titulo": "Clamamos por Tu Familia",
+     "ms": 296880,
+     "fecha": "2025-08-24",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273d179960c6b2f012527c21c14"
+    },
+    {
+     "id": "0i9VOKyBUr9MQ2bBK4bvp8",
+     "titulo": "Eres Digno de Toda Gloria",
+     "ms": 266240,
+     "fecha": "2025-08-24",
+     "portada": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273d179960c6b2f012527c21c14"
+    },
+    {
+     "id": "75xI6TvY6GT6A7wR66p6ii",
+     "titulo": "Cielos Nuevos y Tierra Nueva",
+     "ms": 160200,
+     "fecha": "2025-08-24",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273d179960c6b2f012527c21c14"
+    },
+    {
+     "id": "7syanXZUHoQv7SJcbvpikH",
+     "titulo": "Quién Soy en Ti",
+     "ms": 192000,
+     "fecha": "2025-08-24",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273d179960c6b2f012527c21c14"
+    },
+    {
+     "id": "0kGBztDp1aXlF2fnDDBiAR",
+     "titulo": "Te Exaltamos, Rey de los Cielos",
+     "ms": 297080,
+     "fecha": "2025-08-24",
+     "portada": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273d179960c6b2f012527c21c14"
+    },
+    {
+     "id": "7xWvw7svlnQ9jQ9rjCB5ZV",
+     "titulo": "Fuego en la Herida",
+     "ms": 232400,
+     "fecha": "2025-08-24",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273d179960c6b2f012527c21c14"
+    },
+    {
+     "id": "3XzpjE2F1eA5gjj6PZ2JI6",
+     "titulo": "Siervo Inútil",
+     "ms": 184000,
+     "fecha": "2025-08-24",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273d179960c6b2f012527c21c14"
+    }
+   ]
+  },
+  {
+   "id": "zaira-luz",
+   "nombre": "Zaira Luz",
+   "spotify": "7etu1DahvX7On0e0SBxtPK",
+   "estilo": "boleros",
+   "genero": {
+    "es": "Bolero cristiano",
+    "en": "Christian bolero"
+   },
+   "descripcion": {
+    "es": "Bolero cristiano: el romanticismo del bolero, con su calidez y su elegancia, dirigido a Dios. Canciones de consuelo y confianza como «La mano de Dios» y «Siempre contigo, mi Señor».",
+    "en": "Christian bolero: the warmth and elegance of the classic bolero, addressed to God. Songs of comfort and trust like “La mano de Dios” and “Siempre contigo, mi Señor”."
+   },
+   "foto": "https://image-cdn-ak.spotifycdn.com/image/ab6761610000e5ebeb153bc488dc6d561b270760",
+   "pistas": [
+    {
+     "id": "2vZtN9f8SucAh3wOJzCBVN",
+     "titulo": "La Mano de Dios",
+     "ms": 239920,
+     "fecha": "2026-04-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2735ac2c84be36dfab7bd5816d6"
+    },
+    {
+     "id": "0cs5UNnsUdOlcBJeXq2LO8",
+     "titulo": "Ese Es Mi Rey",
+     "ms": 303800,
+     "fecha": "2026-04-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2735ac2c84be36dfab7bd5816d6"
+    },
+    {
+     "id": "3gwZIiqmtltnFGUXKlo7sT",
+     "titulo": "Como el Águila",
+     "ms": 249280,
+     "fecha": "2026-04-14",
+     "portada": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b2735ac2c84be36dfab7bd5816d6"
+    },
+    {
+     "id": "2WhUFnTbrxcQJrFaWfnXRT",
+     "titulo": "Gran Dios",
+     "ms": 238360,
+     "fecha": "2026-04-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2735ac2c84be36dfab7bd5816d6"
+    },
+    {
+     "id": "1GLhOwPXjQEp326VygPfNq",
+     "titulo": "Llamado al Gozo",
+     "ms": 381720,
+     "fecha": "2026-04-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2735ac2c84be36dfab7bd5816d6"
+    },
+    {
+     "id": "2dnIYH5XZmAR8JhtUdbxlM",
+     "titulo": "Domingo de Gloria",
+     "ms": 247840,
+     "fecha": "2026-04-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2735ac2c84be36dfab7bd5816d6"
+    },
+    {
+     "id": "5UskbPzohMX51yAMXoBZoM",
+     "titulo": "Ora por Mí, Yo por Ti",
+     "ms": 234880,
+     "fecha": "2026-04-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2735ac2c84be36dfab7bd5816d6"
+    },
+    {
+     "id": "2WCk6nVNkDxd9CTFBjKqVm",
+     "titulo": "Solo Dios Lo Sabe",
+     "ms": 247720,
+     "fecha": "2026-04-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2735ac2c84be36dfab7bd5816d6"
+    },
+    {
+     "id": "4vWrKAahTTZVb68Tqzj3hH",
+     "titulo": "Siempre Contigo, Mi Señor",
+     "ms": 237680,
+     "fecha": "2026-04-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2735ac2c84be36dfab7bd5816d6"
+    },
+    {
+     "id": "2QLXjkaFBLPzhYFWppZdyL",
+     "titulo": "Su Secreta Ambición",
+     "ms": 242920,
+     "fecha": "2026-04-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2735ac2c84be36dfab7bd5816d6"
+    }
+   ]
+  },
+  {
+   "id": "romanticos-cristianos",
+   "nombre": "Románticos Cristianos",
+   "spotify": "1kAnFOZnSXkkRAy351diim",
+   "estilo": "boleros",
+   "genero": {
+    "es": "Canción romántica",
+    "en": "Romantic songs"
+   },
+   "descripcion": {
+    "es": "Canción romántica que celebra el amor, la fe y el matrimonio, para escuchar en pareja: «Milagro de amor», «Cuando oro por ti», «Hasta que estemos con Cristo».",
+    "en": "Romantic songs that celebrate love, faith and marriage, made for couples: “Milagro de amor”, “Cuando oro por ti”, “Hasta que estemos con Cristo”."
+   },
+   "foto": "https://image-cdn-ak.spotifycdn.com/image/ab6761610000e5eb97de9f699e0f5c5a502ea147",
+   "pistas": [
+    {
+     "id": "3mYMPWiZSM9CnLq71RPxrd",
+     "titulo": "Gracias por Otro Año",
+     "ms": 224960,
+     "fecha": "2025-11-28",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2733a6f2f8f4b98ecd3822d43fe"
+    },
+    {
+     "id": "3JWUE0I0a45fKghme26NJc",
+     "titulo": "Milagro de Amor",
+     "ms": 204600,
+     "fecha": "2025-11-28",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2733a6f2f8f4b98ecd3822d43fe"
+    },
+    {
+     "id": "52kzOF3eRP5DaSFs5AgCBt",
+     "titulo": "Sí, Aún Me Sorprendes",
+     "ms": 174880,
+     "fecha": "2025-11-28",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2733a6f2f8f4b98ecd3822d43fe"
+    },
+    {
+     "id": "2w7v2iAL1kMYFxk4kkOylz",
+     "titulo": "Al Lugar Secreto",
+     "ms": 212000,
+     "fecha": "2025-11-28",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2733a6f2f8f4b98ecd3822d43fe"
+    },
+    {
+     "id": "1iQomDvEfeQLbCJGdg00XJ",
+     "titulo": "Si Esto No Es Amor",
+     "ms": 265480,
+     "fecha": "2025-11-28",
+     "portada": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b2733a6f2f8f4b98ecd3822d43fe"
+    },
+    {
+     "id": "0pvfSKMgfetXS7DX8vijni",
+     "titulo": "Hasta Que Estemos Con Cristo",
+     "ms": 303560,
+     "fecha": "2025-11-28",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2733a6f2f8f4b98ecd3822d43fe"
+    },
+    {
+     "id": "1egj7Of0hcPf6v2hp3ANZW",
+     "titulo": "Cuando Oro por Ti",
+     "ms": 267400,
+     "fecha": "2025-11-28",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2733a6f2f8f4b98ecd3822d43fe"
+    },
+    {
+     "id": "4neMOxmeg61icJxDx28Ovm",
+     "titulo": "Contigo",
+     "ms": 284480,
+     "fecha": "2025-11-28",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2733a6f2f8f4b98ecd3822d43fe"
+    }
+   ]
+  },
+  {
+   "id": "belbeth",
+   "nombre": "Belbeth",
+   "spotify": "5eHMRo16rm701VFxWJ9yEX",
+   "estilo": "adoracion",
+   "genero": {
+    "es": "Adoración",
+    "en": "Worship"
+   },
+   "descripcion": {
+    "es": "Adoración en español centrada en el evangelio: la gracia, la cruz y la reconciliación con Dios. «Digno eres Tú», «Por gracia y nada más» y «Reconciliados» marcan el tono.",
+    "en": "Spanish-language worship centered on the gospel: grace, the cross and reconciliation with God. “Digno eres Tú”, “Por gracia y nada más” and “Reconciliados” set the tone."
+   },
+   "foto": "https://image-cdn-ak.spotifycdn.com/image/ab6761610000e5ebbb57aa1012044604d32e9674",
+   "pistas": [
+    {
+     "id": "1gQQSWu2ZQiMFknkanEwQ4",
+     "titulo": "Digno Eres Tú",
+     "ms": 296680,
+     "fecha": "2026-02-12",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273dcab2e0d3e07c877edb0c7c9"
+    },
+    {
+     "id": "0AqzQpjIJrEWWmx4lkeX0C",
+     "titulo": "Por Gracia y Nada Más",
+     "ms": 300880,
+     "fecha": "2026-02-12",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273dcab2e0d3e07c877edb0c7c9"
+    },
+    {
+     "id": "0WzWNDGRgQpPfosvKLk5Vt",
+     "titulo": "Lo Que Yo Merecía",
+     "ms": 304960,
+     "fecha": "2026-02-12",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273dcab2e0d3e07c877edb0c7c9"
+    },
+    {
+     "id": "4WTi6PJlC3SuPqTxv4MDLd",
+     "titulo": "Porque de Tal Manera",
+     "ms": 271240,
+     "fecha": "2026-02-12",
+     "portada": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273dcab2e0d3e07c877edb0c7c9"
+    },
+    {
+     "id": "5N6yCSBvGqdNObn2MSJuxJ",
+     "titulo": "Tu Voz Me Llamó",
+     "ms": 254960,
+     "fecha": "2026-02-12",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273dcab2e0d3e07c877edb0c7c9"
+    },
+    {
+     "id": "7bj5WuSYAqL4iVtkdhbVY7",
+     "titulo": "Tú Eres la Verdad",
+     "ms": 274160,
+     "fecha": "2026-02-12",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273dcab2e0d3e07c877edb0c7c9"
+    },
+    {
+     "id": "3YFkDJwOLnOdVvyS86ZJDu",
+     "titulo": "Reconciliados",
+     "ms": 239760,
+     "fecha": "2026-02-12",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273dcab2e0d3e07c877edb0c7c9"
+    },
+    {
+     "id": "5Pkvzxf32jhG4iYqakUP8l",
+     "titulo": "Bendice, Alma Mía, Al Señor",
+     "ms": 277040,
+     "fecha": "2026-02-12",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273dcab2e0d3e07c877edb0c7c9"
+    }
+   ]
+  },
+  {
+   "id": "selune",
+   "nombre": "Selune",
+   "spotify": "08CNiFcEtq75qT6Yd0C2C8",
+   "estilo": "adoracion",
+   "genero": {
+    "es": "Fusión acústica",
+    "en": "Acoustic fusion"
+   },
+   "descripcion": {
+    "es": "Fusión acústica con raíces flamencas y letras poéticas sobre Cristo, la gracia y la identidad del creyente. «Ecos del infinito» y «Tuyo soy» son una buena puerta de entrada.",
+    "en": "Acoustic fusion with flamenco roots and poetic lyrics about Christ, grace and the believer’s identity. “Ecos del infinito” and “Tuyo soy” are a good way in."
+   },
+   "foto": "https://image-cdn-fa.spotifycdn.com/image/ab6761610000e5eb94f55ed8d6d4de321b7de13d",
+   "pistas": [
+    {
+     "id": "1XitGojloCX7DHEfKGwwH4",
+     "titulo": "Aliento de Eternidad",
+     "ms": 232640,
+     "fecha": "2026-02-13",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2736fb036624910815765d94c9d"
+    },
+    {
+     "id": "0r1DXdWcZue9oS06lgIWep",
+     "titulo": "Ecos del Infinito",
+     "ms": 186600,
+     "fecha": "2026-02-13",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2736fb036624910815765d94c9d"
+    },
+    {
+     "id": "0JBcs7n5KEee3X0LPPMiZU",
+     "titulo": "Alzaré Mis Ojos",
+     "ms": 212160,
+     "fecha": "2026-02-13",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2736fb036624910815765d94c9d"
+    },
+    {
+     "id": "0QWVFM9cnalKxJZUK6Rpa9",
+     "titulo": "Tuyo Soy",
+     "ms": 211000,
+     "fecha": "2026-02-13",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2736fb036624910815765d94c9d"
+    },
+    {
+     "id": "0AvdddZZphsZZ2MzoYPOnd",
+     "titulo": "Vuelve el Rey",
+     "ms": 203640,
+     "fecha": "2026-02-13",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2736fb036624910815765d94c9d"
+    },
+    {
+     "id": "03Y6Ai8bOmgX9TjVzllUtD",
+     "titulo": "Dulzura Infinita",
+     "ms": 225720,
+     "fecha": "2026-02-13",
+     "portada": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b2736fb036624910815765d94c9d"
+    },
+    {
+     "id": "52uLSvt2183AzUhRddvZ9H",
+     "titulo": "En Tu Infinito Abrazo",
+     "ms": 274000,
+     "fecha": "2026-02-13",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2736fb036624910815765d94c9d"
+    },
+    {
+     "id": "5ExBe1bu1UVgdt231iPGsc",
+     "titulo": "Te Exaltaré",
+     "ms": 292920,
+     "fecha": "2026-02-13",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2736fb036624910815765d94c9d"
+    },
+    {
+     "id": "5ucM3Ft5i9aytG5HCo8WqQ",
+     "titulo": "Cantaré Con Gozo",
+     "ms": 191840,
+     "fecha": "2026-02-13",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2736fb036624910815765d94c9d"
+    },
+    {
+     "id": "2KksgMcurea5QGgBSrxhi3",
+     "titulo": "En Tu Presencia",
+     "ms": 207880,
+     "fecha": "2026-02-13",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b2736fb036624910815765d94c9d"
+    }
+   ]
+  },
+  {
+   "id": "inti-elias-quispe",
+   "nombre": "Inti Elías Quispe",
+   "spotify": "6rLgPq01XM8HYDDb1CpMGQ",
+   "estilo": "adoracion",
+   "genero": {
+    "es": "Adoración andina",
+    "en": "Andean worship"
+   },
+   "descripcion": {
+    "es": "Adoración con sonido andino: zampoñas y melodías de los Andes para proclamar a Dios como «Adonay», Señor del cielo y de la tierra, y celebrar que «Viene el Rey».",
+    "en": "Worship with an Andean sound: panpipes and mountain melodies proclaiming God as “Adonay”, Lord of heaven and earth, and celebrating that “Viene el Rey”."
+   },
+   "foto": "https://image-cdn-ak.spotifycdn.com/image/ab6761610000e5ebbb3c013ed818d8a937f017d0",
+   "pistas": [
+    {
+     "id": "32DGsi8A3Zm99LZ8o9ParQ",
+     "titulo": "Todo de Mí, Todo de Ti",
+     "ms": 256440,
+     "fecha": "2026-03-02",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27310aad0b0bed51ec710ced11d"
+    },
+    {
+     "id": "5hTwvwicE1YPchDtDSsXiW",
+     "titulo": "Cuando el Amor Se Enfría",
+     "ms": 225920,
+     "fecha": "2026-03-02",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27310aad0b0bed51ec710ced11d"
+    },
+    {
+     "id": "5PTnYPTuBVzAY9Be39ZaYC",
+     "titulo": "Viene el Rey",
+     "ms": 194960,
+     "fecha": "2026-03-02",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27310aad0b0bed51ec710ced11d"
+    },
+    {
+     "id": "18xhk2VzErieGvFDyrsq7q",
+     "titulo": "El Poder de Tu Amor",
+     "ms": 234880,
+     "fecha": "2026-03-02",
+     "portada": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b27310aad0b0bed51ec710ced11d"
+    },
+    {
+     "id": "1jOyN2UiKoqz5SHBYv8UZi",
+     "titulo": "En Tus Manos Descansa Mi Alma",
+     "ms": 235480,
+     "fecha": "2026-03-02",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27310aad0b0bed51ec710ced11d"
+    },
+    {
+     "id": "3xi6QsCJfIxKe3szBqQJvw",
+     "titulo": "Adonay",
+     "ms": 208200,
+     "fecha": "2026-03-02",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27310aad0b0bed51ec710ced11d"
+    },
+    {
+     "id": "32PuRThKA2kSWhyl4b7P3y",
+     "titulo": "Llena la Tierra de Tu Nombre",
+     "ms": 240360,
+     "fecha": "2026-03-02",
+     "portada": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b27310aad0b0bed51ec710ced11d"
+    },
+    {
+     "id": "5TidCfSF3hdvi1BSI8OGXb",
+     "titulo": "Dios Con Nosotros, Emmanuel",
+     "ms": 289560,
+     "fecha": "2026-03-02",
+     "portada": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b27310aad0b0bed51ec710ced11d"
+    },
+    {
+     "id": "09mXNiTBuymOGWuj671R7M",
+     "titulo": "Tú Reinas Sobre Todo",
+     "ms": 219880,
+     "fecha": "2026-03-02",
+     "portada": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b27310aad0b0bed51ec710ced11d"
+    },
+    {
+     "id": "6X3HdZcHcPcDYKR5Iy2ftd",
+     "titulo": "Alegría de los Redimidos",
+     "ms": 230720,
+     "fecha": "2026-03-02",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b27310aad0b0bed51ec710ced11d"
+    }
+   ]
+  },
+  {
+   "id": "altar-fuego",
+   "nombre": "Altar Fuego",
+   "spotify": "1iLq306VMCZha8ZasDLMjT",
+   "estilo": "rock",
+   "genero": {
+    "es": "Hard rock y metal",
+    "en": "Hard rock and metal"
+   },
+   "descripcion": {
+    "es": "Hard rock y metal alternativo con letras de fe sin maquillaje: la lucha interior, la duda y el cansancio frente a un Dios que sostiene. «Firme en tu nombre» y «Triunfo en la cruz» lo resumen.",
+    "en": "Hard rock and alternative metal with unvarnished lyrics of faith: inner struggle, doubt and weariness before a God who holds on. “Firme en tu nombre” and “Triunfo en la cruz” sum it up."
+   },
+   "foto": "https://image-cdn-ak.spotifycdn.com/image/ab6761610000e5eb14c55a25111095ff42133e8d",
+   "pistas": [
+    {
+     "id": "2fie669ppG2yFymLiLhZth",
+     "titulo": "El Pastor en la Prader",
+     "ms": 289520,
+     "fecha": "2026-02-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273205c6fd6edf3ac2fea4a1e89"
+    },
+    {
+     "id": "7F5TrJ42tuc9uIlR7GqYes",
+     "titulo": "Si Te Alcanzo",
+     "ms": 227920,
+     "fecha": "2026-02-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273205c6fd6edf3ac2fea4a1e89"
+    },
+    {
+     "id": "68HRd3mTTnX4NZ7ZDDkTIs",
+     "titulo": "Ven a Mi",
+     "ms": 260000,
+     "fecha": "2026-02-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273205c6fd6edf3ac2fea4a1e89"
+    },
+    {
+     "id": "355VcFMKKLD0JU6H1DPnx3",
+     "titulo": "Firme en Tu Nombre",
+     "ms": 289480,
+     "fecha": "2026-02-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273205c6fd6edf3ac2fea4a1e89"
+    },
+    {
+     "id": "5YrySqggV0oE1nUcGGF3Ta",
+     "titulo": "El Primero",
+     "ms": 280560,
+     "fecha": "2026-02-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273205c6fd6edf3ac2fea4a1e89"
+    },
+    {
+     "id": "2EPAPFtxryrF2uhNDoxENN",
+     "titulo": "El Rey Regresa",
+     "ms": 193360,
+     "fecha": "2026-02-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273205c6fd6edf3ac2fea4a1e89"
+    },
+    {
+     "id": "0LkfJKkkpoClSlMQzcqUu9",
+     "titulo": "Triunfo en la Cruz",
+     "ms": 237000,
+     "fecha": "2026-02-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273205c6fd6edf3ac2fea4a1e89"
+    },
+    {
+     "id": "48ojvQDyrbIWjgklVcnLzs",
+     "titulo": "Sin Excusa",
+     "ms": 298080,
+     "fecha": "2026-02-14",
+     "portada": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273205c6fd6edf3ac2fea4a1e89"
+    },
+    {
+     "id": "3oiaYRYUyxzEr3XjhrmEgC",
+     "titulo": "No Alzo Mi Voz",
+     "ms": 297800,
+     "fecha": "2026-02-14",
+     "portada": "https://image-cdn-ak.spotifycdn.com/image/ab67616d0000b273205c6fd6edf3ac2fea4a1e89"
+    },
+    {
+     "id": "6aocyScY79NafZtwzOe2iq",
+     "titulo": "Sed Que No Se Va",
+     "ms": 239920,
+     "fecha": "2026-02-14",
+     "portada": "https://image-cdn-fa.spotifycdn.com/image/ab67616d0000b273205c6fd6edf3ac2fea4a1e89"
+    }
+   ]
+  }
+ ],
+ "bandas": {
+  "Decreto": {
+   "genero": {
+    "es": "Thrash y groove metal",
+    "en": "Thrash and groove metal"
+   }
+  },
+  "Vera Solari": {
+   "genero": {
+    "es": "Rock melódico de los 80",
+    "en": "80s melodic rock"
+   }
+  },
+  "Altar Fuego": {
+   "genero": {
+    "es": "Hard rock y metal alternativo",
+    "en": "Hard rock and alternative metal"
+   },
+   "artista": "altar-fuego"
+  },
+  "Vértice": {
+   "genero": {
+    "es": "AOR y hard rock",
+    "en": "AOR and hard rock"
+   }
+  },
+  "Ecos de la Eternidad": {
+   "genero": {
+    "es": "Rock en español",
+    "en": "Spanish-language rock"
+   }
+  },
+  "Iron Roots": {
+   "genero": {
+    "es": "Heavy metal",
+    "en": "Heavy metal"
+   }
+  },
+  "Resiliente": {
+   "genero": {
+    "es": "Nu metal y rap rock",
+    "en": "Nu metal and rap rock"
+   }
+  },
+  "Sinaí": {
+   "genero": {
+    "es": "Metal latino",
+    "en": "Latin metal"
+   }
+  },
+  "Seraphiel": {
+   "genero": {
+    "es": "Rock instrumental",
+    "en": "Instrumental rock"
+   }
+  },
+  "Cristo Rock": {
+   "genero": {
+    "es": "Hard rock clásico",
+    "en": "Classic hard rock"
+   }
+  },
+  "Grano y Fuego": {
+   "genero": {
+    "es": "Roots rock",
+    "en": "Roots rock"
+   }
+  },
+  "Nanja": {
+   "genero": {
+    "es": "Hard rock con voz femenina",
+    "en": "Female-fronted hard rock"
+   }
+  },
+  "Dunkan": {
+   "genero": {
+    "es": "Rock latino",
+    "en": "Latin rock"
+   }
+  }
+ },
+ "videos": [
+  {
+   "id": "z5jmZZF8dy8",
+   "canal": "flamenco",
+   "titulo": "El gozo del Señor es mi fortaleza",
+   "fecha": "2026-10-29",
+   "duracion": "9:53",
+   "nota": {
+    "es": "Flamenco y sonidos andinos",
+    "en": "Flamenco and Andean sounds"
+   }
+  },
+  {
+   "id": "kVAxvwXOhj4",
+   "canal": "flamenco",
+   "titulo": "Mix flamenco de octubre",
+   "fecha": "2026-10-20",
+   "duracion": "24:34",
+   "nota": {
+    "es": "Mix",
+    "en": "Mix"
+   }
+  },
+  {
+   "id": "guRzy_jnCdo",
+   "canal": "rock",
+   "titulo": "Decreto – Aunque todo caiga",
+   "fecha": "2026-10-20",
+   "duracion": "19:26",
+   "artista": "Decreto",
+   "cancion": "Aunque todo caiga",
+   "estilo": "Thrash metal cristiano · 3 canciones",
+   "bajada": {
+    "es": "Tres canciones de thrash metal progresivo e industrial que proclaman la soberanía de Dios: «Aunque todo caiga», inspirada en Habacuc 3; «No nos doblaremos», sobre los tres jóvenes frente al horno de Babilonia, y «Su reino no tendrá fin».",
+    "en": "Three songs of progressive, industrial thrash metal proclaiming God’s sovereignty: “Aunque todo caiga”, inspired by Habakkuk 3; “No nos doblaremos”, about the three young men before Babylon’s furnace; and “Su reino no tendrá fin”."
+   }
+  },
+  {
+   "id": "7-1T02TFv3g",
+   "canal": "flamenco",
+   "titulo": "Mix flamenco cristiano, vol. 20",
+   "fecha": "2026-10-13",
+   "duracion": "24:00",
+   "nota": {
+    "es": "Mix",
+    "en": "Mix"
+   }
+  },
+  {
+   "id": "s8sgwiEYsjM",
+   "canal": "rock",
+   "titulo": "Vera Solari – El Amor es Jesús",
+   "fecha": "2026-10-13",
+   "duracion": "23:30",
+   "artista": "Vera Solari",
+   "cancion": "El Amor es Jesús",
+   "estilo": "Rock Cristiano Melódico 80s y 90s"
+  },
+  {
+   "id": "Iwyd-810rD0",
+   "canal": "flamenco",
+   "titulo": "Mix flamenco 2026",
+   "fecha": "2026-10-05",
+   "duracion": "13:34",
+   "nota": {
+    "es": "Mix",
+    "en": "Mix"
+   }
+  },
+  {
+   "id": "SJojA1AQlfM",
+   "canal": "rock",
+   "titulo": "Altar Fuego – Arde",
+   "fecha": "2026-10-05",
+   "duracion": "23:26",
+   "artista": "Altar Fuego",
+   "cancion": "Arde",
+   "estilo": "Hard Rock Cristiano · Alternative Metal · Progressive Metal"
+  },
+  {
+   "id": "o3qmZfVPKSY",
+   "canal": "flamenco",
+   "titulo": "Mis flamencos para Dios",
+   "fecha": "2026-09-28",
+   "duracion": "35:26",
+   "nota": {
+    "es": "Mix de alabanza",
+    "en": "Praise mix"
+   }
+  },
+  {
+   "id": "XxjlhoeruH0",
+   "canal": "rock",
+   "titulo": "Vértice – Ironía",
+   "fecha": "2026-09-28",
+   "duracion": "24:16",
+   "artista": "Vértice",
+   "cancion": "Ironía",
+   "estilo": "Rock Cristiano 80s/90s"
+  },
+  {
+   "id": "ExYWNnVcDL0",
+   "canal": "rock",
+   "titulo": "Decreto – No hay escapatoria",
+   "fecha": "2026-09-23",
+   "duracion": "27:00",
+   "artista": "Decreto",
+   "cancion": "No hay escapatoria",
+   "estilo": "Groove/Thrash Metal Cristiano"
+  },
+  {
+   "id": "tkU1KCcTAGw",
+   "canal": "flamenco",
+   "titulo": "Las mejores rumbas cristianas 2026",
+   "fecha": "2026-09-21",
+   "duracion": "33:45",
+   "nota": {
+    "es": "Rumba",
+    "en": "Rumba"
+   }
+  },
+  {
+   "id": "LZMb6tXPi_k",
+   "canal": "rock",
+   "titulo": "Ecos de la Eternidad – Mirando al Cordero",
+   "fecha": "2026-09-18",
+   "duracion": "13:03",
+   "artista": "Ecos de la Eternidad",
+   "cancion": "Mirando al Cordero",
+   "estilo": "Rock Cristiano en Español"
+  },
+  {
+   "id": "KK-SFqkB3Zs",
+   "canal": "rock",
+   "titulo": "Iron Roots – Venga Tu Reino",
+   "fecha": "2026-09-14",
+   "duracion": "25:42",
+   "artista": "Iron Roots",
+   "cancion": "Venga Tu Reino",
+   "estilo": "Heavy Metal Roots Cristiano"
+  },
+  {
+   "id": "7yISh546zOg",
+   "canal": "flamenco",
+   "titulo": "Unidos por Cristo",
+   "fecha": "2026-09-13",
+   "duracion": "26:03",
+   "nota": {
+    "es": "Álbum completo",
+    "en": "Full album"
+   }
+  },
+  {
+   "id": "XtK7q2qdF6Y",
+   "canal": "rock",
+   "titulo": "Resiliente – Más Vale Estar Listo",
+   "fecha": "2026-09-08",
+   "duracion": "29:29",
+   "artista": "Resiliente",
+   "cancion": "Más Vale Estar Listo",
+   "estilo": "Nu Metal Cristiano / Rap Rock 2000s"
+  },
+  {
+   "id": "3YjpKJeT7QM",
+   "canal": "flamenco",
+   "titulo": "Adoración con alma y fuego",
+   "fecha": "2026-09-07",
+   "duracion": "18:52",
+   "nota": {
+    "es": "Mix",
+    "en": "Mix"
+   }
+  },
+  {
+   "id": "re5GjU4gRbk",
+   "canal": "rock",
+   "titulo": "Vértice – Fuego Eterno",
+   "fecha": "2026-09-05",
+   "duracion": "56:51",
+   "artista": "Vértice",
+   "cancion": "Fuego Eterno",
+   "estilo": "AOR / Hard Rock Cristiano en Español"
+  },
+  {
+   "id": "pYF3ZCEmamg",
+   "canal": "flamenco",
+   "titulo": "Bulerías cristianas",
+   "fecha": "2026-09-04",
+   "duracion": "41:44",
+   "artista": "Luna Bravía",
+   "nota": {
+    "es": "Once canciones",
+    "en": "Eleven songs"
+   }
+  },
+  {
+   "id": "a5NlUcTD9H8",
+   "canal": "rock",
+   "titulo": "Altar Fuego – Ven a Mí",
+   "fecha": "2026-09-02",
+   "duracion": "43:34",
+   "artista": "Altar Fuego",
+   "cancion": "Ven a Mí",
+   "estilo": "Rock Cristiano / Hard Rock / Post-Grunge"
+  },
+  {
+   "id": "DmJdINS56pQ",
+   "canal": "rock",
+   "titulo": "Vera Solari – Rosa del Desierto",
+   "fecha": "2026-09-02",
+   "duracion": "21:28",
+   "artista": "Vera Solari",
+   "cancion": "Rosa del Desierto",
+   "estilo": "Pop Rock Cristiano Ochentero"
+  },
+  {
+   "id": "2Ui4FCXoXx4",
+   "canal": "rock",
+   "titulo": "Sinaí – Tambores en la Sombra",
+   "fecha": "2026-08-30",
+   "duracion": "19:23",
+   "artista": "Sinaí",
+   "cancion": "Tambores en la Sombra",
+   "estilo": "Latin Metal Cristiano / Hard Rock Tropical"
+  },
+  {
+   "id": "BUkPgYTPZOo",
+   "canal": "rock",
+   "titulo": "Seraphiel – Summit of Glory",
+   "fecha": "2026-08-28",
+   "duracion": "36:34",
+   "artista": "Seraphiel",
+   "cancion": "Summit of Glory",
+   "estilo": "Virtuoso Christian Instrumental Rock"
+  },
+  {
+   "id": "XXfDfqHgt24",
+   "canal": "flamenco",
+   "titulo": "Boleros de adoración íntima",
+   "fecha": "2026-08-27",
+   "duracion": "32:26",
+   "nota": {
+    "es": "Bolero",
+    "en": "Bolero"
+   }
+  },
+  {
+   "id": "bHUIgIiNnSc",
+   "canal": "rock",
+   "titulo": "Cristo Rock – Ruge la Cruz",
+   "fecha": "2026-08-27",
+   "duracion": "48:12",
+   "artista": "Cristo Rock",
+   "cancion": "Ruge la Cruz",
+   "estilo": "Hard Rock Cristiano Clásico"
+  },
+  {
+   "id": "8pAfdVo1j0c",
+   "canal": "rock",
+   "titulo": "Grano y Fuego – Luz entre las Cenizas",
+   "fecha": "2026-08-27",
+   "duracion": "12:57",
+   "artista": "Grano y Fuego",
+   "cancion": "Luz entre las Cenizas",
+   "estilo": "Roots Rock Cristiano"
+  },
+  {
+   "id": "JAf5i44Edkg",
+   "canal": "rock",
+   "titulo": "Nanja – Clamor de Medianoche",
+   "fecha": "2026-08-27",
+   "duracion": "27:34",
+   "artista": "Nanja",
+   "cancion": "Clamor de Medianoche",
+   "estilo": "Hard Rock Cristiano"
+  },
+  {
+   "id": "E3vp3UZ9bcs",
+   "canal": "rock",
+   "titulo": "Ecos de la Eternidad – Donde Muere el Ruido",
+   "fecha": "2026-08-27",
+   "duracion": "29:30",
+   "artista": "Ecos de la Eternidad",
+   "cancion": "Donde Muere el Ruido",
+   "estilo": "Rock Cristiano en Español"
+  },
+  {
+   "id": "rH9TsSrhb_0",
+   "canal": "rock",
+   "titulo": "Dunkan – Nada Me Toca",
+   "fecha": "2026-08-27",
+   "duracion": "25:52",
+   "artista": "Dunkan",
+   "cancion": "Nada Me Toca",
+   "estilo": "Latin Rock Cristiano"
+  },
+  {
+   "id": "FFbz_YSSTTY",
+   "canal": "flamenco",
+   "titulo": "Flamenco de unción",
+   "fecha": "2026-08-20",
+   "duracion": "21:22",
+   "nota": {
+    "es": "Clamor y adoración",
+    "en": "Lament and worship"
+   }
+  },
+  {
+   "id": "KgJDGu5ucS4",
+   "canal": "flamenco",
+   "titulo": "Confesión",
+   "fecha": "2026-08-12",
+   "duracion": "55:58",
+   "nota": {
+    "es": "Flamenco fusión",
+    "en": "Flamenco fusion"
+   }
+  },
+  {
+   "id": "Ure_tqynyQE",
+   "canal": "flamenco",
+   "titulo": "Tienes una invitación",
+   "fecha": "2026-08-10",
+   "artista": "Luz Marina",
+   "nota": {
+    "es": "Estreno",
+    "en": "Premiere"
+   }
+  },
+  {
+   "id": "ZXh2XQilMp0",
+   "canal": "flamenco",
+   "titulo": "Cantemos, hermanos",
+   "fecha": "2026-08-07",
+   "duracion": "38:40",
+   "nota": {
+    "es": "Alabanza",
+    "en": "Praise"
+   }
+  },
+  {
+   "id": "Eo5-rgy4AiA",
+   "canal": "flamenco",
+   "titulo": "Adoradoras",
+   "fecha": "2026-07-29",
+   "duracion": "30:48",
+   "nota": {
+    "es": "Flamenco chill",
+    "en": "Flamenco chill"
+   }
+  },
+  {
+   "id": "n1HUGxRO2sY",
+   "canal": "flamenco",
+   "titulo": "Somos el pueblo de Dios",
+   "fecha": "2026-07-10",
+   "duracion": "50:56",
+   "nota": {
+    "es": "Mix 2026",
+    "en": "2026 mix"
+   }
+  },
+  {
+   "id": "2JdBnXcoYT0",
+   "canal": "flamenco",
+   "titulo": "Todos a una voz",
+   "fecha": "2026-07-04",
+   "duracion": "35:54",
+   "nota": {
+    "es": "Álbum",
+    "en": "Album"
+   }
+  },
+  {
+   "id": "_nAnSaeI3L0",
+   "canal": "flamenco",
+   "titulo": "Flamenco cristiano 2026",
+   "fecha": "2026-06-29",
+   "duracion": "1:41:48",
+   "nota": {
+    "es": "Hora y media de alabanza",
+    "en": "Ninety minutes of praise"
+   }
+  },
+  {
+   "id": "BeHkwnXCm-w",
+   "canal": "flamenco",
+   "titulo": "Doce canciones de flamenco cristiano",
+   "fecha": "2026-06-23",
+   "duracion": "44:09",
+   "nota": {
+    "es": "Selección",
+    "en": "Selection"
+   }
+  },
+  {
+   "id": "sDE8789_l0w",
+   "canal": "flamenco",
+   "titulo": "Flamenco cristiano que enciende el alma",
+   "fecha": "2026-06-20",
+   "duracion": "41:24",
+   "nota": {
+    "es": "Selección",
+    "en": "Selection"
+   }
+  },
+  {
+   "id": "mqiW-hVUpcE",
+   "canal": "flamenco",
+   "titulo": "Nueva alabanza",
+   "fecha": "2026-06-13",
+   "duracion": "17:54",
+   "artista": "Raíz de Adoración",
+   "nota": {
+    "es": "Adoración acústica",
+    "en": "Acoustic worship"
+   }
+  },
+  {
+   "id": "D_4GMxXtXN8",
+   "canal": "flamenco",
+   "titulo": "En tu amor sané",
+   "fecha": "2026-06-10",
+   "duracion": "28:44",
+   "artista": "Zaira Luz",
+   "nota": {
+    "es": "Bolero",
+    "en": "Bolero"
+   }
+  },
+  {
+   "id": "SRMe-xGPrOw",
+   "canal": "flamenco",
+   "titulo": "Júbilo flamenco",
+   "fecha": "2026-06-08",
+   "duracion": "29:52",
+   "nota": {
+    "es": "Alabanza y gozo",
+    "en": "Praise and joy"
+   }
+  },
+  {
+   "id": "Ikwrp9nKsko",
+   "canal": "flamenco",
+   "titulo": "Música andina cristiana",
+   "fecha": "2026-06-04",
+   "duracion": "1:48:35",
+   "nota": {
+    "es": "Dos horas de alabanza",
+    "en": "Two hours of praise"
+   }
+  },
+  {
+   "id": "YTOZKIhAksw",
+   "canal": "flamenco",
+   "titulo": "Boleros cristianos",
+   "fecha": "2026-06-03",
+   "duracion": "48:08",
+   "artista": "Zaira Luz",
+   "nota": {
+    "es": "Mix de junio",
+    "en": "June mix"
+   }
+  },
+  {
+   "id": "CzVZzL0MKHE",
+   "canal": "flamenco",
+   "titulo": "Éxitos flamencos cristianos",
+   "fecha": "2026-05-31",
+   "duracion": "30:27",
+   "nota": {
+    "es": "Rumba",
+    "en": "Rumba"
+   }
+  },
+  {
+   "id": "1hc4Je44by0",
+   "canal": "flamenco",
+   "titulo": "Adoración con fuego",
+   "fecha": "2026-05-22",
+   "duracion": "17:05",
+   "artista": "Almoraima",
+   "nota": {
+    "es": "Rumba flamenca",
+    "en": "Flamenco rumba"
+   }
+  },
+  {
+   "id": "AVhBSYRTLXU",
+   "canal": "flamenco",
+   "titulo": "Rumba flamenca blues",
+   "fecha": "2026-05-14",
+   "duracion": "17:44",
+   "nota": {
+    "es": "Rumba y blues",
+    "en": "Rumba and blues"
+   }
+  },
+  {
+   "id": "2Gd1UGN0Ohw",
+   "canal": "flamenco",
+   "titulo": "Coritos pentecostales en flamenco",
+   "fecha": "2026-05-11",
+   "duracion": "5:51",
+   "artista": "Luna Bravía",
+   "nota": {
+    "es": "Coritos",
+    "en": "Choruses"
+   }
+  }
+ ],
+ "excluir_videos": {
+  "Oz4Co2MNiuY": "Verbo Desktop: no es música",
+  "NVhvP8II4xM": "aviso de lanzamiento sin música"
+ },
+ "articulos": [
+  {
+   "titulo": "Khalid: flamenco blues, dolor y redención en una nueva propuesta cristiana",
+   "url": "https://canteyfe.blogspot.com/2026/05/khalid-flamenco-blues-dolor-y-redencion.html",
+   "artista": "khalid",
+   "fuente": "Cante y Fe",
+   "fecha": "2026-05-29",
+   "mostrar": false
+  },
+  {
+   "titulo": "Almoraima: alegría, adoración y esencia flamenca en la nueva generación del flamenco cristiano",
+   "url": "https://canteyfe.blogspot.com/2026/05/almoraima-alegria-adoracion-y-esencia.html",
+   "artista": "almoraima",
+   "fuente": "Cante y Fe",
+   "fecha": "2026-05-29",
+   "mostrar": false
+  },
+  {
+   "titulo": "Álvaro Serrano: una voz de gracia, restauración y esperanza dentro del flamenco cristiano",
+   "url": "https://canteyfe.blogspot.com/2026/05/alvaro-serrano-una-voz-de-gracia.html",
+   "artista": "alvaro-serrano",
+   "fuente": "Cante y Fe",
+   "fecha": "2026-05-29",
+   "mostrar": false
+  },
+  {
+   "titulo": "Hoy en Unción Fresca: Luz Marina estrena «Tienes una invitación»",
+   "url": "https://canteyfe.blogspot.com/2026/08/hoy-en-uncion-fresca-luz-marina-estrena.html",
+   "artista": "luz-marina",
+   "fuente": "Cante y Fe",
+   "fecha": "2026-08-09",
+   "mostrar": false
+  }
+ ],
+ "_articulos": "Reservado para enlazar artículos (por ahora, los perfiles del blog Cante y Fe). Con \"mostrar\": true aparecen en la ficha del artista y en «Para leer». La migración de los artículos al sitio está pendiente de decisión."
+}
