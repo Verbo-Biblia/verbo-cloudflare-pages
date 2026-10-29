@@ -1,0 +1,61 @@
+/* Portada de /recursos/: tres columnas en escritorio (juegos · Escuela Dominical · historias y preguntas).
+   La estructura la genera tools/recursos_portada.py. */
+.rp-tres { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0 44px; max-width: 1640px; margin: 0 auto; padding: 0 32px; }
+.rp-tres > main { order: 0; }
+.rp-lado { padding: 0 0 40px; }
+@media (min-width: 1240px) {
+  .rp-tres { grid-template-columns: 280px minmax(0, 900px) 300px; justify-content: center; align-items: start; }
+  .rp-lado--izq { order: -1; }
+  .rp-lado { position: sticky; top: 24px; padding-top: 40px; }
+  body.recursos-page.recursos-index .rp-tres > .static-page__main { max-width: none; margin: 0; }
+}
+@media (max-width: 1239px) {
+  .rp-tres { max-width: 900px; }
+  .rp-lado { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+  .rp-lado > .rp-eyebrow, .rp-lado > h2, .rp-lado > .rp-mas { grid-column: 1 / -1; }
+  .rp-lado--der { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+}
+@media (max-width: 640px) { .rp-tres { padding: 0 var(--r-mobile-gutter, 16px); } }
+
+.rp-eyebrow { margin: 0 0 4px; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--r-gold); }
+.rp-lado h2 { margin: 0 0 14px; font-family: Georgia, 'Times New Roman', serif; font-weight: 600; font-size: 22px; color: var(--r-ink); }
+.rp-lado section + section { margin-top: 34px; }
+
+.rp-juego { display: block; margin: 0 0 12px; background: var(--r-paper); border: 1px solid var(--r-rule); border-radius: 14px;
+  overflow: hidden; text-decoration: none; color: var(--r-ink); transition: transform .2s, border-color .2s; }
+.rp-juego:hover { transform: translateY(-2px); border-color: var(--r-gold); }
+.rp-juego img { display: block; width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover; }
+.rp-juego span { display: block; padding: 9px 13px 0; font-weight: 600; font-size: 15px; }
+.rp-juego small { display: block; padding: 3px 13px 12px; font-size: 12.5px; line-height: 1.45; color: var(--r-ink-soft); }
+@media (max-width: 1239px) { .rp-juego { margin: 0; } }
+
+.rp-lista { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--r-rule); }
+.rp-lista li { border-bottom: 1px solid var(--r-rule); }
+.rp-lista a { display: block; padding: 11px 2px; text-decoration: none; color: var(--r-ink); font-size: 14.5px; line-height: 1.4; }
+.rp-lista a:hover { color: var(--r-gold); }
+.rp-lista--historias strong { display: block; font-family: Georgia, serif; font-size: 16px; font-weight: 600; }
+.rp-lista--historias small { display: block; margin-top: 2px; font-size: 12.5px; color: var(--r-ink-soft); }
+.rp-mas { display: inline-block; margin-top: 12px; font-size: 13.5px; font-weight: 600; color: var(--r-gold); text-decoration: none; }
+.rp-mas:hover { text-decoration: underline; }
+
+/* Grupos de edad: las tres en una fila y con una tira de miniaturas */
+@media (min-width: 900px) { body.recursos-page.recursos-index .rp-tres .r-card-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.rp-tira { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin: -4px 0 14px; border-radius: 10px; overflow: hidden; }
+.rp-tira img { display: block; width: 100%; height: auto; aspect-ratio: 16/10; object-fit: cover; }
+
+/* Centro: lecciones más consultadas y cómo usarlas */
+.rp-centro { margin: 10px 0 26px; }
+.rp-lecciones { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; margin: 0 0 34px; }
+.rp-leccion { display: flex; flex-direction: column; background: var(--r-paper); border: 1px solid var(--r-rule); border-radius: 14px;
+  overflow: hidden; text-decoration: none; color: var(--r-ink); transition: transform .2s, border-color .2s; }
+.rp-leccion:hover { transform: translateY(-2px); border-color: var(--r-gold); }
+.rp-leccion img { display: block; width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover; }
+.rp-leccion span { display: flex; flex-direction: column; gap: 3px; padding: 11px 14px 14px; }
+.rp-leccion small { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--r-gold); }
+.rp-leccion strong { font-family: Georgia, serif; font-weight: 600; font-size: 17px; line-height: 1.3; }
+.rp-leccion em { font-style: normal; font-size: 13px; color: var(--r-ink-soft); }
+.rp-usos { list-style: none; margin: 0 0 30px; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; }
+.rp-usos li { display: flex; flex-direction: column; gap: 4px; padding: 16px; border-radius: 14px; background: #f7efe1; }
+.rp-usos li span { font-size: 22px; }
+.rp-usos strong { font-size: 15px; color: var(--r-ink); }
+.rp-usos small { font-size: 13px; line-height: 1.45; color: var(--r-ink-soft); }
