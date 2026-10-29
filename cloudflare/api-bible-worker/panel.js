@@ -110,7 +110,7 @@ async function resumen(env, dias) {
     q(`SELECT COALESCE(ref,'') ref, COUNT(DISTINCT sesion) sesiones FROM eventos WHERE t >= ? AND tipo='vista' GROUP BY 1 ORDER BY 2 DESC LIMIT 40`),
     q(`SELECT v.ruta, v.objetivo titulo, v.n vistas, f.ms, f.hondo FROM
          (SELECT ruta, MAX(objetivo) objetivo, COUNT(*) n FROM eventos WHERE t >= ? AND tipo='vista' GROUP BY ruta) v
-         LEFT JOIN (SELECT ruta, AVG(ms) ms, AVG(json_extract(detalle,'$.hondo')) hondo FROM eventos WHERE t >= ? AND tipo='fin' GROUP BY ruta) f
+         LEFT JOIN (SELECT ruta, AVG(ms) ms, AVG(json_extract(detalle,'$.hondo')) hondo FROM eventos WHERE t >= ? AND tipo IN ('fin','juego_fin') GROUP BY ruta) f
          ON f.ruta = v.ruta ORDER BY v.n DESC LIMIT 60`, desde),
     q(`SELECT j.objetivo juego, j.n partidas, j.ses sesiones, f.total, f.media, f.reales FROM
          (SELECT objetivo, COUNT(*) n, COUNT(DISTINCT sesion) ses FROM eventos WHERE t >= ? AND tipo='juego' GROUP BY objetivo) j
@@ -186,9 +186,10 @@ function tabla(cols,filas,vacio='Sin datos todavía.'){if(!filas.length)return '
  if(c.barra)v+='<div class="barra" style="width:'+Math.round(100*(+f[c.k]||0)/max)+'%"></div>';return '<td'+(c.num?' class="n"':'')+'>'+v+'</td>'}).join('')+'</tr>').join('')+'</table></div>'}
 const enlace=r=>'<a href="'+sitio+e(r)+'" target="_blank" rel="noopener">'+e(r)+'</a>';
 function linea(d){if(!d.length)return '<p class="vacio">Sin datos todavía.</p>';const W=Math.max(320,Math.min(900,(document.querySelector('main')?.clientWidth||900)-40)),H=W<600?160:180,p=28,max=Math.max(1,...d.map(x=>x.vistas));
- const x=i=>p+i*(W-2*p)/Math.max(1,d.length-1),y=v=>H-p-(H-2*p)*v/max;
+ const x=i=>d.length<2?W/2:p+i*(W-2*p)/(d.length-1),y=v=>H-p-(H-2*p)*v/max;
  const camino=k=>d.map((r,i)=>(i?'L':'M')+x(i).toFixed(1)+' '+y(r[k]).toFixed(1)).join(' ');
  return '<svg viewBox="0 0 '+W+' '+H+'" width="100%" role="img" aria-label="Visitas por día"><path d="'+camino('vistas')+'" fill="none" stroke="var(--oro)" stroke-width="2.5"/><path d="'+camino('sesiones')+'" fill="none" stroke="var(--azul)" stroke-width="2"/>'
+ +d.map((r,i)=>'<circle cx="'+x(i).toFixed(1)+'" cy="'+y(r.vistas).toFixed(1)+'" r="4" fill="var(--oro)"><title>'+r.dia+': '+r.vistas+' páginas</title></circle><circle cx="'+x(i).toFixed(1)+'" cy="'+y(r.sesiones).toFixed(1)+'" r="3.5" fill="var(--azul)"><title>'+r.dia+': '+r.sesiones+' sesiones</title></circle>').join('')
  +d.map((r,i)=>i%Math.ceil(d.length/10)?'':'<text x="'+x(i)+'" y="'+(H-6)+'" text-anchor="middle">'+r.dia.slice(5)+'</text>').join('')+'<text x="'+p+'" y="14">'+max+'</text></svg><p class="nota"><span style="color:var(--oro)">●</span> páginas vistas · <span style="color:var(--azul)">●</span> sesiones</p>'}
 async function cargar(d){document.querySelectorAll('#rango button').forEach(b=>b.classList.toggle('activo',+b.dataset.d===d));
  const r=await fetch('/panel/datos?dias='+d);if(!r.ok){$('#m').innerHTML='<p>No se pudieron cargar los datos.</p>';return}const D=await r.json(),T=D.total||{};

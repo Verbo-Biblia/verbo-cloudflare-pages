@@ -12,7 +12,15 @@
   if (window.VerboMedir) return;
   var API = 'https://verbo-api-bible.juanjosevenegas78.workers.dev/v1/m';
   var local = /^(localhost|127\.|\[::1\])/.test(location.hostname);
-  if (local || navigator.webdriver || /bot|crawl|spider|lighthouse|headless/i.test(navigator.userAgent)) {
+  // Juan puede excluir sus propios aparatos: abrir una vez verbobiblia.com/?no-medir (y ?medir para volver a contar).
+  var q0 = new URLSearchParams(location.search);
+  try {
+    if (q0.has('no-medir')) localStorage.setItem('verbo-no-medir', '1');
+    if (q0.has('medir')) localStorage.removeItem('verbo-no-medir');
+  } catch (e) {}
+  var excluido = false;
+  try { excluido = localStorage.getItem('verbo-no-medir') === '1'; } catch (e) {}
+  if (local || excluido || navigator.webdriver || /bot|crawl|spider|lighthouse|headless/i.test(navigator.userAgent)) {
     window.VerboMedir = function () {};
     return;
   }
@@ -70,12 +78,21 @@
   }
   window.VerboMedir = medir;
 
-  // Vista de la página
-  medir('vista', { objetivo: document.title.slice(0, 160), detalle: { ref: origen(), w: innerWidth, h: innerHeight } });
-  if (juego) medir('juego', { objetivo: juego });
+  // Vista de la página, solo cuando de verdad se ve: Facebook y los navegadores precargan páginas en segundo plano
+  // (prerender) y esas cargas no son visitas. Si nunca se llega a ver, no se manda nada.
+  var visto = false;
+  function vista() {
+    if (visto || document.visibilityState !== 'visible' || document.prerendering) return;
+    visto = true;
+    visibleDesde = Date.now();
+    medir('vista', { objetivo: document.title.slice(0, 160), detalle: { ref: origen(), w: innerWidth, h: innerHeight } });
+    if (juego) medir('juego', { objetivo: juego });
+  }
 
   // Tiempo visible, profundidad de lectura e interacción (para saber si un juego se jugó de verdad)
-  var visibleDesde = document.visibilityState === 'visible' ? Date.now() : null, visible = 0, hondo = 0, toques = 0;
+  var visibleDesde = null, visible = 0, hondo = 0, toques = 0;
+  vista();
+  document.addEventListener('prerenderingchange', vista);
   function sumar() { if (visibleDesde) { visible += Date.now() - visibleDesde; visibleDesde = null; } }
   addEventListener('scroll', function () {
     var h = document.documentElement.scrollHeight - innerHeight;
@@ -86,7 +103,7 @@
   });
   var cerrado = false;
   function cerrar() {
-    if (cerrado) return;
+    if (cerrado || !visto) return;
     sumar();
     cerrado = true;
     medir(juego ? 'juego_fin' : 'fin', { objetivo: juego, ms: visible, detalle: { hondo: hondo, toques: toques } });
@@ -94,7 +111,8 @@
   }
   document.addEventListener('visibilitychange', function () {
     if (document.visibilityState === 'hidden') { sumar(); enviar(); }
-    else { visibleDesde = Date.now(); }
+    else if (!visto) vista();
+    else visibleDesde = Date.now();
   });
   addEventListener('pagehide', cerrar);
 
