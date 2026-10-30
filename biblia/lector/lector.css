@@ -1,0 +1,98 @@
+/* Lector de la Biblia Verbo con aspecto de libro antiguo. Pedido de Juan (2026-10-28).
+   Papel envejecido, tipografía clásica, números en rojo (rúbrica), capitular, referencias en el margen. */
+:root{
+  --papel:#f1e6cf; --papel-borde:#e2d2b0; --tinta:#2b2118; --tinta-suave:#6b5a45; --rubrica:#9b2c1f;
+  --filete:#b89b6a; --sombra:rgba(60,40,20,.25); --mesa:#3b2c22;
+  --serif:"EB Garamond","Garamond","Georgia","Times New Roman",serif;
+  --titulo:"IM Fell English SC","EB Garamond",Georgia,serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --papel:#2a2219; --papel-borde:#3a2f23; --tinta:#eadcc0; --tinta-suave:#b9a585; --rubrica:#e0806a;
+  --filete:#8a7350; --sombra:rgba(0,0,0,.5); --mesa:#14100c; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --papel:#2a2219; --papel-borde:#3a2f23; --tinta:#eadcc0; --tinta-suave:#b9a585; --rubrica:#e0806a;
+  --filete:#8a7350; --sombra:rgba(0,0,0,.5); --mesa:#14100c; color-scheme:dark}
+
+main#contenido:has(.lector){background:var(--mesa);padding-block:1.5rem 3rem}
+.lector{
+  max-width:52rem;margin:0 auto;color:var(--tinta);font-family:var(--serif);font-size:1.2rem;line-height:1.65;
+  padding:2.5rem max(18px,4vw) 3rem;
+  background:
+    radial-gradient(ellipse at 50% 0%,rgba(255,255,255,.35),transparent 60%),
+    radial-gradient(ellipse at 0% 100%,rgba(120,80,30,.12),transparent 55%),
+    radial-gradient(ellipse at 100% 60%,rgba(120,80,30,.10),transparent 50%),
+    var(--papel);
+  box-shadow:0 1px 0 var(--papel-borde) inset,0 0 0 1px var(--papel-borde),0 18px 40px var(--sombra),inset 0 0 90px rgba(110,70,30,.18);
+  border-radius:3px;
+}
+@media (max-width:600px){.lector{padding:1.5rem 16px 2.5rem;font-size:1.12rem;border-radius:0}main#contenido:has(.lector){padding-block:0}}
+.lector a{color:inherit}
+.lector .ruta{font-family:var(--titulo);font-size:.95rem;letter-spacing:.08em;text-align:center;color:var(--tinta-suave);margin:0}
+.lector .ruta a{text-decoration:none}
+.lector h1{font-family:var(--titulo);font-weight:400;text-align:center;font-size:clamp(2rem,6vw,3.2rem);letter-spacing:.04em;margin:.2em 0 .1em;text-wrap:balance}
+.lector .ornamento{display:block;text-align:center;color:var(--rubrica);letter-spacing:.6em;margin:.2rem 0 1rem;font-size:1rem}
+.lector .ornamento::before{content:"❦ ✠ ❦"}
+.lector .filete{border:0;border-top:1px solid var(--filete);border-bottom:1px solid var(--filete);height:3px;margin:1.2rem 0}
+
+/* Navegación de capítulos */
+.lector .caps{display:flex;flex-wrap:wrap;justify-content:center;gap:.3rem;margin:.6rem 0 0;font-family:var(--serif)}
+.lector .caps a{min-width:2.1rem;text-align:center;padding:.1rem .3rem;text-decoration:none;color:var(--tinta-suave);border-bottom:1px solid transparent;font-variant-numeric:oldstyle-nums}
+.lector .caps a:hover{color:var(--rubrica);border-bottom-color:var(--rubrica)}
+.lector .caps a[aria-current]{color:var(--rubrica);font-weight:600}
+.lector .herramientas{text-align:center;font-style:italic;font-size:.95rem;color:var(--tinta-suave);margin:.6rem 0 0}
+
+/* Texto: versículo a la izquierda, referencias en el margen derecho */
+.lector .texto{margin-top:1.4rem}
+.lector .vs{display:block}
+.lector .vs p{margin:0 0 .35rem;text-align:justify;hyphens:auto}
+.lector .vs sup{color:var(--rubrica);font-size:.62em;font-weight:600;margin-right:.2em;font-variant-numeric:oldstyle-nums}
+.lector .vs:target p{background:linear-gradient(transparent 55%,rgba(155,44,31,.15) 55%)}
+.lector .capitular{float:left;font-family:var(--titulo);color:var(--rubrica);font-size:3.6em;line-height:.8;margin:.08em .12em 0 0}
+.lector .refs{clear:left;font-size:1rem;line-height:1.6;color:var(--tinta-suave);font-style:italic;margin:-.05rem 0 .75rem;padding-left:1.1rem;border-left:2px solid var(--filete)}
+.lector .refs a{text-decoration:none;display:inline}
+.lector .refs a:not(:last-of-type)::after{content:"; "}
+.lector .refs a:hover{color:var(--rubrica);text-decoration:underline}
+.lector .refs .mas{display:inline}
+.lector .refs .mas[hidden]{display:none}
+.lector .refs .vermas{all:unset;cursor:pointer;color:var(--rubrica);font-style:normal;margin-left:.2em}
+.lector .refs .vermas:focus-visible{outline:1px dotted var(--rubrica)}
+
+
+.lector .pasos{display:flex;justify-content:space-between;gap:1rem;margin-top:2rem;flex-wrap:wrap;font-family:var(--titulo);letter-spacing:.04em}
+.lector .pasos a{text-decoration:none}
+.lector .pasos a:hover{color:var(--rubrica)}
+
+/* Portada e índice */
+.lector .portada{text-align:center;margin:1rem 0 1.5rem}
+.lector .portada .sobre{font-family:var(--titulo);letter-spacing:.3em;font-size:1rem;color:var(--tinta-suave);margin:0}
+.lector .portada p{font-style:italic;max-width:34rem;margin:.6rem auto}
+.lector h2{font-family:var(--titulo);font-weight:400;text-align:center;letter-spacing:.06em;color:var(--rubrica);margin:2rem 0 .8rem;font-size:1.5rem}
+.lector .libros{columns:2 14rem;gap:2.5rem;column-rule:1px solid var(--filete)}
+.lector .libros a{display:block;padding:.15rem 0;text-decoration:none;font-variant:small-caps;letter-spacing:.04em;break-inside:avoid}
+.lector .libros a:hover{color:var(--rubrica)}
+.lector .nota{text-align:center;font-size:.85rem;font-style:italic;color:var(--tinta-suave);margin-top:2rem}
+
+/* Buscador */
+.lector form#buscador{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem auto;max-width:36rem}
+.lector input[type=search]{flex:1 1 16rem;font:inherit;font-size:1rem;padding:.6rem .8rem;border:1px solid var(--filete);background:rgba(255,255,255,.25);color:var(--tinta);border-radius:2px}
+.lector form button{font-family:var(--titulo);font-size:1rem;letter-spacing:.06em;padding:.6rem 1.2rem;border:1px solid var(--rubrica);background:var(--rubrica);color:var(--papel);cursor:pointer;border-radius:2px}
+.lector #estado{text-align:center;font-style:italic;color:var(--tinta-suave)}
+.lector #resultados{list-style:none;padding:0;max-width:40rem;margin:0 auto}
+.lector #resultados li{margin:0 0 1.1rem;padding-bottom:.8rem;border-bottom:1px solid var(--filete)}
+.lector #resultados a{font-family:var(--titulo);color:var(--rubrica);text-decoration:none;letter-spacing:.04em}
+.lector #resultados p{margin:.2rem 0 0}
+@media (prefers-reduced-motion:no-preference){.lector .vs:target p{transition:background .4s}}
+
+/* Selector de Testamento, Libro y Capítulo */
+.lector .selector{width:100%;box-sizing:border-box;display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-end;gap:.5rem .8rem;margin:0 0 1.4rem;padding-bottom:1rem;border-bottom:1px solid var(--filete)}
+.lector .selector label{display:flex;flex-direction:column;gap:.15rem;font-family:var(--titulo);font-size:.8rem;letter-spacing:.08em;color:var(--tinta-suave)}
+.lector .selector select{font-family:var(--serif);font-size:1.05rem;padding:.35rem 1.8rem .35rem .6rem;border:1px solid var(--filete);border-radius:2px;color:var(--tinta);background:rgba(255,255,255,.3);min-width:6.5rem}
+.lector .selector select[name=l]{min-width:11rem}
+.lector .selector button{font-family:var(--titulo);font-size:1rem;letter-spacing:.06em;padding:.4rem 1.1rem;border:1px solid var(--rubrica);background:var(--rubrica);color:var(--papel);border-radius:2px;cursor:pointer}
+.lector .busqueda{display:flex;gap:.5rem;max-width:34rem;margin:-0.6rem auto 1.4rem}
+.lector .busqueda input{flex:1;font:inherit;font-size:1rem;padding:.45rem .7rem;border:1px solid var(--filete);background:rgba(255,255,255,.3);color:var(--tinta);border-radius:2px}
+.lector .busqueda button{font-family:var(--titulo);font-size:.95rem;padding:.4rem 1rem;border:1px solid var(--rubrica);background:transparent;color:var(--rubrica);border-radius:2px;cursor:pointer}
+.lector #pasajes{list-style:none;padding:0;max-width:40rem;margin:0 auto}
+.lector #pasajes li{margin:0 0 1.1rem;padding-bottom:.8rem;border-bottom:1px solid var(--filete)}
+.lector #pasajes a{font-family:var(--titulo);color:var(--rubrica);text-decoration:none;letter-spacing:.04em}
+.lector #pasajes p{margin:.2rem 0 0}
