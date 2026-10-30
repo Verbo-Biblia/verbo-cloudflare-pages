@@ -1151,13 +1151,13 @@
   "softwareExtra": {
     "desktopRequirements": "Requirements and release status",
     "desktopSystem": "64-bit Linux (amd64/x86_64). The .deb requires glibc 2.36 or later, for example Linux Mint 22. The .rpm targets openSUSE Tumbleweed. Compatibility with other distributions is not guaranteed.",
-    "desktopVersion": "Beta 0.9 (version 0.9.0, October 2026) for Linux Mint 22 or later and openSUSE Tumbleweed / Leap 16.",
+    "desktopVersion": "Beta 0.9 (version 0.9.2, October 30, 2026) for Linux Mint 22 or later and openSUSE Tumbleweed / Leap 16.",
     "privacyTitle": "Privacy and your resources",
     "privacyBody": "Your library, notes and settings are stored on your computer; Linux application data is in ~/.local/share/verbo-desktop. Local resources can be read offline. Downloading modules, opening links or using remote sources requires internet and contacts their providers.",
     "privacyReport": "The report form on this page opens your email client with the text you write; you decide whether to send it. The page stores your language preference in your browser. Each Bible or module retains its own usage permissions.",
     "desktopVerifyTitle": "How to install Verbo Desktop",
     "desktopVerifyNote": "The RPM has an embedded signature; the DEB uses a separate .asc signature that the graphical installer does not check. Download the key, signature and manifest from the same release. If the name, version or verification does not match, do not install the file.",
-    "desktopMirror": "Downloads are hosted on MEGA. Before installing, check that the file name and its SHA-256 sum match the signed manifest.",
+    "desktopMirror": "Downloads are hosted on GitHub (Juvejona1978/verbo-desktop). Before installing, check that the file name and its SHA-256 sum match the signed manifest.",
     "desktopFingerprint": "Compare the full key fingerprint before trusting it. A valid signature authenticates the package origin; it does not guarantee compatibility with your computer.",
     "lumbreraVerifyTitle": "Signed download: verify before installing",
     "lumbreraVerifyNote": "The RPM has an embedded signature; the DEB uses a separate .asc signature that the graphical installer does not check. Download the key, signature and manifest from the same release. If the name, version or verification does not match, do not install the file.",
@@ -1170,7 +1170,7 @@
     "moreTitle": "Also on your phone and in your browser",
     "moreBody": "On Android, Verbo Biblia supports reading and study; La Senda offers questions to review what you have learned. Visit Apps to discover them or explore Games for more ways to learn and share.",
     "games": "Games",
-    "hubDownloadNote": "External downloads on MEGA. Read the requirements and verification instructions on the Verbo Desktop page before installing.",
+    "hubDownloadNote": "Direct downloads from GitHub. Read the requirements and verification instructions on the Verbo Desktop page before installing.",
     "hubMeta": "Free Verbo software for Linux: Bible study with Verbo Desktop and church projection with Lumbrera. Discover our Android apps and games too.",
     "hubTitle": "Free software for Linux | Verbo",
     "lumbreraMeta": "Lumbrera for Linux: project lyrics and Bible verses, prepare services and import songs. Screenshots, requirements, signed downloads and licensing terms.",
@@ -1202,6 +1202,15 @@
     "desktopBeta": "Beta 0.9",
     "desktopInstall1": "Download the package for your system: .deb for Linux Mint and the Debian family, .rpm for openSUSE.",
     "desktopInstall2": "Double-click the downloaded file and install it with your system’s software installer.",
-    "desktopAdvanced": "Advanced verification (optional)"
+    "desktopAdvanced": "Advanced verification (optional)",
+    "desktopNewsTitle": "What's new in version 0.9.2",
+    "desktopNews1": "Dark mode: Light, Dark or Follow system, in the top bar and in Settings. Dark mode uses light text on a near-black background, easier on the eyes at night.",
+    "desktopNews2": "Verbo Bible updated to the 2026 revision. If you already had the app, it updates itself when you install this version.",
+    "desktopNews3": "Modules included in every section: Matthew Henry's Commentary, Easton's Bible Dictionary, Freeman's Manners and Customs, the Strong's Dictionary (Verbo) and the Apostolic Fathers in Spanish. Every section now opens with content.",
+    "desktopNews4": "Cross-references and comment indicators are 50% larger.",
+    "desktopNews5": "Settings organized into sections (Appearance, Modules, Verse copying) and buttons with a more modern design.",
+    "desktopNews6": "Shortcuts to Games, Images, Software and Bible modules in the top bar.",
+    "desktopNews7": "The app checks for updates on its own and lets you know when a new version is out.",
+    "desktopNews8": "Fixed: on Linux, links in the app did not open in the browser."
   }
 }

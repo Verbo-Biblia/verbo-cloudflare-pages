@@ -1151,13 +1151,13 @@
   "softwareExtra": {
     "desktopRequirements": "Requisitos y estado de la versión",
     "desktopSystem": "Linux de 64 bits (amd64/x86_64). El .deb requiere glibc 2.36 o posterior, por ejemplo Linux Mint 22. El .rpm está preparado para openSUSE Tumbleweed. No se garantiza compatibilidad con otras distribuciones.",
-    "desktopVersion": "Beta 0.9 (versión 0.9.0, octubre de 2026) para Linux Mint 22 o superior y openSUSE Tumbleweed / Leap 16.",
+    "desktopVersion": "Beta 0.9 (versión 0.9.2, 30 de octubre de 2026) para Linux Mint 22 o superior y openSUSE Tumbleweed / Leap 16.",
     "privacyTitle": "Privacidad y tus recursos",
     "privacyBody": "La biblioteca, las notas y los ajustes se guardan en el equipo; en Linux los datos de la aplicación están en ~/.local/share/verbo-desktop. Los recursos locales pueden consultarse sin conexión. Descargar módulos, abrir enlaces o usar fuentes remotas requiere internet y comunica con sus proveedores.",
     "privacyReport": "El formulario de reporte de esta página abre tu cliente de correo con el texto que escribas; tú decides si lo envías. La página guarda tu elección de idioma en el navegador. Cada Biblia o módulo conserva sus propios permisos de uso.",
     "desktopVerifyTitle": "Cómo instalar Verbo Desktop",
     "desktopVerifyNote": "El RPM lleva firma integrada; el DEB usa una firma .asc separada que el instalador gráfico no comprueba. Descarga la clave, la firma y el manifiesto de la misma entrega. Si el nombre, la versión o la verificación no coinciden, no instales el archivo.",
-    "desktopMirror": "Las descargas se alojan en MEGA. Antes de instalar, comprueba que el nombre del archivo y su suma SHA-256 coincidan con el manifiesto firmado.",
+    "desktopMirror": "Las descargas se alojan en GitHub (Juvejona1978/verbo-desktop). Antes de instalar, comprueba que el nombre del archivo y su suma SHA-256 coincidan con el manifiesto firmado.",
     "desktopFingerprint": "Compara la huella completa de la clave antes de confiar en ella. Una firma correcta acredita el origen del paquete; no garantiza compatibilidad con tu equipo.",
     "lumbreraVerifyTitle": "Descarga firmada: verificar antes de instalar",
     "lumbreraVerifyNote": "El RPM lleva firma integrada; el DEB usa una firma .asc separada que el instalador gráfico no comprueba. Descarga la clave, la firma y el manifiesto de la misma entrega. Si el nombre, la versión o la verificación no coinciden, no instales el archivo.",
@@ -1170,7 +1170,7 @@
     "moreTitle": "También en el teléfono y en el navegador",
     "moreBody": "En Android, Verbo Biblia te acompaña en la lectura y el estudio; La Senda propone preguntas para repasar lo aprendido. Visita Apps para conocerlas o explora Juegos para encontrar otras formas de aprender y compartir.",
     "games": "Juegos",
-    "hubDownloadNote": "Descargas externas en MEGA. Revisa los requisitos y las instrucciones de verificación en la página de Verbo Desktop antes de instalar.",
+    "hubDownloadNote": "Descargas directas desde GitHub. Revisa los requisitos y las instrucciones de verificación en la página de Verbo Desktop antes de instalar.",
     "hubMeta": "Programas gratuitos de Verbo para Linux: estudio bíblico con Verbo Desktop y proyección para iglesias con Lumbrera. Descubre también nuestras apps Android y juegos.",
     "hubTitle": "Software gratuito para Linux | Verbo",
     "lumbreraMeta": "Lumbrera para Linux: proyecta letras y versículos, prepara el culto e importa canciones. Capturas, requisitos, descarga firmada y condiciones de licencia.",
@@ -1202,6 +1202,15 @@
     "desktopBeta": "Beta 0.9",
     "desktopInstall1": "Descarga el paquete para tu sistema: .deb para Linux Mint y la familia Debian, .rpm para openSUSE.",
     "desktopInstall2": "Abre el archivo descargado con doble clic e instálalo con el instalador de software de tu sistema.",
-    "desktopAdvanced": "Verificación avanzada (opcional)"
+    "desktopAdvanced": "Verificación avanzada (opcional)",
+    "desktopNewsTitle": "Novedades de la versión 0.9.2",
+    "desktopNews1": "Modo oscuro: Claro, Oscuro o Seguir sistema, en la barra superior y en Configuración. En oscuro, letra clara sobre fondo casi negro, más descansado para la vista de noche.",
+    "desktopNews2": "Biblia Verbo actualizada a la revisión 2026. Si ya tenías la app, se actualiza sola al instalar esta versión.",
+    "desktopNews3": "Módulos incluidos en cada sección: Comentario de Matthew Henry, Diccionario de Easton, Usos y costumbres de Freeman, Diccionario Strong (Verbo) y los Padres Apostólicos en español. Cada sección abre ya con contenido.",
+    "desktopNews4": "Referencias cruzadas e indicadores de comentarios 50 % más grandes.",
+    "desktopNews5": "Configuración ordenada en secciones (Apariencia, Módulos, Copiado de versículos) y botones con un diseño más actual.",
+    "desktopNews6": "Accesos directos a Juegos, Imágenes, Software y Módulos bíblicos en la barra superior.",
+    "desktopNews7": "La app busca actualizaciones sola y avisa cuando hay una versión nueva.",
+    "desktopNews8": "Corregido: en Linux los enlaces de la app no se abrían en el navegador."
   }
 }
