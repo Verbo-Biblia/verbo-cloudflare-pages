@@ -112,7 +112,7 @@ function barra(titulo, color, alVolver) {
       <button class="redondo ${A.sonidoActivo() ? '' : 'apagado'}" id="bSonido" aria-label="Sonido">🔊</button>
     </div>`;
   $('#barra .volver')?.addEventListener('click', () => { A.efecto('abrir'); atras(); });
-  $('#bIdioma').onclick = () => { cambiarIdioma(idioma() === 'es' ? 'en' : 'es'); document.title = ui('titulo'); rehacer(); };
+  $('#bIdioma').onclick = () => { cambiarIdioma(idioma() === 'es' ? 'en' : 'es'); document.title = ui('titulo'); cambiar(rehacer); };   // por cambiar(): detiene burbujas y globos antes de rehacer la pantalla
   $('#bMusica').onclick = (e) => { A.fijarMusica(!A.musicaActiva()); e.currentTarget.classList.toggle('apagado', !A.musicaActiva()); };
   $('#bSonido').onclick = (e) => { A.fijarSonido(!A.sonidoActivo()); e.currentTarget.classList.toggle('apagado', !A.sonidoActivo()); };
 }
