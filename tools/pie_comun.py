@@ -103,14 +103,14 @@ def footer(home=False):
             parts.append('      <a href="/ajustes/" data-i18n="pie.configuracion">Configuración</a>')
         parts.append('    </nav>')
     # Medición propia y anónima para el panel privado (assets/medir.js; ver cloudflare/api-bible-worker/panel.js).
-    return '\n'.join(parts + ['  </div>', '</footer>', '<script src="/assets/medir.js?v=20261029b" defer></script>', END])
+    return '\n'.join(parts + ['  </div>', '</footer>', '<script src="/assets/medir.js?v=20261031" defer></script>', END])
 
 def apply():
     changed = 0
     pages = public_pages()
     for path in pages:
         original = text = path.read_text(encoding='utf-8')
-        asset_version = '20261021-software' if path.relative_to(ROOT).parts[0] in {'software', 'verbo-desktop'} else '20261021-secciones' if path.relative_to(ROOT).parts[0] in {'apps', 'juegos', 'imagenes'} else VERSION
+        asset_version = '20261030-desktop092' if path.relative_to(ROOT).parts[0] in {'software', 'verbo-desktop'} else '20261021-secciones' if path.relative_to(ROOT).parts[0] in {'apps', 'juegos', 'imagenes'} else VERSION
         if START in text:
             text = re.sub(r'\n?' + re.escape(START) + r'.*?' + re.escape(END) + r'\n?', '\n', text, flags=re.S)
         elif path == ROOT / 'index.html':

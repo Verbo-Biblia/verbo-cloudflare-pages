@@ -125,7 +125,7 @@
   window.VerboModoJuego = { movil: movil, pantallaCompleta: pantallaCompleta, orientacion: orientacion };
   // Medición anónima para el panel privado (qué juego, cuánto tiempo, si hubo interacción).
   if (!window.VerboMedir && !document.querySelector('script[src*="/assets/medir.js"]')) {
-    var m = document.createElement('script'); m.src = '/assets/medir.js?v=20261029b'; m.defer = true; document.head.appendChild(m);
+    var m = document.createElement('script'); m.src = '/assets/medir.js?v=20261031'; m.defer = true; document.head.appendChild(m);
   }
   if (document.body) montar(); else document.addEventListener('DOMContentLoaded', montar);
 })();

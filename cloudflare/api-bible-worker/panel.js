@@ -120,6 +120,11 @@ const diaCR = (ms) => new Date(ms - CR).toISOString().slice(0, 10);
 // Origen de cada sesión: el de su primera vista (las páginas siguientes llegan desde el mismo sitio, sin origen).
 // SQLite toma `ref` de la fila con MIN(t).
 const PRIMERA_VISTA = `SELECT sesion, ref, MIN(t) t0 FROM eventos WHERE t >= ? AND t < ? AND tipo='vista' GROUP BY sesion`;
+// Cierres de cada vista: medir.js manda un «fin» cada vez que la página se oculta, con el tiempo acumulado y el id
+// de la vista (pv); vale el mayor. Los eventos sin pv (anteriores) cuentan uno por uno.
+const FINES = `SELECT sesion, ruta, objetivo, tipo, MAX(ms) ms, MAX(json_extract(detalle,'$.hondo')) hondo,
+  MAX(json_extract(detalle,'$.toques')) toques FROM eventos WHERE t >= ? AND t < ? AND tipo IN ('fin','juego_fin')
+  GROUP BY COALESCE(json_extract(detalle,'$.pv'), id)`;
 
 async function resumen(env, dias, hasta) {
   const desde = Math.floor((hasta - CR) / DIA) * DIA + CR - (dias - 1) * DIA;   // medianoche de Costa Rica
@@ -128,22 +133,22 @@ async function resumen(env, dias, hasta) {
   const [total, porDia, origenes, paginas, juegos, descargas, imagenes, lecciones, clics, busquedas, salidas, paises,
     dispositivos, sesiones, votosEv] = await Promise.all([
     uno(`SELECT SUM(tipo='vista') vistas, COUNT(DISTINCT sesion) sesiones, COUNT(DISTINCT visitante) visitantes,
-           SUM(nuevo) nuevos, SUM(CASE WHEN tipo IN ('fin','juego_fin') THEN ms END) ms,
-           COUNT(DISTINCT CASE WHEN tipo IN ('fin','juego_fin') AND ms IS NOT NULL THEN sesion END) sesiones_ms,
+           SUM(nuevo) nuevos, (SELECT SUM(ms) FROM (${FINES})) ms,
+           (SELECT COUNT(DISTINCT sesion) FROM (${FINES}) WHERE ms IS NOT NULL) sesiones_ms,
            SUM(tipo='descarga') descargas, SUM(tipo='juego') juegos,
            SUM(tipo='salida' AND objetivo LIKE '%pinterest.com/pin/create%') pinterest,
-           SUM(tipo='clic' AND objetivo LIKE 'Crear tarjeta%') tarjetas FROM eventos WHERE t >= ? AND t < ?`),
+           SUM(tipo='clic' AND objetivo LIKE 'Crear tarjeta%') tarjetas FROM eventos WHERE t >= ? AND t < ?`, desde, hasta, desde, hasta),
     q(`SELECT date(t/1000 - 21600, 'unixepoch') dia, SUM(tipo='vista') vistas, COUNT(DISTINCT sesion) sesiones
          FROM eventos WHERE t >= ? AND t < ? GROUP BY 1 ORDER BY 1`),
     q(`SELECT COALESCE(ref,'') ref, COUNT(*) sesiones FROM (${PRIMERA_VISTA}) GROUP BY 1 ORDER BY 2 DESC LIMIT 40`),
     q(`SELECT v.ruta, v.objetivo titulo, v.n vistas, f.ms, f.hondo FROM
          (SELECT ruta, MAX(objetivo) objetivo, COUNT(*) n FROM eventos WHERE t >= ? AND t < ? AND tipo='vista' GROUP BY ruta) v
-         LEFT JOIN (SELECT ruta, AVG(ms) ms, AVG(json_extract(detalle,'$.hondo')) hondo FROM eventos WHERE t >= ? AND t < ? AND tipo IN ('fin','juego_fin') GROUP BY ruta) f
+         LEFT JOIN (SELECT ruta, AVG(ms) ms, AVG(hondo) hondo FROM (${FINES}) GROUP BY ruta) f
          ON f.ruta = v.ruta ORDER BY v.n DESC LIMIT 60`, desde, hasta),
     q(`SELECT j.objetivo juego, j.n partidas, j.ses sesiones, f.total, f.media, f.reales FROM
          (SELECT objetivo, COUNT(*) n, COUNT(DISTINCT sesion) ses FROM eventos WHERE t >= ? AND t < ? AND tipo='juego' GROUP BY objetivo) j
-         LEFT JOIN (SELECT objetivo, SUM(ms) total, AVG(ms) media, SUM(json_extract(detalle,'$.toques') >= 5) reales
-           FROM eventos WHERE t >= ? AND t < ? AND tipo='juego_fin' GROUP BY objetivo) f ON f.objetivo = j.objetivo ORDER BY j.n DESC`, desde, hasta),
+         LEFT JOIN (SELECT objetivo, SUM(ms) total, AVG(ms) media, SUM(toques >= 5) reales
+           FROM (${FINES}) WHERE tipo='juego_fin' GROUP BY objetivo) f ON f.objetivo = j.objetivo ORDER BY j.n DESC`, desde, hasta),
     q(`SELECT objetivo, ruta, COUNT(*) n FROM eventos WHERE t >= ? AND t < ? AND tipo='descarga' GROUP BY objetivo ORDER BY n DESC LIMIT 60`),
     q(`SELECT ruta, MAX(objetivo) titulo, COUNT(*) vistas FROM eventos WHERE t >= ? AND t < ? AND tipo='vista' AND ruta LIKE '/imagenes/%' GROUP BY ruta ORDER BY vistas DESC LIMIT 60`),
     q(`SELECT ruta, MAX(objetivo) titulo, SUM(tipo='vista') vistas, SUM(tipo='imprimir') impresiones FROM eventos
@@ -154,11 +159,12 @@ async function resumen(env, dias, hasta) {
     q(`SELECT objetivo, COUNT(*) n FROM eventos WHERE t >= ? AND t < ? AND tipo='salida' GROUP BY objetivo ORDER BY n DESC LIMIT 40`),
     q(`SELECT COALESCE(pais,'?') pais, COUNT(DISTINCT sesion) sesiones FROM eventos WHERE t >= ? AND t < ? GROUP BY 1 ORDER BY 2 DESC LIMIT 30`),
     q(`SELECT COALESCE(disp,'?') disp, COUNT(DISTINCT sesion) sesiones FROM eventos WHERE t >= ? AND t < ? GROUP BY 1 ORDER BY 2 DESC`),
-    q(`SELECT s.*, o.ref FROM
-         (SELECT sesion, MIN(t) inicio, MAX(t) fin, SUM(tipo='vista') paginas, SUM(CASE WHEN tipo IN ('fin','juego_fin') THEN ms END) ms,
-           MAX(pais) pais, MAX(disp) disp, MAX(nuevo) nuevo, GROUP_CONCAT(DISTINCT CASE WHEN tipo='juego' THEN objetivo END) juegos
+    q(`SELECT s.*, o.ref, m.ms FROM
+         (SELECT sesion, MIN(t) inicio, MAX(t) fin, SUM(tipo='vista') paginas, MAX(pais) pais, MAX(disp) disp, MAX(nuevo) nuevo, GROUP_CONCAT(DISTINCT CASE WHEN tipo='juego' THEN objetivo END) juegos
            FROM eventos WHERE t >= ? AND t < ? GROUP BY sesion ORDER BY inicio DESC LIMIT 80) s
-         LEFT JOIN (${PRIMERA_VISTA}) o ON o.sesion = s.sesion ORDER BY s.inicio DESC`, desde, hasta),
+         LEFT JOIN (${PRIMERA_VISTA}) o ON o.sesion = s.sesion
+         LEFT JOIN (SELECT sesion, SUM(ms) ms FROM (${FINES}) GROUP BY sesion) m ON m.sesion = s.sesion ORDER BY s.inicio DESC`,
+      desde, hasta, desde, hasta),
     q(`SELECT objetivo juego, SUM(json_extract(detalle,'$.gusta') = 1) si, SUM(json_extract(detalle,'$.gusta') = 0) no FROM eventos
          WHERE t >= ? AND t < ? AND tipo='voto' GROUP BY objetivo`),
   ]);

@@ -1,6 +1,7 @@
 /* Medición propia de Verbo (para el panel privado de Juan). Anónima: sin cookies, sin nombres, sin IP.
  * - visitante: un id al azar en localStorage (solo distingue visitas nuevas de recurrentes);
- * - sesión: otro id al azar que dura mientras haya actividad (30 min sin actividad = sesión nueva).
+ * - sesión: otro id al azar, compartido entre pestañas, que dura mientras haya actividad (30 min sin actividad =
+ *   sesión nueva); guarda el origen con que empezó para las páginas siguientes.
  * Registra: la vista de cada página (con su origen: Google, Pinterest, Facebook…), los clics (qué y dónde),
  * las descargas, el tiempo visible y hasta dónde se leyó, los juegos (inicio, duración, si hubo interacción),
  * los «Me gustó», las búsquedas y la impresión de lecciones. Los eventos se juntan y se mandan en lotes al
@@ -35,8 +36,11 @@
   var nuevo = !visitante;
   if (nuevo) { visitante = azar(); guardar(localStorage, 'verbo-v', visitante); }
   var ahora = Date.now();
-  var sesion = leer(sessionStorage, 'verbo-s'), ultima = +leer(localStorage, 'verbo-s-t') || 0;
-  if (!sesion || ahora - ultima > 30 * 60 * 1000) { sesion = azar(); guardar(sessionStorage, 'verbo-s', sesion); }
+  // En localStorage y no en sessionStorage: cada pestaña nueva abría otra sesión.
+  var sesion = leer(localStorage, 'verbo-s'), ultima = +leer(localStorage, 'verbo-s-t') || 0;
+  if (!sesion || ahora - ultima > 30 * 60 * 1000) {
+    sesion = azar(); guardar(localStorage, 'verbo-s', sesion); guardar(localStorage, 'verbo-s-ref', origen());
+  }
   guardar(localStorage, 'verbo-s-t', String(ahora));
 
   var ruta = location.pathname;
@@ -80,41 +84,57 @@
 
   // Vista de la página, solo cuando de verdad se ve: Facebook y los navegadores precargan páginas en segundo plano
   // (prerender) y esas cargas no son visitas. Si nunca se llega a ver, no se manda nada.
-  var visto = false;
+  // pv identifica esta vista: su «fin» puede llegar varias veces y el panel se queda con el último.
+  var visto = false, pv = azar();
   function vista() {
     if (visto || document.visibilityState !== 'visible' || document.prerendering) return;
     visto = true;
     visibleDesde = Date.now();
-    medir('vista', { objetivo: document.title.slice(0, 160), detalle: { ref: origen(), w: innerWidth, h: innerHeight } });
+    medir('vista', { objetivo: document.title.slice(0, 160), detalle: { ref: origen() || leer(localStorage, 'verbo-s-ref') || '', w: innerWidth, h: innerHeight } });
     if (juego) medir('juego', { objetivo: juego });
   }
 
   // Tiempo visible, profundidad de lectura e interacción (para saber si un juego se jugó de verdad)
-  var visibleDesde = null, visible = 0, hondo = 0, toques = 0;
+  var visibleDesde = null, visible = 0, hondo = 0, toques = 0, enviado = -1;
   vista();
   document.addEventListener('prerenderingchange', vista);
   function sumar() { if (visibleDesde) { visible += Date.now() - visibleDesde; visibleDesde = null; } }
-  addEventListener('scroll', function () {
-    var h = document.documentElement.scrollHeight - innerHeight;
-    if (h > 0) hondo = Math.max(hondo, Math.round(100 * scrollY / h));
-  }, { passive: true });
+  // Algunas páginas hacen scroll dentro de <body> y no en la ventana: se escucha en document con captura.
+  function desplazable() {
+    var r = document.scrollingElement || document.documentElement, b = document.body;
+    return b && b.scrollHeight - b.clientHeight > r.scrollHeight - r.clientHeight ? b : r;
+  }
+  document.addEventListener('scroll', function (ev) {
+    if (ev.target !== document && ev.target !== document.body) return;
+    var el = desplazable(), h = el.scrollHeight - el.clientHeight;
+    if (h > 0) hondo = Math.max(hondo, Math.round(100 * el.scrollTop / h));
+  }, { passive: true, capture: true });
   ['pointerdown', 'keydown', 'touchstart'].forEach(function (ev) {
     addEventListener(ev, function () { toques++; }, { passive: true, capture: true });
   });
-  var cerrado = false;
-  function cerrar() {
-    if (cerrado || !visto) return;
+  // Cierre: cada vez que la página se oculta, no solo en pagehide (que en el teléfono a menudo no llega), con el
+  // tiempo acumulado. Una página sin scroll se leyó entera; en los juegos la lectura no aplica.
+  function fin() {
+    if (!visto) return;
     sumar();
-    cerrado = true;
-    medir(juego ? 'juego_fin' : 'fin', { objetivo: juego, ms: visible, detalle: { hondo: hondo, toques: toques } });
-    enviar();
+    if (visible === enviado) return;
+    enviado = visible;
+    var el = desplazable();
+    medir(juego ? 'juego_fin' : 'fin', { objetivo: juego, ms: visible,
+      detalle: { pv: pv, hondo: juego ? null : (el.scrollHeight - el.clientHeight > 0 ? hondo : 100), toques: toques } });
   }
   document.addEventListener('visibilitychange', function () {
-    if (document.visibilityState === 'hidden') { sumar(); enviar(); }
+    if (document.visibilityState === 'hidden') { fin(); enviar(); }
     else if (!visto) vista();
     else visibleDesde = Date.now();
   });
-  addEventListener('pagehide', cerrar);
+  addEventListener('pagehide', function () { fin(); enviar(); });
+  // Al volver con «Atrás» el navegador puede restaurar la página de su caché sin recargarla: es otra vista.
+  addEventListener('pageshow', function (ev) {
+    if (!ev.persisted) return;
+    visto = false; pv = azar(); visibleDesde = null; visible = 0; hondo = 0; toques = 0; enviado = -1;
+    vista();
+  });
 
   // Clics: qué se tocó y en qué zona de la página
   function zona(el) {
