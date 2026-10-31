@@ -126,6 +126,40 @@ const FINES = `SELECT sesion, ruta, objetivo, tipo, MAX(ms) ms, MAX(json_extract
   MAX(json_extract(detalle,'$.toques')) toques FROM eventos WHERE t >= ? AND t < ? AND tipo IN ('fin','juego_fin')
   GROUP BY COALESCE(json_extract(detalle,'$.pv'), id)`;
 
+// Sección de cada página, para ver qué contenido retiene a la gente.
+const SECCION = (c) => `CASE WHEN ${c} LIKE '/juegos/%' THEN 'juegos' WHEN ${c} LIKE '/imagenes/%' THEN 'imagenes'
+  WHEN ${c} LIKE '/historias/%' THEN 'historias' WHEN ${c} LIKE '/recursos/escuela-dominical/%' THEN 'lecciones'
+  WHEN ${c} LIKE '/recursos/devocionales/%' OR ${c} LIKE '/libreria/%' THEN 'lectura'
+  WHEN ${c} LIKE '/software/%' OR ${c} LIKE '/verbo-desktop/%' OR ${c} LIKE '/apps/%' THEN 'software'
+  WHEN ${c} LIKE '/musica/%' THEN 'musica' WHEN ${c} = '/' THEN 'portada' ELSE 'otros' END`;
+
+// ¿Se quedan? Por sección: tiempo, si siguen navegando tras entrar por ahí, si vuelven otro día y cómo crece
+// semana a semana (las últimas 4 semanas, sea cual sea el rango elegido).
+async function seQuedan(env, desde, hasta) {
+  const todas = (sql, ...p) => env.VOTOS_DB.prepare(sql).bind(...p).all().then(r => r.results);
+  const V = `SELECT visitante, sesion, t, ${SECCION('ruta')} sec FROM eventos WHERE t >= ? AND t < ? AND tipo='vista'`;
+  const [base, tiempo, entradas, vuelven, semanas] = await Promise.all([
+    todas(`SELECT sec, COUNT(DISTINCT visitante) visitantes, COUNT(DISTINCT sesion) sesiones, COUNT(*) vistas FROM (${V}) GROUP BY sec`, desde, hasta),
+    todas(`SELECT sec, AVG(ms) ms FROM (SELECT sesion, ${SECCION('ruta')} sec, SUM(ms) ms FROM (${FINES}) GROUP BY sesion, sec) GROUP BY sec`, desde, hasta),
+    todas(`SELECT ${SECCION('p.ruta')} sec, COUNT(*) entradas, SUM(c.n > 1) siguieron FROM
+        (SELECT sesion, ruta, MIN(t) t0 FROM eventos WHERE t >= ? AND t < ? AND tipo='vista' GROUP BY sesion) p
+        JOIN (SELECT sesion, COUNT(*) n FROM eventos WHERE t >= ? AND t < ? AND tipo='vista' GROUP BY sesion) c ON c.sesion = p.sesion
+        GROUP BY 1`, desde, hasta, desde, hasta),
+    todas(`SELECT sec, SUM(dias > 1) volvieron FROM
+        (SELECT visitante, sec, COUNT(DISTINCT date(t/1000 - 21600, 'unixepoch')) dias FROM (${V}) GROUP BY visitante, sec) GROUP BY sec`, desde, hasta),
+    todas(`SELECT sec, CAST((? - t) / ${7 * DIA} AS INTEGER) atras, COUNT(DISTINCT visitante) visitantes FROM (${V}) GROUP BY sec, atras`,
+      hasta, hasta - 28 * DIA, hasta),
+  ]);
+  const por = {};
+  const fila = (sec) => (por[sec] ??= { sec, semanas: [0, 0, 0, 0] });
+  base.forEach(r => Object.assign(fila(r.sec), r));
+  tiempo.forEach(r => { fila(r.sec).ms = r.ms; });
+  entradas.forEach(r => Object.assign(fila(r.sec), { entradas: r.entradas, siguieron: r.siguieron }));
+  vuelven.forEach(r => { fila(r.sec).volvieron = r.volvieron; });
+  semanas.forEach(r => { if (r.atras >= 0 && r.atras < 4) fila(r.sec).semanas[3 - r.atras] = r.visitantes; });
+  return Object.values(por).sort((a, b) => (b.visitantes || 0) - (a.visitantes || 0));
+}
+
 async function resumen(env, dias, hasta) {
   const desde = Math.floor((hasta - CR) / DIA) * DIA + CR - (dias - 1) * DIA;   // medianoche de Costa Rica
   const q = (sql, ...p) => env.VOTOS_DB.prepare(sql).bind(desde, hasta, ...p).all().then(r => r.results);
@@ -177,9 +211,10 @@ async function resumen(env, dias, hasta) {
   const porFecha = Object.fromEntries(porDia.map(r => [r.dia, r]));
   const serie = [];
   for (let d = desde; d < hasta; d += DIA) serie.push(porFecha[diaCR(d)] || { dia: diaCR(d), vistas: 0, sesiones: 0 });
+  const quedan = await seQuedan(env, desde, hasta);
   const votos = (await env.VOTOS_DB.prepare('SELECT juego, COUNT(*) n FROM votos GROUP BY juego').all()).results;
   const sugerencias = (await env.VOTOS_DB.prepare('SELECT imagen, texto, creado, estado FROM sugerencias_imagenes ORDER BY creado DESC LIMIT 20').all()).results;
-  return { dias, desde, hasta, total, porDia: serie, origenes, paginas, juegos, descargas, imagenes, lecciones, clics, busquedas, salidas, paises,
+  return { dias, desde, hasta, total, quedan, porDia: serie, origenes, paginas, juegos, descargas, imagenes, lecciones, clics, busquedas, salidas, paises,
     dispositivos, sesiones, votos, votosEv, sugerencias };
 }
 
@@ -225,6 +260,8 @@ const PANEL = pagina(`<header><h1>Panel de Verbo</h1><div class="rango" id="rang
 const $=s=>document.querySelector(s), e=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const n=x=>(+x||0).toLocaleString('es'), dur=ms=>{ms=+ms||0;const s=Math.round(ms/1000);return s<60?s+' s':s<3600?Math.floor(s/60)+' min '+(s%60)+' s':(s/3600).toFixed(1)+' h'};
 const sitio='https://verbobiblia.com',ZONA='America/Costa_Rica';
+const SECCIONES={juegos:'Juegos',imagenes:'Banco de imágenes',historias:'Historias',lecciones:'Lecciones (Escuela Dominical)',lectura:'Librería y devocionales',software:'Software y apps',musica:'Música',portada:'Portada',otros:'Otros (artículos, preguntas…)'};
+const pct=(x,de)=>de?Math.round(100*(+x||0)/de)+' %':'';
 const fuente=r=>!r?'Directo / sin origen':r==='localhost'?'App de Verbo (Android)':/^fb-/.test(r)?'Facebook · '+r.slice(3).replace(/-/g,' '):/google/.test(r)?'Google':/pinterest|pin\\.it/.test(r)?'Pinterest':/facebook|fb\\.|m\\.facebook/.test(r)?'Facebook':/bing/.test(r)?'Bing':/youtube/.test(r)?'YouTube':/whatsapp|wa\\.me/.test(r)?'WhatsApp':/instagram/.test(r)?'Instagram':/chatgpt|openai|perplexity|gemini|claude/.test(r)?'Asistentes de IA':r;
 function tabla(cols,filas,vacio='Sin datos todavía.'){if(!filas.length)return '<p class="vacio">'+vacio+'</p>';
  const max=Math.max(1,...filas.map(f=>+f[cols.find(c=>c.barra)?.k]||0));
@@ -265,6 +302,8 @@ async function cargar(d){document.querySelectorAll('#rango button').forEach(b=>b
  $('#m').innerHTML='<div class="cifras">'+[[n(T.visitantes),'visitantes'],[n(T.nuevos),'nuevos'],[n(T.sesiones),'sesiones'],[n(T.vistas),'páginas vistas'],
   [dur(T.ms/Math.max(1,T.sesiones_ms)),'tiempo medio por sesión (de '+n(T.sesiones_ms)+' con tiempo medido)'],[n(T.juegos),'aperturas de juegos'],[n(T.descargas),'descargas'],[n(T.pinterest),'clics en «Guardar en Pinterest»'],[n(T.tarjetas),'clics en «Crear tarjeta»']]
   .map(c=>'<div class="cifra"><b>'+c[0]+'</b><span>'+c[1]+'</span></div>').join('')+'</div>'
+ +'<section><h2>¿Se quedan? Por sección</h2><p class="nota">«Entraron por aquí»: sesiones que empezaron en esa sección; «Siguieron»: cuántas de ellas vieron otra página. «Volvieron»: visitantes que vinieron a esa sección en más de un día. «Últimas 4 semanas»: visitantes por semana, de la más antigua a la actual (no depende del rango elegido).</p>'
+  +tabla([{t:'Sección',k:'sec',f:v=>e(SECCIONES[v]||v)},{t:'Visitantes',k:'visitantes',num:1,barra:1},{t:'Páginas por sesión',k:'vistas',num:1,f:(v,r)=>((+v||0)/Math.max(1,r.sesiones)).toFixed(1)},{t:'Tiempo por sesión',k:'ms',num:1,f:dur},{t:'Entraron por aquí',k:'entradas',num:1,f:v=>n(v)},{t:'Siguieron',k:'siguieron',num:1,f:(v,r)=>pct(v,r.entradas)},{t:'Volvieron',k:'volvieron',num:1,f:(v,r)=>pct(v,r.visitantes)},{t:'Últimas 4 semanas',k:'semanas',f:v=>v.join(' · ')}],D.quedan)+'</section>'
  +'<section><h2>Visitas por día</h2>'+linea(D.porDia)+'<div id="semana"></div></section><div class="rejilla">'
  +'<section><h2>De dónde llegan</h2><p class="nota">Sesiones por origen (Google, Pinterest, Facebook, enlaces de otros sitios…).</p>'+tabla([{t:'Origen',k:'f'},{t:'Sesiones',k:'n',num:1,barra:1}],Object.entries(fuentes).map(([f,x])=>({f,n:x})).sort((a,b)=>b.n-a.n))+'</section>'
  +'<section><h2>Juegos</h2><p class="nota">«Aperturas»: veces que se abrió el juego. «De verdad»: con 5 toques o teclas o más. «Etapas»: promedio de la etapa más alta terminada por sesión; «Terminaron»: sesiones que llegaron al final (solo los juegos que lo informan). «Me gustó»: total acumulado.</p>'+tabla([{t:'Juego',k:'juego'},{t:'Aperturas',k:'partidas',num:1,barra:1},{t:'De verdad',k:'reales',num:1},{t:'Etapas',k:'media_etapa',num:1,f:(v,j)=>j.etapas?(+v).toFixed(1)+' de '+j.etapas:''},{t:'Terminaron',k:'terminaron',num:1,f:(v,j)=>j.etapas?n(v):''},{t:'Tiempo total',k:'total',num:1,f:dur},{t:'Promedio',k:'media',num:1,f:dur},{t:'👍',k:'votos',num:1}],juegos)+'</section>'
