@@ -29,3 +29,12 @@ id = "a1a2e2765ff34bc7b3abd1dbd17dfb71"
 binding = "VOTOS_DB"
 database_name = "verbo-votos"
 database_id = "8496ecbe-f466-42e7-893d-433e109c95d7"
+
+# Límite de envíos de la medición (/v1/m, panel.js) por IP: 60 lotes por minuto (cada lote trae hasta 50 eventos).
+[[ratelimits]]
+name = "LIMITE_MEDIR"
+namespace_id = "1001"
+
+  [ratelimits.simple]
+  limit = 60
+  period = 60

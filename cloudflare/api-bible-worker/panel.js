@@ -4,11 +4,13 @@
 // GET  /panel         panel privado (pide la clave PANEL_CLAVE, un secreto del Worker:
 //                     `npx wrangler secret put PANEL_CLAVE`); la sesión queda en una cookie firmada por 30 días.
 // GET  /panel/datos   resúmenes en JSON (?dias=1|7|28|90, opcional &hasta=ms)   ·   GET /panel/sesion?id=…  recorrido de una sesión
-// Tabla: medicion.sql (base VOTOS_DB). La IP solo se usa para limitar envíos por hora, nunca se guarda.
+// Tabla: medicion.sql (base VOTOS_DB). La IP solo se usa para limitar envíos, nunca se guarda.
+// Límites: la Cache API no funciona en *.workers.dev, donde se publica este Worker. Los envíos se limitan con el
+// binding de Rate Limiting LIMITE_MEDIR (wrangler.toml) y los intentos de clave del panel, en SYNC_KV por una hora.
 // Los días del panel son de Costa Rica (UTC-6 fijo, sin horario de verano): dias=N cuenta desde la medianoche
 // de Costa Rica de hace N-1 días. La columna `dia` de la tabla (UTC) no se usa.
 
-const EVENTOS_POR_HORA = 1500;
+const INTENTOS_POR_HORA = 10;
 const TIPOS = new Set(['vista', 'fin', 'clic', 'descarga', 'salida', 'juego', 'juego_fin', 'voto', 'busqueda', 'imprimir']);
 const ID = /^[a-z0-9]{8,40}$/;
 
@@ -27,12 +29,8 @@ export async function handleMedir(request, env, headers) {
   if (!lote || !ID.test(lote.v || '') || !ID.test(lote.s || '') || !Array.isArray(lote.e)) return vacio;
 
   const ip = request.headers.get('CF-Connecting-IP') || 'desconocida';
-  const clave = new Request(`https://medir.verbo.internal/${encodeURIComponent(ip)}`);
-  const previo = await caches.default.match(clave);
-  const usados = previo ? Number(await previo.text()) || 0 : 0;
-  if (usados >= EVENTOS_POR_HORA) return vacio;
+  if (env.LIMITE_MEDIR && !(await env.LIMITE_MEDIR.limit({ key: ip })).success) return vacio;
   const eventos = lote.e.slice(0, 50).filter(x => x && TIPOS.has(x.tipo));
-  await caches.default.put(clave, new Response(String(usados + eventos.length), { headers: { 'Cache-Control': 'max-age=3600' } }));
   if (!eventos.length) return vacio;
 
   const visitante = (await sha(`v:${lote.v}`)).slice(0, 20);
@@ -58,30 +56,43 @@ export async function handleMedir(request, env, headers) {
 // ---------- Panel privado ----------
 
 const COOKIE = 'verbo_panel';
-async function firma(env, vence) { return sha(`panel:${env.PANEL_CLAVE}:${vence}`); }
+const texto = (v) => new TextEncoder().encode(v);
+// Firma de la cookie: HMAC-SHA256 con la clave del panel (cambiar la clave cierra todas las sesiones).
+async function firma(env, vence) {
+  const k = await crypto.subtle.importKey('raw', texto(env.PANEL_CLAVE), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
+  return [...new Uint8Array(await crypto.subtle.sign('HMAC', k, texto(`panel:${vence}`)))].map(b => b.toString(16).padStart(2, '0')).join('');
+}
+// Comparación en tiempo constante (no deja adivinar la firma o la clave por lo que tarda la respuesta).
+function iguales(a, b) { const x = texto(a), y = texto(b); return x.length === y.length && crypto.subtle.timingSafeEqual(x, y); }
 async function autorizado(request, env) {
   if (!env.PANEL_CLAVE) return false;
   const m = (request.headers.get('Cookie') || '').match(new RegExp(`${COOKIE}=(\\d+)\\.([a-f0-9]{64})`));
   if (!m || Number(m[1]) < Date.now()) return false;
-  return (await firma(env, m[1])) === m[2];
+  return iguales(await firma(env, m[1]), m[2]);
 }
-const html = (cuerpo, extra = {}) => new Response(cuerpo, { headers: { 'Content-Type': 'text/html; charset=utf-8',
-  'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex, nofollow', 'Referrer-Policy': 'no-referrer', ...extra } });
-const datosJson = (obj) => new Response(JSON.stringify(obj), { headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' } });
+const PRIVADO = { 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex, nofollow', 'Referrer-Policy': 'no-referrer', 'X-Content-Type-Options': 'nosniff' };
+// El panel solo usa su propio HTML, estilo y script en línea, y pide datos a /panel/*; no se puede meter en un marco.
+const CSP = "default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; " +
+  "form-action 'self'; frame-ancestors 'none'; base-uri 'none'";
+const html = (cuerpo, extra = {}) => new Response(cuerpo, { headers: { 'Content-Type': 'text/html; charset=utf-8', ...PRIVADO,
+  'Content-Security-Policy': CSP, 'X-Frame-Options': 'DENY', ...extra } });
+const datosJson = (obj) => new Response(JSON.stringify(obj), { headers: { 'Content-Type': 'application/json; charset=utf-8', ...PRIVADO } });
 
 export async function handlePanel(request, url, env) {
   if (!env.PANEL_CLAVE) return html(pagina('<p class="aviso">Falta configurar la clave del panel. En la carpeta del Worker: <code>npx wrangler secret put PANEL_CLAVE</code></p>'));
   if (url.pathname === '/panel/entrar' && request.method === 'POST') {
+    const origen = request.headers.get('Origin');
+    if (origen && origen !== url.origin) return html(pagina(login('')));   // formulario enviado desde otro sitio
     const form = await request.formData();
     const clave = String(form.get('clave') || '');
-    const ip = request.headers.get('CF-Connecting-IP') || 'desconocida';
-    const k = new Request(`https://panel.verbo.internal/${encodeURIComponent(ip)}`);
-    const intentos = Number(await (await caches.default.match(k))?.text() || 0);
-    if (intentos >= 10) return html(pagina(login('Demasiados intentos. Espera una hora.')));
-    if ((await sha(clave)) !== (await sha(env.PANEL_CLAVE))) {
-      await caches.default.put(k, new Response(String(intentos + 1), { headers: { 'Cache-Control': 'max-age=3600' } }));
+    const k = `panel-intentos:${request.headers.get('CF-Connecting-IP') || 'desconocida'}`;
+    const intentos = Number(await env.SYNC_KV.get(k)) || 0;
+    if (intentos >= INTENTOS_POR_HORA) return html(pagina(login('Demasiados intentos. Espera una hora.')));
+    if (!iguales(await sha(clave), await sha(env.PANEL_CLAVE))) {
+      await env.SYNC_KV.put(k, String(intentos + 1), { expirationTtl: 3600 });
       return html(pagina(login('Clave incorrecta.')));
     }
+    if (intentos) await env.SYNC_KV.delete(k);
     const vence = Date.now() + 30 * 86400000;
     return new Response(null, { status: 303, headers: { Location: '/panel', 'Set-Cookie':
       `${COOKIE}=${vence}.${await firma(env, vence)}; Path=/panel; Max-Age=${30 * 86400}; HttpOnly; Secure; SameSite=Strict` } });
