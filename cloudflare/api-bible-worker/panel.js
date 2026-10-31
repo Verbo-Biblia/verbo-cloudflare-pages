@@ -70,7 +70,9 @@ async function autorizado(request, env) {
   if (!m || Number(m[1]) < Date.now()) return false;
   return iguales(await firma(env, m[1]), m[2]);
 }
-const PRIVADO = { 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex, nofollow', 'Referrer-Policy': 'no-referrer', 'X-Content-Type-Options': 'nosniff' };
+// same-origin y no no-referrer: con no-referrer el navegador manda el formulario de la clave con «Origin: null» y la
+// comprobación de origen lo rechazaba. A otros sitios (los enlaces a verbobiblia.com) no se les manda nada.
+const PRIVADO = { 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex, nofollow', 'Referrer-Policy': 'same-origin', 'X-Content-Type-Options': 'nosniff' };
 // El panel solo usa su propio HTML, estilo y script en línea, y pide datos a /panel/*; no se puede meter en un marco.
 const CSP = "default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; " +
   "form-action 'self'; frame-ancestors 'none'; base-uri 'none'";
@@ -82,7 +84,7 @@ export async function handlePanel(request, url, env) {
   if (!env.PANEL_CLAVE) return html(pagina('<p class="aviso">Falta configurar la clave del panel. En la carpeta del Worker: <code>npx wrangler secret put PANEL_CLAVE</code></p>'));
   if (url.pathname === '/panel/entrar' && request.method === 'POST') {
     const origen = request.headers.get('Origin');
-    if (origen && origen !== url.origin) return html(pagina(login('')));   // formulario enviado desde otro sitio
+    if (origen && origen !== url.origin) return html(pagina(login('Este formulario solo funciona desde la página del panel. Vuelve a abrirla e intenta de nuevo.')));
     const form = await request.formData();
     const clave = String(form.get('clave') || '');
     const k = `panel-intentos:${request.headers.get('CF-Connecting-IP') || 'desconocida'}`;
