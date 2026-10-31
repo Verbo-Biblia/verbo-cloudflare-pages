@@ -12,6 +12,8 @@
  * esa orientación (Android); si no se puede fijar y el teléfono está al revés, pide girarlo. Siempre hay un botón
  * «✕» para salir a la web. Evita el zoom por doble toque y el «tirar para recargar». En computadora solo agrega el
  * botón de salir. El juego puede consultar window.VerboModoJuego (movil, pantallaCompleta()).
+ * Avance para el panel de Verbo: al terminar la etapa n de un total (misión, nivel, capítulo), el juego llama
+ * window.VerboModoJuego?.etapa?.(n, total). Así el panel sabe hasta dónde llega la gente y quién termina el juego.
  */
 (function () {
   'use strict';
@@ -122,7 +124,14 @@
     }
   }
 
-  window.VerboModoJuego = { movil: movil, pantallaCompleta: pantallaCompleta, orientacion: orientacion };
+  var juego = (location.pathname.match(/^\/juegos\/([a-z0-9-]+)\//) || [])[1] || '';
+  function etapa(n, total) {
+    n = Math.round(+n); total = Math.round(+total);
+    if (!juego || !(n > 0) || !(total >= n) || !window.VerboMedir) return;
+    window.VerboMedir('juego_etapa', { objetivo: juego, detalle: { etapa: n, total: total } });
+  }
+
+  window.VerboModoJuego = { movil: movil, pantallaCompleta: pantallaCompleta, orientacion: orientacion, etapa: etapa };
   // Medición anónima para el panel privado (qué juego, cuánto tiempo, si hubo interacción).
   if (!window.VerboMedir && !document.querySelector('script[src*="/assets/medir.js"]')) {
     var m = document.createElement('script'); m.src = '/assets/medir.js?v=20261031'; m.defer = true; document.head.appendChild(m);

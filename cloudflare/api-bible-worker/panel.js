@@ -11,7 +11,7 @@
 // de Costa Rica de hace N-1 días. La columna `dia` de la tabla (UTC) no se usa.
 
 const INTENTOS_POR_HORA = 10;
-const TIPOS = new Set(['vista', 'fin', 'clic', 'descarga', 'salida', 'juego', 'juego_fin', 'voto', 'busqueda', 'imprimir']);
+const TIPOS = new Set(['vista', 'fin', 'clic', 'descarga', 'salida', 'juego', 'juego_fin', 'juego_etapa', 'voto', 'busqueda', 'imprimir']);
 const ID = /^[a-z0-9]{8,40}$/;
 
 async function sha(texto) {
@@ -145,10 +145,15 @@ async function resumen(env, dias, hasta) {
          (SELECT ruta, MAX(objetivo) objetivo, COUNT(*) n FROM eventos WHERE t >= ? AND t < ? AND tipo='vista' GROUP BY ruta) v
          LEFT JOIN (SELECT ruta, AVG(ms) ms, AVG(hondo) hondo FROM (${FINES}) GROUP BY ruta) f
          ON f.ruta = v.ruta ORDER BY v.n DESC LIMIT 60`, desde, hasta),
-    q(`SELECT j.objetivo juego, j.n partidas, j.ses sesiones, f.total, f.media, f.reales FROM
+    // Etapas: lo informan los juegos con VerboModoJuego.etapa(n, total); por sesión vale la más alta terminada.
+    q(`SELECT j.objetivo juego, j.n partidas, j.ses sesiones, f.total, f.media, f.reales, e.etapas, e.media_etapa, e.terminaron FROM
          (SELECT objetivo, COUNT(*) n, COUNT(DISTINCT sesion) ses FROM eventos WHERE t >= ? AND t < ? AND tipo='juego' GROUP BY objetivo) j
          LEFT JOIN (SELECT objetivo, SUM(ms) total, AVG(ms) media, SUM(toques >= 5) reales
-           FROM (${FINES}) WHERE tipo='juego_fin' GROUP BY objetivo) f ON f.objetivo = j.objetivo ORDER BY j.n DESC`, desde, hasta),
+           FROM (${FINES}) WHERE tipo='juego_fin' GROUP BY objetivo) f ON f.objetivo = j.objetivo
+         LEFT JOIN (SELECT objetivo, MAX(total) etapas, AVG(alcanzada) media_etapa, SUM(alcanzada >= total) terminaron FROM
+           (SELECT objetivo, sesion, MAX(json_extract(detalle,'$.etapa')) alcanzada, MAX(json_extract(detalle,'$.total')) total
+             FROM eventos WHERE t >= ? AND t < ? AND tipo='juego_etapa' GROUP BY objetivo, sesion) GROUP BY objetivo) e ON e.objetivo = j.objetivo
+         ORDER BY j.n DESC`, desde, hasta, desde, hasta),
     q(`SELECT objetivo, ruta, COUNT(*) n FROM eventos WHERE t >= ? AND t < ? AND tipo='descarga' GROUP BY objetivo ORDER BY n DESC LIMIT 60`),
     q(`SELECT ruta, MAX(objetivo) titulo, COUNT(*) vistas FROM eventos WHERE t >= ? AND t < ? AND tipo='vista' AND ruta LIKE '/imagenes/%' GROUP BY ruta ORDER BY vistas DESC LIMIT 60`),
     q(`SELECT ruta, MAX(objetivo) titulo, SUM(tipo='vista') vistas, SUM(tipo='imprimir') impresiones FROM eventos
@@ -250,7 +255,7 @@ async function semana(){const el=$('#semana');if(!el)return;const ahora=Date.now
  const lib=Object.entries(libros).sort((x,y)=>y[1]-x[1])[0];if(lib)ideas.push('Las descargas vienen sobre todo de <b>'+e(lib[0])+'</b> ('+lib[1]+'). Ese libro merece más imágenes.');
  const flojo=a.juegos.find(j=>j.partidas>=3&&(+j.reales||0)/j.partidas<0.4);if(flojo)ideas.push('<b>'+e(flojo.juego)+'</b>: muchos lo abren pero pocos lo juegan de verdad. Revisar el inicio.');
  el.innerHTML='<details class="semana"><summary>Resumen de la semana <small>'+(hay?'frente a la anterior hasta la misma hora':'(todavía no hay una semana anterior para comparar)')+'</small></summary>'
-  +'<p class="cifras-s">'+cifra('visitantes','visitantes')+cifra('vistas','páginas')+cifra('juegos','partidas')+cifra('descargas','descargas')+'</p>'
+  +'<p class="cifras-s">'+cifra('visitantes','visitantes')+cifra('vistas','páginas')+cifra('juegos','aperturas')+cifra('descargas','descargas')+'</p>'
   +(ideas.length?'<ul>'+ideas.map(x=>'<li>'+x+'</li>').join('')+'</ul>':'')+'</details>'}
 async function cargar(d){document.querySelectorAll('#rango button').forEach(b=>b.classList.toggle('activo',+b.dataset.d===d));
  const r=await fetch('/panel/datos?dias='+d);if(!r.ok){$('#m').innerHTML='<p>No se pudieron cargar los datos.</p>';return}const D=await r.json(),T=D.total||{};
@@ -258,11 +263,11 @@ async function cargar(d){document.querySelectorAll('#rango button').forEach(b=>b
  const votos=Object.fromEntries(D.votos.map(v=>[v.juego,v.n]));
  const juegos=D.juegos.map(j=>({...j,votos:votos[j.juego]||0}));
  $('#m').innerHTML='<div class="cifras">'+[[n(T.visitantes),'visitantes'],[n(T.nuevos),'nuevos'],[n(T.sesiones),'sesiones'],[n(T.vistas),'páginas vistas'],
-  [dur(T.ms/Math.max(1,T.sesiones_ms)),'tiempo medio por sesión (de '+n(T.sesiones_ms)+' con tiempo medido)'],[n(T.juegos),'partidas de juegos'],[n(T.descargas),'descargas'],[n(T.pinterest),'clics en «Guardar en Pinterest»'],[n(T.tarjetas),'clics en «Crear tarjeta»']]
+  [dur(T.ms/Math.max(1,T.sesiones_ms)),'tiempo medio por sesión (de '+n(T.sesiones_ms)+' con tiempo medido)'],[n(T.juegos),'aperturas de juegos'],[n(T.descargas),'descargas'],[n(T.pinterest),'clics en «Guardar en Pinterest»'],[n(T.tarjetas),'clics en «Crear tarjeta»']]
   .map(c=>'<div class="cifra"><b>'+c[0]+'</b><span>'+c[1]+'</span></div>').join('')+'</div>'
  +'<section><h2>Visitas por día</h2>'+linea(D.porDia)+'<div id="semana"></div></section><div class="rejilla">'
  +'<section><h2>De dónde llegan</h2><p class="nota">Sesiones por origen (Google, Pinterest, Facebook, enlaces de otros sitios…).</p>'+tabla([{t:'Origen',k:'f'},{t:'Sesiones',k:'n',num:1,barra:1}],Object.entries(fuentes).map(([f,x])=>({f,n:x})).sort((a,b)=>b.n-a.n))+'</section>'
- +'<section><h2>Juegos</h2><p class="nota">«Jugadas de verdad»: partidas con 5 toques o teclas o más. «Me gustó»: total acumulado.</p>'+tabla([{t:'Juego',k:'juego'},{t:'Partidas',k:'partidas',num:1,barra:1},{t:'De verdad',k:'reales',num:1},{t:'Tiempo total',k:'total',num:1,f:dur},{t:'Promedio',k:'media',num:1,f:dur},{t:'👍',k:'votos',num:1}],juegos)+'</section>'
+ +'<section><h2>Juegos</h2><p class="nota">«Aperturas»: veces que se abrió el juego. «De verdad»: con 5 toques o teclas o más. «Etapas»: promedio de la etapa más alta terminada por sesión; «Terminaron»: sesiones que llegaron al final (solo los juegos que lo informan). «Me gustó»: total acumulado.</p>'+tabla([{t:'Juego',k:'juego'},{t:'Aperturas',k:'partidas',num:1,barra:1},{t:'De verdad',k:'reales',num:1},{t:'Etapas',k:'media_etapa',num:1,f:(v,j)=>j.etapas?(+v).toFixed(1)+' de '+j.etapas:''},{t:'Terminaron',k:'terminaron',num:1,f:(v,j)=>j.etapas?n(v):''},{t:'Tiempo total',k:'total',num:1,f:dur},{t:'Promedio',k:'media',num:1,f:dur},{t:'👍',k:'votos',num:1}],juegos)+'</section>'
  +'<section><h2>Páginas más vistas</h2><p class="nota">Con el tiempo medio en la página y hasta dónde se lee (%).</p>'+tabla([{t:'Página',k:'ruta',f:enlace},{t:'Vistas',k:'vistas',num:1,barra:1},{t:'Tiempo',k:'ms',num:1,f:dur},{t:'Lectura',k:'hondo',num:1,f:v=>v==null?'':Math.round(v)+'%'}],D.paginas)+'</section>'
  +'<section><h2>Banco de imágenes</h2><p class="nota">Páginas de imágenes más vistas.</p>'+tabla([{t:'Imagen',k:'ruta',f:enlace},{t:'Vistas',k:'vistas',num:1,barra:1}],D.imagenes)+'</section>'
  +'<section><h2>Descargas</h2><p class="nota">Imágenes y archivos descargados.</p>'+tabla([{t:'Archivo',k:'objetivo',f:enlace},{t:'Desde',k:'ruta',f:v=>e(v)},{t:'Veces',k:'n',num:1,barra:1}],D.descargas)+'</section>'

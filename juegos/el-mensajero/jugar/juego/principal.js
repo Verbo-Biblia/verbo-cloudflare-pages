@@ -5,14 +5,14 @@ import * as THREE from 'three';
 import { fijarTextos, traducirPagina, t, idioma, cambiarIdioma } from '../comun/idioma.js';
 import { sonidoActivo, fijarSonido, sonar as sonarComun, precargar } from '../comun/sonido.js';
 import { musica, musicaActiva, fijarMusica } from '../comun/musica.js';
-import { TEXTOS } from './textos.js?v=b171f69d';
-import { entrada, leerEntrada, tomar, conectarTactil, limpiarPulsados, usaTactil, pulsar } from './entrada.js?v=b171f69d';
-import { crearEscena, fijarCalidad, aplicarAmbiente, moverCapas, renderizador, escena, camara } from './mundo.js?v=b171f69d';
-import { cargarAnimaciones, cargarModelo, cargarGlb, Personaje } from './personajes.js?v=b171f69d';
-import { construirNivel, normalizarProp } from './nivel.js?v=b171f69d';
+import { TEXTOS } from './textos.js?v=28b478bc';
+import { entrada, leerEntrada, tomar, conectarTactil, limpiarPulsados, usaTactil, pulsar } from './entrada.js?v=28b478bc';
+import { crearEscena, fijarCalidad, aplicarAmbiente, moverCapas, renderizador, escena, camara } from './mundo.js?v=28b478bc';
+import { cargarAnimaciones, cargarModelo, cargarGlb, Personaje } from './personajes.js?v=28b478bc';
+import { construirNivel, normalizarProp } from './nivel.js?v=28b478bc';
 import { MISIONES } from './misiones/index.js';
-import { Jugador } from './jugador.js?v=b171f69d';
-import { Guardia } from './guardia.js?v=b171f69d';
+import { Jugador } from './jugador.js?v=28b478bc';
+import { Guardia } from './guardia.js?v=28b478bc';
 
 // Pausa de anuncio en un corte natural (apagada mientras /juegos/comun/anuncios.js no se active).
 const pausaAnuncio = (nombre, tipo) => window.VerboAds ? VerboAds.pausa(nombre, tipo) : Promise.resolve();
@@ -819,6 +819,7 @@ function ilustracion(nombre, el = $('ilustracion')) {
 function terminar() {
   fase = 'final';
   try { localStorage.setItem(CLAVE_AVANCE, String(Math.max(avance(), numMision))); } catch { /* sin almacenamiento */ }
+  window.VerboModoJuego?.etapa?.(numMision, MISIONES.length);   // avance para el panel de Verbo (fuera del sitio no hace nada)
   $('btn-siguiente-mision').hidden = numMision >= MISIONES.length;
   document.body.classList.remove('en-relato');
   const m = Math.floor(tiempoJuego / 60), s = Math.floor(tiempoJuego % 60);
