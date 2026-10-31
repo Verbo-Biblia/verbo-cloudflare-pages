@@ -3,8 +3,10 @@
 // POST /v1/m          lotes de eventos de /assets/medir.js (anónimos: id al azar del navegador, sin IP ni cookies).
 // GET  /panel         panel privado (pide la clave PANEL_CLAVE, un secreto del Worker:
 //                     `npx wrangler secret put PANEL_CLAVE`); la sesión queda en una cookie firmada por 30 días.
-// GET  /panel/datos   resúmenes en JSON (?dias=1|7|28|90)   ·   GET /panel/sesion?id=…  recorrido de una sesión
+// GET  /panel/datos   resúmenes en JSON (?dias=1|7|28|90, opcional &hasta=ms)   ·   GET /panel/sesion?id=…  recorrido de una sesión
 // Tabla: medicion.sql (base VOTOS_DB). La IP solo se usa para limitar envíos por hora, nunca se guarda.
+// Los días del panel son de Costa Rica (UTC-6 fijo, sin horario de verano): dias=N cuenta desde la medianoche
+// de Costa Rica de hace N-1 días. La columna `dia` de la tabla (UTC) no se usa.
 
 const EVENTOS_POR_HORA = 1500;
 const TIPOS = new Set(['vista', 'fin', 'clic', 'descarga', 'salida', 'juego', 'juego_fin', 'voto', 'busqueda', 'imprimir']);
@@ -88,7 +90,11 @@ export async function handlePanel(request, url, env) {
     return new Response(null, { status: 303, headers: { Location: '/panel', 'Set-Cookie': `${COOKIE}=; Path=/panel; Max-Age=0; HttpOnly; Secure; SameSite=Strict` } });
   }
   if (!(await autorizado(request, env))) return html(pagina(login('')));
-  if (url.pathname === '/panel/datos') return datosJson(await resumen(env, Math.min(365, Math.max(1, Number(url.searchParams.get('dias')) || 7))));
+  if (url.pathname === '/panel/datos') {
+    const dias = Math.min(365, Math.max(1, Number(url.searchParams.get('dias')) || 7));
+    const hasta = Math.min(Date.now(), Number(url.searchParams.get('hasta')) || Date.now());
+    return datosJson(await resumen(env, dias, hasta));
+  }
   if (url.pathname === '/panel/sesion') {
     const id = String(url.searchParams.get('id') || '');
     const { results } = await env.VOTOS_DB.prepare('SELECT t, tipo, ruta, objetivo, detalle, ms FROM eventos WHERE sesion = ? ORDER BY t LIMIT 500').bind(id).all();
@@ -97,44 +103,61 @@ export async function handlePanel(request, url, env) {
   return html(PANEL);
 }
 
-async function resumen(env, dias) {
-  const desde = Date.now() - dias * 86400000;
-  const q = (sql, ...p) => env.VOTOS_DB.prepare(sql).bind(desde, ...p).all().then(r => r.results);
-  const uno = (sql, ...p) => env.VOTOS_DB.prepare(sql).bind(desde, ...p).first();
+const DIA = 86400000;
+const CR = 6 * 3600000;                                   // Costa Rica: UTC-6 fijo, sin horario de verano
+const diaCR = (ms) => new Date(ms - CR).toISOString().slice(0, 10);
+// Origen de cada sesión: el de su primera vista (las páginas siguientes llegan desde el mismo sitio, sin origen).
+// SQLite toma `ref` de la fila con MIN(t).
+const PRIMERA_VISTA = `SELECT sesion, ref, MIN(t) t0 FROM eventos WHERE t >= ? AND t < ? AND tipo='vista' GROUP BY sesion`;
+
+async function resumen(env, dias, hasta) {
+  const desde = Math.floor((hasta - CR) / DIA) * DIA + CR - (dias - 1) * DIA;   // medianoche de Costa Rica
+  const q = (sql, ...p) => env.VOTOS_DB.prepare(sql).bind(desde, hasta, ...p).all().then(r => r.results);
+  const uno = (sql, ...p) => env.VOTOS_DB.prepare(sql).bind(desde, hasta, ...p).first();
   const [total, porDia, origenes, paginas, juegos, descargas, imagenes, lecciones, clics, busquedas, salidas, paises,
     dispositivos, sesiones, votosEv] = await Promise.all([
     uno(`SELECT SUM(tipo='vista') vistas, COUNT(DISTINCT sesion) sesiones, COUNT(DISTINCT visitante) visitantes,
            SUM(nuevo) nuevos, SUM(CASE WHEN tipo IN ('fin','juego_fin') THEN ms END) ms,
-           SUM(tipo='descarga') descargas, SUM(tipo='juego') juegos FROM eventos WHERE t >= ?`),
-    q(`SELECT dia, SUM(tipo='vista') vistas, COUNT(DISTINCT sesion) sesiones FROM eventos WHERE t >= ? GROUP BY dia ORDER BY dia`),
-    q(`SELECT COALESCE(ref,'') ref, COUNT(DISTINCT sesion) sesiones FROM eventos WHERE t >= ? AND tipo='vista' GROUP BY 1 ORDER BY 2 DESC LIMIT 40`),
+           COUNT(DISTINCT CASE WHEN tipo IN ('fin','juego_fin') AND ms IS NOT NULL THEN sesion END) sesiones_ms,
+           SUM(tipo='descarga') descargas, SUM(tipo='juego') juegos,
+           SUM(tipo='salida' AND objetivo LIKE '%pinterest.com/pin/create%') pinterest,
+           SUM(tipo='clic' AND objetivo LIKE 'Crear tarjeta%') tarjetas FROM eventos WHERE t >= ? AND t < ?`),
+    q(`SELECT date(t/1000 - 21600, 'unixepoch') dia, SUM(tipo='vista') vistas, COUNT(DISTINCT sesion) sesiones
+         FROM eventos WHERE t >= ? AND t < ? GROUP BY 1 ORDER BY 1`),
+    q(`SELECT COALESCE(ref,'') ref, COUNT(*) sesiones FROM (${PRIMERA_VISTA}) GROUP BY 1 ORDER BY 2 DESC LIMIT 40`),
     q(`SELECT v.ruta, v.objetivo titulo, v.n vistas, f.ms, f.hondo FROM
-         (SELECT ruta, MAX(objetivo) objetivo, COUNT(*) n FROM eventos WHERE t >= ? AND tipo='vista' GROUP BY ruta) v
-         LEFT JOIN (SELECT ruta, AVG(ms) ms, AVG(json_extract(detalle,'$.hondo')) hondo FROM eventos WHERE t >= ? AND tipo IN ('fin','juego_fin') GROUP BY ruta) f
-         ON f.ruta = v.ruta ORDER BY v.n DESC LIMIT 60`, desde),
+         (SELECT ruta, MAX(objetivo) objetivo, COUNT(*) n FROM eventos WHERE t >= ? AND t < ? AND tipo='vista' GROUP BY ruta) v
+         LEFT JOIN (SELECT ruta, AVG(ms) ms, AVG(json_extract(detalle,'$.hondo')) hondo FROM eventos WHERE t >= ? AND t < ? AND tipo IN ('fin','juego_fin') GROUP BY ruta) f
+         ON f.ruta = v.ruta ORDER BY v.n DESC LIMIT 60`, desde, hasta),
     q(`SELECT j.objetivo juego, j.n partidas, j.ses sesiones, f.total, f.media, f.reales FROM
-         (SELECT objetivo, COUNT(*) n, COUNT(DISTINCT sesion) ses FROM eventos WHERE t >= ? AND tipo='juego' GROUP BY objetivo) j
+         (SELECT objetivo, COUNT(*) n, COUNT(DISTINCT sesion) ses FROM eventos WHERE t >= ? AND t < ? AND tipo='juego' GROUP BY objetivo) j
          LEFT JOIN (SELECT objetivo, SUM(ms) total, AVG(ms) media, SUM(json_extract(detalle,'$.toques') >= 5) reales
-           FROM eventos WHERE t >= ? AND tipo='juego_fin' GROUP BY objetivo) f ON f.objetivo = j.objetivo ORDER BY j.n DESC`, desde),
-    q(`SELECT objetivo, ruta, COUNT(*) n FROM eventos WHERE t >= ? AND tipo='descarga' GROUP BY objetivo ORDER BY n DESC LIMIT 60`),
-    q(`SELECT ruta, MAX(objetivo) titulo, COUNT(*) vistas FROM eventos WHERE t >= ? AND tipo='vista' AND ruta LIKE '/imagenes/%' GROUP BY ruta ORDER BY vistas DESC LIMIT 60`),
+           FROM eventos WHERE t >= ? AND t < ? AND tipo='juego_fin' GROUP BY objetivo) f ON f.objetivo = j.objetivo ORDER BY j.n DESC`, desde, hasta),
+    q(`SELECT objetivo, ruta, COUNT(*) n FROM eventos WHERE t >= ? AND t < ? AND tipo='descarga' GROUP BY objetivo ORDER BY n DESC LIMIT 60`),
+    q(`SELECT ruta, MAX(objetivo) titulo, COUNT(*) vistas FROM eventos WHERE t >= ? AND t < ? AND tipo='vista' AND ruta LIKE '/imagenes/%' GROUP BY ruta ORDER BY vistas DESC LIMIT 60`),
     q(`SELECT ruta, MAX(objetivo) titulo, SUM(tipo='vista') vistas, SUM(tipo='imprimir') impresiones FROM eventos
-         WHERE t >= ? AND ruta LIKE '/recursos/escuela-dominical/%' GROUP BY ruta ORDER BY vistas DESC LIMIT 60`),
-    q(`SELECT ruta, objetivo, json_extract(detalle,'$.zona') zona, COUNT(*) n FROM eventos WHERE t >= ? AND tipo IN ('clic','descarga','salida','imprimir')
+         WHERE t >= ? AND t < ? AND ruta LIKE '/recursos/escuela-dominical/%' GROUP BY ruta ORDER BY vistas DESC LIMIT 60`),
+    q(`SELECT ruta, objetivo, json_extract(detalle,'$.zona') zona, COUNT(*) n FROM eventos WHERE t >= ? AND t < ? AND tipo IN ('clic','descarga','salida','imprimir')
          GROUP BY ruta, objetivo, zona ORDER BY n DESC LIMIT 80`),
-    q(`SELECT ruta, objetivo, COUNT(*) n FROM eventos WHERE t >= ? AND tipo='busqueda' GROUP BY ruta, objetivo ORDER BY n DESC LIMIT 50`),
-    q(`SELECT objetivo, COUNT(*) n FROM eventos WHERE t >= ? AND tipo='salida' GROUP BY objetivo ORDER BY n DESC LIMIT 40`),
-    q(`SELECT COALESCE(pais,'?') pais, COUNT(DISTINCT sesion) sesiones FROM eventos WHERE t >= ? GROUP BY 1 ORDER BY 2 DESC LIMIT 30`),
-    q(`SELECT COALESCE(disp,'?') disp, COUNT(DISTINCT sesion) sesiones FROM eventos WHERE t >= ? GROUP BY 1 ORDER BY 2 DESC`),
-    q(`SELECT sesion, MIN(t) inicio, MAX(t) fin, SUM(tipo='vista') paginas, SUM(CASE WHEN tipo IN ('fin','juego_fin') THEN ms END) ms,
-         MAX(ref) ref, MAX(pais) pais, MAX(disp) disp, MAX(nuevo) nuevo, GROUP_CONCAT(DISTINCT CASE WHEN tipo='juego' THEN objetivo END) juegos
-         FROM eventos WHERE t >= ? GROUP BY sesion ORDER BY inicio DESC LIMIT 80`),
+    q(`SELECT ruta, objetivo, COUNT(*) n FROM eventos WHERE t >= ? AND t < ? AND tipo='busqueda' GROUP BY ruta, objetivo ORDER BY n DESC LIMIT 50`),
+    q(`SELECT objetivo, COUNT(*) n FROM eventos WHERE t >= ? AND t < ? AND tipo='salida' GROUP BY objetivo ORDER BY n DESC LIMIT 40`),
+    q(`SELECT COALESCE(pais,'?') pais, COUNT(DISTINCT sesion) sesiones FROM eventos WHERE t >= ? AND t < ? GROUP BY 1 ORDER BY 2 DESC LIMIT 30`),
+    q(`SELECT COALESCE(disp,'?') disp, COUNT(DISTINCT sesion) sesiones FROM eventos WHERE t >= ? AND t < ? GROUP BY 1 ORDER BY 2 DESC`),
+    q(`SELECT s.*, o.ref FROM
+         (SELECT sesion, MIN(t) inicio, MAX(t) fin, SUM(tipo='vista') paginas, SUM(CASE WHEN tipo IN ('fin','juego_fin') THEN ms END) ms,
+           MAX(pais) pais, MAX(disp) disp, MAX(nuevo) nuevo, GROUP_CONCAT(DISTINCT CASE WHEN tipo='juego' THEN objetivo END) juegos
+           FROM eventos WHERE t >= ? AND t < ? GROUP BY sesion ORDER BY inicio DESC LIMIT 80) s
+         LEFT JOIN (${PRIMERA_VISTA}) o ON o.sesion = s.sesion ORDER BY s.inicio DESC`, desde, hasta),
     q(`SELECT objetivo juego, SUM(json_extract(detalle,'$.gusta') = 1) si, SUM(json_extract(detalle,'$.gusta') = 0) no FROM eventos
-         WHERE t >= ? AND tipo='voto' GROUP BY objetivo`),
+         WHERE t >= ? AND t < ? AND tipo='voto' GROUP BY objetivo`),
   ]);
+  // Un punto por día, también los días sin visitas (si no, la gráfica junta días separados).
+  const porFecha = Object.fromEntries(porDia.map(r => [r.dia, r]));
+  const serie = [];
+  for (let d = desde; d < hasta; d += DIA) serie.push(porFecha[diaCR(d)] || { dia: diaCR(d), vistas: 0, sesiones: 0 });
   const votos = (await env.VOTOS_DB.prepare('SELECT juego, COUNT(*) n FROM votos GROUP BY juego').all()).results;
   const sugerencias = (await env.VOTOS_DB.prepare('SELECT imagen, texto, creado, estado FROM sugerencias_imagenes ORDER BY creado DESC LIMIT 20').all()).results;
-  return { dias, total, porDia, origenes, paginas, juegos, descargas, imagenes, lecciones, clics, busquedas, salidas, paises,
+  return { dias, desde, hasta, total, porDia: serie, origenes, paginas, juegos, descargas, imagenes, lecciones, clics, busquedas, salidas, paises,
     dispositivos, sesiones, votos, votosEv, sugerencias };
 }
 
@@ -179,8 +202,8 @@ const PANEL = pagina(`<header><h1>Panel de Verbo</h1><div class="rango" id="rang
 <script>
 const $=s=>document.querySelector(s), e=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const n=x=>(+x||0).toLocaleString('es'), dur=ms=>{ms=+ms||0;const s=Math.round(ms/1000);return s<60?s+' s':s<3600?Math.floor(s/60)+' min '+(s%60)+' s':(s/3600).toFixed(1)+' h'};
-const sitio='https://verbobiblia.com';
-const fuente=r=>!r?'Directo / sin origen':/^fb-/.test(r)?'Facebook · '+r.slice(3).replace(/-/g,' '):/google/.test(r)?'Google':/pinterest|pin\\.it/.test(r)?'Pinterest':/facebook|fb\\.|m\\.facebook/.test(r)?'Facebook':/bing/.test(r)?'Bing':/youtube/.test(r)?'YouTube':/whatsapp|wa\\.me/.test(r)?'WhatsApp':/instagram/.test(r)?'Instagram':/chatgpt|openai|perplexity|gemini|claude/.test(r)?'Asistentes de IA':r;
+const sitio='https://verbobiblia.com',ZONA='America/Costa_Rica';
+const fuente=r=>!r?'Directo / sin origen':r==='localhost'?'App de Verbo (Android)':/^fb-/.test(r)?'Facebook · '+r.slice(3).replace(/-/g,' '):/google/.test(r)?'Google':/pinterest|pin\\.it/.test(r)?'Pinterest':/facebook|fb\\.|m\\.facebook/.test(r)?'Facebook':/bing/.test(r)?'Bing':/youtube/.test(r)?'YouTube':/whatsapp|wa\\.me/.test(r)?'WhatsApp':/instagram/.test(r)?'Instagram':/chatgpt|openai|perplexity|gemini|claude/.test(r)?'Asistentes de IA':r;
 function tabla(cols,filas,vacio='Sin datos todavía.'){if(!filas.length)return '<p class="vacio">'+vacio+'</p>';
  const max=Math.max(1,...filas.map(f=>+f[cols.find(c=>c.barra)?.k]||0));
  return '<div class="tabla"><table><tr>'+cols.map(c=>'<th>'+c.t+'</th>').join('')+'</tr>'+filas.map(f=>'<tr'+(f._attr||'')+'>'+cols.map(c=>{let v=c.f?c.f(f[c.k],f):e(f[c.k]);
@@ -192,23 +215,24 @@ function linea(d){if(!d.length)return '<p class="vacio">Sin datos todavía.</p>'
  return '<svg viewBox="0 0 '+W+' '+H+'" width="100%" role="img" aria-label="Visitas por día"><path d="'+camino('vistas')+'" fill="none" stroke="var(--oro)" stroke-width="2.5"/><path d="'+camino('sesiones')+'" fill="none" stroke="var(--azul)" stroke-width="2"/>'
  +d.map((r,i)=>'<circle cx="'+x(i).toFixed(1)+'" cy="'+y(r.vistas).toFixed(1)+'" r="4" fill="var(--oro)"><title>'+r.dia+': '+r.vistas+' páginas</title></circle><circle cx="'+x(i).toFixed(1)+'" cy="'+y(r.sesiones).toFixed(1)+'" r="3.5" fill="var(--azul)"><title>'+r.dia+': '+r.sesiones+' sesiones</title></circle>').join('')
  +d.map((r,i)=>i%Math.ceil(d.length/10)?'':'<text x="'+x(i)+'" y="'+(H-6)+'" text-anchor="middle">'+r.dia.slice(5)+'</text>').join('')+'<text x="'+p+'" y="14">'+max+'</text></svg><p class="nota"><span style="color:var(--oro)">●</span> páginas vistas · <span style="color:var(--azul)">●</span> sesiones</p>'}
-async function semana(){const el=$('#semana');if(!el)return;
- const [a,b]=await Promise.all([7,14].map(d=>fetch('/panel/datos?dias='+d).then(r=>r.ok?r.json():null)));if(!a||!b)return;
- const A=a.total||{},B=b.total||{},prev=k=>(+B[k]||0)-(+A[k]||0),hay=b.porDia.length>a.porDia.length;
+// Esta semana (7 días de Costa Rica hasta ahora) frente a la anterior cortada a la misma hora, para comparar tramos iguales.
+async function semana(){const el=$('#semana');if(!el)return;const ahora=Date.now();
+ const [a,b]=await Promise.all([ahora,ahora-7*864e5].map(h=>fetch('/panel/datos?dias=7&hasta='+h).then(r=>r.ok?r.json():null)));if(!a||!b)return;
+ const A=a.total||{},B=b.total||{},prev=k=>+B[k]||0,hay=(+B.visitantes||0)>0;
  const flecha=(x,y)=>!hay?'':y===0?(x?' <i class="sube">nuevo</i>':''):' <i class="'+(x>=y?'sube':'baja')+'">'+(x>=y?'▲':'▼')+' '+Math.abs(Math.round(100*(x-y)/y))+' %</i>';
  const cifra=(k,t)=>'<span><b>'+n(A[k])+'</b> '+t+flecha(+A[k]||0,prev(k))+'</span>';
  const mapa=(l,k,v)=>Object.fromEntries(l.map(x=>[x[k],+x[v]||0]));
  const pa=mapa(a.paginas,'ruta','vistas'),pb=mapa(b.paginas,'ruta','vistas');
- const suben=Object.entries(pa).map(([r,x])=>[r,x-((pb[r]||0)-x)]).filter(x=>x[1]>0).sort((x,y)=>y[1]-x[1]).slice(0,3);
+ const suben=Object.entries(pa).map(([r,x])=>[r,x-(pb[r]||0)]).filter(x=>x[1]>0).sort((x,y)=>y[1]-x[1]).slice(0,3);
  const fa={};a.origenes.forEach(o=>{const f=fuente(o.ref);fa[f]=(fa[f]||0)+o.sesiones});
  const top=Object.entries(fa).sort((x,y)=>y[1]-x[1])[0];
  const ideas=[];
- if(suben.length)ideas.push('Lo que más creció: <a href="'+sitio+e(suben[0][0])+'" target="_blank" rel="noopener">'+e(suben[0][0])+'</a>. Conviene hacer más contenido de ese tipo.');
+ if(hay&&suben.length)ideas.push('Lo que más creció: <a href="'+sitio+e(suben[0][0])+'" target="_blank" rel="noopener">'+e(suben[0][0])+'</a>. Conviene hacer más contenido de ese tipo.');
  if(top)ideas.push('La mayoría llega por <b>'+e(top[0])+'</b> ('+top[1]+' sesiones).');
  const libros={};a.descargas.forEach(x=>{const m=(x.objetivo||'').split('/')[2];if(m)libros[m]=(libros[m]||0)+x.n});
  const lib=Object.entries(libros).sort((x,y)=>y[1]-x[1])[0];if(lib)ideas.push('Las descargas vienen sobre todo de <b>'+e(lib[0])+'</b> ('+lib[1]+'). Ese libro merece más imágenes.');
  const flojo=a.juegos.find(j=>j.partidas>=3&&(+j.reales||0)/j.partidas<0.4);if(flojo)ideas.push('<b>'+e(flojo.juego)+'</b>: muchos lo abren pero pocos lo juegan de verdad. Revisar el inicio.');
- el.innerHTML='<details class="semana"><summary>Resumen de la semana <small>'+(hay?'frente a la anterior':'(todavía no hay una semana anterior para comparar)')+'</small></summary>'
+ el.innerHTML='<details class="semana"><summary>Resumen de la semana <small>'+(hay?'frente a la anterior hasta la misma hora':'(todavía no hay una semana anterior para comparar)')+'</small></summary>'
   +'<p class="cifras-s">'+cifra('visitantes','visitantes')+cifra('vistas','páginas')+cifra('juegos','partidas')+cifra('descargas','descargas')+'</p>'
   +(ideas.length?'<ul>'+ideas.map(x=>'<li>'+x+'</li>').join('')+'</ul>':'')+'</details>'}
 async function cargar(d){document.querySelectorAll('#rango button').forEach(b=>b.classList.toggle('activo',+b.dataset.d===d));
@@ -216,9 +240,8 @@ async function cargar(d){document.querySelectorAll('#rango button').forEach(b=>b
  const fuentes={};D.origenes.forEach(o=>{const f=fuente(o.ref);fuentes[f]=(fuentes[f]||0)+o.sesiones});
  const votos=Object.fromEntries(D.votos.map(v=>[v.juego,v.n]));
  const juegos=D.juegos.map(j=>({...j,votos:votos[j.juego]||0}));
- const pinterest=D.clics.filter(c=>/pinterest/i.test(c.objetivo||'')).reduce((a,c)=>a+c.n,0),tarjetas=D.clics.filter(c=>/tarjeta/i.test(c.objetivo||'')).reduce((a,c)=>a+c.n,0);
  $('#m').innerHTML='<div class="cifras">'+[[n(T.visitantes),'visitantes'],[n(T.nuevos),'nuevos'],[n(T.sesiones),'sesiones'],[n(T.vistas),'páginas vistas'],
-  [dur(T.ms/Math.max(1,T.sesiones)),'tiempo medio por sesión'],[n(T.juegos),'partidas de juegos'],[n(T.descargas),'descargas'],[n(pinterest),'guardados en Pinterest'],[n(tarjetas),'tarjetas creadas']]
+  [dur(T.ms/Math.max(1,T.sesiones_ms)),'tiempo medio por sesión (de '+n(T.sesiones_ms)+' con tiempo medido)'],[n(T.juegos),'partidas de juegos'],[n(T.descargas),'descargas'],[n(T.pinterest),'clics en «Guardar en Pinterest»'],[n(T.tarjetas),'clics en «Crear tarjeta»']]
   .map(c=>'<div class="cifra"><b>'+c[0]+'</b><span>'+c[1]+'</span></div>').join('')+'</div>'
  +'<section><h2>Visitas por día</h2>'+linea(D.porDia)+'<div id="semana"></div></section><div class="rejilla">'
  +'<section><h2>De dónde llegan</h2><p class="nota">Sesiones por origen (Google, Pinterest, Facebook, enlaces de otros sitios…).</p>'+tabla([{t:'Origen',k:'f'},{t:'Sesiones',k:'n',num:1,barra:1}],Object.entries(fuentes).map(([f,x])=>({f,n:x})).sort((a,b)=>b.n-a.n))+'</section>'
@@ -231,12 +254,12 @@ async function cargar(d){document.querySelectorAll('#rango button').forEach(b=>b
  +'<section><h2>Búsquedas</h2>'+tabla([{t:'Buscaron',k:'objetivo'},{t:'Dónde',k:'ruta'},{t:'Veces',k:'n',num:1,barra:1}],D.busquedas)+'</section>'
  +'<section><h2>Enlaces de salida</h2><p class="nota">A qué otros sitios se van (Play Store, YouTube, Pinterest…).</p>'+tabla([{t:'Destino',k:'objetivo',f:v=>e(v)},{t:'Veces',k:'n',num:1,barra:1}],D.salidas)+'</section>'
  +'<section><h2>Países y dispositivos</h2>'+tabla([{t:'País',k:'pais'},{t:'Sesiones',k:'sesiones',num:1,barra:1}],D.paises)+tabla([{t:'Dispositivo',k:'disp'},{t:'Sesiones',k:'sesiones',num:1,barra:1}],D.dispositivos)+'</section>'
- +'<section><h2>Sugerencias de imágenes</h2>'+tabla([{t:'Imagen',k:'imagen'},{t:'Sugerencia',k:'texto'},{t:'Fecha',k:'creado',f:v=>new Date(v).toLocaleDateString('es')}],D.sugerencias,'No hay sugerencias.')+'</section>'
+ +'<section><h2>Sugerencias de imágenes</h2>'+tabla([{t:'Imagen',k:'imagen'},{t:'Sugerencia',k:'texto'},{t:'Fecha',k:'creado',f:v=>new Date(v).toLocaleDateString('es',{timeZone:ZONA})}],D.sugerencias,'No hay sugerencias.')+'</section>'
  +'</div><section id="sesiones"><h2>Sesiones recientes</h2><p class="nota">Cada fila es una visita anónima. Tócala para ver su recorrido.</p>'
- +tabla([{t:'Inicio',k:'inicio',f:v=>new Date(v).toLocaleString('es',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})},{t:'Origen',k:'ref',f:v=>e(fuente(v))},{t:'Páginas',k:'paginas',num:1},{t:'Duración',k:'ms',num:1,f:dur},{t:'Juegos',k:'juegos'},{t:'País',k:'pais'},{t:'Disp.',k:'disp'},{t:'Nuevo',k:'nuevo',f:v=>v?'sí':''}],
+ +tabla([{t:'Inicio',k:'inicio',f:v=>new Date(v).toLocaleString('es',{timeZone:ZONA,day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})},{t:'Origen',k:'ref',f:v=>e(fuente(v))},{t:'Páginas',k:'paginas',num:1},{t:'Duración',k:'ms',num:1,f:dur},{t:'Juegos',k:'juegos'},{t:'País',k:'pais'},{t:'Disp.',k:'disp'},{t:'Nuevo',k:'nuevo',f:v=>v?'sí':''}],
    D.sesiones.map(s=>({...s,_attr:' class="ses" data-s="'+e(s.sesion)+'"'})))+'<ol id="recorrido"></ol></section>';
  document.querySelectorAll('tr.ses').forEach(tr=>tr.onclick=async()=>{const r=await (await fetch('/panel/sesion?id='+tr.dataset.s)).json();
-  $('#recorrido').innerHTML=r.eventos.map(x=>'<li>'+new Date(x.t).toLocaleTimeString('es')+' · <b>'+e(x.tipo)+'</b> '+e(x.ruta)+(x.objetivo?' → '+e(x.objetivo):'')+(x.ms?' ('+dur(x.ms)+')':'')+'</li>').join('');
+  $('#recorrido').innerHTML=r.eventos.map(x=>'<li>'+new Date(x.t).toLocaleTimeString('es',{timeZone:ZONA})+' · <b>'+e(x.tipo)+'</b> '+e(x.ruta)+(x.objetivo?' → '+e(x.objetivo):'')+(x.ms?' ('+dur(x.ms)+')':'')+'</li>').join('');
   $('#recorrido').scrollIntoView({behavior:'smooth',block:'nearest'})});
  semana();
 }

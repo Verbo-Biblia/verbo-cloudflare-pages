@@ -4,7 +4,7 @@
 CREATE TABLE IF NOT EXISTS eventos (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   t INTEGER NOT NULL,            -- milisegundos (UTC)
-  dia TEXT NOT NULL,             -- AAAA-MM-DD (UTC)
+  dia TEXT NOT NULL,             -- AAAA-MM-DD (UTC); el panel no la usa: agrupa por día de Costa Rica a partir de t
   visitante TEXT,
   sesion TEXT,
   nuevo INTEGER DEFAULT 0,       -- 1 en el primer evento de un visitante nuevo
