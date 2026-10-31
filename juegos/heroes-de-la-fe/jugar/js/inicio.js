@@ -4,12 +4,12 @@
 import { t, idioma, cambiarIdioma, fijarTextos, traducirPagina } from '../comun/idioma.js';
 import { sonar, sonidoActivo, fijarSonido, precargar } from '../comun/sonido.js';
 import { musica, musicaActiva, fijarMusica, carpetaMusica } from '../comun/musica.js';
-import { iniciarJugador, jugar, alPasar } from './jugar.js?v=27d4c754';
+import { iniciarJugador, jugar, alPasar } from './jugar.js?v=0787c70d';
 
 const TEXTOS = {
   es: {
     masJuegos: '← Más juegos',
-    sobretitulo: 'Novelas gráficas',
+    sobretitulo: 'Historias interactivas',
     titulo: 'Héroes de la fe',
     subtitulo: 'Vidas reales que confiaron en Dios',
     como: 'Toca la pantalla para avanzar. Cuando aparezca una pregunta, elige qué harías tú: verás lo que de verdad pasó.',
@@ -23,7 +23,7 @@ const TEXTOS = {
   },
   en: {
     masJuegos: '← More games',
-    sobretitulo: 'Graphic novels',
+    sobretitulo: 'Interactive stories',
     titulo: 'Heroes of Faith',
     subtitulo: 'Real lives that trusted God',
     como: 'Tap the screen to go on. When a question appears, choose what you would do: you will see what really happened.',
@@ -59,14 +59,31 @@ fijarTextos(TEXTOS);
 if (!matchMedia('(pointer: coarse)').matches) $('.como').dataset.t = 'comoPc';
 carpetaMusica('musica/');   // compuesta para este juego (herramientas/componer_musica.mjs)
 
+// Voz del narrador: solo en las líneas que la traen (prólogo y epílogo de los libros largos); se calla al pasar.
+let voz = null;
+function callarVoz() { if (voz) { voz.pause(); voz = null; } }
+function narrar(src) {
+  callarVoz();
+  if (!sonidoActivo()) return;
+  voz = new Audio(src);
+  voz.play().catch(() => {});
+}
+
 // Lo que suena mientras se lee: hoja que pasa al cambiar de escena, un acorde al acertar, el cierre al final.
+// Cada capítulo terminado se avisa al panel de Verbo (VerboModoJuego.etapa), para saber hasta dónde se lee.
 let leyendo = null;
-alPasar(que => {
-  if (que === 'escena') sonar('voltear', 0.35);
+alPasar((que, x, n, total) => {
+  if (que === 'linea') { callarVoz(); if (x.voz) narrar(x.voz); return; }
+  if (que === 'escena') { sonar('voltear', 0.35); callarVoz(); if (n > 1) window.VerboModoJuego?.etapa?.(n - 1, total); }
   else if (que === 'acierto') sonar('par', 0.4);
   else if (que === 'repite') sonar('boton', 0.35);
-  else if (que === 'fin') { musica('final', false); sonar('premio', 0.45); }
-  else if (que === 'salir') { leyendo = null; window.VerboAds?.pausa('heroes-volver-al-menu', 'browse'); }
+  else if (que === 'fin') { musica('final', false); sonar('premio', 0.45); const s = HISTORIAS.find(h => h.id === leyendo); if (s) window.VerboModoJuego?.etapa?.(s.capitulos || 1, s.capitulos || 1); }
+  else if (que === 'salir') {
+    callarVoz();
+    // Un libro abierto desde su página de /historias/ vuelve a esa página.
+    if (directo?.pagina) { location.href = directo.pagina; return; }
+    leyendo = null; window.VerboAds?.pausa('heroes-volver-al-menu', 'browse');
+  }
 });
 
 function pintarSonido() {
@@ -99,22 +116,30 @@ function pintarMenu() {
 }
 
 async function abrir(h, boton) {
-  boton.querySelector('.t-leer').textContent = t('cargando');
+  if (boton) boton.querySelector('.t-leer').textContent = t('cargando');
   try {
-    const historia = await (await fetch(`historias/${h.id}.${idioma()}.json?v=27d4c754`)).json();
+    const historia = await (await fetch(`historias/${h.id}.${idioma()}.json?v=0787c70d`)).json();
     traducirPagina($('#jugador'));
     document.body.classList.add('leyendo');
     leyendo = h.id;
     musica(`lectura_${h.id}`);
     sonar('boton', 0.5);
+    h.capitulos = historia.escenas.length;
     jugar(historia, null, () => { document.body.classList.remove('leyendo'); pintarMenu(); });
   } finally {
-    boton.querySelector('.t-leer').textContent = t('leer') + ' ▶';
+    if (boton) boton.querySelector('.t-leer').textContent = t('leer') + ' ▶';
   }
 }
 
+// Abrir un libro directo (…/jugar/?libro=muller), como hace el botón «Leer» de su página en /historias/.
+const pedido = new URLSearchParams(location.search);
+const directo = HISTORIAS.find(h => h.id === pedido.get('libro')) || null;
+// Al salir vuelve a la página desde la que se abrió (?volver=/historias/<slug>/; solo rutas del propio sitio).
+if (directo && /^\/(?!\/)[a-z0-9\-\/]*$/.test(pedido.get('volver') || '')) directo.pagina = pedido.get('volver');
+
 iniciarJugador();
 pintarMenu();
+if (directo) abrir(directo, null);
 addEventListener('pointerdown', precargar, { once: true });
 document.querySelectorAll('[data-sonido]').forEach(b => b.addEventListener('click', ev => {
   ev.stopPropagation();

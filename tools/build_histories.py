@@ -3,6 +3,7 @@
 import html
 from datetime import date
 import json
+import re
 from pathlib import Path
 from urllib.parse import urlencode
 
@@ -33,7 +34,21 @@ def artwork(a):
 
 def art_url(key):return '/historias/assets/images/'+key+'.webp'
 
-def shell(title, description, path, body, schemas, script=False, art='estudio-biblico'):
+# Historias que ya son novela gráfica: se leen en el lector de «Héroes de la fe» (/juegos/heroes-de-la-fe/jugar/?libro=…).
+# La portada (/historias/assets/libros/<slug>.webp) la compone herramientas/portadas.py de ese juego. Las demás
+# historias quedan como texto hasta tener su libro (pedido de Juan, 31 de octubre de 2026).
+NOVELAS = {
+    'george-muller': {'libro': 'muller', 'lema': 'El padre de los huérfanos', 'capitulos': 28,
+        'resumen': 'Su vida completa, de la cárcel de Wolfenbüttel a las cinco casas de Ashley Down, contada como un cómic que se lee página a página. Habla con sus propias palabras, tomadas de su autobiografía; los hechos vienen de las fuentes.'},
+}
+def portada_libro(slug):return '/historias/assets/libros/'+slug+'.webp'
+def leer_libro(slug):return '/juegos/heroes-de-la-fe/jugar/?libro='+NOVELAS[slug]['libro']+'&volver=/historias/'+slug+'/'
+def libro_html(a):
+    n=NOVELAS[a['slug']];leer=leer_libro(a['slug']);titulo=a['name']+': '+n['lema']
+    return f'''<section class="libro" aria-labelledby="libro-titulo"><a class="libro-portada" href="{esc(leer)}"><img src="{portada_libro(a['slug'])}" alt="Portada de la historia interactiva «{esc(titulo)}»" width="800" height="1200" decoding="async"></a><div class="libro-texto"><span class="kicker">HISTORIA INTERACTIVA · {n['capitulos']} CAPÍTULOS</span><h2 id="libro-titulo">{esc(titulo)}</h2><p>{esc(n['resumen'])}</p><a class="button libro-leer" href="{esc(leer)}">Leer la historia interactiva <span aria-hidden="true">▶</span></a><p class="libro-nota">En el teléfono se lee a pantalla completa y con el teléfono de lado.</p></div></section>'''
+
+def shell(title, description, path, body, schemas, script=False, art='estudio-biblico', imagen=None, imagen_alt=None):
+    og=BASE+(imagen or art_url(art));og_alt=imagen_alt or 'Ilustración temática: '+ART[art]
     return f'''<!DOCTYPE html>
 <html lang="es">
 <head>
@@ -47,14 +62,14 @@ def shell(title, description, path, body, schemas, script=False, art='estudio-bi
 <meta property="og:url" content="{BASE}{path}">
 <meta property="og:type" content="{'website' if path == '/historias/' else 'article'}">
 <meta property="og:locale" content="es_419"><meta property="og:locale:alternate" content="en_US">
-<meta property="og:image" content="{BASE}{art_url(art)}">
-<meta property="og:image:alt" content="Ilustración temática: {esc(ART[art])}">
+<meta property="og:image" content="{og}">
+<meta property="og:image:alt" content="{esc(og_alt)}">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="{BASE}{art_url(art)}">
+<meta name="twitter:image" content="{og}">
 <meta name="theme-color" content="#0a2037">
 <link rel="icon" href="/biblia/assets/icons/icon-192.png">
-<link rel="stylesheet" href="/historias/assets/historias.css?v=20261007-paleta-portada">
-<link rel="stylesheet" href="/assets/depth/depth.css?v=20261015-3d">{'\n<link rel="stylesheet" href="/historias/assets/journey.css?v=20261022-clic">' if path == '/historias/' else ''}
+<link rel="stylesheet" href="/historias/assets/historias.css?v=20261031-estanteria">
+<link rel="stylesheet" href="/assets/depth/depth.css?v=20261015-3d">
 <script type="application/ld+json">{ld({'@context':'https://schema.org','@graph':schemas})}</script>
 </head>
 <body>
@@ -63,7 +78,7 @@ def shell(title, description, path, body, schemas, script=False, art='estudio-bi
 {body}
 <footer class="site-footer"><p>Verbo · Para estudiar, servir y recordar.</p><nav aria-label="Información"><a href="/historias/">Todas las historias</a><a href="/acerca/">Acerca de Verbo</a><a href="/licencias/">Fuentes y licencias</a></nav></footer>
 {'<script src="/historias/assets/historias.js?v=20261006-historias" defer></script>' if script else ''}
-{'<script src="/assets/depth/depth.js?v=20261015-3d3" defer data-enter=".featured-reading,.collection-heading,.story-filters,.story-card" data-through=".collection-hero" data-tilt=".story-card,.featured-reading nav a" data-sky="0.7"></script><script src="/historias/assets/journey.js?v=20261015-3d2" defer></script>' if path == '/historias/' else '<script src="/assets/depth/depth.js?v=20261015-3d3" defer data-progress data-enter=".article-illustration,.reflection,.related,.sources" data-sky="0.35"></script>'}
+{'<script src="/assets/depth/depth.js?v=20261015-3d3" defer data-enter=".estante,.proximas,.libro-tarjeta" data-tilt=".libro-tarjeta" data-sky="0.6"></script>' if path == '/historias/' else '<script src="/assets/depth/depth.js?v=20261015-3d3" defer data-progress data-enter=".article-illustration,.reflection,.related,.sources" data-sky="0.35"></script>'}
 </body>
 </html>
 '''
@@ -76,7 +91,10 @@ def breadcrumb(name=None,url=None):
 def card(a):
     art=artwork(a)
     searchable=' '.join([a['name'],a['title'],a['description'],a['place'],a['topic']])
-    return f'''<a class="story-card" href="/historias/{esc(a['slug'])}/" data-story data-century="{a['century']}" data-search="{esc(searchable)}"><div class="story-cover"><img class="story-cover-image" src="{art_url(art)}" alt="" width="1200" height="800" loading="lazy" decoding="async"><span class="cover-century">SIGLO {roman(a['century'])}</span><span class="cover-name">{esc(a['name'])}</span><span class="cover-years">{esc(a['years'])}</span></div><div class="story-card-body"><span class="kicker">{esc(a['topic'])}</span><h3>{esc(a['title'])}</h3><p>{esc(a['description'])}</p><span class="read-link">Leer historia</span></div></a>'''
+    libro=a['slug'] in NOVELAS
+    imagen=portada_libro(a['slug']) if libro else art_url(art)
+    marca='<span class="cover-libro">HISTORIA INTERACTIVA</span>' if libro else '<span class="cover-pronto">Pronto: historia interactiva</span>'
+    return f'''<a class="story-card{' story-card-libro' if libro else ''}" href="/historias/{esc(a['slug'])}/" data-story data-century="{a['century']}" data-search="{esc(searchable)}"><div class="story-cover"><img class="story-cover-image" src="{imagen}" alt="" width="1200" height="800" loading="lazy" decoding="async"><span class="cover-century">SIGLO {roman(a['century'])}</span>{marca}<span class="cover-name">{esc(a['name'])}</span><span class="cover-years">{esc(a['years'])}</span></div><div class="story-card-body"><span class="kicker">{esc(a['topic'])}</span><h3>{esc(a['title'])}</h3><p>{esc(a['description'])}</p><span class="read-link">{'Leer la historia interactiva' if libro else 'Leer historia'}</span></div></a>'''
 
 def roman(c):return {16:'XVI',17:'XVII',18:'XVIII',19:'XIX',20:'XX'}[c]
 
@@ -111,7 +129,7 @@ def build():
 <nav class="breadcrumbs" aria-label="Ruta de navegación"><a href="/">Inicio</a><span aria-hidden="true">/</span><a href="/historias/">Historias</a><span aria-hidden="true">/</span><span>{esc(a['name'])}</span></nav>
 <article>
 <header class="article-heading"><span class="kicker">{esc(a['topic'])} · Siglo {roman(a['century'])}</span><h1>{esc(a['title'])}</h1><p class="lede">{esc(a['description'])}</p><p class="article-details">{esc(a['name'])} · {esc(a['years'])} · {esc(a['place'])}</p><p class="article-byline">Por Verbo · Revisión documental: <time datetime="{article_date}">{date_label}</time> · {max(2,round(words/180))} min de lectura</p></header>
-<figure class="article-illustration"><img src="{art_url(artwork(a))}" alt="Ilustración temática: {esc(ART[artwork(a)])}" width="1200" height="800" decoding="async"><figcaption>Ilustración temática generada con IA para Verbo. No representa a {esc(a["name"])} ni una escena histórica documentada.</figcaption></figure>
+{libro_html(a) if a['slug'] in NOVELAS else f'<figure class="article-illustration"><img src="{art_url(artwork(a))}" alt="Ilustración temática: {esc(ART[artwork(a)])}" width="1200" height="800" decoding="async"><figcaption>Ilustración temática generada con IA para Verbo. No representa a {esc(a["name"])} ni una escena histórica documentada.</figcaption></figure>'}
 <nav class="article-toc" aria-label="En esta historia"><strong>En esta historia</strong>{toc}<a href="#reflexion">Para reflexionar a la luz de la Biblia</a><a href="#fuentes">Bibliografía y fuentes</a></nav>
 <div class="article-reading">{''.join(chapters)}
 <section class="reflection" aria-labelledby="reflexion"><span class="kicker">REFLEXIÓN DE VERBO</span><h2 id="reflexion">Para reflexionar a la luz de la Biblia</h2><a class="passage-link" href="{esc(bible)}">Leer {esc(passage[0])} en la Biblia →</a>{reflection}</section>
@@ -122,23 +140,28 @@ def build():
 </main>'''
         schema={'@type':'Article','@id':BASE+path+'#article','headline':a['title'],'description':a['description'],'inLanguage':'es','url':BASE+path,'mainEntityOfPage':BASE+path,'datePublished':article_date,'dateModified':article_date,'author':org,'publisher':org,'articleSection':NAME,'about':{'@type':'Person','name':a['name']},'wordCount':words,'image':BASE+art_url(artwork(a)),'citation':[src['url'] for src in a['sources']]}
         target=OUT/a['slug'];target.mkdir(exist_ok=True)
-        (target/'index.html').write_text(shell(a['title'],a['description'],path,body,[schema,breadcrumb(a['name'],BASE+path)],art=artwork(a)))
+        if a['slug'] in NOVELAS:schema['image']=BASE+portada_libro(a['slug'])
+        (target/'index.html').write_text(shell(a['title'],a['description'],path,body,[schema,breadcrumb(a['name'],BASE+path)],art=artwork(a),
+            imagen=portada_libro(a['slug']) if a['slug'] in NOVELAS else None,
+            imagen_alt=('Portada de la historia interactiva «'+a['name']+': '+NOVELAS[a['slug']]['lema']+'»') if a['slug'] in NOVELAS else None))
     # Orden de publicación; el filtro por siglo conserva el recorrido histórico.
     sorted_articles=sorted(articles,key=lambda a:a.get('date',DATE),reverse=True)
     centuries=''.join(f'<option value="{c}">Siglo {roman(c)}</option>' for c in range(16,21))
-    body=f'''<main id="contenido" class="collection-shell">
-<section class="collection-hero"><div><span class="kicker">VERBO · CRÓNICAS DEL CRISTIANISMO MODERNO</span><h1>Historias de<br><em>siervos de Cristo.</em></h1><p class="lede">Vidas reales. Fe puesta en práctica. Cinco siglos de mujeres y hombres que anunciaron el evangelio, abrieron sus hogares y sirvieron al prójimo.</p><p class="intro-detail">Desde la traducción de la Biblia hasta la misión y el cuidado de los vulnerables: relatos con contexto histórico, reflexión bíblica y fuentes para seguir leyendo.</p><a class="button" href="#historias">Explorar las {len(articles)} historias <span aria-hidden="true">↓</span></a></div><aside class="timeline" aria-label="Un recorrido por cinco siglos"><span class="timeline-label">FE QUE DEJÓ HUELLAS</span><ol><li><span>1526</span><a href="william-tyndale/">Tyndale y la Biblia en inglés</a></li><li><span>1678</span><a href="john-bunyan/">Bunyan y el peregrino</a></li><li><span>1807</span><a href="william-wilberforce/">La lucha contra la trata</a></li><li><span>1944</span><a href="corrie-ten-boom/">La casa de los ten Boom</a></li><li><span>1958</span><a href="elisabeth-elliot/">Elisabeth Elliot en Ecuador</a></li></ol><p>La historia de la iglesia también se cuenta en el servicio cotidiano.</p></aside></section>
-<figure class="collection-illustration"><img src="{art_url('estudio-biblico')}" alt="Ilustración temática: {esc(ART['estudio-biblico'])}" width="1200" height="800" loading="lazy" decoding="async"><figcaption>Ilustraciones temáticas creadas con IA para Verbo; no son fotografías ni reproducciones de escenas históricas.</figcaption></figure>
-<div class="collection-principle"><span>{len(articles)} relatos</span><span>Siglos XVI–XX</span><span>Bibliografía en cada artículo</span></div>
-<section class="featured-reading" aria-labelledby="featured-title"><div><span class="kicker">POR DÓNDE EMPEZAR</span><h2 id="featured-title">Cuatro vidas que invitan a mirar más de cerca.</h2></div><nav aria-label="Historias destacadas"><a href="billy-graham/"><span>01</span>Billy Graham <small>El anuncio de Jesucristo</small></a><a href="corrie-ten-boom/"><span>02</span>Corrie ten Boom <small>Un hogar frente a la persecución</small></a><a href="jim-elliot/"><span>03</span>Jim Elliot <small>Misión y memoria en Ecuador</small></a><a href="elisabeth-elliot/"><span>04</span>Elisabeth Elliot <small>El servicio después de la pérdida</small></a></nav></section>
-<section id="historias" aria-labelledby="collection-title"><div class="collection-heading"><div><span class="kicker">LA COLECCIÓN</span><h2 id="collection-title">Historias para leer con calma.</h2></div><p>Elige una vida, un siglo o un tema.</p></div><div class="story-filters"><label>Buscar una historia<input id="story-search" type="search" placeholder="Nombre, país o tema…" autocomplete="off"></label><label>Recorrer por siglo<select id="story-century"><option value="all">Todos los siglos</option>{centuries}</select></label><button id="story-reset" type="button">Ver todas</button></div><p id="story-count" class="story-count" role="status" aria-live="polite">{len(articles)} historias disponibles</p><div class="story-grid">{''.join(card(a) for a in sorted_articles)}</div><p id="story-empty" class="story-empty" hidden>No encontramos historias con esa búsqueda. Prueba otro nombre o siglo.</p></section>
-<section class="editorial-method" aria-labelledby="method-title"><span class="kicker">NUESTRA FORMA DE CONTAR</span><h2 id="method-title">Recordar con gratitud. Leer con discernimiento.</h2><p>Estos relatos nacen del deseo de reconocer el servicio cristiano y aprender de vidas concretas. Cada persona pertenece a su tiempo: hay fidelidad, sufrimiento, decisiones valiosas y límites que deben nombrarse. Jesucristo es el centro de nuestra fe y las Escrituras orientan la reflexión.</p><details><summary>Cómo usamos las fuentes</summary><p>Consultamos archivos, museos, instituciones y estudios históricos. Las referencias acompañan los hechos y la bibliografía ofrece enlaces directos. Distinguimos documentos, memorias personales e interpretaciones. Cuando las fuentes no permiten asegurar un detalle, lo omitimos o explicamos su alcance.</p><p>La expresión «siervos de Cristo» describe la perspectiva cristiana de esta colección; no implica aprobar todas las enseñanzas o decisiones de cada protagonista. Los artículos son redacción original de Verbo. Las fuentes conservan sus derechos y no se reproducen sus fotografías, cartas ni capítulos.</p></details></section>
+    libros=''.join(f'<a class="libro-tarjeta" href="/historias/{esc(a["slug"])}/"><img src="{portada_libro(a["slug"])}" alt="Portada de «{esc(a["name"])}: {esc(NOVELAS[a["slug"]]["lema"])}»" width="800" height="1200" loading="lazy" decoding="async"><span>{esc(a["name"])}</span><small>{esc(NOVELAS[a["slug"]]["lema"])} · {NOVELAS[a["slug"]]["capitulos"]} capítulos</small></a>' for a in articles if a['slug'] in NOVELAS)
+    estante=f'<section class="estante" aria-labelledby="estante-titulo"><div class="collection-heading"><div><span class="kicker">HISTORIAS INTERACTIVAS</span><h2 id="estante-titulo">Vidas reales para leer como un cómic.</h2></div><p>Un libro completo por cada vida, con sus propias palabras y los hechos de las fuentes. Las demás historias irán llegando en este formato.</p></div><div class="estante-libros">{libros}</div></section>' if libros else ''
+    # Juan (31-10-2026): la sección entera es la estantería; no hay otro formato de historias. Las vidas que aún no
+    # son historia interactiva aparecen como «Próximamente» (sin enlace); sus páginas de texto siguen en su dirección
+    # hasta tener su libro, para no perder lo que los buscadores ya conocen.
+    pronto=''.join(f'<li class="pronto-libro" data-century="{a["century"]}"><span class="pronto-siglo">Siglo {roman(a["century"])}</span><strong>{esc(a["name"])}</strong><small>{esc(a["years"])} · {esc(a["topic"])}</small></li>' for a in sorted([a for a in articles if a['slug'] not in NOVELAS],key=lambda a:(a['century'],re.sub(r'\D','',a['years'])[:4])))
+    body=f'''<main id="contenido" class="collection-shell estanteria">
+<section class="estante" aria-labelledby="estante-titulo"><span class="kicker">VERBO · HISTORIAS INTERACTIVAS</span><h1 id="estante-titulo">Vidas reales para leer como un cómic.</h1><p class="lede">Mujeres y hombres que confiaron en Dios, contados de principio a fin en viñetas, con sus propias palabras y los hechos de las fuentes. Se leen en la computadora o en el teléfono, de lado y a pantalla completa.</p><div class="estante-libros">{libros}</div></section>
+<section class="proximas" aria-labelledby="proximas-titulo"><span class="kicker">PRÓXIMAMENTE</span><h2 id="proximas-titulo">Las siguientes vidas de la colección.</h2><p>Cada una llegará como historia interactiva.</p><ol class="pronto-lista">{pronto}</ol></section>
+<section class="editorial-method" aria-labelledby="method-title"><span class="kicker">NUESTRA FORMA DE CONTAR</span><h2 id="method-title">Recordar con gratitud. Contar solo lo que consta.</h2><p>Cada historia parte de fuentes identificadas: autobiografías, cartas, archivos y biografías serias. Las palabras de los protagonistas son citas de esas fuentes, y lo que no se puede comprobar no se cuenta. Jesucristo es el centro de nuestra fe y las Escrituras orientan la lectura.</p><details><summary>Cómo usamos las fuentes</summary><p>Al final de cada historia están sus fuentes. Distinguimos documentos, memorias personales e interpretaciones; cuando las fuentes no coinciden en un dato, usamos la versión del testimonio directo o lo decimos con «cerca de». Los personajes sin nombre representan a personas reales cuyos nombres no constan. La expresión «siervos de Cristo» describe la perspectiva cristiana de esta colección; no implica aprobar todas las enseñanzas o decisiones de cada protagonista.</p></details></section>
 </main>'''
     itemlist={'@type':'ItemList','numberOfItems':len(articles),'itemListElement':[{'@type':'ListItem','position':i,'name':a['title'],'url':BASE+'/historias/'+a['slug']+'/'} for i,a in enumerate(sorted_articles,1)]}
     collection={'@type':'CollectionPage','@id':BASE+'/historias/#collection','name':NAME,'description':DESCRIPTION,'url':BASE+'/historias/','inLanguage':'es','publisher':org,'mainEntity':itemlist}
-    (OUT/'index.html').write_text(shell(NAME,DESCRIPTION,'/historias/',body,[collection,breadcrumb()],True))
+    (OUT/'index.html').write_text(shell(NAME,DESCRIPTION,'/historias/',body,[collection,breadcrumb()]))
     sitemap=ROOT/'sitemap.xml';text=sitemap.read_text()
-    import re
     text=re.sub(r'<url>\s*<loc>https://verbobiblia.com/historias/[^<]*</loc>.*?</url>','',text,flags=re.S)
     modified_dates = {'/historias/': max(a.get('date', DATE) for a in articles), **{'/historias/'+a['slug']+'/': a.get('date', DATE) for a in articles}}
     entries=''.join(f'  <url>\n    <loc>{BASE}{p}</loc>\n    <lastmod>{modified_dates[p]}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>{priority}</priority>\n  </url>\n' for p,priority in [('/historias/','0.8')]+[('/historias/'+a['slug']+'/','0.6') for a in articles])

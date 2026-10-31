@@ -3,7 +3,8 @@
  * Uso (en el index.html del juego, al final del <body>):
  *   <script src="/juegos/comun/modo-juego.js" data-ficha="/juegos/<id>/" data-orientacion="horizontal" defer></script>
  *
- * - data-ficha: a dónde lleva «Salir» (la ficha del juego en la web). Por defecto, /juegos/.
+ * - data-ficha: a dónde lleva «Salir» (la ficha del juego en la web). Por defecto, /juegos/. Un ?volver=/ruta/ en la
+ *   dirección lo cambia (solo rutas del propio sitio).
  * - data-orientacion: horizontal | vertical | libre (por defecto libre).
  * - data-salir: arriba-izquierda (por defecto) | arriba-derecha | abajo-izquierda | abajo-derecha, para no tapar
  *   botones del propio juego.
@@ -20,7 +21,10 @@
   if (window.VerboModoJuego) return;
   var script = document.currentScript || document.querySelector('script[src*="modo-juego.js"]');
   var ds = (script && script.dataset) || {};
-  var ficha = ds.ficha || '/juegos/';
+  // ?volver=/ruta/ (solo rutas del propio sitio): a dónde lleva «Salir» si se entró desde otra página, p. ej. un libro
+  // de «Héroes de la fe» abierto desde /historias/<slug>/.
+  var volver = new URLSearchParams(location.search).get('volver') || '';
+  var ficha = /^\/(?!\/)[a-z0-9\-\/]*$/.test(volver) ? volver : (ds.ficha || '/juegos/');
   var orientacion = ds.orientacion || 'libre';
   var lugar = ds.salir || 'arriba-izquierda';
   var ingles = /^en\b/i.test(document.documentElement.lang || '') || /[?&]lang=en\b/.test(location.search);

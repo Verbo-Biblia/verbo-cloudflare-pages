@@ -19,3 +19,41 @@
 .collection-illustration figcaption,.article-illustration figcaption{font-size:11px;color:var(--soft);line-height:1.6;margin:10px 4px 0}
 @media(max-width:600px){.collection-illustration img{aspect-ratio:3/2}.article-illustration img{aspect-ratio:3/2}.story-cover{min-height:220px}.collection-illustration figcaption,.article-illustration figcaption{font-size:10px}}
 @media print{.article-illustration{display:none}}
+/* Libros en novela gráfica (tools/build_histories.py, NOVELAS): portada de libro, estantería y marcas en las tarjetas. */
+.libro{display:grid;grid-template-columns:minmax(0,300px) 1fr;gap:40px;align-items:center;margin:8px 0 44px;padding:28px;background:var(--navy);color:var(--paper);border-radius:22px;box-shadow:0 24px 48px #0b2a5626}
+.libro-portada{display:block;border-radius:6px 14px 14px 6px;overflow:hidden;box-shadow:-6px 0 0 #00000040 inset,0 18px 36px #00000059;transform:rotate(-1.5deg);transition:transform .25s}
+.libro-portada:hover{transform:rotate(0) scale(1.02)}
+.libro-portada img{display:block;width:100%;height:auto;aspect-ratio:2/3;object-fit:cover}
+.libro .kicker{color:var(--strong)}
+.libro h2{font-size:clamp(28px,3.4vw,40px);margin-bottom:16px}
+.libro p{color:#e9e1d2;font-size:16px;line-height:1.7}
+.libro-leer{background:var(--gold);font-size:15px;padding:16px 26px}
+.libro-leer:hover{background:#b48549}
+.libro-nota{font-size:12px!important;color:var(--strong)!important;margin-top:14px}
+.estante{padding:40px 0 8px}
+.estante-libros{display:flex;flex-wrap:wrap;gap:28px}
+.libro-tarjeta{display:flex;flex-direction:column;width:min(220px,44%);font-family:Georgia,serif;font-size:19px}
+.libro-tarjeta img{width:100%;height:auto;aspect-ratio:2/3;object-fit:cover;border-radius:4px 10px 10px 4px;box-shadow:-5px 0 0 #00000035 inset,0 14px 28px #0b2a5640;margin-bottom:12px;transition:transform .2s}
+.libro-tarjeta:hover img{transform:translateY(-4px)}
+.libro-tarjeta small{font:12px/1.5 system-ui,sans-serif;color:var(--soft);margin-top:4px}
+.cover-libro,.cover-pronto{position:absolute;top:18px;right:18px;font-size:9px;letter-spacing:.14em;padding:5px 9px;border-radius:999px;font-weight:700}
+.cover-libro{background:var(--gold);color:#fff}
+.cover-pronto{background:#0a203799;color:var(--paper);letter-spacing:.06em;font-weight:600}
+.story-card-libro .story-cover-image{object-position:center 30%}
+@media(max-width:700px){.libro{grid-template-columns:1fr;gap:24px;padding:22px}.libro-portada{max-width:240px;margin:auto}}
+/* La estantería va arriba de todo: un poco más de presencia. */
+.estante{padding:44px 0 36px;border-bottom:1px solid var(--rule)}
+.estante h2{font-size:clamp(30px,4vw,46px)}
+.estante .libro-tarjeta{width:min(260px,46%)}
+/* /historias/ es solo la estantería (31-10-2026). */
+.estanteria .estante{padding:56px 0 40px}
+.estanteria .estante h1{font-size:clamp(38px,5vw,62px);letter-spacing:-.04em;max-width:16ch}
+.estanteria .estante .lede{margin-bottom:32px}
+.proximas{padding:40px 0;border-bottom:1px solid var(--rule)}
+.proximas h2{font-size:32px}
+.proximas>p{color:var(--soft);font-size:14px;margin-top:10px}
+.pronto-lista{list-style:none;padding:0;margin:24px 0 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.pronto-libro{display:flex;flex-direction:column;gap:4px;padding:18px 18px 16px;background:var(--raised);border:1px solid var(--rule);border-left:6px solid var(--strong);border-radius:6px 12px 12px 6px}
+.pronto-libro strong{font:19px/1.2 Georgia,serif;color:var(--ink)}
+.pronto-libro small{font-size:12px;color:var(--soft)}
+.pronto-siglo{font-size:9px;letter-spacing:.14em;color:var(--gold);text-transform:uppercase;font-weight:700}

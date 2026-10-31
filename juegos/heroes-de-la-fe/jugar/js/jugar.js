@@ -1,16 +1,17 @@
 // Modo jugar: muestra la historia como la verá el lector.
 // Orden en cada escena: 1) globos y efectos puestos a mano (uno por clic), 2) el guion (líneas y elecciones),
 // 3) la salida de la escena (seguir, decisión o fin).
-import { W, H } from './estado.js?v=27d4c754';
-import { pintarFondo, pintarElementos, actualizarNodo } from './render.js?v=27d4c754';
-import { nombreDe } from './personajes.js?v=27d4c754';
-import { globoDeLinea } from './dialogo.js?v=27d4c754';
+import { W, H } from './estado.js?v=0787c70d';
+import { pintarFondo, pintarElementos, actualizarNodo } from './render.js?v=0787c70d';
+import { nombreDe } from './personajes.js?v=0787c70d';
+import { globoDeLinea } from './dialogo.js?v=0787c70d';
 
 const $ = s => document.querySelector(s);
 let historia, actual, historial, pendientes, alSalir;
 let pila, eligiendo, escribiendo;
 let raiz, esc, capaFondo, capaEl, capaDialogo, caja, nombre, texto, opciones, fin, seguir;
-// Quien usa el lector puede enterarse de lo que pasa (para música y efectos): 'escena', 'acierto', 'repite', 'fin', 'salir'.
+// Quien usa el lector puede enterarse de lo que pasa (para música, efectos, voz y medición): 'escena' (con la escena y
+// su número), 'linea' (con la línea), 'acierto', 'repite', 'fin', 'salir'.
 let aviso = () => {};
 export function alPasar(fn) { aviso = fn; }
 
@@ -67,7 +68,7 @@ function mostrar(id) {
   const s = escena(id);
   if (!s) return terminar();
   actual = s;
-  aviso('escena');
+  aviso('escena', s, historia.escenas.indexOf(s) + 1, historia.escenas.length);
   pararEscritura();
   pintarFondo(capaFondo, s);
   capaEl.innerHTML = '';
@@ -148,6 +149,7 @@ function resolver(despues) {
 // ── Decir una línea ───────────────────────────────────────────────────────────────────────────
 
 function decir(l) {
+  aviso('linea', l);
   const quien = actual.elementos.find(e => e.id === l.quien);
   capaDialogo.innerHTML = '';
   caja.classList.remove('visible');
