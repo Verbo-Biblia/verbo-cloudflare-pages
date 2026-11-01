@@ -56,6 +56,19 @@ body.tactil.jugando #controles{display:block}
 .botones [data-btn=shoot]{background:linear-gradient(#bff0ff,#4cc6ff);color:#082234;box-shadow:0 4px 0 #1d6a90}
 .botones [data-btn=dash],.botones [data-btn=detonate]{width:min(64px,15vh);height:min(64px,15vh);font-size:11px;display:none}
 body.con-dash .botones [data-btn=dash],body.con-deton .botones [data-btn=detonate]{display:block}
+/* Botones con ícono (Juan: «círculos de color sólido con nombres»): bronce, fondo oscuro y el ícono de Codex (pedido 018).
+   El texto queda para lectores de pantalla y el idioma, pero no se ve. */
+.botones button{font-size:0!important;color:transparent;border:3px solid #d9a441;
+  background:radial-gradient(circle at 50% 35%,#4a3420 0,#1b130c 72%);
+  box-shadow:0 0 0 2px #4a2e0e,inset 0 0 14px #000c,inset 0 2px 0 #ffe3a055,0 5px 12px #000a;opacity:.9}
+.botones button.on{filter:none;transform:scale(.93);box-shadow:0 0 0 2px #4a2e0e,inset 0 0 14px #000c,0 0 18px #ffcf6a,0 0 34px #ffb03a88}
+.botones [data-btn=jump]{background-image:url(assets/ui/btn_saltar.webp),radial-gradient(circle at 50% 35%,#4a3420 0,#1b130c 72%)}
+.botones [data-btn=shoot]{background-image:url(assets/ui/btn_espada.webp),radial-gradient(circle at 50% 35%,#4a3420 0,#1b130c 72%);color:transparent;box-shadow:0 0 0 2px #4a2e0e,inset 0 0 14px #000c,inset 0 2px 0 #ffe3a055,0 5px 12px #000a}
+#stick{border-color:#d9a441aa!important;background:radial-gradient(circle,#2a1d1255 0 38%,#1b130c33 39% 100%)!important}
+#knob{background:radial-gradient(circle at 40% 35%,#ffe7a8,#c9922f 60%,#7a5216)!important;border-color:#f3d28a!important}
+.botones [data-btn=dash]{background-image:url(assets/ui/btn_calzado.webp),radial-gradient(circle at 50% 35%,#4a3420 0,#1b130c 72%)}
+.botones [data-btn=detonate]{background-image:url(assets/ui/btn_fuego.webp),radial-gradient(circle at 50% 35%,#5a2a14 0,#1b100b 72%);border-color:#ff9a3c}
+.botones [data-btn]{background-size:68%,cover;background-position:center;background-repeat:no-repeat}
 #pausa{position:fixed;top:44px;right:12px;z-index:11;width:44px;height:44px;border-radius:50%;padding:0;margin:0;font-size:14px;display:none}
 body.jugando #pausa{display:block}
 /* Título */
