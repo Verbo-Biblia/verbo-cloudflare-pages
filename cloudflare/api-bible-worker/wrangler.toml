@@ -38,3 +38,7 @@ namespace_id = "1001"
   [ratelimits.simple]
   limit = 60
   period = 60
+
+# Foto diaria del catálogo publicado (imágenes, juegos, historias, lecciones) para el panel: 06:30 de Costa Rica.
+[triggers]
+crons = ["30 12 * * *"]

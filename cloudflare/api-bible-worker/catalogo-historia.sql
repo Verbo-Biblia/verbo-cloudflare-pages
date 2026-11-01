@@ -1,0 +1,12 @@
+INSERT OR IGNORE INTO catalogo (dia, imagenes, juegos, historias, lecciones) VALUES ('2026-10-21', NULL, 0, 0, 205);
+INSERT OR IGNORE INTO catalogo (dia, imagenes, juegos, historias, lecciones) VALUES ('2026-10-22', 227, 0, 0, 205);
+INSERT OR IGNORE INTO catalogo (dia, imagenes, juegos, historias, lecciones) VALUES ('2026-10-23', 256, 10, 0, 205);
+INSERT OR IGNORE INTO catalogo (dia, imagenes, juegos, historias, lecciones) VALUES ('2026-10-24', 278, 11, 0, 205);
+INSERT OR IGNORE INTO catalogo (dia, imagenes, juegos, historias, lecciones) VALUES ('2026-10-25', 278, 13, 0, 205);
+INSERT OR IGNORE INTO catalogo (dia, imagenes, juegos, historias, lecciones) VALUES ('2026-10-26', 278, 14, 0, 205);
+INSERT OR IGNORE INTO catalogo (dia, imagenes, juegos, historias, lecciones) VALUES ('2026-10-27', 336, 14, 0, 205);
+INSERT OR IGNORE INTO catalogo (dia, imagenes, juegos, historias, lecciones) VALUES ('2026-10-28', 461, 14, 0, 205);
+INSERT OR IGNORE INTO catalogo (dia, imagenes, juegos, historias, lecciones) VALUES ('2026-10-29', 462, 14, 0, 205);
+INSERT OR IGNORE INTO catalogo (dia, imagenes, juegos, historias, lecciones) VALUES ('2026-10-30', 462, 14, 0, 205);
+INSERT OR IGNORE INTO catalogo (dia, imagenes, juegos, historias, lecciones) VALUES ('2026-10-31', 476, 15, 2, 205);
+INSERT OR IGNORE INTO catalogo (dia, imagenes, juegos, historias, lecciones) VALUES ('2026-11-01', 476, 15, 2, 205);

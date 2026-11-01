@@ -21,6 +21,19 @@
   } catch (e) {}
   var excluido = false;
   try { excluido = localStorage.getItem('verbo-no-medir') === '1'; } catch (e) {}
+  // Al excluirse, el aparato avisa una vez al Worker para que el panel tampoco cuente lo que visitó antes.
+  if (excluido && !local) {
+    try {
+      var yo = localStorage.getItem('verbo-v');
+      if (yo && localStorage.getItem('verbo-no-medir-avisado') !== yo) {
+        var aviso = JSON.stringify({ v: yo, yo: 1 });
+        if (!(navigator.sendBeacon && navigator.sendBeacon(API, new Blob([aviso], { type: 'text/plain' })))) {
+          fetch(API, { method: 'POST', body: aviso, keepalive: true, headers: { 'Content-Type': 'text/plain' } });
+        }
+        localStorage.setItem('verbo-no-medir-avisado', yo);
+      }
+    } catch (e) {}
+  }
   if (local || excluido || navigator.webdriver || /bot|crawl|spider|lighthouse|headless/i.test(navigator.userAgent)) {
     window.VerboMedir = function () {};
     return;

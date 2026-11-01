@@ -26,10 +26,18 @@ export async function handleMedir(request, env, headers) {
   if (/bot|crawl|spider|headless|lighthouse/i.test(request.headers.get('User-Agent') || '')) return vacio;
   let lote;
   try { lote = JSON.parse(await request.text()); } catch { return vacio; }
-  if (!lote || !ID.test(lote.v || '') || !ID.test(lote.s || '') || !Array.isArray(lote.e)) return vacio;
-
+  if (!lote || !ID.test(lote.v || '')) return vacio;
   const ip = request.headers.get('CF-Connecting-IP') || 'desconocida';
   if (env.LIMITE_MEDIR && !(await env.LIMITE_MEDIR.limit({ key: ip })).success) return vacio;
+  // Un aparato de Juan (abrió verbobiblia.com/?no-medir): medir.js avisa una vez y el panel deja de contarlo,
+  // también lo que ese aparato visitó antes. Quien lo haga con su propio id solo se excluye a sí mismo.
+  if (lote.yo === 1) {
+    await env.VOTOS_DB.prepare('INSERT OR IGNORE INTO yo (visitante, desde) VALUES (?, ?)')
+      .bind((await sha(`v:${lote.v}`)).slice(0, 20), Date.now()).run();
+    return vacio;
+  }
+  if (!ID.test(lote.s || '') || !Array.isArray(lote.e)) return vacio;
+
   const eventos = lote.e.slice(0, 50).filter(x => x && TIPOS.has(x.tipo));
   if (!eventos.length) return vacio;
 
@@ -108,6 +116,29 @@ export async function handlePanel(request, url, env) {
     const hasta = Math.min(Date.now(), Number(url.searchParams.get('hasta')) || Date.now());
     return datosJson(await resumen(env, dias, hasta));
   }
+  if (url.pathname === '/panel/direccion') {
+    // El cron diario guarda el catálogo; si hoy aún no hay foto (o el cron falló), se toma al abrir el panel.
+    const hoy = await env.VOTOS_DB.prepare('SELECT 1 FROM catalogo WHERE dia = ?').bind(diaCR(Date.now())).first();
+    if (!hoy) await fotoCatalogo(env).catch(error => console.error('catálogo', error));
+    return datosJson(await direccion(env, url.searchParams.get('grano')));
+  }
+  // Cambios desde el panel: solo POST y desde la misma página (la cookie ya es SameSite=Strict).
+  if ((url.pathname === '/panel/hito' || url.pathname === '/panel/yo') && request.method === 'POST') {
+    const origen = request.headers.get('Origin');
+    if (origen && origen !== url.origin) return datosJson({ error: 'origen' });
+    let d = {};
+    try { d = await request.json(); } catch {}
+    if (url.pathname === '/panel/yo') {
+      const s = String(d.sesion || '').slice(0, 40);
+      await env.VOTOS_DB.prepare('INSERT OR IGNORE INTO yo (visitante, desde) SELECT visitante, ? FROM eventos WHERE sesion = ? AND visitante IS NOT NULL LIMIT 1')
+        .bind(Date.now(), s).run();
+    } else if (d.borrar) {
+      await env.VOTOS_DB.prepare('DELETE FROM hitos WHERE id = ?').bind(Number(d.borrar) || 0).run();
+    } else if (/^\d{4}-\d{2}-\d{2}$/.test(d.dia || '') && String(d.texto || '').trim()) {
+      await env.VOTOS_DB.prepare('INSERT INTO hitos (dia, texto) VALUES (?, ?)').bind(d.dia, String(d.texto).trim().slice(0, 120)).run();
+    }
+    return datosJson({ ok: true });
+  }
   if (url.pathname === '/panel/sesion') {
     const id = String(url.searchParams.get('id') || '');
     const { results } = await env.VOTOS_DB.prepare('SELECT t, tipo, ruta, objetivo, detalle, ms FROM eventos WHERE sesion = ? ORDER BY t LIMIT 500').bind(id).all();
@@ -121,11 +152,11 @@ const CR = 6 * 3600000;                                   // Costa Rica: UTC-6 f
 const diaCR = (ms) => new Date(ms - CR).toISOString().slice(0, 10);
 // Origen de cada sesión: el de su primera vista (las páginas siguientes llegan desde el mismo sitio, sin origen).
 // SQLite toma `ref` de la fila con MIN(t).
-const PRIMERA_VISTA = `SELECT sesion, ref, MIN(t) t0 FROM eventos WHERE t >= ? AND t < ? AND tipo='vista' GROUP BY sesion`;
+const PRIMERA_VISTA = `SELECT sesion, ref, MIN(t) t0 FROM ev WHERE t >= ? AND t < ? AND tipo='vista' GROUP BY sesion`;
 // Cierres de cada vista: medir.js manda un «fin» cada vez que la página se oculta, con el tiempo acumulado y el id
 // de la vista (pv); vale el mayor. Los eventos sin pv (anteriores) cuentan uno por uno.
 const FINES = `SELECT sesion, ruta, objetivo, tipo, MAX(ms) ms, MAX(json_extract(detalle,'$.hondo')) hondo,
-  MAX(json_extract(detalle,'$.toques')) toques FROM eventos WHERE t >= ? AND t < ? AND tipo IN ('fin','juego_fin')
+  MAX(json_extract(detalle,'$.toques')) toques FROM ev WHERE t >= ? AND t < ? AND tipo IN ('fin','juego_fin')
   GROUP BY COALESCE(json_extract(detalle,'$.pv'), id)`;
 
 // Sección de cada página, para ver qué contenido retiene a la gente.
@@ -139,13 +170,13 @@ const SECCION = (c) => `CASE WHEN ${c} LIKE '/juegos/%' THEN 'juegos' WHEN ${c} 
 // semana a semana (las últimas 4 semanas, sea cual sea el rango elegido).
 async function seQuedan(env, desde, hasta) {
   const todas = (sql, ...p) => env.VOTOS_DB.prepare(sql).bind(...p).all().then(r => r.results);
-  const V = `SELECT visitante, sesion, t, ${SECCION('ruta')} sec FROM eventos WHERE t >= ? AND t < ? AND tipo='vista'`;
+  const V = `SELECT visitante, sesion, t, ${SECCION('ruta')} sec FROM ev WHERE t >= ? AND t < ? AND tipo='vista'`;
   const [base, tiempo, entradas, vuelven, semanas] = await Promise.all([
     todas(`SELECT sec, COUNT(DISTINCT visitante) visitantes, COUNT(DISTINCT sesion) sesiones, COUNT(*) vistas FROM (${V}) GROUP BY sec`, desde, hasta),
     todas(`SELECT sec, AVG(ms) ms FROM (SELECT sesion, ${SECCION('ruta')} sec, SUM(ms) ms FROM (${FINES}) GROUP BY sesion, sec) GROUP BY sec`, desde, hasta),
     todas(`SELECT ${SECCION('p.ruta')} sec, COUNT(*) entradas, SUM(c.n > 1) siguieron FROM
-        (SELECT sesion, ruta, MIN(t) t0 FROM eventos WHERE t >= ? AND t < ? AND tipo='vista' GROUP BY sesion) p
-        JOIN (SELECT sesion, COUNT(*) n FROM eventos WHERE t >= ? AND t < ? AND tipo='vista' GROUP BY sesion) c ON c.sesion = p.sesion
+        (SELECT sesion, ruta, MIN(t) t0 FROM ev WHERE t >= ? AND t < ? AND tipo='vista' GROUP BY sesion) p
+        JOIN (SELECT sesion, COUNT(*) n FROM ev WHERE t >= ? AND t < ? AND tipo='vista' GROUP BY sesion) c ON c.sesion = p.sesion
         GROUP BY 1`, desde, hasta, desde, hasta),
     todas(`SELECT sec, SUM(dias > 1) volvieron FROM
         (SELECT visitante, sec, COUNT(DISTINCT date(t/1000 - 21600, 'unixepoch')) dias FROM (${V}) GROUP BY visitante, sec) GROUP BY sec`, desde, hasta),
@@ -173,40 +204,40 @@ async function resumen(env, dias, hasta) {
            (SELECT COUNT(DISTINCT sesion) FROM (${FINES}) WHERE ms IS NOT NULL) sesiones_ms,
            SUM(tipo='descarga') descargas, SUM(tipo='juego') juegos,
            SUM(tipo='salida' AND objetivo LIKE '%pinterest.com/pin/create%') pinterest,
-           SUM(tipo='clic' AND objetivo LIKE 'Crear tarjeta%') tarjetas FROM eventos WHERE t >= ? AND t < ?`, desde, hasta, desde, hasta),
+           SUM(tipo='clic' AND objetivo LIKE 'Crear tarjeta%') tarjetas FROM ev WHERE t >= ? AND t < ?`, desde, hasta, desde, hasta),
     q(`SELECT date(t/1000 - 21600, 'unixepoch') dia, SUM(tipo='vista') vistas, COUNT(DISTINCT sesion) sesiones
-         FROM eventos WHERE t >= ? AND t < ? GROUP BY 1 ORDER BY 1`),
+         FROM ev WHERE t >= ? AND t < ? GROUP BY 1 ORDER BY 1`),
     q(`SELECT COALESCE(ref,'') ref, COUNT(*) sesiones FROM (${PRIMERA_VISTA}) GROUP BY 1 ORDER BY 2 DESC LIMIT 40`),
     q(`SELECT v.ruta, v.objetivo titulo, v.n vistas, f.ms, f.hondo FROM
-         (SELECT ruta, MAX(objetivo) objetivo, COUNT(*) n FROM eventos WHERE t >= ? AND t < ? AND tipo='vista' GROUP BY ruta) v
+         (SELECT ruta, MAX(objetivo) objetivo, COUNT(*) n FROM ev WHERE t >= ? AND t < ? AND tipo='vista' GROUP BY ruta) v
          LEFT JOIN (SELECT ruta, AVG(ms) ms, AVG(hondo) hondo FROM (${FINES}) GROUP BY ruta) f
          ON f.ruta = v.ruta ORDER BY v.n DESC LIMIT 60`, desde, hasta),
     // Etapas: lo informan los juegos con VerboModoJuego.etapa(n, total); por sesión vale la más alta terminada.
     q(`SELECT j.objetivo juego, j.n partidas, j.ses sesiones, f.total, f.media, f.reales, e.etapas, e.media_etapa, e.terminaron FROM
-         (SELECT objetivo, COUNT(*) n, COUNT(DISTINCT sesion) ses FROM eventos WHERE t >= ? AND t < ? AND tipo='juego' GROUP BY objetivo) j
+         (SELECT objetivo, COUNT(*) n, COUNT(DISTINCT sesion) ses FROM ev WHERE t >= ? AND t < ? AND tipo='juego' GROUP BY objetivo) j
          LEFT JOIN (SELECT objetivo, SUM(ms) total, AVG(ms) media, SUM(toques >= 5) reales
            FROM (${FINES}) WHERE tipo='juego_fin' GROUP BY objetivo) f ON f.objetivo = j.objetivo
          LEFT JOIN (SELECT objetivo, MAX(total) etapas, AVG(alcanzada) media_etapa, SUM(alcanzada >= total) terminaron FROM
            (SELECT objetivo, sesion, MAX(json_extract(detalle,'$.etapa')) alcanzada, MAX(json_extract(detalle,'$.total')) total
-             FROM eventos WHERE t >= ? AND t < ? AND tipo='juego_etapa' GROUP BY objetivo, sesion) GROUP BY objetivo) e ON e.objetivo = j.objetivo
+             FROM ev WHERE t >= ? AND t < ? AND tipo='juego_etapa' GROUP BY objetivo, sesion) GROUP BY objetivo) e ON e.objetivo = j.objetivo
          ORDER BY j.n DESC`, desde, hasta, desde, hasta),
-    q(`SELECT objetivo, ruta, COUNT(*) n FROM eventos WHERE t >= ? AND t < ? AND tipo='descarga' GROUP BY objetivo ORDER BY n DESC LIMIT 60`),
-    q(`SELECT ruta, MAX(objetivo) titulo, COUNT(*) vistas FROM eventos WHERE t >= ? AND t < ? AND tipo='vista' AND ruta LIKE '/imagenes/%' GROUP BY ruta ORDER BY vistas DESC LIMIT 60`),
-    q(`SELECT ruta, MAX(objetivo) titulo, SUM(tipo='vista') vistas, SUM(tipo='imprimir') impresiones FROM eventos
+    q(`SELECT objetivo, ruta, COUNT(*) n FROM ev WHERE t >= ? AND t < ? AND tipo='descarga' GROUP BY objetivo ORDER BY n DESC LIMIT 60`),
+    q(`SELECT ruta, MAX(objetivo) titulo, COUNT(*) vistas FROM ev WHERE t >= ? AND t < ? AND tipo='vista' AND ruta LIKE '/imagenes/%' GROUP BY ruta ORDER BY vistas DESC LIMIT 60`),
+    q(`SELECT ruta, MAX(objetivo) titulo, SUM(tipo='vista') vistas, SUM(tipo='imprimir') impresiones FROM ev
          WHERE t >= ? AND t < ? AND ruta LIKE '/recursos/escuela-dominical/%' GROUP BY ruta ORDER BY vistas DESC LIMIT 60`),
-    q(`SELECT ruta, objetivo, json_extract(detalle,'$.zona') zona, COUNT(*) n FROM eventos WHERE t >= ? AND t < ? AND tipo IN ('clic','descarga','salida','imprimir')
+    q(`SELECT ruta, objetivo, json_extract(detalle,'$.zona') zona, COUNT(*) n FROM ev WHERE t >= ? AND t < ? AND tipo IN ('clic','descarga','salida','imprimir')
          GROUP BY ruta, objetivo, zona ORDER BY n DESC LIMIT 80`),
-    q(`SELECT ruta, objetivo, COUNT(*) n FROM eventos WHERE t >= ? AND t < ? AND tipo='busqueda' GROUP BY ruta, objetivo ORDER BY n DESC LIMIT 50`),
-    q(`SELECT objetivo, COUNT(*) n FROM eventos WHERE t >= ? AND t < ? AND tipo='salida' GROUP BY objetivo ORDER BY n DESC LIMIT 40`),
-    q(`SELECT COALESCE(pais,'?') pais, COUNT(DISTINCT sesion) sesiones FROM eventos WHERE t >= ? AND t < ? GROUP BY 1 ORDER BY 2 DESC LIMIT 30`),
-    q(`SELECT COALESCE(disp,'?') disp, COUNT(DISTINCT sesion) sesiones FROM eventos WHERE t >= ? AND t < ? GROUP BY 1 ORDER BY 2 DESC`),
+    q(`SELECT ruta, objetivo, COUNT(*) n FROM ev WHERE t >= ? AND t < ? AND tipo='busqueda' GROUP BY ruta, objetivo ORDER BY n DESC LIMIT 50`),
+    q(`SELECT objetivo, COUNT(*) n FROM ev WHERE t >= ? AND t < ? AND tipo='salida' GROUP BY objetivo ORDER BY n DESC LIMIT 40`),
+    q(`SELECT COALESCE(pais,'?') pais, COUNT(DISTINCT sesion) sesiones FROM ev WHERE t >= ? AND t < ? GROUP BY 1 ORDER BY 2 DESC LIMIT 30`),
+    q(`SELECT COALESCE(disp,'?') disp, COUNT(DISTINCT sesion) sesiones FROM ev WHERE t >= ? AND t < ? GROUP BY 1 ORDER BY 2 DESC`),
     q(`SELECT s.*, o.ref, m.ms FROM
          (SELECT sesion, MIN(t) inicio, MAX(t) fin, SUM(tipo='vista') paginas, MAX(pais) pais, MAX(disp) disp, MAX(nuevo) nuevo, GROUP_CONCAT(DISTINCT CASE WHEN tipo='juego' THEN objetivo END) juegos
-           FROM eventos WHERE t >= ? AND t < ? GROUP BY sesion ORDER BY inicio DESC LIMIT 80) s
+           FROM ev WHERE t >= ? AND t < ? GROUP BY sesion ORDER BY inicio DESC LIMIT 80) s
          LEFT JOIN (${PRIMERA_VISTA}) o ON o.sesion = s.sesion
          LEFT JOIN (SELECT sesion, SUM(ms) ms FROM (${FINES}) GROUP BY sesion) m ON m.sesion = s.sesion ORDER BY s.inicio DESC`,
       desde, hasta, desde, hasta),
-    q(`SELECT objetivo juego, SUM(json_extract(detalle,'$.gusta') = 1) si, SUM(json_extract(detalle,'$.gusta') = 0) no FROM eventos
+    q(`SELECT objetivo juego, SUM(json_extract(detalle,'$.gusta') = 1) si, SUM(json_extract(detalle,'$.gusta') = 0) no FROM ev
          WHERE t >= ? AND t < ? AND tipo='voto' GROUP BY objetivo`),
   ]);
   // Un punto por día, también los días sin visitas (si no, la gráfica junta días separados).
@@ -218,6 +249,90 @@ async function resumen(env, dias, hasta) {
   const sugerencias = (await env.VOTOS_DB.prepare('SELECT imagen, texto, creado, estado FROM sugerencias_imagenes ORDER BY creado DESC LIMIT 20').all()).results;
   return { dias, desde, hasta, total, quedan, porDia: serie, origenes, paginas, juegos, descargas, imagenes, lecciones, clics, busquedas, salidas, paises,
     dispositivos, sesiones, votos, votosEv, sugerencias };
+}
+
+// ---------- Dirección: ¿va bien el camino? ----------
+// Tendencias por semana (lunes a domingo de Costa Rica) o por día, desde que empezó la medición. Responden:
+// ¿nos conocen? (visitantes únicos acumulados), ¿vuelven?, ¿nos encuentran solos? (buscadores), ¿rinde cada
+// pieza publicada? (vistas por imagen, aperturas por juego) y ¿se meten de verdad? (partidas, tiempo, páginas).
+
+const SITIO = 'https://verbobiblia.com';
+const BUSCADOR = `(ref LIKE '%google%' OR ref LIKE '%bing%' OR ref LIKE '%yahoo%' OR ref LIKE '%duckduckgo%'
+  OR ref LIKE '%ecosia%' OR ref LIKE '%yandex%' OR ref LIKE '%brave%' OR ref LIKE '%qwant%')`;
+const APP = `(objetivo LIKE '%/releases/download/%' OR objetivo LIKE '%play.google.com/store/apps%' OR objetivo LIKE '%apps.apple.com%')`;
+
+// Cuánto contenido hay publicado, contado de lo que ve Google: imágenes del sitemap de imágenes, juegos publicados
+// del catálogo, historias que ya son libro interactivo y lecciones de Escuela Dominical del sitemap.
+export function contarCatalogo({ sitemap = '', imagenes = '', juegos = '{}', historias = '' }, hoy) {
+  let nJuegos = null;
+  try { nJuegos = (JSON.parse(juegos).juegos || []).filter(j => j.publicado && String(j.publicado) <= hoy).length; } catch {}
+  return {
+    imagenes: (imagenes.match(/<url>/g) || []).length || null,
+    juegos: nJuegos,
+    historias: (historias.match(/class="libro-tarjeta"/g) || []).length,
+    lecciones: (sitemap.match(/<loc>[^<]*\/recursos\/escuela-dominical\/[^/<]+\/[^/<]+\/<\/loc>/g) || []).length || null,
+  };
+}
+export async function fotoCatalogo(env) {
+  const hoy = diaCR(Date.now());
+  const leer = (p) => fetch(SITIO + p, { cf: { cacheTtl: 0 } }).then(r => (r.ok ? r.text() : '')).catch(() => '');
+  const [sitemap, imagenes, juegos, historias] = await Promise.all(['/sitemap.xml', '/sitemap-imagenes.xml', '/juegos/catalogo.json', '/historias/'].map(leer));
+  const c = contarCatalogo({ sitemap, imagenes, juegos, historias }, hoy);
+  if (c.imagenes == null && c.juegos == null) return null;     // el sitio no respondió: mejor no guardar ceros
+  await env.VOTOS_DB.prepare(`INSERT INTO catalogo (dia, imagenes, juegos, historias, lecciones) VALUES (?, ?, ?, ?, ?)
+    ON CONFLICT(dia) DO UPDATE SET imagenes=excluded.imagenes, juegos=excluded.juegos, historias=excluded.historias, lecciones=excluded.lecciones`)
+    .bind(hoy, c.imagenes, c.juegos, c.historias, c.lecciones).run();
+  return c;
+}
+
+async function direccion(env, grano) {
+  const semana = grano !== 'dia';
+  const tam = semana ? 7 * DIA : DIA, corr = semana ? 3 * DIA : 0;   // el 1-1-1970 fue jueves: +3 días = semanas de lunes
+  const B = (c) => `CAST((${c} - ${CR} + ${corr}) / ${tam} AS INTEGER)`;
+  const inicio = (b) => b * tam - corr + CR;
+  const ahora = Date.now(), desde = inicio(Math.floor((ahora - CR + corr) / tam) - (semana ? 51 : 89));
+  const todas = (sql, ...p) => env.VOTOS_DB.prepare(sql).bind(...p).all().then(r => r.results);
+  const [vistas, primeras, sesiones, juegos, finesJ, apps, catalogo, hitos, yo] = await Promise.all([
+    // Visitantes y páginas por periodo; «vuelven» = ya habían venido en un periodo anterior.
+    todas(`SELECT ${B('v.t')} b, COUNT(DISTINCT v.visitante) visitantes, COUNT(DISTINCT v.sesion) sesiones, COUNT(*) vistas,
+        COUNT(DISTINCT CASE WHEN p.t0 < ${B('v.t')} * ${tam} - ${corr} + ${CR} THEN v.visitante END) vuelven,
+        SUM(v.ruta LIKE '/imagenes/%') v_imagenes, SUM(v.ruta LIKE '/historias/%') v_historias, SUM(v.ruta LIKE '/recursos/escuela-dominical/%') v_lecciones
+      FROM ev v JOIN (SELECT visitante, MIN(t) t0 FROM ev WHERE tipo='vista' GROUP BY visitante) p ON p.visitante = v.visitante
+      WHERE v.tipo='vista' AND v.t >= ? GROUP BY 1`, desde),
+    // Visitantes nuevos por periodo (la primera vez que se les ve), para el total acumulado.
+    todas(`SELECT ${B('t0')} b, COUNT(*) nuevos FROM (SELECT visitante, MIN(t) t0 FROM ev WHERE tipo='vista' GROUP BY visitante) GROUP BY 1`),
+    // Origen y duración de cada sesión, por el periodo en que empezó.
+    todas(`SELECT ${B('o.t0')} b, SUM(${BUSCADOR.replace(/ref/g, 'o.ref')}) buscadores, SUM(o.ref IS NULL OR o.ref = '') directo,
+        AVG(m.ms) ms FROM (${PRIMERA_VISTA}) o LEFT JOIN (SELECT sesion, SUM(ms) ms FROM (${FINES}) GROUP BY sesion) m ON m.sesion = o.sesion GROUP BY 1`,
+      desde, ahora, desde, ahora),
+    todas(`SELECT ${B('t')} b, COUNT(*) aperturas FROM ev WHERE tipo='juego' AND t >= ? GROUP BY 1`, desde),
+    todas(`SELECT ${B('t')} b, COUNT(*) partidas, SUM(toques >= 5) reales FROM
+        (SELECT MIN(t) t, MAX(json_extract(detalle,'$.toques')) toques FROM ev WHERE tipo='juego_fin' AND t >= ?
+          GROUP BY COALESCE(json_extract(detalle,'$.pv'), id)) GROUP BY 1`, desde),
+    todas(`SELECT ${B('t')} b, COUNT(*) apps FROM ev WHERE tipo IN ('descarga','salida') AND ${APP} AND t >= ? GROUP BY 1`, desde),
+    todas(`SELECT * FROM catalogo ORDER BY dia`),
+    todas(`SELECT id, dia, texto FROM hitos ORDER BY dia, id`),
+    env.VOTOS_DB.prepare('SELECT COUNT(*) n FROM yo').first(),
+  ]);
+  // Una fila por periodo, también los vacíos, desde el primero con datos.
+  const por = (l) => Object.fromEntries(l.map(r => [r.b, r]));
+  const V = por(vistas), P = por(primeras), S = por(sesiones), J = por(juegos), F = por(finesJ), A = por(apps);
+  const conDatos = vistas.map(r => r.b);
+  const b0 = Math.max(Math.min(...conDatos, Infinity), Math.floor((desde - CR + corr) / tam)), b1 = Math.floor((ahora - CR + corr) / tam);
+  let acumulado = primeras.filter(r => r.b < b0).reduce((s, r) => s + r.nuevos, 0);
+  const serie = [];
+  if (Number.isFinite(b0)) for (let b = b0; b <= b1; b++) {
+    const v = V[b] || {}, s = S[b] || {}, f = F[b] || {}, fin = diaCR(Math.min(ahora, inicio(b + 1) - 1));
+    acumulado += P[b]?.nuevos || 0;
+    const cat = catalogo.filter(c => c.dia <= fin).pop() || {};
+    serie.push({ b, desde: diaCR(inicio(b)), hasta: fin, actual: b === b1, visitantes: v.visitantes || 0, conocen: acumulado,
+      nuevos: P[b]?.nuevos || 0, vuelven: v.vuelven || 0, sesiones: v.sesiones || 0, vistas: v.vistas || 0,
+      buscadores: s.buscadores || 0, directo: s.directo || 0, ms: s.ms || 0, aperturas: J[b]?.aperturas || 0,
+      partidas: f.partidas || 0, reales: f.reales || 0, apps: A[b]?.apps || 0,
+      v_imagenes: v.v_imagenes || 0, v_historias: v.v_historias || 0, v_lecciones: v.v_lecciones || 0,
+      imagenes: cat.imagenes ?? null, juegos: cat.juegos ?? null, historias: cat.historias ?? null, lecciones: cat.lecciones ?? null });
+  }
+  return { grano: semana ? 'semana' : 'dia', serie, hitos, excluidos: yo?.n || 0 };
 }
 
 function login(error) {
@@ -250,7 +365,7 @@ section h2{margin:0 0 10px;font:600 16px Georgia,serif}section p.nota{margin:-4p
 table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--linea);vertical-align:top}
 th{color:var(--suave);font-weight:600;font-size:12px}td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 td a{color:var(--azul);text-decoration:none;word-break:break-all}.barra{height:6px;border-radius:3px;background:var(--oro);opacity:.75}
-.tabla{max-height:420px;overflow:auto;-webkit-overflow-scrolling:touch}svg text{fill:var(--suave);font-size:11px}.vacio{color:var(--suave);font-style:italic}
+#direccion a{color:var(--azul)}.dir-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:12px;margin-top:6px}.dir{border:1px solid var(--linea);border-radius:12px;padding:10px 12px;background:var(--fondo)}.dir h3{margin:0;font-size:13.5px}.dir .v{font-size:22px;font-weight:700;margin:2px 0 0}.dir .v small{font-size:12px;font-weight:400;color:var(--suave);margin-left:6px}.dir p{margin:2px 0 4px;color:var(--suave);font-size:12px}.dir svg{display:block}.dir-cab{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}.dir-cab .rango button{padding:5px 12px;font-size:12.5px}.hitos{margin:10px 0 0;padding-left:18px;font-size:12.5px}.hitos button{border:0;background:none;color:var(--suave);cursor:pointer}.hito-form{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.hito-form input{padding:6px 8px;border:1px solid var(--linea);border-radius:8px;background:var(--papel);color:var(--tinta);font:inherit;font-size:12.5px}.hito-form input[type=text]{flex:1;min-width:160px}.hito-form button,.yo-btn{padding:6px 12px;border:1px solid var(--linea);border-radius:999px;background:var(--papel);color:var(--tinta);font:inherit;font-size:12.5px;cursor:pointer}.tabla{max-height:420px;overflow:auto;-webkit-overflow-scrolling:touch}svg text{fill:var(--suave);font-size:11px}.vacio{color:var(--suave);font-style:italic}
 @media (max-width:640px){header{padding:12px 14px;position:static}header h1{font-size:18px}.rango button{padding:7px 11px;font-size:13px}main{padding:12px 10px 40px;gap:12px}section{padding:12px;border-radius:12px}.cifras{grid-template-columns:repeat(2,1fr);gap:8px}.cifra{padding:10px 12px}.cifra b{font-size:21px}table{font-size:12px}th,td{padding:5px 6px}td{max-width:52vw;overflow-wrap:anywhere}#sesiones table{min-width:620px}#sesiones td{max-width:none;white-space:nowrap}.tabla table{min-width:100%}}tr.ses{cursor:pointer}tr.ses:hover td{background:var(--fondo)}#recorrido{font-size:12.5px}#recorrido li{margin:2px 0}
 `;
 
@@ -296,7 +411,47 @@ async function semana(){const el=$('#semana');if(!el)return;const ahora=Date.now
  el.innerHTML='<details class="semana"><summary>Resumen de la semana <small>'+(hay?'frente a la anterior hasta la misma hora':'(todavía no hay una semana anterior para comparar)')+'</small></summary>'
   +'<p class="cifras-s">'+cifra('visitantes','visitantes')+cifra('vistas','páginas')+cifra('juegos','aperturas')+cifra('descargas','descargas')+'</p>'
   +(ideas.length?'<ul>'+ideas.map(x=>'<li>'+x+'</li>').join('')+'</ul>':'')+'</details>'}
-async function cargar(d){document.querySelectorAll('#rango button').forEach(b=>b.classList.toggle('activo',+b.dataset.d===d));
+// ---------- Dirección ----------
+let RANGO=7,GRANO='semana',DIR_DATOS={};
+const pctN=(a,b)=>b?100*a/b:null;
+const DIR=[
+ {t:'¿Nos conocen?',v:r=>r.conocen,f:n,nota:'Personas distintas que han venido alguna vez (total acumulado).',x:r=>'+'+n(r.nuevos)+' nuevas'},
+ {t:'¿Vuelven?',v:r=>pctN(r.vuelven,r.visitantes),f:v=>Math.round(v)+' %',nota:'De quienes vinieron en el periodo, cuántos ya habían venido antes. La señal más importante.',x:r=>n(r.vuelven)+' de '+n(r.visitantes)},
+ {t:'¿Nos encuentran solos?',v:r=>r.buscadores,f:n,nota:'Sesiones que llegan desde Google, Bing y otros buscadores. Crece con el catálogo.',x:r=>pctN(r.buscadores,r.sesiones)==null?'':Math.round(pctN(r.buscadores,r.sesiones))+' % de las sesiones'},
+ {t:'Páginas vistas',v:r=>r.vistas,f:n,nota:'El espacio para anuncios: cada página vista es una oportunidad.',x:r=>(r.sesiones?(r.vistas/r.sesiones).toFixed(1):'0')+' por sesión'},
+ {t:'¿Rinde cada imagen?',v:r=>r.imagenes?1000*r.v_imagenes/r.imagenes:null,f:v=>Math.round(v),nota:'Vistas del banco por cada 1.000 imágenes publicadas. Si se mantiene mientras crece el banco, vale la pena seguir.',x:r=>r.imagenes==null?'':n(r.imagenes)+' imágenes'},
+ {t:'¿Rinde cada juego?',v:r=>r.juegos?r.aperturas/r.juegos:null,f:v=>v.toFixed(1),nota:'Aperturas por juego publicado.',x:r=>r.juegos==null?'':n(r.juegos)+' juegos · '+n(r.aperturas)+' aperturas'},
+ {t:'¿Juegan de verdad?',v:r=>pctN(r.reales,r.partidas),f:v=>Math.round(v)+' %',nota:'Partidas con 5 toques o más.',x:r=>n(r.reales)+' de '+n(r.partidas)},
+ {t:'Tiempo por sesión',v:r=>r.ms||null,f:dur,nota:'Promedio de las sesiones con tiempo medido.'},
+ {t:'Historias y lecciones',v:r=>r.v_historias+r.v_lecciones,f:n,nota:'Páginas vistas de historias interactivas y lecciones.',x:r=>n(r.v_historias)+' historias · '+n(r.v_lecciones)+' lecciones'},
+ {t:'Descargas de apps',v:r=>r.apps,f:n,nota:'Verbo Desktop, Play Store y App Store.'}];
+function mini(serie,c,hitos){const W=300,H=70,p=6,vals=serie.map(c.v),ok=vals.filter(v=>v!=null);if(!ok.length)return '<p class="vacio">Sin datos todavía.</p>';
+ const max=Math.max(1e-9,...ok),x=i=>serie.length<2?W/2:p+i*(W-2*p)/(serie.length-1),y=v=>H-p-(H-2*p)*v/max;
+ let d='',m=false;vals.forEach((v,i)=>{if(v==null){m=false;return}d+=(m?'L':'M')+x(i).toFixed(1)+' '+y(v).toFixed(1)+' ';m=true});
+ const marcas=hitos.map(h=>{const i=serie.findIndex(r=>h.dia>=r.desde&&h.dia<=r.hasta);return i<0?'':'<line x1="'+x(i)+'" x2="'+x(i)+'" y1="0" y2="'+H+'" stroke="var(--azul)" stroke-dasharray="3 3" opacity=".6"><title>'+e(h.dia+': '+h.texto)+'</title></line>'}).join('');
+ return '<svg viewBox="0 0 '+W+' '+H+'" width="100%" height="'+H+'">'+marcas+'<path d="'+d+'" fill="none" stroke="var(--oro)" stroke-width="2"/>'
+  +vals.map((v,i)=>v==null?'':'<circle cx="'+x(i).toFixed(1)+'" cy="'+y(v).toFixed(1)+'" r="'+(serie[i].actual?2.5:3.5)+'" fill="'+(serie[i].actual?'var(--suave)':'var(--oro)')+'"><title>'+e(serie[i].desde+(serie[i].desde!==serie[i].hasta?' a '+serie[i].hasta:'')+': '+c.f(v)+(serie[i].actual?' (en curso)':''))+'</title></circle>').join('')+'</svg>'}
+async function direccion(){const el=$('#direccion');if(!el)return;
+ const D=DIR_DATOS[GRANO]||(DIR_DATOS[GRANO]=await fetch('/panel/direccion?grano='+GRANO).then(r=>r.ok?r.json():null));
+ if(!D){el.innerHTML='<p>No se pudo cargar la dirección.</p>';return}
+ const S=D.serie,ult=S[S.length-1],ant=S[S.length-2],que=GRANO==='semana'?'semana':'día';
+ const tarjeta=c=>{const v=ult?c.v(ult):null,a=ant?c.v(ant):null;
+  return '<div class="dir"><h3>'+c.t+'</h3><div class="v">'+(v==null?'—':c.f(v))+'<small>'+(c.x&&ult?e(c.x(ult)):'')+'</small></div>'
+   +'<p>'+(a!=null?'Anterior '+que+': '+c.f(a)+' · ':'')+c.nota+'</p>'+mini(S,c,D.hitos)+'</div>'};
+ const cat=[['imagenes','Imágenes'],['juegos','Juegos'],['historias','Historias interactivas'],['lecciones','Lecciones']];
+ const primero=k=>(S.find(r=>r[k]!=null)||{})[k];
+ el.innerHTML='<div class="dir-cab"><h2>Dirección: ¿va bien el camino?</h2><div class="rango" id="grano"><button data-g="semana">Por semana</button><button data-g="dia">Por día</button></div></div>'
+  +'<p class="nota">Tendencia desde que empezó la medición, sin contar tus aparatos ('+n(D.excluidos)+' excluidos). El último punto (gris) es la '+que+' en curso. Las líneas azules son los hitos: pasa el dedo o el ratón por encima.</p>'
+  +'<div class="dir-grid">'+DIR.map(tarjeta).join('')
+  +'<div class="dir"><h3>Catálogo publicado</h3>'+tabla([{t:'',k:'t'},{t:'Al inicio',k:'a',num:1,f:n},{t:'Ahora',k:'b',num:1,f:n}],cat.map(([k,t])=>({t,a:primero(k),b:ult?ult[k]:null})))+'<p>Se cuenta cada día de los sitemaps y del catálogo de juegos.</p></div></div>'
+  +'<ol class="hitos">'+D.hitos.map(h=>'<li>'+e(h.dia)+' · '+e(h.texto)+' <button data-borrar="'+h.id+'" title="Quitar hito">×</button></li>').join('')+'</ol>'
+  +'<form class="hito-form" id="hito"><input type="date" name="dia" required value="'+new Date(Date.now()-216e5).toISOString().slice(0,10)+'"><input type="text" name="texto" required maxlength="120" placeholder="Nuevo hito: lanzamiento, cambio, campaña…"><button>Agregar hito</button></form>'
+  +'<p class="nota" style="margin-top:8px">Para no contar un aparato tuyo: abre en él <a href="https://verbobiblia.com/?no-medir" target="_blank" rel="noopener">verbobiblia.com/?no-medir</a> una vez, o toca una de tus visitas en «Sesiones recientes» y marca «Esta visita fui yo».</p>';
+ el.querySelectorAll('#grano button').forEach(b=>{b.classList.toggle('activo',b.dataset.g===GRANO);b.onclick=()=>{GRANO=b.dataset.g;direccion()}});
+ const enviar=async d=>{await fetch('/panel/hito',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});DIR_DATOS={};direccion()};
+ el.querySelectorAll('[data-borrar]').forEach(b=>b.onclick=()=>enviar({borrar:+b.dataset.borrar}));
+ $('#hito').onsubmit=ev=>{ev.preventDefault();const f=new FormData(ev.target);enviar({dia:f.get('dia'),texto:f.get('texto')})}}
+async function cargar(d){RANGO=d;document.querySelectorAll('#rango button').forEach(b=>b.classList.toggle('activo',+b.dataset.d===d));
  const r=await fetch('/panel/datos?dias='+d);if(!r.ok){$('#m').innerHTML='<p>No se pudieron cargar los datos.</p>';return}const D=await r.json(),T=D.total||{};
  const fuentes={};D.origenes.forEach(o=>{const f=fuente(o.ref);fuentes[f]=(fuentes[f]||0)+o.sesiones});
  const votos=Object.fromEntries(D.votos.map(v=>[v.juego,v.n]));
@@ -304,6 +459,7 @@ async function cargar(d){document.querySelectorAll('#rango button').forEach(b=>b
  $('#m').innerHTML='<div class="cifras">'+[[n(T.visitantes),'visitantes'],[n(T.nuevos),'nuevos'],[n(T.sesiones),'sesiones'],[n(T.vistas),'páginas vistas'],
   [dur(T.ms/Math.max(1,T.sesiones_ms)),'tiempo medio por sesión (de '+n(T.sesiones_ms)+' con tiempo medido)'],[n(T.juegos),'aperturas de juegos'],[n(T.descargas),'descargas'],[n(T.pinterest),'clics en «Guardar en Pinterest»'],[n(T.tarjetas),'clics en «Crear tarjeta»']]
   .map(c=>'<div class="cifra"><b>'+c[0]+'</b><span>'+c[1]+'</span></div>').join('')+'</div>'
+ +'<section id="direccion"><p class="vacio">Cargando la dirección…</p></section>'
  +'<section><h2>¿Se quedan? Por sección</h2><p class="nota">«Entraron por aquí»: sesiones que empezaron en esa sección; «Siguieron»: cuántas de ellas vieron otra página. «Volvieron»: visitantes que vinieron a esa sección en más de un día. «Últimas 4 semanas»: visitantes por semana, de la más antigua a la actual (no depende del rango elegido).</p>'
   +tabla([{t:'Sección',k:'sec',f:v=>e(SECCIONES[v]||v)},{t:'Visitantes',k:'visitantes',num:1,barra:1},{t:'Páginas por sesión',k:'vistas',num:1,f:(v,r)=>((+v||0)/Math.max(1,r.sesiones)).toFixed(1)},{t:'Tiempo por sesión',k:'ms',num:1,f:dur},{t:'Entraron por aquí',k:'entradas',num:1,f:v=>n(v)},{t:'Siguieron',k:'siguieron',num:1,f:(v,r)=>pct(v,r.entradas)},{t:'Volvieron',k:'volvieron',num:1,f:(v,r)=>pct(v,r.visitantes)},{t:'Últimas 4 semanas',k:'semanas',f:v=>v.join(' · ')}],D.quedan)+'</section>'
  +'<section><h2>Visitas por día</h2>'+linea(D.porDia)+'<div id="semana"></div></section><div class="rejilla">'
@@ -323,8 +479,10 @@ async function cargar(d){document.querySelectorAll('#rango button').forEach(b=>b
    D.sesiones.map(s=>({...s,_attr:' class="ses" data-s="'+e(s.sesion)+'"'})))+'<ol id="recorrido"></ol></section>';
  document.querySelectorAll('tr.ses').forEach(tr=>tr.onclick=async()=>{const r=await (await fetch('/panel/sesion?id='+tr.dataset.s)).json();
   $('#recorrido').innerHTML=r.eventos.map(x=>'<li>'+new Date(x.t).toLocaleTimeString('es',{timeZone:ZONA})+' · <b>'+e(x.tipo)+'</b> '+e(x.ruta)+(x.objetivo?' → '+e(x.objetivo):'')+(x.ms?' ('+dur(x.ms)+')':'')+'</li>').join('');
+  $('#recorrido').innerHTML+='<li style="list-style:none;margin-top:8px"><button class="yo-btn" id="soy-yo">Esta visita fui yo: no contar este aparato</button></li>';
+  $('#soy-yo').onclick=async()=>{await fetch('/panel/yo',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sesion:tr.dataset.s})});DIR_DATOS={};cargar(RANGO)};
   $('#recorrido').scrollIntoView({behavior:'smooth',block:'nearest'})});
- semana();
+ semana(); direccion();
 }
 document.querySelectorAll('#rango button').forEach(b=>b.onclick=()=>cargar(+b.dataset.d));cargar(7);
 </script>`);

@@ -1,4 +1,4 @@
-import { handleMedir, handlePanel } from './panel.js';
+import { handleMedir, handlePanel, fotoCatalogo } from './panel.js';
 import studyAssistantCatalogData from './study-assistant-catalog.json' with { type: 'json' };
 import { createRemoteJWKSet, jwtVerify } from 'jose';
 
@@ -1514,6 +1514,10 @@ async function handleSugerencia(request, env, headers) {
 }
 
 export default {
+  // Cron diario (wrangler.toml): cuánto contenido hay publicado, para la sección «Dirección» del panel.
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(fotoCatalogo(env).catch(error => console.error('catálogo', error)));
+  },
   async fetch(request, env) {
     const url = new URL(request.url);
     const origin = request.headers.get('Origin') || '';
