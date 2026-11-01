@@ -31,6 +31,7 @@ export function loadImage(path) {
   const im = new Image(); im.src = 'assets/' + path; imgCache[path] = im;
   return im;
 }
+const TROZO_SUELO = 512;   // ancho (unidades del mundo) de cada trozo de suelo ya pintado
 const ready = (im) => im && im.complete && im.naturalWidth > 0;
 // Materiales de época para los elementos del recorrido.
 const MADERA = { luz: rgb(176, 124, 74), base: rgb(132, 86, 48), media: rgb(118, 76, 42), oscura: rgb(58, 36, 22) };
@@ -72,7 +73,10 @@ export class WorldRenderer {
       // con una copia: así tiñe y oscurece como al escenario sin aclarar los contornos.
       const m = Math.max(1, ...amb), mezcla = (c) => Math.round(255 + ((c / m) * 235 - 255) * TINTE_AMBIENTE);
       const copia = this._pixCopia ??= document.createElement('canvas');
-      copia.width = cw; copia.height = ch; copia.getContext('2d').drawImage(off, 0, 0);
+      // Se reutiliza (cambiarle el tamaño en cada cuadro lo volvía a crear: lento en el teléfono).
+      const oc = copia.getContext('2d');
+      if (copia.width !== cw || copia.height !== ch) { copia.width = cw; copia.height = ch; } else oc.clearRect(0, 0, cw, ch);
+      oc.drawImage(off, 0, 0);
       o.setTransform(1, 0, 0, 1, 0, 0);
       o.globalCompositeOperation = 'multiply'; o.fillStyle = `rgb(${mezcla(amb[0])},${mezcla(amb[1])},${mezcla(amb[2])})`; o.fillRect(0, 0, cw, ch);
       o.globalCompositeOperation = 'destination-in'; o.drawImage(copia, 0, 0);
@@ -109,6 +113,7 @@ export class WorldRenderer {
     this.background(g, camX, worldViewW, time);
     const left = camX - 60, right = camX + worldViewW + 60;
     const visible = (x, bw) => x + bw > left && x < right;
+    this._vistaL = left; this._vistaR = right; this._cuadro = (this._cuadro || 0) + 1;
 
     this.drawAbyss(g, camX, worldViewW, time);
     for (const z of w.gravityZones) if (visible(z.x, z.w)) this.drawGravityZone(g, z, time);
@@ -116,6 +121,7 @@ export class WorldRenderer {
     for (const d of w.ducts) if (visible(d.x, d.w)) this.drawDuct(g, d, time);
     for (const l of w.ladders) if (visible(l.x, l.w)) this.drawLadder(g, l);
     for (const sd of w.solids) if (!w.isDynamicSolid(sd) && visible(sd.x, sd.w)) this.drawSolid(g, sd, time);
+    if (this._cuadro % 60 === 0) this.soltarTrozos();
     for (const wi of w.windows) if (visible(wi.x - 10, wi.w + 20)) this.drawWindow(g, wi);
     for (const d of w.autoDoors) if (visible(d.x - 10, d.w + 20)) this.drawAutoDoor(g, d, time);
     for (const sh of w.shocks) if (visible(sh.x, sh.w)) this.drawShock(g, sh, time);
@@ -255,12 +261,49 @@ export class WorldRenderer {
     while (rx < x + w - 6) { if (rx > x + 6) circle(g, rx, y + 5.5, 1.8, withAlpha(st.dark, 0.85)); rx += 48; }
   }
 
+  /** Suelo de época ya pintado: rellenar cada bloque con la textura y el degradado en cada cuadro costaba ~3 ms por
+   * bloque en computadora (mucho más en el teléfono: el juego se ponía lento). Ahora cada bloque se pinta una sola vez
+   * en trozos de TROZO_SUELO unidades (1 píxel por unidad) y en cada cuadro solo se pegan los trozos visibles; los que
+   * quedan atrás se sueltan (soltarTrozos) para no gastar memoria. Mismo dibujo que pintarSueloEpoca. */
+  drawSolidEpoca(g, s) {
+    const x0 = Math.max(s.x, this._vistaL ?? s.x), x1 = Math.min(s.x + s.w, this._vistaR ?? s.x + s.w);
+    if (x1 <= x0) return;
+    const trozos = (this._trozos ??= new Map()).get(s) ?? [];
+    if (!trozos.length) this._trozos.set(s, trozos);
+    const i0 = Math.floor((x0 - s.x) / TROZO_SUELO), i1 = Math.floor((x1 - s.x - 0.001) / TROZO_SUELO);
+    g.save(); g.imageSmoothingEnabled = false;
+    for (let i = i0; i <= i1; i++) {
+      const cx = s.x + i * TROZO_SUELO, cw = Math.min(TROZO_SUELO, s.x + s.w - cx);
+      let t = trozos[i];
+      if (!t) {
+        const c = document.createElement('canvas'); c.width = Math.ceil(cw); c.height = Math.ceil(s.h);
+        const o = c.getContext('2d');
+        o.beginPath(); o.rect(0, 0, cw, s.h); o.clip(); o.translate(-cx, -s.y);   // coordenadas del mundo: la textura queda alineada
+        this.pintarSueloEpoca(o, s);
+        t = trozos[i] = { c };
+      }
+      t.usado = this._cuadro;
+      g.drawImage(t.c, 0, 0, cw, s.h, cx, s.y, cw, s.h);
+    }
+    g.restore();
+  }
+
+  /** Suelta los trozos de suelo que no se dibujaron en los últimos ~2 segundos. */
+  soltarTrozos() {
+    if (!this._trozos) return;
+    for (const [s, trozos] of this._trozos) {
+      let quedan = 0;
+      trozos.forEach((t, i) => { if (!t) return; if (this._cuadro - t.usado > 120) { t.c.width = 0; delete trozos[i]; } else quedan++; });
+      if (!quedan) this._trozos.delete(s);
+    }
+  }
+
   /** Suelo de época: textura repetida (1 píxel por unidad, como los fondos), oscurecida hacia abajo, con su borde
    * de losas/musgo/pasto arriba y bordes laterales oscuros. Sin las luces ni remaches del piso metálico. */
-  drawSolidEpoca(g, s) {
+  pintarSueloEpoca(g, s) {
     const st = this.st, x = s.x, y = s.y, w = s.w, h = s.h;
-    const cara = this._patCara ??= g.createPattern(this.sueloCara, 'repeat');
-    const borde = this._patBorde ??= g.createPattern(this.sueloBorde, 'repeat-x');
+    const cara = g.createPattern(this.sueloCara, 'repeat');
+    const borde = g.createPattern(this.sueloBorde, 'repeat-x');
     g.save(); g.imageSmoothingEnabled = false;
     g.fillStyle = cara; g.fillRect(x, y, w, h);
     g.fillStyle = linearV(g, y + 6, y + Math.max(60, Math.min(h, 220)), argb(40, 6, 6, 14), argb(215, 6, 6, 14)); g.fillRect(x, y + 6, w, h - 6);
