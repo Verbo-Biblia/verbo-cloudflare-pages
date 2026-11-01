@@ -55,7 +55,7 @@
     "oracion": "Oración", "perseverancia": "Perseverancia", "juventud": "Juventud",
     "predicacion": "Predicación", "iglesia": "Iglesia", "doctrina": "Doctrina",
     "escritura": "Escritura", "cultura": "Cultura", "liderazgo": "Liderazgo",
-    "siglo-1": "Siglo I", "siglo-2": "Siglo II", "siglo-17": "Siglo XVII", "siglo-19": "Siglo XIX",
+    "siglo-1": "Siglo I", "siglo-2": "Siglo II", "siglo-4": "Siglo IV", "siglo-17": "Siglo XVII", "siglo-19": "Siglo XIX",
     "john-bunyan": "John Bunyan", "clasicos-cristianos": "Clásicos cristianos", "biblia": "Biblia"
   };
 
@@ -165,7 +165,15 @@
       if (!clone.querySelector(".r-book-title")) {
         var title = document.createElement("span");
         title.className = "r-discovery-recientes-item-title";
-        title.textContent = itemTitle(item);
+        // Bilingüe: si la fila trae data-titulo-en, se ponen los dos títulos (pie.css muestra el elegido).
+        var en = item.getAttribute("data-titulo-en");
+        if (en) {
+          var es = document.createElement("span"); es.setAttribute("data-idioma", "es"); es.textContent = itemTitle(item);
+          var ing = document.createElement("span"); ing.setAttribute("data-idioma", "en"); ing.lang = "en"; ing.textContent = en;
+          title.append(es, ing);
+        } else {
+          title.textContent = itemTitle(item);
+        }
         clone.appendChild(title);
       }
       list.appendChild(clone);

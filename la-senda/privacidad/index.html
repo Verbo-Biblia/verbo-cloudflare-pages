@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
+<head><script data-idioma-temprano>(function(){try{var e=window.top!==window.self&&(/[?&]verboEmbed=app/.test(location.search)||String(window.name).split('|')[0]==='verboEmbedApp'),n=String(navigator.language||'es').slice(0,2).toLowerCase(),l=e?(n==='es'?'es':'en'):(localStorage.getItem('verbo:uiLang')||(n==='en'?'en':'es'));document.documentElement.lang=l==='en'?'en':'es'}catch(x){}})()</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Política de Privacidad | La Senda: Preguntas Bíblicas</title>
@@ -10,16 +10,17 @@
 <meta name="theme-color" content="#0a2037">
 <meta name="robots" content="noindex">
 <link rel="stylesheet" href="../../biblia/assets/style.css?v=20261007-paleta-portada">
+<link rel="stylesheet" href="/assets/pie/pie.css?v=20261031-idioma2">
 </head>
 <body class="static-page">
 
   <header class="static-page__header">
     <a class="static-page__brand" href="../../">Verbo</a>
-    <a class="static-page__back" href="#en">English</a>
   </header>
 
   <main class="static-page__main">
     <article>
+      <div data-idioma="es">
       <h1>Política de Privacidad · La Senda: Preguntas Bíblicas</h1>
       <p><em>Vigente desde el 3 de octubre de 2026. Desarrollador: Origen Labs.</em></p>
 
@@ -45,9 +46,8 @@
 
       <h2>Cambios y contacto</h2>
       <p>Si esta política cambia, publicaremos la nueva versión en esta misma página. Para cualquier consulta, escribe al correo de contacto del desarrollador que aparece en la ficha de la app en Google Play.</p>
-
-      <hr>
-
+      </div>
+      <div data-idioma="en" lang="en">
       <h1 id="en" lang="en">Privacy Policy · La Senda: Bible Questions</h1>
       <div lang="en">
         <p><em>Effective October 3, 2026. Developer: Origen Labs.</em></p>
@@ -75,7 +75,10 @@
         <h2>Changes and contact</h2>
         <p>If this policy changes, we will publish the new version on this same page. For any questions, write to the developer contact email shown on the app's Google Play listing.</p>
       </div>
+      </div>
     </article>
   </main>
+<script src="/biblia/assets/i18n.js?v=20261031-idioma2"></script>
+<script src="/biblia/assets/site-chrome.js?v=20261031-idioma2"></script>
 </body>
 </html>

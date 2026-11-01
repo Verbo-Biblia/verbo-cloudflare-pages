@@ -24,16 +24,25 @@ BLOQUE = re.compile(r'<(p|h1|h2|h3|li|figcaption)(\s[^>]*)?>(.*?)</\1>', re.S)
 GEN = re.compile(r'<!-- lec:gen -->.*?<!-- /lec:gen -->', re.S)
 
 
+# Páginas fijas escritas a mano (legales): su <main> entero, marcado con data-bilingue al aplicar.
+FIJAS = ['privacidad', 'licencias']  # (las políticas de La Senda y Efatá ya traen sus dos mitades: se marcan aparte)
+
+
 def paginas():
     for f in sorted(ROOT.glob('recursos/**/index.html')):
         t = f.read_text(encoding='utf-8')
         if re.search(r'<article\b[^>]*data-i18n-strategy="auto"', t):
             yield f, t
+    for r in FIJAS:
+        f = ROOT / r / 'index.html'
+        t = f.read_text(encoding='utf-8')
+        if re.search(r'<main\b(?![^>]*data-bilingue)[^>]*>', t):
+            yield f, t
 
 
 def articulo(t):
     m = re.search(r'(<article\b[^>]*data-i18n-strategy="auto"[^>]*>)(.*?)(</article>)', t, re.S)
-    return m
+    return m or re.search(r'(<main\b(?![^>]*data-bilingue)[^>]*>)(.*?)(</main>)', t, re.S)
 
 
 def bloques(cuerpo):
@@ -47,6 +56,8 @@ def bloques(cuerpo):
         if not re.search(r'[A-Za-zÁÉÍÓÚáéíóúÑñ]{2}', re.sub(r'<[^>]+>', '', dentro)):
             continue
         if re.search(r'<(p|li|h[1-6]|ul|ol|div|section)\b', dentro):  # contenedor: se traducen sus hijos
+            continue
+        if 'data-i18n=' in (m.group(2) or '') or re.search(r'data-i18n="', dentro):  # ya lo traduce el diccionario de interfaz
             continue
         out.append((m.start(), m.end(), m.group(1), m.group(2) or '', dentro))
     return out
@@ -90,6 +101,8 @@ def aplicar():
             i = b
         partes.append(cuerpo[i:])
         apertura = m.group(1).replace('data-i18n-strategy="auto"', 'data-i18n-strategy="bilingue"')
+        if apertura.startswith('<main'):
+            apertura = apertura.replace('<main', '<main data-bilingue', 1)
         t = t[:m.start()] + apertura + ''.join(partes) + m.group(3) + t[m.end():]
         f.write_text(t, encoding='utf-8')
         hechas += 1

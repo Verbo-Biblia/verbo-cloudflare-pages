@@ -12,7 +12,7 @@ import html
 import json
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '20261031-idioma'
+VERSION = '20261031-idioma2'
 START, END = '<!-- verbo:pie -->', '<!-- /verbo:pie -->'
 LINKS = {
     'secciones': [('inicio', '/', 'Inicio'), ('recursos', '/recursos/', 'Recursos'),

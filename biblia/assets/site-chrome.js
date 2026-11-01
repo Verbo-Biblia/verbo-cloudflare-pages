@@ -14,6 +14,7 @@
   window.selectorSiempreVisible = function(){
     const original=document.getElementById('uiLangSwitcher');
     if(!original || document.getElementById('uiLangFlotante') || !('IntersectionObserver' in window)) return;
+    if(/^\/juegos\/[^/]+\/jugar\//.test(location.pathname)) return;
     const css=document.createElement('style');
     css.textContent='#uiLangFlotante{position:fixed;top:10px;right:12px;z-index:9000;display:flex;gap:2px;padding:3px;border-radius:999px;background:#fffdf8;color:#1f2a37;box-shadow:0 2px 12px rgba(0,0,0,.2);font:600 13px/1 system-ui,sans-serif;transition:opacity .2s,transform .2s}'+
       '#uiLangFlotante[hidden]{display:flex;opacity:0;transform:translateY(-8px);pointer-events:none}'+
@@ -36,6 +37,7 @@
     if(document.getElementById('uiLangSwitcher')) return;
     if((window.name||'').split('|')[0]==='verboEmbedApp') return;
     if(/^\/(studio|biblia)\//.test(location.pathname)) return;
+    if(/^\/juegos\/[^/]+\/jugar\//.test(location.pathname)) return;  // los juegos traen su propio idioma
     const css=document.createElement('style');
     css.textContent='.verbo-idioma{display:inline-flex;gap:2px;align-items:center;margin-left:auto;flex:none;font:600 13px/1 system-ui,sans-serif;color:inherit}'+
       '.verbo-idioma button{all:unset;cursor:pointer;padding:6px 9px;border-radius:999px;color:inherit;opacity:.65;border:1px solid transparent}'+

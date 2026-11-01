@@ -81,7 +81,14 @@ def build():
         date_en=f'{MESES_EN[parsed_date.month-1]} {parsed_date.day}, {parsed_date.year}'
         toc=''.join(f'<a href="#parte-{i}">{b(s[0],e["sections"][i-1][0])}</a>' for i,s in enumerate(a['sections'],1))
         sections=''.join(f'<section aria-labelledby="parte-{i}"><h2 id="parte-{i}">{b(s[0],e["sections"][i-1][0])}</h2>'+''.join(bloque('p',esc(p),esc(pe)) for p,pe in zip(s[1],e['sections'][i-1][1]))+'</section>' for i,s in enumerate(a['sections'],1))
-        readings=''.join(f'<li><a href="/recursos/articulos-y-reflexiones/{esc(s)}/">{re.sub(r"<[^>]+>","",re.search(r"<h1[^>]*>(.*?)</h1>",(ROOT/"recursos/articulos-y-reflexiones"/s/"index.html").read_text(),re.S)[1])}</a></li>' for s in a['sources'])
+        def lectura(s):
+            # La edición en inglés del artículo, si existe (recursos/articles-and-reflections-en/<slug>/).
+            h1 = lambda f: re.sub(r"<[^>]+>", "", re.search(r"<h1[^>]*>(.*?)</h1>", f.read_text(), re.S)[1]).strip()
+            es_ = f'<a href="/recursos/articulos-y-reflexiones/{esc(s)}/">{h1(ROOT/"recursos/articulos-y-reflexiones"/s/"index.html")}</a>'
+            f_en = ROOT/'recursos/articles-and-reflections-en'/s/'index.html'
+            en_ = f'<a href="/recursos/articles-and-reflections-en/{esc(s)}/">{h1(f_en)}</a>' if f_en.exists() else es_ + ' (in Spanish)'
+            return '<li>' + bh(es_, en_) + '</li>'
+        readings=''.join(lectura(s) for s in a['sources'])
         if a.get('base_note'):
             base_note = b(a['base_note'], 'Original reflection by Verbo based on the Bible passages listed.')
             editorial_note = b('Artículo preparado para esta sección a partir de los pasajes bíblicos indicados.', 'Article prepared for this section from the Bible passages listed.')
