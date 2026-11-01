@@ -4,7 +4,7 @@
 import { t, idioma, cambiarIdioma, fijarTextos, traducirPagina } from '../comun/idioma.js';
 import { sonar, sonidoActivo, fijarSonido, precargar } from '../comun/sonido.js';
 import { musica, musicaActiva, fijarMusica, carpetaMusica } from '../comun/musica.js';
-import { iniciarJugador, jugar, alPasar } from './jugar.js?v=0787c70d';
+import { iniciarJugador, jugar, alPasar } from './jugar.js?v=dff0bc9f';
 
 const TEXTOS = {
   es: {
@@ -118,7 +118,7 @@ function pintarMenu() {
 async function abrir(h, boton) {
   if (boton) boton.querySelector('.t-leer').textContent = t('cargando');
   try {
-    const historia = await (await fetch(`historias/${h.id}.${idioma()}.json?v=0787c70d`)).json();
+    const historia = await (await fetch(`historias/${h.id}.${idioma()}.json?v=dff0bc9f`)).json();
     traducirPagina($('#jugador'));
     document.body.classList.add('leyendo');
     leyendo = h.id;

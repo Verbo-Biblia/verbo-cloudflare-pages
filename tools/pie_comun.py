@@ -12,7 +12,7 @@ import html
 import json
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '20261022-pie2'
+VERSION = '20261031-idioma'
 START, END = '<!-- verbo:pie -->', '<!-- /verbo:pie -->'
 LINKS = {
     'secciones': [('inicio', '/', 'Inicio'), ('recursos', '/recursos/', 'Recursos'),
@@ -105,6 +105,36 @@ def footer(home=False):
     # Medición propia y anónima para el panel privado (assets/medir.js; ver cloudflare/api-bible-worker/panel.js).
     return '\n'.join(parts + ['  </div>', '</footer>', '<script src="/assets/medir.js?v=20261031" defer></script>', END])
 
+IDIOMA_TEMPRANO = ("<script data-idioma-temprano>(function(){try{var e=window.top!==window.self&&(/[?&]verboEmbed=app/.test(location.search)"
+    "||String(window.name).split('|')[0]==='verboEmbedApp'),n=String(navigator.language||'es').slice(0,2).toLowerCase(),"
+    "l=e?(n==='es'?'es':'en'):(localStorage.getItem('verbo:uiLang')||(n==='en'?'en':'es'));"
+    "document.documentElement.lang=l==='en'?'en':'es'}catch(x){}})()</script>")
+
+
+# Bilingüe sin traducción en vivo (Juan, 31-10-2026): todo elemento marcado data-i18n-live se escribe en los dos
+# idiomas con el diccionario data/traduccion-en.json (español → inglés; pie.css muestra el elegido). Si falta una
+# entrada, se avisa y el texto queda solo en español hasta agregarla.
+TRADUCCION_EN = None
+FALTAN_EN = set()
+def _norm(s): return re.sub(r'\s+', ' ', s).strip()
+def bilingue(text):
+    global TRADUCCION_EN
+    if 'data-i18n-live' not in text: return text
+    if TRADUCCION_EN is None:
+        TRADUCCION_EN = {_norm(k): v for k, v in json.loads((ROOT / 'data/traduccion-en.json').read_text(encoding='utf-8')).items()}
+    def par(m):
+        tag, antes, despues, dentro = m.group(1), m.group(2), m.group(3), m.group(4)
+        attrs = (antes + despues).rstrip()
+        if tag.lower() == 'title':
+            return f'<{tag}{attrs}>{dentro}</{tag}>'
+        en = TRADUCCION_EN.get(_norm(dentro))
+        if en is None:
+            FALTAN_EN.add(_norm(dentro))
+            return f'<{tag}{attrs}>{dentro}</{tag}>'
+        attrs_en = re.sub(r'\s(id|data-i18n)="[^"]*"', '', attrs)
+        return f'<{tag}{attrs} data-idioma="es">{dentro}</{tag}><{tag}{attrs_en} data-idioma="en" lang="en">{en}</{tag}>'
+    return re.sub(r'<(\w+)([^>]*?)\sdata-i18n-live(?:="[^"]*")?([^>]*)>(.*?)</\1>', par, text, flags=re.S)
+
 def apply():
     changed = 0
     pages = public_pages()
@@ -116,6 +146,10 @@ def apply():
         elif path == ROOT / 'index.html':
             text = re.sub(r'<footer\b[^>]*>.*?</footer>', '', text, count=1, flags=re.S)
         text = without_bible_links(text)
+        text = bilingue(text)
+        # Idioma elegido puesto antes de pintar (si no, la página bilingüe parpadea en español).
+        text = re.sub(r'<script data-idioma-temprano>.*?</script>\n?', '', text, flags=re.S)
+        text = re.sub(r'(<head\b[^>]*>)', lambda m: m.group(1) + IDIOMA_TEMPRANO, text, count=1)
         css = f'<link rel="stylesheet" href="/assets/pie/pie.css?v={VERSION}">'
         text = re.sub(r'<link\b[^>]*href=["\'][^"\']*/assets/pie/pie\.css[^"\']*["\'][^>]*>\n?', '', text)
         text = text.replace('</head>', css + '\n</head>')
@@ -131,6 +165,7 @@ def apply():
             path.write_text(text, encoding='utf-8')
             changed += 1
     print(f'Pie común: {len(pages)} páginas públicas; {changed} actualizadas.')
+    if FALTAN_EN: print(f'Bilingüe: faltan {len(FALTAN_EN)} textos en data/traduccion-en.json:', *sorted(FALTAN_EN)[:20], sep='\n  ')
     return len(pages)
 
 if __name__ == '__main__':

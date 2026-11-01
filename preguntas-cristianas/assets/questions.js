@@ -16,7 +16,8 @@
       card.hidden = !visible;
       if (visible) count++;
     }
-    document.getElementById('q-count').textContent = `${count} ${count === 1 ? 'respuesta para leer' : 'respuestas para leer'}`;
+    // Bilingüe: el contador se escribe en los dos idiomas (pie.css muestra el elegido).
+    document.getElementById('q-count').innerHTML = `<span data-idioma="es">${count} ${count === 1 ? 'respuesta para leer' : 'respuestas para leer'}</span><span data-idioma="en" lang="en">${count} ${count === 1 ? 'answer to read' : 'answers to read'}</span>`;
     document.getElementById('q-empty').hidden = count !== 0;
   };
   input.addEventListener('input', apply);

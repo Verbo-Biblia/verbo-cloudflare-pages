@@ -27,9 +27,10 @@
   const stops = cards.map((card, i) => {
     const num = el('div', 'q-space-num', String(i + 1).padStart(2, '0'));
     const box = el('div', 'q-space-card',
-      `<small>${esc(card.dataset.topic || '')}</small><strong>${esc(card.querySelector('h2')?.textContent.trim() || '')}</strong>` +
-      `<p>${esc(card.querySelector('p')?.textContent.trim() || '')}</p>`);
-    const link = el('a', '', 'Leer la respuesta');
+      // Bilingüe: se copian las dos versiones (data-idioma) y pie.css muestra la elegida.
+      `<small>${card.querySelector('.q-card-top > span')?.innerHTML || esc(card.dataset.topic || '')}</small><strong>${card.querySelector('h2')?.innerHTML || ''}</strong>` +
+      [...card.querySelectorAll(':scope > p')].map(p => p.outerHTML).join(''));
+    const link = el('a', '', '<span data-idioma="es">Leer la respuesta</span><span data-idioma="en" lang="en">Read the answer</span>');
     link.href = card.getAttribute('href'); link.tabIndex = -1;
     box.append(link);
     world.append(num, box);
@@ -37,8 +38,8 @@
     return { z: -i * GAP };
   });
 
-  const intro = el('div', 'q-space-intro', 'BAJA: CADA PREGUNTA VIENE A TU ENCUENTRO');
-  const skip = el('a', 'q-space-skip', 'Ver todas las preguntas ↓');
+  const intro = el('div', 'q-space-intro', '<span data-idioma="es">BAJA: CADA PREGUNTA VIENE A TU ENCUENTRO</span><span data-idioma="en" lang="en">SCROLL DOWN: EACH QUESTION COMES TO MEET YOU</span>');
+  const skip = el('a', 'q-space-skip', '<span data-idioma="es">Ver todas las preguntas ↓</span><span data-idioma="en" lang="en">See all questions ↓</span>');
   skip.href = '#preguntas'; skip.tabIndex = -1;
   const hud = el('div', 'q-space-hud');
   const dots = cards.map((_, i) => {

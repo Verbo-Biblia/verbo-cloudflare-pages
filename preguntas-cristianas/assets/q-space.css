@@ -14,7 +14,7 @@
 .q-space-card a:hover{transform:translateY(-3px);box-shadow:0 0 0 2px #d6ae70,0 22px 46px -14px #000}
 .q-space-num{font:400 clamp(150px,26vw,380px)/1 Georgia,serif;color:transparent;-webkit-text-stroke:1px #d6ae7040;user-select:none;pointer-events:none}
 .q-space-intro{position:absolute;top:clamp(22px,5vh,48px);left:0;right:0;text-align:center;z-index:2;font:700 10px/1.4 Inter,system-ui,sans-serif;letter-spacing:.24em;color:#d6ae70;transition:opacity .4s;padding:0 120px}
-.q-space-skip{position:absolute;right:20px;top:clamp(16px,4vh,40px);z-index:3;font:600 11px/1 Inter,system-ui,sans-serif;color:#f5ecdcb0;padding:8px 12px;border:1px solid #f5ecdc40;border-radius:999px;background:#0a203780}
+.q-space-skip{position:absolute;right:20px;top:clamp(58px,8vh,72px);z-index:3;font:600 11px/1 Inter,system-ui,sans-serif;color:#f5ecdcb0;padding:8px 12px;border:1px solid #f5ecdc40;border-radius:999px;background:#0a203780}
 .q-space-skip:hover{color:#fff;border-color:#d6ae70}
 .q-space-hud{position:absolute;left:0;right:0;bottom:22px;display:flex;justify-content:center;gap:8px;z-index:2}
 .q-space-hud button{width:28px;height:28px;border:0;background:none;padding:0;cursor:pointer;display:grid;place-items:center}

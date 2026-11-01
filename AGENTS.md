@@ -76,3 +76,15 @@
 - Preservar documentación de licencias, registros editoriales activos y reportes con decisiones todavía abiertas.
 - Preferir contenido preconstruido y versionado cuando corresponda; no regenerar contenido editorial en producción.
 - No exponer claves, tokens, correos ni secretos en archivos, comandos, registros o respuestas.
+
+## Bilingüe sin traducción en vivo (Juan, 31-10-2026)
+- La API de traducción (Worker `/translate`, Claude Haiku) ya no se usa: no es rentable. `site-translate.js` no llama a la red.
+- Todo texto del sitio va escrito en español e inglés: pares `data-idioma="es"` / `data-idioma="en" lang="en"`;
+  `assets/pie/pie.css` muestra el idioma elegido según `html[lang]`, que pone el script `data-idioma-temprano`
+  (lo inyecta `tools/pie_comun.py` en `<head>` de cada página pública) y luego `i18n.js`.
+- Historias: inglés en `historias/data/en/<slug>.json`. Preguntas: `preguntas-cristianas/data/en/<slug>.json`.
+  Lecciones 4-7 / 8-10 y cartas de Rutherford: `data/en-paginas/…` + `tools/bilingue_paginas.py aplicar`.
+  Páginas fijas o generadores que usen `data-i18n-live`: `data/traduccion-en.json` (lo aplica `pie_comun.py`; avisa lo que falta).
+- Selector ES/EN en todas las páginas y siempre visible (`biblia/assets/site-chrome.js`: lo agrega si falta y muestra
+  una copia fija al bajar).
+- Excepción: los libros de la Librería quedan en su idioma original (ediciones separadas).

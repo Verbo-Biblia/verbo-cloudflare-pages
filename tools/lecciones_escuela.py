@@ -21,7 +21,7 @@ from ilustraciones import mejor_imagen
 BASE = R / 'recursos/escuela-dominical'
 GRUPOS_ES = ('4-7-anos', '8-10-anos', '12-14-anos')
 GRUPOS = GRUPOS_ES + ('12-14-years',)
-CSS = '<link rel="stylesheet" href="../../../../recursos/assets/leccion.css?v=20261029">'
+CSS = '<link rel="stylesheet" href="../../../../recursos/assets/leccion.css?v=20261031-bilingue">'
 LUGAR = '<!-- verbo:ilustracion-lugar -->'
 GEN = re.compile(r'<!-- lec:gen -->.*?<!-- /lec:gen -->\n?', re.S)
 
@@ -53,12 +53,13 @@ def desarmar(cuerpo):
 
 def secciones(cuerpo):
     """[(título h2 o None, html)] partiendo en cada <h2>."""
-    partes = re.split(r'(?=\s*<h2>)', cuerpo)
+    # Bilingüe: el <h2 data-idioma="es"> abre la sección; su par en inglés va justo detrás.
+    partes = re.split(r'(?=\s*<h2(?: data-idioma="es")?>)', cuerpo)
     out = []
     for p in partes:
         if not p.strip():
             continue
-        m = re.match(r'\s*<h2>(.*?)</h2>', p, re.S)
+        m = re.match(r'\s*<h2(?: data-idioma="es")?>(.*?)</h2>', p, re.S)
         out.append((re.sub(r'<[^>]+>', '', m.group(1)).strip() if m else None, p.strip('\n')))
     return out
 
@@ -81,9 +82,10 @@ def juegos_para(refs):
 def figura(x):
     return (f'<!-- lec:gen --><figure class="lec-imagen"><a href="{x["url"]}"><picture>'
             f'<source type="image/webp" srcset="{x["medium_webp"]}"><img src="{x["medium"]}" width="640" height="360" '
-            f'loading="lazy" alt="{e(x["descripcion"], quote=True)}"></picture></a><figcaption>{e(x["titulo"])} '
-            f'({e(x["cita"])}). <a href="{x["url"]}">Descarga esta imagen bíblica gratis en HD</a> para proyectarla '
-            f'o imprimirla en tu clase.</figcaption></figure><!-- /lec:gen -->\n')
+            f'loading="lazy" alt="{e(x["descripcion"], quote=True)}"></picture></a><figcaption><span data-idioma="es">{e(x["titulo"])} '
+            f'({e(x["cita"])}).</span><span data-idioma="en" lang="en">{e(x.get("title_en") or x["titulo"])}.</span> <span data-idioma="es"><a href="{x["url"]}">Descarga esta imagen bíblica gratis en HD</a> para proyectarla '
+            f'o imprimirla en tu clase.</span><span data-idioma="en" lang="en"><a href="{x["url"]}">Download this Bible image free in HD</a> '
+            f'to project or print it for your class.</span></figcaption></figure><!-- /lec:gen -->\n')
 
 
 def bloque_juegos(js):
@@ -91,8 +93,9 @@ def bloque_juegos(js):
         return ''
     tarjetas = ''.join(
         f'<a class="lec-juego" href="/juegos/{g["id"]}/"><img src="{g["portada"]}" width="640" height="360" loading="lazy" alt="">'
-        f'<span>{e(g["titulo"]["es"])}</span><small>{e(g["descripcion"]["es"])}</small></a>' for g in js)
-    return (f'<!-- lec:gen --><section class="lec-juegos"><h2>Juega esta historia</h2>'
+        f'<span><span data-idioma="es">{e(g["titulo"]["es"])}</span><span data-idioma="en" lang="en">{e(g["titulo"].get("en") or g["titulo"]["es"])}</span></span>'
+        f'<small><span data-idioma="es">{e(g["descripcion"]["es"])}</span><span data-idioma="en" lang="en">{e(g["descripcion"].get("en") or g["descripcion"]["es"])}</span></small></a>' for g in js)
+    return (f'<!-- lec:gen --><section class="lec-juegos"><h2><span data-idioma="es">Juega esta historia</span><span data-idioma="en" lang="en">Play this story</span></h2>'
             f'<div class="lec-juegos__lista">{tarjetas}</div></section><!-- /lec:gen -->\n')
 
 
@@ -117,11 +120,11 @@ def armar(cuerpo, espanol, imagenes):
         else:
             clase = 'lec-paso lec-historia' if clave in HISTORIA else 'lec-paso'
             if x and clave in HISTORIA:
-                h = re.sub(r'</h2>\n?', lambda m: m.group(0) + figura(x), h, count=1)
+                h = re.sub(r'</h2>(?:<h2 data-idioma="en"[^>]*>.*?</h2>)?\n?', lambda m: m.group(0) + figura(x), h, count=1, flags=re.S)
             pasos.append(f'<section data-lec class="{clase}">\n{h}\n</section><!--/lec-->')
     puesta = x is not None and any('lec-imagen' in p for p in pasos)
     out = ['<!-- lec:gen --><p class="lec-acciones"><button type="button" onclick="window.print()">'
-           + ('🖨 Imprimir lección' if espanol else '🖨 Print lesson') + '</button></p><!-- /lec:gen -->']
+           + ('<span data-idioma="es">🖨 Imprimir lección</span><span data-idioma="en" lang="en">🖨 Print lesson</span>' if espanol else '🖨 Print lesson') + '</button></p><!-- /lec:gen -->']
     out += previo
     if ficha:
         out.append('<div data-lec class="lec-ficha">\n' + '\n'.join(ficha) + '\n</div><!--/lec-->')
@@ -167,10 +170,10 @@ def main(rutas=None):
 def armar_indice(grupo, region):
     """Índice del grupo como tarjetas (número, título, pasaje y miniatura de su imagen), por unidades."""
     region = re.sub(r'<div data-lec[^>]*>.*?</div><!--/lec-->\n?', lambda m: _a_lista(m.group(0)), region, flags=re.S)
-    partes = re.split(r'(<h2>.*?</h2>)', region, flags=re.S)
+    partes = re.split(r'(<h2(?: data-idioma="es")?>.*?</h2>(?:<h2 data-idioma="en"[^>]*>.*?</h2>)?)', region, flags=re.S)
     out = []
     for parte in partes:
-        if parte.startswith('<h2>'):
+        if parte.startswith('<h2'):
             out.append('      ' + parte); continue
         slugs = re.findall(r'href="([0-9a-z-]+)/"', parte)
         if not slugs:
@@ -187,16 +190,20 @@ def _a_lista(bloque):
 def _tarjeta(grupo, slug):
     html = (BASE / grupo / slug / 'index.html').read_text(encoding='utf-8')
     titulo = re.sub(r'<[^>]+>', '', re.search(r'<h1\b[^>]*>(.*?)</h1>', html, re.S).group(1)).strip()
-    num = re.search(r'(?:Lección|Lesson) (\d+)', re.search(r'<p class="lesson-badge">(.*?)</p>', html).group(1))
+    num = re.search(r'(?:Lección|Lesson) (\d+)', re.search(r'<p class="lesson-badge"[^>]*>(.*?)</p>', html).group(1))
     num = num.group(1) if num else ''
-    pas = re.search(r'<h2>Pasaje bíblico</h2>\s*<p>(.*?)</p>', html, re.S)
+    t_en = re.search(r'<h1\b[^>]*data-idioma="en"[^>]*>(.*?)</h1>', html, re.S)
+    titulo_en = re.sub(r'<[^>]+>', '', t_en.group(1)).strip() if t_en else None
+    pas = re.search(r'<h2[^>]*>Pasaje bíblico</h2>(?:<h2 data-idioma="en"[^>]*>.*?</h2>)?\s*<p[^>]*>(.*?)</p>', html, re.S)
     ref = rc.CITA.search(re.sub(r'<[^>]+>', '', pas.group(1))) if pas else None
     img = re.search(r'class="lec-imagen".*?<img src="([^"]+)-media\.jpg"', html, re.S)
     ingles = grupo.endswith('years')
     foto = (f'<img src="{img.group(1)}-mini.jpg" width="480" height="270" loading="lazy" alt="">' if img
             else f'<span class="lec-indice__num" aria-hidden="true">{num}</span>')
     return (f'<a class="lec-tarjeta" href="{slug}/">{foto}<span class="lec-tarjeta__texto">'
-            f'<small>{"Lesson" if ingles else "Lección"} {num}</small><strong>{e(titulo)}</strong>'
+            + (f'<small>Lesson {num}</small><strong>{e(titulo)}</strong>' if ingles else
+               f'<small><span data-idioma="es">Lección {num}</span><span data-idioma="en" lang="en">Lesson {num}</span></small>'
+               + (f'<strong><span data-idioma="es">{e(titulo)}</span><span data-idioma="en" lang="en">{e(titulo_en)}</span></strong>' if titulo_en else f'<strong>{e(titulo)}</strong>'))
             + (f'<em>{e(ref.group(0))}</em>' if ref else '') + '</span></a>')
 
 

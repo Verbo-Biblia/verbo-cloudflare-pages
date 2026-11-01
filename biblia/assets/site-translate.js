@@ -136,7 +136,10 @@
     return workerBasePromise;
   }
 
-  async function verboTranslate(text, sourceLang, targetLang){
+  // 2026-10-31: Juan retiró la traducción en vivo (la API no es rentable). Todo el sitio va escrito en los dos
+  // idiomas; esta función ya no llama a la red y deja el texto como está.
+  async function verboTranslate(){ return null; }
+  async function verboTranslateViejo(text, sourceLang, targetLang){
     // Fase 2 (2026-08-07): reemplaza el endpoint no oficial de Google
     // Translate por POST /translate en el Worker verbo-api-bible — mismo
     // cambio y mismos reintentos que assets/app.js.
@@ -228,11 +231,10 @@
     const targetLang = VerboI18n.getUiLang();
     const els = [...(root||document).querySelectorAll('[data-i18n-live]')];
     if(targetLang===sourceLang){ els.forEach(restoreElement); return; }
-    let i=0;
-    for(const el of els){
-      const id = el.getAttribute('data-i18n-live') || `${location.pathname}:${i++}`;
-      await translateElement(el, id, sourceLang, targetLang);
-    }
+    // De seis en seis (antes, uno tras otro: una página con cien textos tardaba demasiado).
+    const tareas = els.map((el, i) => () => translateElement(el, el.getAttribute('data-i18n-live') || `${location.pathname}:${i}`, sourceLang, targetLang));
+    const trabajador = async () => { while(tareas.length) await tareas.shift()(); };
+    await Promise.all(Array.from({ length: Math.min(6, tareas.length) }, trabajador));
   }
 
   window.VerboSiteTranslate = { applyLiveTranslation, translateText, abandonPendingTranslations };

@@ -59,7 +59,7 @@
   function alHacerClic() {
     if (estado === "detenido") {
       controlador = window.VerboTTS.leerBloque(article, {
-        idioma: idioma,
+        idioma: article.dataset.i18nStrategy === "bilingue" ? (document.documentElement.lang === "en" ? "en" : "es") : idioma,
         tituloSelector: "h1",
         cuerpoSelector: CUERPO_SELECTOR,
         onFinished: alTerminar

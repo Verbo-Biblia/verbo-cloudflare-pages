@@ -6,8 +6,57 @@
    data-i18n-live). */
 (function(){
   'use strict';
+  // Selector ES/EN en TODAS las páginas: las que no lo traen en su HTML (Historias, Preguntas, libros de la
+  // Librería, Privacidad…) lo reciben aquí, al final de su encabezado (o fijo arriba a la derecha si no hay
+  // encabezado). Dentro de la app Android no se pone: ahí el idioma sale del teléfono.
+  // Juan: «el botón es/en debe estar siempre visible». Cuando el selector del encabezado sale de la pantalla
+  // (al bajar), aparece una copia fija arriba a la derecha; al volver arriba, se esconde.
+  window.selectorSiempreVisible = function(){
+    const original=document.getElementById('uiLangSwitcher');
+    if(!original || document.getElementById('uiLangFlotante') || !('IntersectionObserver' in window)) return;
+    const css=document.createElement('style');
+    css.textContent='#uiLangFlotante{position:fixed;top:10px;right:12px;z-index:9000;display:flex;gap:2px;padding:3px;border-radius:999px;background:#fffdf8;color:#1f2a37;box-shadow:0 2px 12px rgba(0,0,0,.2);font:600 13px/1 system-ui,sans-serif;transition:opacity .2s,transform .2s}'+
+      '#uiLangFlotante[hidden]{display:flex;opacity:0;transform:translateY(-8px);pointer-events:none}'+
+      '#uiLangFlotante button{all:unset;cursor:pointer;padding:7px 10px;border-radius:999px;opacity:.6}'+
+      '#uiLangFlotante button.is-active{opacity:1;background:#1f2a37;color:#fffdf8}'+
+      '#uiLangFlotante button:focus-visible{outline:2px solid #1f2a37;outline-offset:2px}'+
+      '@media (prefers-color-scheme:dark){#uiLangFlotante{background:#1f2a37;color:#f4efe4}#uiLangFlotante button.is-active{background:#f4efe4;color:#1f2a37}}';
+    document.head.appendChild(css);
+    const f=document.createElement('div');
+    f.id='uiLangFlotante';f.setAttribute('role','group');f.setAttribute('aria-label','Idioma / Language');f.hidden=true;
+    f.innerHTML='<button type="button" data-lang="es" lang="es">ES</button><button type="button" data-lang="en" lang="en">EN</button>';
+    document.body.appendChild(f);
+    const marcar=()=>{ const l=window.VerboI18n?.getUiLang?.()||'es'; f.querySelectorAll('button').forEach(b=>b.classList.toggle('is-active',b.dataset.lang===l)); };
+    f.addEventListener('click',ev=>{ const b=ev.target.closest('[data-lang]'); if(b&&window.VerboI18n) VerboI18n.setUiLang(b.dataset.lang); });
+    document.addEventListener('verbo:uilang-changed',marcar); marcar();
+    const visible=el=>{ const r=el.getBoundingClientRect(); const s=getComputedStyle(el); return r.width>0 && s.display!=='none' && s.visibility!=='hidden'; };
+    new IntersectionObserver(([e])=>{ f.hidden = e.isIntersecting && visible(original); }).observe(original);
+  };
+  window.ponerSelectorSiFalta = function(){
+    if(document.getElementById('uiLangSwitcher')) return;
+    if((window.name||'').split('|')[0]==='verboEmbedApp') return;
+    if(/^\/(studio|biblia)\//.test(location.pathname)) return;
+    const css=document.createElement('style');
+    css.textContent='.verbo-idioma{display:inline-flex;gap:2px;align-items:center;margin-left:auto;flex:none;font:600 13px/1 system-ui,sans-serif;color:inherit}'+
+      '.verbo-idioma button{all:unset;cursor:pointer;padding:6px 9px;border-radius:999px;color:inherit;opacity:.65;border:1px solid transparent}'+
+      '.verbo-idioma button:hover{opacity:1}.verbo-idioma button:focus-visible{outline:2px solid currentColor;outline-offset:2px}'+
+      '.verbo-idioma button.is-active{opacity:1;border-color:currentColor}'+
+      '.verbo-idioma--fijo{position:fixed;top:10px;right:12px;z-index:50;background:#fffdf8;color:#1f2a37;border-radius:999px;padding:2px;box-shadow:0 2px 10px rgba(0,0,0,.18)}';
+    document.head.appendChild(css);
+    const el=document.createElement('div');
+    el.id='uiLangSwitcher';el.className='verbo-idioma';el.setAttribute('role','group');
+    el.setAttribute('aria-label','Idioma / Language');
+    el.innerHTML='<button type="button" data-lang="es" lang="es">ES</button><button type="button" data-lang="en" lang="en">EN</button>';
+    const header=document.querySelector('body > header, header.site-header, header.q-header, header.static-page__header, body header');
+    if(header) header.appendChild(el); else { el.classList.add('verbo-idioma--fijo'); document.body.appendChild(el); }
+  };
+})();
+
+(function(){
+  'use strict';
   document.addEventListener('DOMContentLoaded', async () => {
     if(!window.VerboI18n) return;
+    ponerSelectorSiFalta();
     await VerboI18n.ready();
     const buttons = [...document.querySelectorAll('#uiLangSwitcher [data-lang]')];
     const markActive = () => {
@@ -15,6 +64,7 @@
       buttons.forEach(btn => btn.classList.toggle('is-active', btn.dataset.lang === current));
     };
     markActive();
+    if((window.name||'').split('|')[0]!=='verboEmbedApp') selectorSiempreVisible();
     const sourceLang = () => document.querySelector('article[data-source-lang]')?.dataset.sourceLang || 'es';
     if(window.VerboSiteTranslate) await VerboSiteTranslate.applyLiveTranslation(document, sourceLang());
     buttons.forEach(btn => btn.addEventListener('click', () => VerboI18n.setUiLang(btn.dataset.lang)));
