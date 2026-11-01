@@ -172,6 +172,39 @@
  },
  "juegos": [
   {
+   "id": "armadura-de-dios",
+   "titulo": {
+    "es": "La Armadura de Dios",
+    "en": "The Armor of God"
+   },
+   "descripcion": {
+    "es": "Ponte la armadura de Dios pieza por pieza y libera Nueva Sion de las sombras con la Espada del Espíritu.",
+    "en": "Put on the armor of God piece by piece and free New Zion from the shadows with the Sword of the Spirit."
+   },
+   "meta_descripcion": {
+    "es": "Juego cristiano de acción y plataformas (hack and slash) basado en Efesios 6:10-18: diez niveles, seis jefes que representan luchas del alma (envidia, miedo, tentación, orgullo, duda y desánimo) y la serpiente antigua. Combos con la Espada del Espíritu, salto de fe, alas de águila, apresto del evangelio y espada de fuego. Citas de la Biblia Verbo. Gratis, en el navegador, en español e inglés, con teclado, pantalla táctil o control.",
+    "en": "A Christian action platformer (hack and slash) based on Ephesians 6:10-18: ten levels, six bosses that stand for struggles of the soul (envy, fear, temptation, pride, doubt and discouragement) and the ancient serpent. Combos with the Sword of the Spirit, leap of faith, eagle’s wings, shoes of the gospel and sword of fire. Quotations from the Berean Standard Bible. Free, in the browser, in English and Spanish, with keyboard, touch screen or gamepad."
+   },
+   "categoria": "desafio",
+   "infantil": false,
+   "genero": "plataformas",
+   "pasaje": "Efesios",
+   "duracion_min": 90,
+   "movil": true,
+   "idiomas": [
+    "es",
+    "en"
+   ],
+   "portada": "/juegos/armadura-de-dios/portada.webp",
+   "portada_en": "/juegos/armadura-de-dios/portada-en.webp",
+   "og_image": "/juegos/armadura-de-dios/og.jpg",
+   "url_juego": "/juegos/armadura-de-dios/jugar/",
+   "android": null,
+   "publicado": "2026-10-31",
+   "destacado": true,
+   "orden_mas_jugados": 15
+  },
+  {
    "id": "retorno-al-reino",
    "titulo": {
     "es": "El retorno al Reino",
@@ -581,7 +614,7 @@
    "url_juego": "/juegos/nehemias/jugar/",
    "android": null,
    "publicado": "2026-10-25",
-   "destacado": true,
+   "destacado": false,
    "orden_mas_jugados": 12
   },
   {

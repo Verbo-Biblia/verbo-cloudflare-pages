@@ -1,0 +1,1319 @@
+{
+ "_comment": "Nivel 9 · Cinturón Nadir · Sellos Corona, zonas ingrávidas y guardia de élite. Generado por tools/c01_l9.py (editar allí).",
+ "segments": {
+  "l9_cp": {
+   "width": 260,
+   "requires": [],
+   "solids": [
+    [
+     0,
+     660,
+     260,
+     100
+    ]
+   ],
+   "checkpoint": [
+    120,
+    590,
+    20,
+    70
+   ]
+  },
+  "l9_paso": {
+   "width": 260,
+   "requires": [],
+   "solids": [
+    [
+     0,
+     660,
+     260,
+     100
+    ]
+   ]
+  },
+  "l9_llegada": {
+   "width": 1800,
+   "requires": [],
+   "spawn": [
+    140,
+    570
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     1100,
+     100
+    ],
+    [
+     1280,
+     660,
+     520,
+     100
+    ]
+   ],
+   "oneWays": [
+    [
+     600,
+     540,
+     160
+    ]
+   ],
+   "pickups": [
+    {
+     "type": "energy",
+     "x": 680,
+     "y": 500
+    }
+   ],
+   "enemies": [
+    {
+     "kind": "ground",
+     "x": 900,
+     "y": 660,
+     "range": [
+      700,
+      1080
+     ]
+    },
+    {
+     "kind": "ground",
+     "x": 1550,
+     "y": 660,
+     "range": [
+      1300,
+      1780
+     ]
+    }
+   ],
+   "props": [
+    {
+     "id": "wreck_escape_pod",
+     "x": 300,
+     "y": 660,
+     "s": 0.385
+    },
+    {
+     "id": "wreck_mecha_helmet",
+     "x": 520,
+     "y": 660,
+     "s": 0.294
+    },
+    {
+     "id": "wreck_hull_plate",
+     "x": 850,
+     "y": 660,
+     "s": 0.321
+    },
+    {
+     "id": "wreck_cables",
+     "x": 980,
+     "y": 660,
+     "s": 0.33
+    },
+    {
+     "id": "wreck_crate_x",
+     "x": 1450,
+     "y": 660,
+     "s": 0.437
+    },
+    {
+     "id": "wreck_beacon",
+     "x": 1700,
+     "y": 660,
+     "s": 0.312
+    }
+   ]
+  },
+  "l9_cementerio": {
+   "width": 2400,
+   "requires": [
+    "double_jump",
+    "glide"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     500,
+     100
+    ],
+    [
+     800,
+     660,
+     500,
+     100
+    ],
+    [
+     1480,
+     190,
+     240,
+     26
+    ],
+    [
+     2000,
+     660,
+     400,
+     100
+    ]
+   ],
+   "oneWays": [
+    [
+     1780,
+     430,
+     120
+    ]
+   ],
+   "gravityZones": [
+    {
+     "rect": [
+      500,
+      330,
+      300,
+      440
+     ],
+     "lift": 2600
+    },
+    {
+     "rect": [
+      1320,
+      170,
+      140,
+      600
+     ],
+     "lift": 2600
+    }
+   ],
+   "pickups": [
+    {
+     "type": "heal",
+     "x": 650,
+     "y": 360
+    },
+    {
+     "type": "energy",
+     "x": 1600,
+     "y": 150
+    },
+    {
+     "type": "life",
+     "x": 1830,
+     "y": 390
+    }
+   ],
+   "enemies": [
+    {
+     "kind": "ground",
+     "x": 300,
+     "y": 660,
+     "range": [
+      60,
+      460
+     ]
+    },
+    {
+     "kind": "ground",
+     "x": 1050,
+     "y": 660,
+     "range": [
+      850,
+      1260
+     ]
+    },
+    {
+     "kind": "air",
+     "x": 1850,
+     "y": 300,
+     "range": [
+      1750,
+      2050
+     ],
+     "id": "eye_drone"
+    },
+    {
+     "kind": "ground",
+     "x": 2250,
+     "y": 660,
+     "range": [
+      2050,
+      2380
+     ],
+     "id": "walker_heavy"
+    }
+   ],
+   "props": [
+    {
+     "id": "wreck_mecha_torso",
+     "x": 200,
+     "y": 660,
+     "s": 0.369
+    },
+    {
+     "id": "wreck_scrap_pile",
+     "x": 420,
+     "y": 660,
+     "s": 0.385
+    },
+    {
+     "id": "wreck_mecha_arm",
+     "x": 1000,
+     "y": 660,
+     "s": 0.288
+    },
+    {
+     "id": "wreck_turbine",
+     "x": 1180,
+     "y": 660,
+     "s": 0.344
+    },
+    {
+     "id": "wreck_crystal_violet",
+     "x": 1540,
+     "y": 190,
+     "s": 0.418
+    },
+    {
+     "id": "wreck_dish",
+     "x": 1660,
+     "y": 190,
+     "s": 0.404
+    },
+    {
+     "id": "wreck_crystal_spire",
+     "x": 2100,
+     "y": 660,
+     "s": 0.444
+    },
+    {
+     "id": "wreck_rock",
+     "x": 2320,
+     "y": 660,
+     "s": 0.409
+    }
+   ]
+  },
+  "l9_fragmento_1": {
+   "width": 2600,
+   "requires": [
+    "double_jump",
+    "shoot"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     2600,
+     100
+    ],
+    [
+     900,
+     200,
+     360,
+     360
+    ],
+    [
+     1180,
+     560,
+     80,
+     100
+    ]
+   ],
+   "gravityZones": [
+    {
+     "rect": [
+      760,
+      180,
+      120,
+      480
+     ],
+     "lift": 2600
+    }
+   ],
+   "breakables": [
+    {
+     "rect": [
+      900,
+      560,
+      40,
+      100
+     ],
+     "hp": 5
+    }
+   ],
+   "backs": [
+    [
+     940,
+     560,
+     240,
+     100
+    ]
+   ],
+   "keys": [
+    {
+     "id": "sello_1",
+     "x": 1080,
+     "y": 150
+    }
+   ],
+   "crumbles": [
+    [
+     1300,
+     300,
+     110,
+     20
+    ],
+    [
+     1480,
+     380,
+     110,
+     20
+    ],
+    [
+     1660,
+     460,
+     110,
+     20
+    ]
+   ],
+   "pickups": [
+    {
+     "type": "life",
+     "x": 1090,
+     "y": 620
+    },
+    {
+     "type": "energy",
+     "x": 1380,
+     "y": 260
+    },
+    {
+     "type": "heal",
+     "x": 2300,
+     "y": 620
+    }
+   ],
+   "enemies": [
+    {
+     "kind": "ground",
+     "x": 500,
+     "y": 660,
+     "range": [
+      250,
+      740
+     ],
+     "id": "soldier"
+    },
+    {
+     "kind": "turret",
+     "x": 1200,
+     "y": 200
+    },
+    {
+     "kind": "ground",
+     "x": 1800,
+     "y": 660,
+     "range": [
+      1320,
+      2150
+     ],
+     "id": "mini_behemoth"
+    },
+    {
+     "kind": "air",
+     "x": 2200,
+     "y": 400,
+     "range": [
+      1950,
+      2450
+     ],
+     "id": "eye_drone"
+    }
+   ],
+   "props": [
+    {
+     "id": "wreck_hull_plate",
+     "x": 300,
+     "y": 660,
+     "s": 0.321
+    },
+    {
+     "id": "wreck_mecha_leg",
+     "x": 620,
+     "y": 660,
+     "s": 0.309
+    },
+    {
+     "id": "wreck_crystal_big",
+     "x": 1000,
+     "y": 560,
+     "s": 0.276
+    },
+    {
+     "id": "wreck_turret",
+     "x": 960,
+     "y": 200,
+     "s": 0.378
+    },
+    {
+     "id": "wreck_scrap_pile",
+     "x": 1400,
+     "y": 660,
+     "s": 0.385
+    },
+    {
+     "id": "wreck_mecha_helmet",
+     "x": 2000,
+     "y": 660,
+     "s": 0.294
+    },
+    {
+     "id": "wreck_crate_big",
+     "x": 2450,
+     "y": 660,
+     "s": 0.426
+    }
+   ]
+  },
+  "l9_deriva": {
+   "width": 2400,
+   "requires": [
+    "double_jump"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     300,
+     100
+    ],
+    [
+     1080,
+     420,
+     170,
+     26
+    ],
+    [
+     2100,
+     660,
+     300,
+     100
+    ]
+   ],
+   "moving": [
+    {
+     "x": 340,
+     "y": 600,
+     "w": 150,
+     "axis": "x",
+     "min": 330,
+     "max": 640,
+     "speed": 100
+    },
+    {
+     "x": 760,
+     "y": 600,
+     "w": 130,
+     "axis": "y",
+     "min": 440,
+     "max": 600,
+     "speed": 90
+    },
+    {
+     "x": 1320,
+     "y": 440,
+     "w": 150,
+     "axis": "x",
+     "min": 1300,
+     "max": 1600,
+     "speed": 120
+    }
+   ],
+   "crumbles": [
+    [
+     1720,
+     500,
+     110,
+     20
+    ],
+    [
+     1920,
+     570,
+     110,
+     20
+    ]
+   ],
+   "gravityZones": [
+    {
+     "rect": [
+      900,
+      380,
+      170,
+      390
+     ],
+     "lift": 2600
+    }
+   ],
+   "meteors": [
+    {
+     "x": 700,
+     "period": 6.0,
+     "offset": 1.0,
+     "dir": -1
+    },
+    {
+     "x": 1450,
+     "period": 5.5,
+     "offset": 3.0,
+     "dir": -1
+    },
+    {
+     "x": 1950,
+     "period": 6.5,
+     "offset": 0.5,
+     "dir": -1
+    }
+   ],
+   "pickups": [
+    {
+     "type": "energy",
+     "x": 1160,
+     "y": 380
+    }
+   ],
+   "enemies": [
+    {
+     "kind": "air",
+     "x": 1150,
+     "y": 260,
+     "range": [
+      900,
+      1400
+     ],
+     "id": "eye_drone"
+    },
+    {
+     "kind": "air",
+     "x": 1750,
+     "y": 300,
+     "range": [
+      1500,
+      2000
+     ]
+    },
+    {
+     "kind": "ground",
+     "x": 2250,
+     "y": 660,
+     "range": [
+      2120,
+      2380
+     ],
+     "id": "walker_heavy"
+    }
+   ],
+   "props": [
+    {
+     "id": "wreck_barrel_a",
+     "x": 120,
+     "y": 660,
+     "s": 0.44
+    },
+    {
+     "id": "wreck_canister",
+     "x": 230,
+     "y": 660,
+     "s": 0.405
+    },
+    {
+     "id": "wreck_crystal_small",
+     "x": 1120,
+     "y": 420,
+     "s": 0.41
+    },
+    {
+     "id": "wreck_beacon",
+     "x": 1220,
+     "y": 420,
+     "s": 0.312
+    },
+    {
+     "id": "wreck_obelisk",
+     "x": 2300,
+     "y": 660,
+     "s": 0.458
+    }
+   ]
+  },
+  "l9_fragmento_2": {
+   "width": 2400,
+   "requires": [
+    "shoot"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     2400,
+     100
+    ],
+    [
+     300,
+     380,
+     1700,
+     30
+    ]
+   ],
+   "backs": [
+    [
+     300,
+     410,
+     1700,
+     250
+    ]
+   ],
+   "breakables": [
+    {
+     "rect": [
+      1300,
+      410,
+      50,
+      250
+     ],
+     "hp": 8
+    }
+   ],
+   "lasers": [
+    {
+     "x": 700,
+     "y": 660,
+     "h": 250,
+     "period": 2.4,
+     "on": 0.8,
+     "offset": 0.0
+    },
+    {
+     "x": 1000,
+     "y": 660,
+     "h": 250,
+     "period": 2.4,
+     "on": 0.8,
+     "offset": 1.2
+    }
+   ],
+   "keys": [
+    {
+     "id": "sello_2",
+     "x": 1700,
+     "y": 600
+    }
+   ],
+   "pickups": [
+    {
+     "type": "heal",
+     "x": 1180,
+     "y": 620
+    },
+    {
+     "type": "energy",
+     "x": 2150,
+     "y": 620
+    }
+   ],
+   "enemies": [
+    {
+     "kind": "ground",
+     "x": 150,
+     "y": 660,
+     "range": [
+      40,
+      280
+     ]
+    },
+    {
+     "kind": "ground",
+     "x": 900,
+     "y": 660,
+     "range": [
+      480,
+      1250
+     ],
+     "id": "soldier"
+    },
+    {
+     "kind": "ground",
+     "x": 1600,
+     "y": 660,
+     "range": [
+      1400,
+      1950
+     ],
+     "id": "red_rival"
+    },
+    {
+     "kind": "ground",
+     "x": 2250,
+     "y": 660,
+     "range": [
+      2050,
+      2380
+     ]
+    }
+   ],
+   "props": [
+    {
+     "id": "wreck_mecha_torso",
+     "x": 450,
+     "y": 660,
+     "s": 0.369
+    },
+    {
+     "id": "wreck_mecha_helmet",
+     "x": 560,
+     "y": 660,
+     "s": 0.216
+    },
+    {
+     "id": "wreck_cables",
+     "x": 850,
+     "y": 660,
+     "s": 0.33
+    },
+    {
+     "id": "wreck_crate_long",
+     "x": 1150,
+     "y": 660,
+     "s": 0.394
+    },
+    {
+     "id": "wreck_mecha_arm",
+     "x": 1500,
+     "y": 660,
+     "s": 0.288
+    },
+    {
+     "id": "wreck_mecha_leg",
+     "x": 1880,
+     "y": 660,
+     "s": 0.309
+    },
+    {
+     "id": "wreck_hull_plate",
+     "x": 2200,
+     "y": 660,
+     "s": 0.321
+    }
+   ]
+  },
+  "l9_tormenta": {
+   "width": 2600,
+   "requires": [
+    "shoot"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     2600,
+     100
+    ],
+    [
+     400,
+     520,
+     200,
+     26
+    ],
+    [
+     1000,
+     520,
+     200,
+     26
+    ],
+    [
+     1600,
+     520,
+     200,
+     26
+    ],
+    [
+     2100,
+     520,
+     180,
+     26
+    ]
+   ],
+   "oneWays": [
+    [
+     2360,
+     240,
+     140
+    ]
+   ],
+   "gravityZones": [
+    {
+     "rect": [
+      2450,
+      260,
+      100,
+      400
+     ],
+     "lift": 2600
+    }
+   ],
+   "meteors": [
+    {
+     "x": 650,
+     "period": 4.0,
+     "offset": 0.0,
+     "dir": -1
+    },
+    {
+     "x": 800,
+     "period": 4.0,
+     "offset": 2.0,
+     "dir": -1
+    },
+    {
+     "x": 1250,
+     "period": 4.5,
+     "offset": 1.0,
+     "dir": -1
+    },
+    {
+     "x": 1400,
+     "period": 4.5,
+     "offset": 3.2,
+     "dir": -1
+    },
+    {
+     "x": 1850,
+     "period": 4.0,
+     "offset": 0.6,
+     "dir": -1
+    },
+    {
+     "x": 2000,
+     "period": 4.0,
+     "offset": 2.6,
+     "dir": -1
+    }
+   ],
+   "pickups": [
+    {
+     "type": "heal",
+     "x": 1100,
+     "y": 620
+    },
+    {
+     "type": "life",
+     "x": 2410,
+     "y": 200
+    }
+   ],
+   "enemies": [
+    {
+     "kind": "ground",
+     "x": 700,
+     "y": 660,
+     "range": [
+      620,
+      950
+     ],
+     "id": "soldier"
+    },
+    {
+     "kind": "ground",
+     "x": 1350,
+     "y": 660,
+     "range": [
+      1220,
+      1560
+     ],
+     "id": "mini_behemoth"
+    },
+    {
+     "kind": "ground",
+     "x": 2000,
+     "y": 660,
+     "range": [
+      1850,
+      2080
+     ],
+     "id": "red_rival"
+    },
+    {
+     "kind": "ground",
+     "x": 250,
+     "y": 660,
+     "range": [
+      60,
+      380
+     ]
+    }
+   ],
+   "props": [
+    {
+     "id": "wreck_rock",
+     "x": 150,
+     "y": 660,
+     "s": 0.409
+    },
+    {
+     "id": "wreck_hull_plate",
+     "x": 500,
+     "y": 520,
+     "s": 0.183
+    },
+    {
+     "id": "wreck_barrel_b",
+     "x": 900,
+     "y": 660,
+     "s": 0.439
+    },
+    {
+     "id": "wreck_crate_x",
+     "x": 1300,
+     "y": 660,
+     "s": 0.437
+    },
+    {
+     "id": "wreck_scrap_pile",
+     "x": 1750,
+     "y": 660,
+     "s": 0.385
+    },
+    {
+     "id": "wreck_dish",
+     "x": 2250,
+     "y": 520,
+     "s": 0.303
+    }
+   ]
+  },
+  "l9_fragmento_3": {
+   "width": 2600,
+   "requires": [
+    "double_jump",
+    "glide"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     700,
+     100
+    ],
+    [
+     900,
+     420,
+     160,
+     340
+    ],
+    [
+     1150,
+     150,
+     120,
+     610
+    ],
+    [
+     1900,
+     660,
+     700,
+     100
+    ]
+   ],
+   "oneWays": [
+    [
+     1560,
+     420,
+     120
+    ]
+   ],
+   "gravityZones": [
+    {
+     "rect": [
+      720,
+      380,
+      160,
+      390
+     ],
+     "lift": 2600
+    }
+   ],
+   "keys": [
+    {
+     "id": "sello_3",
+     "x": 1210,
+     "y": 100
+    }
+   ],
+   "pickups": [
+    {
+     "type": "energy",
+     "x": 960,
+     "y": 380
+    },
+    {
+     "type": "heal",
+     "x": 1600,
+     "y": 380
+    }
+   ],
+   "enemies": [
+    {
+     "kind": "ground",
+     "x": 400,
+     "y": 660,
+     "range": [
+      100,
+      650
+     ]
+    },
+    {
+     "kind": "turret",
+     "x": 1010,
+     "y": 420
+    },
+    {
+     "kind": "air",
+     "x": 1550,
+     "y": 250,
+     "range": [
+      1350,
+      1800
+     ],
+     "id": "eye_drone"
+    },
+    {
+     "kind": "ground",
+     "x": 2200,
+     "y": 660,
+     "range": [
+      1950,
+      2500
+     ],
+     "id": "soldier"
+    }
+   ],
+   "props": [
+    {
+     "id": "wreck_mecha_leg",
+     "x": 250,
+     "y": 660,
+     "s": 0.309
+    },
+    {
+     "id": "wreck_crystal_purple",
+     "x": 600,
+     "y": 660,
+     "s": 0.422
+    },
+    {
+     "id": "wreck_beacon",
+     "x": 930,
+     "y": 420,
+     "s": 0.312
+    },
+    {
+     "id": "wreck_crystal_spire",
+     "x": 1210,
+     "y": 150,
+     "s": 0.267
+    },
+    {
+     "id": "wreck_obelisk",
+     "x": 2050,
+     "y": 660,
+     "s": 0.458
+    },
+    {
+     "id": "wreck_escape_pod",
+     "x": 2350,
+     "y": 660,
+     "s": 0.385
+    }
+   ],
+   "ladders": [
+    [
+     1108,
+     150,
+     42,
+     270
+    ]
+   ]
+  },
+  "l9_sellos": {
+   "width": 1600,
+   "requires": [
+    "shoot"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     1600,
+     100
+    ],
+    [
+     1100,
+     0,
+     70,
+     560
+    ]
+   ],
+   "doors": [
+    {
+     "key": "sello_1+sello_2+sello_3",
+     "rect": [
+      1100,
+      560,
+      70,
+      100
+     ]
+    }
+   ],
+   "pickups": [
+    {
+     "type": "heal",
+     "x": 250,
+     "y": 620
+    },
+    {
+     "type": "energy",
+     "x": 950,
+     "y": 620
+    }
+   ],
+   "enemies": [
+    {
+     "kind": "ground",
+     "x": 650,
+     "y": 660,
+     "range": [
+      350,
+      1000
+     ],
+     "id": "mini_behemoth"
+    },
+    {
+     "kind": "turret",
+     "x": 200,
+     "y": 660
+    },
+    {
+     "kind": "ground",
+     "x": 1400,
+     "y": 660,
+     "range": [
+      1200,
+      1560
+     ],
+     "id": "walker_heavy"
+    }
+   ],
+   "props": [
+    {
+     "id": "wreck_crystal_big",
+     "x": 80,
+     "y": 660,
+     "s": 0.415
+    },
+    {
+     "id": "wreck_obelisk",
+     "x": 1030,
+     "y": 660,
+     "s": 0.458
+    },
+    {
+     "id": "wreck_obelisk",
+     "x": 1250,
+     "y": 660,
+     "s": 0.458,
+     "flip": true
+    },
+    {
+     "id": "wreck_crate_big",
+     "x": 1500,
+     "y": 660,
+     "s": 0.426
+    }
+   ]
+  },
+  "l9_sala_jefe": {
+   "width": 1800,
+   "requires": [
+    "shoot"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     1800,
+     100
+    ]
+   ],
+   "oneWays": [
+    [
+     280,
+     500,
+     180
+    ],
+    [
+     1300,
+     500,
+     180
+    ],
+    [
+     770,
+     370,
+     260
+    ]
+   ],
+   "pickups": [
+    {
+     "type": "heal",
+     "x": 370,
+     "y": 460
+    },
+    {
+     "type": "energy",
+     "x": 1390,
+     "y": 460
+    }
+   ],
+   "props": [
+    {
+     "id": "wreck_mecha_torso",
+     "x": 120,
+     "y": 660,
+     "s": 0.369
+    },
+    {
+     "id": "wreck_crystal_spire",
+     "x": 620,
+     "y": 660,
+     "s": 0.444
+    },
+    {
+     "id": "wreck_mecha_helmet",
+     "x": 1150,
+     "y": 660,
+     "s": 0.294
+    },
+    {
+     "id": "wreck_crystal_big",
+     "x": 1700,
+     "y": 660,
+     "s": 0.415
+    }
+   ],
+   "bossX": 1300,
+   "partnerX": 1000,
+   "bossGate": [
+    1770,
+    0,
+    30,
+    660
+   ]
+  }
+ }
+}

@@ -1,0 +1,1241 @@
+{
+ "_comment": "Bloques de recorrido. Coordenadas relativas al inicio del segmento; suelo en y=660, altura del mundo 760. solids/hazards/ladders: [x,y,w,h]; oneWays: [x,y,w]. requires = habilidades para las que se diseñó (el validador impide usarlo antes de tiempo). Salto básico ~107px (toque) / ~117px (mantenido); largo ~215px a velocidad normal (330) y ~255px corriendo (390); doble salto ~195px.",
+ "segments": {
+  "tut_start": {
+   "width": 900,
+   "requires": [],
+   "spawn": [
+    330,
+    570
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     900,
+     100
+    ]
+   ],
+   "tips": [
+    {
+     "x": 0,
+     "text": "En el entrenamiento tienes TODOS los poderes para practicar; en la campaña se desbloquean poco a poco. Usa la PALANCA (o las flechas) para avanzar."
+    }
+   ]
+  },
+  "tut_run": {
+   "width": 1000,
+   "requires": [
+    "run"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     1000,
+     100
+    ]
+   ],
+   "tips": [
+    {
+     "x": 40,
+     "text": "Palanca abajo en diagonal mientras corres: te DESLIZAS por debajo. Abajo del todo: te agachas sin moverte y disparas al frente."
+    }
+   ]
+  },
+  "tut_jump": {
+   "width": 700,
+   "requires": [
+    "basic_jump"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     700,
+     100
+    ],
+    [
+     140,
+     595,
+     110,
+     65
+    ],
+    [
+     290,
+     530,
+     110,
+     130
+    ],
+    [
+     440,
+     465,
+     260,
+     195
+    ]
+   ],
+   "tips": [
+    {
+     "x": 0,
+     "text": "Pulsa SALTO para saltar. Mantenlo pulsado para llegar más alto."
+    }
+   ]
+  },
+  "tut_gap": {
+   "width": 640,
+   "requires": [
+    "basic_jump",
+    "run"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     240,
+     100
+    ],
+    [
+     240,
+     720,
+     230,
+     40
+    ],
+    [
+     470,
+     660,
+     170,
+     100
+    ]
+   ],
+   "tips": [
+    {
+     "x": 0,
+     "text": "Hueco largo: CORRE y salta justo antes del borde. Si caes, salta para volver a subir."
+    }
+   ]
+  },
+  "tut_crouch": {
+   "width": 760,
+   "requires": [],
+   "solids": [
+    [
+     0,
+     660,
+     760,
+     100
+    ],
+    [
+     200,
+     380,
+     400,
+     236
+    ]
+   ],
+   "tips": [
+    {
+     "x": 0,
+     "text": "Palanca ABAJO para agacharte y pasar por huecos bajos. Si vas corriendo, te DESLIZAS."
+    }
+   ]
+  },
+  "tut_oneway": {
+   "width": 760,
+   "requires": [
+    "basic_jump"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     760,
+     100
+    ]
+   ],
+   "oneWays": [
+    [
+     100,
+     585,
+     180
+    ],
+    [
+     320,
+     510,
+     180
+    ],
+    [
+     540,
+     435,
+     200
+    ]
+   ],
+   "pickups": [
+    {
+     "type": "energy",
+     "x": 620,
+     "y": 390
+    }
+   ],
+   "tips": [
+    {
+     "x": 0,
+     "text": "Las plataformas finas se atraviesan saltando desde abajo. Para bajar de ellas: ABAJO + SALTO."
+    }
+   ]
+  },
+  "tut_ladder": {
+   "width": 700,
+   "requires": [],
+   "solids": [
+    [
+     0,
+     660,
+     700,
+     100
+    ],
+    [
+     200,
+     460,
+     220,
+     200
+    ]
+   ],
+   "ladders": [
+    [
+     150,
+     400,
+     45,
+     260
+    ]
+   ],
+   "tips": [
+    {
+     "x": 0,
+     "text": "Ponte frente a la ESCALERA y mueve la palanca ARRIBA para trepar."
+    }
+   ]
+  },
+  "tut_checkpoint": {
+   "width": 320,
+   "requires": [],
+   "solids": [
+    [
+     0,
+     660,
+     320,
+     100
+    ]
+   ],
+   "checkpoint": [
+    150,
+    590,
+    20,
+    70
+   ],
+   "tips": [
+    {
+     "x": 0,
+     "text": "PUNTO DE CONTROL: si pierdes una vida, vuelves aquí."
+    }
+   ]
+  },
+  "tut_pickups": {
+   "width": 620,
+   "requires": [],
+   "solids": [
+    [
+     0,
+     660,
+     620,
+     100
+    ]
+   ],
+   "pickups": [
+    {
+     "type": "heal",
+     "x": 220,
+     "y": 600
+    },
+    {
+     "type": "energy",
+     "x": 420,
+     "y": 600
+    }
+   ],
+   "tips": [
+    {
+     "x": 0,
+     "text": "Recoge las ESTRELLAS (vida) y las LLAMITAS (energía)."
+    }
+   ]
+  },
+  "tut_shoot": {
+   "width": 900,
+   "requires": [
+    "shoot"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     900,
+     100
+    ]
+   ],
+   "enemies": [
+    {
+     "kind": "ground",
+     "x": 560,
+     "y": 660,
+     "range": [
+      480,
+      700
+     ]
+    },
+    {
+     "kind": "ground",
+     "x": 760,
+     "y": 660,
+     "range": [
+      680,
+      880
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "x": 0,
+     "text": "ESPADA DEL ESPÍRITU: acércate y pulsa ESPADA tres veces seguidas para el COMBO: tajo, revés y remate. El remate empuja lejos."
+    }
+   ]
+  },
+  "tut_turret": {
+   "width": 800,
+   "requires": [
+    "shoot",
+    "basic_jump"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     800,
+     100
+    ],
+    [
+     220,
+     600,
+     90,
+     60
+    ]
+   ],
+   "enemies": [
+    {
+     "kind": "turret",
+     "x": 640,
+     "y": 660
+    }
+   ],
+   "tips": [
+    {
+     "x": 0,
+     "text": "Los OJOS DE ENVIDIA no se mueven: salta sus disparos (la espada también los corta), acércate y golpéalos."
+    }
+   ]
+  },
+  "tut_double": {
+   "width": 640,
+   "requires": [
+    "double_jump"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     640,
+     100
+    ],
+    [
+     260,
+     510,
+     380,
+     150
+    ]
+   ],
+   "tips": [
+    {
+     "x": 0,
+     "text": "SALTO DE FE: pulsa SALTO otra vez en el aire, hasta 4 veces, para subir a lo alto."
+    }
+   ]
+  },
+  "tut_dash": {
+   "width": 760,
+   "requires": [
+    "dash_propulsion"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     240,
+     100
+    ],
+    [
+     240,
+     720,
+     380,
+     40
+    ],
+    [
+     620,
+     660,
+     140,
+     100
+    ]
+   ],
+   "tips": [
+    {
+     "x": 0,
+     "text": "CALZADO DEL EVANGELIO: pulsa CALZADO para lanzarte hacia delante, también en el aire. Salta y úsalo para cruzar el hueco."
+    }
+   ]
+  },
+  "tut_glide": {
+   "width": 1060,
+   "requires": [
+    "double_jump",
+    "glide"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     280,
+     100
+    ],
+    [
+     120,
+     560,
+     160,
+     100
+    ],
+    [
+     280,
+     720,
+     600,
+     40
+    ],
+    [
+     880,
+     660,
+     180,
+     100
+    ]
+   ],
+   "pickups": [
+    {
+     "type": "energy",
+     "x": 700,
+     "y": 470
+    }
+   ],
+   "tips": [
+    {
+     "x": 0,
+     "text": "ALAS DE ÁGUILA: tras el doble salto, MANTÉN SALTO para planear y cruzar grandes distancias."
+    }
+   ]
+  },
+  "tut_walls": {
+   "width": 640,
+   "requires": [
+    "double_jump",
+    "dash_propulsion"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     640,
+     100
+    ],
+    [
+     260,
+     300,
+     120,
+     360
+    ]
+   ],
+   "tips": [
+    {
+     "x": 0,
+     "text": "SALTO DE FE + CALZADO DEL EVANGELIO + ALAS DE ÁGUILA: salta, salta otra vez en el aire, pulsa CALZADO y MANTÉN SALTO para planear. Así llegas alto y lejos."
+    }
+   ]
+  },
+  "tut_detonation": {
+   "width": 1000,
+   "requires": [
+    "detonation"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     1000,
+     100
+    ]
+   ],
+   "enemies": [
+    {
+     "kind": "ground",
+     "x": 560,
+     "y": 660,
+     "range": [
+      500,
+      640
+     ]
+    },
+    {
+     "kind": "ground",
+     "x": 700,
+     "y": 660,
+     "range": [
+      640,
+      780
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "x": 0,
+     "text": "ESPADA DE FUEGO: pulsa FUEGO para un tajo de fuego que lanza una ONDA hacia delante; atraviesa a los enemigos. Gasta energía."
+    }
+   ]
+  },
+  "tut_end": {
+   "width": 700,
+   "requires": [],
+   "solids": [
+    [
+     0,
+     660,
+     700,
+     100
+    ]
+   ],
+   "tips": [
+    {
+     "x": 0,
+     "text": "¡Entrenamiento superado! Recuerda: en la campaña estos poderes se desbloquean al avanzar. Llega a la SALIDA."
+    }
+   ]
+  },
+  "start": {
+   "width": 1200,
+   "requires": [],
+   "spawn": [
+    880,
+    570
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     1200,
+     100
+    ]
+   ]
+  },
+  "checkpoint": {
+   "width": 240,
+   "requires": [],
+   "solids": [
+    [
+     0,
+     660,
+     240,
+     100
+    ]
+   ],
+   "checkpoint": [
+    100,
+    590,
+    20,
+    70
+   ]
+  },
+  "paso": {
+   "width": 240,
+   "requires": [],
+   "solids": [
+    [
+     0,
+     660,
+     240,
+     100
+    ]
+   ]
+  },
+  "goal": {
+   "width": 460,
+   "requires": [],
+   "solids": [
+    [
+     0,
+     660,
+     460,
+     100
+    ]
+   ],
+   "goal": [
+    300,
+    560,
+    60,
+    100
+   ]
+  },
+  "boss_arena": {
+   "width": 1500,
+   "requires": [
+    "shoot"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     1500,
+     100
+    ]
+   ],
+   "oneWays": [
+    [
+     260,
+     540,
+     170
+    ],
+    [
+     1020,
+     540,
+     170
+    ]
+   ],
+   "pickups": [
+    {
+     "type": "heal",
+     "x": 333,
+     "y": 500
+    },
+    {
+     "type": "energy",
+     "x": 1093,
+     "y": 500
+    }
+   ],
+   "bossX": 1150,
+   "bossGate": [
+    1470,
+    0,
+    30,
+    660
+   ]
+  },
+  "steps": {
+   "width": 620,
+   "requires": [
+    "basic_jump"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     620,
+     100
+    ],
+    [
+     120,
+     595,
+     110,
+     65
+    ],
+    [
+     260,
+     530,
+     110,
+     130
+    ],
+    [
+     400,
+     465,
+     110,
+     195
+    ]
+   ],
+   "pickups": [
+    {
+     "type": "heal",
+     "x": 445,
+     "y": 410
+    }
+   ]
+  },
+  "spike_gap": {
+   "width": 520,
+   "requires": [
+    "basic_jump"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     200,
+     100
+    ],
+    [
+     300,
+     660,
+     220,
+     100
+    ]
+   ],
+   "hazards": [
+    [
+     200,
+     642,
+     100,
+     18
+    ]
+   ]
+  },
+  "pit": {
+   "width": 560,
+   "requires": [
+    "basic_jump",
+    "run"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     220,
+     100
+    ],
+    [
+     380,
+     660,
+     180,
+     100
+    ]
+   ]
+  },
+  "oneway_stairs": {
+   "width": 720,
+   "requires": [
+    "basic_jump"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     720,
+     100
+    ]
+   ],
+   "oneWays": [
+    [
+     80,
+     585,
+     200
+    ],
+    [
+     300,
+     510,
+     200
+    ],
+    [
+     500,
+     435,
+     180
+    ]
+   ],
+   "enemies": [
+    {
+     "kind": "ground",
+     "x": 360,
+     "y": 660,
+     "range": [
+      240,
+      640
+     ]
+    }
+   ],
+   "pickups": [
+    {
+     "type": "energy",
+     "x": 580,
+     "y": 390
+    }
+   ]
+  },
+  "moving_lift": {
+   "width": 580,
+   "requires": [
+    "basic_jump"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     160,
+     100
+    ],
+    [
+     420,
+     660,
+     160,
+     100
+    ]
+   ],
+   "moving": [
+    {
+     "x": 170,
+     "y": 575,
+     "w": 130,
+     "axis": "x",
+     "min": 165,
+     "max": 290,
+     "speed": 70
+    }
+   ]
+  },
+  "ladder_tower": {
+   "width": 640,
+   "requires": [],
+   "solids": [
+    [
+     0,
+     660,
+     640,
+     100
+    ],
+    [
+     200,
+     460,
+     220,
+     200
+    ]
+   ],
+   "ladders": [
+    [
+     150,
+     400,
+     45,
+     260
+    ]
+   ],
+   "enemies": [
+    {
+     "kind": "turret",
+     "x": 330,
+     "y": 460
+    }
+   ]
+  },
+  "tunnel": {
+   "width": 720,
+   "requires": [],
+   "solids": [
+    [
+     0,
+     660,
+     720,
+     100
+    ],
+    [
+     150,
+     380,
+     420,
+     236
+    ]
+   ],
+   "enemies": [
+    {
+     "kind": "ground",
+     "x": 620,
+     "y": 660,
+     "range": [
+      590,
+      700
+     ]
+    }
+   ]
+  },
+  "combat": {
+   "width": 820,
+   "requires": [
+    "shoot"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     820,
+     100
+    ],
+    [
+     180,
+     580,
+     100,
+     80
+    ],
+    [
+     540,
+     560,
+     90,
+     100
+    ]
+   ],
+   "enemies": [
+    {
+     "kind": "ground",
+     "x": 380,
+     "y": 660,
+     "range": [
+      300,
+      520
+     ]
+    },
+    {
+     "kind": "turret",
+     "x": 700,
+     "y": 660
+    },
+    {
+     "kind": "air",
+     "x": 420,
+     "y": 470,
+     "range": [
+      320,
+      640
+     ]
+    }
+   ],
+   "pickups": [
+    {
+     "type": "heal",
+     "x": 215,
+     "y": 530
+    }
+   ]
+  },
+  "high_ledge": {
+   "width": 540,
+   "requires": [
+    "double_jump"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     540,
+     100
+    ],
+    [
+     200,
+     510,
+     340,
+     150
+    ]
+   ],
+   "enemies": [
+    {
+     "kind": "ground",
+     "x": 400,
+     "y": 510,
+     "range": [
+      260,
+      500
+     ]
+    }
+   ]
+  },
+  "long_gap": {
+   "width": 700,
+   "requires": [
+    "dash_propulsion"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     180,
+     100
+    ],
+    [
+     560,
+     660,
+     140,
+     100
+    ]
+   ]
+  },
+  "glide_chasm": {
+   "width": 1060,
+   "requires": [
+    "double_jump",
+    "glide"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     280,
+     100
+    ],
+    [
+     120,
+     560,
+     160,
+     100
+    ],
+    [
+     880,
+     660,
+     180,
+     100
+    ]
+   ],
+   "pickups": [
+    {
+     "type": "energy",
+     "x": 700,
+     "y": 470
+    }
+   ]
+  },
+  "cling_wait": {
+   "width": 760,
+   "requires": [
+    "wall_cling"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     200,
+     100
+    ],
+    [
+     200,
+     330,
+     60,
+     250
+    ],
+    [
+     580,
+     660,
+     180,
+     100
+    ]
+   ],
+   "moving": [
+    {
+     "x": 300,
+     "y": 560,
+     "w": 110,
+     "axis": "x",
+     "min": 270,
+     "max": 470,
+     "speed": 55
+    }
+   ]
+  },
+  "wall_shaft": {
+   "width": 540,
+   "requires": [
+    "wall_cling",
+    "wall_climb"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     540,
+     100
+    ],
+    [
+     200,
+     300,
+     120,
+     360
+    ]
+   ],
+   "enemies": [
+    {
+     "kind": "turret",
+     "x": 470,
+     "y": 660
+    }
+   ]
+  },
+  "arena": {
+   "width": 900,
+   "requires": [
+    "shoot"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     900,
+     100
+    ],
+    [
+     420,
+     590,
+     60,
+     70
+    ]
+   ],
+   "enemies": [
+    {
+     "kind": "ground",
+     "x": 250,
+     "y": 660,
+     "range": [
+      150,
+      400
+     ]
+    },
+    {
+     "kind": "ground",
+     "x": 620,
+     "y": 660,
+     "range": [
+      500,
+      800
+     ]
+    },
+    {
+     "kind": "air",
+     "x": 450,
+     "y": 430,
+     "range": [
+      250,
+      700
+     ]
+    },
+    {
+     "kind": "turret",
+     "x": 840,
+     "y": 660
+    }
+   ],
+   "pickups": [
+    {
+     "type": "heal",
+     "x": 440,
+     "y": 540
+    }
+   ]
+  },
+  "tut_picada": {
+   "width": 900,
+   "requires": [
+    "shoot",
+    "double_jump"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     900,
+     100
+    ],
+    [
+     160,
+     560,
+     140,
+     100
+    ]
+   ],
+   "enemies": [
+    {
+     "kind": "ground",
+     "x": 520,
+     "y": 660,
+     "range": [
+      420,
+      640
+     ]
+    },
+    {
+     "kind": "ground",
+     "x": 760,
+     "y": 660,
+     "range": [
+      680,
+      860
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "x": 0,
+     "text": "PICADA: en el aire, ABAJO + ESPADA. Si aciertas, rebotas y recuperas el SALTO DE FE: salta, pica, rebota y vuelve a picar."
+    }
+   ]
+  },
+  "tut_duelo": {
+   "width": 1000,
+   "requires": [
+    "shoot",
+    "double_jump",
+    "dash_propulsion"
+   ],
+   "solids": [
+    [
+     0,
+     660,
+     1000,
+     100
+    ]
+   ],
+   "enemies": [
+    {
+     "kind": "ground",
+     "x": 520,
+     "y": 660,
+     "range": [
+      380,
+      900
+     ]
+    },
+    {
+     "kind": "ground",
+     "x": 640,
+     "y": 660,
+     "range": [
+      380,
+      900
+     ]
+    },
+    {
+     "kind": "ground",
+     "x": 760,
+     "y": 660,
+     "range": [
+      380,
+      900
+     ]
+    }
+   ],
+   "tips": [
+    {
+     "x": 0,
+     "text": "DUELO: los jefes se vencen de cerca. Entra con el CALZADO DEL EVANGELIO, golpea con el COMBO, sal con un SALTO DE FE y cae con la PICADA. En el aire, cada tajo te mantiene arriba."
+    }
+   ]
+  }
+ }
+}

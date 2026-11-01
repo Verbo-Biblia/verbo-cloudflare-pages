@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="es">
+<head><script data-idioma-temprano>(function(){try{var e=window.top!==window.self&&(/[?&]verboEmbed=app/.test(location.search)||String(window.name).split('|')[0]==='verboEmbedApp'),n=String(navigator.language||'es').slice(0,2).toLowerCase(),l=e?(n==='es'?'es':'en'):(localStorage.getItem('verbo:uiLang')||(n==='en'?'en':'es'));document.documentElement.lang=l==='en'?'en':'es'}catch(x){}})()</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1220">
+<title>La Armadura de Dios</title>
+<style>
+:root{--oro:#ffd25a;--oro-osc:#b98a24;--celeste:#6fd2ff;--perla:#f4f0e6;--noche:#0b1220}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--noche);color:var(--perla);font-family:system-ui,'Segoe UI',Roboto,sans-serif;overflow:hidden}
+#juego{position:fixed;inset:0;width:100vw;height:100dvh;display:block;touch-action:none;background:#070d16}
+.oculto{display:none!important}
+/* HUD */
+body:not(.en-juego) #hud,body:not(.en-juego) #pausa{display:none!important}
+#hud{position:fixed;top:10px;left:12px;right:12px;display:flex;align-items:flex-start;gap:14px;pointer-events:none;z-index:5}
+.barras{display:flex;flex-direction:column;gap:5px;width:min(240px,34vw)}
+.barra{height:12px;border-radius:7px;background:#0008;border:1px solid #ffffff30;overflow:hidden}
+.barra i{display:block;height:100%;border-radius:7px;transition:width .12s}
+#vida{background:linear-gradient(#ff8a96,#e04a5c)}
+#energia{background:linear-gradient(#bff0ff,#4cc6ff)}
+#energia.agotada{background:linear-gradient(#8a98a8,#566272)}
+#vidas{color:#ff8a96;font-size:15px;letter-spacing:2px;text-shadow:0 1px 2px #000}
+#titulo-nivel{font-size:12px;font-weight:800;letter-spacing:1px;color:#ffe7a8;text-shadow:0 1px 3px #000;margin-top:2px}
+#objetivo{margin-left:auto;font-size:13px;font-weight:800;letter-spacing:1px;padding:6px 12px;border-radius:12px;background:#0b1220c0;border:1px solid #ffd25a55;color:var(--oro)}
+#objetivo:empty{display:none}
+#aviso{position:fixed;top:64px;left:50%;transform:translateX(-50%);padding:8px 16px;border-radius:14px;background:#0b1220d8;border:1px solid #ffffff30;font-weight:800;font-size:14px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:5;white-space:nowrap}
+#aviso.visible{opacity:1}
+/* Menús */
+.panel{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:20;background:radial-gradient(ellipse at 50% 30%,#1d3150ee,#070d16f4)}
+.tarjeta{width:min(520px,92vw);padding:28px 30px;border-radius:26px;background:linear-gradient(160deg,#16223a,#0e1626);border:2px solid #ffd25a66;box-shadow:0 20px 60px #000a;text-align:center}
+/* Pantalla de título con el arte de la portada (Juan) */
+#menu{background:linear-gradient(#070d1640,#070d16a0),url(assets/ui/fondo_menu.webp) center/cover no-repeat}
+#menu .tarjeta{background:linear-gradient(160deg,#16223ac8,#0e1626d8);backdrop-filter:blur(3px)}
+#mas-juegos{display:inline-block;margin-top:10px;color:var(--oro);font-weight:800;font-size:14px;text-decoration:none;letter-spacing:.5px}
+#mas-juegos:hover{text-decoration:underline}
+.tarjeta h1{margin:0 0 8px;font-size:clamp(30px,5vw,46px);color:var(--oro);text-shadow:0 2px 0 #6b4a10}
+.tarjeta p{color:#c9d4e4;line-height:1.5;margin:8px 0 16px}
+.tarjeta small{display:block;color:#93a3ba;margin-top:14px;line-height:1.6}
+button{font:inherit;font-weight:900;font-size:16px;letter-spacing:1px;padding:12px 26px;border-radius:16px;border:2px solid #fff3;cursor:pointer;background:linear-gradient(#ffe08a,#e8b23a);color:#3b2a06;box-shadow:0 4px 0 #8a6414;margin:4px}
+button.sec{background:linear-gradient(#2c3f60,#1c2a44);color:var(--perla);box-shadow:0 4px 0 #0c1424}
+button:disabled{opacity:.5}
+#cargando{color:#93a3ba;min-height:1.2em}
+/* Controles táctiles (como Camino al Cielo) */
+#controles{display:none}
+body.tactil.jugando #controles{display:block}
+#stick{position:fixed;left:max(10px,env(safe-area-inset-left));bottom:max(12px,env(safe-area-inset-bottom));width:min(150px,32vh);height:min(150px,32vh);border-radius:50%;z-index:10;touch-action:none;
+  background:radial-gradient(circle,#ffffff2a 0 38%,#ffffff14 39% 100%);border:3px solid #ffffff60}
+#knob{position:absolute;left:50%;top:50%;width:44%;height:44%;margin:-22% 0 0 -22%;border-radius:50%;background:linear-gradient(#fff6d0,#e9c66a);border:3px solid #fff;box-shadow:0 3px 8px #0008;transition:transform .08s}
+#stick.activo #knob{transition:none}
+.botones{position:fixed;right:max(8px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom));z-index:10;display:grid;grid-template-columns:auto auto;gap:min(10px,2vh);align-items:end}
+.botones button{width:min(84px,19vh);height:min(84px,19vh);border-radius:50%;padding:0;font-size:min(13px,3vh);margin:0;opacity:.82;touch-action:none}
+.botones button.on{filter:brightness(1.25);transform:scale(.95)}
+.botones [data-btn=jump]{width:min(110px,25vh);height:min(110px,25vh);font-size:min(16px,3.6vh)}
+.botones [data-btn=shoot]{background:linear-gradient(#bff0ff,#4cc6ff);color:#082234;box-shadow:0 4px 0 #1d6a90}
+.botones [data-btn=dash],.botones [data-btn=detonate]{width:min(64px,15vh);height:min(64px,15vh);font-size:11px;display:none}
+body.con-dash .botones [data-btn=dash],body.con-deton .botones [data-btn=detonate]{display:block}
+#pausa{position:fixed;top:44px;right:12px;z-index:11;width:44px;height:44px;border-radius:50%;padding:0;margin:0;font-size:14px;display:none}
+body.jugando #pausa{display:block}
+/* Título */
+#titulo-logo{width:min(560px,86vw);max-width:100%;display:block;margin:0 auto 6px;filter:drop-shadow(0 6px 18px #000a)}
+.fila{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:6px}
+.idioma button{font-size:13px;padding:7px 14px}
+.idioma button.activo{outline:3px solid var(--oro)}
+/* Selección de nivel */
+#niveles .tarjeta{width:min(900px,94vw);max-height:92dvh;overflow:auto}
+#lista-niveles{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin:14px 0}
+.nivel{position:relative;text-align:left;padding:12px 12px 10px;border-radius:16px;border:2px solid #ffffff22;background:linear-gradient(160deg,#1c2a44,#111b2e);color:var(--perla);box-shadow:none;margin:0;font-size:12px;letter-spacing:0;font-weight:700;min-height:92px}
+.nivel b{display:block;font-size:22px;color:var(--oro)}
+.nivel span{display:block;line-height:1.3;margin-top:4px;color:#c9d4e4}
+.nivel.hecho::after{content:'✓';position:absolute;top:8px;right:12px;color:#7ee39b;font-size:20px}
+.nivel.sugerido{border-color:var(--oro);box-shadow:0 0 0 3px #ffd25a44}
+.nivel:disabled{opacity:.4;filter:grayscale(.6)}
+/* Ajustes */
+.ajuste{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:12px 0;font-weight:700}
+.ajuste input[type=range]{width:160px}
+/* Recompensas */
+#fin-recompensas{margin:10px 0;color:var(--oro);font-weight:800;line-height:1.6}
+#fin-recompensas small{color:#c9d4e4;font-weight:600}
+#recuperado{position:fixed;top:104px;left:50%;transform:translateX(-50%);padding:8px 16px;border-radius:14px;background:#2a1e05e0;border:1px solid var(--oro);color:var(--oro);font-weight:900;font-size:14px;pointer-events:none;z-index:5;white-space:nowrap}
+/* Escenas de historia */
+#historia{position:fixed;inset:0;z-index:40;background:#000;overflow:hidden;cursor:pointer;transition:opacity .28s}
+#historia.cerrando{opacity:0}
+#historia-imagen{position:absolute;inset:0;background:#000 center/cover no-repeat;transform-origin:50% 50%}
+#historia-imagen.contener{background-size:contain;background-color:#0a0d18;background-position:50% 30%}
+#historia-imagen.respaldo{filter:blur(7px) brightness(.42) saturate(.8)}
+.mov-in{animation:acercar 16s ease-out forwards}
+.mov-out{animation:alejar 16s ease-out forwards}
+.mov-left{animation:izquierda 16s ease-in-out forwards}
+.mov-right{animation:derecha 16s ease-in-out forwards}
+@keyframes acercar{from{transform:scale(1.02)}to{transform:scale(1.10)}}
+@keyframes alejar{from{transform:scale(1.10)}to{transform:scale(1.02)}}
+@keyframes izquierda{from{transform:scale(1.08) translateX(3%)}to{transform:scale(1.08) translateX(-3%)}}
+@keyframes derecha{from{transform:scale(1.08) translateX(-3%)}to{transform:scale(1.08) translateX(3%)}}
+#historia-sombra{position:absolute;left:0;right:0;bottom:0;height:46%;background:linear-gradient(transparent,#000d)}
+#historia-narracion{position:absolute;left:50%;bottom:9%;transform:translateX(-50%);width:min(980px,90vw);text-align:center;font-size:clamp(17px,2.4vw,26px);line-height:1.45;color:#e6f6ff;text-shadow:0 2px 6px #000}
+#historia-dialogo{position:absolute;left:max(18px,env(safe-area-inset-left));right:max(18px,env(safe-area-inset-right));bottom:4%;display:flex;gap:18px;align-items:flex-end;padding:14px 18px;border-radius:18px;background:#060b14d0;border-top:3px solid var(--color-voz,#7fe4ff)}
+.retrato{flex:none;width:clamp(78px,11vw,140px);aspect-ratio:1;border-radius:16px;border:3px solid #7fe4ff;background:#0b1220;overflow:hidden;display:flex;align-items:center;justify-content:center;margin-top:-50px}
+.retrato img{width:100%;height:100%;object-fit:cover}
+.retrato span{font-size:44px;font-weight:900}
+#historia-nombre{font-weight:900;letter-spacing:1px;font-size:clamp(14px,1.7vw,20px);margin-bottom:6px}
+#historia-texto{font-size:clamp(16px,2.2vw,25px);line-height:1.4;min-height:2.8em}
+#historia-saltar{position:absolute;top:max(14px,env(safe-area-inset-top));right:max(14px,env(safe-area-inset-right));font-size:13px;padding:8px 16px;background:#0b1220c0;color:var(--perla);box-shadow:none;border-color:#ffffff40}
+#historia-sigue{position:absolute;right:max(34px,env(safe-area-inset-right));bottom:6%;color:var(--celeste);font-size:18px;opacity:0;animation:latir 1s infinite}
+#historia-sigue.visible{opacity:1}
+@keyframes latir{50%{transform:translateY(4px)}}
+/* Radio */
+#radio{position:fixed;left:50%;bottom:max(14px,env(safe-area-inset-bottom));transform:translateX(-50%);width:min(840px,68vw);display:flex;gap:14px;align-items:center;padding:12px 16px;border-radius:16px;background:#060b14d8;border-top:3px solid var(--color-voz,#7fe4ff);z-index:12;pointer-events:none;animation:aparece .25s}
+#radio .retrato{width:72px;margin-top:0;border-width:2px}
+#radio .retrato span{font-size:30px}
+#radio-nombre{font-weight:900;font-size:15px;letter-spacing:1px}
+#radio-texto{font-size:clamp(15px,1.85vw,20px);line-height:1.35}
+#radio-omitir{pointer-events:auto;margin-left:auto;flex:none;font-size:11px;padding:6px 10px;background:#0b1220;color:var(--perla);box-shadow:none}
+@keyframes aparece{from{opacity:0;transform:translate(-50%,10px)}}
+body.tactil #radio{bottom:auto;top:96px}
+#girar{display:none}
+@media(orientation:portrait){body.tactil.jugando #girar{display:flex;position:fixed;inset:0;z-index:30;align-items:center;justify-content:center;flex-direction:column;background:#0b1220f2;font-weight:900;font-size:20px;text-align:center;padding:30px}}
+.panel button:focus{outline:3px solid #ffd870;outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/pie/pie.css?v=20261031-idioma">
+</head>
+<body>
+<canvas id="juego"></canvas>
+
+<div id="hud">
+  <div class="barras">
+    <div class="barra"><i id="vida"></i></div>
+    <div class="barra"><i id="energia"></i></div>
+    <div><span id="vidas"></span></div>
+    <div id="titulo-nivel"></div>
+  </div>
+  <div id="objetivo"></div>
+</div>
+<div id="aviso"></div>
+<button id="pausa" class="sec" aria-label="Pausa">❚❚</button>
+
+<div id="controles">
+  <div id="stick" aria-label="Mover"><div id="knob"></div></div>
+  <div class="botones">
+    <button data-btn="dash" data-t="CALZADO">CALZADO</button>
+    <button data-btn="detonate" data-t="FUEGO">FUEGO</button>
+    <button data-btn="shoot" data-t="ESPADA">ESPADA</button>
+    <button data-btn="jump" data-t="SALTAR">SALTAR</button>
+  </div>
+</div>
+
+<div id="recuperado" class="oculto"></div>
+
+<div id="menu" class="panel">
+  <div class="tarjeta">
+    <img id="titulo-logo" src="assets/ui/logo.webp" alt="La Armadura de Dios">
+    <p data-t="Una aventura de fe en diez niveles. Ponte la armadura y sigue adelante.">Una aventura de fe en diez niveles. Ponte la armadura y sigue adelante.</p>
+    <button id="jugar" disabled data-t="JUGAR">JUGAR</button>
+    <button id="nueva-partida" class="sec oculto" data-t="NUEVA PARTIDA">NUEVA PARTIDA</button>
+    <div class="fila"><button id="entrenar" class="sec" data-t="ENTRENAMIENTO">ENTRENAMIENTO</button><button id="abrir-ajustes" class="sec" data-t="AJUSTES">AJUSTES</button></div>
+    <a id="mas-juegos" href="/juegos/" data-t="← Más juegos de Verbo">← Más juegos de Verbo</a>
+    <div class="fila idioma"><button data-lang="es" class="sec">ES</button><button data-lang="en" class="sec">EN</button></div>
+    <div id="cargando"></div>
+    <small data-t="← → mover · ↑ ↓ escaleras · ESPACIO saltar (en el aire: SALTO DE FE; mantener: ALAS DE ÁGUILA) · X ESPADA DEL ESPÍRITU (combo; ↑ arriba; ↓ en el aire: picada) · C CALZADO DEL EVANGELIO · V ESPADA DE FUEGO · ESC pausa">← → mover · ↑ ↓ escaleras · ESPACIO saltar (en el aire: SALTO DE FE; mantener: ALAS DE ÁGUILA) · X ESPADA DEL ESPÍRITU (combo; ↑ arriba; ↓ en el aire: picada) · C CALZADO DEL EVANGELIO · V ESPADA DE FUEGO · ESC pausa</small>
+  </div>
+</div>
+
+<div id="niveles" class="panel oculto">
+  <div class="tarjeta">
+    <h1 id="niveles-titulo"></h1>
+    <div id="lista-niveles"></div>
+    <button id="niveles-volver" class="sec" data-t="VOLVER">VOLVER</button>
+  </div>
+</div>
+
+<div id="ajustes" class="panel oculto">
+  <div class="tarjeta">
+    <h1 data-t="AJUSTES">AJUSTES</h1>
+    <label class="ajuste"><span data-t="Efectos de sonido">Efectos de sonido</span><input id="aj-sonido" type="checkbox"></label>
+    <label class="ajuste"><span data-t="Música">Música</span><input id="aj-musica" type="range" min="0" max="100"></label>
+    <div class="ajuste"><span data-t="Idioma">Idioma</span><span class="idioma"><button data-lang="es" class="sec">ES</button><button data-lang="en" class="sec">EN</button></span></div>
+    <button id="aj-borrar" class="sec" data-t="BORRAR PROGRESO">BORRAR PROGRESO</button>
+    <button id="aj-volver" data-t="VOLVER">VOLVER</button>
+  </div>
+</div>
+
+<div id="pausa-menu" class="panel oculto">
+  <div class="tarjeta">
+    <h1 data-t="PAUSA">PAUSA</h1>
+    <button id="pausa-seguir" data-t="CONTINUAR">CONTINUAR</button>
+    <button id="pausa-reiniciar" class="sec" data-t="REINICIAR NIVEL">REINICIAR NIVEL</button>
+    <button id="pausa-salir" class="sec" data-t="SALIR A LOS NIVELES">SALIR A LOS NIVELES</button>
+  </div>
+</div>
+
+<div id="fin" class="panel oculto">
+  <div class="tarjeta">
+    <h1 id="fin-titulo"></h1>
+    <p id="fin-texto"></p>
+    <div id="fin-recompensas"></div>
+    <button id="fin-adelante" data-t="SEGUIR">SEGUIR</button>
+    <button id="fin-seguir" data-t="CONTINUAR">CONTINUAR</button>
+    <button id="fin-repetir" class="sec" data-t="JUGAR DE NUEVO">JUGAR DE NUEVO</button>
+    <button id="fin-salir" class="sec" data-t="SALIR A LOS NIVELES">SALIR A LOS NIVELES</button>
+  </div>
+</div>
+
+<div id="historia" class="oculto">
+  <div id="historia-imagen"></div>
+  <div id="historia-sombra"></div>
+  <div id="historia-narracion" class="oculto"></div>
+  <div id="historia-dialogo" class="oculto">
+    <div id="historia-retrato" class="retrato"></div>
+    <div><div id="historia-nombre"></div><div id="historia-texto"></div></div>
+  </div>
+  <div id="historia-sigue">▼</div>
+  <button id="historia-saltar">SALTAR ›</button>
+</div>
+
+<div id="radio" class="oculto">
+  <div id="radio-retrato" class="retrato"></div>
+  <div><div id="radio-nombre"></div><div id="radio-texto"></div></div>
+  <button id="radio-omitir">OMITIR ›</button>
+</div>
+
+<div id="girar"><div style="font-size:60px">⟳</div><span data-t="Gira tu teléfono para jugar">Gira tu teléfono para jugar</span></div>
+
+<script type="module" src="js/principal.js"></script>
+<script src="/biblia/assets/i18n.js?v=20261021-secciones"></script>
+<script src="/biblia/assets/site-chrome.js?v=20261021-secciones"></script>
+<!-- verbo:pie -->
+<footer class="verbo-pie" aria-label="Verbo">
+  <div class="verbo-pie__interior">
+    <div class="verbo-pie__marca"><a href="/" data-i18n="pie.marca">Verbo</a><p data-i18n="pie.frase">Una biblioteca abierta. Una fe que se vive.</p></div>
+    <nav class="verbo-pie__grupo" aria-labelledby="pie-secciones">
+      <h2 id="pie-secciones" data-i18n="pie.secciones">Secciones</h2>
+      <a href="/" data-i18n="pie.inicio">Inicio</a>
+      <a href="/recursos/" data-i18n="pie.recursos">Recursos</a>
+      <a href="/libreria/" data-i18n="pie.libreria">Librería</a>
+      <a href="/historias/" data-i18n="pie.historias">Historias</a>
+      <a href="/preguntas-cristianas/" data-i18n="pie.preguntas">Preguntas cristianas</a>
+      <a href="/software/" data-i18n="pie.software">Software</a>
+      <a href="/apps/" data-i18n="pie.apps">Apps</a>
+      <a href="/juegos/" data-i18n="pie.juegos">Juegos</a>
+      <a href="/musica/" data-i18n="pie.musica">Música</a>
+      <a href="/imagenes/" data-i18n="pie.imagenes">Imágenes bíblicas</a>
+    </nav>
+    <nav class="verbo-pie__grupo" aria-labelledby="pie-confianza">
+      <h2 id="pie-confianza" data-i18n="pie.confianza">Confianza</h2>
+      <a href="/acerca/" data-i18n="pie.acerca">Conoce Verbo</a>
+      <a href="/mision/" data-i18n="pie.mision">Misión</a>
+      <a href="/sobre-el-fundador/" data-i18n="pie.fundador">Sobre el fundador</a>
+      <a href="/privacidad/" data-i18n="pie.privacidad">Política de privacidad</a>
+      <a href="/licencias/" data-i18n="pie.licencias">Licencias</a>
+      <a href="/contacto/" data-i18n="pie.contacto">Contacto</a>
+    </nav>
+    <nav class="verbo-pie__grupo" aria-labelledby="pie-redes">
+      <h2 id="pie-redes" data-i18n="pie.redes">Redes</h2>
+      <a href="https://youtube.com/@verbobiblia" data-i18n="pie.youtube">YouTube</a>
+      <a href="https://www.facebook.com/share/193dcJJ87v/" data-i18n="pie.facebook">Facebook</a>
+    </nav>
+  </div>
+</footer>
+<script src="/assets/medir.js?v=20261031" defer></script>
+<!-- /verbo:pie -->
+</body>
+</html>

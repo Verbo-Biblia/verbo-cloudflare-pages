@@ -1,0 +1,75 @@
+{
+  "_comment": "Nivel de ENTRENAMIENTO de controles. Mismo formato que una campaña pero con un solo nivel; no aparece en la lista de campañas (se abre con TUTORIAL en el menú de inicio o al empezar una partida nueva). Tiene TODAS las habilidades (unlockOnStart) para practicarlas; los carteles avisan que en la campaña se desbloquean poco a poco. Los carteles son 'tips' de los segmentos tut_* en segments.json.",
+  "campaignId": "tutorial",
+  "title": "Entrenamiento",
+  "startAbilities": [],
+  "levels": [
+    {
+      "levelId": "tutorial_controls",
+      "levelNumber": 0,
+      "title": "ENTRENAMIENTO",
+      "backgroundId": "bg_laboratory",
+      "environmentType": "laboratory",
+      "environmentName": "Entrenamiento",
+      "requiredAbilities": [
+        "move",
+        "run",
+        "basic_jump",
+        "shoot",
+        "double_jump",
+        "dash_propulsion",
+        "glide",
+        "detonation"
+      ],
+      "unlockOnStart": [
+        "move",
+        "run",
+        "basic_jump",
+        "shoot",
+        "double_jump",
+        "dash_propulsion",
+        "glide",
+        "detonation"
+      ],
+      "unlockDuringLevel": [],
+      "unlockOnComplete": [],
+      "galleryUnlocks": [],
+      "musicTrack": "music_lab",
+      "bossId": null,
+      "isCampaignFinal": false,
+      "segments": [
+        "tut_start",
+        "tut_run",
+        "tut_jump",
+        "tut_gap",
+        "tut_crouch",
+        "tut_oneway",
+        "tut_ladder",
+        "tut_checkpoint",
+        "tut_pickups",
+        "tut_shoot",
+        "tut_turret",
+        "checkpoint",
+        "tut_double",
+        "tut_dash",
+        "tut_glide",
+        "tut_walls",
+        "checkpoint",
+        "tut_detonation",
+        "tut_picada",
+        "tut_duelo",
+        "tut_end",
+        "goal"
+      ],
+      "enemySet": {
+        "ground": [
+          "walker"
+        ],
+        "turret": [
+          "turret"
+        ]
+      },
+      "enemyDensity": 1.0
+    }
+  ]
+}

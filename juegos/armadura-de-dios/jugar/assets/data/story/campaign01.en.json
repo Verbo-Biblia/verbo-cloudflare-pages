@@ -1,0 +1,684 @@
+{
+ "_comment": "La Armadura de Dios · Primera Jornada (en). Fuente: docs/LORE_ARMADURA.md; generado por herramientas/lore_armadura.py (no editar a mano).",
+ "speakers": {
+  "PEREGRINO": {
+   "name": "THE PILGRIM",
+   "portrait": "@player",
+   "color": "#F2E6C8"
+  },
+  "ESCRITURA": {
+   "name": "THE SCRIPTURE",
+   "portrait": "portrait_biblia",
+   "color": "#FFE6A0"
+  },
+  "PABLO": {
+   "name": "PAUL",
+   "portrait": "portrait_pablo",
+   "color": "#FFD166"
+  },
+  "PEDRO": {
+   "name": "PETER",
+   "portrait": "portrait_pedro",
+   "color": "#7FE4FF"
+  },
+  "BERNABE": {
+   "name": "BARNABAS",
+   "portrait": "portrait_bernabe",
+   "color": "#9BE59B"
+  },
+  "JUAN": {
+   "name": "JOHN",
+   "portrait": "portrait_juan",
+   "color": "#FFB4C8"
+  },
+  "SANTIAGO": {
+   "name": "JAMES",
+   "portrait": "portrait_santiago",
+   "color": "#C9B48A"
+  },
+  "JESUS": {
+   "name": "JESUS",
+   "portrait": "portrait_jesus",
+   "color": "#FFFFFF"
+  },
+  "SOMBRA": {
+   "name": "THE SHADOW",
+   "portrait": "portrait_sombra",
+   "color": "#B48CFF"
+  },
+  "TENTACION": {
+   "name": "TEMPTATION",
+   "portrait": "portrait_tentacion",
+   "color": "#C9A4FF"
+  },
+  "DUDA": {
+   "name": "DOUBT",
+   "portrait": "portrait_duda",
+   "color": "#8FB6FF"
+  },
+  "ENFERMEDAD": {
+   "name": "DISCOURAGEMENT",
+   "portrait": "portrait_enfermedad",
+   "color": "#A8B0A0"
+  },
+  "LEVIATAN": {
+   "name": "LEVIATHAN",
+   "portrait": "portrait_leviatan",
+   "color": "#3CE0C0"
+  }
+ },
+ "scenes": {
+  "c01_prologue": {
+   "steps": [
+    {
+     "image": "escena_ciudad_niebla",
+     "motion": "in",
+     "caption": "New Zion: a city of stone and songs… until the mist fell."
+    },
+    {
+     "image": "escena_sombras",
+     "motion": "left",
+     "caption": "With the mist came the shadows: lies, fears, envy. The people stopped singing."
+    },
+    {
+     "image": "escena_biblia",
+     "motion": "in",
+     "caption": "In the ruins of a house, a young man finds an open Bible.",
+     "lines": [
+      [
+       "ESCRITURA",
+       "\"Be strong in the Lord and in His mighty power. Put on the full armor of God…\" (Ephesians 6:10-11)"
+      ],
+      [
+       "PEREGRINO",
+       "Who am I going to fight? I see no one."
+      ],
+      [
+       "ESCRITURA",
+       "\"For our struggle is not against flesh and blood, but… against the powers of this world’s darkness…\" (Ephesians 6:12)"
+      ],
+      [
+       "PABLO",
+       "I was chained and alone too. Put on the armor, son. You do not walk alone."
+      ],
+      [
+       "PABLO",
+       "Start with the Word: it is your sword. Shoot light wherever there is a lie."
+      ],
+      [
+       "PEREGRINO",
+       "Then I will go."
+      ]
+     ]
+    }
+   ]
+  },
+  "c01_after_l1": {
+   "steps": [
+    {
+     "image": "escena_camino",
+     "motion": "in",
+     "lines": [
+      [
+       "PEDRO",
+       "Well done. The little lies run from the truth."
+      ],
+      [
+       "PEREGRINO",
+       "There were so many. And they spoke with my own voice."
+      ],
+      [
+       "PEDRO",
+       "That is how lies talk. That is why you need the Word close."
+      ],
+      [
+       "ESCRITURA",
+       "\"Then you will know the truth, and the truth will set you free.\" (John 8:32)"
+      ]
+     ]
+    }
+   ]
+  },
+  "c01_after_l2": {
+   "steps": [
+    {
+     "image": "escena_cinturon",
+     "motion": "in",
+     "caption": "The Great Eye of Envy falls. A belt shines among its remains.",
+     "lines": [
+      [
+       "PABLO",
+       "The belt of truth. Fasten it tight."
+      ],
+      [
+       "SOMBRA",
+       "And what good is it? No one up there sees you."
+      ]
+     ]
+    },
+    {
+     "image": "escena_camino",
+     "motion": "right",
+     "lines": [
+      [
+       "PEREGRINO",
+       "Whose voice was that?"
+      ],
+      [
+       "PABLO",
+       "The same as always. Since the garden it asks the same thing."
+      ],
+      [
+       "ESCRITURA",
+       "\"Did God really say…?\" (Genesis 3:1)"
+      ],
+      [
+       "PABLO",
+       "Do not answer it with your ideas. Answer with what God said."
+      ],
+      [
+       "PEREGRINO",
+       "Then, to the mountains."
+      ]
+     ]
+    }
+   ]
+  },
+  "c01_after_l4": {
+   "steps": [
+    {
+     "image": "escena_coraza",
+     "motion": "in",
+     "caption": "Goliath falls. A breastplate lies at its feet.",
+     "lines": [
+      [
+       "PEREGRINO",
+       "It was huge. I thought I could not do it."
+      ],
+      [
+       "PEDRO",
+       "I sank when I looked at the waves instead of looking at Him."
+      ],
+      [
+       "JESUS",
+       "\"Do not be afraid; just believe.\" (Mark 5:36)"
+      ],
+      [
+       "PABLO",
+       "Take the breastplate of righteousness. And this sword of fire: it cuts the shadows up close."
+      ],
+      [
+       "ESCRITURA",
+       "\"For the word of God is living and active. Sharper than any double-edged sword…\" (Hebrews 4:12)"
+      ],
+      [
+       "PEREGRINO",
+       "I will."
+      ]
+     ]
+    }
+   ]
+  },
+  "c01_l6_boss": {
+   "steps": [
+    {
+     "image": "jefe_falso_angel",
+     "motion": "in",
+     "lines": [
+      [
+       "TENTACION",
+       "You are tired. I can give you whatever you ask, no effort."
+      ],
+      [
+       "PEREGRINO",
+       "Your light gives no warmth."
+      ],
+      [
+       "TENTACION",
+       "Just bow for a moment. No one will know."
+      ],
+      [
+       "ESCRITURA",
+       "\"…Satan himself masquerades as an angel of light.\" (2 Corinthians 11:14)"
+      ]
+     ]
+    }
+   ]
+  },
+  "c01_l6_boss_defeated": {
+   "steps": [
+    {
+     "image": "jefe_falso_angel",
+     "motion": "out",
+     "lines": [
+      [
+       "ESCRITURA",
+       "\"…God is faithful; He will not let you be tempted beyond what you can bear. But when you are tempted, He will also provide an escape…\" (1 Corinthians 10:13)"
+      ],
+      [
+       "PEREGRINO",
+       "There was a way out. There always was."
+      ],
+      [
+       "SANTIAGO",
+       "Blessed is the one who endures temptation. You will receive the crown of life."
+      ]
+     ]
+    }
+   ]
+  },
+  "c01_after_l6": {
+   "steps": [
+    {
+     "image": "escena_murallas",
+     "motion": "in",
+     "caption": "From the tower, the fallen walls of the city can be seen.",
+     "lines": [
+      [
+       "BERNABE",
+       "Many people stopped rebuilding. They grew tired."
+      ],
+      [
+       "PEREGRINO",
+       "I get tired too."
+      ]
+     ]
+    },
+    {
+     "image": "escena_escudo",
+     "motion": "in",
+     "caption": "A shield appears among the rubble.",
+     "lines": [
+      [
+       "BERNABE",
+       "It is the shield of faith. It puts out the fiery darts."
+      ],
+      [
+       "ESCRITURA",
+       "\"Take up the shield of faith, with which you can extinguish all the flaming arrows of the evil one.\" (Ephesians 6:16)"
+      ],
+      [
+       "PEREGRINO",
+       "Something worse is below. It smells of rotten roots."
+      ],
+      [
+       "BERNABE",
+       "That is bitterness. It grows where we do not forgive."
+      ]
+     ]
+    }
+   ]
+  },
+  "c01_after_l7": {
+   "steps": [
+    {
+     "image": "escena_catacumbas",
+     "motion": "in",
+     "lines": [
+      [
+       "JUAN",
+       "Little child, bitterness dries up where there is forgiveness."
+      ],
+      [
+       "ESCRITURA",
+       "\"Be kind and tenderhearted to one another, forgiving each other just as in Christ God forgave you.\" (Ephesians 4:32)"
+      ],
+      [
+       "PEREGRINO",
+       "I forgive those who hurt me. It is hard, but I do it."
+      ],
+      [
+       "JUAN",
+       "Then you are already freer than they are."
+      ]
+     ]
+    }
+   ]
+  },
+  "c01_after_l8": {
+   "steps": [
+    {
+     "image": "escena_corona_rota",
+     "motion": "in",
+     "caption": "Behemoth falls. Its crown rolls across the floor.",
+     "lines": [
+      [
+       "ESCRITURA",
+       "\"Pride goes before destruction, and a haughty spirit before a fall.\" (Proverbs 16:18)"
+      ],
+      [
+       "PEDRO",
+       "Humble yourselves under the mighty hand of God. He lifts you up in due time."
+      ]
+     ]
+    },
+    {
+     "image": "escena_camino",
+     "motion": "right",
+     "lines": [
+      [
+       "PABLO",
+       "Now the helmet of salvation. Guard your mind: up there the storm screams."
+      ],
+      [
+       "PEREGRINO",
+       "I am ready."
+      ]
+     ]
+    }
+   ]
+  },
+  "c01_before_l9": {
+   "steps": [
+    {
+     "image": "escena_islas",
+     "motion": "in",
+     "caption": "The islands float in the storm. The light is behind the clouds."
+    },
+    {
+     "image": "escena_dos_sombras",
+     "motion": "left",
+     "caption": "Two giant shadows wait there: Doubt… and Discouragement."
+    }
+   ]
+  },
+  "c01_l9_boss": {
+   "steps": [
+    {
+     "image": "escena_dos_sombras",
+     "motion": "in",
+     "lines": [
+      [
+       "DUDA",
+       "What if God does not hear you?"
+      ],
+      [
+       "ENFERMEDAD",
+       "You are weak. You will not make it."
+      ],
+      [
+       "PEREGRINO",
+       "Maybe I am weak."
+      ],
+      [
+       "ESCRITURA",
+       "\"My grace is sufficient for you, for My power is perfected in weakness.\" (2 Corinthians 12:9)"
+      ]
+     ]
+    }
+   ]
+  },
+  "c01_after_l9": {
+   "steps": [
+    {
+     "image": "escena_islas",
+     "motion": "in",
+     "caption": "Doubt and Discouragement dissolve in the rain.",
+     "lines": [
+      [
+       "ESCRITURA",
+       "\"And the prayer offered in faith will restore the one who is sick. The Lord will raise him up.\" (James 5:15)"
+      ],
+      [
+       "PEDRO",
+       "I doubted too, in the middle of the sea. And He took my hand."
+      ],
+      [
+       "JESUS",
+       "\"You of little faith, why did you doubt?\" (Matthew 14:31)"
+      ],
+      [
+       "PEREGRINO",
+       "I get up. One more to go."
+      ]
+     ]
+    },
+    {
+     "image": "escena_abismo",
+     "motion": "out",
+     "caption": "Below, in the abyss, the ancient serpent stirs."
+    }
+   ]
+  },
+  "c01_l10_boss": {
+   "steps": [
+    {
+     "image": "jefe_leviatan",
+     "motion": "in",
+     "lines": [
+      [
+       "LEVIATAN",
+       "I was here before your city. Before you."
+      ],
+      [
+       "PEREGRINO",
+       "But not before Him."
+      ],
+      [
+       "ESCRITURA",
+       "\"In that day the LORD will take His sharp, great, and mighty sword, and bring judgment on Leviathan…\" (Isaiah 27:1)"
+      ],
+      [
+       "PABLO",
+       "Put on the whole armor. And stand firm."
+      ]
+     ]
+    }
+   ]
+  },
+  "c01_after_l10": {
+   "steps": [
+    {
+     "image": "escena_abismo",
+     "motion": "in",
+     "caption": "Leviathan sinks into the abyss.",
+     "lines": [
+      [
+       "PEREGRINO",
+       "I beat it."
+      ],
+      [
+       "PABLO",
+       "No, son. He had already defeated it. You stood firm."
+      ],
+      [
+       "ESCRITURA",
+       "\"And having disarmed the powers and authorities, He made a public spectacle of them, triumphing over them by the cross.\" (Colossians 2:15)"
+      ]
+     ]
+    },
+    {
+     "image": "escena_amanecer",
+     "motion": "out",
+     "caption": "The clouds open. The light falls on New Zion."
+    }
+   ]
+  },
+  "c01_epilogue": {
+   "steps": [
+    {
+     "image": "escena_ciudad_canta",
+     "motion": "in",
+     "caption": "The mist lifts. The people come out into the streets.",
+     "lines": [
+      [
+       "BERNABE",
+       "They are rebuilding the walls. And they are singing again."
+      ],
+      [
+       "PEREGRINO",
+       "There is still road ahead, isn't there?"
+      ],
+      [
+       "JESUS",
+       "\"In the world you will have tribulation. But take courage; I have overcome the world!\" (John 16:33)"
+      ]
+     ]
+    },
+    {
+     "image": "escena_amanecer",
+     "motion": "out",
+     "caption": "END OF THE FIRST JOURNEY",
+     "lines": [
+      [
+       "ESCRITURA",
+       "\"…let us run with endurance the race set out for us. Let us fix our eyes on Jesus, the author and perfecter of our faith…\" (Hebrews 12:1-2)"
+      ]
+     ]
+    }
+   ]
+  }
+ },
+ "radio": {
+  "c01_l1_radio": [
+   [
+    "PEDRO",
+    "Those red creatures are little lies. Your light undoes them."
+   ],
+   [
+    "PEDRO",
+    "The green eyes are envies: they do not move, but they watch."
+   ],
+   [
+    "PEDRO",
+    "Find the key and tear down the idols."
+   ]
+  ],
+  "c01_l3_radio": [
+   [
+    "BERNABE",
+    "The mountains at night are frightening. But you are not alone."
+   ],
+   [
+    "ESCRITURA",
+    "\"Even though I walk through the valley of the shadow of death, I will fear no evil, for You are with me.\" (Psalm 23:4)"
+   ]
+  ],
+  "c01_l4_radio": [
+   [
+    "PABLO",
+    "The mountain gate is shut. The key fell outside, on the slope."
+   ],
+   [
+    "PABLO",
+    "And something big roars up ahead."
+   ]
+  ],
+  "c01_l5_radio": [
+   [
+    "BERNABE",
+    "These are the walls the people let fall."
+   ],
+   [
+    "SOMBRA",
+    "Why raise up what will only fall again?"
+   ],
+   [
+    "BERNABE",
+    "Do not listen to it. Nehemiah did not listen either."
+   ],
+   [
+    "ESCRITURA",
+    "\"…for the people had a mind to work.\" (Nehemiah 4:6)"
+   ]
+  ],
+  "c01_l6_radio": [
+   [
+    "BERNABE",
+    "Hounds of fear sleep around the tower. Slip past without waking them if you can."
+   ],
+   [
+    "ESCRITURA",
+    "\"There is no fear in love, but perfect love drives out fear.\" (1 John 4:18)"
+   ]
+  ],
+  "c01_l8_radio": [
+   [
+    "JUAN",
+    "Those roots are bitterness. Cut them all."
+   ],
+   [
+    "ESCRITURA",
+    "\"…that no root of bitterness springs up to cause trouble…\" (Hebrews 12:15)"
+   ]
+  ],
+  "c01_l9_intro": [
+   [
+    "PABLO",
+    "Three seals guard the shadow's fortress. They are scattered across the islands."
+   ]
+  ],
+  "c01_l9_zonas": [
+   [
+    "PEDRO",
+    "Careful: some wind currents lift you on their own. Let them carry you."
+   ]
+  ],
+  "c01_l9_behemoth": [
+   [
+    "PEDRO",
+    "That is a little behemoth: pride, small. Shield in front; hit it from behind."
+   ]
+  ],
+  "c01_l9_radio": [
+   [
+    "DUDA",
+    "Do you really think you will make it?"
+   ],
+   [
+    "ENFERMEDAD",
+    "Your hands are shaking."
+   ],
+   [
+    "PEREGRINO",
+    "Yes. But I am not held up by my own hands."
+   ],
+   [
+    "ESCRITURA",
+    "\"Do not fear, for I am with you; do not be afraid, for I am your God. I will strengthen you…\" (Isaiah 41:10)"
+   ]
+  ],
+  "c01_l10_intro": [
+   [
+    "PABLO",
+    "The three seals answer. The abyss opens."
+   ],
+   [
+    "PABLO",
+    "This is the last stretch. Run the race to the end."
+   ]
+  ],
+  "c01_l10_hangar": [
+   [
+    "PEDRO",
+    "Stop. Many shadows sleep there. They wake if you make noise."
+   ]
+  ],
+  "c01_l10_veyr": [
+   [
+    "LEVIATAN",
+    "All this land was mine."
+   ],
+   [
+    "LEVIATAN",
+    "And you are only one."
+   ],
+   [
+    "ESCRITURA",
+    "\"If God is for us, who can be against us?\" (Romans 8:31)"
+   ]
+  ],
+  "c01_l10_alas": [
+   [
+    "LEVIATAN",
+    "Is that all? I have swallowed whole kingdoms."
+   ]
+  ],
+  "c01_l10_nucleo": [
+   [
+    "PABLO",
+    "Those chains hold it up! Break them."
+   ]
+  ]
+ }
+}

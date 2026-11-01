@@ -182,7 +182,17 @@ def ficha_pagina(g):
    if co.get(k):como+='<section>'+bi(es,en,'h3')+'<ul>'+''.join(bi(a,b,'li') for a,b in zip(co[k]['es'],co[k]['en']))+'</ul></section>'
   como+='</div></section>'
   pre=f['preguntas'];conv='<section class="v-seccion v-texto">'+bi('Para conversar en familia','To talk about as a family','h2')+'<ol class="v-preguntas">'+''.join(bi(a,b,'li') for a,b in zip(pre['es'],pre['en']))+'</ol></section>'
-  cuerpo+=hist+como+conv
+  # Opcionales: propósito del juego (qué es, qué no pretende ser, para qué es bueno) y lecciones relacionadas.
+  prop=''
+  if f.get('proposito'):
+   pr=f['proposito'];prop='<section class="v-seccion v-texto">'+bi(pr['titulo']['es'],pr['titulo']['en'],'h2')
+   for b in pr['bloques']:prop+=bi(b['titulo']['es'],b['titulo']['en'],'h3')+bi(b['es'],b['en'])
+   prop+='</section>'
+  lec=''
+  if f.get('lecciones'):
+   lec=('<section class="v-seccion v-texto">'+bi('Para seguir aprendiendo','Keep learning','h2')+'<ul>'+
+    ''.join('<li><a'+ba('href',l['href'],l.get('href_en',l['href']))+'>'+bi(l['es'],l['en'],'span')+'</a></li>' for l in f['lecciones'])+'</ul></section>')
+  cuerpo+=hist+prop+como+conv+lec
  imgs=imagenes_de(g)
  if imgs:cuerpo+='<section class="v-seccion"><div class="v-seccion__cabeza">'+bi('Imágenes de esta historia','Images from this story','h2')+'<a href="/imagenes/'+imgs[0]['url'].split('/')[2]+'/">'+bi('Ver más','See more','span')+'</a></div>'+miniaturas(imgs)+'</section>'
  cuerpo+='<section class="v-seccion"><div class="v-seccion__cabeza">'+bi('Más juegos','More games','h2')+'<a href="/juegos/">'+bi('Ver todos','See all','span')+'</a></div>'+lista(relacionados(g))+'</section></div>'

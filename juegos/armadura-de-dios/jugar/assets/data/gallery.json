@@ -1,0 +1,792 @@
+{
+  "_comment": "Entradas de galería. Un nivel las desbloquea con galleryUnlocks. type: image|video. thumbnail opcional (mediaId). unlockOnEncounter: ids de enemigo (enemies.json) o de jefe; la entrada se desbloquea la primera vez que aparece en pantalla.",
+  "entries": [
+    {
+      "id": "gal_promo_art",
+      "title": "Arte promocional",
+      "type": "image",
+      "mediaId": "promo_art",
+      "unlockedByDefault": true,
+      "category": "arte"
+    },
+    {
+      "id": "gal_bg_laboratory",
+      "title": "Escenario: Laboratorio",
+      "type": "image",
+      "mediaId": "bg_laboratory",
+      "unlockCondition": "Completa el Nivel 1",
+      "campaignId": "campaign_01",
+      "levelId": "campaign01_level01",
+      "category": "escenarios"
+    },
+    {
+      "id": "gal_bg_space",
+      "title": "Escenario: Espacio",
+      "type": "image",
+      "mediaId": "bg_space",
+      "unlockCondition": "Completa el Nivel 3",
+      "campaignId": "campaign_01",
+      "levelId": "campaign01_level03",
+      "category": "escenarios"
+    },
+    {
+      "id": "gal_bg_destroyed_city",
+      "title": "Escenario: Ciudad devastada",
+      "type": "image",
+      "mediaId": "bg_destroyed_city",
+      "unlockCondition": "Completa el Nivel 5",
+      "campaignId": "campaign_01",
+      "levelId": "campaign01_level05",
+      "category": "escenarios"
+    },
+    {
+      "id": "gal_bg_spaceship_interior",
+      "title": "Escenario: Interior de nave",
+      "type": "image",
+      "mediaId": "bg_spaceship_interior",
+      "unlockCondition": "Completa el Nivel 7",
+      "campaignId": "campaign_01",
+      "levelId": "campaign01_level07",
+      "category": "escenarios"
+    },
+    {
+      "id": "gal_bg_floating_wreckage",
+      "title": "Escenario: Restos flotantes",
+      "type": "image",
+      "mediaId": "bg_floating_wreckage",
+      "unlockCondition": "Completa el Nivel 9",
+      "campaignId": "campaign_01",
+      "levelId": "campaign01_level09",
+      "category": "escenarios"
+    },
+    {
+      "id": "gal_c01_veyr",
+      "title": "Dr. Silas Veyr",
+      "type": "image",
+      "mediaId": "c01_veyr_pantallas",
+      "unlockCondition": "Completa el Nivel 2",
+      "campaignId": "campaign_01",
+      "levelId": "campaign01_level02",
+      "category": "historia"
+    },
+    {
+      "id": "gal_c01_sala_atlas",
+      "title": "Sala Atlas",
+      "type": "image",
+      "mediaId": "story_sala_atlas",
+      "unlockCondition": "Completa el Nivel 4",
+      "campaignId": "campaign_01",
+      "levelId": "campaign01_level04",
+      "category": "historia"
+    },
+    {
+      "id": "gal_c01_eos",
+      "title": "Ciudad Eos · antes y después",
+      "mediaId": "c01_eos_antes_despues",
+      "unlockCondition": "Completa el Nivel 5",
+      "levelId": "campaign01_level05",
+      "campaignId": "campaign_01",
+      "category": "historia",
+      "type": "image"
+    },
+    {
+      "id": "gal_c01_ivo",
+      "title": "Capitán Ivo Narek (sin casco)",
+      "type": "image",
+      "mediaId": "c01_ivo_sin_casco",
+      "unlockCondition": "Completa el Nivel 6",
+      "campaignId": "campaign_01",
+      "levelId": "campaign01_level06",
+      "category": "historia"
+    },
+    {
+      "id": "gal_c01_ferrer",
+      "title": "Lucio Ferrer",
+      "type": "image",
+      "mediaId": "c01_ferrer_acorralado",
+      "unlockCondition": "Completa el Nivel 7",
+      "campaignId": "campaign_01",
+      "levelId": "campaign01_level07",
+      "category": "historia"
+    },
+    {
+      "id": "gal_c01_corona",
+      "title": "La Corona",
+      "type": "image",
+      "mediaId": "c01_corona_holograma",
+      "unlockCondition": "Completa el Nivel 8",
+      "campaignId": "campaign_01",
+      "levelId": "campaign01_level08",
+      "category": "historia"
+    },
+    {
+      "id": "gal_c01_escuadron_nadir",
+      "title": "Escuadrón Nadir",
+      "type": "image",
+      "mediaId": "c01_escuadron_nadir",
+      "unlockCondition": "Completa el Nivel 9",
+      "campaignId": "campaign_01",
+      "levelId": "campaign01_level09",
+      "category": "historia"
+    },
+    {
+      "id": "gal_c01_nadir_restos",
+      "title": "Restos del Escuadrón Nadir",
+      "mediaId": "c01_nadir_restos",
+      "unlockCondition": "Completa el Nivel 9",
+      "levelId": "campaign01_level09",
+      "campaignId": "campaign_01",
+      "category": "historia",
+      "type": "image"
+    },
+    {
+      "id": "gal_c01_final_asterion",
+      "title": "Asterion recupera la luz",
+      "type": "image",
+      "mediaId": "c01_epilogo_asterion",
+      "unlockCondition": "Completa la Campaña 1",
+      "campaignId": "campaign_01",
+      "levelId": "campaign01_level10",
+      "category": "historia"
+    },
+    {
+      "id": "gal_c01_siete_senales",
+      "title": "Siete señales",
+      "type": "image",
+      "mediaId": "c01_final_mapa_estelar",
+      "unlockCondition": "Completa la Campaña 1",
+      "campaignId": "campaign_01",
+      "levelId": "campaign01_level10",
+      "category": "historia"
+    },
+    {
+      "id": "gal_c01_placa",
+      "title": "Ivo Narek · Escuadrón Nadir",
+      "type": "image",
+      "mediaId": "c01_epilogo_placa",
+      "unlockCondition": "Completa la Campaña 1",
+      "campaignId": "campaign_01",
+      "levelId": "campaign01_level10",
+      "category": "historia"
+    },
+    {
+      "id": "gal_c01_atlas_vega",
+      "title": "Sala Atlas · Vega y el equipo",
+      "mediaId": "c01_atlas_vega_final",
+      "unlockCondition": "Completa la Campaña 1",
+      "levelId": "campaign01_level10",
+      "campaignId": "campaign_01",
+      "category": "historia",
+      "type": "image"
+    },
+    {
+      "id": "gal_scene_c01_all",
+      "title": "Historia completa · Campaña 1",
+      "type": "scene",
+      "mediaId": "promo_art",
+      "scenes": [
+        "c01_prologue",
+        "c01_after_l1",
+        "c01_after_l2",
+        "c01_after_l4",
+        "c01_l6_boss",
+        "c01_l6_boss_defeated",
+        "c01_after_l6",
+        "c01_after_l7",
+        "c01_after_l8",
+        "c01_before_l9",
+        "c01_l9_boss",
+        "c01_after_l9",
+        "c01_l10_boss",
+        "c01_after_l10",
+        "c01_epilogue"
+      ],
+      "unlockCondition": "Empieza la campaña",
+      "campaignId": "campaign_01",
+      "category": "escenas"
+    },
+    {
+      "id": "gal_scene_c01_prologue",
+      "title": "Prólogo · Nadie quiere entrar",
+      "type": "scene",
+      "mediaId": "c01_prologo_asterion",
+      "scenes": [
+        "c01_prologue"
+      ],
+      "unlockCondition": "Empieza la campaña",
+      "campaignId": "campaign_01",
+      "category": "escenas"
+    },
+    {
+      "id": "gal_scene_c01_after_l1",
+      "title": "Transición 1 · La actualización",
+      "type": "scene",
+      "mediaId": "story_sala_atlas",
+      "scenes": [
+        "c01_after_l1"
+      ],
+      "unlockCondition": "Completa el Nivel 1",
+      "campaignId": "campaign_01",
+      "category": "escenas",
+      "levelId": "campaign01_level01"
+    },
+    {
+      "id": "gal_scene_c01_after_l2",
+      "title": "Transición 2 · Veyr y Nadir",
+      "type": "scene",
+      "mediaId": "c01_veyr_pantallas",
+      "scenes": [
+        "c01_after_l2"
+      ],
+      "unlockCondition": "Completa el Nivel 2",
+      "campaignId": "campaign_01",
+      "category": "escenas",
+      "levelId": "campaign01_level02"
+    },
+    {
+      "id": "gal_scene_c01_after_l4",
+      "title": "Transición 4 · Rumbo a Eos",
+      "type": "scene",
+      "mediaId": "story_sala_atlas",
+      "scenes": [
+        "c01_after_l4"
+      ],
+      "unlockCondition": "Completa el Nivel 4",
+      "campaignId": "campaign_01",
+      "category": "escenas",
+      "levelId": "campaign01_level04"
+    },
+    {
+      "id": "gal_scene_c01_l6_boss",
+      "title": "Nivel 6 · El hombre marcado",
+      "type": "scene",
+      "mediaId": "c01_ivo_traje",
+      "scenes": [
+        "c01_l6_boss"
+      ],
+      "unlockCondition": "Completa el Nivel 6",
+      "campaignId": "campaign_01",
+      "category": "escenas",
+      "levelId": "campaign01_level06"
+    },
+    {
+      "id": "gal_scene_c01_l6_boss_defeated",
+      "title": "Nivel 6 · La última transmisión",
+      "type": "scene",
+      "mediaId": "c01_ivo_herido",
+      "scenes": [
+        "c01_l6_boss_defeated"
+      ],
+      "unlockCondition": "Completa el Nivel 6",
+      "campaignId": "campaign_01",
+      "category": "escenas",
+      "levelId": "campaign01_level06"
+    },
+    {
+      "id": "gal_scene_c01_after_l6",
+      "title": "Transición 6 · La traición",
+      "type": "scene",
+      "mediaId": "c01_traicion_archivos",
+      "scenes": [
+        "c01_after_l6"
+      ],
+      "unlockCondition": "Completa el Nivel 6",
+      "campaignId": "campaign_01",
+      "category": "escenas",
+      "levelId": "campaign01_level06"
+    },
+    {
+      "id": "gal_scene_c01_after_l7",
+      "title": "Transición 7 · Ferrer",
+      "type": "scene",
+      "mediaId": "c01_ferrer_acorralado",
+      "scenes": [
+        "c01_after_l7"
+      ],
+      "unlockCondition": "Completa el Nivel 7",
+      "campaignId": "campaign_01",
+      "category": "escenas",
+      "levelId": "campaign01_level07"
+    },
+    {
+      "id": "gal_scene_c01_after_l8",
+      "title": "Transición 8 · La Corona",
+      "type": "scene",
+      "mediaId": "c01_corona_holograma",
+      "scenes": [
+        "c01_after_l8"
+      ],
+      "unlockCondition": "Completa el Nivel 8",
+      "campaignId": "campaign_01",
+      "category": "escenas",
+      "levelId": "campaign01_level08"
+    },
+    {
+      "id": "gal_scene_c01_before_l9",
+      "title": "Nivel 9 · Regreso a Nadir",
+      "type": "scene",
+      "mediaId": "c01_nadir_cementerio",
+      "scenes": [
+        "c01_before_l9"
+      ],
+      "unlockCondition": "Completa el Nivel 8",
+      "campaignId": "campaign_01",
+      "category": "escenas",
+      "levelId": "campaign01_level08"
+    },
+    {
+      "id": "gal_scene_c01_l9_boss",
+      "title": "Nivel 9 · La guardia de élite",
+      "type": "scene",
+      "mediaId": "c01_nadir_restos",
+      "scenes": [
+        "c01_l9_boss"
+      ],
+      "unlockCondition": "Completa el Nivel 9",
+      "campaignId": "campaign_01",
+      "category": "escenas",
+      "levelId": "campaign01_level09"
+    },
+    {
+      "id": "gal_scene_c01_after_l9",
+      "title": "Transición 9 · Los archivos de Nadir",
+      "type": "scene",
+      "mediaId": "c01_escuadron_nadir",
+      "scenes": [
+        "c01_after_l9"
+      ],
+      "unlockCondition": "Completa el Nivel 9",
+      "campaignId": "campaign_01",
+      "category": "escenas",
+      "levelId": "campaign01_level09"
+    },
+    {
+      "id": "gal_scene_c01_l10_boss",
+      "title": "Nivel 10 · El trono roto",
+      "type": "scene",
+      "mediaId": "c01_veyr_camara",
+      "scenes": [
+        "c01_l10_boss"
+      ],
+      "unlockCondition": "Completa el Nivel 10",
+      "campaignId": "campaign_01",
+      "category": "escenas",
+      "levelId": "campaign01_level10"
+    },
+    {
+      "id": "gal_scene_c01_after_l10",
+      "title": "Final · Siete señales",
+      "type": "scene",
+      "mediaId": "c01_final_explosion",
+      "scenes": [
+        "c01_after_l10"
+      ],
+      "unlockCondition": "Completa el Nivel 10",
+      "campaignId": "campaign_01",
+      "category": "escenas",
+      "levelId": "campaign01_level10"
+    },
+    {
+      "id": "gal_scene_c01_epilogue",
+      "title": "Epílogo",
+      "type": "scene",
+      "mediaId": "c01_epilogo_asterion",
+      "scenes": [
+        "c01_epilogue"
+      ],
+      "unlockCondition": "Completa la Campaña 1",
+      "campaignId": "campaign_01",
+      "category": "escenas",
+      "levelId": "campaign01_level10"
+    },
+    {
+      "id": "gal_enemy_walker",
+      "title": "WALKER",
+      "type": "image",
+      "mediaId": "gal_enemy_walker",
+      "unlockCondition": "Encuéntralo en combate",
+      "unlockOnEncounter": [
+        "walker"
+      ],
+      "category": "enemigos"
+    },
+    {
+      "id": "gal_enemy_walker_heavy",
+      "title": "WALKER MK2",
+      "type": "image",
+      "mediaId": "gal_enemy_walker_heavy",
+      "unlockCondition": "Encuéntralo en combate",
+      "unlockOnEncounter": [
+        "walker_heavy"
+      ],
+      "category": "enemigos"
+    },
+    {
+      "id": "gal_enemy_scrap_dog",
+      "title": "PERRO CHATARRA",
+      "type": "image",
+      "mediaId": "gal_enemy_scrap_dog",
+      "thumbnail": "gal_enemy_scrap_dog_thumb",
+      "unlockCondition": "Encuéntralo en combate",
+      "unlockOnEncounter": [
+        "scrap_dog"
+      ],
+      "category": "enemigos"
+    },
+    {
+      "id": "gal_enemy_scrap_dog_poster",
+      "title": "PERRO CHATARRA · PÓSTER",
+      "type": "image",
+      "mediaId": "gal_enemy_scrap_dog_poster",
+      "thumbnail": "gal_enemy_scrap_dog_thumb",
+      "unlockCondition": "Encuéntralo en combate",
+      "unlockOnEncounter": [
+        "scrap_dog"
+      ],
+      "category": "enemigos"
+    },
+    {
+      "id": "gal_enemy_turret",
+      "title": "TORRETA",
+      "type": "image",
+      "mediaId": "gal_enemy_turret",
+      "unlockCondition": "Encuéntrala en combate",
+      "unlockOnEncounter": [
+        "turret"
+      ],
+      "category": "enemigos"
+    },
+    {
+      "id": "gal_enemy_rival_mecha",
+      "title": "MECHA RIVAL",
+      "type": "image",
+      "mediaId": "gal_enemy_rival_mecha",
+      "unlockCondition": "Encuéntralo en combate",
+      "unlockOnEncounter": [
+        "rival_m",
+        "rival_f"
+      ],
+      "category": "enemigos"
+    },
+    {
+      "id": "gal_enemy_rival_scout",
+      "title": "RIVAL SCOUT",
+      "type": "image",
+      "mediaId": "gal_enemy_rival_scout",
+      "unlockCondition": "Aún no descubierto",
+      "unlockOnEncounter": [
+        "rival_scout"
+      ],
+      "category": "enemigos"
+    },
+    {
+      "id": "gal_pilot_rival_m",
+      "title": "PILOTO RIVAL",
+      "type": "image",
+      "mediaId": "gal_pilot_rival_m",
+      "unlockCondition": "Enfréntate a él",
+      "unlockOnEncounter": [
+        "rival_m"
+      ],
+      "category": "enemigos"
+    },
+    {
+      "id": "gal_pilot_rival_f",
+      "title": "PILOTO RIVAL",
+      "type": "image",
+      "mediaId": "gal_pilot_rival_f",
+      "unlockCondition": "Enfréntate a ella",
+      "unlockOnEncounter": [
+        "rival_f"
+      ],
+      "category": "enemigos"
+    },
+    {
+      "id": "gal_enemy_walker_mk1",
+      "title": "WALKER MK-I",
+      "type": "image",
+      "mediaId": "gal_enemy_walker_mk1",
+      "unlockCondition": "Aún no descubierto",
+      "unlockOnEncounter": [
+        "walker_mk1"
+      ],
+      "category": "enemigos"
+    },
+    {
+      "id": "gal_enemy_scouter_drone",
+      "title": "SCOUTER DRONE",
+      "type": "image",
+      "mediaId": "gal_enemy_scouter_drone",
+      "unlockCondition": "Aún no descubierto",
+      "unlockOnEncounter": [
+        "scouter_drone"
+      ],
+      "category": "enemigos"
+    },
+    {
+      "id": "gal_enemy_hover_turret",
+      "title": "HOVER TURRET",
+      "type": "image",
+      "mediaId": "gal_enemy_hover_turret",
+      "unlockCondition": "Aún no descubierto",
+      "unlockOnEncounter": [
+        "hover_turret"
+      ],
+      "category": "enemigos"
+    },
+    {
+      "id": "gal_enemy_sniper_pod",
+      "title": "SNIPER POD",
+      "type": "image",
+      "mediaId": "gal_enemy_sniper_pod",
+      "unlockCondition": "Aún no descubierto",
+      "unlockOnEncounter": [
+        "sniper_pod"
+      ],
+      "category": "enemigos"
+    },
+    {
+      "id": "gal_enemy_rival_assault",
+      "title": "RIVAL ASSAULT",
+      "type": "image",
+      "mediaId": "gal_enemy_rival_assault",
+      "unlockCondition": "Aún no descubierto",
+      "unlockOnEncounter": [
+        "rival_assault"
+      ],
+      "category": "enemigos"
+    },
+    {
+      "id": "gal_enemy_buzz_saw_drone",
+      "title": "BUZZ SAW DRONE",
+      "type": "image",
+      "mediaId": "gal_enemy_buzz_saw_drone",
+      "unlockCondition": "Aún no descubierto",
+      "unlockOnEncounter": [
+        "buzz_saw_drone"
+      ],
+      "category": "enemigos"
+    },
+    {
+      "id": "gal_enemy_spider_bot",
+      "title": "SPIDER BOT",
+      "type": "image",
+      "mediaId": "gal_enemy_spider_bot",
+      "unlockCondition": "Aún no descubierto",
+      "unlockOnEncounter": [
+        "spider_bot"
+      ],
+      "category": "enemigos"
+    },
+    {
+      "id": "gal_enemy_shield_unit",
+      "title": "SHIELD UNIT",
+      "type": "image",
+      "mediaId": "gal_enemy_shield_unit",
+      "unlockCondition": "Aún no descubierto",
+      "unlockOnEncounter": [
+        "shield_unit"
+      ],
+      "category": "enemigos"
+    },
+    {
+      "id": "gal_enemy_mortar_hopper",
+      "title": "MORTAR HOPPER",
+      "type": "image",
+      "mediaId": "gal_enemy_mortar_hopper",
+      "unlockCondition": "Aún no descubierto",
+      "unlockOnEncounter": [
+        "mortar_hopper"
+      ],
+      "category": "enemigos"
+    },
+    {
+      "id": "gal_enemy_sentinel_eye",
+      "title": "SENTINEL EYE",
+      "type": "image",
+      "mediaId": "gal_enemy_sentinel_eye",
+      "unlockCondition": "Aún no descubierto",
+      "unlockOnEncounter": [
+        "sentinel_eye"
+      ],
+      "category": "enemigos"
+    },
+    {
+      "id": "gal_enemy_flame_crawler",
+      "title": "FLAME CRAWLER",
+      "type": "image",
+      "mediaId": "gal_enemy_flame_crawler",
+      "unlockCondition": "Aún no descubierto",
+      "unlockOnEncounter": [
+        "flame_crawler"
+      ],
+      "category": "enemigos"
+    },
+    {
+      "id": "gal_enemy_medic_drone",
+      "title": "MEDIC DRONE",
+      "type": "image",
+      "mediaId": "gal_enemy_medic_drone",
+      "unlockCondition": "Aún no descubierto",
+      "unlockOnEncounter": [
+        "medic_drone"
+      ],
+      "category": "enemigos"
+    },
+    {
+      "id": "gal_enemy_stealth_wisp",
+      "title": "STEALTH WISP",
+      "type": "image",
+      "mediaId": "gal_enemy_stealth_wisp",
+      "unlockCondition": "Aún no descubierto",
+      "unlockOnEncounter": [
+        "stealth_wisp"
+      ],
+      "category": "enemigos"
+    },
+    {
+      "id": "gal_enemy_mini_behemoth",
+      "title": "MINI BEHEMOTH",
+      "type": "image",
+      "mediaId": "gal_enemy_mini_behemoth",
+      "unlockCondition": "Aún no descubierto",
+      "unlockOnEncounter": [
+        "mini_behemoth"
+      ],
+      "category": "enemigos"
+    },
+    {
+      "id": "gal_boss_aegis_behemoth",
+      "title": "AEGIS BEHEMOTH",
+      "type": "image",
+      "mediaId": "gal_boss_aegis_behemoth",
+      "thumbnail": "gal_boss_aegis_behemoth_thumb",
+      "unlockCondition": "Jefe aún no descubierto",
+      "unlockOnEncounter": [
+        "aegis_behemoth"
+      ],
+      "category": "jefes"
+    },
+    {
+      "id": "gal_boss_aegis_behemoth_poster",
+      "title": "AEGIS BEHEMOTH · PÓSTER",
+      "type": "image",
+      "mediaId": "gal_boss_aegis_behemoth_poster",
+      "thumbnail": "gal_boss_aegis_behemoth_poster_thumb",
+      "unlockCondition": "Jefe aún no descubierto",
+      "unlockOnEncounter": [
+        "aegis_behemoth"
+      ],
+      "category": "jefes"
+    },
+    {
+      "id": "gal_boss_crimson_over_eye",
+      "title": "CRIMSON OVER-EYE",
+      "type": "image",
+      "mediaId": "gal_boss_crimson_over_eye",
+      "thumbnail": "gal_boss_crimson_over_eye_thumb",
+      "unlockCondition": "Jefe aún no descubierto",
+      "unlockOnEncounter": [
+        "crimson_over_eye"
+      ],
+      "category": "jefes"
+    },
+    {
+      "id": "gal_boss_crimson_over_eye_poster",
+      "title": "CRIMSON OVER-EYE · PÓSTER",
+      "type": "image",
+      "mediaId": "gal_boss_crimson_over_eye_poster",
+      "thumbnail": "gal_boss_crimson_over_eye_poster_thumb",
+      "unlockCondition": "Jefe aún no descubierto",
+      "unlockOnEncounter": [
+        "crimson_over_eye"
+      ],
+      "category": "jefes"
+    },
+    {
+      "id": "gal_boss_guardia_elite",
+      "title": "GUARDIA DE ÉLITE",
+      "type": "image",
+      "mediaId": "gal_boss_guardia_elite",
+      "thumbnail": "gal_boss_guardia_elite_thumb",
+      "unlockCondition": "Jefe aún no descubierto",
+      "unlockOnEncounter": [
+        "rival_scout",
+        "rival_assault"
+      ],
+      "category": "jefes"
+    },
+    {
+      "id": "gal_boss_regent_frame",
+      "title": "REGENT FRAME",
+      "type": "image",
+      "mediaId": "gal_boss_regent_frame",
+      "thumbnail": "gal_boss_regent_frame_thumb",
+      "unlockCondition": "Jefe aún no descubierto",
+      "unlockOnEncounter": [
+        "regent_frame"
+      ],
+      "category": "jefes"
+    },
+    {
+      "id": "gal_boss_regent_frame_poster",
+      "title": "REGENT FRAME · PÓSTER",
+      "type": "image",
+      "mediaId": "gal_boss_regent_frame_poster",
+      "thumbnail": "gal_boss_regent_frame_poster_thumb",
+      "unlockCondition": "Jefe aún no descubierto",
+      "unlockOnEncounter": [
+        "regent_frame"
+      ],
+      "category": "jefes"
+    },
+    {
+      "id": "gal_boss_seraph_engine",
+      "title": "SERAPH ENGINE",
+      "type": "image",
+      "mediaId": "gal_boss_seraph_engine",
+      "thumbnail": "gal_boss_seraph_engine_thumb",
+      "unlockCondition": "Jefe aún no descubierto",
+      "unlockOnEncounter": [
+        "seraph_engine"
+      ],
+      "category": "jefes"
+    },
+    {
+      "id": "gal_boss_seraph_engine_poster",
+      "title": "SERAPH ENGINE · PÓSTER",
+      "type": "image",
+      "mediaId": "gal_boss_seraph_engine_poster",
+      "thumbnail": "gal_boss_seraph_engine_poster_thumb",
+      "unlockCondition": "Jefe aún no descubierto",
+      "unlockOnEncounter": [
+        "seraph_engine"
+      ],
+      "category": "jefes"
+    },
+    {
+      "id": "gal_boss_warden_goliath",
+      "title": "WARDEN GOLIATH",
+      "type": "image",
+      "mediaId": "gal_boss_warden_goliath",
+      "thumbnail": "gal_boss_warden_goliath_thumb",
+      "unlockCondition": "Jefe aún no descubierto",
+      "unlockOnEncounter": [
+        "warden_goliath"
+      ],
+      "category": "jefes"
+    },
+    {
+      "id": "gal_boss_warden_goliath_poster",
+      "title": "WARDEN GOLIATH · PÓSTER",
+      "type": "image",
+      "mediaId": "gal_boss_warden_goliath_poster",
+      "thumbnail": "gal_boss_warden_goliath_poster_thumb",
+      "unlockCondition": "Jefe aún no descubierto",
+      "unlockOnEncounter": [
+        "warden_goliath"
+      ],
+      "category": "jefes"
+    }
+  ]
+}

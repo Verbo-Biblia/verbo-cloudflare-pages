@@ -1,0 +1,1013 @@
+{
+ "_comment": "Catálogo mediaId -> ruta dentro de assets/ (o del almacenamiento externo de la app, que tiene prioridad). Si el archivo no existe, el juego usa un placeholder o lo omite. Formatos: png/jpg/jpeg/webp, mp4, mp3/ogg/wav.",
+ "media": [
+  {
+   "mediaId": "bg_laboratory",
+   "path": "backgrounds/bg_laboratory.webp"
+  },
+  {
+   "mediaId": "bg_space",
+   "path": "backgrounds/bg_space.webp"
+  },
+  {
+   "mediaId": "bg_destroyed_city",
+   "path": "backgrounds/bg_destroyed_city.webp"
+  },
+  {
+   "mediaId": "bg_spaceship_interior",
+   "path": "backgrounds/bg_spaceship_interior.webp"
+  },
+  {
+   "mediaId": "bg_floating_wreckage",
+   "path": "backgrounds/bg_floating_wreckage.webp"
+  },
+  {
+   "mediaId": "promo_art",
+   "path": "media/promo_art.webp"
+  },
+  {
+   "mediaId": "logo",
+   "path": "logo/logo.png"
+  },
+  {
+   "mediaId": "portrait_player_male",
+   "path": "portraits/player_male_portrait.png"
+  },
+  {
+   "mediaId": "portrait_player_female",
+   "path": "portraits/player_female_portrait.png"
+  },
+  {
+   "mediaId": "mg_city_1",
+   "path": "backgrounds/mg_city_1.webp"
+  },
+  {
+   "mediaId": "prop_armor_plate",
+   "path": "props/city/armor_plate.png"
+  },
+  {
+   "mediaId": "prop_barrel",
+   "path": "props/city/barrel.png"
+  },
+  {
+   "mediaId": "prop_barrel_tilt",
+   "path": "props/city/barrel_tilt.png"
+  },
+  {
+   "mediaId": "prop_crate",
+   "path": "props/city/crate.png"
+  },
+  {
+   "mediaId": "prop_crate_broken",
+   "path": "props/city/crate_broken.png"
+  },
+  {
+   "mediaId": "prop_crate_x",
+   "path": "props/city/crate_x.png"
+  },
+  {
+   "mediaId": "prop_scrap_pile",
+   "path": "props/city/scrap_pile.png"
+  },
+  {
+   "mediaId": "prop_ship_wing",
+   "path": "props/city/ship_wing.png"
+  },
+  {
+   "mediaId": "prop_siren",
+   "path": "props/city/siren.png"
+  },
+  {
+   "mediaId": "prop_vent",
+   "path": "props/city/vent.png"
+  },
+  {
+   "mediaId": "mg_ship_1",
+   "path": "backgrounds/mg_ship_1.webp"
+  },
+  {
+   "mediaId": "prop_container",
+   "path": "props/ship/container.png"
+  },
+  {
+   "mediaId": "prop_crate_open",
+   "path": "props/ship/crate_open.png"
+  },
+  {
+   "mediaId": "prop_crate_fallen",
+   "path": "props/ship/crate_fallen.png"
+  },
+  {
+   "mediaId": "prop_fuel_barrel",
+   "path": "props/ship/fuel_barrel.png"
+  },
+  {
+   "mediaId": "prop_console",
+   "path": "props/ship/console.png"
+  },
+  {
+   "mediaId": "prop_hologram",
+   "path": "props/ship/hologram.png"
+  },
+  {
+   "mediaId": "prop_server_rack",
+   "path": "props/ship/server_rack.png"
+  },
+  {
+   "mediaId": "prop_pipe_valve",
+   "path": "props/ship/pipe_valve.png"
+  },
+  {
+   "mediaId": "prop_beacon",
+   "path": "props/ship/beacon.png"
+  },
+  {
+   "mediaId": "prop_floor_vent",
+   "path": "props/ship/floor_vent.png"
+  },
+  {
+   "mediaId": "prop_drone_wreck",
+   "path": "props/ship/drone_wreck.png"
+  },
+  {
+   "mediaId": "prop_cables",
+   "path": "props/ship/cables.png"
+  },
+  {
+   "mediaId": "prop_barrel_gray",
+   "path": "props/ship/barrel_gray.png"
+  },
+  {
+   "mediaId": "prop_barrel_red",
+   "path": "props/ship/barrel_red.png"
+  },
+  {
+   "mediaId": "prop_cabinet",
+   "path": "props/ship/cabinet.png"
+  },
+  {
+   "mediaId": "prop_canister",
+   "path": "props/ship/canister.png"
+  },
+  {
+   "mediaId": "prop_console_blue",
+   "path": "props/ship/console_blue.png"
+  },
+  {
+   "mediaId": "prop_console_orange",
+   "path": "props/ship/console_orange.png"
+  },
+  {
+   "mediaId": "prop_core_box",
+   "path": "props/ship/core_box.png"
+  },
+  {
+   "mediaId": "prop_crate_long",
+   "path": "props/ship/crate_long.png"
+  },
+  {
+   "mediaId": "prop_crate_stack",
+   "path": "props/ship/crate_stack.png"
+  },
+  {
+   "mediaId": "prop_crate_vented",
+   "path": "props/ship/crate_vented.png"
+  },
+  {
+   "mediaId": "prop_crate_yellow",
+   "path": "props/ship/crate_yellow.png"
+  },
+  {
+   "mediaId": "prop_fan_big",
+   "path": "props/ship/fan_big.png"
+  },
+  {
+   "mediaId": "prop_fan_vent",
+   "path": "props/ship/fan_vent.png"
+  },
+  {
+   "mediaId": "prop_gas_rack",
+   "path": "props/ship/gas_rack.png"
+  },
+  {
+   "mediaId": "prop_gas_yellow",
+   "path": "props/ship/gas_yellow.png"
+  },
+  {
+   "mediaId": "prop_locker",
+   "path": "props/ship/locker.png"
+  },
+  {
+   "mediaId": "prop_panel_door",
+   "path": "props/ship/panel_door.png"
+  },
+  {
+   "mediaId": "prop_panel_small",
+   "path": "props/ship/panel_small.png"
+  },
+  {
+   "mediaId": "prop_pipe_elbow",
+   "path": "props/ship/pipe_elbow.png"
+  },
+  {
+   "mediaId": "prop_pipe_segment",
+   "path": "props/ship/pipe_segment.png"
+  },
+  {
+   "mediaId": "prop_pipe_t",
+   "path": "props/ship/pipe_t.png"
+  },
+  {
+   "mediaId": "prop_pipe_u",
+   "path": "props/ship/pipe_u.png"
+  },
+  {
+   "mediaId": "prop_power_box",
+   "path": "props/ship/power_box.png"
+  },
+  {
+   "mediaId": "prop_tank_big",
+   "path": "props/ship/tank_big.png"
+  },
+  {
+   "mediaId": "prop_tank_red",
+   "path": "props/ship/tank_red.png"
+  },
+  {
+   "mediaId": "prop_tank_round",
+   "path": "props/ship/tank_round.png"
+  },
+  {
+   "mediaId": "prop_terminal",
+   "path": "props/ship/terminal.png"
+  },
+  {
+   "mediaId": "prop_twin_tanks",
+   "path": "props/ship/twin_tanks.png"
+  },
+  {
+   "mediaId": "portrait_enemy_scrap_dog",
+   "path": "enemies/scrap_dog_icon.png"
+  },
+  {
+   "mediaId": "gal_enemy_scrap_dog",
+   "path": "gallery/enemies/scrap_dog_wide.jpg"
+  },
+  {
+   "mediaId": "gal_enemy_scrap_dog_thumb",
+   "path": "gallery/enemies/scrap_dog_thumb.jpg"
+  },
+  {
+   "mediaId": "gal_enemy_scrap_dog_poster",
+   "path": "gallery/enemies/scrap_dog_poster.jpg"
+  },
+  {
+   "mediaId": "portrait_enemy_walker",
+   "path": "enemies/walker_icon.png"
+  },
+  {
+   "mediaId": "portrait_enemy_walker_heavy",
+   "path": "enemies/walker_heavy_icon.png"
+  },
+  {
+   "mediaId": "portrait_enemy_turret",
+   "path": "enemies/turret_icon.png"
+  },
+  {
+   "mediaId": "portrait_pilot_rival_m",
+   "path": "enemies/pilot_rival_male.png"
+  },
+  {
+   "mediaId": "portrait_pilot_rival_f",
+   "path": "enemies/pilot_rival_female.png"
+  },
+  {
+   "mediaId": "music_menu",
+   "path": "audio/music/menu.mp3"
+  },
+  {
+   "mediaId": "music_lab",
+   "path": "audio/music/lab.mp3"
+  },
+  {
+   "mediaId": "music_space",
+   "path": "audio/music/space.mp3"
+  },
+  {
+   "mediaId": "music_city",
+   "path": "audio/music/city.mp3"
+  },
+  {
+   "mediaId": "music_torre",
+   "path": "audio/music/torre.mp3"
+  },
+  {
+   "mediaId": "music_ship",
+   "path": "audio/music/ship.mp3"
+  },
+  {
+   "mediaId": "music_wreckage",
+   "path": "audio/music/wreckage.mp3"
+  },
+  {
+   "mediaId": "sfx_shoot",
+   "path": "audio/sfx/shoot.ogg"
+  },
+  {
+   "mediaId": "sfx_explosion",
+   "path": "audio/sfx/explosion.ogg"
+  },
+  {
+   "mediaId": "sfx_dash",
+   "path": "audio/sfx/dash.ogg"
+  },
+  {
+   "mediaId": "sfx_jump",
+   "path": "audio/sfx/jump.ogg"
+  },
+  {
+   "mediaId": "sfx_detonation",
+   "path": "audio/sfx/detonation.ogg"
+  },
+  {
+   "mediaId": "sfx_detonation_charge",
+   "path": "audio/sfx/detonation_charge.ogg"
+  },
+  {
+   "mediaId": "sfx_detonation_boom",
+   "path": "audio/sfx/detonation_boom.ogg"
+  },
+  {
+   "mediaId": "sfx_hit",
+   "path": "audio/sfx/hit.ogg"
+  },
+  {
+   "mediaId": "sfx_player_hit",
+   "path": "audio/sfx/player_hit.ogg"
+  },
+  {
+   "mediaId": "sfx_energy_empty",
+   "path": "audio/sfx/energy_empty.ogg"
+  },
+  {
+   "mediaId": "sfx_pickup",
+   "path": "audio/sfx/pickup.ogg"
+  },
+  {
+   "mediaId": "sfx_radio",
+   "path": "audio/sfx/radio.ogg"
+  },
+  {
+   "mediaId": "sfx_checkpoint",
+   "path": "audio/sfx/checkpoint.ogg"
+  },
+  {
+   "mediaId": "sfx_level_complete",
+   "path": "audio/sfx/level_complete.ogg"
+  },
+  {
+   "mediaId": "sfx_ui_click",
+   "path": "audio/sfx/ui_click.ogg"
+  },
+  {
+   "mediaId": "sfx_ui_back",
+   "path": "audio/sfx/ui_back.ogg"
+  },
+  {
+   "mediaId": "campaign01_before_level01_img",
+   "path": "media/campaign01/before_level01.png"
+  },
+  {
+   "mediaId": "campaign01_after_level01_img",
+   "path": "media/campaign01/after_level01.png"
+  },
+  {
+   "mediaId": "sfx_explosion_piloted",
+   "path": "audio/sfx/explosion_piloted.ogg"
+  },
+  {
+   "mediaId": "gal_enemy_walker",
+   "path": "gallery/enemies/walker_icon.jpg"
+  },
+  {
+   "mediaId": "gal_enemy_walker_heavy",
+   "path": "gallery/enemies/walker_heavy_icon.jpg"
+  },
+  {
+   "mediaId": "gal_enemy_turret",
+   "path": "gallery/enemies/turret_icon.jpg"
+  },
+  {
+   "mediaId": "gal_enemy_rival_mecha",
+   "path": "gallery/enemies/rival_mecha.jpg"
+  },
+  {
+   "mediaId": "gal_enemy_rival_scout",
+   "path": "gallery/enemies/rival_scout.jpg"
+  },
+  {
+   "mediaId": "gal_pilot_rival_m",
+   "path": "gallery/enemies/pilot_rival_male.jpg"
+  },
+  {
+   "mediaId": "gal_pilot_rival_f",
+   "path": "gallery/enemies/pilot_rival_female.jpg"
+  },
+  {
+   "mediaId": "gal_enemy_walker_mk1",
+   "path": "gallery/enemies/walker_mk1.jpg"
+  },
+  {
+   "mediaId": "gal_enemy_scouter_drone",
+   "path": "gallery/enemies/scouter_drone.jpg"
+  },
+  {
+   "mediaId": "gal_enemy_hover_turret",
+   "path": "gallery/enemies/hover_turret.jpg"
+  },
+  {
+   "mediaId": "gal_enemy_sniper_pod",
+   "path": "gallery/enemies/sniper_pod.jpg"
+  },
+  {
+   "mediaId": "gal_enemy_rival_assault",
+   "path": "gallery/enemies/rival_assault.jpg"
+  },
+  {
+   "mediaId": "gal_enemy_buzz_saw_drone",
+   "path": "gallery/enemies/buzz_saw_drone.jpg"
+  },
+  {
+   "mediaId": "gal_enemy_spider_bot",
+   "path": "gallery/enemies/spider_bot.jpg"
+  },
+  {
+   "mediaId": "gal_enemy_shield_unit",
+   "path": "gallery/enemies/shield_unit.jpg"
+  },
+  {
+   "mediaId": "gal_enemy_mortar_hopper",
+   "path": "gallery/enemies/mortar_hopper.jpg"
+  },
+  {
+   "mediaId": "gal_enemy_sentinel_eye",
+   "path": "gallery/enemies/sentinel_eye.jpg"
+  },
+  {
+   "mediaId": "gal_enemy_flame_crawler",
+   "path": "gallery/enemies/flame_crawler.jpg"
+  },
+  {
+   "mediaId": "gal_enemy_medic_drone",
+   "path": "gallery/enemies/medic_drone.jpg"
+  },
+  {
+   "mediaId": "gal_enemy_stealth_wisp",
+   "path": "gallery/enemies/stealth_wisp.jpg"
+  },
+  {
+   "mediaId": "gal_boss_aegis_behemoth",
+   "path": "gallery/bosses/aegis_behemoth_wide.jpg"
+  },
+  {
+   "mediaId": "gal_boss_aegis_behemoth_thumb",
+   "path": "gallery/bosses/aegis_behemoth_thumb.jpg"
+  },
+  {
+   "mediaId": "gal_boss_aegis_behemoth_poster",
+   "path": "gallery/bosses/aegis_behemoth_poster.jpg"
+  },
+  {
+   "mediaId": "gal_boss_aegis_behemoth_poster_thumb",
+   "path": "gallery/bosses/aegis_behemoth_thumb.jpg"
+  },
+  {
+   "mediaId": "gal_boss_crimson_over_eye",
+   "path": "gallery/bosses/crimson_over_eye_wide.jpg"
+  },
+  {
+   "mediaId": "gal_boss_crimson_over_eye_thumb",
+   "path": "gallery/bosses/crimson_over_eye_thumb.jpg"
+  },
+  {
+   "mediaId": "gal_boss_crimson_over_eye_poster",
+   "path": "gallery/bosses/crimson_over_eye_poster.jpg"
+  },
+  {
+   "mediaId": "gal_boss_crimson_over_eye_poster_thumb",
+   "path": "gallery/bosses/crimson_over_eye_thumb.jpg"
+  },
+  {
+   "mediaId": "gal_boss_regent_frame",
+   "path": "gallery/bosses/regent_frame_wide.jpg"
+  },
+  {
+   "mediaId": "gal_boss_regent_frame_thumb",
+   "path": "gallery/bosses/regent_frame_thumb.jpg"
+  },
+  {
+   "mediaId": "gal_boss_regent_frame_poster",
+   "path": "gallery/bosses/regent_frame_poster.jpg"
+  },
+  {
+   "mediaId": "gal_boss_regent_frame_poster_thumb",
+   "path": "gallery/bosses/regent_frame_thumb.jpg"
+  },
+  {
+   "mediaId": "gal_boss_seraph_engine",
+   "path": "gallery/bosses/seraph_engine_wide.jpg"
+  },
+  {
+   "mediaId": "gal_boss_seraph_engine_thumb",
+   "path": "gallery/bosses/seraph_engine_thumb.jpg"
+  },
+  {
+   "mediaId": "gal_boss_seraph_engine_poster",
+   "path": "gallery/bosses/seraph_engine_poster.jpg"
+  },
+  {
+   "mediaId": "gal_boss_seraph_engine_poster_thumb",
+   "path": "gallery/bosses/seraph_engine_thumb.jpg"
+  },
+  {
+   "mediaId": "gal_boss_warden_goliath",
+   "path": "gallery/bosses/warden_goliath_wide.jpg"
+  },
+  {
+   "mediaId": "gal_boss_warden_goliath_thumb",
+   "path": "gallery/bosses/warden_goliath_thumb.jpg"
+  },
+  {
+   "mediaId": "gal_boss_warden_goliath_poster",
+   "path": "gallery/bosses/warden_goliath_poster.jpg"
+  },
+  {
+   "mediaId": "gal_boss_warden_goliath_poster_thumb",
+   "path": "gallery/bosses/warden_goliath_thumb.jpg"
+  },
+  {
+   "mediaId": "story_sala_atlas",
+   "path": "story/sala_atlas.webp"
+  },
+  {
+   "mediaId": "c01_prologo_asterion",
+   "path": "story/c01/prologo_asterion.webp"
+  },
+  {
+   "mediaId": "c01_prologo_mapa",
+   "path": "story/c01/prologo_mapa.webp"
+  },
+  {
+   "mediaId": "c01_veyr_pantallas",
+   "path": "story/c01/veyr_pantallas.webp"
+  },
+  {
+   "mediaId": "c01_traicion_archivos",
+   "path": "story/c01/traicion_archivos.webp"
+  },
+  {
+   "mediaId": "c01_traicion_alarma",
+   "path": "story/c01/traicion_alarma.webp"
+  },
+  {
+   "mediaId": "c01_traicion_huida",
+   "path": "story/c01/traicion_huida.webp"
+  },
+  {
+   "mediaId": "c01_ivo_traje",
+   "path": "story/c01/ivo_traje.webp"
+  },
+  {
+   "mediaId": "c01_ivo_herido",
+   "path": "story/c01/ivo_herido.webp"
+  },
+  {
+   "mediaId": "c01_ferrer_acorralado",
+   "path": "story/c01/ferrer_acorralado.webp"
+  },
+  {
+   "mediaId": "c01_ferrer_dron",
+   "path": "story/c01/ferrer_dron.webp"
+  },
+  {
+   "mediaId": "c01_corona_holograma",
+   "path": "story/c01/corona_holograma.webp"
+  },
+  {
+   "mediaId": "c01_nadir_cementerio",
+   "path": "story/c01/nadir_cementerio.webp"
+  },
+  {
+   "mediaId": "c01_nadir_restos",
+   "path": "story/c01/nadir_restos.webp"
+  },
+  {
+   "mediaId": "c01_nadir_estructura",
+   "path": "story/c01/nadir_estructura.webp"
+  },
+  {
+   "mediaId": "c01_veyr_camara",
+   "path": "story/c01/veyr_camara.webp"
+  },
+  {
+   "mediaId": "c01_final_explosion",
+   "path": "story/c01/final_explosion.webp"
+  },
+  {
+   "mediaId": "c01_final_mapa_estelar",
+   "path": "story/c01/final_mapa_estelar.webp"
+  },
+  {
+   "mediaId": "c01_epilogo_placa",
+   "path": "story/c01/epilogo_placa.webp"
+  },
+  {
+   "mediaId": "c01_epilogo_asterion",
+   "path": "story/c01/epilogo_asterion.webp"
+  },
+  {
+   "mediaId": "portrait_irena",
+   "path": "portraits/irena.webp"
+  },
+  {
+   "mediaId": "portrait_nadia",
+   "path": "portraits/nadia.webp"
+  },
+  {
+   "mediaId": "portrait_tomas",
+   "path": "portraits/tomas.webp"
+  },
+  {
+   "mediaId": "portrait_ferrer",
+   "path": "portraits/ferrer.webp"
+  },
+  {
+   "mediaId": "portrait_ivo",
+   "path": "portraits/ivo.webp"
+  },
+  {
+   "mediaId": "portrait_veyr",
+   "path": "portraits/veyr.webp"
+  },
+  {
+   "mediaId": "mg_lab_1",
+   "path": "backgrounds/mg_lab_1.webp"
+  },
+  {
+   "mediaId": "mg_lab_2",
+   "path": "backgrounds/mg_lab_2.webp"
+  },
+  {
+   "mediaId": "mg_space_1",
+   "path": "backgrounds/mg_space_1.webp"
+  },
+  {
+   "mediaId": "prop_lab_alarm",
+   "path": "props/lab/lab_alarm.png"
+  },
+  {
+   "mediaId": "prop_lab_battery_rack",
+   "path": "props/lab/lab_battery_rack.png"
+  },
+  {
+   "mediaId": "prop_lab_bench_head",
+   "path": "props/lab/lab_bench_head.png"
+  },
+  {
+   "mediaId": "prop_lab_cabinet",
+   "path": "props/lab/lab_cabinet.png"
+  },
+  {
+   "mediaId": "prop_lab_cable_reel",
+   "path": "props/lab/lab_cable_reel.png"
+  },
+  {
+   "mediaId": "prop_lab_chem_tanks",
+   "path": "props/lab/lab_chem_tanks.png"
+  },
+  {
+   "mediaId": "prop_lab_console",
+   "path": "props/lab/lab_console.png"
+  },
+  {
+   "mediaId": "prop_lab_crate",
+   "path": "props/lab/lab_crate.png"
+  },
+  {
+   "mediaId": "prop_lab_crate_stack",
+   "path": "props/lab/lab_crate_stack.png"
+  },
+  {
+   "mediaId": "prop_lab_drone_wreck",
+   "path": "props/lab/lab_drone_wreck.png"
+  },
+  {
+   "mediaId": "prop_lab_gas_pair",
+   "path": "props/lab/lab_gas_pair.png"
+  },
+  {
+   "mediaId": "prop_lab_hazard_crate",
+   "path": "props/lab/lab_hazard_crate.png"
+  },
+  {
+   "mediaId": "prop_lab_holo_table",
+   "path": "props/lab/lab_holo_table.png"
+  },
+  {
+   "mediaId": "prop_lab_jar_blue",
+   "path": "props/lab/lab_jar_blue.png"
+  },
+  {
+   "mediaId": "prop_lab_jar_green",
+   "path": "props/lab/lab_jar_green.png"
+  },
+  {
+   "mediaId": "prop_lab_jar_small",
+   "path": "props/lab/lab_jar_small.png"
+  },
+  {
+   "mediaId": "prop_lab_monitor",
+   "path": "props/lab/lab_monitor.png"
+  },
+  {
+   "mediaId": "prop_lab_robot_arm",
+   "path": "props/lab/lab_robot_arm.png"
+  },
+  {
+   "mediaId": "prop_lab_robot_torso",
+   "path": "props/lab/lab_robot_torso.png"
+  },
+  {
+   "mediaId": "prop_lab_server",
+   "path": "props/lab/lab_server.png"
+  },
+  {
+   "mediaId": "prop_lab_spool",
+   "path": "props/lab/lab_spool.png"
+  },
+  {
+   "mediaId": "prop_lab_spotlight",
+   "path": "props/lab/lab_spotlight.png"
+  },
+  {
+   "mediaId": "prop_lab_stool",
+   "path": "props/lab/lab_stool.png"
+  },
+  {
+   "mediaId": "prop_lab_tool_cart",
+   "path": "props/lab/lab_tool_cart.png"
+  },
+  {
+   "mediaId": "prop_lab_tube",
+   "path": "props/lab/lab_tube.png"
+  },
+  {
+   "mediaId": "prop_lab_tube_broken",
+   "path": "props/lab/lab_tube_broken.png"
+  },
+  {
+   "mediaId": "prop_lab_vent",
+   "path": "props/lab/lab_vent.png"
+  },
+  {
+   "mediaId": "prop_lab_workbench",
+   "path": "props/lab/lab_workbench.png"
+  },
+  {
+   "mediaId": "mg_space_2",
+   "path": "backgrounds/mg_space_2.webp"
+  },
+  {
+   "mediaId": "prop_space_antenna",
+   "path": "props/space/space_antenna.png"
+  },
+  {
+   "mediaId": "prop_space_beacon_broken",
+   "path": "props/space/space_beacon_broken.png"
+  },
+  {
+   "mediaId": "prop_space_cable_reel",
+   "path": "props/space/space_cable_reel.png"
+  },
+  {
+   "mediaId": "prop_space_clamp",
+   "path": "props/space/space_clamp.png"
+  },
+  {
+   "mediaId": "prop_space_container",
+   "path": "props/space/space_container.png"
+  },
+  {
+   "mediaId": "prop_space_crystal_rock",
+   "path": "props/space/space_crystal_rock.png"
+  },
+  {
+   "mediaId": "prop_space_debris",
+   "path": "props/space/space_debris.png"
+  },
+  {
+   "mediaId": "prop_space_dish",
+   "path": "props/space/space_dish.png"
+  },
+  {
+   "mediaId": "prop_space_drone_wreck",
+   "path": "props/space/space_drone_wreck.png"
+  },
+  {
+   "mediaId": "prop_space_floodlight",
+   "path": "props/space/space_floodlight.png"
+  },
+  {
+   "mediaId": "prop_space_fuel_tank",
+   "path": "props/space/space_fuel_tank.png"
+  },
+  {
+   "mediaId": "prop_space_generator",
+   "path": "props/space/space_generator.png"
+  },
+  {
+   "mediaId": "prop_space_girder",
+   "path": "props/space/space_girder.png"
+  },
+  {
+   "mediaId": "prop_space_girder_broken",
+   "path": "props/space/space_girder_broken.png"
+  },
+  {
+   "mediaId": "prop_space_hatch",
+   "path": "props/space/space_hatch.png"
+  },
+  {
+   "mediaId": "prop_space_oxygen",
+   "path": "props/space/space_oxygen.png"
+  },
+  {
+   "mediaId": "prop_space_pad",
+   "path": "props/space/space_pad.png"
+  },
+  {
+   "mediaId": "prop_space_rock",
+   "path": "props/space/space_rock.png"
+  },
+  {
+   "mediaId": "prop_space_solar_panel",
+   "path": "props/space/space_solar_panel.png"
+  },
+  {
+   "mediaId": "prop_space_supply_crate",
+   "path": "props/space/space_supply_crate.png"
+  },
+  {
+   "mediaId": "prop_space_thruster",
+   "path": "props/space/space_thruster.png"
+  },
+  {
+   "mediaId": "prop_space_warning_light",
+   "path": "props/space/space_warning_light.png"
+  },
+  {
+   "mediaId": "mg_wreck_1",
+   "path": "backgrounds/mg_wreck_1.webp"
+  },
+  {
+   "mediaId": "prop_wreck_barrel_a",
+   "path": "props/wreck/wreck_barrel_a.png"
+  },
+  {
+   "mediaId": "prop_wreck_barrel_b",
+   "path": "props/wreck/wreck_barrel_b.png"
+  },
+  {
+   "mediaId": "prop_wreck_beacon",
+   "path": "props/wreck/wreck_beacon.png"
+  },
+  {
+   "mediaId": "prop_wreck_cables",
+   "path": "props/wreck/wreck_cables.png"
+  },
+  {
+   "mediaId": "prop_wreck_canister",
+   "path": "props/wreck/wreck_canister.png"
+  },
+  {
+   "mediaId": "prop_wreck_crate_big",
+   "path": "props/wreck/wreck_crate_big.png"
+  },
+  {
+   "mediaId": "prop_wreck_crate_long",
+   "path": "props/wreck/wreck_crate_long.png"
+  },
+  {
+   "mediaId": "prop_wreck_crate_x",
+   "path": "props/wreck/wreck_crate_x.png"
+  },
+  {
+   "mediaId": "prop_wreck_crystal_big",
+   "path": "props/wreck/wreck_crystal_big.png"
+  },
+  {
+   "mediaId": "prop_wreck_crystal_purple",
+   "path": "props/wreck/wreck_crystal_purple.png"
+  },
+  {
+   "mediaId": "prop_wreck_crystal_small",
+   "path": "props/wreck/wreck_crystal_small.png"
+  },
+  {
+   "mediaId": "prop_wreck_crystal_spire",
+   "path": "props/wreck/wreck_crystal_spire.png"
+  },
+  {
+   "mediaId": "prop_wreck_crystal_tiny",
+   "path": "props/wreck/wreck_crystal_tiny.png"
+  },
+  {
+   "mediaId": "prop_wreck_crystal_violet",
+   "path": "props/wreck/wreck_crystal_violet.png"
+  },
+  {
+   "mediaId": "prop_wreck_dish",
+   "path": "props/wreck/wreck_dish.png"
+  },
+  {
+   "mediaId": "prop_wreck_escape_pod",
+   "path": "props/wreck/wreck_escape_pod.png"
+  },
+  {
+   "mediaId": "prop_wreck_hull_plate",
+   "path": "props/wreck/wreck_hull_plate.png"
+  },
+  {
+   "mediaId": "prop_wreck_mecha_arm",
+   "path": "props/wreck/wreck_mecha_arm.png"
+  },
+  {
+   "mediaId": "prop_wreck_mecha_helmet",
+   "path": "props/wreck/wreck_mecha_helmet.png"
+  },
+  {
+   "mediaId": "prop_wreck_mecha_leg",
+   "path": "props/wreck/wreck_mecha_leg.png"
+  },
+  {
+   "mediaId": "prop_wreck_mecha_torso",
+   "path": "props/wreck/wreck_mecha_torso.png"
+  },
+  {
+   "mediaId": "prop_wreck_obelisk",
+   "path": "props/wreck/wreck_obelisk.png"
+  },
+  {
+   "mediaId": "prop_wreck_rock",
+   "path": "props/wreck/wreck_rock.png"
+  },
+  {
+   "mediaId": "prop_wreck_scrap_pile",
+   "path": "props/wreck/wreck_scrap_pile.png"
+  },
+  {
+   "mediaId": "prop_wreck_turbine",
+   "path": "props/wreck/wreck_turbine.png"
+  },
+  {
+   "mediaId": "prop_wreck_turret",
+   "path": "props/wreck/wreck_turret.png"
+  },
+  {
+   "mediaId": "c01_escuadron_nadir",
+   "path": "story/c01/escuadron_nadir.webp"
+  },
+  {
+   "mediaId": "c01_atlas_vega_final",
+   "path": "story/c01/atlas_vega_final.webp"
+  },
+  {
+   "mediaId": "c01_eos_antes_despues",
+   "path": "story/c01/eos_antes_despues.webp"
+  },
+  {
+   "mediaId": "c01_ivo_sin_casco",
+   "path": "story/c01/ivo_sin_casco.webp"
+  },
+  {
+   "mediaId": "gal_boss_guardia_elite",
+   "path": "gallery/bosses/guardia_elite_wide.jpg"
+  },
+  {
+   "mediaId": "gal_boss_guardia_elite_thumb",
+   "path": "gallery/bosses/guardia_elite_thumb.jpg"
+  },
+  {
+   "mediaId": "gal_enemy_mini_behemoth",
+   "path": "gallery/enemies/mini_behemoth.jpg"
+  },
+  {
+   "mediaId": "c01_epilogo_eos",
+   "path": "story/c01/epilogo_asterion.webp"
+  },
+  {
+   "mediaId": "c01_epilogo_despegue",
+   "path": "story/c01/final_mapa_estelar.webp"
+  }
+ ]
+}

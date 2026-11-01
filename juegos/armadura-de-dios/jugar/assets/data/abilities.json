@@ -1,0 +1,64 @@
+{
+  "_comment": "Habilidades del motor. energyCost/cooldown opcionales: si faltan, shoot y detonation usan las constantes de Balance (GameConfig.kt). requiresAbility = habilidad previa necesaria.",
+  "abilities": [
+    {
+      "id": "move",
+      "name": "Movimiento",
+      "hint": "Joystick a izquierda/derecha."
+    },
+    {
+      "id": "run",
+      "name": "Correr",
+      "hint": "Empuja el joystick a fondo.",
+      "requiresAbility": "move"
+    },
+    {
+      "id": "basic_jump",
+      "name": "Salto",
+      "hint": "Pulsa SALTO."
+    },
+    {
+      "id": "shoot",
+      "name": "Espada del Espíritu",
+      "hint": "Pulsa ESPADA varias veces: combo de tres golpes (tajo, revés y remate). ↑ + ESPADA: tajo hacia arriba. En el aire, ↓ + ESPADA: picada."
+    },
+    {
+      "id": "double_jump",
+      "name": "Salto de fe",
+      "hint": "Pulsa SALTO otra vez en el aire (hasta 4 saltos).",
+      "requiresAbility": "basic_jump"
+    },
+    {
+      "id": "dash_propulsion",
+      "name": "Calzado del evangelio",
+      "hint": "Pulsa CALZADO para lanzarte hacia delante, en el suelo o en el aire.",
+      "energyCost": 0,
+      "cooldown": 0.34
+    },
+    {
+      "id": "glide",
+      "name": "Alas de águila",
+      "hint": "Tras el doble salto, mantén SALTO para planear con alas de águila.",
+      "requiresAbility": "double_jump"
+    },
+    {
+      "id": "wall_cling",
+      "name": "Adherencia a paredes",
+      "hint": "Salta contra una pared y mantén SALTO para quedarte pegado; joystick arriba/abajo para desplazarte por ella.",
+      "requiresAbility": "basic_jump",
+      "retirada": true
+    },
+    {
+      "id": "wall_climb",
+      "name": "Escalada de paredes",
+      "hint": "Trepando por una pared, sigue hacia arriba al llegar al borde para subir encima del muro.",
+      "requiresAbility": "wall_cling",
+      "retirada": true
+    },
+    {
+      "id": "detonation",
+      "name": "Espada de fuego",
+      "hint": "Pulsa FUEGO: tajo de fuego y una onda que avanza y atraviesa a los enemigos. Gasta energía."
+    }
+  ]
+}

@@ -1,0 +1,909 @@
+{
+ "_comment": "Campaña 1 · PROTOCOLO CORONA: 10 niveles, 5 escenarios (2 niveles por escenario). Orden de habilidades en unlockOnComplete (editable). Geometría = segmentos de data/levels/c01_lN.json (generados por android/tools/c01_lN.py).",
+ "campaignId": "campaign_01",
+ "freeLevels": 3,
+ "title": "Primera Jornada",
+ "startAbilities": [
+  "move",
+  "run",
+  "basic_jump",
+  "shoot"
+ ],
+ "levels": [
+  {
+   "levelId": "campaign01_level01",
+   "levelNumber": 1,
+   "title": "NUEVA SION · LA CIUDAD EN SOMBRAS",
+   "backgroundId": "bg_laboratory",
+   "environmentType": "laboratory",
+   "environmentName": "Nueva Sion",
+   "requiredAbilities": [
+    "basic_jump",
+    "run",
+    "shoot"
+   ],
+   "unlockOnStart": [],
+   "unlockDuringLevel": [],
+   "unlockOnComplete": [
+    "double_jump"
+   ],
+   "narrativeBefore": "c01_prologue",
+   "narrativeAfter": "c01_after_l1",
+   "galleryUnlocks": [
+    "gal_bg_laboratory"
+   ],
+   "musicTrack": "music_lab",
+   "bossId": null,
+   "isCampaignFinal": false,
+   "segments": [
+    "l1_entrada",
+    "l1_escalones",
+    "l1_tunel",
+    "paso",
+    "l1_laseres",
+    "l1_ruta_alta",
+    "l1_torre",
+    "l1_fragil",
+    "checkpoint",
+    "l1_combate",
+    "paso",
+    "l1_llave_alfa",
+    "l1_pasillo_laser",
+    "checkpoint",
+    "l1_fosos",
+    "l1_nodo_1",
+    "l1_moviles",
+    "paso",
+    "l1_nodo_2",
+    "l1_emboscada",
+    "checkpoint",
+    "l1_barrera",
+    "l1_final",
+    "goal"
+   ],
+   "enemySet": {
+    "ground": [
+     "walker"
+    ],
+    "turret": [
+     "turret"
+    ]
+   },
+   "enemyDensity": 1.0,
+   "radio": [
+    {
+     "id": "c01_l1_radio",
+     "segment": 10
+    }
+   ],
+   "objectives": [
+    {
+     "type": "key",
+     "id": "alfa",
+     "label": "BUSCA LA LLAVE DE LA PUERTA"
+    },
+    {
+     "type": "targets",
+     "label": "ÍDOLOS"
+    },
+    {
+     "type": "goal",
+     "label": "SIGUE ADELANTE"
+    }
+   ],
+   "midground": "mg_lab_1"
+  },
+  {
+   "levelId": "campaign01_level02",
+   "levelNumber": 2,
+   "title": "NUEVA SION · EL OJO QUE TODO LO CODICIA",
+   "backgroundId": "bg_laboratory",
+   "environmentType": "laboratory",
+   "environmentName": "Nueva Sion",
+   "requiredAbilities": [
+    "basic_jump",
+    "double_jump",
+    "run",
+    "shoot"
+   ],
+   "unlockOnStart": [],
+   "unlockDuringLevel": [],
+   "unlockOnComplete": [
+    "dash_propulsion"
+   ],
+   "narrativeBefore": null,
+   "narrativeAfter": "c01_after_l2",
+   "galleryUnlocks": [
+    "gal_c01_veyr"
+   ],
+   "musicTrack": "music_lab",
+   "bossId": "crimson_over_eye",
+   "isCampaignFinal": false,
+   "segments": [
+    "l2_inicio",
+    "l2_guillotina_1",
+    "l2_escalones_dobles",
+    "paso",
+    "l2_guillotinas_ritmo",
+    "l2_fragil",
+    "l2_ruta_alta",
+    "checkpoint",
+    "l2_tunel",
+    "l2_clave_helix",
+    "paso",
+    "l2_moviles",
+    "l2_fosos_dobles",
+    "l2_combate",
+    "checkpoint",
+    "l2_laser_guillotina",
+    "l2_torre",
+    "paso",
+    "l2_pasarelas",
+    "l2_antesala",
+    "checkpoint",
+    "l2_sala_jefe",
+    "goal"
+   ],
+   "enemySet": {
+    "ground": [
+     "walker"
+    ],
+    "turret": [
+     "turret"
+    ],
+    "air": [
+     "rival_m"
+    ]
+   },
+   "enemyDensity": 1.0,
+   "lighting": {
+    "tint": "#ff7a3d",
+    "alpha": 0.06
+   },
+   "bossDrop": "EL CINTURÓN DE LA VERDAD",
+   "objectives": [
+    {
+     "type": "key",
+     "id": "helix",
+     "label": "BUSCA LA LLAVE DEL ATRIO"
+    },
+    {
+     "type": "boss",
+     "label": "VENCE AL GRAN OJO DE LA ENVIDIA"
+    },
+    {
+     "type": "goal",
+     "label": "SIGUE ADELANTE"
+    }
+   ],
+   "midground": "mg_lab_2"
+  },
+  {
+   "levelId": "campaign01_level03",
+   "levelNumber": 3,
+   "title": "LOS MONTES · NOCHE EN EL CAMINO",
+   "backgroundId": "bg_space",
+   "environmentType": "space",
+   "environmentName": "Los montes",
+   "requiredAbilities": [
+    "basic_jump",
+    "dash_propulsion",
+    "double_jump",
+    "shoot"
+   ],
+   "unlockOnStart": [],
+   "unlockDuringLevel": [],
+   "unlockOnComplete": [
+    "glide"
+   ],
+   "narrativeBefore": null,
+   "narrativeAfter": null,
+   "galleryUnlocks": [
+    "gal_bg_space"
+   ],
+   "musicTrack": "music_space",
+   "bossId": null,
+   "isCampaignFinal": false,
+   "segments": [
+    "l3_inicio",
+    "l3_escotilla",
+    "l3_inhibidor_1",
+    "l3_cp",
+    "l3_tobogan",
+    "l3_rodeo",
+    "l3_cp",
+    "l3_resortes",
+    "l3_red_tuneles",
+    "l3_paso",
+    "l3_tunel_obligado",
+    "l3_vacio",
+    "l3_cp",
+    "l3_clave_argos",
+    "l3_doble_via",
+    "l3_paso",
+    "l3_combate",
+    "l3_barrera",
+    "l3_meta"
+   ],
+   "enemySet": {
+    "ground": [
+     "walker",
+     "soldier",
+     "walker_heavy",
+     "soldier"
+    ],
+    "turret": [
+     "turret"
+    ],
+    "air": [
+     "rival_f"
+    ]
+   },
+   "enemyDensity": 1.0,
+   "radio": [
+    {
+     "id": "c01_l3_radio",
+     "segment": 9
+    }
+   ],
+   "objectives": [
+    {
+     "type": "targets",
+     "label": "ALTARES DE SOMBRA"
+    },
+    {
+     "type": "key",
+     "id": "argos",
+     "label": "BUSCA LA LLAVE DEL CAMINO"
+    },
+    {
+     "type": "goal",
+     "label": "SIGUE ADELANTE"
+    }
+   ],
+   "midground": "mg_space_1",
+   "midgroundBase": 668,
+   "midgroundH": 320
+  },
+  {
+   "levelId": "campaign01_level04",
+   "levelNumber": 4,
+   "title": "LOS MONTES · EL GIGANTE DEL MIEDO",
+   "backgroundId": "bg_space",
+   "environmentType": "space",
+   "environmentName": "Los montes",
+   "requiredAbilities": [
+    "basic_jump",
+    "dash_propulsion",
+    "double_jump",
+    "glide",
+    "shoot"
+   ],
+   "unlockOnStart": [],
+   "unlockDuringLevel": [],
+   "unlockOnComplete": [
+    "detonation"
+   ],
+   "narrativeBefore": null,
+   "narrativeAfter": "c01_after_l4",
+   "galleryUnlocks": [
+    "gal_c01_sala_atlas"
+   ],
+   "musicTrack": "music_space",
+   "bossId": "warden_goliath",
+   "isCampaignFinal": false,
+   "segments": [
+    "l4_inicio",
+    "l4_saltos",
+    "l4_paso",
+    "l4_planeo",
+    "l4_torre",
+    "l4_cp",
+    "l4_fragil",
+    "l4_amplificador_2",
+    "l4_paso",
+    "l4_bajada",
+    "l4_amplificador_3",
+    "l4_cp",
+    "l4_lluvia",
+    "l4_compuerta",
+    "checkpoint",
+    "l4_sala_jefe",
+    "goal"
+   ],
+   "enemySet": {
+    "ground": [
+     "walker",
+     "soldier",
+     "walker_heavy"
+    ],
+    "turret": [
+     "turret"
+    ],
+    "air": [
+     "rival_m",
+     "rival_f"
+    ]
+   },
+   "enemyDensity": 1.0,
+   "lighting": {
+    "tint": "#6a3dff",
+    "alpha": 0.07
+   },
+   "radio": [
+    {
+     "id": "c01_l4_radio",
+     "segment": 0
+    }
+   ],
+   "bossDrop": "LA CORAZA DE JUSTICIA",
+   "objectives": [
+    {
+     "type": "key",
+     "id": "tarjeta",
+     "label": "BUSCA LA LLAVE DE LA PUERTA DEL MONTE"
+    },
+    {
+     "type": "targets",
+     "label": "TAMBORES DE LA SOMBRA"
+    },
+    {
+     "type": "boss",
+     "label": "VENCE A GOLIAT, LA BESTIA DEL MIEDO"
+    },
+    {
+     "type": "goal",
+     "label": "SIGUE ADELANTE"
+    }
+   ],
+   "midground": "mg_space_2",
+   "midgroundBase": 668,
+   "midgroundH": 300
+  },
+  {
+   "levelId": "campaign01_level05",
+   "levelNumber": 5,
+   "title": "LAS MURALLAS · ESCOMBROS Y BURLAS",
+   "backgroundId": "bg_destroyed_city",
+   "environmentType": "destroyed_city",
+   "environmentName": "Las murallas caídas",
+   "requiredAbilities": [
+    "basic_jump",
+    "dash_propulsion",
+    "double_jump",
+    "glide",
+    "shoot"
+   ],
+   "unlockOnStart": [],
+   "unlockDuringLevel": [],
+   "unlockOnComplete": [],
+   "narrativeBefore": null,
+   "narrativeAfter": null,
+   "galleryUnlocks": [
+    "gal_bg_destroyed_city"
+   ],
+   "musicTrack": "music_city",
+   "bossId": null,
+   "isCampaignFinal": false,
+   "segments": [
+    "l5_inicio",
+    "l5_primer_muro",
+    "l5_calle",
+    "l5_cp",
+    "l5_pozo",
+    "l5_metro",
+    "l5_cp",
+    "l5_edificios",
+    "l5_barricada_calle",
+    "l5_paso",
+    "l5_seguridad",
+    "l5_perros",
+    "l5_cp",
+    "l5_alcantarillas",
+    "l5_barricada_3",
+    "l5_puerta_seguridad",
+    "goal"
+   ],
+   "enemySet": {
+    "ground": [
+     "walker",
+     "soldier",
+     "scrap_dog",
+     "walker_heavy",
+     "soldier"
+    ],
+    "turret": [
+     "turret"
+    ],
+    "air": [
+     "rival_m",
+     "rival_f"
+    ]
+   },
+   "enemyDensity": 1.0,
+   "radio": [
+    {
+     "id": "c01_l5_radio",
+     "segment": 4
+    }
+   ],
+   "objectives": [
+    {
+     "type": "key",
+     "id": "metro",
+     "label": "BUSCA LA LLAVE DE LA PUERTA DEL AGUA"
+    },
+    {
+     "type": "key",
+     "id": "seguridad",
+     "label": "BUSCA LA LLAVE DE LA PUERTA DE LAS OVEJAS"
+    },
+    {
+     "type": "targets",
+     "label": "ESCOMBROS"
+    },
+    {
+     "type": "goal",
+     "label": "LLEGA A LA TORRE"
+    }
+   ],
+   "midground": "mg_city_1",
+   "ambient": [
+    "steam",
+    "redLights"
+   ],
+   "shotCostMult": 0.85
+  },
+  {
+   "levelId": "campaign01_level06",
+   "levelNumber": 6,
+   "title": "LA TORRE · LA LUZ QUE ENGAÑA",
+   "backgroundId": "bg_destroyed_city",
+   "environmentType": "destroyed_city",
+   "environmentName": "Las murallas caídas",
+   "requiredAbilities": [
+    "dash_propulsion",
+    "double_jump",
+    "glide",
+    "shoot"
+   ],
+   "unlockOnStart": [],
+   "unlockDuringLevel": [],
+   "unlockOnComplete": [],
+   "narrativeBefore": null,
+   "narrativeAfter": "c01_after_l6",
+   "galleryUnlocks": [
+    "gal_c01_ivo"
+   ],
+   "musicTrack": "music_torre",
+   "bossId": "seraph_engine",
+   "isCampaignFinal": false,
+   "segments": [
+    "l6_inicio",
+    "l6_primera_jauria",
+    "l6_calle",
+    "l6_paso",
+    "l6_jauria_cajas",
+    "l6_azoteas",
+    "l6_cp",
+    "l6_alcantarillas",
+    "l6_salida",
+    "l6_paso",
+    "l6_jauria_grande",
+    "l6_torre_base",
+    "l6_cp",
+    "l6_jauria_final",
+    "checkpoint",
+    "l6_sala_jefe",
+    "goal"
+   ],
+   "enemySet": {
+    "ground": [
+     "walker",
+     "soldier",
+     "walker_heavy",
+     "soldier"
+    ],
+    "turret": [
+     "turret"
+    ],
+    "air": [
+     "rival_m",
+     "rival_f"
+    ]
+   },
+   "enemyDensity": 1.0,
+   "lighting": {
+    "tint": "#ff3d3d",
+    "alpha": 0.07
+   },
+   "narrativeBoss": "c01_l6_boss",
+   "narrativeBossDefeated": "c01_l6_boss_defeated",
+   "bossDrop": "EL ESCUDO DE LA FE",
+   "radio": [
+    {
+     "id": "c01_l6_radio",
+     "segment": 0
+    }
+   ],
+   "objectives": [
+    {
+     "type": "boss",
+     "label": "SUBE A LO ALTO DE LA TORRE"
+    },
+    {
+     "type": "goal",
+     "label": "SIGUE ADELANTE"
+    }
+   ],
+   "midground": "mg_city_1",
+   "ambient": [
+    "steam",
+    "redLights"
+   ],
+   "shotCostMult": 0.8
+  },
+  {
+   "levelId": "campaign01_level07",
+   "levelNumber": 7,
+   "title": "LAS CATACUMBAS · RAÍCES DE AMARGURA",
+   "backgroundId": "bg_spaceship_interior",
+   "environmentType": "spaceship_interior",
+   "environmentName": "Las catacumbas",
+   "requiredAbilities": [
+    "dash_propulsion",
+    "double_jump",
+    "glide",
+    "shoot"
+   ],
+   "unlockOnStart": [],
+   "unlockDuringLevel": [],
+   "unlockOnComplete": [],
+   "narrativeBefore": null,
+   "narrativeAfter": "c01_after_l7",
+   "galleryUnlocks": [
+    "gal_bg_spaceship_interior",
+    "gal_c01_ferrer"
+   ],
+   "musicTrack": "music_ship",
+   "bossId": null,
+   "isCampaignFinal": false,
+   "segments": [
+    "l7_hangar",
+    "l7_ascensor",
+    "l7_paso",
+    "l7_camarotes",
+    "l7_cp",
+    "l7_conductos",
+    "l7_puerta_a",
+    "l7_cp",
+    "l7_laberinto",
+    "l7_cp",
+    "l7_defensas",
+    "l7_paso",
+    "l7_puente",
+    "goal"
+   ],
+   "enemySet": {
+    "ground": [
+     "walker",
+     "walker_heavy"
+    ],
+    "turret": [
+     "turret"
+    ],
+    "air": [
+     "eye_drone"
+    ]
+   },
+   "enemyDensity": 1.0,
+   "midground": "mg_ship_1",
+   "objectives": [
+    {
+     "type": "key",
+     "id": "seguridad_a",
+     "label": "BUSCA LA LLAVE DE BRONCE"
+    },
+    {
+     "type": "key",
+     "id": "seguridad_b",
+     "label": "BUSCA LA LLAVE DE HIERRO"
+    },
+    {
+     "type": "targets",
+     "label": "RAÍCES DE AMARGURA"
+    },
+    {
+     "type": "goal",
+     "label": "BUSCA LA SALIDA DE LAS CATACUMBAS"
+    }
+   ],
+   "shotCostMult": 0.6
+  },
+  {
+   "levelId": "campaign01_level08",
+   "levelNumber": 8,
+   "title": "LAS CATACUMBAS · EL TRONO DEL ORGULLO",
+   "backgroundId": "bg_spaceship_interior",
+   "environmentType": "spaceship_interior",
+   "environmentName": "Las catacumbas",
+   "requiredAbilities": [
+    "dash_propulsion",
+    "double_jump",
+    "glide",
+    "shoot"
+   ],
+   "unlockOnStart": [],
+   "unlockDuringLevel": [],
+   "unlockOnComplete": [],
+   "narrativeBefore": null,
+   "narrativeAfter": "c01_after_l8",
+   "galleryUnlocks": [
+    "gal_c01_corona"
+   ],
+   "musicTrack": "music_ship",
+   "bossId": "aegis_behemoth",
+   "isCampaignFinal": false,
+   "segments": [
+    "l8_muelle",
+    "l8_tuneles",
+    "l8_paso",
+    "l8_fabrica",
+    "l8_cp",
+    "l8_ensamblaje",
+    "l8_conductos",
+    "l8_paso",
+    "l8_reactor",
+    "l8_cp",
+    "l8_nucleo",
+    "l8_cp",
+    "l8_sala_jefe",
+    "goal"
+   ],
+   "enemySet": {
+    "ground": [
+     "walker",
+     "soldier",
+     "walker_heavy"
+    ],
+    "turret": [
+     "turret"
+    ],
+    "air": [
+     "eye_drone"
+    ]
+   },
+   "enemyDensity": 1.0,
+   "lighting": {
+    "tint": "#ff9a3c",
+    "alpha": 0.05
+   },
+   "midground": "mg_ship_1",
+   "bossDrop": "EL YELMO DE LA SALVACIÓN",
+   "radio": [
+    {
+     "id": "c01_l8_radio",
+     "segment": 5
+    }
+   ],
+   "objectives": [
+    {
+     "type": "targets",
+     "label": "RAÍCES DE AMARGURA"
+    },
+    {
+     "type": "boss",
+     "label": "VENCE AL BEHEMOT DEL ORGULLO"
+    },
+    {
+     "type": "goal",
+     "label": "SAL DE LAS CATACUMBAS"
+    }
+   ],
+   "shotCostMult": 0.6
+  },
+  {
+   "levelId": "campaign01_level09",
+   "levelNumber": 9,
+   "title": "LA TORMENTA · DUDA Y DESÁNIMO",
+   "backgroundId": "bg_floating_wreckage",
+   "environmentType": "floating_wreckage",
+   "environmentName": "La tormenta",
+   "requiredAbilities": [
+    "dash_propulsion",
+    "double_jump",
+    "glide",
+    "shoot"
+   ],
+   "unlockOnStart": [],
+   "unlockDuringLevel": [],
+   "unlockOnComplete": [],
+   "narrativeBefore": "c01_before_l9",
+   "narrativeAfter": "c01_after_l9",
+   "galleryUnlocks": [
+    "gal_bg_floating_wreckage",
+    "gal_c01_escuadron_nadir"
+   ],
+   "musicTrack": "music_wreckage",
+   "bossId": "rival_assault",
+   "isCampaignFinal": false,
+   "segments": [
+    "l9_llegada",
+    "l9_cementerio",
+    "l9_paso",
+    "l9_fragmento_1",
+    "l9_cp",
+    "l9_deriva",
+    "l9_fragmento_2",
+    "l9_paso",
+    "l9_tormenta",
+    "l9_fragmento_3",
+    "l9_cp",
+    "l9_sellos",
+    "checkpoint",
+    "l9_sala_jefe",
+    "goal"
+   ],
+   "enemySet": {
+    "ground": [
+     "walker_heavy",
+     "soldier",
+     "walker"
+    ],
+    "turret": [
+     "turret"
+    ],
+    "air": [
+     "rival_f",
+     "rival_m"
+    ]
+   },
+   "enemyDensity": 1.0,
+   "lighting": {
+    "tint": "#8a3dff",
+    "alpha": 0.05
+   },
+   "midground": "mg_wreck_1",
+   "narrativeBoss": "c01_l9_boss",
+   "bossDrop": "LOS TRES SELLOS",
+   "radio": [
+    {
+     "id": "c01_l9_intro",
+     "segment": 0
+    },
+    {
+     "id": "c01_l9_zonas",
+     "segment": 1
+    },
+    {
+     "id": "c01_l9_behemoth",
+     "segment": 3
+    },
+    {
+     "id": "c01_l9_radio",
+     "segment": 8
+    }
+   ],
+   "objectives": [
+    {
+     "type": "keys",
+     "id": "sello_1+sello_2+sello_3",
+     "label": "LOS TRES SELLOS"
+    },
+    {
+     "type": "boss",
+     "label": "VENCE A LA DUDA Y AL DESÁNIMO"
+    },
+    {
+     "type": "goal",
+     "label": "ENTRA EN LA FORTALEZA DE LA SOMBRA"
+    }
+   ],
+   "shotCostMult": 0.6
+  },
+  {
+   "levelId": "campaign01_level10",
+   "levelNumber": 10,
+   "title": "EL ABISMO · LA SERPIENTE ANTIGUA",
+   "backgroundId": "bg_floating_wreckage",
+   "environmentType": "floating_wreckage",
+   "environmentName": "La tormenta",
+   "requiredAbilities": [
+    "dash_propulsion",
+    "double_jump",
+    "glide",
+    "shoot"
+   ],
+   "unlockOnStart": [],
+   "unlockDuringLevel": [],
+   "unlockOnComplete": [],
+   "narrativeBefore": null,
+   "narrativeAfter": "c01_after_l10+c01_epilogue",
+   "galleryUnlocks": [
+    "gal_c01_final_asterion",
+    "gal_c01_siete_senales",
+    "gal_c01_placa"
+   ],
+   "musicTrack": "music_wreckage",
+   "bossId": "regent_frame",
+   "isCampaignFinal": true,
+   "startKeys": [
+    "sello_1",
+    "sello_2",
+    "sello_3"
+   ],
+   "segments": [
+    "l10_umbral",
+    "l10_galeria",
+    "l10_paso",
+    "l10_conducto_1",
+    "l10_hangar",
+    "l10_cp",
+    "l10_pozo",
+    "l10_puente",
+    "l10_paso",
+    "l10_antesala",
+    "checkpoint",
+    "l10_trono",
+    "goal"
+   ],
+   "enemySet": {
+    "ground": [
+     "walker_heavy",
+     "soldier"
+    ],
+    "turret": [
+     "turret"
+    ],
+    "air": [
+     "rival_f",
+     "rival_m"
+    ]
+   },
+   "enemyDensity": 1.0,
+   "lighting": {
+    "tint": "#ff3d8a",
+    "alpha": 0.08
+   },
+   "midground": "mg_wreck_1",
+   "narrativeBoss": "c01_l10_boss",
+   "radio": [
+    {
+     "id": "c01_l10_intro",
+     "segment": 0
+    },
+    {
+     "id": "c01_l10_hangar",
+     "segment": 4
+    },
+    {
+     "id": "c01_l10_veyr",
+     "segment": 6
+    },
+    {
+     "id": "c01_l10_alas",
+     "on": "bossPhase2"
+    },
+    {
+     "id": "c01_l10_nucleo",
+     "on": "bossCore"
+    }
+   ],
+   "objectives": [
+    {
+     "type": "targets",
+     "label": "CADENAS DE LA SERPIENTE"
+    },
+    {
+     "type": "boss",
+     "label": "VENCE AL LEVIATÁN"
+    },
+    {
+     "type": "goal",
+     "label": "SAL A LA LUZ"
+    }
+   ],
+   "shotCostMult": 0.6
+  }
+ ]
+}

@@ -1,0 +1,27 @@
+Efectos de sonido: Kenney (www.kenney.nl) — packs "Sci-fi Sounds", "Impact Sounds",
+"Interface Sounds" y "Digital Audio". Licencia CC0 1.0 (dominio público; uso comercial
+permitido sin atribución obligatoria). explosion.ogg, detonation.ogg, dash.ogg y hit.ogg son
+mezclas/recortes propios de esos originales.
+explosion_piloted.ogg es una mezcla propia de explosion.ogg + slime/impact de Kenney (CC0).
+shoot.ogg y jump.ogg se generaron con jsfxr (sfxr.me) a partir de parámetros elegidos por el equipo;
+los sonidos generados con sfxr no tienen restricciones de licencia.
+radio.ogg es síntesis propia (script Python + filtros de ffmpeg), sin material de terceros.
+
+detonation_charge.ogg (carga de la detonación) es síntesis propia (Python/numpy + ffmpeg), sin material de terceros.
+detonation_boom.ogg mezcla un golpe grave sintetizado propio con detonation.ogg y explosion.ogg (Kenney, CC0).
+
+shoot.ogg (La Armadura de Dios, flecha de luz): mezcla de blade_02.ogg + spell_01.ogg del paquete
+«80 CC0 RPG SFX» (CC0, dominio público), en ~/Proyectos/MATERIA-PRIMA/5-audio/efectos/packs/80-CC0-RPG-SFX_0/.
+Alternativas para elegir: ~/Proyectos/Accion_Cristiana/registros/sonidos_flecha/ (a: blade_01 + item_gem_01; c: spell_02).
+
+detonation_charge.ogg y detonation_boom.ogg (La Armadura de Dios, Oración): sonidos sintetizados con ffmpeg,
+originales, sin licencia de terceros. Carga: silbido que sube durante 1,15 s (lo que tarda la carga) y queda
+vibrando arriba; se corta al soltar. Estallido: chasquido de la cúspide + whoomp largo, +2 dB, con reverberación (convolución con una sala sintética, sala.wav) y eco. Fuentes y
+variantes en ~/Proyectos/Accion_Cristiana/registros/sonidos_oracion/ (carga, estallido, oracion_final, latigo_d, whoomp_c…).
+
+2026-10-31 · Sonidos de época (La Armadura de Dios), herramientas/sonidos_epoca.sh. Reemplazan a los de ciencia ficción;
+los de Sigrun quedan en registros/sonidos_sigrun/. Fuentes CC0: «80 CC0 RPG SFX» (spell_fire_01, item_gem_01/02,
+blade_01), Kenney RPG Audio (bookFlip1, cloth1/3, metalClick, dropLeather), Kenney Impact Sounds (impactPunch, impactSoft),
+Kenney Interface Sounds (pluck_001/002), «Breaking and Falling» (bfh1_rock_breaking_01). level_complete.ogg: arpa
+sintetizada propia (arpa_victoria.py). muerte_sombra_1..3.ogg: trozos de audios que trajo Juan (phatphrogstudio,
+kobold y wendigo; copias en arte/sonidos_muerte/) con reverberación (sonidos_muerte.sh). voz_*.ogg: Chatterbox con eco.

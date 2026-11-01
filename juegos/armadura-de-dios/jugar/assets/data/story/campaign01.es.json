@@ -1,0 +1,684 @@
+{
+ "_comment": "La Armadura de Dios · Primera Jornada (es). Fuente: docs/LORE_ARMADURA.md; generado por herramientas/lore_armadura.py (no editar a mano).",
+ "speakers": {
+  "PEREGRINO": {
+   "name": "EL PEREGRINO",
+   "portrait": "@player",
+   "color": "#F2E6C8"
+  },
+  "ESCRITURA": {
+   "name": "LA ESCRITURA",
+   "portrait": "portrait_biblia",
+   "color": "#FFE6A0"
+  },
+  "PABLO": {
+   "name": "PABLO",
+   "portrait": "portrait_pablo",
+   "color": "#FFD166"
+  },
+  "PEDRO": {
+   "name": "PEDRO",
+   "portrait": "portrait_pedro",
+   "color": "#7FE4FF"
+  },
+  "BERNABE": {
+   "name": "BERNABÉ",
+   "portrait": "portrait_bernabe",
+   "color": "#9BE59B"
+  },
+  "JUAN": {
+   "name": "JUAN",
+   "portrait": "portrait_juan",
+   "color": "#FFB4C8"
+  },
+  "SANTIAGO": {
+   "name": "SANTIAGO",
+   "portrait": "portrait_santiago",
+   "color": "#C9B48A"
+  },
+  "JESUS": {
+   "name": "JESÚS",
+   "portrait": "portrait_jesus",
+   "color": "#FFFFFF"
+  },
+  "SOMBRA": {
+   "name": "LA SOMBRA",
+   "portrait": "portrait_sombra",
+   "color": "#B48CFF"
+  },
+  "TENTACION": {
+   "name": "LA TENTACIÓN",
+   "portrait": "portrait_tentacion",
+   "color": "#C9A4FF"
+  },
+  "DUDA": {
+   "name": "LA DUDA",
+   "portrait": "portrait_duda",
+   "color": "#8FB6FF"
+  },
+  "ENFERMEDAD": {
+   "name": "EL DESÁNIMO",
+   "portrait": "portrait_enfermedad",
+   "color": "#A8B0A0"
+  },
+  "LEVIATAN": {
+   "name": "EL LEVIATÁN",
+   "portrait": "portrait_leviatan",
+   "color": "#3CE0C0"
+  }
+ },
+ "scenes": {
+  "c01_prologue": {
+   "steps": [
+    {
+     "image": "escena_ciudad_niebla",
+     "motion": "in",
+     "caption": "Nueva Sion: una ciudad de piedra y de cantos… hasta que cayó la niebla."
+    },
+    {
+     "image": "escena_sombras",
+     "motion": "left",
+     "caption": "Con la niebla llegaron las sombras: mentiras, miedos, envidias. La gente dejó de cantar."
+    },
+    {
+     "image": "escena_biblia",
+     "motion": "in",
+     "caption": "Entre las ruinas de una casa, un joven encuentra una Biblia abierta.",
+     "lines": [
+      [
+       "ESCRITURA",
+       "«Fortalézcanse en el Señor y en la fuerza de su poder. Vístanse de toda la armadura de Dios…» (Efesios 6:10-11)"
+      ],
+      [
+       "PEREGRINO",
+       "¿Contra quién voy a pelear? No veo a nadie."
+      ],
+      [
+       "ESCRITURA",
+       "«Porque no tenemos lucha contra sangre y carne, sino… contra los gobernadores de las tinieblas de este mundo…» (Efesios 6:12)"
+      ],
+      [
+       "PABLO",
+       "Yo también estuve preso y solo. Ponte la armadura, hijo. No caminas solo."
+      ],
+      [
+       "PABLO",
+       "Empieza por la Palabra: es tu espada. Lanza luz donde haya mentira."
+      ],
+      [
+       "PEREGRINO",
+       "Entonces voy."
+      ]
+     ]
+    }
+   ]
+  },
+  "c01_after_l1": {
+   "steps": [
+    {
+     "image": "escena_camino",
+     "motion": "in",
+     "lines": [
+      [
+       "PEDRO",
+       "Bien hecho. Las mentirillas huyen de la verdad."
+      ],
+      [
+       "PEREGRINO",
+       "Eran muchas. Y hablaban con mi propia voz."
+      ],
+      [
+       "PEDRO",
+       "Así habla la mentira. Por eso necesitas la Palabra cerca."
+      ],
+      [
+       "ESCRITURA",
+       "«Conocerán la verdad, y la verdad los hará libres.» (Juan 8:32)"
+      ]
+     ]
+    }
+   ]
+  },
+  "c01_after_l2": {
+   "steps": [
+    {
+     "image": "escena_cinturon",
+     "motion": "in",
+     "caption": "Cae el Gran Ojo de la Envidia. Entre sus restos brilla un cinturón.",
+     "lines": [
+      [
+       "PABLO",
+       "El cinturón de la verdad. Átalo fuerte."
+      ],
+      [
+       "SOMBRA",
+       "¿Y de qué te sirve? Allá arriba nadie te ve."
+      ]
+     ]
+    },
+    {
+     "image": "escena_camino",
+     "motion": "right",
+     "lines": [
+      [
+       "PEREGRINO",
+       "¿De quién era esa voz?"
+      ],
+      [
+       "PABLO",
+       "La de siempre. Desde el huerto pregunta lo mismo."
+      ],
+      [
+       "ESCRITURA",
+       "«¿Así que Dios les ha dicho…?» (Génesis 3:1)"
+      ],
+      [
+       "PABLO",
+       "No le contestes con tus ideas. Contéstale con lo que Dios dijo."
+      ],
+      [
+       "PEREGRINO",
+       "Entonces, a los montes."
+      ]
+     ]
+    }
+   ]
+  },
+  "c01_after_l4": {
+   "steps": [
+    {
+     "image": "escena_coraza",
+     "motion": "in",
+     "caption": "Goliat cae. A sus pies hay una coraza.",
+     "lines": [
+      [
+       "PEREGRINO",
+       "Era enorme. Pensé que no podría."
+      ],
+      [
+       "PEDRO",
+       "Yo me hundí cuando miré las olas en vez de mirarlo a Él."
+      ],
+      [
+       "JESUS",
+       "«No temas, cree solamente.» (Marcos 5:36)"
+      ],
+      [
+       "PABLO",
+       "Toma la coraza de justicia. Y esta espada de fuego: corta las sombras de cerca."
+      ],
+      [
+       "ESCRITURA",
+       "«Porque la palabra de Dios es viva y eficaz, y más cortante que toda espada de dos filos…» (Hebreos 4:12)"
+      ],
+      [
+       "PEREGRINO",
+       "Lo haré."
+      ]
+     ]
+    }
+   ]
+  },
+  "c01_l6_boss": {
+   "steps": [
+    {
+     "image": "jefe_falso_angel",
+     "motion": "in",
+     "lines": [
+      [
+       "TENTACION",
+       "Estás cansado. Puedo darte lo que pidas, sin esfuerzo."
+      ],
+      [
+       "PEREGRINO",
+       "Tu luz no calienta."
+      ],
+      [
+       "TENTACION",
+       "Solo inclínate un momento. Nadie lo sabrá."
+      ],
+      [
+       "ESCRITURA",
+       "«…el mismo Satanás se disfraza de ángel de luz.» (2 Corintios 11:14)"
+      ]
+     ]
+    }
+   ]
+  },
+  "c01_l6_boss_defeated": {
+   "steps": [
+    {
+     "image": "jefe_falso_angel",
+     "motion": "out",
+     "lines": [
+      [
+       "ESCRITURA",
+       "«…fiel es Dios, que no permitirá que sean tentados más de lo que puedan soportar, sino que junto con la tentación dará también la salida…» (1 Corintios 10:13)"
+      ],
+      [
+       "PEREGRINO",
+       "Había una salida. Siempre la hubo."
+      ],
+      [
+       "SANTIAGO",
+       "Bienaventurado el que resiste la tentación. Recibirás la corona de vida."
+      ]
+     ]
+    }
+   ]
+  },
+  "c01_after_l6": {
+   "steps": [
+    {
+     "image": "escena_murallas",
+     "motion": "in",
+     "caption": "Desde la torre se ven las murallas caídas de la ciudad.",
+     "lines": [
+      [
+       "BERNABE",
+       "Mucha gente dejó de reconstruir. Se cansaron."
+      ],
+      [
+       "PEREGRINO",
+       "Yo también me canso."
+      ]
+     ]
+    },
+    {
+     "image": "escena_escudo",
+     "motion": "in",
+     "caption": "Entre los escombros aparece un escudo.",
+     "lines": [
+      [
+       "BERNABE",
+       "Es el escudo de la fe. Con él se apagan los dardos de fuego."
+      ],
+      [
+       "ESCRITURA",
+       "«Sobre todo, tomen el escudo de la fe, con el cual podrán apagar todos los dardos de fuego del maligno.» (Efesios 6:16)"
+      ],
+      [
+       "PEREGRINO",
+       "Abajo hay algo peor. Huele a raíces podridas."
+      ],
+      [
+       "BERNABE",
+       "Es amargura. Crece donde no perdonamos."
+      ]
+     ]
+    }
+   ]
+  },
+  "c01_after_l7": {
+   "steps": [
+    {
+     "image": "escena_catacumbas",
+     "motion": "in",
+     "lines": [
+      [
+       "JUAN",
+       "Hijito, la amargura se seca cuando hay perdón."
+      ],
+      [
+       "ESCRITURA",
+       "«Sean bondadosos y compasivos unos con otros, perdonándose los unos a los otros, así como también Dios los perdonó en Cristo.» (Efesios 4:32)"
+      ],
+      [
+       "PEREGRINO",
+       "Perdono a los que me hicieron daño. Me cuesta, pero lo hago."
+      ],
+      [
+       "JUAN",
+       "Entonces ya eres más libre que ellos."
+      ]
+     ]
+    }
+   ]
+  },
+  "c01_after_l8": {
+   "steps": [
+    {
+     "image": "escena_corona_rota",
+     "motion": "in",
+     "caption": "El Behemot cae. Su corona rueda por el suelo.",
+     "lines": [
+      [
+       "ESCRITURA",
+       "«El orgullo precede a la destrucción, y la arrogancia a la caída.» (Proverbios 16:18)"
+      ],
+      [
+       "PEDRO",
+       "Humillaos bajo la poderosa mano de Dios. Él te levanta a su tiempo."
+      ]
+     ]
+    },
+    {
+     "image": "escena_camino",
+     "motion": "right",
+     "lines": [
+      [
+       "PABLO",
+       "Ahora el yelmo de la salvación. Cuida tu mente: allá arriba la tormenta grita."
+      ],
+      [
+       "PEREGRINO",
+       "Estoy listo."
+      ]
+     ]
+    }
+   ]
+  },
+  "c01_before_l9": {
+   "steps": [
+    {
+     "image": "escena_islas",
+     "motion": "in",
+     "caption": "Las islas flotan en la tormenta. La luz está detrás de las nubes."
+    },
+    {
+     "image": "escena_dos_sombras",
+     "motion": "left",
+     "caption": "Allí esperan dos sombras gigantes: la Duda… y el Desánimo."
+    }
+   ]
+  },
+  "c01_l9_boss": {
+   "steps": [
+    {
+     "image": "escena_dos_sombras",
+     "motion": "in",
+     "lines": [
+      [
+       "DUDA",
+       "¿Y si Dios no te oye?"
+      ],
+      [
+       "ENFERMEDAD",
+       "Estás débil. No llegarás."
+      ],
+      [
+       "PEREGRINO",
+       "Puede que esté débil."
+      ],
+      [
+       "ESCRITURA",
+       "«Te basta mi gracia, porque mi poder se perfecciona en la debilidad.» (2 Corintios 12:9)"
+      ]
+     ]
+    }
+   ]
+  },
+  "c01_after_l9": {
+   "steps": [
+    {
+     "image": "escena_islas",
+     "motion": "in",
+     "caption": "La Duda y el Desánimo se deshacen en la lluvia.",
+     "lines": [
+      [
+       "ESCRITURA",
+       "«La oración de fe salvará al enfermo, y el Señor lo levantará.» (Santiago 5:15)"
+      ],
+      [
+       "PEDRO",
+       "Yo también dudé, en medio del mar. Y Él me tomó de la mano."
+      ],
+      [
+       "JESUS",
+       "«Hombre de poca fe, ¿por qué dudaste?» (Mateo 14:31)"
+      ],
+      [
+       "PEREGRINO",
+       "Me levanto. Falta el último."
+      ]
+     ]
+    },
+    {
+     "image": "escena_abismo",
+     "motion": "out",
+     "caption": "Abajo, en el abismo, se mueve la serpiente antigua."
+    }
+   ]
+  },
+  "c01_l10_boss": {
+   "steps": [
+    {
+     "image": "jefe_leviatan",
+     "motion": "in",
+     "lines": [
+      [
+       "LEVIATAN",
+       "Yo estaba aquí antes que tu ciudad. Antes que tú."
+      ],
+      [
+       "PEREGRINO",
+       "Pero no antes que Él."
+      ],
+      [
+       "ESCRITURA",
+       "«En aquel día, Jehová castigará con su espada dura, grande y poderosa a Leviatán…» (Isaías 27:1)"
+      ],
+      [
+       "PABLO",
+       "Vístete de toda la armadura. Y quédate firme."
+      ]
+     ]
+    }
+   ]
+  },
+  "c01_after_l10": {
+   "steps": [
+    {
+     "image": "escena_abismo",
+     "motion": "in",
+     "caption": "El Leviatán se hunde en el abismo.",
+     "lines": [
+      [
+       "PEREGRINO",
+       "Lo vencí."
+      ],
+      [
+       "PABLO",
+       "No, hijo. Él ya lo había vencido. Tú te quedaste firme."
+      ],
+      [
+       "ESCRITURA",
+       "«Y despojó a los principados y a las potestades, los exhibió públicamente y triunfó sobre ellos en la cruz.» (Colosenses 2:15)"
+      ]
+     ]
+    },
+    {
+     "image": "escena_amanecer",
+     "motion": "out",
+     "caption": "Las nubes se abren. La luz cae sobre Nueva Sion."
+    }
+   ]
+  },
+  "c01_epilogue": {
+   "steps": [
+    {
+     "image": "escena_ciudad_canta",
+     "motion": "in",
+     "caption": "La niebla se levanta. La gente sale a las calles.",
+     "lines": [
+      [
+       "BERNABE",
+       "Están reconstruyendo las murallas. Y cantan otra vez."
+      ],
+      [
+       "PEREGRINO",
+       "Todavía queda camino, ¿verdad?"
+      ],
+      [
+       "JESUS",
+       "«En el mundo tendrán aflicción; pero confíen, yo he vencido al mundo.» (Juan 16:33)"
+      ]
+     ]
+    },
+    {
+     "image": "escena_amanecer",
+     "motion": "out",
+     "caption": "FIN DE LA PRIMERA JORNADA",
+     "lines": [
+      [
+       "ESCRITURA",
+       "«…corramos con perseverancia la carrera que tenemos por delante. Fijemos la mirada en Jesús, el autor y perfeccionador de la fe…» (Hebreos 12:1-2)"
+      ]
+     ]
+    }
+   ]
+  }
+ },
+ "radio": {
+  "c01_l1_radio": [
+   [
+    "PEDRO",
+    "Esas criaturas rojas son mentirillas. Tu luz las deshace."
+   ],
+   [
+    "PEDRO",
+    "Los ojos verdes son envidias: no se mueven, pero vigilan."
+   ],
+   [
+    "PEDRO",
+    "Busca la llave y derriba los ídolos."
+   ]
+  ],
+  "c01_l3_radio": [
+   [
+    "BERNABE",
+    "Los montes de noche asustan. Pero no estás solo."
+   ],
+   [
+    "ESCRITURA",
+    "«Aunque ande por el valle de sombra de muerte, no temeré mal alguno, porque tú estás conmigo.» (Salmo 23:4)"
+   ]
+  ],
+  "c01_l4_radio": [
+   [
+    "PABLO",
+    "La puerta del monte está cerrada. La llave cayó afuera, en la ladera."
+   ],
+   [
+    "PABLO",
+    "Y algo grande ruge más adelante."
+   ]
+  ],
+  "c01_l5_radio": [
+   [
+    "BERNABE",
+    "Estas son las murallas que la gente dejó caer."
+   ],
+   [
+    "SOMBRA",
+    "¿Para qué levantar lo que se vuelve a caer?"
+   ],
+   [
+    "BERNABE",
+    "No la escuches. Nehemías tampoco la escuchó."
+   ],
+   [
+    "ESCRITURA",
+    "«…porque el pueblo trabajaba con entusiasmo.» (Nehemías 4:6)"
+   ]
+  ],
+  "c01_l6_radio": [
+   [
+    "BERNABE",
+    "Alrededor de la torre duermen sabuesos del miedo. Pasa sin despertarlos si puedes."
+   ],
+   [
+    "ESCRITURA",
+    "«En el amor no hay temor, sino que el amor perfecto echa fuera el temor.» (1 Juan 4:18)"
+   ]
+  ],
+  "c01_l8_radio": [
+   [
+    "JUAN",
+    "Esas raíces son amargura. Córtalas todas."
+   ],
+   [
+    "ESCRITURA",
+    "«…que ninguna raíz de amargura brote y cause dificultades…» (Hebreos 12:15)"
+   ]
+  ],
+  "c01_l9_intro": [
+   [
+    "PABLO",
+    "Tres sellos guardan la fortaleza de la sombra. Están repartidos en las islas."
+   ]
+  ],
+  "c01_l9_zonas": [
+   [
+    "PEDRO",
+    "Cuidado: hay corrientes de viento que te elevan solas. Déjate llevar."
+   ]
+  ],
+  "c01_l9_behemoth": [
+   [
+    "PEDRO",
+    "Ese es un behemotito: el orgullo en pequeño. Escudo al frente; atácalo por detrás."
+   ]
+  ],
+  "c01_l9_radio": [
+   [
+    "DUDA",
+    "¿De verdad crees que llegarás?"
+   ],
+   [
+    "ENFERMEDAD",
+    "Te tiemblan las manos."
+   ],
+   [
+    "PEREGRINO",
+    "Sí. Pero no me sostengo con mis manos."
+   ],
+   [
+    "ESCRITURA",
+    "«No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios. Te fortaleceré…» (Isaías 41:10)"
+   ]
+  ],
+  "c01_l10_intro": [
+   [
+    "PABLO",
+    "Los tres sellos responden. El abismo se abre."
+   ],
+   [
+    "PABLO",
+    "Es el último tramo. Corre la carrera hasta el final."
+   ]
+  ],
+  "c01_l10_hangar": [
+   [
+    "PEDRO",
+    "Alto. Ahí duermen muchas sombras. Despiertan si haces ruido."
+   ]
+  ],
+  "c01_l10_veyr": [
+   [
+    "LEVIATAN",
+    "Toda esta tierra fue mía."
+   ],
+   [
+    "LEVIATAN",
+    "Y tú eres solo uno."
+   ],
+   [
+    "ESCRITURA",
+    "«Si Dios está a favor de nosotros, ¿quién estará en contra?» (Romanos 8:31)"
+   ]
+  ],
+  "c01_l10_alas": [
+   [
+    "LEVIATAN",
+    "¿Eso es todo? He tragado reinos enteros."
+   ]
+  ],
+  "c01_l10_nucleo": [
+   [
+    "PABLO",
+    "¡Esas cadenas lo sostienen! Rómpelas."
+   ]
+  ]
+ }
+}
