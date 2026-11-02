@@ -5,14 +5,14 @@ import * as THREE from 'three';
 import { fijarTextos, traducirPagina, t, idioma, cambiarIdioma } from '../comun/idioma.js';
 import { sonidoActivo, fijarSonido, sonar as sonarComun, precargar } from '../comun/sonido.js';
 import { musica, musicaActiva, fijarMusica } from '../comun/musica.js';
-import { TEXTOS } from './textos.js?v=28b478bc';
-import { entrada, leerEntrada, tomar, conectarTactil, limpiarPulsados, usaTactil, pulsar } from './entrada.js?v=28b478bc';
-import { crearEscena, fijarCalidad, aplicarAmbiente, moverCapas, renderizador, escena, camara } from './mundo.js?v=28b478bc';
-import { cargarAnimaciones, cargarModelo, cargarGlb, Personaje } from './personajes.js?v=28b478bc';
-import { construirNivel, normalizarProp } from './nivel.js?v=28b478bc';
+import { TEXTOS } from './textos.js?v=fd8bed39';
+import { entrada, leerEntrada, tomar, conectarTactil, limpiarPulsados, usaTactil, pulsar } from './entrada.js?v=fd8bed39';
+import { crearEscena, fijarCalidad, aplicarAmbiente, moverCapas, renderizador, escena, camara } from './mundo.js?v=fd8bed39';
+import { cargarAnimaciones, cargarModelo, cargarGlb, Personaje } from './personajes.js?v=fd8bed39';
+import { construirNivel, normalizarProp } from './nivel.js?v=fd8bed39';
 import { MISIONES } from './misiones/index.js';
-import { Jugador } from './jugador.js?v=28b478bc';
-import { Guardia } from './guardia.js?v=28b478bc';
+import { Jugador } from './jugador.js?v=fd8bed39';
+import { Guardia } from './guardia.js?v=fd8bed39';
 
 // Pausa de anuncio en un corte natural (apagada mientras /juegos/comun/anuncios.js no se active).
 const pausaAnuncio = (nombre, tipo) => window.VerboAds ? VerboAds.pausa(nombre, tipo) : Promise.resolve();

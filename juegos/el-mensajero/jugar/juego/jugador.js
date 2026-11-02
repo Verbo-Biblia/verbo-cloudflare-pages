@@ -2,8 +2,8 @@
 // deslizarse, empujar la caja y subir a los bordes. Sin poderes: solo agilidad.
 
 import * as THREE from 'three';
-import { entrada, tomar } from './entrada.js?v=28b478bc';
-import { mover, GRAVEDAD, VEL_CAIDA_MAX } from './fisica.js?v=28b478bc';
+import { entrada, tomar } from './entrada.js?v=fd8bed39';
+import { mover, GRAVEDAD, VEL_CAIDA_MAX } from './fisica.js?v=fd8bed39';
 
 const ZCUERDA = 0.25;   // profundidad de la cuerda de las tirolesas (nivel.js)
 const ZSOGA = -0.3;      // profundidad de las sogas para trepar (nivel.js)
