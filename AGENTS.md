@@ -1,5 +1,8 @@
 # Contexto permanente de Verbo
 
+> **Objetivo principal: que Verbo monetice.** Lee `MONETIZACION.md` antes de proponer o construir cualquier sección.
+> Si una decisión (también de Juan) perjudica la monetización, díselo con claridad y propone la alternativa.
+
 ## Proyecto y alcance
 
 - Este es el repositorio activo de Verbo: `/home/juan/Verbo/Sitio-Web-verbobiblia`.

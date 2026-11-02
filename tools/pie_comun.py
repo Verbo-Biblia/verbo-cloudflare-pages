@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 VERSION = '20261031-idioma2'
 START, END = '<!-- verbo:pie -->', '<!-- /verbo:pie -->'
 LINKS = {
-    'secciones': [('inicio', '/', 'Inicio'), ('recursos', '/recursos/', 'Recursos'),
+    'secciones': [('inicio', '/', 'Inicio'), ('recursos', '/ninos/', 'Niños'),
         ('libreria', '/libreria/', 'Librería'), ('historias', '/historias/', 'Historias'),
         ('preguntas', '/preguntas-cristianas/', 'Preguntas cristianas'), ('software', '/software/', 'Software'),
         ('apps', '/apps/', 'Apps'), ('juegos', '/juegos/', 'Juegos'), ('musica', '/musica/', 'Música'), ('imagenes', '/imagenes/', 'Imágenes bíblicas')],

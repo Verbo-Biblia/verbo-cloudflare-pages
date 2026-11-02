@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Portada de /recursos/ (Escuela Dominical) con contenido a los lados.
+"""Portada de /ninos/ (antes /recursos/: Escuela Dominical) con contenido a los lados.
 
 En escritorio, tres columnas: juegos a la izquierda, los grupos de edad al centro (con miniaturas de sus lecciones) e
 historias de siervos de Cristo y preguntas cristianas a la derecha; en el teléfono los lados pasan abajo.
@@ -12,7 +12,7 @@ from html import escape as e
 from pathlib import Path
 
 R = Path(__file__).resolve().parents[1]
-P = R / 'recursos/index.html'
+P = R / 'ninos/index.html'   # 2026-11-02: la portada de Escuela Dominical pasó a ser la sección Niños (/recursos/ redirige aquí)
 CSS = '<link rel="stylesheet" href="../recursos/assets/recursos-portada.css?v=20261029">'
 GRUPOS = [('4-7-anos', 'I.'), ('8-10-anos', 'II.'), ('12-14-anos', 'III.')]
 # Las que más clics traen desde Google (Search Console, 28 días al 2026-10-29).
@@ -59,7 +59,7 @@ def centro():
             continue
         pas = re.search(r'<h2>Pasaje bíblico</h2>\s*<p>(.*?)</p>', h, re.S)
         ref = re.match(r'[^.;]+?\d+:\d+(?:-\d+)?', re.sub(r'<[^>]+>', '', pas.group(1))) if pas else None
-        tarjetas += (f'<a class="rp-leccion" href="escuela-dominical/{ruta}/">'
+        tarjetas += (f'<a class="rp-leccion" href="/recursos/escuela-dominical/{ruta}/">'
                      + (f'<img src="{img.group(1)}-media.jpg" width="640" height="360" loading="lazy" alt="">' if img else '')
                      + f'<span><small data-i18n-live>{EDAD[ruta.split("/")[0]]}</small><strong data-i18n-live>{e(titulo)}</strong>'
                      + (f'<em>{e(ref.group(0))}</em>' if ref else '') + '</span></a>')
@@ -111,7 +111,7 @@ def main():
     for grupo, _ in GRUPOS:
         tira = ''.join(f'<img src="{m}-mini.jpg" width="160" height="90" loading="lazy" alt="">' for m in miniaturas(grupo))
         html = f'<span class="rp-tira" aria-hidden="true">{tira}</span>'
-        a = f'<a class="r-card" href="escuela-dominical/{grupo}/">'
+        a = f'<a class="r-card" href="/recursos/escuela-dominical/{grupo}/">'
         m = re.search(re.escape(a) + r'\s*(<!-- verbo:recursos-tira-' + grupo + r' -->.*?<!-- /verbo:recursos-tira-' + grupo + r' -->)?', t, re.S)
         t = t[:m.start()] + a + bloque('tira-' + grupo, html) + t[m.end():]
     t = re.sub(r'<div class="rp-tres">\n?', '', t)
@@ -119,7 +119,7 @@ def main():
     t = re.sub(r'<!-- verbo:recursos-izq -->.*?<!-- /verbo:recursos-izq -->\n?', '', t, flags=re.S)
     t = re.sub(r'<!-- verbo:recursos-der -->.*?<!-- /verbo:recursos-der -->\n?', '', t, flags=re.S)
     t = re.sub(r'<!-- verbo:recursos-centro -->.*?<!-- /verbo:recursos-centro -->\n    ', '', t, flags=re.S)
-    k = t.index('<p data-i18n-live>Iremos añadiendo')
+    k = t.index('<p data-idioma="es">Iremos añadiendo')   # antes era data-i18n-live (lo cambió bilingue_paginas.py)
     t = t[:k] + bloque('centro', centro()) + '\n    ' + t[k:]
     i, j = t.index('<main class="static-page__main recursos-index">'), t.index('</main>') + len('</main>')
     t = (t[:i] + '<div class="rp-tres">\n' + t[i:j] + '\n' + bloque('izq', juegos()) + '\n' + bloque('der', derecha())

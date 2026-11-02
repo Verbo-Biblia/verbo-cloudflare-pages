@@ -91,7 +91,7 @@ def shell(title, description, path, body, schemas, script=False, art='estudio-bi
 </head>
 <body>
 <a class="skip-link" href="#contenido">{b('Ir al contenido','Skip to content')}</a>
-<header class="site-header"><a class="brand" href="/">Verbo<span>{b('biblioteca bíblica digital','digital Bible library')}</span></a><nav aria-label="Navegación principal"><a href="/">{b('Inicio','Home')}</a><a href="/software/">Software</a><a href="/recursos/">{b('Recursos','Resources')}</a><a href="/historias/" aria-current="{'page' if path == '/historias/' else 'true'}">{b('Historias','Stories')}</a></nav></header>
+<header class="site-header"><a class="brand" href="/">Verbo<span>{b('biblioteca bíblica digital','digital Bible library')}</span></a><nav aria-label="Navegación principal"><a href="/">{b('Inicio','Home')}</a><a href="/software/">Software</a><a href="/ninos/">{b('Niños','Kids')}</a><a href="/historias/" aria-current="{'page' if path == '/historias/' else 'true'}">{b('Historias','Stories')}</a></nav></header>
 {body}
 <footer class="site-footer"><p>Verbo · {b('Para estudiar, servir y recordar.','To study, serve and remember.')}</p><nav aria-label="Información"><a href="/historias/">{b('Todas las historias','All stories')}</a><a href="/acerca/">{b('Acerca de Verbo','About Verbo')}</a><a href="/licencias/">{b('Fuentes y licencias','Sources and licenses')}</a></nav></footer>
 {'<script src="/historias/assets/historias.js?v=20261006-historias" defer></script>' if script else ''}

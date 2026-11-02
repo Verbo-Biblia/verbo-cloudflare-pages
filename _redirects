@@ -3,5 +3,8 @@
 /juegos/preguntas-biblicas /juegos/la-senda/ 301
 /proyector /software/lumbrera/ 301
 /proyector/* /software/lumbrera/ 301
-/recursos/sermones-historicos/* /recursos/ 301
-/recursos/sermones-historicos /recursos/ 301
+/recursos/sermones-historicos/* /libreria/ 301
+/recursos/sermones-historicos /libreria/ 301
+# 2026-11-02: la portada de Recursos (Escuela Dominical) pasó a ser la sección Niños
+/recursos/ /ninos/ 301
+/recursos /ninos/ 301
