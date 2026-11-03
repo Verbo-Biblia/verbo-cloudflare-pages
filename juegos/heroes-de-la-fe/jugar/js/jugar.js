@@ -1,10 +1,10 @@
 // Modo jugar: muestra la historia como la verá el lector.
 // Orden en cada escena: 1) globos y efectos puestos a mano (uno por clic), 2) el guion (líneas y elecciones),
 // 3) la salida de la escena (seguir, decisión o fin).
-import { W, H } from './estado.js?v=dff0bc9f';
-import { pintarFondo, pintarElementos, actualizarNodo } from './render.js?v=dff0bc9f';
-import { nombreDe } from './personajes.js?v=dff0bc9f';
-import { globoDeLinea } from './dialogo.js?v=dff0bc9f';
+import { W, H } from './estado.js?v=dbc2e41f';
+import { pintarFondo, pintarElementos, actualizarNodo } from './render.js?v=dbc2e41f';
+import { nombreDe } from './personajes.js?v=dbc2e41f';
+import { globoDeLinea } from './dialogo.js?v=dbc2e41f';
 
 const $ = s => document.querySelector(s);
 let historia, actual, historial, pendientes, alSalir;

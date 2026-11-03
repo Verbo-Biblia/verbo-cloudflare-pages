@@ -53,6 +53,9 @@ NOVELAS = {
     'billy-graham': {'libro': 'graham', 'lema': 'El predicador del mundo', 'lema_en': "The world's preacher", 'capitulos': 22,
                 'resumen_en': 'His whole life, from the dairy farm in Charlotte to stadiums all over the world, told as a comic you read page by page. Only what can be verified: the facts come from the sources.',
                 'resumen': 'Su vida completa, de la granja lechera de Charlotte a los estadios de todo el mundo, contada como un cómic que se lee página a página. Solo lo verificable: los hechos vienen de las fuentes.'},
+    'amy-carmichael': {'libro': 'carmichael', 'lema': 'La madre de Dohnavur', 'lema_en': 'The mother of Dohnavur', 'capitulos': 26,
+                'resumen_en': 'Her whole life, from the seaside village of Millisle, in Ireland, to the children of Dohnavur, in the south of India, told as a comic you read page by page. Only what can be verified: the facts come from her own books and the sources.',
+                'resumen': 'Su vida completa, del pueblo costero de Millisle, en Irlanda, a los niños de Dohnavur, en el sur de la India, contada como un cómic que se lee página a página. Solo lo verificable: los hechos vienen de sus propios libros y de las fuentes.'},
 }
 def portada_libro(slug):return '/historias/assets/libros/'+slug+'.webp'
 def portada_libro_en(slug):return '/historias/assets/libros/'+slug+'.en.webp'

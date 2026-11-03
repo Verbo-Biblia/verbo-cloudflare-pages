@@ -1,6 +1,6 @@
 // Dibuja escenas: en el DOM (escenario del editor y del jugador) y en Canvas (miniaturas del mapa).
-import { W, H } from './estado.js?v=dff0bc9f';
-import { globo, formaOnomatopeya, letraOnomatopeya, partirLineas, SIMBOLOS } from './formas.js?v=dff0bc9f';
+import { W, H } from './estado.js?v=dbc2e41f';
+import { globo, formaOnomatopeya, letraOnomatopeya, partirLineas, SIMBOLOS } from './formas.js?v=dbc2e41f';
 
 const NS = 'http://www.w3.org/2000/svg';
 const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
