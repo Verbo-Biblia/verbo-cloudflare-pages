@@ -62,7 +62,7 @@ def mas_jugados():
  return sorted((g for g in JUEGOS if g.get('orden_mas_jugados')),key=lambda g:g['orden_mas_jugados'])
 def destacado():return next((g for g in JUEGOS if g.get('destacado')),JUEGOS[0])
 
-NAV=[('/juegos/','home.navGames','Juegos','siempre'),('/imagenes/','home.navImages','Imágenes',''),('/musica/','home.navMusic','Música',''),('/ninos/','home.navLessons','Niños',''),('/preguntas-cristianas/','home.navQuestions','Preguntas cristianas',''),
+NAV=[('/juegos/','home.navGames','Juegos','siempre'),('/imagenes/','home.navImages','Imágenes','siempre'),('/musica/','home.navMusic','Música',''),('/ninos/','home.navLessons','Niños',''),('/preguntas-cristianas/','home.navQuestions','Preguntas cristianas',''),
  ('/historias/','home.navHistories','Historias',''),('/software/','home.navSoftware','Software',''),('/apps/','home.navApps','Apps','')]
 def barra(actual='/juegos/'):
  enl=''.join(f'<a href="{u}" class="{c}"'+(' aria-current="page"' if u==actual else '')+f' data-i18n="{k}">{t}</a>' for u,k,t,c in NAV)
@@ -210,17 +210,21 @@ def portada_bloque():
  hero=('<section class="v-hero"><div class="portal-wrap v-hero__grid"><div>'+bi('Juegos cristianos gratis. Juega sin instalar.','Free Christian games. Play instantly.','h1')+
   bi('Aventuras, puzles y preguntas basados en la Biblia, para jugar solo o en familia. También Biblia, preguntas cristianas, historias e imágenes bíblicas gratis.','Adventures, puzzles and quizzes based on the Bible, to play alone or as a family. Plus free Bible resources, Christian questions, stories and Bible images.','p',class_='v-hero__lema')+
   '<div class="v-botones"><a class="v-boton v-boton--sec" href="/juegos/">'+bi('Ver todos los juegos','See all games','span')+' →</a></div></div>'+destacado_html(g)+'</div></section>')
- fotos=[x for x in IMAGENES];sel=[]
- vistos=set()
- for x in fotos:
-  if x['libro'] not in vistos and x['tipo']=='escena':sel.append(x);vistos.add(x['libro'])
-  if len(sel)==6:break
- imgs=('<section class="v-seccion"><div class="v-seccion__cabeza">'+bi('Imágenes bíblicas gratis para tus presentaciones','Free Bible images for your presentations','h2')+'<a href="/imagenes/">'+bi('Ver el banco','Browse the library','span')+'</a></div>'+
-  bi('Escenas, paisajes y fondos en HD, horizontales y verticales, para usar gratis en la iglesia, en clases y en tus videos. Sin registro.','HD scenes, landscapes and backgrounds, landscape and vertical, free to use at church, in classes and in your videos. No sign-up.','p',class_='v-sub')+miniaturas(sel,'v-imagenes')+'</section>')
- return (INI+'<div class="portal v-banda" id="juegos">'+hero+'<div class="portal-wrap">'
+ # Banco de imágenes: visible justo después del juego destacado. En temporada lleva escenas de Navidad.
+ ids=['lc-02-07-nacimiento-ninos','mt-02-09-sabios-ninos','lc-02-08-pastores-ninos','ex-14-21-mar-rojo-ninos','1sa-17-48-david-goliat-ninos','mr-04-39-tempestad-ninos']
+ por_id={x['id']:x for x in IMAGENES};sel=[por_id[i] for i in ids if i in por_id]
+ if len(sel)<6:
+  vistos={x['libro'] for x in sel}
+  for x in IMAGENES:
+   if x['libro'] not in vistos and x['tipo']=='escena':sel.append(x);vistos.add(x['libro'])
+   if len(sel)==6:break
+ imgs=('<section class="v-seccion v-banco"><div class="v-seccion__cabeza">'+bi('Banco de imágenes bíblicas gratis','Free Bible image library','h2')+'</div>'+
+  bi(f'Más de {len(IMAGENES)//10*10} imágenes para la iglesia, clases y videos. Sin registro.',f'Over {len(IMAGENES)//10*10} images for church, classes and videos. No sign-up.','p',class_='v-sub')+miniaturas(sel,'v-imagenes')+
+  '<div class="v-botones"><a class="v-boton v-boton--jugar" href="/imagenes/">'+bi('Ver imágenes','See images','span')+' →</a><a class="v-boton v-boton--sec" href="/imagenes/navidad/">'+bi('Navidad','Christmas','span')+'</a></div></section>')
+ return (INI+'<div class="portal v-banda" id="juegos">'+hero+'<div class="portal-wrap">'+imgs+
   '<section class="v-seccion"><div class="v-seccion__cabeza">'+bi('Nuevos','New','h2')+'<a href="/juegos/">'+bi('Ver todos','See all','span')+'</a></div>'+lista(nuevos()[:4],'v-fila')+'</section>'
   '<section class="v-seccion">'+bi('Por categoría','By category','h2')+categorias_html(False)+'</section>'
-  '<section class="v-seccion"><div class="v-seccion__cabeza">'+bi('Más jugados','Most played','h2')+'</div>'+lista(mas_jugados()[:4],'v-fila')+'</section>'+imgs+'</div></div>'+FIN)
+  '<section class="v-seccion"><div class="v-seccion__cabeza">'+bi('Más jugados','Most played','h2')+'</div>'+lista(mas_jugados()[:4],'v-fila')+'</section></div></div>'+FIN)
 
 def portada_inicio():
  p=R/'index.html';t=p.read_text()

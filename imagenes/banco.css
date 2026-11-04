@@ -79,3 +79,21 @@ body.image-bank:has(.navidad-banner){--gold:#a8322d;background:radial-gradient(e
 .navidad-banner p{color:#fff0d8}
 .navidad-boton{display:inline-block;margin-top:.5rem;padding:.65rem 1.2rem;border-radius:999px;background:#f2cf7c;color:#4a1215;font-weight:700;text-decoration:none}
 .navidad-banner .tile-caption,.navidad-banner .tile-caption *{color:#fff7e8}
+
+/* Versiones en el celular: la columna no debe ensancharse con las miniaturas */
+.image-layout>*{min-width:0}
+.version-slider{max-width:100%}
+.version-slider .version-thumb img{width:96px;height:54px;max-width:none;object-fit:cover}
+.image-stage:has(.version-slider) .open-viewer{aspect-ratio:3/2}
+.image-stage:has(.version-slider) .open-viewer img{width:100%;height:100%;object-fit:cover}
+.image-bank .tile img{object-fit:cover}
+/* Bloque de Navidad: botón legible y compacto en el celular */
+.navidad-banner a.navidad-boton,.navidad-banner a.navidad-boton span{color:#4a1215}
+.navidad-banner .eyebrow{color:#f2cf7c!important}
+@media(max-width:700px){.navidad-banner{padding:18px 12px}
+.navidad-banner .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.navidad-banner .tile{min-height:0}
+.navidad-banner .quick-download,.navidad-banner .tile-caption small{display:none}
+.navidad-banner .tile-caption h2,.navidad-banner .tile-caption p{font-size:13px;line-height:1.2}}
+.image-bank .version-slider .version-thumb{padding:0;min-width:0;min-height:0;width:auto;height:auto;background:none;box-shadow:none}
+.image-bank .version-slider .version-thumb img{width:84px;height:48px;aspect-ratio:auto}

@@ -185,3 +185,7 @@ body.portal{margin:0;overflow-x:hidden}
 @media(min-width:700px){.v-controles{grid-template-columns:1fr 1fr}}
 .v-ficha .v-seccion.v-texto,.v-ficha .v-seccion>p{max-width:76ch}
 @media(min-width:900px){.v-seccion>.v-destacado{display:grid;grid-template-columns:1.25fr 1fr;align-items:center}.v-seccion>.v-destacado .v-destacado__img{border-bottom:0;border-right:6px solid var(--cat,var(--v-oro));height:100%}.v-seccion>.v-destacado .v-destacado__info{padding:28px 32px}}
+
+/* Banco de imágenes en la portada y menú del celular con Juegos e Imágenes */
+.v-banco .v-botones{margin-top:14px}
+@media(max-width:600px){.home-nav{gap:10px}.home-nav a.siempre{font-size:14px;padding:0 4px}}
